@@ -26,7 +26,7 @@ export const OfficeInfoEmail = ({ email, unitType }: Props) => {
     return (
         <div>
             <Heading level={'2'} size={'medium'}>
-                {'Epost'}
+                {'E-post'}
             </Heading>
             <BodyShort>{email.adresse}</BodyShort>
         </div>

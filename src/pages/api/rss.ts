@@ -1,8 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fetchJson } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
 import { apiErrorHandler } from 'utils/api-error-handler';
+import { logger } from 'srcCommon/logger';
 
 type FeedItem = {
     title: string;
@@ -39,7 +40,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         fetchOptions
     );
     if (!jsonFeed) {
-        console.error('Error while fetching RSS data');
+        logger.error('Error while fetching RSS data');
         return null;
     }
     const rssFeed = new RSS({

@@ -9,10 +9,12 @@ ingresses:
   - https://www.nav.no
 resources:
   requests:
-    cpu: 1500m
-    memory: 2500Mi
+    cpu: 750m
+    memory: 2048Mi
   limits:
-    memory: 2500Mi
-replicas:
-  min: 3
-  max: 3
+    memory: 4096Mi
+redis:
+  plan: startup-4
+  project: nav-prod
+  instance: pagecache
+  endpointId: 76685598-1048-4f56-b34a-9769ef747a92

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Heading } from '@navikt/ds-react';
+import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
@@ -7,7 +7,6 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 
 import styles from './FormIntermediateStepPage.module.scss';
@@ -105,7 +104,7 @@ export const FormIntermediateStepPage = (
                 <div className={styles.stepOptionsWrapper}>
                     <ParsedHtml htmlProps={currentStepData.editorial} />
                     {currentStepData.stepsHeadline && (
-                        <Heading level="3" size="small" spacing>
+                        <Heading level="2" size="medium" spacing>
                             {currentStepData.stepsHeadline}
                         </Heading>
                     )}
@@ -122,17 +121,31 @@ export const FormIntermediateStepPage = (
                                                 {step.languageDisclaimer}
                                             </InfoBox>
                                         )}
-                                        <LenkepanelNavNo
+                                        <LinkPanel
                                             href={getHrefFromStep(step)}
                                             onClick={getOnClickFromStep(
                                                 step,
                                                 index
                                             )}
                                             className={styles.stepAction}
-                                            tittel={step.label}
+                                            as={(props) => (
+                                                <LenkeBase
+                                                    analyticsComponent="mellomsteg"
+                                                    analyticsLinkGroup={currentStepData.stepsHeadline}
+                                                    analyticsLabel={step.label}
+                                                    {...props}
+                                                >
+                                                    {props.children}
+                                                </LenkeBase>
+                                            )}
                                         >
-                                            {step.explanation}
-                                        </LenkepanelNavNo>
+                                            <LinkPanel.Title>
+                                                {step.label}
+                                            </LinkPanel.Title>
+                                            <LinkPanel.Description>
+                                                {step.explanation}
+                                            </LinkPanel.Description>
+                                        </LinkPanel>
                                     </li>
                                 );
                             }
@@ -157,7 +170,7 @@ export const FormIntermediateStepPage = (
                             as={LenkeBase}
                             href={router.asPath}
                             analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={'steg-1'}
+                            analyticsLinkGroup={currentStepData.stepsHeadline}
                             analyticsLabel={'Tilbake'}
                         >
                             {getTranslations('back')}

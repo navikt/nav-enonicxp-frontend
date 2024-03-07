@@ -1,6 +1,7 @@
-import { fetchJson } from './fetch-utils';
-import { setMeldekortStatusAction } from '../../store/slices/authState';
-import { store } from '../../store/store';
+import { fetchJson } from 'srcCommon/fetch-utils';
+import { setMeldekortStatusAction } from 'store/slices/authState';
+import { store } from 'store/store';
+import { logger } from 'srcCommon/logger';
 
 export type MeldekortStatusResponse = {
     meldekort: number;
@@ -30,7 +31,7 @@ export const fetchAndSetMeldekortStatus = () => {
         credentials: 'include',
     }).then((response) => {
         if (!response) {
-            console.error('Failed to fetch meldekort status');
+            logger.error('Failed to fetch meldekort status');
             return null;
         }
 

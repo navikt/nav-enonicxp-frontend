@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { LRUCache } from 'lru-cache';
-import { fetchJson } from '../../utils/fetch/fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
+import { logger } from 'srcCommon/logger';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
@@ -22,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { url } = req.query;
     if (!validateUrl(url)) {
-        console.log(`Invalid url specified for xp file cache - ${url}`);
+        logger.info(`Invalid url specified for xp file cache - ${url}`);
         return res.status(400).send('A valid url parameter must be specified');
     }
 
@@ -47,7 +48,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     if (!fetchedItem) {
-        console.log(`JSON file not found: ${url}`);
+        logger.info(`JSON file not found: ${url}`);
         return res.status(404).send('Not found');
     }
 

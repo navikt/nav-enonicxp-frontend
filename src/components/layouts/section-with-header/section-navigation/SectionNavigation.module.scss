@@ -1,0 +1,10 @@
+.sectionNavigation {
+    list-style: none;
+    padding: 0 0 0 var(--a-spacing-5);
+    margin: 0 0 2.75rem 0;
+    border-left: var(--a-spacing-1) solid var(--a-surface-action);
+
+    li {
+        margin: var(--a-spacing-3) 0;
+    }
+}

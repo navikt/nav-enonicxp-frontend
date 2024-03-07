@@ -4,6 +4,7 @@ import jsep from 'jsep';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
+import { logger } from 'srcCommon/logger';
 
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
@@ -80,7 +81,7 @@ export const evaluateExpression = (
         if (isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
-        console.error(`Global values calculation error: ${e}`);
+        logger.error(`Global values calculation error: ${e}`);
         return '[teknisk feil: verdi ikke tilgjengelig]';
     }
 };

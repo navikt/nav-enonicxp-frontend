@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import { classNames } from 'utils/classnames';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
-import { OverviewLinkPanel } from 'components/pages/overview-page/product-elements/OverviewLinkPanel';
-import { OverviewProductDetailsPanel } from 'components/pages/overview-page/product-elements/OverviewProductDetailsPanel';
+import { OverviewProductDetailsPanel } from 'components/pages/overview-page/product-panel/OverviewProductDetailsPanel';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { OverviewPageProps } from 'types/content-props/overview-props';
 
@@ -20,7 +18,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const { getFilteredList } = useOverviewFilters();
 
-    const isAllProductsOverview = overviewType === 'all_products';
+    const isSimpleOverview = overviewType === 'all_products';
 
     useEffect(() => {
         getFilteredList({
@@ -30,6 +28,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     { name: 'title', weight: 10 },
                     { name: 'ingress', weight: 1 },
                     { name: 'productLinks.title', weight: 1 },
+                    { name: 'keywords', weight: 2 },
                 ],
             },
         }).then((result) => {
@@ -51,7 +50,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     <OverviewFilters
                         filterableItems={productList}
                         showAreaFilter={true}
-                        showTaxonomyFilter={isAllProductsOverview}
+                        showTaxonomyFilter={isSimpleOverview}
                         showTextInputFilter={true}
                     />
                     <OverviewFiltersSummary
@@ -60,26 +59,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         showResetChips={true}
                     />
                 </div>
-                <ul
-                    className={classNames(
-                        style.productListWrapper,
-                        isAllProductsOverview && style.allProducts
-                    )}
-                >
+                <ul className={style.productListWrapper}>
                     {filteredList.map((product) => (
                         <li key={`${product.anchorId}-${language}`}>
-                            {isAllProductsOverview ? (
-                                <OverviewLinkPanel
-                                    product={product.productLinks[0]}
-                                    illustration={product.illustration}
-                                />
-                            ) : (
-                                <OverviewProductDetailsPanel
-                                    productDetails={product}
-                                    pageProps={props}
-                                    detailType={overviewType}
-                                />
-                            )}
+                            <OverviewProductDetailsPanel
+                                productDetails={product}
+                                pageProps={props}
+                                detailType={overviewType}
+                            />
                         </li>
                     ))}
                 </ul>

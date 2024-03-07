@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
+import { logger } from 'srcCommon/logger';
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
@@ -19,7 +20,7 @@ const getStaticPropsBuildDev: GetStaticProps = async () => {
 };
 
 const getStaticPropsNormal: GetStaticProps = async () => {
-    console.log('Fetching index page props');
+    logger.info('Fetching index page props');
 
     const pageProps = await fetchPageProps({
         routerQuery: '',

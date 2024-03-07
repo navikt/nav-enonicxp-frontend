@@ -18,7 +18,7 @@ spec:
   port: 3000
   liveness:
     path: /api/internal/isAlive
-    initialDelay: 5
+    initialDelay: 20
     timeout: 10
   readiness:
     path: /api/internal/isReady
@@ -27,9 +27,9 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
-#  redis:
-#    - instance: {{ redisInstance }}
-#      access: readwrite
+  redis:
+    - instance: {{ redis.instance }}
+      access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}
@@ -39,11 +39,11 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
   replicas:
-  {{#with replicas}}
-    min: {{min}}
-    max: {{max}}
-  {{/with}}
+    disableAutoScaling: true
   accessPolicy:
     outbound:
       rules:

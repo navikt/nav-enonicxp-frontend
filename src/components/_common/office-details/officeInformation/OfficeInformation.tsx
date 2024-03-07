@@ -32,40 +32,42 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                     {title}
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
-            <ExpansionCard.Content className={styles.expansionCardContent}>
-                <section>
-                    <Heading level="3" size="small" spacing>
-                        {getOfficeTranslations('location')}
-                    </Heading>
-                    <BodyShort>{visitingAddress}</BodyShort>
-                </section>
-                <section>
-                    <Heading level="3" size="small" spacing>
-                        {getOfficeTranslations('postalAddress')}
-                    </Heading>
-                    <BodyShort>
-                        <span>{postalAddress}</span>
-                    </BodyShort>
-                </section>
-                {(organisasjonsnummer || enhetNr) && (
+            <ExpansionCard.Content>
+                <div className={styles.expansionCardContent}>
                     <section>
                         <Heading level="3" size="small" spacing>
-                            {getOfficeTranslations('officeInformation')}
+                            {getOfficeTranslations('location')}
                         </Heading>
-                        {organisasjonsnummer && (
-                            <BodyShort>
-                                {getOfficeTranslations('orgNumber')}:{' '}
-                                {organisasjonsnummer}
-                            </BodyShort>
-                        )}
-                        {enhetNr && (
-                            <BodyShort>
-                                {getOfficeTranslations('officeNumber')}:{' '}
-                                {enhetNr}
-                            </BodyShort>
-                        )}
+                        <BodyShort>{visitingAddress}</BodyShort>
                     </section>
-                )}
+                    <section>
+                        <Heading level="3" size="small" spacing>
+                            {getOfficeTranslations('postalAddress')}
+                        </Heading>
+                        <BodyShort>
+                            <span>{postalAddress}</span>
+                        </BodyShort>
+                    </section>
+                    {(organisasjonsnummer || enhetNr) && (
+                        <section>
+                            <Heading level="3" size="small" spacing>
+                                {getOfficeTranslations('officeInformation')}
+                            </Heading>
+                            {organisasjonsnummer && (
+                                <BodyShort>
+                                    {getOfficeTranslations('orgNumber')}:{' '}
+                                    {organisasjonsnummer}
+                                </BodyShort>
+                            )}
+                            {enhetNr && (
+                                <BodyShort>
+                                    {getOfficeTranslations('officeNumber')}:{' '}
+                                    {enhetNr}
+                                </BodyShort>
+                            )}
+                        </section>
+                    )}
+                </div>
             </ExpansionCard.Content>
         </ExpansionCard>
     );

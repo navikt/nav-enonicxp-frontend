@@ -13,7 +13,6 @@ metadata:
     config.linkerd.io/proxy-memory-request: 1Gi
 spec:
   image: {{image}}
-  team: personbruker
   port: 3000
   liveness:
     path: /api/internal/isAlive
@@ -36,10 +35,7 @@ spec:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
   replicas:
-  {{#with replicas}}
-    min: {{min}}
-    max: {{max}}
-  {{/with}}
+    disableAutoScaling: true
   accessPolicy:
     outbound:
       rules:

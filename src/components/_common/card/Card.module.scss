@@ -1,4 +1,4 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 @mixin highlight {
     > :global(.situation) {
@@ -109,8 +109,10 @@
             box-shadow: var(--a-shadow-medium);
         }
         &:hover {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+            box-shadow:
+                0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14),
+                0 2px 8px rgba(38, 38, 38, 0.12);
         }
 
         &:global(.situation) {

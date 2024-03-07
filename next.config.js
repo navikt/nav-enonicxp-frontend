@@ -117,18 +117,21 @@ const corsHeaders = [
 ];
 
 console.log(
-    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
+    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Is failover instance? ${isFailover}`
 );
 
 const config = {
-    experimental: {
-        // Set this to 0 to disable the next.js built-in memory cache for the ISR page cache
-        // We implement our own in the customCacheHandler to allow us to invalidate the memory cache on demand
-        isrMemoryCacheSize: 0,
-        incrementalCacheHandlerPath: path.resolve(
+    ...(!isFailover && {
+        cacheHandler: path.resolve(
             __dirname,
-            '.serverDist/custom-cache-handler'
+            'server',
+            '.dist',
+            'page-cache-handler.cjs'
         ),
+        cacheMaxMemorySize: 0,
+    }),
+    experimental: {
+        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
     },
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',

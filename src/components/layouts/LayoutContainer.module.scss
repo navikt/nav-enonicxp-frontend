@@ -1,4 +1,4 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 .layout {
     // The default top/bottom margins may be overridden by the content editor
@@ -14,15 +14,15 @@
         @media #{common.$mq-screen-tablet} {
             padding-left: common.$padding-sides-tablet;
             padding-right: common.$padding-sides-tablet;
-            margin-left: - #{common.$padding-sides-tablet};
-            margin-right: - #{common.$padding-sides-tablet};
+            margin-left: -#{common.$padding-sides-tablet};
+            margin-right: -#{common.$padding-sides-tablet};
         }
 
         @media #{common.$mq-screen-desktop} {
             padding-left: common.$padding-sides-desktop;
             padding-right: common.$padding-sides-desktop;
-            margin-left: - #{common.$padding-sides-desktop};
-            margin-right: - #{common.$padding-sides-desktop};
+            margin-left: -#{common.$padding-sides-desktop};
+            margin-right: -#{common.$padding-sides-desktop};
         }
     }
 

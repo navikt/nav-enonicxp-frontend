@@ -1,41 +1,41 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 $numCols: 3;
 $margin: 1rem;
 
 .linkLists {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-  @media #{common.$mq-screen-mobile} {
-    flex-wrap: wrap;
-  }
-
-  .column {
-    @media #{common.$mq-screen-mobile} {
-      width: 100%;
-    }
-    @media #{common.$mq-screen-tablet-and-desktop} {
-      width: calc(percentage(1 / $numCols));
-      &:not(:last-child) {
-        margin-right: $margin;
-      }
-      &:nth-child(2):not(:last-child) {
-        margin-left: $margin;
-        margin-right: $margin;
-      }
-      &:last-child {
-        margin-left: $margin;
-      }
-    }
-  }
-
-  .moreNews {
-    margin-top: 2rem;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     width: 100%;
-  }
+
+    @media #{common.$mq-screen-mobile} {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        @media #{common.$mq-screen-mobile} {
+            width: 100%;
+        }
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            width: calc(percentage(1 / $numCols));
+            &:not(:last-child) {
+                margin-right: $margin;
+            }
+            &:nth-child(2):not(:last-child) {
+                margin-left: $margin;
+                margin-right: $margin;
+            }
+            &:last-child {
+                margin-left: $margin;
+            }
+        }
+    }
+
+    .moreNews {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
 }

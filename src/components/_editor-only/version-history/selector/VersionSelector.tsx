@@ -4,7 +4,7 @@ import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
-import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
+import { fetchJson, objectToQueryString } from 'srcCommon/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 

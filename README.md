@@ -2,28 +2,50 @@
 
 React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytter Enonic XP som headless CMS.
 
-![Deploy to prod](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.prod.yml/badge.svg) <br>
-![Deploy to prod (failover)](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy-failover.prod.yml/badge.svg) <br>
-![Deploy to dev1](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.dev1.yml/badge.svg) <br>
-![Deploy to dev2](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.dev2.yml/badge.svg)
+## Lokal utvikling
 
-## Lokal kjøring
+Kjøres lokalt på [http://localhost:3000](http://localhost:3000).
 
-Kjører lokalt på [http://localhost:3000](http://localhost:3000).
+Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://github.com/navikt/nav-enonicxp) installert. Alternativt kan en dev eller prod-instans av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
 
-Appen kjøres som default mot en lokal instans av [Enonic XP](https://github.com/navikt/nav-enonicxp). Øvrige avhengigheter kan startes ved å kjøre `docker compose up`.
+### Development mode:
 
-Alternativt kan dev eller prod-instansen av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
+#### Med lokal XP:
 
-#### Development mode:
+-   Start en XP sandbox (se nav-enonicxp readme for fremgangsmåte)
+-   Kjør `npm run dev`
 
-Kjør `npm run dev`
+#### Via dev-proxy:
 
-#### Production mode:
+-   Kopier .env.development til .env.development.local.
+-   Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
+-   Kjør `npm run dev-custom`
 
-Kopier .env.development til .env.local, og sett `NODE_ENV=production`
+### Production mode:
 
-Kjør så `npm run start-clean`
+Kjør `npm run start-clean`
+
+### Docker compose
+
+[Dekoratøren](https://github.com/navikt/nav-dekoratoren), [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) og mocks for innlogging
+kan kjøres lokalt med `docker compose up`. Du må først autentisere til relevante image registries:
+
+#### GAR
+
+```
+gcloud auth login
+gcloud auth configure-docker europe-north1-docker.pkg.dev
+```
+
+Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#gcloud-helper
+
+#### Github packages:
+
+Generer en token på Github med `read:packages` access og SSO auth for navikt. Bruk denne som passord ved login:
+
+```
+docker login ghcr.io
+```
 
 ## Deploy til test-miljø
 
@@ -39,7 +61,7 @@ Kjør så `npm run start-clean`
 
 [Kibana](https://logs.adeo.no/app/discover#/view/952d2110-d396-11eb-af21-ffc7c2f0592f)
 
-[Grafana](https://grafana.nais.io/d/mUGKZWtMz/personbruker-app-metrikker?orgId=1&var-datasource=prod-gcp&var-app=nav-enonicxp-frontend)
+[Grafana](https://grafana.nav.cloud.nais.io/d/acb4618a-aa49-4036-9534-c058bc1af783/nav-no-frontend-detaljert)
 
 ## Failover
 

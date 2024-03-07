@@ -1,6 +1,6 @@
-@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
-    as areaGraphics;
-@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
+@use 'components/_common/area-card/graphics/AreaCardGraphicsCommon.module' as
+    areaGraphics;
+@use 'components/_common/area-card/AreaCard.module' as areaCard;
 
 .shapes {
     @include areaCard.transitionMixin;

@@ -4,8 +4,9 @@ import { PageBase } from 'components/PageBase';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from 'utils/errors';
-import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { fetchWithTimeout } from 'srcCommon/fetch-utils';
 import { NextApiResponse, NextPageContext } from 'next';
+import { logger } from 'srcCommon/logger';
 
 const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
 
@@ -13,7 +14,7 @@ const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
 // See related issue: https://github.com/vercel/next.js/issues/39616
 const getClientsideProps = (path?: string) => {
     if (typeof document === undefined) {
-        console.error(
+        logger.error(
             `document was unexpectedly not defined in client-side error controller on ${path}`
         );
         return null;
@@ -21,7 +22,7 @@ const getClientsideProps = (path?: string) => {
 
     const nextData = document.getElementById('__NEXT_DATA__')?.textContent;
     if (!nextData) {
-        console.error(`__NEXT_DATA__ not found on ${path}`);
+        logger.error(`__NEXT_DATA__ not found on ${path}`);
         return null;
     }
 
@@ -29,7 +30,7 @@ const getClientsideProps = (path?: string) => {
         const contentProps = JSON.parse(nextData)?.props
             ?.pageProps as ContentProps;
         if (contentProps.type !== ContentType.Error) {
-            console.error(
+            logger.error(
                 `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.type}`
             );
             return null;
@@ -37,14 +38,14 @@ const getClientsideProps = (path?: string) => {
 
         return contentProps;
     } catch (e) {
-        console.error(`Failed to parse __NEXT_DATA__ on ${path} - ${e}`);
+        logger.error(`Failed to parse __NEXT_DATA__ on ${path} - ${e}`);
         return null;
     }
 };
 
 const fetchFailoverHtml = async (path: string): Promise<string | null> => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
-    console.log(`Fetching failover html from ${url}`);
+    logger.info(`Fetching failover html from ${url}`);
 
     return fetchWithTimeout(url, 15000, {
         headers: {
@@ -56,11 +57,11 @@ const fetchFailoverHtml = async (path: string): Promise<string | null> => {
                 return res.text();
             }
 
-            console.error(`Error response from failover: ${res.status}`);
+            logger.error(`Error response from failover: ${res.status}`);
             return null;
         })
         .catch((e) => {
-            console.error(`Exception from failover fetch: ${e}`);
+            logger.error(`Exception from failover fetch: ${e}`);
             return null;
         });
 };
@@ -75,7 +76,7 @@ const parseErrorContent = (err?: Error | null, asPath?: string) => {
             | ContentProps
             | undefined;
     } catch (e) {
-        console.error(`Failed to parse error content on ${asPath}`);
+        logger.error(`Failed to parse error content on ${asPath}`);
         return null;
     }
 };
