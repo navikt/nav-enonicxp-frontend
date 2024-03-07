@@ -9,15 +9,6 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     descriptor: LayoutType.SectionWithHeader;
     regions: Regions<'intro' | 'content'>;
     config: {
-        displays: OptionSetSingle<{
-            alternativeAudience: {
-                showProductName: boolean;
-            };
-            relatedSituations: {
-                title: string;
-                description: string;
-            };
-        }>;
         icon?: {
             icon: XpImageProps;
             color?: string;

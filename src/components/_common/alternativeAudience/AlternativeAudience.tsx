@@ -11,17 +11,14 @@ import { LenkeBase } from '../lenke/LenkeBase';
 
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './AlternativeAudience.module.scss';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
-    pageProps: ContentProps;
-    config: {
-        showProductName: boolean;
-    };
+    productName: string;
+    showProductName: boolean;
 };
 
 type AudienceLink = {
@@ -31,8 +28,8 @@ type AudienceLink = {
 
 export const AlternativeAudience = ({
     alternativeAudience,
-    pageProps,
-    config,
+    productName,
+    showProductName,
 }: AlternativeAudienceProps) => {
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
@@ -41,33 +38,6 @@ export const AlternativeAudience = ({
     const getProviderAudienceLabel = translator('providerAudience', language);
     const getRelatedString = translator('related', language);
     const getStringPart = translator('stringParts', language);
-
-    // If the page is in preview mode, audience from the page props will be empty,
-    // so display a note about 'mark as ready' to the editor, as we can't actually
-    // display the audience until the page has been refreshed.
-    const isComponentPreviewMode = pageProps._id === '';
-
-    if (isComponentPreviewMode) {
-        return (
-            <EditorHelp
-                type={'info'}
-                text={
-                    'Aktuelle målgrupper vises her når du klikker "marker som klar".'
-                }
-            />
-        );
-    }
-
-    if (!alternativeAudience) {
-        return (
-            <EditorHelp
-                type={'error'}
-                text={
-                    'Feil: Du har huket av for å vise aktuelle målgrupper i denne seksjonen, men ingen målgrupper er valgt i metadata til venstre.'
-                }
-            />
-        );
-    }
 
     const buildAudienceLinks = (
         alternativeAudience: AlternativeAudienceType
@@ -110,9 +80,7 @@ export const AlternativeAudience = ({
 
     const audienceLinks = buildAudienceLinks(alternativeAudience);
 
-    const productName = config.showProductName
-        ? pageProps.data?.title || pageProps.displayName
-        : getStringPart('this');
+    const name = showProductName ? productName : getStringPart('this');
 
     return (
         <div
@@ -124,7 +92,7 @@ export const AlternativeAudience = ({
             <BodyShort>
                 {getRelatedString('relatedAudience').replace(
                     '{name}',
-                    productName.toLowerCase()
+                    name.toLowerCase()
                 )}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>

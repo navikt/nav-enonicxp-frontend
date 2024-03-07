@@ -8,9 +8,6 @@ import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
-import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
-import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
-import { ProductPageData } from 'types/content-props/dynamic-page-props';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -38,8 +35,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    const { title, anchorId, icon, border, toggleCopyButton, displays } =
-        config;
+    const { title, anchorId, icon, border, toggleCopyButton } = config;
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
@@ -54,18 +50,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);
-
-    const shouldShowAlternativeAudience =
-        displays?._selected === 'alternativeAudience';
-
-    const shouldShowRelatedSituations =
-        displays?._selected === 'relatedSituations';
-
-    // Safe to cast as ProductPageData as undefined will be handlet by component via EditorHelp.
-    const alternativeAudience = (pageProps.data as ProductPageData)
-        ?.alternativeAudience;
-    const relatedSituations = (pageProps.data as ProductPageData)
-        ?.relatedSituations;
 
     return (
         <LayoutContainer
@@ -122,20 +106,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
-            {shouldShowRelatedSituations && (
-                <RelatedSituations
-                    relatedSituations={relatedSituations}
-                    config={displays?.relatedSituations}
-                    pageProps={pageProps}
-                />
-            )}
-            {shouldShowAlternativeAudience && (
-                <AlternativeAudience
-                    alternativeAudience={alternativeAudience}
-                    config={displays?.alternativeAudience}
-                    pageProps={pageProps}
-                />
-            )}
         </LayoutContainer>
     );
 };
