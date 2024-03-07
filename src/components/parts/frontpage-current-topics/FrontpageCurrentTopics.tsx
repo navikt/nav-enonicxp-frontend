@@ -6,6 +6,7 @@ import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { formatDate } from 'utils/datetime';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { getUrlFromContent } from 'utils/links-from-content';
+import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
@@ -13,7 +14,7 @@ export const FrontpageCurrentTopics = ({
     config,
 }: FrontpageCurrentTopicsProps) => {
     const { language } = usePageConfig();
-    const { contentList, title } = config;
+    const { contentList, title, link } = config;
 
     if (!contentList?.data.sectionContents) {
         return <EditorHelp text={'Velg en innholdsliste'} />;
@@ -59,6 +60,7 @@ export const FrontpageCurrentTopics = ({
                     );
                 })}
             </ul>
+            {link && <MoreLink link={link} />}
         </div>
     );
 };

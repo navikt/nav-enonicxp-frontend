@@ -5,36 +5,14 @@ import { LayoutContainer } from '../LayoutContainer';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { Header } from '../../_common/headers/Header';
 import Region from '../Region';
-import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { getSelectableLinkProps } from '../../../utils/links-from-content';
-import { LinkSelectable } from '../../../types/component-props/_mixins';
 import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { capitalize } from '../../../utils/string';
 import { translator } from '../../../translations';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
-
-const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
-    if (!link) {
-        return null;
-    }
-
-    const { text, url } = getSelectableLinkProps(link);
-
-    return (
-        <LenkeStandalone
-            href={url}
-            className={style.myPage}
-            withChevron={false}
-        >
-            <ArrowRightIcon aria-hidden={true} className={style.arrow} />
-            {text}
-        </LenkeStandalone>
-    );
-};
+import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const { language } = usePageConfig();
@@ -100,7 +78,7 @@ export const FrontpageLoggedinSectionLayout = ({
                     regionProps={regions.cards}
                     className={style.cards}
                 />
-                <MyPageLink link={mypage?.link} />
+                <MoreLink link={mypage?.link} />
             </LayoutContainer>
         </AuthDependantRender>
     );

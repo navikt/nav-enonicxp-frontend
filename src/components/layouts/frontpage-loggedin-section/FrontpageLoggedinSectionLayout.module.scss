@@ -29,23 +29,3 @@
         display: none;
     }
 }
-
-.myPage {
-    margin-top: 1rem;
-    margin-left: 1.5rem;
-    display: inline-block;
-
-    & > * {
-        font-weight: bold;
-    }
-
-    :global(.chevron) {
-        display: none;
-    }
-}
-
-.arrow {
-    transform: translateY(3px);
-    margin-left: -1.5rem;
-    margin-right: 0.625rem;
-}
