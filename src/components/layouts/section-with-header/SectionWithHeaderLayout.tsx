@@ -50,7 +50,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             component.config?.filters && component.config.filters.length > 0
     );
 
-    // Also make sure still show region if there are already components in it.
+    // Also make sure we always region if there are already components in it.
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);

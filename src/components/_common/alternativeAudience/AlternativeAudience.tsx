@@ -3,6 +3,7 @@ import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
 } from 'types/component-props/_mixins';
+import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
@@ -14,7 +15,6 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './AlternativeAudience.module.scss';
-import { classNames } from 'utils/classnames';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
