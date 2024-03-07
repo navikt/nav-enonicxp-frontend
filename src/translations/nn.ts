@@ -68,6 +68,7 @@ export const translationsBundleNn: PartialTranslations = {
     stringParts: {
         conjunction: 'og',
         for: 'for',
+        this: 'dette',
     },
     calculator: {
         calculate: 'Rekn ut',

@@ -11,7 +11,7 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     config: {
         displays: OptionSetSingle<{
             alternativeAudience: {
-                name: string;
+                showProductName: boolean;
             };
             relatedSituations: {
                 title: string;

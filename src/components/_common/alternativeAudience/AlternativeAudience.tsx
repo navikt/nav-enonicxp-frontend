@@ -14,12 +14,13 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './AlternativeAudience.module.scss';
+import { classNames } from 'utils/classnames';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
     pageProps: ContentProps;
     config: {
-        name: string;
+        showProductName: boolean;
     };
 };
 
@@ -33,13 +34,13 @@ export const AlternativeAudience = ({
     pageProps,
     config,
 }: AlternativeAudienceProps) => {
-    const { language } = usePageConfig();
-
-    const productName = pageProps.data?.title || pageProps.displayName;
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
     const getRelatedString = translator('related', language);
+    const getStringPart = translator('stringParts', language);
 
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
@@ -109,12 +110,21 @@ export const AlternativeAudience = ({
 
     const audienceLinks = buildAudienceLinks(alternativeAudience);
 
+    const productName = config.showProductName
+        ? pageProps.data?.title || pageProps.displayName
+        : getStringPart('this');
+
     return (
-        <div className={styles.alternativeAudience}>
+        <div
+            className={classNames(
+                styles.alternativeAudience,
+                editorView === 'edit' && styles.noMargin
+            )}
+        >
             <BodyShort>
                 {getRelatedString('relatedAudience').replace(
                     '{name}',
-                    (config.name || productName).toLowerCase()
+                    productName.toLowerCase()
                 )}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>

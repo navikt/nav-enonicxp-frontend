@@ -86,6 +86,7 @@ export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
         for: 'for',
+        this: 'dette',
     },
     calculator: {
         calculate: 'Beregn',

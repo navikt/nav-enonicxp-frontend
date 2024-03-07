@@ -64,7 +64,7 @@ export const RelatedSituations = ({
             <Heading level="3" size="medium" spacing>
                 {title || getStringPart('otherOffers')}
             </Heading>
-            <BodyLong spacing>
+            <BodyLong className={styles.description}>
                 {description || getStringPart('moreInformation')}
             </BodyLong>
             <ul className={styles.situationsList}>
