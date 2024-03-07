@@ -1,9 +1,6 @@
 import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { Header } from '../../_common/headers/Header';
@@ -53,7 +50,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             component.config?.filters && component.config.filters.length > 0
     );
 
-    // Also make sure not to hide region if there are already components in it.
+    // Also make sure still show region if there are already components in it.
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);
@@ -64,6 +61,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowRelatedSituations =
         displays?._selected === 'relatedSituations';
 
+    // Safe to cast as ProductPageData as undefined will be handlet by component via EditorHelp.
     const alternativeAudience = (pageProps.data as ProductPageData)
         ?.alternativeAudience;
     const relatedSituations = (pageProps.data as ProductPageData)

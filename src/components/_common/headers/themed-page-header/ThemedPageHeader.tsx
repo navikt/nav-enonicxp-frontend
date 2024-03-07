@@ -112,10 +112,11 @@ export const ThemedPageHeader = ({
 
         if (
             pageType === ContentType.ProductPage &&
-            currentAudience === Audience.EMPLOYER
+            (currentAudience === Audience.EMPLOYER ||
+                currentAudience === Audience.PROVIDER) // Will catch unlikely events where no sub audience for privider was set
         ) {
             const getTaxonomyLabel = translator('products', language);
-            return getTaxonomyLabel(Audience.EMPLOYER);
+            return getTaxonomyLabel(currentAudience);
         }
 
         const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);

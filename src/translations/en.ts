@@ -332,7 +332,7 @@ export const translationsBundleEn: PartialTranslations = {
         other: 'other partners',
     },
     related: {
-        relatedAudience: 'Det finnes også informasjon om {name} til',
+        relatedAudience: 'There is also information on {name} for',
         otherOffers: 'Other options',
         moreInformation: 'More information for you who',
     },

@@ -7,8 +7,9 @@ import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 
-import styles from './RelatedSituations.module.scss';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+
+import styles from './RelatedSituations.module.scss';
 
 type RelatedSituationsProps = {
     relatedSituations: ContentProps[];
@@ -31,6 +32,9 @@ export const RelatedSituations = ({
     const { title, description } = config;
     const getStringPart = translator('related', language);
 
+    // If the page is in preview mode, related situations from the page props will be empty,
+    // so display a note about 'mark as ready' to the editor, as we can't actually
+    // display the situations until the page has been refreshed.
     const isComponentPreviewMode = pageProps._id === '';
 
     if (isComponentPreviewMode) {
