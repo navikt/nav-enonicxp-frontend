@@ -94,7 +94,7 @@ export type ProductDataMixin = {
     area: Area[];
     externalProductUrl?: string;
     alternativeAudience?: AlternativeAudience;
-    relatedSituations: SituationPageProps[];
+    relatedSituations?: SituationPageProps[];
 };
 
 export type ProductDetailsDataMixin = {

@@ -11,7 +11,6 @@ import { LenkeBase } from '../lenke/LenkeBase';
 
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
-import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './AlternativeAudience.module.scss';
 
@@ -79,7 +78,6 @@ export const AlternativeAudience = ({
     };
 
     const audienceLinks = buildAudienceLinks(alternativeAudience);
-
     const name = showProductName ? productName : getStringPart('this');
 
     return (
