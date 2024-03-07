@@ -130,6 +130,9 @@ const config = {
         ),
         cacheMaxMemorySize: 0,
     }),
+    experimental: {
+        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
+    },
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
