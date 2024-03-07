@@ -10,6 +10,7 @@ import { LinkProps } from 'types/link-props';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import styles from './RelatedSituations.module.scss';
+import { classNames } from 'utils/classnames';
 
 type RelatedSituationsProps = {
     relatedSituations: ContentProps[];
@@ -25,7 +26,9 @@ export const RelatedSituations = ({
     config,
     pageProps,
 }: RelatedSituationsProps) => {
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
+
     if (!config) {
         return null;
     }
@@ -60,7 +63,12 @@ export const RelatedSituations = ({
     }
 
     return (
-        <div className={styles.relatedSituations}>
+        <div
+            className={classNames(
+                styles.relatedSituations,
+                editorView === 'edit' && styles.noMargin
+            )}
+        >
             <Heading level="3" size="medium" spacing>
                 {title || getStringPart('otherOffers')}
             </Heading>
