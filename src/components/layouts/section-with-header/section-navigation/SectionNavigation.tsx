@@ -8,6 +8,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 
 import styles from './SectionNavigation.module.scss';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
@@ -64,7 +65,7 @@ export const SectionNavigation = ({
         >
             {allAnchors.map((anchor) => (
                 <li key={anchor.anchorId}>
-                    <LenkeBase
+                    <LenkeInline
                         href={`#${anchor.anchorId}`}
                         analyticsEvent={AnalyticsEvents.NAVIGATION}
                         analyticsLinkGroup={'Innhold'}
@@ -72,7 +73,7 @@ export const SectionNavigation = ({
                         analyticsLabel={anchor.title}
                     >
                         {anchor.title}
-                    </LenkeBase>
+                    </LenkeInline>
                 </li>
             ))}
         </ul>
