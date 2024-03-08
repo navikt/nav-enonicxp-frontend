@@ -15,10 +15,11 @@ type Props = {
     subHeader?: string;
     illustration: AnimatedIconsProps;
     anchorId: string;
-    contentLoaderCallback: () => void;
+    contentLoaderCallback?: () => void;
     analyticsData?: Record<string, string>;
     isLoading?: boolean;
     error?: string | null;
+    withCopyLink?: boolean;
     children: React.ReactNode;
 };
 
@@ -31,6 +32,7 @@ export const ProductPanelExpandable = ({
     analyticsData,
     isLoading,
     error,
+    withCopyLink = true,
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +44,7 @@ export const ProductPanelExpandable = ({
 
     const checkHashAndExpandPanel = () => {
         if (window.location.hash === anchorIdWithHash) {
-            contentLoaderCallback();
+            contentLoaderCallback?.();
             setIsOpen(true);
         }
     };
@@ -71,7 +73,7 @@ export const ProductPanelExpandable = ({
         );
 
         setIsOpen(!isOpen);
-        contentLoaderCallback();
+        contentLoaderCallback?.();
     };
 
     return (
@@ -99,11 +101,13 @@ export const ProductPanelExpandable = ({
                 </span>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>
-                <CopyLink
-                    anchor={anchorIdWithHash}
-                    heading={header}
-                    className={style.copyLink}
-                />
+                {withCopyLink && (
+                    <CopyLink
+                        anchor={anchorIdWithHash}
+                        heading={header}
+                        className={style.copyLink}
+                    />
+                )}
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                 {isLoading ? (
                     <div className={style.loader}>

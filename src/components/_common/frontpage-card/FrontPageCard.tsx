@@ -10,6 +10,7 @@ type FrontPageCardProps = {
     path: string;
     title: string;
     type: CardType;
+    fallbackIllustration?: boolean;
 };
 
 export const FrontPageCard = ({
@@ -17,6 +18,7 @@ export const FrontPageCard = ({
     path,
     title,
     type,
+    fallbackIllustration,
 }: FrontPageCardProps) => {
     const link: LinkProps = {
         url: path,
@@ -30,6 +32,7 @@ export const FrontPageCard = ({
             type={type}
             className={styles.frontpageCard}
             preferStaticIllustration={true}
+            fallbackIllustration={fallbackIllustration}
         />
     );
 };
