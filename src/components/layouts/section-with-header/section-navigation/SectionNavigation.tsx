@@ -4,7 +4,6 @@ import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 
 import styles from './SectionNavigation.module.scss';
