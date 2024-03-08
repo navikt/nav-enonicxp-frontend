@@ -13,6 +13,7 @@ import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
 import styles from './AlternativeAudience.module.scss';
+import { LenkeInline } from '../lenke/LenkeInline';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
@@ -94,7 +95,12 @@ export const AlternativeAudience = ({
                 )}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
-                        <LenkeBase href={link.url}>{link.title}</LenkeBase>
+                        <LenkeInline
+                            href={link.url}
+                            analyticsLabel={'Aktuell målgruppe'}
+                        >
+                            {link.title}
+                        </LenkeInline>
                         {getConjunction({
                             index,
                             length: audienceLinks.length,
