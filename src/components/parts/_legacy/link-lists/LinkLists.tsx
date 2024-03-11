@@ -25,7 +25,7 @@ const LinkLists = (props: SectionPageProps) => {
                     {ntkContents && (
                         <ContentList
                             content={ntkContents}
-                            withChevron={true}
+                            listType={'chevron'}
                             className={style.column}
                         />
                     )}
@@ -35,7 +35,7 @@ const LinkLists = (props: SectionPageProps) => {
                                 <ContentList
                                     content={newsContents}
                                     showDateLabel={true}
-                                    withChevron={true}
+                                    listType={'chevron'}
                                 />
                                 {newsUrlAbsolute && (
                                     <LenkeStandalone
@@ -53,7 +53,7 @@ const LinkLists = (props: SectionPageProps) => {
                     {scContents && (
                         <ContentList
                             content={scContents}
-                            withChevron={true}
+                            listType={'chevron'}
                             className={style.column}
                         />
                     )}

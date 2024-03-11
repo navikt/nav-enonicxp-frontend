@@ -27,3 +27,18 @@
         color: common.$a-text-action;
     }
 }
+
+.liste {
+    padding-left: 1.4rem;
+    margin-bottom: 1.75rem;
+    margin-top: 0;
+    font-size: 1.125rem;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    li:not(:last-child) {
+        margin-bottom: 0.25rem;
+    }
+}
