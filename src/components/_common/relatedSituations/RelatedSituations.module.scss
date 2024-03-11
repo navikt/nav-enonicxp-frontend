@@ -1,0 +1,17 @@
+.relatedSituations {
+    margin-top: var(--a-spacing-8);
+
+    &.no-margin {
+        margin-top: 0;
+    }
+}
+
+.description {
+    margin-bottom: var(--a-spacing-4);
+}
+
+.situationsList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}

@@ -55,6 +55,8 @@ export const translationsBundleEn: PartialTranslations = {
     },
     stringParts: {
         conjunction: 'and',
+        for: 'for',
+        this: 'this',
     },
     dates: {
         published: 'Published',
@@ -314,5 +316,25 @@ export const translationsBundleEn: PartialTranslations = {
     },
     sectionNavigation: {
         navigationLabel: 'Jump to sub section',
+    },
+    audience: {
+        person: 'individuals',
+        employer: 'employers',
+        provider: 'providers',
+    },
+    providerAudience: {
+        administrator: 'bankruptcy administrators',
+        doctor: 'physicians, dentists or other healthcare professional',
+        municipality_employed:
+            'employed in the municipality or county municipality',
+        optician: 'opticians or ophthalmologists',
+        measures_organizer: 'organizers of labour market measures',
+        aid_supplier: 'assistive technology providers',
+        other: 'other partners',
+    },
+    related: {
+        relatedAudience: 'There is also information on {name} for',
+        otherOffers: 'Other options',
+        moreInformation: 'More information for you who',
     },
 };
