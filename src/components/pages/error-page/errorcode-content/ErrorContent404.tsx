@@ -5,7 +5,7 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
 const origin = process.env.APP_ORIGIN;
-const frontpageHref = origin;
+const frontpageHref = `${origin}/en`;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
 export const ErrorContent404 = () => {
@@ -13,7 +13,9 @@ export const ErrorContent404 = () => {
         <div className={style.error404}>
             <div>
                 <BodyLong>
-                    {'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'}
+                    {
+                        'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
+                    }
                 </BodyLong>
                 <BodyLong>
                     {'Bruk gjerne søket, menyen eller '}
