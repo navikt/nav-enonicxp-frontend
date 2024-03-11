@@ -14,6 +14,29 @@ export const joinWithConjunction = (
     return joinableArray.join(', ').replace(/, ([^,]*)$/, ` ${conjunction} $1`);
 };
 
+export const getConjunction = ({
+    index,
+    length,
+    language,
+}: {
+    index: number;
+    length: number;
+    language: Language;
+}) => {
+    const getStringPart = translator('stringParts', language);
+    if (index === length - 1) {
+        return '.';
+    }
+
+    if (length > 2 && index < length - 2) {
+        return ', ';
+    }
+
+    if (index === length - 2) {
+        return ` ${getStringPart('conjunction')} `;
+    }
+};
+
 export const getTranslatedTaxonomies = (
     taxonomies: Taxonomy[],
     language: Language
@@ -56,7 +79,7 @@ export const stripLineBreaks = (str: string) =>
                 '\n': '\\n',
                 '\r': '\\r',
                 '\r\n': '\\r\\n',
-            }[value] || '')
+            })[value] || ''
     );
 
 export const capitalize = (str: string) =>

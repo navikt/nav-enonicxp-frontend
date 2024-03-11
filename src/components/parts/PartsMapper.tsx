@@ -54,6 +54,8 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
+import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
+import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -112,6 +114,8 @@ const partsWithOwnData: Record<
     [PartType.UserTests]: UserTestsPart,
     [PartType.ReadMore]: ReadMorePart,
     [PartType.Accordion]: AccordionPart,
+    [PartType.RelatedSituations]: RelatedSituationsPart,
+    [PartType.AlternativeAudience]: AlternativeAudiencePart,
 };
 
 const partsDeprecated: ReadonlySet<PartType> = new Set([

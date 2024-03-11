@@ -1,0 +1,7 @@
+.alternativeAudience {
+    margin-top: var(--a-spacing-8);
+
+    &.no-margin {
+        margin-top: 0;
+    }
+}
