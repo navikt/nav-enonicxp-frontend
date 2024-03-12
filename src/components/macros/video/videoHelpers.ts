@@ -4,69 +4,82 @@ import { QbrickMeta } from 'types/qbrickMeta';
 
 type VideoConfig = MacroVideoProps['config']['video'];
 
-export const buildVideoMeta = (
-    video: VideoConfig,
-    contentLanguage: string
-): VideoMeta => {
-    if (!video) {
-        return {
-            accountId: null,
-            mediaId: null,
-            duration: 0,
-            poster: null,
-            title: null,
-        };
-    }
-    // For now, support legacy video with only the URL to go after.
-    if (!video.targetContent) {
-        const query = parse(video?.video?.split('?')[1]);
+const buildLegacyVideoMeta = (videoConfig: VideoConfig): VideoMeta | null => {
+    const { title, video } = videoConfig;
 
-        return {
-            accountId: query?.accountId as string,
-            title: video.title,
-            duration: null,
-            mediaId: query?.mediaId as string,
-            poster: null,
-            language: query?.language as string,
-        };
+    if (!video || !title) {
+        return null;
+    }
+
+    const query = parse(video.split('?')[1]);
+    if (!query) {
+        return null;
+    }
+
+    const { accountId, mediaId, language } = query as Partial<VideoMeta>;
+    if (!accountId || !mediaId) {
+        return null;
     }
 
     return {
-        accountId: video.targetContent.data.accountId,
-        mediaId: video.targetContent.data.mediaId,
-        duration: video.targetContent.data.duration,
-        poster: video.targetContent.data.poster?.mediaUrl,
-        title: video.targetContent.data.title,
-        language: getValidSubtitleLanguage(contentLanguage, video),
+        accountId,
+        title,
+        mediaId,
+        language,
+        duration: 0,
+        poster: undefined,
+    };
+};
+
+export const buildVideoMeta = (
+    videoConfig: VideoConfig,
+    contentLanguage: string
+): VideoMeta | null => {
+    if (!videoConfig) {
+        return null;
+    }
+
+    const { targetContent } = videoConfig;
+
+    // For now, support legacy video with only the URL to go after.
+    if (!targetContent) {
+        return buildLegacyVideoMeta(videoConfig);
+    }
+
+    return {
+        accountId: targetContent.data.accountId,
+        mediaId: targetContent.data.mediaId,
+        duration: targetContent.data.duration,
+        poster: targetContent.data.poster?.mediaUrl,
+        title: targetContent.data.title,
+        language: getValidSubtitleLanguage(contentLanguage, videoConfig),
     };
 };
 
 export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
     const resources = qbrickMediaData?.asset?.resources;
     if (!resources) {
-        return null;
+        return undefined;
     }
+
+    const images = resources.filter((resource) => resource.type === 'image');
 
     const qBrickPickedThumbnail =
         qbrickMediaData.thumbnails && qbrickMediaData.thumbnails[0]?.id;
 
-    let image = resources.find(
-        (resource) =>
-            resource.type === 'image' && resource.id === qBrickPickedThumbnail
-    );
+    // If the specified thumbnail is not found, pick the first image
+    const selectedImage =
+        (qBrickPickedThumbnail &&
+            images.find((resource) => resource.id === qBrickPickedThumbnail)) ||
+        images[0];
 
-    // No specific thumbnail picked in the Qbrick UI, so find the first image possible
-    if (!image) {
-        image = resources.find((resource) => resource.type === 'image');
+    if (!selectedImage) {
+        return undefined;
     }
 
-    if (!image) {
-        return null;
-    }
+    const imageHref = selectedImage.renditions[0]?.links[0]?.href;
 
-    const imageLink = image.renditions[0]?.links[0]?.href;
-
-    return imageLink || null;
+    return imageHref || undefined;
 };
 
 export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {

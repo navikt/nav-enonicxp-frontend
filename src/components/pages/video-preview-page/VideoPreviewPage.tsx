@@ -5,12 +5,12 @@ import { MacroVideoProps } from 'types/macro-props/video';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
-import styles from './VideoPage.module.scss';
+import styles from './VideoPreviewPage.module.scss';
 
-export const VideoPage = (props: VideoPageProps) => {
+export const VideoPreviewPage = (props: VideoPageProps) => {
     const macroVideoProps: MacroVideoProps = {
         name: MacroType.Video,
-        ref: null,
+        ref: '',
         config: {
             video: {
                 targetContent: {

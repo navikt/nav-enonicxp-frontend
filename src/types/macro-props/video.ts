@@ -14,12 +14,3 @@ export interface MacroVideoProps extends MacroPropsCommon {
         };
     };
 }
-
-export type VideoMeta = {
-    accountId: string;
-    mediaId: string;
-    poster: string;
-    title: string;
-    duration: number;
-    language?: string;
-};
