@@ -5,7 +5,7 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
 const origin = process.env.APP_ORIGIN;
-const frontpageHref = `${origin}/en`;
+const frontpageBase = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
 export const ErrorContent404 = () => {
@@ -19,7 +19,7 @@ export const ErrorContent404 = () => {
                 </BodyLong>
                 <BodyLong>
                     {'Bruk gjerne søket, menyen eller '}
-                    <LenkeInline href={frontpageHref}>
+                    <LenkeInline href={frontpageBase}>
                         {'gå til forsiden'}
                     </LenkeInline>
                     {'.'}
@@ -40,7 +40,7 @@ export const ErrorContent404 = () => {
                 <BodyLong>{'The page you requested cannot be found.'}</BodyLong>
                 <BodyLong>
                     {'Go to the '}
-                    <LenkeInline href={frontpageHref}>
+                    <LenkeInline href={`${frontpageBase}/en`}>
                         {'front page'}
                     </LenkeInline>
                     {', or use one of the links in the menu.'}
