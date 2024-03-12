@@ -3,11 +3,11 @@ import { PartType } from '../parts';
 import { LinkSelectable, RenderOnAuthStateMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
 
-export type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
+type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
 
-export type ButtonPartSizeProp = 'medium' | 'small';
+type ButtonPartSizeProp = 'medium' | 'small';
 
-export type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
+type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
 
 export interface ButtonPartProps extends PartComponentProps {
     descriptor: PartType.Button;
