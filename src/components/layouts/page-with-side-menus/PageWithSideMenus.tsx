@@ -10,6 +10,8 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import Config from '../../../config';
 import Region from '../Region';
 
+import styles from './PageWithSideMenus.module.scss';
+
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
 
 const mqlWidthBreakpoint = windowMatchMedia(
@@ -77,9 +79,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <div className={'top-row'}>
+            <div className={styles.topRow}>
                 {(leftMenuToggle || shouldRenderTopContentRegion) && (
-                    <div className={'left-col'}>
+                    <div className={styles.leftCol}>
                         {isMobile !== false && shouldRenderTopContentRegion && (
                             <MainContentSection
                                 pageProps={pageProps}
@@ -98,7 +100,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         )}
                     </div>
                 )}
-                <div className={'main-col'}>
+                <div className={styles.mainCol}>
                     {isMobile !== true && shouldRenderTopContentRegion && (
                         <>
                             <MainContentSection
@@ -118,7 +120,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 </div>
                 {rightMenuToggle && (
-                    <div className={'right-col'}>
+                    <div className={styles.rightCol}>
                         <RightMenuSection
                             pageProps={pageProps}
                             regionProps={rightMenu}

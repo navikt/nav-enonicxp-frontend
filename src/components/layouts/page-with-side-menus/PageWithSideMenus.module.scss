@@ -1,0 +1,64 @@
+@use 'common' as common;
+
+$sectionMaxWidth: common.px-to-rem(600);
+$sideMenusMaxWidth: common.px-to-rem(288);
+
+$sectionGutterLarge: 1.5rem;
+$sectionGutterSmall: 0.75rem;
+
+.topRow {
+    display: flex;
+    flex-direction: column;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        flex-direction: row;
+        margin-top: 3rem;
+    }
+}
+
+.leftCol,
+.rightCol {
+    width: 100%;
+    max-width: $sectionMaxWidth;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        width: $sideMenusMaxWidth;
+        max-width: $sideMenusMaxWidth;
+    }
+}
+
+.leftCol {
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        margin-right: $sectionGutterSmall;
+
+        :global(.region__topPageContent) {
+            display: none;
+        }
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        margin-right: $sectionGutterLarge;
+    }
+}
+
+.mainCol {
+    max-width: 100%;
+
+    :global(.region__topPageContent) {
+        display: none;
+
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            display: flex;
+        }
+    }
+}
+
+.rightCol {
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        margin-left: $sectionGutterSmall;
+    }
+
+    @media #{common.$mq-screen-desktop-large} {
+        margin-left: $sectionGutterLarge;
+    }
+}

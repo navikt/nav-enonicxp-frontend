@@ -36,3 +36,58 @@
         padding-bottom: $bgPaddingDefault;
     }
 }
+
+.pageWithSideMenus {
+    $sectionMaxWidth: common.px-to-rem(600);
+
+    $sectionGutterSmall: 0.75rem;
+    $verticalMargin: 1.75rem;
+
+    max-width: common.px-to-rem(1080);
+    margin: 0 auto;
+
+    :global(.region__intro) {
+        margin-bottom: $verticalMargin;
+    }
+
+    :global(.region__pageContent),
+    :global(.region__topPageContent) {
+        display: flex;
+        flex-direction: column;
+        margin-top: $verticalMargin;
+
+        & > * {
+            width: 100%;
+            max-width: $sectionMaxWidth;
+            margin-bottom: $verticalMargin;
+        }
+
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            margin-top: 0;
+
+            // Ensure the first section is aligned with the menu if it has an icon
+            &:first-child {
+                :global(.layout__section-with-header--with-icon):first-child {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    :global(.region__pageContent) {
+        & > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    :global(.region__bottomRow) {
+        max-width: 57rem;
+        margin-left: $sectionGutterSmall;
+        margin-right: $sectionGutterSmall;
+
+        @media #{common.$mq-screen-desktop} {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}
