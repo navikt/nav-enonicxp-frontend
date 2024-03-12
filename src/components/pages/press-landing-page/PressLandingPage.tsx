@@ -6,7 +6,7 @@ import { PressShortcuts } from 'components/_common/press-landing/PressShortcuts'
 
 export const PressLandingPage = (props: PressLandingPageProps) => {
     return (
-        <div className={'pressLandingPage'}>
+        <div>
             <PressTopSection page={props} />
             <PressNews page={props} />
             <PressShortcuts page={props} />
