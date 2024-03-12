@@ -3,7 +3,7 @@
 $topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
 $bottomOffset: 2rem;
 
-.left-menu {
+.leftMenu {
     top: $topOffset;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
@@ -11,16 +11,12 @@ $bottomOffset: 2rem;
         max-height: calc(100vh - #{$topOffset} - #{$bottomOffset});
     }
 
-    &--sticky {
-        position: sticky;
-    }
-
     & * {
         word-break: break-word;
     }
 
-    .region__leftMenu,
-    .region__topLeftMenu {
+    :global(.region__leftMenu),
+    :global(.region__topLeftMenu) {
         & > * {
             padding: 1rem;
 
@@ -30,7 +26,7 @@ $bottomOffset: 2rem;
         }
     }
 
-    .region__leftMenu {
+    :global(.region__leftMenu) {
         & > * {
             background-color: white;
         }
@@ -42,16 +38,20 @@ $bottomOffset: 2rem;
 
     // The top region should have a consistent background color behind all components
     // to make it blend in with the navigation-menu
-    .region__topLeftMenu {
+    :global(.region__topLeftMenu) {
         background-color: white;
     }
 
     // When used in the left menu, LinkList with Expandable capabilities
     // should not add an underline after the Expandable components, as
     // there's no other content below that needs separation.
-    .link-list {
-        .expandable {
+    :global(.link-list) {
+        :global(.expandable) {
             box-shadow: none;
         }
     }
+}
+
+.sticky {
+    position: sticky;
 }
