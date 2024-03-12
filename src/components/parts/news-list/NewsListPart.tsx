@@ -22,7 +22,7 @@ export const NewsListPart = ({ config }: DynamicNewsListProps) => {
                     content={contentList.target}
                     title={title}
                     hideTitle={hideTitle}
-                    withChevron={true}
+                    listType={'chevron'}
                 />
                 {moreNews && (
                     <LenkeStandalone
