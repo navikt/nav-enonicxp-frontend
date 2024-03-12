@@ -22,7 +22,11 @@ const WrapUL = ({
     showAsList: boolean;
     children: React.ReactNode;
 }) =>
-    showAsList ? <ul className={style.liste}>{children}</ul> : <>{children}</>;
+    showAsList ? (
+        <ul className={style.ulListe}>{children}</ul>
+    ) : (
+        <>{children}</>
+    );
 
 const WrapLI = ({
     showAsList,
