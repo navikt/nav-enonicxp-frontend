@@ -9,7 +9,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import style from './LinkList.module.scss';
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
-    const { title, list, chevron, hideTitle } = config;
+    const { title, list, listType, hideTitle } = config;
     const { _selected } = list;
 
     if (_selected === 'contentList') {
@@ -19,7 +19,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
                 content={contentList?.target}
                 title={title}
                 hideTitle={hideTitle}
-                withChevron={chevron}
+                listType={listType}
             />
         );
     }
@@ -31,7 +31,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
             <Lenkeliste
                 tittel={!hideTitle ? title : undefined}
                 lenker={links}
-                withChevron={chevron}
+                listType={listType}
             />
         );
     }
