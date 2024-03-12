@@ -3,19 +3,10 @@ import { LenkeBase } from './LenkeBase';
 import { classNames } from '../../../utils/classnames';
 import style from './LenkeInline.module.scss';
 
-type Props = {
-    href: string;
-    className?: string;
-    analyticsLabel?: string;
-    children: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type Props = React.ComponentProps<typeof LenkeBase>;
 
-export const LenkeInline = ({ href, className, children, ...rest }: Props) => (
-    <LenkeBase
-        href={href}
-        className={classNames(style.lenkeInline, className)}
-        {...rest}
-    >
+export const LenkeInline = ({ className, children, ...rest }: Props) => (
+    <LenkeBase className={classNames(style.lenkeInline, className)} {...rest}>
         {children}
     </LenkeBase>
 );
