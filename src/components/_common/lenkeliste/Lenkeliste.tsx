@@ -11,11 +11,11 @@ import style from './Lenkeliste.module.scss';
 type Props = {
     lenker: LinkProps[];
     tittel?: string;
-    listType?: ListType;
     className?: string;
+    listType: ListType;
 };
 
-const ULWrapper = ({
+const WrapUL = ({
     showAsList,
     children,
 }: {
@@ -24,7 +24,7 @@ const ULWrapper = ({
 }) =>
     showAsList ? <ul className={style.liste}>{children}</ul> : <>{children}</>;
 
-const LIWrapper = ({
+const WrapLI = ({
     showAsList,
     children,
 }: {
@@ -32,12 +32,7 @@ const LIWrapper = ({
     children: React.ReactNode;
 }) => (showAsList ? <li>{children}</li> : <>{children}</>);
 
-export const Lenkeliste = ({
-    tittel,
-    lenker,
-    listType = 'default',
-    className,
-}: Props) => {
+export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     const headingId = `heading-linklist-${useId()}`;
 
     if (!lenker || lenker.length === 0) {
@@ -59,12 +54,9 @@ export const Lenkeliste = ({
                     {tittel}
                 </Heading>
             )}
-            <ULWrapper showAsList={listType === 'bulletlist'}>
+            <WrapUL showAsList={listType === 'bulletlist'}>
                 {lenker.map((lenke, index) => (
-                    <LIWrapper
-                        showAsList={listType === 'bulletlist'}
-                        key={index}
-                    >
+                    <WrapLI showAsList={listType === 'bulletlist'} key={index}>
                         <LenkeStandalone
                             href={lenke.url}
                             label={lenke.label}
@@ -75,9 +67,9 @@ export const Lenkeliste = ({
                         >
                             {lenke.text}
                         </LenkeStandalone>
-                    </LIWrapper>
+                    </WrapLI>
                 ))}
-            </ULWrapper>
+            </WrapUL>
         </nav>
     );
 };
