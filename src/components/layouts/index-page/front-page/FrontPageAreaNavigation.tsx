@@ -6,8 +6,8 @@ import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { CardType } from 'types/card';
-
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+
 import style from './FrontPageAreaNavigation.module.scss';
 
 type Props = {
@@ -15,40 +15,14 @@ type Props = {
 };
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
-    const { data } = content;
-    const { areasHeader, navigationRefs = [], audience } = data;
+    const { areasHeader, navigationRefs = [] } = content.data;
 
-    const getCardType = (audience: Audience) => {
-        if (audience === Audience.EMPLOYER) {
-            return CardType.EmployerFrontpage;
-        }
-        if (audience === Audience.PROVIDER) {
-            return CardType.ProviderFrontpage;
-        }
-        if (audience === Audience.PERSON) {
-            return CardType.PersonFrontPage;
-        }
-        return null;
-    };
+    const audience = getAudience(content.data.audience);
 
-    const getIllustrationFromProps = (page: ContentProps) => {
-        if (
-            page.type === ContentType.Overview ||
-            page.type === ContentType.FormsOverview ||
-            page.type === ContentType.FrontPageNested ||
-            page.type === ContentType.SituationPage
-        ) {
-            return page.data?.illustration;
-        }
-        return null;
-    };
-
-    const cardType = getCardType(getAudience(audience));
+    const cardType = audienceCardType[audience];
 
     return (
-        <div
-            className={classNames(style.wrapper, style[getAudience(audience)])}
-        >
+        <div className={classNames(style.wrapper, audience && style[audience])}>
             <Header
                 level={'2'}
                 justify={'left'}
@@ -98,4 +72,22 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
             </nav>
         </div>
     );
+};
+
+const audienceCardType: Record<Audience, CardType> = {
+    [Audience.EMPLOYER]: CardType.EmployerFrontpage,
+    [Audience.PROVIDER]: CardType.ProviderFrontpage,
+    [Audience.PERSON]: CardType.PersonFrontPage,
+};
+
+const getIllustrationFromProps = (page: ContentProps) => {
+    if (
+        page.type === ContentType.Overview ||
+        page.type === ContentType.FormsOverview ||
+        page.type === ContentType.FrontPageNested ||
+        page.type === ContentType.SituationPage
+    ) {
+        return page.data?.illustration;
+    }
+    return undefined;
 };

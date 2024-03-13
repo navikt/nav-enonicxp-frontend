@@ -31,15 +31,16 @@ export enum ProviderAudience {
     OTHER = 'other',
 }
 
-export type AudienceProps = OptionSetSingle<{
+export type AudienceOptions = OptionSetSingle<{
     [Audience.PERSON]: EmptyObject;
     [Audience.EMPLOYER]: EmptyObject;
     [Audience.PROVIDER]: { provider_audience?: ProviderAudience[] };
 }>;
 
-export const getAudience = (
-    audience?: AudienceProps | Audience | Audience[]
-) => {
+type AudienceProps = AudienceOptions | Audience | Audience[];
+
+export function getAudience(audience: AudienceProps): Audience;
+export function getAudience(audience?: AudienceProps): Audience | null {
     if (!audience) {
         return null;
     }
@@ -56,9 +57,10 @@ export const getAudience = (
     }
 
     return audience._selected;
-};
+}
+
 export const getSubAudience = (
-    audience?: AudienceProps | Audience | Audience[]
+    audience?: AudienceOptions | Audience | Audience[]
 ): ProviderAudience[] | null => {
     if (!audience || typeof audience === 'string' || Array.isArray(audience)) {
         return null;

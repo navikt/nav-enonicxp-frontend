@@ -6,7 +6,7 @@ import Region from '../Region';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: TwoColsPageProps;
+    layoutProps: TwoColsPageProps;
 };
 
 export const TwoColsPage = ({ pageProps, layoutProps }: Props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
-import jsep from 'jsep';
+import jsep, { Expression } from 'jsep';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
@@ -9,17 +9,18 @@ import { logger } from 'srcCommon/logger';
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
-export function substituteExpression(expression, variables) {
+export function substituteExpression(expression: string, variables: number[]) {
     return expression.replace(
         /\$(\d+)/g,
         (_, idx) => variables[parseInt(idx) - 1]
     );
 } // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
 
-// This approach uses jsep to parse the input into an AST (Abstract Syntax Tree) and then recursively evaluates the tree for basic arithmetic operations.
+// This approach uses jsep to parse the input into an AST (Abstract Syntax Tree) and
+// then recursively evaluates the tree for basic arithmetic operations.
 // It's lightweight and doesn't rely on eval(), but it's also limited to the basics.
-function evaluateExpressionJSEP(node) {
-    switch (node.type) {
+function evaluateExpressionJSEP(node: Expression[string]) {
+    switch (node?.type) {
         case 'BinaryExpression':
             switch (node.operator) {
                 case '+':
