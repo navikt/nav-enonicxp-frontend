@@ -4,7 +4,7 @@ export type ErrorData = {
     errorMessage: string;
     errorMessageInternal?: string;
     errorCode: number;
-    errorId: string;
+    errorId?: string;
     feedback?: boolean;
 };
 
