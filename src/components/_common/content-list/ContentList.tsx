@@ -8,6 +8,7 @@ import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { ListType } from 'types/component-props/parts/link-list';
 
 const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
     const dateLabel =
@@ -23,7 +24,7 @@ type Props = {
     title?: string;
     hideTitle?: boolean;
     showDateLabel?: boolean;
-    withChevron?: boolean;
+    listType: ListType;
     className?: string;
 };
 
@@ -32,7 +33,7 @@ export const ContentList = ({
     title,
     hideTitle,
     showDateLabel,
-    withChevron,
+    listType,
     className,
 }: Props) => {
     if (!content?.data?.sectionContents) {
@@ -66,7 +67,7 @@ export const ContentList = ({
         <Lenkeliste
             lenker={lenkeData}
             tittel={hideTitle ? undefined : title || content.displayName}
-            withChevron={withChevron}
+            listType={listType}
             className={className}
         />
     );

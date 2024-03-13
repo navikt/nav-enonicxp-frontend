@@ -133,6 +133,7 @@ const config = {
     experimental: {
         optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
     },
+    transpilePackages: ['@navikt/aksel-icons', '@navikt/ds-react'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
