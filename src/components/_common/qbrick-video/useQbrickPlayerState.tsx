@@ -85,6 +85,7 @@ const createAndStart = (
             widgetId,
         }).on('ready', () => {
             setPlayerState('ready');
+            window.GoBrain.widgets(widgetId)?.subtitles(language);
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
                 tittel: title,
                 varighet: duration,
