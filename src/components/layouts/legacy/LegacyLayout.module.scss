@@ -1,7 +1,7 @@
 @use 'common' as common;
 
-.layout {
-    &__main {
+.container {
+    :global(.layout__main) {
         display: flex;
         flex-direction: row;
         align-items: stretch;
@@ -15,10 +15,8 @@
             flex-direction: column;
         }
     }
-}
 
-.region {
-    &__first {
+    :global(.region__first) {
         flex: 2;
 
         @media #{common.$mq-screen-tablet-and-desktop} {
@@ -28,7 +26,7 @@
         }
     }
 
-    &__second {
+    :global(.region__second) {
         flex: 1;
 
         @media #{common.$mq-screen-mobile} {
