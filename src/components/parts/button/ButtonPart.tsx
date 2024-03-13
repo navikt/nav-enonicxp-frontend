@@ -1,33 +1,31 @@
 import React from 'react';
-import {
-    ButtonPartProps,
-    ButtonPartSizeProp,
-    ButtonPartSizePropLegacy,
-    ButtonPartTypeProp,
-} from 'types/component-props/parts/button';
+import { ButtonPartProps } from 'types/component-props/parts/button';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from '../../_common/button/Button';
 import { ButtonProps } from '@navikt/ds-react';
 
 import style from './ButtonPart.module.scss';
 
-const legacySizeToSize: Record<ButtonPartSizePropLegacy, ButtonProps['size']> =
-    {
-        kompakt: 'small',
-        mini: 'small',
-        normal: 'medium',
-    };
+type ButtonSizePart = ButtonPartProps['config']['size'];
+type ButtonSizeAksel = ButtonProps['size'];
 
-const typePropToVariant: Record<ButtonPartTypeProp, ButtonProps['variant']> = {
+type ButtonTypePart = ButtonPartProps['config']['type'];
+type ButtonTypeAksel = ButtonProps['variant'];
+
+const partSizeToAkselSize: Record<ButtonSizePart, ButtonSizeAksel> = {
+    kompakt: 'small',
+    mini: 'small',
+    normal: 'medium',
+    medium: 'medium',
+    small: 'small',
+} as const;
+
+const typePropToVariant: Record<ButtonTypePart, ButtonTypeAksel> = {
     hoved: 'primary',
     standard: 'secondary',
     flat: 'tertiary',
     fare: 'danger',
-};
-
-const getButtonSize = (
-    size: ButtonPartSizePropLegacy | ButtonPartSizeProp
-): ButtonProps['size'] => legacySizeToSize[size] || size;
+} as const;
 
 export const ButtonPart = ({ config }: ButtonPartProps) => {
     const { icon, link, size, type, fullwidth } = config;
@@ -38,10 +36,10 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
         <Button
             className={style.button}
             href={linkProps.url}
-            variant={typePropToVariant[type]}
             xpIcon={icon}
-            size={getButtonSize(size)}
             fullWidth={fullwidth}
+            variant={typePropToVariant[type]}
+            size={partSizeToAkselSize[size]}
         >
             {linkProps.text}
         </Button>

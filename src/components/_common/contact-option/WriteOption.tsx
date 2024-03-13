@@ -18,8 +18,7 @@ type Props = WriteData & {
     alertText?: string;
 };
 
-export const WriteOption = (props: Props) => {
-    const { ingress, url, alertText, title } = props;
+export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const { isActive, handlers } = useHoverAndFocus();
@@ -29,11 +28,11 @@ export const WriteOption = (props: Props) => {
     return (
         <div className={style.contactOption}>
             <LenkeBase
+                {...handlers}
                 href={url || Config.urls.skrivTilOss}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                {...handlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon({
