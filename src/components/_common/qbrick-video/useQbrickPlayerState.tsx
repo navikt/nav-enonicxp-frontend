@@ -27,6 +27,9 @@ export const useQbrickPlayerState = ({
 
         const videoContainer = document.getElementById(videoContainerId);
         if (!videoContainer) {
+            logger.error(
+                `Element not found for video container ${videoContainerId}`
+            );
             return;
         }
 
