@@ -45,7 +45,7 @@ export const OverviewProductDetailsPanel = ({
     const isSimpleOverview = detailType === ProductDetailType.ALL_PRODUCTS;
 
     const handleProductDetailsFetch = () => {
-        if (isLoading || productDetailsPage) {
+        if (isLoading || productDetailsPage || !productDetailsPath) {
             return;
         }
 
