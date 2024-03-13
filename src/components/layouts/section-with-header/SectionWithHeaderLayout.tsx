@@ -9,6 +9,8 @@ import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
 
+import style from './SectionWithHeaderLayout.module.scss';
+
 const getBorderStyle = ({
     color = '#ffffff',
     width = 3,
@@ -53,10 +55,10 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
+            className={`${style.container} ${!!iconImgProps && style.withIcon}`}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            modifiers={!!iconImgProps && ['with-icon']}
             id={iconImgProps ? undefined : anchorId}
             tabIndex={-1}
         >
@@ -90,7 +92,9 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}
                     setId={false}
-                    className="custom-header-style"
+                    className={`${style.header} ${
+                        !!iconImgProps && style.headerWithIcon
+                    }`}
                 >
                     {title}
                 </Header>

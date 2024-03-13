@@ -1,8 +1,9 @@
 @use 'common' as common;
 @use 'sass:math';
 
-.layout__section-with-header {
-    $iconContainerRadius: common.px-to-rem(64px / 2);
+$iconContainerRadius: common.px-to-rem(64px / 2);
+
+.container {
     $iconContainerSize: $iconContainerRadius * 2;
     $defaultBgColor: white;
 
@@ -20,19 +21,7 @@
 
     @include common.section-padding-mixin();
 
-    .custom-header-style {
-        margin-bottom: 1rem;
-    }
-
-    &--with-icon {
-        margin-top: $iconContainerRadius;
-
-        .custom-header-style {
-            margin-top: 1rem;
-        }
-    }
-
-    .icon-container {
+    :global(.icon-container) {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,4 +50,16 @@
             width: common.round-rem($iconSize);
         }
     }
+}
+
+.withIcon {
+    margin-top: $iconContainerRadius;
+}
+
+.header {
+    margin-bottom: 1rem;
+}
+
+.headerWithIcon {
+    margin-top: 1rem;
 }
