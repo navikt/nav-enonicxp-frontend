@@ -1,6 +1,6 @@
 import { parse } from 'querystring';
-import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
-import { QbrickMeta } from 'types/qbrickMeta';
+import { MacroVideoProps } from '../../../types/macro-props/video';
+import { QbrickMeta } from '../../../types/qbrickMeta';
 
 type VideoConfig = MacroVideoProps['config']['video'];
 
