@@ -8,12 +8,14 @@ import {
 } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 
+export type ListType = 'default' | 'chevron' | 'bulletlist';
+
 export interface DynamicLinkListProps extends PartComponentProps {
     descriptor: PartType.LinkList;
     config: {
         title?: string;
         hideTitle?: boolean;
-        chevron?: boolean;
+        listType: ListType;
         list: OptionSetSingle<{
             contentList: ContentListMixin;
             linkList: {

@@ -17,7 +17,11 @@ import {
     OfficeBranchPageProps,
 } from 'types/content-props/dynamic-page-props';
 import { OverviewPageProps } from 'types/content-props/overview-props';
-import { getAudience, Audience } from 'types/component-props/_mixins';
+import {
+    getAudience,
+    getSubAudience,
+    Audience,
+} from 'types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
@@ -61,8 +65,24 @@ export const ThemedPageHeader = ({
         getProps();
 
     const currentAudience = getAudience(audience);
+    const subAudience = getSubAudience(audience);
 
     const getSubtitle = () => {
+        if (currentAudience === Audience.PROVIDER && subAudience?.length > 0) {
+            const getStringParts = translator('stringParts', language);
+            const getSubAudienceLabel = translator(
+                'providerAudience',
+                language
+            );
+            const subAudienceLabels = subAudience.map((audience) =>
+                getSubAudienceLabel(audience).toLowerCase()
+            );
+            return `${getStringParts('for')} ${joinWithConjunction(
+                subAudienceLabels,
+                language
+            )}`;
+        }
+
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel(currentAudience);
@@ -93,7 +113,7 @@ export const ThemedPageHeader = ({
         if (
             pageType === ContentType.ProductPage &&
             (currentAudience === Audience.EMPLOYER ||
-                currentAudience === Audience.PROVIDER)
+                currentAudience === Audience.PROVIDER) // Will catch unlikely events where no sub audience for privider was set
         ) {
             const getTaxonomyLabel = translator('products', language);
             return getTaxonomyLabel(currentAudience);
@@ -182,11 +202,7 @@ export const ThemedPageHeader = ({
                                 {'|'}
                             </span>
                         )}
-                        {modified && (
-                            <Detail>
-                                {modified}
-                            </Detail>
-                        )}
+                        {modified && <Detail>{modified}</Detail>}
                     </div>
                 )}
             </div>
