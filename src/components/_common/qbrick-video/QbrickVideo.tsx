@@ -61,7 +61,6 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 )}
                 variant={'tertiary'}
                 onClick={() => {
-                    logger.info('Clicking', editorView);
                     if (editorView !== 'edit') {
                         createAndStartPlayer();
                     }
