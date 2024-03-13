@@ -1,7 +1,7 @@
 import { useCallback, useId, useState } from 'react';
-import { QbrickVideoProps } from './utils/types';
 import { logger } from 'srcCommon/logger';
 import { AnalyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { QbrickVideoProps } from './utils/videoProps';
 
 type PlayerState = 'loading' | 'ready' | 'error' | 'stopped';
 
@@ -10,20 +10,28 @@ const PLAYER_POLLING_RATE_MS = 50;
 
 type Props = {
     videoProps: QbrickVideoProps;
-    videoContainer: HTMLElement | null;
+    videoContainerId: string;
 };
 
-export const useQbrickPlayerState = ({ videoProps, videoContainer }: Props) => {
+export const useQbrickPlayerState = ({
+    videoProps,
+    videoContainerId,
+}: Props) => {
     const [playerState, setPlayerState] = useState<PlayerState>('stopped');
     const widgetId = useId();
 
     const createAndStartPlayer = useCallback(() => {
-        if (!videoContainer || playerState === 'loading') {
+        if (playerState === 'loading') {
+            return;
+        }
+
+        const videoContainer = document.getElementById(videoContainerId);
+        if (!videoContainer) {
             return;
         }
 
         createAndStart(videoProps, videoContainer, widgetId, setPlayerState);
-    }, [videoProps, videoContainer, widgetId, setPlayerState]);
+    }, [videoProps, videoContainerId, widgetId, playerState, setPlayerState]);
 
     const resetPlayer = useCallback(() => {
         setPlayerState('stopped');
@@ -49,7 +57,6 @@ const createAndStart = (
 ) => {
     const createPlayer = (timeLeft: number = PLAYER_TIMEOUT_MS) => {
         if (timeLeft <= 0) {
-            logger.error('Failed to load QBrick player - Timed out');
             setPlayerState('error');
             return;
         }
@@ -67,7 +74,7 @@ const createAndStart = (
 
         const widgetExists = !!window.GoBrain.widgets(widgetId);
         if (widgetExists) {
-            return 'ready';
+            return;
         }
 
         window.GoBrain.create(videoContainer, {

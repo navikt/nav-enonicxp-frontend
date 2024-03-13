@@ -1,36 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import { getMediaUrl } from 'utils/urls';
-import { getTimestampFromDuration } from './videoHelpers';
+import { getTimestampFromDuration } from './utils/videoHelpers';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { QbrickVideoProps } from './utils/types';
 import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
+import { NextImage } from '../image/NextImage';
+import { QbrickVideoProps } from './utils/videoProps';
 
 import style from './QbrickVideo.module.scss';
 
-type Props = QbrickVideoProps;
-
-export const QbrickVideo = (props: Props) => {
+export const QbrickVideo = (props: QbrickVideoProps) => {
     const { language: contentLanguage, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
     const { title, duration, poster } = props;
 
-    const videoRef = React.useRef(null);
+    const videoContainerId = useId();
 
     const { createAndStartPlayer, resetPlayer, playerState, setPlayerState } =
         useQbrickPlayerState({
             videoProps: props,
-            videoContainer: videoRef.current,
+            videoContainerId,
         });
 
     useEffect(() => {
-        return;
+        return resetPlayer;
     }, []);
 
     const translations = translator('macroVideo', contentLanguage);
@@ -62,17 +61,20 @@ export const QbrickVideo = (props: Props) => {
                 )}
                 variant={'tertiary'}
                 onClick={() => {
+                    logger.info('Clicking', editorView);
                     if (editorView !== 'edit') {
                         createAndStartPlayer();
                     }
                 }}
                 icon={
                     <div className={style.posterWrapper}>
-                        <NextImage
-                            className={style.previewImage}
-                            src={imageUrl}
-                            alt={''}
-                        />
+                        {imageUrl && (
+                            <NextImage
+                                className={style.previewImage}
+                                src={imageUrl}
+                                alt={''}
+                            />
+                        )}
                         <div className={style.playBadge}>
                             {playerState === 'loading' ? (
                                 <Loader className={style.playLoader} />
@@ -111,7 +113,7 @@ export const QbrickVideo = (props: Props) => {
                     style.macroVideo,
                     playerState !== 'ready' && style.hidden
                 )}
-                ref={videoRef}
+                id={videoContainerId}
                 title={title}
             />
         </div>
