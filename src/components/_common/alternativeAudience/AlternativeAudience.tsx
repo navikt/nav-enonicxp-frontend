@@ -12,7 +12,7 @@ import { getConjunction, joinWithConjunction } from 'utils/string';
 
 import { LenkeInline } from '../lenke/LenkeInline';
 import styles from './AlternativeAudience.module.scss';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;

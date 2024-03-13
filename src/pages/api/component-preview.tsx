@@ -12,7 +12,7 @@ import {
 import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PageContextProvider } from 'store/contextProvider';
+import { PageContextProvider } from 'store/pageContext';
 
 const dummyPageProps: ContentProps = {
     type: ContentType.DynamicPage,

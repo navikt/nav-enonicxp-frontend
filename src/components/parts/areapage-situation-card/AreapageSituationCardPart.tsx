@@ -5,14 +5,14 @@ import { AreapageSituationCardPartProps } from 'types/component-props/parts/area
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 
 import style from './AreapageSituationCardPart.module.scss';
 
 export const AreapageSituationCardPart = ({
     config,
 }: AreapageSituationCardPartProps) => {
-    const pageConfig = usePageConfig();
+    const pageContext = usePageContext();
     if (!config?.target?._id) {
         return (
             <EditorHelp
@@ -24,9 +24,9 @@ export const AreapageSituationCardPart = ({
 
     const { target, disabled } = config;
 
-    const props = getCardProps(target, pageConfig);
+    const props = getCardProps(target, pageContext);
 
-    const getSituationLabel = translator('situations', pageConfig.language);
+    const getSituationLabel = translator('situations', pageContext.language);
 
     return (
         <div className={classNames(style.card, disabled && style.disabled)}>

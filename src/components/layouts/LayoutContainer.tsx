@@ -3,8 +3,8 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
-import { usePageConfig } from '../../store/hooks/usePageConfig';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
+import { usePageContext } from 'store/pageContext';
 
 import style from './LayoutContainer.module.scss';
 
@@ -24,7 +24,7 @@ export const LayoutContainer = ({
     children,
     ...divElementProps
 }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
     const { descriptor, path, type, config = {} } = layoutProps;
     const layoutName = descriptor.split(':')[1];
     const commonLayoutStyle = getCommonLayoutStyle(config);
@@ -50,7 +50,7 @@ export const LayoutContainer = ({
                 paddingConfig === 'fullWidth' && style.fullwidth,
                 paddingConfig === 'standard' && style.standard,
                 config.bgColor?.color && style.bg,
-                pageConfig.editorView === 'edit' &&
+                editorView === 'edit' &&
                     editorAuthstateClassname(config.renderOnAuthState),
                 divElementProps.className
             )}

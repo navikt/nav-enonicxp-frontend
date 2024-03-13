@@ -14,7 +14,7 @@ import {
 // for fields which should not be optional
 
 import style from './Calculator.module.scss';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 type FieldRecord = Record<string, number | null>;
 

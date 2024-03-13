@@ -7,7 +7,7 @@ import { Illustration } from '../illustration/Illustration';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 import sharedStyle from './Card.module.scss';
 import style from './MiniCard.module.scss';

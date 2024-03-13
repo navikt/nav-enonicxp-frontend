@@ -8,7 +8,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import styles from './Accordion.module.scss';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { useState } from 'react';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 type AccordionProps = AccordionPartProps['config'];
 type PanelItem = AccordionProps['accordion'][0];

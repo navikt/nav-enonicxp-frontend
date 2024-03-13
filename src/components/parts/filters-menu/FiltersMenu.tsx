@@ -3,7 +3,7 @@ import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import {
     Category,
     FilterMenuProps,
@@ -33,8 +33,7 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
         page: pageProps.page,
     });
 
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language, editorView } = usePageContext();
 
     useEffect(() => {
         // Multiple FilterMenus in same page will break.

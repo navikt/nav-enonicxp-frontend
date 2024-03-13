@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { StaticImage } from '../../_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
@@ -36,8 +36,7 @@ export const EditorHelp = ({
     globalWarningText,
     type = 'help',
 }: Props) => {
-    const { pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView } = usePageContext();
 
     const id = useId();
 

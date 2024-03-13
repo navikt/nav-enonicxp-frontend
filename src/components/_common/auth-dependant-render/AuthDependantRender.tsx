@@ -6,7 +6,7 @@ import { useLayoutEffectClientSide } from 'utils/react';
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './AuthDependantRender.module.scss';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 export const editorAuthstateClassname = (authState: AuthStateType) =>
     style[authState];

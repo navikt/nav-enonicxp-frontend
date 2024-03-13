@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { UserTestsEditorView } from 'components/_common/user-tests/editor-view/UserTestsEditorView';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
 import { UserTestsConfigData } from 'types/content-props/user-tests-config';
@@ -14,11 +14,11 @@ export type UserTestsComponentProps = {
 };
 
 export const UserTests = (props: UserTestsComponentProps) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     return (
         <div className={style.wrapper}>
-            {pageConfig.editorView ? (
+            {editorView ? (
                 <UserTestsEditorView {...props} />
             ) : (
                 <UserTestsPublicView {...props} />

@@ -3,7 +3,7 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/amplitude';
 
 import styles from './SectionNavigation.module.scss';
@@ -46,7 +46,7 @@ export const SectionNavigation = ({
     introRegion,
     contentRegion,
 }: SectionNavigationProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
     const introAnchors = getAnchorsFromComponents(introRegion);
     const contentAnchors = getAnchorsFromComponents(contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];

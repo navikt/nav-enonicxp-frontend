@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../store';
-import { usePageConfig } from './usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import {
     availableFiltersAtPage,
     clearFiltersForPageAction,
@@ -23,8 +23,7 @@ type UseFilterState = {
 export const useFilterState = (): UseFilterState => {
     const dispatch = useAppDispatch();
 
-    const { pageConfig } = usePageConfig();
-    const { pageId } = pageConfig;
+    const { _id: pageId } = usePageContext();
 
     const availableFilters = useAppSelector<Category[]>((state) =>
         availableFiltersAtPage(state, pageId)

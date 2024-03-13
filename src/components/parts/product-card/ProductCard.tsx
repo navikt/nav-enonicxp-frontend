@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
 import {
     ProductCardMiniProps,
@@ -14,7 +14,7 @@ export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const pageConfig = usePageConfig();
+    const pageConfig = usePageContext();
 
     if (!config?.targetPage) {
         return (

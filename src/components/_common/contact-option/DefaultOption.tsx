@@ -5,7 +5,7 @@ import {
     DefaultContactData,
 } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
@@ -26,7 +26,7 @@ type Props = DefaultContactData & {
 
 export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
     const { layoutConfig } = useLayoutConfig();
     const { isActive, handlers } = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);

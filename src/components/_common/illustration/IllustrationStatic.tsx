@@ -6,7 +6,7 @@ import {
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
@@ -32,7 +32,7 @@ const StaticIcon = ({
     isEditorView: boolean;
     className?: string;
 }) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     const ref = useRef<HTMLSpanElement>();
 
@@ -46,7 +46,7 @@ const StaticIcon = ({
         url: isSvg
             ? buildImageCacheUrl({
                   ...nextImageProps,
-                  src: getMediaUrl(icon.icon.mediaUrl, !!pageConfig.editorView),
+                  src: getMediaUrl(icon.icon.mediaUrl, !!editorView),
                   isEditorView,
               })
             : null,
@@ -77,7 +77,7 @@ type Props = {
 };
 
 export const IllustrationStatic = ({ illustration, className }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     if (!illustration) {
         return null;
@@ -97,7 +97,7 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
         return null;
     }
 
-    const isEditorView = !!pageConfig.editorView;
+    const isEditorView = !!editorView;
 
     return (
         <span

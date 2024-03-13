@@ -2,11 +2,11 @@ import React from 'react';
 import { MacroProductCardMiniProps } from 'types/macro-props/product-card-mini';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { getCardProps } from '../../_common/card/card-utils';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
-    const pageConfig = usePageConfig();
+    const pageConfig = usePageContext();
 
     if (!config?.product_card_mini) {
         return <EditorHelp text={'Macroen mangler konfigurasjon'} />;

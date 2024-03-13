@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { PageWrapper } from './PageWrapper';
 import { ContentMapper } from './ContentMapper';
 import { makeErrorProps } from 'utils/make-error-props';
-import { PageContextProvider } from 'store/contextProvider';
+import { PageContextProvider } from 'store/pageContext';
 
 export type PageProps = {
     content: ContentProps;

@@ -15,7 +15,7 @@ import {
 } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {

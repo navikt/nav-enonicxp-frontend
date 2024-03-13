@@ -8,7 +8,7 @@ import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { useClient } from 'utils/useClient';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;

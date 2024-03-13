@@ -5,7 +5,7 @@ import { formatDate } from 'utils/datetime';
 import { ContentType } from 'types/content-props/_content-common';
 import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
     ProductPageProps,
@@ -49,7 +49,7 @@ export const ThemedPageHeader = ({
 }: Props) => {
     const { type: pageType, displayName, modifiedTime, data } = contentProps;
 
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
 
     const getProps = () => {
         if (pageType === ContentType.OfficeEditorialPage) {

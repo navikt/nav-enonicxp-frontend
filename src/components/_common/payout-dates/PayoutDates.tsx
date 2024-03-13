@@ -2,7 +2,7 @@ import React from 'react';
 import { PayoutDatesData } from '../../../types/content-props/payout-dates';
 import { Table } from '../table/Table';
 import { formatDate } from '../../../utils/datetime';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { translator } from '../../../translations';
 import { classNames } from '../../../utils/classnames';
 
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const PayoutDates = ({ payoutDatesData, className }: Props) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
 
     const translations = translator('payoutDates', language);
 

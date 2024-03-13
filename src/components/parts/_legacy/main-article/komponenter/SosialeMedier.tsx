@@ -2,7 +2,7 @@ import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
@@ -65,7 +65,7 @@ const Icon = ({ type, text, href }) => {
 };
 
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     if (social.length === 0) {
         return null;
@@ -75,7 +75,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
         const url = getSocialmediaShareUrl(
             socialMediaType,
             displayName,
-            getInternalAbsoluteUrl(contentPath, !!pageConfig.editorView)
+            getInternalAbsoluteUrl(contentPath, !!editorView)
         );
 
         if (url) {

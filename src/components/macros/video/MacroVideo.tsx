@@ -10,7 +10,7 @@ import {
     buildVideoMeta,
 } from './videoHelpers';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
@@ -23,8 +23,11 @@ const PLAYER_TIMEOUT_MS = 5000;
 const PLAYER_POLLING_RATE_MS = 50;
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
-    const { language: contentLanguage, pageConfig } = usePageConfig();
-    const { editorView, pageId } = pageConfig;
+    const {
+        language: contentLanguage,
+        editorView,
+        _id: pageId,
+    } = usePageContext();
     const translations = translator('macroVideo', contentLanguage);
 
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(

@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { insertHTMLBreaks, numberToFormattedValue } from 'utils/string';
-import { usePageContext } from 'store/contextProvider';
+import { usePageContext } from 'store/pageContext';
 
 import style from './CalculatorResult.module.scss';
 

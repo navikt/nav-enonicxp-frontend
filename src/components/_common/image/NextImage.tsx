@@ -1,8 +1,8 @@
 import React from 'react';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { isValidImageUrl } from '../../../utils/urls';
 import dynamic from 'next/dynamic';
+import { usePageContext } from 'store/pageContext';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -61,7 +61,7 @@ const NextImageRunTime = (props: ImageProps) => {
         ...imgAttribs
     } = props;
 
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     if (!src) {
         return null;
@@ -74,7 +74,7 @@ const NextImageRunTime = (props: ImageProps) => {
                 src,
                 maxWidth,
                 quality,
-                isEditorView: !!pageConfig.editorView,
+                isEditorView: !!editorView,
             })}
             alt={alt}
         />

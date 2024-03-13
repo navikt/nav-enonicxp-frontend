@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
@@ -22,7 +22,7 @@ export const OpeningInfo = ({
     specialOpeningHours,
     textPrefix,
 }: Props) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
 
     const [currentOpeningHours, setCurrentOpeningHours] =
         useState<OpeningHours | null>(null);

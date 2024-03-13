@@ -21,12 +21,12 @@ import {
 } from 'types/structuredData';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContext } from 'store/pageContext';
 
 import style from './OfficeInformation.module.scss';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
 
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
@@ -38,10 +38,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
 
     const publikumsmottak = forceArray(contact.publikumsmottak);
 
-    const pageUrl = getInternalAbsoluteUrl(
-        props._path,
-        !!pageConfig.editorView
-    );
+    const pageUrl = getInternalAbsoluteUrl(props._path, !!editorView);
 
     const createDepartmentSchema = (mottak: LegacyOfficeAudienceReception) => {
         const fullOfficeName = mottak.stedsbeskrivelse
