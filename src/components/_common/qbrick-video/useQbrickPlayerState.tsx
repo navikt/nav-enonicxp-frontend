@@ -83,15 +83,19 @@ const createAndStart = (
             language,
             autoplay: true,
             widgetId,
-        }).on('ready', () => {
-            setPlayerState('ready');
-            window.GoBrain.widgets(widgetId)?.subtitles(language);
-            logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
-                tittel: title,
-                varighet: duration,
-                språk: language,
+        })
+            .on('ready', () => {
+                setPlayerState('ready');
+                logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
+                    tittel: title,
+                    varighet: duration,
+                    språk: language,
+                });
+            })
+            .on('playable', () => {
+                logger.info('Now playable');
+                window.GoBrain.widgets(widgetId)?.subtitles(language);
             });
-        });
     };
 
     createPlayer();
