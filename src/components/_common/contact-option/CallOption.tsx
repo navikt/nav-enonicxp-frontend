@@ -2,7 +2,6 @@ import React from 'react';
 import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { TelephoneData } from 'types/component-props/parts/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
@@ -16,6 +15,7 @@ import {
 } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
+import { usePageContext } from 'store/contextProvider';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
@@ -50,7 +50,7 @@ export const CallOption = (props: CallOptionProps) => {
 
     const { overrideText } = specialOpeningHours;
 
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
     const { layoutConfig } = useLayoutConfig();
 
     const getContactTranslations = translator('contactPoint', language);

@@ -4,18 +4,17 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Accordion.module.scss';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { useState } from 'react';
+import { usePageContext } from 'store/contextProvider';
 
 type AccordionProps = AccordionPartProps['config'];
 type PanelItem = AccordionProps['accordion'][0];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
-    const { pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView } = usePageContext();
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
     const expandAll = () => {

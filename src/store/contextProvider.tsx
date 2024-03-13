@@ -3,19 +3,20 @@ import { ContentProps } from 'types/content-props/_content-common';
 
 const PageContext = createContext<ContentProps>(null);
 
-const PageContextProvider: React.FC<any> = ({ children }) => {
-    return <PageContext.Provider value={null}>{children}</PageContext.Provider>;
+const PageContextProvider: React.FC<any> = ({ children, content }) => {
+    return (
+        <PageContext.Provider value={content}>{children}</PageContext.Provider>
+    );
 };
 
-// Step 3: Create the consumer hook
-const useMyContext = () => {
-    const context = useContext(PageContextProvider);
+const usePageContext = () => {
+    const context = useContext(PageContext);
 
     if (!context) {
-        throw new Error('useMyContext must be used within a MyProvider');
+        throw new Error('usePageContext must be used within a MyProvider');
     }
 
     return context;
 };
 
-export { PageContextProvider, useMyContext };
+export { PageContextProvider, usePageContext };

@@ -12,6 +12,7 @@ import {
 import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { PageContextProvider } from 'store/contextProvider';
 
 const dummyPageProps: ContentProps = {
     type: ContentType.DynamicPage,
@@ -55,12 +56,14 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
         );
 
         const html = ReactDOMServer.renderToStaticMarkup(
-            <Provider store={mockStore}>
-                <ComponentMapper
-                    componentProps={props}
-                    pageProps={dummyPageProps}
-                />
-            </Provider>
+            <PageContextProvider content={dummyPageProps}>
+                <Provider store={mockStore}>
+                    <ComponentMapper
+                        componentProps={props}
+                        pageProps={dummyPageProps}
+                    />
+                </Provider>
+            </PageContextProvider>
         );
 
         return res.send(html);

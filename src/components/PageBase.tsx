@@ -3,6 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { PageWrapper } from './PageWrapper';
 import { ContentMapper } from './ContentMapper';
 import { makeErrorProps } from 'utils/make-error-props';
+import { PageContextProvider } from 'store/contextProvider';
 
 export type PageProps = {
     content: ContentProps;
@@ -15,8 +16,10 @@ export const PageBase = (props: PageProps) => {
         makeErrorProps('www.nav.no', 'Ukjent feil - kunne ikke laste innhold');
 
     return (
-        <PageWrapper content={content}>
-            <ContentMapper content={content} />
-        </PageWrapper>
+        <PageContextProvider content={content}>
+            <PageWrapper content={content}>
+                <ContentMapper content={content} />
+            </PageWrapper>
+        </PageContextProvider>
     );
 };

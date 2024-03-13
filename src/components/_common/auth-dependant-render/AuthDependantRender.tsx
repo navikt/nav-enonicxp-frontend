@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { useLayoutEffectClientSide } from 'utils/react';
 
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './AuthDependantRender.module.scss';
+import { usePageContext } from 'store/contextProvider';
 
 export const editorAuthstateClassname = (authState: AuthStateType) =>
     style[authState];
@@ -20,7 +20,7 @@ export const AuthDependantRender = ({
     children,
     renderOn = 'always',
 }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContext();
     const { authState } = useAuthState();
     const [shouldRender, setShouldRender] = useState(renderOn !== 'loggedIn');
 
@@ -31,7 +31,7 @@ export const AuthDependantRender = ({
     }, [renderOn, authState]);
 
     // Always render components in editor view
-    if (pageConfig.editorView === 'edit') {
+    if (editorView === 'edit') {
         return <>{children}</>;
     }
 

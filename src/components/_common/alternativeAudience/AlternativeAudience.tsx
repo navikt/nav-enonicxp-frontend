@@ -4,15 +4,15 @@ import {
     Audience,
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
 
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
-import styles from './AlternativeAudience.module.scss';
 import { LenkeInline } from '../lenke/LenkeInline';
+import styles from './AlternativeAudience.module.scss';
+import { usePageContext } from 'store/contextProvider';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
@@ -30,8 +30,7 @@ export const AlternativeAudience = ({
     productName,
     showProductName,
 }: AlternativeAudienceProps) => {
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language, editorView } = usePageContext();
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);

@@ -5,7 +5,6 @@ import { CalculatorIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';
 import { CalculatorResult } from './CalculatorResult';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     CalculatorData,
     CalculatorFieldData,
@@ -15,6 +14,7 @@ import {
 // for fields which should not be optional
 
 import style from './Calculator.module.scss';
+import { usePageContext } from 'store/contextProvider';
 
 type FieldRecord = Record<string, number | null>;
 
@@ -74,7 +74,7 @@ type Props = {
 export const Calculator = ({ header, calculatorData }: Props) => {
     const { fields, useThousandSeparator } = calculatorData;
 
-    const { language } = usePageConfig();
+    const { language } = usePageContext();
 
     const [fieldValues, setFieldValues] = useState<FieldRecord>(
         populateDefaultValues(fields)
