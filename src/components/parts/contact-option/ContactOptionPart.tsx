@@ -64,7 +64,7 @@ export const ContactOptionPart = ({
                     {...sharedContactInformation.data.contactType.write}
                     ingress={
                         ingress ||
-                        sharedContactInformation.data.contactType.write.ingress
+                        sharedContactInformation.data.contactType.write?.ingress
                     }
                 />
             );
@@ -75,7 +75,7 @@ export const ContactOptionPart = ({
                     {...sharedContactInformation.data.contactType.chat}
                     ingress={
                         ingress ||
-                        sharedContactInformation.data.contactType.chat.ingress
+                        sharedContactInformation.data.contactType.chat?.ingress
                     }
                 />
             );
