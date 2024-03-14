@@ -117,7 +117,7 @@ jobs:
       - name: Upload static files to NAV CDN
         uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          cdn-team-name: personbruker
+          team: personbruker
           source: ./.next/static
           destination: nav-enonicxp-frontend/_next
       - name: Build and push docker image
