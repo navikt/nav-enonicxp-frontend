@@ -6,8 +6,6 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from 'translations';
-import { Provider } from 'react-redux';
-import { createNewStore } from 'store/store';
 import { PageContextProvider } from 'store/pageContext';
 
 export const ProductDetailsPart = ({
