@@ -1,6 +1,6 @@
 import { ProductDataMixin } from 'types/component-props/_mixins';
 
-export interface Address {
+export type Address = {
     type?: 'stedsadresse' | 'postboksadresse';
     gatenavn?: string;
     husbokstav?: string;
@@ -9,9 +9,9 @@ export interface Address {
     postboksnummer?: string;
     postnummer?: string;
     poststed?: string;
-}
+};
 
-export interface OpeningHours {
+export type OpeningHours = {
     dag?: 'Mandag' | 'Tirsdag' | 'Onsdag' | 'Torsdag' | 'Fredag';
     dato?: string;
     fra?: string;
@@ -19,14 +19,14 @@ export interface OpeningHours {
     kunTimeavtale?: string;
     kommentar?: string;
     stengt?: string;
-}
+};
 
-export interface AudienceReception {
+export type AudienceReception = {
     stedsbeskrivelse?: string;
     aapningstider: OpeningHours[];
     besoeksadresse?: Address;
     adkomstbeskrivelse?: string;
-}
+};
 
 export type Service = {
     type:
@@ -80,14 +80,14 @@ export type AudienceContact = {
     sortOrder: number;
 };
 
-interface AudienceContactInformation {
+type AudienceContactInformation = {
     spraakdrakt: 'NN' | 'NB';
     informasjonUtbetalinger?: string;
     brukertjenesteTilbud?: AudienceServices;
     publikumsmottak: AudienceReception[];
     sosialhjelp?: SocialServices;
     publikumskanaler: AudienceContact[] | AudienceContact;
-}
+};
 
 export type OfficeDetailsData = ProductDataMixin & {
     enhetNr: string;
