@@ -9,23 +9,9 @@ import {
     ContentType,
 } from '../../types/content-props/_content-common';
 
-import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PageContextProvider } from 'store/pageContext';
-
-const dummyPageProps: ContentProps = {
-    type: ContentType.DynamicPage,
-    _id: '',
-    _path: '',
-    createdTime: '',
-    modifiedTime: '',
-    displayName: '',
-    language: 'no',
-    isDraft: true,
-    editorView: 'edit',
-    data: {},
-};
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
@@ -46,21 +32,26 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
         const props = req.body.props as PartComponentProps;
 
-        mockStore.dispatch(
-            setPageConfigAction({
-                pageId: dummyPageProps._id,
-                language: req.body?.props?.language || dummyPageProps.language,
-                editorView: 'edit',
-                isPagePreview: false,
-            })
-        );
+        const contentProps: ContentProps = {
+            type: ContentType.DynamicPage,
+            _id: '',
+            _path: '',
+            createdTime: '',
+            modifiedTime: '',
+            displayName: '',
+            language: req.body?.props?.language || 'no',
+            isDraft: true,
+            editorView: 'edit',
+            isPagePreview: false,
+            data: {},
+        };
 
         const html = ReactDOMServer.renderToStaticMarkup(
-            <PageContextProvider content={dummyPageProps}>
+            <PageContextProvider content={contentProps}>
                 <Provider store={mockStore}>
                     <ComponentMapper
                         componentProps={props}
-                        pageProps={dummyPageProps}
+                        pageProps={contentProps}
                     />
                 </Provider>
             </PageContextProvider>

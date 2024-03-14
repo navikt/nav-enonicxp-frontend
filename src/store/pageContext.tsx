@@ -12,11 +12,7 @@ const PageContextProvider: React.FC<any> = ({ children, content }) => {
 const usePageContext = () => {
     const context = useContext(PageContext);
 
-    if (!context) {
-        throw new Error('usePageContext must be used within a MyProvider');
-    }
-
-    return context;
+    return context || ({} as ContentProps);
 };
 
 export { PageContextProvider, usePageContext };
