@@ -120,6 +120,8 @@ jobs:
           team: personbruker
           source: ./.next/static
           destination: nav-enonicxp-frontend/_next
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
       - name: Build and push docker image
         uses: nais/docker-build-push@v0
         id: docker-push
