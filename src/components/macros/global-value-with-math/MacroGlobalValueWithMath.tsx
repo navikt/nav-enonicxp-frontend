@@ -10,9 +10,14 @@ type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
 export function substituteExpression(expression: string, variables: number[]) {
-    return expression.replace(/\$(\d+)/g, (_, idx) =>
-        variables[parseInt(idx) - 1].toString()
-    );
+    return expression.replace(/\$(\d+)/g, (_, idx) => {
+        const value = variables[parseInt(idx) - 1];
+        if (!value) {
+            throw new Error(`Invalid variable index: ${idx}`);
+        }
+
+        return value.toString();
+    });
 } // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
 
 // This approach uses jsep to parse the input into an AST (Abstract Syntax Tree) and

@@ -10,6 +10,24 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './FrontPageAreaNavigation.module.scss';
 
+const audienceCardType: Record<Audience, CardType> = {
+    [Audience.EMPLOYER]: CardType.EmployerFrontpage,
+    [Audience.PROVIDER]: CardType.ProviderFrontpage,
+    [Audience.PERSON]: CardType.PersonFrontPage,
+};
+
+const getIllustrationFromProps = (page: ContentProps) => {
+    if (
+        page.type === ContentType.Overview ||
+        page.type === ContentType.FormsOverview ||
+        page.type === ContentType.FrontPageNested ||
+        page.type === ContentType.SituationPage
+    ) {
+        return page.data?.illustration;
+    }
+    return undefined;
+};
+
 type Props = {
     content: FrontPageProps;
 };
@@ -72,22 +90,4 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
             </nav>
         </div>
     );
-};
-
-const audienceCardType: Record<Audience, CardType> = {
-    [Audience.EMPLOYER]: CardType.EmployerFrontpage,
-    [Audience.PROVIDER]: CardType.ProviderFrontpage,
-    [Audience.PERSON]: CardType.PersonFrontPage,
-};
-
-const getIllustrationFromProps = (page: ContentProps) => {
-    if (
-        page.type === ContentType.Overview ||
-        page.type === ContentType.FormsOverview ||
-        page.type === ContentType.FrontPageNested ||
-        page.type === ContentType.SituationPage
-    ) {
-        return page.data?.illustration;
-    }
-    return undefined;
 };
