@@ -40,7 +40,10 @@ export type AudienceOptions = OptionSetSingle<{
 type AudienceProps = AudienceOptions | Audience | Audience[];
 
 export function getAudience(audience: AudienceProps): Audience;
-export function getAudience(audience?: AudienceProps): Audience | null {
+export function getAudience(
+    audience: AudienceProps | undefined | null
+): Audience | null;
+export function getAudience(audience: AudienceProps | undefined | null) {
     if (!audience) {
         return null;
     }
