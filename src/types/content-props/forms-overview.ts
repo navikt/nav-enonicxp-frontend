@@ -9,13 +9,17 @@ import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { ProviderAudience } from 'types/component-props/_mixins';
 
+type ContentTypeInFormOverviewPages =
+    | ContentType.ProductPage
+    | ContentType.GuidePage;
+
 export type FormDetailsListItemProps = {
     title: string;
     sortTitle: string;
     ingress: string;
     keywords: string[];
     url?: string;
-    type: ContentType;
+    type: ContentTypeInFormOverviewPages;
     targetLanguage: string;
     anchorId: string;
     illustration: AnimatedIconsProps;

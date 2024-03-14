@@ -93,7 +93,7 @@ export type ProductDataMixin = {
     title: string;
     ingress?: string;
     taxonomy: Taxonomy[];
-    audience?: Audience;
+    audience?: AudienceOptions;
     customCategory?: string;
     illustration: AnimatedIconsProps;
     area: Area[];

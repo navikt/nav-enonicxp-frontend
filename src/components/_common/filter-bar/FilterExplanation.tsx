@@ -24,7 +24,9 @@ export const FilterExplanation = ({
 
     const { language } = usePageConfig();
 
-    const highlightTimeoutRef = useRef<number | null>(null);
+    const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+        null
+    );
     const relevantSelectedFilters = selectedFilters.filter((filterId) =>
         availableFilters.includes(filterId)
     );

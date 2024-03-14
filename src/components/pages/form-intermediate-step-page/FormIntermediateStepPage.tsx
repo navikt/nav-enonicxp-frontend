@@ -8,6 +8,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
+import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -88,7 +89,7 @@ export const FormIntermediateStepPage = (
         return step.nextStep?.external?.externalUrl || router.asPath;
     };
 
-    const themedPageHeaderProps = {
+    const themedPageHeaderProps: ContentPropsForThemedPageHeader = {
         ...props,
         data: {
             ...props.data,

@@ -17,7 +17,10 @@ import {
 import style from './ThemedPageHeader.module.scss';
 
 export type ContentPropsForThemedPageHeader = ContentProps & {
-    data: ProductDataMixin;
+    data: Pick<
+        ProductDataMixin,
+        'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
+    >;
 };
 
 const contentTypeToClassName: { [key in ContentType]?: string } = {
