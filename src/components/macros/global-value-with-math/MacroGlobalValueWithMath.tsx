@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
-import jsep, { BinaryExpression, Expression, Literal } from 'jsep';
+import jsep, { BinaryExpression, Expression } from 'jsep';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
