@@ -10,6 +10,7 @@ import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 import { classNames } from '../../../../utils/classnames';
+import { EditorHelp } from '../../../_editor-only/editor-help/EditorHelp';
 
 import style from './AreaCardGraphics.module.scss';
 
@@ -44,8 +45,11 @@ export const AreaCardGraphics = ({ type, insideCard }: Props) => {
                 insideCard ? style.insideCard : ''
             )}
         >
-            GraphicComponent ? <GraphicComponent /> :{' '}
-            <DefaultComponent type={type} />
+            {GraphicComponent ? (
+                <GraphicComponent />
+            ) : (
+                <DefaultComponent type={type} />
+            )}
         </div>
     );
 };
