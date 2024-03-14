@@ -31,7 +31,7 @@ export const FrontpageShortcuts = ({
 
     return (
         <div
-            className={classNames(style.shortcuts, style[audience])}
+            className={classNames(style.shortcuts, audience && style[audience])}
             style={
                 {
                     '--bg-color': bgColor,
@@ -78,7 +78,7 @@ export const FrontpageShortcuts = ({
                                 }
                                 className={classNames(
                                     style.item,
-                                    style[`item_${audience}`]
+                                    audience && style[`item_${audience}`]
                                 )}
                             >
                                 {title}

@@ -10,8 +10,6 @@ import {
 
 import style from './SosialeMedier.module.scss';
 
-type LinkData = { type: string; text: string; href: string };
-
 const sosialMediaName = {
     linkedin: 'LinkedIn',
     facebook: 'Facebook',
@@ -36,13 +34,9 @@ const getSocialmediaShareUrl = (
     return encodeURI(shareUrl[socialMediaType]) || null;
 };
 
-type Props = {
-    social: SocialMedia[];
-    displayName: string;
-    contentPath: string;
-};
+type LinkProps = { type: string; text: string; href: string };
 
-const Icon = ({ type, text, href }) => {
+const SosialeMedierLink = ({ type, text, href }: LinkProps) => {
     const { isActive, handlers } = useHoverAndFocus();
 
     return (
@@ -64,6 +58,12 @@ const Icon = ({ type, text, href }) => {
     );
 };
 
+type Props = {
+    social: SocialMedia[];
+    displayName: string;
+    contentPath: string;
+};
+
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     const { editorView } = usePageContext();
 
@@ -71,7 +71,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
         return null;
     }
 
-    const linksData = social.reduce<LinkData[]>((acc, socialMediaType) => {
+    const linkProps = social.reduce<LinkProps[]>((acc, socialMediaType) => {
         const url = getSocialmediaShareUrl(
             socialMediaType,
             displayName,
@@ -92,8 +92,8 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     return (
         <section className={style.socialMedia}>
             <ul>
-                {linksData.map((item) => (
-                    <Icon key={item.type} {...item} />
+                {linkProps.map((item) => (
+                    <SosialeMedierLink key={item.type} {...item} />
                 ))}
             </ul>
         </section>
