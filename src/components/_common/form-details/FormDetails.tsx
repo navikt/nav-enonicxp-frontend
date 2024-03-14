@@ -49,7 +49,7 @@ export const FormDetails = ({
         alerts,
     } = formDetails;
 
-    const variations = formType.reduce((acc, cur) => {
+    const variations = formType.reduce<Variation[]>((acc, cur) => {
         const { _selected } = cur;
 
         if (
@@ -62,8 +62,12 @@ export const FormDetails = ({
 
         const variations = cur[_selected]?.variations;
 
-        return variations ? [...acc, ...variations] : acc;
-    }, []) as Variation[];
+        if (variations) {
+            acc.push(...variations);
+        }
+
+        return acc;
+    }, []);
 
     const formNumberToHighlight =
         formNumberSelected &&

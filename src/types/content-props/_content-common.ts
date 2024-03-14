@@ -46,7 +46,7 @@ import {
     FrontPageNestedProps,
     FrontPageProps,
 } from './index-pages-props';
-import { AudienceProps } from '../component-props/_mixins';
+import { AudienceOptions } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
@@ -133,7 +133,7 @@ type ContentCommonData = Partial<{
     ingress: string;
     title: string;
     description: string;
-    audience: AudienceProps;
+    audience: AudienceOptions;
     showSubsectionNavigation?: boolean;
 }>;
 

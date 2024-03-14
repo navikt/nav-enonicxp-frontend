@@ -23,9 +23,14 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {
             return '';
         }
-        const allPlaces = publikumsmottak.map(
-            (place) => place.stedsbeskrivelse
-        );
+        const allPlaces = publikumsmottak.reduce<string[]>((acc, place) => {
+            const { stedsbeskrivelse } = place;
+            if (stedsbeskrivelse) {
+                acc.push(stedsbeskrivelse);
+            }
+
+            return acc;
+        }, []);
 
         return `Lokalkontor for ${joinWithConjunction(allPlaces, language)}`;
     };

@@ -8,7 +8,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: ProductPageFlexColsLayoutProps;
+    layoutProps: ProductPageFlexColsLayoutProps;
 };
 
 export const ProductPageFlexColsLayout = ({

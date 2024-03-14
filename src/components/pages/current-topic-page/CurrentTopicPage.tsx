@@ -3,15 +3,15 @@ import { ComponentMapper } from '../../ComponentMapper';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { NewsHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
 
-import styles from './CurrentTopicPage.module.scss';
+import style from './CurrentTopicPage.module.scss';
 
 export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
     return (
-        <article className={styles.currentTopicPage}>
+        <article className={style.currentTopicPage}>
             <NewsHeader contentProps={props} />
-            <div className={styles.contentWrapper}>
-                <div className={styles.contentAligner}>
-                    <div className={styles.content}>
+            <div className={style.contentWrapper}>
+                <div className={style.contentAligner}>
+                    <div className={style.content}>
                         <ComponentMapper
                             componentProps={props.page}
                             pageProps={props}

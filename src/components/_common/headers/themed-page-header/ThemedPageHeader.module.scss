@@ -4,40 +4,34 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 4px solid transparent;
 
     @include common.full-width-mixin;
 
     &.situation {
-        box-shadow: 0 -4px 0 var(--a-orange-500) inset;
+        border-bottom-color: var(--a-orange-500);
     }
-
     &.product {
-        box-shadow: 0 -4px 0 var(--a-green-500) inset;
+        border-bottom-color: var(--a-green-500);
     }
-
     &.guide {
-        box-shadow: 0 -4px 0 var(--a-lightblue-500) inset;
+        border-bottom-color: var(--a-lightblue-500);
     }
-
     &.themedpage {
-        box-shadow: 0 -4px 0 var(--a-limegreen-500) inset;
+        border-bottom-color: var(--a-limegreen-500);
     }
-
     &.tool {
-        box-shadow: 0 -4px 0 var(--a-deepblue-500) inset;
+        border-bottom-color: var(--a-deepblue-500);
     }
-
     &.intermediateStep {
-        box-shadow: 0 -4px 0 var(--a-deepblue-300) inset;
+        border-bottom-color: var(--a-deepblue-300);
     }
-
     &.overview {
-        box-shadow: 0 -4px 0 var(--a-red-100) inset;
+        border-bottom-color: var(--a-red-100);
     }
-
     &.generic {
-        box-shadow: 0 -4px 0 var(--a-gray-600) inset;
+        border-bottom-color: var(--a-gray-600);
     }
 
     @media #{common.$mq-screen-mobile} {

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export const useScrollPosition = (element: HTMLElement) => {
+export const useScrollPosition = (element: HTMLElement | null) => {
     const scrollPositionRef = useRef(0);
 
     const saveScrollPosition = () => {

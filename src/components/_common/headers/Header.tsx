@@ -6,12 +6,11 @@ import { Level, levelToSize, Size } from 'types/typo-style';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
 import { CopyLink } from '../copyLink/copyLink';
 
-// eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
 
 type Props = {
-    children: string;
+    children: React.ReactNode;
     level: Level;
     size?: Size;
     justify?: HeaderCommonConfig['justify'];
@@ -43,7 +42,7 @@ export const Header = ({
         <div
             className={classNames(
                 style.header,
-                style[`header__${justify}`],
+                justify && style[`header__${justify}`],
                 className
             )}
             id={setId ? anchorId : undefined}
@@ -52,8 +51,9 @@ export const Header = ({
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-
-            {anchor && !hideCopyButton && <CopyLink heading={onlyText(children)} anchor={anchor} />}
+            {anchor && !hideCopyButton && (
+                <CopyLink heading={onlyText(children)} anchor={anchor} />
+            )}
         </div>
     );
 };

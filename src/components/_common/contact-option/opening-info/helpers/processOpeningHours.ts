@@ -1,10 +1,7 @@
 import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import { dayNameToIndex, daysNameArray } from 'utils/datetime';
-import {
-    openingHourDateFormat,
-    openingHourTimeFormat,
-} from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import { openingHourDateFormat } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import utc from 'dayjs/plugin/utc';

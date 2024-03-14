@@ -5,7 +5,7 @@ import { CardType } from 'types/card';
 
 import styles from './FrontPageCard.module.scss';
 
-type FrontPageCardProps = {
+type Props = {
     illustration?: AnimatedIconsProps;
     path: string;
     title: string;
@@ -19,7 +19,7 @@ export const FrontPageCard = ({
     title,
     type,
     fallbackIllustration,
-}: FrontPageCardProps) => {
+}: Props) => {
     const link: LinkProps = {
         url: path,
         text: title,

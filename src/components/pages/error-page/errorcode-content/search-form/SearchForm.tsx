@@ -5,13 +5,11 @@ import { Button } from '../../../../_common/button/Button';
 
 import style from './SearchForm.module.scss';
 
-const origin = process.env.APP_ORIGIN;
-const maxSearchLength = 200;
+const MAX_SEARCH_LENGTH = 200;
+const HEADER_TEXT = 'Hva leter du etter?';
 
 // Replace the localhost port number to support local integration with the search-app
-const searchHref = `${origin.replace('3000', '3001')}/sok`;
-
-const label = 'Hva leter du etter?';
+const searchHref = `${process.env.APP_ORIGIN.replace('3000', '3001')}/sok`;
 
 export const SearchForm = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,20 +26,20 @@ export const SearchForm = () => {
                 className={style.header}
                 id={'search-header'}
             >
-                {label}
+                {HEADER_TEXT}
             </Heading>
             <form onSubmit={onSearchSubmit} className={style.form}>
                 <TextField
                     aria-labelledby={'search-header'}
                     className={style.input}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    maxLength={maxSearchLength}
+                    maxLength={MAX_SEARCH_LENGTH}
                     placeholder={'Søk på nav.no'}
                     value={searchTerm}
                     id={'search-input'}
-                    label={label}
+                    label={HEADER_TEXT}
                     hideLabel={true}
-                    autoComplete="off"
+                    autoComplete={'off'}
                 />
                 <div className={style.buttonsContainer}>
                     {searchTerm && (

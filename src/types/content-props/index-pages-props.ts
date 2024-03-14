@@ -3,7 +3,7 @@ import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
 import { IndexPageProps } from '../component-props/pages/index-page';
 import {
-    AudienceProps,
+    AudienceOptions,
     ColorMixin,
     LinkSelectable,
 } from '../component-props/_mixins';
@@ -14,7 +14,7 @@ import { FormsOverviewProps } from './forms-overview';
 import { ExternalLinkProps } from './external-link-props';
 
 type CommonData = {
-    audience: AudienceProps;
+    audience: AudienceOptions;
 };
 
 export type NavigationRefs =
