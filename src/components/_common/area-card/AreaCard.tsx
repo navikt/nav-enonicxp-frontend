@@ -32,22 +32,16 @@ export const AreaCard = ({
         <LinkPanel
             {...rest}
             border={false}
+            href={path}
+            analyticsLabel={title}
+            analyticsComponent={'Områdekort'}
+            analyticsLinkGroup={linkGroup}
             className={classNames(
                 style.linkPanel,
                 graphicsStyle.expandOnHover,
                 className
             )}
-            as={(props) => (
-                <LenkeBase
-                    {...props}
-                    href={path}
-                    analyticsLabel={title}
-                    analyticsComponent={'Områdekort'}
-                    analyticsLinkGroup={linkGroup}
-                >
-                    {props.children}
-                </LenkeBase>
-            )}
+            as={LenkeBase}
         >
             <div
                 className={
