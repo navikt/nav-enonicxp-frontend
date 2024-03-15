@@ -18,7 +18,7 @@ const clusterStateToVariant: {
 
 type Props = {
     serverName: string;
-    clusterState: ClusterState;
+    clusterState?: ClusterState;
 };
 
 export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
@@ -29,14 +29,18 @@ export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
                     {'nav.no cms status'}
                 </Header>
             </div>
-            <AlertBox
-                variant={clusterStateToVariant[clusterState]}
-                inline={true}
-                className={style.serverInfo}
-            >
-                <BodyShort>{`Cluster status: ${clusterState}`}</BodyShort>
-                <BodyShort>{`Server: ${serverName}`}</BodyShort>
-            </AlertBox>
+            {clusterState ? (
+                <AlertBox
+                    variant={clusterStateToVariant[clusterState]}
+                    inline={true}
+                    className={style.serverInfo}
+                >
+                    <BodyShort>{`Cluster status: ${clusterState}`}</BodyShort>
+                    <BodyShort>{`Server: ${serverName}`}</BodyShort>
+                </AlertBox>
+            ) : (
+                <BodyShort>{'Could not determine cluster state!'}</BodyShort>
+            )}
         </div>
     );
 };
