@@ -1,8 +1,5 @@
 import { ContentCommonProps, ContentType } from './_content-common';
-import {
-    ProductDataMixin,
-    ProductDetailsDataMixin,
-} from '../component-props/_mixins';
+import { ProductDataMixin } from '../component-props/_mixins';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
@@ -10,13 +7,16 @@ import { ContentListProps } from './content-list-props';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutProps } from 'types/component-props/layouts';
+import { ProductDetailType } from './product-details';
 
 export type ProductPageData = ProductDataMixin;
 export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ThemedArticlePageTaxonomy[];
 };
 export type GuidePageData = ProductDataMixin;
-export type ProductDetailsData = ProductDetailsDataMixin;
+export type ProductDetailsData = {
+    detailType: Exclude<ProductDetailType, ProductDetailType.ALL_PRODUCTS>;
+};
 export type SituationPageData = ProductDataMixin;
 export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ToolsPageTaxonomy[];
