@@ -11,7 +11,7 @@ type Props = {
     content: ContentProps;
     versionTimestamps: string[];
     submitVersionUrl: (url: string) => void;
-    initialSelection?: string;
+    initialSelection: string | null;
 };
 
 export const VersionSelectorPublished = ({

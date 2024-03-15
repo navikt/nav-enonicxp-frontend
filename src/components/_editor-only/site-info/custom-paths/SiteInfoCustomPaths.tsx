@@ -25,7 +25,7 @@ export const SiteInfoCustomPaths = ({ contentList }: Props) => {
                     className={style.filter}
                 />
                 {contentList
-                    .filter((content) => content.customPath.includes(filter))
+                    .filter((content) => content.customPath?.includes(filter))
                     .map((content) => (
                         <SiteInfoCustomPathItem {...content} key={content.id} />
                     ))}

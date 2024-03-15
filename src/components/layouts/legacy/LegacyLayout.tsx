@@ -5,13 +5,14 @@ import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from 'types/component-props/layouts/legacy-layout';
 import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
 import { ComponentType } from 'types/component-props/_component-common';
+import { MainArticleProps } from '../../../types/content-props/main-article-props';
 
 type Props = {
     pageProps: ContentProps;
     layoutProps: LegacyLayoutProps;
 };
 
-const getNewsArticleProps = (pageProps: ContentProps) => {
+const getNewsArticleProps = (pageProps: ContentProps): MainArticleProps => {
     const props =
         pageProps.type === ContentType.MainArticleChapter
             ? pageProps.data.article

@@ -36,7 +36,7 @@ export const VersionSelector = ({
         string | null
     >(null);
     const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
-    const [versionsError, setVersionsError] = useState(null);
+    const [versionsError, setVersionsError] = useState<string | null>(null);
 
     useEffect(() => {
         const params = objectToQueryString({
