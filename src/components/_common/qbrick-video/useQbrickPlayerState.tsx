@@ -96,7 +96,7 @@ const createAndStart = (
                 });
             })
             .on('playable', () => {
-                window.GoBrain.widgets(widgetId)?.subtitles(language);
+                window.GoBrain?.widgets(widgetId)?.subtitles(language);
             });
     };
 

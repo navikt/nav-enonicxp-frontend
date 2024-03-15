@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 const customSelectorLinkClassName = 'custom-selector-link';
 
@@ -15,11 +15,15 @@ export const CustomSelectorLinkTargetHack = () => {
             element.target = '_blank';
         }
 
-        const callback = (mutations) => {
+        const callback: MutationCallback = (mutations) => {
             mutations.forEach((mutation) => {
                 mutation.addedNodes.forEach((node) => {
-                    if (node.classList?.contains(customSelectorLinkClassName)) {
-                        node.target = '_blank';
+                    if (
+                        (node as Element).classList?.contains(
+                            customSelectorLinkClassName
+                        )
+                    ) {
+                        (node as HTMLAnchorElement).target = '_blank';
                     }
                 });
             });

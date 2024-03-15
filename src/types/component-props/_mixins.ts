@@ -6,7 +6,6 @@ import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
-import { ProductDetailType } from 'types/content-props/product-details';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type HeaderWithAnchorMixin = {
@@ -100,12 +99,6 @@ export type ProductDataMixin = {
     externalProductUrl?: string;
     alternativeAudience?: AlternativeAudience;
     relatedSituations?: SituationPageProps[];
-};
-
-export type ProductDetailsDataMixin = {
-    detailType?: ProductDetailType;
-    overviewType?: ProductDetailType;
-    pageUsageReference?: string;
 };
 
 export type LinkSelectable = OptionSetSingle<{

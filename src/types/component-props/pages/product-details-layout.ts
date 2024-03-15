@@ -11,8 +11,9 @@ export type ProductDetailsPageRegionName =
     | 'main_complaint'
     | 'outro';
 
-export interface ProductDetailsPageProps extends LayoutCommonProps {
-    type: ComponentType.Page;
-    descriptor: LayoutType.ProductDetailsPage;
-    regions: Regions<ProductDetailsPageRegionName>;
-}
+export type ProductDetailsPageProps =
+    LayoutCommonProps<ProductDetailsPageRegionName> & {
+        type: ComponentType.Page;
+        descriptor: LayoutType.ProductDetailsPage;
+        regions: Regions<ProductDetailsPageRegionName>;
+    };

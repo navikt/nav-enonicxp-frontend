@@ -66,21 +66,21 @@ export const ReferencesInfoResult = ({ references, content }: Props) => {
             </div>
             {isOpen && (
                 <>
-                    {general?.length > 0 && (
+                    {general && general.length > 0 && (
                         <ReferencesLinks
                             headerText={'I bruk på følgende sider:'}
                             references={general}
                             contentLayer={contentLayer}
                         />
                     )}
-                    {components?.length > 0 && (
+                    {components && components.length > 0 && (
                         <ReferencesLinks
                             headerText={'I bruk som komponent:'}
                             references={components}
                             contentLayer={contentLayer}
                         />
                     )}
-                    {macros?.length > 0 && (
+                    {macros && macros.length > 0 && (
                         <ReferencesLinks
                             headerText={'I bruk som macro:'}
                             references={macros}

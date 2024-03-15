@@ -34,7 +34,7 @@ const getUpperBound = (
 const selectRandomVariant = (
     allVariants: UserTestVariantProps[],
     selectedVariants: UserTestVariantProps[]
-): UserTestVariantProps | null => {
+): UserTestVariantProps | undefined => {
     const upperBound = getUpperBound(allVariants, selectedVariants);
     const selectedValue = Math.random() * upperBound;
 
@@ -49,7 +49,7 @@ const selectRandomVariant = (
 const pickApplicableVariant = ({
     tests,
     selectedTestIds,
-}: UserTestsComponentProps): UserTestVariantProps | null => {
+}: UserTestsComponentProps): UserTestVariantProps | undefined => {
     const { variants, cookieId } = tests.data;
 
     const hasSelection = selectedTestIds.length > 0;
@@ -59,7 +59,7 @@ const pickApplicableVariant = ({
         : variants;
 
     if (selectableVariants.length === 0) {
-        return null;
+        return undefined;
     }
 
     const previouslySelectedVariantId = userTestGetSelectedVariantId(cookieId);
