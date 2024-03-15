@@ -10,9 +10,8 @@ import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './VersionSelector.module.scss';
 
-const containerId = 'version-selector';
-
-const publishedVersionsServiceUrl = `${xpDraftPathPrefix}${xpServicePath}/sitecontentVersions/publishedVersions`;
+const VERSION_SELECTOR_CONTAINER_ID = 'version-selector';
+const PUBLISHED_VERSIONS_SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/sitecontentVersions/publishedVersions`;
 
 type SelectorType = 'datetime' | 'published';
 
@@ -44,39 +43,39 @@ export const VersionSelector = ({
             locale: content.liveLocale || content.layerLocale,
         });
 
-        fetchJson(`${publishedVersionsServiceUrl}${params}`, 15000).then(
-            (versions) => {
-                if (!versions) {
-                    setVersionsError(
-                        'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
-                    );
-                    setPublishedVersions([]);
-                    return;
-                }
-
-                setPublishedVersions(versions);
-
-                // Set the selection to a specific version if it was previously selected by the user
-                const selectedVersion = versions.find(
-                    (versionTimestamp) =>
-                        versionTimestamp === content.timeRequested
+        fetchJson<string[]>(
+            `${PUBLISHED_VERSIONS_SERVICE_URL}${params}`,
+            15000
+        ).then((versions) => {
+            if (!versions) {
+                setVersionsError(
+                    'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
                 );
-
-                if (!selectedVersion) {
-                    return;
-                }
-
-                setSelectedPublishedVersion(selectedVersion);
-                setSelectorType('published');
+                setPublishedVersions([]);
+                return;
             }
-        );
+
+            setPublishedVersions(versions);
+
+            // Set the selection to a specific version if it was previously selected by the user
+            const selectedVersion = versions.find(
+                (versionTimestamp) => versionTimestamp === content.timeRequested
+            );
+
+            if (!selectedVersion) {
+                return;
+            }
+
+            setSelectedPublishedVersion(selectedVersion);
+            setSelectorType('published');
+        });
     }, [content]);
 
     useEffect(() => {
         // Close the selector if the user clicks outside the selector element
         const closeSelector = (e: MouseEvent) => {
             const clickedMe = !!(e.target as HTMLElement)?.closest?.(
-                `#${containerId}`
+                `#${VERSION_SELECTOR_CONTAINER_ID}`
             );
             if (!clickedMe) {
                 setIsOpen(false);
@@ -94,7 +93,10 @@ export const VersionSelector = ({
     }, [isOpen, setIsOpen]);
 
     return (
-        <div className={style.versionSelector} id={containerId}>
+        <div
+            className={style.versionSelector}
+            id={VERSION_SELECTOR_CONTAINER_ID}
+        >
             <div className={classNames(style.inner, isOpen && style.open)}>
                 <div className={style.typeSelector}>
                     <RadioGroup

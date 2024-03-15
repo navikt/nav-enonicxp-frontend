@@ -40,7 +40,7 @@ type BatchContentServerEventDetail = {
     userTriggered?: true;
 };
 
-const getUserNameFromEmail = (userEmail) =>
+const getUserNameFromEmail = (userEmail?: string) =>
     userEmail?.split('@')[0].replace('.', ' ');
 
 const ignoredContentTypes = {
@@ -57,9 +57,9 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
     setExternalUserName,
 }: {
     content: ContentProps;
-    setExternalUserName;
-    setExternalContentChange;
-    setExternalUpdateEvent;
+    setExternalUserName: (name: string | null) => void;
+    setExternalContentChange: (changed: boolean) => void;
+    setExternalUpdateEvent: (event: CustomEvent | null) => void;
 }) => {
     const { _id: currentContentId, type: contentType } = content;
 
