@@ -40,13 +40,13 @@ type BatchContentServerEventDetail = {
     userTriggered?: true;
 };
 
-const getUserNameFromEmail = (userEmail?: string) =>
-    userEmail?.split('@')[0].replace('.', ' ');
+const getUserNameFromEmail = (email: string) =>
+    email.split('@')[0].replace('.', ' ');
 
-const ignoredContentTypes = {
-    [ContentType.GlobalNumberValuesSet]: true,
-    [ContentType.GlobalCaseTimeSet]: true,
-};
+const ignoredContentTypes: ReadonlySet<ContentType> = new Set([
+    ContentType.GlobalNumberValuesSet,
+    ContentType.GlobalCaseTimeSet,
+]);
 
 // Hook the dispatchEvent function on the content studio parent window
 // in order to prevent certain events from propagating
@@ -64,7 +64,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
     const { _id: currentContentId, type: contentType } = content;
 
     // Some content types use a custom editor. This hack only applies to built-in CS functionality
-    if (ignoredContentTypes[contentType]) {
+    if (ignoredContentTypes.has(contentType)) {
         return;
     }
 
@@ -78,7 +78,11 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
 
     const userId = await editorFetchAdminUserId();
 
-    parent.window.dispatchEvent = (event: CustomEvent) => {
+    parent.window.dispatchEvent = (event: Event) => {
+        if (!(event instanceof CustomEvent)) {
+            return dispatchEvent(event);
+        }
+
         const { type: eventType, detail } = event;
         const detailType = detail?.type;
 
@@ -111,7 +115,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
             return dispatchEvent(event);
         }
 
-        detail.items.forEach((item) => {
+        detail.items.forEach((item: { id: string; repo: string }) => {
             const { id, repo } = item;
 
             if (!isContentRepo(repo)) {
@@ -139,7 +143,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
                 );
 
                 editorFetchUserInfo(content.modifier).then((userInfo) => {
-                    if (userInfo) {
+                    if (userInfo?.displayName) {
                         setExternalUserName(
                             getUserNameFromEmail(userInfo.displayName)
                         );

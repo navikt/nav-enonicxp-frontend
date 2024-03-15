@@ -10,17 +10,19 @@ type PressTopSectionProps = {
 
 export const PressTopSection = (props: PressTopSectionProps) => {
     const { displayName, data } = props.page;
-    const { pressCall } = data;
+    const { pressCall, title } = data;
 
     return (
         <div className={styles.pressTopSection}>
             <div className={styles.content}>
                 <Heading size={'xlarge'} level={'1'}>
-                    {displayName}
+                    {title || displayName}
                 </Heading>
-                <div className={styles.pressCall}>
-                    <ParsedHtml htmlProps={pressCall} />
-                </div>
+                {pressCall && (
+                    <div className={styles.pressCall}>
+                        <ParsedHtml htmlProps={pressCall} />
+                    </div>
+                )}
             </div>
         </div>
     );

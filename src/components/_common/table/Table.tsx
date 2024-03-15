@@ -6,7 +6,7 @@ import style from './Table.module.scss';
 type TableContextProps = { shadeOnHover?: boolean };
 
 type Props = {
-    children: React.ReactNode;
+    children: React.JSX.Element | React.JSX.Element[];
 } & TableProps &
     TableContextProps;
 

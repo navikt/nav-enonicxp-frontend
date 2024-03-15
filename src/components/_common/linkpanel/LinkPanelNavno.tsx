@@ -5,7 +5,7 @@ import { LenkeBase } from '../lenke/LenkeBase';
 
 type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
-export type LinkPanelNavnoProps = {
+type Props = {
     href: string;
     linkText: string;
     linkTextSize?: DsHeadingSize;
@@ -29,7 +29,7 @@ export const LinkPanelNavno = ({
     analyticsLinkGroup,
     children,
     ...elementAttribs
-}: LinkPanelNavnoProps) => {
+}: Props) => {
     return (
         <div
             className={classNames(

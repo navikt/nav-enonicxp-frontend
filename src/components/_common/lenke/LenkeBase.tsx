@@ -25,7 +25,6 @@ const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
  **/
 type Props = {
     href: string;
-    onClick?: (e: React.MouseEvent) => void;
     prefetch?: boolean;
     analyticsEvent?: AnalyticsEvents;
     analyticsComponent?: string;

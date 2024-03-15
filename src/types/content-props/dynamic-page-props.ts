@@ -30,6 +30,7 @@ export type OfficeEditorialPageData = {
 export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'>;
 
 export type PressLandingPageData = Partial<{
+    title: string;
     pressCall: ProcessedHtmlProps;
     pressNews: ContentListProps;
     shortcuts: ContentListProps;
