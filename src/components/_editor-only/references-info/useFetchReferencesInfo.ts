@@ -23,7 +23,7 @@ const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/references`;
 
 export const useFetchReferencesInfo = (
     contentId: string,
-    contentLayer: string
+    contentLayer?: string
 ) => {
     const [references, setReferences] = useState<ServiceResponse>({
         result: 'notimpl',

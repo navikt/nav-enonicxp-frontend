@@ -23,6 +23,7 @@ const dummyPageProps: ContentProps = {
     language: 'no',
     isDraft: true,
     editorView: 'edit',
+    contentLayer: 'no',
     data: {},
 };
 
