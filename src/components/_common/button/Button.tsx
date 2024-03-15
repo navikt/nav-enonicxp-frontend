@@ -17,7 +17,7 @@ type Props = {
     fullWidth?: boolean;
     disabled?: boolean;
     prefetch?: boolean;
-    onClick?: (e?: React.MouseEvent) => void;
+    onClick?: (e: React.MouseEvent) => void;
     className?: string;
     children: React.ReactNode;
 };

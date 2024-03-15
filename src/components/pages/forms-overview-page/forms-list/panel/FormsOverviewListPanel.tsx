@@ -74,8 +74,8 @@ export const FormsOverviewListPanel = ({
         targetLanguage,
     } = formDetails;
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
     const [formDetailsPages, setFormDetailsPages] = useState<
         null | FormDetailsPageProps[]
     >(null);

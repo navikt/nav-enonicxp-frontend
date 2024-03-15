@@ -9,10 +9,10 @@ import { usePageContext } from 'store/pageContext';
 
 import style from './FilterExplanation.module.scss';
 
-interface FilterExplanationProps {
+type FilterExplanationProps = {
     selectedFilters: string[];
     availableFilters: string[];
-}
+};
 
 export const FilterExplanation = ({
     selectedFilters,
@@ -24,7 +24,9 @@ export const FilterExplanation = ({
 
     const { language } = usePageContext();
 
-    const highlightTimeoutRef = useRef(null);
+    const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+        null
+    );
     const relevantSelectedFilters = selectedFilters.filter((filterId) =>
         availableFilters.includes(filterId)
     );

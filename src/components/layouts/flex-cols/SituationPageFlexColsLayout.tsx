@@ -7,7 +7,7 @@ import { Header } from '../../_common/headers/Header';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: SituationPageFlexColsLayoutProps;
+    layoutProps: SituationPageFlexColsLayoutProps;
 };
 
 export const SituationPageFlexColsLayout = ({

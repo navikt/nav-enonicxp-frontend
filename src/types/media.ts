@@ -27,7 +27,7 @@ export type VectorImage = {
     mediaUrl?: string;
 };
 
-export type BitmapImage = {
+export type RasterImage = {
     type: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
@@ -38,7 +38,7 @@ export type BitmapImage = {
     };
 };
 
-export type XpImageProps = VectorImage | BitmapImage;
+export type XpImageProps = VectorImage | RasterImage;
 
 export const isMediaContent = (
     content: XpResponseProps

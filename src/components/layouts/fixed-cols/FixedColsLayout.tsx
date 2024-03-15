@@ -6,7 +6,7 @@ import { LayoutContainer } from '../LayoutContainer';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: FixedColsLayoutProps;
+    layoutProps: FixedColsLayoutProps;
 };
 
 export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {

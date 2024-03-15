@@ -1,19 +1,20 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { AudienceProps, RenderOnAuthStateMixin } from '../_mixins';
+import { AudienceOptions, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { DayName } from '../../../utils/datetime';
 
 // TODO: Rewrite this for easier type narrowing
 
 export type OpeningHourRegularRaw =
     | {
           status: 'CLOSED';
-          dayName: string;
+          dayName: DayName;
       }
     | {
           status: 'OPEN';
-          dayName: string;
+          dayName: DayName;
           from: string;
           to: string;
       };
@@ -43,28 +44,28 @@ export type SpecialOpeningHours = {
     hours?: OpeningHourSpecialRaw[];
 };
 
-interface LegacyCall {
+type LegacyCall = {
     phoneNumber?: string;
-}
+};
 
-interface LegacyWrite {
+type LegacyWrite = {
     ingress?: ProcessedHtmlProps;
     title?: string;
     url?: string;
-}
+};
 
-interface Options {
+type Options = {
     chat: DefaultContactData;
     write: DefaultContactData & LegacyWrite;
     navoffice: DefaultContactData;
     aidcentral: DefaultContactData;
     custom: DefaultContactData;
     call: DefaultContactData & LegacyCall;
-}
+};
 
 export type ChannelType = keyof Options;
 
-export interface DefaultContactData {
+export type DefaultContactData = {
     ingress?: ProcessedHtmlProps;
     title?: string;
     url?: string;
@@ -79,38 +80,34 @@ export interface DefaultContactData {
             };
         };
     };
-}
+};
 
-export interface TelephoneData {
+export type TelephoneData = {
     phoneNumber?: string;
     title?: string;
     text?: string;
     alertText?: string;
     regularOpeningHours?: RegularOpeningHours;
     specialOpeningHours?: SpecialOpeningHours;
-    audience?: AudienceProps;
-}
+    audience?: AudienceOptions;
+};
 
-export interface WriteData extends DefaultContactData {
-    alertText?: string;
-}
-
-export interface ChatData extends Omit<DefaultContactData, 'url'> {
+export type ChatData = Omit<DefaultContactData, 'url'> & {
     alertText?: string;
     regularOpeningHours?: RegularOpeningHours;
     specialOpeningHours?: SpecialOpeningHours;
-}
+};
 
-export interface WriteData {
+export type WriteData = {
     title?: string;
     url?: string;
     alertText?: string;
     ingress?: ProcessedHtmlProps;
-}
+};
 
-export interface ContactOptionProps extends PartComponentProps {
+export type ContactOptionProps = PartComponentProps & {
     descriptor: PartType.ContactOption;
     config: {
         contactOptions: OptionSetSingle<Options>;
     } & RenderOnAuthStateMixin;
-}
+};

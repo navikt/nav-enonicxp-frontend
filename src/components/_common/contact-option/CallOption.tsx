@@ -30,25 +30,23 @@ const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
         no: '/kontaktoss#ring-oss',
         en: '/kontaktoss/en#call-us',
     },
-};
+} as const;
 
-type CallOptionProps = {
+type Props = {
     ingress?: ProcessedHtmlProps;
 } & TelephoneData;
 
-export const CallOption = (props: CallOptionProps) => {
-    const {
-        title,
-        alertText,
-        ingress,
-        phoneNumber,
-        regularOpeningHours,
-        specialOpeningHours,
-        text,
-        audience,
-    } = props;
-
-    const { overrideText } = specialOpeningHours;
+export const CallOption = ({
+    title,
+    alertText,
+    ingress,
+    phoneNumber,
+    regularOpeningHours,
+    specialOpeningHours,
+    text,
+    audience,
+}: Props) => {
+    const overrideText = specialOpeningHours?.overrideText;
 
     const { language } = usePageContext();
     const { layoutConfig } = useLayoutConfig();

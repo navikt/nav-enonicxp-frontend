@@ -9,9 +9,14 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
+type ContentTypeInOverviewPages =
+    | ContentType.ProductPage
+    | ContentType.ThemedArticlePage
+    | ContentType.GuidePage;
+
 export type OverviewPageProductLink = {
     url: string;
-    type: ContentType;
+    type: ContentTypeInOverviewPages;
     language: string;
     title: string;
 };

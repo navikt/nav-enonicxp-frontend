@@ -14,9 +14,7 @@ import {
 
 import style from './ContactOption.module.scss';
 
-type Props = WriteData & {
-    alertText?: string;
-};
+type Props = WriteData;
 
 export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
     const { language } = usePageContext();

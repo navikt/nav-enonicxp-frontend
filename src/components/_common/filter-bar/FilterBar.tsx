@@ -14,11 +14,11 @@ import style from './FilterBar.module.scss';
 
 type FilterWithCategory = Filter & Pick<Category, 'categoryName'>;
 
-type FilterBarProps = {
+type Props = {
     layoutProps: SectionWithHeaderProps;
 };
 
-export const FilterBar = ({ layoutProps }: FilterBarProps) => {
+export const FilterBar = ({ layoutProps }: Props) => {
     const filterBarRef = useRef(null);
     const { content, intro } = layoutProps.regions;
     const components = [
@@ -32,7 +32,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         useFilterState();
 
     const { saveScrollPosition, scrollBackToElement } = useScrollPosition(
-        filterBarRef?.current
+        filterBarRef.current
     );
 
     const [filtersToDisplay, setFiltersToDisplay] = useState<
@@ -43,9 +43,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         // Create a flat array of all ids that any
         // underlying part that has filter ids attached.
         // We don't care about duplicate ids in the final array at the moment.
-        const filterIds = components.reduce((acc, component) => {
+        const filterIds = components.reduce<string[]>((acc, component) => {
             if (component.config?.filters) {
-                return [...acc, ...component.config.filters];
+                acc.push(...component.config.filters);
             }
 
             return acc;

@@ -9,7 +9,7 @@ import style from './FlexColsLayout.module.scss';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: FlexColsLayoutProps;
+    layoutProps: FlexColsLayoutProps;
 };
 
 export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {

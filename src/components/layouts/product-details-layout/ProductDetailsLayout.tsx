@@ -58,7 +58,7 @@ const getRegionHelpTexts = (
 
 type Props = {
     pageProps: ProductDetailsProps;
-    layoutProps?: ProductDetailsPageProps;
+    layoutProps: ProductDetailsPageProps;
 };
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
