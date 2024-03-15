@@ -8,13 +8,11 @@ import style from './SiteInfoHeader.module.scss';
 
 type AlertboxVariant = React.ComponentProps<typeof AlertBox>['variant'];
 
-const clusterStateToVariant: {
-    [clusterState in ClusterState]: AlertboxVariant;
-} = {
+const clusterStateToVariant: Record<ClusterState, AlertboxVariant> = {
     GREEN: 'success',
     YELLOW: 'warning',
     RED: 'error',
-};
+} as const;
 
 type Props = {
     serverName: string;

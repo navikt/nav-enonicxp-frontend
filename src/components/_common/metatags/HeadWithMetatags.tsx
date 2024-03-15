@@ -96,9 +96,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta name={'twitter:image:src'} content={imageUrl} />
             <meta name={'description'} content={description} />
             <meta name={'contentId'} content={content._id} />
-            {content.contentLayer && (
-                <meta name={'contentLayer'} content={content.contentLayer} />
-            )}
+            <meta name={'contentLayer'} content={content.contentLayer} />
             <meta name={'msapplication-TileColor'} content={'#ffffff'} />
             <meta name={'theme-color'} content={'#ffffff'} />
             <link

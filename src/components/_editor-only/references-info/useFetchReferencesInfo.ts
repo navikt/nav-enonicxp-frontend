@@ -13,6 +13,9 @@ type ServiceResponse =
           message: string;
       }
     | {
+          result: 'loading';
+      }
+    | {
           result: 'notimpl';
       };
 
@@ -22,36 +25,30 @@ export const useFetchReferencesInfo = (
     contentId: string,
     contentLayer: string
 ) => {
-    const [references, setReferences] = useState<ReferencesDataByType | null>(
-        null
-    );
-    const [isError, setIsError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [references, setReferences] = useState<ServiceResponse>({
+        result: 'notimpl',
+    });
 
     useEffect(() => {
-        setIsLoading(true);
+        setReferences({
+            result: 'loading',
+        });
 
         fetchJson<ServiceResponse>(
             `${SERVICE_URL}?contentId=${contentId}&locale=${contentLayer}`,
             10000
         ).then((usageResponse) => {
-            setIsLoading(false);
-
-            if (!usageResponse || usageResponse.result === 'error') {
-                setIsError(true);
-                setReferences(null);
+            if (!usageResponse) {
+                setReferences({
+                    result: 'error',
+                    message: 'Ukjent feil - kunne ikke laste avhengigheter',
+                });
                 return;
             }
 
-            setIsError(false);
-
-            if (usageResponse.result === 'success') {
-                setReferences(usageResponse.references);
-            } else if (usageResponse.result === 'notimpl') {
-                setReferences(null);
-            }
+            setReferences(usageResponse);
         });
     }, [contentId, contentLayer]);
 
-    return { references, isError, isLoading };
+    return { references };
 };

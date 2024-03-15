@@ -12,7 +12,7 @@ import style from './ReferencesLinks.module.scss';
 type Props = {
     references: ReferenceItem[];
     headerText: string;
-    contentLayer?: string;
+    contentLayer: string;
 };
 
 export const ReferencesLinks = ({
