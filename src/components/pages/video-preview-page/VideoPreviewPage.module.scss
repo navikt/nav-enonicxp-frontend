@@ -3,8 +3,9 @@
     display: block;
     max-width: 37.5rem;
     padding: 2.5rem;
+    margin: 0 auto;
 
-    // VidePage is used for previewing only,
+    // VideoPage is used for previewing only,
     // so we need to do a bit of overriding the
     // actual components
     & > div {

@@ -88,8 +88,10 @@
 }
 
 .previewImage {
-    min-height: 74px; // Keep video height in golden ratio rather than 16:9
     border-radius: var(--a-border-radius-small);
+    display: block;
+    max-width: 100%;
+    min-height: 74px; // Keep video height in golden ratio rather than 16:9
     object-fit: cover;
 }
 

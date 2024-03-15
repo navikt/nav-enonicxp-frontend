@@ -103,7 +103,7 @@ export const getInternalAbsoluteUrl = (url: string, isEditorView: boolean) => {
 };
 
 // Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
-export const getMediaUrl = (url: string, isEditorView: boolean) => {
+export const getMediaUrl = (url: string | undefined, isEditorView: boolean) => {
     return url?.replace(
         internalUrlPrefixPattern,
         isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin

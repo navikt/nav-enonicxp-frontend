@@ -23,8 +23,11 @@ export const AreapageSituationCardPart = ({
     }
 
     const { target, disabled } = config;
+    const cardProps = getCardProps(target, pageConfig);
 
-    const props = getCardProps(target, pageConfig);
+    if (!cardProps) {
+        return <EditorHelp type={'error'} text={'Feil: mangler lenkedata'} />;
+    }
 
     const getSituationLabel = translator('situations', pageConfig.language);
 
@@ -38,7 +41,7 @@ export const AreapageSituationCardPart = ({
                     {' er skjult på denne siden'}
                 </span>
             )}
-            <LargeCard {...props} category={getSituationLabel('person')} />
+            <LargeCard {...cardProps} category={getSituationLabel('person')} />
         </div>
     );
 };

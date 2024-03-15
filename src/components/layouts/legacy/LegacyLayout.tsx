@@ -8,7 +8,7 @@ import { ComponentType } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LegacyLayoutProps;
+    layoutProps: LegacyLayoutProps;
 };
 
 const getNewsArticleProps = (pageProps: ContentProps) => {
@@ -17,7 +17,7 @@ const getNewsArticleProps = (pageProps: ContentProps) => {
             ? pageProps.data.article
             : pageProps;
 
-    return props.type === ContentType.MainArticle &&
+    return props?.type === ContentType.MainArticle &&
         (props.data.contentType === 'news' ||
             props.data.contentType === 'pressRelease')
         ? props

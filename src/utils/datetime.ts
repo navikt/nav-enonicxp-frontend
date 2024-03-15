@@ -10,6 +10,8 @@ dayjs.extend(localizedFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
+export type DayName = (typeof daysNameArray)[number];
+
 export const norwayTz = 'Europe/Oslo';
 
 // JS starts week on a Sunday
@@ -21,8 +23,9 @@ export const daysNameArray = [
     'thursday',
     'friday',
     'saturday',
-];
-export const dayNameToIndex = {
+] as const;
+
+export const dayNameToIndex: Record<DayName, number> = {
     sunday: 0,
     monday: 1,
     tuesday: 2,
@@ -30,14 +33,14 @@ export const dayNameToIndex = {
     thursday: 4,
     friday: 5,
     saturday: 6,
-};
+} as const;
 
-interface FormatDateProps {
+type FormatDateProps = {
     datetime: string;
     language?: string;
     short?: boolean;
     year?: boolean;
-}
+};
 
 export const formatDate = ({
     datetime,

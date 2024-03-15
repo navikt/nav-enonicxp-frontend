@@ -39,7 +39,7 @@ export const ContactOptionPart = ({
         return <EditorHelp text={'Velg kontaktkanal fra listen til høyre'} />;
     }
 
-    const { audience } = pageProps.data;
+    const audience = pageProps.data?.audience;
 
     const channelData = config.contactOptions[channel];
 
@@ -62,7 +62,10 @@ export const ContactOptionPart = ({
             return (
                 <WriteOption
                     {...sharedContactInformation.data.contactType.write}
-                    {...(ingress && { ingress })}
+                    ingress={
+                        ingress ||
+                        sharedContactInformation.data.contactType.write?.ingress
+                    }
                 />
             );
         }
@@ -70,7 +73,10 @@ export const ContactOptionPart = ({
             return (
                 <ChatOption
                     {...sharedContactInformation.data.contactType.chat}
-                    {...(ingress && { ingress })}
+                    ingress={
+                        ingress ||
+                        sharedContactInformation.data.contactType.chat?.ingress
+                    }
                 />
             );
         }
@@ -78,7 +84,7 @@ export const ContactOptionPart = ({
             return (
                 <CallOption
                     {...sharedContactInformation.data.contactType.telephone}
-                    {...(ingress && { ingress })}
+                    ingress={ingress}
                     audience={audience}
                 />
             );

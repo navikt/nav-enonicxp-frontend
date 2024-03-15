@@ -8,8 +8,9 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
+import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
 
-import styles from './FormIntermediateStepPage.module.scss';
+import style from './FormIntermediateStepPage.module.scss';
 
 const STEP_PARAM = 'stegvalg';
 
@@ -35,6 +36,10 @@ export const FormIntermediateStepPage = (
     };
 
     useEffect(() => {
+        if (!router) {
+            return;
+        }
+
         const handleRouteChange = (url: string) => {
             setPrevSelectedStep(getStateFromQuery(url));
         };
@@ -84,7 +89,7 @@ export const FormIntermediateStepPage = (
         return step.nextStep?.external?.externalUrl || router.asPath;
     };
 
-    const themedPageHeaderProps = {
+    const themedPageHeaderProps: ContentPropsForThemedPageHeader = {
         ...props,
         data: {
             ...props.data,
@@ -95,26 +100,26 @@ export const FormIntermediateStepPage = (
     const currentStepData = getStepData();
 
     return (
-        <div className={styles.formIntermediateStepPage}>
+        <div className={style.formIntermediateStepPage}>
             <ThemedPageHeader
                 contentProps={themedPageHeaderProps}
                 showTimeStamp={false}
             />
-            <div className={styles.content}>
-                <div className={styles.stepOptionsWrapper}>
+            <div className={style.content}>
+                <div className={style.stepOptionsWrapper}>
                     <ParsedHtml htmlProps={currentStepData.editorial} />
                     {currentStepData.stepsHeadline && (
                         <Heading level="2" size="medium" spacing>
                             {currentStepData.stepsHeadline}
                         </Heading>
                     )}
-                    <ul className={styles.stepList}>
+                    <ul className={style.stepList}>
                         {currentStepData.steps.map(
                             (step: any, index: number) => {
                                 return (
                                     <li
                                         key={step.label}
-                                        className={styles.stepItem}
+                                        className={style.stepItem}
                                     >
                                         {step.languageDisclaimer && (
                                             <InfoBox>
@@ -127,11 +132,13 @@ export const FormIntermediateStepPage = (
                                                 step,
                                                 index
                                             )}
-                                            className={styles.stepAction}
+                                            className={style.stepAction}
                                             as={(props) => (
                                                 <LenkeBase
                                                     analyticsComponent="mellomsteg"
-                                                    analyticsLinkGroup={currentStepData.stepsHeadline}
+                                                    analyticsLinkGroup={
+                                                        currentStepData.stepsHeadline
+                                                    }
                                                     analyticsLabel={step.label}
                                                     {...props}
                                                 >
@@ -153,7 +160,7 @@ export const FormIntermediateStepPage = (
                     </ul>
                 </div>
                 {prevSelectedStep !== null && (
-                    <div className={styles.buttonGroup}>
+                    <div className={style.buttonGroup}>
                         <Button
                             onClick={(e) => {
                                 e.preventDefault();
@@ -166,7 +173,7 @@ export const FormIntermediateStepPage = (
                                 );
                             }}
                             variant="tertiary"
-                            className={styles.backButton}
+                            className={style.backButton}
                             as={LenkeBase}
                             href={router.asPath}
                             analyticsComponent={'mellomsteg'}

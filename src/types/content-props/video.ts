@@ -1,23 +1,14 @@
 import { ContentCommonProps, ContentType } from './_content-common';
-import { LinkSelectable } from 'types/component-props/_mixins';
-import { BitmapImage } from 'types/media';
+import { RasterImage } from 'types/media';
 
-export type FormComplaintTypes = 'complaint' | 'appeal';
-
-export interface Variation<T = string> {
-    type?: T;
-    link?: LinkSelectable;
-    label?: string;
-}
-
-export interface VideoData {
+export type VideoData = {
     accountId: string;
     title: string;
     duration: number;
     mediaId: string;
-    poster: BitmapImage;
+    poster: RasterImage;
     subtitles?: string[];
-}
+};
 
 export type VideoPageProps = {
     type: ContentType.Video;

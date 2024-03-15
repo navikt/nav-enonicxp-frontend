@@ -26,7 +26,7 @@ import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-su
 import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
-import { VideoPage } from './pages/video-page/VideoPage';
+import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
@@ -41,7 +41,7 @@ const contentToReactComponent: {
     [ContentType.GlobalNumberValuesSet]: GlobalValuesPage,
     [ContentType.GlobalCaseTimeSet]: GlobalValuesPage,
     [ContentType.ProductDetails]: ProductDetailsPage,
-    [ContentType.Video]: VideoPage,
+    [ContentType.Video]: VideoPreviewPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
     [ContentType.PayoutDates]: PayoutDatesPage,
 

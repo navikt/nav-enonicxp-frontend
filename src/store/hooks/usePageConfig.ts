@@ -22,7 +22,7 @@ export type UsePageConfig = {
     pageConfig: PageConfig;
     setPageConfig: (payload: CurrentPageIdPayload) => void;
     language: Language;
-    audience: Audience;
+    audience?: Audience;
 };
 
 export const usePageConfig = (): UsePageConfig => {
@@ -40,10 +40,10 @@ export const usePageConfig = (): UsePageConfig => {
         dispatch(setPageConfigAction(payload));
     };
 
-    const pageConfig = {
+    const pageConfig: PageConfig = {
         pageId,
         editorView,
-        isPagePreview: isPreview,
+        isPagePreview: !!isPreview,
     };
 
     return { pageConfig, setPageConfig, language, audience };
