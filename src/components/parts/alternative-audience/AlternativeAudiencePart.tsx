@@ -1,21 +1,23 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ProductPageData } from 'types/content-props/dynamic-page-props';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { AlternativeAudienceProps } from 'types/component-props/parts/alternative-audience';
+import { ContentType } from '../../../types/content-props/_content-common';
 
 export const AlternativeAudiencePart = ({
     config,
     pageProps,
 }: AlternativeAudienceProps) => {
-    const alternativeAudience = (pageProps.data as ProductPageData)
-        ?.alternativeAudience;
+    const { data, type, _id, displayName } = pageProps;
+
+    if (type !== ContentType.ProductPage) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
+    }
 
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the audience until the page has been refreshed.
-    const isComponentPreviewMode = pageProps._id === '';
-
+    const isComponentPreviewMode = _id === '';
     if (isComponentPreviewMode) {
         return (
             <EditorHelp
@@ -27,6 +29,7 @@ export const AlternativeAudiencePart = ({
         );
     }
 
+    const { alternativeAudience, title } = data;
     if (!alternativeAudience) {
         return (
             <EditorHelp
@@ -41,8 +44,8 @@ export const AlternativeAudiencePart = ({
     return (
         <AlternativeAudience
             alternativeAudience={alternativeAudience}
-            productName={pageProps.data?.title || pageProps.displayName}
-            showProductName={config?.showProductName}
+            productName={title || displayName}
+            showProductName={config.showProductName}
         />
     );
 };

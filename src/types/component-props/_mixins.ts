@@ -6,7 +6,6 @@ import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
-import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -97,8 +96,6 @@ export type ProductDataMixin = {
     illustration: AnimatedIconsProps;
     area: Area[];
     externalProductUrl?: string;
-    alternativeAudience?: AlternativeAudience;
-    relatedSituations?: SituationPageProps[];
 };
 
 export type LinkSelectable = OptionSetSingle<{

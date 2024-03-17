@@ -5,86 +5,45 @@ import {
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { translator } from 'translations';
+import { Language, translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
-
+import { LenkeInline } from '../lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
-import styles from './AlternativeAudience.module.scss';
-import { LenkeInline } from '../lenke/LenkeInline';
-
-type AlternativeAudienceProps = {
-    alternativeAudience: AlternativeAudienceType;
-    productName: string;
-    showProductName: boolean;
-};
+import style from './AlternativeAudience.module.scss';
 
 type AudienceLink = {
     title: string;
     url: string;
 };
 
+type Props = {
+    alternativeAudience: AlternativeAudienceType;
+    productName: string;
+    showProductName: boolean;
+};
+
 export const AlternativeAudience = ({
     alternativeAudience,
     productName,
     showProductName,
-}: AlternativeAudienceProps) => {
+}: Props) => {
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
-    const getAudienceLabel = translator('audience', language);
-    const getProviderAudienceLabel = translator('providerAudience', language);
     const getRelatedString = translator('related', language);
     const getStringPart = translator('stringParts', language);
 
-    const buildAudienceLinks = (
-        alternativeAudience: AlternativeAudienceType
-    ): AudienceLink[] => {
-        const { person, employer, provider } = alternativeAudience;
-
-        const links = [];
-
-        if (person?.targetPage) {
-            links.push({
-                title: getAudienceLabel(Audience.PERSON),
-                url: stripXpPathPrefix(person.targetPage._path),
-            });
-        }
-
-        if (employer?.targetPage) {
-            links.push({
-                title: getAudienceLabel(Audience.EMPLOYER),
-                url: stripXpPathPrefix(employer.targetPage._path),
-            });
-        }
-
-        // For providers, iterate the actual provider category
-        // rather than just showing "samarbeidspartnere" as we do
-        // with 'person' and 'arbeidsgiver'.
-        if (provider?.providerList) {
-            provider.providerList.forEach((singleProvider) => {
-                const providerLabels = singleProvider.providerAudience.map(
-                    (audience) => getProviderAudienceLabel(audience)
-                );
-                links.push({
-                    title: joinWithConjunction(providerLabels, language),
-                    url: stripXpPathPrefix(singleProvider.targetPage._path),
-                });
-            });
-        }
-
-        return links;
-    };
-
-    const audienceLinks = buildAudienceLinks(alternativeAudience);
     const name = showProductName ? productName : getStringPart('this');
+
+    const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
         <div
             className={classNames(
-                styles.alternativeAudience,
-                editorView === 'edit' && styles.noMargin
+                style.alternativeAudience,
+                editorView === 'edit' && style.noMargin
             )}
         >
             <BodyShort>
@@ -110,4 +69,46 @@ export const AlternativeAudience = ({
             </BodyShort>
         </div>
     );
+};
+
+const buildAudienceLinks = (
+    alternativeAudience: AlternativeAudienceType,
+    language: Language
+): AudienceLink[] => {
+    const { person, employer, provider } = alternativeAudience;
+    const getAudienceLabel = translator('audience', language);
+    const getProviderAudienceLabel = translator('providerAudience', language);
+
+    const links: AudienceLink[] = [];
+
+    if (person?.targetPage) {
+        links.push({
+            title: getAudienceLabel(Audience.PERSON),
+            url: stripXpPathPrefix(person.targetPage._path),
+        });
+    }
+
+    if (employer?.targetPage) {
+        links.push({
+            title: getAudienceLabel(Audience.EMPLOYER),
+            url: stripXpPathPrefix(employer.targetPage._path),
+        });
+    }
+
+    // For providers, iterate the actual provider category
+    // rather than just showing "samarbeidspartnere" as we do
+    // with 'person' and 'arbeidsgiver'.
+    if (provider?.providerList) {
+        provider.providerList.forEach((singleProvider) => {
+            const providerLabels = singleProvider.providerAudience.map(
+                (audience) => getProviderAudienceLabel(audience)
+            );
+            links.push({
+                title: joinWithConjunction(providerLabels, language),
+                url: stripXpPathPrefix(singleProvider.targetPage._path),
+            });
+        });
+    }
+
+    return links;
 };
