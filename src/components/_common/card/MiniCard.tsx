@@ -19,7 +19,7 @@ export type MiniKortProps = {
     header?: string;
     className?: string;
     preferStaticIllustration?: boolean;
-    fallbackIllustration?: boolean;
+    withFallbackIllustration?: boolean;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
@@ -30,7 +30,7 @@ export const MiniCard = (props: MiniKortProps) => {
         header,
         className,
         preferStaticIllustration,
-        fallbackIllustration,
+        withFallbackIllustration,
     } = props;
     const { text } = link;
     const { isHovering, userEventProps, analyticsProps } = useCard({
@@ -61,7 +61,7 @@ export const MiniCard = (props: MiniKortProps) => {
                             preferStaticIllustration ||
                             pageConfig.editorView === 'edit'
                         }
-                        fallbackIllustration={fallbackIllustration}
+                        withFallbackIllustration={withFallbackIllustration}
                     />
                     <LenkeBase
                         className={classNames(

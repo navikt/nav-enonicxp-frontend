@@ -9,7 +9,7 @@ type Props = {
     isHovering?: boolean;
     preferStaticIllustration?: boolean;
     className?: string;
-    fallbackIllustration?: boolean;
+    withFallbackIllustration?: boolean;
 };
 
 export const Illustration = ({
@@ -17,30 +17,29 @@ export const Illustration = ({
     isHovering,
     preferStaticIllustration,
     className,
-    fallbackIllustration,
+    withFallbackIllustration,
 }: Props) => {
-    if (!illustration && !fallbackIllustration) {
-        return null;
+    if (!illustration) {
+        return withFallbackIllustration ? (
+            <FallbackChevron className={className} />
+        ) : null;
     }
 
-    if (!illustration && fallbackIllustration) {
-        return <FallbackChevron className={className} />;
-    }
-
-    if (!preferStaticIllustration) {
-        const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
-        if (animationDataUrl) {
-            return (
-                <IllustrationAnimated
-                    dataUrl={animationDataUrl}
-                    className={className}
-                    isHovering={isHovering}
-                />
-            );
-        }
+    const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
+    if (!animationDataUrl || preferStaticIllustration) {
+        return (
+            <IllustrationStatic
+                illustration={illustration}
+                className={className}
+            />
+        );
     }
 
     return (
-        <IllustrationStatic illustration={illustration} className={className} />
+        <IllustrationAnimated
+            dataUrl={animationDataUrl}
+            className={className}
+            isHovering={!!isHovering}
+        />
     );
 };

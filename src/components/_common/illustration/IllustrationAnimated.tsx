@@ -1,32 +1,28 @@
-import React, { useEffect, useState, useRef, useId } from 'react';
+import React, { useEffect, useRef, useId } from 'react';
 import { classNames } from 'utils/classnames';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
+import type { AnimationItem } from 'lottie-web';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
-const appOrigin = process.env.APP_ORIGIN;
-
 const fetchJsonData = (url: string) =>
-    fetchJson(`${appOrigin}/api/jsonCache?url=${url}`);
+    fetchJson(`${process.env.APP_ORIGIN}/api/jsonCache?url=${url}`);
 
-interface IllustrationAnimatedProps {
+type Props = {
     dataUrl: string;
-    className: string;
     isHovering: boolean;
-}
+    className?: string;
+};
 
 export const IllustrationAnimated = ({
     dataUrl,
-    className,
     isHovering,
-}: IllustrationAnimatedProps) => {
-    // Need baseClassName to scope this component
-    // as it's being used throughout the page.
-    const [direction, setDirection] = useState(null);
-    const lottieContainer = useRef<HTMLDivElement>(null);
-    const lottiePlayer = useRef(null);
+    className,
+}: Props) => {
+    const lottieContainer = useRef<HTMLDivElement | null>(null);
+    const lottiePlayer = useRef<AnimationItem | null>(null);
 
     const elementId = useId();
 
@@ -37,25 +33,29 @@ export const IllustrationAnimated = ({
     });
 
     useEffect(() => {
-        const newDirection = isHovering ? 1 : -1;
-        if (direction !== newDirection && lottiePlayer.current) {
-            setDirection(newDirection);
-            lottiePlayer.current.setDirection(newDirection);
-            lottiePlayer.current.play();
+        if (!lottiePlayer.current) {
+            return;
         }
-    }, [isHovering, direction]);
+
+        const newDirection = isHovering ? 1 : -1;
+        if (newDirection === lottiePlayer.current.playDirection) {
+            return;
+        }
+
+        lottiePlayer.current.setDirection(newDirection);
+        lottiePlayer.current.play();
+    }, [isHovering]);
 
     useEffect(() => {
         const updateLottieContainer = async () => {
-            const lottie = await import(
-                'lottie-web/build/player/lottie_light.min'
-            );
-
             const container = lottieContainer.current;
-
             if (!container) {
                 return;
             }
+
+            const lottie = (
+                await import('lottie-web/build/player/lottie_light')
+            ).default;
 
             if (container.innerHTML) {
                 container.innerHTML = '';
@@ -68,7 +68,7 @@ export const IllustrationAnimated = ({
                     autoplay: false,
                     loop: false,
                 });
-            } catch (error) {
+            } catch (_) {
                 return;
             }
         };
