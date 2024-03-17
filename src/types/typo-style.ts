@@ -16,7 +16,7 @@ export const headingToLevel: Record<HeadingTag, Level> = {
     h3: '3',
     h4: '4',
     h5: '5',
-    h6: '6', // The new design system only allows for 5 levels.
+    h6: '6',
 };
 
 export const headingToSize: Record<HeadingTag, Size> = {
@@ -25,7 +25,7 @@ export const headingToSize: Record<HeadingTag, Size> = {
     h3: 'medium',
     h4: 'small',
     h5: 'xsmall',
-    h6: 'xsmall',
+    h6: 'xsmall', // The new design system only allows for 5 levels.
 };
 
 // Used if no size is set, so we need to check level and determine
@@ -46,3 +46,6 @@ export const typoToSize: Record<HeaderTypoStyle, Size> = {
     [HeaderTypoStyle.Undertittel]: 'small',
     [HeaderTypoStyle.Element]: 'xsmall',
 };
+
+export const isHeadingTag = (tag?: string): tag is HeadingTag =>
+    !!tag?.match(/^h[1-6]$/);

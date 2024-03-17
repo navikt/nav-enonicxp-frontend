@@ -10,13 +10,14 @@ import htmlReactParser, {
     domToReact,
     attributesToProps,
     DOMNode,
+    HTMLReactParserOptions,
 } from 'html-react-parser';
 import { getMediaUrl } from 'utils/urls';
 import {
     processedHtmlMacroTag,
     ProcessedHtmlProps,
 } from 'types/processed-html-props';
-import { headingToLevel, headingToSize } from 'types/typo-style';
+import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from '../../macros/MacroMapper';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
@@ -47,8 +48,12 @@ const hasBlockLevelMacroChildren = (element: Element) => {
     );
 };
 
-const getNonEmptyChildren = ({ children }: Element) => {
-    const validChildren = children?.filter((child) => {
+const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
+    if (!children) {
+        return [];
+    }
+
+    return children.filter((child) => {
         if (isTag(child)) {
             // Macros and image tags are allowed to be empty
             if (
@@ -59,7 +64,7 @@ const getNonEmptyChildren = ({ children }: Element) => {
             }
 
             const grandChildren = getNonEmptyChildren(child);
-            return !!grandChildren;
+            return grandChildren.length > 0;
         }
 
         if (isText(child)) {
@@ -69,7 +74,6 @@ const getNonEmptyChildren = ({ children }: Element) => {
 
         return true;
     });
-    return validChildren?.length > 0 && validChildren;
 };
 
 type Props = {
@@ -93,16 +97,21 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         return null;
     }
 
-    const parserOptions = {
-        replace: (element: Element) => {
-            const { name } = element;
+    // TODO: refactor this mess :D
+    const parserOptions: HTMLReactParserOptions = {
+        replace: (element: DOMNode) => {
+            if (!isTag(element)) {
+                return undefined;
+            }
+
+            const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
+
             //Remove all inline styling except in table cells
             if (tag !== 'td') {
-                delete element?.attribs?.style;
+                delete attribs?.style;
             }
-            const { attribs, children } = element;
-            const domNodes = children as DOMNode[];
+
             const props = !!attribs && attributesToProps(attribs);
             const validChildren = getNonEmptyChildren(element);
 
@@ -131,9 +140,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             }
 
             // Fix header-tags
-            if (tag?.match(/^h[1-6]$/)) {
+            if (isHeadingTag(tag)) {
                 // Header-tags should not be used as empty spacers
-                if (!validChildren) {
+                if (validChildren.length === 0) {
                     return <p>{''}</p>;
                 }
 
@@ -142,7 +151,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
                 // Ignore heading-tag if it contains a macro
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(domNodes, parserOptions)}</>;
+                    return <>{domToReact(children, parserOptions)}</>;
                 }
 
                 return (
@@ -157,11 +166,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(domNodes, parserOptions)}</>;
+                    return <>{domToReact(children, parserOptions)}</>;
                 }
                 return (
                     <BodyLong spacing {...props} className={undefined}>
-                        {domToReact(domNodes, parserOptions)}
+                        {domToReact(children, parserOptions)}
                     </BodyLong>
                 );
             }
@@ -172,7 +181,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
 
-                return <>{domToReact(domNodes, parserOptions)}</>;
+                return <>{domToReact(children, parserOptions)}</>;
             }
 
             // Handle links
