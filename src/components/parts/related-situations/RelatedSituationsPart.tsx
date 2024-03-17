@@ -1,13 +1,16 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
-import { RelatedSituationsProps } from '../../../types/component-props/part-configs/related-situations';
 import { ContentType } from '../../../types/content-props/_content-common';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 export const RelatedSituationsPart = ({
     config,
     pageProps,
-}: RelatedSituationsProps) => {
+}: PartComponentProps<PartType.RelatedSituations>) => {
     const { type, data, _id } = pageProps;
     if (type !== ContentType.ProductPage) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;

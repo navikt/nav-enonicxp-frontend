@@ -1,10 +1,13 @@
 import React from 'react';
-import { DynamicLinkListProps } from '../../../types/component-props/part-configs/link-list';
 import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './LinkList.module.scss';
 
@@ -39,7 +42,9 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
     return null;
 };
 
-export const LinkListPart = ({ config }: DynamicLinkListProps) => {
+export const LinkListPart = ({
+    config,
+}: PartComponentProps<PartType.LinkList>) => {
     if (!config?.list?._selected) {
         return <EditorHelp text={'Klikk og velg lenker i panelet til høyre'} />;
     }

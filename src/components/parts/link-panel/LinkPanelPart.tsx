@@ -1,5 +1,4 @@
 import React from 'react';
-import { LinkPanelPartProps } from '../../../types/component-props/part-configs/link-panel';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
@@ -9,10 +8,16 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from '../../_common/image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './LinkPanelPart.module.scss';
 
-export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+export const LinkPanelPart = ({
+    config,
+}: PartComponentProps<PartType.LinkPanel>) => {
     const { pageConfig } = usePageConfig();
 
     if (!config) {

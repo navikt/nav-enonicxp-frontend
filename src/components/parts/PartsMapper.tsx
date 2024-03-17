@@ -5,6 +5,7 @@ import {
     PartComponentProps,
     PartType,
     PartComponent,
+    PartTypeAll,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
@@ -54,30 +55,25 @@ import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
-type Props = {
-    partProps: PartComponentProps;
-    pageProps: ContentProps;
-};
-
-const partsWithPageData: Record<
-    PartLegacyType,
-    React.FunctionComponent<ContentProps>
-> = {
-    [PartType.LinkLists]: LinkLists,
-    [PartType.LinkPanels]: LinkPanelsLegacyPart,
-    [PartType.MainArticle]: MainArticle,
-    [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
-    [PartType.MainPanels]: MainPanels,
-    [PartType.MenuList]: MenuList,
-    [PartType.OfficeInformation]: OfficeInformation,
-    [PartType.PageHeading]: PageHeading,
-    [PartType.PageList]: PageList,
-    [PartType.PublishingCalendar]: PublishingCalendar,
-    [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
-};
+// const partsWithPageData: Record<
+//     PartLegacyType,
+//     React.FunctionComponent<ContentProps>
+// > = {
+//     [PartType.LinkLists]: LinkLists,
+//     [PartType.LinkPanels]: LinkPanelsLegacyPart,
+//     [PartType.MainArticle]: MainArticle,
+//     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
+//     [PartType.MainPanels]: MainPanels,
+//     [PartType.MenuList]: MenuList,
+//     [PartType.OfficeInformation]: OfficeInformation,
+//     [PartType.PageHeading]: PageHeading,
+//     [PartType.PageList]: PageList,
+//     [PartType.PublishingCalendar]: PublishingCalendar,
+//     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
+// };
 
 const partsWithConfig: {
-    [Key in PartType]?: PartComponent<Key>;
+    [Key in PartType]: PartComponent<Key>;
 } = {
     [PartType.Accordion]: AccordionPart,
     [PartType.AlertBox]: AlertBoxPart,
@@ -111,12 +107,12 @@ const partsWithConfig: {
     [PartType.RelatedSituations]: RelatedSituationsPart,
     [PartType.UserTests]: UserTestsPart,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
-};
+} as const;
 
-const partsDeprecated: ReadonlySet<PartType> = new Set([
-    PartType.Notifications,
-    PartType.BreakingNews,
-    PartType.PageCrumbs,
+const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
+    PartDeprecatedType.Notifications,
+    PartDeprecatedType.BreakingNews,
+    PartDeprecatedType.PageCrumbs,
 ]) satisfies ReadonlySet<PartDeprecatedType>;
 
 const bem = BEM(ComponentType.Part);
@@ -126,17 +122,23 @@ const buildEditorProps = (componentPath: string) => ({
     'data-portal-component': componentPath,
 });
 
-const PartComponent = ({ partProps, pageProps }: Props) => {
+const PartComponent = ({
+    partProps,
+    pageProps,
+}: {
+    partProps: PartComponentProps<PartType | PartLegacyType>;
+    pageProps: ContentProps;
+}) => {
     const { descriptor } = partProps;
 
-    const PartWithPageData = partsWithPageData[descriptor];
-    if (PartWithPageData) {
-        return <PartWithPageData {...pageProps} />;
-    }
+    // const PartWithPageData = partsWithPageData[descriptor];
+    // if (PartWithPageData) {
+    //     return <PartWithPageData {...pageProps} />;
+    // }
 
-    const PartWithOwnData = partsWithConfig[descriptor];
+    const PartWithOwnData = partsWithConfig[partProps.descriptor as PartType];
     if (PartWithOwnData) {
-        return <PartWithOwnData {...partProps} pageProps={pageProps} />;
+        return <PartWithOwnData {...partProps} />;
     }
 
     return (
@@ -147,7 +149,13 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
     );
 };
 
-export const PartsMapper = ({ pageProps, partProps }: Props) => {
+export const PartsMapper = ({
+    pageProps,
+    partProps,
+}: {
+    partProps: PartComponentProps;
+    pageProps: ContentProps;
+}) => {
     const { path, descriptor, config } = partProps;
 
     const isEditView = pageProps.editorView === 'edit';
@@ -165,7 +173,9 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
             className={classNames(
                 bem(),
                 bem(partName),
-                isEditView && editorAuthstateClassname(renderOnAuthState)
+                isEditView &&
+                    renderOnAuthState &&
+                    editorAuthstateClassname(renderOnAuthState)
             )}
             {...editorProps}
         >

@@ -8,7 +8,7 @@ import {
 export const AccordionPart = ({
     config,
 }: PartComponentProps<PartType.Accordion>) => {
-    if (!config || !config.accordion || config.accordion.length === 0) {
+    if (!config?.accordion || config.accordion.length === 0) {
         return <EditorHelp text={'Kortet mangler innhold'} />;
     }
 

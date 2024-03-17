@@ -1,18 +1,21 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { FrontpageCurrentTopicsProps } from '../../../types/component-props/part-configs/frontpage-current-topics';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { formatDate } from 'utils/datetime';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
 export const FrontpageCurrentTopics = ({
     config,
-}: FrontpageCurrentTopicsProps) => {
+}: PartComponentProps<PartType.FrontpageCurrentTopics>) => {
     const { language } = usePageConfig();
     const { contentList, title, link } = config;
 

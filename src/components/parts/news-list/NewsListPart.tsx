@@ -1,13 +1,18 @@
 import React from 'react';
-import { DynamicNewsListProps } from '../../../types/component-props/part-configs/news-list';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './NewsList.module.scss';
 
-export const NewsListPart = ({ config }: DynamicNewsListProps) => {
+export const NewsListPart = ({
+    config,
+}: PartComponentProps<PartType.NewsList>) => {
     if (!config?.contentList?.target) {
         return <EditorHelp text={'Tom nyhetsliste'} />;
     }

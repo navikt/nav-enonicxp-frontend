@@ -4,10 +4,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import {
-    Category,
-    FilterMenuProps,
-} from '../../../types/component-props/part-configs/filter-menu';
+import { Category } from '../../../types/component-props/part-configs/filter-menu';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -15,10 +12,18 @@ import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './FiltersMenu.module.scss';
 
-export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
+export const FiltersMenu = ({
+    config,
+    path,
+    pageProps,
+}: PartComponentProps<PartType.FiltersMenu>) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {

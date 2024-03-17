@@ -1,17 +1,20 @@
 import React from 'react';
-import { FrontpageContanctPartProps } from '../../../types/component-props/part-configs/frontpage-contact';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';
 import { ContentType } from '../../../types/content-props/_content-common';
 import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './FrontpageContactPart.module.scss';
 
 export const FrontpageContactPart = ({
     config,
-}: FrontpageContanctPartProps) => {
+}: PartComponentProps<PartType.FrontpageContact>) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }

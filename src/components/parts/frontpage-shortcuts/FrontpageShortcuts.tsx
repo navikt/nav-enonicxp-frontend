@@ -1,18 +1,21 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { FrontpageShortcutsProps } from '../../../types/component-props/part-configs/frontpage-shortcuts';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from '../../_common/illustration/static/IllustrationStatic';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './FrontpageShortcuts.module.scss';
 
 export const FrontpageShortcuts = ({
     config,
     pageProps,
-}: FrontpageShortcutsProps) => {
+}: PartComponentProps<PartType.FrontpageShortcuts>) => {
     const {
         shortcuts,
         title: sectionTitle,

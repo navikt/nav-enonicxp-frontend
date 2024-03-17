@@ -1,5 +1,4 @@
 import React from 'react';
-import { ProductDetailsProps } from '../../../types/component-props/part-configs/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { ProductDetailType } from 'types/content-props/product-details';
@@ -9,11 +8,15 @@ import { translator } from 'translations';
 import { Provider } from 'react-redux';
 import { setPageConfigAction } from 'store/slices/pageConfig';
 import { createNewStore } from 'store/store';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 export const ProductDetailsPart = ({
     config,
     pageProps,
-}: ProductDetailsProps) => {
+}: PartComponentProps<PartType.ProductDetails>) => {
     if (!config?.detailType) {
         return (
             <EditorHelp

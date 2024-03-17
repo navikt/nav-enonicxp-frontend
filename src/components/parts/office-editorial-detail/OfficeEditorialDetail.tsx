@@ -1,9 +1,6 @@
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import React from 'react';
-import {
-    DetailType,
-    OfficeEditorialDetailProps,
-} from '../../../types/component-props/part-configs/office-editorial-detail';
+import { DetailType } from '../../../types/component-props/part-configs/office-editorial-detail';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';
@@ -11,6 +8,10 @@ import { SocialHelpLinks } from './details/SocialHelpLinks';
 import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 const getDetailComponent = (
     type: DetailType
@@ -34,7 +35,7 @@ export type DetailProps = {
 export const OfficeEditorialDetail = ({
     config,
     pageProps,
-}: OfficeEditorialDetailProps) => {
+}: PartComponentProps<PartType.OfficeEditorialDetail>) => {
     const { detailType } = config;
 
     if (!detailType) {

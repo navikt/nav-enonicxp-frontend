@@ -1,5 +1,9 @@
 import { PartConfigAccordion } from './part-configs/accordion';
-import { ComponentCommonProps, ComponentType } from './_component-common';
+import {
+    ComponentCommonProps,
+    ComponentType,
+    NavNoDescriptor,
+} from './_component-common';
 import { PartConfigAlertBox } from './part-configs/alert-box';
 import { PartConfigAlternativeAudience } from './part-configs/alternative-audience';
 import { ContentProps } from '../content-props/_content-common';
@@ -38,25 +42,6 @@ import { PartConfigUxSignalsWidget } from './part-configs/uxsignals-widget';
 import React from 'react';
 
 export enum PartType {
-    // Deprecated, should never render to anything, only included for compatibility
-    Notifications = 'no.nav.navno:notifications',
-    BreakingNews = 'no.nav.navno:breaking-news',
-    PageCrumbs = 'no.nav.navno:page-crumbs',
-
-    // Legacy, only used in templates for old content types
-    LinkPanels = 'no.nav.navno:link-panels',
-    LinkLists = 'no.nav.navno:link-lists',
-    PageHeading = 'no.nav.navno:page-heading',
-    MainPanels = 'no.nav.navno:main-panels',
-    MainArticle = 'no.nav.navno:main-article',
-    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
-    MenuList = 'no.nav.navno:menu-list',
-    OfficeInformation = 'no.nav.navno:office-information',
-    PageList = 'no.nav.navno:page-list',
-    PublishingCalendar = 'no.nav.navno:publishing-calendar',
-    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
-
-    // Parts currently available for use
     AreaCard = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
@@ -91,23 +76,27 @@ export enum PartType {
     RelatedSituations = 'no.nav.navno:related-situations',
 }
 
-export type PartDeprecatedType =
-    | PartType.Notifications
-    | PartType.BreakingNews
-    | PartType.PageCrumbs;
+// Deprecated, should never render to anything, only included for compatibility
+export enum PartDeprecatedType {
+    Notifications = 'no.nav.navno:notifications',
+    BreakingNews = 'no.nav.navno:breaking-news',
+    PageCrumbs = 'no.nav.navno:page-crumbs',
+}
 
-export type PartLegacyType =
-    | PartType.LinkPanels
-    | PartType.LinkLists
-    | PartType.PageHeading
-    | PartType.MainArticle
-    | PartType.MainArticleLinkedList
-    | PartType.MainPanels
-    | PartType.MenuList
-    | PartType.OfficeInformation
-    | PartType.PageList
-    | PartType.PublishingCalendar
-    | PartType.PublishingCalendarEntry;
+// Legacy, only used in templates for old content types
+export enum PartLegacyType {
+    LinkPanels = 'no.nav.navno:link-panels',
+    LinkLists = 'no.nav.navno:link-lists',
+    PageHeading = 'no.nav.navno:page-heading',
+    MainPanels = 'no.nav.navno:main-panels',
+    MainArticle = 'no.nav.navno:main-article',
+    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
+    MenuList = 'no.nav.navno:menu-list',
+    OfficeInformation = 'no.nav.navno:office-information',
+    PageList = 'no.nav.navno:page-list',
+    PublishingCalendar = 'no.nav.navno:publishing-calendar',
+    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
+}
 
 type PartConfigs = {
     [PartType.Accordion]: PartConfigAccordion;
@@ -144,16 +133,24 @@ type PartConfigs = {
     [PartType.UxSignalsWidget]: PartConfigUxSignalsWidget;
 };
 
-export type PartComponentProps<Descriptor extends PartType = PartType> =
-    ComponentCommonProps<
-        ComponentType.Part,
-        Descriptor,
-        Descriptor extends keyof PartConfigs
-            ? PartConfigs[Descriptor]
-            : EmptyObject
-    > & {
-        pageProps: ContentProps;
-    };
+export type PartTypeAll = PartType | PartLegacyType | PartDeprecatedType;
+
+export type PartTypeTest = 'accordion' | 'alert-box';
+
+export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
+    Descriptor extends PartTypeAll
+        ? ComponentCommonProps<
+              ComponentType.Part,
+              Descriptor,
+              Descriptor extends keyof PartConfigs
+                  ? PartConfigs[Descriptor]
+                  : EmptyObject
+          > & {
+              pageProps: ContentProps;
+          }
+        : never;
 
 export type PartComponent<Descriptor extends PartType> =
-    React.FunctionComponent<PartComponentProps<Descriptor>>;
+    Descriptor extends PartType
+        ? React.FunctionComponent<PartComponentProps<Descriptor>>
+        : never;

@@ -1,11 +1,17 @@
 import React from 'react';
-import { FormDetailsProps } from '../../../types/component-props/part-configs/form-details';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { ContentType } from 'types/content-props/_content-common';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
-export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
+export const FormDetailsPart = ({
+    config,
+    pageProps,
+}: PartComponentProps<PartType.FormDetails>) => {
     const { targetFormDetails, ...displayConfig } = config;
 
     // This is a temporary solution to show the title as level 4 on product pages

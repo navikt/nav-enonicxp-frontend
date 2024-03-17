@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
-import { ReadMorePartProps } from '../../../types/component-props/part-configs/read-more';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useShortcuts, Shortcuts } from 'utils/useShortcuts';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import styles from './ReadMore.module.scss';
 
-export const ReadMorePart = ({ config }: ReadMorePartProps) => {
+export const ReadMorePart = ({
+    config,
+}: PartComponentProps<PartType.ReadMore>) => {
     const [isOpen, setIsOpen] = useState(false);
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
         callback: () => setIsOpen(true),
     });
 
-    if (!config?.html || !config?.title) {
+    if (!config?.html || !config.title) {
         return (
             <EditorHelp
                 text={'Legg inn tittel og beskrivelse for "les mer".'}

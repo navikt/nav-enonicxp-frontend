@@ -1,14 +1,15 @@
 import React from 'react';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
-import {
-    ChannelType,
-    ContactOptionProps,
-} from '../../../types/component-props/part-configs/contact-option';
+import { ChannelType } from '../../../types/component-props/part-configs/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
 
@@ -31,7 +32,7 @@ const isChannelWithSharedInfo = (
 export const ContactOptionPart = ({
     config,
     pageProps,
-}: ContactOptionProps) => {
+}: PartComponentProps<PartType.ContactOption>) => {
     const { pageConfig } = usePageConfig();
 
     const channel = config?.contactOptions?._selected;
