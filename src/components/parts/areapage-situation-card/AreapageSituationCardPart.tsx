@@ -1,17 +1,20 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { AreapageSituationCardPartProps } from '../../../types/component-props/part-configs/areapage-situation-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './AreapageSituationCardPart.module.scss';
 
 export const AreapageSituationCardPart = ({
     config,
-}: AreapageSituationCardPartProps) => {
+}: PartComponentProps<PartType.AreapageSituationCard>) => {
     const pageConfig = usePageConfig();
     if (!config?.target?._id) {
         return (

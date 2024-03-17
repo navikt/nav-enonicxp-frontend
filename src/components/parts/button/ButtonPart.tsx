@@ -1,15 +1,16 @@
 import React from 'react';
-import { ButtonPartProps } from '../../../types/component-props/part-configs/button';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from '../../_common/button/Button';
 import { ButtonProps } from '@navikt/ds-react';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartConfigButton } from '../../../types/component-props/part-configs/button';
 
 import style from './ButtonPart.module.scss';
 
-type ButtonSizePart = ButtonPartProps['config']['size'];
+type ButtonSizePart = PartConfigButton['size'];
 type ButtonSizeAksel = ButtonProps['size'];
 
-type ButtonTypePart = ButtonPartProps['config']['type'];
+type ButtonTypePart = PartConfigButton['type'];
 type ButtonTypeAksel = ButtonProps['variant'];
 
 const partSizeToAkselSize: Record<ButtonSizePart, ButtonSizeAksel> = {
@@ -27,7 +28,7 @@ const typePropToVariant: Record<ButtonTypePart, ButtonTypeAksel> = {
     fare: 'danger',
 } as const;
 
-export const ButtonPart = ({ config }: ButtonPartProps) => {
+export const ButtonPart: PartComponent<PartType.Button> = ({ config }) => {
     const { icon, link, size, type, fullwidth } = config;
 
     const linkProps = getSelectableLinkProps(link);

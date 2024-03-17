@@ -1,13 +1,16 @@
 import React from 'react';
-import { HtmlAreaProps } from '../../../types/component-props/part-configs/html-area';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 import style from './HtmlArea.module.scss';
 
-export const HtmlArea = ({ config }: HtmlAreaProps) => {
+export const HtmlArea = ({ config }: PartComponentProps<PartType.HtmlArea>) => {
     if (!config?.html) {
         return (
             <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />

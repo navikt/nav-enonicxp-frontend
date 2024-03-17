@@ -4,6 +4,7 @@ import {
     PartLegacyType,
     PartComponentProps,
     PartType,
+    PartComponent,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
@@ -76,7 +77,7 @@ const partsWithPageData: Record<
 };
 
 const partsWithConfig: {
-    [Key in PartType]?: React.FunctionComponent<PartComponentProps<Key>>;
+    [Key in PartType]?: PartComponent<Key>;
 } = {
     [PartType.Accordion]: AccordionPart,
     [PartType.AlertBox]: AlertBoxPart,

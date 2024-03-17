@@ -1,13 +1,16 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
-import { PartPropsAlternativeAudience } from '../../../types/component-props/part-configs/alternative-audience';
 import { ContentType } from '../../../types/content-props/_content-common';
+import {
+    PartComponentProps,
+    PartType,
+} from '../../../types/component-props/parts';
 
 export const AlternativeAudiencePart = ({
     config,
     pageProps,
-}: PartPropsAlternativeAudience) => {
+}: PartComponentProps<PartType.AlternativeAudience>) => {
     const { data, type, _id, displayName } = pageProps;
 
     if (type !== ContentType.ProductPage) {

@@ -35,6 +35,7 @@ import { PartConfigRelatedSituations } from './part-configs/related-situations';
 import { PartConfigProviderCard } from './part-configs/provider-card';
 import { PartConfigUserTests } from './part-configs/user-tests';
 import { PartConfigUxSignalsWidget } from './part-configs/uxsignals-widget';
+import React from 'react';
 
 export enum PartType {
     // Deprecated, should never render to anything, only included for compatibility
@@ -143,11 +144,16 @@ type PartConfigs = {
     [PartType.UxSignalsWidget]: PartConfigUxSignalsWidget;
 };
 
-export type PartComponentProps<Type extends PartType = PartType> =
+export type PartComponentProps<Descriptor extends PartType = PartType> =
     ComponentCommonProps<
         ComponentType.Part,
-        Type,
-        Type extends keyof PartConfigs ? PartConfigs[Type] : EmptyObject
+        Descriptor,
+        Descriptor extends keyof PartConfigs
+            ? PartConfigs[Descriptor]
+            : EmptyObject
     > & {
         pageProps: ContentProps;
     };
+
+export type PartComponent<Descriptor extends PartType> =
+    React.FunctionComponent<PartComponentProps<Descriptor>>;
