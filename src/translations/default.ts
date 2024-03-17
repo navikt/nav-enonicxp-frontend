@@ -291,15 +291,15 @@ export const translationsBundleNb = {
         alternativeContacts: 'Andre kontaktopplysninger:',
     },
     dateTime: {
-        weekDayNames: [
-            'Mandag',
-            'Tirsdag',
-            'Onsdag',
-            'Torsdag',
-            'Fredag',
-            'Lørdag',
-            'Søndag',
-        ],
+        weekDayNames: {
+            mon: 'Mandag',
+            tue: 'Tirsdag',
+            wed: 'Onsdag',
+            thu: 'Torsdag',
+            fri: 'Fredag',
+            sat: 'Lørdag',
+            sun: 'Søndag',
+        },
         relatives: {
             today: 'i dag',
             tomorrow: 'i morgen',

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import {
     OpeningHours,
     OpeningHoursOpen,
@@ -44,12 +44,10 @@ const formatTime = (time: string, isEnglish: boolean = false) => {
     return dayjs(time, openingHourTimeFormat).format(format);
 };
 
-const getDayOfWeek = (
-    date: string,
-    weekDayNames: string[],
-    language: string
-) => {
-    const dayOfWeek = weekDayNames[dayjs(date).day() - 1];
+const getDayOfWeek = (dayJs: Dayjs, language: Language) => {
+    const weekDayNames = translator('dateTime', language)('weekDayNames');
+    const dayNameIndex = (dayJs.day() + 6) % 7;
+    const dayOfWeek = Object.values(weekDayNames)[dayNameIndex];
     return language === 'en' ? dayOfWeek : dayOfWeek.toLowerCase();
 };
 
@@ -58,7 +56,6 @@ const buildFutureOpenString = (
     language: Language
 ) => {
     const relatives = translator('dateTime', language)('relatives');
-    const weekDayNames = translator('dateTime', language)('weekDayNames');
     const sharedTranslations = translator('contactPoint', language)('shared');
 
     const opensTemplate = sharedTranslations['opensAt'].toLowerCase();
@@ -74,7 +71,7 @@ const buildFutureOpenString = (
 
     if (daysUntilOpeningDay > 1) {
         return `${sharedTranslations['closedNow']}, ${opensTemplate
-            .replace('{$date}', getDayOfWeek(date, weekDayNames, language))
+            .replace('{$date}', getDayOfWeek(opens, language))
             .replace('{$time}', openTime)}`;
     }
 
