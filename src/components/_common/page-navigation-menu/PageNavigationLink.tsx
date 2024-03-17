@@ -3,15 +3,15 @@ import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
-import {
-    pageNavigationAnchorOffsetPx,
-    PageNavScrollDirection,
-} from './PageNavigationMenu';
+import { PageNavScrollDirection } from './PageNavigationMenu';
 import { smoothScrollToTarget } from 'utils/scroll-to';
+import Config from '../../../config';
 
 import style from './PageNavigationLink.module.scss';
 import sidebarStyle from './views/PageNavigationSidebar.module.scss';
 import inContentStyle from './views/PageNavigationInContent.module.scss';
+
+const ANCHOR_OFFSET_PX = Config.vars.pxPerRem;
 
 type Props = {
     targetId: string;
@@ -31,16 +31,12 @@ export const PageNavigationLink = React.memo(
         viewStyle,
         children,
     }: Props) => {
-        const setLocationHashAndScrollToTarget = (e) => {
+        const setLocationHashAndScrollToTarget = (
+            e: React.MouseEvent<HTMLAnchorElement>
+        ) => {
             e.preventDefault();
-
-            window.history.pushState(
-                window.history.state,
-                undefined,
-                `#${targetId}`
-            );
-
-            smoothScrollToTarget(targetId, pageNavigationAnchorOffsetPx);
+            window.history.pushState(window.history.state, '', `#${targetId}`);
+            smoothScrollToTarget(targetId, ANCHOR_OFFSET_PX);
         };
 
         const currentViewStyle =

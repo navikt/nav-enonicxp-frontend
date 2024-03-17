@@ -6,13 +6,11 @@ import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
-import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
 import style from './PageNavigationSidebar.module.scss';
 
 type Props = {
     title?: string;
     links: AnchorLink[];
-    dupes: AnchorLink[];
     currentIndex: number;
     scrollDirection: PageNavScrollDirection;
 };
@@ -20,7 +18,6 @@ type Props = {
 export const PageNavigationSidebar = ({
     title,
     links,
-    dupes,
     currentIndex,
     scrollDirection,
 }: Props) => {
@@ -31,7 +28,6 @@ export const PageNavigationSidebar = ({
                     {title}
                 </Heading>
             )}
-            <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
                 <ul className={style.list}>
                     {links.map((anchorLink, index) => (
