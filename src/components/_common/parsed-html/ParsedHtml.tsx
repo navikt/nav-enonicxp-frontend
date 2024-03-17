@@ -106,14 +106,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
-
             //Remove all inline styling except in table cells
             if (tag !== 'td') {
                 delete attribs?.style;
             }
-
+            const domNodes = children as DOMNode[];
             const props = !!attribs && attributesToProps(attribs);
-            const validChildren = getNonEmptyChildren(element);
+            const validChildren = getNonEmptyChildren(element) as DOMNode[];
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
@@ -146,12 +145,12 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <p>{''}</p>;
                 }
 
-                const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
+                const level = tag === 'h1' ? '2' : headingToLevel[tag]; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
                 // Ignore heading-tag if it contains a macro
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(children, parserOptions)}</>;
+                    return <>{domToReact(domNodes, parserOptions)}</>;
                 }
 
                 return (
@@ -166,11 +165,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(children, parserOptions)}</>;
+                    return <>{domToReact(domNodes, parserOptions)}</>;
                 }
                 return (
                     <BodyLong spacing {...props} className={undefined}>
-                        {domToReact(children, parserOptions)}
+                        {domToReact(domNodes, parserOptions)}
                     </BodyLong>
                 );
             }
@@ -181,7 +180,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
 
-                return <>{domToReact(children, parserOptions)}</>;
+                return <>{domToReact(domNodes, parserOptions)}</>;
             }
 
             // Handle links
