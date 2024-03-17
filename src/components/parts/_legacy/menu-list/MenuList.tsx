@@ -1,19 +1,29 @@
 import React from 'react';
 import { translator } from 'translations';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { Accordion } from '@navikt/ds-react';
-import { MainArticleProps } from 'types/content-props/main-article-props';
-import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
-import { PageListProps } from 'types/content-props/page-list-props';
 
 import style from './MenuList.module.scss';
 
-export const MenuList = (
-    props: MainArticleProps | MainArticleChapterProps | PageListProps
-) => {
+const validContentTypes = [
+    ContentType.MainArticle,
+    ContentType.MainArticleChapter,
+    ContentType.PageList,
+] as const;
+
+type ValidContentType = (typeof validContentTypes)[number];
+
+const isValidContentType = (type: ContentType): type is ValidContentType =>
+    validContentTypes.includes(type as ValidContentType);
+
+export const MenuList = (props: ContentProps) => {
     const { type, language } = props;
+
+    if (!isValidContentType(type)) {
+        return null;
+    }
 
     const propsActual =
         type === ContentType.MainArticleChapter ? props.data?.article : props;

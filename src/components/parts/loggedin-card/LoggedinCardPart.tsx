@@ -5,10 +5,7 @@ import {
 } from '../../../types/component-props/part-configs/loggedin-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 const CardComponents: {
     [cardType in LoggedInCardTypes]: React.FunctionComponent<
@@ -18,9 +15,9 @@ const CardComponents: {
     meldekort: LoggedinCardMeldekort,
 };
 
-export const LoggedinCardPart = ({
+export const LoggedinCardPart: PartComponent<PartType.LoggedinCard> = ({
     config,
-}: PartComponentProps<PartType.LoggedinCard>) => {
+}) => {
     if (!config?.card?._selected) {
         return <EditorHelp text={'Velg en type for kortet'} />;
     }

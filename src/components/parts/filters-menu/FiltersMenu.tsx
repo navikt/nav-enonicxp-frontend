@@ -12,18 +12,15 @@ import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './FiltersMenu.module.scss';
 
-export const FiltersMenu = ({
+export const FiltersMenu: PartComponent<PartType.FiltersMenu> = ({
     config,
     path,
     pageProps,
-}: PartComponentProps<PartType.FiltersMenu>) => {
+}) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {

@@ -1,4 +1,4 @@
-import { DetailProps } from '../OfficeEditorialDetail';
+import { DetailProps } from '../OfficeEditorialDetailPart';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { forceArray } from 'utils/arrays';

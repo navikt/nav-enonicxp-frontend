@@ -8,15 +8,12 @@ import { translator } from 'translations';
 import { Provider } from 'react-redux';
 import { setPageConfigAction } from 'store/slices/pageConfig';
 import { createNewStore } from 'store/store';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
-export const ProductDetailsPart = ({
+export const ProductDetailsPart: PartComponent<PartType.ProductDetails> = ({
     config,
     pageProps,
-}: PartComponentProps<PartType.ProductDetails>) => {
+}) => {
     if (!config?.detailType) {
         return (
             <EditorHelp

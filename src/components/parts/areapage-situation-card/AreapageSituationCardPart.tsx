@@ -5,16 +5,13 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './AreapageSituationCardPart.module.scss';
 
-export const AreapageSituationCardPart = ({
-    config,
-}: PartComponentProps<PartType.AreapageSituationCard>) => {
+export const AreapageSituationCardPart: PartComponent<
+    PartType.AreapageSituationCard
+> = ({ config }) => {
     const pageConfig = usePageConfig();
     if (!config?.target?._id) {
         return (

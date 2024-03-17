@@ -8,14 +8,21 @@ import {
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
-import { OfficeInformationProps } from 'types/content-props/office-information-props';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../../types/content-props/_content-common';
 
 import style from './OfficeInformation.module.scss';
 
-export const OfficeInformation = (props: OfficeInformationProps) => {
+export const OfficeInformation = (props: ContentProps) => {
+    if (props.type !== ContentType.OfficeInformation) {
+        return null;
+    }
+
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const getLabelMain = translator('mainArticle', props.language);

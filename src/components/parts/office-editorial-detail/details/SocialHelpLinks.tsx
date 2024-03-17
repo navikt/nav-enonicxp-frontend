@@ -1,6 +1,6 @@
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { forceArray } from 'utils/arrays';
-import { DetailProps } from '../OfficeEditorialDetail';
+import { DetailProps } from '../OfficeEditorialDetailPart';
 
 import styles from './SocialHelpLinks.module.scss';
 

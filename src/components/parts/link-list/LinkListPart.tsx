@@ -4,14 +4,12 @@ import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartConfigLinkList } from '../../../types/component-props/part-configs/link-list';
 
 import style from './LinkList.module.scss';
 
-const getListComponent = (config: DynamicLinkListProps['config']) => {
+const getListComponent = (config: PartConfigLinkList) => {
     const { title, list, listType, hideTitle } = config;
     const { _selected } = list;
 
@@ -42,9 +40,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
     return null;
 };
 
-export const LinkListPart = ({
-    config,
-}: PartComponentProps<PartType.LinkList>) => {
+export const LinkListPart: PartComponent<PartType.LinkList> = ({ config }) => {
     if (!config?.list?._selected) {
         return <EditorHelp text={'Klikk og velg lenker i panelet til høyre'} />;
     }

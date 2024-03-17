@@ -3,14 +3,11 @@ import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './HtmlArea.module.scss';
 
-export const HtmlArea = ({ config }: PartComponentProps<PartType.HtmlArea>) => {
+export const HtmlArea: PartComponent<PartType.HtmlArea> = ({ config }) => {
     if (!config?.html) {
         return (
             <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />

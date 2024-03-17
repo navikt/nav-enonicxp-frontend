@@ -3,7 +3,6 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel-legacy/LenkepanelNavNo';
 import { translator } from 'translations';
-import { SectionPageProps } from 'types/content-props/section-page-props';
 import { getInternalLinkUrl } from 'utils/links-from-content';
 
 import style from './MainPanels.module.scss';
@@ -35,7 +34,11 @@ const getLinkData = (content: ContentProps): TableData => {
     };
 };
 
-export const MainPanels = (props: SectionPageProps) => {
+export const MainPanels = (props: ContentProps) => {
+    if (props.type !== ContentType.SectionPage) {
+        return null;
+    }
+
     const tableContents = props.data?.tableContents;
     if (!tableContents || tableContents.length === 0) {
         return null;

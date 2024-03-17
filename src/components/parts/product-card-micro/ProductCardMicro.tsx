@@ -2,14 +2,11 @@ import React from 'react';
 import { MicroCards } from 'components/_common/card/MicroCard';
 import { TargetPage } from '../../../types/component-props/part-configs/product-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
-export const ProductCardMicroPart = ({
+export const ProductCardMicroPart: PartComponent<PartType.ProductCardMicro> = ({
     config,
-}: PartComponentProps<PartType.ProductCardMicro>) => {
+}) => {
     if (!config?.card_list || config.card_list.length === 0) {
         return (
             <EditorHelp

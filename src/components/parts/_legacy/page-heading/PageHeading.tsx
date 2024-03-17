@@ -4,7 +4,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
 
-const PageHeading = (props: ContentProps) => {
+export const PageHeading = (props: ContentProps) => {
     const displayName = props.displayName;
     const ingress =
         props.type !== ContentType.SectionPage && props.data?.ingress;
@@ -22,5 +22,3 @@ const PageHeading = (props: ContentProps) => {
         </section>
     );
 };
-
-export default PageHeading;

@@ -4,18 +4,17 @@ import {
     PartLegacyType,
     PartComponentProps,
     PartType,
-    PartComponent,
     PartTypeAll,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
-import PageHeading from './_legacy/page-heading/PageHeading';
+import { PageHeading } from './_legacy/page-heading/PageHeading';
 import { PageList } from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
-import LinkLists from './_legacy/link-lists/LinkLists';
+import { LinkLists } from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -23,8 +22,8 @@ import { OfficeInformation } from './_legacy/office-information/OfficeInformatio
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
-import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
-import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
+import { PublishingCalendar } from './_legacy/publishing-calendar/PublishingCalendar';
+import { PublishingCalendarEntry } from './_legacy/publishing-calendar/PublishingCalendarEntry';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
@@ -37,7 +36,7 @@ import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { FrontpageCurrentTopics } from './frontpage-current-topics/FrontpageCurrentTopics';
 import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
 import { ProductCardPart } from './product-card/ProductCard';
-import { OfficeEditorialDetail } from './office-editorial-detail/OfficeEditorialDetail';
+import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
@@ -54,60 +53,6 @@ import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
-
-// const partsWithPageData: Record<
-//     PartLegacyType,
-//     React.FunctionComponent<ContentProps>
-// > = {
-//     [PartType.LinkLists]: LinkLists,
-//     [PartType.LinkPanels]: LinkPanelsLegacyPart,
-//     [PartType.MainArticle]: MainArticle,
-//     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
-//     [PartType.MainPanels]: MainPanels,
-//     [PartType.MenuList]: MenuList,
-//     [PartType.OfficeInformation]: OfficeInformation,
-//     [PartType.PageHeading]: PageHeading,
-//     [PartType.PageList]: PageList,
-//     [PartType.PublishingCalendar]: PublishingCalendar,
-//     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
-// };
-
-const partsWithConfig: {
-    [Key in PartType]: PartComponent<Key>;
-} = {
-    [PartType.Accordion]: AccordionPart,
-    [PartType.AlertBox]: AlertBoxPart,
-    [PartType.AlternativeAudience]: AlternativeAudiencePart,
-    [PartType.AreaCard]: AreaCardPart,
-    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
-    [PartType.Button]: ButtonPart,
-    [PartType.Calculator]: CalculatorPart,
-    [PartType.ContactOption]: ContactOptionPart,
-    [PartType.FiltersMenu]: FiltersMenu,
-    [PartType.FormDetails]: FormDetailsPart,
-    [PartType.FrontpageContact]: FrontpageContactPart,
-    [PartType.FrontpageCurrentTopics]: FrontpageCurrentTopics,
-    [PartType.FrontpageShortcuts]: FrontpageShortcuts,
-    [PartType.Header]: HeaderPart,
-    [PartType.HtmlArea]: HtmlArea,
-    [PartType.LinkList]: LinkListPart,
-    [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.LoggedinCard]: LoggedinCardPart,
-    [PartType.NewsList]: NewsListPart,
-    [PartType.OfficeEditorialDetail]: OfficeEditorialDetail,
-    [PartType.PageHeader]: PageHeaderPart,
-    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
-    [PartType.PayoutDates]: PayoutDatesPart,
-    [PartType.ProductCard]: ProductCardPart,
-    [PartType.ProductCardMicro]: ProductCardMicroPart,
-    [PartType.ProductCardMini]: ProductCardPart,
-    [PartType.ProductDetails]: ProductDetailsPart,
-    [PartType.ProviderCard]: ProviderCardPart,
-    [PartType.ReadMore]: ReadMorePart,
-    [PartType.RelatedSituations]: RelatedSituationsPart,
-    [PartType.UserTests]: UserTestsPart,
-    [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
-} as const;
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,
@@ -126,27 +71,128 @@ const PartComponent = ({
     partProps,
     pageProps,
 }: {
-    partProps: PartComponentProps<PartType | PartLegacyType>;
+    partProps: PartComponentProps;
     pageProps: ContentProps;
 }) => {
-    const { descriptor } = partProps;
+    switch (partProps.descriptor) {
+        case PartType.Accordion:
+            return <AccordionPart {...partProps} pageProps={pageProps} />;
+        case PartType.AlertBox:
+            return <AlertBoxPart {...partProps} pageProps={pageProps} />;
+        case PartType.AlternativeAudience:
+            return (
+                <AlternativeAudiencePart {...partProps} pageProps={pageProps} />
+            );
+        case PartType.AreaCard:
+            return <AreaCardPart {...partProps} pageProps={pageProps} />;
+        case PartType.AreapageSituationCard:
+            return (
+                <AreapageSituationCardPart
+                    {...partProps}
+                    pageProps={pageProps}
+                />
+            );
+        case PartType.Button:
+            return <ButtonPart {...partProps} pageProps={pageProps} />;
+        case PartType.Calculator:
+            return <CalculatorPart {...partProps} pageProps={pageProps} />;
+        case PartType.ContactOption:
+            return <ContactOptionPart {...partProps} pageProps={pageProps} />;
+        case PartType.FiltersMenu:
+            return <FiltersMenu {...partProps} pageProps={pageProps} />;
+        case PartType.FormDetails:
+            return <FormDetailsPart {...partProps} pageProps={pageProps} />;
+        case PartType.FrontpageContact:
+            return (
+                <FrontpageContactPart {...partProps} pageProps={pageProps} />
+            );
+        case PartType.FrontpageCurrentTopics:
+            return (
+                <FrontpageCurrentTopics {...partProps} pageProps={pageProps} />
+            );
+        case PartType.FrontpageShortcuts:
+            return <FrontpageShortcuts {...partProps} pageProps={pageProps} />;
+        case PartType.Header:
+            return <HeaderPart {...partProps} pageProps={pageProps} />;
+        case PartType.HtmlArea:
+            return <HtmlArea {...partProps} pageProps={pageProps} />;
+        case PartType.LinkList:
+            return <LinkListPart {...partProps} pageProps={pageProps} />;
+        case PartType.LinkPanel:
+            return <LinkPanelPart {...partProps} pageProps={pageProps} />;
+        case PartType.LoggedinCard:
+            return <LoggedinCardPart {...partProps} pageProps={pageProps} />;
+        case PartType.NewsList:
+            return <NewsListPart {...partProps} pageProps={pageProps} />;
+        case PartType.OfficeEditorialDetail:
+            return (
+                <OfficeEditorialDetailPart
+                    {...partProps}
+                    pageProps={pageProps}
+                />
+            );
+        case PartType.PageHeader:
+            return <PageHeaderPart {...partProps} pageProps={pageProps} />;
+        case PartType.PageNavigationMenu:
+            return (
+                <PageNavigationMenuPart {...partProps} pageProps={pageProps} />
+            );
+        case PartType.PayoutDates:
+            return <PayoutDatesPart {...partProps} pageProps={pageProps} />;
+        case PartType.ProductCard:
+            return <ProductCardPart {...partProps} pageProps={pageProps} />;
+        case PartType.ProductCardMicro:
+            return (
+                <ProductCardMicroPart {...partProps} pageProps={pageProps} />
+            );
+        case PartType.ProductCardMini:
+            return <ProductCardPart {...partProps} pageProps={pageProps} />;
+        case PartType.ProductDetails:
+            return <ProductDetailsPart {...partProps} pageProps={pageProps} />;
+        case PartType.ProviderCard:
+            return <ProviderCardPart {...partProps} pageProps={pageProps} />;
+        case PartType.ReadMore:
+            return <ReadMorePart {...partProps} pageProps={pageProps} />;
+        case PartType.RelatedSituations:
+            return (
+                <RelatedSituationsPart {...partProps} pageProps={pageProps} />
+            );
+        case PartType.UserTests:
+            return <UserTestsPart {...partProps} pageProps={pageProps} />;
+        case PartType.UxSignalsWidget:
+            return <UxSignalsWidgetPart {...partProps} pageProps={pageProps} />;
 
-    // const PartWithPageData = partsWithPageData[descriptor];
-    // if (PartWithPageData) {
-    //     return <PartWithPageData {...pageProps} />;
-    // }
+        case PartLegacyType.LinkLists:
+            return <LinkLists {...pageProps} />;
+        case PartLegacyType.LinkPanels:
+            return <LinkPanelsLegacyPart {...pageProps} />;
+        case PartLegacyType.MainArticle:
+            return <MainArticle {...pageProps} />;
+        case PartLegacyType.MainArticleLinkedList:
+            return <MainArticleChapterNavigation {...pageProps} />;
+        case PartLegacyType.MainPanels:
+            return <MainPanels {...pageProps} />;
+        case PartLegacyType.MenuList:
+            return <MenuList {...pageProps} />;
+        case PartLegacyType.OfficeInformation:
+            return <OfficeInformation {...pageProps} />;
+        case PartLegacyType.PageHeading:
+            return <PageHeading {...pageProps} />;
+        case PartLegacyType.PageList:
+            return <PageList {...pageProps} />;
+        case PartLegacyType.PublishingCalendar:
+            return <PublishingCalendar {...pageProps} />;
+        case PartLegacyType.PublishingCalendarEntry:
+            return <PublishingCalendarEntry {...pageProps} />;
 
-    const PartWithOwnData = partsWithConfig[partProps.descriptor as PartType];
-    if (PartWithOwnData) {
-        return <PartWithOwnData {...partProps} />;
+        default:
+            return (
+                <EditorHelp
+                    text={`Part-komponenten er ikke implementert: "${partProps.descriptor}"`}
+                    type={'info'}
+                />
+            );
     }
-
-    return (
-        <EditorHelp
-            text={`Part-komponenten er ikke implementert: "${descriptor}"`}
-            type={'info'}
-        />
-    );
 };
 
 export const PartsMapper = ({

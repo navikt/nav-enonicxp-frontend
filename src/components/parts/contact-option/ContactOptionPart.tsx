@@ -6,10 +6,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
 
@@ -29,10 +26,10 @@ const isChannelWithSharedInfo = (
     channel: ChannelType
 ): channel is ChannelWithSharedInfo => channelsWithSharedInfo.has(channel);
 
-export const ContactOptionPart = ({
+export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({
     config,
     pageProps,
-}: PartComponentProps<PartType.ContactOption>) => {
+}) => {
     const { pageConfig } = usePageConfig();
 
     const channel = config?.contactOptions?._selected;

@@ -1,9 +1,5 @@
 import { PartConfigAccordion } from './part-configs/accordion';
-import {
-    ComponentCommonProps,
-    ComponentType,
-    NavNoDescriptor,
-} from './_component-common';
+import { ComponentCommonProps, ComponentType } from './_component-common';
 import { PartConfigAlertBox } from './part-configs/alert-box';
 import { PartConfigAlternativeAudience } from './part-configs/alternative-audience';
 import { ContentProps } from '../content-props/_content-common';
@@ -135,8 +131,6 @@ type PartConfigs = {
 
 export type PartTypeAll = PartType | PartLegacyType | PartDeprecatedType;
 
-export type PartTypeTest = 'accordion' | 'alert-box';
-
 export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
     Descriptor extends PartTypeAll
         ? ComponentCommonProps<
@@ -145,12 +139,14 @@ export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
               Descriptor extends keyof PartConfigs
                   ? PartConfigs[Descriptor]
                   : EmptyObject
-          > & {
-              pageProps: ContentProps;
-          }
+          >
         : never;
 
 export type PartComponent<Descriptor extends PartType> =
     Descriptor extends PartType
-        ? React.FunctionComponent<PartComponentProps<Descriptor>>
+        ? React.FunctionComponent<
+              PartComponentProps<Descriptor> & {
+                  pageProps: ContentProps;
+              }
+          >
         : never;

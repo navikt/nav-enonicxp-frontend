@@ -1,7 +1,5 @@
 import React from 'react';
-import { ContentType } from 'types/content-props/_content-common';
-import { MainArticleProps } from 'types/content-props/main-article-props';
-import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { Heading, Ingress } from '@navikt/ds-react';
 import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
@@ -15,15 +13,15 @@ import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/
 import stylePermanent from './MainArticlePermanent.module.scss';
 import styleNews from './MainArticleNewsPress.module.scss';
 
-type Props = MainArticleProps | MainArticleChapterProps;
-
 // Get props from the chapter article if the content is a chapter
-const getPropsToRender = (propsInitial: Props) =>
+const getPropsToRender = (propsInitial: ContentProps) =>
     propsInitial.type === ContentType.MainArticleChapter
         ? propsInitial.data.article
-        : propsInitial;
+        : propsInitial.type === ContentType.MainArticle
+          ? propsInitial
+          : null;
 
-export const MainArticle = (propsInitial: Props) => {
+export const MainArticle = (propsInitial: ContentProps) => {
     const props = getPropsToRender(propsInitial);
     if (!props) {
         return null;

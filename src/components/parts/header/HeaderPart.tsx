@@ -1,14 +1,11 @@
 import React from 'react';
 import { Header } from '../../_common/headers/Header';
 import { headingToLevel, headingToSize } from 'types/typo-style';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './HeaderPart.module.scss';
 
-export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
+export const HeaderPart: PartComponent<PartType.Headers> = ({ config }) => {
     if (!config) {
         return null;
     }

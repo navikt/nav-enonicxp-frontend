@@ -6,16 +6,13 @@ import { formatDate } from 'utils/datetime';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
-export const FrontpageCurrentTopics = ({
-    config,
-}: PartComponentProps<PartType.FrontpageCurrentTopics>) => {
+export const FrontpageCurrentTopics: PartComponent<
+    PartType.FrontpageCurrentTopics
+> = ({ config }) => {
     const { language } = usePageConfig();
     const { contentList, title, link } = config;
 

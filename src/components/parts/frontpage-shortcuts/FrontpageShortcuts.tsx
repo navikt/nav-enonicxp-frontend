@@ -5,17 +5,14 @@ import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from '../../_common/illustration/static/IllustrationStatic';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './FrontpageShortcuts.module.scss';
 
-export const FrontpageShortcuts = ({
+export const FrontpageShortcuts: PartComponent<PartType.FrontpageShortcuts> = ({
     config,
     pageProps,
-}: PartComponentProps<PartType.FrontpageShortcuts>) => {
+}) => {
     const {
         shortcuts,
         title: sectionTitle,

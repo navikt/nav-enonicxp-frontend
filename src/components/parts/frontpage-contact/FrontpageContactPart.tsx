@@ -5,16 +5,13 @@ import { Heading } from '@navikt/ds-react';
 import { ContentType } from '../../../types/content-props/_content-common';
 import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './FrontpageContactPart.module.scss';
 
-export const FrontpageContactPart = ({
+export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({
     config,
-}: PartComponentProps<PartType.FrontpageContact>) => {
+}) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }

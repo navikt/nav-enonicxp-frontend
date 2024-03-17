@@ -4,15 +4,11 @@ import { getCardProps } from '../../_common/card/card-utils';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { LargeCard } from '../../_common/card/LargeCard';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import {
-    PartComponentProps,
-    PartType,
-} from '../../../types/component-props/parts';
+import { PartComponent, PartType } from '../../../types/component-props/parts';
 
-export const ProductCardPart = ({
-    config,
-    descriptor,
-}: PartComponentProps<PartType.ProductCard | PartType.ProductCardMini>) => {
+export const ProductCardPart: PartComponent<
+    PartType.ProductCard | PartType.ProductCardMini
+> = ({ config, descriptor }) => {
     const pageConfig = usePageConfig();
 
     if (!config?.targetPage) {
