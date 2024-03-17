@@ -5,7 +5,7 @@ import { ThemedPageHeader } from '../../_common/headers/themed-page-header/Theme
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
@@ -132,19 +132,13 @@ export const FormIntermediateStepPage = (
                                                 step,
                                                 index
                                             )}
+                                            analyticsComponent="mellomsteg"
+                                            analyticsLinkGroup={
+                                                currentStepData.stepsHeadline
+                                            }
+                                            analyticsLabel={step.label}
                                             className={style.stepAction}
-                                            as={(props) => (
-                                                <LenkeBase
-                                                    analyticsComponent="mellomsteg"
-                                                    analyticsLinkGroup={
-                                                        currentStepData.stepsHeadline
-                                                    }
-                                                    analyticsLabel={step.label}
-                                                    {...props}
-                                                >
-                                                    {props.children}
-                                                </LenkeBase>
-                                            )}
+                                            as={LenkeBase}
                                         >
                                             <LinkPanel.Title>
                                                 {step.label}

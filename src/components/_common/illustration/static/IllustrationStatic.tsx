@@ -1,17 +1,23 @@
-import React, { useEffect, useId, useRef } from 'react';
+import React, { useId } from 'react';
 import {
     AnimatedIcon,
     AnimatedIconsProps,
-} from 'types/content-props/animated-icons';
-import { getMediaUrl } from 'utils/urls';
-import { classNames } from 'utils/classnames';
-import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { XpImage } from 'components/_common/image/XpImage';
-import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
+} from '../../../../types/content-props/animated-icons';
+import { getMediaUrl } from '../../../../utils/urls';
+import { classNames } from '../../../../utils/classnames';
+import { buildImageCacheUrl, NextImageProps } from '../../image/NextImage';
+import { usePageConfig } from '../../../../store/hooks/usePageConfig';
+import { XpImage } from '../../image/XpImage';
+import { useSWRImmutableOnScrollIntoView } from '../../../../utils/fetch/useSWRImmutableOnScrollIntoView';
 
-import styleCommon from './Illustration.module.scss';
+import styleCommon from '../Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
+
+type DefinedIcon = Required<NonNullable<AnimatedIcon['icon']>>;
+type ValidIcon = DefinedIcon & Required<Pick<DefinedIcon, 'mediaUrl'>>;
+
+const isValidIcon = (icon: AnimatedIcon['icon']): icon is ValidIcon =>
+    !!icon?.mediaUrl;
 
 const nextImageProps: NextImageProps = {
     maxWidth: 96,
@@ -28,17 +34,15 @@ const StaticIcon = ({
     isEditorView,
     className,
 }: {
-    icon: AnimatedIcon;
+    icon: ValidIcon;
     isEditorView: boolean;
     className?: string;
 }) => {
     const { pageConfig } = usePageConfig();
 
-    const ref = useRef<HTMLSpanElement>();
-
     // We inline svg data into the html to allow us to easily style it with CSS
     // Other formats are treated as a regular img
-    const isSvg = icon.icon.mediaUrl.endsWith('svg');
+    const isSvg = icon.mediaUrl.endsWith('svg');
 
     const elementId = useId();
 
@@ -46,7 +50,7 @@ const StaticIcon = ({
         url: isSvg
             ? buildImageCacheUrl({
                   ...nextImageProps,
-                  src: getMediaUrl(icon.icon.mediaUrl, !!pageConfig.editorView),
+                  src: getMediaUrl(icon.mediaUrl, !!pageConfig.editorView),
                   isEditorView,
               })
             : null,
@@ -54,19 +58,13 @@ const StaticIcon = ({
         elementId,
     });
 
-    useEffect(() => {
-        if (svgData) {
-            ref.current.innerHTML = svgData;
-        }
-    }, [svgData]);
-
     return (
         <span
             className={classNames(styleStatic.icon, className)}
             id={elementId}
-            ref={ref}
+            dangerouslySetInnerHTML={{ __html: svgData || '' }}
         >
-            {!isSvg && <XpImage imageProps={icon.icon} alt={''} />}
+            {!isSvg && <XpImage imageProps={icon} alt={''} />}
         </span>
     );
 };
@@ -84,18 +82,11 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
     }
 
     const { icons } = illustration.data;
-    if (!Array.isArray(icons)) {
+    if (!Array.isArray(icons) || icons.length < 2) {
         return null;
     }
 
     const [icon1, icon2] = icons;
-
-    const hasIcon1 = !!icon1?.icon?.mediaUrl;
-    const hasIcon2 = !!icon2?.icon?.mediaUrl;
-
-    if (!hasIcon1 && !hasIcon2) {
-        return null;
-    }
 
     const isEditorView = !!pageConfig.editorView;
 
@@ -104,16 +95,16 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
             className={classNames(styleCommon.image, className)}
             aria-hidden={'true'}
         >
-            {hasIcon1 && (
+            {isValidIcon(icon1.icon) && (
                 <StaticIcon
-                    icon={icon1}
+                    icon={icon1.icon}
                     isEditorView={isEditorView}
                     className={'back'}
                 />
             )}
-            {hasIcon2 && (
+            {isValidIcon(icon2.icon) && (
                 <StaticIcon
-                    icon={icon2}
+                    icon={icon2.icon}
                     isEditorView={isEditorView}
                     className={'front'}
                 />

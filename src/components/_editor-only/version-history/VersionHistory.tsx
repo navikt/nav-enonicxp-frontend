@@ -5,7 +5,7 @@ import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/router';
 import { Chevron } from '../../_common/chevron/Chevron';
 import { logger } from 'srcCommon/logger';
 

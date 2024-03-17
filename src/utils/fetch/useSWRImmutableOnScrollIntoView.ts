@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSWRImmutable from 'swr/immutable';
 
-type Props<FetchResponse, ElementType extends HTMLElement = HTMLElement> = {
+type Props<FetchResponse> = {
     url: string | null;
     fetchFunc: (url: string) => Promise<FetchResponse>;
     elementId: string;

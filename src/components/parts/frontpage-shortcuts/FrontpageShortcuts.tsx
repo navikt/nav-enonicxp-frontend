@@ -5,7 +5,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
-import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { IllustrationStatic } from '../../_common/illustration/static/IllustrationStatic';
 
 import style from './FrontpageShortcuts.module.scss';
 
