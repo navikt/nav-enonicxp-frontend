@@ -1,6 +1,6 @@
 import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
-import { AnchorLink } from '../parts/page-navigation-menu';
+import { AnchorLink } from '../part-configs/page-navigation-menu';
 
 type Regions =
     | 'topLeftMenu'

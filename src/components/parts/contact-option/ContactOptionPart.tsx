@@ -4,7 +4,7 @@ import { CallOption } from 'components/_common/contact-option/CallOption';
 import {
     ChannelType,
     ContactOptionProps,
-} from 'types/component-props/parts/contact-option';
+} from '../../../types/component-props/part-configs/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageConfig } from 'store/hooks/usePageConfig';

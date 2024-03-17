@@ -1,7 +1,6 @@
-import { PartType } from './parts';
 import { LayoutProps } from './layouts';
-import { ContentProps } from '../content-props/_content-common';
 import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
+import { PartComponentProps } from './parts';
 
 export enum ComponentType {
     Page = 'page',
@@ -12,16 +11,20 @@ export enum ComponentType {
     Fragment = 'fragment',
 }
 
-export type ComponentCommonProps = {
-    type: ComponentType;
-    path: string;
-    config?: Record<string, unknown> & RenderOnAuthStateMixin;
-};
+export type NavNoDescriptor<Name extends string = string> =
+    `no.nav.navno:${Name}`;
 
-export type PartComponentProps = ComponentCommonProps & {
-    type: ComponentType.Part;
-    descriptor: PartType;
-    pageProps: ContentProps;
+type ConfigType = Record<string, unknown>;
+
+export type ComponentCommonProps<
+    Type extends ComponentType = ComponentType,
+    Descriptor extends NavNoDescriptor = NavNoDescriptor,
+    Config extends ConfigType = ConfigType,
+> = {
+    path: string;
+    type: Type;
+    descriptor: Descriptor;
+    config: Config & RenderOnAuthStateMixin;
 };
 
 export interface TextComponentProps extends ComponentCommonProps {

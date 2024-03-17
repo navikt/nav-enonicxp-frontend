@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
     AnchorLink,
     PageNavViewStyle,
-} from '../../../types/component-props/parts/page-navigation-menu';
+} from '../../../types/component-props/part-configs/page-navigation-menu';
 import debounce from 'lodash.debounce';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';

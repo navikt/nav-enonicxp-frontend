@@ -1,5 +1,5 @@
 import React from 'react';
-import { HtmlAreaProps } from '../../../types/component-props/parts/html-area';
+import { HtmlAreaProps } from '../../../types/component-props/part-configs/html-area';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonPartProps } from 'types/component-props/parts/button';
+import { ButtonPartProps } from '../../../types/component-props/part-configs/button';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from '../../_common/button/Button';
 import { ButtonProps } from '@navikt/ds-react';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FrontpageContanctPartProps } from '../../../types/component-props/parts/frontpage-contact';
+import { FrontpageContanctPartProps } from '../../../types/component-props/part-configs/frontpage-contact';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';

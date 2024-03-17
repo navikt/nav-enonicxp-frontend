@@ -3,7 +3,7 @@ import { MicroCards } from 'components/_common/card/MicroCard';
 import {
     ProductCardMicroProps,
     TargetPage,
-} from 'types/component-props/parts/product-card';
+} from '../../../types/component-props/part-configs/product-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {

@@ -1,3 +1,41 @@
+import { PartConfigAccordion } from './part-configs/accordion';
+import { ComponentCommonProps, ComponentType } from './_component-common';
+import { PartConfigAlertBox } from './part-configs/alert-box';
+import { PartConfigAlternativeAudience } from './part-configs/alternative-audience';
+import { ContentProps } from '../content-props/_content-common';
+import { EmptyObject } from '../util-types';
+import { PartConfigAreaCard } from './part-configs/area-card';
+import { PartConfigAreapageSituationCard } from './part-configs/areapage-situation-card';
+import { PartConfigButton } from './part-configs/button';
+import { PartConfigCalculator } from './part-configs/calculator';
+import { PartConfigContactOption } from './part-configs/contact-option';
+import { PartConfigFilterMenu } from './part-configs/filter-menu';
+import { PartConfigFormDetails } from './part-configs/form-details';
+import { PartConfigFrontpageContact } from './part-configs/frontpage-contact';
+import { PartConfigFrontpageCurrentTopics } from './part-configs/frontpage-current-topics';
+import { PartConfigFrontpageShortcuts } from './part-configs/frontpage-shortcuts';
+import { PartConfigHeader } from './part-configs/header';
+import { PartConfigHtmlArea } from './part-configs/html-area';
+import { PartConfigLinkList } from './part-configs/link-list';
+import { PartConfigLinkPanel } from './part-configs/link-panel';
+import { PartConfigLoggedinCard } from './part-configs/loggedin-card';
+import { PartConfigNewsList } from './part-configs/news-list';
+import { PartConfigOfficeEditorialDetail } from './part-configs/office-editorial-detail';
+import { PartConfigPageHeader } from './part-configs/page-header';
+import { PartConfigPageNavigationMenu } from './part-configs/page-navigation-menu';
+import { PartConfigPayoutDates } from './part-configs/payout-dates';
+import {
+    PartConfigProductCard,
+    PartConfigProductCardMicro,
+    PartConfigProductCardMini,
+} from './part-configs/product-card';
+import { PartConfigProductDetails } from './part-configs/product-details';
+import { PartConfigReadMore } from './part-configs/read-more';
+import { PartConfigRelatedSituations } from './part-configs/related-situations';
+import { PartConfigProviderCard } from './part-configs/provider-card';
+import { PartConfigUserTests } from './part-configs/user-tests';
+import { PartConfigUxSignalsWidget } from './part-configs/uxsignals-widget';
+
 export enum PartType {
     // Deprecated, should never render to anything, only included for compatibility
     Notifications = 'no.nav.navno:notifications',
@@ -17,7 +55,7 @@ export enum PartType {
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
 
-    // Parts currently available for active use
+    // Parts currently available for use
     AreaCard = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
@@ -70,7 +108,46 @@ export type PartLegacyType =
     | PartType.PublishingCalendar
     | PartType.PublishingCalendarEntry;
 
-export type PartCurrentType = Exclude<
-    PartType,
-    PartLegacyType | PartDeprecatedType
->;
+type PartConfigs = {
+    [PartType.Accordion]: PartConfigAccordion;
+    [PartType.AlertBox]: PartConfigAlertBox;
+    [PartType.AlternativeAudience]: PartConfigAlternativeAudience;
+    [PartType.AreaCard]: PartConfigAreaCard;
+    [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
+    [PartType.Button]: PartConfigButton;
+    [PartType.Calculator]: PartConfigCalculator;
+    [PartType.ContactOption]: PartConfigContactOption;
+    [PartType.FiltersMenu]: PartConfigFilterMenu;
+    [PartType.FormDetails]: PartConfigFormDetails;
+    [PartType.FrontpageContact]: PartConfigFrontpageContact;
+    [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
+    [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
+    [PartType.Header]: PartConfigHeader;
+    [PartType.HtmlArea]: PartConfigHtmlArea;
+    [PartType.LinkList]: PartConfigLinkList;
+    [PartType.LinkPanel]: PartConfigLinkPanel;
+    [PartType.LoggedinCard]: PartConfigLoggedinCard;
+    [PartType.NewsList]: PartConfigNewsList;
+    [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;
+    [PartType.PageHeader]: PartConfigPageHeader;
+    [PartType.PageNavigationMenu]: PartConfigPageNavigationMenu;
+    [PartType.PayoutDates]: PartConfigPayoutDates;
+    [PartType.ProductCard]: PartConfigProductCard;
+    [PartType.ProductCardMini]: PartConfigProductCardMini;
+    [PartType.ProductCardMicro]: PartConfigProductCardMicro;
+    [PartType.ProductDetails]: PartConfigProductDetails;
+    [PartType.ReadMore]: PartConfigReadMore;
+    [PartType.RelatedSituations]: PartConfigRelatedSituations;
+    [PartType.ProviderCard]: PartConfigProviderCard;
+    [PartType.UserTests]: PartConfigUserTests;
+    [PartType.UxSignalsWidget]: PartConfigUxSignalsWidget;
+};
+
+export type PartComponentProps<Type extends PartType = PartType> =
+    ComponentCommonProps<
+        ComponentType.Part,
+        Type,
+        Type extends keyof PartConfigs ? PartConfigs[Type] : EmptyObject
+    > & {
+        pageProps: ContentProps;
+    };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { UxSignalsWidgetPartProps } from 'types/component-props/parts/uxsignals-widget';
+import { UxSignalsWidgetPartProps } from '../../../types/component-props/part-configs/uxsignals-widget';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UxSignalsWidget } from 'components/_common/uxsignals-widget/UxSignalsWidget';
 

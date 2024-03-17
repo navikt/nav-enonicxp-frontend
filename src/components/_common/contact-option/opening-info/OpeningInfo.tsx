@@ -8,7 +8,7 @@ import { Loader } from '@navikt/ds-react';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
-} from 'types/component-props/parts/contact-option';
+} from '../../../../types/component-props/part-configs/contact-option';
 import TextWithIndicator from '../../text-with-indicator/TextWithIndicator';
 
 type Props = {

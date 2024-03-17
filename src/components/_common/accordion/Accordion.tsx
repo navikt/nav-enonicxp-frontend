@@ -1,5 +1,5 @@
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { AccordionPartProps } from 'types/component-props/parts/accordion';
+import { PartPropsAccordion } from '../../../types/component-props/part-configs/accordion';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
@@ -10,7 +10,7 @@ import styles from './Accordion.module.scss';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { useState } from 'react';
 
-type AccordionProps = AccordionPartProps['config'];
+type AccordionProps = PartPropsAccordion['config'];
 type PanelItem = AccordionProps['accordion'][0];
 
 export const Accordion = ({ accordion }: AccordionProps) => {

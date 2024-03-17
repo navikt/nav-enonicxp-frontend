@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReadMorePartProps } from 'types/component-props/parts/read-more';
+import { ReadMorePartProps } from '../../../types/component-props/part-configs/read-more';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';

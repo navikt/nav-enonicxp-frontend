@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductDetailsProps } from 'types/component-props/parts/product-details';
+import { ProductDetailsProps } from '../../../types/component-props/part-configs/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { ProductDetailType } from 'types/content-props/product-details';

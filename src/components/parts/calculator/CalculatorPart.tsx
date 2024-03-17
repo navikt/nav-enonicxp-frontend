@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalculatorProps } from 'types/component-props/parts/calculator';
+import { CalculatorProps } from '../../../types/component-props/part-configs/calculator';
 import { Calculator } from 'components/_common/calculator/Calculator';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';

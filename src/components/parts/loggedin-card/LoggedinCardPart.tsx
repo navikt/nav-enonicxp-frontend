@@ -3,7 +3,7 @@ import {
     LoggedinCardProps,
     LoggedInCardTypeProps,
     LoggedInCardTypes,
-} from '../../../types/component-props/parts/loggedin-card';
+} from '../../../types/component-props/part-configs/loggedin-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
 

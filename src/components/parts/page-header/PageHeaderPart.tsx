@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeaderProps } from 'types/component-props/parts/page-header';
+import { PageHeaderProps } from '../../../types/component-props/part-configs/page-header';
 import { PageHeader } from '../../_common/headers/page-header/PageHeader';
 import { classNames } from 'utils/classnames';
 import { ContentType } from 'types/content-props/_content-common';

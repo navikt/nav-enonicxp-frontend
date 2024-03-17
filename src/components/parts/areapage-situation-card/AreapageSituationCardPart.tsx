@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { AreapageSituationCardPartProps } from 'types/component-props/parts/areapage-situation-card';
+import { AreapageSituationCardPartProps } from '../../../types/component-props/part-configs/areapage-situation-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';

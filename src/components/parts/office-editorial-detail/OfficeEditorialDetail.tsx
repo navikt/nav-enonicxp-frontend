@@ -3,7 +3,7 @@ import React from 'react';
 import {
     DetailType,
     OfficeEditorialDetailProps,
-} from 'types/component-props/parts/office-editorial-detail';
+} from '../../../types/component-props/part-configs/office-editorial-detail';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';

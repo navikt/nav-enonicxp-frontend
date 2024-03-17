@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
-import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
+import { RelatedSituationsProps } from '../../../types/component-props/part-configs/related-situations';
 import { ContentType } from '../../../types/content-props/_content-common';
 
 export const RelatedSituationsPart = ({

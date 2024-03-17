@@ -9,7 +9,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     CalculatorData,
     CalculatorFieldData,
-} from 'types/component-props/parts/calculator';
+} from '../../../types/component-props/part-configs/calculator';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional

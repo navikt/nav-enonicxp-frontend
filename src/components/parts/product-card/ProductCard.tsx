@@ -4,7 +4,7 @@ import { PartType } from 'types/component-props/parts';
 import {
     ProductCardMiniProps,
     ProductCardProps,
-} from 'types/component-props/parts/product-card';
+} from '../../../types/component-props/part-configs/product-card';
 import { getCardProps } from '../../_common/card/card-utils';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { LargeCard } from '../../_common/card/LargeCard';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicLinkListProps } from 'types/component-props/parts/link-list';
+import { DynamicLinkListProps } from '../../../types/component-props/part-configs/link-list';
 import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';

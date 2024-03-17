@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { FrontpageShortcutsProps } from 'types/component-props/parts/frontpage-shortcuts';
+import { FrontpageShortcutsProps } from '../../../types/component-props/part-configs/frontpage-shortcuts';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';

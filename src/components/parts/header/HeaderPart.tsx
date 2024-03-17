@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderProps } from 'types/component-props/parts/header';
+import { HeaderProps } from '../../../types/component-props/part-configs/header';
 import { Header } from '../../_common/headers/Header';
 import { headingToLevel, headingToSize } from 'types/typo-style';
 

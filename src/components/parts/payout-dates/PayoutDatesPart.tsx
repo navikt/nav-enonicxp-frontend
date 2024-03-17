@@ -1,5 +1,5 @@
 import React from 'react';
-import { PayoutDatesPartProps } from '../../../types/component-props/parts/payout-dates';
+import { PayoutDatesPartProps } from '../../../types/component-props/part-configs/payout-dates';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { PayoutDates } from '../../_common/payout-dates/PayoutDates';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';

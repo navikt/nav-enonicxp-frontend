@@ -1,9 +1,8 @@
-// @ts-nocheck
 import React from 'react';
 import {
-    PartCurrentType,
     PartDeprecatedType,
     PartLegacyType,
+    PartComponentProps,
     PartType,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
@@ -16,10 +15,7 @@ import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
-import {
-    ComponentType,
-    PartComponentProps,
-} from 'types/component-props/_component-common';
+import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
@@ -79,42 +75,41 @@ const partsWithPageData: Record<
     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
 };
 
-const partsWithOwnData: Record<
-    PartCurrentType,
-    React.FunctionComponent<PartComponentProps>
-> = {
+const partsWithConfig: {
+    [Key in PartType]?: React.FunctionComponent<PartComponentProps<Key>>;
+} = {
+    [PartType.Accordion]: AccordionPart,
     [PartType.AlertBox]: AlertBoxPart,
-    [PartType.Header]: HeaderPart,
-    [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.LinkList]: LinkListPart,
-    [PartType.NewsList]: NewsListPart,
-    [PartType.HtmlArea]: HtmlArea,
-    [PartType.Calculator]: CalculatorPart,
-    [PartType.PageHeader]: PageHeaderPart,
+    [PartType.AlternativeAudience]: AlternativeAudiencePart,
+    [PartType.AreaCard]: AreaCardPart,
+    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.Button]: ButtonPart,
-    [PartType.ProviderCard]: ProviderCardPart,
-    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
+    [PartType.Calculator]: CalculatorPart,
+    [PartType.ContactOption]: ContactOptionPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.FormDetails]: FormDetailsPart,
+    [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.FrontpageCurrentTopics]: FrontpageCurrentTopics,
     [PartType.FrontpageShortcuts]: FrontpageShortcuts,
+    [PartType.Header]: HeaderPart,
+    [PartType.HtmlArea]: HtmlArea,
+    [PartType.LinkList]: LinkListPart,
+    [PartType.LinkPanel]: LinkPanelPart,
+    [PartType.LoggedinCard]: LoggedinCardPart,
+    [PartType.NewsList]: NewsListPart,
+    [PartType.OfficeEditorialDetail]: OfficeEditorialDetail,
+    [PartType.PageHeader]: PageHeaderPart,
+    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
+    [PartType.PayoutDates]: PayoutDatesPart,
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
-    [PartType.OfficeEditorialDetail]: OfficeEditorialDetail,
     [PartType.ProductDetails]: ProductDetailsPart,
-    [PartType.FormDetails]: FormDetailsPart,
-    [PartType.ContactOption]: ContactOptionPart,
-    [PartType.PayoutDates]: PayoutDatesPart,
-    [PartType.AreaCard]: AreaCardPart,
-    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
-    [PartType.LoggedinCard]: LoggedinCardPart,
-    [PartType.FrontpageContact]: FrontpageContactPart,
-    [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
-    [PartType.UserTests]: UserTestsPart,
+    [PartType.ProviderCard]: ProviderCardPart,
     [PartType.ReadMore]: ReadMorePart,
-    [PartType.Accordion]: AccordionPart,
     [PartType.RelatedSituations]: RelatedSituationsPart,
-    [PartType.AlternativeAudience]: AlternativeAudiencePart,
+    [PartType.UserTests]: UserTestsPart,
+    [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
 };
 
 const partsDeprecated: ReadonlySet<PartType> = new Set([
@@ -138,7 +133,7 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
         return <PartWithPageData {...pageProps} />;
     }
 
-    const PartWithOwnData = partsWithOwnData[descriptor];
+    const PartWithOwnData = partsWithConfig[descriptor];
     if (PartWithOwnData) {
         return <PartWithOwnData {...partProps} pageProps={pageProps} />;
     }

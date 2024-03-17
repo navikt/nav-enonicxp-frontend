@@ -4,7 +4,7 @@ import Region from '../../Region';
 import { RegionProps } from '../../../../types/component-props/layouts';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { PageNavigationMenu } from '../../../_common/page-navigation-menu/PageNavigationMenu';
-import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
+import { AnchorLink } from '../../../../types/component-props/part-configs/page-navigation-menu';
 import { EditorHelp } from '../../../_editor-only/editor-help/EditorHelp';
 
 const bem = BEM('left-menu');

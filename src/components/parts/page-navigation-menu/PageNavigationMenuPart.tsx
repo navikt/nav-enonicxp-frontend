@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageNavigationMenuProps } from '../../../types/component-props/parts/page-navigation-menu';
+import { PageNavigationMenuProps } from '../../../types/component-props/part-configs/page-navigation-menu';
 import { PageNavigationMenu } from '../../_common/page-navigation-menu/PageNavigationMenu';
 
 export const PageNavigationMenuPart = ({ config }: PageNavigationMenuProps) => {

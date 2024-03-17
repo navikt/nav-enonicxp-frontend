@@ -3,7 +3,7 @@ import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { TelephoneData } from 'types/component-props/parts/contact-option';
+import { TelephoneData } from '../../../types/component-props/part-configs/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';

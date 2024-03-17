@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserTestsPartProps } from 'types/component-props/parts/user-tests';
+import { UserTestsPartProps } from '../../../types/component-props/part-configs/user-tests';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTests } from 'components/_common/user-tests/UserTests';
 

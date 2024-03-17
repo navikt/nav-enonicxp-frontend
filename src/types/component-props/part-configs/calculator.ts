@@ -1,6 +1,3 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-
 type BaseInputFields = {
     explanation?: string;
     label?: string;
@@ -34,13 +31,10 @@ export type CalculatorData = {
     summaryText: string;
 };
 
-export type CalculatorProps = PartComponentProps & {
-    descriptor: PartType.Calculator;
-    config: {
-        header?: string;
-        targetCalculator?: {
-            data: CalculatorData;
-        };
-        filters?: string[];
+export type PartConfigCalculator = {
+    header?: string;
+    targetCalculator?: {
+        data: CalculatorData;
     };
+    filters?: string[];
 };

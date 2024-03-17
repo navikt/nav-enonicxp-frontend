@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
+import { LinkPanelPartProps } from '../../../types/component-props/part-configs/link-panel';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';

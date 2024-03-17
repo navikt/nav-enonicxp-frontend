@@ -3,7 +3,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import {
     ChannelType,
     DefaultContactData,
-} from 'types/component-props/parts/contact-option';
+} from '../../../types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';

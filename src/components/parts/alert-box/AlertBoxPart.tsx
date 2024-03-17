@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
+import { PartPropsAlertBox } from '../../../types/component-props/part-configs/alert-box';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
@@ -18,7 +18,7 @@ const legacyTypeToVariant: {
     suksess: 'success',
 };
 
-export const AlertBoxPart = (props: AlertBoxPartProps) => {
+export const AlertBoxPart = (props: PartPropsAlertBox) => {
     const { config } = props;
 
     if (!config) {

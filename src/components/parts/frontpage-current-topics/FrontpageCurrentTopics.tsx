@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { FrontpageCurrentTopicsProps } from 'types/component-props/parts/frontpage-current-topics';
+import { FrontpageCurrentTopicsProps } from '../../../types/component-props/part-configs/frontpage-current-topics';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { formatDate } from 'utils/datetime';

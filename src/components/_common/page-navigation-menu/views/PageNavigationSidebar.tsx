@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { PageNavigationLink } from '../PageNavigationLink';
-import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
+import { AnchorLink } from '../../../../types/component-props/part-configs/page-navigation-menu';
 import {
     getPageNavigationLinkId,
     PageNavScrollDirection,

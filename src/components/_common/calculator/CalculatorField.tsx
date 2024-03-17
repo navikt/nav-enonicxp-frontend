@@ -1,6 +1,6 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-import { CalculatorFieldData } from 'types/component-props/parts/calculator';
+import { CalculatorFieldData } from '../../../types/component-props/part-configs/calculator';
 
 import style from './Field.module.scss';
 

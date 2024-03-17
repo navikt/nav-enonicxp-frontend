@@ -7,7 +7,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     Category,
     FilterMenuProps,
-} from 'types/component-props/parts/filter-menu';
+} from '../../../types/component-props/part-configs/filter-menu';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
