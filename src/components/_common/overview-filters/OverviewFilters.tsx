@@ -24,7 +24,7 @@ const MobileView = ({
     const { language } = usePageConfig();
 
     const [isOpen, setIsOpen] = useState(false);
-    const filtersRef = useRef();
+    const filtersRef = useRef<HTMLDivElement>(null);
 
     const hasToggleFilters = showAreaFilter || showTaxonomyFilter;
 
