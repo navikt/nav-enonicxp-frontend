@@ -1,8 +1,8 @@
 import React from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { IllustrationStatic } from './static/IllustrationStatic';
-import { IllustrationAnimated } from './IllustrationAnimated';
-import { FallbackChevron } from './FallbackChevron';
+import { IllustrationAnimated } from './animated/IllustrationAnimated';
+import { FallbackChevron } from './static/FallbackChevron';
 
 type Props = {
     illustration?: AnimatedIconsProps;
