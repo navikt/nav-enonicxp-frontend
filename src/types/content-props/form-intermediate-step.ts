@@ -10,6 +10,7 @@ type ExternalStep = {
 export type StepDetails = {
     label: string;
     explanation: string;
+    languageDisclaimer?: string;
     nextStep: OptionSetSingle<{
         next: {
             editorial: ProcessedHtmlProps;
@@ -23,9 +24,7 @@ export type StepDetails = {
                 }>;
             }[];
         };
-        external: {
-            externalUrl: string;
-        };
+        external: ExternalStep;
     }>;
 };
 
