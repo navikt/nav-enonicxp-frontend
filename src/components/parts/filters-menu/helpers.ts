@@ -1,11 +1,14 @@
 import { LayoutProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
-import { PartComponentProps } from 'types/component-props/_component-common';
+import {
+    ComponentProps,
+    ComponentType,
+} from '../../../types/component-props/_component-common';
 
-interface Props {
+type Props = {
     path: string;
     page?: LayoutProps;
-}
+};
 
 export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
     const regions = page?.regions;
@@ -17,7 +20,7 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
         return true;
     }
 
-    const allComponents = Object.values(regions).reduce(
+    const allComponents = Object.values(regions).reduce<ComponentProps[]>(
         (collection, regionObject) => {
             const { components } = regionObject;
             return [...collection, ...components];
@@ -26,7 +29,8 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
     );
 
     const allFilterMenus = allComponents.filter(
-        (component: PartComponentProps) =>
+        (component) =>
+            component.type === ComponentType.Part &&
             component.descriptor === PartType.FiltersMenu
     );
 

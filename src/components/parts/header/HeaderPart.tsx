@@ -5,7 +5,7 @@ import { PartComponent, PartType } from '../../../types/component-props/parts';
 
 import style from './HeaderPart.module.scss';
 
-export const HeaderPart: PartComponent<PartType.Headers> = ({ config }) => {
+export const HeaderPart: PartComponent<PartType.Header> = ({ config }) => {
     if (!config) {
         return null;
     }

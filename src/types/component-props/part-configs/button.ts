@@ -1,4 +1,3 @@
-import { PartComponentProps } from '../_component-common';
 import { LinkSelectable } from '../_mixins';
 import { XpImageProps } from '../../media';
 

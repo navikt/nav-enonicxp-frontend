@@ -35,7 +35,10 @@ import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMen
 import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { FrontpageCurrentTopics } from './frontpage-current-topics/FrontpageCurrentTopics';
 import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
-import { ProductCardPart } from './product-card/ProductCard';
+import {
+    ProductCardMiniPart,
+    ProductCardPart,
+} from './product-card/ProductCard';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
@@ -146,7 +149,7 @@ const PartComponent = ({
                 <ProductCardMicroPart {...partProps} pageProps={pageProps} />
             );
         case PartType.ProductCardMini:
-            return <ProductCardPart {...partProps} pageProps={pageProps} />;
+            return <ProductCardMiniPart {...partProps} pageProps={pageProps} />;
         case PartType.ProductDetails:
             return <ProductDetailsPart {...partProps} pageProps={pageProps} />;
         case PartType.ProviderCard:

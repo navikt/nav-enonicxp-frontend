@@ -6,7 +6,7 @@ import { LargeCard } from '../../_common/card/LargeCard';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { PartComponent, PartType } from '../../../types/component-props/parts';
 
-export const ProductCardPart: PartComponent<
+const ProductCard: PartComponent<
     PartType.ProductCard | PartType.ProductCardMini
 > = ({ config, descriptor }) => {
     const pageConfig = usePageConfig();
@@ -38,4 +38,14 @@ export const ProductCardPart: PartComponent<
     }
 
     return <EditorHelp type={'error'} text={'Kortet har ugyldig type'} />;
+};
+
+export const ProductCardPart: PartComponent<PartType.ProductCard> = (props) => {
+    return <ProductCard {...props} />;
+};
+
+export const ProductCardMiniPart: PartComponent<PartType.ProductCardMini> = (
+    props
+) => {
+    return <ProductCard {...props} />;
 };

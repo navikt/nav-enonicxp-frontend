@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { PartComponentProps } from '../../types/component-props/_component-common';
 import { ComponentMapper } from '../../components/ComponentMapper';
 import { Provider } from 'react-redux';
 import { mockStore } from '../../store/store';
@@ -12,6 +11,7 @@ import {
 import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { PartComponentProps } from '../../types/component-props/parts';
 
 const dummyPageProps: ContentProps = {
     type: ContentType.DynamicPage,
