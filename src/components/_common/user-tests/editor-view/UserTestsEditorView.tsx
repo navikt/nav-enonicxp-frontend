@@ -3,6 +3,7 @@ import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 import { formatDateTime, isCurrentTimeInRange } from 'utils/datetime';
 import { BodyLong, Detail } from '@navikt/ds-react';
+import { classNames } from 'utils/classnames';
 
 import style from './UserTestsEditorView.module.scss';
 
@@ -17,7 +18,7 @@ export const UserTestsEditorView = ({
     const fromString = startTime
         ? ` fra ${formatDateTime(startTime, 'nb', true)}`
         : '';
-    const toString = startTime
+    const toString = endTime
         ? ` til ${formatDateTime(endTime, 'nb', true)}`
         : '';
 
@@ -57,7 +58,9 @@ export const UserTestsEditorView = ({
                         <UserTestVariant
                             testsData={data}
                             variant={variant}
-                            className={!isSelected && style.disabled}
+                            className={classNames(
+                                !isSelected && style.disabled
+                            )}
                         />
                     </div>
                 );

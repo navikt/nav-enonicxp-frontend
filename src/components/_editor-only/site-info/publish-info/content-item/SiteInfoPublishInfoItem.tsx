@@ -43,7 +43,11 @@ export const SiteInfoPublishInfoItem = ({
             <BodyShort className={style.publish}>
                 {`Type: ${type.replace('no.nav.navno:', '')} - ${
                     isPrepublish ? 'Publiseres' : 'Publisert'
-                }: ${formatDateTime(publish.from)}`}
+                }: ${
+                    publish.from
+                        ? formatDateTime(publish.from)
+                        : '[ingen publiseringsdato angitt]'
+                }`}
                 {publish.to
                     ? ` - Avpubliseres: ${formatDateTime(publish.to)}`
                     : ''}

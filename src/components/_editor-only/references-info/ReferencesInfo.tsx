@@ -17,28 +17,23 @@ type Props = {
 export const ReferencesInfo = ({ content }: Props) => {
     const { _id: contentId, contentLayer } = content;
 
-    const { references, isLoading, isError } = useFetchReferencesInfo(
-        contentId,
-        contentLayer
-    );
+    const { references } = useFetchReferencesInfo(contentId, contentLayer);
 
-    if (!references && !isLoading && !isError) {
+    if (references.result === 'notimpl') {
         return null;
     }
 
     return (
         <div className={style.container}>
-            {isLoading ? (
+            {references.result === 'loading' ? (
                 <div className={style.loader}>
                     <Loader size={'xlarge'} />
                     <BodyShort>{'Laster avhengigheter...'}</BodyShort>
                 </div>
-            ) : isError ? (
+            ) : references.result === 'error' ? (
                 <AlertBox variant={'error'} inline={true}>
                     <Heading level={'3'} size={'small'}>
-                        {
-                            'Obs: lasting av avhengigheter feilet! Dette innholdet kan være i bruk på andre sider.'
-                        }
+                        {`Feil: ${references.message}`}
                     </Heading>
                     <BodyLong>
                         {'Forsøk å laste inn editoren på nytt.'}
@@ -46,7 +41,7 @@ export const ReferencesInfo = ({ content }: Props) => {
                 </AlertBox>
             ) : (
                 <ReferencesInfoResult
-                    references={references}
+                    references={references.references}
                     content={content}
                 />
             )}

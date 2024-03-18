@@ -30,6 +30,7 @@ export const LenkeStandalone = ({
 }: Props) => {
     return (
         <LenkeBase
+            {...rest}
             href={href}
             className={classNames(
                 style.navnoLenke,
@@ -42,7 +43,6 @@ export const LenkeStandalone = ({
                 analyticsLabel ||
                 (typeof children === 'string' ? children : undefined)
             }
-            {...rest}
         >
             <BodyShort className={style.lenketekst} as={'span'}>
                 {withChevron && (

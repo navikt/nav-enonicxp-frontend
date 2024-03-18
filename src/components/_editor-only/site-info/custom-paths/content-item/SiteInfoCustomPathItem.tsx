@@ -10,7 +10,7 @@ export const SiteInfoCustomPathItem = ({
     path,
     displayName,
     id,
-}: SiteInfoContentProps) => {
+}: SiteInfoContentProps<true>) => {
     return (
         <div className={style.container}>
             <div className={style.nameWrapper}>

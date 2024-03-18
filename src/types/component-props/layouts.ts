@@ -46,12 +46,13 @@ export type Regions<RegionNames extends string> = {
     [Name in RegionNames]: RegionProps<Name>;
 };
 
-export interface LayoutCommonProps extends ComponentCommonProps {
-    type: ComponentType.Layout | ComponentType.Page;
-    descriptor: LayoutType;
-    regions?: Regions<string>;
-    config?: any;
-}
+export type LayoutCommonProps<RegionNames extends string = string> =
+    ComponentCommonProps & {
+        type: ComponentType.Layout | ComponentType.Page;
+        descriptor: LayoutType;
+        regions: Regions<RegionNames>;
+        config?: any;
+    };
 
 export type LayoutProps =
     | LegacyLayoutProps

@@ -29,7 +29,9 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     const { className, href, onClick, target } =
         child.props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-    const hrefFinal = getRelativePathIfInternal(href, !!editorView);
+    const hrefFinal = href
+        ? getRelativePathIfInternal(href, !!editorView)
+        : undefined;
 
     return (
         <span
@@ -37,11 +39,8 @@ export const EditorLinkWrapper = ({ children }: Props) => {
             style={{ cursor: 'pointer' }}
             onClick={(e) => {
                 e.stopPropagation();
+                onClick?.(e as React.MouseEvent<HTMLAnchorElement>);
 
-                if (onClick) {
-                    // @ts-ignore
-                    onClick(e);
-                }
                 if (hrefFinal) {
                     if (target === '_blank') {
                         window.open(hrefFinal, target);

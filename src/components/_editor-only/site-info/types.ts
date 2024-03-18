@@ -5,14 +5,19 @@ export type SiteInfoPublish = ContentProps['publish'] & {
     scheduledTo?: string;
 };
 
-export type SiteInfoContentProps = {
+export type SiteInfoContentProps<WithCustomPath = false> = {
     id: string;
     path: string;
-    customPath?: string;
     displayName: string;
     type: string;
     publish: SiteInfoPublish;
-};
+} & (WithCustomPath extends true
+    ? {
+          customPath: string;
+      }
+    : {
+          customPath?: string;
+      });
 
 export type ClusterState = 'RED' | 'YELLOW' | 'GREEN';
 
@@ -21,7 +26,7 @@ export type SiteInfoProps = {
     publishScheduled: SiteInfoContentProps[];
     unpublishScheduledNextWeek: SiteInfoContentProps[];
     unpublishScheduledLater: SiteInfoContentProps[];
-    contentWithCustomPath: SiteInfoContentProps[];
+    contentWithCustomPath: SiteInfoContentProps<true>[];
     serverInfo: {
         serverName: string;
         clusterState?: ClusterState;
