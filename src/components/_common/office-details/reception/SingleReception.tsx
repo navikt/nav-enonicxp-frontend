@@ -19,9 +19,9 @@ import style from './SingleReception.module.scss';
 
 type FormattedAudienceReception = {
     address: string;
-    adkomstbeskrivelse: string;
     openingHours: OpeningHoursProps[];
     openingHoursExceptions: OpeningHoursProps[];
+    adkomstbeskrivelse?: string;
     place?: string;
 };
 
@@ -40,7 +40,10 @@ export const SingleReception = (props: AudienceReception) => {
 
     const todaysDate: string = new Date().toISOString().slice(0, 10);
     const futureOpeningHoursExceptions = openingHoursExceptions
-        .filter((exception) => exception.dato && exception.dato >= todaysDate)
+        .filter(
+            (exception): exception is Required<typeof exception> =>
+                !!(exception.dato && exception.dato >= todaysDate)
+        )
         .sort((a, b) => {
             const dateA = new Date(a.dato).getTime();
             const dateB = new Date(b.dato).getTime();
@@ -102,35 +105,41 @@ export const SingleReception = (props: AudienceReception) => {
     );
 };
 
+const dagArr: OpeningHoursProps['dag'][] = [
+    'Mandag',
+    'Tirsdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+] as const;
+
+type OpeningHoursBuckets = {
+    regular: OpeningHoursProps[];
+    exceptions: OpeningHoursProps[];
+};
+
 const formatAudienceReception = (
     audienceReception: AudienceReception
 ): FormattedAudienceReception => {
-    const dagArr: string[] = [
-        'Mandag',
-        'Tirsdag',
-        'Onsdag',
-        'Torsdag',
-        'Fredag',
-    ];
-
     const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
         return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
     };
 
-    const aapningstider = audienceReception.aapningstider.reduce(
-        (acc, elem) => {
-            if (elem.dato) {
-                acc.exceptions.push(elem);
-            } else {
-                acc.regular.push(elem);
+    const aapningstider =
+        audienceReception.aapningstider.reduce<OpeningHoursBuckets>(
+            (acc, elem) => {
+                if (elem.dato) {
+                    acc.exceptions.push(elem);
+                } else {
+                    acc.regular.push(elem);
+                }
+                return acc;
+            },
+            {
+                regular: [],
+                exceptions: [],
             }
-            return acc;
-        },
-        {
-            regular: [],
-            exceptions: [],
-        }
-    );
+        );
 
     return {
         address: formatAddress(audienceReception.besoeksadresse, true),
