@@ -9,6 +9,7 @@ import { Heading, BodyShort } from '@navikt/ds-react';
 import { OpeningHours } from './OpeningHours';
 import { forceArray } from 'utils/arrays';
 import { formatAddress } from 'components/_common/office-details/utils';
+
 import style from './Reception.module.scss';
 
 type FormattedAudienceReception = {

@@ -22,6 +22,7 @@ import {
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+
 import style from './OfficeInformation.module.scss';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
