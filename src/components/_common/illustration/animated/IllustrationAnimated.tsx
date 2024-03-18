@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useId } from 'react';
-import { classNames } from 'utils/classnames';
+import { classNames } from '../../../../utils/classnames';
 import { fetchJson } from 'srcCommon/fetch-utils';
-import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
+import { useSWRImmutableOnScrollIntoView } from '../../../../utils/fetch/useSWRImmutableOnScrollIntoView';
 import type { AnimationItem } from 'lottie-web';
 
-import styleCommon from './Illustration.module.scss';
+import styleCommon from '../Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
 const fetchJsonData = (url: string) =>

@@ -67,7 +67,7 @@ const buildXMLSitemap = (jsonSitemap: SitemapEntity[]): string => {
     return xmlString;
 };
 
-const saveToCache = (xml: any): void => {
+const saveToCache = (xml: string): void => {
     cache.set(cacheKey, xml);
 };
 

@@ -1,4 +1,4 @@
-import { classNames } from 'utils/classnames';
+import { classNames } from '../../../../utils/classnames';
 import styles from './FallbackChevron.module.scss';
 
 type FallbackChevronProps = {

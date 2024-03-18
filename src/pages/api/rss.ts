@@ -29,7 +29,7 @@ const cache = new Cache({
     deleteOnExpire: false, // We still want to serve expired cache while a new fetch is being fetched in background.
 });
 
-const saveToCache = (xml: any): void => {
+const saveToCache = (xml: string): void => {
     cache.set(cacheKey, xml);
 };
 
