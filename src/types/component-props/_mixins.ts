@@ -6,7 +6,6 @@ import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
-import { ProductDetailType } from 'types/content-props/product-details';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type HeaderWithAnchorMixin = {
@@ -31,15 +30,19 @@ export enum ProviderAudience {
     OTHER = 'other',
 }
 
-export type AudienceProps = OptionSetSingle<{
+export type AudienceOptions = OptionSetSingle<{
     [Audience.PERSON]: EmptyObject;
     [Audience.EMPLOYER]: EmptyObject;
     [Audience.PROVIDER]: { provider_audience?: ProviderAudience[] };
 }>;
 
-export const getAudience = (
-    audience?: AudienceProps | Audience | Audience[]
-) => {
+type AudienceProps = AudienceOptions | Audience | Audience[];
+
+export function getAudience(audience: AudienceProps): Audience;
+export function getAudience(
+    audience: AudienceProps | undefined | null
+): Audience | null;
+export function getAudience(audience: AudienceProps | undefined | null) {
     if (!audience) {
         return null;
     }
@@ -56,9 +59,10 @@ export const getAudience = (
     }
 
     return audience._selected;
-};
+}
+
 export const getSubAudience = (
-    audience?: AudienceProps | Audience | Audience[]
+    audience?: AudienceOptions | Audience | Audience[]
 ): ProviderAudience[] | null => {
     if (!audience || typeof audience === 'string' || Array.isArray(audience)) {
         return null;
@@ -88,19 +92,13 @@ export type ProductDataMixin = {
     title: string;
     ingress?: string;
     taxonomy: Taxonomy[];
-    audience?: Audience;
+    audience?: AudienceOptions;
     customCategory?: string;
     illustration: AnimatedIconsProps;
     area: Area[];
     externalProductUrl?: string;
     alternativeAudience?: AlternativeAudience;
     relatedSituations?: SituationPageProps[];
-};
-
-export type ProductDetailsDataMixin = {
-    detailType?: ProductDetailType;
-    overviewType?: ProductDetailType;
-    pageUsageReference?: string;
 };
 
 export type LinkSelectable = OptionSetSingle<{

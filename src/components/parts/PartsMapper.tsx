@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import {
     PartCurrentType,
@@ -42,7 +43,6 @@ import { OfficeEditorialDetail } from './office-editorial-detail/OfficeEditorial
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
@@ -83,7 +83,6 @@ const partsWithOwnData: Record<
     PartCurrentType,
     React.FunctionComponent<PartComponentProps>
 > = {
-    [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,

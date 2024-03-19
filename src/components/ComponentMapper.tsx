@@ -11,12 +11,9 @@ import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
-import { ErrorBoundary } from 'components/_common/error-boundary/ErrorBoundary';
-import { translator } from 'translations';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 type Props = {
-    componentProps: ComponentProps;
+    componentProps?: ComponentProps;
     pageProps: ContentProps;
 };
 
@@ -73,28 +70,6 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
                 }`}</div>
             );
     }
-};
-
-const ErrorFallback = ({ componentProps, pageProps }: Props) => {
-    const { editorView, language } = pageProps;
-    const { type, path } = componentProps;
-
-    const descriptorText =
-        type === 'part' || type === 'layout'
-            ? ` av type "${componentProps.descriptor}"`
-            : '';
-
-    return !!editorView ? (
-        <EditorHelp
-            type={'error'}
-            text={`Komponenten "${path}"${descriptorText} kunne ikke rendres pga teknisk feil. Sjekk om komponenten er riktig konfigurert, eller kontakt brukerstøtte.`}
-            globalWarningText={`Feil på ${type}-komponent${descriptorText}`}
-        />
-    ) : (
-        <AlertBox variant={'error'} inline={true}>
-            {translator('errors', language)('componentError')}
-        </AlertBox>
-    );
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {

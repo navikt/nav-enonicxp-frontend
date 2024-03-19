@@ -8,7 +8,7 @@ import { TextField } from '@navikt/ds-react';
 import style from './SiteInfoCustomPaths.module.scss';
 
 type Props = {
-    contentList: SiteInfoContentProps[];
+    contentList: SiteInfoContentProps<true>[];
 };
 
 export const SiteInfoCustomPaths = ({ contentList }: Props) => {

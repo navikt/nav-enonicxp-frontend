@@ -20,7 +20,7 @@ const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
 const getNextOpenOpeningHour = (
     openingHours: OpeningHours[]
-): OpeningHoursOpen => {
+): OpeningHoursOpen | null => {
     const tomorrow = dayjs().add(1, 'day');
 
     for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {
@@ -69,17 +69,16 @@ const buildFutureOpenString = (
     const opens = dayjs(date, openingHourDateFormat).tz(norwayTz, true);
     const openingDay = opens.startOf('day');
 
-    const startOfCurrentDay = dayjs().startOf('day').tz('America/Toronto');
+    const startOfCurrentDay = dayjs().startOf('day').tz(norwayTz);
+    const daysUntilOpeningDay = openingDay.diff(startOfCurrentDay, 'day');
 
-    const daysToOpeningDay = openingDay.diff(startOfCurrentDay, 'day');
-
-    if (daysToOpeningDay > 1) {
+    if (daysUntilOpeningDay > 1) {
         return `${sharedTranslations['closedNow']}, ${opensTemplate
             .replace('{$date}', getDayOfWeek(date, weekDayNames, language))
             .replace('{$time}', openTime)}`;
     }
 
-    const openingTemplate = daysToOpeningDay === 0 ? '' : tomorrowTemplate;
+    const openingTemplate = daysUntilOpeningDay === 0 ? '' : tomorrowTemplate;
 
     const openNext = opensTemplate
         .replace('{$date}', openingTemplate)

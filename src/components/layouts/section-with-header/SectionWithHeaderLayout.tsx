@@ -9,11 +9,13 @@ import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
 
+type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
+
 const getBorderStyle = ({
     color = '#ffffff',
     width = 3,
     rounded,
-}: SectionWithHeaderProps['config']['border']) => ({
+}: BorderProps) => ({
     boxShadow: `0 0 0 ${width}px ${color} inset`,
     ...(rounded && { borderRadius: `${width * 3}px` }),
 });
@@ -56,7 +58,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            modifiers={!!iconImgProps && ['with-icon']}
+            modifiers={iconImgProps ? ['with-icon'] : undefined}
             id={iconImgProps ? undefined : anchorId}
             tabIndex={-1}
         >

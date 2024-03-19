@@ -1,9 +1,10 @@
 import { adminOrigin } from 'utils/urls';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { ContentProps } from 'types/content-props/_content-common';
+import { logger } from 'srcCommon/logger';
 
-const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
-const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
+const ADMIN_AUTH_URL = `${adminOrigin}/admin/rest/auth/authenticated`;
+const USER_INFO_URL = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
 
 const CONTENT_REPO_PREFIX = 'com.enonic.cms.';
 
@@ -38,7 +39,7 @@ export type AdminContentResponse = ContentProps & {
 };
 
 export const editorFetchAdminUserId = () =>
-    fetchJson<AdminAuthResponse>(adminAuthUrl, 5000).then((res) => {
+    fetchJson<AdminAuthResponse>(ADMIN_AUTH_URL, 5000).then((res) => {
         return res?.user?.key;
     });
 
@@ -50,6 +51,11 @@ export const editorFetchAdminContent = async (
         ? getProjectIdFromRepoId(repoId)
         : getProjectIdFromCurrentEditorUrl();
 
+    if (!projectId) {
+        logger.error('Could not determine projectId');
+        return null;
+    }
+
     return fetchJson<AdminContentResponse>(
         `${getContentServiceUrl(projectId)}?id=${contentId}`,
         5000
@@ -57,7 +63,7 @@ export const editorFetchAdminContent = async (
 };
 
 export const editorFetchUserInfo = async (userId: string) =>
-    fetchJson<UserInfo>(`${userInfoUrl}${userId}?memberships=false`, 5000);
+    fetchJson<UserInfo>(`${USER_INFO_URL}${userId}?memberships=false`, 5000);
 
 export const isCurrentEditorRepo = (repoId: string) =>
     getProjectIdFromRepoId(repoId) === getProjectIdFromCurrentEditorUrl();

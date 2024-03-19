@@ -15,4 +15,4 @@ export const isEditorFeatureEnabled = (feature: EditorFeature) => {
 export const setEditorFeatureToggle = (
     feature: EditorFeature,
     enable: boolean
-) => Cookie.set(feature, enable, { expires: 365 });
+) => Cookie.set(feature, enable.toString(), { expires: 365 });

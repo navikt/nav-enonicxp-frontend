@@ -5,19 +5,22 @@ import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from 'types/component-props/layouts/legacy-layout';
 import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
 import { ComponentType } from 'types/component-props/_component-common';
+import { MainArticleProps } from '../../../types/content-props/main-article-props';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LegacyLayoutProps;
+    layoutProps: LegacyLayoutProps;
 };
 
-const getNewsArticleProps = (pageProps: ContentProps) => {
+const getNewsArticleProps = (
+    pageProps: ContentProps
+): MainArticleProps | null => {
     const props =
         pageProps.type === ContentType.MainArticleChapter
             ? pageProps.data.article
             : pageProps;
 
-    return props.type === ContentType.MainArticle &&
+    return props?.type === ContentType.MainArticle &&
         (props.data.contentType === 'news' ||
             props.data.contentType === 'pressRelease')
         ? props
@@ -36,13 +39,15 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {/* Insert the news article header here, as we want it to render above both article region columns */}
-            {layoutProps.type === ComponentType.Page && newsArticleProps && (
-                <NewsPressHeader
-                    type={newsArticleProps.data.contentType}
-                    title={newsArticleProps.displayName}
-                    language={newsArticleProps.language}
-                />
-            )}
+            {layoutProps.type === ComponentType.Page &&
+                newsArticleProps &&
+                newsArticleProps.data.contentType && (
+                    <NewsPressHeader
+                        type={newsArticleProps.data.contentType}
+                        title={newsArticleProps.displayName}
+                        language={newsArticleProps.language}
+                    />
+                )}
             {Object.values(regions).map((regionProps, index) => {
                 return (
                     <Region

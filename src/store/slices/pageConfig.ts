@@ -26,7 +26,7 @@ const initialState: PageConfigState = {
     pageId: '',
     language: 'no',
     isPagePreview: false,
-    audience: null,
+    audience: undefined,
 };
 
 export const pageConfigSlice = createSlice({
@@ -63,7 +63,7 @@ export const isPagePreview = (
     return state.pageConfig.isPagePreview;
 };
 
-export const pageAudience = (state: RootState): Audience => {
+export const pageAudience = (state: RootState): Audience | undefined => {
     return state.pageConfig.audience;
 };
 
