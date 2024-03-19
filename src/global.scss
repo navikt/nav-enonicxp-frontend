@@ -2,7 +2,6 @@
 @import '@navikt/ds-css/dist/index.css';
 
 // Import scss that aren't modules
-@import 'components/layouts/fixed-cols/FixedColsLayout.scss';
 @import 'components/layouts/flex-cols/FlexColsLayoutGlobal';
 
 @media (prefers-reduced-motion: no-preference) {

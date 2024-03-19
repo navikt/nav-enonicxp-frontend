@@ -1,0 +1,45 @@
+@use 'common' as common;
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+    }
+}
+
+.region {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & > * {
+        display: flex;
+        flex-grow: 1;
+
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+    }
+
+    &:not(:first-child) {
+        margin-left: 2.2rem;
+
+        @media #{common.$mq-screen-tablet} {
+            margin-left: 1rem;
+        }
+
+        @media #{common.$mq-screen-mobile} {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+
+    // Fix for XP region preview
+    .xp-page-editor-item-placeholder,
+    .live-edit-drag-placeholder-container {
+        width: 100%;
+    }
+}
