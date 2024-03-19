@@ -9,13 +9,13 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { usePageContext } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
-import { usePageContext } from 'store/pageContext';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {

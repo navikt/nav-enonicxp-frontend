@@ -9,12 +9,11 @@ import {
     CalculatorData,
     CalculatorFieldData,
 } from 'types/component-props/parts/calculator';
+import { usePageContext } from 'store/pageContext';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
-
 import style from './Calculator.module.scss';
-import { usePageContext } from 'store/pageContext';
 
 type FieldRecord = Record<string, number | null>;
 

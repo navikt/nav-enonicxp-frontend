@@ -9,10 +9,10 @@ import { BodyShort } from '@navikt/ds-react';
 
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
-
 import { LenkeInline } from '../lenke/LenkeInline';
-import styles from './AlternativeAudience.module.scss';
 import { usePageContext } from 'store/pageContext';
+
+import styles from './AlternativeAudience.module.scss';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;

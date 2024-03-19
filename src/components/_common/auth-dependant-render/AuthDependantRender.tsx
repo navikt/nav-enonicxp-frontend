@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { useLayoutEffectClientSide } from 'utils/react';
+import { usePageContext } from 'store/pageContext';
 
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './AuthDependantRender.module.scss';
-import { usePageContext } from 'store/pageContext';
 
 export const editorAuthstateClassname = (authState: AuthStateType) =>
     style[authState];
