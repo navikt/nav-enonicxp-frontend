@@ -1,8 +1,8 @@
 import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { translator } from 'translations';
-import { OfficeDetailsData } from 'types/content-props/office-details-props';
-import { formatAddress } from '../utils';
+import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
+import { translator } from '../../../../../translations';
+import { OfficeDetailsData } from '../../../../../types/content-props/office-details-props';
+import { officeDetailsFormatAddress } from '../utils';
 
 import styles from './OfficeInformation.module.scss';
 
@@ -18,8 +18,8 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } =
         officeData;
 
-    const visitingAddress = formatAddress(beliggenhet, true);
-    const postalAddress = formatAddress(postadresse, true);
+    const visitingAddress = officeDetailsFormatAddress(beliggenhet, true);
+    const postalAddress = officeDetailsFormatAddress(postadresse, true);
 
     return (
         <ExpansionCard

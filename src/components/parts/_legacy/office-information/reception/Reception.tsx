@@ -8,7 +8,7 @@ import {
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { OpeningHours } from './OpeningHours';
 import { forceArray } from 'utils/arrays';
-import { formatAddress } from 'components/_common/office-details/utils';
+import { officeDetailsFormatAddress } from '../../../../pages/office-branch-page/office-details/utils';
 
 import style from './Reception.module.scss';
 
@@ -63,7 +63,10 @@ const formatAudienceReception = (
     );
 
     return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
+        address: officeDetailsFormatAddress(
+            audienceReception.besoeksadresse,
+            true
+        ),
         place:
             audienceReception.stedsbeskrivelse ||
             audienceReception.besoeksadresse.poststed,

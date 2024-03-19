@@ -1,18 +1,20 @@
 import React from 'react';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { OfficeDetailsProps } from '../OfficeDetails';
-import { translator } from 'translations';
-import { formatPhoneNumber } from '../utils';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { translator } from '../../../../../translations';
+import { officeDetailsFormatPhoneNumber } from '../utils';
+import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
 import { PhoneFillIcon } from '@navikt/aksel-icons';
-import { forceArray } from 'utils/arrays';
+import { forceArray } from '../../../../../utils/arrays';
 import { AudienceChannels } from './AudienceChannels';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import Config from 'config';
+import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
+import Config from '../../../../../config';
 
 import styles from './PhonePoster.module.scss';
 
-const humanReadablePhoneNumber = formatPhoneNumber(Config.vars.hovedNummer);
+const humanReadablePhoneNumber = officeDetailsFormatPhoneNumber(
+    Config.vars.hovedNummer
+);
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();

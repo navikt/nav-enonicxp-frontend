@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { AudienceContact } from 'types/content-props/office-details-props';
-import { formatPhoneNumber } from '../utils';
+import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
+import { AudienceContact } from '../../../../../types/content-props/office-details-props';
+import { officeDetailsFormatPhoneNumber } from '../utils';
 
 import styles from './AudienceChannels.module.scss';
 
@@ -26,7 +26,7 @@ export const AudienceChannels = ({
                 )}
                 {channel.telefon && (
                     <LenkeBase href={`tel:${channel.telefon}`}>
-                        {formatPhoneNumber(channel.telefon)}
+                        {officeDetailsFormatPhoneNumber(channel.telefon)}
                     </LenkeBase>
                 )}
             </BodyShort>

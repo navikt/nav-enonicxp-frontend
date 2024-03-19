@@ -2,9 +2,9 @@ import React from 'react';
 import { Reception } from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
-    formatAddress,
-    formatPhoneNumber,
-} from 'components/_common/office-details/utils';
+    officeDetailsFormatAddress,
+    officeDetailsFormatPhoneNumber,
+} from '../../../pages/office-branch-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
@@ -19,9 +19,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const getLabelMain = translator('mainArticle', props.language);
-    const location = formatAddress(contact.besoeksadresse, true);
-    const address = formatAddress(contact.postadresse, false);
-    const fax = formatPhoneNumber(contact.faksnummer);
+    const location = officeDetailsFormatAddress(contact.besoeksadresse, true);
+    const address = officeDetailsFormatAddress(contact.postadresse, false);
+    const fax = officeDetailsFormatPhoneNumber(contact.faksnummer);
 
     const publikumsmottak = forceArray(contact.publikumsmottak);
 
@@ -55,7 +55,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         Telefon
                     </Heading>
                     <BodyShort>
-                        {formatPhoneNumber(contact.telefonnummer)}
+                        {officeDetailsFormatPhoneNumber(contact.telefonnummer)}
                     </BodyShort>
                     {contact.telefonnummerKommentar && (
                         <BodyShort>{contact.telefonnummerKommentar}</BodyShort>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
 import { OfficeBranchPageProps } from 'types/content-props/dynamic-page-props';
-import { OfficePageHeader } from '../../_common/headers/office-page-header/OfficePageHeader';
-import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
+import { OfficePageHeader } from './office-page-header/OfficePageHeader';
+import { OfficeDetails } from './office-details/OfficeDetails';
 import { classNames } from 'utils/classnames';
 import { logger } from 'srcCommon/logger';
 

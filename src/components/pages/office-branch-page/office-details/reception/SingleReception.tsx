@@ -5,50 +5,36 @@ import {
     InformationSquareFillIcon,
     HouseFillIcon,
 } from '@navikt/aksel-icons';
-import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { translator } from 'translations';
+import { classNames } from '../../../../../utils/classnames';
+import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
+import { translator } from '../../../../../translations';
 import {
     AudienceReception,
     OpeningHours as OpeningHoursProps,
-} from 'types/content-props/office-details-props';
-import { formatAddress } from '../utils';
+} from '../../../../../types/content-props/office-details-props';
+import {
+    officeDetailsFormatAddress,
+    officeDetailsFormatAudienceReception,
+    officeDetailsGetFutureOpeningExceptions,
+} from '../utils';
 import { OpeningHours } from './OpeningHours';
 
 import style from './SingleReception.module.scss';
-
-type FormattedAudienceReception = {
-    address: string;
-    openingHours: OpeningHoursProps[];
-    openingHoursExceptions: OpeningHoursProps[];
-    adkomstbeskrivelse?: string;
-    place?: string;
-};
 
 export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
 
     const getLabel = translator('office', language);
-    const audienceReception = formatAudienceReception(props);
 
     const {
         address,
         adkomstbeskrivelse,
         openingHours,
         openingHoursExceptions,
-    } = audienceReception;
+    } = officeDetailsFormatAudienceReception(props);
 
-    const todaysDate: string = new Date().toISOString().slice(0, 10);
-    const futureOpeningHoursExceptions = openingHoursExceptions
-        .filter(
-            (exception): exception is Required<typeof exception> =>
-                !!(exception.dato && exception.dato >= todaysDate)
-        )
-        .sort((a, b) => {
-            const dateA = new Date(a.dato).getTime();
-            const dateB = new Date(b.dato).getTime();
-            return dateA - dateB;
-        });
+    const futureOpeningHoursExceptions =
+        officeDetailsGetFutureOpeningExceptions(openingHoursExceptions);
 
     return (
         <div className={style.singleReception}>
@@ -65,7 +51,6 @@ export const SingleReception = (props: AudienceReception) => {
                     {adkomstbeskrivelse}
                 </BodyShort>
             </section>
-
             {openingHours.length > 0 && (
                 <>
                     <Heading
@@ -103,51 +88,4 @@ export const SingleReception = (props: AudienceReception) => {
             </div>
         </div>
     );
-};
-
-const dagArr: OpeningHoursProps['dag'][] = [
-    'Mandag',
-    'Tirsdag',
-    'Onsdag',
-    'Torsdag',
-    'Fredag',
-] as const;
-
-type OpeningHoursBuckets = {
-    regular: OpeningHoursProps[];
-    exceptions: OpeningHoursProps[];
-};
-
-const formatAudienceReception = (
-    audienceReception: AudienceReception
-): FormattedAudienceReception => {
-    const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
-        return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
-    };
-
-    const aapningstider =
-        audienceReception.aapningstider.reduce<OpeningHoursBuckets>(
-            (acc, elem) => {
-                if (elem.dato) {
-                    acc.exceptions.push(elem);
-                } else {
-                    acc.regular.push(elem);
-                }
-                return acc;
-            },
-            {
-                regular: [],
-                exceptions: [],
-            }
-        );
-
-    return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse?.poststed,
-        openingHoursExceptions: aapningstider.exceptions,
-        openingHours: aapningstider.regular.sort(sortOpeningHours),
-        adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
-    };
 };
