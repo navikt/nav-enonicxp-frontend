@@ -82,7 +82,7 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
     }
 
     const { icons } = illustration.data;
-    if (!Array.isArray(icons) || icons.length < 2) {
+    if (!Array.isArray(icons) || icons.length === 0) {
         return null;
     }
 
