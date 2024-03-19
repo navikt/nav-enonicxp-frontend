@@ -16,7 +16,7 @@ import styleStatic from './IllustrationStatic.module.scss';
 type DefinedIcon = Required<NonNullable<AnimatedIcon['icon']>>;
 type ValidIcon = DefinedIcon & Required<Pick<DefinedIcon, 'mediaUrl'>>;
 
-const isValidIcon = (icon: AnimatedIcon['icon']): icon is ValidIcon =>
+const isValidIcon = (icon?: AnimatedIcon['icon']): icon is ValidIcon =>
     !!icon?.mediaUrl;
 
 const nextImageProps: NextImageProps = {
@@ -95,14 +95,14 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
             className={classNames(styleCommon.image, className)}
             aria-hidden={'true'}
         >
-            {isValidIcon(icon1.icon) && (
+            {isValidIcon(icon1?.icon) && (
                 <StaticIcon
                     icon={icon1.icon}
                     isEditorView={isEditorView}
                     className={'back'}
                 />
             )}
-            {isValidIcon(icon2.icon) && (
+            {isValidIcon(icon2?.icon) && (
                 <StaticIcon
                     icon={icon2.icon}
                     isEditorView={isEditorView}

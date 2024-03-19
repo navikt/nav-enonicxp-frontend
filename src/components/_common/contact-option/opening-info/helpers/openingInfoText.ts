@@ -48,7 +48,7 @@ const getDayOfWeek = (dayJs: Dayjs, language: Language) => {
     const weekDayNames = translator('dateTime', language)('weekDayNames');
     // Dayjs uses sunday as first day of the week
     const dayIndex = (dayJs.day() + 6) % 7;
-    const dayOfWeek = Object.values(weekDayNames)[dayJsDayIndex];
+    const dayOfWeek = Object.values(weekDayNames)[dayIndex];
     return language === 'en' ? dayOfWeek : dayOfWeek.toLowerCase();
 };
 
