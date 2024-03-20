@@ -10,12 +10,12 @@ import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
 import { NextImage } from '../image/NextImage';
 import { QbrickVideoProps } from './utils/videoProps';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './QbrickVideo.module.scss';
 
 export const QbrickVideo = (props: QbrickVideoProps) => {
-    const { language: contentLanguage, editorView } = usePageContext();
+    const { language: contentLanguage, editorView } = usePageContextProps();
 
     const { title, duration, poster } = props;
 

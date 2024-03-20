@@ -5,7 +5,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './LenkeBase.module.scss';
 
@@ -44,7 +44,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
     const { layoutConfig } = useLayoutConfig();
 
     const { url, canRouteClientSide } = usePublicUrl(href);

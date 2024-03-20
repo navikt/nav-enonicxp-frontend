@@ -8,13 +8,13 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import styles from './Accordion.module.scss';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { useState } from 'react';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 type AccordionProps = AccordionPartProps['config'];
 type PanelItem = AccordionProps['accordion'][0];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
     const expandAll = () => {

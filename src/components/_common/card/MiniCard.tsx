@@ -7,7 +7,7 @@ import { Illustration } from '../illustration/Illustration';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import sharedStyle from './Card.module.scss';
 import style from './MiniCard.module.scss';
@@ -39,7 +39,7 @@ export const MiniCard = (props: MiniKortProps) => {
         link,
     });
 
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     return (
         <>

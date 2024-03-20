@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from 'store/store';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { NextImage } from '../image/NextImage';
 import htmlReactParser, {
     Element,
@@ -77,7 +77,7 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     if (!htmlProps) {
         return null;

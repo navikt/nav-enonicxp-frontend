@@ -9,7 +9,7 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
@@ -48,7 +48,7 @@ export const CallOption = ({
 }: Props) => {
     const overrideText = specialOpeningHours?.overrideText;
 
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const { layoutConfig } = useLayoutConfig();
 
     const getContactTranslations = translator('contactPoint', language);

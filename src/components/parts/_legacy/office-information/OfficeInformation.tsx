@@ -21,12 +21,12 @@ import {
 } from 'types/structuredData';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './OfficeInformation.module.scss';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;

@@ -5,7 +5,7 @@ import { ReferenceItem } from 'components/_editor-only/references-info/types';
 import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { adminOrigin } from 'utils/urls';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './ReferencesLinks.module.scss';
 
@@ -20,7 +20,7 @@ export const ReferencesLinks = ({
     headerText,
     contentLayer,
 }: Props) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     const languageNames = translator('localeNames', 'no');
 

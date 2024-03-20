@@ -4,7 +4,7 @@ import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './LayoutContainer.module.scss';
 
@@ -24,7 +24,7 @@ export const LayoutContainer = ({
     children,
     ...divElementProps
 }: Props) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
     const { descriptor, path, type, config = {} } = layoutProps;
     const layoutName = descriptor.split(':')[1];
     const commonLayoutStyle = getCommonLayoutStyle(config);

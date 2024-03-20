@@ -9,7 +9,7 @@ import {
 import { classNames } from 'utils/classnames';
 import { FunnelIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { Heading, Button } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
@@ -21,7 +21,7 @@ const MobileView = ({
     showAreaFilter,
     showTaxonomyFilter,
 }: Props) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
 
     const [isOpen, setIsOpen] = useState(false);
     const filtersRef = useRef();
@@ -93,7 +93,7 @@ const DesktopView = ({
     showAreaFilter,
     showTaxonomyFilter,
 }: Props) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const searchLabel = translator('overview', language)('filterOrSearch');
     return (
         <div className={style.desktop}>

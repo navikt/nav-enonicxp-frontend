@@ -4,7 +4,7 @@ import { AudienceReception } from '../../../../types/content-props/office-detail
 
 import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import styles from './Reception.module.scss';
 import { forceArray } from 'utils/arrays';
@@ -14,7 +14,7 @@ interface LocationsProps {
 }
 
 export const Reception = ({ receptions }: LocationsProps) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
 

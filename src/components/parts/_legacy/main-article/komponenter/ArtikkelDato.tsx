@@ -2,7 +2,7 @@ import * as React from 'react';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { classNames } from 'utils/classnames';
 import { BodyLong, Detail } from '@navikt/ds-react';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import styles from './ArtikkelDato.module.scss';
 
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ArtikkelDato = (props: Props) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const {
         modifiedTime,
         publishLabel,

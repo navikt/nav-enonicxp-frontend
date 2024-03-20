@@ -1,11 +1,11 @@
 import React from 'react';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { formatNumber } from 'utils/math';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { MacroTallProps } from 'types/macro-props/tall';
 
 export const MacroTall = ({ config }: MacroTallProps) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     if (!config?.tall) {
         return (
             <EditorHelp

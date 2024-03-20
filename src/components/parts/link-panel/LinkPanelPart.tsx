@@ -8,12 +8,12 @@ import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from '../../_common/image/NextImage';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './LinkPanelPart.module.scss';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;

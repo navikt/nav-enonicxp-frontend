@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
@@ -25,7 +25,7 @@ export const FilterBar = ({ layoutProps }: Props) => {
         ...(content ? content.components : []),
         ...(intro ? intro.components : []),
     ];
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const getLabel = translator('filteredContent', language);
 
     const { selectedFilters, availableFilters, toggleFilter } =

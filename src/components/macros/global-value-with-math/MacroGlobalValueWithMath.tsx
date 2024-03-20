@@ -1,7 +1,7 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
 import jsep, { Expression } from 'jsep';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
 import { logger } from 'srcCommon/logger';
@@ -94,7 +94,7 @@ export const evaluateExpression = (
 export const MacroGlobalValueWithMath = ({
     config,
 }: MacroGlobalValueWithMathProps) => {
-    const { language, editorView } = usePageContext();
+    const { language, editorView } = usePageContextProps();
 
     if (!config?.global_value_with_math) {
         return null;

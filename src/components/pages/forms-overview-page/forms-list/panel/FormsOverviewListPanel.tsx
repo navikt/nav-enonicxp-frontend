@@ -13,7 +13,7 @@ import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { BodyLong } from '@navikt/ds-react';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 
 import style from './FormsOverviewListPanel.module.scss';
@@ -80,7 +80,7 @@ export const FormsOverviewListPanel = ({
         null | FormDetailsPageProps[]
     >(null);
 
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
 
     const isAddendumPage = overviewType === 'addendum';
 

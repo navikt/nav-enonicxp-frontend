@@ -9,10 +9,10 @@ const PageContextProvider: React.FC<any> = ({ children, content }) => {
     );
 };
 
-const usePageContext = () => {
+const usePageContentProps = () => {
     const context = useContext(PageContext);
 
     return context || ({} as ContentProps);
 };
 
-export { PageContextProvider, usePageContext };
+export { PageContextProvider, usePageContentProps };

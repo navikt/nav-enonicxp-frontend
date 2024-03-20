@@ -9,13 +9,13 @@ import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDep
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { capitalize } from '../../../utils/string';
 import { translator } from '../../../translations';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const { name } = useAuthState();
 
     // Fallback message if for some reason the users name is not available

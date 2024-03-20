@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '../../../../utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { joinWithConjunction } from '../../../../utils/string';
 import {
     AudienceReception,
@@ -17,7 +17,7 @@ type Props = {
 
 export const OfficePageHeader = ({ officeDetails }: Props) => {
     const { navn, brukerkontakt } = officeDetails;
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
 
     const getSubtitle = (publikumsmottak: AudienceReception[]) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {

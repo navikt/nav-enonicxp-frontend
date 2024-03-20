@@ -1,11 +1,11 @@
 import React from 'react';
 import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 import { buildImageCacheUrl, ImageProps } from './NextImage';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 
 export const NextImageBuildTime = (props: ImageProps) => {
     const { src, alt, maxWidth = 1440, quality = 90, ...imgAttribs } = props;
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     if (!src) {
         return null;

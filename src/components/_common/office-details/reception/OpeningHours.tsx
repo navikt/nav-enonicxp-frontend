@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { formatDate } from 'utils/datetime';
 import { OpeningHours as OpeningHoursProps } from '../../../../types/content-props/office-details-props';
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const OpeningHours = ({ openingHours }: Props) => {
-    const { language } = usePageContext();
+    const { language } = usePageContextProps();
     const getOfficeTranslations = translator('office', language);
     const getDateTimeTranslations = translator('dateTime', language);
 

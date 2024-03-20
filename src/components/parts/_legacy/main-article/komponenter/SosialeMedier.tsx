@@ -2,7 +2,7 @@ import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
-import { usePageContext } from 'store/pageContext';
+import { usePageContextProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
@@ -65,7 +65,7 @@ type Props = {
 };
 
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
-    const { editorView } = usePageContext();
+    const { editorView } = usePageContextProps();
 
     if (social.length === 0) {
         return null;
