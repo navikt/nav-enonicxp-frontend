@@ -1,10 +1,10 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { translator } from 'translations';
-import { CurrentTopicPageProps } from '../../../../types/content-props/dynamic-page-props';
+import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
 import { TagLine } from './TagLine';
 

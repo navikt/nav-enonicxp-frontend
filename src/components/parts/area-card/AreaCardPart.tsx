@@ -1,9 +1,9 @@
 import React from 'react';
-import { AreaCardPartProps } from '../../../types/component-props/parts/area-card';
-import { getSelectableLinkProps } from '../../../utils/links-from-content';
+import { AreaCardPartProps } from 'types/component-props/parts/area-card';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 
 import { AreaCard } from 'components/_common/area-card/AreaCard';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     if (!config) {

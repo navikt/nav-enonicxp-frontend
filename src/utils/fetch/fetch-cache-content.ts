@@ -1,5 +1,5 @@
 import { fetchJson } from 'srcCommon/fetch-utils';
-import { stripXpPathPrefix } from '../urls';
+import { stripXpPathPrefix } from 'utils/urls';
 import { ContentProps } from 'types/content-props/_content-common';
 
 const origin = process.env.APP_ORIGIN;

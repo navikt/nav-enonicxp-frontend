@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { updateImageManifest } from '../../../utils/fetch/fetch-images';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { updateImageManifest } from 'utils/fetch/fetch-images';
 import { buildImageCacheUrl, ImageProps } from './NextImage';
 
 export const NextImageBuildTime = (props: ImageProps) => {

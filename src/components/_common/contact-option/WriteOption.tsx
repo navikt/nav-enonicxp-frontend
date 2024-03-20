@@ -4,8 +4,8 @@ import { WriteData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import {
     hoverFocusIcon,

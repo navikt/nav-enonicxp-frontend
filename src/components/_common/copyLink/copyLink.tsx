@@ -3,8 +3,8 @@ import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
-import { LinkIcon } from "@navikt/aksel-icons";
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
+import { LinkIcon } from '@navikt/aksel-icons';
 
 import style from './copyLink.module.scss';
 
@@ -17,7 +17,12 @@ type CopyLinkProps = {
 
 const linkCopiedDisplayTimeMs = 2500;
 
-export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) => {
+export const CopyLink = ({
+    anchor,
+    heading,
+    label,
+    className,
+}: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();

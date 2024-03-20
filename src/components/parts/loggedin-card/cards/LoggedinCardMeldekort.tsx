@@ -1,9 +1,9 @@
 import React from 'react';
-import { LoggedInCardTypeProps } from '../../../../types/component-props/parts/loggedin-card';
-import { useAuthState } from '../../../../store/hooks/useAuthState';
-import { getSelectableLinkProps } from '../../../../utils/links-from-content';
-import { AreaCard } from '../../../_common/area-card/AreaCard';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
+import { LoggedInCardTypeProps } from 'types/component-props/parts/loggedin-card';
+import { useAuthState } from 'store/hooks/useAuthState';
+import { getSelectableLinkProps } from 'utils/links-from-content';
+import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type Props = LoggedInCardTypeProps['meldekort'];
 

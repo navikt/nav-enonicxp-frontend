@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicPage } from '../dynamic-page/DynamicPage';
+import { DynamicPage } from 'components/pages/dynamic-page/DynamicPage';
 import { linkListDataMock } from './mocks/linkListDataMock';
 import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';

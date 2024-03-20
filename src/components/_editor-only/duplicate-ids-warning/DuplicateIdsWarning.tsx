@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { removeDuplicates } from 'utils/arrays';
 import { BodyLong } from '@navikt/ds-react';
-import { Header } from '../../_common/headers/Header';
+import { Header } from 'components/_common/headers/Header';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 

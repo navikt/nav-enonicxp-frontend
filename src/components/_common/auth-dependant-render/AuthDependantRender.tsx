@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuthState } from '../../../store/hooks/useAuthState';
-import { AuthStateType } from '../../../store/slices/authState';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { useAuthState } from 'store/hooks/useAuthState';
+import { AuthStateType } from 'store/slices/authState';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useLayoutEffectClientSide } from 'utils/react';
 
 // eslint does not understand bracket notation

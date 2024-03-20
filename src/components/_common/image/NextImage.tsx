@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { isValidImageUrl } from '../../../utils/urls';
+import { isValidImageUrl } from 'utils/urls';
 import dynamic from 'next/dynamic';
 
 // These types should match what's specified in next.config

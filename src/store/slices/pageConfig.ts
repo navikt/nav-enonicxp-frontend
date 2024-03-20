@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Language } from 'translations';
-import type { RootState } from '../store';
+import type { RootState } from 'store/store';
 import { ContentProps } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
 

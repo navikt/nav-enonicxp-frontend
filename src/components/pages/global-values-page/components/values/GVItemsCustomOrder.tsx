@@ -4,7 +4,7 @@ import { GVItem } from './item/GVItem';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
-import { gvServiceReorderItems } from '../../api/services/reorder';
+import { gvServiceReorderItems } from 'components/pages/global-values-page/api/services/reorder';
 import { OnChangeMeta } from 'react-movable/lib/types';
 import { logger } from 'srcCommon/logger';
 

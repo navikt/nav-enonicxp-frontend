@@ -1,7 +1,7 @@
 import React from 'react';
 import { MacroProductCardMiniProps } from 'types/macro-props/product-card-mini';
-import { MiniCard } from '../../_common/card/MiniCard';
-import { getCardProps } from '../../_common/card/card-utils';
+import { MiniCard } from 'components/_common/card/MiniCard';
+import { getCardProps } from 'components/_common/card/card-utils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 

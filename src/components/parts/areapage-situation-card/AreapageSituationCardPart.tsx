@@ -2,9 +2,9 @@ import React from 'react';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { AreapageSituationCardPartProps } from 'types/component-props/parts/areapage-situation-card';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { getCardProps } from '../../_common/card/card-utils';
-import { LargeCard } from '../../_common/card/LargeCard';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { getCardProps } from 'components/_common/card/card-utils';
+import { LargeCard } from 'components/_common/card/LargeCard';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './AreapageSituationCardPart.module.scss';

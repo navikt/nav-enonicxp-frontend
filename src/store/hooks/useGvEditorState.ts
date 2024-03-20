@@ -1,10 +1,10 @@
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import {
     GvEditorState,
     setItemEditStateAction,
     setMessagesAction,
     setValueItemsAction,
-} from '../slices/gvEditorState';
+} from 'store/slices/gvEditorState';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
 

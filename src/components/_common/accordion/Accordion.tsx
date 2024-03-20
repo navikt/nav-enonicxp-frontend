@@ -1,6 +1,6 @@
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { AccordionPartProps } from 'types/component-props/parts/accordion';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';

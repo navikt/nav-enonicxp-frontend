@@ -1,11 +1,11 @@
 import React from 'react';
-import { AreapageSituationsProps } from '../../../types/component-props/layouts/areapage-situations';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { LayoutContainer } from '../LayoutContainer';
-import { Header } from '../../_common/headers/Header';
+import { AreapageSituationsProps } from 'types/component-props/layouts/areapage-situations';
+import { ContentProps } from 'types/content-props/_content-common';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { Header } from 'components/_common/headers/Header';
 
-import Region from '../Region';
+import Region from 'components/layouts/Region';
 
 import style from './AreapageSituationsLayout.module.scss';
 

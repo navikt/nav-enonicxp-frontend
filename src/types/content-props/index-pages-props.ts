@@ -1,12 +1,12 @@
 import { ContentType, ContentCommonProps } from './_content-common';
-import { Area } from '../areas';
-import { ProcessedHtmlProps } from '../processed-html-props';
-import { IndexPageProps } from '../component-props/pages/index-page';
+import { Area } from 'types/areas';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { IndexPageProps } from 'types/component-props/pages/index-page';
 import {
     AudienceOptions,
     ColorMixin,
     LinkSelectable,
-} from '../component-props/_mixins';
+} from 'types/component-props/_mixins';
 import { SituationPageProps } from './dynamic-page-props';
 import { AnimatedIconsProps } from './animated-icons';
 import { OverviewPageProps } from './overview-props';

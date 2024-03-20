@@ -1,6 +1,6 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { ContentType } from '../../content-props/_content-common';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { ContentType } from 'types/content-props/_content-common';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
 
 type InternalContactUs = {

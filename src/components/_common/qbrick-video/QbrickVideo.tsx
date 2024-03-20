@@ -9,7 +9,7 @@ import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
-import { NextImage } from '../image/NextImage';
+import { NextImage } from 'components/_common/image/NextImage';
 import { QbrickVideoProps } from './utils/videoProps';
 
 import style from './QbrickVideo.module.scss';

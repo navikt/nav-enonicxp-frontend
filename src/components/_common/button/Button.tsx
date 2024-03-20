@@ -1,8 +1,8 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { XpImageProps } from 'types/media';
-import { XpImage } from '../image/XpImage';
+import { XpImage } from 'components/_common/image/XpImage';
 import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 
 import style from './Button.module.scss';

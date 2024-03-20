@@ -1,8 +1,5 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
-import { SectionPageData } from '../../../../types/content-props/section-page-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { SectionPageData } from 'types/content-props/section-page-props';
 
 const commonProps = {
     _id: 'cd3c1fc5-53e9-4cdd-8287-ef69405832bd',

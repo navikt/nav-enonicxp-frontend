@@ -1,9 +1,9 @@
 import React from 'react';
-import { HtmlAreaProps } from '../../../types/component-props/parts/html-area';
-import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
-import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { HtmlAreaProps } from 'types/component-props/parts/html-area';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
+import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './HtmlArea.module.scss';
 

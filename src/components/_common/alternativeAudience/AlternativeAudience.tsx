@@ -7,7 +7,7 @@ import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language, translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
-import { LenkeInline } from '../lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 

@@ -8,7 +8,7 @@ import { LargeTableProps } from './large-table-props';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
 import { Language } from 'translations';
-import { LayoutProps } from '../component-props/layouts';
+import { LayoutProps } from 'types/component-props/layouts';
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { OfficeInformationProps } from './office-information-props';
 import { UrlProps } from './url-props';
@@ -37,16 +37,16 @@ import {
     GlobalValuesProps,
 } from './global-values-props';
 import { ContactInformationProps } from './contact-information-props';
-import { MediaType } from '../media';
+import { MediaType } from 'types/media';
 import { PayoutDatesProps } from './payout-dates';
-import { LanguageProps, LayerLocale } from '../language';
+import { LanguageProps, LayerLocale } from 'types/language';
 import { FragmentPageProps } from './fragment-page-props';
 import {
     AreaPageProps,
     FrontPageNestedProps,
     FrontPageProps,
 } from './index-pages-props';
-import { AudienceOptions } from '../component-props/_mixins';
+import { AudienceOptions } from 'types/component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';

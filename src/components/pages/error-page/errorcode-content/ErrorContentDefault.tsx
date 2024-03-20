@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { ErrorProps } from '../../../../types/content-props/error-props';
+import { ErrorProps } from 'types/content-props/error-props';
 import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 
 export const ErrorContentDefault = (props: ErrorProps) => {

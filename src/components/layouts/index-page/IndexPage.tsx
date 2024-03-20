@@ -1,12 +1,9 @@
 import React from 'react';
-import { LayoutContainer } from '../LayoutContainer';
-import Region from '../Region';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import Region from 'components/layouts/Region';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
-import { IndexPageProps } from '../../../types/component-props/pages/index-page';
+import { IndexPageProps } from 'types/component-props/pages/index-page';
 import { AreaPageHeader } from './area-page/AreaPageHeader';
 import { getAudience } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';

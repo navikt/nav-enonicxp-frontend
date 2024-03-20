@@ -9,7 +9,7 @@ import {
     RegularOpeningHours,
     SpecialOpeningHours,
 } from 'types/component-props/parts/contact-option';
-import TextWithIndicator from '../../text-with-indicator/TextWithIndicator';
+import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 
 type Props = {
     regularOpeningHours: RegularOpeningHours;

@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import {
     setPageConfigAction,
     currentPageId,
@@ -7,7 +7,7 @@ import {
     isPagePreview,
     pageAudience,
     CurrentPageIdPayload,
-} from '../slices/pageConfig';
+} from 'store/slices/pageConfig';
 import { Language } from 'translations';
 import { ContentProps } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';

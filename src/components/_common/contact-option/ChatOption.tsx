@@ -5,10 +5,10 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
-import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
 import {
     hoverFocusIcon,

@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { PartComponentProps } from '../../types/component-props/_component-common';
-import { ComponentMapper } from '../../components/ComponentMapper';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { Provider } from 'react-redux';
-import { mockStore } from '../../store/store';
-import {
-    ContentProps,
-    ContentType,
-} from '../../types/content-props/_content-common';
+import { mockStore } from 'store/store';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
-import { setPageConfigAction } from '../../store/slices/pageConfig';
-import { apiErrorHandler } from '../../utils/api-error-handler';
+import { setPageConfigAction } from 'store/slices/pageConfig';
+import { apiErrorHandler } from 'utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const dummyPageProps: ContentProps = {

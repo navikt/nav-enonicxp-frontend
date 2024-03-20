@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentList } from '../../../_common/content-list/ContentList';
-import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
+import { ContentList } from 'components/_common/content-list/ContentList';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
 import { SectionPageProps } from 'types/content-props/section-page-props';
 import { appOrigin } from 'utils/urls';

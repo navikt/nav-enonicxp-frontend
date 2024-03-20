@@ -5,7 +5,7 @@ import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
-import { LenkeBase } from '../../../_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './MainArticleChapterNavigation.module.scss';
@@ -45,8 +45,16 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
     const headingId = `heading-chapter-navigation`;
 
     return (
-        <nav className={style.mainArticleChapterNavigation} aria-labelledby={headingId}>
-            <Heading id={headingId} level="2" size="medium" className={style.title}>
+        <nav
+            className={style.mainArticleChapterNavigation}
+            aria-labelledby={headingId}
+        >
+            <Heading
+                id={headingId}
+                level="2"
+                size="medium"
+                className={style.title}
+            >
                 {getLabel('contents')}
             </Heading>
             <ul>

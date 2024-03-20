@@ -4,7 +4,7 @@ import {
     ProductCardMicroProps,
     TargetPage,
 } from 'types/component-props/parts/product-card';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
     if (!config?.card_list || config.card_list.length === 0) {

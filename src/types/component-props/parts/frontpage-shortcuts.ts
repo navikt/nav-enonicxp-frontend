@@ -1,5 +1,5 @@
-import { PartType } from '../parts';
-import { PartComponentProps } from '../_component-common';
+import { PartType } from 'types/component-props/parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
