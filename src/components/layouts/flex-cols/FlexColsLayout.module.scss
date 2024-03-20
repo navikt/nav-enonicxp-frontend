@@ -41,3 +41,55 @@
 .header {
     margin-bottom: 2.5rem;
 }
+
+.layoutSituationOrProduct {
+    $singleColMaxWidth: calc(
+        #{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile}
+    );
+    $doubleColMaxWidth: calc(
+        #{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet}
+    );
+
+    @include common.full-width-mixin();
+
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+
+    &:last-child {
+        // Compensate for 2rem content app-container bottom padding to
+        // get 4rem distance to dekoratøren
+        margin-bottom: 2rem;
+    }
+
+    :global(.region__flexcols) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        width: 100%;
+
+        @include common.content-studio-drop-zone-fix-global();
+
+        @media #{'only screen and (max-width: #{$singleColMaxWidth})'} {
+            @include common.flex-cols-mixin(1);
+        }
+    }
+
+    :global(.region__flexcols--1-cols) {
+        @include common.flex-cols-mixin(1);
+    }
+
+    :global(.region__flexcols--2-cols) {
+        @include common.flex-cols-mixin(2);
+    }
+
+    :global(.region__flexcols--3-cols) {
+        @include common.flex-cols-mixin(3);
+
+        @media #{'only screen and (max-width: #{$doubleColMaxWidth})'} {
+            @include common.flex-cols-mixin(2);
+        }
+    }
+}

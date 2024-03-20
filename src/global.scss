@@ -1,9 +1,6 @@
 @use 'common' as common;
 @import '@navikt/ds-css/dist/index.css';
 
-// Import scss that aren't modules
-@import 'components/layouts/flex-cols/FlexColsLayoutGlobal';
-
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;

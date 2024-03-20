@@ -5,6 +5,8 @@ import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
 import { Header } from '../../_common/headers/Header';
 
+import style from './FlexColsLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps?: SituationPageFlexColsLayoutProps;
@@ -51,6 +53,7 @@ export const SituationPageFlexColsLayout = ({
 
     return (
         <LayoutContainer
+            className={style.layoutSituationOrProduct}
             pageProps={pageProps}
             layoutProps={layoutProps}
             modifiers={buildModifiers()}
@@ -62,7 +65,7 @@ export const SituationPageFlexColsLayout = ({
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
-                    className="custom-header-style"
+                    className={style.header}
                 >
                     {title}
                 </Header>
