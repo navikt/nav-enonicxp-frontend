@@ -2,11 +2,6 @@
 
 // TODO: rewrite to modules
 
-.layout__situation-flex-cols,
-.layout__situation-flex-cols--products {
+.layout__situation-flex-cols {
     background-color: var(--a-green-100);
-}
-
-.layout__situation-flex-cols--providers {
-    background-color: var(--a-green-200);
 }
