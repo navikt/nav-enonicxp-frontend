@@ -2,8 +2,8 @@ import { ContentCommonProps, ContentType } from './_content-common';
 import {
     AlternativeAudience,
     ProductDataMixin,
-} from '../component-props/_mixins';
-import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
+} from 'types/component-props/_mixins';
+import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from 'types/taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';

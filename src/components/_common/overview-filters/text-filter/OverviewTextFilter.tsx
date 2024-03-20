@@ -8,7 +8,7 @@ import { windowScrollTo } from 'utils/scroll-to';
 import {
     OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
     OverviewFiltersTextInputEventDetail,
-} from '../../../../store/slices/overviewFilters';
+} from 'store/slices/overviewFilters';
 
 import style from './OverviewTextFilter.module.scss';
 

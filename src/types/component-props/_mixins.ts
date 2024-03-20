@@ -1,10 +1,10 @@
-import { ContentListProps } from '../content-props/content-list-props';
-import { ContentProps } from '../content-props/_content-common';
-import { HeaderTypoStyle } from '../typo-style';
-import { AnimatedIconsProps } from '../content-props/animated-icons';
+import { ContentListProps } from 'types/content-props/content-list-props';
+import { ContentProps } from 'types/content-props/_content-common';
+import { HeaderTypoStyle } from 'types/typo-style';
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
-import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
+import { EmptyObject, OptionSetMulti, OptionSetSingle } from 'types/util-types';
 import { Area } from 'types/areas';
 
 export type HeaderWithAnchorMixin = {

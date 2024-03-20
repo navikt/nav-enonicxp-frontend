@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import {
     FormIntermediateStepPageProps,
     StepDetails,
@@ -11,8 +11,8 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
-import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
-import { ProcessedHtmlProps } from '../../../types/processed-html-props';
+import { ContentPropsForThemedPageHeader } from 'components/_common/headers/themed-page-header/themedPageHeaderUtils';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 import style from './FormIntermediateStepPage.module.scss';
 

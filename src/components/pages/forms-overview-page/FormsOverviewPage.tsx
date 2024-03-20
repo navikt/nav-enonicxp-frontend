@@ -6,7 +6,7 @@ import {
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header/FormsOverviewHeader';
 import Region from 'components/layouts/Region';
-import { IllustrationStatic } from '../../_common/illustration/static/IllustrationStatic';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { classNames } from 'utils/classnames';

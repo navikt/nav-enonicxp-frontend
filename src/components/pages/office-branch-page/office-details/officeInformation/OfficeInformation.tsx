@@ -1,8 +1,8 @@
 import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
-import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
-import { translator } from '../../../../../translations';
-import { OfficeDetailsData } from '../../../../../types/content-props/office-details-props';
-import { officeDetailsFormatAddress } from '../utils';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { translator } from 'translations';
+import { OfficeDetailsData } from 'types/content-props/office-details-props';
+import { officeDetailsFormatAddress } from 'components/pages/office-branch-page/office-details/utils';
 
 import styles from './OfficeInformation.module.scss';
 

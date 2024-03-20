@@ -8,7 +8,7 @@ import {
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { OpeningHours } from './OpeningHours';
 import { forceArray } from 'utils/arrays';
-import { officeDetailsFormatAddress } from '../../../../pages/office-branch-page/office-details/utils';
+import { officeDetailsFormatAddress } from 'components/pages/office-branch-page/office-details/utils';
 
 import style from './Reception.module.scss';
 

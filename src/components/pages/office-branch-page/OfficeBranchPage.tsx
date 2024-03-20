@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficeBranchPageProps } from 'types/content-props/dynamic-page-props';
 import { OfficePageHeader } from './office-page-header/OfficePageHeader';
 import { OfficeDetails } from './office-details/OfficeDetails';

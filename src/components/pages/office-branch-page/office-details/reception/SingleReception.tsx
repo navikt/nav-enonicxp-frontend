@@ -5,18 +5,18 @@ import {
     InformationSquareFillIcon,
     HouseFillIcon,
 } from '@navikt/aksel-icons';
-import { classNames } from '../../../../../utils/classnames';
-import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
-import { translator } from '../../../../../translations';
+import { classNames } from 'utils/classnames';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { translator } from 'translations';
 import {
     AudienceReception,
     OpeningHours as OpeningHoursProps,
-} from '../../../../../types/content-props/office-details-props';
+} from 'types/content-props/office-details-props';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatAudienceReception,
     officeDetailsGetFutureOpeningExceptions,
-} from '../utils';
+} from 'components/pages/office-branch-page/office-details/utils';
 import { OpeningHours } from './OpeningHours';
 
 import style from './SingleReception.module.scss';

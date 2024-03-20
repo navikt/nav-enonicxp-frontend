@@ -1,12 +1,12 @@
 import React from 'react';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
-import { joinWithConjunction } from '../../../../utils/string';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { joinWithConjunction } from 'utils/string';
 import {
     AudienceReception,
     OfficeDetailsData,
-} from '../../../../types/content-props/office-details-props';
+} from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
 

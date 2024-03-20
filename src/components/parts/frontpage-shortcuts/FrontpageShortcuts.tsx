@@ -1,11 +1,11 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { FrontpageShortcutsProps } from 'types/component-props/parts/frontpage-shortcuts';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
+import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
-import { IllustrationStatic } from '../../_common/illustration/static/IllustrationStatic';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 
 import style from './FrontpageShortcuts.module.scss';
 

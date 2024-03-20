@@ -4,13 +4,13 @@ import { SpecialInformation } from './SpecialInfo';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatPhoneNumber,
-} from '../../../pages/office-branch-page/office-details/utils';
+} from 'components/pages/office-branch-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
-import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
+import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { OfficeInformationProps } from 'types/content-props/office-information-props';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
 
 import style from './OfficeInformation.module.scss';

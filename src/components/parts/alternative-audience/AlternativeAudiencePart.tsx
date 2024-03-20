@@ -2,7 +2,7 @@ import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { AlternativeAudienceProps } from 'types/component-props/parts/alternative-audience';
-import { ContentType } from '../../../types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 
 export const AlternativeAudiencePart = ({
     config,

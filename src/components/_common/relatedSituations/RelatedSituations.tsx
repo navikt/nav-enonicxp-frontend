@@ -1,11 +1,11 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { MicroCard } from '../card/MicroCard';
+import { MicroCard } from 'components/_common/card/MicroCard';
 import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
 import { classNames } from 'utils/classnames';
-import { SituationPageProps } from '../../../types/content-props/dynamic-page-props';
+import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 import style from './RelatedSituations.module.scss';
 

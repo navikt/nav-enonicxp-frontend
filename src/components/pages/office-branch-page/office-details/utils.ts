@@ -2,8 +2,8 @@ import {
     Address,
     AudienceReception,
     OpeningHours as OpeningHoursProps,
-} from '../../../../types/content-props/office-details-props';
-import { LegacyOfficeAddress as LegacyAddress } from '../../../../types/content-props/office-information-props';
+} from 'types/content-props/office-details-props';
+import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
 
 export const officeDetailsFormatAddress = (
     address?: Address | LegacyAddress,
