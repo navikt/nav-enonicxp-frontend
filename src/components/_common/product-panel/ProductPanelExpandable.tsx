@@ -6,7 +6,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './ProductPanelExpandable.module.scss';
 
@@ -37,7 +37,7 @@ export const ProductPanelExpandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const loadingText = translator('overview', language)('loading');
 
     const anchorIdWithHash = `#${anchorId}`;

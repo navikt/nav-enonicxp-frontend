@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { LinkIcon } from '@navikt/aksel-icons';
@@ -24,7 +24,7 @@ export const CopyLink = ({
     className,
 }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
     const getLabel = translator('header', language);
 

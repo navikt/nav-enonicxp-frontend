@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { classNames } from '../../../../utils/classnames';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import { translator } from 'translations';
 import { CurrentTopicPageProps } from '../../../../types/content-props/dynamic-page-props';
@@ -17,7 +17,7 @@ type Props = {
 
 export const NewsHeader = ({ contentProps }: Props) => {
     const { displayName, createdTime, modifiedTime, data } = contentProps;
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;
 
     const getFeaturedTranslations = translator('currentTopic', language);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { useLayoutEffectClientSide } from 'utils/react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
@@ -20,7 +20,7 @@ export const AuthDependantRender = ({
     children,
     renderOn = 'always',
 }: Props) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
     const { authState } = useAuthState();
     const [shouldRender, setShouldRender] = useState(renderOn !== 'loggedIn');
 

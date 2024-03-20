@@ -3,7 +3,7 @@ import { Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { Taxonomy } from 'types/taxonomies';
 import { translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import styles from './OverviewFilterBase.module.scss';
 
@@ -28,7 +28,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
     selected,
     options,
 }: Props<Type>) => {
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
 
     const translations = translator('overview', language)(type);
     const optionsTranslations = translator(type, language) as (

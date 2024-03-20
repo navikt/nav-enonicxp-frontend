@@ -1,5 +1,5 @@
 import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { formatAddress } from '../utils';
@@ -11,7 +11,7 @@ export interface OfficeInformationProps {
 }
 
 export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const getOfficeTranslations = translator('office', language);
 
     const title = getOfficeTranslations('officeInformation');

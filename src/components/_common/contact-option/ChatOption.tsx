@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
@@ -27,7 +27,7 @@ export const ChatOption = (props: ChatData) => {
     } = props;
     const overrideText = specialOpeningHours?.overrideText;
 
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
 
     const translations = translator('contactPoint', language)('chat');

@@ -10,7 +10,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 import { LenkeInline } from '../lenke/LenkeInline';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import styles from './AlternativeAudience.module.scss';
 
@@ -30,7 +30,7 @@ export const AlternativeAudience = ({
     productName,
     showProductName,
 }: AlternativeAudienceProps) => {
-    const { language, editorView } = usePageContextProps();
+    const { language, editorView } = usePageContentProps();
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);

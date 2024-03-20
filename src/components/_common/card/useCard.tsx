@@ -8,7 +8,7 @@ import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { useClient } from 'utils/useClient';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -50,7 +50,7 @@ export const useCard = ({
     const [isHovering, setIsHovering] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
     const { hasTouch, hasMouse } = useClient();
 
     const { layoutConfig } = useLayoutConfig();

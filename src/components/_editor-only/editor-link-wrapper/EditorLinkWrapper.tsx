@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { getRelativePathIfInternal } from 'utils/urls';
 
 //
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const EditorLinkWrapper = ({ children }: Props) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     if (editorView !== 'edit') {
         return <>{children}</>;

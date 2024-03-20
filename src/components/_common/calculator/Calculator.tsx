@@ -9,7 +9,7 @@ import {
     CalculatorData,
     CalculatorFieldData,
 } from 'types/component-props/parts/calculator';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
@@ -73,7 +73,7 @@ type Props = {
 export const Calculator = ({ header, calculatorData }: Props) => {
     const { fields, useThousandSeparator } = calculatorData;
 
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
 
     const [fieldValues, setFieldValues] = useState<FieldRecord>(
         populateDefaultValues(fields)

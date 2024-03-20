@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroSaksbehandlingstidProps } from '../../../types/macro-props/saksbehandlingstid';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from '../../../translations';
 import { GlobalCaseTimeUnit } from '../../../types/content-props/global-values-props';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
@@ -22,7 +22,7 @@ export const MacroSaksbehandlingstid = ({
 }: MacroSaksbehandlingstidProps) => {
     const macroData = config?.saksbehandlingstid?.caseTime;
 
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
 
     if (!macroData) {
         return (

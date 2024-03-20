@@ -8,7 +8,7 @@ import { TargetPage } from 'types/component-props/parts/product-card';
 import { CardProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { BodyShort } from '@navikt/ds-react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import sharedStyle from './Card.module.scss';
 import style from './MicroCard.module.scss';
@@ -40,7 +40,7 @@ type Props = {
 };
 
 export const MicroCards = ({ header, card_list }: Props) => {
-    const content = usePageContextProps();
+    const content = usePageContentProps();
 
     const cardProps = card_list.reduce<CardProps[]>((acc, card) => {
         const props = getCardProps(card, content);

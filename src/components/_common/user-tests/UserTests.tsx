@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { UserTestsEditorView } from 'components/_common/user-tests/editor-view/UserTestsEditorView';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
 import { UserTestsConfigData } from 'types/content-props/user-tests-config';
@@ -14,7 +14,7 @@ export type UserTestsComponentProps = {
 };
 
 export const UserTests = (props: UserTestsComponentProps) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     return (
         <div className={style.wrapper}>

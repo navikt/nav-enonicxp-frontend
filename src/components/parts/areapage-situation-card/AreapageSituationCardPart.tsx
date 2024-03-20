@@ -5,14 +5,14 @@ import { AreapageSituationCardPartProps } from 'types/component-props/parts/area
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './AreapageSituationCardPart.module.scss';
 
 export const AreapageSituationCardPart = ({
     config,
 }: AreapageSituationCardPartProps) => {
-    const pageContext = usePageContextProps();
+    const pageContext = usePageContentProps();
     if (!config?.target?._id) {
         return (
             <EditorHelp

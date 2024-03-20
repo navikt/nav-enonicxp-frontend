@@ -4,7 +4,7 @@ import { translator } from 'translations';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
@@ -20,7 +20,7 @@ export const FormIntermediateStepPage = (
     const { data } = props;
     const router = useRouter();
 
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const [prevSelectedStep, setPrevSelectedStep] = useState<number | null>(
         null
     );

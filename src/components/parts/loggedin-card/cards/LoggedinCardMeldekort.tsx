@@ -3,13 +3,13 @@ import { LoggedInCardTypeProps } from '../../../../types/component-props/parts/l
 import { useAuthState } from '../../../../store/hooks/useAuthState';
 import { getSelectableLinkProps } from '../../../../utils/links-from-content';
 import { AreaCard } from '../../../_common/area-card/AreaCard';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 type Props = LoggedInCardTypeProps['meldekort'];
 
 export const LoggedinCardMeldekort = ({ link }: Props) => {
     const { meldekortStatus } = useAuthState();
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     if (!meldekortStatus?.isMeldekortBruker && !editorView) {
         return null;

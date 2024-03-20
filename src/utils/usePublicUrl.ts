@@ -4,7 +4,7 @@ import {
     isInternalUrl,
     stripXpPathPrefix,
 } from './urls';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 type ReturnValue = {
     url: string;
@@ -12,7 +12,7 @@ type ReturnValue = {
 };
 
 export const usePublicUrl = (href: string): ReturnValue => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     if (isInternalUrl(href)) {
         const internalPath = getInternalRelativePath(href, !!editorView);

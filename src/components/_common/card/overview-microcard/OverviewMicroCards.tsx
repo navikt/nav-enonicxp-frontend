@@ -3,7 +3,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { isNorwegianLanguage } from 'utils/languages';
 import { OverviewPageProductLink } from 'types/content-props/overview-props';
 
@@ -63,7 +63,7 @@ type Props = {
 };
 
 export const OverviewMicroCards = ({ productLinks, className }: Props) => {
-    const { language: pageLanguage } = usePageContextProps();
+    const { language: pageLanguage } = usePageContentProps();
 
     if (productLinks.length === 0) {
         return null;

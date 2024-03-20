@@ -6,7 +6,7 @@ import {
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
@@ -32,7 +32,7 @@ const StaticIcon = ({
     isEditorView: boolean;
     className?: string;
 }) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     const ref = useRef<HTMLSpanElement>();
 
@@ -77,7 +77,7 @@ type Props = {
 };
 
 export const IllustrationStatic = ({ illustration, className }: Props) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     if (!illustration) {
         return null;

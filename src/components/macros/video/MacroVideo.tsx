@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MacroVideoProps } from 'types/macro-props/video';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { QbrickVideo } from '../../_common/qbrick-video/QbrickVideo';
 import {
     buildQbrickVideoProps,
@@ -20,7 +20,7 @@ const buildVideoProps = (
 };
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
 
     const [videoProps, setVideoProps] = useState<QbrickVideoProps | null>(
         buildVideoProps(config, language)

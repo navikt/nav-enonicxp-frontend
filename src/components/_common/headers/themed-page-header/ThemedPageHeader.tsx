@@ -4,7 +4,7 @@ import { PageHeader } from '../page-header/PageHeader';
 import { formatDate } from 'utils/datetime';
 import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
     ContentPropsForThemedPageHeader,

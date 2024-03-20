@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
 
@@ -16,7 +16,7 @@ type Props = {
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { setTextFilter } = useOverviewFilters();
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const inputId = useId();
 
     const [textInput, setTextInput] = useState('');

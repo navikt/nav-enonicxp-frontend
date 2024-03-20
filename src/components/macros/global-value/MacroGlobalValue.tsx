@@ -1,11 +1,11 @@
 import React from 'react';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { MacroGlobalValueProps } from 'types/macro-props/global-value';
 import { formatNumber, isStringOnlyNumber } from 'utils/math';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     if (!config?.global_value) {
         return (
             <EditorHelp

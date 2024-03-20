@@ -6,7 +6,7 @@ import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './MainArticleChapterNavigation.module.scss';
 
@@ -32,7 +32,7 @@ const getChapters = (contentProps: ContentProps) => {
 };
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
-    const { language } = usePageContextProps();
+    const { language } = usePageContentProps();
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {
         return null;

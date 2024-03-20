@@ -7,7 +7,7 @@ import {
 } from 'types/component-props/parts/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
@@ -32,7 +32,7 @@ export const ContactOptionPart = ({
     config,
     pageProps,
 }: ContactOptionProps) => {
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     const channel = config?.contactOptions?._selected;
     if (!channel) {

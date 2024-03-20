@@ -7,7 +7,7 @@ import { Illustration } from '../illustration/Illustration';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
-import { usePageContextProps } from 'store/pageContext';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';
@@ -52,7 +52,7 @@ export const LargeCard = (props: Props) => {
         link,
     });
 
-    const { editorView } = usePageContextProps();
+    const { editorView } = usePageContentProps();
 
     const layoutVariation =
         type === CardType.Situation
