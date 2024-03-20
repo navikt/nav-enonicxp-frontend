@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+import {
+    CompoundedSteps,
+    FirstLevelStep,
+    FormIntermediateStepPageProps,
+    SecondLevelStep,
+} from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
+import { stripXpPathPrefix } from 'utils/urls';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -55,23 +61,24 @@ export const FormIntermediateStepPage = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getStepData = () => {
-        if (prevSelectedStep !== null) {
-            const stepDetails = data.steps[prevSelectedStep].nextStep;
-            if (stepDetails?._selected === 'next') {
-                return stepDetails.next;
-            }
+    const getStepData = (): CompoundedSteps => {
+        if (prevSelectedStep === null) {
+            return {
+                editorial: data.editorial,
+                stepsHeadline: data.stepsHeadline,
+                steps: data.steps,
+            };
         }
 
-        return {
-            editorial: data.editorial,
-            stepsHeadline: data.stepsHeadline,
-            steps: data.steps,
-        };
+        const stepDetails = data.steps[prevSelectedStep].nextStep;
+        return stepDetails?._selected === 'next' ? stepDetails.next : null;
     };
 
-    const getOnClickFromStep = (step, index: number) => {
-        return step.nextStep?._selected === 'external'
+    const getOnClickFromStep = (
+        step: FirstLevelStep | SecondLevelStep,
+        index: number
+    ) => {
+        return step.nextStep?._selected !== 'next'
             ? undefined
             : (e: React.MouseEvent) => {
                   e.preventDefault();
@@ -85,8 +92,18 @@ export const FormIntermediateStepPage = (
               };
     };
 
-    const getHrefFromStep = (step) => {
-        return step.nextStep?.external?.externalUrl || router.asPath;
+    const getUrlFromStep = (step: FirstLevelStep | SecondLevelStep) => {
+        if (step.nextStep?._selected === 'external') {
+            return step.nextStep?.external?.externalUrl;
+        }
+
+        if (step.nextStep?._selected === 'internal') {
+            return stripXpPathPrefix(
+                step.nextStep?.internal?.internalContent._path
+            );
+        }
+
+        return router.asPath;
     };
 
     const themedPageHeaderProps: ContentPropsForThemedPageHeader = {
@@ -114,49 +131,44 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={style.stepList}>
-                        {currentStepData.steps.map(
-                            (step: any, index: number) => {
-                                return (
-                                    <li
-                                        key={step.label}
-                                        className={style.stepItem}
-                                    >
-                                        {step.languageDisclaimer && (
-                                            <InfoBox>
-                                                {step.languageDisclaimer}
-                                            </InfoBox>
+                        {currentStepData.steps.map((step, index: number) => {
+                            return (
+                                <li key={step.label} className={style.stepItem}>
+                                    {step.languageDisclaimer && (
+                                        <InfoBox>
+                                            {step.languageDisclaimer}
+                                        </InfoBox>
+                                    )}
+                                    <LinkPanel
+                                        href={getUrlFromStep(step)}
+                                        onClick={getOnClickFromStep(
+                                            step,
+                                            index
                                         )}
-                                        <LinkPanel
-                                            href={getHrefFromStep(step)}
-                                            onClick={getOnClickFromStep(
-                                                step,
-                                                index
-                                            )}
-                                            className={style.stepAction}
-                                            as={(props) => (
-                                                <LenkeBase
-                                                    analyticsComponent="mellomsteg"
-                                                    analyticsLinkGroup={
-                                                        currentStepData.stepsHeadline
-                                                    }
-                                                    analyticsLabel={step.label}
-                                                    {...props}
-                                                >
-                                                    {props.children}
-                                                </LenkeBase>
-                                            )}
-                                        >
-                                            <LinkPanel.Title>
-                                                {step.label}
-                                            </LinkPanel.Title>
-                                            <LinkPanel.Description>
-                                                {step.explanation}
-                                            </LinkPanel.Description>
-                                        </LinkPanel>
-                                    </li>
-                                );
-                            }
-                        )}
+                                        className={style.stepAction}
+                                        as={(props) => (
+                                            <LenkeBase
+                                                analyticsComponent="mellomsteg"
+                                                analyticsLinkGroup={
+                                                    currentStepData.stepsHeadline
+                                                }
+                                                analyticsLabel={step.label}
+                                                {...props}
+                                            >
+                                                {props.children}
+                                            </LenkeBase>
+                                        )}
+                                    >
+                                        <LinkPanel.Title>
+                                            {step.label}
+                                        </LinkPanel.Title>
+                                        <LinkPanel.Description>
+                                            {step.explanation}
+                                        </LinkPanel.Description>
+                                    </LinkPanel>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
                 {prevSelectedStep !== null && (
