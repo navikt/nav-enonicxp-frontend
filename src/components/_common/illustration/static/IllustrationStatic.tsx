@@ -2,15 +2,18 @@ import React, { useId } from 'react';
 import {
     AnimatedIcon,
     AnimatedIconsProps,
-} from '../../../../types/content-props/animated-icons';
-import { getMediaUrl } from '../../../../utils/urls';
-import { classNames } from '../../../../utils/classnames';
-import { buildImageCacheUrl, NextImageProps } from '../../image/NextImage';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
-import { XpImage } from '../../image/XpImage';
-import { useSWRImmutableOnScrollIntoView } from '../../../../utils/fetch/useSWRImmutableOnScrollIntoView';
+} from 'types/content-props/animated-icons';
+import { getMediaUrl } from 'utils/urls';
+import { classNames } from 'utils/classnames';
+import {
+    buildImageCacheUrl,
+    NextImageProps,
+} from 'components/_common/image/NextImage';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { XpImage } from 'components/_common/image/XpImage';
+import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
-import styleCommon from '../Illustration.module.scss';
+import styleCommon from 'components/_common/illustration/Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
 
 type DefinedIcon = Required<NonNullable<AnimatedIcon['icon']>>;
