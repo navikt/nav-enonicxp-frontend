@@ -78,7 +78,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             pageProps.editorView === 'edit');
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            className={styles.pageWithSideMenus}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
             <div className={styles.topRow}>
                 {(leftMenuToggle || shouldRenderTopContentRegion) && (
                     <div className={styles.leftCol}>

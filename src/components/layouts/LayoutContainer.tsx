@@ -44,8 +44,6 @@ export const LayoutContainer = ({
             className={classNames(
                 style.layout,
                 bem(layoutName),
-                layoutName === 'page-with-side-menus' && //TODO finn en bedre løsning?
-                    style.pageWithSideMenus,
                 ...(modifiers
                     ? modifiers.map((mod) => bem(layoutName, mod))
                     : []),
