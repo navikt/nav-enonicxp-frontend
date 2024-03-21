@@ -3,7 +3,7 @@ import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { OfficeDetailsProps } from '../OfficeDetails';
 import { translator } from 'translations';
 import { formatPhoneNumber } from '../utils';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { PhoneFillIcon } from '@navikt/aksel-icons';
 import { forceArray } from 'utils/arrays';
 import { AudienceChannels } from './AudienceChannels';
@@ -15,7 +15,7 @@ import styles from './PhonePoster.module.scss';
 const humanReadablePhoneNumber = formatPhoneNumber(Config.vars.hovedNummer);
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const publikumskanaler = forceArray(
         officeData.brukerkontakt?.publikumskanaler
     );

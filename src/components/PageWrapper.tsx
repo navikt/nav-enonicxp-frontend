@@ -18,7 +18,6 @@ import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from 'utils/urls';
 import { store } from 'store/store';
-import { setPageConfigAction } from 'store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
@@ -40,16 +39,6 @@ export const PageWrapper = (props: Props) => {
     const isEditorView = !!content.editorView;
 
     const router = useRouter();
-
-    store.dispatch(
-        setPageConfigAction({
-            pageId: content._id,
-            language: content.language,
-            isPagePreview: content.isPagePreview,
-            editorView: content.editorView,
-            audience: content.data?.audience?._selected,
-        })
-    );
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio

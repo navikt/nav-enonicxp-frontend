@@ -3,7 +3,7 @@ import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { Reception } from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { PhonePoster } from './phonePoster/PhonePoster';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
 import { forceArray } from 'utils/arrays';
@@ -15,7 +15,7 @@ export interface OfficeDetailsProps {
 }
 
 export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { brukerkontakt } = officeData;
     const getOfficeTranslations = translator('office', language);
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
@@ -12,7 +12,7 @@ import style from './OverviewPage.module.scss';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const [filteredList, setFilteredList] = useState(productList);
 
