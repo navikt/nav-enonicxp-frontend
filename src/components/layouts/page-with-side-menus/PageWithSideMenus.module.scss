@@ -5,6 +5,7 @@ $sideMenusMaxWidth: common.px-to-rem(288);
 
 $sectionGutterLarge: 1.5rem;
 $sectionGutterSmall: 0.75rem;
+$verticalMargin: 1.75rem;
 
 .topRow {
     display: flex;
@@ -64,13 +65,6 @@ $sectionGutterSmall: 0.75rem;
 }
 
 .pageWithSideMenus {
-    //TODO variabler duplikat
-
-    $sectionMaxWidth: common.px-to-rem(600);
-
-    $sectionGutterSmall: 0.75rem;
-    $verticalMargin: 1.75rem;
-
     max-width: common.px-to-rem(1080);
     margin: 0 auto;
 
