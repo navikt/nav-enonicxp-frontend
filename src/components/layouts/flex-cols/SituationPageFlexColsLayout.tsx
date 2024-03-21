@@ -53,7 +53,7 @@ export const SituationPageFlexColsLayout = ({
 
     return (
         <LayoutContainer
-            className={style.layoutSituationOrProduct}
+            className={`${style.layoutSituationOrProduct} ${style.layoutSituation}`}
             pageProps={pageProps}
             layoutProps={layoutProps}
             modifiers={buildModifiers()}

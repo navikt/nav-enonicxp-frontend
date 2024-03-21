@@ -43,8 +43,6 @@
 }
 
 .layoutSituationOrProduct {
-    background-color: var(--a-green-100);
-
     $singleColMaxWidth: calc(
         #{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile}
     );
@@ -94,4 +92,8 @@
             @include common.flex-cols-mixin(2);
         }
     }
+}
+
+.layoutSituation {
+    background-color: var(--a-green-100);
 }
