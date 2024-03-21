@@ -4,7 +4,7 @@ import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { LayoutProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
@@ -38,14 +38,14 @@ export const OverviewProductDetailsPanel = ({
     const [productDetailsPage, setProductDetailsPage] =
         useState<LayoutProps | null>(null);
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const detailTypeStrings = translator('productDetailTypes', language);
 
     const isSimpleOverview = detailType === ProductDetailType.ALL_PRODUCTS;
 
     const handleProductDetailsFetch = () => {
-        if (isLoading || productDetailsPage) {
+        if (isLoading || productDetailsPage || !productDetailsPath) {
             return;
         }
 

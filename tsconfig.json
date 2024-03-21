@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
+        "strict": false,
         "target": "es2022",
         "allowJs": true,
-        "strict": false,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
         "esModuleInterop": true,

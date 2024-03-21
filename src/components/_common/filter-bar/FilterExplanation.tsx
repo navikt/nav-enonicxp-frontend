@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef, useId } from 'react';
 import { classNames } from '../../../utils/classnames';
-import { InformationSquareIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
+import {
+    InformationSquareIcon,
+    InformationSquareFillIcon,
+} from '@navikt/aksel-icons';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './FilterExplanation.module.scss';
 
-interface FilterExplanationProps {
+type FilterExplanationProps = {
     selectedFilters: string[];
     availableFilters: string[];
-}
+};
 
 export const FilterExplanation = ({
     selectedFilters,
@@ -19,9 +22,11 @@ export const FilterExplanation = ({
     const [selectCount, setSelectCount] = useState(0);
     const [showHighlight, setShowHighlight] = useState(false);
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
-    const highlightTimeoutRef = useRef(null);
+    const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+        null
+    );
     const relevantSelectedFilters = selectedFilters.filter((filterId) =>
         availableFilters.includes(filterId)
     );

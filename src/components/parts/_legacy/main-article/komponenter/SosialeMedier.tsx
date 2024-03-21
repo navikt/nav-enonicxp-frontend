@@ -2,15 +2,13 @@ import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
 } from 'components/_common/contact-option/opening-info/helpers/iconUtils';
 
 import style from './SosialeMedier.module.scss';
-
-type LinkData = { type: string; text: string; href: string };
 
 const sosialMediaName = {
     linkedin: 'LinkedIn',
@@ -36,13 +34,9 @@ const getSocialmediaShareUrl = (
     return encodeURI(shareUrl[socialMediaType]) || null;
 };
 
-type Props = {
-    social: SocialMedia[];
-    displayName: string;
-    contentPath: string;
-};
+type LinkProps = { type: string; text: string; href: string };
 
-const Icon = ({ type, text, href }) => {
+const SosialeMedierLink = ({ type, text, href }: LinkProps) => {
     const { isActive, handlers } = useHoverAndFocus();
 
     return (
@@ -64,18 +58,24 @@ const Icon = ({ type, text, href }) => {
     );
 };
 
+type Props = {
+    social: SocialMedia[];
+    displayName: string;
+    contentPath: string;
+};
+
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     if (social.length === 0) {
         return null;
     }
 
-    const linksData = social.reduce<LinkData[]>((acc, socialMediaType) => {
+    const linkProps = social.reduce<LinkProps[]>((acc, socialMediaType) => {
         const url = getSocialmediaShareUrl(
             socialMediaType,
             displayName,
-            getInternalAbsoluteUrl(contentPath, !!pageConfig.editorView)
+            getInternalAbsoluteUrl(contentPath, !!editorView)
         );
 
         if (url) {
@@ -92,8 +92,8 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     return (
         <section className={style.socialMedia}>
             <ul>
-                {linksData.map((item) => (
-                    <Icon key={item.type} {...item} />
+                {linkProps.map((item) => (
+                    <SosialeMedierLink key={item.type} {...item} />
                 ))}
             </ul>
         </section>

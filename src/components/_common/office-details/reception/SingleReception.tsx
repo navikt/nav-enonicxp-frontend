@@ -5,7 +5,7 @@ import {
     HouseFillIcon,
 } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import {
     AudienceReception,
@@ -25,7 +25,7 @@ interface FormattedAudienceReception {
 }
 
 export const SingleReception = (props: AudienceReception) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const getLabel = translator('office', language);
 

@@ -6,8 +6,8 @@ import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from '../illustration/Illustration';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useCard } from './useCard';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';
@@ -17,7 +17,14 @@ enum LayoutVariation {
     SITUATION = 'Situation',
 }
 
-export type StortKortProps = {
+const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
+    CardType.Product,
+    CardType.Situation,
+    CardType.ThemedArticle,
+    CardType.Guide,
+]);
+
+type Props = {
     category?: string;
     description?: string;
     illustration?: AnimatedIconsProps;
@@ -26,7 +33,7 @@ export type StortKortProps = {
     preferStaticIllustration?: boolean;
 };
 
-export const LargeCard = (props: StortKortProps) => {
+export const LargeCard = (props: Props) => {
     const {
         link,
         description,
@@ -37,12 +44,7 @@ export const LargeCard = (props: StortKortProps) => {
     } = props;
     const { text } = link;
 
-    const hasIllustration =
-        illustration &&
-        (type === CardType.Product ||
-            type === CardType.Situation ||
-            type === CardType.ThemedArticle ||
-            type === CardType.Guide);
+    const hasIllustration = illustration && cardTypesWithIllustration.has(type);
 
     const { isHovering, userEventProps, analyticsProps } = useCard({
         type,
@@ -50,7 +52,7 @@ export const LargeCard = (props: StortKortProps) => {
         link,
     });
 
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     const layoutVariation =
         type === CardType.Situation
@@ -72,7 +74,7 @@ export const LargeCard = (props: StortKortProps) => {
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
-                                pageConfig.editorView === 'edit' ||
+                                editorView === 'edit' ||
                                 preferStaticIllustration
                             }
                         />

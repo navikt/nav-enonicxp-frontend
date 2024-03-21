@@ -58,7 +58,7 @@ test('kompleks matte med paranteser', () => {
 test('should evaluate a simple expression', () => {
     const expression = '2 + 2';
     const decimals = 0;
-    const variables = [];
+    const variables: number[] = [];
     const language: Language = 'no';
 
     const result = evaluateExpression(

@@ -6,7 +6,7 @@ import Region from '../Region';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: SingleColPageProps;
+    layoutProps: SingleColPageProps;
 };
 
 export const SingleColPage = ({ pageProps, layoutProps }: Props) => {

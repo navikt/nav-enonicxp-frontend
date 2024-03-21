@@ -8,17 +8,10 @@ import {
 import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
 import { IndexPageProps } from '../../../types/component-props/pages/index-page';
 import { AreaPageHeader } from './area-page/AreaPageHeader';
-
-import style from './IndexPage.module.scss';
 import { getAudience } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 
-const contentTypeSpecificComponent: {
-    [key in ContentType]?: React.FunctionComponent<{ content: ContentProps }>;
-} = {
-    [ContentType.FrontPage]: FrontPageAreaNavigation,
-    [ContentType.AreaPage]: AreaPageHeader,
-};
+import style from './IndexPage.module.scss';
 
 type Props = {
     pageProps: ContentProps;
@@ -29,9 +22,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
     const { type } = pageProps;
     const { regions } = layoutProps;
 
-    const MiddleComponent = contentTypeSpecificComponent[type];
-
-    const hasNoTopGap = getAudience(pageProps.data.audience) !== 'person';
+    const hasNoTopGap = getAudience(pageProps.data?.audience) !== 'person';
 
     return (
         <LayoutContainer
@@ -50,7 +41,11 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
                         regionProps={regions.contentTop}
                     />
                 )}
-                {MiddleComponent && <MiddleComponent content={pageProps} />}
+                {type === ContentType.FrontPage ? (
+                    <FrontPageAreaNavigation content={pageProps} />
+                ) : type === ContentType.AreaPage ? (
+                    <AreaPageHeader content={pageProps} />
+                ) : null}
                 <Region
                     className={style.contentBottom}
                     pageProps={pageProps}

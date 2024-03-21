@@ -41,7 +41,7 @@ export const AlternativeAudiencePart = ({
     return (
         <AlternativeAudience
             alternativeAudience={alternativeAudience}
-            productName={pageProps.displayName || pageProps.data?.title}
+            productName={pageProps.data?.title || pageProps.displayName}
             showProductName={config?.showProductName}
         />
     );

@@ -1,16 +1,16 @@
 import React from 'react';
-import { PageHeaderProps } from '../../../types/component-props/parts/page-header';
+import { PageHeaderProps } from 'types/component-props/parts/page-header';
 import { PageHeader } from '../../_common/headers/page-header/PageHeader';
-
-import styles from './PageHeaderPart.module.scss';
 import { classNames } from 'utils/classnames';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 
+import style from './PageHeaderPart.module.scss';
+
 export const PageHeaderPart = (props: PageHeaderProps) => {
     const { config, pageProps } = props;
-    const { type } = pageProps;
-    const { audience } = pageProps.data;
+    const { type, data } = pageProps;
+    const audience = data?.audience;
 
     const isProviderSubPage =
         type === ContentType.FrontPageNested &&
@@ -19,11 +19,11 @@ export const PageHeaderPart = (props: PageHeaderProps) => {
     return (
         <div
             className={classNames(
-                styles.wrapper,
-                isProviderSubPage && styles.providerSubPage
+                style.wrapper,
+                isProviderSubPage && style.providerSubPage
             )}
         >
-            <PageHeader className={classNames(styles.pageHeader)}>
+            <PageHeader className={classNames(style.pageHeader)}>
                 {config.title}
             </PageHeader>
         </div>

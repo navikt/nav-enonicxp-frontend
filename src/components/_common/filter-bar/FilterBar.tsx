@@ -3,36 +3,36 @@ import { Heading } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
-import { useScrollPosition } from 'store/hooks/useStickyScroll';
+import { useScrollPosition } from 'utils/useStickyScroll';
 import { Category, Filter } from 'types/component-props/parts/filter-menu';
 
 import style from './FilterBar.module.scss';
 
 type FilterWithCategory = Filter & Pick<Category, 'categoryName'>;
 
-type FilterBarProps = {
+type Props = {
     layoutProps: SectionWithHeaderProps;
 };
 
-export const FilterBar = ({ layoutProps }: FilterBarProps) => {
+export const FilterBar = ({ layoutProps }: Props) => {
     const filterBarRef = useRef(null);
     const { content, intro } = layoutProps.regions;
     const components = [
         ...(content ? content.components : []),
         ...(intro ? intro.components : []),
     ];
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const getLabel = translator('filteredContent', language);
 
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
 
     const { saveScrollPosition, scrollBackToElement } = useScrollPosition(
-        filterBarRef?.current
+        filterBarRef.current
     );
 
     const [filtersToDisplay, setFiltersToDisplay] = useState<
@@ -43,9 +43,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         // Create a flat array of all ids that any
         // underlying part that has filter ids attached.
         // We don't care about duplicate ids in the final array at the moment.
-        const filterIds = components.reduce((acc, component) => {
+        const filterIds = components.reduce<string[]>((acc, component) => {
             if (component.config?.filters) {
-                return [...acc, ...component.config.filters];
+                acc.push(...component.config.filters);
             }
 
             return acc;

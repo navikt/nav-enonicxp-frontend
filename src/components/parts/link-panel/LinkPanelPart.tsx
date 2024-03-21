@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
-import { Heading, Panel } from '@navikt/ds-react';
+import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
@@ -8,18 +8,18 @@ import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from '../../_common/image/NextImage';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './LinkPanelPart.module.scss';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;
     }
 
-    const isEditorView = !!pageConfig.editorView;
+    const isEditorView = !!editorView;
 
     const { link, ingress, background, icon, variant } = config;
 
@@ -39,7 +39,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         : 'link-panel';
 
     return (
-        <Panel
+        <LinkPanel
             href={linkProps.url}
             className={classNames(
                 style.linkPanel,
@@ -58,16 +58,9 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                       }
                     : undefined
             }
-            as={(props) => (
-                <LenkeBase
-                    href={props.href}
-                    analyticsLabel={linkProps.text}
-                    analyticsComponent={legacyAnalyticsComponentLabel}
-                    {...props}
-                >
-                    {props.children}
-                </LenkeBase>
-            )}
+            analyticsLabel={linkProps.text}
+            analyticsComponent={legacyAnalyticsComponentLabel}
+            as={LenkeBase}
         >
             <div className={style.innhold}>
                 <div className={style.header}>
@@ -101,6 +94,6 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 </div>
                 <div className={style.ingress}>{ingress}</div>
             </div>
-        </Panel>
+        </LinkPanel>
     );
 };

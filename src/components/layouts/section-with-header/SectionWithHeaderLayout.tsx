@@ -11,11 +11,13 @@ import { SectionNavigation } from './section-navigation/SectionNavigation';
 
 import style from './SectionWithHeaderLayout.module.scss';
 
+type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
+
 const getBorderStyle = ({
     color = '#ffffff',
     width = 3,
     rounded,
-}: SectionWithHeaderProps['config']['border']) => ({
+}: BorderProps) => ({
     boxShadow: `0 0 0 ${width}px ${color} inset`,
     ...(rounded && { borderRadius: `${width * 3}px` }),
 });
@@ -55,7 +57,9 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
-            className={`${style.container} ${!!iconImgProps && style.withIcon}`}
+            className={`${style.container} ${
+                iconImgProps ? style.withIcon : ''
+            }`}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}

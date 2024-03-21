@@ -7,7 +7,7 @@ import {
 } from 'types/component-props/parts/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
@@ -32,14 +32,14 @@ export const ContactOptionPart = ({
     config,
     pageProps,
 }: ContactOptionProps) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     const channel = config?.contactOptions?._selected;
     if (!channel) {
         return <EditorHelp text={'Velg kontaktkanal fra listen til høyre'} />;
     }
 
-    const { audience } = pageProps.data;
+    const audience = pageProps.data?.audience;
 
     const channelData = config.contactOptions[channel];
 
@@ -50,7 +50,7 @@ export const ContactOptionPart = ({
     const { sharedContactInformation, ingress } = channelData;
 
     if (!sharedContactInformation) {
-        return pageConfig.editorView === 'edit' ? (
+        return editorView === 'edit' ? (
             <EditorHelp text={editorHelpText[channel]} />
         ) : (
             <DefaultOption {...channelData} channel={channel} />
@@ -62,7 +62,10 @@ export const ContactOptionPart = ({
             return (
                 <WriteOption
                     {...sharedContactInformation.data.contactType.write}
-                    {...(ingress && { ingress })}
+                    ingress={
+                        ingress ||
+                        sharedContactInformation.data.contactType.write?.ingress
+                    }
                 />
             );
         }
@@ -70,7 +73,10 @@ export const ContactOptionPart = ({
             return (
                 <ChatOption
                     {...sharedContactInformation.data.contactType.chat}
-                    {...(ingress && { ingress })}
+                    ingress={
+                        ingress ||
+                        sharedContactInformation.data.contactType.chat?.ingress
+                    }
                 />
             );
         }
@@ -78,7 +84,7 @@ export const ContactOptionPart = ({
             return (
                 <CallOption
                     {...sharedContactInformation.data.contactType.telephone}
-                    {...(ingress && { ingress })}
+                    ingress={ingress}
                     audience={audience}
                 />
             );

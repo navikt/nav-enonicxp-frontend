@@ -4,7 +4,7 @@ import { classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import style from './LenkepanelNavNo.module.scss';
 
-export type LenkepanelProps = {
+type Props = {
     href: string;
     tittel: string;
     ikon?: React.ReactNode;
@@ -27,26 +27,20 @@ const LenkepanelNavNo = ({
     linkGroup,
     children,
     ...rest
-}: LenkepanelProps) => {
+}: Props) => {
     return (
         <LinkPanel
+            {...rest}
+            href={href}
+            analyticsComponent={component}
+            analyticsLinkGroup={linkGroup}
+            analyticsLabel={tittel}
             className={classNames(
                 style.lenkepanelNavno,
                 vertikal && style.vertikal,
                 className
             )}
-            as={(props) => (
-                <LenkeBase
-                    href={href}
-                    analyticsComponent={component}
-                    analyticsLinkGroup={linkGroup}
-                    analyticsLabel={tittel}
-                    {...props}
-                >
-                    {props.children}
-                </LenkeBase>
-            )}
-            {...rest}
+            as={LenkeBase}
         >
             {ikon && <div className={style.ikon}>{ikon}</div>}
             <div className={style.innhold}>

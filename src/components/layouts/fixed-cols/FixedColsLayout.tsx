@@ -8,7 +8,7 @@ import style from './FixedColsLayout.module.scss';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: FixedColsLayoutProps;
+    layoutProps: FixedColsLayoutProps;
 };
 
 export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {

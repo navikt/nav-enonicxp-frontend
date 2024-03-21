@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { getRelativePathIfInternal } from 'utils/urls';
 
 //
@@ -13,8 +13,7 @@ type Props = {
 };
 
 export const EditorLinkWrapper = ({ children }: Props) => {
-    const { pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView } = usePageContentProps();
 
     if (editorView !== 'edit') {
         return <>{children}</>;
@@ -29,7 +28,9 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     const { className, href, onClick, target } =
         child.props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-    const hrefFinal = getRelativePathIfInternal(href, !!editorView);
+    const hrefFinal = href
+        ? getRelativePathIfInternal(href, !!editorView)
+        : undefined;
 
     return (
         <span
@@ -37,11 +38,8 @@ export const EditorLinkWrapper = ({ children }: Props) => {
             style={{ cursor: 'pointer' }}
             onClick={(e) => {
                 e.stopPropagation();
+                onClick?.(e as React.MouseEvent<HTMLAnchorElement>);
 
-                if (onClick) {
-                    // @ts-ignore
-                    onClick(e);
-                }
                 if (hrefFinal) {
                     if (target === '_blank') {
                         window.open(hrefFinal, target);

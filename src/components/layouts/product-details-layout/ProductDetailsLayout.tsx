@@ -2,46 +2,17 @@ import React, { Fragment } from 'react';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetailType } from 'types/content-props/product-details';
 import {
     ProductDetailsPageProps,
     ProductDetailsPageRegionName,
 } from 'types/component-props/pages/product-details-layout';
-import { RegionProps } from 'types/component-props/layouts';
-import { ComponentProps } from 'types/component-props/_component-common';
-import { PartType } from 'types/component-props/parts';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../types/content-props/_content-common';
 
 import style from './ProductDetailsLayout.module.scss';
-
-type ProductDetailsRegionProps =
-    ProductDetailsPageProps['regions'][ProductDetailsPageRegionName];
-
-// Microcard links in this region were previously added manually as components,
-// but are now generated automatically
-// Filter out any manually added microcard components as a workaround for now
-// TODO: Can be removed once these components have been removed from all product details
-const removeMicroCardParts = (
-    regionProps: ProductDetailsRegionProps
-): RegionProps => {
-    return {
-        ...regionProps,
-        components: regionProps.components?.filter(
-            (component) =>
-                !(
-                    component.type === 'part' &&
-                    component.descriptor === 'no.nav.navno:product-card-micro'
-                )
-        ),
-    };
-};
-
-const hasMicroCardParts = (components?: ComponentProps[]) =>
-    components?.some(
-        (component) =>
-            component.type === 'part' &&
-            component.descriptor === PartType.ProductCardMicro
-    );
 
 const getRegionHelpTexts = (
     detailType: ProductDetailType
@@ -56,21 +27,34 @@ const getRegionHelpTexts = (
     outro: 'Oppsummering: Vises kun på oversiktssiden.',
 });
 
+// As the layout is shared between product listing and isolated product details,
+// we need to determine the detailType by checking both detailType and overviewType (for product overview)
+const getProductDetailType = (contentProps: ContentProps) => {
+    const { type, data } = contentProps;
+    return type === ContentType.Overview
+        ? data.overviewType
+        : type === ContentType.ProductDetails
+          ? data.detailType
+          : null;
+};
+
 type Props = {
-    pageProps: ProductDetailsProps;
-    layoutProps?: ProductDetailsPageProps;
+    pageProps: ContentProps;
+    layoutProps: ProductDetailsPageProps;
 };
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
-    const { regions } = layoutProps;
+    const detailType = getProductDetailType(pageProps);
+    if (!detailType) {
+        return (
+            <EditorHelp text={'Detalj-type er ikke satt for dette innholdet'} />
+        );
+    }
 
+    const { regions } = layoutProps;
     if (!regions) {
         return null;
     }
-
-    // As the layout is shared between product listing and isolated product details,
-    // we need to determine the detailType by checking both detailType and overviewType (for product overview)
-    const detailType = pageProps.data.detailType || pageProps.data.overviewType;
 
     const regionHelpTexts = getRegionHelpTexts(detailType);
 
@@ -80,41 +64,27 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.productDetails}
         >
-            {Object.entries(regions).map(([regionName, regionProps]) => {
+            {Object.values(regions).map((regionProps) => {
+                const { name } = regionProps;
+
                 // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
                 if (
-                    regionName === 'main_complaint' &&
+                    name === 'main_complaint' &&
                     detailType !== 'processing_times'
                 ) {
                     return null;
                 }
 
-                const isOutroWithMicroCards =
-                    regionName === 'outro' &&
-                    hasMicroCardParts(regionProps.components);
-
                 return (
-                    <Fragment key={regionName}>
+                    <Fragment key={name}>
                         <EditorHelp
-                            text={regionHelpTexts[regionName]}
+                            text={regionHelpTexts[name]}
                             type="arrowDown"
                         />
-                        {isOutroWithMicroCards && (
-                            <EditorHelp
-                                text={
-                                    'Lenker til produktsider legges nå inn automatisk på oversiktssider. Lenkene under bør derfor fjernes.'
-                                }
-                                type={'error'}
-                            />
-                        )}
                         <Region
                             pageProps={pageProps}
-                            regionProps={
-                                isOutroWithMicroCards && !pageProps.editorView
-                                    ? removeMicroCardParts(regionProps)
-                                    : regionProps
-                            }
+                            regionProps={regionProps}
                         />
                     </Fragment>
                 );

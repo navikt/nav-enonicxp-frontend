@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { WriteData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
@@ -14,13 +14,10 @@ import {
 
 import style from './ContactOption.module.scss';
 
-type Props = WriteData & {
-    alertText?: string;
-};
+type Props = WriteData;
 
-export const WriteOption = (props: Props) => {
-    const { ingress, url, alertText, title } = props;
-    const { language } = usePageConfig();
+export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
     const { isActive, handlers } = useHoverAndFocus();
 
@@ -29,11 +26,11 @@ export const WriteOption = (props: Props) => {
     return (
         <div className={style.contactOption}>
             <LenkeBase
+                {...handlers}
                 href={url || Config.urls.skrivTilOss}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                {...handlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon({

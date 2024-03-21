@@ -10,14 +10,11 @@ import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 import { classNames } from '../../../../utils/classnames';
+import { EditorHelp } from '../../../_editor-only/editor-help/EditorHelp';
 
 import style from './AreaCardGraphics.module.scss';
 
-const areaTypeComponentMap: {
-    [key in AreaCardGraphicsType]: React.FunctionComponent<{
-        expanded: boolean;
-    }>;
-} = {
+const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
     cases: CasesAnimation,
     'employment-status-form': EmploymentStatusFormAnimation,
     payments: PaymentsAnimation,
@@ -27,9 +24,11 @@ const areaTypeComponentMap: {
     pension: PensionAnimation,
     social_counselling: SocialCounsellingAnimation,
     work: WorkAnimation,
-};
+} as const satisfies Record<AreaCardGraphicsType, React.FunctionComponent>;
 
-const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
+const DefaultComponent = ({ type }: { type: string }) => (
+    <EditorHelp text={`Fant ingen grafikk for valgt område ${type}`} />
+);
 
 type Props = {
     type: string;
@@ -37,7 +36,7 @@ type Props = {
 };
 
 export const AreaCardGraphics = ({ type, insideCard }: Props) => {
-    const GraphicComponent = areaTypeComponentMap[type] || DefaultComponent;
+    const GraphicComponent = areaTypeComponentMap[type];
 
     return (
         <div
@@ -46,7 +45,11 @@ export const AreaCardGraphics = ({ type, insideCard }: Props) => {
                 insideCard ? style.insideCard : ''
             )}
         >
-            <GraphicComponent />
+            {GraphicComponent ? (
+                <GraphicComponent />
+            ) : (
+                <DefaultComponent type={type} />
+            )}
         </div>
     );
 };
