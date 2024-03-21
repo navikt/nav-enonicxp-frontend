@@ -38,8 +38,8 @@
     }
 
     // Fix for XP region preview
-    .xp-page-editor-item-placeholder,
-    .live-edit-drag-placeholder-container {
+    :global(.xp-page-editor-item-placeholder),
+    :global(.live-edit-drag-placeholder-container) {
         width: 100%;
     }
 }
