@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
 import {
     ProductCardMiniProps,
@@ -14,7 +14,7 @@ export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const pageConfig = usePageConfig();
+    const pageContext = usePageContentProps();
 
     if (!config?.targetPage) {
         return (
@@ -28,7 +28,7 @@ export const ProductCardPart = ({
 
     const { targetPage, header, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, pageConfig, ingressOverride);
+    const props = getCardProps(targetPage, pageContext, ingressOverride);
 
     if (!props) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;

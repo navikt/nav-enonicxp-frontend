@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { mockStore } from 'store/store';
 import Cookie from 'js-cookie';
 import { UserTestVariantProps } from 'types/content-props/user-tests-config';
+import { PageContextProvider } from 'store/pageContext';
 
 const cookieId = 'cookie-1234';
 
@@ -34,9 +35,11 @@ const buildProps = (
 };
 
 const UserTestsWithProvider = (props: UserTestsComponentProps) => (
-    <Provider store={mockStore}>
-        <UserTestsPublicView {...props} />
-    </Provider>
+    <PageContextProvider content={props}>
+        <Provider store={mockStore}>
+            <UserTestsPublicView {...props} />
+        </Provider>
+    </PageContextProvider>
 );
 
 const mockRandom = (num: number) =>

@@ -5,7 +5,7 @@ import { ReferenceItem } from 'components/_editor-only/references-info/types';
 import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { adminOrigin } from 'utils/urls';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './ReferencesLinks.module.scss';
 
@@ -20,7 +20,7 @@ export const ReferencesLinks = ({
     headerText,
     contentLayer,
 }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     const languageNames = translator('localeNames', 'no');
 
@@ -52,7 +52,7 @@ export const ReferencesLinks = ({
                                 onClick={
                                     // Need some special handling to allow target _blank from
                                     // the inline preview iframe
-                                    pageConfig.editorView === 'inline'
+                                    editorView === 'inline'
                                         ? (e) => {
                                               e.preventDefault();
                                               e.stopPropagation();
