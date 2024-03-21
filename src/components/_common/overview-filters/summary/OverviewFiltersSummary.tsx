@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { BodyLong, Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
@@ -19,7 +19,7 @@ export const OverviewFiltersSummary = ({
     numTotal,
     showResetChips,
 }: Props) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const {
         hasDefaultFilters,

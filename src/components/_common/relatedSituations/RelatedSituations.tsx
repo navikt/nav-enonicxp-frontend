@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { ContentProps } from 'types/content-props/_content-common';
 import { MicroCard } from '../card/MicroCard';
 import { stripXpPathPrefix } from 'utils/urls';
@@ -21,8 +21,7 @@ export const RelatedSituations = ({
     title,
     description,
 }: RelatedSituationsProps) => {
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
 
