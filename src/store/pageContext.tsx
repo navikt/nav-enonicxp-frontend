@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { makeErrorProps } from 'utils/make-error-props';
+import { logger } from 'srcCommon/logger';
 
 const PageContext = createContext<ContentProps>(null);
 
@@ -14,12 +14,10 @@ const usePageContentProps = () => {
     const context = useContext(PageContext);
 
     if (!context) {
-        throw new Error(
-            'usePageContentProps must be used within a PageContextProvider'
-        );
+        logger.error('Could not get page context from useContext');
     }
 
-    return context;
+    return context || {};
 };
 
 export { PageContextProvider, usePageContentProps };
