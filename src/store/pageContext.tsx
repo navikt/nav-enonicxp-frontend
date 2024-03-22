@@ -1,8 +1,16 @@
 import React, { createContext, useContext } from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
-import { makeErrorProps } from 'utils/make-error-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
-const PageContext = createContext<ContentProps>(null);
+const PageContext = createContext<ContentProps>({
+    type: ContentType.FallbackPage,
+    _id: '',
+    _path: '',
+    createdTime: '',
+    modifiedTime: '',
+    displayName: 'Laster innhold...',
+    language: 'no',
+    data: {},
+});
 
 const PageContextProvider: React.FC<any> = ({ children, content }) => {
     return (
