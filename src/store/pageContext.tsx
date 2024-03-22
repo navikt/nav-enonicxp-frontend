@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { makeErrorProps } from 'utils/make-error-props';
 
 const PageContext = createContext<ContentProps>(null);
 
