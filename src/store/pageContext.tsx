@@ -6,9 +6,7 @@ const PageContext = createContext<ContentProps | {}>({});
 
 const PageContextProvider: React.FC<any> = ({ children, content }) => {
     return (
-        <PageContext.Provider value={content || {}}>
-            {children}
-        </PageContext.Provider>
+        <PageContext.Provider value={content}>{children}</PageContext.Provider>
     );
 };
 
