@@ -53,7 +53,6 @@ import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
-import { FallbackPage } from 'components/pages/fallback-page/FallbackPage';
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {
