@@ -6,7 +6,6 @@ import {
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';

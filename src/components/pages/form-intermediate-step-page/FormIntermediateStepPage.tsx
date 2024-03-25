@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import {
     CompoundedSteps,
     FirstLevelStep,
@@ -10,10 +10,10 @@ import {
 } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageContentProps } from 'store/pageContext';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
-import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
+import { ContentPropsForThemedPageHeader } from 'components/_common/headers/themed-page-header/themedPageHeaderUtils';
 import { stripXpPathPrefix } from 'utils/urls';
 
 import style from './FormIntermediateStepPage.module.scss';
@@ -61,7 +61,7 @@ export const FormIntermediateStepPage = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getStepData = (): CompoundedSteps => {
+    const getStepData = (): CompoundedSteps | null => {
         if (prevSelectedStep === null) {
             return {
                 editorial: data.editorial,
@@ -146,18 +146,12 @@ export const FormIntermediateStepPage = (
                                             index
                                         )}
                                         className={style.stepAction}
-                                        as={(props) => (
-                                            <LenkeBase
-                                                analyticsComponent="mellomsteg"
-                                                analyticsLinkGroup={
-                                                    currentStepData.stepsHeadline
-                                                }
-                                                analyticsLabel={step.label}
-                                                {...props}
-                                            >
-                                                {props.children}
-                                            </LenkeBase>
-                                        )}
+                                        analyticsComponent="mellomsteg"
+                                        analyticsLinkGroup={
+                                            currentStepData.stepsHeadline
+                                        }
+                                        analyticsLabel={step.label}
+                                        as={LenkeBase}
                                     >
                                         <LinkPanel.Title>
                                             {step.label}

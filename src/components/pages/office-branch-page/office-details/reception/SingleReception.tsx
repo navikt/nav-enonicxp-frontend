@@ -6,7 +6,6 @@ import {
     HouseFillIcon,
 } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import {
     AudienceReception,
@@ -18,11 +17,12 @@ import {
     officeDetailsGetFutureOpeningExceptions,
 } from 'components/pages/office-branch-page/office-details/utils';
 import { OpeningHours } from './OpeningHours';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './SingleReception.module.scss';
 
 export const SingleReception = (props: AudienceReception) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const getLabel = translator('office', language);
 
