@@ -3,7 +3,6 @@ import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import { getMediaUrl } from 'utils/urls';
 import { getTimestampFromDuration } from './utils/videoHelpers';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
@@ -11,12 +10,12 @@ import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
 import { NextImage } from 'components/_common/image/NextImage';
 import { QbrickVideoProps } from './utils/videoProps';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './QbrickVideo.module.scss';
 
 export const QbrickVideo = (props: QbrickVideoProps) => {
-    const { language: contentLanguage, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language: contentLanguage, editorView } = usePageContentProps();
 
     const { title, duration, poster } = props;
 

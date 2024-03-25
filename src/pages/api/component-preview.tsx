@@ -5,24 +5,10 @@ import { ComponentMapper } from 'components/ComponentMapper';
 import { Provider } from 'react-redux';
 import { mockStore } from 'store/store';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-
-import { setPageConfigAction } from 'store/slices/pageConfig';
+import { PageContextProvider } from 'store/pageContext';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-const dummyPageProps: ContentProps = {
-    type: ContentType.DynamicPage,
-    _id: '',
-    _path: '',
-    createdTime: '',
-    modifiedTime: '',
-    displayName: '',
-    language: 'no',
-    isDraft: true,
-    editorView: 'edit',
-    contentLayer: 'no',
-    data: {},
-};
+import { PageContextProvider } from 'store/pageContext';
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
@@ -43,22 +29,29 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
         const props = req.body.props as PartComponentProps;
 
-        mockStore.dispatch(
-            setPageConfigAction({
-                pageId: dummyPageProps._id,
-                language: req.body?.props?.language || dummyPageProps.language,
-                editorView: 'edit',
-                isPagePreview: false,
-            })
-        );
+        const contentProps: ContentProps = {
+            type: ContentType.DynamicPage,
+            _id: '',
+            _path: '',
+            createdTime: '',
+            modifiedTime: '',
+            displayName: '',
+            language: req.body?.props?.language || 'no',
+            isDraft: true,
+            editorView: 'edit',
+            isPagePreview: false,
+            data: {},
+        };
 
         const html = ReactDOMServer.renderToStaticMarkup(
-            <Provider store={mockStore}>
-                <ComponentMapper
-                    componentProps={props}
-                    pageProps={dummyPageProps}
-                />
-            </Provider>
+            <PageContextProvider content={contentProps}>
+                <Provider store={mockStore}>
+                    <ComponentMapper
+                        componentProps={props}
+                        pageProps={contentProps}
+                    />
+                </Provider>
+            </PageContextProvider>
         );
 
         return res.send(html);

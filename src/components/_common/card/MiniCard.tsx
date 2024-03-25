@@ -6,8 +6,8 @@ import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useCard } from './useCard';
+import { usePageContentProps } from 'store/pageContext';
 
 import sharedStyle from './Card.module.scss';
 import style from './MiniCard.module.scss';
@@ -39,7 +39,7 @@ export const MiniCard = (props: MiniKortProps) => {
         link,
     });
 
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     return (
         <>
@@ -58,8 +58,7 @@ export const MiniCard = (props: MiniKortProps) => {
                         illustration={illustration}
                         isHovering={isHovering}
                         preferStaticIllustration={
-                            preferStaticIllustration ||
-                            pageConfig.editorView === 'edit'
+                            preferStaticIllustration || editorView === 'edit'
                         }
                         withFallbackIllustration={withFallbackIllustration}
                     />

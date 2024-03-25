@@ -53,6 +53,7 @@ import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
+import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {
     Error = 'error',
@@ -101,6 +102,7 @@ export enum ContentType {
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
     AlertInContext = 'no.nav.navno:alert-in-context',
+    FallbackPage = 'no.nav.navno:fallback-page',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -200,7 +202,8 @@ type SpecificContentProps =
     | PressLandingPageProps
     | FormDetailsPageProps
     | FormIntermediateStepPageProps
-    | FormsOverviewProps;
+    | FormsOverviewProps
+    | FallbackPageProps;
 
 export type ContentProps<Type extends ContentType = ContentType> =
     ContentCommonProps<Type> & SpecificContentProps;

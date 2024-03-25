@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import {
+    CompoundedSteps,
+    FirstLevelStep,
     FormIntermediateStepPageProps,
-    StepDetails,
+    SecondLevelStep,
 } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useRouter } from 'next/router';
+import { usePageContentProps } from 'store/pageContext';
+import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
-import { ContentPropsForThemedPageHeader } from 'components/_common/headers/themed-page-header/themedPageHeaderUtils';
-import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { ContentPropsForThemedPageHeader } from '../../_common/headers/themed-page-header/themedPageHeaderUtils';
+import { stripXpPathPrefix } from 'utils/urls';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -21,9 +23,10 @@ const STEP_PARAM = 'stegvalg';
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps
 ) => {
+    const { data } = props;
     const router = useRouter();
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const [prevSelectedStep, setPrevSelectedStep] = useState<number | null>(
         null
     );
@@ -58,8 +61,24 @@ export const FormIntermediateStepPage = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getOnClickFromStep = (step: NextStepData, index: number) => {
-        return step.nextStep?._selected === 'external'
+    const getStepData = (): CompoundedSteps => {
+        if (prevSelectedStep === null) {
+            return {
+                editorial: data.editorial,
+                stepsHeadline: data.stepsHeadline,
+                steps: data.steps,
+            };
+        }
+
+        const stepDetails = data.steps[prevSelectedStep].nextStep;
+        return stepDetails?._selected === 'next' ? stepDetails.next : null;
+    };
+
+    const getOnClickFromStep = (
+        step: FirstLevelStep | SecondLevelStep,
+        index: number
+    ) => {
+        return step.nextStep?._selected !== 'next'
             ? undefined
             : (e: React.MouseEvent) => {
                   e.preventDefault();
@@ -73,8 +92,18 @@ export const FormIntermediateStepPage = (
               };
     };
 
-    const getHrefFromStep = (step: NextStepData) => {
-        return step.nextStep?.external?.externalUrl || router.asPath;
+    const getUrlFromStep = (step: FirstLevelStep | SecondLevelStep) => {
+        if (step.nextStep?._selected === 'external') {
+            return step.nextStep?.external?.externalUrl;
+        }
+
+        if (step.nextStep?._selected === 'internal') {
+            return stripXpPathPrefix(
+                step.nextStep?.internal?.internalContent._path
+            );
+        }
+
+        return router.asPath;
     };
 
     const themedPageHeaderProps: ContentPropsForThemedPageHeader = {
@@ -85,7 +114,7 @@ export const FormIntermediateStepPage = (
         },
     };
 
-    const currentStepData = getStepData(props.data, prevSelectedStep);
+    const currentStepData = getStepData();
 
     return (
         <div className={style.formIntermediateStepPage}>
@@ -102,7 +131,7 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={style.stepList}>
-                        {currentStepData.steps.map((step, index) => {
+                        {currentStepData.steps.map((step, index: number) => {
                             return (
                                 <li key={step.label} className={style.stepItem}>
                                     {step.languageDisclaimer && (
@@ -111,18 +140,24 @@ export const FormIntermediateStepPage = (
                                         </InfoBox>
                                     )}
                                     <LinkPanel
-                                        href={getHrefFromStep(step)}
+                                        href={getUrlFromStep(step)}
                                         onClick={getOnClickFromStep(
                                             step,
                                             index
                                         )}
-                                        analyticsComponent="mellomsteg"
-                                        analyticsLinkGroup={
-                                            currentStepData.stepsHeadline
-                                        }
-                                        analyticsLabel={step.label}
                                         className={style.stepAction}
-                                        as={LenkeBase}
+                                        as={(props) => (
+                                            <LenkeBase
+                                                analyticsComponent="mellomsteg"
+                                                analyticsLinkGroup={
+                                                    currentStepData.stepsHeadline
+                                                }
+                                                analyticsLabel={step.label}
+                                                {...props}
+                                            >
+                                                {props.children}
+                                            </LenkeBase>
+                                        )}
                                     >
                                         <LinkPanel.Title>
                                             {step.label}
@@ -164,35 +199,4 @@ export const FormIntermediateStepPage = (
             </div>
         </div>
     );
-};
-
-type NextStepData = {
-    label: string;
-    explanation: string;
-    languageDisclaimer?: string;
-    nextStep: Partial<StepDetails['nextStep']>;
-};
-
-type StepData = {
-    stepsHeadline: string;
-    editorial: ProcessedHtmlProps;
-    steps: Array<NextStepData>;
-};
-
-const getStepData = (
-    data: FormIntermediateStepPageProps['data'],
-    prevSelected: number | null
-): StepData => {
-    if (prevSelected !== null) {
-        const stepDetails = data.steps[prevSelected].nextStep;
-        if (stepDetails?._selected === 'next') {
-            return stepDetails.next;
-        }
-    }
-
-    return {
-        editorial: data.editorial,
-        stepsHeadline: data.stepsHeadline,
-        steps: data.steps,
-    };
 };

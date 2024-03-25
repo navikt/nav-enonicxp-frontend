@@ -8,26 +8,38 @@ type ExternalStep = {
     externalUrl: string;
 };
 
-export type StepDetails = {
+type InternalStep = {
+    internalContent: ContentCommonProps;
+};
+
+type StepMeta<T> = {
+    editorial: ProcessedHtmlProps;
+    stepsHeadline: string;
+    steps: T[];
+};
+
+type BaseStep = {
     label: string;
     explanation: string;
     languageDisclaimer?: string;
+};
+
+export type FirstLevelStep = BaseStep & {
     nextStep: OptionSetSingle<{
-        next: {
-            editorial: ProcessedHtmlProps;
-            stepsHeadline: string;
-            steps: {
-                label: string;
-                explanation: string;
-                languageDisclaimer?: string;
-                nextStep: OptionSetSingle<{
-                    external: ExternalStep;
-                }>;
-            }[];
-        };
+        next: StepMeta<SecondLevelStep>;
         external: ExternalStep;
+        internal: InternalStep;
     }>;
 };
+
+export type SecondLevelStep = BaseStep & {
+    nextStep: OptionSetSingle<{
+        external: ExternalStep;
+        internal: InternalStep;
+    }>;
+};
+
+export type CompoundedSteps = StepMeta<FirstLevelStep | SecondLevelStep>;
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
@@ -36,8 +48,5 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
         illustration: AnimatedIconsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
-        editorial: ProcessedHtmlProps;
-        stepsHeadline: string;
-        steps: StepDetails[];
-    };
+    } & StepMeta<FirstLevelStep>;
 };

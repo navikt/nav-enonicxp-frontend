@@ -1,7 +1,7 @@
 import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 
 import {
@@ -11,7 +11,6 @@ import {
 } from 'types/content-props/dynamic-page-props';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
-import { UsePageConfig } from 'store/hooks/usePageConfig';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
@@ -66,7 +65,7 @@ const getCardCategory = (
 
 export const getCardProps = (
     targetContent: CardTargetProps | undefined,
-    pageConfig: UsePageConfig,
+    content: ContentProps,
     ingressOverride?: string
 ): CardProps | null => {
     if (!targetContent) {
@@ -74,7 +73,9 @@ export const getCardProps = (
     }
 
     const { data, type, _path, displayName } = targetContent;
-    const { language, audience } = pageConfig;
+    const { language } = content;
+    const { audience } = content.data;
+
     if (!data) {
         return null;
     }
@@ -92,7 +93,7 @@ export const getCardProps = (
     const categories = getCardCategory(targetContent, language);
     const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
-    const preferStaticIllustration = audience === Audience.EMPLOYER;
+    const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 
     return {
         type: cardType,

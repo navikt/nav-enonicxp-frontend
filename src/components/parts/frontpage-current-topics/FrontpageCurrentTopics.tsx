@@ -4,7 +4,7 @@ import { FrontpageCurrentTopicsProps } from 'types/component-props/parts/frontpa
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { formatDate } from 'utils/datetime';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
@@ -13,7 +13,7 @@ import style from './FrontpageCurrentTopics.module.scss';
 export const FrontpageCurrentTopics = ({
     config,
 }: FrontpageCurrentTopicsProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { contentList, title, link } = config;
 
     if (!contentList?.data.sectionContents) {

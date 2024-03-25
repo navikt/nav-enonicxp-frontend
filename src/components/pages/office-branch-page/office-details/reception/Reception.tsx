@@ -4,7 +4,7 @@ import { AudienceReception } from 'types/content-props/office-details-props';
 import { forceArray } from 'utils/arrays';
 import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './Reception.module.scss';
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const Reception = ({ receptions }: Props) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
 

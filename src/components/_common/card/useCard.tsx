@@ -7,8 +7,8 @@ import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useClient } from 'utils/useClient';
+import { usePageContentProps } from 'store/pageContext';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -50,7 +50,7 @@ export const useCard = ({
     const [isHovering, setIsHovering] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
     const { hasTouch, hasMouse } = useClient();
 
     const { layoutConfig } = useLayoutConfig();
@@ -150,7 +150,7 @@ export const useCard = ({
         // Don't add event handlers to cards in editor view
         // as we want to let Content Studio add its own handlers
         // for drag&drop.
-        if (pageConfig.editorView === 'edit') {
+        if (editorView === 'edit') {
             return null;
         }
 

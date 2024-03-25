@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { insertHTMLBreaks, numberToFormattedValue } from 'utils/string';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './CalculatorResult.module.scss';
 
@@ -15,7 +15,7 @@ type Props = {
 
 export const CalculatorResult = (props: Props) => {
     const { summaryText, sum, useThousandSeparator, errorMessage } = props;
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const getLabel = translator('calculator', language);
 
     if (errorMessage) {

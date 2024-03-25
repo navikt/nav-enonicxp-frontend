@@ -9,7 +9,7 @@ import {
     buildImageCacheUrl,
     NextImageProps,
 } from 'components/_common/image/NextImage';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
@@ -83,7 +83,7 @@ type Props = {
 };
 
 export const IllustrationStatic = ({ illustration, className }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     if (!illustration) {
         return null;
@@ -96,8 +96,6 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
 
     const [icon1, icon2] = icons;
 
-    const isEditorView = !!pageConfig.editorView;
-
     return (
         <span
             className={classNames(styleCommon.image, className)}
@@ -106,14 +104,14 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
             {isValidIcon(icon1?.icon) && (
                 <StaticIcon
                     icon={icon1.icon}
-                    isEditorView={isEditorView}
+                    isEditorView={!!editorView}
                     className={'back'}
                 />
             )}
             {isValidIcon(icon2?.icon) && (
                 <StaticIcon
                     icon={icon2.icon}
-                    isEditorView={isEditorView}
+                    isEditorView={!!editorView}
                     className={'front'}
                 />
             )}
