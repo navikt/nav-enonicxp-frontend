@@ -1,21 +1,60 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
-    CompoundedSteps,
-    FirstLevelStep,
     FormIntermediateStepPageProps,
-    SecondLevelStep,
+    FormIntermediateStep_CompoundedStepData,
+    FormIntermediateStep_StepBase,
+    FormIntermediateStep_StepData,
+    FormIntermediateStep_StepLevel,
 } from 'types/content-props/form-intermediate-step';
 import { stripXpPathPrefix } from 'utils/urls';
 
 const STEP_PARAM = 'stegvalg';
 
+export type FormIntermediateStep_StepLinkData = FormIntermediateStep_StepBase & {
+    href?: string;
+    isStepNavigation?: boolean;
+};
+
+type CurrentStepData = FormIntermediateStep_StepData<FormIntermediateStep_StepLinkData>;
+
+const buildStepUrl = (basePath: string, stepIndex: number) =>
+    `${basePath}?${STEP_PARAM}=${stepIndex}`;
+
+const resolveStepUrl = (
+    step: FormIntermediateStep_StepLevel,
+    stepIndex: number,
+    basePath: string
+): FormIntermediateStep_StepLinkData => {
+    switch (step.nextStep?._selected) {
+        case 'external': {
+            return {
+                ...step,
+                href: step.nextStep.external?.externalUrl,
+            };
+        }
+        case 'internal': {
+            return {
+                ...step,
+                href: stripXpPathPrefix(step.nextStep.internal?.internalContent._path),
+            };
+        }
+        default: {
+            return {
+                ...step,
+                href: buildStepUrl(basePath, stepIndex),
+                isStepNavigation: true,
+            };
+        }
+    }
+};
+
 const getStepData = (
     data: FormIntermediateStepPageProps['data'],
-    prevSelectedStep: number | null
-): CompoundedSteps => {
-    if (prevSelectedStep !== null) {
-        const stepDetails = data.steps[prevSelectedStep].nextStep;
+    selectedStepIndex: number | null
+): FormIntermediateStep_CompoundedStepData => {
+    if (selectedStepIndex !== null) {
+        const stepDetails = data.steps[selectedStepIndex].nextStep;
         if (stepDetails?._selected === 'next') {
             return stepDetails.next;
         }
@@ -28,62 +67,40 @@ const getStepData = (
     };
 };
 
-const getStateFromQueryParam = (url: string) => {
-    const stepQuery = new URL(url, window.location.origin).searchParams.get(
-        STEP_PARAM
-    );
+const buildResolvedStepData = (
+    data: FormIntermediateStepPageProps['data'],
+    basePath: string,
+    prevSelectedStep: number | null
+): CurrentStepData => {
+    const stepData = getStepData(data, prevSelectedStep);
 
+    return {
+        ...stepData,
+        steps: stepData.steps.map((step, index) => resolveStepUrl(step, index, basePath)),
+    };
+};
+
+const getSelectedStepFromParam = (url: string) => {
+    const stepQuery = new URL(url, window.location.origin).searchParams.get(STEP_PARAM);
     return stepQuery ? Number(stepQuery) : null;
 };
 
-export const useFormIntermediateStepPageState = (
-    props: FormIntermediateStepPageProps
-) => {
-    const [prevSelectedStep, setPrevSelectedStep] = useState<number | null>(
-        null
-    );
+export const useFormIntermediateStepPageState = (props: FormIntermediateStepPageProps) => {
+    const [selectedStepIndex, setSelectedStepIndex] = useState<number | null>(null);
     const router = useRouter();
 
-    const { data } = props;
+    const pagePath = stripXpPathPrefix(props._path);
 
-    const getOnClickFromStep = (
-        step: FirstLevelStep | SecondLevelStep,
-        index: number
-    ) => {
-        return step.nextStep?._selected !== 'next'
-            ? undefined
-            : (e: React.MouseEvent) => {
-                  e.preventDefault();
-                  router.push(
-                      `${window.location.pathname}?${STEP_PARAM}=${index}`,
-                      undefined,
-                      {
-                          shallow: true,
-                      }
-                  );
-              };
-    };
+    const currentStepData = buildResolvedStepData(props.data, pagePath, selectedStepIndex);
 
-    const getUrlFromStep = (step: FirstLevelStep | SecondLevelStep) => {
-        if (step.nextStep?._selected === 'external') {
-            return step.nextStep.external?.externalUrl;
-        }
-
-        if (step.nextStep?._selected === 'internal') {
-            return stripXpPathPrefix(
-                step.nextStep.internal?.internalContent._path
-            );
-        }
-
-        return router.asPath;
-    };
+    const backUrl = selectedStepIndex !== null ? pagePath : null;
 
     useEffect(() => {
         const handleRouteChange = (url: string) => {
-            setPrevSelectedStep(getStateFromQueryParam(url));
+            setSelectedStepIndex(getSelectedStepFromParam(url));
         };
 
-        setPrevSelectedStep(getStateFromQueryParam(router.asPath));
+        handleRouteChange(router.asPath);
 
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => {
@@ -92,9 +109,7 @@ export const useFormIntermediateStepPageState = (
     }, [router]);
 
     return {
-        currentStepData: getStepData(data, prevSelectedStep),
-        prevSelectedStep,
-        getOnClickFromStep,
-        getUrlFromStep,
+        currentStepData,
+        backUrl,
     };
 };

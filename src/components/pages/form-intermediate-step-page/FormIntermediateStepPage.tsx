@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import {
-    CompoundedSteps,
-    FirstLevelStep,
-    FormIntermediateStepPageProps,
-    SecondLevelStep,
-} from 'types/content-props/form-intermediate-step';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageContentProps } from 'store/pageContext';
 import { useRouter } from 'next/router';
@@ -16,20 +11,14 @@ import { InfoBox } from 'components/_common/info-box/InfoBox';
 import { ContentPropsForThemedPageHeader } from 'components/_common/headers/themed-page-header/themedPageHeaderUtils';
 import { stripXpPathPrefix } from 'utils/urls';
 import { useFormIntermediateStepPageState } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
+import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
 
 import style from './FormIntermediateStepPage.module.scss';
 
-export const FormIntermediateStepPage = (
-    props: FormIntermediateStepPageProps
-) => {
+export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { data, language } = props;
 
-    const {
-        currentStepData,
-        prevSelectedStep,
-        getOnClickFromStep,
-        getUrlFromStep,
-    } = useFormIntermediateStepPageState(props);
+    const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
 
     const router = useRouter();
 
@@ -56,57 +45,30 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={style.stepList}>
-                        {currentStepData.steps.map((step, index) => {
-                            return (
-                                <li key={step.label} className={style.stepItem}>
-                                    {step.languageDisclaimer && (
-                                        <InfoBox>
-                                            {step.languageDisclaimer}
-                                        </InfoBox>
-                                    )}
-                                    <LinkPanel
-                                        href={getUrlFromStep(step)}
-                                        onClick={getOnClickFromStep(
-                                            step,
-                                            index
-                                        )}
-                                        className={style.stepAction}
-                                        analyticsComponent={'mellomsteg'}
-                                        analyticsLinkGroup={
-                                            currentStepData.stepsHeadline
-                                        }
-                                        analyticsLabel={step.label}
-                                        as={LenkeBase}
-                                    >
-                                        <LinkPanel.Title>
-                                            {step.label}
-                                        </LinkPanel.Title>
-                                        <LinkPanel.Description>
-                                            {step.explanation}
-                                        </LinkPanel.Description>
-                                    </LinkPanel>
-                                </li>
-                            );
-                        })}
+                        {currentStepData.steps.map((step) => (
+                            <li key={step.label} className={style.stepItem}>
+                                <FormIntermediateStepLink
+                                    {...step}
+                                    className={style.stepAction}
+                                    analyticsComponent={'mellomsteg'}
+                                    analyticsLinkGroup={currentStepData.stepsHeadline}
+                                    analyticsLabel={step.label}
+                                />
+                            </li>
+                        ))}
                     </ul>
                 </div>
-                {prevSelectedStep !== null && (
+                {backUrl && (
                     <div className={style.buttonGroup}>
                         <Button
+                            href={backUrl}
                             onClick={(e) => {
                                 e.preventDefault();
-                                router.push(
-                                    window.location.pathname,
-                                    undefined,
-                                    {
-                                        shallow: true,
-                                    }
-                                );
+                                router.push(backUrl, undefined, { shallow: true });
                             }}
+                            as={LenkeBase}
                             variant={'tertiary'}
                             className={style.backButton}
-                            as={LenkeBase}
-                            href={router.asPath}
                             analyticsComponent={'mellomsteg'}
                             analyticsLinkGroup={currentStepData.stepsHeadline}
                             analyticsLabel={'Tilbake'}
