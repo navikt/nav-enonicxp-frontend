@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import {
     FormIntermediateStepPageProps,
     FormIntermediateStep_CompoundedStepData,
@@ -96,6 +96,10 @@ export const useFormIntermediateStepPageState = (props: FormIntermediateStepPage
     const backUrl = selectedStepIndex !== null ? pagePath : null;
 
     useEffect(() => {
+        if (!router) {
+            return;
+        }
+
         const handleRouteChange = (url: string) => {
             setSelectedStepIndex(getSelectedStepFromParam(url));
         };

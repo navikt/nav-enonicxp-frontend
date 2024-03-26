@@ -4,7 +4,7 @@ import { translator } from 'translations';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useFormIntermediateStepPageState } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
 import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
@@ -60,7 +60,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                             href={backUrl}
                             onClick={(e) => {
                                 e.preventDefault();
-                                router.push(backUrl, undefined, { shallow: true });
+                                router?.push(backUrl, undefined, { shallow: true });
                             }}
                             as={LenkeBase}
                             variant={'tertiary'}

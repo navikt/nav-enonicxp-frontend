@@ -2,7 +2,7 @@ import React from 'react';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 import style from 'components/pages/form-intermediate-step-page/FormIntermediateStepPage.module.scss';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { LinkPanel } from '@navikt/ds-react';
 import { FormIntermediateStep_StepLinkData } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -27,7 +27,7 @@ export const FormIntermediateStepLink = ({
     const clickHandler = isStepNavigation
         ? (e: React.MouseEvent) => {
               e.preventDefault();
-              router.push(href, undefined, { shallow: true });
+              router?.push(href, undefined, { shallow: true });
           }
         : undefined;
 
