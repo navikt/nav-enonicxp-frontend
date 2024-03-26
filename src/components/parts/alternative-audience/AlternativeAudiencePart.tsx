@@ -4,13 +4,14 @@ import { AlternativeAudience } from 'components/_common/alternativeAudience/Alte
 import { AlternativeAudienceProps } from 'types/component-props/parts/alternative-audience';
 import { ContentType } from 'types/content-props/_content-common';
 
-export const AlternativeAudiencePart = ({
-    config,
-    pageProps,
-}: AlternativeAudienceProps) => {
+export const AlternativeAudiencePart = ({ config, pageProps }: AlternativeAudienceProps) => {
     const { data, type, _id, displayName } = pageProps;
 
-    if (type !== ContentType.ProductPage) {
+    if (
+        type !== ContentType.ProductPage &&
+        type !== ContentType.ThemedArticlePage &&
+        type !== ContentType.GuidePage
+    ) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
@@ -22,9 +23,7 @@ export const AlternativeAudiencePart = ({
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle målgrupper vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle målgrupper vises her når du klikker "marker som klar".'}
             />
         );
     }

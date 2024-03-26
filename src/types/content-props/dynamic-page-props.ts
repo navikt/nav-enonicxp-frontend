@@ -1,8 +1,5 @@
 import { ContentCommonProps, ContentType } from './_content-common';
-import {
-    AlternativeAudience,
-    ProductDataMixin,
-} from 'types/component-props/_mixins';
+import { AlternativeAudience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from 'types/taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
@@ -37,13 +34,18 @@ export type ThemedArticlePageProps = ContentCommonProps & {
     type: ContentType.ThemedArticlePage;
     data: Omit<ProductDataMixin, 'taxonomy'> & {
         taxonomy: ThemedArticlePageTaxonomy[];
+        alternativeAudience?: AlternativeAudience;
+        relatedSituations?: SituationPageProps[];
     };
     page: PageWithSideMenusProps;
 };
 
 export type GuidePageProps = ContentCommonProps & {
     type: ContentType.GuidePage;
-    data: ProductDataMixin;
+    data: ProductDataMixin & {
+        alternativeAudience?: AlternativeAudience;
+        relatedSituations?: SituationPageProps[];
+    };
     page: PageWithSideMenusProps;
 };
 
