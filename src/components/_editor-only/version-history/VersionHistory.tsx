@@ -5,7 +5,7 @@ import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { Chevron } from 'components/_common/chevron/Chevron';
 import { logger } from 'srcCommon/logger';
 
@@ -19,9 +19,7 @@ export const VersionHistory = ({ content }: Props) => {
     const { timeRequested, language } = content;
 
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
-    const [versionUrlRequested, setVersionUrlRequested] = useState<
-        string | null
-    >();
+    const [versionUrlRequested, setVersionUrlRequested] = useState<string | null>();
 
     const router = useRouter();
     const getLabel = translator('versionHistory', language);
