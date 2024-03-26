@@ -2,7 +2,7 @@ import {
     WriteData,
     TelephoneData,
     ChatData,
-} from '../component-props/part-configs/contact-option';
+} from 'types/component-props/part-configs/contact-option';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export interface ContactInformationData {

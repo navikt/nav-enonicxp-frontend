@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { WriteData } from '../../../types/component-props/part-configs/contact-option';
+import { WriteData } from 'types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';

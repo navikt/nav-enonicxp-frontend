@@ -3,40 +3,30 @@ import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Category } from '../../../types/component-props/part-configs/filter-menu';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
-import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
+import { FilterMenuCategory } from 'types/component-props/part-configs/filter-menu';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
+import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './FiltersMenu.module.scss';
 
-export const FiltersMenu: PartComponent<PartType.FiltersMenu> = ({
-    config,
-    path,
-    pageProps,
-}) => {
+export const FiltersMenuPart: PartComponent<PartType.FiltersMenu> = ({ config, path }) => {
+    const { language, editorView, page } = usePageContentProps();
     const { categories, description, expandableTitle, title } = config;
 
-    const {
-        clearFiltersForPage,
-        selectedFilters,
-        setAvailableFilters,
-        toggleFilter,
-    } = useFilterState();
+    const { clearFiltersForPage, selectedFilters, setAvailableFilters, toggleFilter } =
+        useFilterState();
 
     const isFirstFilterInPage = checkIfFilterFirstInPage({
         path,
-        page: pageProps.page,
+        page,
     });
-
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
 
     useEffect(() => {
         // Multiple FilterMenus in same page will break.
@@ -59,7 +49,7 @@ export const FiltersMenu: PartComponent<PartType.FiltersMenu> = ({
 
     const getLabel = translator('filteredContent', language);
 
-    const onToggleFilterHandler = (filter: Filter, category: Category) => {
+    const onToggleFilterHandler = (filter: Filter, category: FilterMenuCategory) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
@@ -121,17 +111,13 @@ export const FiltersMenu: PartComponent<PartType.FiltersMenu> = ({
                                         onToggleFilterHandler(filter, category);
                                     }}
                                     filter={filter}
-                                    isSelected={selectedFilters.includes(
-                                        filter.id
-                                    )}
+                                    isSelected={selectedFilters.includes(filter.id)}
                                     key={filterIndex}
                                 />
                             ))}
                             <FilterExplanation
                                 selectedFilters={selectedFilters}
-                                availableFilters={category.filters.map(
-                                    (filter) => filter.id
-                                )}
+                                availableFilters={category.filters.map((filter) => filter.id)}
                             />
                         </CheckboxGroup>
                     );

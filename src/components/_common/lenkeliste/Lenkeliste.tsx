@@ -4,7 +4,7 @@ import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { ListType } from '../../../types/component-props/part-configs/link-list';
+import { ListType } from 'types/component-props/part-configs/link-list';
 
 import style from './Lenkeliste.module.scss';
 

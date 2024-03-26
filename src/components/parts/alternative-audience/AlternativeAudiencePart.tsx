@@ -1,13 +1,14 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
-import { ContentType } from '../../../types/content-props/_content-common';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { ContentType } from 'types/content-props/_content-common';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
-export const AlternativeAudiencePart: PartComponent<
-    PartType.AlternativeAudience
-> = ({ config, pageProps }) => {
-    const { data, type, _id, displayName } = pageProps;
+export const AlternativeAudiencePart: PartComponent<PartType.AlternativeAudience> = ({
+    config,
+}) => {
+    const { data, type, _id, displayName } = usePageContentProps();
 
     if (type !== ContentType.ProductPage) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
@@ -21,9 +22,7 @@ export const AlternativeAudiencePart: PartComponent<
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle målgrupper vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle målgrupper vises her når du klikker "marker som klar".'}
             />
         );
     }

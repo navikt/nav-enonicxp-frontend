@@ -1,4 +1,4 @@
-import { ContentType } from '../../content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
 
 type InternalContactUs = {

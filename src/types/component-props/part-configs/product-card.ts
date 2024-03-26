@@ -2,7 +2,7 @@ import {
     SituationPageProps,
     ProductPageProps,
     ToolsPageProps,
-} from '../../content-props/dynamic-page-props';
+} from 'types/content-props/dynamic-page-props';
 
 export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
 

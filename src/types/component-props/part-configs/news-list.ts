@@ -1,5 +1,5 @@
-import { LinkProps } from '../../link-props';
-import { ExpandableMixin, ContentListMixin } from '../_mixins';
+import { LinkProps } from 'types/link-props';
+import { ExpandableMixin, ContentListMixin } from 'types/component-props/_mixins';
 
 export type PartConfigNewsList = {
     title?: string;

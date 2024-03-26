@@ -1,4 +1,4 @@
-import { FiltersMixin } from '../_mixins';
+import { FiltersMixin } from 'types/component-props/_mixins';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 
 export type PartConfigFormDetails = {

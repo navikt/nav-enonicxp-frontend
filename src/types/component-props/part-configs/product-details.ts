@@ -1,6 +1,6 @@
-import { ComponentProps } from '../_component-common';
-import { ExpandableMixin, FiltersMixin } from '../_mixins';
-import { ProductDetailType } from '../../content-props/product-details';
+import { ComponentProps } from 'types/component-props/_component-common';
+import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
+import { ProductDetailType } from 'types/content-props/product-details';
 import { Language } from 'translations';
 
 export type PartConfigProductDetails = {

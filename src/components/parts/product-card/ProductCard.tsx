@@ -1,23 +1,39 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { getCardProps } from '../../_common/card/card-utils';
-import { MiniCard } from '../../_common/card/MiniCard';
-import { LargeCard } from '../../_common/card/LargeCard';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
+import { getCardProps } from 'components/_common/card/card-utils';
+import { MiniCard } from 'components/_common/card/MiniCard';
+import { LargeCard } from 'components/_common/card/LargeCard';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
-const ProductCard: PartComponent<
-    PartType.ProductCard | PartType.ProductCardMini
-> = ({ config, descriptor }) => {
-    const pageConfig = usePageConfig();
+// TODO: refactor
+
+export const ProductCardPart: PartComponent<PartType.ProductCard> = ({ config }) => {
+    const pageConfig = usePageContentProps();
 
     if (!config?.targetPage) {
         return (
-            <EditorHelp
-                text={
-                    'Velg en produktside eller livssituasjon for å aktivere kortet'
-                }
-            />
+            <EditorHelp text={'Velg en produktside eller livssituasjon for å aktivere kortet'} />
+        );
+    }
+
+    const { targetPage, ingressOverride } = config;
+
+    const props = getCardProps(targetPage, pageConfig, ingressOverride);
+
+    if (!props) {
+        return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
+    }
+
+    return <LargeCard {...props} />;
+};
+
+export const ProductCardMiniPart: PartComponent<PartType.ProductCardMini> = ({ config }) => {
+    const pageConfig = usePageContentProps();
+
+    if (!config?.targetPage) {
+        return (
+            <EditorHelp text={'Velg en produktside eller livssituasjon for å aktivere kortet'} />
         );
     }
 
@@ -29,23 +45,5 @@ const ProductCard: PartComponent<
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    if (descriptor === PartType.ProductCard) {
-        return <LargeCard {...props} />;
-    }
-
-    if (descriptor === PartType.ProductCardMini) {
-        return <MiniCard {...props} header={header} />;
-    }
-
-    return <EditorHelp type={'error'} text={'Kortet har ugyldig type'} />;
-};
-
-export const ProductCardPart: PartComponent<PartType.ProductCard> = (props) => {
-    return <ProductCard {...props} />;
-};
-
-export const ProductCardMiniPart: PartComponent<PartType.ProductCardMini> = (
-    props
-) => {
-    return <ProductCard {...props} />;
+    return <MiniCard {...props} header={header} />;
 };

@@ -1,4 +1,4 @@
-import { LinkSelectable } from '../_mixins';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type AreaCardGraphicsType =
     | 'payments'

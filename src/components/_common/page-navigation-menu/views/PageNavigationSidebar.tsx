@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
-import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
+import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
@@ -15,12 +15,7 @@ type Props = {
     scrollDirection: PageNavScrollDirection;
 };
 
-export const PageNavigationSidebar = ({
-    title,
-    links,
-    currentIndex,
-    scrollDirection,
-}: Props) => {
+export const PageNavigationSidebar = ({ title, links, currentIndex, scrollDirection }: Props) => {
     return (
         <div className={style.pageNavSidebar}>
             {title && (
@@ -34,9 +29,7 @@ export const PageNavigationSidebar = ({
                         <li key={anchorLink.anchorId}>
                             <PageNavigationLink
                                 targetId={anchorLink.anchorId}
-                                linkId={getPageNavigationLinkId(
-                                    anchorLink.anchorId
-                                )}
+                                linkId={getPageNavigationLinkId(anchorLink.anchorId)}
                                 isCurrent={currentIndex === index}
                                 scrollDirection={scrollDirection}
                                 viewStyle={'sidebar'}

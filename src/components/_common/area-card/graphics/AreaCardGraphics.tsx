@@ -1,5 +1,5 @@
 import React from 'react';
-import { AreaCardGraphicsType } from 'types/component-props/parts/area-card';
+import { AreaCardGraphicsType } from 'types/component-props/part-configs/area-card';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
@@ -39,17 +39,8 @@ export const AreaCardGraphics = ({ type, insideCard }: Props) => {
     const GraphicComponent = areaTypeComponentMap[type];
 
     return (
-        <div
-            className={classNames(
-                style.graphics,
-                insideCard ? style.insideCard : ''
-            )}
-        >
-            {GraphicComponent ? (
-                <GraphicComponent />
-            ) : (
-                <DefaultComponent type={type} />
-            )}
+        <div className={classNames(style.graphics, insideCard ? style.insideCard : '')}>
+            {GraphicComponent ? <GraphicComponent /> : <DefaultComponent type={type} />}
         </div>
     );
 };

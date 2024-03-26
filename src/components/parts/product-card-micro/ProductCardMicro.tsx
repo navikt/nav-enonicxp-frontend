@@ -1,8 +1,8 @@
 import React from 'react';
 import { MicroCards } from 'components/_common/card/MicroCard';
-import { TargetPage } from '../../../types/component-props/part-configs/product-card';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { TargetPage } from 'types/component-props/part-configs/product-card';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 export const ProductCardMicroPart: PartComponent<PartType.ProductCardMicro> = ({
     config,

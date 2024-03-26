@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { DetailType } from '../../../types/component-props/part-configs/office-editorial-detail';
+import { DetailType } from 'types/component-props/part-configs/office-editorial-detail';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';
@@ -8,12 +8,10 @@ import { SocialHelpLinks } from './details/SocialHelpLinks';
 import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
-const detailComponents: Record<
-    DetailType,
-    React.FunctionComponent<DetailProps>
-> = {
+const detailComponents: Record<DetailType, React.FunctionComponent<OfficeEditorialDetailProps>> = {
     [DetailType.SERVICE_INFORMATION]: ServiceInformation,
     [DetailType.SOCIAL_HELP_LINKS]: SocialHelpLinks,
     [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: SocialHelpPayoutInformation,
@@ -25,19 +23,19 @@ const detailComponents: Record<
 const editorTranslation: Record<DetailType, string> = {
     [DetailType.SERVICE_INFORMATION]: 'informasjon om tjenestene til kontoret.',
     [DetailType.SOCIAL_HELP_LINKS]: 'lenke til søknad om sosialhjelp.',
-    [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]:
-        'informasjon om utbetaling av sosialhjelp',
+    [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: 'informasjon om utbetaling av sosialhjelp',
     [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]:
         'informasjon om postkasse/henting av søknad for sosialhjelp.',
 };
 
-export type DetailProps = {
+export type OfficeEditorialDetailProps = {
     officeData: OfficeDetailsData;
 };
 
-export const OfficeEditorialDetailPart: PartComponent<
-    PartType.OfficeEditorialDetail
-> = ({ config, pageProps }) => {
+export const OfficeEditorialDetailPart: PartComponent<PartType.OfficeEditorialDetail> = ({
+    config,
+}) => {
+    const pageProps = usePageContentProps();
     const { detailType } = config;
 
     if (!detailType) {
@@ -54,6 +52,10 @@ export const OfficeEditorialDetailPart: PartComponent<
                 {`Her plasseres både felles tjenester for alle kontorene og kontor-spesifikk ${editorTranslation[detailType]}`}
             </PlaceholderIndicator>
         );
+    }
+
+    if (pageProps.type !== ContentType.OfficeBranchPage) {
+        return null;
     }
 
     const DetailComponent = detailComponents[detailType];

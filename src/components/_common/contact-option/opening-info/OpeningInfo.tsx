@@ -8,7 +8,8 @@ import { Loader } from '@navikt/ds-react';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
-} from 'types/component-props/parts/contact-option';
+} from 'types/component-props/part-configs/contact-option';
+
 import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 
 type Props = {
@@ -17,15 +18,10 @@ type Props = {
     textPrefix?: string;
 };
 
-export const OpeningInfo = ({
-    regularOpeningHours,
-    specialOpeningHours,
-    textPrefix,
-}: Props) => {
+export const OpeningInfo = ({ regularOpeningHours, specialOpeningHours, textPrefix }: Props) => {
     const { language } = usePageContentProps();
 
-    const [currentOpeningHours, setCurrentOpeningHours] =
-        useState<OpeningHours | null>(null);
+    const [currentOpeningHours, setCurrentOpeningHours] = useState<OpeningHours | null>(null);
     const [openingInfoText, setOpeningInfoText] = useState('');
 
     useEffect(() => {

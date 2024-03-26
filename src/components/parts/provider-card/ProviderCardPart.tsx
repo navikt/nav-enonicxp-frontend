@@ -3,7 +3,7 @@ import { LargeCard } from 'components/_common/card/LargeCard';
 import { CardType } from 'types/card';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 export const ProviderCardPart: PartComponent<PartType.ProviderCard> = ({
     config,

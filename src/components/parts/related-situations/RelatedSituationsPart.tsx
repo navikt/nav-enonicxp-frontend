@@ -1,13 +1,13 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
-import { ContentType } from '../../../types/content-props/_content-common';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { ContentType } from 'types/content-props/_content-common';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
-export const RelatedSituationsPart: PartComponent<
-    PartType.RelatedSituations
-> = ({ config, pageProps }) => {
-    const { type, data, _id } = pageProps;
+export const RelatedSituationsPart: PartComponent<PartType.RelatedSituations> = ({ config }) => {
+    const { type, data, _id } = usePageContentProps();
+
     if (type !== ContentType.ProductPage) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
@@ -20,9 +20,7 @@ export const RelatedSituationsPart: PartComponent<
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle situasjoner vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle situasjoner vises her når du klikker "marker som klar".'}
             />
         );
     }

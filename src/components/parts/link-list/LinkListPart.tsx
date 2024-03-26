@@ -1,11 +1,11 @@
 import React from 'react';
-import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
-import { ContentList } from '../../_common/content-list/ContentList';
+import { Lenkeliste } from 'components/_common/lenkeliste/Lenkeliste';
+import { ContentList } from 'components/_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
-import { PartConfigLinkList } from '../../../types/component-props/part-configs/link-list';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartConfigLinkList } from 'types/component-props/part-configs/link-list';
 
 import style from './LinkList.module.scss';
 

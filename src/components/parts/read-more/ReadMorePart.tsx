@@ -4,7 +4,7 @@ import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useShortcuts, Shortcuts } from 'utils/useShortcuts';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 import styles from './ReadMore.module.scss';
 

@@ -3,7 +3,7 @@ import { PartType } from 'types/component-props/parts';
 import {
     ComponentProps,
     ComponentType,
-} from '../../../types/component-props/_component-common';
+} from 'types/component-props/_component-common';
 
 type Props = {
     path: string;

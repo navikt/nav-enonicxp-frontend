@@ -2,7 +2,7 @@ import React from 'react';
 import { Calculator } from 'components/_common/calculator/Calculator';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 export const CalculatorPart: PartComponent<PartType.Calculator> = ({
     config,

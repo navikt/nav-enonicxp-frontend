@@ -1,4 +1,4 @@
-import { ProcessedHtmlProps } from '../../processed-html-props';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type PartConfigAlertBox = {
     content: ProcessedHtmlProps;

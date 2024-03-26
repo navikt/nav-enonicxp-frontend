@@ -1,9 +1,9 @@
 import React from 'react';
-import { LenkepanelListe } from '../../../_common/lenkepanel-liste/LenkepanelListe';
+import { LenkepanelListe } from 'components/_common/lenkepanel-liste/LenkepanelListe';
 import {
     ContentProps,
     ContentType,
-} from '../../../../types/content-props/_content-common';
+} from 'types/content-props/_content-common';
 
 export const LinkPanelsLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.SectionPage) {

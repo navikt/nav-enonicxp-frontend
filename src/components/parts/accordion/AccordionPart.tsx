@@ -1,6 +1,6 @@
 import { Accordion } from 'components/_common/accordion/Accordion';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 export const AccordionPart: PartComponent<PartType.Accordion> = ({
     config,

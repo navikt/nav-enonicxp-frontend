@@ -1,5 +1,5 @@
-import { LinkSelectable } from '../_mixins';
-import { XpImageProps } from '../../media';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 
 export type PartConfigProviderCard = Partial<{
     link: LinkSelectable;

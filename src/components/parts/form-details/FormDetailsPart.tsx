@@ -3,12 +3,11 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { ContentType } from 'types/content-props/_content-common';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
-export const FormDetailsPart: PartComponent<PartType.FormDetails> = ({
-    config,
-    pageProps,
-}) => {
+export const FormDetailsPart: PartComponent<PartType.FormDetails> = ({ config }) => {
+    const pageProps = usePageContentProps();
     const { targetFormDetails, ...displayConfig } = config;
 
     // This is a temporary solution to show the title as level 4 on product pages
@@ -16,8 +15,7 @@ export const FormDetailsPart: PartComponent<PartType.FormDetails> = ({
     // When all product pages have been re-organized, we can remove the reference and
     // config for showTitleAsLevel4.
     const showTitleAsLevel4 =
-        pageProps.type === ContentType.ProductPage &&
-        pageProps.data?.showSubsectionNavigation;
+        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
 
     if (!targetFormDetails) {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
@@ -31,10 +29,7 @@ export const FormDetailsPart: PartComponent<PartType.FormDetails> = ({
 
     return (
         <FilteredContent {...config}>
-            <FormDetails
-                formDetails={formDetails}
-                displayConfig={modifiedDisplayConfig}
-            />
+            <FormDetails formDetails={formDetails} displayConfig={modifiedDisplayConfig} />
         </FilteredContent>
     );
 };

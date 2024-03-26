@@ -1,12 +1,12 @@
 import React from 'react';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
-import { ChannelType } from '../../../types/component-props/part-configs/contact-option';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { ChannelType } from 'types/component-props/part-configs/contact-option';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
 
@@ -16,21 +16,13 @@ const editorHelpText: Record<ChannelWithSharedInfo, string> = {
     chat: 'Velg en "chat"-side før denne kontaktkanalen kan vises. Alternativt vises standard chat-tekstinnhold.',
 };
 
-const channelsWithSharedInfo: ReadonlySet<ChannelType> = new Set([
-    'call',
-    'write',
-    'chat',
-]);
+const channelsWithSharedInfo: ReadonlySet<ChannelType> = new Set(['call', 'write', 'chat']);
 
-const isChannelWithSharedInfo = (
-    channel: ChannelType
-): channel is ChannelWithSharedInfo => channelsWithSharedInfo.has(channel);
+const isChannelWithSharedInfo = (channel: ChannelType): channel is ChannelWithSharedInfo =>
+    channelsWithSharedInfo.has(channel);
 
-export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({
-    config,
-    pageProps,
-}) => {
-    const { pageConfig } = usePageConfig();
+export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({ config }) => {
+    const pageProps = usePageContentProps();
 
     const channel = config?.contactOptions?._selected;
     if (!channel) {
@@ -48,7 +40,7 @@ export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({
     const { sharedContactInformation, ingress } = channelData;
 
     if (!sharedContactInformation) {
-        return pageConfig.editorView === 'edit' ? (
+        return pageProps.editorView === 'edit' ? (
             <EditorHelp text={editorHelpText[channel]} />
         ) : (
             <DefaultOption {...channelData} channel={channel} />
@@ -60,10 +52,7 @@ export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({
             return (
                 <WriteOption
                     {...sharedContactInformation.data.contactType.write}
-                    ingress={
-                        ingress ||
-                        sharedContactInformation.data.contactType.write?.ingress
-                    }
+                    ingress={ingress || sharedContactInformation.data.contactType.write?.ingress}
                 />
             );
         }
@@ -71,10 +60,7 @@ export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({
             return (
                 <ChatOption
                     {...sharedContactInformation.data.contactType.chat}
-                    ingress={
-                        ingress ||
-                        sharedContactInformation.data.contactType.chat?.ingress
-                    }
+                    ingress={ingress || sharedContactInformation.data.contactType.chat?.ingress}
                 />
             );
         }

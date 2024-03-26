@@ -32,13 +32,10 @@ import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
-import { FiltersMenu } from './filters-menu/FiltersMenu';
+import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
 import { FrontpageCurrentTopics } from './frontpage-current-topics/FrontpageCurrentTopics';
-import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
-import {
-    ProductCardMiniPart,
-    ProductCardPart,
-} from './product-card/ProductCard';
+import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
+import { ProductCardMiniPart, ProductCardPart } from './product-card/ProductCard';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
@@ -79,91 +76,69 @@ const PartComponent = ({
 }) => {
     switch (partProps.descriptor) {
         case PartType.Accordion:
-            return <AccordionPart {...partProps} pageProps={pageProps} />;
+            return <AccordionPart {...partProps} />;
         case PartType.AlertBox:
-            return <AlertBoxPart {...partProps} pageProps={pageProps} />;
+            return <AlertBoxPart {...partProps} />;
         case PartType.AlternativeAudience:
-            return (
-                <AlternativeAudiencePart {...partProps} pageProps={pageProps} />
-            );
+            return <AlternativeAudiencePart {...partProps} />;
         case PartType.AreaCard:
-            return <AreaCardPart {...partProps} pageProps={pageProps} />;
+            return <AreaCardPart {...partProps} />;
         case PartType.AreapageSituationCard:
-            return (
-                <AreapageSituationCardPart
-                    {...partProps}
-                    pageProps={pageProps}
-                />
-            );
+            return <AreapageSituationCardPart {...partProps} />;
         case PartType.Button:
-            return <ButtonPart {...partProps} pageProps={pageProps} />;
+            return <ButtonPart {...partProps} />;
         case PartType.Calculator:
-            return <CalculatorPart {...partProps} pageProps={pageProps} />;
+            return <CalculatorPart {...partProps} />;
         case PartType.ContactOption:
-            return <ContactOptionPart {...partProps} pageProps={pageProps} />;
+            return <ContactOptionPart {...partProps} />;
         case PartType.FiltersMenu:
-            return <FiltersMenu {...partProps} pageProps={pageProps} />;
+            return <FiltersMenuPart {...partProps} />;
         case PartType.FormDetails:
-            return <FormDetailsPart {...partProps} pageProps={pageProps} />;
+            return <FormDetailsPart {...partProps} />;
         case PartType.FrontpageContact:
-            return (
-                <FrontpageContactPart {...partProps} pageProps={pageProps} />
-            );
+            return <FrontpageContactPart {...partProps} />;
         case PartType.FrontpageCurrentTopics:
-            return (
-                <FrontpageCurrentTopics {...partProps} pageProps={pageProps} />
-            );
+            return <FrontpageCurrentTopics {...partProps} />;
         case PartType.FrontpageShortcuts:
-            return <FrontpageShortcuts {...partProps} pageProps={pageProps} />;
+            return <FrontpageShortcutsPart {...partProps} />;
         case PartType.Header:
-            return <HeaderPart {...partProps} pageProps={pageProps} />;
+            return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:
-            return <HtmlArea {...partProps} pageProps={pageProps} />;
+            return <HtmlArea {...partProps} />;
         case PartType.LinkList:
-            return <LinkListPart {...partProps} pageProps={pageProps} />;
+            return <LinkListPart {...partProps} />;
         case PartType.LinkPanel:
-            return <LinkPanelPart {...partProps} pageProps={pageProps} />;
+            return <LinkPanelPart {...partProps} />;
         case PartType.LoggedinCard:
-            return <LoggedinCardPart {...partProps} pageProps={pageProps} />;
+            return <LoggedinCardPart {...partProps} />;
         case PartType.NewsList:
-            return <NewsListPart {...partProps} pageProps={pageProps} />;
+            return <NewsListPart {...partProps} />;
         case PartType.OfficeEditorialDetail:
-            return (
-                <OfficeEditorialDetailPart
-                    {...partProps}
-                    pageProps={pageProps}
-                />
-            );
+            return <OfficeEditorialDetailPart {...partProps} />;
         case PartType.PageHeader:
-            return <PageHeaderPart {...partProps} pageProps={pageProps} />;
+            return <PageHeaderPart {...partProps} />;
         case PartType.PageNavigationMenu:
-            return (
-                <PageNavigationMenuPart {...partProps} pageProps={pageProps} />
-            );
+            return <PageNavigationMenuPart {...partProps} />;
         case PartType.PayoutDates:
-            return <PayoutDatesPart {...partProps} pageProps={pageProps} />;
+            return <PayoutDatesPart {...partProps} />;
         case PartType.ProductCard:
-            return <ProductCardPart {...partProps} pageProps={pageProps} />;
+            return <ProductCardPart {...partProps} />;
         case PartType.ProductCardMicro:
-            return (
-                <ProductCardMicroPart {...partProps} pageProps={pageProps} />
-            );
+            return <ProductCardMicroPart {...partProps} />;
         case PartType.ProductCardMini:
-            return <ProductCardMiniPart {...partProps} pageProps={pageProps} />;
+            return <ProductCardMiniPart {...partProps} />;
         case PartType.ProductDetails:
-            return <ProductDetailsPart {...partProps} pageProps={pageProps} />;
+            return <ProductDetailsPart {...partProps} />;
         case PartType.ProviderCard:
-            return <ProviderCardPart {...partProps} pageProps={pageProps} />;
+            return <ProviderCardPart {...partProps} />;
         case PartType.ReadMore:
-            return <ReadMorePart {...partProps} pageProps={pageProps} />;
+            return <ReadMorePart {...partProps} />;
         case PartType.RelatedSituations:
-            return (
-                <RelatedSituationsPart {...partProps} pageProps={pageProps} />
-            );
+            return <RelatedSituationsPart {...partProps} />;
         case PartType.UserTests:
-            return <UserTestsPart {...partProps} pageProps={pageProps} />;
+            return <UserTestsPart {...partProps} />;
         case PartType.UxSignalsWidget:
-            return <UxSignalsWidgetPart {...partProps} pageProps={pageProps} />;
+            return <UxSignalsWidgetPart {...partProps} />;
 
         case PartLegacyType.LinkLists:
             return <LinkLists {...pageProps} />;
@@ -222,9 +197,7 @@ export const PartsMapper = ({
             className={classNames(
                 bem(),
                 bem(partName),
-                isEditView &&
-                    renderOnAuthState &&
-                    editorAuthstateClassname(renderOnAuthState)
+                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
             )}
             {...editorProps}
         >

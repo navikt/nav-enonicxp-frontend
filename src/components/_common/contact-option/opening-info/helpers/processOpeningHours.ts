@@ -10,7 +10,7 @@ import {
     OpeningHourRaw,
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
-} from '../../../../../types/component-props/part-configs/contact-option';
+} from 'types/component-props/part-configs/contact-option';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(isSameOrAfter);

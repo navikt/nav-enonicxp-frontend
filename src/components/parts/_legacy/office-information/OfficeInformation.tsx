@@ -2,19 +2,16 @@ import React from 'react';
 import { Reception } from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
-    formatAddress,
-    formatPhoneNumber,
-} from 'components/_common/office-details/utils';
+    officeDetailsFormatAddress,
+    officeDetailsFormatPhoneNumber,
+} from 'components/pages/office-branch-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
-import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
-import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
+import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './OfficeInformation.module.scss';
 
@@ -26,9 +23,9 @@ export const OfficeInformation = (props: ContentProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const getLabelMain = translator('mainArticle', props.language);
-    const location = formatAddress(contact.besoeksadresse, true);
-    const address = formatAddress(contact.postadresse, false);
-    const fax = formatPhoneNumber(contact.faksnummer);
+    const location = officeDetailsFormatAddress(contact.besoeksadresse, true);
+    const address = officeDetailsFormatAddress(contact.postadresse, false);
+    const fax = officeDetailsFormatPhoneNumber(contact.faksnummer);
 
     const publikumsmottak = forceArray(contact.publikumsmottak);
 
@@ -42,10 +39,7 @@ export const OfficeInformation = (props: ContentProps) => {
                     publishLabel={getLabelMain('published')}
                     modifiedLabel={getLabelMain('lastChanged')}
                 />
-                <Heading
-                    level="1"
-                    size="large"
-                >{`${unit.navn} - kontorinformasjon`}</Heading>
+                <Heading level="1" size="large">{`${unit.navn} - kontorinformasjon`}</Heading>
             </header>
             {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                 <div>
@@ -61,9 +55,7 @@ export const OfficeInformation = (props: ContentProps) => {
                     <Heading level="2" size="small">
                         Telefon
                     </Heading>
-                    <BodyShort>
-                        {formatPhoneNumber(contact.telefonnummer)}
-                    </BodyShort>
+                    <BodyShort>{officeDetailsFormatPhoneNumber(contact.telefonnummer)}</BodyShort>
                     {contact.telefonnummerKommentar && (
                         <BodyShort>{contact.telefonnummerKommentar}</BodyShort>
                     )}
@@ -75,9 +67,8 @@ export const OfficeInformation = (props: ContentProps) => {
                 </Heading>
                 {unit.type === 'ALS' ? (
                     <BodyLong>
-                        Du kan skrive til oss hvis du ønsker hjelp til å
-                        rekruttere, inkludere arbeidstakere og forebygge
-                        sykefravær, se{' '}
+                        Du kan skrive til oss hvis du ønsker hjelp til å rekruttere, inkludere
+                        arbeidstakere og forebygge sykefravær, se{' '}
                         <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/s/">
                             kontaktskjema for arbeidsgivere
                         </LenkeInline>
@@ -93,8 +84,8 @@ export const OfficeInformation = (props: ContentProps) => {
                         <LenkeInline href="https://www.nav.no/soknader/nb/person">
                             NAVs skjemaveileder.
                         </LenkeInline>{' '}
-                        Skjemaveilederen gir deg hjelp til å velge rett skjema
-                        og rett adresse det skal sendes til.
+                        Skjemaveilederen gir deg hjelp til å velge rett skjema og rett adresse det
+                        skal sendes til.
                     </BodyLong>
                 )}
             </div>
@@ -135,10 +126,7 @@ export const OfficeInformation = (props: ContentProps) => {
                 </div>
             )}
             {publikumsmottak.length > 0 && (
-                <Reception
-                    receptions={publikumsmottak}
-                    language={props.language}
-                />
+                <Reception receptions={publikumsmottak} language={props.language} />
             )}
         </article>
     );

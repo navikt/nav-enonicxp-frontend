@@ -2,10 +2,10 @@ import React from 'react';
 import {
     LoggedInCardTypeProps,
     LoggedInCardTypes,
-} from '../../../types/component-props/part-configs/loggedin-card';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+} from 'types/component-props/part-configs/loggedin-card';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 const CardComponents: {
     [cardType in LoggedInCardTypes]: React.FunctionComponent<

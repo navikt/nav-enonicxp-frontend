@@ -1,6 +1,6 @@
 import React from 'react';
-import { PageNavigationMenu } from '../../_common/page-navigation-menu/PageNavigationMenu';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 export const PageNavigationMenuPart: PartComponent<
     PartType.PageNavigationMenu

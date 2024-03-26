@@ -1,4 +1,4 @@
-import { SituationPageProps } from '../../content-props/dynamic-page-props';
+import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type PartConfigAreapageSituationCard = {
     disabled: boolean;

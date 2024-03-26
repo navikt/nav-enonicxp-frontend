@@ -1,8 +1,9 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
-import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
+import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import { getPageNavigationLinkId } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+
 import style from './PageNavigationInContent.module.scss';
 
 type Props = {
@@ -14,12 +15,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
     return (
         <div className={style.pageNavInContent}>
             {title && (
-                <Header
-                    level="2"
-                    className={style.title}
-                    justify={'left'}
-                    size="medium"
-                >
+                <Header level="2" className={style.title} justify={'left'} size="medium">
                     {title}
                 </Header>
             )}
@@ -29,9 +25,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
                         <li key={anchorLink.anchorId}>
                             <PageNavigationLink
                                 targetId={anchorLink.anchorId}
-                                linkId={getPageNavigationLinkId(
-                                    anchorLink.anchorId
-                                )}
+                                linkId={getPageNavigationLinkId(anchorLink.anchorId)}
                                 viewStyle={'inContent'}
                             >
                                 {anchorLink.linkText}

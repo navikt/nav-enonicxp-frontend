@@ -1,5 +1,5 @@
-import { LinkSelectable } from '../_mixins';
-import { XpImageProps } from '../../media';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 
 type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
 type ButtonPartSizeProp = 'medium' | 'small';

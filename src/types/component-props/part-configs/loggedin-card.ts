@@ -1,5 +1,5 @@
-import { OptionSetSingle } from '../../util-types';
-import { LinkSelectable } from '../_mixins';
+import { OptionSetSingle } from 'types/util-types';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type PartConfigLoggedinCard = {
     card: OptionSetSingle<{

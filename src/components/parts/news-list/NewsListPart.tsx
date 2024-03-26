@@ -1,9 +1,9 @@
 import React from 'react';
-import { ContentList } from '../../_common/content-list/ContentList';
-import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from '../../../types/component-props/parts';
+import { ContentList } from 'components/_common/content-list/ContentList';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponent, PartType } from 'types/component-props/parts';
 
 import style from './NewsList.module.scss';
 

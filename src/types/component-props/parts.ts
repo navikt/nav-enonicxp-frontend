@@ -2,8 +2,8 @@ import { PartConfigAccordion } from './part-configs/accordion';
 import { ComponentCommonProps, ComponentType } from './_component-common';
 import { PartConfigAlertBox } from './part-configs/alert-box';
 import { PartConfigAlternativeAudience } from './part-configs/alternative-audience';
-import { ContentProps } from '../content-props/_content-common';
-import { EmptyObject } from '../util-types';
+import { ContentProps } from 'types/content-props/_content-common';
+import { EmptyObject } from 'types/util-types';
 import { PartConfigAreaCard } from './part-configs/area-card';
 import { PartConfigAreapageSituationCard } from './part-configs/areapage-situation-card';
 import { PartConfigButton } from './part-configs/button';
@@ -136,17 +136,10 @@ export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
         ? ComponentCommonProps<
               ComponentType.Part,
               Descriptor,
-              Descriptor extends keyof PartConfigs
-                  ? PartConfigs[Descriptor]
-                  : EmptyObject
+              Descriptor extends keyof PartConfigs ? PartConfigs[Descriptor] : EmptyObject
           >
         : never;
 
-export type PartComponent<Descriptor extends PartType> =
-    Descriptor extends PartType
-        ? React.FunctionComponent<
-              PartComponentProps<Descriptor> & {
-                  pageProps: ContentProps;
-              }
-          >
-        : never;
+export type PartComponent<Descriptor extends PartType> = Descriptor extends PartType
+    ? React.FunctionComponent<PartComponentProps<Descriptor>>
+    : never;

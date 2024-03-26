@@ -1,5 +1,5 @@
 import React from 'react';
-import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
+import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
 

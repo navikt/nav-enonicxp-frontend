@@ -1,5 +1,5 @@
-import { ExpandableMixin, FiltersMixin } from '../_mixins';
-import { ProcessedHtmlProps } from '../../processed-html-props';
+import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type PartConfigHtmlArea = {
     html: ProcessedHtmlProps;

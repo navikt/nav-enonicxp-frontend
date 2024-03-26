@@ -2,7 +2,7 @@ import { processOpeningHours } from 'components/_common/contact-option/opening-i
 import {
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
-} from '../../../../../types/component-props/part-configs/contact-option';
+} from 'types/component-props/part-configs/contact-option';
 import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { translator } from 'translations';

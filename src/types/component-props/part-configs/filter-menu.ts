@@ -1,17 +1,17 @@
-import { ExpandableMixin } from '../_mixins';
+import { ExpandableMixin } from 'types/component-props/_mixins';
 
-export type Filter = {
+export type FilterMenuFilter = {
     filterName: string;
     id: string;
 };
 
-export type Category = {
+export type FilterMenuCategory = {
     categoryName: string;
-    filters: Filter[];
+    filters: FilterMenuFilter[];
 };
 
 export type PartConfigFilterMenu = {
     title?: string;
     description: string;
-    categories: Category[];
+    categories: FilterMenuCategory[];
 } & ExpandableMixin;

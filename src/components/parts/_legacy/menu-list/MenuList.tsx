@@ -2,7 +2,7 @@ import React from 'react';
 import { translator } from 'translations';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { Accordion } from '@navikt/ds-react';
 
 import style from './MenuList.module.scss';
