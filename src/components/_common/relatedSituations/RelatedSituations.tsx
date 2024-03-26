@@ -1,7 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { ContentProps } from 'types/content-props/_content-common';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
@@ -16,21 +15,14 @@ type Props = {
     description: string;
 };
 
-export const RelatedSituations = ({
-    relatedSituations,
-    title,
-    description,
-}: Props) => {
+export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
     const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
 
     return (
         <div
-            className={classNames(
-                style.relatedSituations,
-                editorView === 'edit' && style.noMargin
-            )}
+            className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
         >
             <Heading level="3" size="medium" spacing>
                 {title || getStringPart('otherOffers')}
@@ -44,9 +36,7 @@ export const RelatedSituations = ({
                         <MicroCard
                             link={{
                                 url: stripXpPathPrefix(situation._path),
-                                text:
-                                    situation.data.title ||
-                                    situation.displayName,
+                                text: situation.data.title || situation.displayName,
                             }}
                             type={CardType.Situation}
                         />
