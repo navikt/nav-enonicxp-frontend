@@ -1,5 +1,5 @@
 import { fetchJson } from 'srcCommon/fetch-utils';
-import { xpServiceUrl } from '../urls';
+import { xpServiceUrl } from 'utils/urls';
 import { logger } from 'srcCommon/logger';
 
 const excludedPaths: ReadonlySet<string> = new Set([

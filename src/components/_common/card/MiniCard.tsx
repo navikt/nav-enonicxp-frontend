@@ -3,8 +3,8 @@ import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
-import { Illustration } from '../illustration/Illustration';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { Illustration } from 'components/_common/illustration/Illustration';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
 import { usePageContentProps } from 'store/pageContext';
@@ -19,7 +19,7 @@ export type MiniKortProps = {
     header?: string;
     className?: string;
     preferStaticIllustration?: boolean;
-    fallbackIllustration?: boolean;
+    withFallbackIllustration?: boolean;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
@@ -30,7 +30,7 @@ export const MiniCard = (props: MiniKortProps) => {
         header,
         className,
         preferStaticIllustration,
-        fallbackIllustration,
+        withFallbackIllustration,
     } = props;
     const { text } = link;
     const { isHovering, userEventProps, analyticsProps } = useCard({
@@ -60,7 +60,7 @@ export const MiniCard = (props: MiniKortProps) => {
                         preferStaticIllustration={
                             preferStaticIllustration || editorView === 'edit'
                         }
-                        fallbackIllustration={fallbackIllustration}
+                        withFallbackIllustration={withFallbackIllustration}
                     />
                     <LenkeBase
                         className={classNames(

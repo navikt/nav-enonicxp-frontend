@@ -1,5 +1,5 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     OfficeBranchPageProps,
     OfficeEditorialPageProps,

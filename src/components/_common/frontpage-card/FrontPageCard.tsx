@@ -1,5 +1,5 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { MiniCard } from '../card/MiniCard';
+import { MiniCard } from 'components/_common/card/MiniCard';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 
@@ -10,7 +10,7 @@ type Props = {
     path: string;
     title: string;
     type: CardType;
-    fallbackIllustration?: boolean;
+    withFallbackIllustration?: boolean;
 };
 
 export const FrontPageCard = ({
@@ -18,7 +18,7 @@ export const FrontPageCard = ({
     path,
     title,
     type,
-    fallbackIllustration,
+    withFallbackIllustration,
 }: Props) => {
     const link: LinkProps = {
         url: path,
@@ -32,7 +32,7 @@ export const FrontPageCard = ({
             type={type}
             className={styles.frontpageCard}
             preferStaticIllustration={true}
-            fallbackIllustration={fallbackIllustration}
+            withFallbackIllustration={withFallbackIllustration}
         />
     );
 };

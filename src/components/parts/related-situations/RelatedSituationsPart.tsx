@@ -1,32 +1,37 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ProductPageData } from 'types/content-props/dynamic-page-props';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
 import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
+import { ContentType } from 'types/content-props/_content-common';
+import { createTypeGuard } from 'types/_type-guards';
 
-export const RelatedSituationsPart = ({
-    config,
-    pageProps,
-}: RelatedSituationsProps) => {
-    const relatedSituations = (pageProps.data as ProductPageData)
-        ?.relatedSituations;
+const isValidContentType = createTypeGuard([
+    ContentType.ProductPage,
+    ContentType.ThemedArticlePage,
+    ContentType.GuidePage,
+] as const);
+
+export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
+    const { type, data, _id } = pageProps;
+
+    if (!isValidContentType(type)) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
+    }
 
     // If the page is in preview mode, related situations from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the situations until the page has been refreshed.
-    const isComponentPreviewMode = pageProps._id === '';
-
+    const isComponentPreviewMode = _id === '';
     if (isComponentPreviewMode) {
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle situasjoner vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle situasjoner vises her når du klikker "marker som klar".'}
             />
         );
     }
 
+    const { relatedSituations } = data;
     if (!relatedSituations || relatedSituations.length === 0) {
         return (
             <EditorHelp

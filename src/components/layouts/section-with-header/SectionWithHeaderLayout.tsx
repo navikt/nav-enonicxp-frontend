@@ -1,12 +1,12 @@
 import React from 'react';
-import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutContainer } from '../LayoutContainer';
-import Region from '../Region';
-import { Header } from '../../_common/headers/Header';
-import { XpImage } from '../../_common/image/XpImage';
-import { FilterBar } from '../../_common/filter-bar/FilterBar';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
+import { ContentProps } from 'types/content-props/_content-common';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import Region from 'components/layouts/Region';
+import { Header } from 'components/_common/headers/Header';
+import { XpImage } from 'components/_common/image/XpImage';
+import { FilterBar } from 'components/_common/filter-bar/FilterBar';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;

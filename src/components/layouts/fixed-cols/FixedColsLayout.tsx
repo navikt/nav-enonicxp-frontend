@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import Region from '../Region';
-import { FixedColsLayoutProps } from '../../../types/component-props/layouts/fixed-cols';
-import { LayoutContainer } from '../LayoutContainer';
+import { ContentProps } from 'types/content-props/_content-common';
+import Region from 'components/layouts/Region';
+import { FixedColsLayoutProps } from 'types/component-props/layouts/fixed-cols';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
 
 type Props = {
     pageProps: ContentProps;

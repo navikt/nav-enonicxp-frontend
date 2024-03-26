@@ -1,6 +1,6 @@
 import React from 'react';
-import { MacroChatbotLinkProps } from '../../../types/macro-props/chatbot-link';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import { MacroChatbotLinkProps } from 'types/macro-props/chatbot-link';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { Button } from 'components/_common/button/Button';
 

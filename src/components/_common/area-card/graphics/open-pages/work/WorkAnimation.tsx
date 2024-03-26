@@ -1,6 +1,6 @@
 import React from 'react';
 import { StaticImage } from 'components/_common/image/StaticImage';
-import { classNames } from '../../../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 
 import briefcase from './gfx/briefcase.svg';
 import shapes from './gfx/shapes.svg';

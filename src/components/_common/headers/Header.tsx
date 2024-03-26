@@ -4,7 +4,7 @@ import { onlyText } from 'utils/react-children';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
-import { CopyLink } from '../copyLink/copyLink';
+import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';

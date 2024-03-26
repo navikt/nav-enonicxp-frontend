@@ -5,7 +5,7 @@ import {
     ChannelType,
     ContactOptionProps,
 } from 'types/component-props/parts/contact-option';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
-import { classNames } from '../../../../utils/classnames';
-import { AreaCardGraphics } from '../../../_common/area-card/graphics/AreaCardGraphics';
-import { AreaPageProps } from '../../../../types/content-props/index-pages-props';
+import { classNames } from 'utils/classnames';
+import { AreaCardGraphics } from 'components/_common/area-card/graphics/AreaCardGraphics';
+import { AreaPageProps } from 'types/content-props/index-pages-props';
 
 import style from './AreaPageHeader.module.scss';
-import graphicsStyle from '../../../_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
+import graphicsStyle from 'components/_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
 
 type Props = {
     content: AreaPageProps;

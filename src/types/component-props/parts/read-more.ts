@@ -1,4 +1,4 @@
-import { PartComponentProps } from '../_component-common';
+import { PartComponentProps } from 'types/component-props/_component-common';
 import { PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 

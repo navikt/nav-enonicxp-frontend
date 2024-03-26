@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
+import type { RootState } from 'store/store';
 
 import {
     FilteredContentState,
@@ -7,7 +7,7 @@ import {
     AvailableFiltersPayload,
     ClearFiltersPayload,
     Category,
-} from '../../types/store/filter-menu';
+} from 'types/store/filter-menu';
 
 const initialState: FilteredContentState = {};
 

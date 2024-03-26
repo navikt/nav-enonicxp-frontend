@@ -1,6 +1,6 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { RenderOnAuthStateMixin } from '../_mixins';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 
 export interface PageHeaderProps extends PartComponentProps {
     descriptor: PartType.PageHeader;

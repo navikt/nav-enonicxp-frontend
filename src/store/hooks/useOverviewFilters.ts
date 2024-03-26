@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import {

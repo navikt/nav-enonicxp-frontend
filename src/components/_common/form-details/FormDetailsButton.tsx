@@ -1,6 +1,6 @@
 import { Variation } from 'types/content-props/form-details';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { Button } from '../button/Button';
+import { Button } from 'components/_common/button/Button';
 
 import styles from './FormDetailsButton.module.scss';
 

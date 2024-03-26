@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkProps } from 'types/link-props';
 import { CardSize, CardType } from 'types/card';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useCard } from './useCard';
 import { classNames } from 'utils/classnames';
 import { TargetPage } from 'types/component-props/parts/product-card';

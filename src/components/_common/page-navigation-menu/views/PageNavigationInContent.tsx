@@ -1,18 +1,16 @@
 import React from 'react';
-import { Header } from '../../headers/Header';
-import { PageNavigationLink } from '../PageNavigationLink';
-import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
-import { getPageNavigationLinkId } from '../PageNavigationMenu';
-import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
+import { Header } from 'components/_common/headers/Header';
+import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
+import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
+import { getPageNavigationLinkId } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import style from './PageNavigationInContent.module.scss';
 
 type Props = {
     title?: string;
     links: AnchorLink[];
-    dupes: AnchorLink[];
 };
 
-export const PageNavigationInContent = ({ title, links, dupes }: Props) => {
+export const PageNavigationInContent = ({ title, links }: Props) => {
     return (
         <div className={style.pageNavInContent}>
             {title && (
@@ -25,7 +23,6 @@ export const PageNavigationInContent = ({ title, links, dupes }: Props) => {
                     {title}
                 </Header>
             )}
-            <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
                 <ul className={style.list}>
                     {links.map((anchorLink) => (

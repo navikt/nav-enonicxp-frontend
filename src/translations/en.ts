@@ -163,15 +163,15 @@ export const translationsBundleEn: PartialTranslations = {
         alternativeContacts: 'Other contact options:',
     },
     dateTime: {
-        weekDayNames: [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday',
-        ],
+        weekDayNames: {
+            mon: 'Monday',
+            tue: 'Tuesday',
+            wed: 'Wednesday',
+            thu: 'Thursday',
+            fri: 'Friday',
+            sat: 'Saturday',
+            sun: 'Sunday',
+        },
         relatives: {
             today: 'today',
             tomorrow: 'tomorrow',

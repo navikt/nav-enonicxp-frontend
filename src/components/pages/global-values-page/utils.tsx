@@ -1,9 +1,9 @@
 import React from 'react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVMessageProps } from './components/messages/GVMessages';
-import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
-import { EditorLinkWrapper } from '../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
 
 export const gvNameExists = (
