@@ -10,17 +10,17 @@ type UseShortcutsProps = {
 };
 
 export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-        if (
-            shortcut === Shortcuts.SEARCH &&
-            (e.ctrlKey || e.metaKey) &&
-            e.key.toLowerCase() === 'f'
-        ) {
-            callback();
-        }
-    };
-
     useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (
+                shortcut === Shortcuts.SEARCH &&
+                (e.ctrlKey || e.metaKey) &&
+                e.key.toLowerCase() === 'f'
+            ) {
+                callback();
+            }
+        };
+
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);

@@ -24,5 +24,10 @@
                 "rootDir": "src"
             }
         ]
+    },
+    "settings": {
+        "css-modules": {
+            "basePath": "src"
+        }
     }
 }
