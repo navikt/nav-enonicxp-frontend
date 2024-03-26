@@ -23,7 +23,8 @@
         "lint:server": "npm run lint --workspace server",
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace server",
-        "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
+        "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
+        "prepare": "husky install"
     },
     "workspaces": [
         "server"
