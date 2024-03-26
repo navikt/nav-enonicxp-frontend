@@ -48,4 +48,4 @@ export const typoToSize: Record<HeaderTypoStyle, Size> = {
 };
 
 export const isHeadingTag = (tag?: string): tag is HeadingTag =>
-    !!tag?.match(/^h[1-6]$/);
+    !!headingToLevel[tag as HeadingTag];

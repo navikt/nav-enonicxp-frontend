@@ -1,5 +1,8 @@
-import { LayoutCommonProps, LayoutType } from '../layouts';
-import { ComponentProps, ComponentType } from '../_component-common';
+import { LayoutCommonProps, LayoutType } from 'types/component-props/layouts';
+import {
+    ComponentProps,
+    ComponentType,
+} from 'types/component-props/_component-common';
 
 type Regions = 'pageContent';
 

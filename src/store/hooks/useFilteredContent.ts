@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from '../store';
-import { usePageConfig } from './usePageConfig';
+import { useAppDispatch, useAppSelector } from 'store/store';
+import { usePageContentProps } from 'store/pageContext';
 import {
     availableFiltersAtPage,
     clearFiltersForPageAction,
@@ -7,7 +7,7 @@ import {
     setAvailableFiltersAction,
     toggleFilterSelectionAction,
     clearFiltersAction,
-} from '../slices/filteredContent';
+} from 'store/slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
 import { FilterSelection } from 'types/component-props/_mixins';
 
@@ -23,8 +23,7 @@ type UseFilterState = {
 export const useFilterState = (): UseFilterState => {
     const dispatch = useAppDispatch();
 
-    const { pageConfig } = usePageConfig();
-    const { pageId } = pageConfig;
+    const { _id: pageId } = usePageContentProps();
 
     const availableFilters = useAppSelector<Category[]>((state) =>
         availableFiltersAtPage(state, pageId)

@@ -5,12 +5,12 @@ import {
     DefaultContactData,
 } from '../../../types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import {
@@ -26,7 +26,7 @@ type Props = DefaultContactData & {
 
 export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
     const { isActive, handlers } = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);

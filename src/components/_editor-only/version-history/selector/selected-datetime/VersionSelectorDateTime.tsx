@@ -7,8 +7,8 @@ import {
     getUtcTimeFromLocal,
 } from 'utils/datetime';
 import { Branch } from 'types/branch';
-import { getVersionSelectorUrl } from '../versionSelectorUtils';
-import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
+import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
+import { VersionSelectorSubmitButton } from 'components/_editor-only/version-history/selector/submit-button/VersionSelectorSubmitButton';
 import dayjs from 'dayjs';
 
 import style from './VersionSelectorDateTime.module.scss';

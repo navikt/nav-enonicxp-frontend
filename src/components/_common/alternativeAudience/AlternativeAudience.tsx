@@ -4,10 +4,10 @@ import {
     Audience,
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
-import { LenkeInline } from '../lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
@@ -29,8 +29,7 @@ export const AlternativeAudience = ({
     productName,
     showProductName,
 }: Props) => {
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language, editorView } = usePageContentProps();
 
     const getRelatedString = translator('related', language);
     const getStringPart = translator('stringParts', language);

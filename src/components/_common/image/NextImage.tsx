@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { isValidImageUrl } from '../../../utils/urls';
+import { isValidImageUrl } from 'utils/urls';
 import dynamic from 'next/dynamic';
 
 // These types should match what's specified in next.config
@@ -61,7 +61,7 @@ const NextImageRunTime = (props: ImageProps) => {
         ...imgAttribs
     } = props;
 
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     if (!src) {
         return null;
@@ -74,7 +74,7 @@ const NextImageRunTime = (props: ImageProps) => {
                 src,
                 maxWidth,
                 quality,
-                isEditorView: !!pageConfig.editorView,
+                isEditorView: !!editorView,
             })}
             alt={alt}
         />

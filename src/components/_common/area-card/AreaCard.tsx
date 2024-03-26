@@ -1,9 +1,9 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { classNames } from '../../../utils/classnames';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { classNames } from 'utils/classnames';
 import { AreaCardGraphics } from './graphics/AreaCardGraphics';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import style from './AreaCard.module.scss';
 import graphicsStyle from './graphics/AreaCardGraphicsCommon.module.scss';

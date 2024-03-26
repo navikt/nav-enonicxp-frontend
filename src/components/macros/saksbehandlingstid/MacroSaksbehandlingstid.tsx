@@ -1,9 +1,9 @@
 import React from 'react';
-import { MacroSaksbehandlingstidProps } from '../../../types/macro-props/saksbehandlingstid';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { Language, translator } from '../../../translations';
-import { GlobalCaseTimeUnit } from '../../../types/content-props/global-values-props';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { MacroSaksbehandlingstidProps } from 'types/macro-props/saksbehandlingstid';
+import { usePageContentProps } from 'store/pageContext';
+import { Language, translator } from 'translations';
+import { GlobalCaseTimeUnit } from 'types/content-props/global-values-props';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const getCaseTimeString = (
     value: number | string,
@@ -22,7 +22,7 @@ export const MacroSaksbehandlingstid = ({
 }: MacroSaksbehandlingstidProps) => {
     const macroData = config?.saksbehandlingstid?.caseTime;
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     if (!macroData) {
         return (

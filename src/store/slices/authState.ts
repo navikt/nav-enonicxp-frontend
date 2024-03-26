@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MeldekortStatusResponse } from '../../utils/fetch/fetch-meldekort-status';
+import { MeldekortStatusResponse } from 'utils/fetch/fetch-meldekort-status';
 
 export type AuthStateType = 'loggedIn' | 'loggedOut' | 'waiting';
 

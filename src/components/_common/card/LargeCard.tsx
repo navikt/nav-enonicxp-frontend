@@ -3,11 +3,11 @@ import { classNames } from 'utils/classnames';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
-import { Illustration } from '../illustration/Illustration';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { Illustration } from 'components/_common/illustration/Illustration';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useCard } from './useCard';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';
@@ -52,7 +52,7 @@ export const LargeCard = (props: Props) => {
         link,
     });
 
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
 
     const layoutVariation =
         type === CardType.Situation
@@ -74,7 +74,7 @@ export const LargeCard = (props: Props) => {
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
-                                pageConfig.editorView === 'edit' ||
+                                editorView === 'edit' ||
                                 preferStaticIllustration
                             }
                         />

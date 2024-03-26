@@ -2,10 +2,10 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
-import { SiteInfoContentProps } from '../../types';
+import { SiteInfoContentProps } from 'components/_editor-only/site-info/types';
 import { stripXpPathPrefix } from 'utils/urls';
 import { formatDateTime } from 'utils/datetime';
-import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
+import { SiteInfoLink } from 'components/_editor-only/site-info/_common/links/SiteInfoLink';
 
 import style from './SiteInfoPublishInfoItem.module.scss';
 

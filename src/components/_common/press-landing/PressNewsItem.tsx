@@ -2,11 +2,11 @@ import React from 'react';
 import { translator } from 'translations';
 import { Detail, Heading } from '@navikt/ds-react';
 import { shortenText } from 'utils/string';
-import { StaticImage } from '../image/StaticImage';
+import { StaticImage } from 'components/_common/image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
 import newsIcon from '/public/gfx/news-paper-icon-black.svg';

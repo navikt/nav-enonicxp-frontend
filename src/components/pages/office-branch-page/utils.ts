@@ -1,8 +1,8 @@
-import { LegacyOfficeOpeningHoursProps } from '../../../types/content-props/office-information-props';
-import { OpeningHours as OpeningHoursProps } from '../../../types/content-props/office-details-props';
-import { formatDate } from '../../../utils/datetime';
-import { Language, translator } from '../../../translations';
-import { Translations } from '../../../translations/default';
+import { LegacyOfficeOpeningHoursProps } from 'types/content-props/office-information-props';
+import { OpeningHours as OpeningHoursProps } from 'types/content-props/office-details-props';
+import { formatDate } from 'utils/datetime';
+import { Language, translator } from 'translations';
+import { Translations } from 'translations/default';
 
 type LegacyDayNames = NonNullable<LegacyOfficeOpeningHoursProps['dag']>;
 type TranslationDayNameKeys = keyof Translations['dateTime']['weekDayNames'];

@@ -1,11 +1,33 @@
 {
-    "plugins": ["css-modules"],
+    "plugins": ["css-modules", "no-relative-import-paths"],
     "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
     "ignorePatterns": ["next.config.js"],
     "rules": {
         "@next/next/no-img-element": 0,
-        "css-modules/no-unused-class": [1, { "camelCase": true }],
-        "css-modules/no-undef-class": [2, { "camelCase": true }],
-        "no-console": "error"
+        "css-modules/no-unused-class": [
+            1,
+            {
+                "camelCase": true
+            }
+        ],
+        "css-modules/no-undef-class": [
+            2,
+            {
+                "camelCase": true
+            }
+        ],
+        "no-console": "warn",
+        "no-relative-import-paths/no-relative-import-paths": [
+            "warn",
+            {
+                "allowSameFolder": true,
+                "rootDir": "src"
+            }
+        ]
+    },
+    "settings": {
+        "css-modules": {
+            "basePath": "src"
+        }
     }
 }

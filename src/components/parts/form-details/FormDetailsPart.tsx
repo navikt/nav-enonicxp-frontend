@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
-import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
+import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { ContentType } from 'types/content-props/_content-common';
 import { PartComponent, PartType } from '../../../types/component-props/parts';
 

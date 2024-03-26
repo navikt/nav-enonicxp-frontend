@@ -2,14 +2,14 @@ import React from 'react';
 import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { TelephoneData } from '../../../types/component-props/part-configs/contact-option';
+import { TelephoneData } from 'types/component-props/parts/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { usePageContentProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
@@ -48,7 +48,7 @@ export const CallOption = ({
 }: Props) => {
     const overrideText = specialOpeningHours?.overrideText;
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
 
     const getContactTranslations = translator('contactPoint', language);

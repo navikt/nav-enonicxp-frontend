@@ -1,16 +1,13 @@
 import React, { Fragment } from 'react';
-import Region from '../Region';
-import { LayoutContainer } from '../LayoutContainer';
+import Region from 'components/layouts/Region';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ProductDetailType } from 'types/content-props/product-details';
 import {
     ProductDetailsPageProps,
     ProductDetailsPageRegionName,
 } from 'types/component-props/pages/product-details-layout';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './ProductDetailsLayout.module.scss';
 

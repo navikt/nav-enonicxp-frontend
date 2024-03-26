@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { store } from 'store/store';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { NextImage } from '../image/NextImage';
+import { usePageContentProps } from 'store/pageContext';
+import { NextImage } from 'components/_common/image/NextImage';
 import htmlReactParser, {
     Element,
     domToReact,
@@ -19,10 +19,10 @@ import {
 } from 'types/processed-html-props';
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
-import { MacroMapper } from '../../macros/MacroMapper';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { LenkeInline } from '../lenke/LenkeInline';
-import { Table } from '../table/Table';
+import { MacroMapper } from 'components/macros/MacroMapper';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { Table } from 'components/_common/table/Table';
 import { BodyLong, Heading } from '@navikt/ds-react';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
@@ -81,8 +81,7 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
-    const { pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView } = usePageContentProps();
 
     if (!htmlProps) {
         return null;

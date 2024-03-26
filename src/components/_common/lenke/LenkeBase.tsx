@@ -5,7 +5,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './LenkeBase.module.scss';
 
@@ -44,7 +44,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const { pageConfig } = usePageConfig();
+    const { editorView } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
 
     const { url, canRouteClientSide } = usePublicUrl(href);
@@ -57,8 +57,7 @@ export const LenkeBase = ({
     };
 
     const WrapperComponent =
-        pageConfig.editorView === 'edit' &&
-        href?.startsWith(adminPreviewUrlPrefix)
+        editorView === 'edit' && href?.startsWith(adminPreviewUrlPrefix)
             ? BadLinkWarning
             : Fragment;
 
@@ -66,7 +65,7 @@ export const LenkeBase = ({
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     const shouldPrefetch =
-        canRouteClientSide && (prefetch === false || pageConfig.editorView)
+        canRouteClientSide && (prefetch === false || editorView)
             ? false
             : undefined;
 

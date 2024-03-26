@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
-import { IllustrationStatic } from '../illustration/static/IllustrationStatic';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './ProductPanelExpandable.module.scss';
 
@@ -37,7 +37,7 @@ export const ProductPanelExpandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const loadingText = translator('overview', language)('loading');
 
     const anchorIdWithHash = `#${anchorId}`;

@@ -1,5 +1,5 @@
 import { ContentType } from './_content-common';
-import { XpImageProps } from '../media';
+import { XpImageProps } from 'types/media';
 
 export type AnimatedIcon = {
     icon?: XpImageProps;

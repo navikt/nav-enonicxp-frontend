@@ -1,18 +1,12 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import {
     Audience,
     getAudience,
     getSubAudience,
     ProductDataMixin,
-} from '../../../../types/component-props/_mixins';
-import { translator } from '../../../../translations';
-import {
-    getTranslatedTaxonomies,
-    joinWithConjunction,
-} from '../../../../utils/string';
+} from 'types/component-props/_mixins';
+import { translator } from 'translations';
+import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
 

@@ -1,20 +1,20 @@
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { PartConfigAccordion } from '../../../types/component-props/part-configs/accordion';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { AccordionPartProps } from 'types/component-props/parts/accordion';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
-import { useState } from 'react';
+
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Accordion.module.scss';
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { useState } from 'react';
+import { usePageContentProps } from 'store/pageContext';
 
-type AccordionProps = PartConfigAccordion;
+type AccordionProps = AccordionPartProps['config'];
 type PanelItem = AccordionProps['accordion'][0];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
-    const { pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView } = usePageContentProps();
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
     const expandAll = () => {

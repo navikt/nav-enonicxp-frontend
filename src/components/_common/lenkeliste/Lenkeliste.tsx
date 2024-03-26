@@ -1,7 +1,7 @@
 import React, { useId } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
-import { LenkeStandalone } from '../lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { ListType } from '../../../types/component-props/part-configs/link-list';

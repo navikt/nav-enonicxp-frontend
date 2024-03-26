@@ -1,21 +1,21 @@
 import React from 'react';
-import { FrontpageLoggedinSectionLayoutProps } from '../../../types/component-props/layouts/frontpage-loggedin-section';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutContainer } from '../LayoutContainer';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { Header } from '../../_common/headers/Header';
-import Region from '../Region';
-import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
-import { useAuthState } from '../../../store/hooks/useAuthState';
-import { capitalize } from '../../../utils/string';
-import { translator } from '../../../translations';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { FrontpageLoggedinSectionLayoutProps } from 'types/component-props/layouts/frontpage-loggedin-section';
+import { ContentProps } from 'types/content-props/_content-common';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Header } from 'components/_common/headers/Header';
+import Region from 'components/layouts/Region';
+import { AuthDependantRender } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { useAuthState } from 'store/hooks/useAuthState';
+import { capitalize } from 'utils/string';
+import { translator } from 'translations';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { name } = useAuthState();
 
     // Fallback message if for some reason the users name is not available

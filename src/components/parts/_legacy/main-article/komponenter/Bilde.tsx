@@ -1,6 +1,6 @@
 import React from 'react';
-import { Picture } from '../../../../../types/content-props/main-article-props';
-import { XpImage } from '../../../../_common/image/XpImage';
+import { Picture } from 'types/content-props/main-article-props';
+import { XpImage } from 'components/_common/image/XpImage';
 
 import style from './Bilde.module.scss';
 
@@ -20,8 +20,8 @@ export const Bilde = (props: Props) => {
         size === '40'
             ? style.figureSmall
             : size === '70'
-            ? style.figureMedium
-            : style.figureFull;
+              ? style.figureMedium
+              : style.figureFull;
 
     return (
         <div className={style.figureContainer}>

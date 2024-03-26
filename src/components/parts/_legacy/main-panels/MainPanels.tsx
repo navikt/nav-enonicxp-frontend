@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
-import LenkepanelNavNo from '../../../_common/lenkepanel-legacy/LenkepanelNavNo';
+import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { translator } from 'translations';
 import { getInternalLinkUrl } from 'utils/links-from-content';
 

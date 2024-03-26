@@ -2,7 +2,7 @@ import React from 'react';
 import {
     ComponentType,
     TextComponentProps,
-} from '../../../types/component-props/_component-common';
+} from 'types/component-props/_component-common';
 
 type Props = {
     textProps: TextComponentProps;
