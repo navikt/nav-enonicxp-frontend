@@ -4,12 +4,20 @@ import { RelatedSituations } from 'components/_common/relatedSituations/RelatedS
 import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
 import { ContentType } from 'types/content-props/_content-common';
 
-export const RelatedSituationsPart = ({
-    config,
-    pageProps,
-}: RelatedSituationsProps) => {
+const validContentTypes = new Set([
+    ContentType.ProductPage,
+    ContentType.ThemedArticlePage,
+    ContentType.GuidePage,
+]);
+
+export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
     const { type, data, _id } = pageProps;
-    if (type !== ContentType.ProductPage) {
+
+    if (
+        type !== ContentType.ProductPage &&
+        type !== ContentType.ThemedArticlePage &&
+        type !== ContentType.GuidePage
+    ) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
@@ -21,9 +29,7 @@ export const RelatedSituationsPart = ({
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle situasjoner vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle situasjoner vises her når du klikker "marker som klar".'}
             />
         );
     }
