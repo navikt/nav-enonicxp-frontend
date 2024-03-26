@@ -3,21 +3,18 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
 import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
 import { ContentType } from 'types/content-props/_content-common';
+import { createTypeGuard } from 'types/_type-guards';
 
-const validContentTypes = new Set([
+const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
-]);
+] as const);
 
 export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
     const { type, data, _id } = pageProps;
 
-    if (
-        type !== ContentType.ProductPage &&
-        type !== ContentType.ThemedArticlePage &&
-        type !== ContentType.GuidePage
-    ) {
+    if (!isValidContentType(type)) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
