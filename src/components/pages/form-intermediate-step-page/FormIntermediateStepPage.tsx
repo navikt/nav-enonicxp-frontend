@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Heading, LinkPanel } from '@navikt/ds-react';
+import React from 'react';
+import { Button, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { usePageContentProps } from 'store/pageContext';
 import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { InfoBox } from 'components/_common/info-box/InfoBox';
-import { ContentPropsForThemedPageHeader } from 'components/_common/headers/themed-page-header/themedPageHeaderUtils';
-import { stripXpPathPrefix } from 'utils/urls';
 import { useFormIntermediateStepPageState } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
 import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
 
 import style from './FormIntermediateStepPage.module.scss';
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
-    const { data, language } = props;
+    const { language } = props;
 
     const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
 

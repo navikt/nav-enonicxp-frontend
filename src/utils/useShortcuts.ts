@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export enum Shortcuts {
     SEARCH = 'SEARCH',
@@ -10,8 +10,8 @@ type UseShortcutsProps = {
 };
 
 export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = useCallback(
+        (e: KeyboardEvent) => {
             if (
                 shortcut === Shortcuts.SEARCH &&
                 (e.ctrlKey || e.metaKey) &&
@@ -19,11 +19,14 @@ export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
             ) {
                 callback();
             }
-        };
+        },
+        [shortcut, callback]
+    );
 
+    useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [handleKeyDown]);
 };
