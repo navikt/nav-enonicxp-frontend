@@ -30,6 +30,7 @@ import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPrevi
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
+import { OfficePage } from './pages/office-page/OfficePage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -53,6 +54,7 @@ const contentToReactComponent: {
     [ContentType.GenericPage]: GenericPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.OfficeBranchPage]: OfficeBranchPage,
+    [ContentType.OfficePage]: OfficePage,
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,

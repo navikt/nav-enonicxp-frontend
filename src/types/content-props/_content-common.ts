@@ -25,6 +25,7 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
     PressLandingPageProps,
+    OfficePageProps,
 } from './dynamic-page-props';
 import {
     PublishingCalendarProps,
@@ -101,6 +102,7 @@ export enum ContentType {
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
     AlertInContext = 'no.nav.navno:alert-in-context',
+    OfficePage = 'no.nav.navno:office-page',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -180,6 +182,7 @@ type SpecificContentProps =
     | SituationPageProps
     | OfficeEditorialPageProps
     | OfficeBranchPageProps
+    | OfficePageProps
     | AnimatedIconsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps

@@ -1,19 +1,35 @@
 import React from 'react';
+import { ComponentMapper } from '../../ComponentMapper';
 import { OfficeBranchPageProps } from 'types/content-props/dynamic-page-props';
+import { OfficePageHeader } from '../../_common/headers/office-page-header/OfficePageHeader';
+import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
+import { classNames } from 'utils/classnames';
+import { logger } from 'srcCommon/logger';
 
-import { LocalOfficePage } from './localOffice/LocalOfficePage';
-import { GeneralOfficePage } from './generalOffice/GeneralOfficePage';
-import { HMSOfficePage } from './hmsOffice/HMSOfficePage';
+import styles from './OfficeBranchPage.module.scss';
 
 export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
-    const { type } = props.data;
+    const editorialPage = props.editorial;
 
-    if (type === 'LOKAL') {
-        return <LocalOfficePage {...props} />;
-    }
-    if (type === 'HMS') {
-        return <HMSOfficePage {...props} />;
+    if (!editorialPage) {
+        logger.error(`No editorial page found for ${props.displayName}`);
     }
 
-    return <GeneralOfficePage {...props} />;
+    return (
+        <div className={styles.officeBranchPage}>
+            <OfficePageHeader
+                officeDetails={props.data}
+                showTimeStamp={false}
+            />
+            <OfficeDetails officeData={props.data} />
+            <div className={classNames(styles.content, styles.pageContent)}>
+                {editorialPage && (
+                    <ComponentMapper
+                        componentProps={editorialPage.page}
+                        pageProps={props}
+                    />
+                )}
+            </div>
+        </div>
+    );
 };

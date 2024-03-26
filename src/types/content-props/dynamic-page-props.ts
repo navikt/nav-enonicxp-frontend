@@ -18,6 +18,9 @@ export type ProductDetailsData = {
     detailType: Exclude<ProductDetailType, ProductDetailType.ALL_PRODUCTS>;
 };
 export type SituationPageData = ProductDataMixin;
+export type OfficePageData = ProductDataMixin & {
+    officeData: OfficeDetailsData;
+};
 export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ToolsPageTaxonomy[];
 };
@@ -81,6 +84,12 @@ export type OfficeBranchPageProps = ContentCommonProps & {
     type: ContentType.OfficeBranchPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
+};
+
+export type OfficePageProps = ContentCommonProps & {
+    type: ContentType.OfficePage;
+    data: OfficePageData;
+    page: LayoutProps;
 };
 
 export type CurrentTopicPageProps = ContentCommonProps & {
