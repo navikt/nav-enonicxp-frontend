@@ -19,7 +19,7 @@
         "analyze-bundle": "ANALYZE_BUNDLE=true npm run build-local",
         "lint": "npm-run-all --parallel lint:*",
         "lint:tsc": "tsc",
-        "lint:client": "next lint",
+        "lint:client": "eslint src srcCommon",
         "lint:server": "npm run lint --workspace server",
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace server",
