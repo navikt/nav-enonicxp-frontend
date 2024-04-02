@@ -77,10 +77,13 @@ export type AlternativeAudience = OptionSetMulti<{
     employer: { targetPage: ContentProps };
     provider: {
         providerList: {
-            providerAudience: {
-                name: ProviderAudience;
-                overrideLabel?: string;
-            }[];
+            providerAudience: (
+                | {
+                      name: ProviderAudience;
+                      overrideLabel?: string;
+                  }
+                | string
+            )[];
             targetPage: ContentProps;
         }[];
     };
