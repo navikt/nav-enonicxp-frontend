@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
-    ProviderAudience,
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
