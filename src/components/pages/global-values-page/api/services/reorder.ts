@@ -1,5 +1,5 @@
-import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
-import { GVMessageProps } from '../../components/messages/GVMessages';
+import { globalValuesServiceFetch } from 'components/pages/global-values-page/api/globalValuesServiceFetch';
+import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
 
 type ServiceResponse = GVMessageProps;
 

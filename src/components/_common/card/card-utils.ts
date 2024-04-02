@@ -3,7 +3,6 @@ import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
-
 import {
     ProductPageProps,
     SituationPageProps,
@@ -68,18 +67,16 @@ export const getCardProps = (
     content: ContentProps,
     ingressOverride?: string
 ): CardProps | null => {
-    if (!targetContent) {
+    if (!targetContent?.data) {
         return null;
     }
+
+    const { language } = content;
 
     const { data, type, _path, displayName } = targetContent;
-    const { language } = content;
-    const { audience } = content.data;
-
-    if (!data) {
-        return null;
-    }
     const { title, ingress, illustration, externalProductUrl } = data;
+
+    const audience = content.data?.audience;
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;
@@ -93,7 +90,7 @@ export const getCardProps = (
     const categories = getCardCategory(targetContent, language);
     const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
-    const preferStaticIllustration = audience._selected === Audience.EMPLOYER;
+    const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 
     return {
         type: cardType,

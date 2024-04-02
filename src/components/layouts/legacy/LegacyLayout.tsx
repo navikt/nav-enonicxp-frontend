@@ -1,11 +1,11 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import Region from '../Region';
-import { LayoutContainer } from '../LayoutContainer';
+import Region from 'components/layouts/Region';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { LegacyLayoutProps } from 'types/component-props/layouts/legacy-layout';
 import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
 import { ComponentType } from 'types/component-props/_component-common';
-import { MainArticleProps } from '../../../types/content-props/main-article-props';
+import { MainArticleProps } from 'types/content-props/main-article-props';
 
 type Props = {
     pageProps: ContentProps;

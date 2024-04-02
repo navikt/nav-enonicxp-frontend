@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { usePageContentProps } from 'store/pageContext';
-import { StaticImage } from '../../_common/image/StaticImage';
+import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';

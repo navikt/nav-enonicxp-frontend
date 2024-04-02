@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentProps } from '../../types/content-props/_content-common';
-import { BEM, classNames } from '../../utils/classnames';
-import { ComponentMapper } from '../ComponentMapper';
-import { RegionProps } from '../../types/component-props/layouts';
+import { ContentProps } from 'types/content-props/_content-common';
+import { BEM, classNames } from 'utils/classnames';
+import { ComponentMapper } from 'components/ComponentMapper';
+import { RegionProps } from 'types/component-props/layouts';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type Props = {

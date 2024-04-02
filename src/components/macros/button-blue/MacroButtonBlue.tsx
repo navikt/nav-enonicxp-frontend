@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../../_common/button/Button';
-import { MacroButtonBlueProps } from '../../../types/macro-props/button-blue';
+import { Button } from 'components/_common/button/Button';
+import { MacroButtonBlueProps } from 'types/macro-props/button-blue';
 
 export const MacroButtonBlue = ({ config }: MacroButtonBlueProps) => {
     if (!config) {

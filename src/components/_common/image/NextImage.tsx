@@ -1,8 +1,8 @@
 import React from 'react';
-import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { isValidImageUrl } from '../../../utils/urls';
-import dynamic from 'next/dynamic';
 import { usePageContentProps } from 'store/pageContext';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { isValidImageUrl } from 'utils/urls';
+import dynamic from 'next/dynamic';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;

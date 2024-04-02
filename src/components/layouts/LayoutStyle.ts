@@ -1,4 +1,4 @@
-import { LayoutCommonConfigMixin } from '../../types/component-props/_mixins';
+import { LayoutCommonConfigMixin } from 'types/component-props/_mixins';
 
 export const getCommonLayoutStyle = (config: LayoutCommonConfigMixin) => {
     if (!config) {

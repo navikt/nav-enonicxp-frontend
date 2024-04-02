@@ -1,6 +1,6 @@
 import React from 'react';
-import { MacroButtonProps } from '../../../types/macro-props/button';
-import { Button } from '../../_common/button/Button';
+import { MacroButtonProps } from 'types/macro-props/button';
+import { Button } from 'components/_common/button/Button';
 
 export const MacroButton = ({ config }: MacroButtonProps) => {
     if (!config?.button) {

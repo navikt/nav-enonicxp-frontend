@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from 'store/store';
 import { usePageContentProps } from 'store/pageContext';
 import {
     availableFiltersAtPage,
@@ -7,7 +7,7 @@ import {
     setAvailableFiltersAction,
     toggleFilterSelectionAction,
     clearFiltersAction,
-} from '../slices/filteredContent';
+} from 'store/slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
 import { FilterSelection } from 'types/component-props/_mixins';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { GVItem } from './item/GVItem';
-import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
+import { useGvEditorState } from 'store/hooks/useGvEditorState';
 
 import style from './GVItems.module.scss';
 

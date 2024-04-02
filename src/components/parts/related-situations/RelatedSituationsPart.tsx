@@ -1,32 +1,40 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ProductPageData } from 'types/content-props/dynamic-page-props';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
 import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
+import { ContentType } from 'types/content-props/_content-common';
+import { createTypeGuard } from 'types/_type-guards';
 
-export const RelatedSituationsPart = ({
-    config,
-    pageProps,
-}: RelatedSituationsProps) => {
-    const relatedSituations = (pageProps.data as ProductPageData)
-        ?.relatedSituations;
+const isValidContentType = createTypeGuard([
+    ContentType.ProductPage,
+    ContentType.ThemedArticlePage,
+    ContentType.GuidePage,
+] as const);
+
+export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
+    const { type, data, _id } = pageProps;
 
     // If the page is in preview mode, related situations from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the situations until the page has been refreshed.
-    const isComponentPreviewMode = pageProps._id === '';
-
-    if (isComponentPreviewMode) {
+    // Note (02.04.24): The type guard for DynamicPage needs to be in place until ComponentPreview
+    // receives the actual content type from the actual page props. Described in task:
+    // https://github.com/navikt/nav-enonicxp/issues/2081
+    const isComponentPreviewMode = _id === '';
+    if (isComponentPreviewMode || type === ContentType.DynamicPage) {
         return (
             <EditorHelp
                 type={'info'}
-                text={
-                    'Aktuelle situasjoner vises her når du klikker "marker som klar".'
-                }
+                text={'Aktuelle situasjoner vises her når du klikker "marker som klar".'}
             />
         );
     }
 
+    if (!isValidContentType(type)) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
+    }
+
+    const { relatedSituations } = data;
     if (!relatedSituations || relatedSituations.length === 0) {
         return (
             <EditorHelp

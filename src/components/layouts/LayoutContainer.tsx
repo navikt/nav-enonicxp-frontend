@@ -1,10 +1,10 @@
 import React from 'react';
-import { ContentProps } from '../../types/content-props/_content-common';
-import { LayoutProps } from '../../types/component-props/layouts';
-import { BEM, classNames } from '../../utils/classnames';
+import { ContentProps } from 'types/content-props/_content-common';
+import { LayoutProps } from 'types/component-props/layouts';
+import { BEM, classNames } from 'utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
-import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import { usePageContentProps } from 'store/pageContext';
+import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
 
 import style from './LayoutContainer.module.scss';
 

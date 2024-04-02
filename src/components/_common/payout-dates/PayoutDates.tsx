@@ -1,10 +1,10 @@
 import React from 'react';
-import { PayoutDatesData } from '../../../types/content-props/payout-dates';
-import { Table } from '../table/Table';
-import { formatDate } from '../../../utils/datetime';
+import { PayoutDatesData } from 'types/content-props/payout-dates';
+import { Table } from 'components/_common/table/Table';
+import { formatDate } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';
-import { translator } from '../../../translations';
-import { classNames } from '../../../utils/classnames';
+import { translator } from 'translations';
+import { classNames } from 'utils/classnames';
 
 import style from './PayoutDates.module.scss';
 

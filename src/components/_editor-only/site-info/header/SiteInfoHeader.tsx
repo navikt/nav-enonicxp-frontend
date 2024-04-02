@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header } from '../../../_common/headers/Header';
-import { AlertBox } from '../../../_common/alert-box/AlertBox';
+import { Header } from 'components/_common/headers/Header';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { BodyShort } from '@navikt/ds-react';
-import { ClusterState } from '../types';
+import { ClusterState } from 'components/_editor-only/site-info/types';
 
 import style from './SiteInfoHeader.module.scss';
 

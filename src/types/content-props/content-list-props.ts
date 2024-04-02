@@ -3,7 +3,7 @@ import {
     ContentCommonProps,
     ContentProps,
 } from './_content-common';
-import { DateTimeKey } from '../datetime';
+import { DateTimeKey } from 'types/datetime';
 
 export type ContentListData = {
     sectionContents?: ContentProps[];

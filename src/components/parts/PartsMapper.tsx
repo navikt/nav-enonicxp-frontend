@@ -42,7 +42,7 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { OfficeEditorialDetail } from './office-editorial-detail/OfficeEditorialDetail';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
-import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
+import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';

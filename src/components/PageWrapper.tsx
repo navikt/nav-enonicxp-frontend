@@ -1,17 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
-import {
-    onBreadcrumbClick,
-    onLanguageSelect,
-    setParams,
-} from '@navikt/nav-dekoratoren-moduler';
+import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
-import {
-    hasWhiteHeader,
-    hasWhitePage,
-    shouldPushUpwards,
-} from 'utils/appearance';
+import { hasWhiteHeader, hasWhitePage, shouldPushUpwards } from 'utils/appearance';
 import { PageWarnings } from './_page-warnings/PageWarnings';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
@@ -64,19 +56,14 @@ export const PageWrapper = (props: Props) => {
             router.push(getInternalRelativePath(breadcrumb.url, isEditorView))
         );
         onLanguageSelect((language) =>
-            router.push(
-                getInternalRelativePath(language.url as string, isEditorView)
-            )
+            router.push(getInternalRelativePath(language.url as string, isEditorView))
         );
 
         if (isEditorView) {
             return;
         }
 
-        const linkInterceptor = hookAndInterceptInternalLink(
-            router,
-            isEditorView
-        );
+        const linkInterceptor = hookAndInterceptInternalLink(router, isEditorView);
         const linkPrefetcher = prefetchOnMouseover(router);
 
         const headerElement = document.getElementById('decorator-header');
@@ -128,13 +115,7 @@ export const PageWrapper = (props: Props) => {
     }, [content, router]);
 
     return (
-        <div
-            className={
-                hasWhitePage(content)
-                    ? styles.whiteBackground
-                    : styles.defaultBackground
-            }
-        >
+        <div className={hasWhitePage(content) ? styles.whiteBackground : styles.defaultBackground}>
             <div className={styles.appContainer}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />

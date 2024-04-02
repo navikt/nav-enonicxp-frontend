@@ -5,10 +5,12 @@ import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
+import {
+    OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
+    OverviewFiltersTextInputEventDetail,
+} from 'store/slices/overviewFilters';
 
 import style from './OverviewTextFilter.module.scss';
-
-export const OVERVIEW_FILTERS_TEXT_INPUT_EVENT = 'OverviewFiltersTextInput';
 
 type Props = {
     hideLabel?: boolean;
@@ -26,9 +28,12 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
         debounce((value: string) => {
             setTextFilter(value);
             window.dispatchEvent(
-                new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                    detail: { value, id: inputId },
-                })
+                new CustomEvent<OverviewFiltersTextInputEventDetail>(
+                    OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
+                    {
+                        detail: { value, id: inputId },
+                    }
+                )
             );
         }, 500),
         [setTextFilter]
@@ -40,7 +45,9 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     };
 
     useEffect(() => {
-        const handleInputFromEvent = (e: CustomEvent) => {
+        const handleInputFromEvent = (
+            e: CustomEvent<OverviewFiltersTextInputEventDetail>
+        ) => {
             const { value, id: senderId } = e.detail;
             if (senderId !== inputId) {
                 setTextInput(value);
@@ -67,6 +74,10 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 e.preventDefault();
 
                 const targetElement = document.getElementById(inputId);
+                if (!targetElement) {
+                    return;
+                }
+
                 targetElement.focus();
 
                 // Delay the scroll action slightly as a hacky solution for devices
@@ -87,7 +98,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
                 variant={'secondary'}
-                autoComplete="off"
+                autoComplete={'off'}
             />
         </form>
     );

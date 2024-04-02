@@ -3,7 +3,7 @@ import { Select, TextField } from '@navikt/ds-react';
 import {
     GlobalCaseTimeSetItem,
     GlobalCaseTimeUnit,
-} from '../../../../../../../types/content-props/global-values-props';
+} from 'types/content-props/global-values-props';
 
 type Errors = { [key in keyof GlobalCaseTimeSetItem]?: string };
 

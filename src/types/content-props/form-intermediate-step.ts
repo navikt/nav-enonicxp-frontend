@@ -2,42 +2,54 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 import { OptionSetSingle } from 'types/util-types';
+import { AnimatedIconsProps } from './animated-icons';
 
-type ExternalStep = {
-    externalUrl: string;
+export type FormIntermediateStep_StepData<
+    NextStep extends FormIntermediateStep_StepBase = FormIntermediateStep_StepBase,
+> = {
+    editorial: ProcessedHtmlProps;
+    stepsHeadline: string;
+    steps: NextStep[];
 };
 
-export type StepDetails = {
+export type FormIntermediateStep_StepBase = {
     label: string;
     explanation: string;
-    nextStep: OptionSetSingle<{
-        next: {
-            editorial: ProcessedHtmlProps;
-            stepsHeadline: string;
-            steps: {
-                label: string;
-                explanation: string;
-                languageDisclaimer?: string;
-                nextStep: OptionSetSingle<{
-                    external: ExternalStep;
-                }>;
-            }[];
-        };
-        external: {
-            externalUrl: string;
-        };
-    }>;
+    languageDisclaimer?: string;
 };
+
+type StepBaseOptions = {
+    external: {
+        externalUrl: string;
+    };
+    internal: {
+        internalContent: ContentCommonProps;
+    };
+};
+
+type StepLevel1 = FormIntermediateStep_StepBase & {
+    nextStep: OptionSetSingle<
+        StepBaseOptions & {
+            next: FormIntermediateStep_StepData<StepLevel2>;
+        }
+    >;
+};
+
+type StepLevel2 = FormIntermediateStep_StepBase & {
+    nextStep: OptionSetSingle<StepBaseOptions>;
+};
+
+export type FormIntermediateStep_StepLevel = StepLevel1 | StepLevel2;
+
+export type FormIntermediateStep_CompoundedStepData =
+    FormIntermediateStep_StepData<FormIntermediateStep_StepLevel>;
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
-        illustration: any;
+        illustration: AnimatedIconsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
-        editorial: ProcessedHtmlProps;
-        stepsHeadline: string;
-        steps: StepDetails[];
-    };
+    } & FormIntermediateStep_StepData<StepLevel1>;
 };

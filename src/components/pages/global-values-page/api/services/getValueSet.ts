@@ -1,4 +1,4 @@
-import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
+import { globalValuesServiceFetch } from 'components/pages/global-values-page/api/globalValuesServiceFetch';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 
 type ServiceResponse = {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
-import { formatDate } from 'utils/datetime';
-import { OpeningHours as OpeningHoursProps } from '../../../../types/content-props/office-details-props';
-import { Table } from '../../../_common/table/Table';
+import { OpeningHours as OpeningHoursProps } from 'types/content-props/office-details-props';
+import { Table } from 'components/_common/table/Table';
+import { buildDayLabel } from 'components/pages/office-branch-page/utils';
 
-import styles from './OpeningHours.module.scss';
+import style from './OpeningHours.module.scss';
 
 type Props = {
     openingHours: OpeningHoursProps[];
@@ -18,38 +18,9 @@ export const OpeningHours = ({ openingHours }: Props) => {
 
     const closedLabel = getOfficeTranslations('closed');
     const appointmentOnlyLabel = getOfficeTranslations('appointmentOnly');
+
     const dayLabel = getDateTimeTranslations('day');
     const timeLabel = getDateTimeTranslations('time');
-
-    const weekdayNames = getDateTimeTranslations('weekDayNames');
-
-    const dagArr: string[] = [
-        'Mandag',
-        'Tirsdag',
-        'Onsdag',
-        'Torsdag',
-        'Fredag',
-    ];
-
-    const weekDayTranslation = dagArr.reduce((acc, elem, index) => {
-        acc[elem] = weekdayNames[index];
-        return acc;
-    }, {});
-
-    // If includes dato, show this rather than day (for special opening hours)
-    const buildDayLabel = (opening: OpeningHoursProps): string => {
-        const { dato, dag } = opening;
-        if (dato) {
-            return formatDate({
-                datetime: dato,
-                language,
-                short: true,
-                year: true,
-            });
-        }
-
-        return weekDayTranslation[dag] || ''; // Fallback to empty string to avoid showing "undefined"
-    };
 
     const normalizeTimeLabel = (time: string): string => {
         if (!time) {
@@ -74,7 +45,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
 
     return (
         <Table zebraStripes={false} shadeOnHover={false}>
-            <thead className={styles.srOnly}>
+            <thead className={style.srOnly}>
                 <tr>
                     <th role="columnheader">{dayLabel}</th>
                     <th role="columnheader">{timeLabel}</th>
@@ -82,7 +53,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
             </thead>
             <tbody>
                 {openingHours.map((opening, index) => {
-                    const dayInformation = buildDayLabel(opening);
+                    const dayInformation = buildDayLabel(opening, language);
 
                     return (
                         <tr key={index}>

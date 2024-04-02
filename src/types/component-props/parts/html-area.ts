@@ -1,11 +1,11 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     ExpandableMixin,
     FiltersMixin,
     RenderOnAuthStateMixin,
-} from '../_mixins';
-import { ProcessedHtmlProps } from '../../processed-html-props';
+} from 'types/component-props/_mixins';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export interface HtmlAreaProps extends PartComponentProps {
     descriptor: PartType.HtmlArea;
