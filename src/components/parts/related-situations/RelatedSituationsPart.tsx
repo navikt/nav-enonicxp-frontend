@@ -14,21 +14,24 @@ const isValidContentType = createTypeGuard([
 export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
     const { type, data, _id } = pageProps;
 
-    if (!isValidContentType(type)) {
-        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
-    }
-
     // If the page is in preview mode, related situations from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the situations until the page has been refreshed.
+    // Note (02.04.24): The type guard for DynamicPage needs to be in place until ComponentPreview
+    // receives the actual content type from the actual page props. Described in task:
+    // https://github.com/navikt/nav-enonicxp/issues/2081
     const isComponentPreviewMode = _id === '';
-    if (isComponentPreviewMode) {
+    if (isComponentPreviewMode || type === ContentType.DynamicPage) {
         return (
             <EditorHelp
                 type={'info'}
                 text={'Aktuelle situasjoner vises her når du klikker "marker som klar".'}
             />
         );
+    }
+
+    if (!isValidContentType(type)) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
     const { relatedSituations } = data;
