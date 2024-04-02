@@ -6,7 +6,6 @@ import { ContentType } from 'types/content-props/_content-common';
 import { createTypeGuard } from 'types/_type-guards';
 
 const isValidContentType = createTypeGuard([
-    ContentType.DynamicPage,
     ContentType.ProductPage,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
@@ -15,21 +14,21 @@ const isValidContentType = createTypeGuard([
 export const AlternativeAudiencePart = ({ config, pageProps }: AlternativeAudienceProps) => {
     const { data, type, _id, displayName } = pageProps;
 
-    if (!isValidContentType(type)) {
-        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
-    }
-
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the audience until the page has been refreshed.
     const isComponentPreviewMode = _id === '';
-    if (isComponentPreviewMode) {
+    if (isComponentPreviewMode || type === ContentType.DynamicPage) {
         return (
             <EditorHelp
                 type={'info'}
                 text={'Aktuelle målgrupper vises her når du klikker "marker som klar".'}
             />
         );
+    }
+
+    if (!isValidContentType(type)) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
     const { alternativeAudience, title } = data;
