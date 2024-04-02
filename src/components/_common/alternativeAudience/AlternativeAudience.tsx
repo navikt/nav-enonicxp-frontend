@@ -94,6 +94,7 @@ const buildAudienceLinks = (
     // with 'person' and 'arbeidsgiver'.
     if (provider?.providerList) {
         provider.providerList.forEach((singleProvider) => {
+            if (!singleProvider.targetPage) return;
             const providerLabels = singleProvider.providerAudience.map((audience) => {
                 if (audience.overrideLabel) return audience.overrideLabel;
                 return getProviderAudienceLabel(audience.name);
