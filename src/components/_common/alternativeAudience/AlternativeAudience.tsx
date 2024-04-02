@@ -7,7 +7,7 @@ import {
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
@@ -46,7 +46,7 @@ export const AlternativeAudience = ({
                 editorView === 'edit' && style.noMargin
             )}
         >
-            <BodyShort>
+            <BodyLong>
                 {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
@@ -60,7 +60,7 @@ export const AlternativeAudience = ({
                         })}
                     </Fragment>
                 ))}
-            </BodyShort>
+            </BodyLong>
         </div>
     );
 };
