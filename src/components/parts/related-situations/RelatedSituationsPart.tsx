@@ -6,6 +6,7 @@ import { ContentType } from 'types/content-props/_content-common';
 import { createTypeGuard } from 'types/_type-guards';
 
 const isValidContentType = createTypeGuard([
+    ContentType.DynamicPage,
     ContentType.ProductPage,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
