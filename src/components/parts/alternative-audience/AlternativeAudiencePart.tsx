@@ -18,6 +18,9 @@ export const AlternativeAudiencePart = ({ config, pageProps }: AlternativeAudien
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the audience until the page has been refreshed.
     const isComponentPreviewMode = _id === '';
+    // Note (02.04.24): The type guard for DynamicPage needs to be in place until ComponentPreview
+    // receives the actual content type from the actual page props. Described in task:
+    // https://github.com/navikt/nav-enonicxp/issues/2081
     if (isComponentPreviewMode || type === ContentType.DynamicPage) {
         return (
             <EditorHelp
