@@ -38,9 +38,7 @@ export type AudienceOptions = OptionSetSingle<{
 type AudienceProps = AudienceOptions | Audience | Audience[];
 
 export function getAudience(audience: AudienceProps): Audience;
-export function getAudience(
-    audience: AudienceProps | undefined | null
-): Audience | null;
+export function getAudience(audience: AudienceProps | undefined | null): Audience | null;
 export function getAudience(audience: AudienceProps | undefined | null) {
     if (!audience) {
         return null;
@@ -52,9 +50,7 @@ export function getAudience(audience: AudienceProps | undefined | null) {
 
     // Always prioritize person audience if it is present
     if (Array.isArray(audience)) {
-        return audience.includes(Audience.PERSON)
-            ? Audience.PERSON
-            : audience[0];
+        return audience.includes(Audience.PERSON) ? Audience.PERSON : audience[0];
     }
 
     return audience._selected;
@@ -81,7 +77,10 @@ export type AlternativeAudience = OptionSetMulti<{
     employer: { targetPage: ContentProps };
     provider: {
         providerList: {
-            providerAudience: ProviderAudience[];
+            providerAudience: {
+                name: ProviderAudience;
+                overrideLabel?: string;
+            }[];
             targetPage: ContentProps;
         }[];
     };

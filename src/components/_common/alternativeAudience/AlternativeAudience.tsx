@@ -46,16 +46,10 @@ export const AlternativeAudience = ({
             )}
         >
             <BodyShort>
-                {getRelatedString('relatedAudience').replace(
-                    '{name}',
-                    name.toLowerCase()
-                )}{' '}
+                {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
-                        <LenkeInline
-                            href={link.url}
-                            analyticsLabel={'Aktuell målgruppe'}
-                        >
+                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
                             {link.title}
                         </LenkeInline>
                         {getConjunction({
@@ -99,9 +93,10 @@ const buildAudienceLinks = (
     // with 'person' and 'arbeidsgiver'.
     if (provider?.providerList) {
         provider.providerList.forEach((singleProvider) => {
-            const providerLabels = singleProvider.providerAudience.map(
-                (audience) => getProviderAudienceLabel(audience)
-            );
+            const providerLabels = singleProvider.providerAudience.map((audience) => {
+                if (audience.overrideLabel) return audience.overrideLabel;
+                return getProviderAudienceLabel(audience.name);
+            });
             links.push({
                 title: joinWithConjunction(providerLabels, language),
                 url: stripXpPathPrefix(singleProvider.targetPage._path),
