@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading, BodyLong } from '@navikt/ds-react';
 import { SearchForm } from './search-form/SearchForm';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
 const origin = process.env.APP_ORIGIN;

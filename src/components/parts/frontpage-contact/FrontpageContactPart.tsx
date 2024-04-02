@@ -1,10 +1,10 @@
 import React from 'react';
-import { FrontpageContanctPartProps } from '../../../types/component-props/parts/frontpage-contact';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
+import { FrontpageContanctPartProps } from 'types/component-props/parts/frontpage-contact';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';
-import { ContentType } from '../../../types/content-props/_content-common';
-import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
+import { ContentType } from 'types/content-props/_content-common';
+import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';

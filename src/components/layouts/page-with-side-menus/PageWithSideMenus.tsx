@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
-import { LayoutContainer } from '../LayoutContainer';
+import { ContentProps } from 'types/content-props/_content-common';
+import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
-import { windowMatchMedia } from '../../../utils/match-media';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import Config from '../../../config';
-import Region from '../Region';
+import { windowMatchMedia } from 'utils/match-media';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import Config from 'config';
+import Region from 'components/layouts/Region';
 
 import styles from './PageWithSideMenus.module.scss';
 

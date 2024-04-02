@@ -1,9 +1,9 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import Region from '../Region';
-import { LayoutContainer } from '../LayoutContainer';
-import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
-import { Header } from '../../_common/headers/Header';
+import { ContentProps } from 'types/content-props/_content-common';
+import Region from 'components/layouts/Region';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
+import { Header } from 'components/_common/headers/Header';
 
 import style from './FlexColsLayout.module.scss';
 

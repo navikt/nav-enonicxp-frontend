@@ -1,8 +1,8 @@
 import React from 'react';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
-import { joinWithConjunction } from '../../../../utils/string';
+import { joinWithConjunction } from 'utils/string';
 import {
     AudienceReception,
     OfficeDetailsData,

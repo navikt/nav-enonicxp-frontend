@@ -1,11 +1,11 @@
 import { ContentProps } from 'types/content-props/_content-common';
-import { makeErrorProps } from '../make-error-props';
-import { stripXpPathPrefix, xpServiceUrl } from '../urls';
+import { makeErrorProps } from 'utils/make-error-props';
+import { stripXpPathPrefix, xpServiceUrl } from 'utils/urls';
 import { fetchWithTimeout, objectToQueryString } from 'srcCommon/fetch-utils';
 import { MediaProps } from 'types/media';
 import { v4 as uuid } from 'uuid';
-import { logPageLoadError } from '../errors';
-import { stripLineBreaks } from '../string';
+import { logPageLoadError } from 'utils/errors';
+import { stripLineBreaks } from 'utils/string';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { logger } from 'srcCommon/logger';
 import { RedisCache } from 'srcCommon/redis';

@@ -3,7 +3,7 @@ import {
     ContentCommonProps,
     ContentProps,
 } from './_content-common';
-import { MenuListItems } from '../menu-list-items';
+import { MenuListItems } from 'types/menu-list-items';
 
 export type PageListData = Partial<{
     ingress: string;

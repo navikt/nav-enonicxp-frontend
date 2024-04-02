@@ -1,6 +1,6 @@
 import React from 'react';
-import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { MacroChevronLinkExternalProps } from '../../../types/macro-props/chevron-link-external';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { MacroChevronLinkExternalProps } from 'types/macro-props/chevron-link-external';
 
 export const MacroChevronLinkExternal = ({
     config,

@@ -45,22 +45,19 @@ export const getTranslatedTaxonomies = (
         return [];
     }
     const getTaxonomyLabel = translator('taxonomies', language);
-    const taxonomyLabels = taxonomies.map(getTaxonomyLabel).filter(Boolean);
 
-    return taxonomyLabels;
+    return taxonomies.map(getTaxonomyLabel).filter(Boolean);
 };
 
 export const numberToFormattedValue = (
-    value: number,
+    value: unknown,
     options: { useThousandSeparator: boolean }
 ) => {
-    const { useThousandSeparator } = options;
-
     if (typeof value !== 'number') {
         return '';
     }
 
-    if (useThousandSeparator) {
+    if (options.useThousandSeparator) {
         return value.toLocaleString('no');
     }
 

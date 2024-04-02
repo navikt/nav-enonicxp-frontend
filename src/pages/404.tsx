@@ -20,10 +20,7 @@ export const ErrorPage404 = () => {
             return;
         }
 
-        if (
-            router.pathname !== '/404' &&
-            !window.location.search.includes(loopDetectionParam)
-        ) {
+        if (router.pathname !== '/404' && !window.location.search.includes(loopDetectionParam)) {
             logger.error(`Client-side 404 error on path: ${router.asPath}`);
             window.location.replace(
                 `${window.location.origin}${window.location.pathname}?${loopDetectionParam}`

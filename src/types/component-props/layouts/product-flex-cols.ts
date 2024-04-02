@@ -1,6 +1,10 @@
-import { LayoutCommonProps, LayoutType, Regions } from '../layouts';
-import { ComponentType } from '../_component-common';
-import { HeaderWithAnchorMixin } from '../_mixins';
+import {
+    LayoutCommonProps,
+    LayoutType,
+    Regions,
+} from 'types/component-props/layouts';
+import { ComponentType } from 'types/component-props/_component-common';
+import { HeaderWithAnchorMixin } from 'types/component-props/_mixins';
 
 export interface ProductPageFlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;

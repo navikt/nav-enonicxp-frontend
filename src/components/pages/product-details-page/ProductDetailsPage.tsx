@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 

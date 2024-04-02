@@ -4,7 +4,7 @@ import {
     setEditorFeatureToggle,
 } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
 import { Checkbox } from '@navikt/ds-react';
-import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
+import { SiteInfoSubHeader } from 'components/_editor-only/site-info/_common/sub-header/SiteInfoSubHeader';
 
 export enum EditorFeature {
     HideLeftPanel = 'hide-left-panel',

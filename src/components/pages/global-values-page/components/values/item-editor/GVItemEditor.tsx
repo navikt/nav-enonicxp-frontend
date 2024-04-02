@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { GVButton } from '../../button/GVButton';
+import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
-import { generateGvUsageMessages, gvNameExists } from '../../../utils';
-import { gvServiceAddItem } from '../../../api/services/add';
-import { gvServiceModifyItem } from '../../../api/services/modify';
-import { gvServiceRemoveItem } from '../../../api/services/remove';
+import {
+    generateGvUsageMessages,
+    gvNameExists,
+} from 'components/pages/global-values-page/utils';
+import { gvServiceAddItem } from 'components/pages/global-values-page/api/services/add';
+import { gvServiceModifyItem } from 'components/pages/global-values-page/api/services/modify';
+import { gvServiceRemoveItem } from 'components/pages/global-values-page/api/services/remove';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
-import { gvServiceGetUsage } from '../../../api/services/usage';
+import { gvServiceGetValueSet } from 'components/pages/global-values-page/api/services/getValueSet';
+import { gvServiceGetUsage } from 'components/pages/global-values-page/api/services/usage';
 import { BodyShort } from '@navikt/ds-react';
-import { GVMessageProps } from '../../messages/GVMessages';
+import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
 import {
     GVItemEditorInputCaseTime,
     gvProcessCaseTimeInput,

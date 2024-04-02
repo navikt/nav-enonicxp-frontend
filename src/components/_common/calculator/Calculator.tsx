@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { Button } from '../button/Button';
+import { Button } from 'components/_common/button/Button';
 import { CalculatorIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';

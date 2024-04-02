@@ -1,10 +1,9 @@
 import React from 'react';
-import { DynamicPage } from '../dynamic-page/DynamicPage';
+import { DynamicPage } from 'components/pages/dynamic-page/DynamicPage';
 import { linkListDataMock } from './mocks/linkListDataMock';
 import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
-import { officeInformationMock } from './mocks/officeInformationMock';
 import { ContentType } from 'types/content-props/_content-common';
 import { TemplateProps } from 'types/content-props/template-props';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -14,7 +13,6 @@ const legacyMockData = {
     ...linkPanelsDataMock,
     ...mainArticleDataMock,
     ...mainPanelDataMock,
-    ...officeInformationMock,
 };
 
 const legacyTemplateTypes: ReadonlySet<ContentType> = new Set([

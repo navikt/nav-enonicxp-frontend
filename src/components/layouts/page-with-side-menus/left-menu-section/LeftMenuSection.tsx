@@ -1,11 +1,11 @@
 import React from 'react';
-import { classNames } from '../../../../utils/classnames';
-import Region from '../../Region';
-import { RegionProps } from '../../../../types/component-props/layouts';
-import { ContentProps } from '../../../../types/content-props/_content-common';
-import { PageNavigationMenu } from '../../../_common/page-navigation-menu/PageNavigationMenu';
-import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
-import { EditorHelp } from '../../../_editor-only/editor-help/EditorHelp';
+import { classNames } from 'utils/classnames';
+import Region from 'components/layouts/Region';
+import { RegionProps } from 'types/component-props/layouts';
+import { ContentProps } from 'types/content-props/_content-common';
+import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import styles from './LeftMenuSection.module.scss';
 
@@ -34,11 +34,7 @@ export const LeftMenuSection = ({
                 viewStyle={'sidebar'}
             />
             <Region pageProps={pageProps} regionProps={topRegionProps} />
-            <EditorHelp
-                text={
-                    'Komponenter ovenfor legges inn rett under innholdsmenyen'
-                }
-            />
+            <EditorHelp text={'Komponenter ovenfor legges inn rett under innholdsmenyen'} />
             <Region pageProps={pageProps} regionProps={mainRegionProps} />
         </div>
     );

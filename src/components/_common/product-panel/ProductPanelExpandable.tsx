@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
-import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';

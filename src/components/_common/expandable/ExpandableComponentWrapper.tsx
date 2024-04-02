@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExpandableMixin } from '../../../types/component-props/_mixins';
+import { ExpandableMixin } from 'types/component-props/_mixins';
 import { Expandable } from './Expandable';
 
 type Props = {

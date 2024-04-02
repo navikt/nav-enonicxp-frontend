@@ -4,7 +4,7 @@ import {
     appOrigin,
     editorPathPrefix,
     stripXpPathPrefix,
-} from '../../../../../utils/urls';
+} from 'utils/urls';
 
 import style from './SiteInfoLink.module.scss';
 

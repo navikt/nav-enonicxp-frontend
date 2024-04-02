@@ -1,10 +1,10 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     SituationPageProps,
     ProductPageProps,
     ToolsPageProps,
-} from '../../content-props/dynamic-page-props';
+} from 'types/content-props/dynamic-page-props';
 
 export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
 

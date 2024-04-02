@@ -1,6 +1,10 @@
-import { LayoutCommonProps, LayoutType, Regions } from '../layouts';
-import { ComponentType } from '../_component-common';
-import { LayoutCommonConfigMixin } from '../_mixins';
+import {
+    LayoutCommonProps,
+    LayoutType,
+    Regions,
+} from 'types/component-props/layouts';
+import { ComponentType } from 'types/component-props/_component-common';
+import { LayoutCommonConfigMixin } from 'types/component-props/_mixins';
 
 type DynamicColRegions = 'dynamic-1' | 'dynamic-2' | 'dynamic-3';
 
