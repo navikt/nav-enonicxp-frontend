@@ -47,7 +47,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
-            className={classNames(style.container, iconImgProps ? style.withIcon : '')}
+            className={classNames(style.container, iconImgProps && style.withIcon)}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
