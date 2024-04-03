@@ -8,16 +8,13 @@ import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
+import { classNames } from 'utils/classnames';
 
 import style from './SectionWithHeaderLayout.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
 
-const getBorderStyle = ({
-    color = '#ffffff',
-    width = 3,
-    rounded,
-}: BorderProps) => ({
+const getBorderStyle = ({ color = '#ffffff', width = 3, rounded }: BorderProps) => ({
     boxShadow: `0 0 0 ${width}px ${color} inset`,
     ...(rounded && { borderRadius: `${width * 3}px` }),
 });
@@ -31,12 +28,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     if (!config) {
-        return (
-            <EditorHelp
-                type={'error'}
-                text={'Feil: Komponenten mangler data'}
-            />
-        );
+        return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;
@@ -46,20 +38,16 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const iconImgProps = icon?.icon;
 
     const shouldShowFilterBar = regions.content?.components?.some(
-        (component) =>
-            component.config?.filters && component.config.filters.length > 0
+        (component) => component.config?.filters && component.config.filters.length > 0
     );
 
     // Also make sure we always region if there are already components in it.
     const shouldShowIntroRegion =
-        regions.intro?.components?.length > 0 ||
-        (shouldShowFilterBar && isEditorView);
+        regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
 
     return (
         <LayoutContainer
-            className={`${style.container} ${
-                iconImgProps ? style.withIcon : ''
-            }`}
+            className={classNames(style.container, iconImgProps ? style.withIcon : '')}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
@@ -96,22 +84,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}
                     setId={false}
-                    className={`${style.header} ${
-                        !!iconImgProps && style.headerWithIcon
-                    }`}
+                    className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}
                 </Header>
             )}
             {showSubsectionNavigation && (
-                <SectionNavigation
-                    introRegion={regions.intro}
-                    contentRegion={regions.content}
-                />
+                <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
             )}
-            {shouldShowIntroRegion && (
-                <Region pageProps={pageProps} regionProps={regions.intro} />
-            )}
+            {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
