@@ -41,15 +41,6 @@ $bottomOffset: 2rem;
     :global(.region__topLeftMenu) {
         background-color: white;
     }
-
-    // When used in the left menu, LinkList with Expandable capabilities
-    // should not add an underline after the Expandable components, as
-    // there's no other content below that needs separation.
-    :global(.link-list) {
-        :global(.expandable) {
-            box-shadow: none;
-        }
-    }
 }
 
 .sticky {
