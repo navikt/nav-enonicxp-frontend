@@ -2,11 +2,12 @@ import { Fragment } from 'react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
+    ProviderAudience,
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
@@ -45,17 +46,11 @@ export const AlternativeAudience = ({
                 editorView === 'edit' && style.noMargin
             )}
         >
-            <BodyShort>
-                {getRelatedString('relatedAudience').replace(
-                    '{name}',
-                    name.toLowerCase()
-                )}{' '}
+            <BodyLong>
+                {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
-                        <LenkeInline
-                            href={link.url}
-                            analyticsLabel={'Aktuell målgruppe'}
-                        >
+                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
                             {link.title}
                         </LenkeInline>
                         {getConjunction({
@@ -65,7 +60,7 @@ export const AlternativeAudience = ({
                         })}
                     </Fragment>
                 ))}
-            </BodyShort>
+            </BodyLong>
         </div>
     );
 };
@@ -99,9 +94,13 @@ const buildAudienceLinks = (
     // with 'person' and 'arbeidsgiver'.
     if (provider?.providerList) {
         provider.providerList.forEach((singleProvider) => {
-            const providerLabels = singleProvider.providerAudience.map(
-                (audience) => getProviderAudienceLabel(audience)
-            );
+            const providerLabels = singleProvider.providerAudience.map((audience) => {
+                if (typeof audience === 'string') {
+                    return getProviderAudienceLabel(audience as ProviderAudience);
+                }
+                if (audience.overrideLabel) return audience.overrideLabel;
+                return getProviderAudienceLabel(audience.name);
+            });
             links.push({
                 title: joinWithConjunction(providerLabels, language),
                 url: stripXpPathPrefix(singleProvider.targetPage._path),
