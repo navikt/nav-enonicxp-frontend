@@ -5,6 +5,8 @@ import {
 } from 'types/content-props/office-details-props';
 import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
 
+import Config from 'config';
+
 export const officeDetailsFormatAddress = (
     address?: Address | LegacyAddress,
     withZip?: boolean

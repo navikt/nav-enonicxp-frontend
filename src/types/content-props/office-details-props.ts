@@ -92,6 +92,7 @@ type AudienceContactInformation = {
 export type OfficeDetailsData = {
     enhetNr: string;
     type: string;
+    telefonnummer?: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;
