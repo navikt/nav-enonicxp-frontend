@@ -8,6 +8,7 @@ import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-si
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutProps } from 'types/component-props/layouts';
 import { ProductDetailType } from './product-details';
+import { OptionSetSingle } from 'types/util-types';
 
 export type DynamicPageProps = ContentCommonProps & {
     type: ContentType.DynamicPage;
@@ -72,7 +73,8 @@ export type OfficeBranchPageProps = ContentCommonProps & {
 export type OfficePageProps = ContentCommonProps & {
     type: ContentType.OfficePage;
     data: {
-        officeData: OfficeDetailsData;
+        title: string;
+        officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
     };
     page: LayoutProps;
 };

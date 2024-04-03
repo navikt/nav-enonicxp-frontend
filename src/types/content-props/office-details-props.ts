@@ -89,7 +89,7 @@ type AudienceContactInformation = {
     publikumskanaler: AudienceContact[] | AudienceContact;
 };
 
-export type OfficeDetailsData = ProductDataMixin & {
+export type OfficeDetailsData = {
     enhetNr: string;
     type: string;
     navn: string;

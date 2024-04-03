@@ -1,29 +1,24 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
-import { OfficePageHeader } from '../../_common/headers/office-page-header/OfficePageHeader';
-import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 import { classNames } from 'utils/classnames';
 
+import { OfficePageHeader } from 'components/pages/office-branch-page/office-page-header/OfficePageHeader';
+import { OfficeDetails } from 'components/pages/office-branch-page/office-details/OfficeDetails';
+
 import styles from './OfficePage.module.scss';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const OfficePage = (props: OfficePageProps) => {
-    const { officeData } = props.data;
+    const officeNorgData = props.data.officeNorgData.data;
+
     return (
         <div className={styles.officeBranchPage}>
-            {officeData && (
-                <OfficePageHeader
-                    officeDetails={officeData}
-                    showTimeStamp={false}
-                />
+            {officeNorgData && (
+                <OfficePageHeader officeDetails={officeNorgData} showTimeStamp={false} />
             )}
-            {officeData && <OfficeDetails officeData={officeData} />}
+            {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
             <div className={classNames(styles.content, styles.pageContent)}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
         </div>
     );
