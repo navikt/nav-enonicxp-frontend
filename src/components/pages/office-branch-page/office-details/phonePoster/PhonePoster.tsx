@@ -17,8 +17,11 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
 
-    const phoneNumber = (officeData.telefonnummer || Config.vars.hovedNummer).replace(/\s/g, '');
-    const humanReadablePhoneNumber = officeDetailsFormatPhoneNumber(phoneNumber);
+    const machineReadablePhone = (officeData.telefonnummer || Config.vars.hovedNummer).replace(
+        /[\s+47]/g,
+        ''
+    );
+    const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
     return (
         <div className={styles.phonePoster}>
@@ -26,20 +29,22 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                 {getOfficeTranslations('phoneToNav')}
             </Heading>
             <BodyShort className={styles.phoneNumberWrapper}>
-                <LenkeBase href={`tel:+47${phoneNumber}`} className={styles.phoneNumber}>
+                <LenkeBase href={`tel:+47${machineReadablePhone}`} className={styles.phoneNumber}>
                     <PhoneFillIcon aria-hidden="true" className={styles.telephoneIcon} />
-                    {humanReadablePhoneNumber}
+                    {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
             <BodyLong spacing={publikumskanaler.length > 0}>
                 {getOfficeTranslations('phoneInformation')}
             </BodyLong>
             {publikumskanaler.length > 0 && (
-                <Heading size="small" level="3">
-                    {getOfficeTranslations('alternativeContacts')}
-                </Heading>
+                <>
+                    <Heading size="small" level="3">
+                        {getOfficeTranslations('alternativeContacts')}
+                    </Heading>
+                    <AudienceChannels publikumskanaler={publikumskanaler} />
+                </>
             )}
-            <AudienceChannels publikumskanaler={publikumskanaler} />
         </div>
     );
 };
