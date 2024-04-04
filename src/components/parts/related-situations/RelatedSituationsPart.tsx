@@ -12,10 +12,7 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
-export const RelatedSituationsPart: PartComponent<PartType.RelatedSituations> = ({
-    config,
-    pageProps,
-}: RelatedSituationsProps) => {
+export const RelatedSituationsPart: PartComponent<PartType.RelatedSituations> = ({ config }) => {
     const { type, data, _id } = usePageContentProps();
 
     // If the page is in preview mode, related situations from the page props will be empty,

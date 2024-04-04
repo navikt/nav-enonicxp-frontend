@@ -3,6 +3,8 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { ContentType } from 'types/content-props/_content-common';
 import { createTypeGuard } from 'types/_type-guards';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
@@ -12,9 +14,8 @@ const isValidContentType = createTypeGuard([
 
 export const AlternativeAudiencePart: PartComponent<PartType.AlternativeAudience> = ({
     config,
-    pageProps,
-}: AlternativeAudienceProps) => {
-    const { data, type, _id, displayName } = pageProps;
+}) => {
+    const { data, type, _id, displayName } = usePageContentProps();
 
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
