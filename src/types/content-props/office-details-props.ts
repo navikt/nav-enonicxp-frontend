@@ -1,5 +1,3 @@
-import { ProductDataMixin } from 'types/component-props/_mixins';
-
 export type Address = {
     type?: 'stedsadresse' | 'postboksadresse';
     gatenavn?: string;
