@@ -18,7 +18,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const getOfficeTranslations = translator('office', language);
 
     const machineReadablePhone = (officeData.telefonnummer || Config.vars.hovedNummer).replace(
-        /[\s+47]/g,
+        /\s|\+47/g,
         ''
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
