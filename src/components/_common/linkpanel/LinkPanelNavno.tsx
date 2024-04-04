@@ -3,6 +3,8 @@ import { classNames } from 'utils/classnames';
 import { Heading } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
+import styles from './LinkPanelNavno.module.scss';
+
 type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
 type Props = {
@@ -33,23 +35,23 @@ export const LinkPanelNavno = ({
     return (
         <div
             className={classNames(
-                'linkPanelNavno',
-                icon && 'linkPanelWithIcon',
+                styles.linkPanelNavno,
+                icon && styles.linkPanelWithIcon,
                 elementAttribs.className
             )}
         >
-            {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
+            {icon && <div className={styles.linkPanelNavnoIcon}>{icon}</div>}
             <div className="linkPanelNavnoTextContent">
                 <span>
                     <LenkeBase
                         {...elementAttribs}
                         href={href}
                         className={classNames(
-                            'linkPanelNavnoLink',
+                            styles.linkPanelNavnoLink,
                             'navds-heading',
                             `navds-heading--${linkTextSize}`,
                             linkUnderline === 'onHover' && 'underline',
-                            linkColor === 'black' && 'linkBlack'
+                            linkColor === 'black' && styles.linkBlack
                         )}
                         analyticsComponent={'Lenkepanel navno'}
                         analyticsLinkGroup={analyticsLinkGroup}
@@ -59,7 +61,7 @@ export const LinkPanelNavno = ({
                     </LenkeBase>
                 </span>
                 {children && (
-                    <div className={classNames('linkPanelNavnoIngress')}>
+                    <div className={styles.linkPanelNavnoIngress}>
                         {children}
                     </div>
                 )}

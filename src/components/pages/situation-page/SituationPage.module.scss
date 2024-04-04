@@ -6,20 +6,18 @@ $margin: 2rem;
     display: flex;
     flex-direction: column;
 
-    .region__pageContent {
+    :global(.region__pageContent) {
         display: flex;
         flex-direction: column;
 
-        & > :not(.layout__situation-flex-cols) {
+        & > :not(:global(.layout__situation-flex-cols)) {
             margin-bottom: $margin;
-        }
-
-        & > :not(.layout__situation-flex-cols) {
             max-width: common.$sectionMaxWidth;
         }
 
         // Prevent margins between adjacent situation-flex-cols layouts
-        .layout__situation-flex-cols + .layout__situation-flex-cols {
+        :global(.layout__situation-flex-cols)
+            + :global(.layout__situation-flex-cols) {
             margin-top: -3rem;
         }
     }
@@ -37,7 +35,7 @@ $margin: 2rem;
         }
     }
 
-    .icon-container {
+    :global(.icon-container) {
         background-color: var(--a-orange-200);
         img {
             height: 50%;

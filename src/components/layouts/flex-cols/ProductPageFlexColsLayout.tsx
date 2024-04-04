@@ -6,6 +6,8 @@ import { ProductPageFlexColsLayoutProps } from 'types/component-props/layouts/pr
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
+import style from './FlexColsLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: ProductPageFlexColsLayoutProps;
@@ -29,7 +31,11 @@ export const ProductPageFlexColsLayout = ({
     };
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            className={style.layoutSituationOrProduct}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
             {title && (
                 <Header
                     level="2"
@@ -37,7 +43,7 @@ export const ProductPageFlexColsLayout = ({
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
-                    className="custom-header-style"
+                    className={style.header}
                 >
                     {title}
                 </Header>

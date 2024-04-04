@@ -7,6 +7,8 @@ import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponent
 import { ComponentType } from 'types/component-props/_component-common';
 import { MainArticleProps } from 'types/content-props/main-article-props';
 
+import style from './LegacyLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: LegacyLayoutProps;
@@ -37,7 +39,11 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
     const newsArticleProps = getNewsArticleProps(pageProps);
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            className={style.container}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
             {/* Insert the news article header here, as we want it to render above both article region columns */}
             {layoutProps.type === ComponentType.Page &&
                 newsArticleProps &&
