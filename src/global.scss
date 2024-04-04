@@ -1,18 +1,6 @@
 @use 'common' as common;
 @import '@navikt/ds-css/dist/index.css';
 
-// Import scss that aren't modules
-@import 'components/layouts/fixed-cols/FixedColsLayout.scss';
-@import 'components/layouts/flex-cols/FlexColsLayoutGlobal';
-@import 'components/layouts/legacy/LegacyLayout.scss';
-@import 'components/layouts/page-with-side-menus/left-menu-section/LeftMenuSection.scss';
-@import 'components/layouts/page-with-side-menus/PageWithSideMenus.scss';
-@import 'components/layouts/section-with-header/SectionWithHeaderLayout.scss';
-@import 'components/pages/situation-page/SituationPage.scss';
-@import 'components/pages/product-page/ProductPage.scss';
-@import 'components/_common/linkpanel/LinkPanelNavno.scss';
-@import 'components/pages/press-landing-page/PressLandingPage.scss';
-
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;

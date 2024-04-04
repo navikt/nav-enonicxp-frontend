@@ -2,29 +2,38 @@ import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { ContentType } from 'types/content-props/_content-common';
-import { PartComponent, PartType } from 'types/component-props/parts';
-import { usePageContentProps } from 'store/pageContext';
+import { createTypeGuard } from 'types/_type-guards';
+
+const isValidContentType = createTypeGuard([
+    ContentType.ProductPage,
+    ContentType.ThemedArticlePage,
+    ContentType.GuidePage,
+] as const);
 
 export const AlternativeAudiencePart: PartComponent<PartType.AlternativeAudience> = ({
     config,
-}) => {
-    const { data, type, _id, displayName } = usePageContentProps();
-
-    if (type !== ContentType.ProductPage) {
-        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
-    }
+    pageProps,
+}: AlternativeAudienceProps) => {
+    const { data, type, _id, displayName } = pageProps;
 
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually
     // display the audience until the page has been refreshed.
     const isComponentPreviewMode = _id === '';
-    if (isComponentPreviewMode) {
+    // Note (02.04.24): The type guard for DynamicPage needs to be in place until ComponentPreview
+    // receives the actual content type from the actual page props. Described in task:
+    // https://github.com/navikt/nav-enonicxp/issues/2081
+    if (isComponentPreviewMode || type === ContentType.DynamicPage) {
         return (
             <EditorHelp
                 type={'info'}
                 text={'Aktuelle målgrupper vises her når du klikker "marker som klar".'}
             />
         );
+    }
+
+    if (!isValidContentType(type)) {
+        return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
     const { alternativeAudience, title } = data;

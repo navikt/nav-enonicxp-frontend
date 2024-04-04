@@ -43,6 +43,11 @@ $blackLinkColor: common.$a-text-default;
     text-decoration-thickness: 0.05em;
     text-underline-offset: 0.1em;
 
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
     &.linkBlack {
         color: $blackLinkColor;
         text-decoration-color: $blackLinkColor;

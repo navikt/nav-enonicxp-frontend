@@ -10,11 +10,11 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import Config from 'config';
 import Region from 'components/layouts/Region';
 
+import styles from './PageWithSideMenus.module.scss';
+
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
 
-const mqlWidthBreakpoint = windowMatchMedia(
-    `(min-width: ${mobileWidthBreakpoint}px)`
-);
+const mqlWidthBreakpoint = windowMatchMedia(`(min-width: ${mobileWidthBreakpoint}px)`);
 
 type Props = {
     pageProps: ContentProps;
@@ -57,14 +57,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         rightMenuSticky,
     } = config;
 
-    const {
-        pageContent,
-        topPageContent,
-        topLeftMenu,
-        rightMenu,
-        leftMenu,
-        bottomRow,
-    } = regions;
+    const { pageContent, topPageContent, topLeftMenu, rightMenu, leftMenu, bottomRow } = regions;
 
     // The purpose of the topPageContent region is to separate components
     // which should be placed above the left menu in the mobile view
@@ -72,14 +65,17 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     // contains components
     const shouldRenderTopContentRegion =
         leftMenuToggle &&
-        (topPageContent?.components.length > 0 ||
-            pageProps.editorView === 'edit');
+        (topPageContent?.components.length > 0 || pageProps.editorView === 'edit');
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <div className={'top-row'}>
+        <LayoutContainer
+            className={styles.pageWithSideMenus}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
+            <div className={styles.topRow}>
                 {(leftMenuToggle || shouldRenderTopContentRegion) && (
-                    <div className={'left-col'}>
+                    <div className={styles.leftCol}>
                         {isMobile !== false && shouldRenderTopContentRegion && (
                             <MainContentSection
                                 pageProps={pageProps}
@@ -91,36 +87,27 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 pageProps={pageProps}
                                 topRegionProps={topLeftMenu}
                                 mainRegionProps={leftMenu}
-                                internalLinks={
-                                    showInternalNav ? anchorLinks : []
-                                }
+                                internalLinks={showInternalNav ? anchorLinks : []}
                                 menuHeader={leftMenuHeader}
                                 sticky={leftMenuSticky}
                             />
                         )}
                     </div>
                 )}
-                <div className={'main-col'}>
+                <div className={styles.mainCol}>
                     {isMobile !== true && shouldRenderTopContentRegion && (
                         <>
                             <MainContentSection
                                 pageProps={pageProps}
                                 regionProps={topPageContent}
                             />
-                            <EditorHelp
-                                text={
-                                    'Komponenter ovenfor legges over menyen på mobil'
-                                }
-                            />
+                            <EditorHelp text={'Komponenter ovenfor legges over menyen på mobil'} />
                         </>
                     )}
-                    <MainContentSection
-                        pageProps={pageProps}
-                        regionProps={pageContent}
-                    />
+                    <MainContentSection pageProps={pageProps} regionProps={pageContent} />
                 </div>
                 {rightMenuToggle && (
-                    <div className={'right-col'}>
+                    <div className={styles.rightCol}>
                         <RightMenuSection
                             pageProps={pageProps}
                             regionProps={rightMenu}
