@@ -5,8 +5,6 @@ import {
 } from 'types/content-props/office-details-props';
 import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
 
-import Config from 'config';
-
 export const officeDetailsFormatAddress = (
     address?: Address | LegacyAddress,
     withZip?: boolean
@@ -87,8 +85,9 @@ export const officeDetailsFormatAudienceReception = (
         place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse?.poststed,
         openingHoursExceptions: aapningstider?.exceptions || [],
         openingHours:
-            aapningstider?.regular.sort((a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag)) ||
-            [],
+            aapningstider?.regular.toSorted(
+                (a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag)
+            ) || [],
         adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
     };
 };

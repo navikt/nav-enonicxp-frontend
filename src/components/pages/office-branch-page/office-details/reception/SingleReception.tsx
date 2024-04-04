@@ -3,12 +3,8 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ClockFillIcon, InformationSquareFillIcon, HouseFillIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
+import { AudienceReception } from 'types/content-props/office-details-props';
 import {
-    AudienceReception,
-    OpeningHours as OpeningHoursProps,
-} from 'types/content-props/office-details-props';
-import {
-    officeDetailsFormatAddress,
     officeDetailsFormatAudienceReception,
     officeDetailsGetFutureOpeningExceptions,
 } from 'components/pages/office-branch-page/office-details/utils';
@@ -28,8 +24,7 @@ export const SingleReception = (props: AudienceReception) => {
     const futureOpeningHoursExceptions =
         officeDetailsGetFutureOpeningExceptions(openingHoursExceptions);
 
-    const hasOpeningHours =
-        futureOpeningHoursExceptions.length > 0 || futureOpeningHoursExceptions.length > 0;
+    const hasOpeningHours = openingHours.length > 0 || futureOpeningHoursExceptions.length > 0;
 
     return (
         <div className={style.singleReception}>
