@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BodyLong, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
@@ -32,8 +32,10 @@ export const ErrorContent404 = () => {
                 {urlSuggestion && (
                     <BodyLong>
                         {'Kanskje du mente '}
-                        <Link>{urlSuggestion}</Link>
-                        {'?'}{' '}
+                        <LenkeInline href={urlSuggestion}>
+                            {urlSuggestion}
+                        </LenkeInline>
+                        {'?'}
                     </BodyLong>
                 )}
                 <BodyLong>
