@@ -49,6 +49,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: {{dekoratorenApp}}
+        - application: {{searchApp}}
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}

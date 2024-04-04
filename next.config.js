@@ -146,6 +146,7 @@ const config = {
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
+        NAVNO_SEARCH_API_URL: process.env.NAVNO_SEARCH_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
     },

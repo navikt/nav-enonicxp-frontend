@@ -1,14 +1,26 @@
-import React from 'react';
-import { Heading, BodyLong } from '@navikt/ds-react';
+import React, { useEffect, useState } from 'react';
+import { BodyLong, Heading, Link } from '@navikt/ds-react';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
+import { fetchUrlSuggestion } from '../../../../utils/fetch/fetch-url-suggestion';
+
 const origin = process.env.APP_ORIGIN;
 const frontpageBase = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
 export const ErrorContent404 = () => {
+    const [urlSuggestion, setUrlSuggestion] = useState(null);
+
+    useEffect(() => {
+        fetchUrlSuggestion(
+            `${window.location.origin}${window.location.pathname}`
+        ).then((res) => {
+            setUrlSuggestion(res.suggestion);
+        });
+    }, []);
+
     return (
         <div className={style.error404}>
             <div>
@@ -17,6 +29,12 @@ export const ErrorContent404 = () => {
                         'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
                     }
                 </BodyLong>
+                {urlSuggestion && (
+                    <BodyLong>
+                        {'Mente du å gå hit? '}
+                        <Link>{urlSuggestion}</Link>
+                    </BodyLong>
+                )}
                 <BodyLong>
                     {'Bruk gjerne søket, menyen eller '}
                     <LenkeInline href={frontpageBase}>
