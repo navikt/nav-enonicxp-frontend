@@ -4,10 +4,10 @@ import Region from 'components/layouts/Region';
 import { RegionProps } from 'types/component-props/layouts';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
-import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import styles from './LeftMenuSection.module.scss';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type Props = {
     internalLinks: AnchorLink[];

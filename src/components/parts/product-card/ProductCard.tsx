@@ -5,8 +5,30 @@ import { MiniCard } from 'components/_common/card/MiniCard';
 import { LargeCard } from 'components/_common/card/LargeCard';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import {
+    ProductPageProps,
+    SituationPageProps,
+    ToolsPageProps,
+} from 'types/content-props/dynamic-page-props';
 
-// TODO: refactor
+// TODO: split into separate files
+
+export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
+
+type ProductTarget = {
+    header?: string;
+    targetPage: TargetPage;
+    ingressOverride?: string;
+};
+
+export type PartConfigProductCard = ProductTarget;
+
+export type PartConfigProductCardMini = ProductTarget;
+
+export type PartConfigProductCardMicro = {
+    header?: string;
+    card_list: Array<{ targetPage?: TargetPage }>;
+};
 
 export const ProductCardPart: PartComponent<PartType.ProductCard> = ({ config }) => {
     const pageConfig = usePageContentProps();

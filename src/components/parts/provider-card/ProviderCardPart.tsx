@@ -4,10 +4,17 @@ import { CardType } from 'types/card';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 
-export const ProviderCardPart: PartComponent<PartType.ProviderCard> = ({
-    config,
-}) => {
+export type PartConfigProviderCard = Partial<{
+    link: LinkSelectable;
+    icon: XpImageProps;
+    description: string;
+    endnote: string;
+}>;
+
+export const ProviderCardPart: PartComponent<PartType.ProviderCard> = ({ config }) => {
     const { link, description, endnote } = config;
 
     if (!link) {

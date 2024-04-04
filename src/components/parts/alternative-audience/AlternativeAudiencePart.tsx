@@ -12,6 +12,10 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
+export type PartConfigAlternativeAudience = {
+    showProductName: boolean;
+};
+
 export const AlternativeAudiencePart: PartComponent<PartType.AlternativeAudience> = ({
     config,
 }) => {

@@ -4,8 +4,17 @@ import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { ContentListMixin, ExpandableMixin } from 'types/component-props/_mixins';
+import { LinkProps } from 'types/link-props';
 
 import style from './NewsList.module.scss';
+
+export type PartConfigNewsList = {
+    title?: string;
+    hideTitle?: boolean;
+    contentList: ContentListMixin;
+    moreNews?: LinkProps;
+} & ExpandableMixin;
 
 export const NewsListPart: PartComponent<PartType.NewsList> = ({ config }) => {
     if (!config?.contentList?.target) {
@@ -25,10 +34,7 @@ export const NewsListPart: PartComponent<PartType.NewsList> = ({ config }) => {
                     listType={'chevron'}
                 />
                 {moreNews && (
-                    <LenkeStandalone
-                        href={moreNews.url}
-                        className={style.moreNews}
-                    >
+                    <LenkeStandalone href={moreNews.url} className={style.moreNews}>
                         {moreNews.text}
                     </LenkeStandalone>
                 )}

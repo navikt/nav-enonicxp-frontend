@@ -1,9 +1,5 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import {
-    ChannelType,
-    DefaultContactData,
-} from 'types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -13,12 +9,10 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import {
-    hoverFocusIcon,
-    useHoverAndFocus,
-} from './opening-info/helpers/iconUtils';
+import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
+import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = DefaultContactData & {
     channel: ChannelType;
@@ -88,12 +82,10 @@ export const DefaultOption = (props: Props) => {
         return { href: '#' };
     };
 
-    const titleActual =
-        title || (channel !== 'custom' ? getTranslations(channel).title : null);
+    const titleActual = title || (channel !== 'custom' ? getTranslations(channel).title : null);
 
     const ingressActual =
-        ingress ||
-        (channel !== 'custom' ? getTranslations(channel).ingress : null);
+        ingress || (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
     const iconName = icon || 'place';
     const iconElement = hoverFocusIcon({

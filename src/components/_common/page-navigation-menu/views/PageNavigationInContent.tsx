@@ -1,10 +1,10 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
-import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import { getPageNavigationLinkId } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 
 import style from './PageNavigationInContent.module.scss';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type Props = {
     title?: string;

@@ -5,6 +5,17 @@ import { FilteredContent } from 'components/_common/filtered-content/FilteredCon
 import { ContentType } from 'types/content-props/_content-common';
 import { PartComponent, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
+import { FormDetailsPageProps } from 'types/content-props/form-details';
+import { FiltersMixin } from 'types/component-props/_mixins';
+
+export type PartConfigFormDetails = {
+    targetFormDetails: FormDetailsPageProps;
+    showTitle: boolean;
+    showIngress: boolean;
+    showAddendums: boolean;
+    showComplaints: boolean;
+    showApplications: boolean;
+} & FiltersMixin;
 
 export const FormDetailsPart: PartComponent<PartType.FormDetails> = ({ config }) => {
     const pageProps = usePageContentProps();

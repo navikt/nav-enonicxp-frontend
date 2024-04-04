@@ -7,8 +7,31 @@ import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PartComponent, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 
 import style from './FrontpageShortcuts.module.scss';
+
+type Shortcut = {
+    target: {
+        _path: string;
+        displayName: string;
+        data: {
+            url?: string;
+            illustration?: AnimatedIconsProps;
+            title?: string;
+        };
+    };
+    customTitle: string;
+    customIllustration?: AnimatedIconsProps;
+};
+
+export type PartConfigFrontpageShortcuts = {
+    title?: string;
+    bgColor?: string;
+    itemColor?: string;
+    hoverColor?: string;
+    shortcuts: Shortcut[];
+};
 
 export const FrontpageShortcutsPart: PartComponent<PartType.FrontpageShortcuts> = ({ config }) => {
     const pageProps = usePageContentProps();

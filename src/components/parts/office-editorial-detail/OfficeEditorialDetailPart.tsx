@@ -1,6 +1,5 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { DetailType } from 'types/component-props/part-configs/office-editorial-detail';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';
@@ -10,6 +9,13 @@ import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformati
 import { PlaceholderIndicator } from './PlaceholderIndicator';
 import { PartComponent, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
+
+export enum DetailType {
+    SERVICE_INFORMATION = 'serviceInformation',
+    SOCIAL_HELP_LINKS = 'socialHelpLinks',
+    SOCIAL_HELP_POSTAL_INFORMATION = 'socialHelpPostalInformation',
+    SOCIAL_HELP_PAYOUT_INFORMATION = 'socialHelpPayoutInformation',
+}
 
 const detailComponents: Record<DetailType, React.FunctionComponent<OfficeEditorialDetailProps>> = {
     [DetailType.SERVICE_INFORMATION]: ServiceInformation,
@@ -30,6 +36,10 @@ const editorTranslation: Record<DetailType, string> = {
 
 export type OfficeEditorialDetailProps = {
     officeData: OfficeDetailsData;
+};
+
+export type PartConfigOfficeEditorialDetail = {
+    detailType?: DetailType;
 };
 
 export const OfficeEditorialDetailPart: PartComponent<PartType.OfficeEditorialDetail> = ({

@@ -4,6 +4,7 @@ import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlertProps } from '@navikt/ds-react';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 // These types were used by a previous version of the design system component
 // and are still used for the type property on the backend
@@ -16,6 +17,14 @@ const legacyTypeToVariant: {
     advarsel: 'warning',
     feil: 'error',
     suksess: 'success',
+};
+
+export type PartConfigAlertBox = {
+    content: ProcessedHtmlProps;
+    type: 'info' | 'advarsel' | 'feil' | 'suksess';
+    size?: 'small' | 'medium';
+    inline?: boolean;
+    margin: string;
 };
 
 export const AlertBoxPart: PartComponent<PartType.AlertBox> = ({ config }) => {

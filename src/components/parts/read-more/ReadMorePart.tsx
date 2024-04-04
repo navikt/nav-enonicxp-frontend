@@ -3,10 +3,16 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { useShortcuts, Shortcuts } from 'utils/useShortcuts';
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponent, PartType } from 'types/component-props/parts';
 
 import styles from './ReadMore.module.scss';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
+
+export type PartConfigReadMore = {
+    title: string;
+    html: ProcessedHtmlProps;
+};
 
 export const ReadMorePart: PartComponent<PartType.ReadMore> = ({ config }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,23 +22,15 @@ export const ReadMorePart: PartComponent<PartType.ReadMore> = ({ config }) => {
     });
 
     if (!config?.html || !config.title) {
-        return (
-            <EditorHelp
-                text={'Legg inn tittel og beskrivelse for "les mer".'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Legg inn tittel og beskrivelse for "les mer".'} type={'error'} />;
     }
 
     const openChangeHandler = (isOpen: boolean, _title: string) => {
         setIsOpen(isOpen);
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: _title,
-                opprinnelse: 'lesmer',
-            }
-        );
+        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+            tittel: _title,
+            opprinnelse: 'lesmer',
+        });
     };
 
     const { title, html } = config;

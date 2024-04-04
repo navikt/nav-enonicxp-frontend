@@ -1,18 +1,12 @@
 import React from 'react';
 import { MicroCards } from 'components/_common/card/MicroCard';
-import { TargetPage } from 'types/component-props/part-configs/product-card';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { TargetPage } from 'components/parts/product-card/ProductCard';
 
-export const ProductCardMicroPart: PartComponent<PartType.ProductCardMicro> = ({
-    config,
-}) => {
+export const ProductCardMicroPart: PartComponent<PartType.ProductCardMicro> = ({ config }) => {
     if (!config?.card_list || config.card_list.length === 0) {
-        return (
-            <EditorHelp
-                text={'Velg minst én lenke for å aktivere mikrokortene'}
-            />
-        );
+        return <EditorHelp text={'Velg minst én lenke for å aktivere mikrokortene'} />;
     }
 
     const { card_list, header } = config;

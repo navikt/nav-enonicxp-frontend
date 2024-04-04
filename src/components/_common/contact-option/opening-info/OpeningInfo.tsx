@@ -5,12 +5,12 @@ import { OpeningHours } from 'components/_common/contact-option/opening-info/hel
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
 import { Loader } from '@navikt/ds-react';
+
+import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
-} from 'types/component-props/part-configs/contact-option';
-
-import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
+} from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = {
     regularOpeningHours: RegularOpeningHours;

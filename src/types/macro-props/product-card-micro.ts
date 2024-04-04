@@ -1,5 +1,6 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
-import { TargetPage } from 'types/component-props/part-configs/product-card';
+
+import { TargetPage } from 'components/parts/product-card/ProductCard';
 
 export interface MacroProductCardMicroProps extends MacroPropsCommon {
     name: MacroType.ProductCardMicro;

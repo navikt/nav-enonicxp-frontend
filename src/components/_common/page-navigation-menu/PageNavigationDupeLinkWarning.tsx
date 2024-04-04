@@ -1,7 +1,7 @@
 import React from 'react';
-import { AnchorLink } from 'types/component-props/part-configs/page-navigation-menu';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type Props = {
     anchorLinks: AnchorLink[];

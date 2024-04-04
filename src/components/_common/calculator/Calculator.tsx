@@ -5,10 +5,10 @@ import { CalculatorIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';
 import { CalculatorResult } from './CalculatorResult';
-import { CalculatorData, CalculatorFieldData } from 'types/component-props/part-configs/calculator';
 import { usePageContentProps } from 'store/pageContext';
 
 import style from './Calculator.module.scss';
+import { CalculatorData, CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional

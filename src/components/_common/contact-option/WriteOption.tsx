@@ -1,18 +1,15 @@
 import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { WriteData } from 'types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
-import {
-    hoverFocusIcon,
-    useHoverAndFocus,
-} from './opening-info/helpers/iconUtils';
+import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
+import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = WriteData;
 

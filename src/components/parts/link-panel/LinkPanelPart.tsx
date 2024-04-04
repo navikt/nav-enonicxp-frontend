@@ -9,8 +9,23 @@ import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { XpImageProps } from 'types/media';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
+import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins';
 
 import style from './LinkPanelPart.module.scss';
+
+export type PartConfigLinkPanel = {
+    background?: XpImageProps;
+    icon?: XpImageProps;
+    variant?: OptionSetSingle<{
+        vertical: EmptyObject;
+        verticalWithBgColor: {
+            iconBg: ColorMixin;
+            iconJustify: 'flex-start' | 'center' | 'flex-end';
+        };
+    }>;
+} & LinkWithIngressMixin;
 
 export const LinkPanelPart: PartComponent<PartType.LinkPanel> = ({ config }) => {
     const { editorView } = usePageContentProps();

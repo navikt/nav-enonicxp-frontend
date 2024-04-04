@@ -1,5 +1,4 @@
 import React from 'react';
-import { AreaCardGraphicsType } from 'types/component-props/part-configs/area-card';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
@@ -13,6 +12,7 @@ import { classNames } from 'utils/classnames';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './AreaCardGraphics.module.scss';
+import { AreaCardGraphicsType } from 'components/parts/area-card/AreaCardPart';
 
 const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
     cases: CasesAnimation,

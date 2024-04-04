@@ -6,8 +6,14 @@ import { getCardProps } from 'components/_common/card/card-utils';
 import { LargeCard } from 'components/_common/card/LargeCard';
 import { usePageContentProps } from 'store/pageContext';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 import style from './AreapageSituationCardPart.module.scss';
+
+export type PartConfigAreapageSituationCard = {
+    disabled: boolean;
+    target: SituationPageProps;
+};
 
 export const AreapageSituationCardPart: PartComponent<PartType.AreapageSituationCard> = ({
     config,

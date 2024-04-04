@@ -8,12 +8,12 @@ import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
 import { useScrollPosition } from 'utils/useStickyScroll';
+
+import style from './FilterBar.module.scss';
 import {
     FilterMenuCategory,
     FilterMenuFilter,
-} from 'types/component-props/part-configs/filter-menu';
-
-import style from './FilterBar.module.scss';
+} from 'components/parts/filters-menu/FiltersMenuPart';
 
 type FilterWithCategory = FilterMenuFilter & Pick<FilterMenuCategory, 'categoryName'>;
 

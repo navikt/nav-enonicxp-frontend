@@ -7,8 +7,16 @@ import { usePageContentProps } from 'store/pageContext';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { ContentListData } from 'types/content-props/content-list-props';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 import style from './FrontpageCurrentTopics.module.scss';
+
+export type PartConfigFrontpageCurrentTopics = {
+    title: string;
+    contentList?: { data: ContentListData };
+    link: LinkSelectable;
+};
 
 export const FrontpageCurrentTopics: PartComponent<PartType.FrontpageCurrentTopics> = ({
     config,

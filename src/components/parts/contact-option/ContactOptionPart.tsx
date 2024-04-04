@@ -1,12 +1,113 @@
 import React from 'react';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
-import { ChannelType } from 'types/component-props/part-configs/contact-option';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { OptionSetSingle } from 'types/util-types';
+import { DayName } from 'utils/datetime';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { AudienceOptions } from 'types/component-props/_mixins';
+
+export type OpeningHourRegularRaw =
+    | {
+          status: 'CLOSED';
+          dayName: DayName;
+      }
+    | {
+          status: 'OPEN';
+          dayName: DayName;
+          from: string;
+          to: string;
+      };
+
+export type OpeningHourSpecialRaw =
+    | {
+          status: 'CLOSED';
+          date: string;
+      }
+    | {
+          status: 'OPEN';
+          from: string;
+          to: string;
+          date: string;
+      };
+
+export type OpeningHourRaw = OpeningHourRegularRaw | OpeningHourSpecialRaw;
+
+export type RegularOpeningHours = {
+    hours: OpeningHourRegularRaw[];
+};
+
+export type SpecialOpeningHours = {
+    overrideText?: string;
+    validFrom: string;
+    validTo: string;
+    hours?: OpeningHourSpecialRaw[];
+};
+
+type LegacyCall = {
+    phoneNumber?: string;
+};
+
+type LegacyWrite = {
+    ingress?: ProcessedHtmlProps;
+    title?: string;
+    url?: string;
+};
+
+type Options = {
+    chat: DefaultContactData;
+    write: DefaultContactData & LegacyWrite;
+    navoffice: DefaultContactData;
+    aidcentral: DefaultContactData;
+    custom: DefaultContactData;
+    call: DefaultContactData & LegacyCall;
+};
+
+export type ChannelType = keyof Options;
+
+export type DefaultContactData = {
+    ingress?: ProcessedHtmlProps;
+    title?: string;
+    url?: string;
+    icon?: 'facebook' | 'linkedin';
+    sharedContactInformation?: {
+        _path: string;
+        data: {
+            contactType: {
+                telephone?: TelephoneData;
+                write?: WriteData;
+                chat?: ChatData;
+            };
+        };
+    };
+};
+
+export type TelephoneData = {
+    phoneNumber?: string;
+    title?: string;
+    text?: string;
+    alertText?: string;
+    regularOpeningHours?: RegularOpeningHours;
+    specialOpeningHours?: SpecialOpeningHours;
+    audience?: AudienceOptions;
+};
+
+export type ChatData = Omit<DefaultContactData, 'url'> & {
+    alertText?: string;
+    regularOpeningHours?: RegularOpeningHours;
+    specialOpeningHours?: SpecialOpeningHours;
+};
+
+export type WriteData = {
+    title?: string;
+    url?: string;
+    alertText?: string;
+    ingress?: ProcessedHtmlProps;
+};
 
 type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
 
@@ -20,6 +121,10 @@ const channelsWithSharedInfo: ReadonlySet<ChannelType> = new Set(['call', 'write
 
 const isChannelWithSharedInfo = (channel: ChannelType): channel is ChannelWithSharedInfo =>
     channelsWithSharedInfo.has(channel);
+
+export type PartConfigContactOption = {
+    contactOptions: OptionSetSingle<Options>;
+};
 
 export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({ config }) => {
     const pageProps = usePageContentProps();

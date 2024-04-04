@@ -1,41 +1,41 @@
-import { PartConfigAccordion } from './part-configs/accordion';
 import { ComponentCommonProps, ComponentType } from './_component-common';
-import { PartConfigAlertBox } from './part-configs/alert-box';
-import { PartConfigAlternativeAudience } from './part-configs/alternative-audience';
 import { ContentProps } from 'types/content-props/_content-common';
 import { EmptyObject } from 'types/util-types';
-import { PartConfigAreaCard } from './part-configs/area-card';
-import { PartConfigAreapageSituationCard } from './part-configs/areapage-situation-card';
-import { PartConfigButton } from './part-configs/button';
-import { PartConfigCalculator } from './part-configs/calculator';
-import { PartConfigContactOption } from './part-configs/contact-option';
-import { PartConfigFilterMenu } from './part-configs/filter-menu';
-import { PartConfigFormDetails } from './part-configs/form-details';
-import { PartConfigFrontpageContact } from './part-configs/frontpage-contact';
-import { PartConfigFrontpageCurrentTopics } from './part-configs/frontpage-current-topics';
-import { PartConfigFrontpageShortcuts } from './part-configs/frontpage-shortcuts';
-import { PartConfigHeader } from './part-configs/header';
-import { PartConfigHtmlArea } from './part-configs/html-area';
-import { PartConfigLinkList } from './part-configs/link-list';
-import { PartConfigLinkPanel } from './part-configs/link-panel';
-import { PartConfigLoggedinCard } from './part-configs/loggedin-card';
-import { PartConfigNewsList } from './part-configs/news-list';
-import { PartConfigOfficeEditorialDetail } from './part-configs/office-editorial-detail';
-import { PartConfigPageHeader } from './part-configs/page-header';
-import { PartConfigPageNavigationMenu } from './part-configs/page-navigation-menu';
-import { PartConfigPayoutDates } from './part-configs/payout-dates';
+import React from 'react';
+import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
+import { PartConfigAlternativeAudience } from 'components/parts/alternative-audience/AlternativeAudiencePart';
+import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
+import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
+import { PartConfigButton } from 'components/parts/button/ButtonPart';
+import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
+import { PartConfigContactOption } from 'components/parts/contact-option/ContactOptionPart';
+import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
+import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
+import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
+import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopics';
+import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
+import { PartConfigHeader } from 'components/parts/header/HeaderPart';
+import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlArea';
+import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
+import { PartConfigLinkPanel } from 'components/parts/link-panel/LinkPanelPart';
+import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
+import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
+import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
+import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
+import { PartConfigPageNavigationMenu } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDatesPart';
 import {
     PartConfigProductCard,
     PartConfigProductCardMicro,
     PartConfigProductCardMini,
-} from './part-configs/product-card';
-import { PartConfigProductDetails } from './part-configs/product-details';
-import { PartConfigReadMore } from './part-configs/read-more';
-import { PartConfigRelatedSituations } from './part-configs/related-situations';
-import { PartConfigProviderCard } from './part-configs/provider-card';
-import { PartConfigUserTests } from './part-configs/user-tests';
-import { PartConfigUxSignalsWidget } from './part-configs/uxsignals-widget';
-import React from 'react';
+} from 'components/parts/product-card/ProductCard';
+import { PartConfigProductDetails } from 'components/parts/product-details/ProductDetailsPart';
+import { PartConfigProviderCard } from 'components/parts/provider-card/ProviderCardPart';
+import { PartConfigReadMore } from 'components/parts/read-more/ReadMorePart';
+import { PartConfigRelatedSituations } from 'components/parts/related-situations/RelatedSituationsPart';
+import { PartConfigUserTests } from 'components/parts/user-tests/UserTestsPart';
+import { PartConfigUxSignalsWidget } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 
 export enum PartType {
     AreaCard = 'no.nav.navno:area-card',

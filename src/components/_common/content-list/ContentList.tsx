@@ -8,7 +8,8 @@ import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ListType } from 'types/component-props/part-configs/link-list';
+
+import { ListType } from 'components/parts/link-list/LinkListPart';
 
 const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
     const dateLabel = dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);

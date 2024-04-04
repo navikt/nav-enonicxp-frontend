@@ -3,7 +3,6 @@ import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { FilterMenuCategory } from 'types/component-props/part-configs/filter-menu';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -13,8 +12,25 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
 import { PartComponent, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
+import { ExpandableMixin } from 'types/component-props/_mixins';
 
 import style from './FiltersMenu.module.scss';
+
+export type FilterMenuFilter = {
+    filterName: string;
+    id: string;
+};
+
+export type FilterMenuCategory = {
+    categoryName: string;
+    filters: FilterMenuFilter[];
+};
+
+export type PartConfigFilterMenu = {
+    title?: string;
+    description: string;
+    categories: FilterMenuCategory[];
+} & ExpandableMixin;
 
 export const FiltersMenuPart: PartComponent<PartType.FiltersMenu> = ({ config, path }) => {
     const { language, editorView, page } = usePageContentProps();

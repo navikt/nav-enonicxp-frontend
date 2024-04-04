@@ -2,7 +2,6 @@ import React from 'react';
 import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { TelephoneData } from 'types/component-props/part-configs/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
@@ -13,6 +12,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
+import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {

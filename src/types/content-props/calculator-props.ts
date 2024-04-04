@@ -1,5 +1,6 @@
 import { ContentType, ContentCommonProps } from './_content-common';
-import { CalculatorData } from 'types/component-props/part-configs/calculator';
+
+import { CalculatorData } from 'components/parts/calculator/CalculatorPart';
 
 export type CalculatorProps = ContentCommonProps & {
     type: ContentType.ContactInformationPage;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { PartConfigAccordion } from 'types/component-props/part-configs/accordion';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
@@ -9,6 +8,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import styles from './Accordion.module.scss';
+import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][0];

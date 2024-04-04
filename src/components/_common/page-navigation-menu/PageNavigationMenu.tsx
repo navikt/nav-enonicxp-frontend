@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-    AnchorLink,
-    PageNavViewStyle,
-} from 'types/component-props/part-configs/page-navigation-menu';
 import debounce from 'lodash.debounce';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';
 import Config from 'config';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
+import {
+    AnchorLink,
+    PageNavViewStyle,
+} from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 const MENU_UPDATE_RATE = 1000 / 30;
 

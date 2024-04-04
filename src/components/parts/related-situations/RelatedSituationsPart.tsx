@@ -12,6 +12,11 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
+export type PartConfigRelatedSituations = {
+    title: string;
+    description: string;
+};
+
 export const RelatedSituationsPart: PartComponent<PartType.RelatedSituations> = ({ config }) => {
     const { type, data, _id } = usePageContentProps();
 

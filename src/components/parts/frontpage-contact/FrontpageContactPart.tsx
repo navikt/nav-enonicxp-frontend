@@ -6,12 +6,35 @@ import { ContentType } from 'types/content-props/_content-common';
 import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
 import { PartComponent, PartType } from 'types/component-props/parts';
+import { ContactInformationProps } from 'types/content-props/contact-information-props';
 
 import style from './FrontpageContactPart.module.scss';
 
-export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({
-    config,
-}) => {
+type InternalContactUs = {
+    type: ContentType.GenericPage;
+    _path: string;
+};
+
+type ExternalContactUs = {
+    type: ContentType.ExternalLink;
+    data: {
+        url: string;
+    };
+};
+
+export type PartConfigFrontpageContact = {
+    title: string;
+    chatTitle: string;
+    chatAlertText?: string;
+    sharedContactInformation: ContactInformationProps[];
+    chatIngress: string;
+    contactUsTitle: string;
+    contactUsAlertText?: string;
+    contactUsIngress: string;
+    contactUsLink: InternalContactUs | ExternalContactUs;
+};
+
+export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({ config }) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }
@@ -32,8 +55,7 @@ export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({
             : contactUsLink._path);
 
     const getChatIngress = () => {
-        const sharedContact =
-            sharedContactInformation[0]?.data?.contactType?.chat;
+        const sharedContact = sharedContactInformation[0]?.data?.contactType?.chat;
         const specialOpeningHours = sharedContact?.specialOpeningHours;
 
         const chatTitle = config.chatTitle || sharedContact?.title || '';
@@ -43,8 +65,7 @@ export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({
             sharedContact?.ingress?.processedHtml ||
             '';
 
-        const chatAlertText =
-            config.chatAlertText || sharedContact?.alertText || '';
+        const chatAlertText = config.chatAlertText || sharedContact?.alertText || '';
 
         return { chatTitle, chatIngress, chatAlertText };
     };
@@ -69,10 +90,7 @@ export const FrontpageContactPart: PartComponent<PartType.FrontpageContact> = ({
                     linkText={contactUsTitle}
                 >
                     {contactUsAlertText && (
-                        <FrontpageContactAlert
-                            alertText={contactUsAlertText}
-                            yellow
-                        />
+                        <FrontpageContactAlert alertText={contactUsAlertText} yellow />
                     )}
                     {contactUsIngress}
                 </LinkPanelNavno>

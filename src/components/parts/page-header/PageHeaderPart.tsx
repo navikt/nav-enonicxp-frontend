@@ -8,6 +8,10 @@ import { usePageContentProps } from 'store/pageContext';
 
 import style from './PageHeaderPart.module.scss';
 
+export type PartConfigPageHeader = {
+    title: string;
+};
+
 export const PageHeaderPart: PartComponent<PartType.PageHeader> = ({ config }) => {
     const { type, data } = usePageContentProps();
     const audience = data?.audience;

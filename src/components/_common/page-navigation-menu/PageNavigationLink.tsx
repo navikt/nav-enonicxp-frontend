@@ -2,7 +2,6 @@ import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { PageNavViewStyle } from 'types/component-props/part-configs/page-navigation-menu';
 import { PageNavScrollDirection } from './PageNavigationMenu';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 import Config from 'config';
@@ -10,6 +9,7 @@ import Config from 'config';
 import style from './PageNavigationLink.module.scss';
 import sidebarStyle from './views/PageNavigationSidebar.module.scss';
 import inContentStyle from './views/PageNavigationInContent.module.scss';
+import { PageNavViewStyle } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 const ANCHOR_OFFSET_PX = Config.vars.pxPerRem;
 

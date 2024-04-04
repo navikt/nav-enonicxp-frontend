@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { ChatData } from 'types/component-props/part-configs/contact-option';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -10,21 +9,13 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
-import {
-    hoverFocusIcon,
-    useHoverAndFocus,
-} from './opening-info/helpers/iconUtils';
+import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
+import { ChatData } from 'components/parts/contact-option/ContactOptionPart';
 
 export const ChatOption = (props: ChatData) => {
-    const {
-        ingress,
-        title,
-        alertText,
-        regularOpeningHours,
-        specialOpeningHours,
-    } = props;
+    const { ingress, title, alertText, regularOpeningHours, specialOpeningHours } = props;
     const overrideText = specialOpeningHours?.overrideText;
 
     const { language } = usePageContentProps();
@@ -66,9 +57,7 @@ export const ChatOption = (props: ChatData) => {
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                <ParsedHtml
-                    htmlProps={overrideText || ingress || translations.ingress}
-                />
+                <ParsedHtml htmlProps={overrideText || ingress || translations.ingress} />
             </BodyLong>
             {!alertText && (
                 <TextWithIndicator

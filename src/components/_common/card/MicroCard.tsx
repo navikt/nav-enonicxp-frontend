@@ -4,7 +4,6 @@ import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useCard } from './useCard';
 import { classNames } from 'utils/classnames';
-import { TargetPage } from 'types/component-props/part-configs/product-card';
 import { CardProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { BodyShort } from '@navikt/ds-react';
@@ -12,14 +11,9 @@ import { usePageContentProps } from 'store/pageContext';
 
 import sharedStyle from './Card.module.scss';
 import style from './MicroCard.module.scss';
+import { TargetPage } from 'components/parts/product-card/ProductCard';
 
-export const MicroCard = ({
-    link,
-    type,
-}: {
-    link: LinkProps;
-    type: CardType;
-}) => {
+export const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
     const { analyticsProps } = useCard({ type, size: CardSize.Micro, link });
     return (
         <LenkeBase
@@ -27,9 +21,7 @@ export const MicroCard = ({
             {...analyticsProps}
             className={classNames(sharedStyle.card, sharedStyle.inline)}
         >
-            <div className={classNames(sharedStyle.bed, style.micro, type)}>
-                {link.text}
-            </div>
+            <div className={classNames(sharedStyle.bed, style.micro, type)}>{link.text}</div>
         </LenkeBase>
     );
 };
@@ -52,11 +44,7 @@ export const MicroCards = ({ header, card_list }: Props) => {
     }, []);
 
     if (cardProps.length === 0) {
-        return (
-            <EditorHelp
-                text={'Velg minst én lenke for å aktivere mikrokortene'}
-            />
-        );
+        return <EditorHelp text={'Velg minst én lenke for å aktivere mikrokortene'} />;
     }
 
     return (
