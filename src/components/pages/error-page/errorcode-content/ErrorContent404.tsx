@@ -31,8 +31,9 @@ export const ErrorContent404 = () => {
                 </BodyLong>
                 {urlSuggestion && (
                     <BodyLong>
-                        {'Mente du å gå hit? '}
+                        {'Kanskje du mente '}
                         <Link>{urlSuggestion}</Link>
+                        {'?'}{' '}
                     </BodyLong>
                 )}
                 <BodyLong>
