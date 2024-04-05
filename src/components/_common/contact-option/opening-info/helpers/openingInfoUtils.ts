@@ -1,9 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
-import { daysNameArray, norwayTz } from 'utils/datetime';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import { daysNameArray, norwayTz } from 'utils/datetime';
+import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -16,17 +16,13 @@ export const getOpeningHoursForDateTime = (
     openingHours: OpeningHours[],
     dateTime: Dayjs
 ): OpeningHours =>
-    openingHours.find((openingHour) =>
-        dateTime.isSame(openingHour.date, 'day')
-    ) || {
+    openingHours.find((openingHour) => dateTime.isSame(openingHour.date, 'day')) || {
         status: 'CLOSED',
         dayName: daysNameArray[dateTime.day()],
         date: dateTime.format(openingHourDateFormat),
     };
 
-export const getCurrentOpeningHours = (
-    openingHours: OpeningHours[]
-): OpeningHours => {
+export const getCurrentOpeningHours = (openingHours: OpeningHours[]): OpeningHours => {
     const now = dayjs();
     const openingHour = getOpeningHoursForDateTime(openingHours, now);
 

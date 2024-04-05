@@ -1,11 +1,11 @@
 import React from 'react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 import { GVItemEditor } from 'components/pages/global-values-page/components/values/item-editor/GVItemEditor';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceGetUsage } from 'components/pages/global-values-page/api/services/usage';
 import { generateGvUsageMessages } from 'components/pages/global-values-page/utils';
-import { BodyShort, Heading } from '@navikt/ds-react';
 import { getCaseTimeString } from 'components/macros/saksbehandlingstid/MacroSaksbehandlingstid';
 
 import style from './GVItem.module.scss';
@@ -42,13 +42,8 @@ const ItemView = ({ item }: Props) => {
 };
 
 export const GVItem = (props: Props) => {
-    const {
-        setMessages,
-        contentId,
-        itemsEditState,
-        setItemEditState,
-        editorEnabled,
-    } = useGvEditorState();
+    const { setMessages, contentId, itemsEditState, setItemEditState, editorEnabled } =
+        useGvEditorState();
     const { item } = props;
     const { key } = item;
     const editMode = itemsEditState[key];
@@ -56,10 +51,7 @@ export const GVItem = (props: Props) => {
     return (
         <div className={style.gvItem}>
             {editMode ? (
-                <GVItemEditor
-                    item={item}
-                    onClose={() => setItemEditState(key, false)}
-                />
+                <GVItemEditor item={item} onClose={() => setItemEditState(key, false)} />
             ) : (
                 <ItemView item={item} />
             )}
@@ -75,27 +67,19 @@ export const GVItem = (props: Props) => {
                 )}
                 <GVButton
                     onClick={async () => {
-                        await gvServiceGetUsage(item.key, contentId).then(
-                            (res) => {
-                                if (!res) {
-                                    setMessages([
-                                        {
-                                            message:
-                                                'Server-feil ved uthenting av verdier',
-                                            level: 'error',
-                                        },
-                                    ]);
-                                    return;
-                                }
-
-                                setMessages(
-                                    generateGvUsageMessages(
-                                        res.usage,
-                                        item.itemName
-                                    )
-                                );
+                        await gvServiceGetUsage(item.key, contentId).then((res) => {
+                            if (!res) {
+                                setMessages([
+                                    {
+                                        message: 'Server-feil ved uthenting av verdier',
+                                        level: 'error',
+                                    },
+                                ]);
+                                return;
                             }
-                        );
+
+                            setMessages(generateGvUsageMessages(res.usage, item.itemName));
+                        });
                     }}
                 >
                     {'Vis bruk'}

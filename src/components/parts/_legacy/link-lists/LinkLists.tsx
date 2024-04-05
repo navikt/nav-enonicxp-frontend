@@ -2,10 +2,7 @@ import React from 'react';
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
-import {
-    ContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { appOrigin } from 'utils/urls';
 
 import style from './LinkLists.module.scss';
@@ -20,10 +17,7 @@ export const LinkLists = (props: ContentProps) => {
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
 
     const newsUrlAbsolute =
-        moreNewsUrl &&
-        (moreNewsUrl.startsWith('/')
-            ? `${appOrigin}${moreNewsUrl}`
-            : moreNewsUrl);
+        moreNewsUrl && (moreNewsUrl.startsWith('/') ? `${appOrigin}${moreNewsUrl}` : moreNewsUrl);
 
     return (
         <>

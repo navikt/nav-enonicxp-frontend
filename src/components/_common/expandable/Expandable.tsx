@@ -15,13 +15,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const Expandable = ({
-    title,
-    anchorId,
-    analyticsOriginTag,
-    children,
-    className,
-}: Props) => {
+export const Expandable = ({ title, anchorId, analyticsOriginTag, children, className }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
 
@@ -33,13 +27,10 @@ export const Expandable = ({
     });
 
     const toggleExpandCollapse = () => {
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: title,
-                opprinnelse: analyticsOriginTag,
-            }
-        );
+        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+            tittel: title,
+            opprinnelse: analyticsOriginTag,
+        });
         setIsOpen(!isOpen);
     };
 
@@ -91,9 +82,7 @@ export const Expandable = ({
             ref={accordionRef}
         >
             <Accordion.Item open={isOpen} className={style.expandable}>
-                <Accordion.Header onClick={toggleExpandCollapse}>
-                    {title}
-                </Accordion.Header>
+                <Accordion.Header onClick={toggleExpandCollapse}>{title}</Accordion.Header>
                 <Accordion.Content>{children}</Accordion.Content>
             </Accordion.Item>
         </Accordion>

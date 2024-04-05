@@ -5,19 +5,13 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroLinkToLayer = ({ config }: MacroLinkToLayerProps) => {
     if (!config?.link_to_layer) {
-        return (
-            <EditorHelp text={'Macroen mangler konfigurasjon'} type={'error'} />
-        );
+        return <EditorHelp text={'Macroen mangler konfigurasjon'} type={'error'} />;
     }
 
     const { href, newTab, tooltip, body } = config.link_to_layer;
 
     return (
-        <LenkeInline
-            href={href}
-            title={tooltip}
-            target={newTab ? '_blank' : undefined}
-        >
+        <LenkeInline href={href} title={tooltip} target={newTab ? '_blank' : undefined}>
             {body}
         </LenkeInline>
     );

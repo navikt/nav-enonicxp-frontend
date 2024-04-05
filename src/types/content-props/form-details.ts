@@ -1,7 +1,7 @@
 import { OptionSetSingle } from 'types/util-types';
-import { ContentCommonProps, ContentType } from './_content-common';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { LinkSelectable } from 'types/component-props/_mixins';
+import { ContentCommonProps, ContentType } from './_content-common';
 import { AlertData } from './alerts';
 
 export type FormComplaintTypes = 'complaint' | 'appeal';

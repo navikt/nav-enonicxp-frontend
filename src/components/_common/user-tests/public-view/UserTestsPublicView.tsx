@@ -64,9 +64,7 @@ const pickApplicableVariant = ({
 
     const previouslySelectedVariantId = userTestGetSelectedVariantId(cookieId);
     if (previouslySelectedVariantId) {
-        return selectableVariants.find(
-            (variant) => variant.id === previouslySelectedVariantId
-        );
+        return selectableVariants.find((variant) => variant.id === previouslySelectedVariantId);
     }
 
     return selectRandomVariant(variants, selectableVariants);

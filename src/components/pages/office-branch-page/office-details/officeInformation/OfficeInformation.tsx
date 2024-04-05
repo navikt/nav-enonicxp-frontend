@@ -15,18 +15,13 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const getOfficeTranslations = translator('office', language);
 
     const title = getOfficeTranslations('officeInformation');
-    const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } =
-        officeData;
+    const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } = officeData;
 
     const visitingAddress = officeDetailsFormatAddress(beliggenhet, true);
     const postalAddress = officeDetailsFormatAddress(postadresse, true);
 
     return (
-        <ExpansionCard
-            aria-label={title}
-            className={styles.officeInformation}
-            size="small"
-        >
+        <ExpansionCard aria-label={title} className={styles.officeInformation} size="small">
             <ExpansionCard.Header className={styles.expansionCardHeader}>
                 <ExpansionCard.Title as="h2" size="small">
                     {title}
@@ -55,14 +50,12 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                             </Heading>
                             {organisasjonsnummer && (
                                 <BodyShort>
-                                    {getOfficeTranslations('orgNumber')}:{' '}
-                                    {organisasjonsnummer}
+                                    {getOfficeTranslations('orgNumber')}: {organisasjonsnummer}
                                 </BodyShort>
                             )}
                             {enhetNr && (
                                 <BodyShort>
-                                    {getOfficeTranslations('officeNumber')}:{' '}
-                                    {enhetNr}
+                                    {getOfficeTranslations('officeNumber')}: {enhetNr}
                                 </BodyShort>
                             )}
                         </section>

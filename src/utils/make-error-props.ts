@@ -29,9 +29,7 @@ export const makeErrorProps = (
     errorId?: string
 ): ErrorProps => {
     const publicMessage =
-        errorMessageByMessage(errorMessage) ||
-        errorMessageByCode[errorCode] ||
-        errorMessageDefault;
+        errorMessageByMessage(errorMessage) || errorMessageByCode[errorCode] || errorMessageDefault;
     const title = `Feil: ${publicMessage}`;
     const time = Date.now().toString();
 
@@ -55,5 +53,4 @@ export const makeErrorProps = (
     };
 };
 
-export const make404Props = (idOrPath = '') =>
-    makeErrorProps(idOrPath, 'Fant ikke siden', 404);
+export const make404Props = (idOrPath = '') => makeErrorProps(idOrPath, 'Fant ikke siden', 404);

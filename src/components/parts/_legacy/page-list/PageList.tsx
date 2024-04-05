@@ -2,10 +2,7 @@ import React from 'react';
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { translator } from 'translations';
-import {
-    ContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './PageList.module.scss';
@@ -28,9 +25,7 @@ export const PageList = (props: ContentProps) => {
         .filter((section) => props._id !== section._id)
         .sort(
             orderListByPublishedDate
-                ? (a, b) =>
-                      new Date(b.createdTime).getTime() -
-                      new Date(a.createdTime).getTime()
+                ? (a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
                 : undefined
         );
 
@@ -55,25 +50,15 @@ export const PageList = (props: ContentProps) => {
             )}
             <div className={style.list}>
                 {sectionContents.map((section) => {
-                    const {
-                        displayName,
-                        _path,
-                        publish,
-                        modifiedTime,
-                        createdTime,
-                        data,
-                    } = section;
+                    const { displayName, _path, publish, modifiedTime, createdTime, data } =
+                        section;
 
-                    const ingress = data
-                        ? data.ingress || data.description
-                        : undefined;
+                    const ingress = data ? data.ingress || data.description : undefined;
 
                     return (
                         <article key={_path} className={style.row}>
                             <BodyLong>
-                                <LenkeInline href={_path}>
-                                    {displayName}
-                                </LenkeInline>
+                                <LenkeInline href={_path}>{displayName}</LenkeInline>
                             </BodyLong>
                             {ingress && (
                                 <div className={style.ingress}>

@@ -2,9 +2,9 @@ import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { BEM, classNames } from 'utils/classnames';
-import { getCommonLayoutStyle } from './LayoutStyle';
 import { usePageContentProps } from 'store/pageContext';
 import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { getCommonLayoutStyle } from './LayoutStyle';
 
 import style from './LayoutContainer.module.scss';
 

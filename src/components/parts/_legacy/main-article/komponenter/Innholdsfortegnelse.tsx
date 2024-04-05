@@ -18,9 +18,7 @@ export const Innholdsfortegnelse = ({ label, innholdsfortegnelse }: Props) => {
             <ol>
                 {innholdsfortegnelse.map((item, index) => (
                     <li key={index}>
-                        <LenkeBase href={`#chapter-${index + 1}`}>
-                            {item}
-                        </LenkeBase>
+                        <LenkeBase href={`#chapter-${index + 1}`}>{item}</LenkeBase>
                     </li>
                 ))}
             </ol>

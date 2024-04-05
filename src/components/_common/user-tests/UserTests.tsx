@@ -18,11 +18,7 @@ export const UserTests = (props: UserTestsComponentProps) => {
 
     return (
         <div className={style.wrapper}>
-            {editorView ? (
-                <UserTestsEditorView {...props} />
-            ) : (
-                <UserTestsPublicView {...props} />
-            )}
+            {editorView ? <UserTestsEditorView {...props} /> : <UserTestsPublicView {...props} />}
         </div>
     );
 };

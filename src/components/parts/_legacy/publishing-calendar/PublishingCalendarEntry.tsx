@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
-import {
-    ContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
@@ -42,9 +39,7 @@ export const sortEntries = (
     }); // Dato for publisering: stigende
 };
 
-const processEntry = (
-    item: PublishingCalendarEntryProps
-): PublishingCalendarEntryData => {
+const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
     const publDate = new Date(item.data.date);
     return {
         displayName: item.displayName,

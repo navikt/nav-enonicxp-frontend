@@ -6,8 +6,7 @@ import style from './PageHeading.module.scss';
 
 export const PageHeading = (props: ContentProps) => {
     const displayName = props.displayName;
-    const ingress =
-        props.type !== ContentType.SectionPage && props.data?.ingress;
+    const ingress = props.type !== ContentType.SectionPage && props.data?.ingress;
 
     return (
         <section className={style.pageHeading}>

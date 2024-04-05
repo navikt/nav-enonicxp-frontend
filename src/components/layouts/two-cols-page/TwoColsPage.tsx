@@ -19,9 +19,7 @@ export const TwoColsPage = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <Region pageProps={pageProps} regionProps={regions.mainCol} />
-            {config.sideColToggle && (
-                <Region pageProps={pageProps} regionProps={regions.sideCol} />
-            )}
+            {config.sideColToggle && <Region pageProps={pageProps} regionProps={regions.sideCol} />}
         </LayoutContainer>
     );
 };

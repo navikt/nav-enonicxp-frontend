@@ -14,9 +14,7 @@ export const officeDetailsFormatAddress = (
     }
     let formatedAddress: string;
     if (address.type === 'postboksadresse') {
-        const postboksanlegg = address.postboksanlegg
-            ? ` ${address.postboksanlegg}`
-            : '';
+        const postboksanlegg = address.postboksanlegg ? ` ${address.postboksanlegg}` : '';
         formatedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
     } else {
         const husnummer = address.husnummer ? ` ${address.husnummer}` : '';
@@ -39,10 +37,7 @@ export const officeDetailsFormatPhoneNumber = (phoneNumber?: string) => {
     return phoneNumber
         .replace(/ /g, '')
         .split('')
-        .reduce(
-            (acc, digit, index) => acc + digit + (index % 2 === 1 ? ' ' : ''),
-            ''
-        )
+        .reduce((acc, digit, index) => acc + digit + (index % 2 === 1 ? ' ' : ''), '')
         .trim();
 };
 
@@ -70,30 +65,24 @@ type FormattedAudienceReception = {
 export const officeDetailsFormatAudienceReception = (
     audienceReception: AudienceReception
 ): FormattedAudienceReception => {
-    const aapningstider =
-        audienceReception.aapningstider.reduce<OpeningHoursBuckets>(
-            (acc, elem) => {
-                if (elem.dato) {
-                    acc.exceptions.push(elem);
-                } else {
-                    acc.regular.push(elem);
-                }
-                return acc;
-            },
-            {
-                regular: [],
-                exceptions: [],
+    const aapningstider = audienceReception.aapningstider.reduce<OpeningHoursBuckets>(
+        (acc, elem) => {
+            if (elem.dato) {
+                acc.exceptions.push(elem);
+            } else {
+                acc.regular.push(elem);
             }
-        );
+            return acc;
+        },
+        {
+            regular: [],
+            exceptions: [],
+        }
+    );
 
     return {
-        address: officeDetailsFormatAddress(
-            audienceReception.besoeksadresse,
-            true
-        ),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse?.poststed,
+        address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
+        place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse?.poststed,
         openingHoursExceptions: aapningstider.exceptions,
         openingHours: aapningstider.regular.sort(
             (a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag)

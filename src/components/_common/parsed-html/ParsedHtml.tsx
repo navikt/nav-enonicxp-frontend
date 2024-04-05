@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'store/store';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
-import { usePageContentProps } from 'store/pageContext';
-import { NextImage } from 'components/_common/image/NextImage';
 import htmlReactParser, {
     Element,
     domToReact,
@@ -12,18 +9,18 @@ import htmlReactParser, {
     DOMNode,
     HTMLReactParserOptions,
 } from 'html-react-parser';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { store } from 'store/store';
+import { usePageContentProps } from 'store/pageContext';
+import { NextImage } from 'components/_common/image/NextImage';
 import { getMediaUrl } from 'utils/urls';
-import {
-    processedHtmlMacroTag,
-    ProcessedHtmlProps,
-} from 'types/processed-html-props';
+import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-props';
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from 'components/macros/MacroMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { Table } from 'components/_common/table/Table';
-import { BodyLong, Heading } from '@navikt/ds-react';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.AlertBox,
@@ -88,9 +85,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     }
 
     const { processedHtml, macros } =
-        typeof htmlProps === 'string'
-            ? { processedHtml: htmlProps, macros: [] }
-            : htmlProps;
+        typeof htmlProps === 'string' ? { processedHtml: htmlProps, macros: [] } : htmlProps;
 
     if (!processedHtml) {
         return null;
@@ -115,12 +110,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
-                return (
-                    <MacroMapper
-                        macros={macros}
-                        macroRef={attribs?.['data-macro-ref']}
-                    />
-                );
+                return <MacroMapper macros={macros} macroRef={attribs?.['data-macro-ref']} />;
             }
 
             // Remove img without src
@@ -227,9 +217,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
-                return (
-                    <Table>{domToReact(validChildren, parserOptions)}</Table>
-                );
+                return <Table>{domToReact(validChildren, parserOptions)}</Table>;
             }
 
             // Replace empty rows with stylable element

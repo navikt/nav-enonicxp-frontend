@@ -1,5 +1,5 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
 import { FormDetailsData } from 'types/content-props/form-details';
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroFormDetailsProps extends MacroPropsCommon {
     name: MacroType.PayoutDates;

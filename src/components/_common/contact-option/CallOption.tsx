@@ -1,6 +1,6 @@
 import React from 'react';
-import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { translator } from 'translations';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';

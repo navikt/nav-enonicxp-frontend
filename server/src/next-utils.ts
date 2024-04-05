@@ -6,9 +6,7 @@ import { NextServer } from 'next/dist/server/next';
 // Note: there are additional worker instances of the next server,
 // used for handling requests.
 // This function only returns the top level instance
-export const getNextServer = async (
-    nextApp: NextServer
-): Promise<NextNodeServer> => {
+export const getNextServer = async (nextApp: NextServer): Promise<NextNodeServer> => {
     return nextApp['getServer']();
 };
 

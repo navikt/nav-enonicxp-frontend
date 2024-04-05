@@ -11,12 +11,10 @@ const CONTENT_REPO_PREFIX = 'com.enonic.cms.';
 // The pathname in the editor view looks like this:
 // /admin/tool/com.enonic.app.contentstudio/main/<project id>/edit/<content id>
 const getProjectIdFromCurrentEditorUrl = () =>
-    typeof window !== 'undefined' &&
-    parent.window.location.pathname.split('/')[5];
+    typeof window !== 'undefined' && parent.window.location.pathname.split('/')[5];
 
 // Content repo-ids look like this: com.enonic.cms.<project-id>
-const getProjectIdFromRepoId = (repoId: string) =>
-    repoId.replace(CONTENT_REPO_PREFIX, '');
+const getProjectIdFromRepoId = (repoId: string) => repoId.replace(CONTENT_REPO_PREFIX, '');
 
 const getContentServiceUrl = (projectId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/${projectId}/content/content`;
@@ -43,13 +41,8 @@ export const editorFetchAdminUserId = () =>
         return res?.user?.key;
     });
 
-export const editorFetchAdminContent = async (
-    contentId: string,
-    repoId?: string
-) => {
-    const projectId = repoId
-        ? getProjectIdFromRepoId(repoId)
-        : getProjectIdFromCurrentEditorUrl();
+export const editorFetchAdminContent = async (contentId: string, repoId?: string) => {
+    const projectId = repoId ? getProjectIdFromRepoId(repoId) : getProjectIdFromCurrentEditorUrl();
 
     if (!projectId) {
         logger.error('Could not determine projectId');
@@ -68,5 +61,4 @@ export const editorFetchUserInfo = async (userId: string) =>
 export const isCurrentEditorRepo = (repoId: string) =>
     getProjectIdFromRepoId(repoId) === getProjectIdFromCurrentEditorUrl();
 
-export const isContentRepo = (repoId?: string) =>
-    repoId?.startsWith(CONTENT_REPO_PREFIX);
+export const isContentRepo = (repoId?: string) => repoId?.startsWith(CONTENT_REPO_PREFIX);
