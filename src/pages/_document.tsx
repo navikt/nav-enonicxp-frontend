@@ -1,16 +1,10 @@
 import React from 'react';
-import Document, {
-    DocumentContext,
-    Head,
-    Html,
-    Main,
-    NextScript,
-} from 'next/document';
-import { Language } from 'translations';
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
+import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import { getDecoratorComponents } from 'utils/decorator/decorator-utils-serverside';
-import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
     language: Language;
@@ -21,12 +15,8 @@ type DocumentProps = {
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 // We use this to pass certain data from our page content via meta tags from the
 // DocumentParameterMetatags component
-const getDocumentParameter = (
-    initialProps: DocumentInitialProps,
-    name: DocumentParameter
-) => {
-    return initialProps.head?.find((element) => element?.props?.name === name)
-        ?.props?.content;
+const getDocumentParameter = (initialProps: DocumentInitialProps, name: DocumentParameter) => {
+    return initialProps.head?.find((element) => element?.props?.name === name)?.props?.content;
 };
 
 class MyDocument extends Document<DocumentProps> {
@@ -38,10 +28,7 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorParams
         );
 
-        const language = getDocumentParameter(
-            initialProps,
-            DocumentParameter.HtmlLang
-        );
+        const language = getDocumentParameter(initialProps, DocumentParameter.HtmlLang);
 
         const decoratorDisabled = getDocumentParameter(
             initialProps,
@@ -49,10 +36,7 @@ class MyDocument extends Document<DocumentProps> {
         );
 
         const isLegacyContentType =
-            getDocumentParameter(
-                initialProps,
-                DocumentParameter.LegacyContentType
-            ) === 'true';
+            getDocumentParameter(initialProps, DocumentParameter.LegacyContentType) === 'true';
 
         const Decorator =
             !decoratorDisabled &&
@@ -74,11 +58,7 @@ class MyDocument extends Document<DocumentProps> {
         return (
             <Html lang={language || 'no'}>
                 <Head>{Decorator && <Decorator.Styles />}</Head>
-                <body
-                    className={
-                        isLegacyContentType ? 'legacyContentType' : undefined
-                    }
-                >
+                <body className={isLegacyContentType ? 'legacyContentType' : undefined}>
                     {Decorator && <Decorator.Header />}
                     <Main />
                     {Decorator && <Decorator.Footer />}

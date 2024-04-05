@@ -1,9 +1,6 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-import {
-    GlobalCaseTimeSetItem,
-    GlobalCaseTimeUnit,
-} from 'types/content-props/global-values-props';
+import { GlobalCaseTimeSetItem, GlobalCaseTimeUnit } from 'types/content-props/global-values-props';
 
 type Errors = { [key in keyof GlobalCaseTimeSetItem]?: string };
 
@@ -38,11 +35,7 @@ type Props = {
     setInputState: (inputState: GlobalCaseTimeSetItem) => void;
 };
 
-export const GVItemEditorInputCaseTime = ({
-    inputState,
-    errors,
-    setInputState,
-}: Props) => {
+export const GVItemEditorInputCaseTime = ({ inputState, errors, setInputState }: Props) => {
     const inputValue = inputState.value ? inputState.value.toString() : '';
 
     return (

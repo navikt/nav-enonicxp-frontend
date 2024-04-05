@@ -31,11 +31,7 @@ export const NewsHeader = ({ contentProps }: Props) => {
                     {pageTitle}
                 </Heading>
             </header>
-            <DateLine
-                createdTime={createdTime}
-                modifiedTime={modifiedTime}
-                language={language}
-            />
+            <DateLine createdTime={createdTime} modifiedTime={modifiedTime} language={language} />
         </>
     );
 };

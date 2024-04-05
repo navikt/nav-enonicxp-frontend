@@ -6,10 +6,7 @@ import { UxSignalsWidget } from 'components/_common/uxsignals-widget/UxSignalsWi
 export const UxSignalsWidgetPart = ({ config }: UxSignalsWidgetPartProps) => {
     if (!config?.embedCode) {
         return (
-            <EditorHelp
-                text={'Tom UXSignals komponent, sett inn en embed-kode'}
-                type={'error'}
-            />
+            <EditorHelp text={'Tom UXSignals komponent, sett inn en embed-kode'} type={'error'} />
         );
     }
 

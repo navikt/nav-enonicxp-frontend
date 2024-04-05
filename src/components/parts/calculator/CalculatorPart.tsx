@@ -11,10 +11,7 @@ export const CalculatorPart = ({ config }: CalculatorProps) => {
 
     return (
         <FilteredContent filters={config.filters}>
-            <Calculator
-                calculatorData={config.targetCalculator.data}
-                header={config.header}
-            />
+            <Calculator calculatorData={config.targetCalculator.data} header={config.header} />
         </FilteredContent>
     );
 };

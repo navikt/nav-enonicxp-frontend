@@ -1,4 +1,3 @@
-import { PartialTranslations } from './default';
 import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
@@ -7,6 +6,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import { PartialTranslations } from './default';
 
 const taxonomies: {
     [key in Taxonomy]?: string;

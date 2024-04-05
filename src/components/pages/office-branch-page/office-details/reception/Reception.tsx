@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
 import { AudienceReception } from 'types/content-props/office-details-props';
 import { forceArray } from 'utils/arrays';
-import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
+import { SingleReception } from './SingleReception';
 
 import style from './Reception.module.scss';
 

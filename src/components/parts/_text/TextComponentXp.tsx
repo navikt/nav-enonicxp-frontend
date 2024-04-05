@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    ComponentType,
-    TextComponentProps,
-} from 'types/component-props/_component-common';
+import { ComponentType, TextComponentProps } from 'types/component-props/_component-common';
 
 type Props = {
     textProps: TextComponentProps;
@@ -21,11 +18,7 @@ export const TextComponentXp = ({ textProps, editMode }: Props) => {
 
     if (!text) {
         if (editMode) {
-            return (
-                <div {...editorProps}>
-                    {'Tom tekst-komponent, klikk for å redigere'}
-                </div>
-            );
+            return <div {...editorProps}>{'Tom tekst-komponent, klikk for å redigere'}</div>;
         }
         return null;
     }

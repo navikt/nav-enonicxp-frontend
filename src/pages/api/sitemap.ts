@@ -1,6 +1,6 @@
+import Cache from 'node-cache';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { fetchJson } from 'srcCommon/fetch-utils';
-import Cache from 'node-cache';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import { logger } from 'srcCommon/logger';
 
@@ -113,9 +113,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) =>
         res.setHeader('X-Robots-Tag', 'noindex');
 
         if (!sitemapContent) {
-            return res
-                .status(503)
-                .send('Server error: sitemap is currently unavailable');
+            return res.status(503).send('Server error: sitemap is currently unavailable');
         }
 
         res.setHeader('Content-Type', 'application/xml');

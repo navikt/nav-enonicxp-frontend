@@ -70,7 +70,4 @@ export type PartLegacyType =
     | PartType.PublishingCalendar
     | PartType.PublishingCalendarEntry;
 
-export type PartCurrentType = Exclude<
-    PartType,
-    PartLegacyType | PartDeprecatedType
->;
+export type PartCurrentType = Exclude<PartType, PartLegacyType | PartDeprecatedType>;

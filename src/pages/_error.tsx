@@ -1,11 +1,11 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
+import { NextApiResponse, NextPageContext } from 'next';
 import { makeErrorProps } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from 'utils/errors';
 import { fetchWithTimeout } from 'srcCommon/fetch-utils';
-import { NextApiResponse, NextPageContext } from 'next';
 import { logger } from 'srcCommon/logger';
 
 const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -27,8 +27,7 @@ const getClientsideProps = (path?: string) => {
     }
 
     try {
-        const contentProps = JSON.parse(nextData)?.props
-            ?.pageProps as ContentProps;
+        const contentProps = JSON.parse(nextData)?.props?.pageProps as ContentProps;
         if (contentProps.type !== ContentType.Error) {
             logger.error(
                 `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.type}`

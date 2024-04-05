@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import Region from 'components/layouts/Region';
 import { RegionProps } from 'types/component-props/layouts';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -7,7 +7,7 @@ import { PageNavigationMenu } from 'components/_common/page-navigation-menu/Page
 import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
-const bem = BEM('left-menu');
+import styles from './LeftMenuSection.module.scss';
 
 type Props = {
     internalLinks: AnchorLink[];
@@ -27,18 +27,14 @@ export const LeftMenuSection = ({
     pageProps,
 }: Props) => {
     return (
-        <div className={classNames(bem(), sticky && bem(undefined, 'sticky'))}>
+        <div className={classNames(styles.leftMenu, sticky && styles.sticky)}>
             <PageNavigationMenu
                 title={menuHeader}
                 anchorLinks={internalLinks}
                 viewStyle={'sidebar'}
             />
             <Region pageProps={pageProps} regionProps={topRegionProps} />
-            <EditorHelp
-                text={
-                    'Komponenter ovenfor legges inn rett under innholdsmenyen'
-                }
-            />
+            <EditorHelp text={'Komponenter ovenfor legges inn rett under innholdsmenyen'} />
             <Region pageProps={pageProps} regionProps={mainRegionProps} />
         </div>
     );

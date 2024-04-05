@@ -32,10 +32,7 @@ export const cardTypeMap = {
     [ContentType.GenericPage]: CardType.Generic,
 };
 
-const getCardCategory = (
-    content: CardTargetProps,
-    language: Language
-): string[] => {
+const getCardCategory = (content: CardTargetProps, language: Language): string[] => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
     const selectedAudience = audience && getAudience(audience);

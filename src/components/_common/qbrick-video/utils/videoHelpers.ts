@@ -10,8 +10,7 @@ const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
 
     const images = resources.filter((resource) => resource.type === 'image');
 
-    const qBrickPickedThumbnail =
-        qbrickMediaData.thumbnails && qbrickMediaData.thumbnails[0]?.id;
+    const qBrickPickedThumbnail = qbrickMediaData.thumbnails && qbrickMediaData.thumbnails[0]?.id;
 
     // If the specified thumbnail is not found, pick the first image
     const selectedImage =
@@ -34,11 +33,8 @@ const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
         return 0;
     }
 
-    const firstFoundResource = resources.find(
-        (resource) => resource.type === 'video'
-    );
-    const firstFoundVideo =
-        firstFoundResource && firstFoundResource.renditions[0]?.videos;
+    const firstFoundResource = resources.find((resource) => resource.type === 'video');
+    const firstFoundVideo = firstFoundResource && firstFoundResource.renditions[0]?.videos;
     const duration = firstFoundVideo && firstFoundVideo[0]?.duration;
 
     return duration || 0;

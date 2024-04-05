@@ -1,7 +1,4 @@
-import {
-    ContentCommonProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutProps } from 'types/component-props/layouts';
 import { Audience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ProductDetailType as OverviewType } from 'types/content-props/product-details';

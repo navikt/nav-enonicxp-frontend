@@ -35,9 +35,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
         }
 
         if (opening.fra && opening.til) {
-            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(
-                opening.til
-            )}`;
+            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(opening.til)}`;
         }
 
         return closedLabel;

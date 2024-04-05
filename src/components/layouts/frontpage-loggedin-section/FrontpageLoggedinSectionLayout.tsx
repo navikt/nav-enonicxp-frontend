@@ -11,8 +11,8 @@ import { capitalize } from 'utils/string';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
-import style from './FrontpageLoggedinSectionLayout.module.scss';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
+import style from './FrontpageLoggedinSectionLayout.module.scss';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const { language } = usePageContentProps();
@@ -22,15 +22,8 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const greetings = translator('greetings', language);
 
     return (
-        <Header
-            level={'2'}
-            size={'large'}
-            justify={'left'}
-            className={style.header}
-        >
-            {name
-                ? headerText.replace('$navn', capitalize(name))
-                : greetings('hi')}
+        <Header level={'2'} size={'large'} justify={'left'} className={style.header}>
+            {name ? headerText.replace('$navn', capitalize(name)) : greetings('hi')}
         </Header>
     );
 };
@@ -40,18 +33,10 @@ type Props = {
     pageProps: ContentProps;
 };
 
-export const FrontpageLoggedinSectionLayout = ({
-    layoutProps,
-    pageProps,
-}: Props) => {
+export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props) => {
     const { config, regions } = layoutProps;
     if (!config || !regions) {
-        return (
-            <EditorHelp
-                type={'error'}
-                text={'Feil: Komponenten mangler data'}
-            />
-        );
+        return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
     const { header, mypage } = config;
@@ -65,19 +50,10 @@ export const FrontpageLoggedinSectionLayout = ({
                 data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
-                <Header
-                    level={'2'}
-                    size={'small'}
-                    justify={'left'}
-                    className={style.services}
-                >
+                <Header level={'2'} size={'small'} justify={'left'} className={style.services}>
                     Dine tjenester
                 </Header>
-                <Region
-                    pageProps={pageProps}
-                    regionProps={regions.cards}
-                    className={style.cards}
-                />
+                <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
                 <MoreLink link={mypage?.link} />
             </LayoutContainer>
         </AuthDependantRender>

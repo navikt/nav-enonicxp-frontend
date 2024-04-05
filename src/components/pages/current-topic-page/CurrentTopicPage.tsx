@@ -12,10 +12,7 @@ export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
             <div className={style.contentWrapper}>
                 <div className={style.contentAligner}>
                     <div className={style.content}>
-                        <ComponentMapper
-                            componentProps={props.page}
-                            pageProps={props}
-                        />
+                        <ComponentMapper componentProps={props.page} pageProps={props} />
                     </div>
                 </div>
             </div>

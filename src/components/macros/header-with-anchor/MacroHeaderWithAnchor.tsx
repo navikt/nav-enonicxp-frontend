@@ -6,9 +6,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './MacroheaderWithAnchor.module.scss';
 
-export const MacroHeaderWithAnchor = ({
-    config,
-}: MacroHeaderWithAnchorProps) => {
+export const MacroHeaderWithAnchor = ({ config }: MacroHeaderWithAnchorProps) => {
     if (!config?.header_with_anchor) {
         return null;
     }
@@ -21,9 +19,7 @@ export const MacroHeaderWithAnchor = ({
     const headerText = body || text;
 
     if (!headerText) {
-        return (
-            <EditorHelp type={'error'} text={'Header-macroen mangler tekst!'} />
-        );
+        return <EditorHelp type={'error'} text={'Header-macroen mangler tekst!'} />;
     }
 
     return (

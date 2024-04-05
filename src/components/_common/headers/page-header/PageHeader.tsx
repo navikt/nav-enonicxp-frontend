@@ -14,13 +14,7 @@ type Props = {
     children: string;
 };
 
-export const PageHeader = ({
-    justify,
-    children,
-    level,
-    size,
-    className,
-}: Props) => {
+export const PageHeader = ({ justify, children, level, size, className }: Props) => {
     return children ? (
         <Header
             level={level || '1'}

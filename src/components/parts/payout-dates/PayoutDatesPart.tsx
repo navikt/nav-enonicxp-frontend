@@ -9,9 +9,7 @@ export const PayoutDatesPart = ({ config }: PayoutDatesPartProps) => {
         return (
             <EditorHelp
                 type={'help'}
-                text={
-                    'Klikk her og velg et sett med utbetalingsdatoer i panelet til høyre'
-                }
+                text={'Klikk her og velg et sett med utbetalingsdatoer i panelet til høyre'}
             />
         );
     }

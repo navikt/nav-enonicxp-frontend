@@ -1,8 +1,8 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { isContentTypeImplemented } from 'components/ContentMapper';
-import { stripLineBreaks } from './string';
 import { ErrorProps } from 'types/content-props/error-props';
 import { logger } from 'srcCommon/logger';
+import { stripLineBreaks } from './string';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     logger.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);

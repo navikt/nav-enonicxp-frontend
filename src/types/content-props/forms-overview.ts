@@ -1,7 +1,4 @@
-import {
-    ContentCommonProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { EmptyObject, OptionSetSingle } from 'types/util-types';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
@@ -9,9 +6,7 @@ import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { ProviderAudience } from 'types/component-props/_mixins';
 
-type ContentTypeInFormOverviewPages =
-    | ContentType.ProductPage
-    | ContentType.GuidePage;
+type ContentTypeInFormOverviewPages = ContentType.ProductPage | ContentType.GuidePage;
 
 export type FormDetailsListItemProps = {
     title: string;

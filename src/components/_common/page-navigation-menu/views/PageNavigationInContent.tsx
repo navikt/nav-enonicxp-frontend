@@ -14,12 +14,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
     return (
         <div className={style.pageNavInContent}>
             {title && (
-                <Header
-                    level="2"
-                    className={style.title}
-                    justify={'left'}
-                    size="medium"
-                >
+                <Header level="2" className={style.title} justify={'left'} size="medium">
                     {title}
                 </Header>
             )}
@@ -29,9 +24,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
                         <li key={anchorLink.anchorId}>
                             <PageNavigationLink
                                 targetId={anchorLink.anchorId}
-                                linkId={getPageNavigationLinkId(
-                                    anchorLink.anchorId
-                                )}
+                                linkId={getPageNavigationLinkId(anchorLink.anchorId)}
                                 viewStyle={'inContent'}
                             >
                                 {anchorLink.linkText}

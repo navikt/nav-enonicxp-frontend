@@ -7,10 +7,8 @@ type Props = {
     children: React.ReactNode;
 };
 
-const checkForFilterMatch = (
-    filters: string[],
-    selectedFilters: FilterSelection
-) => filters.some((filter) => selectedFilters.includes(filter));
+const checkForFilterMatch = (filters: string[], selectedFilters: FilterSelection) =>
+    filters.some((filter) => selectedFilters.includes(filter));
 
 export const FilteredContent = ({ filters, children }: Props) => {
     const { selectedFilters, availableFilters } = useFilterState();
@@ -34,9 +32,7 @@ export const FilteredContent = ({ filters, children }: Props) => {
     });
 
     const isAffectedByFiltering = relevantCategories.some((category) => {
-        return category.filters.some((filter) =>
-            selectedFilters.includes(filter.id)
-        );
+        return category.filters.some((filter) => selectedFilters.includes(filter.id));
     });
 
     const isFilterMatch = checkForFilterMatch(filters, selectedFilters);

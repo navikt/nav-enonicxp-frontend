@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
 import Head from 'next/head';
+import { ContentProps } from 'types/content-props/_content-common';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { isLegacyContentType } from 'utils/content-types';
 
@@ -29,19 +29,10 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
 
     return (
         <Head>
-            <meta
-                name={DocumentParameter.DecoratorParams}
-                content={decoratorParams}
-            />
-            <meta
-                name={DocumentParameter.HtmlLang}
-                content={content.language}
-            />
+            <meta name={DocumentParameter.DecoratorParams} content={decoratorParams} />
+            <meta name={DocumentParameter.HtmlLang} content={content.language} />
             {editorView === 'edit' && isLegacyContentType(type) && (
-                <meta
-                    name={DocumentParameter.LegacyContentType}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.LegacyContentType} content={'true'} />
             )}
         </Head>
     );

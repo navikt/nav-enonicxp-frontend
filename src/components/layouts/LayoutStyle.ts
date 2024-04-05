@@ -5,8 +5,7 @@ export const getCommonLayoutStyle = (config: LayoutCommonConfigMixin) => {
         return undefined;
     }
 
-    const { bgColor, marginTop, marginBottom, paddingSides, paddingTopBottom } =
-        config;
+    const { bgColor, marginTop, marginBottom, paddingSides, paddingTopBottom } = config;
 
     return {
         // Check for undefined specifically. We want to allow margin values of 0

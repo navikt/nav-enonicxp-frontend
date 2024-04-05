@@ -1,9 +1,9 @@
 import React from 'react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import { ContentType } from 'types/content-props/_content-common';
 import { MainArticleProps } from 'types/content-props/main-article-props';
 import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { Heading, Ingress } from '@navikt/ds-react';
 import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
 import { MainArticleText } from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
 import { Faktaboks } from 'components/parts/_legacy/main-article/komponenter/Faktaboks';
@@ -19,9 +19,7 @@ type Props = MainArticleProps | MainArticleChapterProps;
 
 // Get props from the chapter article if the content is a chapter
 const getPropsToRender = (propsInitial: Props) =>
-    propsInitial.type === ContentType.MainArticleChapter
-        ? propsInitial.data.article
-        : propsInitial;
+    propsInitial.type === ContentType.MainArticleChapter ? propsInitial.data.article : propsInitial;
 
 export const MainArticle = (propsInitial: Props) => {
     const props = getPropsToRender(propsInitial);
@@ -29,35 +27,23 @@ export const MainArticle = (propsInitial: Props) => {
         return null;
     }
 
-    const {
-        data,
-        language,
-        publish,
-        createdTime,
-        modifiedTime,
-        displayName,
-        _path,
-    } = props;
+    const { data, language, publish, createdTime, modifiedTime, displayName, _path } = props;
 
     const isNewsArticle =
-        props.data.contentType === 'news' ||
-        props.data.contentType === 'pressRelease';
+        props.data.contentType === 'news' || props.data.contentType === 'pressRelease';
 
     const style = isNewsArticle ? styleNews : stylePermanent;
 
     const getLabel = translator('mainArticle', language);
 
-    const hasTableOfContents = !!(
-        data?.hasTableOfContents && data?.hasTableOfContents !== 'none'
-    );
+    const hasTableOfContents = !!(data?.hasTableOfContents && data?.hasTableOfContents !== 'none');
 
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text?.processedHtml,
         hasTableOfContents
     );
 
-    const headerClassName =
-        innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
+    const headerClassName = innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
         <article className={style.article}>
@@ -71,12 +57,7 @@ export const MainArticle = (propsInitial: Props) => {
                     type={isNewsArticle ? 'newsPress' : 'normal'}
                 />
                 {!isNewsArticle && (
-                    <Heading
-                        level={'1'}
-                        size={'xlarge'}
-                        className={style.title}
-                        spacing
-                    >
+                    <Heading level={'1'} size={'xlarge'} className={style.title} spacing>
                         {displayName}
                     </Heading>
                 )}
@@ -101,11 +82,7 @@ export const MainArticle = (propsInitial: Props) => {
                 />
             )}
             {data.social && (
-                <SosialeMedier
-                    social={data.social}
-                    displayName={displayName}
-                    contentPath={_path}
-                />
+                <SosialeMedier social={data.social} displayName={displayName} contentPath={_path} />
             )}
             <Bilde picture={data.picture} />
         </article>
