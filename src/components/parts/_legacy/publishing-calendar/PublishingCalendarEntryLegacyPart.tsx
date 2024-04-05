@@ -50,7 +50,7 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
     };
 };
 
-export const PublishingCalendarEntry = (props: ContentProps) => {
+export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.PublishingCalendarEntry) {
         return null;
     }

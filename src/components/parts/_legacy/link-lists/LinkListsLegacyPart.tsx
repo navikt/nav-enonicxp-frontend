@@ -7,7 +7,7 @@ import { appOrigin } from 'utils/urls';
 
 import style from './LinkLists.module.scss';
 
-export const LinkLists = (props: ContentProps) => {
+export const LinkListsLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.SectionPage) {
         return null;
     }

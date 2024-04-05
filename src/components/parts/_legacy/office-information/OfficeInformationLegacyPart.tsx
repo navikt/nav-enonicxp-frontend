@@ -15,7 +15,7 @@ import { Reception } from './reception/Reception';
 
 import style from './OfficeInformation.module.scss';
 
-export const OfficeInformation = (props: ContentProps) => {
+export const OfficeInformationLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.OfficeInformation) {
         return null;
     }

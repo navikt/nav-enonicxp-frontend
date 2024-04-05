@@ -4,7 +4,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
 
-export const PageHeading = (props: ContentProps) => {
+export const PageHeadingLegacyPart = (props: ContentProps) => {
     const displayName = props.displayName;
     const ingress = props.type !== ContentType.SectionPage && props.data?.ingress;
 

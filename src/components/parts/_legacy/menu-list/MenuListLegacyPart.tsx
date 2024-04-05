@@ -4,21 +4,17 @@ import { translator } from 'translations';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { createTypeGuard } from 'types/_type-guards';
 
 import style from './MenuList.module.scss';
 
-const validContentTypes = [
+const isValidContentType = createTypeGuard([
     ContentType.MainArticle,
     ContentType.MainArticleChapter,
     ContentType.PageList,
-] as const;
+] as const);
 
-type ValidContentType = (typeof validContentTypes)[number];
-
-const isValidContentType = (type: ContentType): type is ValidContentType =>
-    validContentTypes.includes(type as ValidContentType);
-
-export const MenuList = (props: ContentProps) => {
+export const MenuListLegacyPart = (props: ContentProps) => {
     const { type, language } = props;
 
     if (!isValidContentType(type)) {

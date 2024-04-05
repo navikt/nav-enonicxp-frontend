@@ -21,22 +21,22 @@ import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignals
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
-import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
-import { MainPanels } from './_legacy/main-panels/MainPanels';
-import { MenuList } from './_legacy/menu-list/MenuList';
-import { PageHeading } from './_legacy/page-heading/PageHeading';
-import { PageList } from './_legacy/page-list/PageList';
+import { MainArticleChapterNavigationLegacyPart } from 'components/parts/_legacy/main-article-chapter-navigation/MainArticleChapterNavigationLegacyPart';
+import { MainPanelsLegacyPart } from 'components/parts/_legacy/main-panels/MainPanelsLegacyPart';
+import { MenuListLegacyPart } from 'components/parts/_legacy/menu-list/MenuListLegacyPart';
+import { PageHeadingLegacyPart } from 'components/parts/_legacy/page-heading/PageHeadingLegacyPart';
+import { PageListLegacyPart } from 'components/parts/_legacy/page-list/PageListLegacyPart';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
-import { LinkLists } from './_legacy/link-lists/LinkLists';
-import { MainArticle } from './_legacy/main-article/MainArticle';
-import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
+import { LinkListsLegacyPart } from 'components/parts/_legacy/link-lists/LinkListsLegacyPart';
+import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/MainArticleLegacyPart';
+import { OfficeInformationLegacyPart } from 'components/parts/_legacy/office-information/OfficeInformationLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
-import { PublishingCalendar } from './_legacy/publishing-calendar/PublishingCalendar';
-import { PublishingCalendarEntry } from './_legacy/publishing-calendar/PublishingCalendarEntry';
+import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
+import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
@@ -142,27 +142,27 @@ const PartComponentMapper = ({
             return <UxSignalsWidgetPart {...partProps} />;
 
         case PartLegacyType.LinkLists:
-            return <LinkLists {...pageProps} />;
+            return <LinkListsLegacyPart {...pageProps} />;
         case PartLegacyType.LinkPanels:
             return <LinkPanelsLegacyPart {...pageProps} />;
         case PartLegacyType.MainArticle:
-            return <MainArticle {...pageProps} />;
+            return <MainArticleLegacyPart {...pageProps} />;
         case PartLegacyType.MainArticleLinkedList:
-            return <MainArticleChapterNavigation {...pageProps} />;
+            return <MainArticleChapterNavigationLegacyPart {...pageProps} />;
         case PartLegacyType.MainPanels:
-            return <MainPanels {...pageProps} />;
+            return <MainPanelsLegacyPart {...pageProps} />;
         case PartLegacyType.MenuList:
-            return <MenuList {...pageProps} />;
+            return <MenuListLegacyPart {...pageProps} />;
         case PartLegacyType.OfficeInformation:
-            return <OfficeInformation {...pageProps} />;
+            return <OfficeInformationLegacyPart {...pageProps} />;
         case PartLegacyType.PageHeading:
-            return <PageHeading {...pageProps} />;
+            return <PageHeadingLegacyPart {...pageProps} />;
         case PartLegacyType.PageList:
-            return <PageList {...pageProps} />;
+            return <PageListLegacyPart {...pageProps} />;
         case PartLegacyType.PublishingCalendar:
-            return <PublishingCalendar {...pageProps} />;
+            return <PublishingCalendarLegacyPart {...pageProps} />;
         case PartLegacyType.PublishingCalendarEntry:
-            return <PublishingCalendarEntry {...pageProps} />;
+            return <PublishingCalendarEntryLegacyPart {...pageProps} />;
 
         default:
             return (

@@ -7,7 +7,7 @@ import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './PageList.module.scss';
 
-export const PageList = (props: ContentProps) => {
+export const PageListLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.PageList) {
         return null;
     }

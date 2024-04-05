@@ -21,7 +21,7 @@ const getPropsToRender = (propsInitial: ContentProps) =>
           ? propsInitial
           : null;
 
-export const MainArticle = (propsInitial: ContentProps) => {
+export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
     const props = getPropsToRender(propsInitial);
     if (!props) {
         return null;

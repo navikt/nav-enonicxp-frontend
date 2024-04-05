@@ -34,7 +34,7 @@ const getLinkData = (content: ContentProps): TableData => {
     };
 };
 
-export const MainPanels = (props: ContentProps) => {
+export const MainPanelsLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.SectionPage) {
         return null;
     }
