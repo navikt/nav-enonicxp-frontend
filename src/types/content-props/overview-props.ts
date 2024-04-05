@@ -1,8 +1,5 @@
-import {
-    ContentCommonProps,
-    ContentType,
-} from 'types/content-props/_content-common';
-import { LayoutProps } from 'types/component-props/layouts';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { Audience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ProductDetailType as OverviewType } from 'types/content-props/product-details';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
@@ -42,5 +39,5 @@ export type OverviewPageData = {
 export type OverviewPageProps = ContentCommonProps & {
     type: ContentType.Overview;
     data: OverviewPageData;
-    page: LayoutProps;
+    page: LayoutComponentProps;
 };

@@ -1,8 +1,4 @@
-import {
-    ComponentCommonProps,
-    ComponentProps,
-    ComponentType,
-} from './_component-common';
+import { ComponentBaseProps, ComponentProps, ComponentType } from './_component-common';
 import { FlexColsLayoutProps } from './layouts/flex-cols';
 import { FixedColsLayoutProps } from './layouts/fixed-cols';
 import { LegacyLayoutProps } from './layouts/legacy-layout';
@@ -46,15 +42,14 @@ export type Regions<RegionNames extends string> = {
     [Name in RegionNames]: RegionProps<Name>;
 };
 
-export type LayoutCommonProps<RegionNames extends string = string> =
-    ComponentCommonProps & {
-        type: ComponentType.Layout | ComponentType.Page;
-        descriptor: LayoutType;
-        regions: Regions<RegionNames>;
-        config?: any;
-    };
+export type LayoutBaseProps<RegionNames extends string = string> = ComponentBaseProps & {
+    type: ComponentType.Layout | ComponentType.Page;
+    descriptor: LayoutType;
+    regions: Regions<RegionNames>;
+    config?: any;
+};
 
-export type LayoutProps =
+export type LayoutComponentProps =
     | LegacyLayoutProps
     | FlexColsLayoutProps
     | FixedColsLayoutProps

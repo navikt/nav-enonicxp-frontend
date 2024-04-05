@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { BEM, classNames } from 'utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { usePageContentProps } from 'store/pageContext';
@@ -10,7 +10,7 @@ import style from './LayoutContainer.module.scss';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps: LayoutProps;
+    layoutProps: LayoutComponentProps;
     layoutStyle?: React.CSSProperties;
     modifiers?: string[];
     children: React.ReactNode;
@@ -44,14 +44,11 @@ export const LayoutContainer = ({
             className={classNames(
                 style.layout,
                 bem(layoutName),
-                ...(modifiers
-                    ? modifiers.map((mod) => bem(layoutName, mod))
-                    : []),
+                ...(modifiers ? modifiers.map((mod) => bem(layoutName, mod)) : []),
                 paddingConfig === 'fullWidth' && style.fullwidth,
                 paddingConfig === 'standard' && style.standard,
                 config.bgColor?.color && style.bg,
-                editorView === 'edit' &&
-                    editorAuthstateClassname(config.renderOnAuthState),
+                editorView === 'edit' && editorAuthstateClassname(config.renderOnAuthState),
                 divElementProps.className
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}

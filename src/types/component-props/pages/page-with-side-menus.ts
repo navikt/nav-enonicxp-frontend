@@ -1,4 +1,4 @@
-import { LayoutCommonProps, LayoutType } from 'types/component-props/layouts';
+import { LayoutBaseProps, LayoutType } from 'types/component-props/layouts';
 import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
@@ -11,7 +11,7 @@ type Regions =
     | 'rightMenu'
     | 'bottomRow';
 
-export interface PageWithSideMenusProps extends LayoutCommonProps {
+export interface PageWithSideMenusProps extends LayoutBaseProps {
     type: ComponentType.Page;
     descriptor: LayoutType.PageWithSideMenus;
     regions: {

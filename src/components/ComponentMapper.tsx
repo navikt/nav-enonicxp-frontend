@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    ComponentProps,
-    ComponentType,
-} from 'types/component-props/_component-common';
+import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 import { TextComponentXp } from './parts/_text/TextComponentXp';
-import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
@@ -31,56 +27,23 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
 
     switch (componentProps.type) {
         case ComponentType.Text:
-            return (
-                <TextComponentXp
-                    textProps={componentProps}
-                    editMode={!!pageProps.editorView}
-                />
-            );
-        case ComponentType.Image:
-            return (
-                <ImageComponentXp
-                    imageProps={componentProps}
-                    editMode={!!pageProps.editorView}
-                />
-            );
+            return <TextComponentXp textProps={componentProps} editMode={!!pageProps.editorView} />;
         case ComponentType.Layout:
         case ComponentType.Page:
-            return (
-                <LayoutMapper
-                    layoutProps={componentProps}
-                    pageProps={pageProps}
-                />
-            );
+            return <LayoutMapper layoutProps={componentProps} pageProps={pageProps} />;
         case ComponentType.Part:
-            return (
-                <PartsMapper partProps={componentProps} pageProps={pageProps} />
-            );
+            return <PartsMapper partProps={componentProps} pageProps={pageProps} />;
         case ComponentType.Fragment:
-            return (
-                <FragmentComponent
-                    componentProps={componentProps}
-                    pageProps={pageProps}
-                />
-            );
+            return <FragmentComponent componentProps={componentProps} pageProps={pageProps} />;
         default:
-            return (
-                <div>{`Unimplemented component type: ${
-                    (componentProps as any).type
-                }`}</div>
-            );
+            return <div>{`Unimplemented component type: ${(componentProps as any).type}`}</div>;
     }
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     return (
-        <AuthDependantRender
-            renderOn={componentProps?.config?.renderOnAuthState}
-        >
-            <ComponentToRender
-                componentProps={componentProps}
-                pageProps={pageProps}
-            />
+        <AuthDependantRender renderOn={componentProps?.config?.renderOnAuthState}>
+            <ComponentToRender componentProps={componentProps} pageProps={pageProps} />
         </AuthDependantRender>
     );
 };

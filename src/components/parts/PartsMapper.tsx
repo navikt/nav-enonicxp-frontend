@@ -25,7 +25,7 @@ import { NewsListPart } from './news-list/NewsListPart';
 import { PublishingCalendar } from './_legacy/publishing-calendar/PublishingCalendar';
 import { PublishingCalendarEntry } from './_legacy/publishing-calendar/PublishingCalendarEntry';
 import { BEM, classNames } from 'utils/classnames';
-import { HtmlArea } from './html-area/HtmlArea';
+import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
 import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
@@ -33,7 +33,7 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
-import { FrontpageCurrentTopics } from './frontpage-current-topics/FrontpageCurrentTopics';
+import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardMiniPart, ProductCardPart } from './product-card/ProductCard';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
@@ -67,7 +67,7 @@ const buildEditorProps = (componentPath: string) => ({
     'data-portal-component': componentPath,
 });
 
-const PartComponent = ({
+const PartComponentMapper = ({
     partProps,
     pageProps,
 }: {
@@ -98,13 +98,13 @@ const PartComponent = ({
         case PartType.FrontpageContact:
             return <FrontpageContactPart {...partProps} />;
         case PartType.FrontpageCurrentTopics:
-            return <FrontpageCurrentTopics {...partProps} />;
+            return <FrontpageCurrentTopicsPart {...partProps} />;
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
         case PartType.Header:
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:
-            return <HtmlArea {...partProps} />;
+            return <HtmlAreaPart {...partProps} />;
         case PartType.LinkList:
             return <LinkListPart {...partProps} />;
         case PartType.LinkPanel:
@@ -201,7 +201,7 @@ export const PartsMapper = ({
             )}
             {...editorProps}
         >
-            <PartComponent pageProps={pageProps} partProps={partProps} />
+            <PartComponentMapper pageProps={pageProps} partProps={partProps} />
         </div>
     );
 };

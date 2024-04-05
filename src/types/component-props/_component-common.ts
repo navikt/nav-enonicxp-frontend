@@ -1,4 +1,4 @@
-import { LayoutProps } from './layouts';
+import { LayoutComponentProps } from './layouts';
 import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 import { PartComponentProps } from './parts';
 
@@ -7,16 +7,14 @@ export enum ComponentType {
     Layout = 'layout',
     Part = 'part',
     Text = 'text',
-    Image = 'image',
     Fragment = 'fragment',
 }
 
-export type NavNoDescriptor<Name extends string = string> =
-    `no.nav.navno:${Name}`;
+export type NavNoDescriptor<Name extends string = string> = `no.nav.navno:${Name}`;
 
 type ConfigType = Record<string, unknown>;
 
-export type ComponentCommonProps<
+export type ComponentBaseProps<
     Type extends ComponentType = ComponentType,
     Descriptor extends NavNoDescriptor = NavNoDescriptor,
     Config extends ConfigType = ConfigType,
@@ -27,26 +25,16 @@ export type ComponentCommonProps<
     config: Config & RenderOnAuthStateMixin;
 };
 
-export interface TextComponentProps extends ComponentCommonProps {
-    type: ComponentType.Text;
+export type TextComponentProps = ComponentBaseProps<ComponentType.Text> & {
     text: string;
-}
+};
 
-export interface ImageComponentProps extends ComponentCommonProps {
-    type: ComponentType.Image;
-    image: {
-        imageUrl: string;
-    };
-}
-
-export interface FragmentComponentProps extends ComponentCommonProps {
-    type: ComponentType.Fragment;
-    fragment: ComponentProps;
-}
+export type FragmentComponentProps = ComponentBaseProps<ComponentType.Fragment> & {
+    fragment: LayoutComponentProps | PartComponentProps | TextComponentProps;
+};
 
 export type ComponentProps =
-    | LayoutProps
+    | LayoutComponentProps
     | PartComponentProps
     | TextComponentProps
-    | ImageComponentProps
     | FragmentComponentProps;

@@ -18,7 +18,7 @@ export type PartConfigFrontpageCurrentTopics = {
     link: LinkSelectable;
 };
 
-export const FrontpageCurrentTopics: PartComponent<PartType.FrontpageCurrentTopics> = ({
+export const FrontpageCurrentTopicsPart: PartComponent<PartType.FrontpageCurrentTopics> = ({
     config,
 }) => {
     const { language } = usePageContentProps();

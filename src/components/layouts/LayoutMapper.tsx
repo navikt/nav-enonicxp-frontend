@@ -2,7 +2,7 @@
 // Refactor the layout types before fixing the type errors in this file
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { LayoutProps, LayoutType } from 'types/component-props/layouts';
+import { LayoutComponentProps, LayoutType } from 'types/component-props/layouts';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
@@ -21,7 +21,7 @@ import { TwoColsPage } from 'components/layouts/two-cols-page/TwoColsPage';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LayoutProps;
+    layoutProps?: LayoutComponentProps;
 };
 
 const layoutComponents: {
@@ -64,11 +64,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     const LayoutComponent = layoutComponents[descriptor];
 
     if (!LayoutComponent) {
-        return (
-            <div
-                {...editorProps}
-            >{`Unimplemented layout type: ${descriptor}`}</div>
-        );
+        return <div {...editorProps}>{`Unimplemented layout type: ${descriptor}`}</div>;
     }
 
     return (

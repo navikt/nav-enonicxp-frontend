@@ -1,13 +1,10 @@
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
-import {
-    ComponentProps,
-    ComponentType,
-} from 'types/component-props/_component-common';
+import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 
 type Props = {
     path: string;
-    page?: LayoutProps;
+    page?: LayoutComponentProps;
 };
 
 export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
@@ -30,8 +27,7 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
 
     const allFilterMenus = allComponents.filter(
         (component) =>
-            component.type === ComponentType.Part &&
-            component.descriptor === PartType.FiltersMenu
+            component.type === ComponentType.Part && component.descriptor === PartType.FiltersMenu
     );
 
     if (allFilterMenus.length === 0) {

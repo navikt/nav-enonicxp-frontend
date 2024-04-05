@@ -1,7 +1,6 @@
-import { ComponentCommonProps, ComponentType } from './_component-common';
-import { ContentProps } from 'types/content-props/_content-common';
-import { EmptyObject } from 'types/util-types';
 import React from 'react';
+import { ComponentBaseProps, ComponentType } from './_component-common';
+import { EmptyObject } from 'types/util-types';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
 import { PartConfigAlternativeAudience } from 'components/parts/alternative-audience/AlternativeAudiencePart';
@@ -13,10 +12,10 @@ import { PartConfigContactOption } from 'components/parts/contact-option/Contact
 import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
 import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
 import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
-import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopics';
+import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
-import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlArea';
+import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
 import { PartConfigLinkPanel } from 'components/parts/link-panel/LinkPanelPart';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
@@ -133,7 +132,7 @@ export type PartTypeAll = PartType | PartLegacyType | PartDeprecatedType;
 
 export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
     Descriptor extends PartTypeAll
-        ? ComponentCommonProps<
+        ? ComponentBaseProps<
               ComponentType.Part,
               Descriptor,
               Descriptor extends keyof PartConfigs ? PartConfigs[Descriptor] : EmptyObject

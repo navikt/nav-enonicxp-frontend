@@ -6,7 +6,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { ProductDetailType } from './product-details';
 
 export type DynamicPageProps = ContentCommonProps & {
@@ -27,7 +27,7 @@ export type ProductDetailsProps = ContentCommonProps & {
     data: {
         detailType: Exclude<ProductDetailType, ProductDetailType.ALL_PRODUCTS>;
     };
-    page: LayoutProps;
+    page: LayoutComponentProps;
 };
 
 export type ThemedArticlePageProps = ContentCommonProps & {
@@ -60,7 +60,7 @@ export type OfficeEditorialPageProps = ContentCommonProps & {
     data: {
         title: string;
     } & ProductDataMixin;
-    page: LayoutProps;
+    page: LayoutComponentProps;
 };
 
 export type OfficeBranchPageProps = ContentCommonProps & {
