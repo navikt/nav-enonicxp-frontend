@@ -16,17 +16,13 @@ export const getOpeningHoursForDateTime = (
     openingHours: OpeningHours[],
     dateTime: Dayjs
 ): OpeningHours =>
-    openingHours.find((openingHour) =>
-        dateTime.isSame(openingHour.date, 'day')
-    ) || {
+    openingHours.find((openingHour) => dateTime.isSame(openingHour.date, 'day')) || {
         status: 'CLOSED',
         dayName: daysNameArray[dateTime.day()],
         date: dateTime.format(openingHourDateFormat),
     };
 
-export const getCurrentOpeningHours = (
-    openingHours: OpeningHours[]
-): OpeningHours => {
+export const getCurrentOpeningHours = (openingHours: OpeningHours[]): OpeningHours => {
     const now = dayjs();
     const openingHour = getOpeningHoursForDateTime(openingHours, now);
 

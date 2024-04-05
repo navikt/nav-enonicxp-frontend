@@ -60,11 +60,7 @@ export const LinkPanelNavno = ({
                         {linkText}
                     </LenkeBase>
                 </span>
-                {children && (
-                    <div className={styles.linkPanelNavnoIngress}>
-                        {children}
-                    </div>
-                )}
+                {children && <div className={styles.linkPanelNavnoIngress}>{children}</div>}
             </div>
         </div>
     );

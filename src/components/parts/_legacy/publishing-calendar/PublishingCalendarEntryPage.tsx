@@ -8,9 +8,7 @@ import { Table } from '@navikt/ds-react';
 import style from './PublishingCalendar.module.scss';
 
 // For preview only - hacks layout from PublishingCalendar
-export const PublishingCalendarEntryPage = (
-    props: PublishingCalendarEntryProps
-) => {
+export const PublishingCalendarEntryPage = (props: PublishingCalendarEntryProps) => {
     return (
         <div className={classNames('layout', 'layout__main')}>
             <div className={classNames('region', 'region region__first')}>

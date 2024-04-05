@@ -17,15 +17,10 @@ type Props = {
     textPrefix?: string;
 };
 
-export const OpeningInfo = ({
-    regularOpeningHours,
-    specialOpeningHours,
-    textPrefix,
-}: Props) => {
+export const OpeningInfo = ({ regularOpeningHours, specialOpeningHours, textPrefix }: Props) => {
     const { language } = usePageContentProps();
 
-    const [currentOpeningHours, setCurrentOpeningHours] =
-        useState<OpeningHours | null>(null);
+    const [currentOpeningHours, setCurrentOpeningHours] = useState<OpeningHours | null>(null);
     const [openingInfoText, setOpeningInfoText] = useState('');
 
     useEffect(() => {

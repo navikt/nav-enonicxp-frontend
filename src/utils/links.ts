@@ -9,9 +9,7 @@ const getLinkHref = (element: HTMLElement | null): string | null => {
         return null;
     }
     if (elementIsAnchor(element)) {
-        return !element.href || element.href.includes('#')
-            ? null
-            : element.href;
+        return !element.href || element.href.includes('#') ? null : element.href;
     }
     return getLinkHref(element.parentElement);
 };

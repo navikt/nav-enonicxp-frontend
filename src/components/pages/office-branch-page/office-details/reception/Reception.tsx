@@ -21,11 +21,7 @@ export const Reception = ({ receptions }: Props) => {
         if (!reception) {
             return '(Ukjent sted)';
         }
-        return (
-            reception.stedsbeskrivelse ||
-            reception.besoeksadresse?.poststed ||
-            '(Ukjent sted)'
-        );
+        return reception.stedsbeskrivelse || reception.besoeksadresse?.poststed || '(Ukjent sted)';
     };
 
     const getIdFromLabel = (label: string) => {
@@ -52,11 +48,7 @@ export const Reception = ({ receptions }: Props) => {
             <BodyLong className={style.chooseBetweenOffices}>
                 {getOfficeTranslations('chooseBetweenOffices')}
             </BodyLong>
-            <Tabs
-                value={state}
-                onChange={setState}
-                className={style.officeTabs}
-            >
+            <Tabs value={state} onChange={setState} className={style.officeTabs}>
                 <Tabs.List>
                     {receptionArray.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);

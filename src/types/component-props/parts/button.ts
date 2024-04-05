@@ -1,9 +1,6 @@
 import { PartComponentProps } from 'types/component-props/_component-common';
 import { PartType } from 'types/component-props/parts';
-import {
-    LinkSelectable,
-    RenderOnAuthStateMixin,
-} from 'types/component-props/_mixins';
+import { LinkSelectable, RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 import { XpImageProps } from 'types/media';
 
 type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';

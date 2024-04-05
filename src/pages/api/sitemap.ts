@@ -113,9 +113,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) =>
         res.setHeader('X-Robots-Tag', 'noindex');
 
         if (!sitemapContent) {
-            return res
-                .status(503)
-                .send('Server error: sitemap is currently unavailable');
+            return res.status(503).send('Server error: sitemap is currently unavailable');
         }
 
         res.setHeader('Content-Type', 'application/xml');

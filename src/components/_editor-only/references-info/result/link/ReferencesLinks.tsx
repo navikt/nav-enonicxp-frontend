@@ -15,11 +15,7 @@ type Props = {
     contentLayer?: string;
 };
 
-export const ReferencesLinks = ({
-    references,
-    headerText,
-    contentLayer,
-}: Props) => {
+export const ReferencesLinks = ({ references, headerText, contentLayer }: Props) => {
     const { editorView } = usePageContentProps();
 
     const languageNames = translator('localeNames', 'no');
@@ -33,17 +29,13 @@ export const ReferencesLinks = ({
                 const { id, name, path, editorPath, layer } = reference;
 
                 const layersIndicatorText =
-                    layer !== contentLayer
-                        ? `[Layer: ${languageNames(layer)}] `
-                        : null;
+                    layer !== contentLayer ? `[Layer: ${languageNames(layer)}] ` : null;
 
                 const href = `${adminOrigin}${editorPath}`;
 
                 return (
                     <div className={style.link} key={id}>
-                        {layersIndicatorText && (
-                            <strong>{layersIndicatorText}</strong>
-                        )}
+                        {layersIndicatorText && <strong>{layersIndicatorText}</strong>}
                         {`${name}: `}
                         <EditorLinkWrapper>
                             <LenkeInline

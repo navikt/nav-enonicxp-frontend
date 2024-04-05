@@ -10,16 +10,13 @@ import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/E
 import style from './DuplicateIdsWarning.module.scss';
 
 export const DuplicateIdsWarning = () => {
-    const [elementsWithDupeIds, setElementsWithDupeIds] = useState<
-        HTMLElement[]
-    >([]);
+    const [elementsWithDupeIds, setElementsWithDupeIds] = useState<HTMLElement[]>([]);
 
     const linkIdPrefix = useId();
 
-    const uniqueDupeIds = removeDuplicates(
-        elementsWithDupeIds,
-        (a, b) => a.id === b.id
-    ).map((element) => element.id);
+    const uniqueDupeIds = removeDuplicates(elementsWithDupeIds, (a, b) => a.id === b.id).map(
+        (element) => element.id
+    );
 
     const getLinkId = (index: number) => `${linkIdPrefix}-${index}`;
 
@@ -36,8 +33,7 @@ export const DuplicateIdsWarning = () => {
                     // something our editors generelly don't deal with
                     !element1.closest('svg') &&
                     array.some(
-                        (element2, index2) =>
-                            element1.id === element2.id && index1 !== index2
+                        (element2, index2) => element1.id === element2.id && index1 !== index2
                     )
             );
 
@@ -49,9 +45,7 @@ export const DuplicateIdsWarning = () => {
         <>
             {uniqueDupeIds.length > 0 && (
                 <div>
-                    <Header level={'2'}>{`Obs! Denne siden har ${
-                        uniqueDupeIds.length
-                    } id${
+                    <Header level={'2'}>{`Obs! Denne siden har ${uniqueDupeIds.length} id${
                         uniqueDupeIds.length > 1 ? "'er" : ''
                     } med duplikate forekomster:`}</Header>
                     <ul>
@@ -63,11 +57,7 @@ export const DuplicateIdsWarning = () => {
                                         if (element.id === id) {
                                             acc.push(
                                                 <EditorLinkWrapper>
-                                                    <LenkeInline
-                                                        href={`#${getLinkId(
-                                                            index
-                                                        )}`}
-                                                    >
+                                                    <LenkeInline href={`#${getLinkId(index)}`}>
                                                         {`[${acc.length + 1}]`}
                                                     </LenkeInline>
                                                 </EditorLinkWrapper>

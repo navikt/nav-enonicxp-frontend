@@ -27,10 +27,7 @@ class ImageCacheWithCustomCacheDir extends ResponseCache {
     }
 }
 
-export const injectNextImageCacheDir = async (
-    nextServer: NextNodeServer,
-    cacheDir: string
-) => {
+export const injectNextImageCacheDir = async (nextServer: NextNodeServer, cacheDir: string) => {
     const responseCache = new ImageCacheWithCustomCacheDir(false, cacheDir);
 
     try {

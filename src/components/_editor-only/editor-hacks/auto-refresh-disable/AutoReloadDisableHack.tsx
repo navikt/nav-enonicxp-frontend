@@ -30,13 +30,9 @@ type Props = {
 };
 
 export const AutoReloadDisableHack = ({ content }: Props) => {
-    const [externalUpdateEvent, setExternalUpdateEvent] =
-        useState<CustomEvent | null>(null);
-    const [externalContentChange, setExternalContentChange] =
-        useState<boolean>(false);
-    const [externalUserName, setExternalUserName] = useState<string | null>(
-        null
-    );
+    const [externalUpdateEvent, setExternalUpdateEvent] = useState<CustomEvent | null>(null);
+    const [externalContentChange, setExternalContentChange] = useState<boolean>(false);
+    const [externalUserName, setExternalUserName] = useState<string | null>(null);
 
     useEffect(() => {
         hookDispatchEventForBatchContentServerEvent({
@@ -49,10 +45,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
-    if (
-        !externalContentChange ||
-        !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)
-    ) {
+    if (!externalContentChange || !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)) {
         return null;
     }
 
@@ -70,11 +63,8 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                                 e.preventDefault();
                                 setExternalContentChange(false);
                                 if (externalUpdateEvent) {
-                                    externalUpdateEvent.detail.userTriggered =
-                                        true;
-                                    parent.window.dispatchEvent(
-                                        externalUpdateEvent
-                                    );
+                                    externalUpdateEvent.detail.userTriggered = true;
+                                    parent.window.dispatchEvent(externalUpdateEvent);
                                 }
                             }}
                         >

@@ -16,23 +16,15 @@ export const ReadMorePart = ({ config }: ReadMorePartProps) => {
     });
 
     if (!config?.html || !config?.title) {
-        return (
-            <EditorHelp
-                text={'Legg inn tittel og beskrivelse for "les mer".'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Legg inn tittel og beskrivelse for "les mer".'} type={'error'} />;
     }
 
     const openChangeHandler = (isOpen: boolean, _title: string) => {
         setIsOpen(isOpen);
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: _title,
-                opprinnelse: 'lesmer',
-            }
-        );
+        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+            tittel: _title,
+            opprinnelse: 'lesmer',
+        });
     };
 
     const { title, html } = config;

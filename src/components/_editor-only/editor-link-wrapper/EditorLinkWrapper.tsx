@@ -28,9 +28,7 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     const { className, href, onClick, target } =
         child.props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-    const hrefFinal = href
-        ? getRelativePathIfInternal(href, !!editorView)
-        : undefined;
+    const hrefFinal = href ? getRelativePathIfInternal(href, !!editorView) : undefined;
 
     return (
         <span

@@ -36,24 +36,17 @@ export const SiteInfoPublishInfoItem = ({
                 </BodyShort>
             </div>
             <BodyShort size={'small'}>
-                {`${stripXpPathPrefix(path)}${
-                    customPath ? ` (kort-url: ${customPath})` : ''
-                } `}
+                {`${stripXpPathPrefix(path)}${customPath ? ` (kort-url: ${customPath})` : ''} `}
             </BodyShort>
             <BodyShort className={style.publish}>
                 {`Type: ${type.replace('no.nav.navno:', '')} - ${
                     isPrepublish ? 'Publiseres' : 'Publisert'
                 }: ${
-                    publish.from
-                        ? formatDateTime(publish.from)
-                        : '[ingen publiseringsdato angitt]'
+                    publish.from ? formatDateTime(publish.from) : '[ingen publiseringsdato angitt]'
                 }`}
-                {publish.to
-                    ? ` - Avpubliseres: ${formatDateTime(publish.to)}`
-                    : ''}
+                {publish.to ? ` - Avpubliseres: ${formatDateTime(publish.to)}` : ''}
             </BodyShort>
-            {((isPrepublish && !publish.scheduledFrom) ||
-                (publish.to && !publish.scheduledTo)) && (
+            {((isPrepublish && !publish.scheduledFrom) || (publish.to && !publish.scheduledTo)) && (
                 <BodyShort className={style.warning} size={'small'}>
                     <ExclamationmarkTriangleFillIcon />
                     {'Schedule for publisering mangler!'}

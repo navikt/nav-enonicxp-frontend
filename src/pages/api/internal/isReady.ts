@@ -1,8 +1,5 @@
 import { fetchAndSetCacheKey } from 'utils/fetch/fetch-cache-key';
-import {
-    clearImageManifest,
-    processImageManifest,
-} from 'utils/fetch/fetch-images';
+import { clearImageManifest, processImageManifest } from 'utils/fetch/fetch-images';
 import { NextApiHandler } from 'next';
 
 let ready = false;

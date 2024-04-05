@@ -16,9 +16,7 @@ export const ErrorContent400 = (props: ErrorProps) => {
                     {`${appOrigin}${stripXpPathPrefix(props._path)}`}
                 </BodyLong>
                 <BodyLong spacing={true}>
-                    {
-                        'Dersom du fulgte en lenke på nav.no for å komme hit kan du '
-                    }
+                    {'Dersom du fulgte en lenke på nav.no for å komme hit kan du '}
                     <LenkeInline href={Config.urls.errorFeedback}>
                         {'melde fra om teknisk feil'}
                     </LenkeInline>

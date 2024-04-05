@@ -25,18 +25,12 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            className={classNames(
-                style.indexPage,
-                hasNoTopGap && style.noTopGap
-            )}
+            className={classNames(style.indexPage, hasNoTopGap && style.noTopGap)}
         >
             <>
                 {/* We don't use this region on the AreaPage atm */}
                 {type !== ContentType.AreaPage && (
-                    <Region
-                        pageProps={pageProps}
-                        regionProps={regions.contentTop}
-                    />
+                    <Region pageProps={pageProps} regionProps={regions.contentTop} />
                 )}
                 {type === ContentType.FrontPage ? (
                     <FrontPageAreaNavigation content={pageProps} />

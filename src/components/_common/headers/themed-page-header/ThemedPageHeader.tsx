@@ -19,10 +19,7 @@ type Props = {
     showTimeStamp?: boolean;
 };
 
-export const ThemedPageHeader = ({
-    contentProps,
-    showTimeStamp = true,
-}: Props) => {
+export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
     const { type, displayName, modifiedTime, language, data } = contentProps;
     const { title, illustration } = data;
 
@@ -41,25 +38,14 @@ export const ThemedPageHeader = ({
         })}`;
 
     return (
-        <div
-            className={classNames(
-                style.themedPageHeader,
-                typeSpecificClassName
-            )}
-        >
-            <Illustration
-                illustration={illustration}
-                className={style.illustration}
-            />
+        <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
+            <Illustration illustration={illustration} className={style.illustration} />
             <div className={style.text}>
                 <PageHeader justify={'left'}>{title || displayName}</PageHeader>
                 {(subTitle || modified) && (
                     <div className={style.taglineWrapper}>
                         {subTitle && (
-                            <BodyShort
-                                size="small"
-                                className={style.taglineLabel}
-                            >
+                            <BodyShort size="small" className={style.taglineLabel}>
                                 {subTitle.toUpperCase()}
                             </BodyShort>
                         )}

@@ -56,10 +56,7 @@ type ContactInfo = {
     postadresse: LegacyOfficeAddress;
     besoeksadresse: LegacyOfficeAddress;
     spesielleOpplysninger: string;
-    publikumsmottak:
-        | LegacyOfficeAudienceReception[]
-        | LegacyOfficeAudienceReception
-        | undefined;
+    publikumsmottak: LegacyOfficeAudienceReception[] | LegacyOfficeAudienceReception | undefined;
 };
 
 export type OfficeInformationData = {

@@ -16,8 +16,7 @@ export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
     const { text, presentation = 'link' } = config.chatbot_link;
 
     const Element = presentation === 'link' ? LenkeInline : Button;
-    const extraProps: ExtraProps =
-        presentation === 'link' ? {} : { variant: 'secondary' };
+    const extraProps: ExtraProps = presentation === 'link' ? {} : { variant: 'secondary' };
 
     return (
         <Element

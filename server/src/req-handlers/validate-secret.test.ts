@@ -19,22 +19,14 @@ describe('Validate secret header middleware', () => {
     });
 
     test('Next function should be called on valid secrets', () => {
-        validateSecretMiddleware(
-            { headers: { secret: mySecret } },
-            resObject,
-            nextFunction
-        );
+        validateSecretMiddleware({ headers: { secret: mySecret } }, resObject, nextFunction);
 
         expect(nextFunction).toBeCalledTimes(1);
         expect(nextAppMock.renderError).toBeCalledTimes(0);
     });
 
     test('renderError should be called on invalid secrets', () => {
-        validateSecretMiddleware(
-            { headers: { secret: 'notMySecret' } },
-            resObject,
-            nextFunction
-        );
+        validateSecretMiddleware({ headers: { secret: 'notMySecret' } }, resObject, nextFunction);
 
         validateSecretMiddleware({ headers: {} }, resObject, nextFunction);
 

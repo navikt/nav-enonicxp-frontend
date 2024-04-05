@@ -13,12 +13,7 @@ type Props = {
     ingress: string;
 };
 
-export const ChatbotLinkPanel = ({
-    analyticsGroup,
-    linkText,
-    alertText,
-    ingress,
-}: Props) => {
+export const ChatbotLinkPanel = ({ analyticsGroup, linkText, alertText, ingress }: Props) => {
     return (
         <LinkPanelNavno
             className={style.chat}

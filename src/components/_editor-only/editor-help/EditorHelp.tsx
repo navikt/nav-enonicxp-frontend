@@ -31,11 +31,7 @@ type Props = {
     type?: 'info' | 'error' | 'help' | 'arrowUp' | 'arrowDown';
 };
 
-export const EditorHelp = ({
-    text,
-    globalWarningText,
-    type = 'help',
-}: Props) => {
+export const EditorHelp = ({ text, globalWarningText, type = 'help' }: Props) => {
     const { editorView } = usePageContentProps();
 
     const id = useId();
@@ -68,9 +64,7 @@ export const EditorHelp = ({
                 <RenderToEditorGlobalWarnings>
                     <span>{globalWarningText}</span>
                     <EditorLinkWrapper>
-                        <LenkeInline href={`#${id}`}>
-                            {'[Til feilen]'}
-                        </LenkeInline>
+                        <LenkeInline href={`#${id}`}>{'[Til feilen]'}</LenkeInline>
                     </EditorLinkWrapper>
                 </RenderToEditorGlobalWarnings>
             )}

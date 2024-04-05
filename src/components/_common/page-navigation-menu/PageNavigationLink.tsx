@@ -23,24 +23,14 @@ type Props = {
 };
 
 export const PageNavigationLink = React.memo(
-    ({
-        targetId,
-        linkId,
-        isCurrent,
-        scrollDirection,
-        viewStyle,
-        children,
-    }: Props) => {
-        const setLocationHashAndScrollToTarget = (
-            e: React.MouseEvent<HTMLAnchorElement>
-        ) => {
+    ({ targetId, linkId, isCurrent, scrollDirection, viewStyle, children }: Props) => {
+        const setLocationHashAndScrollToTarget = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
             window.history.pushState(window.history.state, '', `#${targetId}`);
             smoothScrollToTarget(targetId, ANCHOR_OFFSET_PX);
         };
 
-        const currentViewStyle =
-            viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
+        const currentViewStyle = viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
 
         return (
             <LenkeBase
@@ -57,10 +47,7 @@ export const PageNavigationLink = React.memo(
                 id={linkId}
             >
                 {viewStyle === 'sidebar' && (
-                    <span
-                        className={currentViewStyle.decor}
-                        aria-hidden={true}
-                    />
+                    <span className={currentViewStyle.decor} aria-hidden={true} />
                 )}
                 <BodyShort className={style.linkText}>{children}</BodyShort>
             </LenkeBase>

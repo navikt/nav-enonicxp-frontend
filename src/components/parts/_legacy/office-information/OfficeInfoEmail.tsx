@@ -2,11 +2,7 @@ import React from 'react';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { LegacyOfficeEMail } from 'types/content-props/office-information-props';
 
-const includedUnitTypes: ReadonlySet<string> = new Set([
-    'HMS',
-    'ALS',
-    'TILTAK',
-]);
+const includedUnitTypes: ReadonlySet<string> = new Set(['HMS', 'ALS', 'TILTAK']);
 
 type Props = {
     email?: LegacyOfficeEMail;

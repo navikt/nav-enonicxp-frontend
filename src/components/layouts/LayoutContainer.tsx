@@ -44,14 +44,11 @@ export const LayoutContainer = ({
             className={classNames(
                 style.layout,
                 bem(layoutName),
-                ...(modifiers
-                    ? modifiers.map((mod) => bem(layoutName, mod))
-                    : []),
+                ...(modifiers ? modifiers.map((mod) => bem(layoutName, mod)) : []),
                 paddingConfig === 'fullWidth' && style.fullwidth,
                 paddingConfig === 'standard' && style.standard,
                 config.bgColor?.color && style.bg,
-                editorView === 'edit' &&
-                    editorAuthstateClassname(config.renderOnAuthState),
+                editorView === 'edit' && editorAuthstateClassname(config.renderOnAuthState),
                 divElementProps.className
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}

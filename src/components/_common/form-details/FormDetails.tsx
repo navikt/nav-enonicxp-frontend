@@ -40,14 +40,7 @@ export const FormDetails = ({
         showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
 
-    const {
-        formNumbers,
-        formType,
-        languageDisclaimer,
-        ingress,
-        title,
-        alerts,
-    } = formDetails;
+    const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
 
     const variations = formType.reduce<Variation[]>((acc, cur) => {
         const { _selected } = cur;
@@ -71,9 +64,7 @@ export const FormDetails = ({
 
     const formNumberToHighlight =
         formNumberSelected &&
-        formNumbers?.find((formNumber) =>
-            formNumber.toLowerCase().endsWith(formNumberSelected)
-        );
+        formNumbers?.find((formNumber) => formNumber.toLowerCase().endsWith(formNumberSelected));
 
     const hasVisibleTitle = showTitle && title;
     const hasVisibleIngress = showIngress && ingress;
@@ -95,10 +86,7 @@ export const FormDetails = ({
                     {formNumbers.map((formNumber, index) => (
                         <Fragment key={formNumber}>
                             {index > 0 && (
-                                <span
-                                    aria-hidden={true}
-                                    className={style.separator}
-                                >
+                                <span aria-hidden={true} className={style.separator}>
                                     {'|'}
                                 </span>
                             )}
@@ -122,10 +110,7 @@ export const FormDetails = ({
                 </div>
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
-            {alerts &&
-                alerts.map((alert, index) => (
-                    <AlertInContext key={index} alert={alert} />
-                ))}
+            {alerts && alerts.map((alert, index) => <AlertInContext key={index} alert={alert} />)}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (

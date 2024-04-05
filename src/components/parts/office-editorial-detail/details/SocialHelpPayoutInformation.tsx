@@ -8,14 +8,7 @@ export const SocialHelpPayoutInformation = ({ officeData }: DetailProps) => {
     if (!payoutInformation) {
         return null;
     }
-    const payoutInformatioWithBreaks = payoutInformation.replaceAll(
-        '\n',
-        '<br/>'
-    );
+    const payoutInformatioWithBreaks = payoutInformation.replaceAll('\n', '<br/>');
 
-    return (
-        <Alert variant="info">
-            {<ParsedHtml htmlProps={payoutInformatioWithBreaks} />}
-        </Alert>
-    );
+    return <Alert variant="info">{<ParsedHtml htmlProps={payoutInformatioWithBreaks} />}</Alert>;
 };

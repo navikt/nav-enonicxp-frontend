@@ -19,9 +19,7 @@ type GetCacheKeyResponse = {
 // used on newly spun up containers.
 export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     if (!retries || retries < 0) {
-        logger.error(
-            'Failed to fetch cache key from revalidator-proxy, no more retries remaining'
-        );
+        logger.error('Failed to fetch cache key from revalidator-proxy, no more retries remaining');
         return;
     }
 
@@ -41,9 +39,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
             }
         })
         .catch((e) => {
-            logger.error(
-                `Error while fetching cache key, ${retries} retries remaining - ${e}`
-            );
+            logger.error(`Error while fetching cache key, ${retries} retries remaining - ${e}`);
             return fetchAndSetCacheKey(retries - 1);
         });
 };

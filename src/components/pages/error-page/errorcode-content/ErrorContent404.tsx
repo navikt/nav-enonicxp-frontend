@@ -19,9 +19,7 @@ export const ErrorContent404 = () => {
                 </BodyLong>
                 <BodyLong>
                     {'Bruk gjerne søket, menyen eller '}
-                    <LenkeInline href={frontpageBase}>
-                        {'gå til forsiden'}
-                    </LenkeInline>
+                    <LenkeInline href={frontpageBase}>{'gå til forsiden'}</LenkeInline>
                     {'.'}
                 </BodyLong>
                 <BodyLong>
@@ -40,9 +38,7 @@ export const ErrorContent404 = () => {
                 <BodyLong>{'The page you requested cannot be found.'}</BodyLong>
                 <BodyLong>
                     {'Go to the '}
-                    <LenkeInline href={`${frontpageBase}/en`}>
-                        {'front page'}
-                    </LenkeInline>
+                    <LenkeInline href={`${frontpageBase}/en`}>{'front page'}</LenkeInline>
                     {', or use one of the links in the menu.'}
                 </BodyLong>
             </div>

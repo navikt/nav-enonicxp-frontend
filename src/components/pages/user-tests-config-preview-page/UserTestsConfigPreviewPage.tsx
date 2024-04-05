@@ -8,10 +8,7 @@ export const UserTestsConfigPreviewPage = (props: UserTestsConfigProps) => {
     return (
         <>
             <Head>
-                <meta
-                    name={DocumentParameter.DecoratorDisabled}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
             <UserTests tests={props} selectedTestIds={[]} />
         </>

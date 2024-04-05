@@ -9,13 +9,7 @@ type Props = {
 };
 
 export const PageWarnings = ({ content }: Props) => {
-    const {
-        isFailover,
-        isPagePreview,
-        originalType,
-        language,
-        redirectToLayer,
-    } = content;
+    const { isFailover, isPagePreview, originalType, language, redirectToLayer } = content;
 
     const whiteBg = hasWhiteHeader(content);
 
@@ -27,14 +21,10 @@ export const PageWarnings = ({ content }: Props) => {
     return (
         <>
             {isPagePreview && (
-                <PageWarning whiteBg={whiteBg}>
-                    {warningLabels('draftWarning')}
-                </PageWarning>
+                <PageWarning whiteBg={whiteBg}>{warningLabels('draftWarning')}</PageWarning>
             )}
             {isFailover && (
-                <PageWarning whiteBg={whiteBg}>
-                    {warningLabels('failoverWarning')}
-                </PageWarning>
+                <PageWarning whiteBg={whiteBg}>{warningLabels('failoverWarning')}</PageWarning>
             )}
             {originalType && isEditorView && (
                 <PageWarning whiteBg={whiteBg} size={'medium'}>
@@ -43,9 +33,7 @@ export const PageWarnings = ({ content }: Props) => {
             )}
             {redirectToLayer && isEditorView && (
                 <PageWarning whiteBg={whiteBg} size={'medium'}>
-                    {warningLabels('layerRedirectWarning')(
-                        localeLabels(redirectToLayer)
-                    )}
+                    {warningLabels('layerRedirectWarning')(localeLabels(redirectToLayer))}
                 </PageWarning>
             )}
         </>

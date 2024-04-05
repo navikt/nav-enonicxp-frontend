@@ -17,12 +17,7 @@ type CopyLinkProps = {
 
 const linkCopiedDisplayTimeMs = 2500;
 
-export const CopyLink = ({
-    anchor,
-    heading,
-    label,
-    className,
-}: CopyLinkProps) => {
+export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
@@ -36,16 +31,11 @@ export const CopyLink = ({
         e.preventDefault();
 
         if (navigator?.clipboard?.writeText) {
-            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split(
-                '#'
-            )[0];
+            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split('#')[0];
             if (baseUrl) {
                 navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
                 setShowCopyTooltip(true);
-                setTimeout(
-                    () => setShowCopyTooltip(false),
-                    linkCopiedDisplayTimeMs
-                );
+                setTimeout(() => setShowCopyTooltip(false), linkCopiedDisplayTimeMs);
             }
             logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
                 seksjon: layoutConfig.title,

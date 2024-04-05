@@ -23,10 +23,7 @@ const baseProps: UserTestsComponentProps = {
     },
 };
 
-const buildProps = (
-    variants: UserTestVariantProps[],
-    selectedTestIds: string[] = []
-) => {
+const buildProps = (variants: UserTestVariantProps[], selectedTestIds: string[] = []) => {
     const props = { ...baseProps };
     props.tests.data.variants = variants;
     props.selectedTestIds = selectedTestIds;
@@ -42,8 +39,7 @@ const UserTestsWithProvider = (props: UserTestsComponentProps) => (
     </PageContextProvider>
 );
 
-const mockRandom = (num: number) =>
-    jest.spyOn(Math, 'random').mockReturnValue(num);
+const mockRandom = (num: number) => jest.spyOn(Math, 'random').mockReturnValue(num);
 
 beforeEach(() => {
     jest.spyOn(Math, 'random').mockClear();
@@ -203,71 +199,43 @@ describe('Multiple variants with limited selection', () => {
         },
     ];
 
-    test.each([0.01, 0.99])(
-        'Should pick the first variant from single selection',
-        () => {
-            render(
-                <UserTestsWithProvider
-                    {...buildProps(variants, ['variant-1'])}
-                />
-            );
+    test.each([0.01, 0.99])('Should pick the first variant from single selection', () => {
+        render(<UserTestsWithProvider {...buildProps(variants, ['variant-1'])} />);
 
-            expect(screen.queryByText('Variant 1')).toBeTruthy();
-            expect(screen.queryByText('Variant 2')).toBeFalsy();
-            expect(screen.queryByText('Variant 3')).toBeFalsy();
-            expect(screen.queryByText('Variant 4')).toBeFalsy();
-        }
-    );
+        expect(screen.queryByText('Variant 1')).toBeTruthy();
+        expect(screen.queryByText('Variant 2')).toBeFalsy();
+        expect(screen.queryByText('Variant 3')).toBeFalsy();
+        expect(screen.queryByText('Variant 4')).toBeFalsy();
+    });
 
-    test.each([0.01, 0.99])(
-        'Should pick the second variant from single selection',
-        () => {
-            render(
-                <UserTestsWithProvider
-                    {...buildProps(variants, ['variant-2'])}
-                />
-            );
+    test.each([0.01, 0.99])('Should pick the second variant from single selection', () => {
+        render(<UserTestsWithProvider {...buildProps(variants, ['variant-2'])} />);
 
-            expect(screen.queryByText('Variant 1')).toBeFalsy();
-            expect(screen.queryByText('Variant 2')).toBeTruthy();
-            expect(screen.queryByText('Variant 3')).toBeFalsy();
-            expect(screen.queryByText('Variant 4')).toBeFalsy();
-        }
-    );
+        expect(screen.queryByText('Variant 1')).toBeFalsy();
+        expect(screen.queryByText('Variant 2')).toBeTruthy();
+        expect(screen.queryByText('Variant 3')).toBeFalsy();
+        expect(screen.queryByText('Variant 4')).toBeFalsy();
+    });
 
-    test.each([0.01, 0.5])(
-        'Should pick the first variant from double selection',
-        () => {
-            mockRandom(0.49);
-            render(
-                <UserTestsWithProvider
-                    {...buildProps(variants, ['variant-1', 'variant-2'])}
-                />
-            );
+    test.each([0.01, 0.5])('Should pick the first variant from double selection', () => {
+        mockRandom(0.49);
+        render(<UserTestsWithProvider {...buildProps(variants, ['variant-1', 'variant-2'])} />);
 
-            expect(screen.queryByText('Variant 1')).toBeTruthy();
-            expect(screen.queryByText('Variant 2')).toBeFalsy();
-            expect(screen.queryByText('Variant 3')).toBeFalsy();
-            expect(screen.queryByText('Variant 4')).toBeFalsy();
-        }
-    );
+        expect(screen.queryByText('Variant 1')).toBeTruthy();
+        expect(screen.queryByText('Variant 2')).toBeFalsy();
+        expect(screen.queryByText('Variant 3')).toBeFalsy();
+        expect(screen.queryByText('Variant 4')).toBeFalsy();
+    });
 
-    test.each([0.501, 0.999])(
-        'Should pick the fourth variant from double selection',
-        () => {
-            mockRandom(0.51);
-            render(
-                <UserTestsWithProvider
-                    {...buildProps(variants, ['variant-1', 'variant-4'])}
-                />
-            );
+    test.each([0.501, 0.999])('Should pick the fourth variant from double selection', () => {
+        mockRandom(0.51);
+        render(<UserTestsWithProvider {...buildProps(variants, ['variant-1', 'variant-4'])} />);
 
-            expect(screen.queryByText('Variant 1')).toBeFalsy();
-            expect(screen.queryByText('Variant 2')).toBeFalsy();
-            expect(screen.queryByText('Variant 3')).toBeFalsy();
-            expect(screen.queryByText('Variant 4')).toBeTruthy();
-        }
-    );
+        expect(screen.queryByText('Variant 1')).toBeFalsy();
+        expect(screen.queryByText('Variant 2')).toBeFalsy();
+        expect(screen.queryByText('Variant 3')).toBeFalsy();
+        expect(screen.queryByText('Variant 4')).toBeTruthy();
+    });
 });
 
 describe('Persist variant selection', () => {

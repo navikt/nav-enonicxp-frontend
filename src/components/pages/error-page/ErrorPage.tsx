@@ -8,10 +8,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 
 import style from './ErrorPage.module.scss';
 
-const errorContentByCode: Record<
-    number,
-    React.FunctionComponent<ErrorProps>
-> = {
+const errorContentByCode: Record<number, React.FunctionComponent<ErrorProps>> = {
     400: ErrorContent400,
     404: ErrorContent404,
     408: ErrorContent408,

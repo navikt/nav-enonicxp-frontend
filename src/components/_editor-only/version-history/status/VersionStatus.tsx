@@ -14,18 +14,10 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionStatus = ({
-    content,
-    requestedDateTime,
-    submitVersionUrl,
-}: Props) => {
+export const VersionStatus = ({ content, requestedDateTime, submitVersionUrl }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
 
-    const requestedTimeFormatted = formatDateTime(
-        requestedDateTime,
-        'nb',
-        true
-    );
+    const requestedTimeFormatted = formatDateTime(requestedDateTime, 'nb', true);
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
 
     const requestedUnixTime = dayjs(requestedDateTime).startOf('minute').unix();

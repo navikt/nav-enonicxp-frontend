@@ -13,10 +13,7 @@ import htmlReactParser, {
     HTMLReactParserOptions,
 } from 'html-react-parser';
 import { getMediaUrl } from 'utils/urls';
-import {
-    processedHtmlMacroTag,
-    ProcessedHtmlProps,
-} from 'types/processed-html-props';
+import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-props';
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from 'components/macros/MacroMapper';
@@ -88,9 +85,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     }
 
     const { processedHtml, macros } =
-        typeof htmlProps === 'string'
-            ? { processedHtml: htmlProps, macros: [] }
-            : htmlProps;
+        typeof htmlProps === 'string' ? { processedHtml: htmlProps, macros: [] } : htmlProps;
 
     if (!processedHtml) {
         return null;
@@ -115,12 +110,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
-                return (
-                    <MacroMapper
-                        macros={macros}
-                        macroRef={attribs?.['data-macro-ref']}
-                    />
-                );
+                return <MacroMapper macros={macros} macroRef={attribs?.['data-macro-ref']} />;
             }
 
             // Remove img without src
@@ -227,9 +217,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
-                return (
-                    <Table>{domToReact(validChildren, parserOptions)}</Table>
-                );
+                return <Table>{domToReact(validChildren, parserOptions)}</Table>;
             }
 
             // Replace empty rows with stylable element

@@ -64,11 +64,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     const LayoutComponent = layoutComponents[descriptor];
 
     if (!LayoutComponent) {
-        return (
-            <div
-                {...editorProps}
-            >{`Unimplemented layout type: ${descriptor}`}</div>
-        );
+        return <div {...editorProps}>{`Unimplemented layout type: ${descriptor}`}</div>;
     }
 
     return (

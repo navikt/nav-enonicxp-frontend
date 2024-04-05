@@ -44,9 +44,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                                 linkGroup={title}
                                 key={item.title}
                             >
-                                {item.ingress && (
-                                    <BodyLong>{item.ingress}</BodyLong>
-                                )}
+                                {item.ingress && <BodyLong>{item.ingress}</BodyLong>}
                             </LenkepanelNavNo>
                         );
                     })}

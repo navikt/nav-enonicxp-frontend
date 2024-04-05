@@ -1,8 +1,4 @@
-import {
-    GetServerSideProps,
-    GetServerSidePropsContext,
-    NextApiRequest,
-} from 'next';
+import { GetServerSideProps, GetServerSidePropsContext, NextApiRequest } from 'next';
 import { SiteInfo } from 'components/_editor-only/site-info/SiteInfo';
 import express from 'express';
 import util from 'util';

@@ -13,11 +13,7 @@ export const CasesAnimation = () => {
             <StaticImage imageData={shapes} className={style.shapes} alt="" />
             <StaticImage imageData={letterS} className={style.letterS} alt="" />
             <div className={style.mask} />
-            <StaticImage
-                imageData={document}
-                className={style.document}
-                alt=""
-            />
+            <StaticImage imageData={document} className={style.document} alt="" />
         </>
     );
 };

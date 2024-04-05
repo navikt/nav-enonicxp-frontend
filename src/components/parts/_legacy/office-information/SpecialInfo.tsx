@@ -11,9 +11,7 @@ function specialInfoParseLink(infoContent: string) {
     };
 
     const isBalanced = (str: string) => {
-        return (
-            (str.match(/{/g) || []).length === (str.match(/}/g) || []).length
-        );
+        return (str.match(/{/g) || []).length === (str.match(/}/g) || []).length;
     };
 
     const pattern = /\{((.*?):(.*?))\}/g;
@@ -47,10 +45,7 @@ const parseSpecialInfo = (infoContent: string) => {
     // replace urls
     const urls = specialInfoParseLink(parsedString);
     urls.forEach((url) => {
-        parsedString = parsedString.replace(
-            url.match,
-            `<a href='${url.url}'>${url.text}</a>`
-        );
+        parsedString = parsedString.replace(url.match, `<a href='${url.url}'>${url.text}</a>`);
     });
 
     return parsedString;

@@ -42,10 +42,7 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
     }, []);
 };
 
-export const SectionNavigation = ({
-    introRegion,
-    contentRegion,
-}: SectionNavigationProps) => {
+export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
     const { language } = usePageContentProps();
     const introAnchors = getAnchorsFromComponents(introRegion);
     const contentAnchors = getAnchorsFromComponents(contentRegion);
@@ -58,10 +55,7 @@ export const SectionNavigation = ({
     const getLabels = translator('sectionNavigation', language);
 
     return (
-        <ul
-            aria-label={getLabels('navigationLabel')}
-            className={styles.sectionNavigation}
-        >
+        <ul aria-label={getLabels('navigationLabel')} className={styles.sectionNavigation}>
             {allAnchors.map((anchor) => (
                 <li key={anchor.anchorId}>
                     <LenkeInline

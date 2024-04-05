@@ -13,11 +13,7 @@ export const MoreLink = ({ link }: { link?: LinkSelectable }) => {
     const { text, url } = getSelectableLinkProps(link);
 
     return (
-        <LenkeStandalone
-            href={url}
-            className={styles.moreLink}
-            withChevron={false}
-        >
+        <LenkeStandalone href={url} className={styles.moreLink} withChevron={false}>
             <ArrowRightIcon aria-hidden={true} className={styles.arrow} />
             {text}
         </LenkeStandalone>

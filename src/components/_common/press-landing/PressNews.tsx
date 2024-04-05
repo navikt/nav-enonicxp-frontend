@@ -16,10 +16,7 @@ export const PressNews = (props: PressNewsProps) => {
 
     const getTranslations = translator('pressLanding', language);
 
-    if (
-        !pressNews?.data?.sectionContents ||
-        pressNews?.data?.sectionContents?.length === 0
-    ) {
+    if (!pressNews?.data?.sectionContents || pressNews?.data?.sectionContents?.length === 0) {
         return null;
     }
 
@@ -31,10 +28,7 @@ export const PressNews = (props: PressNewsProps) => {
                 </Heading>
                 <ul className={styles.newsList}>
                     {pressNews.data.sectionContents.map((newsItem) => (
-                        <PressNewsItem
-                            newsItem={newsItem}
-                            key={newsItem._path}
-                        />
+                        <PressNewsItem newsItem={newsItem} key={newsItem._path} />
                     ))}
                 </ul>
                 {moreNewsUrl && (

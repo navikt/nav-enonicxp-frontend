@@ -8,16 +8,9 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from 'translations';
 import { PageContextProvider } from 'store/pageContext';
 
-export const ProductDetailsPart = ({
-    config,
-    pageProps,
-}: ProductDetailsProps) => {
+export const ProductDetailsPart = ({ config, pageProps }: ProductDetailsProps) => {
     if (!config?.detailType) {
-        return (
-            <EditorHelp
-                text={'Velg hvilken produktdetalj-type som skal vises'}
-            />
-        );
+        return <EditorHelp text={'Velg hvilken produktdetalj-type som skal vises'} />;
     }
 
     const detailTypeStrings = translator('productDetailTypes', 'no');
@@ -34,9 +27,7 @@ export const ProductDetailsPart = ({
                     config.detailType === ProductDetailType.PROCESSING_TIMES &&
                     processingTimeHelptext
                 }`}
-                globalWarningText={
-                    'Komponent for produktdetaljer mangler innhold'
-                }
+                globalWarningText={'Komponent for produktdetaljer mangler innhold'}
                 type={'error'}
             />
         );

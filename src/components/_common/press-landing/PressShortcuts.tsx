@@ -15,10 +15,7 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
 
     const shortcuts = props.page.data?.shortcuts;
 
-    if (
-        !shortcuts?.data?.sectionContents ||
-        shortcuts.data.sectionContents.length === 0
-    ) {
+    if (!shortcuts?.data?.sectionContents || shortcuts.data.sectionContents.length === 0) {
         return null;
     }
 

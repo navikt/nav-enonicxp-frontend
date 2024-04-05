@@ -1,9 +1,6 @@
 import { PartComponentProps } from 'types/component-props/_component-common';
 import { PartType } from 'types/component-props/parts';
-import {
-    AudienceOptions,
-    RenderOnAuthStateMixin,
-} from 'types/component-props/_mixins';
+import { AudienceOptions, RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 import { OptionSetSingle } from 'types/util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { DayName } from 'utils/datetime';

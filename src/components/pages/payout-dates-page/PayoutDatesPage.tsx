@@ -11,13 +11,8 @@ export const PayoutDatesPage = (props: PayoutDatesProps) => {
 
     return (
         <>
-            {layerLocale !== Config.vars.defaultLocale && (
-                <LayersEditorWarning />
-            )}
-            <PayoutDates
-                payoutDatesData={props.data}
-                className={style.payoutDatesPage}
-            />
+            {layerLocale !== Config.vars.defaultLocale && <LayersEditorWarning />}
+            <PayoutDates payoutDatesData={props.data} className={style.payoutDatesPage} />
         </>
     );
 };

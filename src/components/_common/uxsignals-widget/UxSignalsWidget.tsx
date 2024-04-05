@@ -13,19 +13,11 @@ export const UxSignalsWidget = ({ embedCode }: Props) => {
         <>
             <Script
                 type={'module'}
-                src={
-                    'https://uxsignals-frontend.uxsignals.app.iterate.no/embed.js'
-                }
+                src={'https://uxsignals-frontend.uxsignals.app.iterate.no/embed.js'}
                 async={true}
             />
-            <div
-                data-uxsignals-embed={embedCode}
-                className={style.uxSignalsWidget}
-            />
-            <EditorHelp
-                text={'UX Signals rekrutterings-widget'}
-                type={'info'}
-            />
+            <div data-uxsignals-embed={embedCode} className={style.uxSignalsWidget} />
+            <EditorHelp text={'UX Signals rekrutterings-widget'} type={'info'} />
         </>
     );
 };

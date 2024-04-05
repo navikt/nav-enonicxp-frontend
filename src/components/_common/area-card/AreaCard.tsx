@@ -16,14 +16,7 @@ type Props = {
     className?: string;
 } & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
 
-export const AreaCard = ({
-    path,
-    title,
-    area,
-    linkGroup,
-    className,
-    ...rest
-}: Props) => {
+export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
@@ -36,11 +29,7 @@ export const AreaCard = ({
             analyticsLabel={title}
             analyticsComponent={'Områdekort'}
             analyticsLinkGroup={linkGroup}
-            className={classNames(
-                style.linkPanel,
-                graphicsStyle.expandOnHover,
-                className
-            )}
+            className={classNames(style.linkPanel, graphicsStyle.expandOnHover, className)}
             as={LenkeBase}
         >
             <div

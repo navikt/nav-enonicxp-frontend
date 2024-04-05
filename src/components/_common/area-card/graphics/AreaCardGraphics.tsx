@@ -39,17 +39,8 @@ export const AreaCardGraphics = ({ type, insideCard }: Props) => {
     const GraphicComponent = areaTypeComponentMap[type];
 
     return (
-        <div
-            className={classNames(
-                style.graphics,
-                insideCard ? style.insideCard : ''
-            )}
-        >
-            {GraphicComponent ? (
-                <GraphicComponent />
-            ) : (
-                <DefaultComponent type={type} />
-            )}
+        <div className={classNames(style.graphics, insideCard ? style.insideCard : '')}>
+            {GraphicComponent ? <GraphicComponent /> : <DefaultComponent type={type} />}
         </div>
     );
 };

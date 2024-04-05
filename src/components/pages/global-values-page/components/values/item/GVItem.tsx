@@ -42,13 +42,8 @@ const ItemView = ({ item }: Props) => {
 };
 
 export const GVItem = (props: Props) => {
-    const {
-        setMessages,
-        contentId,
-        itemsEditState,
-        setItemEditState,
-        editorEnabled,
-    } = useGvEditorState();
+    const { setMessages, contentId, itemsEditState, setItemEditState, editorEnabled } =
+        useGvEditorState();
     const { item } = props;
     const { key } = item;
     const editMode = itemsEditState[key];
@@ -56,10 +51,7 @@ export const GVItem = (props: Props) => {
     return (
         <div className={style.gvItem}>
             {editMode ? (
-                <GVItemEditor
-                    item={item}
-                    onClose={() => setItemEditState(key, false)}
-                />
+                <GVItemEditor item={item} onClose={() => setItemEditState(key, false)} />
             ) : (
                 <ItemView item={item} />
             )}
@@ -75,27 +67,19 @@ export const GVItem = (props: Props) => {
                 )}
                 <GVButton
                     onClick={async () => {
-                        await gvServiceGetUsage(item.key, contentId).then(
-                            (res) => {
-                                if (!res) {
-                                    setMessages([
-                                        {
-                                            message:
-                                                'Server-feil ved uthenting av verdier',
-                                            level: 'error',
-                                        },
-                                    ]);
-                                    return;
-                                }
-
-                                setMessages(
-                                    generateGvUsageMessages(
-                                        res.usage,
-                                        item.itemName
-                                    )
-                                );
+                        await gvServiceGetUsage(item.key, contentId).then((res) => {
+                            if (!res) {
+                                setMessages([
+                                    {
+                                        message: 'Server-feil ved uthenting av verdier',
+                                        level: 'error',
+                                    },
+                                ]);
+                                return;
                             }
-                        );
+
+                            setMessages(generateGvUsageMessages(res.usage, item.itemName));
+                        });
                     }}
                 >
                     {'Vis bruk'}

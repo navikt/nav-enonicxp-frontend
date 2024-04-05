@@ -12,8 +12,7 @@ import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {
-    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } =
-        useGvEditorState();
+    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } = useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }: OnChangeMeta) => {
         const newSortedItems = arrayMove(valueItems, oldIndex, newIndex);
@@ -27,9 +26,7 @@ export const GVItemsCustomOrder = () => {
             if (!res || res.level === 'error') {
                 const msg = res?.message?.toString() || 'Ukjent feil';
 
-                logger.error(
-                    `Error from reorder request on ${contentId} - ${msg}`
-                );
+                logger.error(`Error from reorder request on ${contentId} - ${msg}`);
                 setMessages([
                     {
                         message: `Feil ved omsortering av verdier: ${msg}`,

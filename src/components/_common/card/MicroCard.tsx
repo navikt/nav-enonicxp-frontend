@@ -13,13 +13,7 @@ import { usePageContentProps } from 'store/pageContext';
 import sharedStyle from './Card.module.scss';
 import style from './MicroCard.module.scss';
 
-export const MicroCard = ({
-    link,
-    type,
-}: {
-    link: LinkProps;
-    type: CardType;
-}) => {
+export const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
     const { analyticsProps } = useCard({ type, size: CardSize.Micro, link });
     return (
         <LenkeBase
@@ -27,9 +21,7 @@ export const MicroCard = ({
             {...analyticsProps}
             className={classNames(sharedStyle.card, sharedStyle.inline)}
         >
-            <div className={classNames(sharedStyle.bed, style.micro, type)}>
-                {link.text}
-            </div>
+            <div className={classNames(sharedStyle.bed, style.micro, type)}>{link.text}</div>
         </LenkeBase>
     );
 };
@@ -52,11 +44,7 @@ export const MicroCards = ({ header, card_list }: Props) => {
     }, []);
 
     if (cardProps.length === 0) {
-        return (
-            <EditorHelp
-                text={'Velg minst én lenke for å aktivere mikrokortene'}
-            />
-        );
+        return <EditorHelp text={'Velg minst én lenke for å aktivere mikrokortene'} />;
     }
 
     return (

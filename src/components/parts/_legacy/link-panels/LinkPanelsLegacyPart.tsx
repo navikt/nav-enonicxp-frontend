@@ -8,7 +8,5 @@ export const LinkPanelsLegacyPart = (props: SectionPageProps) => {
         return null;
     }
 
-    return (
-        <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />
-    );
+    return <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />;
 };

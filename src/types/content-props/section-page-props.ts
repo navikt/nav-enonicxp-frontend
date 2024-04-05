@@ -1,8 +1,4 @@
-import {
-    ContentType,
-    ContentCommonProps,
-    ContentProps,
-} from './_content-common';
+import { ContentType, ContentCommonProps, ContentProps } from './_content-common';
 import { LinkPanel } from 'types/link-panel';
 import { ContentListProps } from './content-list-props';
 

@@ -25,26 +25,19 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
 
     const linkProps = getSelectableLinkProps(link);
 
-    const bgUrl =
-        background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
+    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
 
     const isVerticalLayout =
-        selectedVariant === 'vertical' ||
-        selectedVariant === 'verticalWithBgColor';
-    const legacyAnalyticsComponentLabel = isVerticalLayout
-        ? 'main-panels'
-        : 'link-panel';
+        selectedVariant === 'vertical' || selectedVariant === 'verticalWithBgColor';
+    const legacyAnalyticsComponentLabel = isVerticalLayout ? 'main-panels' : 'link-panel';
 
     return (
         <LinkPanel
             href={linkProps.url}
-            className={classNames(
-                style.linkPanel,
-                isVerticalLayout ? `vertical` : 'horizontal'
-            )}
+            className={classNames(style.linkPanel, isVerticalLayout ? `vertical` : 'horizontal')}
             border={true}
             style={
                 bgUrl
@@ -69,14 +62,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             aria-hidden={'true'}
                             className={classNames(
                                 style.icon,
-                                selectedVariant === 'verticalWithBgColor' &&
-                                    style.bg
+                                selectedVariant === 'verticalWithBgColor' && style.bg
                             )}
                             style={{
-                                ...(selectedVariant ===
-                                    'verticalWithBgColor' && {
-                                    backgroundColor:
-                                        variantConfig?.iconBg?.color,
+                                ...(selectedVariant === 'verticalWithBgColor' && {
+                                    backgroundColor: variantConfig?.iconBg?.color,
                                     alignItems: variantConfig?.iconJustify,
                                 }),
                             }}

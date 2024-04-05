@@ -24,8 +24,7 @@ const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
 const origin =
-    typeof process.env !== 'undefined' &&
-    process.env.IS_FAILOVER_INSTANCE === 'true'
+    typeof process.env !== 'undefined' && process.env.IS_FAILOVER_INSTANCE === 'true'
         ? process.env.FAILOVER_ORIGIN
         : process.env.APP_ORIGIN;
 
@@ -53,13 +52,7 @@ export const buildImageCacheUrl = ({
 };
 
 const NextImageRunTime = (props: ImageProps) => {
-    const {
-        src,
-        alt,
-        maxWidth = maxWidthDefault,
-        quality = qualityDefault,
-        ...imgAttribs
-    } = props;
+    const { src, alt, maxWidth = maxWidthDefault, quality = qualityDefault, ...imgAttribs } = props;
 
     const { editorView } = usePageContentProps();
 
@@ -82,8 +75,7 @@ const NextImageRunTime = (props: ImageProps) => {
 };
 
 export const NextImage =
-    typeof process.env !== 'undefined' &&
-    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+    typeof process.env !== 'undefined' && process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
         ? dynamic(
               import('./NextImageBuildTime').then((module) => {
                   const { NextImageBuildTime } = module;

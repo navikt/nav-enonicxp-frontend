@@ -27,8 +27,7 @@ const getClientsideProps = (path?: string) => {
     }
 
     try {
-        const contentProps = JSON.parse(nextData)?.props
-            ?.pageProps as ContentProps;
+        const contentProps = JSON.parse(nextData)?.props?.pageProps as ContentProps;
         if (contentProps.type !== ContentType.Error) {
             logger.error(
                 `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.type}`

@@ -40,11 +40,7 @@ export const Button = ({
         <DsButton
             as={LenkeBase}
             href={href || '#'}
-            className={classNames(
-                style.button,
-                fullWidth && style.buttonFullWidth,
-                className
-            )}
+            className={classNames(style.button, fullWidth && style.buttonFullWidth, className)}
             onClick={(e) => {
                 if (!href) {
                     e.preventDefault();

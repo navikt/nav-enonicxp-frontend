@@ -1,8 +1,4 @@
-import {
-    ContentType,
-    ContentCommonProps,
-    ContentProps,
-} from './_content-common';
+import { ContentType, ContentCommonProps, ContentProps } from './_content-common';
 import { MenuListItems } from 'types/menu-list-items';
 
 export type PageListData = Partial<{

@@ -29,19 +29,10 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
 
     return (
         <Head>
-            <meta
-                name={DocumentParameter.DecoratorParams}
-                content={decoratorParams}
-            />
-            <meta
-                name={DocumentParameter.HtmlLang}
-                content={content.language}
-            />
+            <meta name={DocumentParameter.DecoratorParams} content={decoratorParams} />
+            <meta name={DocumentParameter.HtmlLang} content={content.language} />
             {editorView === 'edit' && isLegacyContentType(type) && (
-                <meta
-                    name={DocumentParameter.LegacyContentType}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.LegacyContentType} content={'true'} />
             )}
         </Head>
     );

@@ -9,16 +9,12 @@ const matchMediaLegacy = (mql: MediaQueryList) => {
     }
 
     // @ts-ignore
-    mql.addEventListener = (
-        _: string,
-        callback: (e: MediaQueryListEvent) => void
-    ) => mql.addListener(callback);
+    mql.addEventListener = (_: string, callback: (e: MediaQueryListEvent) => void) =>
+        mql.addListener(callback);
 
     // @ts-ignore
-    mql.removeEventListener = (
-        _: string,
-        callback: (e: MediaQueryListEvent) => void
-    ) => mql.removeListener(callback);
+    mql.removeEventListener = (_: string, callback: (e: MediaQueryListEvent) => void) =>
+        mql.removeListener(callback);
 
     return mql;
 };

@@ -10,10 +10,7 @@ import { OpeningInfo } from 'components/_common/contact-option/opening-info/Open
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
-import {
-    hoverFocusIcon,
-    useHoverAndFocus,
-} from './opening-info/helpers/iconUtils';
+import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -57,9 +54,7 @@ export const CallOption = ({
     const sharedTranslations = getContactTranslations('shared');
 
     const getContactUrl = () => {
-        const audienceUrls = audience
-            ? contactURLs[getAudience(audience)]
-            : null;
+        const audienceUrls = audience ? contactURLs[getAudience(audience)] : null;
         if (!audienceUrls) {
             return contactURLs.person.no;
         }
@@ -100,12 +95,7 @@ export const CallOption = ({
             )}
             <BodyLong className={style.text}>
                 <ParsedHtml
-                    htmlProps={
-                        overrideText ||
-                        ingress ||
-                        text ||
-                        callTranslations.ingress
-                    }
+                    htmlProps={overrideText || ingress || text || callTranslations.ingress}
                 />
             </BodyLong>
             {!alertText && regularOpeningHours && specialOpeningHours && (

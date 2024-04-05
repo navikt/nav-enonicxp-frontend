@@ -12,11 +12,7 @@ export const FormsOverviewHeader = (props: FormsOverviewProps) => {
 
     return (
         <div className={style.container}>
-            <PageHeader
-                size={'xlarge'}
-                justify={'left'}
-                className={style.header}
-            >
+            <PageHeader size={'xlarge'} justify={'left'} className={style.header}>
                 {title}
             </PageHeader>
             <BodyShort className={style.subHeader}>{underTitle}</BodyShort>

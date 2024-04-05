@@ -14,11 +14,7 @@ type Props = {
     showResetChips: boolean;
 };
 
-export const OverviewFiltersSummary = ({
-    numMatches,
-    numTotal,
-    showResetChips,
-}: Props) => {
+export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }: Props) => {
     const { language } = usePageContentProps();
 
     const {
@@ -45,18 +41,12 @@ export const OverviewFiltersSummary = ({
                 {showResetChips && !hasDefaultFilters && (
                     <Chips className={style.chips}>
                         {areaFilter !== Area.ALL && (
-                            <Chips.Removable
-                                onClick={() => setAreaFilter(Area.ALL)}
-                            >
+                            <Chips.Removable onClick={() => setAreaFilter(Area.ALL)}>
                                 {areaTranslations(areaFilter)}
                             </Chips.Removable>
                         )}
                         {taxonomyFilter !== ProductTaxonomy.ALL && (
-                            <Chips.Removable
-                                onClick={() =>
-                                    setTaxonomyFilter(ProductTaxonomy.ALL)
-                                }
-                            >
+                            <Chips.Removable onClick={() => setTaxonomyFilter(ProductTaxonomy.ALL)}>
                                 {taxonomyTranslations(taxonomyFilter)}
                             </Chips.Removable>
                         )}
@@ -71,9 +61,7 @@ export const OverviewFiltersSummary = ({
                 )}
             </div>
             {numMatches === 0 && (
-                <BodyLong className={style.nohits}>
-                    {overviewTranslations('noHits')}
-                </BodyLong>
+                <BodyLong className={style.nohits}>{overviewTranslations('noHits')}</BodyLong>
             )}
         </>
     );

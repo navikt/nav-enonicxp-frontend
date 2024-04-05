@@ -6,14 +6,8 @@ import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
 
-export const gvNameExists = (
-    itemName: string,
-    items: GlobalValueItem[],
-    key?: string
-) =>
-    items.find(
-        (item) => item.itemName === itemName && (!key || item.key !== key)
-    );
+export const gvNameExists = (itemName: string, items: GlobalValueItem[], key?: string) =>
+    items.find((item) => item.itemName === itemName && (!key || item.key !== key));
 
 const getUsageMessages = (usage: UsageContentInfo[]) => {
     if (!usage || usage.length === 0) {
@@ -26,10 +20,7 @@ const getUsageMessages = (usage: UsageContentInfo[]) => {
                 <>
                     <EditorLinkWrapper>
                         <LenkeStandalone
-                            href={content.path.replace(
-                                '/www.nav.no',
-                                xpDraftPathPrefix
-                            )}
+                            href={content.path.replace('/www.nav.no', xpDraftPathPrefix)}
                             target={'_blank'}
                             withChevron={false}
                             onClick={(e) => {
@@ -70,8 +61,7 @@ export const generateGvUsageMessages = (
                 level: 'error',
             },
             {
-                message:
-                    'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
+                message: 'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
                 level: 'info',
             },
         ];

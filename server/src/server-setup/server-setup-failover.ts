@@ -1,10 +1,7 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
 
-export const serverSetupFailover = (
-    expressApp: Express,
-    nextApp: NextServer
-) => {
+export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
     // Assets from /_next and internal apis should be served as normal

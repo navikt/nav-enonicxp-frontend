@@ -33,21 +33,12 @@ export const LinkPanelNavnoSimple = ({
         <LenkeBase
             {...rest}
             href={href}
-            className={classNames(
-                style.linkPanel,
-                icon && style.withIcon,
-                className
-            )}
+            className={classNames(style.linkPanel, icon && style.withIcon, className)}
             analyticsComponent={'Lenkepanel navno enkel'}
             analyticsLinkGroup={analyticsLinkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
-            <div
-                className={classNames(
-                    'navds-heading',
-                    `navds-heading--${linkTextSize}`
-                )}
-            >
+            <div className={classNames('navds-heading', `navds-heading--${linkTextSize}`)}>
                 <span className={style.text}>{children}</span>
             </div>
         </LenkeBase>

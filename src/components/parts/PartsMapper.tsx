@@ -16,10 +16,7 @@ import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
-import {
-    ComponentType,
-    PartComponentProps,
-} from 'types/component-props/_component-common';
+import { ComponentType, PartComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
@@ -62,10 +59,7 @@ type Props = {
     pageProps: ContentProps;
 };
 
-const partsWithPageData: Record<
-    PartLegacyType,
-    React.FunctionComponent<ContentProps>
-> = {
+const partsWithPageData: Record<PartLegacyType, React.FunctionComponent<ContentProps>> = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
@@ -79,10 +73,7 @@ const partsWithPageData: Record<
     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
 };
 
-const partsWithOwnData: Record<
-    PartCurrentType,
-    React.FunctionComponent<PartComponentProps>
-> = {
+const partsWithOwnData: Record<PartCurrentType, React.FunctionComponent<PartComponentProps>> = {
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
@@ -144,10 +135,7 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
     }
 
     return (
-        <EditorHelp
-            text={`Part-komponenten er ikke implementert: "${descriptor}"`}
-            type={'info'}
-        />
+        <EditorHelp text={`Part-komponenten er ikke implementert: "${descriptor}"`} type={'info'} />
     );
 };
 

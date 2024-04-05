@@ -55,10 +55,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
     return (
         <div className={style.globalValuesPage}>
             <Head>
-                <meta
-                    name={DocumentParameter.DecoratorDisabled}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
             <div className={style.headerRow}>
                 <Heading level={'1'} size={'large'}>
@@ -117,12 +114,8 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
 
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
     store.dispatch(setContentIdAction({ contentId: props._id }));
-    store.dispatch(
-        setValueItemsAction({ valueItems: props.data?.valueItems || [] })
-    );
-    store.dispatch(
-        setEditorEnabledAction(props.layerLocale === Config.vars.defaultLocale)
-    );
+    store.dispatch(setValueItemsAction({ valueItems: props.data?.valueItems || [] }));
+    store.dispatch(setEditorEnabledAction(props.layerLocale === Config.vars.defaultLocale));
 
     return <GlobalValuesDisplay {...props} />;
 };

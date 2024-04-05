@@ -103,11 +103,7 @@ const fetchSiteContentVersion = async ({
     });
 };
 
-const fetchSiteContentArchive = async ({
-    idOrPath,
-    locale,
-    time,
-}: FetchSiteContentArgs) => {
+const fetchSiteContentArchive = async ({ idOrPath, locale, time }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(locale && { locale }),
@@ -149,12 +145,8 @@ const fetchAndHandleErrorsBuildtime = async (
     });
 };
 
-const isCachableRequest = ({
-    isDraft,
-    isArchived,
-    time,
-    isPreview,
-}: FetchSiteContentArgs) => !(isDraft || isArchived || time || isPreview);
+const isCachableRequest = ({ isDraft, isArchived, time, isPreview }: FetchSiteContentArgs) =>
+    !(isDraft || isArchived || time || isPreview);
 
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
@@ -163,9 +155,7 @@ const fetchAndHandleErrorsRuntime = async (
     const { idOrPath } = props;
 
     if (isCachable) {
-        const cachedResponse = await redisCache.getResponse(
-            stripXpPathPrefix(idOrPath)
-        );
+        const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
             logger.info(`Response cache hit for ${idOrPath}`);
             return cachedResponse;
@@ -180,9 +170,7 @@ const fetchAndHandleErrorsRuntime = async (
         return makeErrorProps(idOrPath, undefined, 500, errorId);
     }
 
-    const isJson = res.headers
-        ?.get('content-type')
-        ?.includes?.('application/json');
+    const isJson = res.headers?.get('content-type')?.includes?.('application/json');
 
     if (res.ok && isJson) {
         const json = await res.json();
@@ -200,9 +188,7 @@ const fetchAndHandleErrorsRuntime = async (
         return makeErrorProps(idOrPath, undefined, 500, errorId);
     }
 
-    const errorMsg = isJson
-        ? (await res.json()).message || res.statusText
-        : res.statusText;
+    const errorMsg = isJson ? (await res.json()).message || res.statusText : res.statusText;
 
     if (res.status === 404) {
         // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself

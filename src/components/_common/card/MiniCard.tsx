@@ -48,25 +48,17 @@ export const MiniCard = (props: MiniKortProps) => {
                     {header}
                 </BodyShort>
             )}
-            <div
-                {...userEventProps}
-                className={classNames(sharedStyle.card, className)}
-            >
+            <div {...userEventProps} className={classNames(sharedStyle.card, className)}>
                 <div className={classNames(sharedStyle.bed, style.mini, type)}>
                     <Illustration
                         className={style.illustration}
                         illustration={illustration}
                         isHovering={isHovering}
-                        preferStaticIllustration={
-                            preferStaticIllustration || editorView === 'edit'
-                        }
+                        preferStaticIllustration={preferStaticIllustration || editorView === 'edit'}
                         withFallbackIllustration={withFallbackIllustration}
                     />
                     <LenkeBase
-                        className={classNames(
-                            sharedStyle.lenkeBaseOverride,
-                            style.title
-                        )}
+                        className={classNames(sharedStyle.lenkeBaseOverride, style.title)}
                         href={link.url}
                         {...analyticsProps}
                     >

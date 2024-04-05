@@ -10,10 +10,7 @@ export const ContentTypeNotSupportedPage = (props: ContentProps) => {
     return (
         <div className={style.notSupported}>
             <Head>
-                <meta
-                    name={DocumentParameter.DecoratorDisabled}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
             <Heading level={'1'} size={'small'}>
                 {'Innholdstypen '}

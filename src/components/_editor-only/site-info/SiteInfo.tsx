@@ -21,10 +21,7 @@ export const SiteInfo = ({
         <>
             <Head>
                 <title>{'nav.no cms status'}</title>
-                <meta
-                    name={DocumentParameter.DecoratorDisabled}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
             <div className={style.container}>
                 <SiteInfoHeader

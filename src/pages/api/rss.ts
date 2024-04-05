@@ -34,11 +34,7 @@ const saveToCache = (xml: string): void => {
 };
 
 const fetchRSSFeedAndUpdateCache = async (url: string) => {
-    const jsonFeed = await fetchJson<FeedItem[]>(
-        url,
-        millisecondsToFetchTimeout,
-        fetchOptions
-    );
+    const jsonFeed = await fetchJson<FeedItem[]>(url, millisecondsToFetchTimeout, fetchOptions);
     if (!jsonFeed) {
         logger.error('Error while fetching RSS data');
         return null;
@@ -83,9 +79,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) =>
         const rssFeed = await getRSSFeedFromCache();
 
         if (!rssFeed) {
-            return res
-                .status(503)
-                .send('Server error: RSS-feed is currently unavailable');
+            return res.status(503).send('Server error: RSS-feed is currently unavailable');
         }
 
         res.setHeader('Content-Type', 'application/xml');

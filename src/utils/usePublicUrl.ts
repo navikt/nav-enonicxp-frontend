@@ -1,9 +1,4 @@
-import {
-    getInternalRelativePath,
-    isAppUrl,
-    isInternalUrl,
-    stripXpPathPrefix,
-} from './urls';
+import { getInternalRelativePath, isAppUrl, isInternalUrl, stripXpPathPrefix } from './urls';
 import { usePageContentProps } from 'store/pageContext';
 
 type ReturnValue = {

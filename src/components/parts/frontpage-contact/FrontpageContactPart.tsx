@@ -9,9 +9,7 @@ import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';
 
-export const FrontpageContactPart = ({
-    config,
-}: FrontpageContanctPartProps) => {
+export const FrontpageContactPart = ({ config }: FrontpageContanctPartProps) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }
@@ -32,8 +30,7 @@ export const FrontpageContactPart = ({
             : contactUsLink._path);
 
     const getChatIngress = () => {
-        const sharedContact =
-            sharedContactInformation[0]?.data?.contactType?.chat;
+        const sharedContact = sharedContactInformation[0]?.data?.contactType?.chat;
         const specialOpeningHours = sharedContact?.specialOpeningHours;
 
         const chatTitle = config.chatTitle || sharedContact?.title || '';
@@ -43,8 +40,7 @@ export const FrontpageContactPart = ({
             sharedContact?.ingress?.processedHtml ||
             '';
 
-        const chatAlertText =
-            config.chatAlertText || sharedContact?.alertText || '';
+        const chatAlertText = config.chatAlertText || sharedContact?.alertText || '';
 
         return { chatTitle, chatIngress, chatAlertText };
     };
@@ -69,10 +65,7 @@ export const FrontpageContactPart = ({
                     linkText={contactUsTitle}
                 >
                     {contactUsAlertText && (
-                        <FrontpageContactAlert
-                            alertText={contactUsAlertText}
-                            yellow
-                        />
+                        <FrontpageContactAlert alertText={contactUsAlertText} yellow />
                     )}
                     {contactUsIngress}
                 </LinkPanelNavno>

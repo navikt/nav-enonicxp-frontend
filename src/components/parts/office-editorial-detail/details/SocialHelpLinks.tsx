@@ -5,9 +5,7 @@ import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEdit
 import styles from './SocialHelpLinks.module.scss';
 
 export const SocialHelpLinks = ({ officeData }: DetailProps) => {
-    const socialHelpLinks = forceArray(
-        officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader
-    );
+    const socialHelpLinks = forceArray(officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader);
 
     if (!socialHelpLinks || socialHelpLinks.length === 0) {
         return null;
@@ -16,11 +14,7 @@ export const SocialHelpLinks = ({ officeData }: DetailProps) => {
     return (
         <div>
             {socialHelpLinks.map((link) => (
-                <LenkeBase
-                    key={link.lenke}
-                    href={link.lenke}
-                    className={styles.singleLink}
-                >
+                <LenkeBase key={link.lenke} href={link.lenke} className={styles.singleLink}>
                     {link.lenketekst}
                 </LenkeBase>
             ))}

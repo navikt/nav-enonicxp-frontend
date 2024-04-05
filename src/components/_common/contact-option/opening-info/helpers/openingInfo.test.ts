@@ -70,19 +70,13 @@ const specialOpeningHours: OpeningHourSpecialRaw[] = [
 ];
 
 const getOpeningInfo = () => {
-    const openingHours = processOpeningHours(
-        regularOpeningHours,
-        specialOpeningHours
-    );
+    const openingHours = processOpeningHours(regularOpeningHours, specialOpeningHours);
 
     return getCurrentOpeningHours(openingHours);
 };
 
 const getInfoText = () => {
-    const allOpeningInfo = processOpeningHours(
-        regularOpeningHours,
-        specialOpeningHours
-    );
+    const allOpeningInfo = processOpeningHours(regularOpeningHours, specialOpeningHours);
 
     const currentOpeningInfo = getCurrentOpeningHours(allOpeningInfo);
 
@@ -189,9 +183,7 @@ describe('Opening information text', () => {
 
         const text = getInfoText();
 
-        const expectedText = translator('contactPoint', 'no')('shared')[
-            'openNow'
-        ];
+        const expectedText = translator('contactPoint', 'no')('shared')['openNow'];
 
         expect(text).toBe(expectedText);
     });
@@ -201,9 +193,7 @@ describe('Opening information text', () => {
 
         const text = getInfoText();
 
-        const expectedText = translator('contactPoint', 'no')('shared')[
-            'closedNow'
-        ];
+        const expectedText = translator('contactPoint', 'no')('shared')['closedNow'];
 
         expect(text).toContain(expectedText);
     });
@@ -213,12 +203,8 @@ describe('Opening information text', () => {
 
         const text = getInfoText();
 
-        const expectedText1 = translator('contactPoint', 'no')('shared')[
-            'closedNow'
-        ];
-        const expectedText2 = translator('dateTime', 'no')('relatives')[
-            'tomorrow'
-        ];
+        const expectedText1 = translator('contactPoint', 'no')('shared')['closedNow'];
+        const expectedText2 = translator('dateTime', 'no')('relatives')['tomorrow'];
 
         expect(text).toContain(expectedText1);
         expect(text).toContain(expectedText2);
@@ -229,17 +215,12 @@ describe('Opening information text', () => {
 
         const text = getInfoText();
 
-        const expectedText1 = translator('contactPoint', 'no')('shared')[
-            'closedNow'
-        ];
+        const expectedText1 = translator('contactPoint', 'no')('shared')['closedNow'];
         const expectedText2 = translator('contactPoint', 'no')('shared')
             ['opensAt'].replace('{$date}', '(.*)')
             .replace('{$time}', '(.*)');
 
-        const expectedTextPattern = new RegExp(
-            `${expectedText1}(.*)${expectedText2}`,
-            'i'
-        );
+        const expectedTextPattern = new RegExp(`${expectedText1}(.*)${expectedText2}`, 'i');
 
         expect(text).toMatch(expectedTextPattern);
     });

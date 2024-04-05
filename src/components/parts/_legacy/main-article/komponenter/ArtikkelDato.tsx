@@ -20,12 +20,7 @@ type Props = {
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageContentProps();
-    const {
-        modifiedTime,
-        publishLabel,
-        modifiedLabel,
-        type = 'normal',
-    } = props;
+    const { modifiedTime, publishLabel, modifiedLabel, type = 'normal' } = props;
 
     const hasMonthName = type === 'newsPress';
     const hasYear = type === 'newsPress';

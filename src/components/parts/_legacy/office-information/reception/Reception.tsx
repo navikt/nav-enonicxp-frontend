@@ -21,14 +21,8 @@ type FormattedAudienceReception = {
 
 const dagArr: string[] = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
-const sortOpeningHours = (
-    a: LegacyOfficeOpeningHoursProps,
-    b: LegacyOfficeOpeningHoursProps
-) => {
-    return (
-        (a.dag ? dagArr.indexOf(a.dag) : -1) -
-        (b.dag ? dagArr.indexOf(b.dag) : -1)
-    );
+const sortOpeningHours = (a: LegacyOfficeOpeningHoursProps, b: LegacyOfficeOpeningHoursProps) => {
+    return (a.dag ? dagArr.indexOf(a.dag) : -1) - (b.dag ? dagArr.indexOf(b.dag) : -1);
 };
 
 const formatAudienceReception = (
@@ -63,22 +57,14 @@ const formatAudienceReception = (
     );
 
     return {
-        address: officeDetailsFormatAddress(
-            audienceReception.besoeksadresse,
-            true
-        ),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse.poststed,
+        address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
+        place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse.poststed,
         openingHoursExceptions: aapningstider.exceptions,
         openingHours: aapningstider.regular.sort(sortOpeningHours),
     };
 };
 
-type ReceptionType =
-    | LegacyOfficeAudienceReception[]
-    | LegacyOfficeAudienceReception
-    | undefined;
+type ReceptionType = LegacyOfficeAudienceReception[] | LegacyOfficeAudienceReception | undefined;
 
 type Props = {
     receptions: ReceptionType;
@@ -112,9 +98,7 @@ export const Reception = (props: Props) => {
                                     Spesielle åpningstider
                                 </Heading>
                                 <OpeningHours
-                                    openingHours={
-                                        reception.openingHoursExceptions
-                                    }
+                                    openingHours={reception.openingHoursExceptions}
                                     closedLabel={getLabel('closed')}
                                     metaKey="exception"
                                 />

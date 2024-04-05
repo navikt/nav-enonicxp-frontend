@@ -21,16 +21,9 @@ export const AreaPageHeader = ({ content }: Props) => {
                 <Heading level="1" size="xlarge">
                     {header}
                 </Heading>
-                {banner && (
-                    <AreaPageHeaderBanner banner={banner} header={header} />
-                )}
+                {banner && <AreaPageHeaderBanner banner={banner} header={header} />}
             </div>
-            <div
-                className={classNames(
-                    style.gfxContainer,
-                    graphicsStyle.expandGraphics
-                )}
-            >
+            <div className={classNames(style.gfxContainer, graphicsStyle.expandGraphics)}>
                 <AreaCardGraphics type={area} insideCard={false} />
             </div>
         </div>

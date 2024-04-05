@@ -26,26 +26,16 @@ import {
     ToolsPageProps,
     PressLandingPageProps,
 } from './dynamic-page-props';
-import {
-    PublishingCalendarProps,
-    PublishingCalendarEntryProps,
-} from './publishing-calendar-props';
+import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
-import {
-    GlobalCaseTimeSetProps,
-    GlobalValuesProps,
-} from './global-values-props';
+import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
 import { ContactInformationProps } from './contact-information-props';
 import { MediaType } from 'types/media';
 import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps, LayerLocale } from 'types/language';
 import { FragmentPageProps } from './fragment-page-props';
-import {
-    AreaPageProps,
-    FrontPageNestedProps,
-    FrontPageProps,
-} from './index-pages-props';
+import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
 import { AudienceOptions } from 'types/component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
@@ -205,5 +195,5 @@ type SpecificContentProps =
     | FormsOverviewProps
     | FallbackPageProps;
 
-export type ContentProps<Type extends ContentType = ContentType> =
-    ContentCommonProps<Type> & SpecificContentProps;
+export type ContentProps<Type extends ContentType = ContentType> = ContentCommonProps<Type> &
+    SpecificContentProps;

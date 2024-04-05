@@ -32,9 +32,7 @@ export const useSWRImmutableOnScrollIntoView = <FetchResponse>({
     fetchFunc,
     elementId,
 }: Props<FetchResponse>) => {
-    const [isScrolledIntoView, setIsScrolledIntoView] = useState(
-        isNearOrAboveViewport(elementId)
-    );
+    const [isScrolledIntoView, setIsScrolledIntoView] = useState(isNearOrAboveViewport(elementId));
 
     const result = useSWRImmutable(isScrolledIntoView ? url : null, fetchFunc);
 

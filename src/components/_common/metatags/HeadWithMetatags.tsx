@@ -35,9 +35,7 @@ const getDescription = (content: ContentProps) => {
 };
 
 const shouldNotIndex = (content: ContentProps) =>
-    content.isPagePreview ||
-    content.type === ContentType.Error ||
-    content.data?.noindex;
+    content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
 
 const shouldNotSnippet = (content: ContentProps) => content.data?.nosnippet;
 
@@ -96,29 +94,13 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta name={'twitter:image:src'} content={imageUrl} />
             <meta name={'description'} content={description} />
             <meta name={'contentId'} content={content._id} />
-            {content.contentLayer && (
-                <meta name={'contentLayer'} content={content.contentLayer} />
-            )}
+            {content.contentLayer && <meta name={'contentLayer'} content={content.contentLayer} />}
             <meta name={'msapplication-TileColor'} content={'#ffffff'} />
             <meta name={'theme-color'} content={'#ffffff'} />
-            <link
-                rel={'icon'}
-                href={`${decoratorUrl}/media/favicon.ico`}
-                sizes="any"
-            />
-            <link
-                rel={'icon'}
-                href={`${decoratorUrl}/media/favicon.svg`}
-                type={'image/svg+xml'}
-            />
-            <link
-                rel={'apple-touch-icon'}
-                href={`${decoratorUrl}/media/apple-touch-icon.png`}
-            />
-            <link
-                rel={'manifest'}
-                href={`${decoratorUrl}/media/site.webmanifest`}
-            />
+            <link rel={'icon'} href={`${decoratorUrl}/media/favicon.ico`} sizes="any" />
+            <link rel={'icon'} href={`${decoratorUrl}/media/favicon.svg`} type={'image/svg+xml'} />
+            <link rel={'apple-touch-icon'} href={`${decoratorUrl}/media/apple-touch-icon.png`} />
+            <link rel={'manifest'} href={`${decoratorUrl}/media/site.webmanifest`} />
             {children}
         </Head>
     );

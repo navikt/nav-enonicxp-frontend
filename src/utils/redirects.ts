@@ -13,18 +13,13 @@ type ContentWithExternalProductUrl = ContentProps & {
     data: Pick<ProductDataMixin, 'externalProductUrl'>;
 };
 
-const hasExternalProductUrl = (
-    content: ContentProps
-): content is ContentWithExternalProductUrl => {
-    return !!(content as ContentWithExternalProductUrl).data
-        ?.externalProductUrl;
+const hasExternalProductUrl = (content: ContentProps): content is ContentWithExternalProductUrl => {
+    return !!(content as ContentWithExternalProductUrl).data?.externalProductUrl;
 };
 
 const getTargetPath = (content: ContentProps) => {
     if (hasExternalProductUrl(content)) {
-        return content.isDraft || content.isPagePreview
-            ? null
-            : content.data.externalProductUrl;
+        return content.isDraft || content.isPagePreview ? null : content.data.externalProductUrl;
     }
 
     switch (content.type) {
@@ -38,16 +33,13 @@ const getTargetPath = (content: ContentProps) => {
             // we want to redirect to the actual content page. This is provided as a way
             // to gradually migrate individual pages from the chapter structure
             const { article } = content.data;
-            return article && article.type !== ContentType.MainArticle
-                ? article._path
-                : null;
+            return article && article.type !== ContentType.MainArticle ? article._path : null;
         default:
             return null;
     }
 };
 
-export const isRedirectType = (content: ContentProps) =>
-    redirectTypes[content.type];
+export const isRedirectType = (content: ContentProps) => redirectTypes[content.type];
 
 export const getTargetIfRedirect = (contentData: ContentProps) => {
     const targetPath = getTargetPath(contentData);
@@ -55,10 +47,7 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
 };
 
 // Used for redirect from a next.js data fetch function
-export const redirectPageProps = (
-    destination: string,
-    isPermanent: boolean
-) => ({
+export const redirectPageProps = (destination: string, isPermanent: boolean) => ({
     props: {},
     redirect: {
         // Decode then (re)encode to ensure the destination is not double-encoded
@@ -69,10 +58,7 @@ export const redirectPageProps = (
 });
 
 export const isPermanentRedirect = (content: ContentProps) => {
-    if (
-        content.type === ContentType.InternalLink ||
-        content.type === ContentType.ExternalLink
-    ) {
+    if (content.type === ContentType.InternalLink || content.type === ContentType.ExternalLink) {
         return !!content.data.permanentRedirect;
     }
 

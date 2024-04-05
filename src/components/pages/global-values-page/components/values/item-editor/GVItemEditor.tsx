@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
-import {
-    generateGvUsageMessages,
-    gvNameExists,
-} from 'components/pages/global-values-page/utils';
+import { generateGvUsageMessages, gvNameExists } from 'components/pages/global-values-page/utils';
 import { gvServiceAddItem } from 'components/pages/global-values-page/api/services/add';
 import { gvServiceModifyItem } from 'components/pages/global-values-page/api/services/modify';
 import { gvServiceRemoveItem } from 'components/pages/global-values-page/api/services/remove';
@@ -35,22 +32,21 @@ type Props = {
     | { item?: undefined; newType: GlobalValueItem['type'] }
 );
 
-const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } =
-    {
-        numberValue: {
-            type: 'numberValue',
-            key: '',
-            itemName: '',
-            numberValue: '',
-        },
-        caseTime: {
-            type: 'caseTime',
-            key: '',
-            itemName: '',
-            unit: 'months',
-            value: '',
-        },
-    };
+const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } = {
+    numberValue: {
+        type: 'numberValue',
+        key: '',
+        itemName: '',
+        numberValue: '',
+    },
+    caseTime: {
+        type: 'caseTime',
+        key: '',
+        itemName: '',
+        unit: 'months',
+        value: '',
+    },
+};
 
 export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     const [inputState, setInputState] = useState<GlobalValueItem | null>(
@@ -65,8 +61,7 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
         }
     }, [item]);
 
-    const { valueItems, contentId, setValueItems, setMessages } =
-        useGvEditorState();
+    const { valueItems, contentId, setValueItems, setMessages } = useGvEditorState();
 
     const onFetchError = (e: any) => {
         setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
@@ -80,9 +75,7 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
 
     const updateAndClose = () => {
         onClose?.();
-        gvServiceGetValueSet(contentId).then(
-            (res) => res?.items && setValueItems(res.items)
-        );
+        gvServiceGetValueSet(contentId).then((res) => res?.items && setValueItems(res.items));
     };
 
     const deleteItem = async () => {
@@ -202,39 +195,25 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                     {awaitDeleteConfirm ? (
                         <>
                             <BodyShort className={style.deleteConfirmMsg}>
-                                {
-                                    'Obs: Denne verdien kan være i bruk - er du sikker?'
-                                }
+                                {'Obs: Denne verdien kan være i bruk - er du sikker?'}
                             </BodyShort>
-                            <GVButton
-                                variant={'danger'}
-                                onClick={deleteConfirm}
-                            >
+                            <GVButton variant={'danger'} onClick={deleteConfirm}>
                                 {'Bekreft sletting'}
                             </GVButton>
-                            <GVButton
-                                variant={'secondary'}
-                                onClick={deleteCancel}
-                            >
+                            <GVButton variant={'secondary'} onClick={deleteCancel}>
                                 {'Avbryt sletting'}
                             </GVButton>
                         </>
                     ) : (
                         <>
-                            <GVButton
-                                variant={'primary'}
-                                onClick={validateAndSubmitItem}
-                            >
+                            <GVButton variant={'primary'} onClick={validateAndSubmitItem}>
                                 {'Lagre verdi'}
                             </GVButton>
                             <GVButton variant={'primary'} onClick={onClose}>
                                 {'Avbryt'}
                             </GVButton>
                             {!newType && (
-                                <GVButton
-                                    variant={'danger'}
-                                    onClick={deleteItem}
-                                >
+                                <GVButton variant={'danger'} onClick={deleteItem}>
                                     {'Slett'}
                                 </GVButton>
                             )}

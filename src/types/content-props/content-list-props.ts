@@ -1,8 +1,4 @@
-import {
-    ContentType,
-    ContentCommonProps,
-    ContentProps,
-} from './_content-common';
+import { ContentType, ContentCommonProps, ContentProps } from './_content-common';
 import { DateTimeKey } from 'types/datetime';
 
 export type ContentListData = {

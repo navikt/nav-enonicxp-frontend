@@ -20,12 +20,7 @@ export const SearchForm = () => {
 
     return (
         <div className={style.search}>
-            <Heading
-                level="2"
-                size="large"
-                className={style.header}
-                id={'search-header'}
-            >
+            <Heading level="2" size="large" className={style.header} id={'search-header'}>
                 {HEADER_TEXT}
             </Heading>
             <form onSubmit={onSearchSubmit} className={style.form}>
@@ -56,11 +51,7 @@ export const SearchForm = () => {
                             <ClearIcon />
                         </Button>
                     )}
-                    <Button
-                        className={style.button}
-                        variant={'primary'}
-                        onClick={onSearchSubmit}
-                    >
+                    <Button className={style.button} variant={'primary'} onClick={onSearchSubmit}>
                         {'Søk'}
                     </Button>
                 </div>

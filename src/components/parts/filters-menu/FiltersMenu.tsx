@@ -4,10 +4,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
-import {
-    Category,
-    FilterMenuProps,
-} from 'types/component-props/parts/filter-menu';
+import { Category, FilterMenuProps } from 'types/component-props/parts/filter-menu';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -21,12 +18,8 @@ import style from './FiltersMenu.module.scss';
 export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
-    const {
-        clearFiltersForPage,
-        selectedFilters,
-        setAvailableFilters,
-        toggleFilter,
-    } = useFilterState();
+    const { clearFiltersForPage, selectedFilters, setAvailableFilters, toggleFilter } =
+        useFilterState();
 
     const isFirstFilterInPage = checkIfFilterFirstInPage({
         path,
@@ -118,17 +111,13 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
                                         onToggleFilterHandler(filter, category);
                                     }}
                                     filter={filter}
-                                    isSelected={selectedFilters.includes(
-                                        filter.id
-                                    )}
+                                    isSelected={selectedFilters.includes(filter.id)}
                                     key={filterIndex}
                                 />
                             ))}
                             <FilterExplanation
                                 selectedFilters={selectedFilters}
-                                availableFilters={category.filters.map(
-                                    (filter) => filter.id
-                                )}
+                                availableFilters={category.filters.map((filter) => filter.id)}
                             />
                         </CheckboxGroup>
                     );

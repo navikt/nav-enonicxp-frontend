@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
-import {
-    FormDetailsListItemProps,
-    FormsOverviewData,
-} from 'types/content-props/forms-overview';
+import { FormDetailsListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
 import {
     FormDetails,
     FormDetailsComponentProps,
@@ -41,10 +38,7 @@ const buildSubHeader = (
     const taxonomyTranslations = translator('taxonomies', language);
     const areaTranslations = translator('areas', language);
 
-    return [
-        ...taxonomy.map(taxonomyTranslations),
-        ...area.map(areaTranslations),
-    ]
+    return [...taxonomy.map(taxonomyTranslations), ...area.map(areaTranslations)]
         .filter(Boolean)
         .join(', ');
 };
@@ -76,9 +70,7 @@ export const FormsOverviewListPanel = ({
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [formDetailsPages, setFormDetailsPages] = useState<
-        null | FormDetailsPageProps[]
-    >(null);
+    const [formDetailsPages, setFormDetailsPages] = useState<null | FormDetailsPageProps[]>(null);
 
     const { language } = usePageContentProps();
 
@@ -96,9 +88,7 @@ export const FormsOverviewListPanel = ({
             .then((contentFromCache) => {
                 const validFormDetails = contentFromCache.filter((content) => {
                     if (!content) {
-                        setError(
-                            'Teknisk feil: Noen av skjemainngangene kunne ikke lastes'
-                        );
+                        setError('Teknisk feil: Noen av skjemainngangene kunne ikke lastes');
                         return false;
                     }
 
@@ -125,9 +115,7 @@ export const FormsOverviewListPanel = ({
                 opprinnelse: 'skjemaoversikt accordion',
             }}
         >
-            {!isAddendumPage && (
-                <BodyLong className={style.ingress}>{ingress}</BodyLong>
-            )}
+            {!isAddendumPage && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
             {formDetailsPages?.map((formDetail) => (
                 <FormDetails
                     formDetails={formDetail.data}

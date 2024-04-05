@@ -25,10 +25,7 @@ export const NewsListPart = ({ config }: DynamicNewsListProps) => {
                     listType={'chevron'}
                 />
                 {moreNews && (
-                    <LenkeStandalone
-                        href={moreNews.url}
-                        className={style.moreNews}
-                    >
+                    <LenkeStandalone href={moreNews.url} className={style.moreNews}>
                         {moreNews.text}
                     </LenkeStandalone>
                 )}

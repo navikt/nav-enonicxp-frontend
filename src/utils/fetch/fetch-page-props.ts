@@ -54,13 +54,7 @@ export const fetchPageProps = async ({
     const idOrPath = routerQueryToXpPathOrId(routerQuery || '');
 
     if (!isValidIdOrPath(idOrPath)) {
-        return errorHandler(
-            makeErrorProps(
-                stripXpPathPrefix(idOrPath),
-                errorMessageURIError,
-                400
-            )
-        );
+        return errorHandler(makeErrorProps(stripXpPathPrefix(idOrPath), errorMessageURIError, 400));
     }
 
     const content = await fetchPage({

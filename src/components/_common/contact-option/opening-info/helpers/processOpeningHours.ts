@@ -41,21 +41,11 @@ const transformOpeningHour = ({
     return { ...commonProps, status: 'OPEN', from, to };
 };
 
-const getSpecialOpeningHour = (
-    specialOpeningHours: OpeningHourSpecialRaw[],
-    day: Dayjs
-) =>
-    specialOpeningHours.find((openingHour) =>
-        day.isSame(openingHour.date, 'day')
-    );
+const getSpecialOpeningHour = (specialOpeningHours: OpeningHourSpecialRaw[], day: Dayjs) =>
+    specialOpeningHours.find((openingHour) => day.isSame(openingHour.date, 'day'));
 
-const getRegularOpeningHour = (
-    regularOpeningHours: OpeningHourRegularRaw[],
-    day: Dayjs
-) =>
-    regularOpeningHours.find(
-        (openingHour) => day.day() === dayNameToIndex[openingHour.dayName]
-    );
+const getRegularOpeningHour = (regularOpeningHours: OpeningHourRegularRaw[], day: Dayjs) =>
+    regularOpeningHours.find((openingHour) => day.day() === dayNameToIndex[openingHour.dayName]);
 
 export const processOpeningHours = (
     regularOpeningHours: OpeningHourRegularRaw[] = [],
@@ -74,9 +64,7 @@ export const processOpeningHours = (
             getSpecialOpeningHour(specialOpeningHours, dayToCheck) ||
             getRegularOpeningHour(regularOpeningHours, dayToCheck);
 
-        openingHours.push(
-            transformOpeningHour({ openingHour, day: dayToCheck })
-        );
+        openingHours.push(transformOpeningHour({ openingHour, day: dayToCheck }));
     }
 
     return openingHours;

@@ -12,11 +12,7 @@ type Props = {
     contentList: SiteInfoContentProps[];
 };
 
-export const SiteInfoPublishInfoList = ({
-    title,
-    titleEmpty,
-    contentList,
-}: Props) => {
+export const SiteInfoPublishInfoList = ({ title, titleEmpty, contentList }: Props) => {
     const { length } = contentList;
 
     return length > 0 ? (

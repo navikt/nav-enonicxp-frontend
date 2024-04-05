@@ -17,17 +17,11 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
 
     return (
         <div className={styles.officeBranchPage}>
-            <OfficePageHeader
-                officeDetails={props.data}
-                showTimeStamp={false}
-            />
+            <OfficePageHeader officeDetails={props.data} showTimeStamp={false} />
             <OfficeDetails officeData={props.data} />
             <div className={classNames(styles.content, styles.pageContent)}>
                 {editorialPage && (
-                    <ComponentMapper
-                        componentProps={editorialPage.page}
-                        pageProps={props}
-                    />
+                    <ComponentMapper componentProps={editorialPage.page} pageProps={props} />
                 )}
             </div>
         </div>

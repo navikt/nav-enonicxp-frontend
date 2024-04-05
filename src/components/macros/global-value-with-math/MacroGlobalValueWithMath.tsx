@@ -6,8 +6,7 @@ import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
 import { logger } from 'srcCommon/logger';
 
-type ExpressionProps =
-    MacroGlobalValueWithMathProps['config']['global_value_with_math'];
+type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
 export function substituteExpression(expression: string, variables: number[]) {
     return expression.replace(/\$(\d+)/g, (_, idx) => {
@@ -63,16 +62,10 @@ export const evaluateExpression = (
     isEditorView: boolean
 ) => {
     try {
-        const expressionSubstituted = substituteExpression(
-            expression,
-            variables
-        );
+        const expressionSubstituted = substituteExpression(expression, variables);
 
         // jsep only accepts . as decimal separator
-        const expressionWithDotSeparators = expressionSubstituted.replace(
-            ',',
-            '.'
-        );
+        const expressionWithDotSeparators = expressionSubstituted.replace(',', '.');
 
         const parsedExpression = jsep(expressionWithDotSeparators);
         const result = evaluateExpressionJSEP(parsedExpression);
@@ -91,20 +84,14 @@ export const evaluateExpression = (
     }
 };
 
-export const MacroGlobalValueWithMath = ({
-    config,
-}: MacroGlobalValueWithMathProps) => {
+export const MacroGlobalValueWithMath = ({ config }: MacroGlobalValueWithMathProps) => {
     const { language, editorView } = usePageContentProps();
 
     if (!config?.global_value_with_math) {
         return null;
     }
 
-    const value = evaluateExpression(
-        config.global_value_with_math,
-        language,
-        !!editorView
-    );
+    const value = evaluateExpression(config.global_value_with_math, language, !!editorView);
 
     return <>{value}</>;
 };

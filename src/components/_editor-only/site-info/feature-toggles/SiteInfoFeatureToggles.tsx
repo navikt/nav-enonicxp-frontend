@@ -21,8 +21,7 @@ export type EditorFeatureProps = {
 export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
     [EditorFeature.HideLeftPanel]: {
         key: EditorFeature.HideLeftPanel,
-        description:
-            'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
+        description: 'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
         defaultValue: false,
     },
     [EditorFeature.EditorReloadBlocker]: {
@@ -52,10 +51,7 @@ export const SiteInfoFeatureToggles = () => {
                         key={key}
                         defaultChecked={isEditorFeatureEnabled(key)}
                         onClick={(e) => {
-                            setEditorFeatureToggle(
-                                key,
-                                e.currentTarget.checked
-                            );
+                            setEditorFeatureToggle(key, e.currentTarget.checked);
                         }}
                     >
                         {description}
