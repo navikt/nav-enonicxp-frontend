@@ -20,17 +20,8 @@ export const SearchForm = () => {
 
     return (
         <div className={style.search}>
-            <Heading
-                level="2"
-                size="large"
-                className={style.header}
-                id={'search-header'}
-            >
-                {HEADER_TEXT}
-            </Heading>
             <form onSubmit={onSearchSubmit} className={style.form}>
                 <TextField
-                    aria-labelledby={'search-header'}
                     className={style.input}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     maxLength={MAX_SEARCH_LENGTH}

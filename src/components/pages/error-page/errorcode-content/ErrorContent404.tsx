@@ -24,48 +24,29 @@ export const ErrorContent404 = () => {
     return (
         <div className={style.error404}>
             <div>
-                <BodyLong>
-                    {
-                        'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
-                    }
-                </BodyLong>
                 {urlSuggestion && (
                     <BodyLong>
                         {'Kanskje du mente '}
                         <LenkeInline href={urlSuggestion}>
-                            {urlSuggestion}
+                            {`nav.no${new URL(urlSuggestion).pathname}`}
                         </LenkeInline>
-                        {'?'}
                     </BodyLong>
                 )}
+                <BodyLong>{'Du kan søke:'}</BodyLong>
+                <SearchForm />
                 <BodyLong>
-                    {'Bruk gjerne søket, menyen eller '}
-                    <LenkeInline href={frontpageBase}>
-                        {'gå til forsiden'}
-                    </LenkeInline>
-                    {'.'}
-                </BodyLong>
-                <BodyLong>
+                    {'Meld gjerne fra om '}
                     <LenkeInline href={feedbackHref}>
-                        {'Meld gjerne fra om denne lenken'}
+                        {'feil på lenken'}
                     </LenkeInline>
                 </BodyLong>
             </div>
-
-            <SearchForm />
 
             <div className={style.enContent}>
                 <Heading level="2" size="large" className={style.enHeader}>
                     {'In English'}
                 </Heading>
                 <BodyLong>{'The page you requested cannot be found.'}</BodyLong>
-                <BodyLong>
-                    {'Go to the '}
-                    <LenkeInline href={`${frontpageBase}/en`}>
-                        {'front page'}
-                    </LenkeInline>
-                    {', or use one of the links in the menu.'}
-                </BodyLong>
             </div>
         </div>
     );
