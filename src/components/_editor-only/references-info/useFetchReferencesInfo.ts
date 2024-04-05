@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
@@ -21,10 +22,7 @@ type ServiceResponse =
 
 const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/references`;
 
-export const useFetchReferencesInfo = (
-    contentId: string,
-    contentLayer?: string
-) => {
+export const useFetchReferencesInfo = (contentId: string, contentLayer?: string) => {
     const [references, setReferences] = useState<ServiceResponse>({
         result: 'notimpl',
     });

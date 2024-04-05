@@ -1,6 +1,7 @@
 import React from 'react';
-import { classNames } from 'utils/classnames';
 import { Heading } from '@navikt/ds-react';
+
+import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import styles from './LinkPanelNavno.module.scss';
@@ -60,11 +61,7 @@ export const LinkPanelNavno = ({
                         {linkText}
                     </LenkeBase>
                 </span>
-                {children && (
-                    <div className={styles.linkPanelNavnoIngress}>
-                        {children}
-                    </div>
-                )}
+                {children && <div className={styles.linkPanelNavnoIngress}>{children}</div>}
             </div>
         </div>
     );

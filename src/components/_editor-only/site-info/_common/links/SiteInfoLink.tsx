@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-    adminOrigin,
-    appOrigin,
-    editorPathPrefix,
-    stripXpPathPrefix,
-} from 'utils/urls';
+
+import { adminOrigin, appOrigin, editorPathPrefix, stripXpPathPrefix } from 'utils/urls';
 
 import style from './SiteInfoLink.module.scss';
 
@@ -32,9 +28,7 @@ export const SiteInfoLink = (props: Props) => {
                 onClick={(e) => {
                     e.stopPropagation();
                 }}
-                className={
-                    target === 'editor' ? style.editorLink : style.liveLink
-                }
+                className={target === 'editor' ? style.editorLink : style.liveLink}
             >
                 {target === 'editor' ? 'Åpne i editor' : props.children}
             </a>

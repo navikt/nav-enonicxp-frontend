@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -13,10 +14,7 @@ type Props = {
     layoutProps: ProductPageFlexColsLayoutProps;
 };
 
-export const ProductPageFlexColsLayout = ({
-    pageProps,
-    layoutProps,
-}: Props) => {
+export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
@@ -54,9 +52,7 @@ export const ProductPageFlexColsLayout = ({
                 bemModifier={`${calculateColCount()}-cols`}
             />
             <EditorHelp
-                text={
-                    'Redaktørtips: Klikk "marker som klar" hvis kolonnene ikke vises riktig.'
-                }
+                text={'Redaktørtips: Klikk "marker som klar" hvis kolonnene ikke vises riktig.'}
             />
         </LayoutContainer>
     );

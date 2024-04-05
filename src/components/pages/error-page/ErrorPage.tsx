@@ -1,17 +1,16 @@
 import React from 'react';
+import { BodyLong, Heading } from '@navikt/ds-react';
+
 import { ErrorProps } from 'types/content-props/error-props';
+
 import { ErrorContent404 } from './errorcode-content/ErrorContent404';
 import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
 import { ErrorContent408 } from './errorcode-content/ErrorContent408';
 import { ErrorContent400 } from './errorcode-content/ErrorContent400';
-import { BodyLong, Heading } from '@navikt/ds-react';
 
 import style from './ErrorPage.module.scss';
 
-const errorContentByCode: Record<
-    number,
-    React.FunctionComponent<ErrorProps>
-> = {
+const errorContentByCode: Record<number, React.FunctionComponent<ErrorProps>> = {
     400: ErrorContent400,
     404: ErrorContent404,
     408: ErrorContent408,

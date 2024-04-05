@@ -1,5 +1,10 @@
 import React from 'react';
-import { ChevronRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+import {
+    ChevronRightIcon,
+    ChevronDownIcon,
+    ChevronLeftIcon,
+    ChevronUpIcon,
+} from '@navikt/aksel-icons';
 
 type Props = {
     direction?: 'Up' | 'Right' | 'Down' | 'Left';
@@ -14,7 +19,5 @@ const ChevronIcon = {
 
 export const Chevron = ({ direction = 'Right', className }: Props) => {
     const Icon = ChevronIcon[direction];
-    return (
-        <Icon className={className}  aria-hidden="true" />
-    );
+    return <Icon className={className} aria-hidden="true" />;
 };

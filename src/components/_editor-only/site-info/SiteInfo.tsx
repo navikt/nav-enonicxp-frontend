@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import React from 'react';
+
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
+
 import { SiteInfoHeader } from './header/SiteInfoHeader';
 import { SiteInfoProps } from './types';
 import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';
 import { SiteInfoCustomPaths } from './custom-paths/SiteInfoCustomPaths';
+import { SiteInfoFeatureToggles } from './feature-toggles/SiteInfoFeatureToggles';
 
 import style from './SiteInfo.module.scss';
-import { SiteInfoFeatureToggles } from './feature-toggles/SiteInfoFeatureToggles';
 
 export const SiteInfo = ({
     serverInfo,
@@ -21,10 +23,7 @@ export const SiteInfo = ({
         <>
             <Head>
                 <title>{'nav.no cms status'}</title>
-                <meta
-                    name={DocumentParameter.DecoratorDisabled}
-                    content={'true'}
-                />
+                <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
             <div className={style.container}>
                 <SiteInfoHeader

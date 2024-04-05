@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import { hasWhiteHeader, hasWhitePage, shouldPushUpwards } from 'utils/appearance';
-import { PageWarnings } from './_page-warnings/PageWarnings';
-import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
-import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from 'utils/urls';
 import { store } from 'store/store';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
-import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { classNames } from 'utils/classnames';
-import { EditorWidgets } from './_editor-only/EditorWidgets';
 import { isLegacyContentType } from 'utils/content-types';
+
+import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
+import { EditorWidgets } from './_editor-only/EditorWidgets';
+import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
+import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
+import { PageWarnings } from './_page-warnings/PageWarnings';
 
 import styles from './PageWrapper.module.scss';
 

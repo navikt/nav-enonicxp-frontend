@@ -1,5 +1,6 @@
-import { ContentCommonProps, ContentType } from './_content-common';
 import { RasterImage } from 'types/media';
+
+import { ContentCommonProps, ContentType } from './_content-common';
 
 export type VideoData = {
     accountId: string;

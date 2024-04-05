@@ -1,6 +1,7 @@
 import React from 'react';
-import { NextImage } from './NextImage';
 import { StaticImageData } from 'next/image';
+
+import { NextImage } from './NextImage';
 
 type Props = {
     imageData: StaticImageData;
@@ -10,12 +11,5 @@ type Props = {
 export const StaticImage = (props: Props) => {
     const { imageData, alt, ...imgAttribs } = props;
 
-    return (
-        <NextImage
-            {...imgAttribs}
-            src={imageData.src}
-            alt={alt}
-            role={imgAttribs.role}
-        />
-    );
+    return <NextImage {...imgAttribs} src={imageData.src} alt={alt} role={imgAttribs.role} />;
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -14,17 +15,12 @@ type Props = {
     layoutProps: LegacyLayoutProps;
 };
 
-const getNewsArticleProps = (
-    pageProps: ContentProps
-): MainArticleProps | null => {
+const getNewsArticleProps = (pageProps: ContentProps): MainArticleProps | null => {
     const props =
-        pageProps.type === ContentType.MainArticleChapter
-            ? pageProps.data.article
-            : pageProps;
+        pageProps.type === ContentType.MainArticleChapter ? pageProps.data.article : pageProps;
 
     return props?.type === ContentType.MainArticle &&
-        (props.data.contentType === 'news' ||
-            props.data.contentType === 'pressRelease')
+        (props.data.contentType === 'news' || props.data.contentType === 'pressRelease')
         ? props
         : null;
 };
@@ -55,13 +51,7 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
             {Object.values(regions).map((regionProps, index) => {
-                return (
-                    <Region
-                        pageProps={pageProps}
-                        regionProps={regionProps}
-                        key={index}
-                    />
-                );
+                return <Region pageProps={pageProps} regionProps={regionProps} key={index} />;
             })}
         </LayoutContainer>
     );

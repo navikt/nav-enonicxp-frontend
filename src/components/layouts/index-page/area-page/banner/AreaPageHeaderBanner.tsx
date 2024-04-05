@@ -1,13 +1,14 @@
 import React from 'react';
+
 import { AreaPageProps } from 'types/content-props/index-pages-props';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { FancyChevron } from 'components/_common/chevron/FancyChevron';
+import chevronStyle from 'components/_common/chevron/FancyChevronCommon.module.scss';
 
 import style from './AreaPageHeaderBanner.module.scss';
-import chevronStyle from 'components/_common/chevron/FancyChevronCommon.module.scss';
 
 type Props = Pick<AreaPageProps['data'], 'banner' | 'header'>;
 

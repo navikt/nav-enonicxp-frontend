@@ -1,6 +1,9 @@
 import React from 'react';
-import { LenkeBase } from './LenkeBase';
+
 import { classNames } from 'utils/classnames';
+
+import { LenkeBase } from './LenkeBase';
+
 import style from './LenkeInline.module.scss';
 
 type Props = React.ComponentProps<typeof LenkeBase>;

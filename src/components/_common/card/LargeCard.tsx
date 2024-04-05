@@ -1,13 +1,15 @@
 import React from 'react';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
+
 import { classNames } from 'utils/classnames';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { useCard } from './useCard';
 import { usePageContentProps } from 'store/pageContext';
+
+import { useCard } from './useCard';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';
@@ -34,14 +36,7 @@ type Props = {
 };
 
 export const LargeCard = (props: Props) => {
-    const {
-        link,
-        description,
-        type,
-        category,
-        illustration,
-        preferStaticIllustration,
-    } = props;
+    const { link, description, type, category, illustration, preferStaticIllustration } = props;
     const { text } = link;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
@@ -55,9 +50,7 @@ export const LargeCard = (props: Props) => {
     const { editorView } = usePageContentProps();
 
     const layoutVariation =
-        type === CardType.Situation
-            ? LayoutVariation.SITUATION
-            : LayoutVariation.DEFAULT;
+        type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
 
     return (
         <div {...userEventProps} className={classNames(sharedStyle.card)}>
@@ -74,28 +67,20 @@ export const LargeCard = (props: Props) => {
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
-                                editorView === 'edit' ||
-                                preferStaticIllustration
+                                editorView === 'edit' || preferStaticIllustration
                             }
                         />
                     )}
                     <LenkeBase
                         href={link.url}
                         {...analyticsProps}
-                        className={classNames(
-                            style.title,
-                            sharedStyle.lenkeBaseOverride
-                        )}
+                        className={classNames(style.title, sharedStyle.lenkeBaseOverride)}
                     >
                         {text}
                     </LenkeBase>
                     <div className={style.textContainer}>
-                        <BodyLong className={style.description}>
-                            {description}
-                        </BodyLong>
-                        <BodyShort className={style.category}>
-                            {category}
-                        </BodyShort>
+                        <BodyLong className={style.description}>{description}</BodyLong>
+                        <BodyShort className={style.category}>{category}</BodyShort>
                     </div>
                 </div>
             </div>

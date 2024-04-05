@@ -1,12 +1,14 @@
 import React from 'react';
+
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
 import { IndexPageProps } from 'types/component-props/pages/index-page';
-import { AreaPageHeader } from './area-page/AreaPageHeader';
 import { getAudience } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
+
+import { AreaPageHeader } from './area-page/AreaPageHeader';
+import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
 
 import style from './IndexPage.module.scss';
 
@@ -25,18 +27,12 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            className={classNames(
-                style.indexPage,
-                hasNoTopGap && style.noTopGap
-            )}
+            className={classNames(style.indexPage, hasNoTopGap && style.noTopGap)}
         >
             <>
                 {/* We don't use this region on the AreaPage atm */}
                 {type !== ContentType.AreaPage && (
-                    <Region
-                        pageProps={pageProps}
-                        regionProps={regions.contentTop}
-                    />
+                    <Region pageProps={pageProps} regionProps={regions.contentTop} />
                 )}
                 {type === ContentType.FrontPage ? (
                     <FrontPageAreaNavigation content={pageProps} />

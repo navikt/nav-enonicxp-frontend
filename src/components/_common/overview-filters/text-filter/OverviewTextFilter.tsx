@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
+
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
@@ -45,24 +46,16 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     };
 
     useEffect(() => {
-        const handleInputFromEvent = (
-            e: CustomEvent<OverviewFiltersTextInputEventDetail>
-        ) => {
+        const handleInputFromEvent = (e: CustomEvent<OverviewFiltersTextInputEventDetail>) => {
             const { value, id: senderId } = e.detail;
             if (senderId !== inputId) {
                 setTextInput(value);
             }
         };
 
-        window.addEventListener(
-            OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-            handleInputFromEvent
-        );
+        window.addEventListener(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, handleInputFromEvent);
         return () => {
-            window.removeEventListener(
-                OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-                handleInputFromEvent
-            );
+            window.removeEventListener(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, handleInputFromEvent);
         };
     }, [inputId]);
 
@@ -84,9 +77,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 // with onscreen keyboard input.
                 // (Closing the onscreen keyboard interrupts scrolling)
                 setTimeout(() => {
-                    const top =
-                        targetElement.getBoundingClientRect().top +
-                        window.scrollY;
+                    const top = targetElement.getBoundingClientRect().top + window.scrollY;
                     windowScrollTo(top - 16);
                 }, 100);
             }}

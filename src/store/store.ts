@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
+
+import overviewFilters from 'store/slices/overviewFilters';
+
 import contentFilters from './slices/filteredContent';
 import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
-import overviewFilters from 'store/slices/overviewFilters';
 
 const options = {
     reducer: {

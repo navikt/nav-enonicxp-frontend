@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StaticImage } from 'components/_common/image/StaticImage';
 
 import arrow from './gfx/arrow.svg';

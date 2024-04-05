@@ -16,6 +16,24 @@
                 "camelCase": true
             }
         ],
+        "import/order": [
+            "warn",
+            {
+                "groups": [
+                    ["builtin", "external"],
+                    ["internal", "parent", "index", "object", "unknown", "type"],
+                    "sibling"
+                ],
+                "pathGroups": [
+                    {
+                        "pattern": "./**/*.scss",
+                        "group": "sibling",
+                        "position": "after"
+                    }
+                ],
+                "newlines-between": "always"
+            }
+        ],
         "no-console": "warn",
         "no-relative-import-paths/no-relative-import-paths": [
             "warn",

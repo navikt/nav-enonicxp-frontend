@@ -2,11 +2,7 @@ import { translationsBundleSe as se } from './se';
 import { translationsBundleEn as en } from './en';
 import { translationsBundlePl as pl } from './pl';
 import { translationsBundleNn as nn } from './nn';
-import {
-    translationsBundleNb as defaultPack,
-    Translations,
-    PartialTranslations,
-} from './default';
+import { translationsBundleNb as defaultPack, Translations, PartialTranslations } from './default';
 
 export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl' | 'uk' | 'ru';
 

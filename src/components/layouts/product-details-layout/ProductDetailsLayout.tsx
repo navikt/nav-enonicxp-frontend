@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -19,8 +20,7 @@ const getRegionHelpTexts = (
         detailType === ProductDetailType.PROCESSING_TIMES
             ? 'Hovedinnhold, søknad: Vises på oversiktssiden og på produktsiden.'
             : 'Hovedinnhold: Vises på oversiktssiden og på produktsiden.',
-    main_complaint:
-        'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
+    main_complaint: 'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
     outro: 'Oppsummering: Vises kun på oversiktssiden.',
 });
 
@@ -43,9 +43,7 @@ type Props = {
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     const detailType = getProductDetailType(pageProps);
     if (!detailType) {
-        return (
-            <EditorHelp text={'Detalj-type er ikke satt for dette innholdet'} />
-        );
+        return <EditorHelp text={'Detalj-type er ikke satt for dette innholdet'} />;
     }
 
     const { regions } = layoutProps;
@@ -66,23 +64,14 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
 
                 // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
-                if (
-                    name === 'main_complaint' &&
-                    detailType !== 'processing_times'
-                ) {
+                if (name === 'main_complaint' && detailType !== 'processing_times') {
                     return null;
                 }
 
                 return (
                     <Fragment key={name}>
-                        <EditorHelp
-                            text={regionHelpTexts[name]}
-                            type="arrowDown"
-                        />
-                        <Region
-                            pageProps={pageProps}
-                            regionProps={regionProps}
-                        />
+                        <EditorHelp text={regionHelpTexts[name]} type="arrowDown" />
+                        <Region pageProps={pageProps} regionProps={regionProps} />
                     </Fragment>
                 );
             })}

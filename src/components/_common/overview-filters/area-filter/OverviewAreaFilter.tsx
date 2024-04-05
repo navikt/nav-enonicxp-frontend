@@ -1,11 +1,9 @@
 import React from 'react';
+
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
-import {
-    OverviewFilterableItem,
-    useOverviewFilters,
-} from 'store/hooks/useOverviewFilters';
+import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
 const orderedAreas: Area[] = [
     Area.WORK,

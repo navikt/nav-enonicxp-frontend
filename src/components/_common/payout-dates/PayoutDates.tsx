@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { PayoutDatesData } from 'types/content-props/payout-dates';
 import { Table } from 'components/_common/table/Table';
 import { formatDate } from 'utils/datetime';

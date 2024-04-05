@@ -1,4 +1,5 @@
 import { Detail, Heading } from '@navikt/ds-react';
+
 import { ArticleContentType } from 'types/content-props/main-article-props';
 import { Language, translator } from 'translations';
 import { StaticImage } from 'components/_common/image/StaticImage';
@@ -14,11 +15,7 @@ type NewsPressHeaderProps = {
     type: ArticleContentType;
 };
 
-export const NewsPressHeader = ({
-    language,
-    title,
-    type,
-}: NewsPressHeaderProps) => {
+export const NewsPressHeader = ({ language, title, type }: NewsPressHeaderProps) => {
     const icon = type === 'news' ? newsPaper : pressSpeaker;
     const getLabel = translator('mainArticle', language);
 
@@ -27,14 +24,8 @@ export const NewsPressHeader = ({
     return (
         <section className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
-                <StaticImage
-                    imageData={icon}
-                    alt={''}
-                    className={styles.tagIcon}
-                />
-                <Detail className={styles.tagLabel}>
-                    {getLabel(tagLocaleId)}
-                </Detail>
+                <StaticImage imageData={icon} alt={''} className={styles.tagIcon} />
+                <Detail className={styles.tagLabel}>{getLabel(tagLocaleId)}</Detail>
             </div>
             <Heading level={'1'} size={'xlarge'}>
                 {title}

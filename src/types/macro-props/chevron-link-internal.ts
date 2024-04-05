@@ -1,5 +1,6 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
+
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroChevronLinkInternalProps extends MacroPropsCommon {
     name: MacroType.ChevronLinkInternal;

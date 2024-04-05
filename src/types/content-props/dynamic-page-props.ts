@@ -1,12 +1,13 @@
-import { ContentCommonProps, ContentType } from './_content-common';
 import { AlternativeAudience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from 'types/taxonomies';
-import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { ContentListProps } from './content-list-props';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutProps } from 'types/component-props/layouts';
+
+import { ContentListProps } from './content-list-props';
+import { OfficeDetailsData } from './office-details-props';
+import { ContentCommonProps, ContentType } from './_content-common';
 import { ProductDetailType } from './product-details';
 
 export type DynamicPageProps = ContentCommonProps & {

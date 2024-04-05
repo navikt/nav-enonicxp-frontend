@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import { FlexColsLayoutProps } from 'types/component-props/layouts/flex-cols';
 import Region from 'components/layouts/Region';
@@ -20,14 +21,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     }
 
     const { config } = layoutProps;
-    const {
-        numCols,
-        justifyContent,
-        toggleCopyButton,
-        collapse,
-        title,
-        anchorId,
-    } = config;
+    const { numCols, justifyContent, toggleCopyButton, collapse, title, anchorId } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -41,11 +35,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
             : numCols;
 
     return (
-        <LayoutContainer
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-            className={style.flexCols}
-        >
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps} className={style.flexCols}>
             {title && (
                 <Header
                     level={'2'}

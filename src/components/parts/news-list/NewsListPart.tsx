@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DynamicNewsListProps } from 'types/component-props/parts/news-list';
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
@@ -25,10 +26,7 @@ export const NewsListPart = ({ config }: DynamicNewsListProps) => {
                     listType={'chevron'}
                 />
                 {moreNews && (
-                    <LenkeStandalone
-                        href={moreNews.url}
-                        className={style.moreNews}
-                    >
+                    <LenkeStandalone href={moreNews.url} className={style.moreNews}>
                         {moreNews.text}
                     </LenkeStandalone>
                 )}

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -12,10 +13,7 @@ type Props = {
     layoutProps: SituationPageFlexColsLayoutProps;
 };
 
-export const SituationPageFlexColsLayout = ({
-    pageProps,
-    layoutProps,
-}: Props) => {
+export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
@@ -23,14 +21,7 @@ export const SituationPageFlexColsLayout = ({
     }
 
     const { config } = layoutProps;
-    const {
-        title,
-        numCols,
-        justifyContent,
-        anchorId,
-        toggleCopyButton,
-        shelf,
-    } = config;
+    const { title, numCols, justifyContent, anchorId, toggleCopyButton, shelf } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -40,8 +31,7 @@ export const SituationPageFlexColsLayout = ({
         return regionProps.components.length % 3 === 0 ? 3 : 2;
     };
 
-    const colCount =
-        typeof numCols === 'number' ? numCols : calculateColCount();
+    const colCount = typeof numCols === 'number' ? numCols : calculateColCount();
 
     const buildModifiers = () => {
         if (!shelf?._selected) {

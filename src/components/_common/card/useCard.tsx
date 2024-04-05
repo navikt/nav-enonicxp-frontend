@@ -1,7 +1,8 @@
 import React from 'react';
-import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { useState } from 'react';
 import { useRouter } from 'next/compat/router';
+
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';

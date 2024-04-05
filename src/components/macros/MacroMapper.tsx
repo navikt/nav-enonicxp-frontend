@@ -1,7 +1,13 @@
 // @ts-nocheck
 // Refactor the macro types before fixing the type errors in this file
 import React from 'react';
+
 import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
+import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
+import { MacroTall } from 'components/macros/tall/MacroTall';
+import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
+import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
+
 import { MacroButton } from './button/MacroButton';
 import { MacroButtonBlue } from './button-blue/MacroButtonBlue';
 import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLinkExternal';
@@ -25,10 +31,6 @@ import { MacroIngress } from './ingress/MacroIngress';
 import { MacroAlertBox } from './alert-box/MacroAlertBox';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
-import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
-import { MacroTall } from 'components/macros/tall/MacroTall';
-import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
-import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;

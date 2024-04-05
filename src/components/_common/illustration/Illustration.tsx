@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+
 import { IllustrationStatic } from './static/IllustrationStatic';
 import { IllustrationAnimated } from './animated/IllustrationAnimated';
 import { FallbackChevron } from './static/FallbackChevron';
@@ -20,19 +22,12 @@ export const Illustration = ({
     withFallbackIllustration,
 }: Props) => {
     if (!illustration) {
-        return withFallbackIllustration ? (
-            <FallbackChevron className={className} />
-        ) : null;
+        return withFallbackIllustration ? <FallbackChevron className={className} /> : null;
     }
 
     const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
     if (!animationDataUrl || preferStaticIllustration) {
-        return (
-            <IllustrationStatic
-                illustration={illustration}
-                className={className}
-            />
-        );
+        return <IllustrationStatic illustration={illustration} className={className} />;
     }
 
     return (

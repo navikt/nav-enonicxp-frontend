@@ -9,8 +9,7 @@ const LEGACY_DEV_HOSTNAME = 'www.intern.dev.nav.no';
 
 // 155.55.* is NAVs public IP range. Also includes the private IP range used by our
 // internal network (10.*), and localhost. Takes the IPv6 prefix ::ffff: into account.
-const isNavIp = (ip?: string) =>
-    ip && /^(::ffff:)?(155\.55\.|10\.|127\.)/.test(ip);
+const isNavIp = (ip?: string) => ip && /^(::ffff:)?(155\.55\.|10\.|127\.)/.test(ip);
 
 // Applies certain restrictions for the app in dev environments. This is not intended
 // as a security measure, but rather to ensure (to some degree) that the public does
@@ -42,9 +41,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
 
     // Sets a cookie which will bypass the IP restriction
     expressApp.get('/login', (req, res) => {
-        return res
-            .cookie(LOGIN_COOKIE, true, { maxAge: 1000 * 3600 * 24 })
-            .redirect(302, '/');
+        return res.cookie(LOGIN_COOKIE, true, { maxAge: 1000 * 3600 * 24 }).redirect(302, '/');
     });
 
     expressApp.all('*', cookieParser(), (req, res, next) => {
@@ -52,9 +49,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
             return next();
         }
 
-        logger.info(
-            `Non-authorized client ips: ${req.ip} ${JSON.stringify(req.ips)}`
-        );
+        logger.info(`Non-authorized client ips: ${req.ip} ${JSON.stringify(req.ips)}`);
 
         return res
             .status(401)

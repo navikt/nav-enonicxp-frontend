@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { MacroProductCardMiniProps } from 'types/macro-props/product-card-mini';
 import { MiniCard } from 'components/_common/card/MiniCard';
 import { getCardProps } from 'components/_common/card/card-utils';

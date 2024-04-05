@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-    ComponentType,
-    ImageComponentProps,
-} from 'types/component-props/_component-common';
 import { BodyShort } from '@navikt/ds-react';
+
+import { ComponentType, ImageComponentProps } from 'types/component-props/_component-common';
 import { NextImage } from 'components/_common/image/NextImage';
 
 import style from './Image.module.scss';

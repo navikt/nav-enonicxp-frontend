@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { OpeningHours as OpeningHoursProps } from 'types/content-props/office-details-props';
@@ -35,9 +36,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
         }
 
         if (opening.fra && opening.til) {
-            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(
-                opening.til
-            )}`;
+            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(opening.til)}`;
         }
 
         return closedLabel;

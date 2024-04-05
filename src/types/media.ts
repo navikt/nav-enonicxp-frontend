@@ -1,4 +1,5 @@
 import { XpResponseProps } from 'utils/fetch/fetch-content';
+
 import { ContentAndMediaCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
@@ -40,7 +41,5 @@ export type RasterImage = {
 
 export type XpImageProps = VectorImage | RasterImage;
 
-export const isMediaContent = (
-    content: XpResponseProps
-): content is MediaProps =>
+export const isMediaContent = (content: XpResponseProps): content is MediaProps =>
     Object.values(MediaType).includes(content.type as MediaType);

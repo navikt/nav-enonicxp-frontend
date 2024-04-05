@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { PageNavigationMenuProps } from 'types/component-props/parts/page-navigation-menu';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 

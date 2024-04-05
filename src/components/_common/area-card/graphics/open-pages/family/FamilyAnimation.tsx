@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StaticImage } from 'components/_common/image/StaticImage';
 
 import house from './gfx/house.svg';
@@ -13,11 +14,7 @@ export const FamilyAnimation = () => {
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage
-                imageData={stroller}
-                className={style.stroller}
-                alt=""
-            />
+            <StaticImage imageData={stroller} className={style.stroller} alt="" />
         </>
     );
 };

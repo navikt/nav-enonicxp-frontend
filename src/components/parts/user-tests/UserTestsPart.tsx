@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { UserTestsPartProps } from 'types/component-props/parts/user-tests';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTests } from 'components/_common/user-tests/UserTests';
@@ -8,10 +9,5 @@ export const UserTestsPart = ({ config }: UserTestsPartProps) => {
         return <EditorHelp text={'Velg en test-gruppering'} type={'error'} />;
     }
 
-    return (
-        <UserTests
-            tests={config.tests}
-            selectedTestIds={config.selectedTestIds}
-        />
-    );
+    return <UserTests tests={config.tests} selectedTestIds={config.selectedTestIds} />;
 };

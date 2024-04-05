@@ -1,9 +1,11 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
+
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
+
 import { DateLine } from './DateLine';
 import { TagLine } from './TagLine';
 
@@ -31,11 +33,7 @@ export const NewsHeader = ({ contentProps }: Props) => {
                     {pageTitle}
                 </Heading>
             </header>
-            <DateLine
-                createdTime={createdTime}
-                modifiedTime={modifiedTime}
-                language={language}
-            />
+            <DateLine createdTime={createdTime} modifiedTime={modifiedTime} language={language} />
         </>
     );
 };

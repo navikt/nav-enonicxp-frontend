@@ -1,4 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
 import {
     OpeningHours,
     OpeningHoursOpen,
@@ -10,24 +13,17 @@ import {
     openingHourDateFormat,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
 const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
-const getNextOpenOpeningHour = (
-    openingHours: OpeningHours[]
-): OpeningHoursOpen | null => {
+const getNextOpenOpeningHour = (openingHours: OpeningHours[]): OpeningHoursOpen | null => {
     const tomorrow = dayjs().add(1, 'day');
 
     for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {
-        const found = getOpeningHoursForDateTime(
-            openingHours,
-            tomorrow.add(i, 'day')
-        );
+        const found = getOpeningHoursForDateTime(openingHours, tomorrow.add(i, 'day'));
 
         if (found?.status !== 'CLOSED') {
             return found;
@@ -52,10 +48,7 @@ const getDayOfWeek = (dayJs: Dayjs, language: Language) => {
     return language === 'en' ? dayOfWeek : dayOfWeek.toLowerCase();
 };
 
-const buildFutureOpenString = (
-    { date, from }: OpeningHoursOpen,
-    language: Language
-) => {
+const buildFutureOpenString = ({ date, from }: OpeningHoursOpen, language: Language) => {
     const relatives = translator('dateTime', language)('relatives');
     const sharedTranslations = translator('contactPoint', language)('shared');
 

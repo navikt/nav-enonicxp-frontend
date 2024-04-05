@@ -1,7 +1,9 @@
-import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
-import { translator } from 'translations';
 import { Heading, Link } from '@navikt/ds-react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
+
+import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
+import { translator } from 'translations';
+
 import { PressNewsItem } from './PressNewsItem';
 
 import styles from './PressNews.module.scss';
@@ -16,10 +18,7 @@ export const PressNews = (props: PressNewsProps) => {
 
     const getTranslations = translator('pressLanding', language);
 
-    if (
-        !pressNews?.data?.sectionContents ||
-        pressNews?.data?.sectionContents?.length === 0
-    ) {
+    if (!pressNews?.data?.sectionContents || pressNews?.data?.sectionContents?.length === 0) {
         return null;
     }
 
@@ -31,10 +30,7 @@ export const PressNews = (props: PressNewsProps) => {
                 </Heading>
                 <ul className={styles.newsList}>
                     {pressNews.data.sectionContents.map((newsItem) => (
-                        <PressNewsItem
-                            newsItem={newsItem}
-                            key={newsItem._path}
-                        />
+                        <PressNewsItem newsItem={newsItem} key={newsItem._path} />
                     ))}
                 </ul>
                 {moreNewsUrl && (

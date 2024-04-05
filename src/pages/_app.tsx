@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import type { AppProps } from 'next/app';
 import { initializeFaro } from '@grafana/faro-web-sdk';
 import { Provider } from 'react-redux';
+
+import type { AppProps } from 'next/app';
 import { store } from 'store/store';
 import { PageProps } from 'components/PageBase';
 

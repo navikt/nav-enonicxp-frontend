@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+
 import { Heading } from '@navikt/ds-react';
 
 import style from './Faktaboks.module.scss';
@@ -21,13 +23,7 @@ export const Faktaboks = ({ label, fakta, version = '1' }: Props) => {
 
     return (
         <div className={version === '1' ? style.facts_v1 : style.facts_v2}>
-            {version === '1' && (
-                <StaticImage
-                    imageData={icon}
-                    alt=""
-                    className={style.factIcon}
-                />
-            )}
+            {version === '1' && <StaticImage imageData={icon} alt="" className={style.factIcon} />}
             <Heading level="2" size="medium" className={style.decorated}>
                 {label}
             </Heading>

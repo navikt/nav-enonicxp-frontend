@@ -1,6 +1,7 @@
 import React from 'react';
-import { LinkPanel } from 'types/link-panel';
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
+
+import { LinkPanel } from 'types/link-panel';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { getUrlFromContent } from 'utils/links-from-content';
 
@@ -44,9 +45,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                                 linkGroup={title}
                                 key={item.title}
                             >
-                                {item.ingress && (
-                                    <BodyLong>{item.ingress}</BodyLong>
-                                )}
+                                {item.ingress && <BodyLong>{item.ingress}</BodyLong>}
                             </LenkepanelNavNo>
                         );
                     })}

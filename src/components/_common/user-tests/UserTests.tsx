@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { usePageContentProps } from 'store/pageContext';
 import { UserTestsEditorView } from 'components/_common/user-tests/editor-view/UserTestsEditorView';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
@@ -18,11 +19,7 @@ export const UserTests = (props: UserTestsComponentProps) => {
 
     return (
         <div className={style.wrapper}>
-            {editorView ? (
-                <UserTestsEditorView {...props} />
-            ) : (
-                <UserTestsPublicView {...props} />
-            )}
+            {editorView ? <UserTestsEditorView {...props} /> : <UserTestsPublicView {...props} />}
         </div>
     );
 };

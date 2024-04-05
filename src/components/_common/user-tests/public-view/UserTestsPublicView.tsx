@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { isCurrentTimeInRange } from 'utils/datetime';
 import { useIsClientSide } from 'utils/useIsClientSide';
 import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
@@ -64,9 +65,7 @@ const pickApplicableVariant = ({
 
     const previouslySelectedVariantId = userTestGetSelectedVariantId(cookieId);
     if (previouslySelectedVariantId) {
-        return selectableVariants.find(
-            (variant) => variant.id === previouslySelectedVariantId
-        );
+        return selectableVariants.find((variant) => variant.id === previouslySelectedVariantId);
     }
 
     return selectRandomVariant(variants, selectableVariants);

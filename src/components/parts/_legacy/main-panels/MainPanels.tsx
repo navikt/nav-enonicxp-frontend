@@ -1,6 +1,7 @@
 import React from 'react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
+
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { translator } from 'translations';
 import { SectionPageProps } from 'types/content-props/section-page-props';

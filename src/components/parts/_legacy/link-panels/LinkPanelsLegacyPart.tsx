@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { LenkepanelListe } from 'components/_common/lenkepanel-liste/LenkepanelListe';
 import { SectionPageProps } from 'types/content-props/section-page-props';
 
@@ -8,7 +9,5 @@ export const LinkPanelsLegacyPart = (props: SectionPageProps) => {
         return null;
     }
 
-    return (
-        <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />
-    );
+    return <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />;
 };

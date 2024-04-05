@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, useId } from 'react';
+import { InformationSquareIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
+
 import { classNames } from 'utils/classnames';
-import {
-    InformationSquareIcon,
-    InformationSquareFillIcon,
-} from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
@@ -24,9 +22,7 @@ export const FilterExplanation = ({
 
     const { language } = usePageContentProps();
 
-    const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-        null
-    );
+    const highlightTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const relevantSelectedFilters = selectedFilters.filter((filterId) =>
         availableFilters.includes(filterId)
     );

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Loader } from '@navikt/ds-react';
+
 import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import { usePageContentProps } from 'store/pageContext';
 import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
-import { Loader } from '@navikt/ds-react';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
@@ -17,15 +18,10 @@ type Props = {
     textPrefix?: string;
 };
 
-export const OpeningInfo = ({
-    regularOpeningHours,
-    specialOpeningHours,
-    textPrefix,
-}: Props) => {
+export const OpeningInfo = ({ regularOpeningHours, specialOpeningHours, textPrefix }: Props) => {
     const { language } = usePageContentProps();
 
-    const [currentOpeningHours, setCurrentOpeningHours] =
-        useState<OpeningHours | null>(null);
+    const [currentOpeningHours, setCurrentOpeningHours] = useState<OpeningHours | null>(null);
     const [openingInfoText, setOpeningInfoText] = useState('');
 
     useEffect(() => {

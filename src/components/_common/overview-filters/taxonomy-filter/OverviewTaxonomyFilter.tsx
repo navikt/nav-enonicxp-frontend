@@ -1,11 +1,9 @@
 import React from 'react';
+
 import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
-import {
-    OverviewFilterableItem,
-    useOverviewFilters,
-} from 'store/hooks/useOverviewFilters';
+import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
 const orderedTaxonomies: ProductTaxonomy[] = [
     ProductTaxonomy.BENEFITS,
@@ -35,14 +33,10 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     };
 
     const taxonomiesPresent = orderedTaxonomies.filter((taxonomy) =>
-        items.some((item) =>
-            item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy)
-        )
+        items.some((item) => item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy))
     );
 
-    const listHasGuidePage = items.some(
-        (product) => product.type === 'no.nav.navno:guide-page'
-    );
+    const listHasGuidePage = items.some((product) => product.type === 'no.nav.navno:guide-page');
 
     if (listHasGuidePage) {
         taxonomiesPresent.push(ProductTaxonomy.OTHER);

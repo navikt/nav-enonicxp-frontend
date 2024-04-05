@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Button } from 'components/_common/button/Button';
 
 type Props = {
@@ -6,10 +7,7 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionSelectorSubmitButton = ({
-    url,
-    submitVersionUrl,
-}: Props) => {
+export const VersionSelectorSubmitButton = ({ url, submitVersionUrl }: Props) => {
     return (
         <Button
             href={url}

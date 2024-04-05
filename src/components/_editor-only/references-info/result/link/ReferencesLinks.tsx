@@ -1,8 +1,9 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
+
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { ReferenceItem } from 'components/_editor-only/references-info/types';
-import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { adminOrigin } from 'utils/urls';
 import { usePageContentProps } from 'store/pageContext';
@@ -15,11 +16,7 @@ type Props = {
     contentLayer?: string;
 };
 
-export const ReferencesLinks = ({
-    references,
-    headerText,
-    contentLayer,
-}: Props) => {
+export const ReferencesLinks = ({ references, headerText, contentLayer }: Props) => {
     const { editorView } = usePageContentProps();
 
     const languageNames = translator('localeNames', 'no');
@@ -33,17 +30,13 @@ export const ReferencesLinks = ({
                 const { id, name, path, editorPath, layer } = reference;
 
                 const layersIndicatorText =
-                    layer !== contentLayer
-                        ? `[Layer: ${languageNames(layer)}] `
-                        : null;
+                    layer !== contentLayer ? `[Layer: ${languageNames(layer)}] ` : null;
 
                 const href = `${adminOrigin}${editorPath}`;
 
                 return (
                     <div className={style.link} key={id}>
-                        {layersIndicatorText && (
-                            <strong>{layersIndicatorText}</strong>
-                        )}
+                        {layersIndicatorText && <strong>{layersIndicatorText}</strong>}
                         {`${name}: `}
                         <EditorLinkWrapper>
                             <LenkeInline

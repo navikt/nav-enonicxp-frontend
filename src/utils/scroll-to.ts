@@ -1,6 +1,5 @@
 const hasScrollOptionsSupport =
-    typeof document !== 'undefined' &&
-    'scrollBehavior' in document.documentElement.style;
+    typeof document !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
 
 const scrollToCurrent = (position: number) => {
     window.scrollTo({
@@ -12,9 +11,7 @@ const scrollToLegacy = (position: number) => {
     window.scrollTo(0, position);
 };
 
-export const windowScrollTo = hasScrollOptionsSupport
-    ? scrollToCurrent
-    : scrollToLegacy;
+export const windowScrollTo = hasScrollOptionsSupport ? scrollToCurrent : scrollToLegacy;
 
 export const smoothScrollToTarget = (targetId: string, offset = 0) => {
     const targetElement = document.getElementById(targetId);

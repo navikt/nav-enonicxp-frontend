@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { usePageContentProps } from 'store/pageContext';
 import { MacroGlobalValueProps } from 'types/macro-props/global-value';
 import { formatNumber, isStringOnlyNumber } from 'utils/math';
@@ -7,12 +8,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
     const { language } = usePageContentProps();
     if (!config?.global_value) {
-        return (
-            <EditorHelp
-                text={'Teknisk feil: macro-data er ikke gyldig'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Teknisk feil: macro-data er ikke gyldig'} type={'error'} />;
     }
 
     const { value, decimals } = config.global_value;

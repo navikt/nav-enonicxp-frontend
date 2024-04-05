@@ -12,5 +12,4 @@ const legacyContentTypes: ReadonlySet<ContentType> = new Set([
     ContentType.TransportPage,
 ]);
 
-export const isLegacyContentType = (type: ContentType) =>
-    legacyContentTypes.has(type);
+export const isLegacyContentType = (type: ContentType) => legacyContentTypes.has(type);

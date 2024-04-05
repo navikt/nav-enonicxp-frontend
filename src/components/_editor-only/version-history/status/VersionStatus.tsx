@@ -1,9 +1,10 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
+import dayjs from 'dayjs';
+
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { formatDateTime } from 'utils/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
-import dayjs from 'dayjs';
 import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
 
 import style from './VersionStatus.module.scss';
@@ -14,18 +15,10 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionStatus = ({
-    content,
-    requestedDateTime,
-    submitVersionUrl,
-}: Props) => {
+export const VersionStatus = ({ content, requestedDateTime, submitVersionUrl }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
 
-    const requestedTimeFormatted = formatDateTime(
-        requestedDateTime,
-        'nb',
-        true
-    );
+    const requestedTimeFormatted = formatDateTime(requestedDateTime, 'nb', true);
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
 
     const requestedUnixTime = dayjs(requestedDateTime).startOf('minute').unix();

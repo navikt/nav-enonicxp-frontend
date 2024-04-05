@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { StaticImage } from 'components/_common/image/StaticImage';
 
 import pill from './gfx/pill.svg';
@@ -13,11 +14,7 @@ export const HealthAnimation = () => {
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage
-                imageData={stethoscope}
-                className={style.stethoscope}
-                alt=""
-            />
+            <StaticImage imageData={stethoscope} className={style.stethoscope} alt="" />
         </>
     );
 };

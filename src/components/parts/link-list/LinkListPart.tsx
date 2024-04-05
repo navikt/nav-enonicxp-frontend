@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DynamicLinkListProps } from 'types/component-props/parts/link-list';
 import { Lenkeliste } from 'components/_common/lenkeliste/Lenkeliste';
 import { ContentList } from 'components/_common/content-list/ContentList';
@@ -48,9 +49,7 @@ export const LinkListPart = ({ config }: DynamicLinkListProps) => {
 
     return ListComponent ? (
         <div className={style.linkList}>
-            <ExpandableComponentWrapper {...config}>
-                {ListComponent}
-            </ExpandableComponentWrapper>
+            <ExpandableComponentWrapper {...config}>{ListComponent}</ExpandableComponentWrapper>
         </div>
     ) : null;
 };

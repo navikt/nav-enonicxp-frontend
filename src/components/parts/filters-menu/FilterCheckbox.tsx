@@ -1,10 +1,12 @@
 import { useId } from 'react';
+
 import { Filter } from 'types/store/filter-menu';
 import { classNames } from 'utils/classnames';
 import { StaticImage } from 'components/_common/image/StaticImage';
 
 import checkboxIcon from './checkbox.svg';
 import checkedIcon from './checked.svg';
+
 import style from './FilterCheckbox.module.scss';
 
 type FilterCheckboxProps = {
@@ -21,12 +23,7 @@ export const FilterCheckbox = ({
     const id = useId();
 
     return (
-        <div
-            className={classNames(
-                style.filterCheckbox,
-                isSelected && style.selected
-            )}
-        >
+        <div className={classNames(style.filterCheckbox, isSelected && style.selected)}>
             <input
                 type="checkbox"
                 onChange={onToggleFilterHandler}
@@ -35,19 +32,9 @@ export const FilterCheckbox = ({
                 id={id}
                 className={style.checkbox}
             />
-            <label
-                htmlFor={id}
-                className={classNames(
-                    style.label,
-                    isSelected && style.selected
-                )}
-            >
+            <label htmlFor={id} className={classNames(style.label, isSelected && style.selected)}>
                 {isSelected ? (
-                    <StaticImage
-                        imageData={checkedIcon}
-                        alt=""
-                        className={style.selected}
-                    />
+                    <StaticImage imageData={checkedIcon} alt="" className={style.selected} />
                 ) : (
                     <StaticImage imageData={checkboxIcon} alt="" />
                 )}

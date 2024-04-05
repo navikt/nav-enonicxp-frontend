@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 
@@ -25,10 +26,7 @@ const overviewFiltersSlice = createSlice({
             const { area } = action.payload;
             return { ...state, areaFilter: area };
         },
-        setTaxonomy: (
-            state,
-            action: PayloadAction<{ taxonomy: ProductTaxonomy }>
-        ) => {
+        setTaxonomy: (state, action: PayloadAction<{ taxonomy: ProductTaxonomy }>) => {
             const { taxonomy } = action.payload;
             return { ...state, taxonomyFilter: taxonomy };
         },

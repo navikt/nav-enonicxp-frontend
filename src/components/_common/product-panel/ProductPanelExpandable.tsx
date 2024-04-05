@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
+
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -64,40 +65,27 @@ export const ProductPanelExpandable = ({
     }, []);
 
     const handleClick = () => {
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: header,
-                ...analyticsData,
-            }
-        );
+        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+            tittel: header,
+            ...analyticsData,
+        });
 
         setIsOpen(!isOpen);
         contentLoaderCallback?.();
     };
 
     return (
-        <ExpansionCard
-            open={isOpen}
-            className={style.expandable}
-            id={anchorId}
-            aria-label={header}
-        >
+        <ExpansionCard open={isOpen} className={style.expandable} id={anchorId} aria-label={header}>
             <ExpansionCard.Header
                 onClick={handleClick}
                 onMouseOver={contentLoaderCallback}
                 onFocus={contentLoaderCallback}
                 className={style.expandableHeader}
             >
-                <IllustrationStatic
-                    className={style.illustration}
-                    illustration={illustration}
-                />
+                <IllustrationStatic className={style.illustration} illustration={illustration} />
                 <span className={style.panelHeader}>
                     <span>{header}</span>
-                    {subHeader && (
-                        <span className={style.subHeader}>{subHeader}</span>
-                    )}
+                    {subHeader && <span className={style.subHeader}>{subHeader}</span>}
                 </span>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>

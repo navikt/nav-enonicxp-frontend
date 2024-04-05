@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel } from '@navikt/ds-react';
+
 import { translator } from 'translations';
 import { insertHTMLBreaks, numberToFormattedValue } from 'utils/string';
 import { usePageContentProps } from 'store/pageContext';

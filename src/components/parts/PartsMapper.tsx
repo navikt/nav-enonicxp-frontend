@@ -1,11 +1,21 @@
 // @ts-nocheck
 import React from 'react';
+
 import {
     PartCurrentType,
     PartDeprecatedType,
     PartLegacyType,
     PartType,
 } from 'types/component-props/parts';
+import { ComponentType, PartComponentProps } from 'types/component-props/_component-common';
+import { ContentProps } from 'types/content-props/_content-common';
+import { BEM, classNames } from 'utils/classnames';
+import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
+import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
+
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
@@ -16,20 +26,13 @@ import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
-import {
-    ComponentType,
-    PartComponentProps,
-} from 'types/component-props/_component-common';
-import { ContentProps } from 'types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
-import { BEM, classNames } from 'utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
@@ -42,16 +45,12 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { OfficeEditorialDetail } from './office-editorial-detail/OfficeEditorialDetail';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
-import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
-import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
@@ -62,10 +61,7 @@ type Props = {
     pageProps: ContentProps;
 };
 
-const partsWithPageData: Record<
-    PartLegacyType,
-    React.FunctionComponent<ContentProps>
-> = {
+const partsWithPageData: Record<PartLegacyType, React.FunctionComponent<ContentProps>> = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
@@ -79,10 +75,7 @@ const partsWithPageData: Record<
     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
 };
 
-const partsWithOwnData: Record<
-    PartCurrentType,
-    React.FunctionComponent<PartComponentProps>
-> = {
+const partsWithOwnData: Record<PartCurrentType, React.FunctionComponent<PartComponentProps>> = {
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
@@ -144,10 +137,7 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
     }
 
     return (
-        <EditorHelp
-            text={`Part-komponenten er ikke implementert: "${descriptor}"`}
-            type={'info'}
-        />
+        <EditorHelp text={`Part-komponenten er ikke implementert: "${descriptor}"`} type={'info'} />
     );
 };
 

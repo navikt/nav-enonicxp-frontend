@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { LRUCache } from 'lru-cache';
+
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { logger } from 'srcCommon/logger';
 
@@ -11,9 +12,7 @@ const cache = new LRUCache({
 
 const validUrlPattern = new RegExp(/^\/_\/attachment\/inline\/.+\.json$/i);
 
-const validateUrl = (
-    fileUrl: NextApiRequest['query'][string]
-): fileUrl is string =>
+const validateUrl = (fileUrl: NextApiRequest['query'][string]): fileUrl is string =>
     typeof fileUrl === 'string' && validUrlPattern.test(fileUrl);
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -32,20 +31,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(200).send(cachedItem);
     }
 
-    const fetchedItem = await fetchJson<string>(`${xpOrigin}${url}`).then(
-        (response) => {
-            if (!response) {
-                return null;
-            }
-
-            // XP does not decode JSON file content
-            try {
-                return JSON.parse(response);
-            } catch (e) {
-                return response;
-            }
+    const fetchedItem = await fetchJson<string>(`${xpOrigin}${url}`).then((response) => {
+        if (!response) {
+            return null;
         }
-    );
+
+        // XP does not decode JSON file content
+        try {
+            return JSON.parse(response);
+        } catch (e) {
+            return response;
+        }
+    });
 
     if (!fetchedItem) {
         logger.info(`JSON file not found: ${url}`);

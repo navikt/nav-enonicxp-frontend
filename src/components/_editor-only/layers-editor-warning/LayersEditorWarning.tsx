@@ -1,6 +1,7 @@
 import React from 'react';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { Heading } from '@navikt/ds-react';
+
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 export const LayersEditorWarning = () => {
     return (

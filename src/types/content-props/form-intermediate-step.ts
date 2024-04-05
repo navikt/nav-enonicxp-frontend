@@ -1,7 +1,8 @@
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 import { OptionSetSingle } from 'types/util-types';
+
+import { ContentCommonProps, ContentType } from './_content-common';
 import { AnimatedIconsProps } from './animated-icons';
 
 export type FormIntermediateStep_StepData<

@@ -1,4 +1,5 @@
 import Cookie from 'js-cookie';
+
 import {
     EditorFeature,
     editorFeatures,
@@ -12,7 +13,5 @@ export const isEditorFeatureEnabled = (feature: EditorFeature) => {
     return cookieValue === undefined ? defaultValue : cookieValue === 'true';
 };
 
-export const setEditorFeatureToggle = (
-    feature: EditorFeature,
-    enable: boolean
-) => Cookie.set(feature, enable.toString(), { expires: 365 });
+export const setEditorFeatureToggle = (feature: EditorFeature, enable: boolean) =>
+    Cookie.set(feature, enable.toString(), { expires: 365 });

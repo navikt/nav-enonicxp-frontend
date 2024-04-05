@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Header } from 'components/_common/headers/Header';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
 import { Level, Size } from 'types/typo-style';
@@ -14,13 +15,7 @@ type Props = {
     children: string;
 };
 
-export const PageHeader = ({
-    justify,
-    children,
-    level,
-    size,
-    className,
-}: Props) => {
+export const PageHeader = ({ justify, children, level, size, className }: Props) => {
     return children ? (
         <Header
             level={level || '1'}

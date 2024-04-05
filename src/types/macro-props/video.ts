@@ -1,5 +1,6 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
 import { VideoData } from 'types/content-props/video';
+
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroVideoProps extends MacroPropsCommon {
     name: MacroType.Video;

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
@@ -13,10 +14,7 @@ const LinkLists = (props: SectionPageProps) => {
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
 
     const newsUrlAbsolute =
-        moreNewsUrl &&
-        (moreNewsUrl.startsWith('/')
-            ? `${appOrigin}${moreNewsUrl}`
-            : moreNewsUrl);
+        moreNewsUrl && (moreNewsUrl.startsWith('/') ? `${appOrigin}${moreNewsUrl}` : moreNewsUrl);
 
     return (
         <>

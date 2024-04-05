@@ -16,11 +16,7 @@ const clientOptions: RedisClientOptions = {
 } as const;
 
 const validateClientOptions = () => {
-    const isValid = !!(
-        clientOptions.url &&
-        clientOptions.username &&
-        clientOptions.password
-    );
+    const isValid = !!(clientOptions.url && clientOptions.username && clientOptions.password);
 
     if (!isValid) {
         logger.error(`Client options for Redis has missing parameters!`);
@@ -75,9 +71,7 @@ class RedisCacheImpl {
             })
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(
-                    `Error getting render cache value for key ${key} - ${e}`
-                );
+                logger.error(`Error getting render cache value for key ${key} - ${e}`);
                 return Promise.resolve(null);
             });
     }
@@ -108,11 +102,7 @@ class RedisCacheImpl {
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(
-            this.getFullKey(key, this.renderCacheKeyPrefix),
-            this.renderCacheTTL,
-            data
-        );
+        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), this.renderCacheTTL, data);
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
@@ -157,7 +147,6 @@ export const RedisCache =
         ? RedisCacheImpl
         : RedisCacheDummy;
 
-export const getRenderCacheKeyPrefix = (buildId: string) =>
-    `${process.env.ENV}:render:${buildId}`;
+export const getRenderCacheKeyPrefix = (buildId: string) => `${process.env.ENV}:render:${buildId}`;
 
 export const getResponseCacheKeyPrefix = () => `${process.env.ENV}:xp-response`;

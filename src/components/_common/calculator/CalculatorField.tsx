@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
+
 import { CalculatorFieldData } from 'types/component-props/parts/calculator';
 
 import style from './Field.module.scss';
@@ -34,12 +35,7 @@ export const CalculatorField = (props: Props) => {
                     label={field.inputField.label}
                     type="number"
                     value={value?.toString() || ''}
-                    onChange={(e) =>
-                        onChange(
-                            field.inputField.variableName,
-                            e.currentTarget.value
-                        )
-                    }
+                    onChange={(e) => onChange(field.inputField.variableName, e.currentTarget.value)}
                     autoComplete={autoComplete ? 'on' : 'off'}
                 />
             )}
@@ -48,10 +44,7 @@ export const CalculatorField = (props: Props) => {
                     label={field.dropdownField.label}
                     name={field.dropdownField.variableName}
                     onChange={(e) =>
-                        onChange(
-                            field.dropdownField.variableName,
-                            e.currentTarget.value
-                        )
+                        onChange(field.dropdownField.variableName, e.currentTarget.value)
                     }
                     value={value || ''}
                     autoComplete={autoComplete ? 'on' : 'off'}

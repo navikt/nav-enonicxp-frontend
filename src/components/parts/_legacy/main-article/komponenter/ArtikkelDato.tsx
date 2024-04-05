@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { BodyLong, Detail } from '@navikt/ds-react';
+
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { classNames } from 'utils/classnames';
-import { BodyLong, Detail } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
 
 import styles from './ArtikkelDato.module.scss';
@@ -20,12 +21,7 @@ type Props = {
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageContentProps();
-    const {
-        modifiedTime,
-        publishLabel,
-        modifiedLabel,
-        type = 'normal',
-    } = props;
+    const { modifiedTime, publishLabel, modifiedLabel, type = 'normal' } = props;
 
     const hasMonthName = type === 'newsPress';
     const hasYear = type === 'newsPress';

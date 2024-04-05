@@ -1,5 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
+
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/compat/router';
+
 import {
     FormIntermediateStepPageProps,
     FormIntermediateStep_CompoundedStepData,

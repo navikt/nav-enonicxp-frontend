@@ -1,5 +1,9 @@
 import React from 'react';
+
 import { AreaCardGraphicsType } from 'types/component-props/parts/area-card';
+import { classNames } from 'utils/classnames';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
@@ -9,8 +13,6 @@ import { HealthAnimation } from './open-pages/health/HealthAnimation';
 import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
-import { classNames } from 'utils/classnames';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './AreaCardGraphics.module.scss';
 
@@ -39,17 +41,8 @@ export const AreaCardGraphics = ({ type, insideCard }: Props) => {
     const GraphicComponent = areaTypeComponentMap[type];
 
     return (
-        <div
-            className={classNames(
-                style.graphics,
-                insideCard ? style.insideCard : ''
-            )}
-        >
-            {GraphicComponent ? (
-                <GraphicComponent />
-            ) : (
-                <DefaultComponent type={type} />
-            )}
+        <div className={classNames(style.graphics, insideCard ? style.insideCard : '')}>
+            {GraphicComponent ? <GraphicComponent /> : <DefaultComponent type={type} />}
         </div>
     );
 };

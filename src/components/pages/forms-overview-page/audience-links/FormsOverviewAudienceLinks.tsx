@@ -1,5 +1,6 @@
 import React from 'react';
 import { Ingress } from '@navikt/ds-react';
+
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './FormsOverviewAudienceLinks.module.scss';

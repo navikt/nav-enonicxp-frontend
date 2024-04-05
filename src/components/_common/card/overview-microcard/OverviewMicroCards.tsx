@@ -1,5 +1,6 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
+
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
@@ -44,11 +45,7 @@ const CardsHeader = ({ text }: { text: string }) => (
     <BodyShort weight={'semibold'}>{text}</BodyShort>
 );
 
-const CardsList = ({
-    productLinks,
-}: {
-    productLinks: OverviewPageProductLink[];
-}) =>
+const CardsList = ({ productLinks }: { productLinks: OverviewPageProductLink[] }) =>
     productLinks.map((productLink) => (
         <MicroCard
             type={cardTypeMap[productLink.type]}
@@ -71,8 +68,10 @@ export const OverviewMicroCards = ({ productLinks, className }: Props) => {
 
     const headingText = translator('overview', pageLanguage)('more');
 
-    const { withStandardReadMore, withEnglishWarningReadMore } =
-        splitByHeaderType(productLinks, pageLanguage);
+    const { withStandardReadMore, withEnglishWarningReadMore } = splitByHeaderType(
+        productLinks,
+        pageLanguage
+    );
 
     return (
         <div className={className}>

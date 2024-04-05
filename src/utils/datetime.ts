@@ -4,6 +4,7 @@ import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+
 import { ContentProps } from 'types/content-props/_content-common';
 
 dayjs.extend(localizedFormat);
@@ -60,16 +61,10 @@ export const formatDate = ({
         format = 'L';
     }
 
-    return datetime
-        ? dayjs(datetime).locale(currentLocale).format(format)
-        : datetime;
+    return datetime ? dayjs(datetime).locale(currentLocale).format(format) : datetime;
 };
 
-export const formatDateTime = (
-    datetime: string,
-    locale: string = 'nb',
-    short = false
-) => {
+export const formatDateTime = (datetime: string, locale: string = 'nb', short = false) => {
     return datetime
         ? dayjs(datetime)
               .locale(locale)
@@ -77,8 +72,7 @@ export const formatDateTime = (
         : datetime;
 };
 
-export const getCurrentDateAndTime = () =>
-    new Date().toISOString().split(/[TZ.]/);
+export const getCurrentDateAndTime = () => new Date().toISOString().split(/[TZ.]/);
 
 export const getCurrentISODate = (): string => {
     return getCurrentDateAndTime()[0];
@@ -88,9 +82,8 @@ export const getUtcTimeFromLocal = (datetime: string) => {
     return dayjs(datetime).utc().format();
 };
 
-export const getPublishedDateTime = (
-    content: Pick<ContentProps, 'publish' | 'createdTime'>
-) => content.publish?.from || content.publish?.first || content.createdTime;
+export const getPublishedDateTime = (content: Pick<ContentProps, 'publish' | 'createdTime'>) =>
+    content.publish?.from || content.publish?.first || content.createdTime;
 
 export const isCurrentTimeInRange = (start?: string, end?: string) => {
     const now = dayjs();

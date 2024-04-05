@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
+import dayjs from 'dayjs';
+
 import { ContentProps } from 'types/content-props/_content-common';
-import {
-    getCurrentDateAndTime,
-    getCurrentISODate,
-    getUtcTimeFromLocal,
-} from 'utils/datetime';
+import { getCurrentDateAndTime, getCurrentISODate, getUtcTimeFromLocal } from 'utils/datetime';
 import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
 import { VersionSelectorSubmitButton } from 'components/_editor-only/version-history/selector/submit-button/VersionSelectorSubmitButton';
-import dayjs from 'dayjs';
 
 import style from './VersionSelectorDateTime.module.scss';
 
@@ -19,17 +16,12 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionSelectorDateTime = ({
-    content,
-    submitVersionUrl,
-}: Props) => {
+export const VersionSelectorDateTime = ({ content, submitVersionUrl }: Props) => {
     const { timeRequested } = content;
 
     const nbTime = dayjs(timeRequested).locale('nb').format();
 
-    const [initialDate, initialTime] = timeRequested
-        ? nbTime.split('T')
-        : getCurrentDateAndTime();
+    const [initialDate, initialTime] = timeRequested ? nbTime.split('T') : getCurrentDateAndTime();
 
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
@@ -44,9 +36,7 @@ export const VersionSelectorDateTime = ({
     return (
         <>
             <div className={style.left}>
-                <Label id={'version-selector-label'}>
-                    {'Velg tid og dato:'}
-                </Label>
+                <Label id={'version-selector-label'}>{'Velg tid og dato:'}</Label>
                 <input
                     type={'time'}
                     className={style.time}
@@ -73,18 +63,13 @@ export const VersionSelectorDateTime = ({
                     checked={branchSelected === 'master'}
                     id={'version-branch-input'}
                     onChange={(e) => {
-                        setBranchSelected(
-                            e.target.checked ? 'master' : 'draft'
-                        );
+                        setBranchSelected(e.target.checked ? 'master' : 'draft');
                     }}
                     size={'small'}
                 >
                     {'Kun publisert innhold'}
                 </Checkbox>
-                <VersionSelectorSubmitButton
-                    url={url}
-                    submitVersionUrl={submitVersionUrl}
-                />
+                <VersionSelectorSubmitButton url={url} submitVersionUrl={submitVersionUrl} />
             </div>
         </>
     );

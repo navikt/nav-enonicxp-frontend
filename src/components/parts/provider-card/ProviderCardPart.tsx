@@ -1,5 +1,6 @@
-import { LargeCard } from 'components/_common/card/LargeCard';
 import React from 'react';
+
+import { LargeCard } from 'components/_common/card/LargeCard';
 import { CardType } from 'types/card';
 import { TilbyderkortPartProps } from 'types/component-props/parts/tilbyderkort';
 import { getSelectableLinkProps } from 'utils/links-from-content';

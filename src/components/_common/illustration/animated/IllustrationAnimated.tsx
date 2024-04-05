@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useId } from 'react';
+
 import { classNames } from 'utils/classnames';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 import type { AnimationItem } from 'lottie-web';
-
 import styleCommon from 'components/_common/illustration/Illustration.module.scss';
+
 import styleAnimated from './IllustrationAnimated.module.scss';
 
 const fetchJsonData = (url: string) =>
@@ -16,11 +17,7 @@ type Props = {
     className?: string;
 };
 
-export const IllustrationAnimated = ({
-    dataUrl,
-    isHovering,
-    className,
-}: Props) => {
+export const IllustrationAnimated = ({ dataUrl, isHovering, className }: Props) => {
     const lottieContainer = useRef<HTMLDivElement | null>(null);
     const lottiePlayer = useRef<AnimationItem | null>(null);
 
@@ -53,9 +50,7 @@ export const IllustrationAnimated = ({
                 return;
             }
 
-            const lottie = (
-                await import('lottie-web/build/player/lottie_light')
-            ).default;
+            const lottie = (await import('lottie-web/build/player/lottie_light')).default;
 
             if (container.innerHTML) {
                 container.innerHTML = '';
@@ -84,10 +79,7 @@ export const IllustrationAnimated = ({
             aria-hidden={'true'}
             id={elementId}
         >
-            <div
-                ref={lottieContainer}
-                className={styleAnimated.lottieContainer}
-            />
+            <div ref={lottieContainer} className={styleAnimated.lottieContainer} />
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
@@ -41,12 +42,7 @@ const SosialeMedierLink = ({ type, text, href }: LinkProps) => {
 
     return (
         <li>
-            <LenkeBase
-                href={href}
-                analyticsLabel={text}
-                className={style.ikon}
-                {...handlers}
-            >
+            <LenkeBase href={href} analyticsLabel={text} className={style.ikon} {...handlers}>
                 {hoverFocusIcon({
                     iconDefault: `${type}-filled.svg`,
                     iconActive: `${type}-inverted.svg`,

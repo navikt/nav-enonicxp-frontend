@@ -1,4 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
+
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-branch-page/office-details/utils';
@@ -9,20 +10,13 @@ type AudienceChannelsProps = {
     publikumskanaler: AudienceContact[];
 };
 
-export const AudienceChannels = ({
-    publikumskanaler,
-}: AudienceChannelsProps) => {
+export const AudienceChannels = ({ publikumskanaler }: AudienceChannelsProps) => {
     const buildChannel = (channel: AudienceContact) => {
         return (
-            <BodyShort
-                key={channel.sortOrder}
-                className={styles.audienceChannels}
-            >
+            <BodyShort key={channel.sortOrder} className={styles.audienceChannels}>
                 {`${channel.beskrivelse}: `}
                 {channel.epost && (
-                    <LenkeBase href={`mailto:${channel.epost}`}>
-                        {channel.epost}
-                    </LenkeBase>
+                    <LenkeBase href={`mailto:${channel.epost}`}>{channel.epost}</LenkeBase>
                 )}
                 {channel.telefon && (
                     <LenkeBase href={`tel:${channel.telefon}`}>

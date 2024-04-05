@@ -1,9 +1,10 @@
 import React from 'react';
+import { Checkbox } from '@navikt/ds-react';
+
 import {
     isEditorFeatureEnabled,
     setEditorFeatureToggle,
 } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
-import { Checkbox } from '@navikt/ds-react';
 import { SiteInfoSubHeader } from 'components/_editor-only/site-info/_common/sub-header/SiteInfoSubHeader';
 
 export enum EditorFeature {
@@ -21,8 +22,7 @@ export type EditorFeatureProps = {
 export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
     [EditorFeature.HideLeftPanel]: {
         key: EditorFeature.HideLeftPanel,
-        description:
-            'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
+        description: 'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
         defaultValue: false,
     },
     [EditorFeature.EditorReloadBlocker]: {
@@ -52,10 +52,7 @@ export const SiteInfoFeatureToggles = () => {
                         key={key}
                         defaultChecked={isEditorFeatureEnabled(key)}
                         onClick={(e) => {
-                            setEditorFeatureToggle(
-                                key,
-                                e.currentTarget.checked
-                            );
+                            setEditorFeatureToggle(key, e.currentTarget.checked);
                         }}
                     >
                         {description}

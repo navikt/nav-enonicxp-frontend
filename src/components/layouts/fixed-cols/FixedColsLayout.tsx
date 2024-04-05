@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { FixedColsLayoutProps } from 'types/component-props/layouts/fixed-cols';
@@ -21,11 +22,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
     const { distribution } = config;
 
     return (
-        <LayoutContainer
-            className={style.layout}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-        >
+        <LayoutContainer className={style.layout} pageProps={pageProps} layoutProps={layoutProps}>
             {Object.values(regions).map((regionProps, index) => {
                 const regionStyle = distribution
                     ? {

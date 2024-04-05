@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { MacroSaksbehandlingstidProps } from 'types/macro-props/saksbehandlingstid';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
@@ -17,20 +18,13 @@ export const getCaseTimeString = (
     return `${value} ${unitText}`;
 };
 
-export const MacroSaksbehandlingstid = ({
-    config,
-}: MacroSaksbehandlingstidProps) => {
+export const MacroSaksbehandlingstid = ({ config }: MacroSaksbehandlingstidProps) => {
     const macroData = config?.saksbehandlingstid?.caseTime;
 
     const { language } = usePageContentProps();
 
     if (!macroData) {
-        return (
-            <EditorHelp
-                text={'Teknisk feil: macro-data er ikke gyldig'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Teknisk feil: macro-data er ikke gyldig'} type={'error'} />;
     }
 
     const { value, unit } = macroData;

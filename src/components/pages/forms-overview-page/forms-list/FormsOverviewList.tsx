@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/panel/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
@@ -33,11 +34,9 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
 
-    const numFilterTypes = [
-        areasFilterToggle,
-        taxonomyFilterToggle,
-        textFilterToggle,
-    ].filter(Boolean).length;
+    const numFilterTypes = [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
+        Boolean
+    ).length;
 
     useEffect(() => {
         getFilteredList({

@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { Provider } from 'react-redux';
+import { NextApiRequest, NextApiResponse } from 'next';
+
 import { PartComponentProps } from 'types/component-props/_component-common';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { Provider } from 'react-redux';
 import { mockStore } from 'store/store';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageContextProvider } from 'store/pageContext';
 import { apiErrorHandler } from 'utils/api-error-handler';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
@@ -45,10 +46,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
         const html = ReactDOMServer.renderToStaticMarkup(
             <PageContextProvider content={contentProps}>
                 <Provider store={mockStore}>
-                    <ComponentMapper
-                        componentProps={props}
-                        pageProps={contentProps}
-                    />
+                    <ComponentMapper componentProps={props} pageProps={contentProps} />
                 </Provider>
             </PageContextProvider>
         );

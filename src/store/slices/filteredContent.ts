@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'store/store';
 
+import type { RootState } from 'store/store';
 import {
     FilteredContentState,
     FilterSelectionPayload,
@@ -25,26 +25,18 @@ export const filteredContentSlice = createSlice({
             );
             state[pageId].selectedFilters = updatedFilters;
         },
-        clearFiltersForPage: (
-            state,
-            action: PayloadAction<ClearFiltersPayload>
-        ) => {
+        clearFiltersForPage: (state, action: PayloadAction<ClearFiltersPayload>) => {
             const { pageId } = action.payload;
             state[pageId].selectedFilters = [];
         },
-        toggleFilterSelection: (
-            state,
-            action: PayloadAction<FilterSelectionPayload>
-        ) => {
+        toggleFilterSelection: (state, action: PayloadAction<FilterSelectionPayload>) => {
             const { pageId, filterId } = action.payload;
             const filtersForPage = state[pageId] || {
                 ...defaultFiltersForPage,
             };
             const { selectedFilters } = filtersForPage;
 
-            const updatedSelectedFilters: string[] = selectedFilters.includes(
-                filterId
-            )
+            const updatedSelectedFilters: string[] = selectedFilters.includes(filterId)
                 ? selectedFilters.filter((item) => item !== filterId)
                 : [...selectedFilters, filterId];
 
@@ -53,10 +45,7 @@ export const filteredContentSlice = createSlice({
                 selectedFilters: updatedSelectedFilters,
             };
         },
-        setAvailableFilters: (
-            state,
-            action: PayloadAction<AvailableFiltersPayload>
-        ) => {
+        setAvailableFilters: (state, action: PayloadAction<AvailableFiltersPayload>) => {
             const { pageId, availableFilters } = action.payload;
             const filtersForPage = state[pageId] || {
                 ...defaultFiltersForPage,
@@ -74,19 +63,13 @@ export const {
     toggleFilterSelection: toggleFilterSelectionAction,
 } = filteredContentSlice.actions;
 
-export const selectedFiltersAtPage = (
-    state: RootState,
-    pageId: string
-): string[] => {
+export const selectedFiltersAtPage = (state: RootState, pageId: string): string[] => {
     const pageFilters = state.contentFilters[pageId] || defaultFiltersForPage;
 
     return pageFilters.selectedFilters || [];
 };
 
-export const availableFiltersAtPage = (
-    state: RootState,
-    pageId: string
-): Category[] => {
+export const availableFiltersAtPage = (state: RootState, pageId: string): Category[] => {
     const pageFilters = state.contentFilters[pageId] || defaultFiltersForPage;
 
     return pageFilters.availableFilters || [];

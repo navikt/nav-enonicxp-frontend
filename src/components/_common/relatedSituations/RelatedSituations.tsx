@@ -1,4 +1,5 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
+
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { MicroCard } from 'components/_common/card/MicroCard';

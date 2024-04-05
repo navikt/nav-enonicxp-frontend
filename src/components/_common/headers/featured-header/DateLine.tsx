@@ -1,4 +1,5 @@
 import { Detail } from '@navikt/ds-react';
+
 import { Language, translator } from 'translations';
 import { formatDate } from 'utils/datetime';
 
@@ -10,11 +11,7 @@ type DateLineProps = {
     language: Language;
 };
 
-export const DateLine = ({
-    createdTime,
-    modifiedTime,
-    language,
-}: DateLineProps) => {
+export const DateLine = ({ createdTime, modifiedTime, language }: DateLineProps) => {
     const getDatesLabel = translator('dates', language);
 
     const createdDate = createdTime.split('T')[0];
@@ -33,15 +30,9 @@ export const DateLine = ({
         })}`;
     };
 
-    const publishedString = buildDateString(
-        getDatesLabel('published'),
-        createdTime
-    );
+    const publishedString = buildDateString(getDatesLabel('published'), createdTime);
 
-    const lastChangedString = buildDateString(
-        getDatesLabel('lastChanged'),
-        modifiedTime
-    );
+    const lastChangedString = buildDateString(getDatesLabel('lastChanged'), modifiedTime);
 
     const dateString = wasChangedAfterPublish
         ? `${publishedString} | ${lastChangedString}`

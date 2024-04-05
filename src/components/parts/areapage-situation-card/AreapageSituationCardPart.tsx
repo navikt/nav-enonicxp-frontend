@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { AreapageSituationCardPartProps } from 'types/component-props/parts/areapage-situation-card';

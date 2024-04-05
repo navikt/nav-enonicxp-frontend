@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { usePageContentProps } from 'store/pageContext';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
@@ -40,10 +41,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         <article className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
             <div className={style.content}>
                 <div className={style.filters}>

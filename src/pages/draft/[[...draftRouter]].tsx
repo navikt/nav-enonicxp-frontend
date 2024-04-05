@@ -1,4 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';

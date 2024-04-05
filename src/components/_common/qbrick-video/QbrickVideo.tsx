@@ -1,16 +1,18 @@
 import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
-import { getMediaUrl } from 'utils/urls';
-import { getTimestampFromDuration } from './utils/videoHelpers';
-import { translator } from 'translations';
 import Script from 'next/script';
+
+import { translator } from 'translations';
+import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
 import { NextImage } from 'components/_common/image/NextImage';
-import { QbrickVideoProps } from './utils/videoProps';
 import { usePageContentProps } from 'store/pageContext';
+
+import { QbrickVideoProps } from './utils/videoProps';
+import { getTimestampFromDuration } from './utils/videoHelpers';
+import { useQbrickPlayerState } from './useQbrickPlayerState';
 
 import style from './QbrickVideo.module.scss';
 

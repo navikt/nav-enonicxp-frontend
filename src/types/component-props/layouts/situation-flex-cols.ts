@@ -1,12 +1,9 @@
-import {
-    LayoutCommonProps,
-    LayoutType,
-    Regions,
-} from 'types/component-props/layouts';
+import { LayoutCommonProps, LayoutType, Regions } from 'types/component-props/layouts';
 import { ComponentType } from 'types/component-props/_component-common';
 import { HeaderWithAnchorMixin } from 'types/component-props/_mixins';
-import { FlexColsLayoutProps } from './flex-cols';
 import { OptionSetSingle } from 'types/util-types';
+
+import { FlexColsLayoutProps } from './flex-cols';
 
 export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;
@@ -17,9 +14,6 @@ export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
             products: { priority: 'primary' | 'secondary' | 'tertiary' };
             provider: {};
         }>;
-    } & Pick<
-        FlexColsLayoutProps['config'],
-        'justifyContent' | 'numCols' | 'bgColor'
-    > &
+    } & Pick<FlexColsLayoutProps['config'], 'justifyContent' | 'numCols' | 'bgColor'> &
         HeaderWithAnchorMixin;
 }

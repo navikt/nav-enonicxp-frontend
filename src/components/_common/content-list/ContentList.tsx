@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from 'components/_common/lenkeliste/Lenkeliste';
@@ -11,12 +12,9 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ListType } from 'types/component-props/parts/link-list';
 
 const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
-    const dateLabel =
-        dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);
+    const dateLabel = dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);
 
-    return typeof dateLabel === 'string'
-        ? dateLabel
-        : getPublishedDateTime(content);
+    return typeof dateLabel === 'string' ? dateLabel : getPublishedDateTime(content);
 };
 
 type Props = {

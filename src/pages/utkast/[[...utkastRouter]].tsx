@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { PageBase } from 'components/PageBase';
 

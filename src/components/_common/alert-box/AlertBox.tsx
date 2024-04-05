@@ -1,6 +1,8 @@
 import React from 'react';
 import { Alert, AlertProps } from '@navikt/ds-react';
+
 import { classNames } from 'utils/classnames';
+
 import style from './AlertBox.module.scss';
 
 type Props = {
@@ -15,17 +17,10 @@ const role = {
     success: 'status',
     warning: 'status',
     info: undefined,
-    error: 'alert'
+    error: 'alert',
 };
 
-export const AlertBox = ({
-    variant,
-    size,
-    inline,
-    className,
-    children,
-    ...rest
-}: Props) => {
+export const AlertBox = ({ variant, size, inline, className, children, ...rest }: Props) => {
     return (
         <Alert
             {...rest}

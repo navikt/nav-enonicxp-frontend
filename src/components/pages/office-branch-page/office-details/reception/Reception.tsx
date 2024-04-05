@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
+
 import { AudienceReception } from 'types/content-props/office-details-props';
 import { forceArray } from 'utils/arrays';
-import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
+
+import { SingleReception } from './SingleReception';
 
 import style from './Reception.module.scss';
 
@@ -21,11 +23,7 @@ export const Reception = ({ receptions }: Props) => {
         if (!reception) {
             return '(Ukjent sted)';
         }
-        return (
-            reception.stedsbeskrivelse ||
-            reception.besoeksadresse?.poststed ||
-            '(Ukjent sted)'
-        );
+        return reception.stedsbeskrivelse || reception.besoeksadresse?.poststed || '(Ukjent sted)';
     };
 
     const getIdFromLabel = (label: string) => {
@@ -52,11 +50,7 @@ export const Reception = ({ receptions }: Props) => {
             <BodyLong className={style.chooseBetweenOffices}>
                 {getOfficeTranslations('chooseBetweenOffices')}
             </BodyLong>
-            <Tabs
-                value={state}
-                onChange={setState}
-                className={style.officeTabs}
-            >
+            <Tabs value={state} onChange={setState} className={style.officeTabs}>
                 <Tabs.List>
                     {receptionArray.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);

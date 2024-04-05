@@ -52,18 +52,12 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq
     );
 
-    expressApp.get(
-        '/api/pending',
-        validateSecretMiddleware,
-        handleGetPendingResponses(nextServer)
-    );
+    expressApp.get('/api/pending', validateSecretMiddleware, handleGetPendingResponses(nextServer));
 
     expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
         const { buildId } = req.params;
         if (buildId !== currentBuildId) {
-            logger.info(
-                `Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`
-            );
+            logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
             req.url = req.url.replace(buildId, currentBuildId);
         }
 

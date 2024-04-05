@@ -1,10 +1,10 @@
 import React from 'react';
+
 import { AreapageSituationsProps } from 'types/component-props/layouts/areapage-situations';
 import { ContentProps } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { Header } from 'components/_common/headers/Header';
-
 import Region from 'components/layouts/Region';
 
 import style from './AreapageSituationsLayout.module.scss';
@@ -18,12 +18,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     if (!config || !regions) {
-        return (
-            <EditorHelp
-                type={'error'}
-                text={'Feil: Komponenten mangler data'}
-            />
-        );
+        return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
     const elementWrapper = (element: JSX.Element, key: string) => {
@@ -38,12 +33,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.container}
         >
-            <Header
-                level={'2'}
-                justify={'left'}
-                size={'large'}
-                className={style.header}
-            >
+            <Header level={'2'} justify={'left'} size={'large'} className={style.header}>
                 {title}
             </Header>
             <EditorHelp

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { ComponentMapper } from 'components/ComponentMapper';
@@ -53,10 +54,7 @@ export const Region = ({
             {components.map((component) => {
                 return wrapperFunction && !isEditView ? (
                     wrapperFunction(
-                        <ComponentMapper
-                            componentProps={component}
-                            pageProps={pageProps}
-                        />,
+                        <ComponentMapper componentProps={component} pageProps={pageProps} />,
                         component.path
                     )
                 ) : (

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { HtmlAreaProps } from 'types/component-props/parts/html-area';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
@@ -9,9 +10,7 @@ import style from './HtmlArea.module.scss';
 
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
     if (!config?.html) {
-        return (
-            <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />
-        );
+        return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
     }
     return (
         <FilteredContent {...config}>
