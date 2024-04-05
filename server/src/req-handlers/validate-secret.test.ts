@@ -1,4 +1,5 @@
 import { NextFunction } from 'express';
+
 import { validateSecret } from './validate-secret';
 
 const mySecret = 'mySecret';

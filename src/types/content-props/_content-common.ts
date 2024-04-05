@@ -8,8 +8,8 @@ import { AudienceOptions } from 'types/component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
-
 import { OverviewPageProps } from 'types/content-props/overview-props';
+
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
@@ -19,7 +19,6 @@ import { ErrorProps } from './error-props';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
-
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { OfficeInformationProps } from './office-information-props';
 import { UrlProps } from './url-props';
@@ -41,15 +40,11 @@ import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publish
 import { AnimatedIconsProps } from './animated-icons';
 import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
 import { ContactInformationProps } from './contact-information-props';
-
 import { PayoutDatesProps } from './payout-dates';
-
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
-
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
-
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {

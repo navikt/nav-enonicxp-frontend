@@ -1,8 +1,9 @@
 import { createClient, RedisClientOptions } from 'redis';
-import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from 'srcCommon/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
+
+import { logger } from 'srcCommon/logger';
+import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from 'srcCommon/constants';
 import { pathToCacheKey } from 'srcCommon/cache-key';
 
 // TODO: share XP response props with next-app for a proper type here
