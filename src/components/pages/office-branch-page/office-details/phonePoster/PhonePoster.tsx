@@ -22,16 +22,18 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
         ''
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
-
     const phoneInformation =
+        officeData.telefonnummerKommentar || getOfficeTranslations('phoneInformation');
+
+    const phoneHeader =
         officeData.type === 'HMS'
-            ? getOfficeTranslations('phoneInformationGeneral')
-            : getOfficeTranslations('phoneInformation');
+            ? getOfficeTranslations('phoneToHMS')
+            : getOfficeTranslations('phoneToNav');
 
     return (
         <div className={styles.phonePoster}>
             <Heading level="2" size="small" className={styles.heading}>
-                {getOfficeTranslations('phoneToNav')}
+                {phoneHeader}
             </Heading>
             <BodyShort className={styles.phoneNumberWrapper}>
                 <LenkeBase href={`tel:+47${machineReadablePhone}`} className={styles.phoneNumber}>

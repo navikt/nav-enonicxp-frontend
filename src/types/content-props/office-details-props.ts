@@ -24,6 +24,7 @@ export type AudienceReception = {
     aapningstider: OpeningHours[];
     besoeksadresse?: Address;
     adkomstbeskrivelse?: string;
+    officeType: string;
 };
 
 export type Service = {
@@ -91,6 +92,7 @@ export type OfficeDetailsData = {
     enhetNr: string;
     type: string;
     telefonnummer?: string;
+    telefonnummerKommentar?: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;

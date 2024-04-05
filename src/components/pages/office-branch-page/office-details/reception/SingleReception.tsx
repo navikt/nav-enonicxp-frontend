@@ -26,6 +26,11 @@ export const SingleReception = (props: AudienceReception) => {
 
     const hasOpeningHours = openingHours.length > 0 || futureOpeningHoursExceptions.length > 0;
 
+    const openingHoursHeading =
+        props.officeType === 'HMS'
+            ? getLabel('openingHours')
+            : getLabel('openingHoursWithoutAppointment');
+
     return (
         <div className={style.singleReception}>
             <Heading level="3" size="medium" spacing className={style.heading}>
@@ -50,7 +55,7 @@ export const SingleReception = (props: AudienceReception) => {
                             aria-hidden="true"
                             className={classNames(style.headingIcon, style.iconClock)}
                         />
-                        {getLabel('openingHoursWithoutAppointment')}
+                        {openingHoursHeading}
                     </Heading>
                     <OpeningHours openingHours={openingHours} />
                 </>
@@ -63,7 +68,7 @@ export const SingleReception = (props: AudienceReception) => {
                     <OpeningHours openingHours={futureOpeningHoursExceptions} />
                 </>
             )}
-            {hasOpeningHours && (
+            {hasOpeningHours && props.officeType !== 'HMS' && (
                 <div className={style.appointmentBookingInfo}>
                     <InformationSquareFillIcon className={style.iconInfo} aria-hidden="true" />
                     {getLabel('youCanMakeAppointment')}

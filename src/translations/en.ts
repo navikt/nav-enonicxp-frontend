@@ -141,6 +141,7 @@ export const translationsBundleEn: PartialTranslations = {
         officeInformation: 'Office information',
         closed: 'Closed',
         openingHoursWithoutAppointment: 'Opening hours without an appointment',
+        openingHours: 'Opening hours',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Special opening hours',
         address: 'Address',
@@ -151,9 +152,9 @@ export const translationsBundleEn: PartialTranslations = {
         orgNumber: 'Org number',
         officeNumber: 'Office number',
         phoneToNav: 'NAV phone number is',
+        phoneToHMS: 'Phone number to Hjelpemiddelsentralen is',
         phoneInformation:
             'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
-        phoneInformationGeneral: 'Opening hours phone: work days 9–15.',
         alternativeContacts: 'Other contact options:',
     },
     dateTime: {

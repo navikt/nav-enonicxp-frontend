@@ -174,6 +174,7 @@ export const translationsBundleNn: PartialTranslations = {
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
         openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
+        openingHours: 'Opningstider',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',
@@ -183,9 +184,9 @@ export const translationsBundleNn: PartialTranslations = {
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
+        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
         phoneInformation:
             'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
-        phoneInformationGeneral: 'Åpningstidar telefon: kvardagar kl. 9–15.',
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
