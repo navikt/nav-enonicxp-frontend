@@ -10,9 +10,7 @@ import { MoreLink } from 'components/_common/moreLink/MoreLink';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
-export const FrontpageCurrentTopics = ({
-    config,
-}: FrontpageCurrentTopicsProps) => {
+export const FrontpageCurrentTopics = ({ config }: FrontpageCurrentTopicsProps) => {
     const { language } = usePageContentProps();
     const { contentList, title, link } = config;
 
@@ -22,12 +20,7 @@ export const FrontpageCurrentTopics = ({
 
     return (
         <div className={style.currentTopics}>
-            <Header
-                size={'large'}
-                level={'2'}
-                justify={'left'}
-                className={style.header}
-            >
+            <Header size={'large'} level={'2'} justify={'left'} className={style.header}>
                 {title}
             </Header>
             <ul className={style.list}>

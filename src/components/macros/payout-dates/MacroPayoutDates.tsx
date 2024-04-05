@@ -7,9 +7,7 @@ export const MacroPayoutDates = ({ config }: MacroPayoutDatesProps) => {
     const payoutDatesData = config?.payout_dates?.payoutDates?.data;
 
     if (!payoutDatesData) {
-        return (
-            <EditorHelp text={'Macroen mangler data for utbetalingsdatoer'} />
-        );
+        return <EditorHelp text={'Macroen mangler data for utbetalingsdatoer'} />;
     }
 
     return <PayoutDates payoutDatesData={payoutDatesData} />;

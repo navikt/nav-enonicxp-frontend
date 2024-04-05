@@ -44,8 +44,7 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
     const isTaxonomyMatching = (item: ItemType) =>
         taxonomyFilter === ProductTaxonomy.ALL ||
         item.taxonomy.includes(taxonomyFilter) ||
-        (taxonomyFilter === ProductTaxonomy.OTHER &&
-            item.type === 'no.nav.navno:guide-page');
+        (taxonomyFilter === ProductTaxonomy.OTHER && item.type === 'no.nav.navno:guide-page');
 
     const itemsMatchingToggleFilters = filterableItems.filter(
         (item: ItemType) => isAreaMatching(item) && isTaxonomyMatching(item)
@@ -55,11 +54,9 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
         return itemsMatchingToggleFilters;
     }
 
-    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then(
-        (fuseSearchFunc) => {
-            return fuseSearchFunc(textFilterActual);
-        }
-    );
+    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then((fuseSearchFunc) => {
+        return fuseSearchFunc(textFilterActual);
+    });
 };
 
 export const useOverviewFilters = () => {
@@ -75,9 +72,7 @@ export const useOverviewFilters = () => {
         taxonomyFilter === overviewFiltersInitialState.taxonomyFilter;
 
     const getFilteredList = useCallback(
-        <ItemType extends OverviewFilterableItem>(
-            props: FilteredListProps<ItemType>
-        ) => {
+        <ItemType extends OverviewFilterableItem>(props: FilteredListProps<ItemType>) => {
             return _getFilteredList({ ...props, filters: filtersState });
         },
         [filtersState]
@@ -89,8 +84,7 @@ export const useOverviewFilters = () => {
     );
 
     const setTaxonomyFilter = useCallback(
-        (taxonomy: ProductTaxonomy) =>
-            dispatch(setTaxonomyFilterAction({ taxonomy })),
+        (taxonomy: ProductTaxonomy) => dispatch(setTaxonomyFilterAction({ taxonomy })),
         [dispatch]
     );
 
@@ -99,10 +93,7 @@ export const useOverviewFilters = () => {
         [dispatch]
     );
 
-    const resetFilters = useCallback(
-        () => dispatch(resetOverviewFiltersAction()),
-        [dispatch]
-    );
+    const resetFilters = useCallback(() => dispatch(resetOverviewFiltersAction()), [dispatch]);
 
     return {
         hasDefaultFilters,

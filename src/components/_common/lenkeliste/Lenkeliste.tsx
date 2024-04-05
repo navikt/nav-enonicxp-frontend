@@ -15,26 +15,11 @@ type Props = {
     listType: ListType;
 };
 
-const WrapUL = ({
-    showAsList,
-    children,
-}: {
-    showAsList: boolean;
-    children: React.ReactNode;
-}) =>
-    showAsList ? (
-        <ul className={style.ulListe}>{children}</ul>
-    ) : (
-        <>{children}</>
-    );
+const WrapUL = ({ showAsList, children }: { showAsList: boolean; children: React.ReactNode }) =>
+    showAsList ? <ul className={style.ulListe}>{children}</ul> : <>{children}</>;
 
-const WrapLI = ({
-    showAsList,
-    children,
-}: {
-    showAsList: boolean;
-    children: React.ReactNode;
-}) => (showAsList ? <li>{children}</li> : <>{children}</>);
+const WrapLI = ({ showAsList, children }: { showAsList: boolean; children: React.ReactNode }) =>
+    showAsList ? <li>{children}</li> : <>{children}</>;
 
 export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     const headingId = `heading-linklist-${useId()}`;
@@ -44,17 +29,9 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     }
 
     return (
-        <nav
-            className={classNames(className, style.lenker)}
-            aria-labelledby={headingId}
-        >
+        <nav className={classNames(className, style.lenker)} aria-labelledby={headingId}>
             {tittel && (
-                <Heading
-                    className={style.tittel}
-                    id={headingId}
-                    size="small"
-                    level="2"
-                >
+                <Heading className={style.tittel} id={headingId} size="small" level="2">
                     {tittel}
                 </Heading>
             )}

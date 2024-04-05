@@ -40,19 +40,12 @@ export const VersionSelectorPublished = ({
                 className={style.select}
             >
                 {versionTimestamps.map((timestamp, index) => (
-                    <option
-                        value={timestamp}
-                        selected={timestamp === selectedDateTime}
-                        key={index}
-                    >
+                    <option value={timestamp} selected={timestamp === selectedDateTime} key={index}>
                         {formatDateTime(timestamp, 'nb', true)}
                     </option>
                 ))}
             </Select>
-            <VersionSelectorSubmitButton
-                url={url}
-                submitVersionUrl={submitVersionUrl}
-            />
+            <VersionSelectorSubmitButton url={url} submitVersionUrl={submitVersionUrl} />
         </div>
     );
 };

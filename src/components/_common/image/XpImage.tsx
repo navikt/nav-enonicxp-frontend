@@ -1,8 +1,8 @@
 import React from 'react';
 import { XpImageProps } from 'types/media';
 import { getMediaUrl } from 'utils/urls';
-import { NextImage, NextImageProps } from './NextImage';
 import { usePageContentProps } from 'store/pageContext';
+import { NextImage, NextImageProps } from './NextImage';
 
 type Props = {
     imageProps: XpImageProps;

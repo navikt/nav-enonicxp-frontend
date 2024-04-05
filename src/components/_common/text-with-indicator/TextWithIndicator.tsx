@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './TextWithIndicator.module.scss';
 import { classNames } from 'utils/classnames';
+import style from './TextWithIndicator.module.scss';
 
 type Props = {
     text: string;
@@ -13,10 +13,7 @@ const TextWithIndicator = (props: Props) => {
     return (
         <div className={style.textWithIndicator}>
             <span
-                className={classNames(
-                    style.indicator,
-                    isActive ? style.active : style.inactive
-                )}
+                className={classNames(style.indicator, isActive ? style.active : style.inactive)}
             />
             <span>
                 {prefix && <span className={style.prefix}>{prefix}&nbsp;</span>}

@@ -13,10 +13,7 @@ const LinkLists = (props: SectionPageProps) => {
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
 
     const newsUrlAbsolute =
-        moreNewsUrl &&
-        (moreNewsUrl.startsWith('/')
-            ? `${appOrigin}${moreNewsUrl}`
-            : moreNewsUrl);
+        moreNewsUrl && (moreNewsUrl.startsWith('/') ? `${appOrigin}${moreNewsUrl}` : moreNewsUrl);
 
     return (
         <>

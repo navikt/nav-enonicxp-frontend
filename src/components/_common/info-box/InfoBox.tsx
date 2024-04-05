@@ -7,12 +7,7 @@ type InfoBoxProps = {
 
 export const InfoBox = ({ children }: InfoBoxProps) => {
     return (
-        <AlertBox
-            variant="info"
-            size="small"
-            inline={true}
-            className={styles.infoBox}
-        >
+        <AlertBox variant="info" size="small" inline={true} className={styles.infoBox}>
             {children}
         </AlertBox>
     );

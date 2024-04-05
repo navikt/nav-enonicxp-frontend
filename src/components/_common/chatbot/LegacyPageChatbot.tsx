@@ -1,7 +1,7 @@
 import React from 'react';
-import { ChatbotLinkPanel } from './ChatbotLinkPanel';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
+import { ChatbotLinkPanel } from './ChatbotLinkPanel';
 
 import style from './LegacyPageChatbot.module.scss';
 

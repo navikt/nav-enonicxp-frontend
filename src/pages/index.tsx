@@ -1,6 +1,6 @@
-import { PageBase } from 'components/PageBase';
 import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { PageBase } from 'components/PageBase';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
 import { logger } from 'srcCommon/logger';
@@ -8,9 +8,7 @@ import { logger } from 'srcCommon/logger';
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const isDevBuild =
-    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD &&
-    !isFailover &&
-    process.env.ENV !== 'prod';
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD && !isFailover && process.env.ENV !== 'prod';
 
 // The build workflow on GHA does not have access to our dev-backend, so we just return not found for this page on build
 const getStaticPropsBuildDev: GetStaticProps = async () => {
@@ -37,9 +35,7 @@ const getStaticPropsNormal: GetStaticProps = async () => {
     };
 };
 
-export const getStaticProps = isDevBuild
-    ? getStaticPropsBuildDev
-    : getStaticPropsNormal;
+export const getStaticProps = isDevBuild ? getStaticPropsBuildDev : getStaticPropsNormal;
 
 export default PageBase;
 

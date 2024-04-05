@@ -1,6 +1,6 @@
 import React from 'react';
-import { translator } from 'translations';
 import { Detail, Heading } from '@navikt/ds-react';
+import { translator } from 'translations';
 import { shortenText } from 'utils/string';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
@@ -41,9 +41,7 @@ export const PressNewsItem = ({ newsItem }: Props) => {
                 </Heading>
             </LenkeBase>
             {newsItem.data?.ingress && (
-                <div className={style.ingress}>
-                    {shortenText(newsItem.data.ingress, 240, 30)}
-                </div>
+                <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
             )}
             <div className={style.newsTagline}>
                 {icon && <StaticImage imageData={icon} alt={''} />}

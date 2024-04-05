@@ -9,17 +9,8 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 
 import style from './FrontpageShortcuts.module.scss';
 
-export const FrontpageShortcuts = ({
-    config,
-    pageProps,
-}: FrontpageShortcutsProps) => {
-    const {
-        shortcuts,
-        title: sectionTitle,
-        bgColor,
-        itemColor,
-        hoverColor,
-    } = config;
+export const FrontpageShortcuts = ({ config, pageProps }: FrontpageShortcutsProps) => {
+    const { shortcuts, title: sectionTitle, bgColor, itemColor, hoverColor } = config;
 
     if (!shortcuts || shortcuts.length === 0) {
         return <EditorHelp text={'Velg minst en snarvei'} />;
@@ -41,18 +32,11 @@ export const FrontpageShortcuts = ({
             }
         >
             {sectionTitle && (
-                <Header
-                    size="large"
-                    level="2"
-                    justify="left"
-                    className={style.header}
-                >
+                <Header size="large" level="2" justify="left" className={style.header}>
                     {sectionTitle}
                 </Header>
             )}
-            <ul
-                className={classNames(style.list, threeCols && style.threeCols)}
-            >
+            <ul className={classNames(style.list, threeCols && style.threeCols)}>
                 {shortcuts.map((item) => {
                     const { target, customIllustration, customTitle } = item;
                     if (!target?.data) {
@@ -60,10 +44,8 @@ export const FrontpageShortcuts = ({
                     }
 
                     const href = target.data.url || target._path;
-                    const title =
-                        customTitle || target.data.title || target.displayName;
-                    const illustration =
-                        customIllustration || target.data.illustration;
+                    const title = customTitle || target.data.title || target.displayName;
+                    const illustration = customIllustration || target.data.illustration;
 
                     return (
                         <li key={title}>
@@ -71,11 +53,7 @@ export const FrontpageShortcuts = ({
                                 href={href}
                                 linkUnderline={'none'}
                                 analyticsLinkGroup={title}
-                                icon={
-                                    <IllustrationStatic
-                                        illustration={illustration}
-                                    />
-                                }
+                                icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(
                                     style.item,
                                     audience && style[`item_${audience}`]

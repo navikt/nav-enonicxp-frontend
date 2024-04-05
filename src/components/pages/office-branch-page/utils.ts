@@ -15,10 +15,7 @@ const dayNameKey: Record<LegacyDayNames, TranslationDayNameKeys> = {
     Fredag: 'fri',
 } as const;
 
-export const buildDayLabel = (
-    opening: OpeningHoursProps,
-    language: Language
-): string => {
+export const buildDayLabel = (opening: OpeningHoursProps, language: Language): string => {
     const weekdayNames = translator('dateTime', language)('weekDayNames');
 
     const { dato, dag } = opening;

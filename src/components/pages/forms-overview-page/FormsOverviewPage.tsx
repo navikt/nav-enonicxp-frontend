@@ -38,9 +38,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     if (page.descriptor !== 'no.nav.navno:two-cols-page') {
         return (
-            <EditorHelp
-                text={`Ugyldig page-komponent for skjemaoversikt: ${page.descriptor}`}
-            />
+            <EditorHelp text={`Ugyldig page-komponent for skjemaoversikt: ${page.descriptor}`} />
         );
     }
 
@@ -50,32 +48,18 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
     return (
-        <div
-            className={classNames(
-                style.page,
-                config.sideColToggle && style.withSideCol
-            )}
-        >
-            <IllustrationStatic
-                illustration={illustration}
-                className={style.pictogram}
-            />
+        <div className={classNames(style.page, config.sideColToggle && style.withSideCol)}>
+            <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <div className={style.main}>
                 <FormsOverviewHeader {...props} />
                 {audienceSubCategoryLinks ? (
-                    <FormsOverviewAudienceLinks
-                        links={audienceSubCategoryLinks}
-                    />
+                    <FormsOverviewAudienceLinks links={audienceSubCategoryLinks} />
                 ) : (
                     <FormsOverviewList {...props} />
                 )}
             </div>
             {config.sideColToggle && (
-                <Region
-                    pageProps={props}
-                    regionProps={regions.sideCol}
-                    className={style.aside}
-                />
+                <Region pageProps={props} regionProps={regions.sideCol} className={style.aside} />
             )}
         </div>
     );

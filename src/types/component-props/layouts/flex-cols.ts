@@ -1,13 +1,6 @@
-import {
-    LayoutCommonProps,
-    LayoutType,
-    Regions,
-} from 'types/component-props/layouts';
+import { LayoutCommonProps, LayoutType, Regions } from 'types/component-props/layouts';
 import { ComponentType } from 'types/component-props/_component-common';
-import {
-    HeaderWithAnchorMixin,
-    LayoutCommonConfigMixin,
-} from 'types/component-props/_mixins';
+import { HeaderWithAnchorMixin, LayoutCommonConfigMixin } from 'types/component-props/_mixins';
 
 export interface FlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;

@@ -2,9 +2,9 @@ import NextNodeServer from 'next/dist/server/next-server';
 import mockFs from 'mock-fs';
 import fs from 'fs';
 import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
-import { injectNextImageCacheDir } from './image-cache-handler';
 import { __getNextTestApp } from '../../__test-utils/utils';
 import { getNextServer } from '../next-utils';
+import { injectNextImageCacheDir } from './image-cache-handler';
 
 describe('Set next.js image cache dir', () => {
     const nextApp = __getNextTestApp();

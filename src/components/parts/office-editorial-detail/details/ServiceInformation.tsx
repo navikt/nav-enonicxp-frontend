@@ -32,11 +32,7 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
                         </li>
                     );
                 }
-                return (
-                    <li key={service.type}>
-                        {getServiceTranslation(service.type)}
-                    </li>
-                );
+                return <li key={service.type}>{getServiceTranslation(service.type)}</li>;
             })}
         </ul>
     );

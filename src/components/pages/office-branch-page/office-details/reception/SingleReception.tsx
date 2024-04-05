@@ -1,10 +1,6 @@
 import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import {
-    ClockFillIcon,
-    InformationSquareFillIcon,
-    HouseFillIcon,
-} from '@navikt/aksel-icons';
+import { ClockFillIcon, InformationSquareFillIcon, HouseFillIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import {
@@ -16,8 +12,8 @@ import {
     officeDetailsFormatAudienceReception,
     officeDetailsGetFutureOpeningExceptions,
 } from 'components/pages/office-branch-page/office-details/utils';
-import { OpeningHours } from './OpeningHours';
 import { usePageContentProps } from 'store/pageContext';
+import { OpeningHours } from './OpeningHours';
 
 import style from './SingleReception.module.scss';
 
@@ -26,12 +22,8 @@ export const SingleReception = (props: AudienceReception) => {
 
     const getLabel = translator('office', language);
 
-    const {
-        address,
-        adkomstbeskrivelse,
-        openingHours,
-        openingHoursExceptions,
-    } = officeDetailsFormatAudienceReception(props);
+    const { address, adkomstbeskrivelse, openingHours, openingHoursExceptions } =
+        officeDetailsFormatAudienceReception(props);
 
     const futureOpeningHoursExceptions =
         officeDetailsGetFutureOpeningExceptions(openingHoursExceptions);
@@ -53,18 +45,10 @@ export const SingleReception = (props: AudienceReception) => {
             </section>
             {openingHours.length > 0 && (
                 <>
-                    <Heading
-                        level="3"
-                        size="medium"
-                        spacing
-                        className={style.heading}
-                    >
+                    <Heading level="3" size="medium" spacing className={style.heading}>
                         <ClockFillIcon
                             aria-hidden="true"
-                            className={classNames(
-                                style.headingIcon,
-                                style.iconClock
-                            )}
+                            className={classNames(style.headingIcon, style.iconClock)}
                         />
                         {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
@@ -80,10 +64,7 @@ export const SingleReception = (props: AudienceReception) => {
                 </>
             )}
             <div className={style.appointmentBookingInfo}>
-                <InformationSquareFillIcon
-                    className={style.iconInfo}
-                    aria-hidden="true"
-                />
+                <InformationSquareFillIcon className={style.iconInfo} aria-hidden="true" />
                 {getLabel('youCanMakeAppointment')}
             </div>
         </div>

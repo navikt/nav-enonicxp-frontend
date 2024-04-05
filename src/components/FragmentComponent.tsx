@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-    ComponentType,
-    FragmentComponentProps,
-} from 'types/component-props/_component-common';
+import { ComponentType, FragmentComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
-import { ComponentMapper } from './ComponentMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ComponentMapper } from './ComponentMapper';
 
 type Props = {
     componentProps: FragmentComponentProps;
@@ -23,12 +20,7 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
         );
     }
 
-    return (
-        <ComponentMapper
-            pageProps={pageProps}
-            componentProps={componentProps.fragment}
-        />
-    );
+    return <ComponentMapper pageProps={pageProps} componentProps={componentProps.fragment} />;
 };
 
 export const FragmentComponent = ({ componentProps, pageProps }: Props) => {
@@ -40,18 +32,10 @@ export const FragmentComponent = ({ componentProps, pageProps }: Props) => {
 
         return (
             <div {...editorProps}>
-                <_FragmentComponent
-                    pageProps={pageProps}
-                    componentProps={componentProps}
-                />
+                <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />
             </div>
         );
     }
 
-    return (
-        <_FragmentComponent
-            pageProps={pageProps}
-            componentProps={componentProps}
-        />
-    );
+    return <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />;
 };

@@ -6,11 +6,7 @@ import style from './EditorGlobalWarnings.module.scss';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
-export const RenderToEditorGlobalWarnings = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const RenderToEditorGlobalWarnings = ({ children }: { children: React.ReactNode }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
@@ -21,9 +17,7 @@ export const RenderToEditorGlobalWarnings = ({
         return null;
     }
 
-    const element = document.getElementById(
-        EDITOR_GLOBAL_WARNINGS_CONTAINER_ID
-    );
+    const element = document.getElementById(EDITOR_GLOBAL_WARNINGS_CONTAINER_ID);
     if (!element) {
         return null;
     }
@@ -33,10 +27,7 @@ export const RenderToEditorGlobalWarnings = ({
 
 export const EditorGlobalWarnings = () => {
     return (
-        <div
-            className={style.container}
-            id={EDITOR_GLOBAL_WARNINGS_CONTAINER_ID}
-        >
+        <div className={style.container} id={EDITOR_GLOBAL_WARNINGS_CONTAINER_ID}>
             <DuplicateIdsWarning />
         </div>
     );
