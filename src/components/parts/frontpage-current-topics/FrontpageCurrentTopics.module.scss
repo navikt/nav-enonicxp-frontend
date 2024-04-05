@@ -35,13 +35,6 @@
     background-color: white;
     height: 100%;
 
-    :global(.linkPanelNavnoLink) {
-        @media #{common.$mq-screen-mobile-small} {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-        }
-    }
-
     :global(.linkPanelNavnoTextContent) {
         display: flex;
         flex-direction: column;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { classNames } from '../../../utils/classnames';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { Heading } from '@navikt/ds-react';
 
 import style from './LinkPanelNavnoSimple.module.scss';

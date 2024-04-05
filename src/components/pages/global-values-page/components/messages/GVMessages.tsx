@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { GVButton } from '../button/GVButton';
+import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 
 import style from './GVMessages.module.scss';
 

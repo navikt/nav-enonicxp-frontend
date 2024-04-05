@@ -14,7 +14,7 @@ import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { ContentType } from 'types/content-props/_content-common';
 import Head from 'next/head';
-import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
+import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import Config from 'config';
 import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
 

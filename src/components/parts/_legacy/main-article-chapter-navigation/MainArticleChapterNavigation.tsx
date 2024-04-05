@@ -1,12 +1,12 @@
 import React from 'react';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
-import { LenkeBase } from '../../../_common/lenke/LenkeBase';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './MainArticleChapterNavigation.module.scss';
 
@@ -14,8 +14,7 @@ import style from './MainArticleChapterNavigation.module.scss';
 // to link directly to the content instead, rather than try to render it
 // as a chapter
 const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
-    !chapter.data?.article ||
-    chapter.data.article.type === ContentType.MainArticle
+    !chapter.data?.article || chapter.data.article.type === ContentType.MainArticle
         ? chapter._path
         : chapter.data.article._path;
 
@@ -32,7 +31,7 @@ const getChapters = (contentProps: ContentProps) => {
 };
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {
         return null;
@@ -52,11 +51,9 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
             <ul>
                 <li>
                     {parentSelected ? (
-                        <BodyShort
-                            className={classNames(style.item, style.active)}
-                        >
+                        <BodyLong className={classNames(style.item, style.active)}>
                             {parentTitle}
-                        </BodyShort>
+                        </BodyLong>
                     ) : (
                         <LenkeBase href={parentPath} className={style.item}>
                             {parentTitle}
@@ -64,27 +61,17 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     )}
                 </li>
                 {chapters.map((chapter) => {
-                    const chapterPath = stripXpPathPrefix(
-                        getChapterPath(chapter)
-                    );
+                    const chapterPath = stripXpPathPrefix(getChapterPath(chapter));
                     const chapterSelected = currentPath === chapterPath;
 
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <BodyShort
-                                    className={classNames(
-                                        style.item,
-                                        style.active
-                                    )}
-                                >
+                                <BodyLong className={classNames(style.item, style.active)}>
                                     {chapter.displayName}
-                                </BodyShort>
+                                </BodyLong>
                             ) : (
-                                <LenkeBase
-                                    href={chapterPath}
-                                    className={style.item}
-                                >
+                                <LenkeBase href={chapterPath} className={style.item}>
                                     {chapter.displayName}
                                 </LenkeBase>
                             )}

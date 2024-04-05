@@ -1,20 +1,20 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
 import {
     ProductCardMiniProps,
     ProductCardProps,
 } from 'types/component-props/parts/product-card';
-import { getCardProps } from '../../_common/card/card-utils';
-import { MiniCard } from '../../_common/card/MiniCard';
-import { LargeCard } from '../../_common/card/LargeCard';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { getCardProps } from 'components/_common/card/card-utils';
+import { MiniCard } from 'components/_common/card/MiniCard';
+import { LargeCard } from 'components/_common/card/LargeCard';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const pageConfig = usePageConfig();
+    const pageContext = usePageContentProps();
 
     if (!config?.targetPage) {
         return (
@@ -28,7 +28,7 @@ export const ProductCardPart = ({
 
     const { targetPage, header, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, pageConfig, ingressOverride);
+    const props = getCardProps(targetPage, pageContext, ingressOverride);
 
     if (!props) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;

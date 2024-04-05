@@ -1,7 +1,7 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { OptionSetSingle } from '../../util-types';
-import { LinkSelectable } from '../_mixins';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { OptionSetSingle } from 'types/util-types';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 export interface LoggedinCardProps extends PartComponentProps {
     descriptor: PartType.LoggedinCard;

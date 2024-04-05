@@ -1,12 +1,12 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     ExpandableMixin,
     ContentListMixin,
     LinkSelectable,
     RenderOnAuthStateMixin,
-} from '../_mixins';
-import { OptionSetSingle } from '../../util-types';
+} from 'types/component-props/_mixins';
+import { OptionSetSingle } from 'types/util-types';
 
 export type ListType = 'default' | 'chevron' | 'bulletlist';
 

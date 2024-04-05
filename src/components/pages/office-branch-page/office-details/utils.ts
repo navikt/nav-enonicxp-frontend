@@ -1,8 +1,8 @@
 import { Address } from 'types/content-props/office-details-props';
-import { LegacyOfficeAddress } from 'types/content-props/office-information-props';
+import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
 
-export const formatAddress = (
-    address?: Address | LegacyOfficeAddress,
+export const officeDetailsFormatAddress = (
+    address?: Address | LegacyAddress,
     withZip?: boolean
 ) => {
     if (!address) {
@@ -10,9 +10,7 @@ export const formatAddress = (
     }
     let formatedAddress: string;
     if (address.type === 'postboksadresse') {
-        const postboksanlegg = address.postboksanlegg
-            ? ` ${address.postboksanlegg}`
-            : '';
+        const postboksanlegg = address.postboksanlegg ? ` ${address.postboksanlegg}` : '';
         formatedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
     } else {
         const husnummer = address.husnummer ? ` ${address.husnummer}` : '';
@@ -27,7 +25,7 @@ export const formatAddress = (
     return formatedAddress;
 };
 
-export const formatPhoneNumber = (phoneNumber?: string) => {
+export const officeDetailsFormatPhoneNumber = (phoneNumber?: string) => {
     if (!phoneNumber) {
         return '';
     }
@@ -35,9 +33,6 @@ export const formatPhoneNumber = (phoneNumber?: string) => {
     return phoneNumber
         .replace(/ /g, '')
         .split('')
-        .reduce(
-            (acc, digit, index) => acc + digit + (index % 2 === 1 ? ' ' : ''),
-            ''
-        )
+        .reduce((acc, digit, index) => acc + digit + (index % 2 === 1 ? ' ' : ''), '')
         .trim();
 };

@@ -271,15 +271,15 @@ export const translationsBundleNn: PartialTranslations = {
         },
     },
     dateTime: {
-        weekDayNames: [
-            'Måndag',
-            'Tysdag',
-            'Onsdag',
-            'Torsdag',
-            'Fredag',
-            'Laurdag',
-            'Søndag',
-        ],
+        weekDayNames: {
+            mon: 'Måndag',
+            tue: 'Tysdag',
+            wed: 'Onsdag',
+            thu: 'Torsdag',
+            fri: 'Fredag',
+            sat: 'Laurdag',
+            sun: 'Søndag',
+        },
         relatives: {
             today: 'i dag',
             tomorrow: 'i morgon',

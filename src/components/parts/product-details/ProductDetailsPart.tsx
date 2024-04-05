@@ -1,14 +1,12 @@
 import React from 'react';
 import { ProductDetailsProps } from 'types/component-props/parts/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
+import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from 'translations';
-import { Provider } from 'react-redux';
-import { setPageConfigAction } from 'store/slices/pageConfig';
-import { createNewStore } from 'store/store';
+import { PageContextProvider } from 'store/pageContext';
 
 export const ProductDetailsPart = ({
     config,
@@ -45,18 +43,14 @@ export const ProductDetailsPart = ({
     }
 
     // Wrap the product detail components in its own store provider, to ensure the correct language state is used
-    const store = createNewStore();
-    store.dispatch(
-        setPageConfigAction({
-            pageId: pageProps._id,
-            language: config.language,
-            isPagePreview: false,
-            editorView: pageProps.editorView,
-        })
-    );
+    const pageContent = {
+        ...pageProps,
+        language: config.language,
+        isPagePreview: false,
+    };
 
     return (
-        <Provider store={store}>
+        <PageContextProvider content={pageContent}>
             <FilteredContent {...config}>
                 <ExpandableComponentWrapper {...config}>
                     {components.map((component, index) => (
@@ -68,6 +62,6 @@ export const ProductDetailsPart = ({
                     ))}
                 </ExpandableComponentWrapper>
             </FilteredContent>
-        </Provider>
+        </PageContextProvider>
     );
 };

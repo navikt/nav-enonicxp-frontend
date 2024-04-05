@@ -1,12 +1,12 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     ColorMixin,
     LinkWithIngressMixin,
     RenderOnAuthStateMixin,
-} from '../_mixins';
-import { XpImageProps } from '../../media';
-import { EmptyObject, OptionSetSingle } from '../../util-types';
+} from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
 
 type LinkPanelConfig = {
     background?: XpImageProps;

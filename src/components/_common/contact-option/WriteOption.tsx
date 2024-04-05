@@ -2,10 +2,10 @@ import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { WriteData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import {
     hoverFocusIcon,
@@ -17,7 +17,7 @@ import style from './ContactOption.module.scss';
 type Props = WriteData;
 
 export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
     const { isActive, handlers } = useHoverAndFocus();
 

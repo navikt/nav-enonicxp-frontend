@@ -1,8 +1,8 @@
 import React from 'react';
-import { PayoutDatesPartProps } from '../../../types/component-props/parts/payout-dates';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { PayoutDates } from '../../_common/payout-dates/PayoutDates';
-import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { PayoutDatesPartProps } from 'types/component-props/parts/payout-dates';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PayoutDates } from 'components/_common/payout-dates/PayoutDates';
+import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 
 export const PayoutDatesPart = ({ config }: PayoutDatesPartProps) => {
     if (!config?.dates?.data) {

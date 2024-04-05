@@ -1,9 +1,9 @@
 import React from 'react';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { joinWithConjunction } from '../../../../utils/string';
 import { AudienceReception } from '@navikt/nav-office-reception-info';
+import { usePageContentProps } from 'store/pageContext';
+import { joinWithConjunction } from 'utils/string';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
@@ -15,7 +15,7 @@ type Props = {
 
 export const OfficePageHeader = ({ officeDetails }: Props) => {
     const { navn, brukerkontakt } = officeDetails;
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
 
     const getSubtitle = (publikumsmottak: AudienceReception[]) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {
@@ -47,10 +47,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                     </BodyShort>
                     {subTitle && (
                         <>
-                            <BodyShort
-                                size="small"
-                                className={style.branchNamesLabel}
-                            >
+                            <BodyShort size="small" className={style.branchNamesLabel}>
                                 {subTitle}
                             </BodyShort>
                         </>

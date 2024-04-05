@@ -1,6 +1,6 @@
-import { DetailProps } from '../OfficeEditorialDetail';
+import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
@@ -9,7 +9,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import styles from './SharedDetails.module.scss';
 
 export const ServiceInformation = ({ officeData }: DetailProps) => {
-    const { language } = usePageConfig();
+    const { language } = usePageContentProps();
     const getServiceTranslation = translator('audienceServices', language);
     const serviceInformation = forceArray(
         officeData.brukerkontakt?.brukertjenesteTilbud?.tjenester

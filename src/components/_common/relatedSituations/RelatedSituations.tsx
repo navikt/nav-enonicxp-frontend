@@ -1,56 +1,47 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { ContentProps } from 'types/content-props/_content-common';
-import { MicroCard } from '../card/MicroCard';
+import { usePageContentProps } from 'store/pageContext';
+import { MicroCard } from 'components/_common/card/MicroCard';
 import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
-import { LinkProps } from 'types/link-props';
-
-import styles from './RelatedSituations.module.scss';
 import { classNames } from 'utils/classnames';
+import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
-type RelatedSituationsProps = {
-    relatedSituations: ContentProps[];
+import style from './RelatedSituations.module.scss';
+
+type Props = {
+    relatedSituations: SituationPageProps[];
     title: string;
     description: string;
 };
 
-export const RelatedSituations = ({
-    relatedSituations,
-    title,
-    description,
-}: RelatedSituationsProps) => {
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
+    const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
 
     return (
         <div
-            className={classNames(
-                styles.relatedSituations,
-                editorView === 'edit' && styles.noMargin
-            )}
+            className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
         >
             <Heading level="3" size="medium" spacing>
                 {title || getStringPart('otherOffers')}
             </Heading>
-            <BodyLong className={styles.description}>
+            <BodyLong className={style.description}>
                 {description || getStringPart('moreInformation')}
             </BodyLong>
-            <ul className={styles.situationsList}>
-                {relatedSituations.map((situation) => {
-                    const link: LinkProps = {
-                        url: stripXpPathPrefix(situation._path),
-                        text: situation.data.title || situation.displayName,
-                    };
-                    return (
-                        <li key={situation._id}>
-                            <MicroCard link={link} type={CardType.Situation} />
-                        </li>
-                    );
-                })}
+            <ul className={style.situationsList}>
+                {relatedSituations.map((situation) => (
+                    <li key={situation._id}>
+                        <MicroCard
+                            link={{
+                                url: stripXpPathPrefix(situation._path),
+                                text: situation.data.title || situation.displayName,
+                            }}
+                            type={CardType.Situation}
+                        />
+                    </li>
+                ))}
             </ul>
         </div>
     );

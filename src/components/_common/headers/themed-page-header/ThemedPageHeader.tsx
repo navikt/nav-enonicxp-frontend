@@ -1,9 +1,10 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
-import { PageHeader } from '../page-header/PageHeader';
+import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
 import { formatDate } from 'utils/datetime';
 import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
+import { usePageContentProps } from 'store/pageContext';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
     ContentPropsForThemedPageHeader,

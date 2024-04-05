@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { NewsHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
 

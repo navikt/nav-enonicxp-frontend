@@ -1,6 +1,6 @@
 import React from 'react';
-import { classNames } from '../../../utils/classnames';
-import { StaticImage } from '../image/StaticImage';
+import { classNames } from 'utils/classnames';
+import { StaticImage } from 'components/_common/image/StaticImage';
 
 import style from './FancyChevron.module.scss';
 

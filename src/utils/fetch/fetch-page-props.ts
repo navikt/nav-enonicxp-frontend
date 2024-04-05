@@ -4,17 +4,17 @@ import {
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
     stripXpPathPrefix,
-} from '../urls';
+} from 'utils/urls';
 import { fetchPage } from './fetch-content';
 import { isMediaContent } from 'types/media';
-import { errorHandler, isNotFound } from '../errors';
+import { errorHandler, isNotFound } from 'utils/errors';
 import { ContentType } from 'types/content-props/_content-common';
 import {
     getTargetIfRedirect,
     isPermanentRedirect,
     isRedirectType,
     redirectPageProps,
-} from '../redirects';
+} from 'utils/redirects';
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
 import { logger } from 'srcCommon/logger';
 

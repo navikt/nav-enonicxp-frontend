@@ -1,6 +1,6 @@
 import { useCallback, useId, useState } from 'react';
 import { logger } from 'srcCommon/logger';
-import { AnalyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { QbrickVideoProps } from './utils/videoProps';
 
 type PlayerState = 'loading' | 'ready' | 'error' | 'stopped';

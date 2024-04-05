@@ -1,4 +1,4 @@
-import { VideoData } from '../../../../types/content-props/video';
+import { VideoData } from 'types/content-props/video';
 import { parse } from 'querystring';
 
 export type QbrickVideoProps = {

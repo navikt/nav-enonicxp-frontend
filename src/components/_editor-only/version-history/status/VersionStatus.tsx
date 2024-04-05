@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { formatDateTime } from 'utils/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import dayjs from 'dayjs';
