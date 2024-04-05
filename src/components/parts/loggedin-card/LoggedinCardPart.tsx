@@ -1,9 +1,9 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { LinkSelectable } from 'types/component-props/_mixins';
+import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
 
 type LoggedInCardTypeProps = Omit<PartConfigLoggedinCard['card'], '_selected'>;
 

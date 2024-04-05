@@ -1,5 +1,4 @@
 import React from 'react';
-import { ComponentBaseProps, ComponentType } from './_component-common';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
@@ -33,6 +32,7 @@ import { PartConfigUserTests } from 'components/parts/user-tests/UserTestsPart';
 import { PartConfigUxSignalsWidget } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { PartConfigProductCardMini } from 'components/parts/product-card-mini/ProductCardMiniPart';
 import { PartConfigProductCardMicro } from 'components/parts/product-card-micro/ProductCardMicroPart';
+import { ComponentBaseProps, ComponentType } from './_component-common';
 
 export enum PartType {
     AreaCard = 'no.nav.navno:area-card',

@@ -2,13 +2,13 @@ import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 import { ServiceInformation } from './details/ServiceInformation';
 import { SocialHelpLinks } from './details/SocialHelpLinks';
 import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
-import { PartComponentProps, PartType } from 'types/component-props/parts';
-import { usePageContentProps } from 'store/pageContext';
 
 enum DetailType {
     SERVICE_INFORMATION = 'serviceInformation',

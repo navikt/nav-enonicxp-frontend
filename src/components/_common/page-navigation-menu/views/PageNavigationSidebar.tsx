@@ -5,8 +5,8 @@ import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
 } from 'components/_common/page-navigation-menu/PageNavigationMenu';
-import style from './PageNavigationSidebar.module.scss';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import style from './PageNavigationSidebar.module.scss';
 
 type Props = {
     title?: string;

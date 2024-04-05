@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, LinkPanel } from '@navikt/ds-react';
-import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';

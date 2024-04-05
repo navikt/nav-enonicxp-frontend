@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Heading, Ingress, Table } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { sortEntries, PublishingCalendarEntry } from './PublishingCalendarEntry';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { sortEntries, PublishingCalendarEntry } from './PublishingCalendarEntry';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';

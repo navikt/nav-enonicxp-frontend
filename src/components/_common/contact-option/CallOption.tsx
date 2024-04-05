@@ -9,10 +9,10 @@ import { OpeningInfo } from 'components/_common/contact-option/opening-info/Open
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
+import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
 import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
-import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {

@@ -1,5 +1,5 @@
-import { LayoutComponentProps } from './layouts';
 import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
+import { LayoutComponentProps } from './layouts';
 import { PartComponentProps } from './parts';
 
 export enum ComponentType {

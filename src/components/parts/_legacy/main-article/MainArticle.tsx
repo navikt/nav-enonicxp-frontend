@@ -1,7 +1,7 @@
 import React from 'react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { Heading, Ingress } from '@navikt/ds-react';
 import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
 import { MainArticleText } from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
 import { Faktaboks } from 'components/parts/_legacy/main-article/komponenter/Faktaboks';

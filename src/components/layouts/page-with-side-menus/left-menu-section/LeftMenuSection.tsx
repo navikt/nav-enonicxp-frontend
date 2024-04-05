@@ -6,8 +6,8 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
-import styles from './LeftMenuSection.module.scss';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import styles from './LeftMenuSection.module.scss';
 
 type Props = {
     internalLinks: AnchorLink[];

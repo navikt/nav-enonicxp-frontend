@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ReadMore } from '@navikt/ds-react';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';

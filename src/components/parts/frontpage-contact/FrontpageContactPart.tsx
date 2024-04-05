@@ -1,12 +1,12 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
-import { Heading } from '@navikt/ds-react';
 import { ContentType } from 'types/content-props/_content-common';
 import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';
-import { FrontpageContactAlert } from './FrontpageContactAlert';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
+import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';
 

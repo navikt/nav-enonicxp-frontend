@@ -1,16 +1,16 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
+import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 

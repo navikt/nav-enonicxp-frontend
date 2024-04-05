@@ -1,7 +1,7 @@
 import React from 'react';
+import { ButtonProps } from '@navikt/ds-react';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from 'components/_common/button/Button';
-import { ButtonProps } from '@navikt/ds-react';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 import { XpImageProps } from 'types/media';

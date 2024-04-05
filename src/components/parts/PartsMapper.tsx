@@ -6,6 +6,21 @@ import {
     PartType,
     PartTypeAll,
 } from 'types/component-props/parts';
+import { ComponentType } from 'types/component-props/_component-common';
+import { ContentProps } from 'types/content-props/_content-common';
+import { BEM, classNames } from 'utils/classnames';
+import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
+import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
+import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
+import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
+import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
+import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
+import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
+import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
+import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
@@ -16,44 +31,29 @@ import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { LinkLists } from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
-import { ComponentType } from 'types/component-props/_component-common';
-import { ContentProps } from 'types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
 import { PublishingCalendar } from './_legacy/publishing-calendar/PublishingCalendar';
 import { PublishingCalendarEntry } from './_legacy/publishing-calendar/PublishingCalendarEntry';
-import { BEM, classNames } from 'utils/classnames';
-import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
-import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
-import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
-import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
-import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
-import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
-import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
-import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
-import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,

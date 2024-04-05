@@ -6,10 +6,10 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
+import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
 import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
-import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = WriteData;
 

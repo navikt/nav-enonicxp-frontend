@@ -1,8 +1,8 @@
 import React from 'react';
+import { AlertProps } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { AlertProps } from '@navikt/ds-react';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 

@@ -3,8 +3,8 @@ import { Header } from 'components/_common/headers/Header';
 import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
 import { getPageNavigationLinkId } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 
-import style from './PageNavigationInContent.module.scss';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import style from './PageNavigationInContent.module.scss';
 
 type Props = {
     title?: string;
