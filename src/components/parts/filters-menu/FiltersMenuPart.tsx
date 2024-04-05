@@ -114,21 +114,21 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
                 expandableTitle={expandableTitle || defaultExpandableTitle}
                 analyticsOriginTag="filter"
             >
-                {categories.map((category, categoryIndex) => {
+                {categories.map((category) => {
                     return (
                         <CheckboxGroup
                             legend={category.categoryName}
-                            key={categoryIndex}
+                            key={category.categoryName}
                             className={style.category}
                         >
-                            {category.filters.map((filter, filterIndex) => (
+                            {category.filters.map((filter) => (
                                 <FilterCheckbox
                                     onToggleFilterHandler={() => {
                                         onToggleFilterHandler(filter, category);
                                     }}
                                     filter={filter}
                                     isSelected={selectedFilters.includes(filter.id)}
-                                    key={filterIndex}
+                                    key={filter.id}
                                 />
                             ))}
                             <FilterExplanation

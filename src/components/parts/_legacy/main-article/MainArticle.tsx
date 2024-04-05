@@ -27,35 +27,22 @@ export const MainArticle = (propsInitial: ContentProps) => {
         return null;
     }
 
-    const {
-        data,
-        language,
-        publish,
-        createdTime,
-        modifiedTime,
-        displayName,
-        _path,
-    } = props;
+    const { data, language, publish, createdTime, modifiedTime, displayName, _path } = props;
 
-    const isNewsArticle =
-        props.data.contentType === 'news' ||
-        props.data.contentType === 'pressRelease';
+    const isNewsArticle = data.contentType === 'news' || data.contentType === 'pressRelease';
 
     const style = isNewsArticle ? styleNews : stylePermanent;
 
     const getLabel = translator('mainArticle', language);
 
-    const hasTableOfContents = !!(
-        data?.hasTableOfContents && data?.hasTableOfContents !== 'none'
-    );
+    const hasTableOfContents = !!(data.hasTableOfContents && data.hasTableOfContents !== 'none');
 
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text?.processedHtml,
         hasTableOfContents
     );
 
-    const headerClassName =
-        innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
+    const headerClassName = innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
         <article className={style.article}>
@@ -69,12 +56,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
                     type={isNewsArticle ? 'newsPress' : 'normal'}
                 />
                 {!isNewsArticle && (
-                    <Heading
-                        level={'1'}
-                        size={'xlarge'}
-                        className={style.title}
-                        spacing
-                    >
+                    <Heading level={'1'} size={'xlarge'} className={style.title} spacing>
                         {displayName}
                     </Heading>
                 )}
@@ -99,11 +81,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 />
             )}
             {data.social && (
-                <SosialeMedier
-                    social={data.social}
-                    displayName={displayName}
-                    contentPath={_path}
-                />
+                <SosialeMedier social={data.social} displayName={displayName} contentPath={_path} />
             )}
             <Bilde picture={data.picture} />
         </article>
