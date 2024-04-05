@@ -44,8 +44,7 @@ const taxonomies: {
     [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Klagerettigheter',
     [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'Brukerstøtte',
     [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om NAV',
-    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]:
-        'Medlemskap i folketrygden',
+    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]: 'Medlemskap i folketrygden',
     [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering',
     [ToolsPageTaxonomy.CALCULATOR]: 'Kalkulator',
     [ToolsPageTaxonomy.NAVIGATOR]: 'Veiviser',
@@ -74,8 +73,7 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 
 export const translationsBundleNb = {
     errors: {
-        componentError:
-            'Det oppsto en feil ved lasting av dette innholdselementet',
+        componentError: 'Det oppsto en feil ved lasting av dette innholdselementet',
     },
     localeNames: {
         no: 'norsk (bokmål)',
@@ -101,8 +99,7 @@ export const translationsBundleNb = {
     },
     filteredContent: {
         noFiltersSelected: 'Ingen filtre er valgt, så alt innhold vises.',
-        filtersSelected:
-            'Vi har fjernet innhold som ikke er relevant i situasjonen din.',
+        filtersSelected: 'Vi har fjernet innhold som ikke er relevant i situasjonen din.',
         customizeContent: 'Tilpass innhold',
         showingInformationFor: 'Viser informasjon for:',
     },
@@ -146,31 +143,25 @@ export const translationsBundleNb = {
             'Hjelp i nødssituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
         OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
         TILGANGPC: 'Tilgang til PC',
-        HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tjenester hvis du trenger det',
+        HJELPDIGITALETJENESTER: 'Hjelp til å bruke digitale tjenester hvis du trenger det',
         BARNEVERNTJENESTE: 'Barneverntjeneste',
         FLYKTNINGTJENESTE: 'Flyktningtjeneste',
         FENGSEL_OPPFOLGING: 'Oppfølging av personer i fengsel',
         RUS_OPPFOLGING: 'Oppfølging av personer med rusproblemer',
-        PSYKISK_HELSE_OPPFOLGING:
-            'Oppfølging av personer med psykiske helseproblemer',
+        PSYKISK_HELSE_OPPFOLGING: 'Oppfølging av personer med psykiske helseproblemer',
         STARTLAN: 'Startlån og tilskudd fra kommunen',
         SJOFARTSOPPGAVER: 'Utstedelse av sjøfartsbok og formidling av sjøfolk',
         AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
         BOSTOTTE_HUSBANKEN: 'Bostøtte fra Husbanken',
         BOSTOTTE_KOMMUNEN: 'Bostøtte fra kommunen',
-        PRIVATOKONOMI_FORVALTNING:
-            'Frivillig og tvungen forvaltning av privatøkonomi',
+        PRIVATOKONOMI_FORVALTNING: 'Frivillig og tvungen forvaltning av privatøkonomi',
         INTROPROGRAMMET: 'Introduksjonsprogrammet',
         KOMMUNAL_BOLIG: 'Kommunal bolig',
         KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
-        KOMMUNALT_FRIKORT_HELSETJENESTER:
-            'Kommunalt frikort for helsetjenester',
+        KOMMUNALT_FRIKORT_HELSETJENESTER: 'Kommunalt frikort for helsetjenester',
         LEDSAGERBEVIS: 'Ledsagerbevis',
-        PARKERING_FORFLYTNINGSHEMMEDE:
-            'Parkeringstillatelse for forflytningshemmede',
-        REDUSERT_FORELDREBETALING:
-            'Redusert foreldrebetaling i barnehage eller SFO',
+        PARKERING_FORFLYTNINGSHEMMEDE: 'Parkeringstillatelse for forflytningshemmede',
+        REDUSERT_FORELDREBETALING: 'Redusert foreldrebetaling i barnehage eller SFO',
         SKJENKEBEVILLING: 'Skjenkebevilling',
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
@@ -254,13 +245,11 @@ export const translationsBundleNb = {
         },
         aidcentral: {
             title: 'Finn din hjelpemiddelsentral',
-            ingress:
-                'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
+            ingress: 'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
         },
         call: {
             title: 'Ring oss på 55 55 33 33',
-            ingress:
-                'Hverdager 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
+            ingress: 'Hverdager 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
         },
         shared: {
             closed: 'Stengt',
@@ -279,8 +268,7 @@ export const translationsBundleNb = {
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',
-        youCanMakeAppointment:
-            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
+        youCanMakeAppointment: 'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
         location: 'Beliggenhet',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
@@ -288,6 +276,7 @@ export const translationsBundleNb = {
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
             'Telefontid hverdager kl. 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
+        phoneInformationGeneral: 'Åpningstider telefon: hverdager kl. 9–15.',
         alternativeContacts: 'Andre kontaktopplysninger:',
     },
     dateTime: {

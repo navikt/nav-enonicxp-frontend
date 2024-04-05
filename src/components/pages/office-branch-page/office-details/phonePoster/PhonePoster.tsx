@@ -23,6 +23,11 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
+    const phoneInformation =
+        officeData.type === 'HMS'
+            ? getOfficeTranslations('phoneInformationGeneral')
+            : getOfficeTranslations('phoneInformation');
+
     return (
         <div className={styles.phonePoster}>
             <Heading level="2" size="small" className={styles.heading}>
@@ -34,9 +39,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={publikumskanaler.length > 0}>
-                {getOfficeTranslations('phoneInformation')}
-            </BodyLong>
+            <BodyLong spacing={publikumskanaler.length > 0}>{phoneInformation}</BodyLong>
             {publikumskanaler.length > 0 && (
                 <>
                     <Heading size="small" level="3">
