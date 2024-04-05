@@ -10,7 +10,7 @@ import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { ExpandableMixin } from 'types/component-props/_mixins';
 
@@ -32,7 +32,7 @@ export type PartConfigFilterMenu = {
     categories: FilterMenuCategory[];
 } & ExpandableMixin;
 
-export const FiltersMenuPart: PartComponent<PartType.FiltersMenu> = ({ config, path }) => {
+export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.FiltersMenu>) => {
     const { language, editorView, page } = usePageContentProps();
     const { categories, description, expandableTitle, title } = config;
 

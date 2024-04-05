@@ -5,7 +5,7 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { Language, translator } from 'translations';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { PageContextProvider, usePageContentProps } from 'store/pageContext';
 import { ComponentProps } from 'types/component-props/_component-common';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
@@ -19,7 +19,7 @@ export type PartConfigProductDetails = {
 } & ExpandableMixin &
     FiltersMixin;
 
-export const ProductDetailsPart: PartComponent<PartType.ProductDetails> = ({ config }) => {
+export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.ProductDetails>) => {
     const pageProps = usePageContentProps();
 
     if (!config?.detailType) {

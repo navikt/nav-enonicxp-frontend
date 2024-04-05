@@ -35,10 +35,10 @@ import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMen
 import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
 import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
-import { ProductCardMiniPart, ProductCardPart } from './product-card/ProductCard';
+import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
-import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
+import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
 import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
@@ -53,6 +53,7 @@ import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
+import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,
@@ -123,10 +124,10 @@ const PartComponentMapper = ({
             return <PayoutDatesPart {...partProps} />;
         case PartType.ProductCard:
             return <ProductCardPart {...partProps} />;
-        case PartType.ProductCardMicro:
-            return <ProductCardMicroPart {...partProps} />;
         case PartType.ProductCardMini:
             return <ProductCardMiniPart {...partProps} />;
+        case PartType.ProductCardMicro:
+            return <ProductCardMicroPart {...partProps} />;
         case PartType.ProductDetails:
             return <ProductDetailsPart {...partProps} />;
         case PartType.ProviderCard:

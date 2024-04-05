@@ -7,10 +7,10 @@ import { SocialHelpLinks } from './details/SocialHelpLinks';
 import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 
-export enum DetailType {
+enum DetailType {
     SERVICE_INFORMATION = 'serviceInformation',
     SOCIAL_HELP_LINKS = 'socialHelpLinks',
     SOCIAL_HELP_POSTAL_INFORMATION = 'socialHelpPostalInformation',
@@ -42,9 +42,9 @@ export type PartConfigOfficeEditorialDetail = {
     detailType?: DetailType;
 };
 
-export const OfficeEditorialDetailPart: PartComponent<PartType.OfficeEditorialDetail> = ({
+export const OfficeEditorialDetailPart = ({
     config,
-}) => {
+}: PartComponentProps<PartType.OfficeEditorialDetail>) => {
     const pageProps = usePageContentProps();
     const { detailType } = config;
 

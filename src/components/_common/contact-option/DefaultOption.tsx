@@ -10,9 +10,9 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
+import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
 
 import style from './ContactOption.module.scss';
-import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = DefaultContactData & {
     channel: ChannelType;

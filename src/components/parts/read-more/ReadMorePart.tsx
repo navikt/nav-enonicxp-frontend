@@ -4,17 +4,17 @@ import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
-import { PartComponent, PartType } from 'types/component-props/parts';
-
-import styles from './ReadMore.module.scss';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+
+import styles from './ReadMorePart.module.scss';
 
 export type PartConfigReadMore = {
     title: string;
     html: ProcessedHtmlProps;
 };
 
-export const ReadMorePart: PartComponent<PartType.ReadMore> = ({ config }) => {
+export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
     const [isOpen, setIsOpen] = useState(false);
     useShortcuts({
         shortcut: Shortcuts.SEARCH,

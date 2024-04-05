@@ -5,7 +5,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { LargeCard } from 'components/_common/card/LargeCard';
 import { usePageContentProps } from 'store/pageContext';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 import style from './AreapageSituationCardPart.module.scss';
@@ -15,9 +15,9 @@ export type PartConfigAreapageSituationCard = {
     target: SituationPageProps;
 };
 
-export const AreapageSituationCardPart: PartComponent<PartType.AreapageSituationCard> = ({
+export const AreapageSituationCardPart = ({
     config,
-}) => {
+}: PartComponentProps<PartType.AreapageSituationCard>) => {
     const pageProps = usePageContentProps();
     if (!config?.target?._id) {
         return <EditorHelp type={'error'} text={'Feil: komponenten har ingen gyldig referanse'} />;

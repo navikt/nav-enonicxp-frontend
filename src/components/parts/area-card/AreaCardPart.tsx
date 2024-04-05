@@ -2,7 +2,7 @@ import React from 'react';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type AreaCardGraphicsType =
@@ -21,7 +21,7 @@ export type PartConfigAreaCard = {
     area: AreaCardGraphicsType;
 };
 
-export const AreaCardPart: PartComponent<PartType.AreaCard> = ({ config }) => {
+export const AreaCardPart = ({ config }: PartComponentProps<PartType.AreaCard>) => {
     if (!config) {
         return <EditorHelp text={'Kortet mangler konfigurasjon'} />;
     }

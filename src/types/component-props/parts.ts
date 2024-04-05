@@ -24,17 +24,15 @@ import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editori
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
 import { PartConfigPageNavigationMenu } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDatesPart';
-import {
-    PartConfigProductCard,
-    PartConfigProductCardMicro,
-    PartConfigProductCardMini,
-} from 'components/parts/product-card/ProductCard';
+import { PartConfigProductCard } from 'components/parts/product-card/ProductCardPart';
 import { PartConfigProductDetails } from 'components/parts/product-details/ProductDetailsPart';
 import { PartConfigProviderCard } from 'components/parts/provider-card/ProviderCardPart';
 import { PartConfigReadMore } from 'components/parts/read-more/ReadMorePart';
 import { PartConfigRelatedSituations } from 'components/parts/related-situations/RelatedSituationsPart';
 import { PartConfigUserTests } from 'components/parts/user-tests/UserTestsPart';
 import { PartConfigUxSignalsWidget } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { PartConfigProductCardMini } from 'components/parts/product-card-mini/ProductCardMiniPart';
+import { PartConfigProductCardMicro } from 'components/parts/product-card-micro/ProductCardMicroPart';
 
 export enum PartType {
     AreaCard = 'no.nav.navno:area-card',
@@ -118,8 +116,8 @@ type PartConfigs = {
     [PartType.PageNavigationMenu]: PartConfigPageNavigationMenu;
     [PartType.PayoutDates]: PartConfigPayoutDates;
     [PartType.ProductCard]: PartConfigProductCard;
-    [PartType.ProductCardMini]: PartConfigProductCardMini;
     [PartType.ProductCardMicro]: PartConfigProductCardMicro;
+    [PartType.ProductCardMini]: PartConfigProductCardMini;
     [PartType.ProductDetails]: PartConfigProductDetails;
     [PartType.ReadMore]: PartConfigReadMore;
     [PartType.RelatedSituations]: PartConfigRelatedSituations;

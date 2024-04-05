@@ -2,7 +2,7 @@ import React from 'react';
 import { Calculator } from 'components/_common/calculator/Calculator';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 
 type BaseInputFields = {
     explanation?: string;
@@ -45,7 +45,7 @@ export type PartConfigCalculator = {
     filters?: string[];
 };
 
-export const CalculatorPart: PartComponent<PartType.Calculator> = ({ config }) => {
+export const CalculatorPart = ({ config }: PartComponentProps<PartType.Calculator>) => {
     if (!config?.targetCalculator) {
         return <EditorHelp text={'Velg kalkulator fra listen'} />;
     }

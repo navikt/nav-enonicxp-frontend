@@ -3,7 +3,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { ContentType } from 'types/content-props/_content-common';
 import { createTypeGuard } from 'types/_type-guards';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 
 const isValidContentType = createTypeGuard([
@@ -16,9 +16,9 @@ export type PartConfigAlternativeAudience = {
     showProductName: boolean;
 };
 
-export const AlternativeAudiencePart: PartComponent<PartType.AlternativeAudience> = ({
+export const AlternativeAudiencePart = ({
     config,
-}) => {
+}: PartComponentProps<PartType.AlternativeAudience>) => {
     const { data, type, _id, displayName } = usePageContentProps();
 
     // If the page is in preview mode, audience from the page props will be empty,

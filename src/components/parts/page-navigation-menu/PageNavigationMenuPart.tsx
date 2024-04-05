@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 
 export type AnchorLink = {
     anchorId: string;
@@ -16,7 +16,9 @@ export type PartConfigPageNavigationMenu = {
     viewStyle: PageNavViewStyle;
 };
 
-export const PageNavigationMenuPart: PartComponent<PartType.PageNavigationMenu> = ({ config }) => {
+export const PageNavigationMenuPart = ({
+    config,
+}: PartComponentProps<PartType.PageNavigationMenu>) => {
     if (!config) {
         return null;
     }

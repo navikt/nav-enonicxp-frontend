@@ -5,11 +5,12 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageContentProps } from 'store/pageContext';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { DayName } from 'utils/datetime';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { AudienceOptions } from 'types/component-props/_mixins';
+import { createTypeGuard } from 'types/_type-guards';
 
 export type OpeningHourRegularRaw =
     | {
@@ -58,17 +59,6 @@ type LegacyWrite = {
     url?: string;
 };
 
-type Options = {
-    chat: DefaultContactData;
-    write: DefaultContactData & LegacyWrite;
-    navoffice: DefaultContactData;
-    aidcentral: DefaultContactData;
-    custom: DefaultContactData;
-    call: DefaultContactData & LegacyCall;
-};
-
-export type ChannelType = keyof Options;
-
 export type DefaultContactData = {
     ingress?: ProcessedHtmlProps;
     title?: string;
@@ -109,24 +99,28 @@ export type WriteData = {
     ingress?: ProcessedHtmlProps;
 };
 
-type ChannelWithSharedInfo = Extract<ChannelType, 'call' | 'write' | 'chat'>;
+export type ChannelType = Exclude<keyof PartConfigContactOption['contactOptions'], '_selected'>;
 
-const editorHelpText: Record<ChannelWithSharedInfo, string> = {
-    call: 'Velg telefonnummer før denne kontaktkanalen kan vises.  Alternativt vises gammel hardkodet telefon-informasjon.',
+const editorHelpText = {
+    call: 'Velg telefonnummer før denne kontaktkanalen kan vises. Alternativt vises gammel hardkodet telefon-informasjon.',
     write: 'Velg en "skriv til oss"-side før denne kontaktkanalen kan vises.',
     chat: 'Velg en "chat"-side før denne kontaktkanalen kan vises. Alternativt vises standard chat-tekstinnhold.',
-};
+} as const;
 
-const channelsWithSharedInfo: ReadonlySet<ChannelType> = new Set(['call', 'write', 'chat']);
-
-const isChannelWithSharedInfo = (channel: ChannelType): channel is ChannelWithSharedInfo =>
-    channelsWithSharedInfo.has(channel);
+const isChannelWithSharedInfo = createTypeGuard(['call', 'write', 'chat'] as const);
 
 export type PartConfigContactOption = {
-    contactOptions: OptionSetSingle<Options>;
+    contactOptions: OptionSetSingle<{
+        chat: DefaultContactData;
+        write: DefaultContactData & LegacyWrite;
+        navoffice: DefaultContactData;
+        aidcentral: DefaultContactData;
+        custom: DefaultContactData;
+        call: DefaultContactData & LegacyCall;
+    }>;
 };
 
-export const ContactOptionPart: PartComponent<PartType.ContactOption> = ({ config }) => {
+export const ContactOptionPart = ({ config }: PartComponentProps<PartType.ContactOption>) => {
     const pageProps = usePageContentProps();
 
     const channel = config?.contactOptions?._selected;

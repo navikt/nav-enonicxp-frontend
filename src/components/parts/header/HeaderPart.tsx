@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { HeadingTag, headingToLevel, headingToSize } from 'types/typo-style';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
 
 import style from './HeaderPart.module.scss';
@@ -12,7 +12,7 @@ export type PartConfigHeader = {
     titleTag: HeadingTag;
 } & HeaderCommonConfig;
 
-export const HeaderPart: PartComponent<PartType.Header> = ({ config }) => {
+export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
     if (!config) {
         return null;
     }

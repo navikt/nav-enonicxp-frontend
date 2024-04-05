@@ -1,11 +1,11 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTests, UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 
 export type PartConfigUserTests = UserTestsComponentProps;
 
-export const UserTestsPart: PartComponent<PartType.UserTests> = ({ config }) => {
+export const UserTestsPart = ({ config }: PartComponentProps<PartType.UserTests>) => {
     if (!config?.tests?.data) {
         return <EditorHelp text={'Velg en test-gruppering'} type={'error'} />;
     }

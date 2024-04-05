@@ -2,7 +2,7 @@ import React from 'react';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from 'components/_common/button/Button';
 import { ButtonProps } from '@navikt/ds-react';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 import { XpImageProps } from 'types/media';
 
@@ -41,7 +41,7 @@ export type PartConfigButton = {
     fullwidth: boolean;
 };
 
-export const ButtonPart: PartComponent<PartType.Button> = ({ config }) => {
+export const ButtonPart = ({ config }: PartComponentProps<PartType.Button>) => {
     const { icon, link, size, type, fullwidth } = config;
 
     const linkProps = getSelectableLinkProps(link);

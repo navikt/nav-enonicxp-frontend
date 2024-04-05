@@ -11,7 +11,7 @@ import {
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
+export type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
 export type CardProps = {
     type: CardType;
@@ -32,10 +32,7 @@ export const cardTypeMap = {
     [ContentType.GenericPage]: CardType.Generic,
 };
 
-const getCardCategory = (
-    content: CardTargetProps,
-    language: Language
-): string[] => {
+const getCardCategory = (content: CardTargetProps, language: Language): string[] => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
     const selectedAudience = audience && getAudience(audience);

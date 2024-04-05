@@ -8,7 +8,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { XpImageProps } from 'types/media';
 import { EmptyObject, OptionSetSingle } from 'types/util-types';
 import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins';
@@ -27,7 +27,7 @@ export type PartConfigLinkPanel = {
     }>;
 } & LinkWithIngressMixin;
 
-export const LinkPanelPart: PartComponent<PartType.LinkPanel> = ({ config }) => {
+export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>) => {
     const { editorView } = usePageContentProps();
 
     if (!config) {

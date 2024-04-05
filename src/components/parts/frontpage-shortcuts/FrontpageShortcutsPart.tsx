@@ -5,7 +5,7 @@ import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 
@@ -33,7 +33,9 @@ export type PartConfigFrontpageShortcuts = {
     shortcuts: Shortcut[];
 };
 
-export const FrontpageShortcutsPart: PartComponent<PartType.FrontpageShortcuts> = ({ config }) => {
+export const FrontpageShortcutsPart = ({
+    config,
+}: PartComponentProps<PartType.FrontpageShortcuts>) => {
     const pageProps = usePageContentProps();
 
     const { shortcuts, title: sectionTitle, bgColor, itemColor, hoverColor } = config;

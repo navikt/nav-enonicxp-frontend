@@ -3,11 +3,11 @@ import { ContentList } from 'components/_common/content-list/ContentList';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PartComponent, PartType } from 'types/component-props/parts';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ContentListMixin, ExpandableMixin } from 'types/component-props/_mixins';
 import { LinkProps } from 'types/link-props';
 
-import style from './NewsList.module.scss';
+import style from './NewsListPart.module.scss';
 
 export type PartConfigNewsList = {
     title?: string;
@@ -16,7 +16,7 @@ export type PartConfigNewsList = {
     moreNews?: LinkProps;
 } & ExpandableMixin;
 
-export const NewsListPart: PartComponent<PartType.NewsList> = ({ config }) => {
+export const NewsListPart = ({ config }: PartComponentProps<PartType.NewsList>) => {
     if (!config?.contentList?.target) {
         return <EditorHelp text={'Tom nyhetsliste'} />;
     }
