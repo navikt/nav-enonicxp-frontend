@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { FunnelIcon } from '@navikt/aksel-icons';
+import { Heading, Button } from '@navikt/ds-react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
 import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { classNames } from 'utils/classnames';
-import { FunnelIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { Heading, Button } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 import style from './OverviewFilters.module.scss';

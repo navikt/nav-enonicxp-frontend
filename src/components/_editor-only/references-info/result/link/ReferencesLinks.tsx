@@ -1,8 +1,8 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { ReferenceItem } from 'components/_editor-only/references-info/types';
-import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { adminOrigin } from 'utils/urls';
 import { usePageContentProps } from 'store/pageContext';

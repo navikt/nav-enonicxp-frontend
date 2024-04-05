@@ -1,7 +1,7 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ProductDataMixin } from 'types/component-props/_mixins';
 import { stripXpPathPrefix } from './urls';
 import { getInternalLinkUrl } from './links-from-content';
-import { ProductDataMixin } from 'types/component-props/_mixins';
 
 const redirectTypes: { [type in ContentType]?: boolean } = {
     [ContentType.InternalLink]: true,

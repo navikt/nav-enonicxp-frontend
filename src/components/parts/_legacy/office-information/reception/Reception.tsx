@@ -1,14 +1,14 @@
 import React from 'react';
+import { Heading, BodyShort } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
     LegacyOfficeAudienceReception,
     LegacyOfficeOpeningHoursProps,
 } from 'types/content-props/office-information-props';
-import { Heading, BodyShort } from '@navikt/ds-react';
-import { OpeningHours } from './OpeningHours';
 import { forceArray } from 'utils/arrays';
 import { officeDetailsFormatAddress } from 'components/pages/office-branch-page/office-details/utils';
+import { OpeningHours } from './OpeningHours';
 
 import style from './Reception.module.scss';
 

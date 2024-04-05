@@ -1,15 +1,15 @@
+import { BodyLong } from '@navikt/ds-react';
+import { useEffect, useState } from 'react';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { useEffect, useState } from 'react';
+import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
+import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 import {
     hookDispatchEventForBatchContentServerEvent,
     unhookDispatchEventForBatchContentServerEvent,
 } from './dispatch-event-hook';
-import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
-import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 import style from './AutoRefreshDisableHack.module.scss';
 

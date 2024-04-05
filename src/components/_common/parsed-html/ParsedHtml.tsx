@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'store/store';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
-import { usePageContentProps } from 'store/pageContext';
-import { NextImage } from 'components/_common/image/NextImage';
 import htmlReactParser, {
     Element,
     domToReact,
@@ -12,6 +9,10 @@ import htmlReactParser, {
     DOMNode,
     HTMLReactParserOptions,
 } from 'html-react-parser';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { store } from 'store/store';
+import { usePageContentProps } from 'store/pageContext';
+import { NextImage } from 'components/_common/image/NextImage';
 import { getMediaUrl } from 'utils/urls';
 import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-props';
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
@@ -20,7 +21,6 @@ import { MacroMapper } from 'components/macros/MacroMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { Table } from 'components/_common/table/Table';
-import { BodyLong, Heading } from '@navikt/ds-react';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.AlertBox,

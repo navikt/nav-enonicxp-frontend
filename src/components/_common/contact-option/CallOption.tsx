@@ -1,6 +1,6 @@
 import React from 'react';
-import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { translator } from 'translations';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { TelephoneData } from 'types/component-props/parts/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';

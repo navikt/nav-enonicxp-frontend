@@ -1,6 +1,6 @@
 import React from 'react';
-import { translator } from 'translations';
 import { Detail, Heading } from '@navikt/ds-react';
+import { translator } from 'translations';
 import { shortenText } from 'utils/string';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { getPublicPathname } from 'utils/urls';

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BodyLong } from '@navikt/ds-react';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
@@ -9,7 +10,6 @@ import { ProductPanelExpandable } from 'components/_common/product-panel/Product
 import { LayoutProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { OverviewPageProductItem } from 'types/content-props/overview-props';
-import { BodyLong } from '@navikt/ds-react';
 
 import style from './OverviewProductDetailsPanel.module.scss';
 

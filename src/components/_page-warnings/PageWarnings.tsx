@@ -1,8 +1,8 @@
 import React from 'react';
 import { translator } from 'translations';
 import { ContentProps } from 'types/content-props/_content-common';
-import { PageWarning } from './page-warning/PageWarning';
 import { hasWhiteHeader } from 'utils/appearance';
+import { PageWarning } from './page-warning/PageWarning';
 
 type Props = {
     content: ContentProps;

@@ -1,7 +1,7 @@
 import React from 'react';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { MacroChatbotLinkProps } from 'types/macro-props/chatbot-link';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { Button } from 'components/_common/button/Button';
 
 type ExtraProps = {

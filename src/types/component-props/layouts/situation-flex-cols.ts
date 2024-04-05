@@ -1,8 +1,8 @@
 import { LayoutCommonProps, LayoutType, Regions } from 'types/component-props/layouts';
 import { ComponentType } from 'types/component-props/_component-common';
 import { HeaderWithAnchorMixin } from 'types/component-props/_mixins';
-import { FlexColsLayoutProps } from './flex-cols';
 import { OptionSetSingle } from 'types/util-types';
+import { FlexColsLayoutProps } from './flex-cols';
 
 export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;

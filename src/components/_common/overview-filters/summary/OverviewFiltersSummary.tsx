@@ -1,8 +1,8 @@
 import React from 'react';
+import { BodyLong, Chips, Heading } from '@navikt/ds-react';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { BodyLong, Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 

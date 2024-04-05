@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
+import dayjs from 'dayjs';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getCurrentDateAndTime, getCurrentISODate, getUtcTimeFromLocal } from 'utils/datetime';
 import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
 import { VersionSelectorSubmitButton } from 'components/_editor-only/version-history/selector/submit-button/VersionSelectorSubmitButton';
-import dayjs from 'dayjs';
 
 import style from './VersionSelectorDateTime.module.scss';
 

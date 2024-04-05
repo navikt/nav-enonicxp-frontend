@@ -1,7 +1,7 @@
-import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
-import { translator } from 'translations';
 import { Heading, Link } from '@navikt/ds-react';
 import { ChevronRightIcon } from '@navikt/aksel-icons';
+import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
+import { translator } from 'translations';
 import { PressNewsItem } from './PressNewsItem';
 
 import styles from './PressNews.module.scss';

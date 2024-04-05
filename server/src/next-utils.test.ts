@@ -1,6 +1,6 @@
-import { getNextBuildId, getNextServer } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import { __getNextTestApp } from '../__test-utils/utils';
+import { getNextBuildId, getNextServer } from './next-utils';
 
 describe('Next.js server private accessors', () => {
     const nextApp = __getNextTestApp();

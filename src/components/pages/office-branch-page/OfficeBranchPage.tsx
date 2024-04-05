@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficeBranchPageProps } from 'types/content-props/dynamic-page-props';
-import { OfficePageHeader } from './office-page-header/OfficePageHeader';
-import { OfficeDetails } from './office-details/OfficeDetails';
 import { classNames } from 'utils/classnames';
 import { logger } from 'srcCommon/logger';
+import { OfficePageHeader } from './office-page-header/OfficePageHeader';
+import { OfficeDetails } from './office-details/OfficeDetails';
 
 import styles from './OfficeBranchPage.module.scss';
 

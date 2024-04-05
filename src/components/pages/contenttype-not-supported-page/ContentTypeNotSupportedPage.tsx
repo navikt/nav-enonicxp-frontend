@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { ContentProps } from 'types/content-props/_content-common';
 import Head from 'next/head';
+import { ContentProps } from 'types/content-props/_content-common';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 
 import style from './ContentTypeNotSupportedPage.module.scss';

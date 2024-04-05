@@ -1,3 +1,5 @@
+import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
+import { ProductDetailsPageProps } from 'types/component-props/pages/product-details-layout';
 import { ComponentCommonProps, ComponentProps, ComponentType } from './_component-common';
 import { FlexColsLayoutProps } from './layouts/flex-cols';
 import { FixedColsLayoutProps } from './layouts/fixed-cols';
@@ -10,8 +12,6 @@ import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
 import { AreapageSituationsProps } from './layouts/areapage-situations';
 import { FrontpageLoggedinSectionLayoutProps } from './layouts/frontpage-loggedin-section';
-import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
-import { ProductDetailsPageProps } from 'types/component-props/pages/product-details-layout';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',

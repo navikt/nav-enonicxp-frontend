@@ -1,14 +1,14 @@
 import React from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { useCard } from './useCard';
 import { classNames } from 'utils/classnames';
 import { TargetPage } from 'types/component-props/parts/product-card';
 import { CardProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { BodyShort } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
+import { useCard } from './useCard';
 
 import sharedStyle from './Card.module.scss';
 import style from './MicroCard.module.scss';

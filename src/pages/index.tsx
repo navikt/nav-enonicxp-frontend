@@ -1,6 +1,6 @@
-import { PageBase } from 'components/PageBase';
 import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { PageBase } from 'components/PageBase';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
 import { logger } from 'srcCommon/logger';

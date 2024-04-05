@@ -1,5 +1,5 @@
-import { substituteExpression, evaluateExpression } from './MacroGlobalValueWithMath';
 import { Language } from 'translations';
+import { substituteExpression, evaluateExpression } from './MacroGlobalValueWithMath';
 
 test('substitution', () => {
     expect(substituteExpression('$1 + $2 * 5', [50, 100])).toEqual('50 + 100 * 5');

@@ -1,6 +1,6 @@
+import { Heading, LinkPanel } from '@navikt/ds-react';
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
 import { translator } from 'translations';
-import { Heading, LinkPanel } from '@navikt/ds-react';
 import { getPublicPathname } from 'utils/urls';
 
 import styles from './PressShortcuts.module.scss';

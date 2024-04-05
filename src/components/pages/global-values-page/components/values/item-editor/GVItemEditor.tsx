@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from 'components/pages/global-values-page/utils';
@@ -8,7 +9,6 @@ import { gvServiceRemoveItem } from 'components/pages/global-values-page/api/ser
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from 'components/pages/global-values-page/api/services/getValueSet';
 import { gvServiceGetUsage } from 'components/pages/global-values-page/api/services/usage';
-import { BodyShort } from '@navikt/ds-react';
 import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
 import {
     GVItemEditorInputCaseTime,

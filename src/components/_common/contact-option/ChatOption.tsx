@@ -1,12 +1,12 @@
 import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';

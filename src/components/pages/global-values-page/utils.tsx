@@ -1,10 +1,10 @@
 import React from 'react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
-import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
+import { GVMessageProps } from './components/messages/GVMessages';
 
 export const gvNameExists = (itemName: string, items: GlobalValueItem[], key?: string) =>
     items.find((item) => item.itemName === itemName && (!key || item.key !== key));

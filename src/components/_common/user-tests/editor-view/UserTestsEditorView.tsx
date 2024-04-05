@@ -1,8 +1,8 @@
 import React from 'react';
+import { BodyLong, Detail } from '@navikt/ds-react';
 import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 import { formatDateTime, isCurrentTimeInRange } from 'utils/datetime';
-import { BodyLong, Detail } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 
 import style from './UserTestsEditorView.module.scss';

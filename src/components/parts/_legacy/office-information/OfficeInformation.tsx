@@ -1,6 +1,5 @@
 import React from 'react';
-import { Reception } from './reception/Reception';
-import { SpecialInformation } from './SpecialInfo';
+import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatPhoneNumber,
@@ -8,10 +7,11 @@ import {
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { OfficeInformationProps } from 'types/content-props/office-information-props';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
+import { SpecialInformation } from './SpecialInfo';
+import { Reception } from './reception/Reception';
 
 import style from './OfficeInformation.module.scss';
 

@@ -12,8 +12,8 @@ import {
     officeDetailsFormatAudienceReception,
     officeDetailsGetFutureOpeningExceptions,
 } from 'components/pages/office-branch-page/office-details/utils';
-import { OpeningHours } from './OpeningHours';
 import { usePageContentProps } from 'store/pageContext';
+import { OpeningHours } from './OpeningHours';
 
 import style from './SingleReception.module.scss';
 

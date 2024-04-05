@@ -1,8 +1,8 @@
-import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from 'types/areas';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { IndexPageProps } from 'types/component-props/pages/index-page';
 import { AudienceOptions, ColorMixin, LinkSelectable } from 'types/component-props/_mixins';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { SituationPageProps } from './dynamic-page-props';
 import { AnimatedIconsProps } from './animated-icons';
 import { OverviewPageProps } from './overview-props';

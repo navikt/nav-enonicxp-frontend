@@ -6,8 +6,8 @@ import { SiteInfoProps } from './types';
 import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';
 import { SiteInfoCustomPaths } from './custom-paths/SiteInfoCustomPaths';
 
-import style from './SiteInfo.module.scss';
 import { SiteInfoFeatureToggles } from './feature-toggles/SiteInfoFeatureToggles';
+import style from './SiteInfo.module.scss';
 
 export const SiteInfo = ({
     serverInfo,

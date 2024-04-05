@@ -1,4 +1,6 @@
 import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import {
     OpeningHours,
     OpeningHoursOpen,
@@ -10,8 +12,6 @@ import {
     openingHourDateFormat,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

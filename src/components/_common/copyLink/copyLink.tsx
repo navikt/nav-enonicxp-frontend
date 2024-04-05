@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { LinkIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { LinkIcon } from '@navikt/aksel-icons';
 
 import style from './copyLink.module.scss';
 

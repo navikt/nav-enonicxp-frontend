@@ -1,5 +1,5 @@
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import React from 'react';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import {
     DetailType,
     OfficeEditorialDetailProps,

@@ -1,13 +1,13 @@
 import React from 'react';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { useCard } from './useCard';
 import { usePageContentProps } from 'store/pageContext';
+import { useCard } from './useCard';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';

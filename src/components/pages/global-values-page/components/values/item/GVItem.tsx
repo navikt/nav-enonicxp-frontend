@@ -1,11 +1,11 @@
 import React from 'react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVButton } from 'components/pages/global-values-page/components/button/GVButton';
 import { GVItemEditor } from 'components/pages/global-values-page/components/values/item-editor/GVItemEditor';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceGetUsage } from 'components/pages/global-values-page/api/services/usage';
 import { generateGvUsageMessages } from 'components/pages/global-values-page/utils';
-import { BodyShort, Heading } from '@navikt/ds-react';
 import { getCaseTimeString } from 'components/macros/saksbehandlingstid/MacroSaksbehandlingstid';
 
 import style from './GVItem.module.scss';

@@ -1,9 +1,9 @@
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { Language } from 'translations';
 import { getContentLanguages } from 'utils/languages';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from 'utils/urls';
-import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { hasWhiteHeader } from 'utils/appearance';
 

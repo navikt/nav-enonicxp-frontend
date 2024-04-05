@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { SiteInfoPublishInfoItem } from 'components/_editor-only/site-info/publish-info/content-item/SiteInfoPublishInfoItem';
 import { Heading } from '@navikt/ds-react';
+import { SiteInfoPublishInfoItem } from 'components/_editor-only/site-info/publish-info/content-item/SiteInfoPublishInfoItem';
 import { SiteInfoContentProps } from 'components/_editor-only/site-info/types';
 import { Expandable } from 'components/_common/expandable/Expandable';
 

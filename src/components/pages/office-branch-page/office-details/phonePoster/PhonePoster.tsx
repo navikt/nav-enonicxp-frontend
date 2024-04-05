@@ -1,14 +1,14 @@
 import React from 'react';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
+import { PhoneFillIcon } from '@navikt/aksel-icons';
 import { OfficeDetailsProps } from 'components/pages/office-branch-page/office-details/OfficeDetails';
 import { translator } from 'translations';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-branch-page/office-details/utils';
 import { usePageContentProps } from 'store/pageContext';
-import { PhoneFillIcon } from '@navikt/aksel-icons';
 import { forceArray } from 'utils/arrays';
-import { AudienceChannels } from './AudienceChannels';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import Config from 'config';
+import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { ReadMore } from '@navikt/ds-react';
 import { ReadMorePartProps } from 'types/component-props/parts/read-more';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ReadMore } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useShortcuts, Shortcuts } from 'utils/useShortcuts';

@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
-import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
-import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { mockStore } from 'store/store';
 import Cookie from 'js-cookie';
+import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
+import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
+import { mockStore } from 'store/store';
 import { UserTestVariantProps } from 'types/content-props/user-tests-config';
 import { PageContextProvider } from 'store/pageContext';
 

@@ -7,10 +7,10 @@ import { usePageContentProps } from 'store/pageContext';
 import { Category, FilterMenuProps } from 'types/component-props/parts/filter-menu';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
-import { FilterCheckbox } from './FilterCheckbox';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { FilterCheckbox } from './FilterCheckbox';
 import { checkIfFilterFirstInPage } from './helpers';
 
 import style from './FiltersMenu.module.scss';

@@ -2,9 +2,8 @@ import React from 'react';
 import { classNames } from 'utils/classnames';
 import { StaticImage } from 'components/_common/image/StaticImage';
 
-import style from './FancyChevron.module.scss';
-
 import chevron from './chevron_icon.svg';
+import style from './FancyChevron.module.scss';
 
 type Props = {
     color: 'white' | 'blue';

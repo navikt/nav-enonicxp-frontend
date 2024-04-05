@@ -3,9 +3,9 @@ import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
-import { FormDetailsButton } from './FormDetailsButton';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 import { AlertInContext } from 'components/_common/alert-in-context/AlertInContext';
+import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
 

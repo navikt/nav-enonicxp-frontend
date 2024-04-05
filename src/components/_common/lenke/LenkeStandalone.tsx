@@ -1,8 +1,8 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { LenkeBase } from './LenkeBase';
 import { Chevron } from 'components/_common/chevron/Chevron';
+import { LenkeBase } from './LenkeBase';
 
 import style from './LenkeStandalone.module.scss';
 

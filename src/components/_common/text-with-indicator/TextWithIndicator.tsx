@@ -1,6 +1,6 @@
 import React from 'react';
-import style from './TextWithIndicator.module.scss';
 import { classNames } from 'utils/classnames';
+import style from './TextWithIndicator.module.scss';
 
 type Props = {
     text: string;

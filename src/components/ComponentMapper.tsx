@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
-import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { PageWrapper } from './PageWrapper';
-import { ContentMapper } from './ContentMapper';
 import { makeErrorProps } from 'utils/make-error-props';
 import { PageContextProvider } from 'store/pageContext';
+import { PageWrapper } from './PageWrapper';
+import { ContentMapper } from './ContentMapper';
 
 export type PageProps = {
     content: ContentProps;

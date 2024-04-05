@@ -6,8 +6,8 @@ import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/amplitude';
 
-import styles from './SectionNavigation.module.scss';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import styles from './SectionNavigation.module.scss';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;

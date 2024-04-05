@@ -1,8 +1,8 @@
 import React from 'react';
+import Head from 'next/head';
 import { UserTestsConfigProps } from 'types/content-props/user-tests-config';
 import { UserTests } from 'components/_common/user-tests/UserTests';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
-import Head from 'next/head';
 
 export const UserTestsConfigPreviewPage = (props: UserTestsConfigProps) => {
     return (

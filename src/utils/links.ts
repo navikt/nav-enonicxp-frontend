@@ -1,5 +1,5 @@
-import { getInternalRelativePath, isAppUrl } from './urls';
 import { NextRouter } from 'next/router';
+import { getInternalRelativePath, isAppUrl } from './urls';
 
 const elementIsAnchor = (element: HTMLElement): element is HTMLAnchorElement =>
     element.tagName?.toLowerCase() === 'a';

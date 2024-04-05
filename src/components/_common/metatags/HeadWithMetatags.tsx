@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import Head from 'next/head';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import {
     hasCanonicalUrl,
     hasDescription,

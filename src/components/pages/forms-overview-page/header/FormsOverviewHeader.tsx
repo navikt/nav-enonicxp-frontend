@@ -1,8 +1,8 @@
 import React from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import Region from 'components/layouts/Region';
 import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
-import { BodyShort } from '@navikt/ds-react';
 
 import style from './FormsOverviewHeader.module.scss';
 

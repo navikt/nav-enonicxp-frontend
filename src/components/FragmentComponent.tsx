@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentType, FragmentComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
-import { ComponentMapper } from './ComponentMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ComponentMapper } from './ComponentMapper';
 
 type Props = {
     componentProps: FragmentComponentProps;

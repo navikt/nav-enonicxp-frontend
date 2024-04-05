@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useId } from 'react';
-import { classNames } from 'utils/classnames';
 import { InformationSquareIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
+import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 

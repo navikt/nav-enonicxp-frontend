@@ -1,5 +1,10 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
+import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
+import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
+import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
+import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
@@ -22,13 +27,8 @@ import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
-import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
 import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
-import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
-import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
-import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
-import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
 
 const contentToReactComponent: {

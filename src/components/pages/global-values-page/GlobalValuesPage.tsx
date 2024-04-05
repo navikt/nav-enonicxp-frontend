@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { GlobalValuesProps } from 'types/content-props/global-values-props';
 import { Select, Heading } from '@navikt/ds-react';
-import { GVMessages } from './components/messages/GVMessages';
-import { GVAddItem } from './components/values/add-item/GVAddItem';
+import Head from 'next/head';
+import { GlobalValuesProps } from 'types/content-props/global-values-props';
 import {
     setContentIdAction,
     setEditorEnabledAction,
     setValueItemsAction,
 } from 'store/slices/gvEditorState';
 import { store } from 'store/store';
-import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
-import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { ContentType } from 'types/content-props/_content-common';
-import Head from 'next/head';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import Config from 'config';
 import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
+import { GVItemsSorted } from './components/values/GVItemsSorted';
+import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
+import { GVAddItem } from './components/values/add-item/GVAddItem';
+import { GVMessages } from './components/messages/GVMessages';
 
 import style from './GlobalValuesPage.module.scss';
 

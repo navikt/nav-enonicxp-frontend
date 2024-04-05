@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { Table } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 import PublishingCalendarEntry from './PublishingCalendarEntry';
-import { Table } from '@navikt/ds-react';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';

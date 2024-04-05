@@ -1,11 +1,11 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import { ErrorProps } from 'types/content-props/error-props';
-import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import Config from 'config';
 import { appOrigin, stripXpPathPrefix } from 'utils/urls';
 import { errorMessageURIErrorPublic } from 'utils/make-error-props';
+import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 
 export const ErrorContent400 = (props: ErrorProps) => {
     if (props.data.errorMessage === errorMessageURIErrorPublic) {

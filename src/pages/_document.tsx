@@ -1,10 +1,10 @@
 import React from 'react';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
-import { Language } from 'translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
+import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import { getDecoratorComponents } from 'utils/decorator/decorator-utils-serverside';
-import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
     language: Language;
