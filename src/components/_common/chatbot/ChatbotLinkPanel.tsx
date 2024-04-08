@@ -1,8 +1,8 @@
 import React from 'react';
-import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
+import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { FrontpageContactAlert } from 'components/parts/frontpage-contact/FrontpageContactAlert';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -13,12 +13,7 @@ type Props = {
     ingress: string;
 };
 
-export const ChatbotLinkPanel = ({
-    analyticsGroup,
-    linkText,
-    alertText,
-    ingress,
-}: Props) => {
+export const ChatbotLinkPanel = ({ analyticsGroup, linkText, alertText, ingress }: Props) => {
     return (
         <LinkPanelNavno
             className={style.chat}

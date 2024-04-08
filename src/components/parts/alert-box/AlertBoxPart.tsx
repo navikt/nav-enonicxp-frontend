@@ -1,9 +1,9 @@
 import React from 'react';
-import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
-import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
-import { AlertBox } from '../../_common/alert-box/AlertBox';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { AlertProps } from '@navikt/ds-react';
+import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 // These types were used by a previous version of the design system component
 // and are still used for the type property on the backend

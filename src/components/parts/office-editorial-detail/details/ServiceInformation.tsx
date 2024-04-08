@@ -1,4 +1,4 @@
-import { DetailProps } from '../OfficeEditorialDetail';
+import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
@@ -32,11 +32,7 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
                         </li>
                     );
                 }
-                return (
-                    <li key={service.type}>
-                        {getServiceTranslation(service.type)}
-                    </li>
-                );
+                return <li key={service.type}>{getServiceTranslation(service.type)}</li>;
             })}
         </ul>
     );

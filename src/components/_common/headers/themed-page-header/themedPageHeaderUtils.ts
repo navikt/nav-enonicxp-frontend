@@ -1,18 +1,12 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import {
     Audience,
     getAudience,
     getSubAudience,
     ProductDataMixin,
-} from '../../../../types/component-props/_mixins';
-import { translator } from '../../../../translations';
-import {
-    getTranslatedTaxonomies,
-    joinWithConjunction,
-} from '../../../../utils/string';
+} from 'types/component-props/_mixins';
+import { translator } from 'translations';
+import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
 
@@ -48,20 +42,13 @@ export const themedPageHeaderGetSubtitle = ({
     const currentAudience = getAudience(audience);
     const subAudience = getSubAudience(audience);
 
-    if (
-        currentAudience === Audience.PROVIDER &&
-        subAudience &&
-        subAudience.length > 0
-    ) {
+    if (currentAudience === Audience.PROVIDER && subAudience && subAudience.length > 0) {
         const getStringParts = translator('stringParts', language);
         const getSubAudienceLabel = translator('providerAudience', language);
         const subAudienceLabels = subAudience.map((audience) =>
             getSubAudienceLabel(audience).toLowerCase()
         );
-        return `${getStringParts('for')} ${joinWithConjunction(
-            subAudienceLabels,
-            language
-        )}`;
+        return `${getStringParts('for')} ${joinWithConjunction(subAudienceLabels, language)}`;
     }
 
     if (type === ContentType.SituationPage) {
@@ -79,22 +66,16 @@ export const themedPageHeaderGetSubtitle = ({
         return getTaxonomyLabel('any');
     }
 
-    if (
-        type === ContentType.ThemedArticlePage ||
-        type === ContentType.FormIntermediateStepPage
-    ) {
+    if (type === ContentType.ThemedArticlePage || type === ContentType.FormIntermediateStepPage) {
         const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
-        const allCategories = customCategory
-            ? [...taxonomyArray, customCategory]
-            : taxonomyArray;
+        const allCategories = customCategory ? [...taxonomyArray, customCategory] : taxonomyArray;
 
         return joinWithConjunction(allCategories, language);
     }
 
     if (
         type === ContentType.ProductPage &&
-        (currentAudience === Audience.EMPLOYER ||
-            currentAudience === Audience.PROVIDER) // Will catch unlikely events where no sub audience for provider was set
+        (currentAudience === Audience.EMPLOYER || currentAudience === Audience.PROVIDER) // Will catch unlikely events where no sub audience for provider was set
     ) {
         const getTaxonomyLabel = translator('products', language);
         return getTaxonomyLabel(currentAudience);

@@ -1,12 +1,11 @@
-import { ContentListProps } from '../content-props/content-list-props';
-import { ContentProps } from '../content-props/_content-common';
-import { HeaderTypoStyle } from '../typo-style';
-import { AnimatedIconsProps } from '../content-props/animated-icons';
+import { ContentListProps } from 'types/content-props/content-list-props';
+import { ContentProps } from 'types/content-props/_content-common';
+import { HeaderTypoStyle } from 'types/typo-style';
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
-import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
+import { EmptyObject, OptionSetMulti, OptionSetSingle } from 'types/util-types';
 import { Area } from 'types/areas';
-import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -39,9 +38,7 @@ export type AudienceOptions = OptionSetSingle<{
 type AudienceProps = AudienceOptions | Audience | Audience[];
 
 export function getAudience(audience: AudienceProps): Audience;
-export function getAudience(
-    audience: AudienceProps | undefined | null
-): Audience | null;
+export function getAudience(audience: AudienceProps | undefined | null): Audience | null;
 export function getAudience(audience: AudienceProps | undefined | null) {
     if (!audience) {
         return null;
@@ -53,9 +50,7 @@ export function getAudience(audience: AudienceProps | undefined | null) {
 
     // Always prioritize person audience if it is present
     if (Array.isArray(audience)) {
-        return audience.includes(Audience.PERSON)
-            ? Audience.PERSON
-            : audience[0];
+        return audience.includes(Audience.PERSON) ? Audience.PERSON : audience[0];
     }
 
     return audience._selected;
@@ -82,7 +77,13 @@ export type AlternativeAudience = OptionSetMulti<{
     employer: { targetPage: ContentProps };
     provider: {
         providerList: {
-            providerAudience: ProviderAudience[];
+            providerAudience: (
+                | {
+                      name: ProviderAudience;
+                      overrideLabel?: string;
+                  }
+                | string
+            )[];
             targetPage: ContentProps;
         }[];
     };
@@ -97,8 +98,6 @@ export type ProductDataMixin = {
     illustration: AnimatedIconsProps;
     area: Area[];
     externalProductUrl?: string;
-    alternativeAudience?: AlternativeAudience;
-    relatedSituations?: SituationPageProps[];
 };
 
 export type LinkSelectable = OptionSetSingle<{

@@ -1,9 +1,5 @@
-import {
-    ContentType,
-    ContentCommonProps,
-    ContentProps,
-} from './_content-common';
-import { LinkPanel } from '../link-panel';
+import { LinkPanel } from 'types/link-panel';
+import { ContentType, ContentCommonProps, ContentProps } from './_content-common';
 import { ContentListProps } from './content-list-props';
 
 export type SectionPageData = {

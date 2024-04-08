@@ -1,7 +1,7 @@
 import React from 'react';
-import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { useState } from 'react';
 import { useRouter } from 'next/compat/router';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
@@ -42,11 +42,7 @@ type UseCardSettings = {
     link: LinkProps;
 };
 
-export const useCard = ({
-    link,
-    size,
-    type,
-}: UseCardSettings): UseCardState => {
+export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => {
     const [isHovering, setIsHovering] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
@@ -89,13 +85,8 @@ export const useCard = ({
 
         const isDeviceTouchOnly = hasTouch && !hasMouse;
 
-        if (
-            type === Interaction.mouseenter ||
-            type === Interaction.mouseleave
-        ) {
-            setIsHovering(
-                type === Interaction.mouseenter && !isDeviceTouchOnly
-            );
+        if (type === Interaction.mouseenter || type === Interaction.mouseleave) {
+            setIsHovering(type === Interaction.mouseenter && !isDeviceTouchOnly);
         }
 
         if (type === Interaction.mouseleave) {

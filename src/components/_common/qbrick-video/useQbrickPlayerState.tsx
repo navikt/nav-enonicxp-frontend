@@ -1,6 +1,6 @@
 import { useCallback, useId, useState } from 'react';
 import { logger } from 'srcCommon/logger';
-import { AnalyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { QbrickVideoProps } from './utils/videoProps';
 
 type PlayerState = 'loading' | 'ready' | 'error' | 'stopped';
@@ -13,10 +13,7 @@ type Props = {
     videoContainerId: string;
 };
 
-export const useQbrickPlayerState = ({
-    videoProps,
-    videoContainerId,
-}: Props) => {
+export const useQbrickPlayerState = ({ videoProps, videoContainerId }: Props) => {
     const [playerState, setPlayerState] = useState<PlayerState>('stopped');
     const widgetId = useId();
 
@@ -27,9 +24,7 @@ export const useQbrickPlayerState = ({
 
         const videoContainer = document.getElementById(videoContainerId);
         if (!videoContainer) {
-            logger.error(
-                `Element not found for video container ${videoContainerId}`
-            );
+            logger.error(`Element not found for video container ${videoContainerId}`);
             return;
         }
 

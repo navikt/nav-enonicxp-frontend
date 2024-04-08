@@ -1,15 +1,15 @@
-import { AlertBox } from '../../../_common/alert-box/AlertBox';
-import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { BodyLong } from '@navikt/ds-react';
-import { ContentProps } from 'types/content-props/_content-common';
 import { useEffect, useState } from 'react';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { ContentProps } from 'types/content-props/_content-common';
+import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
+import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 import {
     hookDispatchEventForBatchContentServerEvent,
     unhookDispatchEventForBatchContentServerEvent,
 } from './dispatch-event-hook';
-import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
-import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 import style from './AutoRefreshDisableHack.module.scss';
 
@@ -30,13 +30,9 @@ type Props = {
 };
 
 export const AutoReloadDisableHack = ({ content }: Props) => {
-    const [externalUpdateEvent, setExternalUpdateEvent] =
-        useState<CustomEvent | null>(null);
-    const [externalContentChange, setExternalContentChange] =
-        useState<boolean>(false);
-    const [externalUserName, setExternalUserName] = useState<string | null>(
-        null
-    );
+    const [externalUpdateEvent, setExternalUpdateEvent] = useState<CustomEvent | null>(null);
+    const [externalContentChange, setExternalContentChange] = useState<boolean>(false);
+    const [externalUserName, setExternalUserName] = useState<string | null>(null);
 
     useEffect(() => {
         hookDispatchEventForBatchContentServerEvent({
@@ -49,10 +45,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
-    if (
-        !externalContentChange ||
-        !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)
-    ) {
+    if (!externalContentChange || !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)) {
         return null;
     }
 
@@ -70,11 +63,8 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                                 e.preventDefault();
                                 setExternalContentChange(false);
                                 if (externalUpdateEvent) {
-                                    externalUpdateEvent.detail.userTriggered =
-                                        true;
-                                    parent.window.dispatchEvent(
-                                        externalUpdateEvent
-                                    );
+                                    externalUpdateEvent.detail.userTriggered = true;
+                                    parent.window.dispatchEvent(externalUpdateEvent);
                                 }
                             }}
                         >

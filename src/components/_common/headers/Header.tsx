@@ -4,7 +4,7 @@ import { onlyText } from 'utils/react-children';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
-import { CopyLink } from '../copyLink/copyLink';
+import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
@@ -30,30 +30,20 @@ export const Header = ({
     setId = true,
     className,
 }: Props) => {
-    const anchor = anchorId
-        ? anchorId.startsWith('#')
-            ? anchorId
-            : `#${anchorId}`
-        : undefined;
+    const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
 
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (
         <div
-            className={classNames(
-                style.header,
-                justify && style[`header__${justify}`],
-                className
-            )}
+            className={classNames(style.header, justify && style[`header__${justify}`], className)}
             id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-            {anchor && !hideCopyButton && (
-                <CopyLink heading={onlyText(children)} anchor={anchor} />
-            )}
+            {anchor && !hideCopyButton && <CopyLink heading={onlyText(children)} anchor={anchor} />}
         </div>
     );
 };

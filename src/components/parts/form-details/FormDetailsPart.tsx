@@ -2,7 +2,7 @@ import React from 'react';
 import { FormDetailsProps } from 'types/component-props/parts/form-details';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
-import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
+import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { ContentType } from 'types/content-props/_content-common';
 
 export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
@@ -13,8 +13,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
     // When all product pages have been re-organized, we can remove the reference and
     // config for showTitleAsLevel4.
     const showTitleAsLevel4 =
-        pageProps.type === ContentType.ProductPage &&
-        pageProps.data?.showSubsectionNavigation;
+        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
 
     if (!targetFormDetails) {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
@@ -28,10 +27,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
 
     return (
         <FilteredContent {...config}>
-            <FormDetails
-                formDetails={formDetails}
-                displayConfig={modifiedDisplayConfig}
-            />
+            <FormDetails formDetails={formDetails} displayConfig={modifiedDisplayConfig} />
         </FilteredContent>
     );
 };

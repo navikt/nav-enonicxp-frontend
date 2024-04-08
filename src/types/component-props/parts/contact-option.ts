@@ -1,9 +1,9 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { AudienceOptions, RenderOnAuthStateMixin } from '../_mixins';
-import { OptionSetSingle } from '../../util-types';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { AudienceOptions, RenderOnAuthStateMixin } from 'types/component-props/_mixins';
+import { OptionSetSingle } from 'types/util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { DayName } from '../../../utils/datetime';
+import { DayName } from 'utils/datetime';
 
 // TODO: Rewrite this for easier type narrowing
 

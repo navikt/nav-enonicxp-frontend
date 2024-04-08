@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Select } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { formatDateTime } from 'utils/datetime';
-import { getVersionSelectorUrl } from '../versionSelectorUtils';
-import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
+import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
+import { VersionSelectorSubmitButton } from 'components/_editor-only/version-history/selector/submit-button/VersionSelectorSubmitButton';
 
 import style from './VersionSelectorPublished.module.scss';
 
@@ -40,19 +40,12 @@ export const VersionSelectorPublished = ({
                 className={style.select}
             >
                 {versionTimestamps.map((timestamp, index) => (
-                    <option
-                        value={timestamp}
-                        selected={timestamp === selectedDateTime}
-                        key={index}
-                    >
+                    <option value={timestamp} selected={timestamp === selectedDateTime} key={index}>
                         {formatDateTime(timestamp, 'nb', true)}
                     </option>
                 ))}
             </Select>
-            <VersionSelectorSubmitButton
-                url={url}
-                submitVersionUrl={submitVersionUrl}
-            />
+            <VersionSelectorSubmitButton url={url} submitVersionUrl={submitVersionUrl} />
         </div>
     );
 };

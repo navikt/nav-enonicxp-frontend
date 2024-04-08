@@ -1,2 +1,1 @@
-export const pathToCacheKey = (path: string) =>
-    path === '/' ? '/index' : path;
+export const pathToCacheKey = (path: string) => (path === '/' ? '/index' : path);

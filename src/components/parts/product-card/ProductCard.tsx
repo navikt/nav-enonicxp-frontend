@@ -1,14 +1,11 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
-import {
-    ProductCardMiniProps,
-    ProductCardProps,
-} from 'types/component-props/parts/product-card';
-import { getCardProps } from '../../_common/card/card-utils';
-import { MiniCard } from '../../_common/card/MiniCard';
-import { LargeCard } from '../../_common/card/LargeCard';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { ProductCardMiniProps, ProductCardProps } from 'types/component-props/parts/product-card';
+import { getCardProps } from 'components/_common/card/card-utils';
+import { MiniCard } from 'components/_common/card/MiniCard';
+import { LargeCard } from 'components/_common/card/LargeCard';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductCardPart = ({
     config,
@@ -18,11 +15,7 @@ export const ProductCardPart = ({
 
     if (!config?.targetPage) {
         return (
-            <EditorHelp
-                text={
-                    'Velg en produktside eller livssituasjon for å aktivere kortet'
-                }
-            />
+            <EditorHelp text={'Velg en produktside eller livssituasjon for å aktivere kortet'} />
         );
     }
 

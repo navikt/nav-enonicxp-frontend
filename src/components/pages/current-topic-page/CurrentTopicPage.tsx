@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { NewsHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
 
@@ -12,10 +12,7 @@ export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
             <div className={style.contentWrapper}>
                 <div className={style.contentAligner}>
                     <div className={style.content}>
-                        <ComponentMapper
-                            componentProps={props.page}
-                            pageProps={props}
-                        />
+                        <ComponentMapper componentProps={props.page} pageProps={props} />
                     </div>
                 </div>
             </div>

@@ -4,19 +4,19 @@ import {
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
     stripXpPathPrefix,
-} from '../urls';
-import { fetchPage } from './fetch-content';
+} from 'utils/urls';
 import { isMediaContent } from 'types/media';
-import { errorHandler, isNotFound } from '../errors';
+import { errorHandler, isNotFound } from 'utils/errors';
 import { ContentType } from 'types/content-props/_content-common';
 import {
     getTargetIfRedirect,
     isPermanentRedirect,
     isRedirectType,
     redirectPageProps,
-} from '../redirects';
+} from 'utils/redirects';
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
 import { logger } from 'srcCommon/logger';
+import { fetchPage } from './fetch-content';
 
 type FetchPagePropsArgs = {
     routerQuery?: string | string[];
@@ -54,13 +54,7 @@ export const fetchPageProps = async ({
     const idOrPath = routerQueryToXpPathOrId(routerQuery || '');
 
     if (!isValidIdOrPath(idOrPath)) {
-        return errorHandler(
-            makeErrorProps(
-                stripXpPathPrefix(idOrPath),
-                errorMessageURIError,
-                400
-            )
-        );
+        return errorHandler(makeErrorProps(stripXpPathPrefix(idOrPath), errorMessageURIError, 400));
     }
 
     const content = await fetchPage({

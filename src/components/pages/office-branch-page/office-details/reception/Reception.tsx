@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
-import { AudienceReception } from '../../../../types/content-props/office-details-props';
-
-import { SingleReception } from './SingleReception';
+import { AudienceReception } from 'types/content-props/office-details-props';
+import { forceArray } from 'utils/arrays';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
+import { SingleReception } from './SingleReception';
 
-import styles from './Reception.module.scss';
-import { forceArray } from 'utils/arrays';
+import style from './Reception.module.scss';
 
-interface LocationsProps {
+type Props = {
     receptions: AudienceReception[] | AudienceReception;
-}
+};
 
-export const Reception = ({ receptions }: LocationsProps) => {
+export const Reception = ({ receptions }: Props) => {
     const { language } = usePageContentProps();
     const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
@@ -22,11 +21,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
         if (!reception) {
             return '(Ukjent sted)';
         }
-        return (
-            reception.stedsbeskrivelse ||
-            reception.besoeksadresse.poststed ||
-            '(Ukjent sted)'
-        );
+        return reception.stedsbeskrivelse || reception.besoeksadresse?.poststed || '(Ukjent sted)';
     };
 
     const getIdFromLabel = (label: string) => {
@@ -42,7 +37,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
 
     if (receptionArray.length === 1) {
         return (
-            <div className={styles.singleTab}>
+            <div className={style.singleTab}>
                 <SingleReception {...receptionArray[0]} />
             </div>
         );
@@ -50,14 +45,10 @@ export const Reception = ({ receptions }: LocationsProps) => {
 
     return (
         <>
-            <BodyLong className={styles.chooseBetweenOffices}>
+            <BodyLong className={style.chooseBetweenOffices}>
                 {getOfficeTranslations('chooseBetweenOffices')}
             </BodyLong>
-            <Tabs
-                value={state}
-                onChange={setState}
-                className={styles.officeTabs}
-            >
+            <Tabs value={state} onChange={setState} className={style.officeTabs}>
                 <Tabs.List>
                     {receptionArray.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);
@@ -76,7 +67,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                         <Tabs.Panel
                             key={index}
                             value={getIdFromLabel(locationLabel)}
-                            className={styles.singleTab}
+                            className={style.singleTab}
                         >
                             <SingleReception {...loc} />
                         </Tabs.Panel>

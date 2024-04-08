@@ -1,5 +1,5 @@
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { MacroPropsCommon, MacroType } from './_macros-common';
-import { ProcessedHtmlProps } from '../processed-html-props';
 
 export interface MacroHtmlFragmentProps extends MacroPropsCommon {
     name: MacroType.HtmlFragment;

@@ -1,51 +1,55 @@
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 import { OptionSetSingle } from 'types/util-types';
+import { ContentCommonProps, ContentType } from './_content-common';
+import { AnimatedIconsProps } from './animated-icons';
 
-type ExternalStep = {
-    externalUrl: string;
-};
-
-type InternalStep = {
-    internalContent: ContentCommonProps;
-};
-
-type StepMeta<T> = {
+export type FormIntermediateStep_StepData<
+    NextStep extends FormIntermediateStep_StepBase = FormIntermediateStep_StepBase,
+> = {
     editorial: ProcessedHtmlProps;
     stepsHeadline: string;
-    steps: T[];
+    steps: NextStep[];
 };
 
-type BaseStep = {
+export type FormIntermediateStep_StepBase = {
     label: string;
     explanation: string;
     languageDisclaimer?: string;
 };
 
-export type FirstLevelStep = BaseStep & {
-    nextStep: OptionSetSingle<{
-        next: StepMeta<SecondLevelStep>;
-        external: ExternalStep;
-        internal: InternalStep;
-    }>;
+type StepBaseOptions = {
+    external: {
+        externalUrl: string;
+    };
+    internal: {
+        internalContent: ContentCommonProps;
+    };
 };
 
-export type SecondLevelStep = BaseStep & {
-    nextStep: OptionSetSingle<{
-        external: ExternalStep;
-        internal: InternalStep;
-    }>;
+type StepLevel1 = FormIntermediateStep_StepBase & {
+    nextStep: OptionSetSingle<
+        StepBaseOptions & {
+            next: FormIntermediateStep_StepData<StepLevel2>;
+        }
+    >;
 };
 
-export type CompoundedSteps = StepMeta<FirstLevelStep | SecondLevelStep>;
+type StepLevel2 = FormIntermediateStep_StepBase & {
+    nextStep: OptionSetSingle<StepBaseOptions>;
+};
+
+export type FormIntermediateStep_StepLevel = StepLevel1 | StepLevel2;
+
+export type FormIntermediateStep_CompoundedStepData =
+    FormIntermediateStep_StepData<FormIntermediateStep_StepLevel>;
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
-        illustration: any;
+        illustration: AnimatedIconsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
-    } & StepMeta<FirstLevelStep>;
+    } & FormIntermediateStep_StepData<StepLevel1>;
 };

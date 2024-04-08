@@ -1,18 +1,13 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { formatNumber } from 'utils/math';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { MacroTallProps } from 'types/macro-props/tall';
 
 export const MacroTall = ({ config }: MacroTallProps) => {
     const { language } = usePageContentProps();
     if (!config?.tall) {
-        return (
-            <EditorHelp
-                text={'Teknisk feil: macroen er ikke konfigurert'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Teknisk feil: macroen er ikke konfigurert'} type={'error'} />;
     }
 
     const { verdi, decimals } = config.tall;

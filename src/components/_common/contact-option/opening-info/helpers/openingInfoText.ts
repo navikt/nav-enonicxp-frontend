@@ -1,4 +1,6 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import {
     OpeningHours,
     OpeningHoursOpen,
@@ -10,24 +12,17 @@ import {
     openingHourDateFormat,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
 const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
-const getNextOpenOpeningHour = (
-    openingHours: OpeningHours[]
-): OpeningHoursOpen | null => {
+const getNextOpenOpeningHour = (openingHours: OpeningHours[]): OpeningHoursOpen | null => {
     const tomorrow = dayjs().add(1, 'day');
 
     for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {
-        const found = getOpeningHoursForDateTime(
-            openingHours,
-            tomorrow.add(i, 'day')
-        );
+        const found = getOpeningHoursForDateTime(openingHours, tomorrow.add(i, 'day'));
 
         if (found?.status !== 'CLOSED') {
             return found;
@@ -44,21 +39,16 @@ const formatTime = (time: string, isEnglish: boolean = false) => {
     return dayjs(time, openingHourTimeFormat).format(format);
 };
 
-const getDayOfWeek = (
-    date: string,
-    weekDayNames: string[],
-    language: string
-) => {
-    const dayOfWeek = weekDayNames[dayjs(date).day() - 1];
+const getDayOfWeek = (dayJs: Dayjs, language: Language) => {
+    const weekDayNames = translator('dateTime', language)('weekDayNames');
+    // Dayjs uses sunday as first day of the week
+    const dayIndex = (dayJs.day() + 6) % 7;
+    const dayOfWeek = Object.values(weekDayNames)[dayIndex];
     return language === 'en' ? dayOfWeek : dayOfWeek.toLowerCase();
 };
 
-const buildFutureOpenString = (
-    { date, from }: OpeningHoursOpen,
-    language: Language
-) => {
+const buildFutureOpenString = ({ date, from }: OpeningHoursOpen, language: Language) => {
     const relatives = translator('dateTime', language)('relatives');
-    const weekDayNames = translator('dateTime', language)('weekDayNames');
     const sharedTranslations = translator('contactPoint', language)('shared');
 
     const opensTemplate = sharedTranslations['opensAt'].toLowerCase();
@@ -74,7 +64,7 @@ const buildFutureOpenString = (
 
     if (daysUntilOpeningDay > 1) {
         return `${sharedTranslations['closedNow']}, ${opensTemplate
-            .replace('{$date}', getDayOfWeek(date, weekDayNames, language))
+            .replace('{$date}', getDayOfWeek(opens, language))
             .replace('{$time}', openTime)}`;
     }
 

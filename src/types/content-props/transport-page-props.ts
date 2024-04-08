@@ -1,5 +1,5 @@
+import { LinkPanel } from 'types/link-panel';
 import { ContentType, ContentCommonProps } from './_content-common';
-import { LinkPanel } from '../link-panel';
 
 export type TransportPageData = Partial<{
     ingress: string;

@@ -1,26 +1,29 @@
-import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
-import newsIcon from '/public/gfx/news-paper-icon-black.svg';
+import React from 'react';
+import { Detail, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { Detail, Heading, Link } from '@navikt/ds-react';
 import { shortenText } from 'utils/string';
-import { StaticImage } from '../image/StaticImage';
+import { StaticImage } from 'components/_common/image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
-import styles from './PressNewsItem.module.scss';
+import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
+import newsIcon from '/public/gfx/news-paper-icon-black.svg';
 
-type PressNewsItemProps = {
+import style from './PressNewsItem.module.scss';
+
+type Props = {
     newsItem: ContentProps;
 };
 
-export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
+export const PressNewsItem = ({ newsItem }: Props) => {
     const { language } = newsItem;
     const getTranslations = translator('pressLanding', language);
 
     const getTaglineElements = (newsItem: ContentProps) => {
         if (newsItem.type === ContentType.MainArticle) {
-            const isNews = newsItem?.data?.contentType === 'news';
+            const isNews = newsItem.data.contentType === 'news';
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
@@ -31,23 +34,23 @@ export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
     const { icon, tagName } = getTaglineElements(newsItem);
 
     return (
-        <li key={newsItem._path} className={styles.newsItem}>
-            <Link href={getPublicPathname(newsItem)}>
+        <li key={newsItem._path} className={style.newsItem}>
+            <LenkeBase href={getPublicPathname(newsItem)}>
                 <Heading level={'3'} size={'medium'}>
                     {newsItem.displayName}
                 </Heading>
-            </Link>
-            <div className={styles.ingress}>
-                {shortenText(newsItem.data?.ingress, 240, 30)}
-            </div>
-            <div className={styles.newsTagline}>
+            </LenkeBase>
+            {newsItem.data?.ingress && (
+                <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
+            )}
+            <div className={style.newsTagline}>
                 {icon && <StaticImage imageData={icon} alt={''} />}
                 {tagName && (
-                    <Detail className={styles.newsType} uppercase={true}>
+                    <Detail className={style.newsType} uppercase={true}>
                         {tagName}
                     </Detail>
                 )}
-                <Detail className={styles.publishDate}>
+                <Detail className={style.publishDate}>
                     {getTranslations('published')}{' '}
                     {formatDate({
                         datetime: getPublishedDateTime(newsItem),

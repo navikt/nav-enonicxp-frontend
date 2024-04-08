@@ -1,7 +1,7 @@
-import { LayoutCommonProps, LayoutType, Regions } from '../layouts';
-import { ComponentType } from '../_component-common';
-import { HeaderWithAnchorMixin, LayoutCommonConfigMixin } from '../_mixins';
-import { XpImageProps } from '../../media';
+import { LayoutCommonProps, LayoutType, Regions } from 'types/component-props/layouts';
+import { ComponentType } from 'types/component-props/_component-common';
+import { HeaderWithAnchorMixin, LayoutCommonConfigMixin } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 import { OptionSetSingle } from 'types/util-types';
 
 export interface SectionWithHeaderProps extends LayoutCommonProps {

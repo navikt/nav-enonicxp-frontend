@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { PageBase } from 'components/PageBase';
-import Config from '../config';
+import Config from 'config';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
 import { fetchPrerenderPaths } from 'utils/fetch/fetch-prerender-paths';
@@ -57,12 +57,8 @@ const getStaticPathsRegular: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = isFailover
-    ? getStaticPropsFailover
-    : getStaticPropsRegular;
+export const getStaticProps = isFailover ? getStaticPropsFailover : getStaticPropsRegular;
 
-export const getStaticPaths = isFailover
-    ? getStaticPathsFailover
-    : getStaticPathsRegular;
+export const getStaticPaths = isFailover ? getStaticPathsFailover : getStaticPathsRegular;
 
 export default PageBase;

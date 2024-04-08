@@ -1,7 +1,7 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficeEditorialPageProps } from 'types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 import style from './OfficeEditorialPage.module.scss';
 
@@ -10,10 +10,7 @@ export const OfficeEditorialPage = (props: OfficeEditorialPageProps) => {
         <div className={style.officeEditorialPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
         </div>
     );

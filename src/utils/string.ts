@@ -1,10 +1,7 @@
 import { Language, translator } from 'translations';
 import { Taxonomy } from 'types/taxonomies';
 
-export const joinWithConjunction = (
-    joinableArray: string[],
-    language: Language
-): string => {
+export const joinWithConjunction = (joinableArray: string[], language: Language): string => {
     if (!Array.isArray(joinableArray)) {
         return '';
     }
@@ -37,30 +34,24 @@ export const getConjunction = ({
     }
 };
 
-export const getTranslatedTaxonomies = (
-    taxonomies: Taxonomy[],
-    language: Language
-): string[] => {
+export const getTranslatedTaxonomies = (taxonomies: Taxonomy[], language: Language): string[] => {
     if (!Array.isArray(taxonomies)) {
         return [];
     }
     const getTaxonomyLabel = translator('taxonomies', language);
-    const taxonomyLabels = taxonomies.map(getTaxonomyLabel).filter(Boolean);
 
-    return taxonomyLabels;
+    return taxonomies.map(getTaxonomyLabel).filter(Boolean);
 };
 
 export const numberToFormattedValue = (
-    value: number,
+    value: unknown,
     options: { useThousandSeparator: boolean }
 ) => {
-    const { useThousandSeparator } = options;
-
     if (typeof value !== 'number') {
         return '';
     }
 
-    if (useThousandSeparator) {
+    if (options.useThousandSeparator) {
         return value.toLocaleString('no');
     }
 
@@ -92,11 +83,7 @@ export const capitalize = (str: string) =>
         })
         .join(' ');
 
-export const shortenText = (
-    text: string,
-    maxLength: number,
-    maxOverflowLength: number = 0
-) => {
+export const shortenText = (text: string, maxLength: number, maxOverflowLength: number = 0) => {
     if (!!text && text.length > maxLength + maxOverflowLength) {
         return text.substring(0, maxLength) + '...';
     }

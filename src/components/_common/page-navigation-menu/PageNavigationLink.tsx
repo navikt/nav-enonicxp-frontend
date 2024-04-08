@@ -1,17 +1,17 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
-import {
-    pageNavigationAnchorOffsetPx,
-    PageNavScrollDirection,
-} from './PageNavigationMenu';
 import { smoothScrollToTarget } from 'utils/scroll-to';
+import Config from 'config';
+import { PageNavScrollDirection } from './PageNavigationMenu';
 
 import style from './PageNavigationLink.module.scss';
 import sidebarStyle from './views/PageNavigationSidebar.module.scss';
 import inContentStyle from './views/PageNavigationInContent.module.scss';
+
+const ANCHOR_OFFSET_PX = Config.vars.pxPerRem;
 
 type Props = {
     targetId: string;
@@ -23,28 +23,14 @@ type Props = {
 };
 
 export const PageNavigationLink = React.memo(
-    ({
-        targetId,
-        linkId,
-        isCurrent,
-        scrollDirection,
-        viewStyle,
-        children,
-    }: Props) => {
-        const setLocationHashAndScrollToTarget = (e) => {
+    ({ targetId, linkId, isCurrent, scrollDirection, viewStyle, children }: Props) => {
+        const setLocationHashAndScrollToTarget = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
-
-            window.history.pushState(
-                window.history.state,
-                undefined,
-                `#${targetId}`
-            );
-
-            smoothScrollToTarget(targetId, pageNavigationAnchorOffsetPx);
+            window.history.pushState(window.history.state, '', `#${targetId}`);
+            smoothScrollToTarget(targetId, ANCHOR_OFFSET_PX);
         };
 
-        const currentViewStyle =
-            viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
+        const currentViewStyle = viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
 
         return (
             <LenkeBase
@@ -61,10 +47,7 @@ export const PageNavigationLink = React.memo(
                 id={linkId}
             >
                 {viewStyle === 'sidebar' && (
-                    <span
-                        className={currentViewStyle.decor}
-                        aria-hidden={true}
-                    />
+                    <span className={currentViewStyle.decor} aria-hidden={true} />
                 )}
                 <BodyShort className={style.linkText}>{children}</BodyShort>
             </LenkeBase>

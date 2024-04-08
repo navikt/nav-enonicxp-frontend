@@ -1,13 +1,11 @@
 import React from 'react';
 import { MacroHtmlFragmentProps } from 'types/macro-props/html-fragment';
-import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
     if (!config?.html_fragment) {
-        return (
-            <EditorHelp type={'error'} text={'Macroen mangler konfigurasjon'} />
-        );
+        return <EditorHelp type={'error'} text={'Macroen mangler konfigurasjon'} />;
     }
 
     const htmlProps = config.html_fragment.processedHtml;

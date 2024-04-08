@@ -1,19 +1,18 @@
 import React from 'react';
 import { List, arrayMove } from 'react-movable';
-import { GVItem } from './item/GVItem';
+import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
+import { OnChangeMeta } from 'react-movable/lib/types';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
-import { gvServiceReorderItems } from '../../api/services/reorder';
-import { OnChangeMeta } from 'react-movable/lib/types';
+import { gvServiceReorderItems } from 'components/pages/global-values-page/api/services/reorder';
 import { logger } from 'srcCommon/logger';
+import { GVItem } from './item/GVItem';
 
 import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {
-    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } =
-        useGvEditorState();
+    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } = useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }: OnChangeMeta) => {
         const newSortedItems = arrayMove(valueItems, oldIndex, newIndex);
@@ -27,9 +26,7 @@ export const GVItemsCustomOrder = () => {
             if (!res || res.level === 'error') {
                 const msg = res?.message?.toString() || 'Ukjent feil';
 
-                logger.error(
-                    `Error from reorder request on ${contentId} - ${msg}`
-                );
+                logger.error(`Error from reorder request on ${contentId} - ${msg}`);
                 setMessages([
                     {
                         message: `Feil ved omsortering av verdier: ${msg}`,

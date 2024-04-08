@@ -1,5 +1,5 @@
-import { useAppSelector } from '../store';
-import { AuthState } from '../slices/authState';
+import { useAppSelector } from 'store/store';
+import { AuthState } from 'store/slices/authState';
 
 export const useAuthState = (): AuthState => {
     return useAppSelector((state) => state.authState);

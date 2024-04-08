@@ -6,9 +6,9 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { FilterExplanation } from './FilterExplanation';
 import { useScrollPosition } from 'utils/useStickyScroll';
 import { Category, Filter } from 'types/component-props/parts/filter-menu';
+import { FilterExplanation } from './FilterExplanation';
 
 import style from './FilterBar.module.scss';
 
@@ -20,26 +20,24 @@ type Props = {
 
 export const FilterBar = ({ layoutProps }: Props) => {
     const filterBarRef = useRef(null);
-    const { content, intro } = layoutProps.regions;
-    const components = [
-        ...(content ? content.components : []),
-        ...(intro ? intro.components : []),
-    ];
+
     const { language } = usePageContentProps();
     const getLabel = translator('filteredContent', language);
 
-    const { selectedFilters, availableFilters, toggleFilter } =
-        useFilterState();
+    const { selectedFilters, availableFilters, toggleFilter } = useFilterState();
 
-    const { saveScrollPosition, scrollBackToElement } = useScrollPosition(
-        filterBarRef.current
-    );
+    const { saveScrollPosition, scrollBackToElement } = useScrollPosition(filterBarRef.current);
 
-    const [filtersToDisplay, setFiltersToDisplay] = useState<
-        FilterWithCategory[]
-    >([]);
+    const [filtersToDisplay, setFiltersToDisplay] = useState<FilterWithCategory[]>([]);
 
     useEffect(() => {
+        const { content, intro } = layoutProps.regions;
+
+        const components = [
+            ...(content ? content.components : []),
+            ...(intro ? intro.components : []),
+        ];
+
         // Create a flat array of all ids that any
         // underlying part that has filter ids attached.
         // We don't care about duplicate ids in the final array at the moment.
@@ -65,7 +63,7 @@ export const FilterBar = ({ layoutProps }: Props) => {
             .flat();
 
         setFiltersToDisplay(_filtersToDisplay);
-    }, [availableFilters]);
+    }, [availableFilters, layoutProps]);
 
     // None of the parts are attached to filters, so don't show the FilterBar.
     if (filtersToDisplay.length === 0) {

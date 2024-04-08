@@ -1,4 +1,3 @@
-import { PartialTranslations } from './default';
 import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
@@ -7,6 +6,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import { PartialTranslations } from './default';
 
 const taxonomies: {
     [key in Taxonomy]?: string;
@@ -76,8 +76,7 @@ export const translationsBundleEn: PartialTranslations = {
     linkPanels: { label: 'Link panels' },
     filteredContent: {
         noFiltersSelected: 'No filters are selected. Showing all content.',
-        filtersSelected:
-            'We have hidden content not relevant for your situation.',
+        filtersSelected: 'We have hidden content not relevant for your situation.',
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
     },
@@ -92,26 +91,20 @@ export const translationsBundleEn: PartialTranslations = {
         FLYKTNINGTJENESTE: 'Refugee service',
         FENGSEL_OPPFOLGING: 'Follow-up of people in prison',
         RUS_OPPFOLGING: 'Follow-up of people with substance abuse problems',
-        PSYKISK_HELSE_OPPFOLGING:
-            'Follow-up of people with mental health problems',
+        PSYKISK_HELSE_OPPFOLGING: 'Follow-up of people with mental health problems',
         STARTLAN: 'Start-up loans and grants from the municipality',
-        SJOFARTSOPPGAVER:
-            'Issuance of sjøfartsbok and dissemination of seafarers',
+        SJOFARTSOPPGAVER: 'Issuance of sjøfartsbok and dissemination of seafarers',
         AKTIVITETSKORTET: 'Activity card for child and youth',
         BOSTOTTE_HUSBANKEN: 'Housing benefits from Husbanken',
         BOSTOTTE_KOMMUNEN: 'Housing benefits from from the municipality',
-        PRIVATOKONOMI_FORVALTNING:
-            'Voluntary and compulsory management of private finances',
+        PRIVATOKONOMI_FORVALTNING: 'Voluntary and compulsory management of private finances',
         INTROPROGRAMMET: 'Introductory program',
         KOMMUNAL_BOLIG: 'Public housing',
         KOMMUNAL_TILLEGGSPENSJON: 'Public pension supplement',
-        KOMMUNALT_FRIKORT_HELSETJENESTER:
-            'Public health services for hjemmetjenesten',
+        KOMMUNALT_FRIKORT_HELSETJENESTER: 'Public health services for hjemmetjenesten',
         LEDSAGERBEVIS: 'Accompanying person certificate',
-        PARKERING_FORFLYTNINGSHEMMEDE:
-            'Parking permit for people with reduced mobility',
-        REDUSERT_FORELDREBETALING:
-            'Reduced parental contribution for child care',
+        PARKERING_FORFLYTNINGSHEMMEDE: 'Parking permit for people with reduced mobility',
+        REDUSERT_FORELDREBETALING: 'Reduced parental contribution for child care',
         SKJENKEBEVILLING: 'Alcohol permit',
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
@@ -163,15 +156,15 @@ export const translationsBundleEn: PartialTranslations = {
         alternativeContacts: 'Other contact options:',
     },
     dateTime: {
-        weekDayNames: [
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday',
-            'Sunday',
-        ],
+        weekDayNames: {
+            mon: 'Monday',
+            tue: 'Tuesday',
+            wed: 'Wednesday',
+            thu: 'Thursday',
+            fri: 'Friday',
+            sat: 'Saturday',
+            sun: 'Sunday',
+        },
         relatives: {
             today: 'today',
             tomorrow: 'tomorrow',
@@ -273,8 +266,7 @@ export const translationsBundleEn: PartialTranslations = {
         },
         call: {
             title: 'Call us at +47 55 55 33 33',
-            ingress:
-                'Weekdays 9-15. We can call you back if the wait time is more than 5 minutes.',
+            ingress: 'Weekdays 9-15. We can call you back if the wait time is more than 5 minutes.',
         },
         shared: {
             closed: 'Closed',
@@ -325,8 +317,7 @@ export const translationsBundleEn: PartialTranslations = {
     providerAudience: {
         administrator: 'bankruptcy administrators',
         doctor: 'physicians, dentists or other healthcare professional',
-        municipality_employed:
-            'employed in the municipality or county municipality',
+        municipality_employed: 'employed in the municipality or county municipality',
         optician: 'opticians or ophthalmologists',
         measures_organizer: 'organizers of labour market measures',
         aid_supplier: 'assistive technology providers',

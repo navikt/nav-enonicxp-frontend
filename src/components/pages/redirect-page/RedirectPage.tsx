@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
-import { getTargetIfRedirect } from 'utils/redirects';
 import { BodyLong, Loader } from '@navikt/ds-react';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import { getTargetIfRedirect } from 'utils/redirects';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { ContentProps } from 'types/content-props/_content-common';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 

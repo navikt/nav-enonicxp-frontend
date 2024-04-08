@@ -1,6 +1,6 @@
 import React from 'react';
-import { Picture } from '../../../../../types/content-props/main-article-props';
-import { XpImage } from '../../../../_common/image/XpImage';
+import { Picture } from 'types/content-props/main-article-props';
+import { XpImage } from 'components/_common/image/XpImage';
 
 import style from './Bilde.module.scss';
 
@@ -17,24 +17,14 @@ export const Bilde = (props: Props) => {
     const { size, target } = picture;
 
     const imgClass =
-        size === '40'
-            ? style.figureSmall
-            : size === '70'
-            ? style.figureMedium
-            : style.figureFull;
+        size === '40' ? style.figureSmall : size === '70' ? style.figureMedium : style.figureFull;
 
     return (
         <div className={style.figureContainer}>
             <figure className={imgClass}>
-                <XpImage
-                    imageProps={target}
-                    alt={picture.altText || ''}
-                    maxWidth={768}
-                />
+                <XpImage imageProps={target} alt={picture.altText || ''} maxWidth={768} />
                 {picture.caption && (
-                    <figcaption className="decorated">
-                        {picture.caption}
-                    </figcaption>
+                    <figcaption className="decorated">{picture.caption}</figcaption>
                 )}
             </figure>
         </div>

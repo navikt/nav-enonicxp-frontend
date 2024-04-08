@@ -1,11 +1,11 @@
-import { ComponentProps, PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
+import { ComponentProps, PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 import {
     ExpandableMixin,
     FiltersMixin,
     RenderOnAuthStateMixin,
-} from '../_mixins';
-import { ProductDetailType } from '../../content-props/product-details';
+} from 'types/component-props/_mixins';
+import { ProductDetailType } from 'types/content-props/product-details';
 import { Language } from 'translations';
 
 export interface ProductDetailsProps extends PartComponentProps {

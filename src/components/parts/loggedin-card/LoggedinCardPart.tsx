@@ -3,14 +3,12 @@ import {
     LoggedinCardProps,
     LoggedInCardTypeProps,
     LoggedInCardTypes,
-} from '../../../types/component-props/parts/loggedin-card';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+} from 'types/component-props/parts/loggedin-card';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
 
 const CardComponents: {
-    [cardType in LoggedInCardTypes]: React.FunctionComponent<
-        LoggedInCardTypeProps[cardType]
-    >;
+    [cardType in LoggedInCardTypes]: React.FunctionComponent<LoggedInCardTypeProps[cardType]>;
 } = {
     meldekort: LoggedinCardMeldekort,
 };

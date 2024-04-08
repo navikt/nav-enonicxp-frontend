@@ -21,12 +21,7 @@ export const FilterCheckbox = ({
     const id = useId();
 
     return (
-        <div
-            className={classNames(
-                style.filterCheckbox,
-                isSelected && style.selected
-            )}
-        >
+        <div className={classNames(style.filterCheckbox, isSelected && style.selected)}>
             <input
                 type="checkbox"
                 onChange={onToggleFilterHandler}
@@ -35,19 +30,9 @@ export const FilterCheckbox = ({
                 id={id}
                 className={style.checkbox}
             />
-            <label
-                htmlFor={id}
-                className={classNames(
-                    style.label,
-                    isSelected && style.selected
-                )}
-            >
+            <label htmlFor={id} className={classNames(style.label, isSelected && style.selected)}>
                 {isSelected ? (
-                    <StaticImage
-                        imageData={checkedIcon}
-                        alt=""
-                        className={style.selected}
-                    />
+                    <StaticImage imageData={checkedIcon} alt="" className={style.selected} />
                 ) : (
                     <StaticImage imageData={checkboxIcon} alt="" />
                 )}

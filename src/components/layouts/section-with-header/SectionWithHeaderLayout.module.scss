@@ -1,16 +1,16 @@
 @use 'common' as common;
 @use 'sass:math';
 
-.layout__section-with-header {
-    $iconContainerRadius: common.px-to-rem(64px / 2);
+$iconContainerRadius: common.px-to-rem(64px / 2);
+
+.container {
     $iconContainerSize: $iconContainerRadius * 2;
     $defaultBgColor: white;
 
     @mixin adjust-for-padding($sectionPadding) {
         $marginActual: 1rem;
         top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
-        margin-bottom: (-$iconContainerRadius) -
-            ($sectionPadding - $marginActual);
+        margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
     display: inline-flex;
@@ -20,19 +20,7 @@
 
     @include common.section-padding-mixin();
 
-    .custom-header-style {
-        margin-bottom: 1rem;
-    }
-
-    &--with-icon {
-        margin-top: $iconContainerRadius;
-
-        .custom-header-style {
-            margin-top: 1rem;
-        }
-    }
-
-    .icon-container {
+    :global(.icon-container) {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -55,10 +43,21 @@
         }
 
         img {
-            $iconSize: $iconContainerRadius /
-                math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
             height: common.round-rem($iconSize);
             width: common.round-rem($iconSize);
         }
     }
+}
+
+.withIcon {
+    margin-top: $iconContainerRadius;
+}
+
+.header {
+    margin-bottom: 1rem;
+}
+
+.headerWithIcon {
+    margin-top: 1rem;
 }

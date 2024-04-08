@@ -1,5 +1,5 @@
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentType, ContentCommonProps } from './_content-common';
-import { ProcessedHtmlProps } from '../processed-html-props';
 
 export type LargeTableData = {
     text?: ProcessedHtmlProps;

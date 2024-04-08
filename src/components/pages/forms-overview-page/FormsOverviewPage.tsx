@@ -6,7 +6,7 @@ import {
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header/FormsOverviewHeader';
 import Region from 'components/layouts/Region';
-import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { classNames } from 'utils/classnames';
@@ -38,9 +38,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     if (page.descriptor !== 'no.nav.navno:two-cols-page') {
         return (
-            <EditorHelp
-                text={`Ugyldig page-komponent for skjemaoversikt: ${page.descriptor}`}
-            />
+            <EditorHelp text={`Ugyldig page-komponent for skjemaoversikt: ${page.descriptor}`} />
         );
     }
 
@@ -50,32 +48,18 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
     return (
-        <div
-            className={classNames(
-                style.page,
-                config.sideColToggle && style.withSideCol
-            )}
-        >
-            <IllustrationStatic
-                illustration={illustration}
-                className={style.pictogram}
-            />
+        <div className={classNames(style.page, config.sideColToggle && style.withSideCol)}>
+            <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <div className={style.main}>
                 <FormsOverviewHeader {...props} />
                 {audienceSubCategoryLinks ? (
-                    <FormsOverviewAudienceLinks
-                        links={audienceSubCategoryLinks}
-                    />
+                    <FormsOverviewAudienceLinks links={audienceSubCategoryLinks} />
                 ) : (
                     <FormsOverviewList {...props} />
                 )}
             </div>
             {config.sideColToggle && (
-                <Region
-                    pageProps={props}
-                    regionProps={regions.sideCol}
-                    className={style.aside}
-                />
+                <Region pageProps={props} regionProps={regions.sideCol} className={style.aside} />
             )}
         </div>
     );

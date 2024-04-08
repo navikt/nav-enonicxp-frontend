@@ -1,14 +1,14 @@
 import React from 'react';
+import { Heading, BodyShort } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
     LegacyOfficeAudienceReception,
     LegacyOfficeOpeningHoursProps,
 } from 'types/content-props/office-information-props';
-import { Heading, BodyShort } from '@navikt/ds-react';
-import { OpeningHours } from './OpeningHours';
 import { forceArray } from 'utils/arrays';
-import { formatAddress } from 'components/_common/office-details/utils';
+import { officeDetailsFormatAddress } from 'components/pages/office-branch-page/office-details/utils';
+import { OpeningHours } from './OpeningHours';
 
 import style from './Reception.module.scss';
 
@@ -21,14 +21,8 @@ type FormattedAudienceReception = {
 
 const dagArr: string[] = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
-const sortOpeningHours = (
-    a: LegacyOfficeOpeningHoursProps,
-    b: LegacyOfficeOpeningHoursProps
-) => {
-    return (
-        (a.dag ? dagArr.indexOf(a.dag) : -1) -
-        (b.dag ? dagArr.indexOf(b.dag) : -1)
-    );
+const sortOpeningHours = (a: LegacyOfficeOpeningHoursProps, b: LegacyOfficeOpeningHoursProps) => {
+    return (a.dag ? dagArr.indexOf(a.dag) : -1) - (b.dag ? dagArr.indexOf(b.dag) : -1);
 };
 
 const formatAudienceReception = (
@@ -63,19 +57,14 @@ const formatAudienceReception = (
     );
 
     return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse.poststed,
+        address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
+        place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse.poststed,
         openingHoursExceptions: aapningstider.exceptions,
         openingHours: aapningstider.regular.sort(sortOpeningHours),
     };
 };
 
-type ReceptionType =
-    | LegacyOfficeAudienceReception[]
-    | LegacyOfficeAudienceReception
-    | undefined;
+type ReceptionType = LegacyOfficeAudienceReception[] | LegacyOfficeAudienceReception | undefined;
 
 type Props = {
     receptions: ReceptionType;
@@ -109,9 +98,7 @@ export const Reception = (props: Props) => {
                                     Spesielle åpningstider
                                 </Heading>
                                 <OpeningHours
-                                    openingHours={
-                                        reception.openingHoursExceptions
-                                    }
+                                    openingHours={reception.openingHoursExceptions}
                                     closedLabel={getLabel('closed')}
                                     metaKey="exception"
                                 />

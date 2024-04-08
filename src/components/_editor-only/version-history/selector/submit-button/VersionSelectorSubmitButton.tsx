@@ -6,10 +6,7 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionSelectorSubmitButton = ({
-    url,
-    submitVersionUrl,
-}: Props) => {
+export const VersionSelectorSubmitButton = ({ url, submitVersionUrl }: Props) => {
     return (
         <Button
             href={url}

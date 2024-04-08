@@ -1,7 +1,7 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { PayoutDatesData } from '../../content-props/payout-dates';
-import { ExpandableMixin, RenderOnAuthStateMixin } from '../_mixins';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { PayoutDatesData } from 'types/content-props/payout-dates';
+import { ExpandableMixin, RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 
 export interface PayoutDatesPartProps extends PartComponentProps {
     descriptor: PartType.PayoutDates;

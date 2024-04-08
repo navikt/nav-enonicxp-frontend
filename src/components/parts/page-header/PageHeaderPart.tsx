@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeaderProps } from 'types/component-props/parts/page-header';
-import { PageHeader } from '../../_common/headers/page-header/PageHeader';
+import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
 import { classNames } from 'utils/classnames';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
@@ -13,19 +13,11 @@ export const PageHeaderPart = (props: PageHeaderProps) => {
     const audience = data?.audience;
 
     const isProviderSubPage =
-        type === ContentType.FrontPageNested &&
-        getAudience(audience) === Audience.PROVIDER;
+        type === ContentType.FrontPageNested && getAudience(audience) === Audience.PROVIDER;
 
     return (
-        <div
-            className={classNames(
-                style.wrapper,
-                isProviderSubPage && style.providerSubPage
-            )}
-        >
-            <PageHeader className={classNames(style.pageHeader)}>
-                {config.title}
-            </PageHeader>
+        <div className={classNames(style.wrapper, isProviderSubPage && style.providerSubPage)}>
+            <PageHeader className={classNames(style.pageHeader)}>{config.title}</PageHeader>
         </div>
     );
 };

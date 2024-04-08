@@ -1,29 +1,21 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { PageNavigationLink } from '../PageNavigationLink';
-import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
+import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
+import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
 import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
-} from '../PageNavigationMenu';
-import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
+} from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import style from './PageNavigationSidebar.module.scss';
 
 type Props = {
     title?: string;
     links: AnchorLink[];
-    dupes: AnchorLink[];
     currentIndex: number;
     scrollDirection: PageNavScrollDirection;
 };
 
-export const PageNavigationSidebar = ({
-    title,
-    links,
-    dupes,
-    currentIndex,
-    scrollDirection,
-}: Props) => {
+export const PageNavigationSidebar = ({ title, links, currentIndex, scrollDirection }: Props) => {
     return (
         <div className={style.pageNavSidebar}>
             {title && (
@@ -31,16 +23,13 @@ export const PageNavigationSidebar = ({
                     {title}
                 </Heading>
             )}
-            <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
                 <ul className={style.list}>
                     {links.map((anchorLink, index) => (
                         <li key={anchorLink.anchorId}>
                             <PageNavigationLink
                                 targetId={anchorLink.anchorId}
-                                linkId={getPageNavigationLinkId(
-                                    anchorLink.anchorId
-                                )}
+                                linkId={getPageNavigationLinkId(anchorLink.anchorId)}
                                 isCurrent={currentIndex === index}
                                 scrollDirection={scrollDirection}
                                 viewStyle={'sidebar'}

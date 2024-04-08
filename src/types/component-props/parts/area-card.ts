@@ -1,6 +1,6 @@
-import { PartComponentProps } from '../_component-common';
-import { PartType } from '../parts';
-import { LinkSelectable } from '../_mixins';
+import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type AreaCardGraphicsType =
     | 'payments'

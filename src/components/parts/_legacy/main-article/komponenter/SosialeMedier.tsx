@@ -41,12 +41,7 @@ const SosialeMedierLink = ({ type, text, href }: LinkProps) => {
 
     return (
         <li>
-            <LenkeBase
-                href={href}
-                analyticsLabel={text}
-                className={style.ikon}
-                {...handlers}
-            >
+            <LenkeBase href={href} analyticsLabel={text} className={style.ikon} {...handlers}>
                 {hoverFocusIcon({
                     iconDefault: `${type}-filled.svg`,
                     iconActive: `${type}-inverted.svg`,

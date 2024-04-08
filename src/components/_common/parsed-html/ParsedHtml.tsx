@@ -1,28 +1,26 @@
 import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'store/store';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
-import { usePageContentProps } from 'store/pageContext';
-import { NextImage } from '../image/NextImage';
 import htmlReactParser, {
     Element,
     domToReact,
     attributesToProps,
     DOMNode,
+    HTMLReactParserOptions,
 } from 'html-react-parser';
-import { getMediaUrl } from 'utils/urls';
-import {
-    processedHtmlMacroTag,
-    ProcessedHtmlProps,
-} from 'types/processed-html-props';
-import { headingToLevel, headingToSize } from 'types/typo-style';
-import { MacroType } from 'types/macro-props/_macros-common';
-import { MacroMapper } from '../../macros/MacroMapper';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { LenkeInline } from '../lenke/LenkeInline';
-import { Table } from '../table/Table';
 import { BodyLong, Heading } from '@navikt/ds-react';
+import { store } from 'store/store';
+import { usePageContentProps } from 'store/pageContext';
+import { NextImage } from 'components/_common/image/NextImage';
+import { getMediaUrl } from 'utils/urls';
+import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-props';
+import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
+import { MacroType } from 'types/macro-props/_macros-common';
+import { MacroMapper } from 'components/macros/MacroMapper';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.AlertBox,
@@ -47,8 +45,12 @@ const hasBlockLevelMacroChildren = (element: Element) => {
     );
 };
 
-const getNonEmptyChildren = ({ children }: Element) => {
-    const validChildren = children?.filter((child) => {
+const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
+    if (!children) {
+        return [];
+    }
+
+    return children.filter((child) => {
         if (isTag(child)) {
             // Macros and image tags are allowed to be empty
             if (
@@ -59,7 +61,7 @@ const getNonEmptyChildren = ({ children }: Element) => {
             }
 
             const grandChildren = getNonEmptyChildren(child);
-            return !!grandChildren;
+            return grandChildren.length > 0;
         }
 
         if (isText(child)) {
@@ -69,7 +71,6 @@ const getNonEmptyChildren = ({ children }: Element) => {
 
         return true;
     });
-    return validChildren?.length > 0 && validChildren;
 };
 
 type Props = {
@@ -84,35 +85,32 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     }
 
     const { processedHtml, macros } =
-        typeof htmlProps === 'string'
-            ? { processedHtml: htmlProps, macros: [] }
-            : htmlProps;
+        typeof htmlProps === 'string' ? { processedHtml: htmlProps, macros: [] } : htmlProps;
 
     if (!processedHtml) {
         return null;
     }
 
-    const parserOptions = {
-        replace: (element: Element) => {
-            const { name } = element;
+    // TODO: refactor this mess :D
+    const parserOptions: HTMLReactParserOptions = {
+        replace: (element: DOMNode) => {
+            if (!isTag(element)) {
+                return undefined;
+            }
+
+            const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             //Remove all inline styling except in table cells
             if (tag !== 'td') {
-                delete element?.attribs?.style;
+                delete attribs?.style;
             }
-            const { attribs, children } = element;
             const domNodes = children as DOMNode[];
             const props = !!attribs && attributesToProps(attribs);
-            const validChildren = getNonEmptyChildren(element);
+            const validChildren = getNonEmptyChildren(element) as DOMNode[];
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
-                return (
-                    <MacroMapper
-                        macros={macros}
-                        macroRef={attribs?.['data-macro-ref']}
-                    />
-                );
+                return <MacroMapper macros={macros} macroRef={attribs?.['data-macro-ref']} />;
             }
 
             // Remove img without src
@@ -130,13 +128,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             }
 
             // Fix header-tags
-            if (tag?.match(/^h[1-6]$/)) {
+            if (isHeadingTag(tag)) {
                 // Header-tags should not be used as empty spacers
-                if (!validChildren) {
+                if (validChildren.length === 0) {
                     return <p>{''}</p>;
                 }
 
-                const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
+                const level = tag === 'h1' ? '2' : headingToLevel[tag]; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
                 // Ignore heading-tag if it contains a macro
@@ -219,9 +217,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
-                return (
-                    <Table>{domToReact(validChildren, parserOptions)}</Table>
-                );
+                return <Table>{domToReact(validChildren, parserOptions)}</Table>;
             }
 
             // Replace empty rows with stylable element

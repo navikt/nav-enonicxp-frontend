@@ -1,17 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-    AnchorLink,
-    PageNavViewStyle,
-} from '../../../types/component-props/parts/page-navigation-menu';
 import debounce from 'lodash.debounce';
+import { AnchorLink, PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
+import Config from 'config';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';
-import Config from '../../../config';
+import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
-export const pageNavigationAnchorOffsetPx = Config.vars.pxPerRem;
-const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
+const MENU_UPDATE_RATE = 1000 / 30;
 
-export type PageNavCallbackArgs = {
+type PageNavCallbackArgs = {
     index: number;
     linkText?: string;
     linkId?: string;
@@ -19,71 +16,21 @@ export type PageNavCallbackArgs = {
 
 export type PageNavScrollDirection = 'up' | 'down';
 
-export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
-
-const getCurrentLinkIndex = (links: AnchorLink[]) => {
-    const targetElements = links.reduce((elements, link) => {
-        const element = document.getElementById(link.anchorId);
-        return element ? [...elements, element] : elements;
-    }, []);
-
-    const scrollTarget = window.scrollY + Config.vars.dekoratorenHeight;
-
-    const scrolledToTop = !!(
-        targetElements?.length && targetElements[0].offsetTop > scrollTarget
-    );
-
-    if (scrolledToTop) {
-        return -1;
-    }
-
-    const scrolledToBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight;
-
-    if (scrolledToBottom) {
-        return targetElements.length - 1;
-    }
-
-    const foundIndex = targetElements.findIndex((target) => {
-        return target.offsetTop > scrollTarget;
-    });
-
-    if (foundIndex === -1) {
-        return targetElements.length - 1;
-    }
-
-    return Math.max(foundIndex - 1, 0);
-};
-
-const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
-    anchorLinks?.filter(
-        (link) =>
-            link.anchorId &&
-            link.linkText &&
-            !link.isDupe &&
-            // On the client-side we also check if the element is in the DOM
-            (typeof document === 'undefined' ||
-                !!document.getElementById(link.anchorId))
-    ) || [];
-
 type Props = {
-    anchorLinks: AnchorLink[];
+    anchorLinks?: AnchorLink[];
     title?: string;
     currentLinkCallback?: (args: PageNavCallbackArgs) => void;
     viewStyle: PageNavViewStyle;
 };
 
 export const PageNavigationMenu = ({
-    anchorLinks,
+    anchorLinks = [],
     title,
     currentLinkCallback,
     viewStyle,
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(-1);
-    const [links, setLinks] = useState<AnchorLink[]>(
-        getValidLinks(anchorLinks)
-    );
+    const links = getValidLinks(anchorLinks);
 
     const scrollDir = useRef<PageNavScrollDirection>('up');
     const prevScrollPos = useRef(0);
@@ -105,55 +52,85 @@ export const PageNavigationMenu = ({
     }, [currentIndex, links, currentLinkCallback]);
 
     useEffect(() => {
-        if (!anchorLinks) {
-            return;
-        }
-
-        const sortedLinks = getValidLinks(anchorLinks).sort((a, b) => {
-            const elementA = document.getElementById(a.anchorId);
-            const elementB = document.getElementById(b.anchorId);
-            return elementA.offsetTop - elementB.offsetTop;
-        });
+        const elementsSortedByVerticalPosition = links.reduce<HTMLElement[]>((acc, link) => {
+            const element = document.getElementById(link.anchorId);
+            if (element) {
+                acc.push(element);
+            }
+            return acc;
+        }, []);
 
         const currentScrollPositionHandler = debounce(
             () => {
-                const index = getCurrentLinkIndex(sortedLinks);
+                const index = getCurrentLinkIndex(elementsSortedByVerticalPosition);
 
-                const scrollPos = window.pageYOffset;
+                const scrollPos = window.scrollY;
 
-                scrollDir.current =
-                    scrollPos > prevScrollPos.current ? 'down' : 'up';
+                scrollDir.current = scrollPos > prevScrollPos.current ? 'down' : 'up';
                 prevScrollPos.current = scrollPos;
 
                 setCurrentIndex(index);
             },
-            menuCurrentIndexMinUpdateRateMs / 2,
-            { maxWait: menuCurrentIndexMinUpdateRateMs }
+            MENU_UPDATE_RATE / 2,
+            { maxWait: MENU_UPDATE_RATE }
         );
 
-        setLinks(sortedLinks);
         currentScrollPositionHandler();
 
         window.addEventListener('scroll', currentScrollPositionHandler);
-        return () =>
-            window.removeEventListener('scroll', currentScrollPositionHandler);
-    }, [anchorLinks]);
+        return () => window.removeEventListener('scroll', currentScrollPositionHandler);
+    }, [links]);
 
-    if (!links?.length) {
+    if (links.length === 0) {
         return null;
     }
 
+    const PageNavigationComponent =
+        viewStyle === 'sidebar' ? PageNavigationSidebar : PageNavigationInContent;
+
     const props = {
-        currentIndex: currentIndex,
-        title: title,
-        links: links,
+        currentIndex,
+        title,
+        links,
         scrollDirection: scrollDir.current,
-        dupes: anchorLinks.filter((link) => link.isDupe),
     };
 
-    return viewStyle === 'sidebar' ? (
-        <PageNavigationSidebar {...props} />
-    ) : (
-        <PageNavigationInContent {...props} />
+    return (
+        <>
+            <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
+            <PageNavigationComponent {...props} />
+        </>
     );
 };
+
+export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
+
+const getCurrentLinkIndex = (targetElements: HTMLElement[]) => {
+    const scrollTarget = window.scrollY + Config.vars.dekoratorenHeight;
+
+    const scrolledToTop = !!(targetElements?.length && targetElements[0].offsetTop > scrollTarget);
+
+    if (scrolledToTop) {
+        return -1;
+    }
+
+    const scrolledToBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
+
+    if (scrolledToBottom) {
+        return targetElements.length - 1;
+    }
+
+    const foundIndex = targetElements.findIndex((target) => {
+        return target.offsetTop > scrollTarget;
+    });
+
+    if (foundIndex === -1) {
+        return targetElements.length - 1;
+    }
+
+    return Math.max(foundIndex - 1, 0);
+};
+
+const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
+    anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);

@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fetchJson } from 'srcCommon/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import { logger } from 'srcCommon/logger';
 
@@ -29,16 +29,12 @@ const cache = new Cache({
     deleteOnExpire: false, // We still want to serve expired cache while a new fetch is being fetched in background.
 });
 
-const saveToCache = (xml: any): void => {
+const saveToCache = (xml: string): void => {
     cache.set(cacheKey, xml);
 };
 
 const fetchRSSFeedAndUpdateCache = async (url: string) => {
-    const jsonFeed = await fetchJson<FeedItem[]>(
-        url,
-        millisecondsToFetchTimeout,
-        fetchOptions
-    );
+    const jsonFeed = await fetchJson<FeedItem[]>(url, millisecondsToFetchTimeout, fetchOptions);
     if (!jsonFeed) {
         logger.error('Error while fetching RSS data');
         return null;
@@ -83,9 +79,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) =>
         const rssFeed = await getRSSFeedFromCache();
 
         if (!rssFeed) {
-            return res
-                .status(503)
-                .send('Server error: RSS-feed is currently unavailable');
+            return res.status(503).send('Server error: RSS-feed is currently unavailable');
         }
 
         res.setHeader('Content-Type', 'application/xml');

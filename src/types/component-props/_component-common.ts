@@ -1,7 +1,7 @@
+import { ContentProps } from 'types/content-props/_content-common';
+import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 import { PartType } from './parts';
 import { LayoutProps } from './layouts';
-import { ContentProps } from '../content-props/_content-common';
-import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 
 export enum ComponentType {
     Page = 'page',

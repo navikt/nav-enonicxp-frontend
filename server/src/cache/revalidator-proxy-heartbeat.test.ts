@@ -10,17 +10,13 @@ describe('Revalidator proxy heartbeat', () => {
     process.env.ENV = 'localhost';
 
     test('Should call revalidator proxy', async () => {
-        const { initRevalidatorProxyHeartbeat } = await import(
-            './revalidator-proxy-heartbeat'
-        );
+        const { initRevalidatorProxyHeartbeat } = await import('./revalidator-proxy-heartbeat');
 
         fetchMock.mockResponse('Hello!');
 
         initRevalidatorProxyHeartbeat('dummy-build-id');
 
         expect(fetchMock.mock.calls.length).toEqual(1);
-        expect(fetchMock.mock.calls[0][0]).toMatch(
-            new RegExp(`^${revalidatorProxyOrigin}`)
-        );
+        expect(fetchMock.mock.calls[0][0]).toMatch(new RegExp(`^${revalidatorProxyOrigin}`));
     });
 });

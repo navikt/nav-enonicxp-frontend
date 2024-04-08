@@ -1,6 +1,6 @@
 import { Alert } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { DetailProps } from '../OfficeEditorialDetail';
+import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 
 export const SocialHelpPayoutInformation = ({ officeData }: DetailProps) => {
     const payoutInformation = officeData.brukerkontakt?.informasjonUtbetalinger;
@@ -8,14 +8,7 @@ export const SocialHelpPayoutInformation = ({ officeData }: DetailProps) => {
     if (!payoutInformation) {
         return null;
     }
-    const payoutInformatioWithBreaks = payoutInformation.replaceAll(
-        '\n',
-        '<br/>'
-    );
+    const payoutInformatioWithBreaks = payoutInformation.replaceAll('\n', '<br/>');
 
-    return (
-        <Alert variant="info">
-            {<ParsedHtml htmlProps={payoutInformatioWithBreaks} />}
-        </Alert>
-    );
+    return <Alert variant="info">{<ParsedHtml htmlProps={payoutInformatioWithBreaks} />}</Alert>;
 };

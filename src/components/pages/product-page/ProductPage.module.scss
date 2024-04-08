@@ -1,6 +1,6 @@
 @use 'common' as common;
 
-.genericPage {
+.productPage {
     display: flex;
     flex-direction: column;
 
@@ -21,7 +21,7 @@
         }
     }
 
-    .icon-container {
+    :global(.icon-container) {
         background-color: var(--a-green-200);
         img {
             height: 50%;

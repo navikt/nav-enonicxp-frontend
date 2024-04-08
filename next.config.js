@@ -67,8 +67,7 @@ const csp = async () => {
     const internalHosts = [
         prodWithSubdomains,
         ...[appHost, adminHost, xpHost].filter(
-            (origin, index, array) =>
-                !origin.endsWith(prodHost) && array.indexOf(origin) === index
+            (origin, index, array) => !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
     ];
 
@@ -122,16 +121,12 @@ console.log(
 
 const config = {
     ...(!isFailover && {
-        cacheHandler: path.resolve(
-            __dirname,
-            'server',
-            '.dist',
-            'page-cache-handler.cjs'
-        ),
+        cacheHandler: path.resolve(__dirname, 'server', '.dist', 'page-cache-handler.cjs'),
         cacheMaxMemorySize: 0,
     }),
     experimental: {
         optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
+        scrollRestoration: true,
     },
     transpilePackages: ['@navikt/aksel-icons', '@navikt/ds-react'],
     productionBrowserSourceMaps: true,
@@ -259,8 +254,7 @@ const config = {
             ? [
                   {
                       source: '/admin/site/preview/default/draft/:path*',
-                      destination:
-                          'http://localhost:8080/admin/site/preview/default/draft/:path*',
+                      destination: 'http://localhost:8080/admin/site/preview/default/draft/:path*',
                   },
               ]
             : []),

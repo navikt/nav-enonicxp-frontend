@@ -1,9 +1,9 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { classNames } from '../../../utils/classnames';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { classNames } from 'utils/classnames';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AreaCardGraphics } from './graphics/AreaCardGraphics';
-import { LenkeBase } from '../lenke/LenkeBase';
 
 import style from './AreaCard.module.scss';
 import graphicsStyle from './graphics/AreaCardGraphicsCommon.module.scss';
@@ -16,14 +16,7 @@ type Props = {
     className?: string;
 } & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
 
-export const AreaCard = ({
-    path,
-    title,
-    area,
-    linkGroup,
-    className,
-    ...rest
-}: Props) => {
+export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
@@ -36,11 +29,7 @@ export const AreaCard = ({
             analyticsLabel={title}
             analyticsComponent={'Områdekort'}
             analyticsLinkGroup={linkGroup}
-            className={classNames(
-                style.linkPanel,
-                graphicsStyle.expandOnHover,
-                className
-            )}
+            className={classNames(style.linkPanel, graphicsStyle.expandOnHover, className)}
             as={LenkeBase}
         >
             <div

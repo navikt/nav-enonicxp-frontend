@@ -1,7 +1,7 @@
 import React from 'react';
-import { MacroChatbotLinkProps } from '../../../types/macro-props/chatbot-link';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
+import { MacroChatbotLinkProps } from 'types/macro-props/chatbot-link';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { Button } from 'components/_common/button/Button';
 
 type ExtraProps = {
@@ -16,8 +16,7 @@ export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
     const { text, presentation = 'link' } = config.chatbot_link;
 
     const Element = presentation === 'link' ? LenkeInline : Button;
-    const extraProps: ExtraProps =
-        presentation === 'link' ? {} : { variant: 'secondary' };
+    const extraProps: ExtraProps = presentation === 'link' ? {} : { variant: 'secondary' };
 
     return (
         <Element

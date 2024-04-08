@@ -1,3 +1,13 @@
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { Language } from 'translations';
+import { LayoutProps } from 'types/component-props/layouts';
+import { MediaType } from 'types/media';
+import { LanguageProps, LayerLocale } from 'types/language';
+import { AudienceOptions } from 'types/component-props/_mixins';
+import { TemplateProps } from 'types/content-props/template-props';
+import { SiteProps } from 'types/content-props/site-props';
+import { FormsOverviewProps } from 'types/content-props/forms-overview';
+import { OverviewPageProps } from 'types/content-props/overview-props';
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
@@ -7,8 +17,6 @@ import { ErrorProps } from './error-props';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
-import { Language } from 'translations';
-import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { OfficeInformationProps } from './office-information-props';
 import { UrlProps } from './url-props';
@@ -26,33 +34,15 @@ import {
     ToolsPageProps,
     PressLandingPageProps,
 } from './dynamic-page-props';
-import {
-    PublishingCalendarProps,
-    PublishingCalendarEntryProps,
-} from './publishing-calendar-props';
-import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { AnimatedIconsProps } from './animated-icons';
-import {
-    GlobalCaseTimeSetProps,
-    GlobalValuesProps,
-} from './global-values-props';
+import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
 import { ContactInformationProps } from './contact-information-props';
-import { MediaType } from '../media';
 import { PayoutDatesProps } from './payout-dates';
-import { LanguageProps, LayerLocale } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
-import {
-    AreaPageProps,
-    FrontPageNestedProps,
-    FrontPageProps,
-} from './index-pages-props';
-import { AudienceOptions } from '../component-props/_mixins';
-import { TemplateProps } from 'types/content-props/template-props';
-import { SiteProps } from 'types/content-props/site-props';
+import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
-import { FormsOverviewProps } from 'types/content-props/forms-overview';
-import { OverviewPageProps } from 'types/content-props/overview-props';
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {
@@ -205,5 +195,5 @@ type SpecificContentProps =
     | FormsOverviewProps
     | FallbackPageProps;
 
-export type ContentProps<Type extends ContentType = ContentType> =
-    ContentCommonProps<Type> & SpecificContentProps;
+export type ContentProps<Type extends ContentType = ContentType> = ContentCommonProps<Type> &
+    SpecificContentProps;

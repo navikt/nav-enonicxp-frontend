@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { MacroVideoProps } from 'types/macro-props/video';
 import { usePageContentProps } from 'store/pageContext';
-import { QbrickVideo } from '../../_common/qbrick-video/QbrickVideo';
+import { QbrickVideo } from 'components/_common/qbrick-video/QbrickVideo';
 import {
     buildQbrickVideoProps,
     buildQbrickVideoPropsLegacy,
     QbrickVideoProps,
-} from '../../_common/qbrick-video/utils/videoProps';
-import { fetchQbrickMissingProps } from '../../_common/qbrick-video/utils/videoHelpers';
+} from 'components/_common/qbrick-video/utils/videoProps';
+import { fetchQbrickMissingProps } from 'components/_common/qbrick-video/utils/videoHelpers';
 
-const buildVideoProps = (
-    macroConfig: MacroVideoProps['config'],
-    contentLanguage: string
-) => {
+const buildVideoProps = (macroConfig: MacroVideoProps['config'], contentLanguage: string) => {
     const { targetContent, video, title, language } = macroConfig.video;
     return targetContent?.data
         ? buildQbrickVideoProps(targetContent.data, language || contentLanguage)

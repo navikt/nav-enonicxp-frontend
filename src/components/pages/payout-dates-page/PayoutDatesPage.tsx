@@ -1,6 +1,6 @@
 import React from 'react';
 import { PayoutDatesProps } from 'types/content-props/payout-dates';
-import { PayoutDates } from '../../_common/payout-dates/PayoutDates';
+import { PayoutDates } from 'components/_common/payout-dates/PayoutDates';
 import Config from 'config';
 import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
 
@@ -11,13 +11,8 @@ export const PayoutDatesPage = (props: PayoutDatesProps) => {
 
     return (
         <>
-            {layerLocale !== Config.vars.defaultLocale && (
-                <LayersEditorWarning />
-            )}
-            <PayoutDates
-                payoutDatesData={props.data}
-                className={style.payoutDatesPage}
-            />
+            {layerLocale !== Config.vars.defaultLocale && <LayersEditorWarning />}
+            <PayoutDates payoutDatesData={props.data} className={style.payoutDatesPage} />
         </>
     );
 };

@@ -1,13 +1,12 @@
 import fs, { readFileSync } from 'fs';
 import pLimit from 'p-limit';
-import { removeDuplicates } from '../arrays';
+import { removeDuplicates } from 'utils/arrays';
 import { logger } from 'srcCommon/logger';
 
 // Limit concurrent fetches
 const limit = pLimit(5);
 
-const manifestDir =
-    (typeof process.env !== 'undefined' && process.env.IMAGE_CACHE_DIR) || '.';
+const manifestDir = (typeof process.env !== 'undefined' && process.env.IMAGE_CACHE_DIR) || '.';
 
 const manifestFile = `${manifestDir}/image-manifest`;
 
@@ -54,9 +53,7 @@ export const processImageManifest = async () => {
                     if (res.ok) {
                         return true;
                     }
-                    logger.error(
-                        `Bad response for image ${url} - ${res.status} ${res.statusText}`
-                    );
+                    logger.error(`Bad response for image ${url} - ${res.status} ${res.statusText}`);
                     return false;
                 })
                 .catch((e) => {

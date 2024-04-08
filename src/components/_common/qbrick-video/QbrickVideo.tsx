@@ -1,16 +1,16 @@
 import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
-import { getMediaUrl } from 'utils/urls';
-import { getTimestampFromDuration } from './utils/videoHelpers';
-import { translator } from 'translations';
 import Script from 'next/script';
+import { translator } from 'translations';
+import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { useQbrickPlayerState } from './useQbrickPlayerState';
 import { logger } from 'srcCommon/logger';
-import { NextImage } from '../image/NextImage';
-import { QbrickVideoProps } from './utils/videoProps';
+import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
+import { QbrickVideoProps } from './utils/videoProps';
+import { getTimestampFromDuration } from './utils/videoHelpers';
+import { useQbrickPlayerState } from './useQbrickPlayerState';
 
 import style from './QbrickVideo.module.scss';
 
@@ -21,43 +21,35 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
 
     const videoContainerId = useId();
 
-    const { createAndStartPlayer, resetPlayer, playerState, setPlayerState } =
-        useQbrickPlayerState({
+    const { createAndStartPlayer, resetPlayer, playerState, setPlayerState } = useQbrickPlayerState(
+        {
             videoProps: props,
             videoContainerId,
-        });
+        }
+    );
 
     useEffect(() => {
         return resetPlayer;
-    }, []);
+    }, [resetPlayer]);
 
     const translations = translator('macroVideo', contentLanguage);
 
     const durationAsString = getTimestampFromDuration(duration);
 
-    const imageUrl = poster?.startsWith('http')
-        ? poster
-        : getMediaUrl(poster, !!editorView);
+    const imageUrl = poster?.startsWith('http') ? poster : getMediaUrl(poster, !!editorView);
 
     return (
         <div className={style.wrapper}>
             <Script
-                src={
-                    'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
-                }
+                src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
                 async={true}
                 onError={(error) => {
-                    logger.error(
-                        `Failed to load QBrick player script - ${error}`
-                    );
+                    logger.error(`Failed to load QBrick player script - ${error}`);
                     setPlayerState('error');
                 }}
             />
             <Button
-                className={classNames(
-                    style.button,
-                    playerState === 'ready' && style.hidden
-                )}
+                className={classNames(style.button, playerState === 'ready' && style.hidden)}
                 variant={'tertiary'}
                 onClick={() => {
                     if (editorView !== 'edit') {
@@ -67,11 +59,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 icon={
                     <div className={style.posterWrapper}>
                         {imageUrl && (
-                            <NextImage
-                                className={style.previewImage}
-                                src={imageUrl}
-                                alt={''}
-                            />
+                            <NextImage className={style.previewImage} src={imageUrl} alt={''} />
                         )}
                         <div className={style.playBadge}>
                             {playerState === 'loading' ? (
@@ -94,12 +82,10 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                     {`${translations('playMovie')} ${title}`}
                 </Label>
                 {duration > 0 && (
-                    <Detail
-                        className={classNames(style.text, style.videoLength)}
-                    >
-                        {`${translations(
-                            'duration'
-                        )} ${durationAsString} ${translations('minutes')}`}
+                    <Detail className={classNames(style.text, style.videoLength)}>
+                        {`${translations('duration')} ${durationAsString} ${translations(
+                            'minutes'
+                        )}`}
                     </Detail>
                 )}
             </Button>
@@ -107,10 +93,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 <AlertBox variant={'error'}>{translations('error')}</AlertBox>
             )}
             <div
-                className={classNames(
-                    style.macroVideo,
-                    playerState !== 'ready' && style.hidden
-                )}
+                className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
             />

@@ -1,14 +1,12 @@
 import { fetchJson } from 'srcCommon/fetch-utils';
-import { xpServiceUrl } from '../urls';
+import { xpServiceUrl } from 'utils/urls';
 import { logger } from 'srcCommon/logger';
 
 const excludedPaths: ReadonlySet<string> = new Set([
     '/', // This is already rendered by /index.tsx
 ]);
 
-export const fetchPrerenderPaths = async (
-    retries = 3
-): Promise<string[] | null> =>
+export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null> =>
     fetchJson<string[]>(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
             secret: process.env.SERVICE_SECRET,
@@ -27,9 +25,7 @@ export const fetchPrerenderPaths = async (
             }
 
             if (retries > 0) {
-                logger.warn(
-                    `Failed to fetch paths to prerender, ${retries} retries left`
-                );
+                logger.warn(`Failed to fetch paths to prerender, ${retries} retries left`);
                 return fetchPrerenderPaths(retries - 1);
             }
 

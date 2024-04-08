@@ -39,12 +39,8 @@ export const gvEditorStateSlice = createSlice({
         setMessages: (state, action: PayloadAction<GvMessagesPayload>) => {
             state.messages = action.payload.messages;
         },
-        setItemEditState: (
-            state,
-            action: PayloadAction<GvItemStatePayload>
-        ) => {
-            state.itemsEditState[action.payload.key] =
-                action.payload.isEditMode;
+        setItemEditState: (state, action: PayloadAction<GvItemStatePayload>) => {
+            state.itemsEditState[action.payload.key] = action.payload.isEditMode;
         },
         setEditorEnabled: (state, action: PayloadAction<boolean>) => {
             state.editorEnabled = action.payload;

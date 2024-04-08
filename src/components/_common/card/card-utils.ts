@@ -3,7 +3,6 @@ import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
-
 import {
     ProductPageProps,
     SituationPageProps,
@@ -33,10 +32,7 @@ export const cardTypeMap = {
     [ContentType.GenericPage]: CardType.Generic,
 };
 
-const getCardCategory = (
-    content: CardTargetProps,
-    language: Language
-): string[] => {
+const getCardCategory = (content: CardTargetProps, language: Language): string[] => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
     const selectedAudience = audience && getAudience(audience);
@@ -68,18 +64,16 @@ export const getCardProps = (
     content: ContentProps,
     ingressOverride?: string
 ): CardProps | null => {
-    if (!targetContent) {
+    if (!targetContent?.data) {
         return null;
     }
+
+    const { language } = content;
 
     const { data, type, _path, displayName } = targetContent;
-    const { language } = content;
-    const { audience } = content.data;
-
-    if (!data) {
-        return null;
-    }
     const { title, ingress, illustration, externalProductUrl } = data;
+
+    const audience = content.data?.audience;
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;

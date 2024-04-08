@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSWRImmutable from 'swr/immutable';
 
-type Props<FetchResponse, ElementType extends HTMLElement = HTMLElement> = {
+type Props<FetchResponse> = {
     url: string | null;
     fetchFunc: (url: string) => Promise<FetchResponse>;
     elementId: string;
@@ -32,9 +32,7 @@ export const useSWRImmutableOnScrollIntoView = <FetchResponse>({
     fetchFunc,
     elementId,
 }: Props<FetchResponse>) => {
-    const [isScrolledIntoView, setIsScrolledIntoView] = useState(
-        isNearOrAboveViewport(elementId)
-    );
+    const [isScrolledIntoView, setIsScrolledIntoView] = useState(isNearOrAboveViewport(elementId));
 
     const result = useSWRImmutable(isScrolledIntoView ? url : null, fetchFunc);
 
