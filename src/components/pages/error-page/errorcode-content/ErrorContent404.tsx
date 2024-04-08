@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import {
-    fetchUrlSuggestion,
-    UrlSearchResponse,
-} from '../../../../utils/fetch/fetch-url-suggestion';
+import { fetchUrlSuggestion, UrlSearchResponse } from 'utils/fetch/fetch-url-suggestion';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { SearchForm } from './search-form/SearchForm';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
 
