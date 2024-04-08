@@ -33,6 +33,7 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
     PressLandingPageProps,
+    OfficePageProps,
 } from './dynamic-page-props';
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { AnimatedIconsProps } from './animated-icons';
@@ -92,6 +93,7 @@ export enum ContentType {
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
     AlertInContext = 'no.nav.navno:alert-in-context',
+    OfficePage = 'no.nav.navno:office-page',
     FallbackPage = 'no.nav.navno:fallback-page',
 }
 
@@ -172,6 +174,7 @@ type SpecificContentProps =
     | SituationPageProps
     | OfficeEditorialPageProps
     | OfficeBranchPageProps
+    | OfficePageProps
     | AnimatedIconsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
