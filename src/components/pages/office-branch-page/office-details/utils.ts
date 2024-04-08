@@ -80,14 +80,14 @@ export const officeDetailsFormatAudienceReception = (
         }
     );
 
+    const openingHours = aapningstider?.regular || [];
+    openingHours?.sort((a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag));
+
     return {
         address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
         place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse?.poststed,
         openingHoursExceptions: aapningstider?.exceptions || [],
-        openingHours:
-            aapningstider?.regular.toSorted(
-                (a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag)
-            ) || [],
+        openingHours,
         adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
     };
 };
