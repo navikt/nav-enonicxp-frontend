@@ -2,12 +2,10 @@ appName: nav-enonicxp-frontend-dev1-failover
 frontendApp: nav-enonicxp-frontend-dev1
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 dekoratorenApp: nav-dekoratoren
-searchApp: navno-search-api
 externalHosts:
   - portal-admin-dev.oera.no
   - www.ekstern.dev.nav.no
   - dekoratoren.ekstern.dev.nav.no
-  - navno-search-api.intern.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www-failover.intern.dev.nav.no
