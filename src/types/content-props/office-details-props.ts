@@ -1,5 +1,3 @@
-import { ProductDataMixin } from 'types/component-props/_mixins';
-
 export type Address = {
     type?: 'stedsadresse' | 'postboksadresse';
     gatenavn?: string;
@@ -26,6 +24,7 @@ export type AudienceReception = {
     aapningstider: OpeningHours[];
     besoeksadresse?: Address;
     adkomstbeskrivelse?: string;
+    officeType: string;
 };
 
 export type Service = {
@@ -89,8 +88,11 @@ type AudienceContactInformation = {
     publikumskanaler: AudienceContact[] | AudienceContact;
 };
 
-export type OfficeDetailsData = ProductDataMixin & {
+export type OfficeDetailsData = {
     enhetNr: string;
+    type: string;
+    telefonnummer?: string;
+    telefonnummerKommentar?: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;

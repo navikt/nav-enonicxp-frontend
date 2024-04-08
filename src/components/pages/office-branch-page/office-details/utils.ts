@@ -65,7 +65,7 @@ type FormattedAudienceReception = {
 export const officeDetailsFormatAudienceReception = (
     audienceReception: AudienceReception
 ): FormattedAudienceReception => {
-    const aapningstider = audienceReception.aapningstider.reduce<OpeningHoursBuckets>(
+    const aapningstider = audienceReception.aapningstider?.reduce<OpeningHoursBuckets>(
         (acc, elem) => {
             if (elem.dato) {
                 acc.exceptions.push(elem);
@@ -80,13 +80,14 @@ export const officeDetailsFormatAudienceReception = (
         }
     );
 
+    const openingHours = aapningstider?.regular || [];
+    openingHours?.sort((a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag));
+
     return {
         address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
         place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse?.poststed,
-        openingHoursExceptions: aapningstider.exceptions,
-        openingHours: aapningstider.regular.sort(
-            (a, b) => dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag)
-        ),
+        openingHoursExceptions: aapningstider?.exceptions || [],
+        openingHours,
         adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
     };
 };

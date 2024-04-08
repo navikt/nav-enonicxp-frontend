@@ -12,33 +12,44 @@ import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
 
-const humanReadablePhoneNumber = officeDetailsFormatPhoneNumber(Config.vars.hovedNummer);
-
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
 
+    const machineReadablePhone = (officeData.telefonnummer || Config.vars.hovedNummer).replace(
+        /\s|\+47/g,
+        ''
+    );
+    const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
+    const phoneInformation =
+        officeData.telefonnummerKommentar || getOfficeTranslations('phoneInformation');
+
+    const phoneHeader =
+        officeData.type === 'HMS'
+            ? getOfficeTranslations('phoneToHMS')
+            : getOfficeTranslations('phoneToNav');
+
     return (
         <div className={styles.phonePoster}>
             <Heading level="2" size="small" className={styles.heading}>
-                {getOfficeTranslations('phoneToNav')}
+                {phoneHeader}
             </Heading>
             <BodyShort className={styles.phoneNumberWrapper}>
-                <LenkeBase href={Config.urls.hovedNummerTlf} className={styles.phoneNumber}>
+                <LenkeBase href={`tel:+47${machineReadablePhone}`} className={styles.phoneNumber}>
                     <PhoneFillIcon aria-hidden="true" className={styles.telephoneIcon} />
-                    {humanReadablePhoneNumber}
+                    {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={publikumskanaler.length > 0}>
-                {getOfficeTranslations('phoneInformation')}
-            </BodyLong>
+            <BodyLong spacing={publikumskanaler.length > 0}>{phoneInformation}</BodyLong>
             {publikumskanaler.length > 0 && (
-                <Heading size="small" level="3">
-                    {getOfficeTranslations('alternativeContacts')}
-                </Heading>
+                <>
+                    <Heading size="small" level="3">
+                        {getOfficeTranslations('alternativeContacts')}
+                    </Heading>
+                    <AudienceChannels publikumskanaler={publikumskanaler} />
+                </>
             )}
-            <AudienceChannels publikumskanaler={publikumskanaler} />
         </div>
     );
 };
