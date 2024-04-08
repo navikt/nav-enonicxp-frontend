@@ -26,7 +26,7 @@ export const ErrorContent404 = () => {
             <div>
                 {urlSuggestion && urlSuggestion.url && urlSuggestion.title && (
                     <BodyLong>
-                        {'Kanskje du mente: '}
+                        {'Kanskje du mente denne siden: '}
                         <LenkeInline href={urlSuggestion.url}>{urlSuggestion.title}</LenkeInline>
                     </BodyLong>
                 )}
