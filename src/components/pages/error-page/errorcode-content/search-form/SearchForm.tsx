@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField } from '@navikt/ds-react';
-import { ClearIcon } from '../clear-icon/ClearIcon';
-import { Button } from '../../../../_common/button/Button';
+import { ClearIcon } from 'components/pages/error-page/errorcode-content/clear-icon/ClearIcon';
+import { Button } from 'components/_common/button/Button';
 
 import style from './SearchForm.module.scss';
 

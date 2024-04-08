@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { SearchForm } from './search-form/SearchForm';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-
-import style from './ErrorContent404.module.scss';
 import {
     fetchUrlSuggestion,
     UrlSearchResponse,
 } from '../../../../utils/fetch/fetch-url-suggestion';
+import { SearchForm } from './search-form/SearchForm';
+import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+
+import style from './ErrorContent404.module.scss';
 
 const origin = process.env.APP_ORIGIN;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
