@@ -16,8 +16,7 @@ $margin: 2rem;
         }
 
         // Prevent margins between adjacent situation-flex-cols layouts
-        :global(.layout__situation-flex-cols)
-            + :global(.layout__situation-flex-cols) {
+        :global(.layout__situation-flex-cols) + :global(.layout__situation-flex-cols) {
             margin-top: -3rem;
         }
     }
