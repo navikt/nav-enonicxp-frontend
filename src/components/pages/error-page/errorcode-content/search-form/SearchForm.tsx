@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heading, TextField } from '@navikt/ds-react';
+import { TextField } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
 import { Button } from '../../../../_common/button/Button';
 
@@ -47,11 +47,7 @@ export const SearchForm = () => {
                             <ClearIcon />
                         </Button>
                     )}
-                    <Button
-                        className={style.button}
-                        variant={'primary'}
-                        onClick={onSearchSubmit}
-                    >
+                    <Button className={style.button} variant={'primary'} onClick={onSearchSubmit}>
                         {'Søk'}
                     </Button>
                 </div>

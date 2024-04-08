@@ -4,41 +4,37 @@ import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './ErrorContent404.module.scss';
-import { fetchUrlSuggestion } from '../../../../utils/fetch/fetch-url-suggestion';
+import {
+    fetchUrlSuggestion,
+    UrlSearchResponse,
+} from '../../../../utils/fetch/fetch-url-suggestion';
 
 const origin = process.env.APP_ORIGIN;
-const frontpageBase = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
 export const ErrorContent404 = () => {
-    const [urlSuggestion, setUrlSuggestion] = useState(null);
+    const [urlSuggestion, setUrlSuggestion] = useState<UrlSearchResponse>();
 
     useEffect(() => {
-        fetchUrlSuggestion(
-            `${window.location.origin}${window.location.pathname}`
-        ).then((res) => {
-            setUrlSuggestion(res.suggestion);
+        fetchUrlSuggestion(`${window.location.origin}${window.location.pathname}`).then((res) => {
+            res && setUrlSuggestion(res);
         });
     }, []);
 
     return (
         <div className={style.error404}>
             <div>
-                {urlSuggestion && (
+                {urlSuggestion && urlSuggestion.url && urlSuggestion.title && (
                     <BodyLong>
-                        {'Kanskje du mente '}
-                        <LenkeInline href={urlSuggestion}>
-                            {`nav.no${new URL(urlSuggestion).pathname}`}
-                        </LenkeInline>
+                        {'Kanskje du mente: '}
+                        <LenkeInline href={urlSuggestion.url}>{urlSuggestion.title}</LenkeInline>
                     </BodyLong>
                 )}
                 <BodyLong>{'Du kan søke:'}</BodyLong>
                 <SearchForm />
                 <BodyLong>
                     {'Meld gjerne fra om '}
-                    <LenkeInline href={feedbackHref}>
-                        {'feil på lenken'}
-                    </LenkeInline>
+                    <LenkeInline href={feedbackHref}>{'feil på lenken'}</LenkeInline>
                 </BodyLong>
             </div>
 
