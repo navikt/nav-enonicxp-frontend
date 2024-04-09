@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heading, TextField } from '@navikt/ds-react';
+import { TextField } from '@navikt/ds-react';
 import { ClearIcon } from 'components/pages/error-page/errorcode-content/clear-icon/ClearIcon';
 import { Button } from 'components/_common/button/Button';
 
@@ -20,17 +20,8 @@ export const SearchForm = () => {
 
     return (
         <div className={style.search}>
-            <Heading
-                level="2"
-                size="large"
-                className={style.header}
-                id={'search-header'}
-            >
-                {HEADER_TEXT}
-            </Heading>
             <form onSubmit={onSearchSubmit} className={style.form}>
                 <TextField
-                    aria-labelledby={'search-header'}
                     className={style.input}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     maxLength={MAX_SEARCH_LENGTH}
@@ -56,11 +47,7 @@ export const SearchForm = () => {
                             <ClearIcon />
                         </Button>
                     )}
-                    <Button
-                        className={style.button}
-                        variant={'primary'}
-                        onClick={onSearchSubmit}
-                    >
+                    <Button className={style.button} variant={'primary'} onClick={onSearchSubmit}>
                         {'Søk'}
                     </Button>
                 </div>

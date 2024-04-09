@@ -43,12 +43,8 @@
 }
 
 .layoutSituationOrProduct {
-    $singleColMaxWidth: calc(
-        #{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile}
-    );
-    $doubleColMaxWidth: calc(
-        #{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet}
-    );
+    $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
+    $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
 
     @include common.full-width-mixin();
 

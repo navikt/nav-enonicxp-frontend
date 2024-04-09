@@ -40,10 +40,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         <article className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
             <div className={style.content}>
                 <div className={style.filters}>

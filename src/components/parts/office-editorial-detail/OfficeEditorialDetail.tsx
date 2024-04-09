@@ -1,5 +1,5 @@
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import React from 'react';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import {
     DetailType,
     OfficeEditorialDetailProps,
@@ -12,16 +12,12 @@ import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformati
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
 
-const getDetailComponent = (
-    type: DetailType
-): React.FunctionComponent<DetailProps> => {
+const getDetailComponent = (type: DetailType): React.FunctionComponent<DetailProps> => {
     const detailComponents = {
         [DetailType.SERVICE_INFORMATION]: ServiceInformation,
         [DetailType.SOCIAL_HELP_LINKS]: SocialHelpLinks,
-        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]:
-            SocialHelpPayoutInformation,
-        [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]:
-            SocialHelpPostalInformation,
+        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: SocialHelpPayoutInformation,
+        [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]: SocialHelpPostalInformation,
     };
 
     return detailComponents[type];
@@ -31,10 +27,7 @@ export type DetailProps = {
     officeData: OfficeDetailsData;
 };
 
-export const OfficeEditorialDetail = ({
-    config,
-    pageProps,
-}: OfficeEditorialDetailProps) => {
+export const OfficeEditorialDetail = ({ config, pageProps }: OfficeEditorialDetailProps) => {
     const { detailType } = config;
 
     if (!detailType) {
@@ -46,11 +39,9 @@ export const OfficeEditorialDetail = ({
     // Note these texts are presented to editors only to give an idea
     // of what information the placeholder represent.
     const editorTranslation: { [key in DetailType]: string } = {
-        [DetailType.SERVICE_INFORMATION]:
-            'informasjon om tjenestene til kontoret.',
+        [DetailType.SERVICE_INFORMATION]: 'informasjon om tjenestene til kontoret.',
         [DetailType.SOCIAL_HELP_LINKS]: 'lenke til søknad om sosialhjelp.',
-        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]:
-            'informasjon om utbetaling av sosialhjelp',
+        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: 'informasjon om utbetaling av sosialhjelp',
         [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]:
             'informasjon om postkasse/henting av søknad for sosialhjelp.',
     };

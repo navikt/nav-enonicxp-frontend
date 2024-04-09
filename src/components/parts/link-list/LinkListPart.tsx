@@ -48,9 +48,7 @@ export const LinkListPart = ({ config }: DynamicLinkListProps) => {
 
     return ListComponent ? (
         <div className={style.linkList}>
-            <ExpandableComponentWrapper {...config}>
-                {ListComponent}
-            </ExpandableComponentWrapper>
+            <ExpandableComponentWrapper {...config}>{ListComponent}</ExpandableComponentWrapper>
         </div>
     ) : null;
 };

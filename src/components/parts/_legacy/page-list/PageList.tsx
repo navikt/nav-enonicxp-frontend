@@ -21,9 +21,7 @@ export const PageList = (props: PageListProps) => {
         .filter((section) => props._id !== section._id)
         .sort(
             orderListByPublishedDate
-                ? (a, b) =>
-                      new Date(b.createdTime).getTime() -
-                      new Date(a.createdTime).getTime()
+                ? (a, b) => new Date(b.createdTime).getTime() - new Date(a.createdTime).getTime()
                 : undefined
         );
 
@@ -48,25 +46,15 @@ export const PageList = (props: PageListProps) => {
             )}
             <div className={style.list}>
                 {sectionContents.map((section) => {
-                    const {
-                        displayName,
-                        _path,
-                        publish,
-                        modifiedTime,
-                        createdTime,
-                        data,
-                    } = section;
+                    const { displayName, _path, publish, modifiedTime, createdTime, data } =
+                        section;
 
-                    const ingress = data
-                        ? data.ingress || data.description
-                        : undefined;
+                    const ingress = data ? data.ingress || data.description : undefined;
 
                     return (
                         <article key={_path} className={style.row}>
                             <BodyLong>
-                                <LenkeInline href={_path}>
-                                    {displayName}
-                                </LenkeInline>
+                                <LenkeInline href={_path}>{displayName}</LenkeInline>
                             </BodyLong>
                             {ingress && (
                                 <div className={style.ingress}>

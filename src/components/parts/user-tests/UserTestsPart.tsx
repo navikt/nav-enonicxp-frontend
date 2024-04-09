@@ -8,10 +8,5 @@ export const UserTestsPart = ({ config }: UserTestsPartProps) => {
         return <EditorHelp text={'Velg en test-gruppering'} type={'error'} />;
     }
 
-    return (
-        <UserTests
-            tests={config.tests}
-            selectedTestIds={config.selectedTestIds}
-        />
-    );
+    return <UserTests tests={config.tests} selectedTestIds={config.selectedTestIds} />;
 };

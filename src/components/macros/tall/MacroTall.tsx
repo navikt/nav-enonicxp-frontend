@@ -7,12 +7,7 @@ import { MacroTallProps } from 'types/macro-props/tall';
 export const MacroTall = ({ config }: MacroTallProps) => {
     const { language } = usePageContentProps();
     if (!config?.tall) {
-        return (
-            <EditorHelp
-                text={'Teknisk feil: macroen er ikke konfigurert'}
-                type={'error'}
-            />
-        );
+        return <EditorHelp text={'Teknisk feil: macroen er ikke konfigurert'} type={'error'} />;
     }
 
     const { verdi, decimals } = config.tall;

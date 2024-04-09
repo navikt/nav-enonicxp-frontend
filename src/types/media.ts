@@ -40,7 +40,5 @@ export type RasterImage = {
 
 export type XpImageProps = VectorImage | RasterImage;
 
-export const isMediaContent = (
-    content: XpResponseProps
-): content is MediaProps =>
+export const isMediaContent = (content: XpResponseProps): content is MediaProps =>
     Object.values(MediaType).includes(content.type as MediaType);

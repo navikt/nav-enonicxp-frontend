@@ -10,10 +10,7 @@ export const GuidePage = (props: GuidePageProps) => {
         <article className={style.guidePage}>
             <ThemedPageHeader contentProps={props} />
             <div className={style.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
         </article>
     );

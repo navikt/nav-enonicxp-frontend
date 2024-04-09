@@ -17,17 +17,13 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
         return true;
     }
 
-    const allComponents = Object.values(regions).reduce(
-        (collection, regionObject) => {
-            const { components } = regionObject;
-            return [...collection, ...components];
-        },
-        []
-    );
+    const allComponents = Object.values(regions).reduce((collection, regionObject) => {
+        const { components } = regionObject;
+        return [...collection, ...components];
+    }, []);
 
     const allFilterMenus = allComponents.filter(
-        (component: PartComponentProps) =>
-            component.descriptor === PartType.FiltersMenu
+        (component: PartComponentProps) => component.descriptor === PartType.FiltersMenu
     );
 
     if (allFilterMenus.length === 0) {

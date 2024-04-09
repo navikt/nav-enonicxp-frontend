@@ -1,14 +1,8 @@
 import React, { useId } from 'react';
-import {
-    AnimatedIcon,
-    AnimatedIconsProps,
-} from 'types/content-props/animated-icons';
+import { AnimatedIcon, AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
-import {
-    buildImageCacheUrl,
-    NextImageProps,
-} from 'components/_common/image/NextImage';
+import { buildImageCacheUrl, NextImageProps } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
@@ -25,8 +19,7 @@ type StaticIconProps = {
     className?: string;
 };
 
-const isValidIcon = (icon?: AnimatedIcon['icon']): icon is ValidIcon =>
-    !!icon?.mediaUrl;
+const isValidIcon = (icon?: AnimatedIcon['icon']): icon is ValidIcon => !!icon?.mediaUrl;
 
 const nextImageProps: NextImageProps = {
     maxWidth: 96,
@@ -97,23 +90,12 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
     const [icon1, icon2] = icons;
 
     return (
-        <span
-            className={classNames(styleCommon.image, className)}
-            aria-hidden={'true'}
-        >
+        <span className={classNames(styleCommon.image, className)} aria-hidden={'true'}>
             {isValidIcon(icon1?.icon) && (
-                <StaticIcon
-                    icon={icon1.icon}
-                    isEditorView={!!editorView}
-                    className={'back'}
-                />
+                <StaticIcon icon={icon1.icon} isEditorView={!!editorView} className={'back'} />
             )}
             {isValidIcon(icon2?.icon) && (
-                <StaticIcon
-                    icon={icon2.icon}
-                    isEditorView={!!editorView}
-                    className={'front'}
-                />
+                <StaticIcon icon={icon2.icon} isEditorView={!!editorView} className={'front'} />
             )}
         </span>
     );

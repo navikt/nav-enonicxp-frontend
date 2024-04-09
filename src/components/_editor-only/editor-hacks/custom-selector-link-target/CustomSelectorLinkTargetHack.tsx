@@ -18,11 +18,7 @@ export const CustomSelectorLinkTargetHack = () => {
         const callback: MutationCallback = (mutations) => {
             mutations.forEach((mutation) => {
                 mutation.addedNodes.forEach((node) => {
-                    if (
-                        (node as Element).classList?.contains(
-                            customSelectorLinkClassName
-                        )
-                    ) {
+                    if ((node as Element).classList?.contains(customSelectorLinkClassName)) {
                         (node as HTMLAnchorElement).target = '_blank';
                     }
                 });

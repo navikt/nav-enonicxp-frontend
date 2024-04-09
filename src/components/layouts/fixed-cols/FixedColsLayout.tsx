@@ -21,11 +21,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
     const { distribution } = config;
 
     return (
-        <LayoutContainer
-            className={style.layout}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-        >
+        <LayoutContainer className={style.layout} pageProps={pageProps} layoutProps={layoutProps}>
             {Object.values(regions).map((regionProps, index) => {
                 const regionStyle = distribution
                     ? {

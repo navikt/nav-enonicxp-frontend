@@ -18,12 +18,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     if (!config || !regions) {
-        return (
-            <EditorHelp
-                type={'error'}
-                text={'Feil: Komponenten mangler data'}
-            />
-        );
+        return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
     const elementWrapper = (element: JSX.Element, key: string) => {
@@ -38,12 +33,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.container}
         >
-            <Header
-                level={'2'}
-                justify={'left'}
-                size={'large'}
-                className={style.header}
-            >
+            <Header level={'2'} justify={'left'} size={'large'} className={style.header}>
                 {title}
             </Header>
             <EditorHelp

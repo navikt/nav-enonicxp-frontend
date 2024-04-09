@@ -3,9 +3,7 @@ import { MacroProductCardMicroProps } from 'types/macro-props/product-card-micro
 import { MicroCards } from 'components/_common/card/MicroCard';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
-export const MacroProductCardMicro = ({
-    config,
-}: MacroProductCardMicroProps) => {
+export const MacroProductCardMicro = ({ config }: MacroProductCardMicroProps) => {
     if (!config?.product_card_micro) {
         return <EditorHelp text={'Macroen mangler konfigurasjon'} />;
     }

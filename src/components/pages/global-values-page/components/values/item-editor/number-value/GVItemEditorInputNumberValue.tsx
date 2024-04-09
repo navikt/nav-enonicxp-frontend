@@ -7,9 +7,7 @@ type Errors = { [key in keyof GlobalNumberValueItem]?: string };
 export const gvProcessNumberValueInput = (input: GlobalNumberValueItem) => {
     const processedInput = {
         numberValue:
-            typeof input.numberValue === 'string'
-                ? Number(input.numberValue)
-                : input.numberValue,
+            typeof input.numberValue === 'string' ? Number(input.numberValue) : input.numberValue,
     };
 
     const { numberValue } = processedInput;
@@ -31,14 +29,8 @@ type Props = {
     setInputState: (inputState: GlobalNumberValueItem) => void;
 };
 
-export const GVItemEditorInputNumberValue = ({
-    inputState,
-    errors,
-    setInputState,
-}: Props) => {
-    const inputValue = inputState.numberValue
-        ? inputState.numberValue.toString()
-        : '';
+export const GVItemEditorInputNumberValue = ({ inputState, errors, setInputState }: Props) => {
+    const inputValue = inputState.numberValue ? inputState.numberValue.toString() : '';
 
     return (
         <>

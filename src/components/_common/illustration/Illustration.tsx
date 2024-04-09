@@ -20,19 +20,12 @@ export const Illustration = ({
     withFallbackIllustration,
 }: Props) => {
     if (!illustration) {
-        return withFallbackIllustration ? (
-            <FallbackChevron className={className} />
-        ) : null;
+        return withFallbackIllustration ? <FallbackChevron className={className} /> : null;
     }
 
     const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
     if (!animationDataUrl || preferStaticIllustration) {
-        return (
-            <IllustrationStatic
-                illustration={illustration}
-                className={className}
-            />
-        );
+        return <IllustrationStatic illustration={illustration} className={className} />;
     }
 
     return (

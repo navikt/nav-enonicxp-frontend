@@ -13,11 +13,7 @@ export const HealthAnimation = () => {
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage
-                imageData={stethoscope}
-                className={style.stethoscope}
-                alt=""
-            />
+            <StaticImage imageData={stethoscope} className={style.stethoscope} alt="" />
         </>
     );
 };

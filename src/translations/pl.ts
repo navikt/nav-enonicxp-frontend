@@ -1,5 +1,5 @@
-import { PartialTranslations } from './default';
 import { MenuListItemKey } from 'types/menu-list-items';
+import { PartialTranslations } from './default';
 
 export const translationsBundlePl: PartialTranslations = {
     relatedContent: {

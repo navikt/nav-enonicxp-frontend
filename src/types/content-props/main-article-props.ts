@@ -1,8 +1,8 @@
-import { MainArticleChapterNavigationData } from './main-article-chapter-props';
-import { ContentType, ContentCommonProps } from './_content-common';
 import { MenuListItems } from 'types/menu-list-items';
 import { XpImageProps } from 'types/media';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { ContentType, ContentCommonProps } from './_content-common';
+import { MainArticleChapterNavigationData } from './main-article-chapter-props';
 
 export type Picture = Partial<{
     target: XpImageProps;

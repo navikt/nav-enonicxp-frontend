@@ -6,5 +6,4 @@ export const getContentLanguages = (content: ContentProps): LanguageProps[] =>
 
 const norwegianLanguagesSet: ReadonlySet<string> = new Set(['no', 'nn', 'nb']);
 
-export const isNorwegianLanguage = (language: string) =>
-    norwegianLanguagesSet.has(language);
+export const isNorwegianLanguage = (language: string) => norwegianLanguagesSet.has(language);

@@ -11,8 +11,8 @@ import { capitalize } from 'utils/string';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
-import style from './FrontpageLoggedinSectionLayout.module.scss';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
+import style from './FrontpageLoggedinSectionLayout.module.scss';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const { language } = usePageContentProps();
@@ -34,15 +34,15 @@ type Props = {
 };
 
 export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props) => {
+    const { language } = usePageContentProps();
+    const yourServicesText = translator('yourServicesText', language);
     const { config, regions } = layoutProps;
+
     if (!config || !regions) {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
     const { header, mypage } = config;
-    const { language } = usePageContentProps();
-
-    const yourServicesText = translator('yourServicesText', language);
 
     return (
         <AuthDependantRender renderOn={'loggedIn'}>

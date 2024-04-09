@@ -2,10 +2,7 @@ import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { classNames } from 'utils/classnames';
-import {
-    UserTestsConfigData,
-    UserTestVariantProps,
-} from 'types/content-props/user-tests-config';
+import { UserTestsConfigData, UserTestVariantProps } from 'types/content-props/user-tests-config';
 
 import style from './UserTestVariant.module.scss';
 
@@ -18,12 +15,7 @@ type Props = {
 export const UserTestVariant = ({ testsData, variant, className }: Props) => {
     const { title, ingress } = testsData;
 
-    const {
-        title: variantTitle,
-        ingress: variantIngress,
-        url,
-        linkText,
-    } = variant;
+    const { title: variantTitle, ingress: variantIngress, url, linkText } = variant;
 
     return (
         <div className={classNames(style.testVariant, className)}>

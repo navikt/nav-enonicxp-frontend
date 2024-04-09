@@ -40,8 +40,7 @@ type BatchContentServerEventDetail = {
     userTriggered?: true;
 };
 
-const getUserNameFromEmail = (email: string) =>
-    email.split('@')[0].replace('.', ' ');
+const getUserNameFromEmail = (email: string) => email.split('@')[0].replace('.', ' ');
 
 const ignoredContentTypes: ReadonlySet<ContentType> = new Set([
     ContentType.GlobalNumberValuesSet,
@@ -88,10 +87,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
 
         // We only want to intercept update events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
-        if (
-            eventType !== 'BatchContentServerEvent' ||
-            detailType !== NodeServerChangeType.UPDATE
-        ) {
+        if (eventType !== 'BatchContentServerEvent' || detailType !== NodeServerChangeType.UPDATE) {
             return dispatchEvent(event);
         }
 
@@ -105,9 +101,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
         // is not very useful.
         // (this probably indicates that the undocumented api used here has changed)
         if (!userId) {
-            logger.error(
-                'Could not determine the current user - dispatching event'
-            );
+            logger.error('Could not determine the current user - dispatching event');
             return dispatchEvent(event);
         }
 
@@ -144,9 +138,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
 
                 editorFetchUserInfo(content.modifier).then((userInfo) => {
                     if (userInfo?.displayName) {
-                        setExternalUserName(
-                            getUserNameFromEmail(userInfo.displayName)
-                        );
+                        setExternalUserName(getUserNameFromEmail(userInfo.displayName));
                     }
 
                     setExternalContentChange(true);

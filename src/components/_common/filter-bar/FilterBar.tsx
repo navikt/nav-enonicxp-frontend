@@ -6,9 +6,9 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { FilterExplanation } from './FilterExplanation';
 import { useScrollPosition } from 'utils/useStickyScroll';
 import { Category, Filter } from 'types/component-props/parts/filter-menu';
+import { FilterExplanation } from './FilterExplanation';
 
 import style from './FilterBar.module.scss';
 

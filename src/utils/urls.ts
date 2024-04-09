@@ -5,8 +5,7 @@ export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = `/admin/site/preview/default/draft${xpContentPathPrefix}`;
-export const editorPathPrefix =
-    '/admin/tool/com.enonic.app.contentstudio/main/default/edit';
+export const editorPathPrefix = '/admin/tool/com.enonic.app.contentstudio/main/default/edit';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const appOrigin = process.env.APP_ORIGIN;
@@ -37,15 +36,10 @@ const internalPaths = [
 ];
 
 const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets
-const absoluteAppUrlPattern = `^${internalUrlPrefix}($|\\/(${internalPaths.join(
-    '|'
-)}))`;
+const absoluteAppUrlPattern = `^${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`;
 
 // Matches both relative and absolute urls which points to any content internal to the app
-const appUrlPattern = new RegExp(
-    `(${absoluteAppUrlPattern})|(${relativeAppUrlPattern})`,
-    'i'
-);
+const appUrlPattern = new RegExp(`(${absoluteAppUrlPattern})|(${relativeAppUrlPattern})`, 'i');
 export const isAppUrl = (url: string) => !!(url && appUrlPattern.test(url));
 
 // Matches urls which can be cached by next-image
@@ -53,22 +47,19 @@ const validImageUrlPattern = new RegExp(
     `^((${appOrigin}|${appOriginProd})?\\/)|((${xpOrigin})?(\\/_\\/))`,
     'i'
 );
-export const isValidImageUrl = (url: string) =>
-    url && validImageUrlPattern.test(url);
+export const isValidImageUrl = (url: string) => url && validImageUrlPattern.test(url);
 
 // Matches urls pointing directly to XP (/_/*)
 const xpUrlPattern = new RegExp(`${internalUrlPrefix}/_`, 'i');
 export const isXpUrl = (url: string) => url && xpUrlPattern.test(url);
 
-export const isInternalUrl = (url: string) =>
-    url && (isAppUrl(url) || isXpUrl(url));
+export const isInternalUrl = (url: string) => url && (isAppUrl(url) || isXpUrl(url));
 
 // Matches urls which should have the nofollow flag
 const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
-export const stripXpPathPrefix = (path: string) =>
-    path?.replace(xpPathPrefixPattern, '');
+export const stripXpPathPrefix = (path: string) => path?.replace(xpPathPrefixPattern, '');
 
 export const getInternalRelativePath = (url: string, isEditorView: boolean) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
@@ -80,10 +71,7 @@ export const getInternalRelativePath = (url: string, isEditorView: boolean) => {
     return relativePath || '/';
 };
 
-export const getRelativePathIfInternal = (
-    url: string,
-    isEditorView: boolean
-) => {
+export const getRelativePathIfInternal = (url: string, isEditorView: boolean) => {
     if (!isInternalUrl(url)) {
         return url;
     }
@@ -104,10 +92,7 @@ export const getInternalAbsoluteUrl = (url: string, isEditorView: boolean) => {
 
 // Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
 export function getMediaUrl(url: string, isEditorView: boolean): string;
-export function getMediaUrl(
-    url: string | undefined,
-    isEditorView: boolean
-): string | undefined;
+export function getMediaUrl(url: string | undefined, isEditorView: boolean): string | undefined;
 export function getMediaUrl(url: string | undefined, isEditorView: boolean) {
     return url?.replace(
         internalUrlPrefixPattern,
@@ -115,14 +100,10 @@ export function getMediaUrl(url: string | undefined, isEditorView: boolean) {
     );
 }
 
-export const getPublicPathname = (content: ContentProps) =>
-    stripXpPathPrefix(content._path);
+export const getPublicPathname = (content: ContentProps) => stripXpPathPrefix(content._path);
 
 export const isUUID = (id: string) =>
-    id &&
-    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-        id
-    );
+    id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 
 export const sanitizeLegacyUrl = (url: string) =>
     url
@@ -135,16 +116,13 @@ export const sanitizeLegacyUrl = (url: string) =>
 
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
-    const possibleId =
-        typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
+    const possibleId = typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
 
     if (isUUID(possibleId)) {
         return possibleId;
     }
 
-    const path = `/${
-        typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
-    }`;
+    const path = `/${typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')}`;
 
     return `${xpContentPathPrefix}${path}`;
 };

@@ -1,9 +1,4 @@
-import {
-    adminOrigin,
-    stripXpPathPrefix,
-    xpContentPathPrefix,
-    xpDraftPathPrefix,
-} from 'utils/urls';
+import { adminOrigin, stripXpPathPrefix, xpContentPathPrefix, xpDraftPathPrefix } from 'utils/urls';
 
 describe('stripXpPathPrefix', () => {
     test('Should strip content path prefix', () => {
@@ -16,9 +11,7 @@ describe('stripXpPathPrefix', () => {
     test('Should strip admin preview path prefixes', () => {
         const desiredUrl = '/foo/bar';
 
-        const url = stripXpPathPrefix(
-            `${adminOrigin}${xpDraftPathPrefix}${desiredUrl}`
-        );
+        const url = stripXpPathPrefix(`${adminOrigin}${xpDraftPathPrefix}${desiredUrl}`);
         expect(url).toEqual(desiredUrl);
     });
 

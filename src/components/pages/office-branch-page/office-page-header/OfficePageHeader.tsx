@@ -1,12 +1,9 @@
 import React from 'react';
-import { classNames } from 'utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
+import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { joinWithConjunction } from 'utils/string';
-import {
-    AudienceReception,
-    OfficeDetailsData,
-} from 'types/content-props/office-details-props';
+import { AudienceReception, OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
 
@@ -49,10 +46,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                     </BodyShort>
                     {subTitle && (
                         <>
-                            <BodyShort
-                                size="small"
-                                className={style.branchNamesLabel}
-                            >
+                            <BodyShort size="small" className={style.branchNamesLabel}>
                                 {subTitle}
                             </BodyShort>
                         </>

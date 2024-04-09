@@ -1,15 +1,12 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { Button } from 'components/_common/button/Button';
 import { CalculatorIcon } from '@navikt/aksel-icons';
+import { Button } from 'components/_common/button/Button';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';
-import { CalculatorResult } from './CalculatorResult';
-import {
-    CalculatorData,
-    CalculatorFieldData,
-} from 'types/component-props/parts/calculator';
+import { CalculatorData, CalculatorFieldData } from 'types/component-props/parts/calculator';
 import { usePageContentProps } from 'store/pageContext';
+import { CalculatorResult } from './CalculatorResult';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
@@ -75,9 +72,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
 
     const { language } = usePageContentProps();
 
-    const [fieldValues, setFieldValues] = useState<FieldRecord>(
-        populateDefaultValues(fields)
-    );
+    const [fieldValues, setFieldValues] = useState<FieldRecord>(populateDefaultValues(fields));
     const [calculatedValue, setCalculatedValue] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -112,9 +107,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
 
         // Make sure that calculator script from Enonic only returns numbers.
         try {
-            const calculated = calculationFactory(variableNames)(
-                ...variableValues
-            );
+            const calculated = calculationFactory(variableNames)(...variableValues);
             setCalculatedValue(calculated);
         } catch (error: any) {
             setErrorMessage(`${error.name}: ${error.message}`);
@@ -145,8 +138,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                     {fields
                         .filter((field) => !field.globalValue)
                         .map((field) => {
-                            const fieldKey = (field.dropdownField
-                                ?.variableName ||
+                            const fieldKey = (field.dropdownField?.variableName ||
                                 field.inputField?.variableName) as string;
 
                             return (
@@ -165,10 +157,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                     onClick={handleCalculateButtonClick}
                     className={style.calculateButton}
                     dsIcon={
-                        <CalculatorIcon
-                            title={'Kalkulator-ikon'}
-                            className={style.calculateIcon}
-                        />
+                        <CalculatorIcon title={'Kalkulator-ikon'} className={style.calculateIcon} />
                     }
                 >
                     <span>{getLabel('calculate')}</span>

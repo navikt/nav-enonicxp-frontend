@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
-import { BodyShort } from '@navikt/ds-react';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { RenderToEditorGlobalWarnings } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
@@ -31,11 +31,7 @@ type Props = {
     type?: 'info' | 'error' | 'help' | 'arrowUp' | 'arrowDown';
 };
 
-export const EditorHelp = ({
-    text,
-    globalWarningText,
-    type = 'help',
-}: Props) => {
+export const EditorHelp = ({ text, globalWarningText, type = 'help' }: Props) => {
     const { editorView } = usePageContentProps();
 
     const id = useId();
@@ -68,9 +64,7 @@ export const EditorHelp = ({
                 <RenderToEditorGlobalWarnings>
                     <span>{globalWarningText}</span>
                     <EditorLinkWrapper>
-                        <LenkeInline href={`#${id}`}>
-                            {'[Til feilen]'}
-                        </LenkeInline>
+                        <LenkeInline href={`#${id}`}>{'[Til feilen]'}</LenkeInline>
                     </EditorLinkWrapper>
                 </RenderToEditorGlobalWarnings>
             )}

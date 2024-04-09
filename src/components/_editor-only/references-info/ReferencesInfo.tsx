@@ -35,15 +35,10 @@ export const ReferencesInfo = ({ content }: Props) => {
                     <Heading level={'3'} size={'small'}>
                         {`Feil: ${references.message}`}
                     </Heading>
-                    <BodyLong>
-                        {'Forsøk å laste inn editoren på nytt.'}
-                    </BodyLong>
+                    <BodyLong>{'Forsøk å laste inn editoren på nytt.'}</BodyLong>
                 </AlertBox>
             ) : (
-                <ReferencesInfoResult
-                    references={references.references}
-                    content={content}
-                />
+                <ReferencesInfoResult references={references.references} content={content} />
             )}
         </div>
     );
