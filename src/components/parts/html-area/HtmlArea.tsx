@@ -21,3 +21,5 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
         </FilteredContent>
     );
 };
+
+export default HtmlArea;

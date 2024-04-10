@@ -12,3 +12,5 @@ export const UxSignalsWidgetPart = ({ config }: UxSignalsWidgetPartProps) => {
 
     return <UxSignalsWidget embedCode={config.embedCode} />;
 };
+
+export default UxSignalsWidgetPart;

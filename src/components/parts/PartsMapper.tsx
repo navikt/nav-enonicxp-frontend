@@ -2,10 +2,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-const ReadMorePart = dynamic(() => import('./read-more/ReadMorePart'), {
-    ssr: true,
-});
-
 import {
     PartCurrentType,
     PartDeprecatedType,
@@ -14,10 +10,9 @@ import {
 } from 'types/component-props/parts';
 import { ComponentType, PartComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
-import { BEM, classNames } from 'utils/classnames';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
-import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { BEM, classNames } from 'utils/classnames';
+
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
@@ -36,7 +31,6 @@ import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
-import { HtmlArea } from './html-area/HtmlArea';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
@@ -58,7 +52,22 @@ import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
-// import { ReadMorePart } from './read-more/ReadMorePart';
+
+const ReadMorePart = dynamic(() => import('./read-more/ReadMorePart'), {
+    ssr: true,
+});
+
+const HtmlArea = dynamic(() => import('./html-area/HtmlArea'), {
+    ssr: true,
+});
+
+const CalculatorPart = dynamic(() => import('./calculator/CalculatorPart'), {
+    ssr: true,
+});
+
+const UxSignalsWidgetPart = dynamic(() => import('./ux-signals-widget/UxSignalsWidgetPart'), {
+    ssr: true,
+});
 
 type Props = {
     partProps: PartComponentProps;
@@ -127,7 +136,7 @@ const buildEditorProps = (componentPath: string) => ({
     'data-portal-component': componentPath,
 });
 
-const PartComponent = ({ partProps, pageProps }: Props) => {    
+const PartComponent = ({ partProps, pageProps }: Props) => {
     const { descriptor } = partProps;
 
     const PartWithPageData = partsWithPageData[descriptor];

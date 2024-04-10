@@ -15,3 +15,5 @@ export const CalculatorPart = ({ config }: CalculatorProps) => {
         </FilteredContent>
     );
 };
+
+export default CalculatorPart;
