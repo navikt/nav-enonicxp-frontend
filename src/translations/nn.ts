@@ -174,7 +174,6 @@ export const translationsBundleNn: PartialTranslations = {
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
         openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
-        openingHours: 'Opningstider',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',

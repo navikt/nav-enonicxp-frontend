@@ -141,7 +141,6 @@ export const translationsBundleEn: PartialTranslations = {
         officeInformation: 'Office information',
         closed: 'Closed',
         openingHoursWithoutAppointment: 'Opening hours without an appointment',
-        openingHours: 'Opening hours',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Special opening hours',
         address: 'Address',
