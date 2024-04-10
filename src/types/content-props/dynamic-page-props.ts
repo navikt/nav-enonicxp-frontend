@@ -4,11 +4,11 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutProps } from 'types/component-props/layouts';
+import { OptionSetSingle } from 'types/util-types';
 import { ContentListProps } from './content-list-props';
 import { OfficeDetailsData } from './office-details-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { ProductDetailType } from './product-details';
-import { OptionSetSingle } from 'types/util-types';
 
 export type DynamicPageProps = ContentCommonProps & {
     type: ContentType.DynamicPage;
