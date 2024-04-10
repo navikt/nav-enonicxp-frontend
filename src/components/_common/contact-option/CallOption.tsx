@@ -2,7 +2,6 @@ import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { TelephoneData } from 'types/component-props/parts/contact-option';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
@@ -10,6 +9,7 @@ import { OpeningInfo } from 'components/_common/contact-option/opening-info/Open
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
+import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
 import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';

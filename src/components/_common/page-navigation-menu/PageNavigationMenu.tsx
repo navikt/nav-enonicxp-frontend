@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
-import { AnchorLink, PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
 import Config from 'config';
+import {
+    AnchorLink,
+    PageNavViewStyle,
+} from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';

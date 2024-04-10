@@ -1,10 +1,9 @@
-import { LayoutCommonProps, LayoutType, Regions } from 'types/component-props/layouts';
+import { LayoutBaseProps, LayoutType, Regions } from 'types/component-props/layouts';
 import { ComponentType } from 'types/component-props/_component-common';
 import { HeaderWithAnchorMixin, LayoutCommonConfigMixin } from 'types/component-props/_mixins';
 import { XpImageProps } from 'types/media';
-import { OptionSetSingle } from 'types/util-types';
 
-export interface SectionWithHeaderProps extends LayoutCommonProps {
+export interface SectionWithHeaderProps extends LayoutBaseProps {
     type: ComponentType.Layout;
     descriptor: LayoutType.SectionWithHeader;
     regions: Regions<'intro' | 'content'>;

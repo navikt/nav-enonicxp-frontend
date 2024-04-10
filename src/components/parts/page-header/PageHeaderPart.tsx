@@ -1,15 +1,19 @@
 import React from 'react';
-import { PageHeaderProps } from 'types/component-props/parts/page-header';
 import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
 import { classNames } from 'utils/classnames';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
 import style from './PageHeaderPart.module.scss';
 
-export const PageHeaderPart = (props: PageHeaderProps) => {
-    const { config, pageProps } = props;
-    const { type, data } = pageProps;
+export type PartConfigPageHeader = {
+    title: string;
+};
+
+export const PageHeaderPart = ({ config }: PartComponentProps<PartType.PageHeader>) => {
+    const { type, data } = usePageContentProps();
     const audience = data?.audience;
 
     const isProviderSubPage =

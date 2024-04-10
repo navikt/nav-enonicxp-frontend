@@ -2,7 +2,6 @@ import React from 'react';
 import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { TextComponentXp } from './parts/_text/TextComponentXp';
-import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
@@ -29,10 +28,6 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
     switch (componentProps.type) {
         case ComponentType.Text:
             return <TextComponentXp textProps={componentProps} editMode={!!pageProps.editorView} />;
-        case ComponentType.Image:
-            return (
-                <ImageComponentXp imageProps={componentProps} editMode={!!pageProps.editorView} />
-            );
         case ComponentType.Layout:
         case ComponentType.Page:
             return <LayoutMapper layoutProps={componentProps} pageProps={pageProps} />;

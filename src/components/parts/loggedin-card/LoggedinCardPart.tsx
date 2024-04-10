@@ -1,19 +1,30 @@
 import React from 'react';
-import {
-    LoggedinCardProps,
-    LoggedInCardTypeProps,
-    LoggedInCardTypes,
-} from 'types/component-props/parts/loggedin-card';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { OptionSetSingle } from 'types/util-types';
+import { LinkSelectable } from 'types/component-props/_mixins';
 import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
 
-const CardComponents: {
-    [cardType in LoggedInCardTypes]: React.FunctionComponent<LoggedInCardTypeProps[cardType]>;
-} = {
+type LoggedInCardTypeProps = Omit<PartConfigLoggedinCard['card'], '_selected'>;
+
+type LoggedInCardTypes = keyof LoggedInCardTypeProps;
+
+const CardComponents: Record<
+    LoggedInCardTypes,
+    React.FunctionComponent<LoggedInCardTypeProps[LoggedInCardTypes]>
+> = {
     meldekort: LoggedinCardMeldekort,
 };
 
-export const LoggedinCardPart = ({ config }: LoggedinCardProps) => {
+export type PartConfigLoggedinCard = {
+    card: OptionSetSingle<{
+        meldekort: {
+            link: LinkSelectable;
+        };
+    }>;
+};
+
+export const LoggedinCardPart = ({ config }: PartComponentProps<PartType.LoggedinCard>) => {
     if (!config?.card?._selected) {
         return <EditorHelp text={'Velg en type for kortet'} />;
     }

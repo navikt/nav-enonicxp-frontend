@@ -1,8 +1,6 @@
 import React from 'react';
 import { Heading, Ingress } from '@navikt/ds-react';
-import { ContentType } from 'types/content-props/_content-common';
-import { MainArticleProps } from 'types/content-props/main-article-props';
-import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
 import { MainArticleText } from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
@@ -15,13 +13,15 @@ import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/
 import stylePermanent from './MainArticlePermanent.module.scss';
 import styleNews from './MainArticleNewsPress.module.scss';
 
-type Props = MainArticleProps | MainArticleChapterProps;
-
 // Get props from the chapter article if the content is a chapter
-const getPropsToRender = (propsInitial: Props) =>
-    propsInitial.type === ContentType.MainArticleChapter ? propsInitial.data.article : propsInitial;
+const getPropsToRender = (propsInitial: ContentProps) =>
+    propsInitial.type === ContentType.MainArticleChapter
+        ? propsInitial.data.article
+        : propsInitial.type === ContentType.MainArticle
+          ? propsInitial
+          : null;
 
-export const MainArticle = (propsInitial: Props) => {
+export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
     const props = getPropsToRender(propsInitial);
     if (!props) {
         return null;
@@ -29,14 +29,13 @@ export const MainArticle = (propsInitial: Props) => {
 
     const { data, language, publish, createdTime, modifiedTime, displayName, _path } = props;
 
-    const isNewsArticle =
-        props.data.contentType === 'news' || props.data.contentType === 'pressRelease';
+    const isNewsArticle = data.contentType === 'news' || data.contentType === 'pressRelease';
 
     const style = isNewsArticle ? styleNews : stylePermanent;
 
     const getLabel = translator('mainArticle', language);
 
-    const hasTableOfContents = !!(data?.hasTableOfContents && data?.hasTableOfContents !== 'none');
+    const hasTableOfContents = !!(data.hasTableOfContents && data.hasTableOfContents !== 'none');
 
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text?.processedHtml,

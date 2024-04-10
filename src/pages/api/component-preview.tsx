@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PartComponentProps } from 'types/component-props/_component-common';
+import { PartComponentProps } from 'types/component-props/parts';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { mockStore } from 'store/store';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';

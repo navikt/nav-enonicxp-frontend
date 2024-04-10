@@ -2,9 +2,9 @@ import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 import Config from 'config';
+import { PageNavViewStyle } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { PageNavScrollDirection } from './PageNavigationMenu';
 
 import style from './PageNavigationLink.module.scss';

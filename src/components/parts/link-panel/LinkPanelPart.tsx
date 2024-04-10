@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading, LinkPanel } from '@navikt/ds-react';
-import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -9,10 +8,26 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { XpImageProps } from 'types/media';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
+import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins';
 
 import style from './LinkPanelPart.module.scss';
 
-export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+export type PartConfigLinkPanel = {
+    background?: XpImageProps;
+    icon?: XpImageProps;
+    variant?: OptionSetSingle<{
+        vertical: EmptyObject;
+        verticalWithBgColor: {
+            iconBg: ColorMixin;
+            iconJustify: 'flex-start' | 'center' | 'flex-end';
+        };
+    }>;
+} & LinkWithIngressMixin;
+
+export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>) => {
     const { editorView } = usePageContentProps();
 
     if (!config) {

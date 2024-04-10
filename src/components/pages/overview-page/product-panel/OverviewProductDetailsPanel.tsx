@@ -7,7 +7,7 @@ import { translator } from 'translations';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageContentProps } from 'store/pageContext';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { OverviewPageProductItem } from 'types/content-props/overview-props';
 
@@ -25,7 +25,7 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [productDetailsPage, setProductDetailsPage] = useState<LayoutProps | null>(null);
+    const [productDetailsPage, setProductDetailsPage] = useState<LayoutComponentProps | null>(null);
 
     const { language } = usePageContentProps();
 

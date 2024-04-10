@@ -5,11 +5,12 @@ import { usePageContentProps } from 'store/pageContext';
 import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
+
+import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
-} from 'types/component-props/parts/contact-option';
-import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
+} from 'components/parts/contact-option/ContactOptionPart';
 
 type Props = {
     regularOpeningHours: RegularOpeningHours;

@@ -1,13 +1,20 @@
 import * as React from 'react';
 import { Heading, Ingress, Table } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { PublishingCalendarProps } from 'types/content-props/publishing-calendar-props';
-import PublishingCalendarEntry, { sortEntries } from './PublishingCalendarEntry';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    sortEntries,
+    PublishingCalendarEntryLegacyPart,
+} from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
 
-const PublishingCalendar = (props: PublishingCalendarProps) => {
+export const PublishingCalendarLegacyPart = (props: ContentProps) => {
+    if (props.type !== ContentType.PublishingCalendar) {
+        return null;
+    }
+
     const getLabel = translator('publishingCalendar', props.language);
     const items = sortEntries(props.children);
 
@@ -30,12 +37,10 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                 </Table.Header>
                 <Table.Body>
                     {items.map((item, index) => (
-                        <PublishingCalendarEntry key={index} {...item} />
+                        <PublishingCalendarEntryLegacyPart key={index} {...item} />
                     ))}
                 </Table.Body>
             </Table>
         </div>
     );
 };
-
-export default PublishingCalendar;
