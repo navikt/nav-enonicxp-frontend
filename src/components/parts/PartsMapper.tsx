@@ -65,7 +65,7 @@ const CalculatorPart = dynamic(() => import('./calculator/CalculatorPart'), {
     ssr: true,
 });
 
-const UxSignalsWidgetPart = dynamic(() => import('./ux-signals-widget/UxSignalsWidgetPart'), {
+const UxSignalsWidgetPart = dynamic(() => import('./uxsignals-widget/UxSignalsWidgetPart'), {
     ssr: true,
 });
 
