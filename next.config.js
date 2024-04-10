@@ -125,7 +125,11 @@ const config = {
         cacheMaxMemorySize: 0,
     }),
     experimental: {
-        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'], //TODO legg til her?
+        optimizePackageImports: [
+            '@navikt/ds-react',
+            '@navikt/aksel-icons',
+            '@navikt/nav-office-reception-info',
+        ],
         scrollRestoration: true,
     },
     transpilePackages: [
