@@ -127,9 +127,12 @@
     "jsdom": false
   },
   "lint-staged": {
-    "*.{ts,tsx,scss,css}": [
+    "*.{ts,tsx}": [
       "prettier --write",
       "eslint --fix src srcCommon server/src"
+    ],
+    "*.{scss,css}": [
+      "prettier --write"
     ]
   }
 }
