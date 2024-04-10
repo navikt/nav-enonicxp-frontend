@@ -8,6 +8,7 @@ import { ContentListProps } from './content-list-props';
 import { OfficeDetailsData } from './office-details-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { ProductDetailType } from './product-details';
+import { OptionSetSingle } from 'types/util-types';
 
 export type DynamicPageProps = ContentCommonProps & {
     type: ContentType.DynamicPage;
@@ -67,6 +68,15 @@ export type OfficeBranchPageProps = ContentCommonProps & {
     type: ContentType.OfficeBranchPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
+};
+
+export type OfficePageProps = ContentCommonProps & {
+    type: ContentType.OfficePage;
+    data: {
+        title: string;
+        officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
+    };
+    page: LayoutProps;
 };
 
 export type CurrentTopicPageProps = ContentCommonProps & {

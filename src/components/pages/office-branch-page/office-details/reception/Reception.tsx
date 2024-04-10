@@ -10,9 +10,10 @@ import style from './Reception.module.scss';
 
 type Props = {
     receptions: AudienceReception[] | AudienceReception;
+    officeType: string;
 };
 
-export const Reception = ({ receptions }: Props) => {
+export const Reception = ({ receptions, officeType }: Props) => {
     const { language } = usePageContentProps();
     const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
@@ -38,7 +39,7 @@ export const Reception = ({ receptions }: Props) => {
     if (receptionArray.length === 1) {
         return (
             <div className={style.singleTab}>
-                <SingleReception {...receptionArray[0]} />
+                <SingleReception {...receptionArray[0]} officeType={officeType} />
             </div>
         );
     }

@@ -27,7 +27,9 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                 <Heading level="2" size="large" className={styles.header}>
                     {getOfficeTranslations('youFindUsHere')}
                 </Heading>
-                {publikumsmottak.length > 0 && <Reception receptions={publikumsmottak} />}
+                {publikumsmottak.length > 0 && (
+                    <Reception receptions={publikumsmottak} officeType={officeData.type} />
+                )}
                 <PhonePoster officeData={officeData} />
                 <OfficeInformation officeData={officeData} />
             </div>
