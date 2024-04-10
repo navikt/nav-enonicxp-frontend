@@ -15,17 +15,17 @@ const isValidContentType = createTypeGuard([
 ] as const);
 
 export const MenuListLegacyPart = (props: ContentProps) => {
-    const { type, language } = props;
+    const propsActual = props.type === ContentType.MainArticleChapter ? props.data?.article : props;
 
-    if (!isValidContentType(type)) {
+    if (!isValidContentType(propsActual?.type)) {
         return null;
     }
-
-    const propsActual = type === ContentType.MainArticleChapter ? props.data?.article : props;
 
     if (!propsActual?.data?.menuListItems) {
         return null;
     }
+
+    const { type, language } = props;
 
     const getLabel = translator('relatedContent', language);
 
