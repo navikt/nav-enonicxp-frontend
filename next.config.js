@@ -125,10 +125,14 @@ const config = {
         cacheMaxMemorySize: 0,
     }),
     experimental: {
-        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
+        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'], //TODO legg til her?
         scrollRestoration: true,
     },
-    transpilePackages: ['@navikt/aksel-icons', '@navikt/ds-react'],
+    transpilePackages: [
+        '@navikt/aksel-icons',
+        '@navikt/ds-react',
+        '@navikt/nav-office-reception-info',
+    ],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
