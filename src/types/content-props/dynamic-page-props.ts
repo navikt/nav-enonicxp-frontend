@@ -58,9 +58,7 @@ export type SituationPageProps = ContentCommonProps & {
 
 export type OfficeEditorialPageProps = ContentCommonProps & {
     type: ContentType.OfficeEditorialPage;
-    data: {
-        title: string;
-    } & ProductDataMixin;
+    data: ProductDataMixin;
     page: LayoutComponentProps;
 };
 

@@ -32,6 +32,7 @@
   "dependenciesComments": {
     "p-limit": "Version 5.0.0 causes issues with webpack import caching",
     "tough-cookie": "Transitive dependency only, bumped directly due to vulnerability alert",
+    "typescript": "5.4.3+ breaks some of our typeguards due to this revert https://github.com/microsoft/TypeScript/pull/57750",
     "word-wrap": "Transitive dependency only, bumped directly due to vulnerability alert"
   },
   "dependencies": {
@@ -104,7 +105,7 @@
     "prettier": "3.1.0",
     "sass": "1.70.0",
     "ts-jest": "29.1.2",
-    "typescript": "5.4.4",
+    "typescript": "5.4.2",
     "typescript-plugin-css-modules": "5.1.0"
   },
   "browserslist": {
