@@ -2,8 +2,7 @@ import pino, { LoggerOptions } from 'pino';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 const isBuildPhase =
-    typeof process.env !== 'undefined' &&
-    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
+    typeof process.env !== 'undefined' && process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
 const options: LoggerOptions =
     process.env.ENV === 'localhost' || isBuildPhase

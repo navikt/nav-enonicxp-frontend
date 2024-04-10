@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { BodyLong } from '@navikt/ds-react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
@@ -7,7 +8,6 @@ import {
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';

@@ -4,9 +4,7 @@ export const removeDuplicates = <Type>(
 ) =>
     isEqualPredicate
         ? array.filter((aItem, aIndex) => {
-              const bIndex = array.findIndex((bItem) =>
-                  isEqualPredicate(aItem, bItem)
-              );
+              const bIndex = array.findIndex((bItem) => isEqualPredicate(aItem, bItem));
               return aIndex === bIndex;
           })
         : array.filter((item, index) => array.indexOf(item) === index);

@@ -31,9 +31,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
     const { language } = usePageContentProps();
 
     const translations = translator('overview', language)(type);
-    const optionsTranslations = translator(type, language) as (
-        key: Type
-    ) => string;
+    const optionsTranslations = translator(type, language) as (key: Type) => string;
 
     return (
         <div className={styles.overviewFilter}>

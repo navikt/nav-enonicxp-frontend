@@ -37,9 +37,7 @@ export const sortEntries = (
     }); // Dato for publisering: stigende
 };
 
-const processEntry = (
-    item: PublishingCalendarEntryProps
-): PublishingCalendarEntryData => {
+const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
     const publDate = new Date(item.data.date);
     return {
         displayName: item.displayName,

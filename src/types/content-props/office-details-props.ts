@@ -1,5 +1,4 @@
 import { AudienceReception, Address } from '@navikt/nav-office-reception-info';
-import { ProductDataMixin } from 'types/component-props/_mixins';
 
 export type Service = {
     type:
@@ -62,8 +61,11 @@ type AudienceContactInformation = {
     publikumskanaler: AudienceContact[] | AudienceContact;
 };
 
-export type OfficeDetailsData = ProductDataMixin & {
+export type OfficeDetailsData = {
     enhetNr: string;
+    type: string;
+    telefonnummer?: string;
+    telefonnummerKommentar?: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;

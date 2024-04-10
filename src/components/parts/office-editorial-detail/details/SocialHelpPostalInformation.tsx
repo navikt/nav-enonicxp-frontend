@@ -3,8 +3,7 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 
 export const SocialHelpPostalInformation = ({ officeData }: DetailProps) => {
-    const postalInfo =
-        officeData.brukerkontakt?.sosialhjelp?.papirsoeknadInformasjon;
+    const postalInfo = officeData.brukerkontakt?.sosialhjelp?.papirsoeknadInformasjon;
 
     if (!postalInfo) {
         return null;

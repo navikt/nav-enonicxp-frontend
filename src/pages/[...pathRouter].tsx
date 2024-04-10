@@ -57,12 +57,8 @@ const getStaticPathsRegular: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = isFailover
-    ? getStaticPropsFailover
-    : getStaticPropsRegular;
+export const getStaticProps = isFailover ? getStaticPropsFailover : getStaticPropsRegular;
 
-export const getStaticPaths = isFailover
-    ? getStaticPathsFailover
-    : getStaticPathsRegular;
+export const getStaticPaths = isFailover ? getStaticPathsFailover : getStaticPathsRegular;
 
 export default PageBase;

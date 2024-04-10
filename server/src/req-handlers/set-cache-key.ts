@@ -9,9 +9,7 @@ export const setCacheKey: RequestHandler = (req, res, next) => {
     if (typeof cache_key === 'string') {
         const newCacheTimestamp = Number(cache_ts);
         if (newCacheTimestamp > currentCacheTimestamp) {
-            logger.info(
-                `Setting new cache key ${cache_key} with timestamp ${cache_ts}`
-            );
+            logger.info(`Setting new cache key ${cache_key} with timestamp ${cache_ts}`);
             global.cacheKey = cache_key;
             currentCacheTimestamp = newCacheTimestamp;
         } else {

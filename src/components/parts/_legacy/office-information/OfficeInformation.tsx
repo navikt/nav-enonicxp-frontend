@@ -1,6 +1,5 @@
 import React from 'react';
-import { Reception } from './reception/Reception';
-import { SpecialInformation } from './SpecialInfo';
+import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatPhoneNumber,
@@ -8,10 +7,11 @@ import {
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { OfficeInformationProps } from 'types/content-props/office-information-props';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
+import { SpecialInformation } from './SpecialInfo';
+import { Reception } from './reception/Reception';
 
 import style from './OfficeInformation.module.scss';
 
@@ -35,10 +35,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     publishLabel={getLabelMain('published')}
                     modifiedLabel={getLabelMain('lastChanged')}
                 />
-                <Heading
-                    level="1"
-                    size="large"
-                >{`${unit.navn} - kontorinformasjon`}</Heading>
+                <Heading level="1" size="large">{`${unit.navn} - kontorinformasjon`}</Heading>
             </header>
             {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                 <div>
@@ -54,9 +51,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     <Heading level="2" size="small">
                         Telefon
                     </Heading>
-                    <BodyShort>
-                        {officeDetailsFormatPhoneNumber(contact.telefonnummer)}
-                    </BodyShort>
+                    <BodyShort>{officeDetailsFormatPhoneNumber(contact.telefonnummer)}</BodyShort>
                     {contact.telefonnummerKommentar && (
                         <BodyShort>{contact.telefonnummerKommentar}</BodyShort>
                     )}
@@ -68,9 +63,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </Heading>
                 {unit.type === 'ALS' ? (
                     <BodyLong>
-                        Du kan skrive til oss hvis du ønsker hjelp til å
-                        rekruttere, inkludere arbeidstakere og forebygge
-                        sykefravær, se{' '}
+                        Du kan skrive til oss hvis du ønsker hjelp til å rekruttere, inkludere
+                        arbeidstakere og forebygge sykefravær, se{' '}
                         <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/s/">
                             kontaktskjema for arbeidsgivere
                         </LenkeInline>
@@ -86,8 +80,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <LenkeInline href="https://www.nav.no/soknader/nb/person">
                             NAVs skjemaveileder.
                         </LenkeInline>{' '}
-                        Skjemaveilederen gir deg hjelp til å velge rett skjema
-                        og rett adresse det skal sendes til.
+                        Skjemaveilederen gir deg hjelp til å velge rett skjema og rett adresse det
+                        skal sendes til.
                     </BodyLong>
                 )}
             </div>
@@ -128,10 +122,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </div>
             )}
             {publikumsmottak.length > 0 && (
-                <Reception
-                    receptions={publikumsmottak}
-                    language={props.language}
-                />
+                <Reception receptions={publikumsmottak} language={props.language} />
             )}
         </article>
     );

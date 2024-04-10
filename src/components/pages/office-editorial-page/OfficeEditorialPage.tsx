@@ -10,10 +10,7 @@ export const OfficeEditorialPage = (props: OfficeEditorialPageProps) => {
         <div className={style.officeEditorialPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
         </div>
     );

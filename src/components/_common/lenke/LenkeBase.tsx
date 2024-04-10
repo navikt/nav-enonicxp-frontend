@@ -65,9 +65,7 @@ export const LenkeBase = ({
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     const shouldPrefetch =
-        canRouteClientSide && (prefetch === false || editorView)
-            ? false
-            : undefined;
+        canRouteClientSide && (prefetch === false || editorView) ? false : undefined;
 
     return (
         <WrapperComponent>
@@ -75,10 +73,7 @@ export const LenkeBase = ({
                 {...rest}
                 href={url}
                 onClick={(e) => {
-                    logAmplitudeEvent(
-                        analyticsEvent || AnalyticsEvents.NAVIGATION,
-                        analyticsData
-                    );
+                    logAmplitudeEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
                     onClick?.(e);
                 }}
                 rel={isNofollowUrl(url) ? 'nofollow' : undefined}

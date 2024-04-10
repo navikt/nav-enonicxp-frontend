@@ -1,7 +1,7 @@
 import React from 'react';
-import { classNames } from 'utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { AudienceReception } from '@navikt/nav-office-reception-info';
+import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { joinWithConjunction } from 'utils/string';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';

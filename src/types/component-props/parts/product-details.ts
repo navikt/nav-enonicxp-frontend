@@ -1,7 +1,4 @@
-import {
-    ComponentProps,
-    PartComponentProps,
-} from 'types/component-props/_component-common';
+import { ComponentProps, PartComponentProps } from 'types/component-props/_component-common';
 import { PartType } from 'types/component-props/parts';
 import {
     ExpandableMixin,

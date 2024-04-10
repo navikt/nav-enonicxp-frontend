@@ -15,17 +15,10 @@ const role = {
     success: 'status',
     warning: 'status',
     info: undefined,
-    error: 'alert'
+    error: 'alert',
 };
 
-export const AlertBox = ({
-    variant,
-    size,
-    inline,
-    className,
-    children,
-    ...rest
-}: Props) => {
+export const AlertBox = ({ variant, size, inline, className, children, ...rest }: Props) => {
     return (
         <Alert
             {...rest}

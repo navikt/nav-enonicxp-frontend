@@ -12,9 +12,7 @@ export const useScrollPosition = (element: HTMLElement | null) => {
     const scrollBackToElement = () => {
         if (element) {
             const targetScrollPosition =
-                element.getBoundingClientRect().top +
-                window.scrollY -
-                scrollPositionRef.current;
+                element.getBoundingClientRect().top + window.scrollY - scrollPositionRef.current;
 
             const scrollOptions: ScrollToOptions = {
                 top: targetScrollPosition,

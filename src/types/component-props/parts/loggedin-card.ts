@@ -14,9 +14,6 @@ export interface LoggedinCardProps extends PartComponentProps {
     };
 }
 
-export type LoggedInCardTypeProps = Omit<
-    LoggedinCardProps['config']['card'],
-    '_selected'
->;
+export type LoggedInCardTypeProps = Omit<LoggedinCardProps['config']['card'], '_selected'>;
 
 export type LoggedInCardTypes = keyof LoggedInCardTypeProps;

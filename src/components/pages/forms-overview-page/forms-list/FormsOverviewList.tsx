@@ -33,11 +33,9 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
 
-    const numFilterTypes = [
-        areasFilterToggle,
-        taxonomyFilterToggle,
-        textFilterToggle,
-    ].filter(Boolean).length;
+    const numFilterTypes = [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
+        Boolean
+    ).length;
 
     useEffect(() => {
         getFilteredList({

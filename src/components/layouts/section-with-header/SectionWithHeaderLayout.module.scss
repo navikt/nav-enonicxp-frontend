@@ -10,8 +10,7 @@ $iconContainerRadius: common.px-to-rem(64px / 2);
     @mixin adjust-for-padding($sectionPadding) {
         $marginActual: 1rem;
         top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
-        margin-bottom: (-$iconContainerRadius) -
-            ($sectionPadding - $marginActual);
+        margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
     display: inline-flex;
@@ -44,8 +43,7 @@ $iconContainerRadius: common.px-to-rem(64px / 2);
         }
 
         img {
-            $iconSize: $iconContainerRadius /
-                math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
             height: common.round-rem($iconSize);
             width: common.round-rem($iconSize);
         }

@@ -11,11 +11,7 @@ describe('Set cache key middleware', () => {
         const { setCacheKey } = await import('./set-cache-key');
         const cacheKey = 'myCacheKey';
 
-        setCacheKey(
-            { headers: { cache_key: cacheKey, cache_ts: '1' } } as any,
-            res,
-            next
-        );
+        setCacheKey({ headers: { cache_key: cacheKey, cache_ts: '1' } } as any, res, next);
 
         expect(global.cacheKey).toEqual(cacheKey);
     });
@@ -37,11 +33,7 @@ describe('Set cache key middleware', () => {
 
         const cacheKey = 'myCacheKey';
 
-        setCacheKey(
-            { headers: { cache_key: cacheKey, cache_ts: '1' } } as any,
-            res,
-            next
-        );
+        setCacheKey({ headers: { cache_key: cacheKey, cache_ts: '1' } } as any, res, next);
         setCacheKey({ headers: {} } as any, res, next);
 
         expect(global.cacheKey).toEqual(cacheKey);

@@ -23,10 +23,5 @@ export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
         showAddendums: macroConfig.showAddendums,
     };
 
-    return (
-        <FormDetails
-            formDetails={formDetailsData}
-            displayConfig={displayConfig}
-        />
-    );
+    return <FormDetails formDetails={formDetailsData} displayConfig={displayConfig} />;
 };

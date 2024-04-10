@@ -10,10 +10,7 @@ export const SituationPage = (props: SituationPageProps) => {
         <article className={styles.situationPage}>
             <ThemedPageHeader contentProps={props} />
             <div className={styles.content}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+                <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
         </article>
     );

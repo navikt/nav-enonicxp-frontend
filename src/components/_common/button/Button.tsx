@@ -1,9 +1,9 @@
 import React from 'react';
+import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { XpImageProps } from 'types/media';
 import { XpImage } from 'components/_common/image/XpImage';
-import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 
 import style from './Button.module.scss';
 
@@ -40,11 +40,7 @@ export const Button = ({
         <DsButton
             as={LenkeBase}
             href={href || '#'}
-            className={classNames(
-                style.button,
-                fullWidth && style.buttonFullWidth,
-                className
-            )}
+            className={classNames(style.button, fullWidth && style.buttonFullWidth, className)}
             onClick={(e) => {
                 if (!href) {
                     e.preventDefault();

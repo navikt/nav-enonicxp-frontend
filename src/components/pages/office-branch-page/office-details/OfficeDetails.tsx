@@ -4,9 +4,9 @@ import { translator } from 'translations';
 import { Reception } from '@navikt/nav-office-reception-info';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageContentProps } from 'store/pageContext';
+import { forceArray } from 'utils/arrays';
 import { PhonePoster } from './phonePoster/PhonePoster';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
-import { forceArray } from 'utils/arrays';
 
 import styles from './OfficeDetails.module.scss';
 
@@ -23,15 +23,14 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
 
     return (
         <div className={styles.wide}>
-            <div
-                className={classNames(styles.officeDetails, styles.pageContent)}
-            >
+            <div className={classNames(styles.officeDetails, styles.pageContent)}>
                 <Heading level="2" size="large" className={styles.header}>
                     {getOfficeTranslations('youFindUsHere')}
                 </Heading>
                 {publikumsmottak.length > 0 && (
                     <Reception
                         receptions={publikumsmottak}
+                        officeType={officeData.type}
                         language={language}
                     />
                 )}

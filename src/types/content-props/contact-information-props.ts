@@ -1,8 +1,4 @@
-import {
-    WriteData,
-    TelephoneData,
-    ChatData,
-} from 'types/component-props/parts/contact-option';
+import { WriteData, TelephoneData, ChatData } from 'types/component-props/parts/contact-option';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export interface ContactInformationData {

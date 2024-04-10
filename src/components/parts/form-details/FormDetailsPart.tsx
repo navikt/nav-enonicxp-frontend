@@ -13,8 +13,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
     // When all product pages have been re-organized, we can remove the reference and
     // config for showTitleAsLevel4.
     const showTitleAsLevel4 =
-        pageProps.type === ContentType.ProductPage &&
-        pageProps.data?.showSubsectionNavigation;
+        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
 
     if (!targetFormDetails) {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
@@ -28,10 +27,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
 
     return (
         <FilteredContent {...config}>
-            <FormDetails
-                formDetails={formDetails}
-                displayConfig={modifiedDisplayConfig}
-            />
+            <FormDetails formDetails={formDetails} displayConfig={modifiedDisplayConfig} />
         </FilteredContent>
     );
 };

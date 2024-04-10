@@ -11,7 +11,7 @@ export enum AnalyticsEvents {
     CHAT_OPEN = 'chat-åpnet',
     CALL = 'ring-oss',
     VIDEO_START = 'video start',
-    VIDEO_STOP = 'video stopp'
+    VIDEO_STOP = 'video stopp',
 }
 
 export function logAmplitudeEvent(

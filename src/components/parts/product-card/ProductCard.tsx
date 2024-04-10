@@ -1,10 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
-import {
-    ProductCardMiniProps,
-    ProductCardProps,
-} from 'types/component-props/parts/product-card';
+import { ProductCardMiniProps, ProductCardProps } from 'types/component-props/parts/product-card';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { MiniCard } from 'components/_common/card/MiniCard';
 import { LargeCard } from 'components/_common/card/LargeCard';
@@ -18,11 +15,7 @@ export const ProductCardPart = ({
 
     if (!config?.targetPage) {
         return (
-            <EditorHelp
-                text={
-                    'Velg en produktside eller livssituasjon for å aktivere kortet'
-                }
-            />
+            <EditorHelp text={'Velg en produktside eller livssituasjon for å aktivere kortet'} />
         );
     }
 
