@@ -42,7 +42,7 @@
         "@navikt/ds-react": "6.2.0",
         "@navikt/ds-tokens": "6.2.0",
         "@navikt/nav-dekoratoren-moduler": "2.1.6",
-        "@navikt/nav-office-reception-info": "0.5.1",
+        "@navikt/nav-office-reception-info": "0.6.1",
         "@reduxjs/toolkit": "1.9.7",
         "csp-header": "5.2.1",
         "dayjs": "1.11.10",
