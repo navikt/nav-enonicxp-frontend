@@ -1,4 +1,4 @@
-import { Address } from 'types/content-props/office-details-props';
+import { Address } from '@navikt/nav-office-reception-info';
 import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
 
 export const officeDetailsFormatAddress = (
