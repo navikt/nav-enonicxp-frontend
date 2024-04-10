@@ -303,6 +303,9 @@ export const translationsBundleNn: PartialTranslations = {
     greetings: {
         hi: 'Hei!',
     },
+    yourServicesText: {
+        yourServices: 'Dine tjenester',
+    },
     macroVideo: {
         playMovie: 'Sjå video:',
         duration: 'Varighet er',
