@@ -40,3 +40,5 @@ export const ReadMorePart = ({ config }: ReadMorePartProps) => {
         </ReadMore>
     );
 };
+
+export default ReadMorePart;

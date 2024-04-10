@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useLayout } from 'components/layouts/useLayout';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
-import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { classNames } from 'utils/classnames';
 import { windowMatchMedia } from 'utils/match-media';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import Config from 'config';
@@ -29,6 +30,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     // on client-side hydration, and to avoid duplicating elements in the DOM on the client
     // (prevents issues such as duplicate ids)
     const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+    const { className, style, elementAttr } = useLayout({
+        pageProps,
+        layoutProps,
+        className: styles.pageWithSideMenus,
+    });
 
     useEffect(() => {
         const updateLayout = () => {
@@ -68,10 +74,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         (topPageContent?.components.length > 0 || pageProps.editorView === 'edit');
 
     return (
-        <LayoutContainer
-            className={styles.pageWithSideMenus}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
+        <div
+            className={classNames(className, styles.pageWithSideMenus)}
+            {...elementAttr}
+            style={style}
         >
             <div className={styles.topRow}>
                 {(leftMenuToggle || shouldRenderTopContentRegion) && (
@@ -117,6 +123,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 )}
             </div>
             <Region pageProps={pageProps} regionProps={bottomRow} />
-        </LayoutContainer>
+        </div>
     );
 };

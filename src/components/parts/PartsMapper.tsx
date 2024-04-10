@@ -1,5 +1,11 @@
 // @ts-nocheck
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+const ReadMorePart = dynamic(() => import('./read-more/ReadMorePart'), {
+    ssr: true,
+});
+
 import {
     PartCurrentType,
     PartDeprecatedType,
@@ -49,10 +55,10 @@ import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSit
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
-import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
+// import { ReadMorePart } from './read-more/ReadMorePart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -121,7 +127,7 @@ const buildEditorProps = (componentPath: string) => ({
     'data-portal-component': componentPath,
 });
 
-const PartComponent = ({ partProps, pageProps }: Props) => {
+const PartComponent = ({ partProps, pageProps }: Props) => {    
     const { descriptor } = partProps;
 
     const PartWithPageData = partsWithPageData[descriptor];
