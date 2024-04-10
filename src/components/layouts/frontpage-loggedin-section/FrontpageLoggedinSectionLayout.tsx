@@ -34,7 +34,10 @@ type Props = {
 };
 
 export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props) => {
+    const { language } = usePageContentProps();
+    const yourServicesText = translator('yourServicesText', language);
     const { config, regions } = layoutProps;
+
     if (!config || !regions) {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
@@ -51,7 +54,7 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
             >
                 <HeaderWithName headerText={header} />
                 <Header level={'2'} size={'small'} justify={'left'} className={style.services}>
-                    Dine tjenester
+                    {yourServicesText('yourServices')}
                 </Header>
                 <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
                 <MoreLink link={mypage?.link} />
