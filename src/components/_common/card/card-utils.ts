@@ -11,7 +11,7 @@ import {
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
+export type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
 export type CardProps = {
     type: CardType;

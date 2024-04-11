@@ -1,15 +1,21 @@
 import React from 'react';
 import { ButtonProps } from '@navikt/ds-react';
-import { ButtonPartProps } from 'types/component-props/parts/button';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from 'components/_common/button/Button';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 
 import style from './ButtonPart.module.scss';
 
-type ButtonSizePart = ButtonPartProps['config']['size'];
+type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
+type ButtonPartSizeProp = 'medium' | 'small';
+type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
+
+type ButtonSizePart = PartConfigButton['size'];
 type ButtonSizeAksel = ButtonProps['size'];
 
-type ButtonTypePart = ButtonPartProps['config']['type'];
+type ButtonTypePart = PartConfigButton['type'];
 type ButtonTypeAksel = ButtonProps['variant'];
 
 const partSizeToAkselSize: Record<ButtonSizePart, ButtonSizeAksel> = {
@@ -27,7 +33,15 @@ const typePropToVariant: Record<ButtonTypePart, ButtonTypeAksel> = {
     fare: 'danger',
 } as const;
 
-export const ButtonPart = ({ config }: ButtonPartProps) => {
+export type PartConfigButton = {
+    link: LinkSelectable;
+    type: ButtonPartTypeProp;
+    size: ButtonPartSizePropLegacy | ButtonPartSizeProp;
+    icon?: XpImageProps;
+    fullwidth: boolean;
+};
+
+export const ButtonPart = ({ config }: PartComponentProps<PartType.Button>) => {
     const { icon, link, size, type, fullwidth } = config;
 
     const linkProps = getSelectableLinkProps(link);

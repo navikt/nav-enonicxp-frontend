@@ -2,22 +2,30 @@ import React from 'react';
 import { Accordion } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { MainArticleProps } from 'types/content-props/main-article-props';
-import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
-import { PageListProps } from 'types/content-props/page-list-props';
+import { createTypeGuard } from 'types/_type-guards';
 
 import style from './MenuList.module.scss';
 
-export const MenuList = (props: MainArticleProps | MainArticleChapterProps | PageListProps) => {
-    const { type, language } = props;
+const isValidContentType = createTypeGuard([
+    ContentType.MainArticle,
+    ContentType.MainArticleChapter,
+    ContentType.PageList,
+] as const);
 
-    const propsActual = type === ContentType.MainArticleChapter ? props.data?.article : props;
+export const MenuListLegacyPart = (props: ContentProps) => {
+    const propsActual = props.type === ContentType.MainArticleChapter ? props.data?.article : props;
+
+    if (!isValidContentType(propsActual?.type)) {
+        return null;
+    }
 
     if (!propsActual?.data?.menuListItems) {
         return null;
     }
+
+    const { type, language } = props;
 
     const getLabel = translator('relatedContent', language);
 

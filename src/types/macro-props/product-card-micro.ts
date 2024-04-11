@@ -1,4 +1,4 @@
-import { TargetPage } from 'types/component-props/parts/product-card';
+import { CardTargetProps } from 'components/_common/card/card-utils';
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroProductCardMicroProps extends MacroPropsCommon {
@@ -6,7 +6,7 @@ export interface MacroProductCardMicroProps extends MacroPropsCommon {
     config: {
         product_card_micro: {
             header?: string;
-            card_list: TargetPage[];
+            card_list: CardTargetProps[];
         };
     };
 }

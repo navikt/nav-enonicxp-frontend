@@ -3,19 +3,37 @@ import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { usePageContentProps } from 'store/pageContext';
-import { Category, FilterMenuProps } from 'types/component-props/parts/filter-menu';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { FilterCheckbox } from './FilterCheckbox';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
+import { ExpandableMixin } from 'types/component-props/_mixins';
 import { checkIfFilterFirstInPage } from './helpers';
+import { FilterCheckbox } from './FilterCheckbox';
 
 import style from './FiltersMenu.module.scss';
 
-export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
+export type FilterMenuFilter = {
+    filterName: string;
+    id: string;
+};
+
+export type FilterMenuCategory = {
+    categoryName: string;
+    filters: FilterMenuFilter[];
+};
+
+export type PartConfigFilterMenu = {
+    title?: string;
+    description: string;
+    categories: FilterMenuCategory[];
+} & ExpandableMixin;
+
+export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.FiltersMenu>) => {
+    const { language, editorView, page } = usePageContentProps();
     const { categories, description, expandableTitle, title } = config;
 
     const { clearFiltersForPage, selectedFilters, setAvailableFilters, toggleFilter } =
@@ -23,10 +41,8 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
 
     const isFirstFilterInPage = checkIfFilterFirstInPage({
         path,
-        page: pageProps.page,
+        page,
     });
-
-    const { language, editorView } = usePageContentProps();
 
     useEffect(() => {
         // Multiple FilterMenus in same page will break.
@@ -49,7 +65,7 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
 
     const getLabel = translator('filteredContent', language);
 
-    const onToggleFilterHandler = (filter: Filter, category: Category) => {
+    const onToggleFilterHandler = (filter: Filter, category: FilterMenuCategory) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
@@ -98,21 +114,21 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
                 expandableTitle={expandableTitle || defaultExpandableTitle}
                 analyticsOriginTag="filter"
             >
-                {categories.map((category, categoryIndex) => {
+                {categories.map((category) => {
                     return (
                         <CheckboxGroup
                             legend={category.categoryName}
-                            key={categoryIndex}
+                            key={category.categoryName}
                             className={style.category}
                         >
-                            {category.filters.map((filter, filterIndex) => (
+                            {category.filters.map((filter) => (
                                 <FilterCheckbox
                                     onToggleFilterHandler={() => {
                                         onToggleFilterHandler(filter, category);
                                     }}
                                     filter={filter}
                                     isSelected={selectedFilters.includes(filter.id)}
-                                    key={filterIndex}
+                                    key={filter.id}
                                 />
                             ))}
                             <FilterExplanation

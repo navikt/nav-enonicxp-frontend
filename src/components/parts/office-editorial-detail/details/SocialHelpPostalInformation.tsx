@@ -1,8 +1,8 @@
 import { Alert } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
+import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 
-export const SocialHelpPostalInformation = ({ officeData }: DetailProps) => {
+export const SocialHelpPostalInformation = ({ officeData }: OfficeEditorialDetailProps) => {
     const postalInfo = officeData.brukerkontakt?.sosialhjelp?.papirsoeknadInformasjon;
 
     if (!postalInfo) {

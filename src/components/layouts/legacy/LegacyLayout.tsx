@@ -49,8 +49,14 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
                         language={newsArticleProps.language}
                     />
                 )}
-            {Object.values(regions).map((regionProps, index) => {
-                return <Region pageProps={pageProps} regionProps={regionProps} key={index} />;
+            {Object.values(regions).map((regionProps) => {
+                return (
+                    <Region
+                        pageProps={pageProps}
+                        regionProps={regionProps}
+                        key={regionProps.name}
+                    />
+                );
             })}
         </LayoutContainer>
     );

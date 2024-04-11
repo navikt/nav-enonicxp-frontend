@@ -1,23 +1,40 @@
+import React from 'react';
+import { EmptyObject } from 'types/util-types';
+import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
+import { PartConfigAlternativeAudience } from 'components/parts/alternative-audience/AlternativeAudiencePart';
+import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
+import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
+import { PartConfigButton } from 'components/parts/button/ButtonPart';
+import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
+import { PartConfigContactOption } from 'components/parts/contact-option/ContactOptionPart';
+import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
+import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
+import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
+import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
+import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
+import { PartConfigHeader } from 'components/parts/header/HeaderPart';
+import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
+import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
+import { PartConfigLinkPanel } from 'components/parts/link-panel/LinkPanelPart';
+import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
+import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
+import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
+import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
+import { PartConfigPageNavigationMenu } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDatesPart';
+import { PartConfigProductCard } from 'components/parts/product-card/ProductCardPart';
+import { PartConfigProductDetails } from 'components/parts/product-details/ProductDetailsPart';
+import { PartConfigProviderCard } from 'components/parts/provider-card/ProviderCardPart';
+import { PartConfigReadMore } from 'components/parts/read-more/ReadMorePart';
+import { PartConfigRelatedSituations } from 'components/parts/related-situations/RelatedSituationsPart';
+import { PartConfigUserTests } from 'components/parts/user-tests/UserTestsPart';
+import { PartConfigUxSignalsWidget } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { PartConfigProductCardMini } from 'components/parts/product-card-mini/ProductCardMiniPart';
+import { PartConfigProductCardMicro } from 'components/parts/product-card-micro/ProductCardMicroPart';
+import { ComponentBaseProps, ComponentType } from './_component-common';
+
 export enum PartType {
-    // Deprecated, should never render to anything, only included for compatibility
-    Notifications = 'no.nav.navno:notifications',
-    BreakingNews = 'no.nav.navno:breaking-news',
-    PageCrumbs = 'no.nav.navno:page-crumbs',
-
-    // Legacy, only used in templates for old content types
-    LinkPanels = 'no.nav.navno:link-panels',
-    LinkLists = 'no.nav.navno:link-lists',
-    PageHeading = 'no.nav.navno:page-heading',
-    MainPanels = 'no.nav.navno:main-panels',
-    MainArticle = 'no.nav.navno:main-article',
-    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
-    MenuList = 'no.nav.navno:menu-list',
-    OfficeInformation = 'no.nav.navno:office-information',
-    PageList = 'no.nav.navno:page-list',
-    PublishingCalendar = 'no.nav.navno:publishing-calendar',
-    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
-
-    // Parts currently available for active use
     AreaCard = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
@@ -52,22 +69,74 @@ export enum PartType {
     RelatedSituations = 'no.nav.navno:related-situations',
 }
 
-export type PartDeprecatedType =
-    | PartType.Notifications
-    | PartType.BreakingNews
-    | PartType.PageCrumbs;
+// Deprecated, should never render to anything, only included for compatibility
+export enum PartDeprecatedType {
+    Notifications = 'no.nav.navno:notifications',
+    BreakingNews = 'no.nav.navno:breaking-news',
+    PageCrumbs = 'no.nav.navno:page-crumbs',
+}
 
-export type PartLegacyType =
-    | PartType.LinkPanels
-    | PartType.LinkLists
-    | PartType.PageHeading
-    | PartType.MainArticle
-    | PartType.MainArticleLinkedList
-    | PartType.MainPanels
-    | PartType.MenuList
-    | PartType.OfficeInformation
-    | PartType.PageList
-    | PartType.PublishingCalendar
-    | PartType.PublishingCalendarEntry;
+// Legacy, only used in templates for old content types
+export enum PartLegacyType {
+    LinkPanels = 'no.nav.navno:link-panels',
+    LinkLists = 'no.nav.navno:link-lists',
+    PageHeading = 'no.nav.navno:page-heading',
+    MainPanels = 'no.nav.navno:main-panels',
+    MainArticle = 'no.nav.navno:main-article',
+    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
+    MenuList = 'no.nav.navno:menu-list',
+    OfficeInformation = 'no.nav.navno:office-information',
+    PageList = 'no.nav.navno:page-list',
+    PublishingCalendar = 'no.nav.navno:publishing-calendar',
+    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
+}
 
-export type PartCurrentType = Exclude<PartType, PartLegacyType | PartDeprecatedType>;
+type PartConfigs = {
+    [PartType.Accordion]: PartConfigAccordion;
+    [PartType.AlertBox]: PartConfigAlertBox;
+    [PartType.AlternativeAudience]: PartConfigAlternativeAudience;
+    [PartType.AreaCard]: PartConfigAreaCard;
+    [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
+    [PartType.Button]: PartConfigButton;
+    [PartType.Calculator]: PartConfigCalculator;
+    [PartType.ContactOption]: PartConfigContactOption;
+    [PartType.FiltersMenu]: PartConfigFilterMenu;
+    [PartType.FormDetails]: PartConfigFormDetails;
+    [PartType.FrontpageContact]: PartConfigFrontpageContact;
+    [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
+    [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
+    [PartType.Header]: PartConfigHeader;
+    [PartType.HtmlArea]: PartConfigHtmlArea;
+    [PartType.LinkList]: PartConfigLinkList;
+    [PartType.LinkPanel]: PartConfigLinkPanel;
+    [PartType.LoggedinCard]: PartConfigLoggedinCard;
+    [PartType.NewsList]: PartConfigNewsList;
+    [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;
+    [PartType.PageHeader]: PartConfigPageHeader;
+    [PartType.PageNavigationMenu]: PartConfigPageNavigationMenu;
+    [PartType.PayoutDates]: PartConfigPayoutDates;
+    [PartType.ProductCard]: PartConfigProductCard;
+    [PartType.ProductCardMicro]: PartConfigProductCardMicro;
+    [PartType.ProductCardMini]: PartConfigProductCardMini;
+    [PartType.ProductDetails]: PartConfigProductDetails;
+    [PartType.ReadMore]: PartConfigReadMore;
+    [PartType.RelatedSituations]: PartConfigRelatedSituations;
+    [PartType.ProviderCard]: PartConfigProviderCard;
+    [PartType.UserTests]: PartConfigUserTests;
+    [PartType.UxSignalsWidget]: PartConfigUxSignalsWidget;
+};
+
+export type PartTypeAll = PartType | PartLegacyType | PartDeprecatedType;
+
+export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
+    Descriptor extends PartTypeAll
+        ? ComponentBaseProps<
+              ComponentType.Part,
+              Descriptor,
+              Descriptor extends keyof PartConfigs ? PartConfigs[Descriptor] : EmptyObject
+          >
+        : never;
+
+export type PartComponent<Descriptor extends PartType> = Descriptor extends PartType
+    ? React.FunctionComponent<PartComponentProps<Descriptor>>
+    : never;

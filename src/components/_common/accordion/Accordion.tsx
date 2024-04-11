@@ -1,17 +1,16 @@
+import React, { useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { useState } from 'react';
-import { AccordionPartProps } from 'types/component-props/parts/accordion';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+
 import styles from './Accordion.module.scss';
 
-type AccordionProps = AccordionPartProps['config'];
-type PanelItem = AccordionProps['accordion'][0];
+type AccordionProps = PartConfigAccordion;
+type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
     const { editorView } = usePageContentProps();

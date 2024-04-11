@@ -2,7 +2,7 @@
 // Refactor the layout types before fixing the type errors in this file
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { LayoutProps, LayoutType } from 'types/component-props/layouts';
+import { LayoutComponentProps, LayoutType } from 'types/component-props/layouts';
 import { ComponentType } from 'types/component-props/_component-common';
 import { TwoColsPage } from 'components/layouts/two-cols-page/TwoColsPage';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
@@ -21,7 +21,7 @@ import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/Fro
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LayoutProps;
+    layoutProps?: LayoutComponentProps;
 };
 
 const layoutComponents: {

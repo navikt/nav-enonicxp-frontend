@@ -30,7 +30,7 @@ export const FallbackChevron = ({ className }: FallbackChevronProps) => {
                     <path
                         d="M59 48L42.7895 65L37 59.1379L47.4211 48L37 36.8621L42.7895 31L59 48Z"
                         stroke="#262626"
-                        stroke-width="2"
+                        strokeWidth="2"
                     />
                 </svg>
             </div>

@@ -1,11 +1,18 @@
 import React from 'react';
-import { HeaderProps } from 'types/component-props/parts/header';
 import { Header } from 'components/_common/headers/Header';
-import { headingToLevel, headingToSize } from 'types/typo-style';
+import { HeadingTag, headingToLevel, headingToSize } from 'types/typo-style';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { HeaderCommonConfig } from 'types/component-props/_mixins';
 
 import style from './HeaderPart.module.scss';
 
-export const HeaderPart = ({ config }: HeaderProps) => {
+export type PartConfigHeader = {
+    title: string;
+    anchorId: string;
+    titleTag: HeadingTag;
+} & HeaderCommonConfig;
+
+export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
     if (!config) {
         return null;
     }
@@ -16,17 +23,16 @@ export const HeaderPart = ({ config }: HeaderProps) => {
         return null;
     }
 
-    const _tag = titleTag || 'h3';
-    const level = headingToLevel[_tag];
-
-    const size = headingToSize[_tag];
+    const tag = titleTag || 'h3';
+    const level = headingToLevel[tag];
+    const size = headingToSize[tag];
 
     return (
         <Header
             level={level}
             size={size}
             anchorId={anchorId}
-            justify="left"
+            justify={'left'}
             hideCopyButton={true}
             className={style.headerPart}
         >

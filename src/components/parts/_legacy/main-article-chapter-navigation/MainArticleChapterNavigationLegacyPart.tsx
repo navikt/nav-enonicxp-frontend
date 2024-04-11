@@ -30,7 +30,7 @@ const getChapters = (contentProps: ContentProps) => {
     return null;
 };
 
-export const MainArticleChapterNavigation = (props: ContentProps) => {
+export const MainArticleChapterNavigationLegacyPart = (props: ContentProps) => {
     const { language } = usePageContentProps();
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {

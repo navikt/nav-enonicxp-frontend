@@ -7,15 +7,19 @@ import {
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { OfficeInformationProps } from 'types/content-props/office-information-props';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { SpecialInformation } from './SpecialInfo';
 import { Reception } from './reception/Reception';
 
 import style from './OfficeInformation.module.scss';
 
-export const OfficeInformation = (props: OfficeInformationProps) => {
+export const OfficeInformationLegacyPart = (props: ContentProps) => {
+    if (props.type !== ContentType.OfficeInformation) {
+        return null;
+    }
+
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const getLabelMain = translator('mainArticle', props.language);

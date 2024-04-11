@@ -2,12 +2,16 @@ import React from 'react';
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
-import { SectionPageProps } from 'types/content-props/section-page-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { appOrigin } from 'utils/urls';
 
 import style from './LinkLists.module.scss';
 
-const LinkLists = (props: SectionPageProps) => {
+export const LinkListsLegacyPart = (props: ContentProps) => {
+    if (props.type !== ContentType.SectionPage) {
+        return null;
+    }
+
     const getLabel = translator('linkLists', props.language);
     const { data } = props;
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
@@ -59,5 +63,3 @@ const LinkLists = (props: SectionPageProps) => {
         </>
     );
 };
-
-export default LinkLists;

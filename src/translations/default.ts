@@ -331,6 +331,9 @@ export const translationsBundleNb = {
     greetings: {
         hi: 'Hei!',
     },
+    yourServicesText: {
+        yourServices: 'Dine tjenester',
+    },
     macroVideo: {
         playMovie: 'Se video:',
         duration: 'Varighet er',

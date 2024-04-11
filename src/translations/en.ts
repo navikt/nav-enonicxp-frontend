@@ -301,6 +301,9 @@ export const translationsBundleEn: PartialTranslations = {
     greetings: {
         hi: 'Hi!',
     },
+    yourServicesText: {
+        yourServices: 'Your services',
+    },
     macroVideo: {
         playMovie: 'Watch video:',
         duration: 'Duration is',

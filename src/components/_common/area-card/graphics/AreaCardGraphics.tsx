@@ -1,7 +1,7 @@
 import React from 'react';
-import { AreaCardGraphicsType } from 'types/component-props/parts/area-card';
 import { classNames } from 'utils/classnames';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { AreaCardGraphicsType } from 'components/parts/area-card/AreaCardPart';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';

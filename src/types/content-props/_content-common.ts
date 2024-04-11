@@ -1,6 +1,6 @@
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { Language } from 'translations';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { MediaType } from 'types/media';
 import { LanguageProps, LayerLocale } from 'types/language';
 import { AudienceOptions } from 'types/component-props/_mixins';
@@ -143,7 +143,7 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
-    page?: LayoutProps;
+    page?: LayoutComponentProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     isFailover?: boolean;

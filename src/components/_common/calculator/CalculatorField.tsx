@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-import { CalculatorFieldData } from 'types/component-props/parts/calculator';
 
+import { CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
 import style from './Field.module.scss';
 
 const isInputField = (
