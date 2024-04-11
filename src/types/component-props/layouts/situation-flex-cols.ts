@@ -8,11 +8,6 @@ export interface SituationPageFlexColsLayoutProps extends LayoutBaseProps {
     type: ComponentType.Layout;
     descriptor: LayoutType.SituationPageFlexCols;
     regions: Regions<'flexcols'>;
-    config: {
-        shelf: OptionSetSingle<{
-            products: { priority: 'primary' | 'secondary' | 'tertiary' };
-            provider: {};
-        }>;
-    } & Pick<FlexColsLayoutProps['config'], 'justifyContent' | 'numCols' | 'bgColor'> &
+    config: Pick<FlexColsLayoutProps['config'], 'justifyContent' | 'numCols' | 'bgColor'> &
         HeaderWithAnchorMixin;
 }
