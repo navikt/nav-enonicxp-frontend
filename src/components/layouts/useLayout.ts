@@ -1,5 +1,5 @@
 import { usePageContentProps } from 'store/pageContext';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
@@ -49,7 +49,7 @@ const getPaddingConfig = (config: string) => {
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps: LayoutProps;
+    layoutProps: LayoutComponentProps;
     layoutStyle?: React.CSSProperties;
     modifiers?: string[];
 } & React.HTMLAttributes<HTMLDivElement>;
