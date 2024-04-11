@@ -30,4 +30,4 @@ export const HtmlAreaPart = ({ config }: PartComponentProps<PartType.HtmlArea>) 
     );
 };
 
-export default HtmlArea;
+export default HtmlAreaPart;
