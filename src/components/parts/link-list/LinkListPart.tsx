@@ -1,14 +1,16 @@
 import React from 'react';
-import { DynamicLinkListProps } from 'types/component-props/parts/link-list';
-import { Lenkeliste } from 'components/_common/lenkeliste/Lenkeliste';
+import { Lenkeliste, ListType } from 'components/_common/lenkeliste/Lenkeliste';
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { OptionSetSingle } from 'types/util-types';
+import { ContentListMixin, ExpandableMixin, LinkSelectable } from 'types/component-props/_mixins';
 
 import style from './LinkList.module.scss';
 
-const getListComponent = (config: DynamicLinkListProps['config']) => {
+const getListComponent = (config: PartConfigLinkList) => {
     const { title, list, listType, hideTitle } = config;
     const { _selected } = list;
 
@@ -28,18 +30,26 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
         const { linkList } = list;
         const links = linkList?.links?.map(getSelectableLinkProps);
         return (
-            <Lenkeliste
-                tittel={!hideTitle ? title : undefined}
-                lenker={links}
-                listType={listType}
-            />
+            <Lenkeliste tittel={hideTitle ? undefined : title} lenker={links} listType={listType} />
         );
     }
 
     return null;
 };
 
-export const LinkListPart = ({ config }: DynamicLinkListProps) => {
+export type PartConfigLinkList = {
+    title?: string;
+    hideTitle?: boolean;
+    listType: ListType;
+    list: OptionSetSingle<{
+        contentList: ContentListMixin;
+        linkList: {
+            links: LinkSelectable[];
+        };
+    }>;
+} & ExpandableMixin;
+
+export const LinkListPart = ({ config }: PartComponentProps<PartType.LinkList>) => {
     if (!config?.list?._selected) {
         return <EditorHelp text={'Klikk og velg lenker i panelet til høyre'} />;
     }

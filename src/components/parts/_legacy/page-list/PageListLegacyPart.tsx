@@ -1,13 +1,17 @@
 import React from 'react';
-import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { translator } from 'translations';
-import { PageListProps } from 'types/content-props/page-list-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './PageList.module.scss';
 
-export const PageList = (props: PageListProps) => {
+export const PageListLegacyPart = (props: ContentProps) => {
+    if (props.type !== ContentType.PageList) {
+        return null;
+    }
+
     const { publish, modifiedTime, createdTime, language, data } = props;
 
     const getDateLabel = translator('mainArticle', language);

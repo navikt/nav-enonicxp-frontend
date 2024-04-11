@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
@@ -12,6 +13,7 @@ interface PublishingCalendarEntryData {
     day: string;
     month: string;
 }
+
 const monthShortName = [
     'JAN',
     'FEB',
@@ -48,7 +50,11 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
     };
 };
 
-const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
+export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
+    if (props.type !== ContentType.PublishingCalendarEntry) {
+        return null;
+    }
+
     const entry = processEntry(props);
     return (
         <Table.Row>
@@ -65,5 +71,3 @@ const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
         </Table.Row>
     );
 };
-
-export default PublishingCalendarEntry;

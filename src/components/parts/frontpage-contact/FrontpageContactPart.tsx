@@ -1,15 +1,40 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { FrontpageContanctPartProps } from 'types/component-props/parts/frontpage-contact';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { ContentType } from 'types/content-props/_content-common';
 import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { ContactInformationProps } from 'types/content-props/contact-information-props';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';
 
-export const FrontpageContactPart = ({ config }: FrontpageContanctPartProps) => {
+type InternalContactUs = {
+    type: ContentType.GenericPage;
+    _path: string;
+};
+
+type ExternalContactUs = {
+    type: ContentType.ExternalLink;
+    data: {
+        url: string;
+    };
+};
+
+export type PartConfigFrontpageContact = {
+    title: string;
+    chatTitle: string;
+    chatAlertText?: string;
+    sharedContactInformation: ContactInformationProps[];
+    chatIngress: string;
+    contactUsTitle: string;
+    contactUsAlertText?: string;
+    contactUsIngress: string;
+    contactUsLink: InternalContactUs | ExternalContactUs;
+};
+
+export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.FrontpageContact>) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }

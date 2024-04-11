@@ -1,9 +1,10 @@
 import React from 'react';
 import { AlertProps } from '@navikt/ds-react';
-import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 // These types were used by a previous version of the design system component
 // and are still used for the type property on the backend
@@ -18,9 +19,15 @@ const legacyTypeToVariant: {
     suksess: 'success',
 };
 
-export const AlertBoxPart = (props: AlertBoxPartProps) => {
-    const { config } = props;
+export type PartConfigAlertBox = {
+    content: ProcessedHtmlProps;
+    type: 'info' | 'advarsel' | 'feil' | 'suksess';
+    size?: 'small' | 'medium';
+    inline?: boolean;
+    margin: string;
+};
 
+export const AlertBoxPart = ({ config }: PartComponentProps<PartType.AlertBox>) => {
     if (!config) {
         return <EditorHelp text={'Varselboksen er ikke konfigurert'} />;
     }

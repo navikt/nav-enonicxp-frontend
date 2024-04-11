@@ -1,4 +1,4 @@
-import { CalculatorData } from 'types/component-props/parts/calculator';
+import { CalculatorData } from 'components/parts/calculator/CalculatorPart';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export type CalculatorProps = ContentCommonProps & {

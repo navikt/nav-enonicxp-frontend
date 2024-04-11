@@ -1,10 +1,10 @@
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { forceArray } from 'utils/arrays';
-import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
+import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 
 import styles from './SocialHelpLinks.module.scss';
 
-export const SocialHelpLinks = ({ officeData }: DetailProps) => {
+export const SocialHelpLinks = ({ officeData }: OfficeEditorialDetailProps) => {
     const socialHelpLinks = forceArray(officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader);
 
     if (!socialHelpLinks || socialHelpLinks.length === 0) {

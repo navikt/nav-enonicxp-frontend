@@ -1,11 +1,11 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { PageNavigationLink } from 'components/_common/page-navigation-menu/PageNavigationLink';
-import { AnchorLink } from 'types/component-props/parts/page-navigation-menu';
 import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
 } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import style from './PageNavigationSidebar.module.scss';
 
 type Props = {

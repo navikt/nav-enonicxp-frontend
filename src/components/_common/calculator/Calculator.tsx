@@ -4,13 +4,14 @@ import { CalculatorIcon } from '@navikt/aksel-icons';
 import { Button } from 'components/_common/button/Button';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';
-import { CalculatorData, CalculatorFieldData } from 'types/component-props/parts/calculator';
 import { usePageContentProps } from 'store/pageContext';
+import { CalculatorData, CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
 import { CalculatorResult } from './CalculatorResult';
+
+import style from './Calculator.module.scss';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
-import style from './Calculator.module.scss';
 
 type FieldRecord = Record<string, number | null>;
 

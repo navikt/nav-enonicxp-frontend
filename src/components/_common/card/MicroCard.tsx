@@ -4,8 +4,7 @@ import { LinkProps } from 'types/link-props';
 import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
-import { TargetPage } from 'types/component-props/parts/product-card';
-import { CardProps, getCardProps } from 'components/_common/card/card-utils';
+import { CardProps, CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
@@ -28,7 +27,7 @@ export const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) =
 
 type Props = {
     header?: string;
-    card_list: TargetPage[];
+    card_list: CardTargetProps[];
 };
 
 export const MicroCards = ({ header, card_list }: Props) => {
