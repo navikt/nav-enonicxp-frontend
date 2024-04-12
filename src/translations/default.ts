@@ -264,7 +264,6 @@ export const translationsBundleNb = {
         chooseBetweenOffices: 'Du kan velge ett av de følgende kontorene.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
-        openingHoursWithoutAppointment: 'Åpningstider når du ikke har avtale',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',

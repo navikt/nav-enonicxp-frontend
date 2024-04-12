@@ -140,7 +140,6 @@ export const translationsBundleEn: PartialTranslations = {
         chooseBetweenOffices: 'You can choose one of the following offices.',
         officeInformation: 'Office information',
         closed: 'Closed',
-        openingHoursWithoutAppointment: 'Opening hours without an appointment',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Special opening hours',
         address: 'Address',
