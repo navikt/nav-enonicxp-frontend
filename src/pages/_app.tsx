@@ -6,7 +6,6 @@ import { store } from 'store/store';
 import { PageProps } from 'components/PageBase';
 
 import 'global.scss';
-import '@navikt/nav-office-reception-info/dist/style.css';
 
 const initFaro =
     process.env.ENV === 'localhost'
