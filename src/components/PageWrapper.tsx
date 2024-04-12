@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
-import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import { hasWhiteHeader, hasWhitePage, shouldPushUpwards } from 'utils/appearance';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
@@ -12,6 +11,7 @@ import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { classNames } from 'utils/classnames';
 import { isLegacyContentType } from 'utils/content-types';
+import { usePageContentProps } from 'store/pageContext';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { EditorWidgets } from './_editor-only/EditorWidgets';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
@@ -21,12 +21,11 @@ import { PageWarnings } from './_page-warnings/PageWarnings';
 import styles from './PageWrapper.module.scss';
 
 type Props = {
-    content: ContentProps;
     children: React.ReactNode;
 };
 
-export const PageWrapper = (props: Props) => {
-    const { content, children } = props;
+export const PageWrapper = ({ children }: Props) => {
+    const content = usePageContentProps();
 
     const isEditorView = !!content.editorView;
 
