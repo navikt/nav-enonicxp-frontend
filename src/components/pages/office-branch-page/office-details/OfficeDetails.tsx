@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react';
+import { Reception } from '@navikt/nav-office-reception-info';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { Reception } from '@navikt/nav-office-reception-info';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
