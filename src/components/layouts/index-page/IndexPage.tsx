@@ -19,13 +19,11 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
     const { type } = pageProps;
     const { regions } = layoutProps;
 
-    const hasNoTopGap = getAudience(pageProps.data?.audience) !== 'person';
-
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            className={classNames(style.indexPage, hasNoTopGap && style.noTopGap)}
+            className={style.indexPage}
         >
             <>
                 {/* We don't use this region on the AreaPage atm */}

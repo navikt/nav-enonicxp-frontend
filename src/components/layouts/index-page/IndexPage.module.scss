@@ -17,12 +17,6 @@ $maxWidth: 1272px;
     }
 }
 
-// PageWrapper will create a gap beneath the decorator, but some front pages
-// should have background color seamless with the page header, so offset this.
-.noTopGap {
-    margin-top: calc(var(--a-spacing-8) * -1);
-} //TODO fjern denne?
-
 .contentBottom {
     display: flex;
     flex-direction: column;
