@@ -25,6 +25,7 @@ const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
  **/
 type Props = {
     href: string;
+    shallow?: boolean;
     prefetch?: boolean;
     analyticsEvent?: AnalyticsEvents;
     analyticsComponent?: string;
@@ -35,6 +36,7 @@ type Props = {
 
 export const LenkeBase = ({
     href,
+    shallow,
     onClick,
     analyticsEvent,
     analyticsComponent,
@@ -76,6 +78,7 @@ export const LenkeBase = ({
                     logAmplitudeEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
                     onClick?.(e);
                 }}
+                shallow={shallow}
                 rel={isNofollowUrl(url) ? 'nofollow' : undefined}
                 prefetch={shouldPrefetch}
             >
