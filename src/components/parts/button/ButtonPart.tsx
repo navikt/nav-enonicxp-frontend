@@ -59,3 +59,22 @@ export const ButtonPart = ({ config }: PartComponentProps<PartType.Button>) => {
         </Button>
     );
 };
+
+export const ButtonPartTwo = ({ config }: PartComponentProps<PartType.Button>) => {
+    const { icon, link, size, type, fullwidth } = config;
+
+    const linkProps = getSelectableLinkProps(link);
+
+    return (
+        <Button
+            className={style.button}
+            href={linkProps.url}
+            xpIcon={icon}
+            fullWidth={fullwidth}
+            variant={typePropToVariant[type]}
+            size={partSizeToAkselSize[size]}
+        >
+            {`${linkProps.text} [BUTTON TWO: ELECTRIC BUTTONLOO]`}
+        </Button>
+    );
+};
