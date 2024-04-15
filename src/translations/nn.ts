@@ -173,8 +173,6 @@ export const translationsBundleNn: PartialTranslations = {
         chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
-        openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
-        openingHours: 'Opningstider',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',

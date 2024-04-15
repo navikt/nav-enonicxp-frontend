@@ -4,6 +4,7 @@
     background-color: var(--a-gray-50);
     border-radius: var(--a-border-radius-small);
     padding: common.$sectionPaddingMobile;
+    margin-top: 1rem;
 
     @media #{common.$mq-screen-tablet} {
         padding: common.$sectionPaddingTablet;

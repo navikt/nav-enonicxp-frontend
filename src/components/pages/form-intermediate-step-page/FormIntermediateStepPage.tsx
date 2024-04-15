@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Heading } from '@navikt/ds-react';
-import { useRouter } from 'next/compat/router';
 import { translator } from 'translations';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
@@ -15,8 +14,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const { language } = props;
 
     const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
-
-    const router = useRouter();
 
     const getTranslations = translator('form', language);
 
@@ -58,10 +55,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     <div className={style.buttonGroup}>
                         <Button
                             href={backUrl}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                router?.push(backUrl, undefined, { shallow: true });
-                            }}
+                            shallow={true}
                             as={LenkeBase}
                             variant={'tertiary'}
                             className={style.backButton}
