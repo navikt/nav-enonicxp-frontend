@@ -1,14 +1,14 @@
 import React, { createContext, useContext } from 'react';
-import { PartComponent, PartType } from 'components/types/component-props/parts';
-import { EmptyObject } from '@reduxjs/toolkit';
+import { PartComponent, PartType } from 'types/component-props/parts';
+import { EmptyObject } from 'types/util-types';
 
 type PartsMap = { [Key in PartType]?: PartComponent<Key> };
 
 export type ComponentsMapping = {
-    pages: EmptyObject;
-    layouts: EmptyObject;
+    pages?: EmptyObject;
+    layouts?: EmptyObject;
     parts: PartsMap;
-    macros: EmptyObject;
+    macros?: EmptyObject;
 };
 
 const ComponentsMappingContext = createContext<ComponentsMapping>({
