@@ -1,5 +1,6 @@
 @use 'common' as common;
 @import '@navikt/ds-css/dist/index.css';
+@import '@navikt/nav-office-reception-info/dist/style.css';
 
 @media (prefers-reduced-motion: no-preference) {
     html {

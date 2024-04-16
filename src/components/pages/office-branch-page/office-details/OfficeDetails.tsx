@@ -1,10 +1,10 @@
 import { Heading } from '@navikt/ds-react';
+import { Reception } from '@navikt/nav-office-reception-info';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
-import { Reception } from './reception/Reception';
 import { PhonePoster } from './phonePoster/PhonePoster';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
 
@@ -28,7 +28,11 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     {getOfficeTranslations('youFindUsHere')}
                 </Heading>
                 {publikumsmottak.length > 0 && (
-                    <Reception receptions={publikumsmottak} officeType={officeData.type} />
+                    <Reception
+                        receptions={publikumsmottak}
+                        officeType={officeData.type}
+                        language={language}
+                    />
                 )}
                 <PhonePoster officeData={officeData} />
                 <OfficeInformation officeData={officeData} />
