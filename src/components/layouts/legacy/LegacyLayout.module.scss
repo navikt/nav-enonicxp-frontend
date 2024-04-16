@@ -8,7 +8,7 @@
 
         max-width: 63.5rem;
         width: 100%;
-        padding-top: 2.25rem;
+        margin: 1rem auto;
 
         @media #{common.$mq-screen-mobile} {
             flex-direction: column;
