@@ -53,14 +53,14 @@ export const Region = ({
             {components.map((component) => {
                 return wrapperFunction && !isEditView ? (
                     wrapperFunction(
-                        <ComponentMapper componentProps={component} pageProps={pageProps} />,
+                        <ComponentMapper componentProps={component} contentProps={pageProps} />,
                         component.path
                     )
                 ) : (
                     <ComponentMapper
                         key={component.path}
                         componentProps={component}
-                        pageProps={pageProps}
+                        contentProps={pageProps}
                     />
                 );
             })}

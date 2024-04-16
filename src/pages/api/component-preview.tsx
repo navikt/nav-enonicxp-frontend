@@ -45,7 +45,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
         const html = ReactDOMServer.renderToStaticMarkup(
             <PageContextProvider content={contentProps}>
                 <Provider store={mockStore}>
-                    <ComponentMapper componentProps={props} pageProps={contentProps} />
+                    <ComponentMapper componentProps={props} contentProps={contentProps} />
                 </Provider>
             </PageContextProvider>
         );

@@ -18,7 +18,7 @@ export const OfficePage = (props: OfficePageProps) => {
             )}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
             <div className={classNames(styles.content, styles.pageContent)}>
-                <ComponentMapper componentProps={props.page} pageProps={props} />
+                <ComponentMapper componentProps={props.page} contentProps={props} />
             </div>
         </div>
     );

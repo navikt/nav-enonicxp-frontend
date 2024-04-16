@@ -71,7 +71,7 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
             {isSimpleOverview ? (
                 <BodyLong>{ingress}</BodyLong>
             ) : productDetailsPage ? (
-                <ComponentMapper componentProps={productDetailsPage} pageProps={pageProps} />
+                <ComponentMapper componentProps={productDetailsPage} contentProps={pageProps} />
             ) : null}
             <OverviewMicroCards productLinks={productLinks} className={style.microCard} />
         </ProductPanelExpandable>

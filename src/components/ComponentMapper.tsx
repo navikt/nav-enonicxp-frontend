@@ -1,11 +1,13 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { BodyLong } from '@navikt/ds-react';
 import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
-import { useXpComponentsConfig } from './xp-components/components-config/xpComponentsConfig';
+import { useXpComponentsConfig } from './xp-components/xpComponentsConfig';
+import { XpPartComponent } from './xp-components/part/XpPartComponent';
 
 const PartsMapperOld = dynamic(() =>
     import('components/parts/PartsMapper').then((module) => module.PartsMapper)
@@ -19,55 +21,28 @@ const TextComponent = dynamic(() =>
 
 type Props = {
     componentProps?: ComponentProps;
-    pageProps: ContentProps;
+    contentProps: ContentProps;
 };
 
-const ComponentFallbackRender = ({ componentProps, pageProps }: Required<Props>) => {
+const ComponentToRender = ({ componentProps, contentProps }: Required<Props>) => {
     switch (componentProps.type) {
         case ComponentType.Text:
-            return <TextComponent textProps={componentProps} editMode={!!pageProps.editorView} />;
+            return (
+                <TextComponent textProps={componentProps} editMode={!!contentProps.editorView} />
+            );
         case ComponentType.Layout:
         case ComponentType.Page:
-            return <LayoutMapperOld layoutProps={componentProps} pageProps={pageProps} />;
+            return <LayoutMapperOld layoutProps={componentProps} pageProps={contentProps} />;
         case ComponentType.Part:
-            return <PartsMapperOld partProps={componentProps} pageProps={pageProps} />;
+            return <XpPartComponent partProps={componentProps} />;
         case ComponentType.Fragment:
-            return <FragmentComponent componentProps={componentProps} pageProps={pageProps} />;
+            return <FragmentComponent componentProps={componentProps} pageProps={contentProps} />;
         default:
             return <div>{`Unimplemented component type: ${(componentProps as any).type}`}</div>;
     }
 };
 
-const ComponentToRender = ({ componentProps, pageProps }: Required<Props>) => {
-    const { parts, layouts, pages, useGlobalFallback } = useXpComponentsConfig();
-
-    if (componentProps.type === ComponentType.Part) {
-        const Component = parts[componentProps.descriptor];
-        if (Component) {
-            return <Component {...componentProps} />;
-        }
-    } else if (componentProps.type === ComponentType.Layout) {
-        const Component = layouts[componentProps.descriptor];
-        if (Component) {
-            return <Component {...componentProps} />;
-        }
-    } else if (componentProps.type === ComponentType.Page) {
-        const Component = pages[componentProps.descriptor];
-        if (Component) {
-            return <Component {...componentProps} />;
-        }
-    }
-
-    return useGlobalFallback || componentProps.type !== ComponentType.Part ? (
-        <ComponentFallbackRender pageProps={pageProps} componentProps={componentProps} />
-    ) : (
-        <EditorHelp
-            text={`Komponenten "${componentProps.descriptor} [${componentProps.type}]" kan ikke benyttes på sidetypen "${pageProps.type}"`}
-        />
-    );
-};
-
-export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+export const ComponentMapper = ({ componentProps, contentProps }: Props) => {
     if (!componentProps) {
         return (
             <EditorHelp
@@ -81,7 +56,7 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
 
     return (
         <AuthDependantRender renderOn={componentProps?.config?.renderOnAuthState}>
-            <ComponentToRender componentProps={componentProps} pageProps={pageProps} />
+            <ComponentToRender componentProps={componentProps} contentProps={contentProps} />
         </AuthDependantRender>
     );
 };

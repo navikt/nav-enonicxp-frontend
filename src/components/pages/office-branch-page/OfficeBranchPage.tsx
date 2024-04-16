@@ -21,7 +21,7 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
             <OfficeDetails officeData={props.data} />
             <div className={classNames(styles.content, styles.pageContent)}>
                 {editorialPage && (
-                    <ComponentMapper componentProps={editorialPage.page} pageProps={props} />
+                    <ComponentMapper componentProps={editorialPage.page} contentProps={props} />
                 )}
             </div>
         </div>

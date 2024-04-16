@@ -61,7 +61,7 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
                         <ComponentMapper
                             key={index}
                             componentProps={component}
-                            pageProps={pageProps}
+                            contentProps={pageProps}
                         />
                     ))}
                 </ExpandableComponentWrapper>

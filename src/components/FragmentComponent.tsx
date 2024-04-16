@@ -20,7 +20,7 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
         );
     }
 
-    return <ComponentMapper pageProps={pageProps} componentProps={componentProps.fragment} />;
+    return <ComponentMapper contentProps={pageProps} componentProps={componentProps.fragment} />;
 };
 
 export const FragmentComponent = ({ componentProps, pageProps }: Props) => {

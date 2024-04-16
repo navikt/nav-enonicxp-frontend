@@ -8,7 +8,7 @@ export const GenericPage = (props: GenericPageProps) => {
         <article className={'genericPage'}>
             <ThemedPageHeader contentProps={props} />
             <div className={'content'}>
-                <ComponentMapper componentProps={props.page} pageProps={props} />
+                <ComponentMapper componentProps={props.page} contentProps={props} />
             </div>
         </article>
     );
