@@ -14,29 +14,17 @@ export const OfficePage = (props: OfficePageProps) => {
     const isOfficeBranch = officeNorgData.type === 'LOKAL';
     const editorialPage = props.editorial;
 
-    if (isOfficeBranch && !editorialPage) {
-        logger.error(`No editorial page found for ${props.displayName}`);
-        return null;
-    }
-
     if (!officeNorgData) {
         logger.error('No office data exists for this office page');
         return null;
     }
 
-    if (officeNorgData.type === 'LOKAL') {
-        return (
-            <div className={styles.officePage}>
-                <OfficePageHeader officeDetails={officeNorgData} showTimeStamp={false} />
-                <OfficeDetails officeData={officeNorgData} />
-                <div className={classNames(styles.content, styles.pageContent)}>
-                    {editorialPage && (
-                        <ComponentMapper componentProps={editorialPage.page} pageProps={props} />
-                    )}
-                </div>
-            </div>
-        );
+    if (isOfficeBranch && !editorialPage) {
+        logger.error(`No editorial page found for office branch ${props.displayName}`);
+        return null;
     }
+
+    const page = isOfficeBranch && editorialPage ? editorialPage.page : props.page;
 
     return (
         <div className={styles.officePage}>
@@ -45,7 +33,7 @@ export const OfficePage = (props: OfficePageProps) => {
             )}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
             <div className={classNames(styles.content, styles.pageContent)}>
-                <ComponentMapper componentProps={props.page} pageProps={props} />
+                <ComponentMapper componentProps={page} pageProps={props} />
             </div>
         </div>
     );
