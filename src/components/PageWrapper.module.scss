@@ -39,10 +39,6 @@
     &.whiteBackground:before {
         background-color: var(--a-bg-default);
     }
-
-    &.decoratorOffset:before {
-        margin-top: -0.75rem;
-    }
 }
 
 // Prevent accidental page customizations on legacy types which we genereally
