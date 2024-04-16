@@ -24,7 +24,6 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
-    OfficeBranchPageProps,
     OfficeEditorialPageProps,
     CurrentTopicPageProps,
     ProductDetailsProps,
@@ -72,7 +71,6 @@ export enum ContentType {
     ProductPage = 'no.nav.navno:content-page-with-sidemenus',
     ProductDetails = 'no.nav.navno:product-details',
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
-    OfficeBranchPage = 'no.nav.navno:office-branch',
     GuidePage = 'no.nav.navno:guide-page',
     ThemedArticlePage = 'no.nav.navno:themed-article-page',
     CurrentTopicPage = 'no.nav.navno:current-topic-page',
@@ -173,7 +171,6 @@ type SpecificContentProps =
     | ProductPageProps
     | SituationPageProps
     | OfficeEditorialPageProps
-    | OfficeBranchPageProps
     | OfficePageProps
     | AnimatedIconsProps
     | GlobalValuesProps

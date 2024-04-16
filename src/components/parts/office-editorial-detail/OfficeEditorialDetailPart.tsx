@@ -64,7 +64,13 @@ export const OfficeEditorialDetailPart = ({
         );
     }
 
-    if (pageProps.type !== ContentType.OfficeBranchPage) {
+    if (pageProps.type !== ContentType.OfficePage) {
+        return null;
+    }
+
+    const officeData = pageProps.data.officeNorgData.data;
+
+    if (!officeData) {
         return null;
     }
 
@@ -73,5 +79,5 @@ export const OfficeEditorialDetailPart = ({
         return null;
     }
 
-    return <DetailComponent officeData={pageProps.data} />;
+    return <DetailComponent officeData={officeData} />;
 };

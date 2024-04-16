@@ -17,7 +17,6 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.FrontPageNested,
     ContentType.GenericPage,
     ContentType.GuidePage,
-    ContentType.OfficeBranchPage,
     ContentType.OfficePage,
     ContentType.OfficeEditorialPage,
     ContentType.Overview,
