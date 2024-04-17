@@ -7,9 +7,7 @@
 .person {
     padding-top: 2.75rem;
     padding-bottom: 2.75rem;
-    background-color: var(--bg-color, var(--a-red-50));
 }
-
 .employer,
 .provider,
 .other {
@@ -18,19 +16,6 @@
     margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
 }
 
-.employer {
-    background-color: var(--bg-color, var(--a-deepblue-100));
-}
-
-.provider {
-    background-color: var(--bg-color, var(--a-white));
-}
-
-.other {
-    background-color: var(--bg-color, var(--a-gray-100));
-}
-
-//TODO flytt opp
 @media #{common.$mq-screen-mobile} {
     .employer,
     .provider,
@@ -43,6 +28,19 @@
         padding-top: 1.75rem;
         padding-bottom: 2rem;
     }
+}
+
+.person {
+    background-color: var(--bg-color, var(--a-red-50));
+}
+.employer {
+    background-color: var(--bg-color, var(--a-deepblue-100));
+}
+.provider {
+    background-color: var(--bg-color, var(--a-white));
+}
+.other {
+    background-color: var(--bg-color, var(--a-gray-100));
 }
 
 .header {
