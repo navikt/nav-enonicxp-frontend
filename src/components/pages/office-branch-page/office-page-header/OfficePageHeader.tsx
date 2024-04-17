@@ -4,6 +4,7 @@ import { AudienceReception } from '@navikt/nav-office-reception-info';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { joinWithConjunction } from 'utils/string';
+import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
@@ -16,6 +17,7 @@ type Props = {
 export const OfficePageHeader = ({ officeDetails }: Props) => {
     const { navn, brukerkontakt } = officeDetails;
     const { language } = usePageContentProps();
+    const officeTranslations = translator('office', language);
 
     const getSubtitle = (publikumsmottak: AudienceReception[]) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {
@@ -35,6 +37,11 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
+    const tagline =
+        officeDetails.type === 'HMS'
+            ? officeTranslations('taglineHMS')
+            : officeTranslations('taglineOffice');
+
     return (
         <div className={classNames(style.officePageHeader)}>
             <div className={style.content}>
@@ -43,7 +50,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                 </Heading>
                 <div className={style.taglineWrapper}>
                     <BodyShort size="small" className={style.taglineLabel}>
-                        {'NAV-KONTOR'}
+                        {tagline}
                     </BodyShort>
                     {subTitle && (
                         <>
