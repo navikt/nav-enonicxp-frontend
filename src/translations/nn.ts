@@ -186,6 +186,8 @@ export const translationsBundleNn: PartialTranslations = {
         phoneInformation:
             'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
+        taglineOffice: 'NAV-kontor',
+        taglineHMS: 'Hjelpemiddelsentral',
     },
     overview: {
         noHits: 'Ingen treff med dei valde filtera.',

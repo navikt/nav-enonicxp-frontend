@@ -154,6 +154,8 @@ export const translationsBundleEn: PartialTranslations = {
         phoneInformation:
             'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
         alternativeContacts: 'Other contact options:',
+        taglineOffice: 'NAV office',
+        taglineHMS: 'Assistive technology centre',
     },
     dateTime: {
         weekDayNames: {

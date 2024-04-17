@@ -3,7 +3,6 @@ import { BodyLong } from '@navikt/ds-react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
-    ProviderAudience,
 } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
@@ -94,10 +93,9 @@ const buildAudienceLinks = (
     // with 'person' and 'arbeidsgiver'.
     if (provider?.providerList) {
         provider.providerList.forEach((singleProvider) => {
+            if (!singleProvider.targetPage) return;
             const providerLabels = singleProvider.providerAudience.map((audience) => {
-                if (typeof audience === 'string') {
-                    return getProviderAudienceLabel(audience as ProviderAudience);
-                }
+                if (typeof audience === 'string') return ''; // Failsafe for old data.
                 if (audience.overrideLabel) return audience.overrideLabel;
                 return getProviderAudienceLabel(audience.name);
             });
