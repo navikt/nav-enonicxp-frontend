@@ -4,10 +4,8 @@
     @include common.full-width-mixin();
     padding-top: 2.75rem;
     padding-bottom: 2.75rem;
-}
 
-@media #{common.$mq-screen-mobile} {
-    .shortcuts {
+    @media #{common.$mq-screen-mobile} {
         padding-top: 1.75rem;
         padding-bottom: 1.75rem;
     }
