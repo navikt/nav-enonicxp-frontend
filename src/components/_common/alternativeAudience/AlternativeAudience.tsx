@@ -95,6 +95,7 @@ const buildAudienceLinks = (
         provider.providerList.forEach((singleProvider) => {
             if (!singleProvider.targetPage) return;
             const providerLabels = singleProvider.providerAudience.map((audience) => {
+                if (typeof audience === 'string') return ''; // Failsafe for old data.
                 if (audience.overrideLabel) return audience.overrideLabel;
                 return getProviderAudienceLabel(audience.name);
             });
