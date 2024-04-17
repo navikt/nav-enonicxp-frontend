@@ -277,6 +277,8 @@ export const translationsBundleNb = {
         phoneInformation:
             'Telefontid hverdager kl. 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysninger:',
+        taglineOffice: 'NAV-kontor',
+        taglineHMS: 'Hjelpemiddelsentral',
     },
     dateTime: {
         weekDayNames: {
