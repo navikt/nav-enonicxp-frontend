@@ -67,8 +67,7 @@ const csp = async () => {
     const internalHosts = [
         prodWithSubdomains,
         ...[appHost, adminHost, xpHost].filter(
-            (origin, index, array) =>
-                !origin.endsWith(prodHost) && array.indexOf(origin) === index
+            (origin, index, array) => !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
     ];
 
@@ -122,18 +121,22 @@ console.log(
 
 const config = {
     ...(!isFailover && {
-        cacheHandler: path.resolve(
-            __dirname,
-            'server',
-            '.dist',
-            'page-cache-handler.cjs'
-        ),
+        cacheHandler: path.resolve(__dirname, 'server', '.dist', 'page-cache-handler.cjs'),
         cacheMaxMemorySize: 0,
     }),
     experimental: {
-        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
+        optimizePackageImports: [
+            '@navikt/ds-react',
+            '@navikt/aksel-icons',
+            '@navikt/nav-office-reception-info',
+        ],
+        scrollRestoration: true,
     },
-    transpilePackages: ['@navikt/aksel-icons', '@navikt/ds-react'],
+    transpilePackages: [
+        '@navikt/aksel-icons',
+        '@navikt/ds-react',
+        '@navikt/nav-office-reception-info',
+    ],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
@@ -146,6 +149,7 @@ const config = {
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
+        NAVNO_SEARCH_API_URL: process.env.NAVNO_SEARCH_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
     },
@@ -258,8 +262,7 @@ const config = {
             ? [
                   {
                       source: '/admin/site/preview/default/draft/:path*',
-                      destination:
-                          'http://localhost:8080/admin/site/preview/default/draft/:path*',
+                      destination: 'http://localhost:8080/admin/site/preview/default/draft/:path*',
                   },
               ]
             : []),

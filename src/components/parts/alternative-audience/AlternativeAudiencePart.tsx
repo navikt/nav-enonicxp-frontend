@@ -1,9 +1,10 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
-import { AlternativeAudienceProps } from 'types/component-props/parts/alternative-audience';
 import { ContentType } from 'types/content-props/_content-common';
 import { createTypeGuard } from 'types/_type-guards';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
@@ -11,8 +12,14 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
-export const AlternativeAudiencePart = ({ config, pageProps }: AlternativeAudienceProps) => {
-    const { data, type, _id, displayName } = pageProps;
+export type PartConfigAlternativeAudience = {
+    showProductName: boolean;
+};
+
+export const AlternativeAudiencePart = ({
+    config,
+}: PartComponentProps<PartType.AlternativeAudience>) => {
+    const { data, type, _id, displayName } = usePageContentProps();
 
     // If the page is in preview mode, audience from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually

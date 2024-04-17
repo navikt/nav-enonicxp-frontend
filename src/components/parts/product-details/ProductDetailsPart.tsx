@@ -1,23 +1,29 @@
 import React from 'react';
-import { ProductDetailsProps } from 'types/component-props/parts/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { translator } from 'translations';
-import { PageContextProvider } from 'store/pageContext';
+import { Language, translator } from 'translations';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { PageContextProvider, usePageContentProps } from 'store/pageContext';
+import { ComponentProps } from 'types/component-props/_component-common';
+import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 
-export const ProductDetailsPart = ({
-    config,
-    pageProps,
-}: ProductDetailsProps) => {
+export type PartConfigProductDetails = {
+    detailType: ProductDetailType;
+    // Note: these two fields are defined as a special case on the backend
+    // and are not included in the Graphql schema
+    components: ComponentProps[];
+    language: Language;
+} & ExpandableMixin &
+    FiltersMixin;
+
+export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.ProductDetails>) => {
+    const pageProps = usePageContentProps();
+
     if (!config?.detailType) {
-        return (
-            <EditorHelp
-                text={'Velg hvilken produktdetalj-type som skal vises'}
-            />
-        );
+        return <EditorHelp text={'Velg hvilken produktdetalj-type som skal vises'} />;
     }
 
     const detailTypeStrings = translator('productDetailTypes', 'no');
@@ -34,9 +40,7 @@ export const ProductDetailsPart = ({
                     config.detailType === ProductDetailType.PROCESSING_TIMES &&
                     processingTimeHelptext
                 }`}
-                globalWarningText={
-                    'Komponent for produktdetaljer mangler innhold'
-                }
+                globalWarningText={'Komponent for produktdetaljer mangler innhold'}
                 type={'error'}
             />
         );

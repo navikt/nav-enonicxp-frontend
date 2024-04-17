@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { classNames } from 'utils/classnames';
 import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
+import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
-import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
-import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { fetchJson, objectToQueryString } from 'srcCommon/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
+import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 
 import style from './VersionSelector.module.scss';
 
@@ -22,18 +22,9 @@ type Props = {
     submitVersionUrl: (url: string) => void;
 };
 
-export const VersionSelector = ({
-    content,
-    isOpen,
-    setIsOpen,
-    submitVersionUrl,
-}: Props) => {
-    const [publishedVersions, setPublishedVersions] = useState<string[] | null>(
-        null
-    );
-    const [selectedPublishedVersion, setSelectedPublishedVersion] = useState<
-        string | null
-    >(null);
+export const VersionSelector = ({ content, isOpen, setIsOpen, submitVersionUrl }: Props) => {
+    const [publishedVersions, setPublishedVersions] = useState<string[] | null>(null);
+    const [selectedPublishedVersion, setSelectedPublishedVersion] = useState<string | null>(null);
     const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
     const [versionsError, setVersionsError] = useState<string | null>(null);
 
@@ -43,32 +34,31 @@ export const VersionSelector = ({
             locale: content.liveLocale || content.layerLocale,
         });
 
-        fetchJson<string[]>(
-            `${PUBLISHED_VERSIONS_SERVICE_URL}${params}`,
-            15000
-        ).then((versions) => {
-            if (!versions) {
-                setVersionsError(
-                    'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
+        fetchJson<string[]>(`${PUBLISHED_VERSIONS_SERVICE_URL}${params}`, 15000).then(
+            (versions) => {
+                if (!versions) {
+                    setVersionsError(
+                        'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
+                    );
+                    setPublishedVersions([]);
+                    return;
+                }
+
+                setPublishedVersions(versions);
+
+                // Set the selection to a specific version if it was previously selected by the user
+                const selectedVersion = versions.find(
+                    (versionTimestamp) => versionTimestamp === content.timeRequested
                 );
-                setPublishedVersions([]);
-                return;
+
+                if (!selectedVersion) {
+                    return;
+                }
+
+                setSelectedPublishedVersion(selectedVersion);
+                setSelectorType('published');
             }
-
-            setPublishedVersions(versions);
-
-            // Set the selection to a specific version if it was previously selected by the user
-            const selectedVersion = versions.find(
-                (versionTimestamp) => versionTimestamp === content.timeRequested
-            );
-
-            if (!selectedVersion) {
-                return;
-            }
-
-            setSelectedPublishedVersion(selectedVersion);
-            setSelectorType('published');
-        });
+        );
     }, [content]);
 
     useEffect(() => {
@@ -93,10 +83,7 @@ export const VersionSelector = ({
     }, [isOpen, setIsOpen]);
 
     return (
-        <div
-            className={style.versionSelector}
-            id={VERSION_SELECTOR_CONTAINER_ID}
-        >
+        <div className={style.versionSelector} id={VERSION_SELECTOR_CONTAINER_ID}>
             <div className={classNames(style.inner, isOpen && style.open)}>
                 <div className={style.typeSelector}>
                     <RadioGroup
@@ -107,12 +94,8 @@ export const VersionSelector = ({
                         }}
                         disabled={!publishedVersions}
                     >
-                        <Radio value={'datetime'}>
-                            {'Egendefinert tidspunkt'}
-                        </Radio>
-                        <Radio value={'published'}>
-                            {'Publiseringstidspunkt'}
-                        </Radio>
+                        <Radio value={'datetime'}>{'Egendefinert tidspunkt'}</Radio>
+                        <Radio value={'published'}>{'Publiseringstidspunkt'}</Radio>
                     </RadioGroup>
                 </div>
                 <div className={style.input}>

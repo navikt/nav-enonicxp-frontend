@@ -1,12 +1,12 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 import { classNames } from 'utils/classnames';
 import { AreaCardGraphics } from 'components/_common/area-card/graphics/AreaCardGraphics';
 import { AreaPageProps } from 'types/content-props/index-pages-props';
 
-import style from './AreaPageHeader.module.scss';
 import graphicsStyle from 'components/_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
+import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
+import style from './AreaPageHeader.module.scss';
 
 type Props = {
     content: AreaPageProps;
@@ -21,16 +21,9 @@ export const AreaPageHeader = ({ content }: Props) => {
                 <Heading level="1" size="xlarge">
                     {header}
                 </Heading>
-                {banner && (
-                    <AreaPageHeaderBanner banner={banner} header={header} />
-                )}
+                {banner && <AreaPageHeaderBanner banner={banner} header={header} />}
             </div>
-            <div
-                className={classNames(
-                    style.gfxContainer,
-                    graphicsStyle.expandGraphics
-                )}
-            >
+            <div className={classNames(style.gfxContainer, graphicsStyle.expandGraphics)}>
                 <AreaCardGraphics type={area} insideCard={false} />
             </div>
         </div>

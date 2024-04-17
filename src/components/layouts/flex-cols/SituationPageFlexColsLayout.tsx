@@ -5,15 +5,14 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
 import { Header } from 'components/_common/headers/Header';
 
+import style from './FlexColsLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: SituationPageFlexColsLayoutProps;
 };
 
-export const SituationPageFlexColsLayout = ({
-    pageProps,
-    layoutProps,
-}: Props) => {
+export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
@@ -21,14 +20,7 @@ export const SituationPageFlexColsLayout = ({
     }
 
     const { config } = layoutProps;
-    const {
-        title,
-        numCols,
-        justifyContent,
-        anchorId,
-        toggleCopyButton,
-        shelf,
-    } = config;
+    const { title, numCols, justifyContent, anchorId, toggleCopyButton } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -38,22 +30,13 @@ export const SituationPageFlexColsLayout = ({
         return regionProps.components.length % 3 === 0 ? 3 : 2;
     };
 
-    const colCount =
-        typeof numCols === 'number' ? numCols : calculateColCount();
-
-    const buildModifiers = () => {
-        if (!shelf?._selected) {
-            return [];
-        }
-
-        return [shelf._selected];
-    };
+    const colCount = typeof numCols === 'number' ? numCols : calculateColCount();
 
     return (
         <LayoutContainer
+            className={`${style.layoutSituationOrProduct} ${style.layoutSituation}`}
             pageProps={pageProps}
             layoutProps={layoutProps}
-            modifiers={buildModifiers()}
         >
             {title && (
                 <Header
@@ -62,7 +45,7 @@ export const SituationPageFlexColsLayout = ({
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
-                    className="custom-header-style"
+                    className={style.header}
                 >
                     {title}
                 </Header>

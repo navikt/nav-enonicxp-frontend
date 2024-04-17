@@ -30,6 +30,7 @@ jobs:
       INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev1-${{ github.sha }}
       NAVNO_API_URL: https://www.intern.dev.nav.no/person/navno-api
+      NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
       FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
       NODE_ENV: ${{ inputs.NODE_ENV }}
     secrets:

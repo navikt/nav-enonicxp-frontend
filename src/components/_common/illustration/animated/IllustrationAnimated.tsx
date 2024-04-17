@@ -16,11 +16,7 @@ type Props = {
     className?: string;
 };
 
-export const IllustrationAnimated = ({
-    dataUrl,
-    isHovering,
-    className,
-}: Props) => {
+export const IllustrationAnimated = ({ dataUrl, isHovering, className }: Props) => {
     const lottieContainer = useRef<HTMLDivElement | null>(null);
     const lottiePlayer = useRef<AnimationItem | null>(null);
 
@@ -53,9 +49,7 @@ export const IllustrationAnimated = ({
                 return;
             }
 
-            const lottie = (
-                await import('lottie-web/build/player/lottie_light')
-            ).default;
+            const lottie = (await import('lottie-web/build/player/lottie_light')).default;
 
             if (container.innerHTML) {
                 container.innerHTML = '';
@@ -84,10 +78,7 @@ export const IllustrationAnimated = ({
             aria-hidden={'true'}
             id={elementId}
         >
-            <div
-                ref={lottieContainer}
-                className={styleAnimated.lottieContainer}
-            />
+            <div ref={lottieContainer} className={styleAnimated.lottieContainer} />
         </div>
     );
 };

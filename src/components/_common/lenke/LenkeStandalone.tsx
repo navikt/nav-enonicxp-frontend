@@ -1,8 +1,8 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { LenkeBase } from './LenkeBase';
 import { Chevron } from 'components/_common/chevron/Chevron';
+import { LenkeBase } from './LenkeBase';
 
 import style from './LenkeStandalone.module.scss';
 
@@ -32,17 +32,10 @@ export const LenkeStandalone = ({
         <LenkeBase
             {...rest}
             href={href}
-            className={classNames(
-                style.navnoLenke,
-                withChevron && style.withChevron,
-                className
-            )}
+            className={classNames(style.navnoLenke, withChevron && style.withChevron, className)}
             analyticsComponent={component}
             analyticsLinkGroup={linkGroup}
-            analyticsLabel={
-                analyticsLabel ||
-                (typeof children === 'string' ? children : undefined)
-            }
+            analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
         >
             <BodyShort className={style.lenketekst} as={'span'}>
                 {withChevron && (

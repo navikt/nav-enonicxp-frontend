@@ -1,0 +1,36 @@
+@use 'common' as common;
+
+.container {
+    :global(.layout__main) {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        max-width: 63.5rem;
+        width: 100%;
+        margin: 1rem auto;
+        padding: 0;
+
+        @media #{common.$mq-screen-mobile} {
+            flex-direction: column;
+        }
+    }
+
+    :global(.region__first) {
+        flex: 2;
+
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            &:not(:only-child) {
+                margin-right: 1.5rem;
+            }
+        }
+    }
+
+    :global(.region__second) {
+        flex: 1;
+
+        @media #{common.$mq-screen-mobile} {
+            margin-top: 2rem;
+        }
+    }
+}

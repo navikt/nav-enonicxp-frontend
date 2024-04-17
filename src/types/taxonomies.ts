@@ -28,7 +28,4 @@ export enum ToolsPageTaxonomy {
     NAVIGATOR = 'navigator',
 }
 
-export type Taxonomy =
-    | ProductTaxonomy
-    | ThemedArticlePageTaxonomy
-    | ToolsPageTaxonomy;
+export type Taxonomy = ProductTaxonomy | ThemedArticlePageTaxonomy | ToolsPageTaxonomy;

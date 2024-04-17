@@ -1,17 +1,16 @@
+import React, { useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { AccordionPartProps } from 'types/component-props/parts/accordion';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 
 import styles from './Accordion.module.scss';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
-import { useState } from 'react';
-import { usePageContentProps } from 'store/pageContext';
 
-type AccordionProps = AccordionPartProps['config'];
-type PanelItem = AccordionProps['accordion'][0];
+type AccordionProps = PartConfigAccordion;
+type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
     const { editorView } = usePageContentProps();
@@ -23,31 +22,23 @@ export const Accordion = ({ accordion }: AccordionProps) => {
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
-    const openChangeHandler = (
-        isOpen: boolean,
-        title: string,
-        index: number
-    ) => {
+    const openChangeHandler = (isOpen: boolean, title: string, index: number) => {
         if (isOpen) {
             setOpenAccordions([...openAccordions, index]);
         } else {
             setOpenAccordions(openAccordions.filter((i) => i !== index));
         }
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: title,
-                opprinnelse: 'trekkspill',
-            }
-        );
+        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+            tittel: title,
+            opprinnelse: 'trekkspill',
+        });
     };
 
     const validatePanel = (item: PanelItem) => !!(item.title && item.html);
 
     // Show all panels in edit mode, but only valid panels in view mode
     const validAccordion = accordion.filter(validatePanel);
-    const relevantAccordion =
-        editorView === 'edit' ? accordion : validAccordion;
+    const relevantAccordion = editorView === 'edit' ? accordion : validAccordion;
 
     return (
         <DSAccordion className={styles.accordion}>
@@ -58,9 +49,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         key={index}
                         className={styles.item}
                         open={openAccordions.includes(index)}
-                        onOpenChange={(open) =>
-                            openChangeHandler(open, item.title, index)
-                        }
+                        onOpenChange={(open) => openChangeHandler(open, item.title, index)}
                     >
                         <DSAccordion.Header className={styles.header}>
                             {!isValid && (
@@ -70,11 +59,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                                     }
                                 />
                             )}
-                            {isValid && (
-                                <div className={styles.headerTitle}>
-                                    {item.title}
-                                </div>
-                            )}
+                            {isValid && <div className={styles.headerTitle}>{item.title}</div>}
                         </DSAccordion.Header>
                         <DSAccordion.Content className={styles.content}>
                             <ParsedHtml htmlProps={item.html} />

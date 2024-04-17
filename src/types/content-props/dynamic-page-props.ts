@@ -1,12 +1,13 @@
-import { ContentCommonProps, ContentType } from './_content-common';
 import { AlternativeAudience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from 'types/taxonomies';
-import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { ContentListProps } from './content-list-props';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
-import { LayoutProps } from 'types/component-props/layouts';
+import { LayoutComponentProps } from 'types/component-props/layouts';
+import { OptionSetSingle } from 'types/util-types';
+import { ContentListProps } from './content-list-props';
+import { OfficeDetailsData } from './office-details-props';
+import { ContentCommonProps, ContentType } from './_content-common';
 import { ProductDetailType } from './product-details';
 
 export type DynamicPageProps = ContentCommonProps & {
@@ -27,7 +28,7 @@ export type ProductDetailsProps = ContentCommonProps & {
     data: {
         detailType: Exclude<ProductDetailType, ProductDetailType.ALL_PRODUCTS>;
     };
-    page: LayoutProps;
+    page: LayoutComponentProps;
 };
 
 export type ThemedArticlePageProps = ContentCommonProps & {
@@ -57,16 +58,23 @@ export type SituationPageProps = ContentCommonProps & {
 
 export type OfficeEditorialPageProps = ContentCommonProps & {
     type: ContentType.OfficeEditorialPage;
-    data: {
-        title: string;
-    } & ProductDataMixin;
-    page: LayoutProps;
+    data: ProductDataMixin;
+    page: LayoutComponentProps;
 };
 
 export type OfficeBranchPageProps = ContentCommonProps & {
     type: ContentType.OfficeBranchPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
+};
+
+export type OfficePageProps = ContentCommonProps & {
+    type: ContentType.OfficePage;
+    data: {
+        title: string;
+        officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
+    };
+    page: LayoutComponentProps;
 };
 
 export type CurrentTopicPageProps = ContentCommonProps & {

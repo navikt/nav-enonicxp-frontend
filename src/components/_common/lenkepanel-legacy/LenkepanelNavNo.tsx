@@ -35,20 +35,12 @@ const LenkepanelNavNo = ({
             analyticsComponent={component}
             analyticsLinkGroup={linkGroup}
             analyticsLabel={tittel}
-            className={classNames(
-                style.lenkepanelNavno,
-                vertikal && style.vertikal,
-                className
-            )}
+            className={classNames(style.lenkepanelNavno, vertikal && style.vertikal, className)}
             as={LenkeBase}
         >
             {ikon && <div className={style.ikon}>{ikon}</div>}
             <div className={style.innhold}>
-                <Heading
-                    level="2"
-                    size="small"
-                    className={'navds-link-panel__title'}
-                >
+                <Heading level="2" size="small" className={'navds-link-panel__title'}>
                     {tittel}
                 </Heading>
                 {separator && <hr className={style.separator} />}

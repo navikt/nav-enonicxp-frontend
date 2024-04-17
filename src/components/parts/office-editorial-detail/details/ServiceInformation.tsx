@@ -1,4 +1,4 @@
-import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
+import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
@@ -8,7 +8,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 /* eslint-disable-next-line */
 import styles from './SharedDetails.module.scss';
 
-export const ServiceInformation = ({ officeData }: DetailProps) => {
+export const ServiceInformation = ({ officeData }: OfficeEditorialDetailProps) => {
     const { language } = usePageContentProps();
     const getServiceTranslation = translator('audienceServices', language);
     const serviceInformation = forceArray(
@@ -32,11 +32,7 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
                         </li>
                     );
                 }
-                return (
-                    <li key={service.type}>
-                        {getServiceTranslation(service.type)}
-                    </li>
-                );
+                return <li key={service.type}>{getServiceTranslation(service.type)}</li>;
             })}
         </ul>
     );

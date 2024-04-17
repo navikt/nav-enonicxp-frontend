@@ -1,11 +1,20 @@
-import { LargeCard } from 'components/_common/card/LargeCard';
 import React from 'react';
+import { LargeCard } from 'components/_common/card/LargeCard';
 import { CardType } from 'types/card';
-import { TilbyderkortPartProps } from 'types/component-props/parts/tilbyderkort';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { XpImageProps } from 'types/media';
 
-export const ProviderCardPart = ({ config }: TilbyderkortPartProps) => {
+export type PartConfigProviderCard = Partial<{
+    link: LinkSelectable;
+    icon: XpImageProps;
+    description: string;
+    endnote: string;
+}>;
+
+export const ProviderCardPart = ({ config }: PartComponentProps<PartType.ProviderCard>) => {
     const { link, description, endnote } = config;
 
     if (!link) {

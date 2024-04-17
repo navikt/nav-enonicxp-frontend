@@ -10,9 +10,7 @@ export const OpeningHours = (props: {
     const { openingHours } = props;
 
     // Handle cases where one openinghour may include both day and date.
-    const buildDayInformation = (
-        opening: LegacyOfficeOpeningHoursProps
-    ): string => {
+    const buildDayInformation = (opening: LegacyOfficeOpeningHoursProps): string => {
         const { dato, dag } = opening;
         if (dato && dag) {
             return `${dag}, ${dato}`;
@@ -22,9 +20,7 @@ export const OpeningHours = (props: {
     };
 
     // Handle cases where openinghour may include different parts depending on day.
-    const buildOpeningInformation = (
-        opening: LegacyOfficeOpeningHoursProps
-    ): string => {
+    const buildOpeningInformation = (opening: LegacyOfficeOpeningHoursProps): string => {
         let tempString = '';
         if (opening.fra && opening.til) {
             tempString = `${opening.fra} - ${opening.til}`;
@@ -65,8 +61,7 @@ export const OpeningHours = (props: {
                                     ''}
                             </td>
                             <td>
-                                {openingInformation ||
-                                hasSomeOpeningInformationAndComments
+                                {openingInformation || hasSomeOpeningInformationAndComments
                                     ? opening.kommentar
                                     : ''}
                             </td>

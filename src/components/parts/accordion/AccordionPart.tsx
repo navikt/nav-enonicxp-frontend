@@ -1,9 +1,18 @@
+import React from 'react';
 import { Accordion } from 'components/_common/accordion/Accordion';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { AccordionPartProps } from 'types/component-props/parts/accordion';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-export const AccordionPart = ({ config }: AccordionPartProps) => {
-    if (!config || !config.accordion || config.accordion.length === 0) {
+export type PartConfigAccordion = {
+    accordion: Array<{
+        title: string;
+        html: ProcessedHtmlProps;
+    }>;
+};
+
+export const AccordionPart = ({ config }: PartComponentProps<PartType.Accordion>) => {
+    if (!config?.accordion || config.accordion.length === 0) {
         return <EditorHelp text={'Kortet mangler innhold'} />;
     }
 

@@ -1,8 +1,6 @@
-import {
-    ComponentCommonProps,
-    ComponentProps,
-    ComponentType,
-} from './_component-common';
+import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
+import { ProductDetailsPageProps } from 'types/component-props/pages/product-details-layout';
+import { ComponentBaseProps, ComponentProps, ComponentType } from './_component-common';
 import { FlexColsLayoutProps } from './layouts/flex-cols';
 import { FixedColsLayoutProps } from './layouts/fixed-cols';
 import { LegacyLayoutProps } from './layouts/legacy-layout';
@@ -14,8 +12,6 @@ import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
 import { AreapageSituationsProps } from './layouts/areapage-situations';
 import { FrontpageLoggedinSectionLayoutProps } from './layouts/frontpage-loggedin-section';
-import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
-import { ProductDetailsPageProps } from 'types/component-props/pages/product-details-layout';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -46,15 +42,14 @@ export type Regions<RegionNames extends string> = {
     [Name in RegionNames]: RegionProps<Name>;
 };
 
-export type LayoutCommonProps<RegionNames extends string = string> =
-    ComponentCommonProps & {
-        type: ComponentType.Layout | ComponentType.Page;
-        descriptor: LayoutType;
-        regions: Regions<RegionNames>;
-        config?: any;
-    };
+export type LayoutBaseProps<RegionNames extends string = string> = ComponentBaseProps & {
+    type: ComponentType.Layout | ComponentType.Page;
+    descriptor: LayoutType;
+    regions: Regions<RegionNames>;
+    config?: any;
+};
 
-export type LayoutProps =
+export type LayoutComponentProps =
     | LegacyLayoutProps
     | FlexColsLayoutProps
     | FixedColsLayoutProps

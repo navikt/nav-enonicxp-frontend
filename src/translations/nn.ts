@@ -43,8 +43,7 @@ const taxonomies: {
     [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Klagerettar',
     [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'Brukarstøtte',
     [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om NAV',
-    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]:
-        'Medlemskap i folketrygda',
+    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]: 'Medlemskap i folketrygda',
     [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering',
     [ToolsPageTaxonomy.CALCULATOR]: 'Kalkulator',
     [ToolsPageTaxonomy.NAVIGATOR]: 'Vegvisar',
@@ -83,8 +82,7 @@ export const translationsBundleNn: PartialTranslations = {
     },
     filteredContent: {
         noFiltersSelected: 'Ingen filter er valde, så vi viser alt innhald.',
-        filtersSelected:
-            'Vi har fjerna innhald som ikkje er relevant i situasjonen din.',
+        filtersSelected: 'Vi har fjerna innhald som ikkje er relevant i situasjonen din.',
         customizeContent: 'Tilpass innhald',
         showingInformationFor: 'Viser informasjon for:',
     },
@@ -120,29 +118,25 @@ export const translationsBundleNn: PartialTranslations = {
             'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
         OKONOMI_GJELD: 'Økonomi- og gjeldsrådgiving',
         TILGANGPC: 'Tilgang til PC',
-        HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tenester dersom du treng det',
+        HJELPDIGITALETJENESTER: 'Hjelp til å bruke digitale tenester dersom du treng det',
         BARNEVERNTJENESTE: 'Barnevernteneste',
         FLYKTNINGTJENESTE: 'Flyktningtenesta',
         FENGSEL_OPPFOLGING: 'Oppfølging av personar i fengsel',
         RUS_OPPFOLGING: 'Oppfølging av personar med rusproblem',
-        PSYKISK_HELSE_OPPFOLGING:
-            'Oppfølging av personar med psykiske helseproblem',
+        PSYKISK_HELSE_OPPFOLGING: 'Oppfølging av personar med psykiske helseproblem',
         STARTLAN: 'Startlån og tilskot frå kommunen',
         SJOFARTSOPPGAVER: 'Utskriving av sjøfartsbok og formidling av sjøfolk',
         AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
         BOSTOTTE_HUSBANKEN: 'Bustøtte frå Husbanken',
         BOSTOTTE_KOMMUNEN: 'Bustøtte frå kommunen',
-        PRIVATOKONOMI_FORVALTNING:
-            'Frivillig og tvungen forvaltning av privatøkonomi',
+        PRIVATOKONOMI_FORVALTNING: 'Frivillig og tvungen forvaltning av privatøkonomi',
         INTROPROGRAMMET: 'Introduksjonsprogrammet',
         KOMMUNAL_BOLIG: 'Kommunal bustad',
         KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
         KOMMUNALT_FRIKORT_HELSETJENESTER: 'Kommunalt frikort for helsetenester',
         LEDSAGERBEVIS: 'Følgjebevis',
         PARKERING_FORFLYTNINGSHEMMEDE: 'Parkeringsløyve for forflyttingshemma',
-        REDUSERT_FORELDREBETALING:
-            'Redusert foreldrebetaling i barnehage eller SFO',
+        REDUSERT_FORELDREBETALING: 'Redusert foreldrebetaling i barnehage eller SFO',
         SKJENKEBEVILLING: 'Skjenkeløyve',
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
@@ -179,17 +173,16 @@ export const translationsBundleNn: PartialTranslations = {
         chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
-        openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',
-        youCanMakeAppointment:
-            'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
+        youCanMakeAppointment: 'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
         location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
+        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
         phoneInformation:
             'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
@@ -254,13 +247,11 @@ export const translationsBundleNn: PartialTranslations = {
         },
         aidcentral: {
             title: 'Finn din hjelpemiddelsentral',
-            ingress:
-                'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
+            ingress: 'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
         },
         call: {
             title: 'Ring oss på 55 55 33 33',
-            ingress:
-                'Kvardagar 9-15. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
+            ingress: 'Kvardagar 9-15. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
         },
         shared: {
             closed: 'Stengt',
@@ -309,6 +300,9 @@ export const translationsBundleNn: PartialTranslations = {
     },
     greetings: {
         hi: 'Hei!',
+    },
+    yourServicesText: {
+        yourServices: 'Dine tjenester',
     },
     macroVideo: {
         playMovie: 'Sjå video:',

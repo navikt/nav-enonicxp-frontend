@@ -11,11 +11,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     const { data } = props;
     const { contactType } = data;
 
-    const hasContactType = !!(
-        contactType.telephone ||
-        contactType.write ||
-        contactType.chat
-    );
+    const hasContactType = !!(contactType.telephone || contactType.write || contactType.chat);
 
     const hasSpecialHours = !!contactType?.telephone?.specialOpeningHours;
     const hasRegularHours = !!contactType?.telephone?.regularOpeningHours;
@@ -23,8 +19,8 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     if (!hasContactType) {
         return (
             <div className={style.content}>
-                (Ingen kontakttype eller åpningstider er lagt inn ennå, så
-                forhåndsvisning er ikke mulig!)
+                (Ingen kontakttype eller åpningstider er lagt inn ennå, så forhåndsvisning er ikke
+                mulig!)
             </div>
         );
     }
@@ -33,8 +29,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         return (
             <div className={style.contactInformationPage}>
                 <div className={style.content}>
-                    (Spesielle åpningstider kan ikke forhåndsvises som komponent
-                    på egenhånd.)
+                    (Spesielle åpningstider kan ikke forhåndsvises som komponent på egenhånd.)
                 </div>
             </div>
         );
@@ -69,11 +64,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         if (contactType.chat) {
             const data = contactType?.chat;
             return (
-                <ChatOption
-                    ingress={data.ingress}
-                    alertText={data.alertText}
-                    title={data.title}
-                />
+                <ChatOption ingress={data.ingress} alertText={data.alertText} title={data.title} />
             );
         }
 
@@ -84,8 +75,8 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         <div className={style.contactInformationPage}>
             <div className={style.content}>
                 <Alert variant="warning" className={style.editorAlert}>
-                    Redaktørvarsel: Denne informasjonen kan være i bruk på tvers
-                    av livssituasjonssider. Endres med varsomhet.
+                    Redaktørvarsel: Denne informasjonen kan være i bruk på tvers av
+                    livssituasjonssider. Endres med varsomhet.
                 </Alert>
                 {buildPreview()}
             </div>

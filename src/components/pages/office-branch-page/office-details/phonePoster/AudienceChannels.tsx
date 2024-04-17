@@ -9,20 +9,13 @@ type AudienceChannelsProps = {
     publikumskanaler: AudienceContact[];
 };
 
-export const AudienceChannels = ({
-    publikumskanaler,
-}: AudienceChannelsProps) => {
+export const AudienceChannels = ({ publikumskanaler }: AudienceChannelsProps) => {
     const buildChannel = (channel: AudienceContact) => {
         return (
-            <BodyShort
-                key={channel.sortOrder}
-                className={styles.audienceChannels}
-            >
+            <BodyShort key={channel.sortOrder} className={styles.audienceChannels}>
                 {`${channel.beskrivelse}: `}
                 {channel.epost && (
-                    <LenkeBase href={`mailto:${channel.epost}`}>
-                        {channel.epost}
-                    </LenkeBase>
+                    <LenkeBase href={`mailto:${channel.epost}`}>{channel.epost}</LenkeBase>
                 )}
                 {channel.telefon && (
                     <LenkeBase href={`tel:${channel.telefon}`}>

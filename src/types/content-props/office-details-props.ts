@@ -1,32 +1,4 @@
-import { ProductDataMixin } from 'types/component-props/_mixins';
-
-export type Address = {
-    type?: 'stedsadresse' | 'postboksadresse';
-    gatenavn?: string;
-    husbokstav?: string;
-    husnummer?: string;
-    postboksanlegg?: string;
-    postboksnummer?: string;
-    postnummer?: string;
-    poststed?: string;
-};
-
-export type OpeningHours = {
-    dag?: 'Mandag' | 'Tirsdag' | 'Onsdag' | 'Torsdag' | 'Fredag';
-    dato?: string;
-    fra?: string;
-    til?: string;
-    kunTimeavtale?: string;
-    kommentar?: string;
-    stengt?: string;
-};
-
-export type AudienceReception = {
-    stedsbeskrivelse?: string;
-    aapningstider: OpeningHours[];
-    besoeksadresse?: Address;
-    adkomstbeskrivelse?: string;
-};
+import { AudienceReception, Address } from '@navikt/nav-office-reception-info';
 
 export type Service = {
     type:
@@ -89,8 +61,11 @@ type AudienceContactInformation = {
     publikumskanaler: AudienceContact[] | AudienceContact;
 };
 
-export type OfficeDetailsData = ProductDataMixin & {
+export type OfficeDetailsData = {
     enhetNr: string;
+    type: string;
+    telefonnummer?: string;
+    telefonnummerKommentar?: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;

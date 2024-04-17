@@ -1,7 +1,4 @@
-export const parseInnholdsfortegnelse = (
-    htmlText?: string,
-    hasTableOfContents?: boolean
-) => {
+export const parseInnholdsfortegnelse = (htmlText?: string, hasTableOfContents?: boolean) => {
     if (!hasTableOfContents || !htmlText) {
         return [];
     }

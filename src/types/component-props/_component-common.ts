@@ -1,49 +1,40 @@
-import { PartType } from './parts';
-import { LayoutProps } from './layouts';
-import { ContentProps } from 'types/content-props/_content-common';
 import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
+import { LayoutComponentProps } from './layouts';
+import { PartComponentProps } from './parts';
 
 export enum ComponentType {
     Page = 'page',
     Layout = 'layout',
     Part = 'part',
     Text = 'text',
-    Image = 'image',
     Fragment = 'fragment',
 }
 
-export type ComponentCommonProps = {
-    type: ComponentType;
+export type NavNoDescriptor<Name extends string = string> = `no.nav.navno:${Name}`;
+
+type ConfigType = Record<string, unknown>;
+
+export type ComponentBaseProps<
+    Type extends ComponentType = ComponentType,
+    Descriptor extends NavNoDescriptor = NavNoDescriptor,
+    Config extends ConfigType = ConfigType,
+> = {
     path: string;
-    config?: Record<string, unknown> & RenderOnAuthStateMixin;
+    type: Type;
+    descriptor: Descriptor;
+    config: Config & RenderOnAuthStateMixin;
 };
 
-export type PartComponentProps = ComponentCommonProps & {
-    type: ComponentType.Part;
-    descriptor: PartType;
-    pageProps: ContentProps;
-};
-
-export interface TextComponentProps extends ComponentCommonProps {
-    type: ComponentType.Text;
+export type TextComponentProps = ComponentBaseProps<ComponentType.Text> & {
     text: string;
-}
+};
 
-export interface ImageComponentProps extends ComponentCommonProps {
-    type: ComponentType.Image;
-    image: {
-        imageUrl: string;
-    };
-}
-
-export interface FragmentComponentProps extends ComponentCommonProps {
-    type: ComponentType.Fragment;
-    fragment: ComponentProps;
-}
+export type FragmentComponentProps = ComponentBaseProps<ComponentType.Fragment> & {
+    fragment: LayoutComponentProps | PartComponentProps | TextComponentProps;
+};
 
 export type ComponentProps =
-    | LayoutProps
+    | LayoutComponentProps
     | PartComponentProps
     | TextComponentProps
-    | ImageComponentProps
     | FragmentComponentProps;

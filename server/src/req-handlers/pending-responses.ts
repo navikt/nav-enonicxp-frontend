@@ -19,9 +19,5 @@ export const handleGetPendingResponses =
 
         return pending
             ? res.status(200).send(pending)
-            : res
-                  .status(500)
-                  .send(
-                      'Failed to retrieve pending responses - see logs for details'
-                  );
+            : res.status(500).send('Failed to retrieve pending responses - see logs for details');
     };

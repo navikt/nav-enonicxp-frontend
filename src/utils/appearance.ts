@@ -18,6 +18,7 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.GenericPage,
     ContentType.GuidePage,
     ContentType.OfficeBranchPage,
+    ContentType.OfficePage,
     ContentType.OfficeEditorialPage,
     ContentType.Overview,
     ContentType.PressLandingPage,
@@ -49,8 +50,5 @@ export const hasWhiteHeader = (content: ContentProps) => {
 
 export const shouldPushUpwards = (content: ContentProps) => {
     const { breadcrumbs } = content;
-    return (
-        (breadcrumbs && breadcrumbs.length > 0) ||
-        getContentLanguages(content).length > 0
-    );
+    return (breadcrumbs && breadcrumbs.length > 0) || getContentLanguages(content).length > 0;
 };

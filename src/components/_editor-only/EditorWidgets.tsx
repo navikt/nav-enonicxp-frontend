@@ -23,18 +23,12 @@ export const EditorWidgets = ({ content }: Props) => {
     const whiteBg = hasWhiteHeader(content);
 
     return (
-        <div
-            className={classNames(
-                style.outer,
-                whiteBg && style.whiteBackground
-            )}
-        >
+        <div className={classNames(style.outer, whiteBg && style.whiteBackground)}>
             <div className={style.inner}>
                 <EditorHacks content={content} />
-                {!liveId &&
-                    (editorView === 'inline' || editorView === 'edit') && (
-                        <ReferencesInfo content={content} />
-                    )}
+                {!liveId && (editorView === 'inline' || editorView === 'edit') && (
+                    <ReferencesInfo content={content} />
+                )}
                 <EditorGlobalWarnings key={content._id} />
                 {editorView !== 'edit' && <VersionHistory content={content} />}
             </div>

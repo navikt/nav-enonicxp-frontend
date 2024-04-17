@@ -1,13 +1,11 @@
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { forceArray } from 'utils/arrays';
-import { DetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
+import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 
 import styles from './SocialHelpLinks.module.scss';
 
-export const SocialHelpLinks = ({ officeData }: DetailProps) => {
-    const socialHelpLinks = forceArray(
-        officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader
-    );
+export const SocialHelpLinks = ({ officeData }: OfficeEditorialDetailProps) => {
+    const socialHelpLinks = forceArray(officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader);
 
     if (!socialHelpLinks || socialHelpLinks.length === 0) {
         return null;
@@ -16,11 +14,7 @@ export const SocialHelpLinks = ({ officeData }: DetailProps) => {
     return (
         <div>
             {socialHelpLinks.map((link) => (
-                <LenkeBase
-                    key={link.lenke}
-                    href={link.lenke}
-                    className={styles.singleLink}
-                >
+                <LenkeBase key={link.lenke} href={link.lenke} className={styles.singleLink}>
                     {link.lenketekst}
                 </LenkeBase>
             ))}

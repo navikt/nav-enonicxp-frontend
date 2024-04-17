@@ -12,13 +12,9 @@ type InnloggingsstatusResponse =
     | { authenticated: false };
 
 export const fetchAndSetInnloggingsstatus = () =>
-    fetchJson<InnloggingsstatusResponse>(
-        process.env.INNLOGGINGSSTATUS_URL,
-        5000,
-        {
-            credentials: 'include',
-        }
-    ).then((res) => {
+    fetchJson<InnloggingsstatusResponse>(process.env.INNLOGGINGSSTATUS_URL, 5000, {
+        credentials: 'include',
+    }).then((res) => {
         if (!res) {
             logger.error('Failed to fetch innloggingsstatus');
             store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));

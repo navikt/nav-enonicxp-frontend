@@ -1,8 +1,9 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
-import { RelatedSituationsProps } from 'types/component-props/parts/related-situations';
 import { ContentType } from 'types/content-props/_content-common';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
 import { createTypeGuard } from 'types/_type-guards';
 
 const isValidContentType = createTypeGuard([
@@ -11,8 +12,15 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
-export const RelatedSituationsPart = ({ config, pageProps }: RelatedSituationsProps) => {
-    const { type, data, _id } = pageProps;
+export type PartConfigRelatedSituations = {
+    title: string;
+    description: string;
+};
+
+export const RelatedSituationsPart = ({
+    config,
+}: PartComponentProps<PartType.RelatedSituations>) => {
+    const { type, data, _id } = usePageContentProps();
 
     // If the page is in preview mode, related situations from the page props will be empty,
     // so display a note about 'mark as ready' to the editor, as we can't actually

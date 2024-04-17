@@ -1,5 +1,4 @@
 import React from 'react';
-import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
@@ -9,10 +8,26 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
+import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { XpImageProps } from 'types/media';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
+import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins';
 
 import style from './LinkPanelPart.module.scss';
 
-export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+export type PartConfigLinkPanel = {
+    background?: XpImageProps;
+    icon?: XpImageProps;
+    variant?: OptionSetSingle<{
+        vertical: EmptyObject;
+        verticalWithBgColor: {
+            iconBg: ColorMixin;
+            iconJustify: 'flex-start' | 'center' | 'flex-end';
+        };
+    }>;
+} & LinkWithIngressMixin;
+
+export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>) => {
     const { editorView } = usePageContentProps();
 
     if (!config) {
@@ -25,26 +40,19 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
 
     const linkProps = getSelectableLinkProps(link);
 
-    const bgUrl =
-        background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
+    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
 
     const isVerticalLayout =
-        selectedVariant === 'vertical' ||
-        selectedVariant === 'verticalWithBgColor';
-    const legacyAnalyticsComponentLabel = isVerticalLayout
-        ? 'main-panels'
-        : 'link-panel';
+        selectedVariant === 'vertical' || selectedVariant === 'verticalWithBgColor';
+    const legacyAnalyticsComponentLabel = isVerticalLayout ? 'main-panels' : 'link-panel';
 
     return (
         <LinkPanel
             href={linkProps.url}
-            className={classNames(
-                style.linkPanel,
-                isVerticalLayout ? `vertical` : 'horizontal'
-            )}
+            className={classNames(style.linkPanel, isVerticalLayout ? `vertical` : 'horizontal')}
             border={true}
             style={
                 bgUrl
@@ -69,14 +77,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             aria-hidden={'true'}
                             className={classNames(
                                 style.icon,
-                                selectedVariant === 'verticalWithBgColor' &&
-                                    style.bg
+                                selectedVariant === 'verticalWithBgColor' && style.bg
                             )}
                             style={{
-                                ...(selectedVariant ===
-                                    'verticalWithBgColor' && {
-                                    backgroundColor:
-                                        variantConfig?.iconBg?.color,
+                                ...(selectedVariant === 'verticalWithBgColor' && {
+                                    backgroundColor: variantConfig?.iconBg?.color,
                                     alignItems: variantConfig?.iconJustify,
                                 }),
                             }}

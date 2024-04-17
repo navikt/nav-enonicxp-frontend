@@ -4,9 +4,16 @@ import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { ListType } from 'types/component-props/parts/link-list';
 
 import style from './Lenkeliste.module.scss';
+
+export type ListType = 'default' | 'chevron' | 'bulletlist';
+
+const WrapUL = ({ showAsList, children }: { showAsList: boolean; children: React.ReactNode }) =>
+    showAsList ? <ul className={style.ulListe}>{children}</ul> : <>{children}</>;
+
+const WrapLI = ({ showAsList, children }: { showAsList: boolean; children: React.ReactNode }) =>
+    showAsList ? <li>{children}</li> : <>{children}</>;
 
 type Props = {
     lenker: LinkProps[];
@@ -14,27 +21,6 @@ type Props = {
     className?: string;
     listType: ListType;
 };
-
-const WrapUL = ({
-    showAsList,
-    children,
-}: {
-    showAsList: boolean;
-    children: React.ReactNode;
-}) =>
-    showAsList ? (
-        <ul className={style.ulListe}>{children}</ul>
-    ) : (
-        <>{children}</>
-    );
-
-const WrapLI = ({
-    showAsList,
-    children,
-}: {
-    showAsList: boolean;
-    children: React.ReactNode;
-}) => (showAsList ? <li>{children}</li> : <>{children}</>);
 
 export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     const headingId = `heading-linklist-${useId()}`;
@@ -44,17 +30,9 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     }
 
     return (
-        <nav
-            className={classNames(className, style.lenker)}
-            aria-labelledby={headingId}
-        >
+        <nav className={classNames(className, style.lenker)} aria-labelledby={headingId}>
             {tittel && (
-                <Heading
-                    className={style.tittel}
-                    id={headingId}
-                    size="small"
-                    level="2"
-                >
+                <Heading className={style.tittel} id={headingId} size="small" level="2">
                     {tittel}
                 </Heading>
             )}
