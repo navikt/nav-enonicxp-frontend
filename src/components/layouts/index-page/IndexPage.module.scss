@@ -5,17 +5,6 @@ $maxWidth: 1272px;
 .indexPage {
     max-width: $maxWidth;
     margin: 0 auto -2rem auto;
-
-    :global(.region__contentTop) {
-        & > :last-child {
-            padding-top: 1.25rem;
-            padding-bottom: 0.75rem;
-
-            @media #{common.$mq-screen-mobile-small} {
-                padding-bottom: 1.75rem;
-            }
-        }
-    }
 }
 
 .contentBottom {
