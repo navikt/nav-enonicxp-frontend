@@ -4,7 +4,7 @@ import { AudienceReception } from '@navikt/nav-office-reception-info';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { joinWithConjunction } from 'utils/string';
-import { Language, translator } from 'translations';
+import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
