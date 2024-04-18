@@ -59,7 +59,8 @@
         margin-bottom: 2rem;
     }
 
-    :global(.region__flexcols) {
+    :global(.region__flexcols.region__flexcols) {
+        //Double class to increase specificity, to avoid media query being overridden
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
