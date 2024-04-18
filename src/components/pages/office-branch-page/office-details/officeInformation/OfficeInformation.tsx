@@ -33,6 +33,9 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('location')}
                         </Heading>
+                        {beliggenhet.adresseTilleggsnavn && (
+                            <BodyShort>{beliggenhet.adresseTilleggsnavn}</BodyShort>
+                        )}
                         <BodyShort>{visitingAddress}</BodyShort>
                     </section>
                     <section>
