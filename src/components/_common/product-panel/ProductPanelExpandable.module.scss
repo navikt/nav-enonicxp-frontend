@@ -88,6 +88,7 @@ $separator-attribs: 1px $color solid;
     flex-direction: column;
     font-weight: var(--a-font-weight-bold);
     font-size: var(--a-font-size-heading-small);
+    word-break: break-word;
 }
 
 .subHeader {
