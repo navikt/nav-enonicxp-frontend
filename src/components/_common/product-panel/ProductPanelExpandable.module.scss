@@ -21,6 +21,10 @@ $separator-attribs: 1px $color solid;
     width: calc(100% + 1rem);
     border-radius: common.$border-radius-xlarge;
 
+    @media #{common.$mq-screen-mobile} {
+        padding: var(--a-spacing-3);
+    }
+
     &:after {
         display: none;
     }
@@ -51,6 +55,7 @@ $separator-attribs: 1px $color solid;
 
     :global(.navds-expansioncard__header-button) {
         align-self: center;
+        width: 20px;
     }
 }
 
