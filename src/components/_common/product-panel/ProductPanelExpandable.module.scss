@@ -63,6 +63,11 @@ $separator-attribs: 1px $color solid;
     height: 56px;
     flex-shrink: 0;
 
+    @media #{common.$mq-screen-mobile} {
+        width: 40px;
+        height: 40px;
+    }
+
     & > :first-child:not(:last-child) * {
         fill: $color;
     }
