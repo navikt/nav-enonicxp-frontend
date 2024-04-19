@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -34,6 +34,17 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         });
     };
 
+    useEffect(() => {
+        const anchorHash = window.location.hash || '';
+        const matchingAccordion = accordion.findIndex(
+            (item) => item.anchorId === anchorHash.slice(1)
+        );
+        if (matchingAccordion !== -1) {
+            setOpenAccordions([matchingAccordion]);
+        }
+        /* eslint-disable-next-line react-hooks/exhaustive-deps */
+    }, []);
+
     const validatePanel = (item: PanelItem) => !!(item.title && item.html);
 
     // Show all panels in edit mode, but only valid panels in view mode
@@ -51,7 +62,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         open={openAccordions.includes(index)}
                         onOpenChange={(open) => openChangeHandler(open, item.title, index)}
                     >
-                        <DSAccordion.Header className={styles.header}>
+                        <DSAccordion.Header className={styles.header} id={item.anchorId}>
                             {!isValid && (
                                 <EditorHelp
                                     text={
