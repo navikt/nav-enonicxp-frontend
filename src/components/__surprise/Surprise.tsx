@@ -2,10 +2,18 @@ import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import { logger } from 'srcCommon/logger';
 import { classNames } from 'utils/classnames';
-
 import { usePageContentProps } from 'store/pageContext';
 import { fetchJson } from 'srcCommon/fetch-utils';
+import { editorFetchAdminUserId } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
+
 import style from './Surprise.module.scss';
+
+const fetchSurpriseState = () =>
+    editorFetchAdminUserId().then((userId) =>
+        fetchJson(`${process.env.APP_ORIGIN}/api/surprise?uid=${userId}`, 10000, {
+            credentials: 'include',
+        })
+    );
 
 export const Surprise = () => {
     const { editorView } = usePageContentProps();
@@ -15,14 +23,14 @@ export const Surprise = () => {
 
     useEffect(() => {
         if (editorView) {
-            fetchJson(`${process.env.APP_ORIGIN}/api/surprise`, 10000, { credentials: 'include' });
+            fetchSurpriseState();
             return;
         }
 
-        const cookie = Cookie.get('surprise');
-        logger.info(`Cookie value: ${cookie}`);
+        const isSurprised = Cookie.get('surprise');
+        logger.info(`Cookie value: ${isSurprised}`);
 
-        if (!cookie) {
+        if (!isSurprised) {
             return;
         }
 
