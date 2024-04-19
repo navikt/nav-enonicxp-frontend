@@ -5,22 +5,6 @@ $maxWidth: 1272px;
 .indexPage {
     max-width: $maxWidth;
     margin: 0 auto -2rem auto;
-
-    :global(.region__contentTop) {
-        & > :last-child {
-            padding-bottom: 2rem;
-
-            @media #{common.$mq-screen-mobile-small} {
-                padding-bottom: 1.75rem;
-            }
-        }
-    }
-}
-
-// PageWrapper will create a gap beneath the decorator, but some front pages
-// should have background color seamless with the page header, so offset this.
-.noTopGap {
-    margin-top: calc(var(--a-spacing-8) * -1);
 }
 
 .contentBottom {
