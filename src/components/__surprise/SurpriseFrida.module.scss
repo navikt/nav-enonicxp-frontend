@@ -1,0 +1,43 @@
+.wrapper {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+
+    pointer-events: none;
+
+    transition: transform ease-in-out 200ms;
+    transform-origin: center;
+
+    &.animate {
+        transform: translateX(calc(-50vw + 100%)) translateY(calc(-50vh + 100%)) scale(3);
+    }
+}
+
+.frida {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid black;
+}
+
+.chatBubble {
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    background-color: var(--a-gray-100);
+    border-radius: 12px 12px 12px 0;
+    width: 150px;
+    padding: 8px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -11px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-right: 16px solid transparent;
+        border-top: 12px solid var(--a-gray-100);
+        display: block;
+    }
+}
