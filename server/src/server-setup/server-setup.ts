@@ -52,6 +52,13 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq
     );
 
+    expressApp.get('/api/surprise', (req, res) => {
+        return res
+            .header('Access-Control-Allow-Origin', process.env.ADMIN_ORIGIN)
+            .cookie('surprise', true, { maxAge: 1000 * 3600 * 24 })
+            .json({ message: 'ok' });
+    });
+
     expressApp.get('/api/pending', validateSecretMiddleware, handleGetPendingResponses(nextServer));
 
     expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
