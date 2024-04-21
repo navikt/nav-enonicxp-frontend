@@ -3,13 +3,11 @@
     bottom: 16px;
     right: 16px;
 
-    pointer-events: none;
-
-    transition: transform ease-in-out 200ms;
+    transition: transform ease-in-out 500ms;
     transform-origin: center;
 
     &.animate {
-        transform: translateX(calc(-50vw + 100%)) translateY(calc(-50vh + 100%)) scale(3);
+        transform: translateX(calc(-50vw + 100%)) translateY(calc(-50vh + 100%));
     }
 }
 
@@ -18,26 +16,62 @@
     height: 80px;
     border-radius: 50%;
     border: 4px solid black;
+
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+    transition-duration: 500ms;
+
+    &.animate {
+        transform: scale(3);
+    }
 }
 
 .chatBubble {
     position: absolute;
-    bottom: 100%;
-    left: 100%;
-    background-color: var(--a-gray-100);
+    bottom: 175%;
+    left: 175%;
+    background-color: white;
+    border: 2px solid var(--a-gray-700);
     border-radius: 12px 12px 12px 0;
-    width: 150px;
-    padding: 8px;
+    opacity: 0;
+
+    animation: fadeIn 500ms;
+    animation-timing-function: ease-in;
+    animation-delay: 500ms;
+    animation-fill-mode: forwards;
 
     &:after {
         content: '';
         position: absolute;
-        bottom: -11px;
-        left: 0;
+        bottom: -25px;
+        left: -2px;
         width: 0;
         height: 0;
-        border-right: 16px solid transparent;
-        border-top: 12px solid var(--a-gray-100);
+        border-right: 32px solid transparent;
+        border-top: 24px solid var(--a-gray-700);
         display: block;
+    }
+
+    .msgWrapper {
+        width: 300px;
+        padding: 16px;
+    }
+
+    .chatMsg {
+        animation: fadeIn 500ms ease-in;
+        font-size: 2rem;
+
+        &:not(:last-child) {
+            margin-bottom: 0.75rem;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

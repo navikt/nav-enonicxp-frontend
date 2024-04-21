@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BodyLong } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 
 import style from './SurpriseFrida.module.scss';
@@ -19,13 +20,21 @@ export const SurpriseFrida = ({ animate }: Props) => {
 const ChatBubble = () => {
     const [msgIndex, setMsgIndex] = useState(0);
 
-    const messages = [
+    const messages: Array<{ time: number; text?: string }> = [
         {
-            msg: 'Hello!',
-            time: 5000,
+            text: 'Hello!',
+            time: 1000,
         },
         {
-            msg: 'Bye!',
+            text: 'asdf!',
+            time: 1000,
+        },
+        {
+            text: 'qwer!',
+            time: 1000,
+        },
+        {
+            text: 'Bye!',
             time: 2000,
         },
     ];
@@ -39,7 +48,17 @@ const ChatBubble = () => {
         }
     }, [msgIndex]);
 
-    return <div className={style.chatBubble}>{messages[msgIndex].msg}</div>;
+    return (
+        <div className={style.chatBubble}>
+            <div className={style.msgWrapper}>
+                {messages.slice(0, msgIndex + 1).map((msg, index) => (
+                    <BodyLong size={'large'} className={classNames(style.chatMsg)} key={index}>
+                        {msg.text}
+                    </BodyLong>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 const Frida = ({ animate }: Props) => {
