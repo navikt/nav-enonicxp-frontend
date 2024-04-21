@@ -6,6 +6,7 @@ import { fetchJson } from 'srcCommon/fetch-utils';
 import { editorFetchAdminUserId } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 
 import { SurpriseFrida } from './SurpriseFrida';
+import { SurpriseConfetti } from './SurpriseConfetti';
 
 const fetchSurpriseState = () =>
     editorFetchAdminUserId().then((userId) =>
@@ -41,5 +42,10 @@ export const Surprise = () => {
         return null;
     }
 
-    return <SurpriseFrida animate={animateSurprise} />;
+    return (
+        <>
+            <SurpriseFrida animate={animateSurprise} />
+            <SurpriseConfetti />
+        </>
+    );
 };
