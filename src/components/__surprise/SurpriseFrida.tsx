@@ -4,7 +4,7 @@ import { BodyLong } from '@navikt/ds-react';
 import Cookie from 'js-cookie';
 import { classNames } from 'utils/classnames';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { SurpriseBalloon } from './SurpriseBalloon';
+import { SurpriseDecoration } from './SurpriseDecoration';
 
 import style from './SurpriseFrida.module.scss';
 
@@ -15,20 +15,32 @@ type Props = {
 
 const messages: Array<{ time: number; text: string }> = [
     {
-        text: 'Hei Olav',
+        text: 'Hei, Olav Rusten! Hva kan vi hjelpe deg med på den siste dagen på jobb for NAV, konge og fedreland?',
         time: 4000,
     },
     {
-        text: 'Gratulerer med 70-års dagen!',
+        text: 'Etter x-antall år med å sette på klokka til samme tid, er det endelig tid for et liv uten alarmer og møterom!',
         time: 4000,
     },
     {
-        text: 'Osv osv!',
+        text: 'Kos deg med pensjonisttilværelsen, og husk å ikke sette kaffekoppen på autopilot lenger!',
         time: 4000,
     },
     {
-        text: 'Osv osv!',
-        time: 0,
+        text: 'Empatisk KI-generert klem fra Frida.',
+        time: 2000,
+    },
+    {
+        text: '(Og en 100% naturlig klem fra hele teamet!)',
+        time: 2000,
+    },
+    {
+        text: 'By the way... pensjonssøknaden din er (dessverre) trukket tilbake - du må jobbe til du er 95 - minst!',
+        time: 4000,
+    },
+    {
+        text: 'Det gjenstår fortsatt mye jobb med nav.no - og organisasjonen for øvrig! 🌸',
+        time: 4000,
     },
 ];
 
@@ -49,7 +61,7 @@ export const SurpriseFrida = ({ animate, stop }: Props) => {
         <div className={classNames(style.wrapper, animate && style.animate)}>
             <Frida animate={animate} />
             {showChat && <ChatBubble stop={stop} />}
-            {showBalloon && <SurpriseBalloon />}
+            {showBalloon && <SurpriseDecoration />}
         </div>
     );
 };

@@ -8,7 +8,7 @@
     transform-origin: center;
 
     &.animate {
-        transform: translateX(calc(-50vw + 100%)) translateY(calc(-50vh + 100%));
+        transform: translateX(calc(-50vw + 100%)) translateY(calc(-40vh + 100%));
     }
 }
 
@@ -56,7 +56,7 @@
     .msgWrapper {
         display: flex;
         flex-direction: column;
-        width: 400px;
+        width: 500px;
         padding: 16px;
     }
 
@@ -64,7 +64,7 @@
         animation: fadeIn 500ms ease-in;
 
         &:not(:last-child) {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.325rem;
         }
     }
 

@@ -27,11 +27,7 @@ export const SurpriseConfetti = ({ start }: { start: boolean }) => {
     return (
         <>
             <div className={style.bg} />
-            <Particles
-                id={'tsparticles'}
-                particlesLoaded={async (container) => console.log(container)}
-                options={confettiOptions}
-            />
+            <Particles id={'tsparticles'} options={confettiOptions} />
         </>
     );
 };
@@ -181,7 +177,7 @@ const confettiOptions: ISourceOptions = {
                         height: 16,
                         particles: {
                             size: {
-                                value: 8,
+                                value: 16,
                             },
                         },
                     },
@@ -191,7 +187,7 @@ const confettiOptions: ISourceOptions = {
                         height: 16,
                         particles: {
                             size: {
-                                value: 8,
+                                value: 16,
                             },
                         },
                     },
