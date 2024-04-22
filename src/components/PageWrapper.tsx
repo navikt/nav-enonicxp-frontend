@@ -17,6 +17,7 @@ import { EditorWidgets } from './_editor-only/EditorWidgets';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { PageWarnings } from './_page-warnings/PageWarnings';
+import { Surprise } from './__surprise/Surprise';
 
 import styles from './PageWrapper.module.scss';
 
@@ -135,6 +136,7 @@ export const PageWrapper = (props: Props) => {
                     <LegacyPageChatbot content={content} />
                 </div>
             </div>
+            <Surprise />
         </div>
     );
 };
