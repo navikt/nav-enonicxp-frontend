@@ -92,7 +92,7 @@ const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
                         className={style.makeitstop}
                         onClick={(e) => {
                             e.preventDefault();
-                            Cookie.set('nosurprise', 'true');
+                            Cookie.set('nosurprise', 'true', { path: '/', expires: 365 });
                             stop();
                         }}
                     >

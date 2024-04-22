@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import dynamic from 'next/dynamic';
-import { logger } from 'srcCommon/logger';
 import { usePageContentProps } from 'store/pageContext';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { editorFetchAdminUserId } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
@@ -33,7 +32,6 @@ export const Surprise = () => {
 
         const isSurprised =
             Cookie.get('surprise') === 'true' && Cookie.get('nosurprise') !== 'true';
-        logger.info(`Should get a surprise? ${isSurprised}`);
 
         if (!isSurprised) {
             return;
