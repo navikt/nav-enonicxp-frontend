@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import Cookie from 'js-cookie';
 import { classNames } from 'utils/classnames';
@@ -39,7 +38,7 @@ const messages: Array<{ time: number; text: string }> = [
         time: 8000,
     },
     {
-        text: '<Incoming transmission 🤖>',
+        text: '<Incoming transmission... 🤖>',
         time: 4000,
     },
     {
