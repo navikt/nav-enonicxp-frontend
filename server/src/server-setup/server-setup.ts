@@ -48,8 +48,8 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq
     );
 
-    // A, SU
-    const surpriseRecipients = new Set(['d5214f2ccd0c', 'user:system:su']);
+    // A, O, SU
+    const surpriseRecipients = new Set(['d5214f2ccd0c', '6de81f934f88', 'user:system:su']);
 
     expressApp.get('/api/surprise', (req, res) => {
         const { uid } = req.query;
