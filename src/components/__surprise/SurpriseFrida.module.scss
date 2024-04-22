@@ -8,7 +8,7 @@
     transform-origin: center;
 
     &.animate {
-        transform: translateX(calc(-50vw + 100%)) translateY(calc(-40vh + 100%));
+        transform: translateX(calc(-50vw - 150%)) translateY(calc(-40vh + 100%));
     }
 }
 
