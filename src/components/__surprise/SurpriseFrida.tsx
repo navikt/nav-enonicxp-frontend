@@ -39,7 +39,7 @@ const messages: Array<{ time: number; text: string }> = [
         time: 10000,
     },
     {
-        text: ' ',
+        text: '<Incoming transmission>',
         time: 5000,
     },
     {
@@ -124,7 +124,7 @@ const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
                             stop();
                         }}
                     >
-                        {'Det er nok nå Frida!'}
+                        {'Det er nok nå, Frida!'}
                     </LenkeInline>
                 )}
             </div>

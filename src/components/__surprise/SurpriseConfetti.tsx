@@ -43,7 +43,7 @@ const confettiOptions: ISourceOptions = {
                 y: 30,
             },
             rate: {
-                quantity: 5,
+                quantity: 4,
                 delay: 0.15,
             },
             particles: {
@@ -63,7 +63,7 @@ const confettiOptions: ISourceOptions = {
                 y: 30,
             },
             rate: {
-                quantity: 5,
+                quantity: 4,
                 delay: 0.15,
             },
             particles: {
