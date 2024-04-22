@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Particles from '@tsparticles/react';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { loadFull } from 'tsparticles';
 import type { ISourceOptions } from '@tsparticles/engine';
 
 import style from './SurpriseConfetti.module.scss';
 
-export const SurpriseConfetti = () => {
+export const SurpriseConfetti = ({ start }: { start: boolean }) => {
     const [init, setInit] = useState(false);
 
     useEffect(() => {
         const initParticles = async () => {
-            const initParticlesEngine = (await import('@tsparticles/react')).initParticlesEngine;
-            const loadAll = (await import('@tsparticles/all')).loadAll;
-
             return initParticlesEngine((engine) => {
-                return loadAll(engine);
+                return loadFull(engine);
             });
         };
 
@@ -22,7 +20,7 @@ export const SurpriseConfetti = () => {
         });
     }, []);
 
-    if (!init) {
+    if (!init || !start) {
         return null;
     }
 

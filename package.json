@@ -46,7 +46,7 @@
         "@navikt/nav-office-reception-info": "1.0.1",
         "@reduxjs/toolkit": "1.9.7",
         "@tsparticles/react": "3.0.0",
-        "@tsparticles/all": "3.3.0",
+        "tsparticles": "3.3.0",
         "csp-header": "5.2.1",
         "dayjs": "1.11.10",
         "fuse.js": "6.6.2",

@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
+import dynamic from 'next/dynamic';
 import { logger } from 'srcCommon/logger';
 import { usePageContentProps } from 'store/pageContext';
 import { fetchJson } from 'srcCommon/fetch-utils';
 import { editorFetchAdminUserId } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 
-import { SurpriseFrida } from './SurpriseFrida';
-import { SurpriseConfetti } from './SurpriseConfetti';
+const SurpriseFrida = dynamic(() => import('./SurpriseFrida').then((mod) => mod.SurpriseFrida));
+const SurpriseConfetti = dynamic(() =>
+    import('./SurpriseConfetti').then((mod) => mod.SurpriseConfetti)
+);
 
 const fetchSurpriseState = () =>
     editorFetchAdminUserId().then((userId) =>
@@ -48,7 +51,7 @@ export const Surprise = () => {
     return (
         <>
             <SurpriseFrida animate={animateSurprise} stop={() => setShowSurprise(false)} />
-            {startConfetti && <SurpriseConfetti />}
+            <SurpriseConfetti start={startConfetti} />
         </>
     );
 };
