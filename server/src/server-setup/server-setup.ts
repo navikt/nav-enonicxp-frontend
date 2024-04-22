@@ -61,6 +61,8 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
             .header('Access-Control-Allow-Credentials', 'true')
             .cookie('surprise', isSurprised, {
                 maxAge: 1000 * 3600 * 24,
+                sameSite: 'none',
+                secure: true,
             })
             .json({ message: isSurprised ? 'Surprise activated!' : 'No surprise for you!' });
     });
