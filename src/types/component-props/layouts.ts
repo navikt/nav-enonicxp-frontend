@@ -23,6 +23,7 @@ export enum LayoutType {
     MainPage = 'no.nav.navno:main-page',
     PageWithSideMenus = 'no.nav.navno:page-with-side-menus',
     SectionWithHeader = 'no.nav.navno:section-with-header',
+    SectionWithHeaderV2 = 'no.nav.navno:section-with-header-v2',
     SingleColPage = 'no.nav.navno:single-col-page',
     SituationPageFlexCols = 'no.nav.navno:situation-flex-cols',
     ProductPageFlexCols = 'no.nav.navno:product-flex-cols',

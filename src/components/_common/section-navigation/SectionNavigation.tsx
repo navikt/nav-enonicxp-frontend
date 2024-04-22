@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use } from 'react';
 import { ComponentType } from 'types/component-props/_component-common';
 import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
@@ -7,7 +7,11 @@ import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/amplitude';
 
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { classNames } from 'utils/classnames';
+import { ContentType } from 'types/content-props/_content-common';
+
 import styles from './SectionNavigation.module.scss';
+import { useLayoutVersion } from 'utils/useLayoutVersion';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
@@ -43,7 +47,8 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
 };
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
-    const { language } = usePageContentProps();
+    const { language, type } = usePageContentProps();
+    const layoutVersion = useLayoutVersion(type);
     const introAnchors = getAnchorsFromComponents(introRegion);
     const contentAnchors = getAnchorsFromComponents(contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
@@ -54,8 +59,14 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
 
     const getLabels = translator('sectionNavigation', language);
 
+    const versionStyleClass =
+        layoutVersion === '1' ? styles.sectionNavigationV1 : styles.sectionNavigationV2;
+
     return (
-        <ul aria-label={getLabels('navigationLabel')} className={styles.sectionNavigation}>
+        <ul
+            aria-label={getLabels('navigationLabel')}
+            className={classNames(styles.sectionNavigation, versionStyleClass)}
+        >
             {allAnchors.map((anchor) => (
                 <li key={anchor.anchorId}>
                     <LenkeInline
