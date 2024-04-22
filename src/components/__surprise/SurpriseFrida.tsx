@@ -15,44 +15,40 @@ type Props = {
 
 const messages: Array<{ time: number; text: string }> = [
     {
-        text: 'Hei, Olav Rusten! Hva kan vi hjelpe deg med på den siste dagen på jobb for NAV, HC, konge og fedreland?',
+        text: 'Hei, Olav Rusten! Hva kan jeg hjelpe deg med på den siste dagen på jobb for NAV, HC, kongen og fedrelandet?',
         time: 8000,
     },
     {
-        text: 'Har du fått ordnet alle praktiske og upraktiske ting før du pakker sakene? Hvis ikke kan jeg sikkert hjelpe deg. ;)',
-        time: 6000,
+        text: 'Har du fått ordnet alle praktiske og upraktiske ting før du pakker sekken? Hvis ikke kan jeg sikkert hjelpe deg. ;)',
+        time: 5000,
     },
     {
-        text: 'Etter 30+ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
-        time: 6000,
+        text: 'Etter 20++ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
+        time: 5000,
     },
     {
         text: 'Kos deg med pensjonisttilværelsen, og husk at du ikke trenger å drikke kakao på autopilot lenger!',
-        time: 6000,
+        time: 5000,
     },
     {
-        text: 'Empatisk KI-generert klem fra Frida.',
+        text: 'Empatisk KI-generert klem fra hjelpsomme Frida.',
         time: 4000,
     },
     {
         text: '(Og en 100% naturlig klem fra hele nav.no-teamet!)',
-        time: 10000,
+        time: 8000,
     },
     {
-        text: '<Incoming transmission>',
-        time: 5000,
+        text: '<Incoming transmission 🤖>',
+        time: 4000,
     },
     {
         text: 'Nye opplysninger i saken din:',
         time: 4000,
     },
     {
-        text: 'Vi må orientere deg om at pensjonssøknaden din (dessverre) er trukket tilbake - du må jobbe til du er 95, minst!',
+        text: 'Jeg må orientere deg om at pensjonssøknaden din (dessverre) er trukket tilbake - du må jobbe til du er 95, minst! Det gjenstår fortsatt mye jobb på nav.no - og med organisasjonen for øvrig! 🌸',
         time: 6000,
-    },
-    {
-        text: 'Det gjenstår fortsatt mye jobb på nav.no - og med organisasjonen for øvrig! 🌸',
-        time: 0,
     },
 ];
 
