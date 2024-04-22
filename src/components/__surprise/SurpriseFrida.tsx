@@ -4,6 +4,7 @@ import { BodyLong } from '@navikt/ds-react';
 import Cookie from 'js-cookie';
 import { classNames } from 'utils/classnames';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { SurpriseBalloon } from './SurpriseBalloon';
 
 import style from './SurpriseFrida.module.scss';
 
@@ -33,6 +34,7 @@ const messages: Array<{ time: number; text: string }> = [
 
 export const SurpriseFrida = ({ animate, stop }: Props) => {
     const [showChat, setShowChat] = useState(false);
+    const [showBalloon, setShowBalloon] = useState(false);
 
     useEffect(() => {
         if (!animate) {
@@ -40,12 +42,14 @@ export const SurpriseFrida = ({ animate, stop }: Props) => {
         }
 
         setTimeout(() => setShowChat(true), 1000);
+        setTimeout(() => setShowBalloon(true), 2000);
     }, [animate]);
 
     return (
         <div className={classNames(style.wrapper, animate && style.animate)}>
             <Frida animate={animate} />
             {showChat && <ChatBubble stop={stop} />}
+            {showBalloon && <SurpriseBalloon />}
         </div>
     );
 };

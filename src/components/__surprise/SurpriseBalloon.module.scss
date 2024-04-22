@@ -1,0 +1,18 @@
+.balloon {
+    position: absolute;
+    transform: translate(-170px, -230px) scale(3);
+    opacity: 0;
+
+    animation: fade 500ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
