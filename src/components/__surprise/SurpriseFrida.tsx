@@ -14,20 +14,20 @@ type Props = {
 
 const messages: Array<{ time: number; text: string }> = [
     {
-        text: 'Hei!',
+        text: 'Hei Olav',
         time: 4000,
     },
     {
-        text: 'Gratulerer med dagen!',
-        time: 3000,
+        text: 'Gratulerer med 70-års dagen!',
+        time: 4000,
     },
     {
         text: 'Osv osv!',
-        time: 3000,
+        time: 4000,
     },
     {
-        text: 'Bye!',
-        time: 2000,
+        text: 'Osv osv!',
+        time: 0,
     },
 ];
 
