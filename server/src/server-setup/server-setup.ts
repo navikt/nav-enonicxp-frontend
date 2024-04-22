@@ -57,6 +57,10 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
 
         const isSurprised = surpriseRecipients.has(lastUidSegment);
 
+        if (isSurprised) {
+            logger.info(`Surprise enabled for ${lastUidSegment}`);
+        }
+
         return res
             .header('Access-Control-Allow-Origin', process.env.ADMIN_ORIGIN)
             .header('Access-Control-Allow-Credentials', 'true')

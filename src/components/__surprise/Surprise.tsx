@@ -31,7 +31,7 @@ export const Surprise = () => {
         }
 
         const isSurprised =
-            Cookie.get('surprise') === 'true' && Cookie.get('nosurprise') !== 'true';
+            Cookie.get('surprise-test') === 'true' && Cookie.get('nosurprise') !== 'true';
 
         if (!isSurprised) {
             return;
