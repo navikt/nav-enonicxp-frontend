@@ -68,6 +68,7 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
                 maxAge: 1000 * 3600 * 24,
                 sameSite: 'none',
                 secure: true,
+                domain: '.nav.no',
             })
             .json({ message: isSurprised ? 'Surprise activated!' : 'No surprise for you!' });
     });
