@@ -35,6 +35,7 @@
     border: 2px solid var(--a-gray-800);
     border-radius: 12px 12px 12px 0;
     opacity: 0;
+    z-index: 1001;
 
     animation: fadeIn 500ms;
     animation-timing-function: ease-in;
@@ -56,7 +57,7 @@
     .msgWrapper {
         display: flex;
         flex-direction: column;
-        width: 500px;
+        width: 600px;
         padding: 16px;
     }
 
@@ -64,7 +65,7 @@
         animation: fadeIn 500ms ease-in;
 
         &:not(:last-child) {
-            margin-bottom: 0.325rem;
+            margin-bottom: 0.5rem;
         }
     }
 

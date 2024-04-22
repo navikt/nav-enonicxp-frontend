@@ -3,7 +3,7 @@
     transform: translate(-100px, -250px) scale(3) rotateZ(-15deg);
     opacity: 0;
 
-    animation: fade 500ms;
+    animation: fadeIn 1000ms;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
 }
@@ -13,7 +13,7 @@
     transform: translate(-40px, -5px) scale(0.9) rotateZ(-25deg);
 }
 
-@keyframes fade {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }

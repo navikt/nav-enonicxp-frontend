@@ -15,32 +15,44 @@ type Props = {
 
 const messages: Array<{ time: number; text: string }> = [
     {
-        text: 'Hei, Olav Rusten! Hva kan vi hjelpe deg med på den siste dagen på jobb for NAV, konge og fedreland?',
-        time: 4000,
+        text: 'Hei, Olav Rusten! Hva kan vi hjelpe deg med på den siste dagen på jobb for NAV, HC, konge og fedreland?',
+        time: 8000,
     },
     {
-        text: 'Etter x-antall år med å sette på klokka til samme tid, er det endelig tid for et liv uten alarmer og møterom!',
-        time: 4000,
+        text: 'Har du fått ordnet alle praktiske og upraktiske ting før du pakker sakene? Hvis ikke kan jeg sikkert hjelpe deg. ;)',
+        time: 6000,
     },
     {
-        text: 'Kos deg med pensjonisttilværelsen, og husk å ikke sette kaffekoppen på autopilot lenger!',
-        time: 4000,
+        text: 'Etter 30+ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
+        time: 6000,
+    },
+    {
+        text: 'Kos deg med pensjonisttilværelsen, og husk at du ikke trenger å drikke kakao på autopilot lenger!',
+        time: 6000,
     },
     {
         text: 'Empatisk KI-generert klem fra Frida.',
-        time: 2000,
-    },
-    {
-        text: '(Og en 100% naturlig klem fra hele teamet!)',
-        time: 2000,
-    },
-    {
-        text: 'By the way... pensjonssøknaden din er (dessverre) trukket tilbake - du må jobbe til du er 95 - minst!',
         time: 4000,
     },
     {
-        text: 'Det gjenstår fortsatt mye jobb med nav.no - og organisasjonen for øvrig! 🌸',
+        text: '(Og en 100% naturlig klem fra hele nav.no-teamet!)',
+        time: 10000,
+    },
+    {
+        text: ' ',
+        time: 5000,
+    },
+    {
+        text: 'Nye opplysninger i saken din:',
         time: 4000,
+    },
+    {
+        text: 'Vi må orientere deg om at pensjonssøknaden din (dessverre) er trukket tilbake - du må jobbe til du er 95, minst!',
+        time: 6000,
+    },
+    {
+        text: 'Det gjenstår fortsatt mye jobb på nav.no - og med organisasjonen for øvrig! 🌸',
+        time: 0,
     },
 ];
 
@@ -86,7 +98,7 @@ const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
             return;
         }
 
-        setTimeout(() => setShowEndButton(true), 10000);
+        setTimeout(() => setShowEndButton(true), 20000);
     }, [isLastMsg]);
 
     return (
