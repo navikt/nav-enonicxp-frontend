@@ -20,6 +20,7 @@ export const Surprise = () => {
 
     const [showSurprise, setShowSurprise] = useState(false);
     const [animateSurprise, setAnimateSurprise] = useState(false);
+    const [startConfetti, setStartConfetti] = useState(false);
 
     useEffect(() => {
         if (editorView) {
@@ -27,7 +28,8 @@ export const Surprise = () => {
             return;
         }
 
-        const isSurprised = Cookie.get('surprise') === 'true';
+        const isSurprised =
+            Cookie.get('surprise') === 'true' && Cookie.get('nosurprise') !== 'true';
         logger.info(`Should get a surprise? ${isSurprised}`);
 
         if (!isSurprised) {
@@ -35,7 +37,8 @@ export const Surprise = () => {
         }
 
         setShowSurprise(true);
-        setTimeout(() => setAnimateSurprise(true), 100);
+        setTimeout(() => setAnimateSurprise(true), 2000);
+        setTimeout(() => setStartConfetti(true), 3000);
     }, [editorView]);
 
     if (!showSurprise) {
@@ -44,8 +47,8 @@ export const Surprise = () => {
 
     return (
         <>
-            <SurpriseFrida animate={animateSurprise} />
-            <SurpriseConfetti />
+            <SurpriseFrida animate={animateSurprise} stop={() => setShowSurprise(false)} />
+            {startConfetti && <SurpriseConfetti />}
         </>
     );
 };

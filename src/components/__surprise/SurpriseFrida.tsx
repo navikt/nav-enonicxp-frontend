@@ -1,43 +1,60 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { BodyLong } from '@navikt/ds-react';
+import Cookie from 'js-cookie';
 import { classNames } from 'utils/classnames';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 import style from './SurpriseFrida.module.scss';
 
 type Props = {
     animate: boolean;
+    stop: () => void;
 };
 
-export const SurpriseFrida = ({ animate }: Props) => {
+const messages: Array<{ time: number; text: string }> = [
+    {
+        text: 'Hei!',
+        time: 4000,
+    },
+    {
+        text: 'Gratulerer med dagen!',
+        time: 3000,
+    },
+    {
+        text: 'Osv osv!',
+        time: 3000,
+    },
+    {
+        text: 'Bye!',
+        time: 2000,
+    },
+];
+
+export const SurpriseFrida = ({ animate, stop }: Props) => {
+    const [showChat, setShowChat] = useState(false);
+
+    useEffect(() => {
+        if (!animate) {
+            return;
+        }
+
+        setTimeout(() => setShowChat(true), 1000);
+    }, [animate]);
+
     return (
         <div className={classNames(style.wrapper, animate && style.animate)}>
             <Frida animate={animate} />
-            <ChatBubble />
+            {showChat && <ChatBubble stop={stop} />}
         </div>
     );
 };
 
-const ChatBubble = () => {
+const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
     const [msgIndex, setMsgIndex] = useState(0);
+    const [showEndButton, setShowEndButton] = useState(false);
 
-    const messages: Array<{ time: number; text?: string }> = [
-        {
-            text: 'Hello!',
-            time: 1000,
-        },
-        {
-            text: 'asdf!',
-            time: 1000,
-        },
-        {
-            text: 'qwer!',
-            time: 1000,
-        },
-        {
-            text: 'Bye!',
-            time: 2000,
-        },
-    ];
+    const isLastMsg = msgIndex === messages.length - 1;
 
     useEffect(() => {
         const nextIndex = msgIndex + 1;
@@ -48,20 +65,46 @@ const ChatBubble = () => {
         }
     }, [msgIndex]);
 
+    useEffect(() => {
+        if (!isLastMsg) {
+            return;
+        }
+
+        setTimeout(() => setShowEndButton(true), 10000);
+    }, [isLastMsg]);
+
     return (
         <div className={style.chatBubble}>
             <div className={style.msgWrapper}>
                 {messages.slice(0, msgIndex + 1).map((msg, index) => (
-                    <BodyLong size={'large'} className={classNames(style.chatMsg)} key={index}>
+                    <BodyLong size={'large'} className={style.chatMsg} key={index}>
                         {msg.text}
                     </BodyLong>
                 ))}
+                {!isLastMsg && (
+                    <BodyLong size={'large'} className={style.loading}>
+                        {''}
+                    </BodyLong>
+                )}
+                {showEndButton && (
+                    <LenkeInline
+                        href={'#'}
+                        className={style.makeitstop}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            Cookie.set('nosurprise', true);
+                            stop();
+                        }}
+                    >
+                        {'Det er nok nå Frida!'}
+                    </LenkeInline>
+                )}
             </div>
         </div>
     );
 };
 
-const Frida = ({ animate }: Props) => {
+const Frida = ({ animate }: Pick<Props, 'animate'>) => {
     return (
         <svg
             focusable="false"
