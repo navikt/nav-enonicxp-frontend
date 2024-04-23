@@ -25,6 +25,23 @@
     &.animate {
         transform: scale(3);
     }
+
+    .eye {
+        fill: #59514b;
+        r: 18;
+
+        transition-property: fill, r, filter;
+        transition-duration: 250ms;
+        transition-timing-function: ease-in;
+    }
+
+    &.evil {
+        .eye {
+            fill: #ff0000;
+            r: 36;
+            filter: blur(10px);
+        }
+    }
 }
 
 .chatBubble {
