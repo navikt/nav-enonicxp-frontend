@@ -19,15 +19,15 @@ const messages = [
     },
     {
         text: 'Har du fått ordnet alle praktiske og upraktiske ting før du pakker sekken? Hvis ikke kan jeg sikkert hjelpe deg. ;)',
-        time: 5000,
+        time: 6000,
     },
     {
         text: 'Etter 20++ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
-        time: 5000,
+        time: 6000,
     },
     {
         text: 'Kos deg med pensjonisttilværelsen, og husk at du ikke trenger å drikke kakao på autopilot lenger!',
-        time: 5000,
+        time: 4000,
     },
     {
         text: 'Empatisk KI-generert klem fra hjelpsomme Frida.',

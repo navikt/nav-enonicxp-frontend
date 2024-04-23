@@ -28,17 +28,12 @@
 
     .eye {
         fill: #59514b;
-        r: 18;
-
-        transition-property: fill, r, filter;
-        transition-duration: 250ms;
-        transition-timing-function: ease-in;
+        transition: fill 250ms ease-in;
     }
 
     &.evil {
         .eye {
             fill: #ff0000;
-            r: 36;
             animation-name: pulse;
             animation-duration: 1000ms;
             animation-direction: alternate;
