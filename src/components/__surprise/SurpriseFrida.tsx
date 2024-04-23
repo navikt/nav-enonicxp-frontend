@@ -22,7 +22,7 @@ const messages = [
         time: 6000,
     },
     {
-        text: 'Etter 20++ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
+        text: 'Etter nesten 40 år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
         time: 6000,
     },
     {
