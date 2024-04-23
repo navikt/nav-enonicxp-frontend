@@ -12,22 +12,22 @@ type Props = {
     stop: () => void;
 };
 
-const messages: Array<{ time: number; text: string }> = [
+const messages = [
     {
         text: 'Hei, Olav Rusten! Hva kan jeg hjelpe deg med på den siste dagen på jobb for NAV, HC, kongen og fedrelandet?',
         time: 8000,
     },
     {
         text: 'Har du fått ordnet alle praktiske og upraktiske ting før du pakker sekken? Hvis ikke kan jeg sikkert hjelpe deg. ;)',
-        time: 5000,
+        time: 6000,
     },
     {
-        text: 'Etter 20++ år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
-        time: 5000,
+        text: 'Etter nesten 40 år med å sette på klokka til samme tid, er det endelig rom for et liv uten alarmer og møterom.',
+        time: 6000,
     },
     {
         text: 'Kos deg med pensjonisttilværelsen, og husk at du ikke trenger å drikke kakao på autopilot lenger!',
-        time: 5000,
+        time: 4000,
     },
     {
         text: 'Empatisk KI-generert klem fra hjelpsomme Frida.',
@@ -40,20 +40,24 @@ const messages: Array<{ time: number; text: string }> = [
     {
         text: '<Incoming transmission... 🤖>',
         time: 4000,
+        isEvil: true,
     },
     {
         text: 'Nye opplysninger i saken din:',
         time: 4000,
+        isEvil: true,
     },
     {
         text: 'Jeg må orientere deg om at pensjonssøknaden din (dessverre) er trukket tilbake - du må jobbe til du er 95, minst! Det gjenstår fortsatt mye jobb på nav.no - og med organisasjonen for øvrig! 🌸',
         time: 6000,
+        isEvil: true,
     },
 ];
 
 export const SurpriseFrida = ({ animate, stop }: Props) => {
     const [showChat, setShowChat] = useState(false);
-    const [showBalloon, setShowBalloon] = useState(false);
+    const [showDecoration, setShowDecoration] = useState(false);
+    const [isEvil, setIsEvil] = useState(false);
 
     useEffect(() => {
         if (!animate) {
@@ -61,23 +65,28 @@ export const SurpriseFrida = ({ animate, stop }: Props) => {
         }
 
         setTimeout(() => setShowChat(true), 1000);
-        setTimeout(() => setShowBalloon(true), 2000);
+        setTimeout(() => setShowDecoration(true), 2000);
     }, [animate]);
 
     return (
         <div className={classNames(style.wrapper, animate && style.animate)}>
-            <Frida animate={animate} />
-            {showChat && <ChatBubble stop={stop} />}
-            {showBalloon && <SurpriseDecoration />}
+            <Frida animate={animate} evil={isEvil} />
+            {showChat && <ChatBubble stop={stop} setEvil={setIsEvil} />}
+            {showDecoration && <SurpriseDecoration />}
         </div>
     );
 };
 
-const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
+const ChatBubble = ({
+    stop,
+    setEvil,
+}: Pick<Props, 'stop'> & { setEvil: (isEvil: boolean) => void }) => {
     const [msgIndex, setMsgIndex] = useState(0);
     const [showEndButton, setShowEndButton] = useState(false);
 
     const isLastMsg = msgIndex === messages.length - 1;
+
+    setEvil(!!messages[msgIndex]?.isEvil);
 
     useEffect(() => {
         const nextIndex = msgIndex + 1;
@@ -127,7 +136,7 @@ const ChatBubble = ({ stop }: Pick<Props, 'stop'>) => {
     );
 };
 
-const Frida = ({ animate }: Pick<Props, 'animate'>) => {
+const Frida = ({ animate, evil }: { animate: boolean; evil: boolean }) => {
     return (
         <svg
             focusable="false"
@@ -136,7 +145,7 @@ const Frida = ({ animate }: Pick<Props, 'animate'>) => {
             viewBox="0 0 50 50"
             width="50"
             xmlns="http://www.w3.org/2000/svg"
-            className={classNames(style.frida, animate && style.animate)}
+            className={classNames(style.frida, animate && style.animate, evil && style.evil)}
         >
             <path d="m0 0h50v50h-50z" fill="#ffffff"></path>
             <g clipRule="evenodd" fillRule="evenodd">
@@ -144,10 +153,26 @@ const Frida = ({ animate }: Pick<Props, 'animate'>) => {
                     d="m25.4107 5.93134c7.2327 0 13.1503 6.50576 13.8073 14.79556.4724.224.796.7295.796 1.3096v4.457c0 .7417-.5291 1.3609-1.2214 1.4312l-.1316.0066c-.0797 0-.1577-.0072-.2334-.0211-1.1596 3.711-3.4321 6.7926-6.3444 8.6781l.15 1.6521-.0008.0673-1.5739 11.6881h-9.9819l-.0414-.2863-1.9298-11.4253.0717-1.6709c-2.9267-1.8806-5.2116-4.9669-6.3786-8.6887l-.1198.0067c-.7549 0-1.353-.6501-1.353-1.4378v-4.457c0-.5279.2686-.9943.673-1.2445.6308-8.3204 6.5602-14.86066 13.812-14.86066z"
                     fill="#e7e5e2"
                 ></path>
-                <path
-                    d="m20.6383 24.1901c-.9363.0708-1.1983-1.3156-.9162-2.2211.053-.1716.363-.9529.9117-.9529.5481 0 .7901.4271.8237.5005.4031.8827.2051 2.5955-.8192 2.6735zm10.4496 0c.9363.0708 1.1984-1.3156.9163-2.2211-.0531-.1716-.363-.9529-.9117-.9529-.5481 0-.7901.4271-.8237.5005-.4032.8827-.2052 2.5955.8191 2.6735z"
-                    fill="#59514b"
-                ></path>
+                <g transform="matrix(-0.06 0 0 0.09 20.5 23.5)">
+                    <circle
+                        vectorEffect="non-scaling-stroke"
+                        cx="0"
+                        cy="0"
+                        r="18"
+                        fill="#59514b"
+                        className={style.eye}
+                    />
+                </g>
+                <g transform="matrix(-0.06 0 0 0.09 30.5 23.5)">
+                    <circle
+                        vectorEffect="non-scaling-stroke"
+                        cx="0"
+                        cy="0"
+                        r="18"
+                        fill="#59514b"
+                        className={style.eye}
+                    />
+                </g>
                 <path
                     d="m26.1601 25.784c.5506-.0851.9266-.0317 1.0613.1344.5084.6276.3458 1.2916-.5264 1.8366-.4585.2865-1.0897.3873-1.4238.2388-.1634-.0727-.3545.0015-.4268.1657-.0723.1641.0015.356.1649.4287.5523.2455 1.4016.1098 2.0275-.2812 1.1852-.7408 1.4564-1.8484.6864-2.799-.3259-.4018-.9027-.4837-1.6616-.3664-.1766.0273-.2977.1933-.2705.3707.0271.1774.1924.2991.369.2717zm3.6879 4.7389c-.0292.0672-.0961.1957-.2036.3651-.1821.2866-.4107.574-.6884.842-.8275.7987-1.9045 1.2605-3.2753 1.2183-1.3366-.0412-2.4088-.4959-3.2495-1.2291-.3086-.2692-.5635-.5575-.7671-.8449-.1201-.1694-.1951-.2979-.2279-.3649-.0789-.161-.2729-.2273-.4332-.1481-.1603.0793-.2263.2741-.1474.4352.0475.097.14.2554.2814.4548.2321.3275.5207.6541.87.9587.949.8277 2.1617 1.342 3.6538 1.3879 1.5538.0479 2.796-.4847 3.7435-1.3991.3168-.3058.5772-.6331.7856-.9612.1267-.1995.2091-.3578.2511-.4546.0715-.1645-.0033-.3561-.167-.4279-.1638-.0718-.3545.0033-.426.1678z"
                     fill="#59514b"
