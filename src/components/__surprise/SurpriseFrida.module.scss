@@ -39,7 +39,10 @@
         .eye {
             fill: #ff0000;
             r: 36;
-            filter: blur(10px);
+            animation-name: pulse;
+            animation-duration: 1000ms;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
         }
     }
 }
@@ -112,6 +115,17 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        filter: blur(7px);
+        r: 28;
+    }
+    100% {
+        filter: blur(12px);
+        r: 36;
     }
 }
 
