@@ -26,19 +26,12 @@
         transform: scale(3);
     }
 
-    .eye {
-        fill: #59514b;
-        transition: fill 250ms ease-in;
-    }
-
-    &.evil {
-        .eye {
-            fill: #ff0000;
-            animation-name: pulse;
-            animation-duration: 1000ms;
-            animation-direction: alternate;
-            animation-iteration-count: infinite;
-        }
+    &.evil .eye {
+        fill: #ff0000;
+        animation-name: pulse;
+        animation-duration: 1000ms;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
     }
 }
 

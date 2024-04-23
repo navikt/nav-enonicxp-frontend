@@ -159,7 +159,7 @@ const Frida = ({ animate, evil }: { animate: boolean; evil: boolean }) => {
                         cx="0"
                         cy="0"
                         r="18"
-                        fill="#ff0000"
+                        fill="#59514b"
                         className={style.eye}
                     />
                 </g>
@@ -169,7 +169,7 @@ const Frida = ({ animate, evil }: { animate: boolean; evil: boolean }) => {
                         cx="0"
                         cy="0"
                         r="18"
-                        fill="#ff0000"
+                        fill="#59514b"
                         className={style.eye}
                     />
                 </g>
