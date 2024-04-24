@@ -1,0 +1,23 @@
+.decoration {
+    position: absolute;
+    transform: translate(-100px, -250px) scale(3) rotateZ(-15deg);
+    opacity: 0;
+
+    animation: fadeIn 1000ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.flowers {
+    position: absolute;
+    transform: translate(-40px, -5px) scale(0.9) rotateZ(-25deg);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
