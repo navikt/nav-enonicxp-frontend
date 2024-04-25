@@ -70,7 +70,6 @@ export const IllustrationAnimated = ({ dataUrl, isHovering, className }: Props) 
         if (lottieData) {
             updateLottieContainer();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lottieData]);
 
     return (

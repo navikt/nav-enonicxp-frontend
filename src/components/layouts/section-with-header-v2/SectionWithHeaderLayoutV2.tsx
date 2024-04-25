@@ -24,7 +24,6 @@ export const SectionWithHeaderLayoutV2 = ({ pageProps, layoutProps }: Props) => 
     }
 
     const { title, anchorId, icon } = config;
-    const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
     const iconImgProps = icon?.icon;
 
@@ -61,9 +60,7 @@ export const SectionWithHeaderLayoutV2 = ({ pageProps, layoutProps }: Props) => 
                     {title}
                 </Header>
             )}
-            {showSubsectionNavigation && (
-                <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
-            )}
+            <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
             {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>

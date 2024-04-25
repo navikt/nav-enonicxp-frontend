@@ -34,6 +34,7 @@ import {
     ToolsPageProps,
     PressLandingPageProps,
     OfficePageProps,
+    ProductPageV2Props,
 } from './dynamic-page-props';
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { AnimatedIconsProps } from './animated-icons';
@@ -172,6 +173,7 @@ type SpecificContentProps =
     | PublishingCalendarProps
     | PublishingCalendarEntryProps
     | ProductPageProps
+    | ProductPageV2Props
     | SituationPageProps
     | OfficeEditorialPageProps
     | OfficeBranchPageProps
