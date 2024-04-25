@@ -10,19 +10,25 @@ import { Bilde } from 'components/parts/_legacy/main-article/komponenter/Bilde';
 import { translator } from 'translations';
 import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/parseInnholdsfortegnelse';
 
+import { createTypeGuard } from 'types/_type-guards';
 import stylePermanent from './MainArticlePermanent.module.scss';
 import styleNews from './MainArticleNewsPress.module.scss';
 
-// Get props from the chapter article if the content is a chapter
-const getPropsToRender = (propsInitial: ContentProps) =>
-    propsInitial.type === ContentType.MainArticleChapter
-        ? propsInitial.data.article
-        : propsInitial.type === ContentType.MainArticle
-          ? propsInitial
-          : null;
+const isValidContentType = createTypeGuard([
+    ContentType.MainArticle,
+    ContentType.MainArticleChapter,
+    ContentType.Melding,
+] as const);
 
 export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
-    const props = getPropsToRender(propsInitial);
+    if (!isValidContentType(propsInitial.type)) {
+        return null;
+    }
+
+    const props =
+        propsInitial.type === ContentType.MainArticleChapter
+            ? propsInitial.data.article
+            : propsInitial;
     if (!props) {
         return null;
     }
