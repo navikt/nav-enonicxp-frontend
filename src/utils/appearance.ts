@@ -1,5 +1,4 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { getContentLanguages } from './languages';
 
 const contentTypeWithWhiteBackground: ReadonlySet<ContentType> = new Set([
     ContentType.CurrentTopicPage,
@@ -46,9 +45,4 @@ export const hasWhiteHeader = (content: ContentProps) => {
     }
 
     return contentTypesWithWhiteHeader.has(type);
-};
-
-export const shouldPushUpwards = (content: ContentProps) => {
-    const { breadcrumbs } = content;
-    return (breadcrumbs && breadcrumbs.length > 0) || getContentLanguages(content).length > 0;
 };

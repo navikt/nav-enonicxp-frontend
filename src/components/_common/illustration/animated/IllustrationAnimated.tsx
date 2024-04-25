@@ -14,9 +14,10 @@ type Props = {
     dataUrl: string;
     isHovering: boolean;
     className?: string;
+    loop?: boolean;
 };
 
-export const IllustrationAnimated = ({ dataUrl, isHovering, className }: Props) => {
+export const IllustrationAnimated = ({ dataUrl, isHovering, className, loop = false }: Props) => {
     const lottieContainer = useRef<HTMLDivElement | null>(null);
     const lottiePlayer = useRef<AnimationItem | null>(null);
 
@@ -59,8 +60,8 @@ export const IllustrationAnimated = ({ dataUrl, isHovering, className }: Props) 
                 lottiePlayer.current = lottie.loadAnimation({
                     container: container,
                     animationData: lottieData,
-                    autoplay: false,
-                    loop: false,
+                    autoplay: loop,
+                    loop: loop,
                 });
             } catch (_) {
                 return;

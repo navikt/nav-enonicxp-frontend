@@ -33,10 +33,6 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
 
     logger.info(`Current build id: ${currentBuildId}`);
 
-    if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
-        serverSetupDev(expressApp, nextApp);
-    }
-
     expressApp.post(
         '/invalidate',
         validateSecretMiddleware,
@@ -53,6 +49,10 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     );
 
     expressApp.get('/api/pending', validateSecretMiddleware, handleGetPendingResponses(nextServer));
+
+    if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
+        serverSetupDev(expressApp, nextApp);
+    }
 
     expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
         const { buildId } = req.params;

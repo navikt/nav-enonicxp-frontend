@@ -4,6 +4,7 @@
     display: flex;
     background-color: white;
     justify-content: center;
+    margin-top: 2rem;
     @include common.full-width-mixin;
 }
 
