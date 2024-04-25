@@ -19,6 +19,7 @@ import { IndexPage } from './index-page/IndexPage';
 import { useLayoutConfig } from './useLayoutConfig';
 import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
 import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/FrontpageLoggedinSectionLayout';
+import { SingleColPageV2 } from './single-col-page-v2/SingleColPageV2';
 
 type Props = {
     pageProps: ContentProps;
@@ -39,6 +40,7 @@ const layoutComponents: {
     [LayoutType.SectionWithHeaderV2]: SectionWithHeaderLayoutV2,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
     [LayoutType.SingleColPage]: SingleColPage,
+    [LayoutType.SingleColPageV2]: SingleColPageV2,
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,

@@ -70,6 +70,7 @@ export enum ContentType {
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
     GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
     ProductPage = 'no.nav.navno:content-page-with-sidemenus',
+    ProductPageV2 = 'no.nav.navno:product-page-v2',
     ProductDetails = 'no.nav.navno:product-details',
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
     OfficeBranchPage = 'no.nav.navno:office-branch',
