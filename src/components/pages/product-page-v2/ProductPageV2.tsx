@@ -1,10 +1,10 @@
 import React from 'react';
-import { ProductPageProps } from 'types/content-props/dynamic-page-props';
+import { ProductPageV2Props } from 'types/content-props/dynamic-page-props';
 import { ComponentMapper } from 'components/ComponentMapper';
 
 import styles from './ProductPageV2.module.scss';
 
-export const ProductPageV2 = (props: ProductPageProps) => {
+export const ProductPageV2 = (props: ProductPageV2Props) => {
     return (
         <article className={styles.productPage}>
             <div className={styles.content}>

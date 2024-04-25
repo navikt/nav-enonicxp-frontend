@@ -20,7 +20,6 @@ export type ContentPropsForThemedPageHeader = ContentProps & {
 const contentTypeToClassName: { [key in ContentType]?: string } = {
     [ContentType.SituationPage]: style.situation,
     [ContentType.ProductPage]: style.product,
-    [ContentType.ProductPageV2]: style.product,
     [ContentType.GuidePage]: style.guide,
     [ContentType.ThemedArticlePage]: style.themedpage,
     [ContentType.ToolsPage]: style.tool,

@@ -71,6 +71,7 @@ export const IllustrationAnimated = ({ dataUrl, isHovering, className, loop = fa
         if (lottieData) {
             updateLottieContainer();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lottieData]);
 
     return (
