@@ -8,6 +8,8 @@ import { AlertInContext } from 'components/_common/alert-in-context/AlertInConte
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
+import { usePageContentProps } from 'store/pageContext';
+import { ContentType } from 'types/content-props/_content-common';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
@@ -37,8 +39,9 @@ export const FormDetails = ({
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
-        showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
+
+    const pageProps = usePageContentProps();
 
     const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
 
@@ -61,6 +64,9 @@ export const FormDetails = ({
 
         return acc;
     }, []);
+
+    const showTitleAsLevel4 =
+        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
 
     const formNumberToHighlight =
         formNumberSelected &&
