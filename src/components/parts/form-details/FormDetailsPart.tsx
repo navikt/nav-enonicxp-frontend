@@ -2,9 +2,7 @@ import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
-import { ContentType } from 'types/content-props/_content-common';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
-import { usePageContentProps } from 'store/pageContext';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { FiltersMixin } from 'types/component-props/_mixins';
 
@@ -18,7 +16,6 @@ export type PartConfigFormDetails = {
 } & FiltersMixin;
 
 export const FormDetailsPart = ({ config }: PartComponentProps<PartType.FormDetails>) => {
-    const pageProps = usePageContentProps();
     const { targetFormDetails, ...displayConfig } = config;
 
     if (!targetFormDetails) {
