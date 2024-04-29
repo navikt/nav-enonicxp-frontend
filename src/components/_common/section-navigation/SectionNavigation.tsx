@@ -57,8 +57,6 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         return null;
     }
 
-    console.log(layoutVersion);
-
     const getLabels = translator('sectionNavigation', language);
 
     const versionStyleClass =
