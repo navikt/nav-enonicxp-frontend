@@ -3,7 +3,7 @@ import { useRouter } from 'next/compat/router';
 import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
-import { hasWhiteHeader, hasWhitePage, shouldPushUpwards } from 'utils/appearance';
+import { hasWhiteHeader, hasWhitePage } from 'utils/appearance';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { getInternalRelativePath } from 'utils/urls';
 import { store } from 'store/store';
@@ -126,7 +126,6 @@ export const PageWrapper = (props: Props) => {
                     className={classNames(
                         styles.contentWrapper,
                         hasWhiteHeader(content) && styles.whiteBackground,
-                        shouldPushUpwards(content) && styles.decoratorOffset,
                         isLegacyContentType(content.type) && styles.legacyType
                     )}
                     id={'maincontent'}

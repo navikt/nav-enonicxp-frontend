@@ -1,20 +1,25 @@
 @use 'common' as common;
 
 .newsPressHeader {
+    padding-top: 1.25rem;
     padding-bottom: 0.75rem;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto -0.25rem auto;
     max-width: 63.5rem;
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 2.8rem 0.75rem 2.8rem;
+        padding-right: 2.8rem;
+        padding-left: 2.8rem;
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 1.5rem 0.75rem 1.5rem;
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 0.5rem 0.5rem 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
     }
 }
 

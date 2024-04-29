@@ -5,6 +5,7 @@
     display: flex;
     padding-bottom: 1.75rem;
     background-color: common.$a-white;
+    padding-top: 2rem;
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {

@@ -7,18 +7,15 @@
     line-height: common.$a-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 common.$padding-sides-mobile 2rem
-            common.$padding-sides-mobile;
+        padding: 0 common.$padding-sides-mobile 2rem common.$padding-sides-mobile;
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 common.$padding-sides-tablet 2rem
-            common.$padding-sides-tablet;
+        padding: 0 common.$padding-sides-tablet 2rem common.$padding-sides-tablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 common.$padding-sides-desktop 2rem
-            common.$padding-sides-desktop;
+        padding: 0 common.$padding-sides-desktop 2rem common.$padding-sides-desktop;
     }
 }
 
@@ -37,31 +34,10 @@
         box-shadow: none;
     }
 
-    // Depending on the content type and whether the above Decorator has
-    // breadcrumbs or language selector (språkvelger), the
-    // content beneath has to be adjusted for spacing in order to
-    // give a balanced look & feel. (Ie. "some white space, but not too much").
-    // The following :before element will ajust according to which
-    // classes is set in PageWrapper.
-    &:before {
-        content: '';
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: var(--a-spacing-4) 0;
-        background-color: transparent;
-
-        @include common.full-width-mixin();
-    }
-
     // Variations, depending on the spacing need set for this
     // particular page.
     &.whiteBackground:before {
         background-color: var(--a-bg-default);
-    }
-
-    &.decoratorOffset:before {
-        margin-top: -0.75rem;
     }
 }
 
