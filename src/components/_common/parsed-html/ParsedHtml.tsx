@@ -107,6 +107,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             const domNodes = children as DOMNode[];
             const props = !!attribs && attributesToProps(attribs);
             const validChildren = getNonEmptyChildren(element) as DOMNode[];
+            const tagIsEmpty = validChildren.length === 0;
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
@@ -130,7 +131,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Fix header-tags
             if (isHeadingTag(tag)) {
                 // Header-tags should not be used as empty spacers
-                if (validChildren.length === 0) {
+                if (tagIsEmpty) {
                     return <p>{''}</p>;
                 }
 
@@ -174,7 +175,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle links
             if (tag === 'a') {
-                if (!validChildren || typeof props.href !== 'string') {
+                if (tagIsEmpty || typeof props.href !== 'string') {
                     return <Fragment />;
                 }
 
@@ -197,7 +198,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 case 'dl':
                 case 'div':
                 case 'thead':
-                    if (!validChildren) {
+                    if (tagIsEmpty) {
                         return <Fragment />;
                     }
                     break;
@@ -205,7 +206,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle li - remove if empty
             if (tag === 'li') {
-                if (!validChildren) {
+                if (tagIsEmpty) {
                     return <Fragment />;
                 }
                 return (
@@ -221,7 +222,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             }
 
             // Replace empty rows with stylable element
-            if (tag === 'tr' && !validChildren) {
+            if (tag === 'tr' && tagIsEmpty) {
                 return <tr {...props} role="none" className={'spacer-row'} />;
             }
         },
