@@ -30,18 +30,18 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     // (prevents issues such as duplicate ids)
     const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
-    // useEffect(() => {
-    //     const updateLayout = () => {
-    //         setIsMobile(window.innerWidth < mobileWidthBreakpoint);
-    //     };
-    //
-    //     updateLayout();
-    //
-    //     mqlWidthBreakpoint.addEventListener('change', updateLayout);
-    //     return () => {
-    //         mqlWidthBreakpoint.removeEventListener('change', updateLayout);
-    //     };
-    // }, []);
+    useEffect(() => {
+        const updateLayout = () => {
+            setIsMobile(window.innerWidth < mobileWidthBreakpoint);
+        };
+
+        updateLayout();
+
+        mqlWidthBreakpoint.addEventListener('change', updateLayout);
+        return () => {
+            mqlWidthBreakpoint.removeEventListener('change', updateLayout);
+        };
+    }, []);
 
     if (!regions || !config) {
         return null;
