@@ -82,6 +82,10 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             {content.contentLayer && <meta name={'contentLayer'} content={content.contentLayer} />}
             <meta name={'msapplication-TileColor'} content={'#ffffff'} />
             <meta name={'theme-color'} content={'#ffffff'} />
+            <meta
+                name="google-site-verification"
+                content="svdLQanNMq_FTzsWHitPYTAvVASZp_KdWz3vQVMGt4Q"
+            />
             <link rel={'icon'} href={`${decoratorUrl}/media/favicon.ico`} sizes="any" />
             <link rel={'icon'} href={`${decoratorUrl}/media/favicon.svg`} type={'image/svg+xml'} />
             <link rel={'apple-touch-icon'} href={`${decoratorUrl}/media/apple-touch-icon.png`} />
