@@ -8,6 +8,7 @@ import { usePageContentProps } from 'store/pageContext';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
+    ContentType.ProductPageV2,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
 ] as const);

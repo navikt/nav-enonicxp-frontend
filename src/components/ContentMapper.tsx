@@ -19,6 +19,7 @@ import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditori
 import { OfficeBranchPage } from './pages/office-branch-page/OfficeBranchPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
+import { ProductPageV2 } from './pages/product-page-v2/ProductPageV2';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
@@ -48,6 +49,7 @@ const contentToReactComponent: {
 
     [ContentType.SituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
+    [ContentType.ProductPageV2]: ProductPageV2,
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,

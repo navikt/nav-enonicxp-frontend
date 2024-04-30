@@ -24,6 +24,7 @@ export type CardProps = {
 
 export const cardTypeMap = {
     [ContentType.ProductPage]: CardType.Product,
+    [ContentType.ProductPageV2]: CardType.Product,
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,
     [ContentType.ThemedArticlePage]: CardType.ThemedArticle,

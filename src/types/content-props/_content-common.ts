@@ -34,6 +34,7 @@ import {
     ToolsPageProps,
     PressLandingPageProps,
     OfficePageProps,
+    ProductPageV2Props,
 } from './dynamic-page-props';
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { AnimatedIconsProps } from './animated-icons';
@@ -70,6 +71,7 @@ export enum ContentType {
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
     GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
     ProductPage = 'no.nav.navno:content-page-with-sidemenus',
+    ProductPageV2 = 'no.nav.navno:product-page-v2',
     ProductDetails = 'no.nav.navno:product-details',
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
     OfficeBranchPage = 'no.nav.navno:office-branch',
@@ -171,6 +173,7 @@ type SpecificContentProps =
     | PublishingCalendarProps
     | PublishingCalendarEntryProps
     | ProductPageProps
+    | ProductPageV2Props
     | SituationPageProps
     | OfficeEditorialPageProps
     | OfficeBranchPageProps
