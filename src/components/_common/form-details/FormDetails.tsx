@@ -5,6 +5,8 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 import { AlertInContext } from 'components/_common/alert-in-context/AlertInContext';
+import { usePageContentProps } from 'store/pageContext';
+import { ContentType } from 'types/content-props/_content-common';
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
@@ -18,7 +20,6 @@ export type FormDetailsComponentProps = {
         showAddendums?: boolean;
         showApplications?: boolean;
         showComplaints?: boolean;
-        showTitleAsLevel4?: boolean;
     };
     className?: string;
     formNumberSelected?: string;
@@ -37,8 +38,9 @@ export const FormDetails = ({
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
-        showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
+
+    const pageProps = usePageContentProps();
 
     const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
 
@@ -61,6 +63,9 @@ export const FormDetails = ({
 
         return acc;
     }, []);
+
+    const showTitleAsLevel4 =
+        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
 
     const formNumberToHighlight =
         formNumberSelected &&

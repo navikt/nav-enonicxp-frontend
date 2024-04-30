@@ -21,3 +21,14 @@ export interface SectionWithHeaderProps extends LayoutBaseProps {
     } & Partial<HeaderWithAnchorMixin> &
         Pick<LayoutCommonConfigMixin, 'bgColor'>;
 }
+
+export interface SectionWithHeaderV2Props extends LayoutBaseProps {
+    type: ComponentType.Layout;
+    descriptor: LayoutType.SectionWithHeader;
+    regions: Regions<'intro' | 'content'>;
+    config: {
+        icon?: {
+            icon: XpImageProps;
+        };
+    } & Partial<HeaderWithAnchorMixin>;
+}

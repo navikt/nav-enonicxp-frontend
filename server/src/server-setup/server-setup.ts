@@ -48,31 +48,6 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq
     );
 
-    // A, O, SU
-    const surpriseRecipients = new Set(['d5214f2ccd0c', '6de81f934f88', 'user:system:su']);
-
-    expressApp.get('/api/surprise', (req, res) => {
-        const { uid } = req.query;
-        const lastUidSegment = (uid as string)?.split('-').slice(-1)[0];
-
-        const isSurprised = surpriseRecipients.has(lastUidSegment);
-
-        if (isSurprised) {
-            logger.info(`Surprise enabled for ${lastUidSegment}`);
-        }
-
-        return res
-            .header('Access-Control-Allow-Origin', process.env.ADMIN_ORIGIN)
-            .header('Access-Control-Allow-Credentials', 'true')
-            .cookie('surprise', isSurprised, {
-                maxAge: 1000 * 3600 * 24,
-                sameSite: 'none',
-                secure: true,
-                domain: '.nav.no',
-            })
-            .json({ message: isSurprised ? 'Surprise activated!' : 'No surprise for you!' });
-    });
-
     expressApp.get('/api/pending', validateSecretMiddleware, handleGetPendingResponses(nextServer));
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
