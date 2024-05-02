@@ -2,8 +2,8 @@
 
 .wrapper {
     @include common.full-width-mixin();
-    padding-top: 2.75rem;
-    margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
+    padding: 2.75rem 0 1.25rem 0;
+    margin-bottom: 0 auto -2rem auto !important; // Can't find a way to override the margin-bottom from the parent
 }
 
 .pageHeader {
