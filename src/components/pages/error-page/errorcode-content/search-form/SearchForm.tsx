@@ -3,9 +3,6 @@ import { Search } from '@navikt/ds-react';
 
 import style from './SearchForm.module.scss';
 
-const HEADER_TEXT = 'Du kan søke:';
-const MAX_SEARCH_LENGTH = 100;
-
 // Replace the localhost port number to support local integration with the search-app
 const searchHref = `${process.env.APP_ORIGIN.replace('3000', '3001')}/sok`;
 
@@ -20,11 +17,11 @@ export const SearchForm = () => {
         <div className={style.search}>
             <form role="search" onSubmit={onSearchSubmit} className={style.form}>
                 <Search
-                    label={HEADER_TEXT}
-                    maxLength={MAX_SEARCH_LENGTH}
+                    label="Du kan søke:"
+                    maxLength={100}
                     variant="primary"
                     hideLabel={false}
-                    onChange={(e) => setSearchTerm(e)}
+                    onChange={(value) => setSearchTerm(value)}
                     autoComplete="off"
                 />
             </form>
