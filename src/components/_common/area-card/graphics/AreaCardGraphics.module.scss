@@ -1,6 +1,5 @@
 @use 'common' as common;
 @use '../AreaCard.module' as areaCard;
-@use '../../../layouts/index-page/IndexPage.module' as indexPage;
 
 .graphics {
     position: absolute;
@@ -15,7 +14,7 @@
 }
 
 .insideCard {
-    @media only screen and (max-width: indexPage.$maxWidth) {
+    @media only screen and (max-width: common.$desktopMaxWidth) {
         transform: scale(areaCard.$size-medium)
             translateX(-(areaCard.$size-medium) * 10%);
         width: (1 / areaCard.$size-medium) * 100%;
