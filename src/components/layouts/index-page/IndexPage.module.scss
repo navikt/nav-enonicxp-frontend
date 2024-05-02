@@ -1,9 +1,6 @@
 @use 'common' as common;
 
-$maxWidth: 1272px;
-
 .indexPage {
-    max-width: $maxWidth;
     margin: 0 auto -2rem auto;
 }
 
