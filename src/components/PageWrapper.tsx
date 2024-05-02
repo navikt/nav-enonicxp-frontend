@@ -116,7 +116,10 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div className={hasWhitePage(content) ? styles.whiteBackground : styles.defaultBackground}>
-            <div className={styles.appContainer}>
+            <div
+                className={styles.appContainer}
+                data-nosnippet={content.data?.nosnippet ? 'true' : undefined}
+            >
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <PageWarnings content={content} />

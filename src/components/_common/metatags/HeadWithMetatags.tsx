@@ -37,23 +37,6 @@ const getDescription = (content: ContentProps) => {
 const shouldNotIndex = (content: ContentProps) =>
     content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
 
-const shouldNotSnippet = (content: ContentProps) => content.data?.nosnippet;
-
-const buildRobotsMeta = (content: ContentProps) => {
-    const noIndex = shouldNotIndex(content);
-    const noSnippet = shouldNotSnippet(content);
-
-    if (noIndex) {
-        return 'noindex, nofollow';
-    }
-
-    if (noSnippet) {
-        return 'index, follow, nosnippet';
-    }
-
-    return 'index, follow';
-};
-
 const getCanonicalUrl = (content: ContentProps) => {
     if (hasCanonicalUrl(content)) {
         return content.data.canonicalUrl;
@@ -72,14 +55,16 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content);
-    const robotsMeta = buildRobotsMeta(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
     return (
         <Head>
             <title>{title}</title>
-            <meta name={'robots'} content={robotsMeta} />
-            {!noIndex && <link rel={'canonical'} href={url} />}
+            {noIndex ? (
+                <meta name={'robots'} content={'noindex, nofollow'} />
+            ) : (
+                <link rel={'canonical'} href={url} />
+            )}
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
@@ -97,6 +82,10 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             {content.contentLayer && <meta name={'contentLayer'} content={content.contentLayer} />}
             <meta name={'msapplication-TileColor'} content={'#ffffff'} />
             <meta name={'theme-color'} content={'#ffffff'} />
+            <meta
+                name="google-site-verification"
+                content="svdLQanNMq_FTzsWHitPYTAvVASZp_KdWz3vQVMGt4Q"
+            />
             <link rel={'icon'} href={`${decoratorUrl}/media/favicon.ico`} sizes="any" />
             <link rel={'icon'} href={`${decoratorUrl}/media/favicon.svg`} type={'image/svg+xml'} />
             <link rel={'apple-touch-icon'} href={`${decoratorUrl}/media/apple-touch-icon.png`} />
