@@ -2,12 +2,13 @@
 
 .wrapper {
     @include common.full-width-mixin();
-    padding: 2.75rem 0 1.25rem 0;
-    margin-bottom: 0 auto -2rem auto !important; // Can't find a way to override the margin-bottom from the parent
+    padding-top: 2.75rem;
+    margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
 }
 
 .pageHeader {
     align-items: flex-start;
+    padding-bottom: 1.25rem;
 
     @media #{common.$mq-screen-mobile} {
         margin-bottom: 0rem;
