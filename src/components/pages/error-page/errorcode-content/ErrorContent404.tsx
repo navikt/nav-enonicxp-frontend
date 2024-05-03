@@ -5,10 +5,8 @@ import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { SearchForm } from './search-form/SearchForm';
 
 import style from './ErrorContent404.module.scss';
-
 const origin = process.env.APP_ORIGIN;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
-
 export const ErrorContent404 = () => {
     const [urlSuggestion, setUrlSuggestion] = useState<UrlSearchResponse>();
 
@@ -29,9 +27,10 @@ export const ErrorContent404 = () => {
                         </LenkeInline>
                     </BodyLong>
                 )}
-                <BodyLong>{'Du kan søke:'}</BodyLong>
+
                 <SearchForm />
-                <BodyLong>
+
+                <BodyLong className="style.SearchForm">
                     {'Meld gjerne fra om '}
                     <LenkeInline href={feedbackHref}>{'feil på lenken'}</LenkeInline>
                 </BodyLong>
