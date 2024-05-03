@@ -1,5 +1,4 @@
 @use 'common' as common;
-@use '../../layouts/index-page/IndexPage.module' as indexPage;
 
 @mixin transitionMixin {
     transition:
@@ -32,7 +31,7 @@ $size-small: 0.5;
         min-height: $height-full-size;
         border-radius: $border-radius;
 
-        @media only screen and (max-width: indexPage.$maxWidth) {
+        @media only screen and (max-width: common.$desktopMaxWidth) {
             min-height: $height-full-size * $size-medium;
             height: auto;
         }
@@ -74,7 +73,7 @@ $size-small: 0.5;
         }
     }
 
-    @media only screen and (max-width: indexPage.$maxWidth) {
+    @media only screen and (max-width: common.$desktopMaxWidth) {
         min-height: $height-full-size * $size-medium;
         height: auto;
     }
