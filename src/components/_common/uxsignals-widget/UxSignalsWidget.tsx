@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Script from 'next/script';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
@@ -9,13 +9,18 @@ type Props = {
 };
 
 export const UxSignalsWidget = ({ embedCode }: Props) => {
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://uxsignals-frontend.uxsignals.app.iterate.no/embed.js';
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        };
+    });
+
     return (
         <>
-            <Script
-                type={'module'}
-                src={'https://uxsignals-frontend.uxsignals.app.iterate.no/embed.js'}
-                async={true}
-            />
             <div data-uxsignals-embed={embedCode} className={style.uxSignalsWidget} />
             <EditorHelp text={'UX Signals rekrutterings-widget'} type={'info'} />
         </>
