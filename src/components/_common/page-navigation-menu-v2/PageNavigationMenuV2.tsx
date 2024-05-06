@@ -15,7 +15,7 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
     console.log('links:', links);
 
     return (
-        <>
+        <ul>
             {links.map((anchorLink) => (
                 <li key={anchorLink.anchorId}>
                     <LenkeBase
@@ -36,6 +36,6 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
                     </LenkeBase>
                 </li>
             ))}
-        </>
+        </ul>
     );
 };
