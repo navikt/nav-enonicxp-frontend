@@ -1,9 +1,9 @@
 @use 'common' as common;
 
 .wrapper {
-    background-color: rgba(230, 240, 255, 0.75);
-
     padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    background-color: rgba(230, 240, 255, 0.75);
 }
 
 .list {
