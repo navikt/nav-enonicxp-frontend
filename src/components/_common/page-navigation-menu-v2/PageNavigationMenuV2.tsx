@@ -20,6 +20,7 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
         <div className={style.wrapper}>
             <Heading level="2" size="small" spacing>
                 Innhold på siden
+                {/* TODO språkversjonering */}
             </Heading>
             <ul className={style.list}>
                 {links.map((anchorLink) => (
