@@ -16,8 +16,6 @@ type Props = {
 export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
     const links = getValidLinks(anchorLinks);
 
-    console.log('links:', links);
-
     return (
         <div className={style.wrapper}>
             <Heading level="2" size="small" spacing>
