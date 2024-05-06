@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Script from 'next/script';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
