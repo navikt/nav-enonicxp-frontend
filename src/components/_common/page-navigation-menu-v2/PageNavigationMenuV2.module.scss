@@ -1,0 +1,16 @@
+@use 'common' as common;
+
+.wrapper {
+    background-color: rgba(230, 240, 255, 0.75);
+
+    padding: 1rem 1.25rem;
+}
+
+.list {
+    @include common.unstyled-list();
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
