@@ -28,17 +28,9 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
                     <li key={anchorLink.anchorId}>
                         <LenkeBase
                             href={`#${anchorLink.anchorId}`}
-                            // onClick={setLocationHashAndScrollToTarget}
                             analyticsLinkGroup={'Innhold'}
                             analyticsComponent={'Meny for intern-navigasjon'}
                             className={style.link}
-                            // className={classNames(
-                            //     style.pageNavLink,
-                            //     currentViewStyle.pageNavLink,
-                            //     scrollDirection && sidebarStyle[scrollDirection],
-                            //     isCurrent && sidebarStyle.current
-                            // )}
-                            // id={linkId}
                         >
                             <ArrowRightAngle />
                             {anchorLink.linkText}
