@@ -40,13 +40,12 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
+                                width="16"
+                                height="16"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 focusable="false"
                                 aria-hidden="true"
-                                className={style.icon}
                             >
                                 <g
                                     stroke-linecap="round"
@@ -55,8 +54,8 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
                                     stroke="currentColor"
                                     transform="translate(-2 7)"
                                 >
-                                    <path d="M4.5 5v6c0 1.1.9 2 2 2H19"></path>
-                                    <path d="M14.5 8.5 19 13l-4.5 4.5"></path>
+                                    <path d="M4.5 5v6c0 1.1.9 2 2 2H19" />
+                                    <path d="M14.5 8.5 19 13l-4.5 4.5" />
                                 </g>
                             </svg>
                             {anchorLink.linkText}
