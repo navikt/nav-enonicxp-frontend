@@ -8,4 +8,12 @@
 
 .list {
     @include common.unstyled-list();
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link {
+    display: flex;
+    gap: 0.375rem;
 }

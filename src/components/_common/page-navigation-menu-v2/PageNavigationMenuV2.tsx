@@ -20,7 +20,7 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
 
     return (
         <div className={style.wrapper}>
-            <Heading level="2" size="small">
+            <Heading level="2" size="small" spacing>
                 Innhold på siden
             </Heading>
             <ul className={style.list}>
@@ -31,6 +31,7 @@ export const PageNavigationMenuV2 = ({ anchorLinks = [] }: Props) => {
                             // onClick={setLocationHashAndScrollToTarget}
                             analyticsLinkGroup={'Innhold'}
                             analyticsComponent={'Meny for intern-navigasjon'}
+                            className={style.link}
                             // className={classNames(
                             //     style.pageNavLink,
                             //     currentViewStyle.pageNavLink,
