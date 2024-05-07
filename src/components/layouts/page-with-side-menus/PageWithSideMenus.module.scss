@@ -11,52 +11,6 @@ $verticalMargin: 1.75rem;
     max-width: common.px-to-rem(1080);
     margin: 0 auto;
 
-    .topRow {
-        display: flex;
-        flex-direction: column;
-
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            flex-direction: row;
-            margin-top: 3rem;
-        }
-    }
-
-    .leftCol {
-        width: 100%;
-        max-width: $sectionMaxWidth;
-
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            width: $sideMenusMaxWidth;
-            max-width: $sideMenusMaxWidth;
-        }
-    }
-
-    .leftCol {
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            margin-right: $sectionGutterSmall;
-
-            :global(.region__topPageContent) {
-                display: none;
-            }
-        }
-
-        @media #{common.$mq-screen-desktop} {
-            margin-right: $sectionGutterLarge;
-        }
-    }
-
-    .mainCol {
-        max-width: 100%;
-
-        :global(.region__topPageContent) {
-            display: none;
-
-            @media #{common.$mq-screen-tablet-and-desktop} {
-                display: flex;
-            }
-        }
-    }
-
     :global(.region__intro) {
         margin-bottom: $verticalMargin;
     }
