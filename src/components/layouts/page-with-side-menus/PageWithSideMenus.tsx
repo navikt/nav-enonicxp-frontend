@@ -52,7 +52,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 menuHeader={leftMenuHeader}
                                 sticky={leftMenuSticky}
                             /> */}
-            <PageNavigationMenuV2 anchorLinks={showInternalNav ? anchorLinks : []} />
+            {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns
+                <PageNavigationMenuV2 anchorLinks={showInternalNav ? anchorLinks : []} />
+            )}
             <MainContentSection pageProps={pageProps} regionProps={pageContent} />
             <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>
