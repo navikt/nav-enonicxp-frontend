@@ -10,6 +10,7 @@ import { Language, translator } from 'translations';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { getConjunction, joinWithConjunction } from 'utils/string';
+import { ContentType } from 'types/content-props/_content-common';
 
 import style from './AlternativeAudience.module.scss';
 
@@ -29,7 +30,7 @@ export const AlternativeAudience = ({
     productName,
     showProductName,
 }: Props) => {
-    const { language, editorView } = usePageContentProps();
+    const { language, editorView, type } = usePageContentProps();
 
     const getRelatedString = translator('related', language);
     const getStringPart = translator('stringParts', language);
@@ -41,7 +42,9 @@ export const AlternativeAudience = ({
     return (
         <div
             className={classNames(
-                style.alternativeAudience,
+                type == ContentType.ProductPageV2
+                    ? style.alternativeAudienceV2
+                    : style.alternativeAudience,
                 editorView === 'edit' && style.noMargin
             )}
         >

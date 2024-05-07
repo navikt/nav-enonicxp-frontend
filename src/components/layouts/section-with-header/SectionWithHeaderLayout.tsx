@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
+import { SectionNavigation } from 'components/_common/section-navigation/SectionNavigation';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
@@ -8,7 +9,6 @@ import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { SectionNavigation } from './section-navigation/SectionNavigation';
 
 import style from './SectionWithHeaderLayout.module.scss';
 

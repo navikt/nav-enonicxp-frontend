@@ -1,0 +1,11 @@
+@use 'common' as common;
+
+.productPage {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        align-self: center;
+        width: 100%;
+    }
+}

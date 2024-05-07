@@ -9,6 +9,7 @@ import { Area } from 'types/areas';
 
 export type HeaderWithAnchorMixin = {
     title: string;
+    description?: string;
     anchorId: string;
     toggleCopyButton: boolean;
 };
