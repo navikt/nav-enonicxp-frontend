@@ -21,11 +21,11 @@ export const ErrorPage = (props: ErrorProps) => {
 
     return (
         <div className={style.errorPage}>
+            <BodyLong size={'small'}>{`Statuskode ${errorCode}`}</BodyLong>
             <div className={style.header}>
                 <Heading level={'1'} size={'large'} className={style.headerMsg}>
                     {errorMessage}
                 </Heading>
-                <BodyLong size={'large'}>{`Statuskode ${errorCode}`}</BodyLong>
             </div>
             <div className={style.content}>
                 <ErrorContent {...props} />
