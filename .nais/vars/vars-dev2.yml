@@ -3,7 +3,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
 dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
   - www-2.ansatt.dev.nav.no
-  - www-2.ekstern.dev.nav.no
   - portal-admin-q6.oera.no
   - www-2-failover.intern.dev.nav.no
 secret: nav-enonicxp-dev2

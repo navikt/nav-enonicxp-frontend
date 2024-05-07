@@ -5,6 +5,7 @@ dekoratorenApp: nav-dekoratoren
 externalHosts:
   - portal-admin-dev.oera.no
   - www.ekstern.dev.nav.no
+  - www.ansatt.dev.nav.no
   - dekoratoren.ekstern.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:

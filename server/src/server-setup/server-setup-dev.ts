@@ -5,7 +5,8 @@ import { logger } from 'srcCommon/logger';
 
 const LOGIN_COOKIE = 'dev-login';
 
-const LEGACY_DEV_HOSTNAME = 'www.intern.dev.nav.no';
+const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
+const APP_ORIGIN = process.env.APP_ORIGIN;
 
 // 155.55.* is NAVs public IP range. Also includes the private IP range used by our
 // internal network (10.*), and localhost. Takes the IPv6 prefix ::ffff: into account.
@@ -31,13 +32,16 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
         return nextRequestHandler(req, res);
     });
 
-    expressApp.all('*', (req, res, next) => {
-        if (req.hostname === LEGACY_DEV_HOSTNAME) {
-            return res.redirect(302, `${process.env.APP_ORIGIN}${req.path}`);
-        }
+    if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
+        // Redirects requests to previously used domain names (intern|ekstern).dev.nav.no
+        expressApp.all('*', (req, res, next) => {
+            if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
+                return res.redirect(302, `${process.env.APP_ORIGIN}${req.path}`);
+            }
 
-        next();
-    });
+            next();
+        });
+    }
 
     // Sets a cookie which will bypass the IP restriction
     expressApp.get('/login', (req, res) => {
