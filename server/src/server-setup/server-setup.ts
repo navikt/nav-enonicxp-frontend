@@ -61,6 +61,8 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
             req.url = req.url.replace(buildId, currentBuildId);
         }
 
+        console.log(`Hostname: ${req.hostname}`);
+
         setJsonCacheHeaders(req, res);
         return nextRequestHandler(req, res);
     });
