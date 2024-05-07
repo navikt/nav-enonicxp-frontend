@@ -13,6 +13,7 @@ import { getConjunction, joinWithConjunction } from 'utils/string';
 import { ContentType } from 'types/content-props/_content-common';
 
 import style from './AlternativeAudience.module.scss';
+import styleV2 from './AlternativeAudienceV2.module.scss';
 
 type AudienceLink = {
     title: string;
@@ -43,7 +44,7 @@ export const AlternativeAudience = ({
         <div
             className={classNames(
                 type == ContentType.ProductPageV2
-                    ? style.alternativeAudienceV2
+                    ? styleV2.alternativeAudience
                     : style.alternativeAudience,
                 editorView === 'edit' && style.noMargin
             )}
