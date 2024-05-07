@@ -21,8 +21,7 @@ $verticalMargin: 1.75rem;
         }
     }
 
-    .leftCol,
-    .rightCol {
+    .leftCol {
         width: 100%;
         max-width: $sectionMaxWidth;
 
@@ -55,16 +54,6 @@ $verticalMargin: 1.75rem;
             @media #{common.$mq-screen-tablet-and-desktop} {
                 display: flex;
             }
-        }
-    }
-
-    .rightCol {
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            margin-left: $sectionGutterSmall;
-        }
-
-        @media #{common.$mq-screen-desktop-large} {
-            margin-left: $sectionGutterLarge;
         }
     }
 

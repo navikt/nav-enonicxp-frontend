@@ -106,15 +106,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     )}
                     <MainContentSection pageProps={pageProps} regionProps={pageContent} />
                 </div>
-                {rightMenuToggle && (
-                    <div className={styles.rightCol}>
-                        <RightMenuSection
-                            pageProps={pageProps}
-                            regionProps={rightMenu}
-                            sticky={rightMenuSticky}
-                        />
-                    </div>
-                )}
             </div>
             <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>
