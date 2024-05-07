@@ -6,7 +6,7 @@ import { windowMatchMedia } from 'utils/match-media';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import Config from 'config';
 import Region from 'components/layouts/Region';
-import { RightMenuSection } from './right-menu-section/RightMenuSection';
+import { PageNavigationMenuV2 } from 'components/_common/page-navigation-menu-v2/PageNavigationMenuV2';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
 
@@ -83,14 +83,19 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             />
                         )}
                         {leftMenuToggle && (
-                            <LeftMenuSection
-                                pageProps={pageProps}
-                                topRegionProps={topLeftMenu}
-                                mainRegionProps={leftMenu}
-                                internalLinks={showInternalNav ? anchorLinks : []}
-                                menuHeader={leftMenuHeader}
-                                sticky={leftMenuSticky}
-                            />
+                            <>
+                                <LeftMenuSection
+                                    pageProps={pageProps}
+                                    topRegionProps={topLeftMenu}
+                                    mainRegionProps={leftMenu}
+                                    internalLinks={showInternalNav ? anchorLinks : []}
+                                    menuHeader={leftMenuHeader}
+                                    sticky={leftMenuSticky}
+                                />
+                                <PageNavigationMenuV2
+                                    anchorLinks={showInternalNav ? anchorLinks : []}
+                                />
+                            </>
                         )}
                     </div>
                 )}
