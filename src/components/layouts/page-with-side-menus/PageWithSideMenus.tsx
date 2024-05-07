@@ -4,7 +4,6 @@ import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-si
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenuV2 } from 'components/_common/page-navigation-menu-v2/PageNavigationMenuV2';
-import { MainContentSection } from './main-content-section/MainContentSection';
 
 import styles from './PageWithSideMenus.module.scss';
 
@@ -43,7 +42,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
-            <MainContentSection pageProps={pageProps} regionProps={topPageContent} />
+            <Region pageProps={pageProps} regionProps={topPageContent} />
             {/* <LeftMenuSection
                                 pageProps={pageProps}
                                 topRegionProps={topLeftMenu}
@@ -55,7 +54,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns
                 <PageNavigationMenuV2 anchorLinks={showInternalNav ? anchorLinks : []} />
             )}
-            <MainContentSection pageProps={pageProps} regionProps={pageContent} />
+            <Region pageProps={pageProps} regionProps={pageContent} />
             <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>
     );
