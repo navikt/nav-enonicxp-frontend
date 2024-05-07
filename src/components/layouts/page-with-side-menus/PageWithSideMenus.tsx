@@ -24,17 +24,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const {
-        leftMenuToggle,
-        leftMenuSticky,
-        leftMenuHeader,
-        showInternalNav,
-        anchorLinks,
-        rightMenuToggle,
-        rightMenuSticky,
-    } = config;
+    const { leftMenuToggle, leftMenuHeader, showInternalNav, anchorLinks } = config;
 
-    const { pageContent, topPageContent, topLeftMenu, rightMenu, leftMenu, bottomRow } = regions;
+    const { pageContent, topPageContent, bottomRow } = regions;
 
     return (
         <LayoutContainer
@@ -43,17 +35,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <Region pageProps={pageProps} regionProps={topPageContent} />
-            {/* <LeftMenuSection
-                                pageProps={pageProps}
-                                topRegionProps={topLeftMenu}
-                                mainRegionProps={leftMenu}
-                                internalLinks={showInternalNav ? anchorLinks : []}
-                                menuHeader={leftMenuHeader}
-                                sticky={leftMenuSticky}
-                            /> */}
+
             {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns
-                <PageNavigationMenuV2 anchorLinks={showInternalNav ? anchorLinks : []} />
+                <PageNavigationMenuV2
+                    anchorLinks={showInternalNav ? anchorLinks : []}
+                    menuHeader={leftMenuHeader}
+                />
             )}
+
             <Region pageProps={pageProps} regionProps={pageContent} />
             <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>

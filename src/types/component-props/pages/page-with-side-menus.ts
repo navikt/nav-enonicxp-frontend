@@ -3,13 +3,7 @@ import { ComponentProps, ComponentType } from 'types/component-props/_component-
 
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
-type Regions =
-    | 'topLeftMenu'
-    | 'leftMenu'
-    | 'pageContent'
-    | 'topPageContent'
-    | 'rightMenu'
-    | 'bottomRow';
+type Regions = 'pageContent' | 'topPageContent' | 'bottomRow';
 
 export interface PageWithSideMenusProps extends LayoutBaseProps {
     type: ComponentType.Page;
@@ -24,10 +18,7 @@ export interface PageWithSideMenusProps extends LayoutBaseProps {
         title: string;
         leftMenuHeader: string;
         leftMenuToggle: boolean;
-        leftMenuSticky: boolean;
         showInternalNav: boolean;
         anchorLinks: AnchorLink[];
-        rightMenuToggle: boolean;
-        rightMenuSticky: boolean;
     };
 }
