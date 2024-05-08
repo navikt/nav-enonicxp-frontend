@@ -12,10 +12,10 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 
 type Props = {
     anchorLinks?: AnchorLink[];
-    menuHeader: string;
+    title: string;
 };
 
-export const PageNavigationMenu = ({ anchorLinks = [], menuHeader }: Props) => {
+export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
     const links = getValidLinks(anchorLinks);
 
     return (
@@ -24,7 +24,7 @@ export const PageNavigationMenu = ({ anchorLinks = [], menuHeader }: Props) => {
 
             <div className={style.wrapper}>
                 <Heading level="2" size="small" spacing>
-                    {menuHeader} {/* TODO: skal være "Innhold på siden", ikke "Innhold" */}
+                    {title} {/* TODO: skal være "Innhold på siden", ikke "Innhold" */}
                 </Heading>
                 <ul className={style.list}>
                     {links.map((anchorLink) => (
