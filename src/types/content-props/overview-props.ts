@@ -8,7 +8,6 @@ import { Area } from 'types/areas';
 
 type ContentTypeInOverviewPages =
     | ContentType.ProductPage
-    | ContentType.ProductPageV2
     | ContentType.ThemedArticlePage
     | ContentType.GuidePage;
 

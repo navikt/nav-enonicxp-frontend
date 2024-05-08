@@ -8,7 +8,6 @@ import { createTypeGuard } from 'types/_type-guards';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
-    ContentType.ProductPageV2,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
 ] as const);
