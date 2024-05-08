@@ -31,7 +31,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         >
             <Region pageProps={pageProps} regionProps={topPageContent} />
 
-            {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns
+            {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns. Må også endre i enonic
                 <PageNavigationMenu
                     anchorLinks={showInternalNav ? anchorLinks : []}
                     title={leftMenuHeader}
