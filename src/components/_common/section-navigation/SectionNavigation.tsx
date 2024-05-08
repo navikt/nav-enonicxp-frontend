@@ -44,7 +44,7 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
 };
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
-    const { language, type } = usePageContentProps();
+    const { language } = usePageContentProps();
     const introAnchors = getAnchorsFromComponents(introRegion);
     const contentAnchors = getAnchorsFromComponents(contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
