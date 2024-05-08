@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
+import { Header } from 'components/_common/headers/Header';
 import { classNames } from 'utils/classnames';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
@@ -21,7 +21,9 @@ export const PageHeaderPart = ({ config }: PartComponentProps<PartType.PageHeade
 
     return (
         <div className={classNames(style.wrapper, isProviderSubPage && style.providerSubPage)}>
-            <PageHeader className={classNames(style.pageHeader)}>{config.title}</PageHeader>
+            <Header className={classNames(style.pageHeader)} level="1" size="xlarge">
+                {config.title}
+            </Header>
         </div>
     );
 };

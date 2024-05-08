@@ -1,10 +1,9 @@
 import React from 'react';
 import { BodyShort, Detail } from '@navikt/ds-react';
+import { Header } from 'components/_common/headers/Header';
 import { classNames } from 'utils/classnames';
-import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
-import { usePageContentProps } from 'store/pageContext';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
     ContentPropsForThemedPageHeader,
@@ -41,7 +40,9 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
         <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
             <Illustration illustration={illustration} className={style.illustration} />
             <div className={style.text}>
-                <PageHeader justify={'left'}>{title || displayName}</PageHeader>
+                <Header justify={'left'} level={'1'} size={'xlarge'} className={style.header}>
+                    {title || displayName}
+                </Header>
                 {(subTitle || modified) && (
                     <div className={style.taglineWrapper}>
                         {subTitle && (

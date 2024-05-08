@@ -14,7 +14,7 @@ type Props = {
     contentProps: CurrentTopicPageProps;
 };
 
-export const NewsHeader = ({ contentProps }: Props) => {
+export const FeaturedHeader = ({ contentProps }: Props) => {
     const { displayName, createdTime, modifiedTime, data } = contentProps;
     const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;

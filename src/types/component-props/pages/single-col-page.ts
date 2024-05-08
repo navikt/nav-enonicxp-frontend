@@ -14,16 +14,4 @@ export interface SingleColPageProps extends LayoutBaseProps {
     };
     config: {};
 }
-export interface SingleColPageV2Props extends LayoutBaseProps {
-    type: ComponentType.Page;
-    descriptor: LayoutType.SingleColPage;
-    regions: {
-        [key in Regions]: {
-            components: ComponentProps[];
-            name: Regions;
-        };
-    };
-    config: {
-        test: boolean;
-    };
-}
+

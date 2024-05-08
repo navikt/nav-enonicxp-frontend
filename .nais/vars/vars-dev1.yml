@@ -3,10 +3,10 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 dekoratorenApp: nav-dekoratoren
 externalHosts:
   - portal-admin-dev.oera.no
-  - www.ekstern.dev.nav.no
   - www-failover.intern.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:
+  - https://www.ansatt.dev.nav.no
   - https://www.ekstern.dev.nav.no
   - https://www.intern.dev.nav.no
 resources:
