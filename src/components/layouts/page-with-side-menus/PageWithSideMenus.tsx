@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
-import { PageNavigationMenuV2 } from 'components/_common/page-navigation-menu-v2/PageNavigationMenuV2';
+import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 
 import styles from './PageWithSideMenus.module.scss';
 
@@ -32,7 +32,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             <Region pageProps={pageProps} regionProps={topPageContent} />
 
             {leftMenuToggle && ( //TODO rename til menuToggle/pageMenuToggle elns
-                <PageNavigationMenuV2
+                <PageNavigationMenu
                     anchorLinks={showInternalNav ? anchorLinks : []}
                     menuHeader={leftMenuHeader}
                 />

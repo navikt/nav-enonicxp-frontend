@@ -28,11 +28,12 @@ export const LeftMenuSection = ({
 }: Props) => {
     return (
         <div className={classNames(styles.leftMenu, sticky && styles.sticky)}>
-            <PageNavigationMenu
+            {/* TODO fjern hele denne? */}
+            {/* <PageNavigationMenu
                 title={menuHeader}
                 anchorLinks={internalLinks}
                 viewStyle={'sidebar'}
-            />
+            /> */}
             <Region pageProps={pageProps} regionProps={topRegionProps} />
             <EditorHelp text={'Komponenter ovenfor legges inn rett under innholdsmenyen'} />
             <Region pageProps={pageProps} regionProps={mainRegionProps} />
