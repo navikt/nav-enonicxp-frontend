@@ -5,9 +5,7 @@ import { logger } from 'srcCommon/logger';
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
 
-// Applies certain restrictions for the app in dev environments. This is not intended
-// as a security measure, but rather to ensure (to some degree) that the public does
-// not accidentally end up in our dev environments
+// Redirects requests for other domains to the ansatt.dev.nav.no
 export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
@@ -16,14 +14,13 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
         next();
     });
 
-    // These paths should always be unrestricted, to ensure the site will always load
+    // These paths should never redirect, to ensure the site will load correctly
     // when accessed from the Content Studio editor
     expressApp.all(['/draft/*', '/_next/*', '/gfx/*', '/api/*'], (req, res) => {
         return nextRequestHandler(req, res);
     });
 
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
-        // Redirects requests to previously used domain names (intern|ekstern).dev.nav.no
         expressApp.all('*', (req, res, next) => {
             if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
                 logger.info('Redirecting!');
