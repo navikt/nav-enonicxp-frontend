@@ -23,15 +23,6 @@ export type ProductPageProps = ContentCommonProps & {
     page: PageWithSideMenusProps;
 };
 
-export type ProductPageV2Props = ContentCommonProps & {
-    type: ContentType.ProductPageV2;
-    data: ProductDataMixin & {
-        alternativeAudience?: AlternativeAudience;
-        relatedSituations?: SituationPageProps[];
-    };
-    page: PageWithSideMenusProps;
-};
-
 export type ProductDetailsProps = ContentCommonProps & {
     type: ContentType.ProductDetails;
     data: {
