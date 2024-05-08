@@ -24,7 +24,8 @@ export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
 
             <div className={style.wrapper}>
                 <Heading level="2" size="small" spacing>
-                    {title} {/* TODO: skal være "Innhold på siden", ikke "Innhold" */}
+                    {title}
+                    {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
                 <ul className={style.list}>
                     {links.map((anchorLink) => (
