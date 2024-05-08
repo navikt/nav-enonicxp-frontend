@@ -1,8 +1,8 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import ArrowRightAngle from './ArrowRightAngle';
-import { LenkeBase } from '../lenke/LenkeBase';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import ArrowRightAngle from './ArrowRightAngle';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
