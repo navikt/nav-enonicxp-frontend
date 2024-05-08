@@ -22,7 +22,6 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.Overview,
     ContentType.PressLandingPage,
     ContentType.ProductPage,
-    ContentType.ProductPageV2,
     ContentType.SituationPage,
     ContentType.ThemedArticlePage,
 ]);

@@ -35,7 +35,6 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
-    [LayoutType.SectionWithHeaderV2]: SectionWithHeaderLayoutV2,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
     [LayoutType.SingleColPage]: SingleColPage,
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
