@@ -1,8 +1,9 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import ArrowRightAngle from './ArrowRightAngle';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
-import { Heading } from '@navikt/ds-react';
+import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenuV2.module.scss';
 
@@ -15,28 +16,33 @@ type Props = {
 };
 
 export const PageNavigationMenuV2 = ({ anchorLinks = [], menuHeader }: Props) => {
+    //TODO: fjern V2-navngiving
     const links = getValidLinks(anchorLinks);
 
     return (
-        <div className={style.wrapper}>
-            <Heading level="2" size="small" spacing>
-                {menuHeader} {/* TODO: skal være "Innhold på siden", ikke "Innhold" */}
-            </Heading>
-            <ul className={style.list}>
-                {links.map((anchorLink) => (
-                    <li key={anchorLink.anchorId}>
-                        <LenkeBase
-                            href={`#${anchorLink.anchorId}`}
-                            analyticsLinkGroup={'Innhold'}
-                            analyticsComponent={'Meny for intern-navigasjon'}
-                            className={style.link}
-                        >
-                            <ArrowRightAngle />
-                            {anchorLink.linkText}
-                        </LenkeBase>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
+
+            <div className={style.wrapper}>
+                <Heading level="2" size="small" spacing>
+                    {menuHeader} {/* TODO: skal være "Innhold på siden", ikke "Innhold" */}
+                </Heading>
+                <ul className={style.list}>
+                    {links.map((anchorLink) => (
+                        <li key={anchorLink.anchorId}>
+                            <LenkeBase
+                                href={`#${anchorLink.anchorId}`}
+                                analyticsLinkGroup={'Innhold'}
+                                analyticsComponent={'Meny for intern-navigasjon'}
+                                className={style.link}
+                            >
+                                <ArrowRightAngle />
+                                {anchorLink.linkText}
+                            </LenkeBase>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </>
     );
 };
