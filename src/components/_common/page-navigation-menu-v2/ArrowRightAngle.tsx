@@ -11,9 +11,9 @@ const ArrowRightAngle: React.FC = () => (
         aria-hidden="true"
     >
         <g
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             stroke="currentColor"
             transform="translate(-2 7)"
         >
