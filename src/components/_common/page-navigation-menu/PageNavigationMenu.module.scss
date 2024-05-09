@@ -1,0 +1,22 @@
+@use 'common' as common;
+
+.wrapper {
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    background-color: rgba(230, 240, 255, 0.75);
+}
+
+.list {
+    @include common.unstyled-list();
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+//TODO hover lenker
