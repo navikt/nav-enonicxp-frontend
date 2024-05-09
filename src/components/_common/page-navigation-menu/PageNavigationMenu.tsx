@@ -1,8 +1,8 @@
 import React from 'react';
+import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import ArrowRightAngle from './ArrowRightAngle';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
@@ -36,7 +36,7 @@ export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
                                 analyticsComponent={'Meny for intern-navigasjon'}
                                 className={style.link}
                             >
-                                <ArrowRightAngle />
+                                <ArrowDownRightIcon />
                                 {anchorLink.linkText}
                             </LenkeBase>
                         </li>
