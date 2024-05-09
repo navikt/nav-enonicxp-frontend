@@ -4,7 +4,6 @@ import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
 } from 'types/component-props/_mixins';
-import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
@@ -29,7 +28,7 @@ export const AlternativeAudience = ({
     productName,
     showProductName,
 }: Props) => {
-    const { language, editorView } = usePageContentProps();
+    const { language } = usePageContentProps();
 
     const getRelatedString = translator('related', language);
     const getStringPart = translator('stringParts', language);
@@ -39,12 +38,7 @@ export const AlternativeAudience = ({
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
-        <div
-            className={classNames(
-                style.alternativeAudience,
-                editorView === 'edit' && style.noMargin
-            )}
-        >
+        <div className={style.alternativeAudience}>
             <BodyLong>
                 {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
                 {audienceLinks.map((link, index) => (
