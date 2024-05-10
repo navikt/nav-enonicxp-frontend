@@ -2,11 +2,11 @@ import React from 'react';
 import { ComponentType } from 'types/component-props/_component-common';
 import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
-import { translator } from 'translations';
+import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { getAnchorId } from '../relatedSituations/RelatedSituations';
+import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
 
 import styles from './SectionNavigation.module.scss';
 
@@ -20,12 +20,11 @@ type Anchor = {
     title: string;
 };
 
-const getAnchorsFromComponents = (region?: RegionProps) => {
+const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     if (!region) {
         return [];
     }
 
-    const { language } = usePageContentProps();
     const getStringPart = translator('related', language);
     const otherOffersTitle = getStringPart('otherOffers');
 
@@ -47,19 +46,18 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
             component.descriptor === PartType.RelatedSituations
         ) {
             acc.push({
-                anchorId: getAnchorId(otherOffersTitle),
+                anchorId: getAnchorId(otherOffersTitle) as string,
                 title: (component.config?.title || getStringPart('otherOffers')) as string,
             });
         }
-
         return acc;
     }, []);
 };
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
     const { language } = usePageContentProps();
-    const introAnchors = getAnchorsFromComponents(introRegion);
-    const contentAnchors = getAnchorsFromComponents(contentRegion);
+    const introAnchors = getAnchorsFromComponents(language, introRegion);
+    const contentAnchors = getAnchorsFromComponents(language, contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
 
     if (allAnchors.length === 0) {
