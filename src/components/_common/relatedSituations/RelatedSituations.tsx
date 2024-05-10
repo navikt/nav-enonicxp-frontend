@@ -28,7 +28,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
-            id={getAnchorId(otherOffersTitle)}
+            id={getAnchorId(title || otherOffersTitle)}
         >
             <Heading level="3" size="medium" spacing>
                 {title || otherOffersTitle}

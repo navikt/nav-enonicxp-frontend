@@ -46,8 +46,8 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
             component.descriptor === PartType.RelatedSituations
         ) {
             acc.push({
-                anchorId: getAnchorId(otherOffersTitle),
-                title: component.config?.title || getStringPart('otherOffers'),
+                anchorId: getAnchorId(component.config?.title || otherOffersTitle),
+                title: component.config?.title || otherOffersTitle,
             });
         }
         return acc;
