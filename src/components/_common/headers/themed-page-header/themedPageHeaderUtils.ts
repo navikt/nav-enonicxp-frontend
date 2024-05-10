@@ -1,5 +1,4 @@
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { ProductDataMixin } from 'types/component-props/_mixins';
+import { ContentType } from 'types/content-props/_content-common';
 
 import style from './ThemedPageHeader.module.scss';
 
