@@ -4,20 +4,12 @@ import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { AnalyticsEvents } from 'utils/amplitude';
-
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-
-import styles from './SectionNavigation.module.scss';
+import { PageNavigationMenu } from '../page-navigation-menu/PageNavigationMenu';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
     contentRegion?: RegionProps<'content'>;
-};
-
-type Anchor = {
-    anchorId: string;
-    title: string;
 };
 
 const getAnchorsFromComponents = (region?: RegionProps) => {
@@ -25,7 +17,7 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
         return [];
     }
 
-    return region.components.reduce<Anchor[]>((acc, component) => {
+    return region.components.reduce<AnchorLink[]>((acc, component) => {
         if (
             component.type === ComponentType.Part &&
             component.descriptor === PartType.Header &&
@@ -36,7 +28,7 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
         ) {
             acc.push({
                 anchorId: component.config.anchorId as string,
-                title: component.config.title as string,
+                linkText: component.config.title as string,
             });
         }
         return acc;
@@ -56,20 +48,10 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
     const getLabels = translator('sectionNavigation', language);
 
     return (
-        <ul aria-label={getLabels('navigationLabel')} className={styles.sectionNavigation}>
-            {allAnchors.map((anchor) => (
-                <li key={anchor.anchorId}>
-                    <LenkeInline
-                        href={`#${anchor.anchorId}`}
-                        analyticsEvent={AnalyticsEvents.NAVIGATION}
-                        analyticsLinkGroup={'Innhold'}
-                        analyticsComponent={'Hopp til underkapittel'}
-                        analyticsLabel={anchor.title}
-                    >
-                        {anchor.title}
-                    </LenkeInline>
-                </li>
-            ))}
-        </ul>
+        <PageNavigationMenu
+            anchorLinks={allAnchors}
+            ariaLabel={getLabels('navigationLabel')}
+            title="Test"
+        />
     );
 };
