@@ -23,15 +23,16 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
-    const otherOffersTitle = getStringPart('otherOffers');
+    const defaultTitle = getStringPart('otherOffers');
+    const actualTitle = title || defaultTitle;
 
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
-            id={getAnchorId(title || otherOffersTitle)}
+            id={getAnchorId(actualTitle)}
         >
             <Heading level="3" size="medium" spacing>
-                {title || otherOffersTitle}
+                {actualTitle}
             </Heading>
             <BodyLong className={style.description}>
                 {description || getStringPart('moreInformation')}

@@ -26,7 +26,7 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     }
 
     const getStringPart = translator('related', language);
-    const otherOffersTitle = getStringPart('otherOffers');
+    const defaultTitle = getStringPart('otherOffers');
 
     return region.components.reduce<Anchor[]>((acc, component) => {
         if (
@@ -45,9 +45,10 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
             component.type === ComponentType.Part &&
             component.descriptor === PartType.RelatedSituations
         ) {
+            const actualTitle = component.config?.title || defaultTitle;
             acc.push({
-                anchorId: getAnchorId(component.config?.title || otherOffersTitle),
-                title: component.config?.title || otherOffersTitle,
+                anchorId: getAnchorId(actualTitle),
+                title: actualTitle,
             });
         }
         return acc;
