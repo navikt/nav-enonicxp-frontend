@@ -10,6 +10,7 @@ export const GenericPage = (props: GenericPageProps) => {
             <div className={'content'}>
                 <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
+            
         </article>
     );
 };
