@@ -19,7 +19,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { leftMenuToggle, leftMenuHeader, showInternalNav, anchorLinks } = config;
+    const { leftMenuHeader, showInternalNav, anchorLinks } = config;
 
     const { pageContent, topPageContent, bottomRow } = regions;
 
@@ -29,16 +29,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
-            <Region pageProps={pageProps} regionProps={topPageContent} />
-
-            {leftMenuToggle && ( //TODO: rename til menuToggle/pageMenuToggle elns. Må også endre i enonic
-                // TODO: fjern høyremeny i enonic
-                <PageNavigationMenu
-                    anchorLinks={showInternalNav ? anchorLinks : []}
-                    title={leftMenuHeader}
-                />
+            {showInternalNav && (
+                <PageNavigationMenu anchorLinks={anchorLinks} title={leftMenuHeader} />
             )}
-
+            <Region pageProps={pageProps} regionProps={topPageContent} />
             <Region pageProps={pageProps} regionProps={pageContent} />
             <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>

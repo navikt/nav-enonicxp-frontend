@@ -15,9 +15,7 @@ export interface PageWithSideMenusProps extends LayoutBaseProps {
         };
     };
     config: {
-        title: string;
         leftMenuHeader: string;
-        leftMenuToggle: boolean;
         showInternalNav: boolean;
         anchorLinks: AnchorLink[];
     };
