@@ -19,13 +19,15 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
+    const otherOffersTitle = getStringPart('otherOffers');
 
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
+            id={otherOffersTitle.replace(/\s+/g, '-').toLowerCase()} // Replace spaces with hyphens and make lowercase
         >
             <Heading level="3" size="medium" spacing>
-                {title || getStringPart('otherOffers')}
+                {title || otherOffersTitle}
             </Heading>
             <BodyLong className={style.description}>
                 {description || getStringPart('moreInformation')}

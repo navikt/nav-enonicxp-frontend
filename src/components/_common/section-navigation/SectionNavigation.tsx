@@ -25,6 +25,10 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
         return [];
     }
 
+    const { language } = usePageContentProps();
+    const getStringPart = translator('related', language);
+    const otherOffersTitle = getStringPart('otherOffers');
+
     return region.components.reduce<Anchor[]>((acc, component) => {
         if (
             component.type === ComponentType.Part &&
@@ -38,7 +42,16 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
                 anchorId: component.config.anchorId as string,
                 title: component.config.title as string,
             });
+        } else if (
+            component.type === ComponentType.Part &&
+            component.descriptor === PartType.RelatedSituations
+        ) {
+            acc.push({
+                anchorId: otherOffersTitle.replace(/\s+/g, '-').toLowerCase() as string,
+                title: (component.config?.title || getStringPart('otherOffers')) as string,
+            });
         }
+
         return acc;
     }, []);
 };
