@@ -15,6 +15,10 @@ type Props = {
     description: string;
 };
 
+export const getAnchorId = (test: string) => {
+    return test.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens and make lowercase
+};
+
 export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
     const { language, editorView } = usePageContentProps();
 
@@ -24,7 +28,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
-            id={otherOffersTitle.replace(/\s+/g, '-').toLowerCase()} // Replace spaces with hyphens and make lowercase
+            id={getAnchorId(otherOffersTitle)}
         >
             <Heading level="3" size="medium" spacing>
                 {title || otherOffersTitle}

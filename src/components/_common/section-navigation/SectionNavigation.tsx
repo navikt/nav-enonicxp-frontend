@@ -5,8 +5,8 @@ import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/amplitude';
-
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { getAnchorId } from '../relatedSituations/RelatedSituations';
 
 import styles from './SectionNavigation.module.scss';
 
@@ -47,7 +47,7 @@ const getAnchorsFromComponents = (region?: RegionProps) => {
             component.descriptor === PartType.RelatedSituations
         ) {
             acc.push({
-                anchorId: otherOffersTitle.replace(/\s+/g, '-').toLowerCase() as string,
+                anchorId: getAnchorId(otherOffersTitle),
                 title: (component.config?.title || getStringPart('otherOffers')) as string,
             });
         }
