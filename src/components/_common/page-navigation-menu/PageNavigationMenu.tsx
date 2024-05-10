@@ -27,6 +27,7 @@ export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
+                {/* TODO: legg inn igjen denne? <nav aria-label={'Innhold'}>  */}
                 <ul className={style.list}>
                     {links.map((anchorLink) => (
                         <li key={anchorLink.anchorId}>
