@@ -18,6 +18,7 @@ type SectionNavigationProps = {
 type Anchor = {
     anchorId: string;
     title: string;
+    isPartRelatedSituations?: boolean;
 };
 
 const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
@@ -40,7 +41,14 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
 
         if (component.descriptor === PartType.RelatedSituations) {
             const actualTitle = component.config?.title || defaultTitle;
-            return [...acc, { anchorId: getAnchorId(actualTitle), title: actualTitle }];
+            return [
+                ...acc,
+                {
+                    anchorId: getAnchorId(actualTitle),
+                    title: actualTitle,
+                    isPartRelatedSituations: true,
+                },
+            ];
         }
 
         return acc;
@@ -54,6 +62,10 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
     const allAnchors = [...introAnchors, ...contentAnchors];
 
     if (allAnchors.length === 0) {
+        return null;
+    }
+
+    if (allAnchors.length === 1 && allAnchors[0].isPartRelatedSituations) {
         return null;
     }
 
