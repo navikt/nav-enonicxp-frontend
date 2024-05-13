@@ -80,6 +80,9 @@ export const translationsBundleNn: PartialTranslations = {
     linkPanels: {
         label: 'Valpanel',
     },
+    linkList: {
+        label: 'Liste av lenker',
+    },
     filteredContent: {
         noFiltersSelected: 'Ingen filter er valde, så vi viser alt innhald.',
         filtersSelected: 'Vi har fjerna innhald som ikkje er relevant i situasjonen din.',

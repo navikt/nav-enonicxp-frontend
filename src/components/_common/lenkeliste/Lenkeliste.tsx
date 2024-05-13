@@ -4,6 +4,8 @@ import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 import style from './Lenkeliste.module.scss';
 
@@ -23,6 +25,8 @@ type Props = {
 };
 
 export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
+    const { language } = usePageContentProps();
+    const getLabel = translator('linkList', language);
     const headingId = `heading-linklist-${useId()}`;
 
     if (!lenker || lenker.length === 0) {
@@ -30,7 +34,10 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     }
 
     return (
-        <nav className={classNames(className, style.lenker)} aria-labelledby={headingId}>
+        <nav className={classNames(className, style.lenker)}
+             aria-labelledby={tittel ? headingId : undefined}
+             aria-label={tittel ?  undefined : getLabel('label')}
+        >
             {tittel && (
                 <Heading className={style.tittel} id={headingId} size="small" level="2">
                     {tittel}
