@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
@@ -13,27 +13,24 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 
 type Props = {
     anchorLinks?: AnchorLink[];
-    ariaLabel: string;
     title: string;
 };
 
-export const PageNavigationMenu = ({
-    anchorLinks = [],
-    ariaLabel = 'default TODO',
-    title,
-}: Props) => {
+export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
     const links = getValidLinks(anchorLinks);
+
+    const headingId = `heading-page-navigation-menu-${useId()}`;
 
     return (
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
 
             <div className={style.wrapper}>
-                <Heading level="2" size="small" spacing>
+                <Heading level="2" size="small" spacing id={headingId}>
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
-                <ul aria-label={ariaLabel} className={style.list}>
+                <ul aria-labelledby={headingId} className={style.list}>
                     {links.map((anchorLink) => (
                         <li key={anchorLink.anchorId}>
                             <LenkeBase
