@@ -29,28 +29,20 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     const defaultTitle = getStringPart('otherOffers');
 
     return region.components.reduce<Anchor[]>((acc, component) => {
-        if (
-            component.type === ComponentType.Part &&
-            component.descriptor === PartType.Header &&
-            component.config &&
-            component.config.titleTag === 'h3' &&
-            component.config.anchorId &&
-            component.config.title
-        ) {
-            acc.push({
-                anchorId: component.config.anchorId as string,
-                title: component.config.title as string,
-            });
-        } else if (
-            component.type === ComponentType.Part &&
-            component.descriptor === PartType.RelatedSituations
-        ) {
-            const actualTitle = component.config?.title || defaultTitle;
-            acc.push({
-                anchorId: getAnchorId(actualTitle),
-                title: actualTitle,
-            });
+        if (component.type !== ComponentType.Part) {
+            return acc;
         }
+
+        if (component.descriptor === PartType.Header && component.config?.titleTag === 'h3') {
+            const { anchorId, title } = component.config;
+            return anchorId && title ? [...acc, { anchorId, title }] : acc;
+        }
+
+        if (component.descriptor === PartType.RelatedSituations) {
+            const actualTitle = component.config?.title || defaultTitle;
+            return [...acc, { anchorId: getAnchorId(actualTitle), title: actualTitle }];
+        }
+
         return acc;
     }, []);
 };
