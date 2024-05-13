@@ -64,6 +64,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
     return (
         <PageNavigationMenu
             anchorLinks={allAnchors}
+            analyticsComponent="Hopp til underkapittel"
             title="I dette kapittelet" //TODO fiks språkversjonering. Antar at man ikke ønsker at denne skal kunne endres redaksjonelt? Samme med "Innhold på siden" i PageNavigationMenu.tsx?
         />
     );

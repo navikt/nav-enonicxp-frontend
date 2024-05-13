@@ -13,10 +13,11 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 
 type Props = {
     anchorLinks?: AnchorLink[];
+    analyticsComponent: string;
     title: string;
 };
 
-export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
+export const PageNavigationMenu = ({ anchorLinks = [], analyticsComponent, title }: Props) => {
     const links = getValidLinks(anchorLinks);
 
     const headingId = `heading-page-navigation-menu-${useId()}`;
@@ -36,8 +37,8 @@ export const PageNavigationMenu = ({ anchorLinks = [], title }: Props) => {
                             <LenkeBase
                                 href={`#${anchorLink.anchorId}`}
                                 analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                analyticsLinkGroup={'Innhold'} //TODO var
-                                analyticsComponent={'Meny for intern-navigasjon'} //TODO var
+                                analyticsLinkGroup={'Innhold'}
+                                analyticsComponent={analyticsComponent}
                                 analyticsLabel={anchorLink.linkText}
                                 className={style.link}
                             >
