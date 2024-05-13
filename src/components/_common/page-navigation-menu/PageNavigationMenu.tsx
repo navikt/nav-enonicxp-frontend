@@ -13,11 +13,15 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 
 type Props = {
     anchorLinks?: AnchorLink[];
-    analyticsComponent: string;
+    analyticsComponent?: string;
     title: string;
 };
 
-export const PageNavigationMenu = ({ anchorLinks = [], analyticsComponent, title }: Props) => {
+export const PageNavigationMenu = ({
+    anchorLinks = [],
+    analyticsComponent = 'Meny for intern-navigasjon',
+    title,
+}: Props) => {
     const links = getValidLinks(anchorLinks);
 
     const headingId = `heading-page-navigation-menu-${useId()}`;
