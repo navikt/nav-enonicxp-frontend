@@ -6,6 +6,7 @@ export type AnchorLink = {
     anchorId: string;
     linkText: string;
     isDupe?: boolean;
+    isPartRelatedSituations?: boolean;
 };
 
 export type PartConfigPageNavigationMenu = {

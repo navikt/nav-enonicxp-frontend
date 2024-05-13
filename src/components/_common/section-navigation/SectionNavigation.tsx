@@ -2,46 +2,62 @@ import React from 'react';
 import { ComponentType } from 'types/component-props/_component-common';
 import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
-import { translator } from 'translations';
+import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { PageNavigationMenu } from '../page-navigation-menu/PageNavigationMenu';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
     contentRegion?: RegionProps<'content'>;
 };
 
-const getAnchorsFromComponents = (region?: RegionProps) => {
+const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     if (!region) {
         return [];
     }
 
+    const getStringPart = translator('related', language);
+    const defaultTitle = getStringPart('otherOffers');
+
     return region.components.reduce<AnchorLink[]>((acc, component) => {
-        if (
-            component.type === ComponentType.Part &&
-            component.descriptor === PartType.Header &&
-            component.config &&
-            component.config.titleTag === 'h3' &&
-            component.config.anchorId &&
-            component.config.title
-        ) {
-            acc.push({
-                anchorId: component.config.anchorId as string,
-                linkText: component.config.title as string,
-            });
+        if (component.type !== ComponentType.Part) {
+            return acc;
         }
+
+        if (component.descriptor === PartType.Header && component.config?.titleTag === 'h3') {
+            const { anchorId, title } = component.config;
+            return anchorId && title ? [...acc, { anchorId, linkText: title }] : acc;
+        }
+
+        if (component.descriptor === PartType.RelatedSituations) {
+            const actualTitle = component.config?.title || defaultTitle;
+            return [
+                ...acc,
+                {
+                    anchorId: getAnchorId(actualTitle),
+                    linkText: actualTitle,
+                    isPartRelatedSituations: true,
+                },
+            ];
+        }
+
         return acc;
     }, []);
 };
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
     const { language } = usePageContentProps();
-    const introAnchors = getAnchorsFromComponents(introRegion);
-    const contentAnchors = getAnchorsFromComponents(contentRegion);
+    const introAnchors = getAnchorsFromComponents(language, introRegion);
+    const contentAnchors = getAnchorsFromComponents(language, contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
 
     if (allAnchors.length === 0) {
+        return null;
+    }
+
+    if (allAnchors.length === 1 && allAnchors[0].isPartRelatedSituations) {
         return null;
     }
 
