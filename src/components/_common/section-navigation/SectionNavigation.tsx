@@ -67,7 +67,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         <PageNavigationMenu
             anchorLinks={allAnchors}
             ariaLabel={getLabels('navigationLabel')}
-            title="Test"
+            title="I dette kapittelet" //TODO fiks språkversjonering. Antar at man ikke ønsker at denne skal kunne endres redaksjonelt? Samme med "Innhold på siden" i PageNavigationMenu.tsx?
         />
     );
 };
