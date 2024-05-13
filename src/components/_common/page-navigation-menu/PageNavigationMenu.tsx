@@ -3,8 +3,8 @@ import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 import { AnalyticsEvents } from 'utils/amplitude';
+import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
 
