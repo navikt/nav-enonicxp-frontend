@@ -32,13 +32,17 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
-            {isProductPage && <GeneralPageHeader pageProps={pageProps} />}
-            {!isProductPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
-            {showInternalNav && (
-                <PageNavigationMenu anchorLinks={anchorLinks} title={leftMenuHeader} />
-            )}
-            <Region pageProps={pageProps} regionProps={pageContent} />
-            <Region pageProps={pageProps} regionProps={bottomRow} />
+            <div className={styles.mainContent}>
+                {isProductPage && <GeneralPageHeader pageProps={pageProps} />}
+                {!isProductPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
+                {showInternalNav && (
+                    <PageNavigationMenu anchorLinks={anchorLinks} title={leftMenuHeader} />
+                )}
+                <Region pageProps={pageProps} regionProps={pageContent} />
+            </div>
+            <div className={styles.bottomContent}>
+                <Region pageProps={pageProps} regionProps={bottomRow} />
+            </div>
         </LayoutContainer>
     );
 };

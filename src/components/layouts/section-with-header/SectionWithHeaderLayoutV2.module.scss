@@ -1,0 +1,48 @@
+@use 'common' as common;
+@use 'sass:math';
+
+$iconContainerRadius: common.px-to-rem(60px / 2);
+$iconContainerSize: $iconContainerRadius * 2;
+$defaultBgColor: white;
+
+.container {
+    background-color: $defaultBgColor;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media #{common.$mq-screen-mobile} {
+        margin: 0 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    :global(.icon-container) {
+        align-items: center;
+        align-self: flex-start;
+        background-color: $defaultBgColor;
+        border-radius: 50%;
+        display: flex;
+        height: $iconContainerSize;
+        justify-content: center;
+        position: relative;
+        width: $iconContainerSize;
+
+        img {
+            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            height: common.round-rem($iconSize);
+            width: common.round-rem($iconSize);
+        }
+    }
+}
+
+.withIcon {
+    margin-top: 6rem;
+}
+
+.header {
+    margin-bottom: 1rem;
+}
+
+.headerWithIcon {
+    margin-top: 0.5rem;
+}

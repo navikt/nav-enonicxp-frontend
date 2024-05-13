@@ -88,8 +88,7 @@ $versionSelectorMinHeight: 3rem;
         flex-shrink: 0;
         flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
         max-width: calc(
-            #{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) /
-                $numCols} + 1px
+            #{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px
         );
 
         &:not(:last-child) {
@@ -158,18 +157,6 @@ $versionSelectorMinHeight: 3rem;
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) $a-border-focus;
-}
-
-@mixin section-padding-mixin() {
-    padding: $sectionPaddingDesktop;
-
-    @media #{$mq-screen-tablet} {
-        padding: $sectionPaddingTablet;
-    }
-
-    @media #{$mq-screen-mobile} {
-        padding: $sectionPaddingMobile;
-    }
 }
 
 @mixin link-underline-mixin($underlineDefault: true) {

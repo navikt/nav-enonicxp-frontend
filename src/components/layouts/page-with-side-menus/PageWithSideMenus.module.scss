@@ -1,18 +1,15 @@
 @use 'common' as common;
 
-$sectionMaxWidth: common.px-to-rem(600);
-$sideMenusMaxWidth: common.px-to-rem(288);
-
-$sectionGutterLarge: 1.5rem;
 $sectionGutterSmall: 0.75rem;
 $verticalMargin: 1.75rem;
 
 .pageWithSideMenus {
-    max-width: common.px-to-rem(1080);
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-rows: auto 1fr;
 
-    :global(.region__intro) {
-        margin-bottom: $verticalMargin;
+    @media #{common.$mq-screen-mobile} {
+        display: block;
     }
 
     :global(.region__pageContent),
@@ -20,39 +17,15 @@ $verticalMargin: 1.75rem;
         display: flex;
         flex-direction: column;
         margin-top: $verticalMargin;
-
-        & > * {
-            width: 100%;
-            max-width: $sectionMaxWidth;
-            margin-bottom: $verticalMargin;
-        }
-
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            margin-top: 0;
-
-            // Ensure the first section is aligned with the menu if it has an icon
-            &:first-child {
-                :global(.layout__section-with-header--with-icon):first-child {
-                    margin-top: 0;
-                }
-            }
-        }
     }
+}
 
-    :global(.region__pageContent) {
-        & > :last-child {
-            margin-bottom: 0;
-        }
-    }
+.mainContent {
+    grid-column: 2;
+    grid-row: 1;
+}
 
-    :global(.region__bottomRow) {
-        max-width: 57rem;
-        margin-left: $sectionGutterSmall;
-        margin-right: $sectionGutterSmall;
-
-        @media #{common.$mq-screen-desktop} {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
+.bottomContent {
+    grid-column: 1 / -1;
+    max-width: 80rem;
 }
