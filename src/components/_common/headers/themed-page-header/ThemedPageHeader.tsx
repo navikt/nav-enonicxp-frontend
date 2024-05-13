@@ -6,15 +6,15 @@ import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
-    ContentPropsForThemedPageHeader,
-    themedPageHeaderGetSubtitle,
-    themedPageHeaderGetTypeClassName,
-} from './themedPageHeaderUtils';
+    PagePropsForPageHeader,
+    getHeaderTagline,
+} from 'components/_common/headers/sharedHeaderUtils';
+import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: ContentPropsForThemedPageHeader;
+    contentProps: PagePropsForPageHeader;
     showTimeStamp?: boolean;
 };
 
@@ -25,7 +25,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
     const getDatesLabel = translator('dates', language);
 
     const typeSpecificClassName = themedPageHeaderGetTypeClassName(type);
-    const subTitle = themedPageHeaderGetSubtitle(contentProps);
+    const subTitle = getHeaderTagline(contentProps);
 
     const modified =
         showTimeStamp &&
