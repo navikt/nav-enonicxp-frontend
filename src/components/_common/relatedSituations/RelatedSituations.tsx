@@ -15,17 +15,24 @@ type Props = {
     description: string;
 };
 
+export const getAnchorId = (test: string) => {
+    return test.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens and make lowercase
+};
+
 export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
     const { language, editorView } = usePageContentProps();
 
     const getStringPart = translator('related', language);
+    const defaultTitle = getStringPart('otherOffers');
+    const actualTitle = title || defaultTitle;
 
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
+            id={getAnchorId(actualTitle)}
         >
             <Heading level="3" size="medium" spacing>
-                {title || getStringPart('otherOffers')}
+                {actualTitle}
             </Heading>
             <BodyLong className={style.description}>
                 {description || getStringPart('moreInformation')}
