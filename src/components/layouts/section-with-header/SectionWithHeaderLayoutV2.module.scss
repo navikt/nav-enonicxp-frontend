@@ -10,6 +10,7 @@ $defaultBgColor: white;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 6rem;
 
     @media #{common.$mq-screen-mobile} {
         margin: 0 1rem;
@@ -33,10 +34,6 @@ $defaultBgColor: white;
             width: common.round-rem($iconSize);
         }
     }
-}
-
-.withIcon {
-    margin-top: 6rem;
 }
 
 .header {
