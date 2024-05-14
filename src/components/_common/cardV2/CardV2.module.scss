@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+
+    border-width: 1px;
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-color: rgb(203 213 225);
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
