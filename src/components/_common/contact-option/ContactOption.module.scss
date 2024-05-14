@@ -6,6 +6,11 @@
     width: 100%;
     padding-bottom: var(--a-spacing-8);
 
+    @media #{common.$mq-screen-mobile} {
+        margin: 0rem 1rem 0 1rem;
+        width: calc(100% - 2rem);
+    }
+
     .link {
         color: common.$a-text-action;
         text-decoration-thickness: 0.05em;

@@ -6,6 +6,9 @@ const contentTypeWithWhiteBackground: ReadonlySet<ContentType> = new Set([
     ContentType.FormsOverview,
     ContentType.MainArticle,
     ContentType.ProductPage,
+    ContentType.GuidePage,
+    ContentType.ToolsPage,
+    ContentType.ThemedArticlePage,
 ]);
 
 const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
