@@ -10,6 +10,8 @@ $verticalMargin: 1.75rem;
 
     @media #{common.$mq-screen-mobile} {
         display: block;
+        margin: 0rem 1rem;
+        width: calc(100% - 2rem);
     }
 
     :global(.region__pageContent),
