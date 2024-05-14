@@ -14,6 +14,10 @@ $verticalMargin: 1.75rem;
         width: calc(100% - 2rem);
     }
 
+    :global(.region__intro) {
+        margin-bottom: $verticalMargin;
+    }
+
     :global(.region__pageContent),
     :global(.region__topPageContent) {
         display: flex;
