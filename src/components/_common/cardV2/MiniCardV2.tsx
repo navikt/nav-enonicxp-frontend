@@ -28,6 +28,7 @@ export const MiniCardV2 = (props: MiniKortProps) => {
         <LenkeBase className={style.container} href={props.link.url} {...analyticsProps}>
             <div className={style.text}>
                 <BodyShort size="medium">HELSE OG SYKDOM</BodyShort>
+                {/* TODO: fiks hardkodet kategori-tekst. Er det gjennomtenkt hvor dette hentes fra og hva teksten skal være? */}
                 <BodyShort size="medium">{props.link.text}</BodyShort>
             </div>
             <ArrowRightIcon fontSize="1.5rem" />
