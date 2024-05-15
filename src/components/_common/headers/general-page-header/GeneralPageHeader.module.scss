@@ -3,11 +3,14 @@
 }
 
 .header {
-    margin-top: --a-spacing-2;
+    margin-top: var(--a-spacing-3);
 }
 
 .tagline {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    margin-top: --a-spacing-4;
+}
+
+.ingress {
+    margin-top: var(--a-spacing-6);
 }

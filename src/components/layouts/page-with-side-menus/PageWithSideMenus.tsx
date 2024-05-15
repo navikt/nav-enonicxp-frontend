@@ -7,6 +7,7 @@ import { PageNavigationMenu } from 'components/_common/page-navigation-menu/Page
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 
 import styles from './PageWithSideMenus.module.scss';
+import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 
 type Props = {
     pageProps: ContentProps;
@@ -35,6 +36,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 {isProductPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isProductPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
+                {isProductPage && <AlternativeAudience />}
                 {showInternalNav && (
                     <PageNavigationMenu anchorLinks={anchorLinks} title={leftMenuHeader} />
                 )}

@@ -8,6 +8,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
+import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
 import style from './AlternativeAudience.module.scss';
@@ -17,30 +18,22 @@ type AudienceLink = {
     url: string;
 };
 
-type Props = {
-    alternativeAudience: AlternativeAudienceType;
-    productName: string;
-    showProductName: boolean;
-};
+export const AlternativeAudience = () => {
+    const { data, language, displayName } = usePageContentProps<ProductPageProps>();
+    const { alternativeAudience } = data;
 
-export const AlternativeAudience = ({
-    alternativeAudience,
-    productName,
-    showProductName,
-}: Props) => {
-    const { language } = usePageContentProps();
+    if (!alternativeAudience) {
+        return null;
+    }
 
     const getRelatedString = translator('related', language);
-    const getStringPart = translator('stringParts', language);
-
-    const name = showProductName ? productName : getStringPart('this');
 
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
         <div className={style.alternativeAudience}>
             <BodyLong>
-                {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
+                {getRelatedString('relatedAudience').replace('{name}', displayName.toLowerCase())}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
                         <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>

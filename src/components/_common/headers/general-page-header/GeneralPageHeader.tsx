@@ -27,7 +27,11 @@ export const GeneralPageHeader = (props: Props) => {
             <Heading level="1" size="xlarge" className={style.header}>
                 {title}
             </Heading>
-            {ingress && <BodyLong size="large">{ingress}</BodyLong>}
+            {ingress && (
+                <BodyLong size="large" className={style.ingress}>
+                    {ingress}
+                </BodyLong>
+            )}
         </div>
     );
 };
