@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroProductCardMiniProps } from 'types/macro-props/product-card-mini';
-import { CardV2 } from 'components/_common/cardV2/MiniCardV2';
+import { MiniCardV2 } from 'components/_common/cardV2/MiniCardV2';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -19,5 +19,5 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
     console.log('props: ', props);
     console.log('config: ', config);
 
-    return props && <CardV2></CardV2>;
+    return props && <MiniCardV2></MiniCardV2>;
 };

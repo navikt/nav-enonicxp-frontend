@@ -3,9 +3,9 @@ import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from '../lenke/LenkeBase';
 
-import style from './CardV2.module.scss';
+import style from './MiniCardV2.module.scss';
 
-export const CardV2 = () => (
+export const MiniCardV2 = () => (
     <LenkeBase
         href="https://www.nav.no/sykepenger"
         // href={link.url}

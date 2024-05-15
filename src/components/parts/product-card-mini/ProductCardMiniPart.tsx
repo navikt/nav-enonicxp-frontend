@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { CardV2 } from 'components/_common/cardV2/MiniCardV2';
+import { MiniCardV2 } from 'components/_common/cardV2/MiniCardV2';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
@@ -28,5 +28,5 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    return <CardV2></CardV2>;
+    return <MiniCardV2></MiniCardV2>;
 };
