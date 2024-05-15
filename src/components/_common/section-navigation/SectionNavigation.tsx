@@ -4,21 +4,13 @@ import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { AnalyticsEvents } from 'utils/amplitude';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
-
-import styles from './SectionNavigation.module.scss';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
     contentRegion?: RegionProps<'content'>;
-};
-
-type Anchor = {
-    anchorId: string;
-    title: string;
-    isPartRelatedSituations?: boolean;
 };
 
 const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
@@ -29,14 +21,14 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     const getStringPart = translator('related', language);
     const defaultTitle = getStringPart('otherOffers');
 
-    return region.components.reduce<Anchor[]>((acc, component) => {
+    return region.components.reduce<AnchorLink[]>((acc, component) => {
         if (component.type !== ComponentType.Part) {
             return acc;
         }
 
         if (component.descriptor === PartType.Header && component.config?.titleTag === 'h3') {
             const { anchorId, title } = component.config;
-            return anchorId && title ? [...acc, { anchorId, title }] : acc;
+            return anchorId && title ? [...acc, { anchorId, linkText: title }] : acc;
         }
 
         if (component.descriptor === PartType.RelatedSituations) {
@@ -45,7 +37,7 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
                 ...acc,
                 {
                     anchorId: getAnchorId(actualTitle),
-                    title: actualTitle,
+                    linkText: actualTitle,
                     isPartRelatedSituations: true,
                 },
             ];
@@ -69,23 +61,11 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         return null;
     }
 
-    const getLabels = translator('sectionNavigation', language);
-
     return (
-        <ul aria-label={getLabels('navigationLabel')} className={styles.sectionNavigation}>
-            {allAnchors.map((anchor) => (
-                <li key={anchor.anchorId}>
-                    <LenkeInline
-                        href={`#${anchor.anchorId}`}
-                        analyticsEvent={AnalyticsEvents.NAVIGATION}
-                        analyticsLinkGroup={'Innhold'}
-                        analyticsComponent={'Hopp til underkapittel'}
-                        analyticsLabel={anchor.title}
-                    >
-                        {anchor.title}
-                    </LenkeInline>
-                </li>
-            ))}
-        </ul>
+        <PageNavigationMenu
+            anchorLinks={allAnchors}
+            analyticsComponent="Hopp til underkapittel"
+            title="I dette kapittelet" //TODO fiks språkversjonering. Antar at man ikke ønsker at denne skal kunne endres redaksjonelt? Samme med "Innhold på siden" i PageNavigationMenu.tsx?
+        />
     );
 };

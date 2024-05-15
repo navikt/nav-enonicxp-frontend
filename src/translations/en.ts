@@ -311,9 +311,6 @@ export const translationsBundleEn: PartialTranslations = {
         minutes: 'min',
         error: 'An error occurred while loading the video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Jump to sub section',
-    },
     audience: {
         person: 'individuals',
         employer: 'employers',
