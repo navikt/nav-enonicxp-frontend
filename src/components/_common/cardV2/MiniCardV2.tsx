@@ -31,7 +31,7 @@ export const MiniCardV2 = (props: MiniKortProps) => {
                 {/* TODO: fiks hardkodet kategori-tekst. Er det gjennomtenkt hvor dette hentes fra og hva teksten skal være? */}
                 <BodyShort size="medium">{props.link.text}</BodyShort>
             </div>
-            <ArrowRightIcon fontSize="1.5rem" />
+            <ArrowRightIcon className={style.arrow} fontSize="1.25rem" />
         </LenkeBase>
     );
 };

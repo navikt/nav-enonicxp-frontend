@@ -9,9 +9,17 @@
     border-radius: 0.5rem;
     border-style: solid;
     border-color: rgb(203 213 225);
+
+    &:hover .arrow {
+        transform: translateX(0.25rem);
+    }
 }
 
 .text {
     display: flex;
     flex-direction: column;
+}
+
+.arrow {
+    transition: transform 0.2s;
 }
