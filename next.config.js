@@ -139,7 +139,8 @@ const config = {
     ],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
-    assetPrefix: process.env.ASSET_PREFIX,
+    // Setting assets prefix breaks HMR. However we shouldn't need this in dev mode anyway.
+    assetPrefix: process.env.NODE_ENV === 'developement' ? undefined : process.env.ASSET_PREFIX,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
