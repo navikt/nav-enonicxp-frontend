@@ -1,33 +1,39 @@
 .accordion {
-    margin-bottom: var(--a-spacing-7);
+    margin-top: var(--a-spacing-7);
 }
 
 .item {
-    border-top: 1px solid transparent;
+    border-top: 1px solid var(--a-gray-200);
+    padding: 0 0.75rem;
 
-    &:not(:first-child) {
-        border-top: 1px solid var(--a-gray-200);
+    &:last-of-type {
+        border-bottom: 1px solid var(--a-gray-200);
     }
 
-    &:hover {
+    // We want the gray borders in top and below (actually the border top of the next item)
+    // to disappear when hovering the header. However, we don't want the lower border
+    // (again, actually the border top of the next item) to disappear when the panel
+    // is actually expanded.
+    &:has(:global(.navds-accordion__header):hover) {
         border-top: 1px solid transparent;
+    }
+
+    &:has(:global(.navds-accordion__header):hover) {
+        &:not(:global(.navds-accordion__item--open)) {
+            & + .item {
+                border-top: 1px solid transparent;
+            }
+
+            &:last-of-type {
+                border-bottom: 1px solid transparent;
+            }
+        }
     }
 
     &:global(.navds-accordion__item--open) {
-        box-shadow: 0 0 0;
-        border-top: 1px solid transparent;
-
+        box-shadow: 0 0 0 0;
         .header {
-            background-color: var(--a-gray-50);
-            border-top: 1px solid transparent;
-
-            &:not(:focus) {
-                box-shadow: 0 0 0;
-            }
-
-            :global(.navds-accordion__icon-wrapper) {
-                background-color: var(--a-white);
-            }
+            box-shadow: 0 0 0 0;
         }
     }
 }
@@ -67,6 +73,5 @@
 }
 
 .content {
-    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0
-        calc(var(--a-spacing-3) * -1);
+    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0 calc(var(--a-spacing-3) * -1);
 }
