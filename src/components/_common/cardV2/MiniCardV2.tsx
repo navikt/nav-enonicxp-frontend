@@ -19,11 +19,11 @@ export const MiniCardV2 = (props: MiniKortProps) => (
     <LenkeBase
         className={style.container}
         href={props.link.url}
-        // {...analyticsProps}
+        // {...analyticsProps} //TODO
     >
         <div className={style.text}>
             <BodyShort size="medium">HELSE OG SYKDOM</BodyShort>
-            <BodyShort size="medium"> Har blitt sykmeldt</BodyShort>
+            <BodyShort size="medium">{props.link.text}</BodyShort>
         </div>
         <ArrowRightIcon fontSize="1.5rem" />
     </LenkeBase>
