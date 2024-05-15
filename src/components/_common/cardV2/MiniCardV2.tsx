@@ -13,7 +13,7 @@ export const CardV2 = () => (
     >
         <div className={style.container}>
             <div className={style.text}>
-                <BodyShort size="medium">HELSE OG SYKDOM (default, 18px)</BodyShort>
+                <BodyShort size="medium">HELSE OG SYKDOM</BodyShort>
                 Har blitt sykmeldt
             </div>
             <ArrowRightIcon fontSize="1.5rem" />
