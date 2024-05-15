@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { SectionNavigation } from 'components/_common/section-navigation/SectionNavigation';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { Header } from 'components/_common/headers/Header';
@@ -10,7 +10,8 @@ import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 
-import style from './SectionWithHeaderLayout.module.scss';
+import styleV1 from './SectionWithHeaderLayout.module.scss';
+import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
 
@@ -23,6 +24,15 @@ type Props = {
     pageProps: ContentProps;
     layoutProps: SectionWithHeaderProps;
 };
+
+const templateV2 = new Set([
+    ContentType.ProductPage,
+    ContentType.GenericPage,
+    ContentType.ThemedArticlePage,
+    ContentType.CurrentTopicPage,
+    ContentType.GuidePage,
+    ContentType.ToolsPage,
+]);
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
@@ -44,6 +54,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     // Also make sure we always region if there are already components in it.
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
+
+    const style = templateV2.has(pageProps.type) ? styleV2 : styleV1;
 
     return (
         <LayoutContainer
