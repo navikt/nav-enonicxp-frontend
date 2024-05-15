@@ -10,12 +10,17 @@
     border-style: solid;
     border-color: rgb(203 213 225);
 
+    text-decoration: none;
+
     &:hover .arrow {
         transform: translateX(0.25rem);
     }
+    &:hover .linkText {
+        text-decoration: underline;
+    }
 }
 
-.text {
+.textContainer {
     display: flex;
     flex-direction: column;
 }
