@@ -25,7 +25,7 @@ export const AlternativeAudiencePart = ({
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;
     }
 
-    const { alternativeAudience, title } = data;
+    const { alternativeAudience } = data;
     if (!alternativeAudience) {
         return (
             <EditorHelp
@@ -37,11 +37,5 @@ export const AlternativeAudiencePart = ({
         );
     }
 
-    return (
-        <AlternativeAudience
-            alternativeAudience={alternativeAudience}
-            productName={title || displayName}
-            showProductName={config.showProductName}
-        />
-    );
+    return <AlternativeAudience />;
 };
