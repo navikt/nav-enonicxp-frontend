@@ -16,5 +16,5 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
 
     const props = getCardProps(targetPage, pageContext);
 
-    return props && <MiniCardV2></MiniCardV2>;
+    return props && <MiniCardV2 {...props}/>;
 };
