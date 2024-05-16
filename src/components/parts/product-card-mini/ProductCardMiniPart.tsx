@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { MiniCard } from 'components/_common/card/MiniCard';
+import { MiniCardV2 } from 'components/_common/cardV2/MiniCardV2';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
@@ -20,7 +20,7 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
         );
     }
 
-    const { targetPage, header, ingressOverride } = config;
+    const { targetPage, ingressOverride } = config;
 
     const props = getCardProps(targetPage, pageConfig, ingressOverride);
 
@@ -28,5 +28,5 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    return <MiniCard {...props} header={header} />;
+    return <MiniCardV2 {...props} />;
 };
