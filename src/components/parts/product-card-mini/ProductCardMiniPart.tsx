@@ -24,9 +24,6 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
 
     const props = getCardProps(targetPage, pageConfig, ingressOverride);
 
-    console.log('props: ', props);
-    console.log('config: ', config);
-
     if (!props) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
