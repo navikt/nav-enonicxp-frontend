@@ -97,6 +97,9 @@ export const translationsBundleNb = {
     linkPanels: {
         label: 'Valgpaneler',
     },
+    linkList: {
+        label: 'Liste av lenker',
+    },
     filteredContent: {
         noFiltersSelected: 'Ingen filtre er valgt, så alt innhold vises.',
         filtersSelected: 'Vi har fjernet innhold som ikke er relevant i situasjonen din.',

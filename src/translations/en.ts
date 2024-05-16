@@ -73,7 +73,12 @@ export const translationsBundleEn: PartialTranslations = {
         niceToKnow: 'Nice to know',
         shortcuts: 'Shortcuts',
     },
-    linkPanels: { label: 'Link panels' },
+    linkPanels: {
+        label: 'Link panels'
+    },
+    linkList: {
+        label: 'List of links',
+    },
     filteredContent: {
         noFiltersSelected: 'No filters are selected. Showing all content.',
         filtersSelected: 'We have hidden content not relevant for your situation.',
