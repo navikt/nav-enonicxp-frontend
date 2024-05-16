@@ -20,7 +20,7 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
         );
     }
 
-    const { targetPage, header, ingressOverride } = config;
+    const { targetPage, ingressOverride } = config;
 
     const props = getCardProps(targetPage, pageConfig, ingressOverride);
 
