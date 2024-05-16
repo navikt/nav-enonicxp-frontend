@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+
+    border-width: 1px;
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-color: rgb(203 213 225);
+
+    text-decoration: none;
+
+    &:hover {
+        background-color: rgba(
+            243,
+            252,
+            245,
+            0.75
+        ); //TODO ulike farger for ulike kategorier? Detaljene i dette er visstnok ikk helt landet enda
+        border-color: rgba(6, 137, 58, 0.5);
+
+        .arrow {
+            transform: translateX(0.25rem);
+        }
+
+        .linkText {
+            text-decoration: underline;
+        }
+    }
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.categoryText,
+.arrow {
+    color: var(--a-text-default);
+    opacity: 0.7;
+}
+
+.arrow {
+    transition: transform 0.2s;
+}
