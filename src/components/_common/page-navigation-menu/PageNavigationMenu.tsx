@@ -30,7 +30,7 @@ export const PageNavigationMenu = ({
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
 
-            <div className={style.wrapper}>
+            <div className={style.pageNavigationMenu}>
                 <Heading level="2" size="small" spacing id={headingId}>
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
