@@ -3,11 +3,11 @@
 }
 
 .item {
-    border-top: 1px solid var(--a-gray-200);
+    border-top: 1px solid var(--a-gray-300);
     padding: 0 0.75rem;
 
     &:last-of-type {
-        border-bottom: 1px solid var(--a-gray-200);
+        border-bottom: 1px solid var(--a-gray-300);
     }
 
     // We want the gray borders in top and below (actually the border top of the next item)
