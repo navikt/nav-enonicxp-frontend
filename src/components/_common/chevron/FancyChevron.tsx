@@ -25,7 +25,7 @@ export const FancyChevron = ({ color, scale, className }: Props) => {
                 <div className={style.line5} />
                 <div className={classNames(style.line6, style.colorLine)} />
                 <div className={style.circle} />
-                <StaticImage imageData={chevron} alt={''} className={style.chevron} />
+                <StaticImage imageData={chevron} className={style.chevron} />
             </div>
         </div>
     );

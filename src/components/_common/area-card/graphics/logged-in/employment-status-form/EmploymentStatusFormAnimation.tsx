@@ -9,12 +9,12 @@ import style from './EmploymentStatusFormAnimation.module.scss';
 export const EmploymentStatusFormAnimation = () => {
     return (
         <>
-            <StaticImage imageData={shapes} className={style.shapes} alt="" />
+            <StaticImage imageData={shapes} className={style.shapes} />
             <div className={style.letterPartBlue} />
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlueTwo} />
             <div className={style.mask} />
-            <StaticImage imageData={letter} className={style.letter} alt="" />
+            <StaticImage imageData={letter} className={style.letter} />
         </>
     );
 };

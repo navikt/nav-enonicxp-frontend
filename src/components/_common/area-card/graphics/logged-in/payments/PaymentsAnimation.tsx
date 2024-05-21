@@ -10,10 +10,10 @@ import style from './PaymentsAnimation.module.scss';
 export const PaymentsAnimation = () => {
     return (
         <>
-            <StaticImage imageData={shapes} className={style.shapes} alt="" />
-            <StaticImage imageData={letterU} className={style.letterU} alt="" />
+            <StaticImage imageData={shapes} className={style.shapes} />
+            <StaticImage imageData={letterU} className={style.letterU} />
             <div className={style.mask} />
-            <StaticImage imageData={wallet} className={style.wallet} alt="" />
+            <StaticImage imageData={wallet} className={style.wallet} />
         </>
     );
 };

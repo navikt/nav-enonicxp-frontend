@@ -59,7 +59,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 icon={
                     <div className={style.posterWrapper}>
                         {imageUrl && (
-                            <NextImage className={style.previewImage} src={imageUrl} alt={''} />
+                            <NextImage className={style.previewImage} src={imageUrl} alt="" />
                         )}
                         <div className={style.playBadge}>
                             {playerState === 'loading' ? (
@@ -67,8 +67,9 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                             ) : (
                                 <svg
                                     className={style.playArrow}
-                                    focusable={'false'}
-                                    aria-hidden={'true'}
+                                    focusable="false"
+                                    aria-hidden="true"
+                                    role="img"
                                     viewBox={'0 0 22 26'}
                                 >
                                     <path fill={'#fff'} d={'M22 13 0 26V0Z'} />
