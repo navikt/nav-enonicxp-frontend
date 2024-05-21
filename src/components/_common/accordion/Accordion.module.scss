@@ -1,33 +1,39 @@
 .accordion {
-    margin-bottom: var(--a-spacing-7);
+    margin-top: var(--a-spacing-7);
 }
 
 .item {
-    border-top: 1px solid transparent;
+    border-top: 1px solid var(--a-gray-200);
+    padding: 0 0.75rem;
 
-    &:not(:first-child) {
-        border-top: 1px solid var(--a-gray-200);
+    &:last-of-type {
+        border-bottom: 1px solid var(--a-gray-200);
     }
 
-    &:hover {
+    // We want the gray borders in top and below (actually the border top of the next item)
+    // to disappear when hovering the header. However, we don't want the lower border
+    // (again, actually the border top of the next item) to disappear when the panel
+    // is actually expanded.
+    &:has(:global(.navds-accordion__header):hover) {
         border-top: 1px solid transparent;
+    }
+
+    &:has(:global(.navds-accordion__header):hover) {
+        &:not(:global(.navds-accordion__item--open)) {
+            & + .item {
+                border-top: 1px solid transparent;
+            }
+
+            &:last-of-type {
+                border-bottom: 1px solid transparent;
+            }
+        }
     }
 
     &:global(.navds-accordion__item--open) {
-        box-shadow: 0 0 0;
-        border-top: 1px solid transparent;
-
+        box-shadow: 0 0 0 0;
         .header {
-            background-color: var(--a-gray-50);
-            border-top: 1px solid transparent;
-
-            &:not(:focus) {
-                box-shadow: 0 0 0;
-            }
-
-            :global(.navds-accordion__icon-wrapper) {
-                background-color: var(--a-white);
-            }
+            box-shadow: 0 0 0 0;
         }
     }
 }
@@ -41,9 +47,10 @@
 
     :global(.navds-accordion__icon-wrapper) {
         background-color: var(--a-surface-action-subtle);
-        border-radius: 8px;
+        border-radius: 9px;
         height: 22px;
         width: 22px;
+        margin-right: var(--a-spacing-1-alt); // Align with content
 
         // Chevron icon
         svg > path {
@@ -56,7 +63,11 @@
         text-decoration: none;
 
         :global(.navds-accordion__icon-wrapper) {
-            background-color: var(--a-white);
+            background-color: var(--a-surface-action);
+        }
+        // Chevron icon
+        svg > path {
+            fill: var(--a-surface-action-subtle);
         }
     }
 }
@@ -67,6 +78,16 @@
 }
 
 .content {
-    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0
-        calc(var(--a-spacing-3) * -1);
+    position: relative;
+    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0 calc(var(--a-spacing-2) * -1);
+
+    &:before {
+        content: '';
+        width: 1px;
+        height: calc(100% - var(--a-spacing-3));
+        border-left: 2px solid var(--a-gray-400);
+        position: absolute;
+        left: 18px;
+        top: 0;
+    }
 }
