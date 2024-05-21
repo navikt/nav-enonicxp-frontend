@@ -9,6 +9,7 @@ import { getNextBuildId, getNextServer } from 'next-utils';
 import { logger } from 'srcCommon/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
+import { websockets } from './websockets';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -83,6 +84,8 @@ nextApp.prepare().then(async () => {
 
         logger.info(`Server started on port ${port}`);
     });
+
+    websockets(expressServer);
 
     const httpTerminator = createHttpTerminator({ server: expressServer });
 
