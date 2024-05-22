@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Accordion } from '@navikt/ds-react';
+import React, { useEffect, useRef, useState, useId } from 'react';
+import { ExpansionCard } from '@navikt/ds-react';
+import { BriefcaseClockIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
@@ -18,6 +19,7 @@ type Props = {
 export const Expandable = ({ title, anchorId, analyticsOriginTag, children, className }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
+    const componentId = useId();
 
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
@@ -76,15 +78,19 @@ export const Expandable = ({ title, anchorId, analyticsOriginTag, children, clas
     }, [anchorId]);
 
     return (
-        <Accordion
+        <ExpansionCard
             id={anchorId}
-            className={classNames(className, style.expandableWrapper)}
+            className={classNames(className, style.expandable)}
             ref={accordionRef}
+            onToggle={toggleExpandCollapse}
+            open={isOpen}
+            aria-labelledby={componentId}
         >
-            <Accordion.Item open={isOpen} className={style.expandable}>
-                <Accordion.Header onClick={toggleExpandCollapse}>{title}</Accordion.Header>
-                <Accordion.Content>{children}</Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+            <ExpansionCard.Header className={style.header} id={componentId}>
+                <BriefcaseClockIcon className={style.headerIcon} />
+                <div className={style.headerTitle}>{title}</div>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content className={style.content}>{children}</ExpansionCard.Content>
+        </ExpansionCard>
     );
 };
