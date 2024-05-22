@@ -50,7 +50,7 @@ const SvgIcon = ({ icon, isEditorView, className }: StaticIconProps) => {
             id={elementId}
             dangerouslySetInnerHTML={{
                 __html: svgData
-                    ? svgData.substring(0, 4) + 'role="img" ' + svgData.substring(4) // Add role="img"
+                    ? svgData.substring(0, 4) + ' role="img" ' + svgData.substring(4) // Add role="img"
                     : '',
             }}
         />
