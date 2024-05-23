@@ -344,9 +344,6 @@ export const translationsBundleNb = {
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Hopp til underseksjoner',
-    },
     audience: {
         person: 'privatpersoner',
         employer: 'arbeidsgivere',

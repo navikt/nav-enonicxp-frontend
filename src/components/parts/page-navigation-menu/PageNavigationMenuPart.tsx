@@ -6,14 +6,12 @@ export type AnchorLink = {
     anchorId: string;
     linkText: string;
     isDupe?: boolean;
+    isPartRelatedSituations?: boolean;
 };
-
-export type PageNavViewStyle = 'sidebar' | 'inContent';
 
 export type PartConfigPageNavigationMenu = {
     title: string;
     anchorLinks: AnchorLink[];
-    viewStyle: PageNavViewStyle;
 };
 
 export const PageNavigationMenuPart = ({
@@ -23,11 +21,5 @@ export const PageNavigationMenuPart = ({
         return null;
     }
 
-    return (
-        <PageNavigationMenu
-            anchorLinks={config.anchorLinks}
-            title={config.title}
-            viewStyle={config.viewStyle || 'inContent'}
-        />
-    );
+    return <PageNavigationMenu anchorLinks={config.anchorLinks} title={config.title} />;
 };
