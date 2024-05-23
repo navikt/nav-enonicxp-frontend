@@ -14,9 +14,17 @@ type Props = {
     analyticsOriginTag?: string;
     className?: string;
     children: React.ReactNode;
+    expandableType?: 'processing_times';
 };
 
-export const Expandable = ({ title, anchorId, analyticsOriginTag, children, className }: Props) => {
+export const Expandable = ({
+    title,
+    anchorId,
+    analyticsOriginTag,
+    children,
+    className,
+    expandableType,
+}: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
     const componentId = useId();
@@ -62,6 +70,13 @@ export const Expandable = ({ title, anchorId, analyticsOriginTag, children, clas
         checkAndOpenPanel();
     };
 
+    const getHeaderIcon = () => {
+        if (expandableType === 'processing_times') {
+            return <BriefcaseClockIcon className={style.headerIcon} />;
+        }
+        return null;
+    };
+
     useEffect(() => {
         window.addEventListener('hashchange', hashChangeHandler);
 
@@ -87,7 +102,7 @@ export const Expandable = ({ title, anchorId, analyticsOriginTag, children, clas
             aria-labelledby={componentId}
         >
             <ExpansionCard.Header className={style.header} id={componentId}>
-                <BriefcaseClockIcon className={style.headerIcon} />
+                {getHeaderIcon()}
                 <div className={style.headerTitle}>{title}</div>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.content}>{children}</ExpansionCard.Content>

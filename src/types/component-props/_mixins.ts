@@ -128,6 +128,7 @@ export type ExpandableMixin = {
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
+    expandableType?: 'processing_times';
 };
 
 export type FiltersMixin = {

@@ -53,10 +53,12 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
         isPagePreview: false,
     };
 
+    const expandableType = config.detailType as unknown as ExpandableMixin['expandableType'];
+
     return (
         <PageContextProvider content={pageContent}>
             <FilteredContent {...config}>
-                <ExpandableComponentWrapper {...config}>
+                <ExpandableComponentWrapper expandableType={expandableType} {...config}>
                     {components.map((component, index) => (
                         <ComponentMapper
                             key={index}
