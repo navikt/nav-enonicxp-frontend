@@ -11,6 +11,7 @@ export const ExpandableComponentWrapper = ({
     expandableTitle,
     expandableAnchorId,
     analyticsOriginTag = '',
+    expandableType,
     children,
 }: Props) => {
     if (!expandable) {
@@ -22,6 +23,7 @@ export const ExpandableComponentWrapper = ({
             title={expandableTitle}
             anchorId={expandableAnchorId}
             analyticsOriginTag={analyticsOriginTag}
+            expandableType={expandableType}
         >
             {children}
         </Expandable>
