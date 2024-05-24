@@ -40,6 +40,8 @@ export const FrontpageCurrentTopicsPart = ({
                         return null;
                     }
 
+                    const displayDate = item.publish?.first ?? item.modifiedTime;
+
                     return (
                         <li key={item._id}>
                             <LinkPanelNavno
@@ -52,7 +54,7 @@ export const FrontpageCurrentTopicsPart = ({
                             >
                                 <span className={style.date}>
                                     {formatDate({
-                                        datetime: item.createdTime,
+                                        datetime: displayDate,
                                         language: language,
                                         short: true,
                                         year: true,
