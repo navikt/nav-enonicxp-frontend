@@ -52,7 +52,7 @@ export const FrontpageCurrentTopicsPart = ({
                             >
                                 <span className={style.date}>
                                     {formatDate({
-                                        datetime: item.modifiedTime,
+                                        datetime: item.createdTime,
                                         language: language,
                                         short: true,
                                         year: true,
