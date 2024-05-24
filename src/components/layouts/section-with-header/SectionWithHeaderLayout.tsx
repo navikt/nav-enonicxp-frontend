@@ -41,7 +41,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
-    const { title, anchorId, icon, border, toggleCopyButton } = config;
+    const { title, anchorId, icon, border } = config;
+    const isTemplateV2 = templateV2.has(pageProps.type);
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
@@ -55,18 +56,22 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
 
-    const style = templateV2.has(pageProps.type) ? styleV2 : styleV1;
+    const style = isTemplateV2 ? styleV2 : styleV1;
 
     return (
         <LayoutContainer
-            className={classNames(style.container, iconImgProps && style.withIcon)}
+            className={classNames(
+                style.container,
+                iconImgProps && style.withIcon,
+                isTemplateV2 && style.topMarker
+            )}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
             id={iconImgProps ? undefined : anchorId}
             tabIndex={-1}
         >
-            {iconImgProps && (
+            {iconImgProps && !isTemplateV2 && (
                 <div
                     className={'icon-container'}
                     id={anchorId} // Ensures anchor links scrolls to the correct position if the icon is rendered

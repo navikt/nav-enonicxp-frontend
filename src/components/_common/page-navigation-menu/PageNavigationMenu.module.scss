@@ -4,7 +4,13 @@
     margin: var(--a-spacing-6) 0;
     padding: 1rem 1.25rem;
     border-radius: 0.5rem;
-    background-color: rgba(230, 240, 255, 0.75);
+    background-color: var(--a-orange-50);
+}
+
+.chapterNavigation {
+    border-top: 5px solid rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .list {
