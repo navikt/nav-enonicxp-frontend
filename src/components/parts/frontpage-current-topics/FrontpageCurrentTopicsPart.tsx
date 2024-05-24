@@ -40,7 +40,7 @@ export const FrontpageCurrentTopicsPart = ({
                         return null;
                     }
 
-                    const displayDate = item.publish?.first || item.modifiedTime;
+                    const displayDate = item.publish?.first ?? item.modifiedTime;
 
                     return (
                         <li key={item._id}>
