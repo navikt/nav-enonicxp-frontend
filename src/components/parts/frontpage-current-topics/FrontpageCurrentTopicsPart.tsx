@@ -28,8 +28,6 @@ export const FrontpageCurrentTopicsPart = ({
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
 
-    console.log(contentList.data.sectionContents);
-
     return (
         <div className={style.currentTopics}>
             <Header size={'large'} level={'2'} justify={'left'} className={style.header}>
