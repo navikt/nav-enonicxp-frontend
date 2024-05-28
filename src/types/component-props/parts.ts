@@ -2,7 +2,6 @@ import React from 'react';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
-import { PartConfigAlternativeAudience } from 'components/parts/alternative-audience/AlternativeAudiencePart';
 import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
 import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
@@ -94,7 +93,6 @@ export enum PartLegacyType {
 type PartConfigs = {
     [PartType.Accordion]: PartConfigAccordion;
     [PartType.AlertBox]: PartConfigAlertBox;
-    [PartType.AlternativeAudience]: PartConfigAlternativeAudience;
     [PartType.AreaCard]: PartConfigAreaCard;
     [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
     [PartType.Button]: PartConfigButton;
