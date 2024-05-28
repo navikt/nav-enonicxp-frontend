@@ -12,13 +12,7 @@ const isValidContentType = createTypeGuard([
     ContentType.GuidePage,
 ] as const);
 
-export type PartConfigAlternativeAudience = {
-    showProductName: boolean;
-};
-
-export const AlternativeAudiencePart = ({
-    config,
-}: PartComponentProps<PartType.AlternativeAudience>) => {
+export const AlternativeAudiencePart = ({}: PartComponentProps<PartType.AlternativeAudience>) => {
     const { data, type, displayName } = usePageContentProps();
 
     if (!isValidContentType(type)) {
