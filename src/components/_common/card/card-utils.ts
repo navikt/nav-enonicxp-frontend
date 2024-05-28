@@ -86,6 +86,7 @@ export const getCardProps = (
 
     const categories = getCardCategory(targetContent, language);
     const categoryString = joinWithConjunction(categories, language);
+    const audienceTranslations = translator('audience', language);
     const description = ingressOverride || ingress;
     const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 

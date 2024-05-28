@@ -1,5 +1,5 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { MiniCard } from 'components/_common/card/MiniCard';
+import { MiniCardV1 } from 'components/_common/card/MiniCard';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 
@@ -26,7 +26,7 @@ export const FrontPageCard = ({
     };
 
     return (
-        <MiniCard
+        <MiniCardV1
             illustration={illustration}
             link={link}
             type={type}

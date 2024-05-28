@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { MiniCardV2 } from 'components/_common/cardV2/MiniCardV2';
+import { MiniCardV2 } from 'components/_common/card/MiniCardV2';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 

@@ -22,7 +22,7 @@ export type MiniKortProps = {
     withFallbackIllustration?: boolean;
 };
 
-export const MiniCard = (props: MiniKortProps) => {
+export const MiniCardV1 = (props: MiniKortProps) => {
     const {
         link,
         illustration,
