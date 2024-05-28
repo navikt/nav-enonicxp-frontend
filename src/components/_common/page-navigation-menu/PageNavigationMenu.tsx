@@ -3,6 +3,7 @@ import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
@@ -15,12 +16,14 @@ type Props = {
     anchorLinks?: AnchorLink[];
     analyticsComponent?: string;
     title: string;
+    isChapterNavigation?: boolean;
 };
 
 export const PageNavigationMenu = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
     title,
+    isChapterNavigation,
 }: Props) => {
     const links = getValidLinks(anchorLinks);
 
@@ -30,7 +33,12 @@ export const PageNavigationMenu = ({
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
 
-            <div className={style.pageNavigationMenu}>
+            <div
+                className={classNames(
+                    style.pageNavigationMenu,
+                    isChapterNavigation && style.chapterNavigation
+                )}
+            >
                 <Heading level="2" size="small" spacing id={headingId}>
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
