@@ -28,7 +28,7 @@ export const ProviderCardPart = ({ config }: PartComponentProps<PartType.Provide
             link={linkProps}
             type={CardType.Provider}
             description={description}
-            category={endnote}
+            tagline={endnote}
         />
     );
 };

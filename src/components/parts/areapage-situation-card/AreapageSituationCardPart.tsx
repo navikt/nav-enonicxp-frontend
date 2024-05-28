@@ -40,7 +40,7 @@ export const AreapageSituationCardPart = ({
                     {' er skjult på denne siden'}
                 </span>
             )}
-            <LargeCard {...cardProps} category={getSituationLabel('person')} />
+            <LargeCard {...cardProps} tagline={getSituationLabel('person')} />
         </div>
     );
 };

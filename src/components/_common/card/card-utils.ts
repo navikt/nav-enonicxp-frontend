@@ -17,7 +17,7 @@ export type CardProps = {
     type: CardType;
     link: LinkProps;
     description?: string;
-    category: string;
+    tagline?: string;
     illustration?: AnimatedIconsProps;
     preferStaticIllustration?: boolean;
 };
@@ -32,7 +32,7 @@ export const cardTypeMap = {
     [ContentType.GenericPage]: CardType.Generic,
 };
 
-const getCardCategory = (content: CardTargetProps, language: Language): string[] => {
+const getCardTagline = (content: CardTargetProps, language: Language): string => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
     const selectedAudience = audience && getAudience(audience);
@@ -43,20 +43,20 @@ const getCardCategory = (content: CardTargetProps, language: Language): string[]
             taxonomyStrings.push(customCategory);
         }
 
-        return taxonomyStrings;
+        return joinWithConjunction(taxonomyStrings, language);
     }
 
     const productAudienceTranslations = translator('products', language);
 
     if (selectedAudience === Audience.EMPLOYER) {
-        return [productAudienceTranslations('employer')];
+        return productAudienceTranslations('employer');
     }
 
     if (selectedAudience === Audience.PROVIDER) {
-        return [productAudienceTranslations('provider')];
+        return productAudienceTranslations('provider');
     }
 
-    return [];
+    return '';
 };
 
 export const getCardProps = (
@@ -84,8 +84,7 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const categories = getCardCategory(targetContent, language);
-    const categoryString = joinWithConjunction(categories, language);
+    const tagline = getCardTagline(targetContent, language);
     const description = ingressOverride || ingress;
     const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 
@@ -93,8 +92,8 @@ export const getCardProps = (
         type: cardType,
         link,
         description,
-        category: categoryString,
         illustration,
+        tagline,
         preferStaticIllustration,
     };
 };
