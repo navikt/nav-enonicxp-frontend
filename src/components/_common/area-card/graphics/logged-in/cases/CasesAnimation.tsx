@@ -10,10 +10,10 @@ import style from './CasesAnimation.module.scss';
 export const CasesAnimation = () => {
     return (
         <>
-            <StaticImage imageData={shapes} className={style.shapes} alt="" />
-            <StaticImage imageData={letterS} className={style.letterS} alt="" />
+            <StaticImage imageData={shapes} className={style.shapes} />
+            <StaticImage imageData={letterS} className={style.letterS} />
             <div className={style.mask} />
-            <StaticImage imageData={document} className={style.document} alt="" />
+            <StaticImage imageData={document} className={style.document} />
         </>
     );
 };

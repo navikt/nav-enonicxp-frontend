@@ -9,11 +9,11 @@ import style from './HealthAnimation.module.scss';
 export const HealthAnimation = () => {
     return (
         <>
-            <StaticImage imageData={pill} className={style.pill} alt="" />
+            <StaticImage imageData={pill} className={style.pill} />
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage imageData={stethoscope} className={style.stethoscope} alt="" />
+            <StaticImage imageData={stethoscope} className={style.stethoscope} />
         </>
     );
 };

@@ -11,11 +11,11 @@ import style from './SocialCounsellingAnimation.module.scss';
 export const SocialCounsellingAnimation = () => {
     return (
         <>
-            <StaticImage imageData={compass} className={style.compass} alt="" />
-            <StaticImage imageData={letterS} className={style.letterS} alt="" />
+            <StaticImage imageData={compass} className={style.compass} />
+            <StaticImage imageData={letterS} className={style.letterS} />
             <div className={style.mask} />
-            <StaticImage imageData={heart} className={style.heart} alt="" />
-            <StaticImage imageData={hand} className={style.hand} alt="" />
+            <StaticImage imageData={heart} className={style.heart} />
+            <StaticImage imageData={hand} className={style.hand} />
         </>
     );
 };

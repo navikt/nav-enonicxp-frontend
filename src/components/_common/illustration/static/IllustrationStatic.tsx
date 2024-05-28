@@ -1,9 +1,9 @@
 import React, { useId } from 'react';
 import { AnimatedIcon, AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { usePageContentProps } from 'store/pageContext';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from 'components/_common/image/NextImage';
-import { usePageContentProps } from 'store/pageContext';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
@@ -48,13 +48,17 @@ const SvgIcon = ({ icon, isEditorView, className }: StaticIconProps) => {
         <span
             className={className}
             id={elementId}
-            dangerouslySetInnerHTML={{ __html: svgData || '' }}
+            dangerouslySetInnerHTML={{
+                __html: svgData
+                    ? svgData.substring(0, 4) + ' role="img"' + svgData.substring(4) // Add role="img"
+                    : '',
+            }}
         />
     );
 };
 
 const StaticIcon = (props: StaticIconProps) => {
-    const { icon, isEditorView, className } = props;
+    const { icon, className } = props;
     const fullClassName = classNames(styleStatic.icon, className);
 
     // We inline svg data into the html to allow us to easily style it with CSS
@@ -65,7 +69,7 @@ const StaticIcon = (props: StaticIconProps) => {
     // Other image formats are treated as a regular img
     return (
         <span className={fullClassName}>
-            <XpImage imageProps={icon} alt={''} />
+            <XpImage imageProps={icon} />
         </span>
     );
 };

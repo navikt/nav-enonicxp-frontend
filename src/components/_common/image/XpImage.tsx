@@ -6,7 +6,7 @@ import { NextImage, NextImageProps } from './NextImage';
 
 type Props = {
     imageProps: XpImageProps;
-    alt: string;
+    alt?: string;
 } & React.ImgHTMLAttributes<HTMLImageElement> &
     NextImageProps;
 
@@ -18,5 +18,5 @@ export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
         return null;
     }
 
-    return <NextImage {...rest} src={imageUrl} alt={''} />;
+    return <NextImage {...rest} src={imageUrl} alt={alt || ''} />;
 };
