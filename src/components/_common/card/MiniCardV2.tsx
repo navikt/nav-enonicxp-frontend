@@ -8,32 +8,30 @@ import { CardSize, CardType } from 'types/card';
 
 import style from './MiniCardV2.module.scss';
 
-export type MiniKortProps = {
+export type MiniCardProps = {
     link: LinkProps;
     type: CardType;
-    header?: string;
-    className?: string;
-    preferStaticIllustration?: boolean;
-    withFallbackIllustration?: boolean;
+    tagline?: string;
 };
 
-export const MiniCardV2 = (props: MiniKortProps) => {
+export const MiniCardV2 = ({ link, type, tagline }: MiniCardProps) => {
     const { analyticsProps } = useCard({
-        type: props.type,
+        type,
         size: CardSize.Mini,
-        link: props.link,
+        link,
     });
 
     return (
-        <LenkeBase className={style.container} href={props.link.url} {...analyticsProps}>
+        <LenkeBase className={style.container} href={link.url} {...analyticsProps}>
             <div className={style.textContainer}>
-                <BodyShort className={style.categoryText} size="medium">
-                    HELSE OG SYKDOM
-                </BodyShort>
-                {/* TODO: fiks hardkodet kategori-tekst. Er det gjennomtenkt hvor dette hentes fra og hva teksten skal være? */}
                 <BodyShort className={style.linkText} size="medium">
-                    {props.link.text}
+                    {link.text}
                 </BodyShort>
+                {tagline && (
+                    <BodyShort className={style.tagline} size="medium">
+                        {tagline}
+                    </BodyShort>
+                )}
             </div>
             <ArrowRightIcon className={style.arrow} fontSize="1.25rem" />
         </LenkeBase>

@@ -25,7 +25,7 @@ const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
 ]);
 
 type Props = {
-    category?: string;
+    tagline?: string;
     description?: string;
     illustration?: AnimatedIconsProps;
     link: LinkProps;
@@ -34,7 +34,7 @@ type Props = {
 };
 
 export const LargeCard = (props: Props) => {
-    const { link, description, type, category, illustration, preferStaticIllustration } = props;
+    const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
     const { text } = link;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
@@ -78,7 +78,7 @@ export const LargeCard = (props: Props) => {
                     </LenkeBase>
                     <div className={style.textContainer}>
                         <BodyLong className={style.description}>{description}</BodyLong>
-                        <BodyShort className={style.category}>{category}</BodyShort>
+                        <BodyShort className={style.tagline}>{tagline}</BodyShort>
                     </div>
                 </div>
             </div>

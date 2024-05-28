@@ -14,7 +14,13 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
 
     const { targetPage } = config.product_card_mini;
 
-    const props = getCardProps(targetPage, pageContext);
+    const cardProps = getCardProps(targetPage, pageContext);
 
-    return props && <MiniCardV2 {...props} />;
+    if (!cardProps) {
+        return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
+    }
+
+    const { link, type, tagline } = cardProps;
+
+    return <MiniCardV2 link={link} type={type} tagline={tagline} />;
 };

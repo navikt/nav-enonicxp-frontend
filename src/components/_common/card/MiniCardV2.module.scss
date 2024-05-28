@@ -15,13 +15,8 @@
     text-decoration: none;
 
     &:hover {
-        background-color: rgba(
-            243,
-            252,
-            245,
-            0.75
-        ); //TODO ulike farger for ulike kategorier? Detaljene i dette er visstnok ikk helt landet enda
-        border-color: rgba(6, 137, 58, 0.5);
+        background-color: #ecf3fe;
+        border-color: #cbd4e1;
 
         .arrow {
             transform: translateX(0.25rem);
@@ -29,6 +24,8 @@
 
         .linkText {
             text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 0.15625rem;
         }
     }
 }
@@ -38,10 +35,21 @@
     flex-direction: column;
 }
 
-.categoryText,
+.linkText {
+    font-size: var(--a-font-size-xlarge);
+}
+
+.tagline,
 .arrow {
     color: var(--a-text-default);
     opacity: 0.7;
+}
+
+.tagline {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.025rem;
+    font-size: var(--a-font-size-xlarge);
+    font-weight: var(--a-font-weight-bold);
 }
 
 .arrow {

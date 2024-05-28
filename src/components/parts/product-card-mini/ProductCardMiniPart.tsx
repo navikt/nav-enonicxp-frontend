@@ -22,11 +22,13 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
 
     const { targetPage, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, pageConfig, ingressOverride);
+    const cardProps = getCardProps(targetPage, pageConfig, ingressOverride);
 
-    if (!props) {
+    if (!cardProps) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    return <MiniCardV2 {...props} />;
+    const { link, type, tagline } = cardProps;
+
+    return <MiniCardV2 link={link} type={type} tagline={tagline} />;
 };

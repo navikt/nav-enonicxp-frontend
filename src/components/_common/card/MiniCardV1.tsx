@@ -10,7 +10,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
 import sharedStyle from './Card.module.scss';
-import style from './MiniCard.module.scss';
+import style from './MiniCardV1.module.scss';
 
 export type MiniKortProps = {
     illustration?: AnimatedIconsProps;

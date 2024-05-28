@@ -1,5 +1,5 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { MiniCardV1 } from 'components/_common/card/MiniCard';
+import { MiniCardV1 } from 'components/_common/card/MiniCardV1';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 
