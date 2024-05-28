@@ -52,7 +52,6 @@ import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
-import { AlternativeAudiencePart } from './alternative-audience/AlternativeAudiencePart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
@@ -80,8 +79,6 @@ const PartComponentMapper = ({
             return <AccordionPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;
-        case PartType.AlternativeAudience:
-            return <AlternativeAudiencePart {...partProps} />;
         case PartType.AreaCard:
             return <AreaCardPart {...partProps} />;
         case PartType.AreapageSituationCard:

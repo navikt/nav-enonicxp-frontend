@@ -18,39 +18,6 @@ type AudienceLink = {
     url: string;
 };
 
-export const AlternativeAudience = () => {
-    const { data, language, displayName } = usePageContentProps<ProductPageProps>();
-    const { alternativeAudience } = data;
-
-    if (!alternativeAudience) {
-        return null;
-    }
-
-    const getRelatedString = translator('related', language);
-
-    const audienceLinks = buildAudienceLinks(alternativeAudience, language);
-
-    return (
-        <div className={style.alternativeAudience}>
-            <BodyLong>
-                {getRelatedString('relatedAudience').replace('{name}', displayName.toLowerCase())}{' '}
-                {audienceLinks.map((link, index) => (
-                    <Fragment key={index}>
-                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
-                            {link.title}
-                        </LenkeInline>
-                        {getConjunction({
-                            index,
-                            length: audienceLinks.length,
-                            language,
-                        })}
-                    </Fragment>
-                ))}
-            </BodyLong>
-        </div>
-    );
-};
-
 const buildAudienceLinks = (
     alternativeAudience: AlternativeAudienceType,
     language: Language
@@ -94,4 +61,41 @@ const buildAudienceLinks = (
     }
 
     return links;
+};
+
+export const AlternativeAudience = () => {
+    const { data, language, displayName, page } = usePageContentProps<ProductPageProps>();
+    const { config } = page;
+    const { showProductName } = config;
+    const { alternativeAudience } = data;
+
+    if (!alternativeAudience) {
+        return null;
+    }
+
+    const getStringPart = translator('stringParts', language);
+    const getRelatedString = translator('related', language);
+
+    const productName = showProductName ? displayName : getStringPart('this');
+    const audienceLinks = buildAudienceLinks(alternativeAudience, language);
+
+    return (
+        <div className={style.alternativeAudience}>
+            <BodyLong>
+                {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
+                {audienceLinks.map((link, index) => (
+                    <Fragment key={index}>
+                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
+                            {link.title}
+                        </LenkeInline>
+                        {getConjunction({
+                            index,
+                            length: audienceLinks.length,
+                            language,
+                        })}
+                    </Fragment>
+                ))}
+            </BodyLong>
+        </div>
+    );
 };

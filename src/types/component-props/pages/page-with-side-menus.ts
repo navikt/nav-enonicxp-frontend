@@ -18,5 +18,6 @@ export interface PageWithSideMenusProps extends LayoutBaseProps {
         leftMenuHeader: string;
         showInternalNav: boolean;
         anchorLinks: AnchorLink[];
+        showProductName: boolean;
     };
 }
