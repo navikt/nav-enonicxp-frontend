@@ -3,11 +3,11 @@ import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
-import { classNames } from 'utils/classnames';
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
     anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);

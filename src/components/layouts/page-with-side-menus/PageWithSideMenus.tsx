@@ -4,10 +4,10 @@ import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-si
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 
 import styles from './PageWithSideMenus.module.scss';
-import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 
 type Props = {
     pageProps: ContentProps;
