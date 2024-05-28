@@ -85,7 +85,6 @@ export const getCardProps = (
     };
 
     const tagline = getCardTagline(targetContent, language);
-    const audienceTranslations = translator('audience', language);
     const description = ingressOverride || ingress;
     const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 
