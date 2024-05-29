@@ -10,7 +10,7 @@ import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
 import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
-import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
+import { Icon } from 'components/_common/contact-option/Icon';
 
 import style from './ContactOption.module.scss';
 
@@ -64,53 +64,47 @@ export const CallOption = ({
             : audienceUrls.en;
     };
 
-    const { handlers, isActive } = useHoverAndFocus();
-
     return (
         <div className={style.contactOption}>
-            <LenkeBase
-                href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
-                className={style.link}
-                analyticsEvent={AnalyticsEvents.CALL}
-                analyticsLinkGroup={layoutConfig.title}
-                analyticsComponent={'Kontakt-oss kanal'}
-                {...handlers}
-            >
-                <div className={style.linkContent}>
-                    {hoverFocusIcon({
-                        iconDefault: 'phone.svg',
-                        iconActive: 'phone-filled.svg',
-                        isActive: isActive,
-                        style: style.icon,
-                    })}
-                    <Heading level="3" size="small" className={style.link}>
-                        {title || callTranslations.title}
-                    </Heading>
-                </div>
-            </LenkeBase>
-            {alertText && (
-                <Alert variant="warning" inline className={style.alert}>
-                    {alertText}
-                </Alert>
-            )}
-            <BodyLong className={style.text}>
-                <ParsedHtml
-                    htmlProps={overrideText || ingress || text || callTranslations.ingress}
-                />
-            </BodyLong>
-            {!alertText && regularOpeningHours && specialOpeningHours && (
-                <OpeningInfo
-                    regularOpeningHours={regularOpeningHours}
-                    specialOpeningHours={specialOpeningHours}
-                />
-            )}
-            <LenkeBase
-                analyticsLinkGroup={layoutConfig.title}
-                className={style.moreLink}
-                href={getContactUrl()}
-            >
-                {sharedTranslations.seeMoreOptions}
-            </LenkeBase>
+            <Icon type="phone" />
+            <div className={style.content}>
+                <LenkeBase
+                    href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
+                    className={style.link}
+                    analyticsEvent={AnalyticsEvents.CALL}
+                    analyticsLinkGroup={layoutConfig.title}
+                    analyticsComponent={'Kontakt-oss kanal'}
+                >
+                    <div className={style.linkContent}>
+                        <Heading level="3" size="small" className={style.link}>
+                            {title || callTranslations.title}
+                        </Heading>
+                    </div>
+                </LenkeBase>
+                {alertText && (
+                    <Alert variant="warning" inline className={style.alert}>
+                        {alertText}
+                    </Alert>
+                )}
+                <BodyLong className={style.text}>
+                    <ParsedHtml
+                        htmlProps={overrideText || ingress || text || callTranslations.ingress}
+                    />
+                </BodyLong>
+                {!alertText && regularOpeningHours && specialOpeningHours && (
+                    <OpeningInfo
+                        regularOpeningHours={regularOpeningHours}
+                        specialOpeningHours={specialOpeningHours}
+                    />
+                )}
+                <LenkeBase
+                    analyticsLinkGroup={layoutConfig.title}
+                    className={style.moreLink}
+                    href={getContactUrl()}
+                >
+                    {sharedTranslations.seeMoreOptions}
+                </LenkeBase>
+            </div>
         </div>
     );
 };
