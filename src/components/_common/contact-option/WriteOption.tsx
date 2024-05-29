@@ -21,7 +21,7 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
 
     return (
         <div className={style.contactOption}>
-            <Icon type="write" />
+            <Icon type="message" />
             <div className={style.content}>
                 <LenkeBase
                     href={url || Config.urls.skrivTilOss}
