@@ -10,7 +10,7 @@ type IconProps = {
 export const Icon = ({ type, altText }: IconProps) => {
     return (
         <div className={style.icon}>
-            <img alt={altText || ''} src={`${appOrigin}/gfx/${type}.svg`} />
+            <img alt={altText ?? ''} src={`${appOrigin}/gfx/${type}.svg`} />
         </div>
     );
 };
