@@ -31,6 +31,10 @@ $verticalMargin: 1.75rem;
 }
 
 .bottomContent {
+    position: relative;
     grid-column: 1 / -1;
-    max-width: 80rem;
+
+    :global(.region) {
+        position: relative;
+    }
 }

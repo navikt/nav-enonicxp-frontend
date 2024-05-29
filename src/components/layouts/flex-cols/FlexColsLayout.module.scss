@@ -49,14 +49,25 @@
     @include common.full-width-mixin();
 
     padding-top: 4rem;
-    padding-bottom: 4rem;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
 
     &:last-child {
-        // Compensate for 2rem content app-container bottom padding to
-        // get 4rem distance to dekoratøren
-        margin-bottom: 2rem;
+        margin-bottom: -2rem;
+        background-color: #f0f4f9 !important;
+        --size: 6px;
+        --p: 3px;
+        --R: 6px;
+        mask:
+            radial-gradient(
+                    var(--R) at left 50% top calc(var(--size) + var(--p)),
+                    #000 99%,
+                    #0000 101%
+                )
+                calc(50% - 2 * var(--size)) 0 / calc(4 * var(--size)) 100%,
+            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #0000 99%, #000 101%) left
+                50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
     }
 
     :global(.region__flexcols.region__flexcols) {
