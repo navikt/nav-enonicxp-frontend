@@ -82,7 +82,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 >
                     <XpImage
                         imageProps={iconImgProps}
-                        alt={''}
                         style={{
                             ...(icon.size && {
                                 height: `${icon.size}%`,

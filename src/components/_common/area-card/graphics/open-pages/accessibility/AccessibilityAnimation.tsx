@@ -9,11 +9,11 @@ import style from './AccessibilityAnimation.module.scss';
 export const AccessibilityAnimation = () => {
     return (
         <>
-            <StaticImage imageData={arrow} className={style.arrow} alt="" />
+            <StaticImage imageData={arrow} className={style.arrow} />
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage imageData={dog} className={style.dog} alt="" />
+            <StaticImage imageData={dog} className={style.dog} />
         </>
     );
 };
