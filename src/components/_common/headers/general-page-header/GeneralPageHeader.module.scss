@@ -1,5 +1,37 @@
+@use 'common' as common;
+
 .generalPageHeader {
     display: block;
+}
+
+.illustration {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    margin-left: -8rem;
+
+    :global(.back) {
+        path,
+        rect,
+        circle {
+            fill: rgb(230, 199, 216);
+        }
+    }
+    :global(.front) {
+        path,
+        line,
+        rect,
+        circle {
+            stroke: rgb(153, 24, 94);
+        }
+    }
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+        margin-left: 0;
+    }
 }
 
 .header {
@@ -10,6 +42,7 @@
 .tagline {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
+    margin-top: var(--a-spacing-3);
 }
 
 .ingress {
