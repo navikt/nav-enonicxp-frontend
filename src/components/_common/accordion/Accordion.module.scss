@@ -18,6 +18,16 @@
         border-top: 1px solid transparent;
     }
 
+    :global(.navds-accordion__header-chevron) {
+        transform: rotate(0) !important;
+    }
+
+    &:global(.navds-accordion__item--open) {
+        :global(.navds-accordion__header-chevron) {
+            transform: rotate(-180deg) !important;
+        }
+    }
+
     &:has(:global(.navds-accordion__header):hover) {
         &:not(:global(.navds-accordion__item--open)) {
             & + .item {
@@ -64,6 +74,9 @@
 
         :global(.navds-accordion__icon-wrapper) {
             background-color: var(--a-surface-action);
+        }
+        :global(.navds-accordion__header-chevron) {
+            transform: translateY(0);
         }
         // Chevron icon
         svg > path {
