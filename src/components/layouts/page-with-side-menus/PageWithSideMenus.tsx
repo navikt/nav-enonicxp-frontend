@@ -6,6 +6,7 @@ import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
+import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 
 import styles from './PageWithSideMenus.module.scss';
 
@@ -45,6 +46,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} />
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />
