@@ -8,6 +8,9 @@ import { classNames } from 'utils/classnames';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 import style from './RelatedSituations.module.scss';
+import { MiniCardV2 } from '../card/MiniCardV2';
+import { useCard } from '../card/useCard';
+import { getCardProps } from '../card/card-utils';
 
 type Props = {
     relatedSituations: SituationPageProps[];
@@ -20,7 +23,7 @@ export const getAnchorId = (test: string) => {
 };
 
 export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
-    const { language, editorView } = usePageContentProps();
+    const { language, editorView, page } = usePageContentProps();
 
     const getStringPart = translator('related', language);
     const defaultTitle = getStringPart('otherOffers');
@@ -38,17 +41,22 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                 {description || getStringPart('moreInformation')}
             </BodyLong>
             <ul className={style.situationsList}>
-                {relatedSituations.map((situation) => (
-                    <li key={situation._id}>
-                        <MicroCard
-                            link={{
-                                url: stripXpPathPrefix(situation._path),
-                                text: situation.data.title || situation.displayName,
-                            }}
-                            type={CardType.Situation}
-                        />
-                    </li>
-                ))}
+                {relatedSituations.map((situation) => {
+                    const { tagline } = getCardProps(situation, page?.config) || {};
+
+                    return (
+                        <li key={situation._id}>
+                            <MiniCardV2
+                                link={{
+                                    url: stripXpPathPrefix(situation._path),
+                                    text: situation.data.title || situation.displayName,
+                                }}
+                                type={CardType.Situation}
+                                tagline={tagline}
+                            />
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );
