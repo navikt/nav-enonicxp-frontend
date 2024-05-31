@@ -1,0 +1,47 @@
+.html {
+    word-break: break-word;
+
+    :global(.navds-body-long + .card) {
+        margin-top: -1.2rem;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        float: none;
+        margin-bottom: 1.75rem;
+
+        th,
+        td {
+            font-size: 1.125rem;
+            line-height: 150%;
+            padding: 0.7rem;
+            vertical-align: top;
+        }
+    }
+
+    ul,
+    ol {
+        padding-left: 1.4rem;
+        margin-bottom: 1.75rem;
+        font-size: 1.125rem;
+
+        li::marker {
+            color: rgb(153, 24, 94);
+        }
+
+        li:not(:last-child) {
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    // pull lists upward to text above if any.
+    :global(.navds-body-long + ul),
+    :global(.navds-body-long + ol) {
+        margin-top: -1rem;
+    }
+}
