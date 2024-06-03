@@ -2,6 +2,16 @@
 
 .expandable {
     display: block;
+
+    :global(.navds-expansioncard__header-chevron) {
+        transform: rotate(0) !important;
+    }
+
+    &:global(.navds-expansioncard--open) {
+        :global(.navds-expansioncard__header-chevron) {
+            transform: rotate(180deg) !important;
+        }
+    }
 }
 
 .header {
@@ -36,6 +46,10 @@
 
         :global(.navds-expansioncard__header-button) {
             background-color: transparent;
+        }
+
+        :global(.navds-expansioncard__header-chevron) {
+            transform: translateY(0);
         }
     }
     &:after {
