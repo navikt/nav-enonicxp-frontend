@@ -41,6 +41,12 @@
         font-size: var(--text-fluid-20-22);
     }
 
+    .navds-body-long--small,
+    .navds-body-long--medium,
+    .navds-body-long--large {
+        margin-bottom: var(--a-spacing-9);
+    }
+
     .navds-heading--xsmall {
         font-size: var(--text-fluid-18-20);
     }
