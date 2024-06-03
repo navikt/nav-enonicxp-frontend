@@ -52,5 +52,6 @@ $defaultBgColor: white;
 }
 
 .editorViewBorder {
-    border: 1px dashed gray;
+    outline: 1px gray dashed;
+    outline-offset: 15px;
 }
