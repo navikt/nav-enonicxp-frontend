@@ -64,7 +64,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 style.container,
                 iconImgProps && style.withIcon,
                 isTemplateV2 && style.topMarker,
-                isEditorView && style.editorView
+                isTemplateV2 && isEditorView && style.editorViewBorder
             )}
             pageProps={pageProps}
             layoutProps={layoutProps}

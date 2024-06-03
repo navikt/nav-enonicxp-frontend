@@ -118,12 +118,8 @@ export const FormDetails = ({
             {alerts && alerts.map((alert, index) => <AlertInContext key={index} alert={alert} />)}
             {variations.length > 0 && (
                 <div className={style.variation}>
-                    {variations.map((variation, index) => (
-                        <FormDetailsButton
-                            key={variation.label}
-                            variation={variation}
-                            index={index}
-                        />
+                    {variations.map((variation) => (
+                        <FormDetailsButton key={variation.label} variation={variation} />
                     ))}
                 </div>
             )}
