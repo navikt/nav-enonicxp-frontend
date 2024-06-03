@@ -29,6 +29,8 @@ export const PageNavigationMenu = ({
 
     const headingId = `heading-page-navigation-menu-${useId()}`;
 
+    if (links.length === 0) return null;
+
     return (
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
