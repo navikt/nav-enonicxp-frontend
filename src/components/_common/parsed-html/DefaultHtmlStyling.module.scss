@@ -28,13 +28,11 @@
     ol {
         padding-left: 1.4rem;
         margin-bottom: 1.75rem;
-        font-size: 1.125rem;
 
         li::marker {
             color: rgb(153, 24, 94);
             font-variant-caps: all-small-caps;
             font-weight: 800;
-            font-size: 20px;
         }
 
         li:not(:last-child) {
