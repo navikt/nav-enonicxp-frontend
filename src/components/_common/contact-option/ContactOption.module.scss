@@ -26,6 +26,10 @@
     }
 }
 
+.writeIcon {
+    transform: translateX(2px);
+}
+
 .content {
     display: flex;
     align-self: flex-start;
@@ -61,7 +65,6 @@
     margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
     border-radius: common.$border-radius-base;
 }
-
 
 .text {
     color: black;
