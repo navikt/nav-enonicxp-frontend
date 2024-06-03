@@ -32,6 +32,9 @@
 
         li::marker {
             color: rgb(153, 24, 94);
+            font-variant-caps: all-small-caps;
+            font-weight: 800;
+            font-size: 20px;
         }
 
         li:not(:last-child) {
