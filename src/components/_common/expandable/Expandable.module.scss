@@ -4,7 +4,7 @@
     display: block;
 
     &:global(.navds-expansioncard--open) {
-        :global(.navds-expansioncard__header) {
+        .header {
             position: sticky;
             top: 0;
         }

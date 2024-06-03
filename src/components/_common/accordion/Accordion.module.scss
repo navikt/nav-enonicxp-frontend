@@ -44,12 +44,15 @@
         box-shadow: 0 0 0 0;
         .header {
             box-shadow: 0 0 0 0;
+            position: sticky;
+            top: 0;
         }
     }
 }
 
 .header {
     --__ac-accordion-header-shadow: 0;
+    background-color: var(--a-white);
     border-radius: var(--a-border-radius-large);
     border-top: 1px solid transparent;
     margin: 0 calc(var(--a-spacing-3) * -1);
