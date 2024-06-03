@@ -128,7 +128,7 @@ export type ExpandableMixin = {
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
-    expandableType?: 'processing_times';
+    type?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
 };
 
 export type FiltersMixin = {

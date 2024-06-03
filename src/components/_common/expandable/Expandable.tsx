@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useId } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
-import { BriefcaseClockIcon } from '@navikt/aksel-icons';
+import { BriefcaseClockIcon, BarChartIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
@@ -14,7 +14,7 @@ type Props = {
     analyticsOriginTag?: string;
     className?: string;
     children: React.ReactNode;
-    expandableType?: 'processing_times';
+    expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
 };
 
 export const Expandable = ({
@@ -73,6 +73,15 @@ export const Expandable = ({
     const getHeaderIcon = () => {
         if (expandableType === 'processing_times') {
             return <BriefcaseClockIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'payout_dates') {
+            return <CalendarIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'rates') {
+            return <BarChartIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'documentation_requirements') {
+            return <TasklistIcon className={style.headerIcon} />;
         }
         return null;
     };
