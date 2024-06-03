@@ -28,6 +28,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     const isProductPage = pageProps.type === ContentType.ProductPage;
 
+    const isNewLayoutPage =
+        pageProps.type === ContentType.ProductPage ||
+        pageProps.type === ContentType.GuidePage ||
+        pageProps.type === ContentType.ThemedArticlePage;
+
     return (
         <LayoutContainer
             className={styles.pageWithSideMenus}
@@ -35,8 +40,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                {isProductPage && <GeneralPageHeader pageProps={pageProps} />}
-                {!isProductPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
+                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isProductPage && <AlternativeAudience />}
                 {showInternalNav && (
                     <PageNavigationMenu
