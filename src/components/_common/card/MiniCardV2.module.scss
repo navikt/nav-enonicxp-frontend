@@ -36,7 +36,7 @@
 }
 
 .linkText {
-    font-size: var(--a-font-size-xlarge);
+    font-weight: 600;
 }
 
 .tagline,
@@ -48,8 +48,7 @@
 .tagline {
     font-variant-caps: all-small-caps;
     letter-spacing: 0.025rem;
-    font-size: var(--a-font-size-xlarge);
-    font-weight: var(--a-font-weight-bold);
+    font-weight: 500;
 }
 
 .arrow {
