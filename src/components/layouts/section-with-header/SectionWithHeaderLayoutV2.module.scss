@@ -32,11 +32,6 @@ $defaultBgColor: white;
     }
 }
 
-.editorView {
-    outline: 1px gray dashed;
-    outline-offset: 15px;
-}
-
 .topMarker:before {
     background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
     content: '';
@@ -57,5 +52,6 @@ $defaultBgColor: white;
 }
 
 .editorViewBorder {
-    border: 1px dashed gray;
+    outline: 1px gray dashed;
+    outline-offset: 15px;
 }
