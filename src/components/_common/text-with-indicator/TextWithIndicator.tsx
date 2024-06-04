@@ -1,7 +1,7 @@
 import React from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import style from './TextWithIndicator.module.scss';
-import { BodyShort } from '@navikt/ds-react';
 
 type Props = {
     text: string;
