@@ -51,6 +51,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                                 }}
                                 type={CardType.Situation}
                                 tagline={tagline}
+                                className={style.card}
                             />
                         </li>
                     );

@@ -6,6 +6,7 @@ import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { classNames } from 'utils/classnames';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
@@ -74,7 +75,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                             {isValid && <div className={styles.headerTitle}>{item.title}</div>}
                         </DSAccordion.Header>
                         <DSAccordion.Content className={styles.content}>
-                            <div className={defaultHtml.html}>
+                            <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                                 <ParsedHtml htmlProps={item.html} />
                             </div>
                         </DSAccordion.Content>
