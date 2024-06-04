@@ -6,10 +6,10 @@ import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { classNames } from 'utils/classnames';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
-import { classNames } from 'utils/classnames';
 
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];

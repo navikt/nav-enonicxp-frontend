@@ -26,6 +26,10 @@
         transform: rotate(0) !important;
     }
 
+    :global(.navds-accordion__header-content) {
+        margin-bottom: 0;
+    }
+
     &:global(.navds-accordion__item--open) {
         :global(.navds-accordion__header-chevron) {
             transform: rotate(-180deg) !important;
