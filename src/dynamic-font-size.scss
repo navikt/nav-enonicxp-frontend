@@ -1,14 +1,7 @@
 @use 'common' as common;
 
 :root {
-    --text-fluid--2: clamp(0.75rem, 0.7083rem + 0.2083vi, 0.875rem);
-    --text-fluid--1: clamp(0.875rem, 0.8333rem + 0.2083vi, 1rem);
-    --text-fluid-0: clamp(1.125rem, 1.0833rem + 0.2083vi, 1.25rem);
-    --text-fluid-1: clamp(1.25rem, 1.1667rem + 0.4167vi, 1.5rem);
-    --text-fluid-2: clamp(1.75rem, 1.5833rem + 0.8333vi, 2.25rem);
-    --text-fluid-3: clamp(2rem, 1.625rem + 1.875vi, 3.125rem);
-
-    --text-fluid-12-14: clamp(0.75rem, 0.7083rem + 0.2083vi, 0.875rem);
+  --text-fluid-12-14: clamp(0.75rem, 0.7083rem + 0.2083vi, 0.875rem);
     --text-fluid-14-16: clamp(0.875rem, 0.8333rem + 0.2083vi, 1rem);
     --text-fluid-16-18: clamp(1rem, 0.9583rem + 0.2083vi, 1.125rem);
     --text-fluid-18-20: clamp(1.125rem, 1.0833rem + 0.2083vi, 1.25rem);
