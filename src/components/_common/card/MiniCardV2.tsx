@@ -5,9 +5,9 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { CardSize, CardType } from 'types/card';
+import { classNames } from 'utils/classnames';
 
 import style from './MiniCardV2.module.scss';
-import { classNames } from 'utils/classnames';
 
 export type MiniCardProps = {
     link: LinkProps;
