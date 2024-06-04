@@ -5,79 +5,69 @@
     display: flex;
     width: 100%;
     gap: var(--a-spacing-4);
-}
 
-.icon {
-    align-items: center;
-    align-self: flex-start;
-    background-color: white;
-    border-radius: 2.75rem;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    min-height: 2.75rem;
-    min-width: 2.75rem;
-    max-height: 2.75rem;
-    max-width: 2.75rem;
+    .icon {
+        align-items: center;
+        align-self: flex-start;
+        background-color: white;
+        border-radius: 2.75rem;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        min-height: 2.75rem;
+        min-width: 2.75rem;
+        max-height: 2.75rem;
+        max-width: 2.75rem;
+        margin-top: -7px;
 
-    img {
-        width: 25px;
-        height: auto;
-    }
-}
-
-.writeIcon {
-    transform: translateX(2px);
-}
-
-.content {
-    display: flex;
-    align-self: flex-start;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.link {
-    color: common.$a-text-action;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.1em;
-    text-decoration-line: underline;
-    padding-top: 7px;
-
-    &:focus {
-        .linkContent {
-            @include common.panel-focus-mixin();
+        img {
+            width: 25px;
+            height: auto;
         }
     }
-    &:hover,
-    &:focus {
-        text-decoration-line: none;
+
+    .writeIcon {
+        transform: translateX(2px);
     }
-}
 
-.linkContent {
-    // Set a padding with equivalent negative margins to allow focus-highlight
-    // to break out of the container
-    display: flex;
-    $outerPadding: 0.5rem;
-    $bottomMargin: 1rem - $outerPadding;
-    padding: $outerPadding;
-    margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
-    border-radius: common.$border-radius-base;
-}
+    .content {
+        display: flex;
+        align-self: flex-start;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-.text {
-    color: black;
-}
+    .link {
+        color: common.$a-text-action;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.1em;
+        text-decoration-line: underline;
+        margin-bottom: 0;
 
-.moreLink {
-    text-decoration-thickness: 0.05em;
-    text-underline-offset: 0.1em;
-    text-decoration-line: underline;
-    margin: 0.5rem 0 1rem 0;
-    display: block;
-}
+        &:hover,
+        &:focus {
+            text-decoration-line: none;
+        }
+    }
 
-.alert {
-    margin-bottom: 0.5rem;
+    .text {
+        color: black;
+        margin-bottom: 0;
+
+        :global(.navds-body-long) {
+            margin-bottom: var(--a-spacing-4);
+        }
+    }
+
+    .moreLink {
+        text-decoration-thickness: 0.05em;
+        text-underline-offset: 0.1em;
+        text-decoration-line: underline;
+        margin: 0.5rem 0 1rem 0;
+        display: block;
+    }
+
+    .alert {
+        margin-bottom: 0.5rem;
+    }
 }

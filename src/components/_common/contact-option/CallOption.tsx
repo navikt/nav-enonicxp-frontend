@@ -75,11 +75,9 @@ export const CallOption = ({
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
                 >
-                    <div className={style.linkContent}>
-                        <Heading level="3" size="small" className={style.link}>
-                            {title || callTranslations.title}
-                        </Heading>
-                    </div>
+                    <Heading level="3" size="small">
+                        {title || callTranslations.title}
+                    </Heading>
                 </LenkeBase>
                 {alertText && (
                     <Alert variant="warning" inline className={style.alert}>

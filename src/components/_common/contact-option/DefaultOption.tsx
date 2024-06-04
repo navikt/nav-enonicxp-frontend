@@ -98,15 +98,13 @@ export const DefaultOption = (props: Props) => {
                     analyticsComponent={'Kontakt-oss kanal'}
                     className={style.link}
                 >
-                    <div className={style.linkContent}>
-                        {titleActual ? (
-                            <Heading level={'3'} size={'small'}>
-                                {titleActual}
-                            </Heading>
-                        ) : (
-                            <EditorHelp text={'Tittel mangler!'} type={'error'} />
-                        )}
-                    </div>
+                    {titleActual ? (
+                        <Heading level={'3'} size={'small'}>
+                            {titleActual}
+                        </Heading>
+                    ) : (
+                        <EditorHelp text={'Tittel mangler!'} type={'error'} />
+                    )}
                 </LenkeBase>
                 {ingressActual ? (
                     <BodyLong as="div" className={style.text}>
