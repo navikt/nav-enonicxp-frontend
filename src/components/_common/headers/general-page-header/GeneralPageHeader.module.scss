@@ -11,19 +11,12 @@
     margin-left: -8rem;
 
     :global(.back) {
-        path,
-        rect,
-        circle {
-            fill: rgb(230, 199, 216);
-        }
+        filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
+            hue-rotate(286deg) brightness(92%) contrast(95%);
     }
     :global(.front) {
-        path,
-        line,
-        rect,
-        circle {
-            stroke: rgb(153, 24, 94);
-        }
+        filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
+            hue-rotate(311deg) brightness(88%) contrast(94%);
     }
 
     @media #{common.$mq-screen-tablet-and-mobile} {

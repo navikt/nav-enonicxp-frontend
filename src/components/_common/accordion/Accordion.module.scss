@@ -72,7 +72,7 @@
 
         // Chevron icon
         svg > path {
-            fill: var(--a-surface-action);
+            fill: var(--a-blue-500);
         }
     }
 
@@ -81,7 +81,7 @@
         text-decoration: none;
 
         :global(.navds-accordion__icon-wrapper) {
-            background-color: var(--a-surface-action);
+            background-color: var(--a-blue-600);
         }
         :global(.navds-accordion__header-chevron) {
             transform: translateY(0);
@@ -95,7 +95,7 @@
 
 .headerTitle {
     font-weight: var(--a-font-weight-regular);
-    color: var(--a-surface-action);
+    color: var(--a-blue-600);
 }
 
 .content {
