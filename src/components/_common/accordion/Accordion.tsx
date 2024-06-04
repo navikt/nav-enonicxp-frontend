@@ -9,6 +9,7 @@ import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
+import { classNames } from 'utils/classnames';
 
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
@@ -74,7 +75,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                             {isValid && <div className={styles.headerTitle}>{item.title}</div>}
                         </DSAccordion.Header>
                         <DSAccordion.Content className={styles.content}>
-                            <div className={defaultHtml.html}>
+                            <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                                 <ParsedHtml htmlProps={item.html} />
                             </div>
                         </DSAccordion.Content>

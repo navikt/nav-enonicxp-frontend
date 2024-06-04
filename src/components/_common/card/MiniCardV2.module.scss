@@ -4,15 +4,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem 1.25rem;
-
-    margin-bottom: 1rem; //TODO midlertidig fiks. Fjern eventuelt denne og bruk margin-top på "alt"?
-
     border-width: 1px;
     border-radius: 0.5rem;
     border-style: solid;
     border-color: var(--a-gray-300);
-
     text-decoration: none;
+    margin-bottom: var(--a-spacing-9);
 
     &:hover {
         background-color: #ecf3fe;

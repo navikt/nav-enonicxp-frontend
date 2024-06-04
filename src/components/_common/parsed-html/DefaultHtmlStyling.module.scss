@@ -1,9 +1,6 @@
 .html {
     word-break: break-word;
-
-    :global(.navds-body-long + .card) {
-        margin-top: -1.2rem;
-    }
+    margin-bottom: var(--a-spacing-9);
 
     img {
         display: block;
@@ -38,5 +35,9 @@
         li:not(:last-child) {
             margin-bottom: 0.25rem;
         }
+    }
+
+    p:last-child {
+        margin-bottom: 0;
     }
 }
