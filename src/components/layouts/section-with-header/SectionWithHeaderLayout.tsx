@@ -28,6 +28,7 @@ type Props = {
 const templateV2 = new Set([
     ContentType.ProductPage,
     ContentType.GenericPage,
+    ContentType.SituationPage,
     ContentType.ThemedArticlePage,
     ContentType.CurrentTopicPage,
     ContentType.GuidePage,
