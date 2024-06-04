@@ -29,11 +29,9 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
                     analyticsComponent={'Kontakt-oss kanal'}
                     className={style.link}
                 >
-                    <div className={style.linkContent}>
-                        <Heading level="3" size="small">
-                            {title || translations.title}
-                        </Heading>
-                    </div>
+                    <Heading level="3" size="small">
+                        {title || translations.title}
+                    </Heading>
                 </LenkeBase>
                 {alertText && (
                     <Alert variant="warning" className={style.alert} inline>

@@ -38,11 +38,9 @@ export const ChatOption = (props: ChatData) => {
                     analyticsComponent={'Kontakt-oss kanal'}
                     className={style.link}
                 >
-                    <div className={style.linkContent}>
-                        <Heading level="3" size="small">
-                            {title || translations.title}
-                        </Heading>
-                    </div>
+                    <Heading level="3" size="small">
+                        {title || translations.title}
+                    </Heading>
                 </LenkeBase>
                 {alertText && (
                     <Alert variant="warning" inline className={style.alert}>
