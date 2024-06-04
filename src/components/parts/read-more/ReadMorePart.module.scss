@@ -28,6 +28,11 @@
     }
 
     &:global(.navds-read-more--open) {
+        :global(.navds-read-more__button) {
+            position: sticky;
+            top: var(--decorator-sticky-offset, 0px);
+        }
+
         :global(.navds-read-more__expand-icon) {
             transform: rotate(-180deg) !important;
         }
