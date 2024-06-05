@@ -6,6 +6,7 @@ import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/
 import { Header } from 'components/_common/headers/Header';
 
 import style from './FlexColsLayout.module.scss';
+import { classNames } from 'utils/classnames';
 
 type Props = {
     pageProps: ContentProps;
@@ -30,9 +31,13 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
         return regionProps.components.length % 3 === 0 ? 3 : 2;
     };
 
-    const isShelf = regionProps.components.some(
-        (component) => component.descriptor === 'no.nav.navno:product-card' //TODO test provider-card (nederst på /barn)
-    );
+    const isShelf =
+        regionProps.components.some(
+            (component) => component.descriptor === 'no.nav.navno:product-card'
+        ) ||
+        regionProps.components.some(
+            (component) => component.descriptor === 'no.nav.navno:provider-card'
+        );
 
     const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
 
@@ -46,10 +51,10 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                 <Header
                     level="2"
                     size="large"
-                    justify={'left'}
+                    justify={isShelf ? 'center' : 'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
-                    className={style.header}
+                    className={classNames(style.header, isShelf && style.shelfHeader)}
                 >
                     {title}
                 </Header>

@@ -55,20 +55,22 @@ export const LargeCardV2 = (props: Props) => {
             href={link.url}
             {...analyticsProps}
         >
-            <div className={style.textContainer}>
+            <div className={style.container}>
                 {hasIllustration && (
                     <IllustrationStatic
                         illustration={illustration}
                         className={style.illustration}
                     />
                 )}
-                <BodyShort className={style.linkText} size="medium">
-                    {link.text}
-                </BodyShort>
-                <BodyLong className={style.description}>{description}</BodyLong>
-                <BodyShort className={style.tagline} size="medium">
-                    {tagline}
-                </BodyShort>
+                <div className={style.textContainer}>
+                    <BodyShort className={style.linkText} size="medium">
+                        {link.text}
+                    </BodyShort>
+                    <BodyLong className={style.description}>{description}</BodyLong>
+                    <BodyShort className={style.tagline} size="medium">
+                        {tagline}
+                    </BodyShort>
+                </div>
             </div>
         </LenkeBase>
     );
