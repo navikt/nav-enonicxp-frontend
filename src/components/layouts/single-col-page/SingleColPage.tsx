@@ -4,6 +4,7 @@ import { SingleColPageProps } from 'types/component-props/pages/single-col-page'
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
+import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 
 import styles from '../page-with-side-menus/PageWithSideMenus.module.scss';
 
@@ -28,6 +29,8 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 <GeneralPageHeader pageProps={pageProps} />
                 <Region pageProps={pageProps} regionProps={regions.pageContent} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} />
+                {/* PageUpdatedInfo skal være over kontaktmodulen, ikke under */}
             </div>
         </LayoutContainer>
     );
