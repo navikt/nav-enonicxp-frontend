@@ -1,5 +1,5 @@
 import React from 'react';
-import { LargeCard } from 'components/_common/card/LargeCard';
+import { LargeCardV2 } from 'components/_common/card/LargeCardV2';
 import { CardType } from 'types/card';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -24,8 +24,7 @@ export const ProviderCardPart = ({ config }: PartComponentProps<PartType.Provide
     const linkProps = getSelectableLinkProps(link);
 
     return (
-        //TODO
-        <LargeCard
+        <LargeCardV2
             link={linkProps}
             type={CardType.Provider}
             description={description}
