@@ -5,6 +5,8 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 
+import styles from '../page-with-side-menus/PageWithSideMenus.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: SingleColPageProps;
@@ -18,9 +20,15 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     }
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <GeneralPageHeader pageProps={pageProps} />
-            <Region pageProps={pageProps} regionProps={regions.pageContent} />
+        <LayoutContainer
+            className={styles.pageWithSideMenus}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
+            <div className={styles.mainContent}>
+                <GeneralPageHeader pageProps={pageProps} />
+                <Region pageProps={pageProps} regionProps={regions.pageContent} />
+            </div>
         </LayoutContainer>
     );
 };
