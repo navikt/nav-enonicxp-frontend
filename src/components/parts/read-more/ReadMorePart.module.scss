@@ -2,16 +2,17 @@
     margin-bottom: var(--a-spacing-9);
 
     :global(.navds-read-more__button) {
-        margin-bottom: var(--a-spacing-7);
+        margin-bottom: var(--a-spacing-3);
         background-color: var(--a-blue-50);
-        padding: var(--a-spacing-2) var(--a-spacing-6) var(--a-spacing-2) var(--a-spacing-2);
+        padding: var(--a-spacing-2) var(--a-spacing-6) var(--a-spacing-2) 13px;
         outline: 4px solid var(--a-white);
-        border-radius: var(--a-border-radius-large);
+        border-radius: 22px; // Atm. not in Aksel
+        align-items: center;
         gap: var(--a-spacing-2);
 
         svg {
-            width: var(--a-spacing-5);
-            height: var(--a-spacing-6); // Needed to visually vertical align
+            width: var(--a-spacing-6);
+            height: var(--a-spacing-7); // Needed to visually vertical align
         }
 
         &:hover {
@@ -25,8 +26,8 @@
 
     :global(.navds-read-more__content) {
         border-left: var(--a-spacing-05) solid var(--a-gray-400);
-        margin-left: var(--a-spacing-4);
-        padding-left: var(--a-spacing-4);
+        margin-left: var(--a-spacing-6);
+        padding: 0 0 0 var(--a-spacing-5);
     }
 
     &:global(.navds-read-more--open) {

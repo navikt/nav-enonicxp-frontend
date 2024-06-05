@@ -15,6 +15,7 @@ type Props = {
     className?: string;
     children: React.ReactNode;
     expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
+    isEditor?: boolean;
 };
 
 export const Expandable = ({
@@ -24,6 +25,7 @@ export const Expandable = ({
     children,
     className,
     expandableType,
+    isEditor,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
