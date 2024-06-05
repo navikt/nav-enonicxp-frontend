@@ -11,10 +11,16 @@
         :global(.navds-expansioncard__header-chevron) {
             transform: rotate(180deg) !important;
         }
+
+        .header {
+            position: sticky;
+            top: var(--decorator-sticky-offset, 0px);
+        }
     }
 }
 
 .header {
+    background-color: var(--a-white);
     border: 1px solid var(--a-gray-300);
     box-shadow: 0 0 0;
     padding: var(--a-spacing-3) var(--a-spacing-2) var(--a-spacing-3) var(--a-spacing-4);
