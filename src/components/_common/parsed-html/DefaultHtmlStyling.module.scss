@@ -45,6 +45,10 @@
         }
     }
 
+    ol li {
+        padding-left: var(--a-spacing-1);
+    }
+
     *:last-child {
         margin-bottom: 0;
     }
