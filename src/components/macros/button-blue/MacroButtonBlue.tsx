@@ -12,7 +12,7 @@ export const MacroButtonBlue = ({ config }: MacroButtonBlueProps) => {
     const href = content?._path || url;
 
     return (
-        <Button variant={'primary'} href={href}>
+        <Button variant={'secondary'} href={href}>
             {text}
         </Button>
     );
