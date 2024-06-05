@@ -59,6 +59,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const style = isTemplateV2 ? styleV2 : styleV1;
     const showTopMarker = !!(isTemplateV2 && title);
 
+    const showIcon = !!(iconImgProps && !isTemplateV2);
+
     return (
         <LayoutContainer
             className={classNames(
@@ -71,10 +73,10 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            id={anchorId}
+            id={!showIcon ? anchorId : undefined}
             tabIndex={-1}
         >
-            {iconImgProps && !isTemplateV2 && (
+            {showIcon && (
                 <div
                     className={'icon-container'}
                     id={anchorId} // Ensures anchor links scrolls to the correct position if the icon is rendered
