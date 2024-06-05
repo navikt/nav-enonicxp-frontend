@@ -50,27 +50,18 @@ export const LargeCardV2 = (props: Props) => {
         type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
 
     return (
-        <LenkeBase
-            // className={classNames(style.container, className)}
-            href={link.url}
-            {...analyticsProps}
-        >
-            <div className={style.container}>
-                {hasIllustration && (
-                    <IllustrationStatic
-                        illustration={illustration}
-                        className={style.illustration}
-                    />
-                )}
-                <div className={style.textContainer}>
-                    <BodyShort className={style.linkText} size="medium">
-                        {link.text}
-                    </BodyShort>
-                    <BodyLong className={style.description}>{description}</BodyLong>
-                    <BodyShort className={style.tagline} size="medium">
-                        {tagline}
-                    </BodyShort>
-                </div>
+        <LenkeBase className={classNames(style.container)} href={link.url} {...analyticsProps}>
+            {hasIllustration && (
+                <IllustrationStatic illustration={illustration} className={style.illustration} />
+            )}
+            <div className={style.textContainer}>
+                <BodyShort className={style.linkText} size="medium">
+                    {link.text}
+                </BodyShort>
+                <BodyLong className={style.description}>{description}</BodyLong>
+                <BodyShort className={style.tagline} size="medium">
+                    {tagline}
+                </BodyShort>
             </div>
         </LenkeBase>
     );
