@@ -1,11 +1,12 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { PageWithSideMenus } from '../page-with-side-menus/PageWithSideMenus';
-import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
+import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import Region from 'components/layouts/Region';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps: PageWithSideMenusProps;
+    layoutProps: SingleColPageProps;
 };
 
 export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
@@ -15,5 +16,9 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    return <PageWithSideMenus pageProps={pageProps} layoutProps={layoutProps} />;
+    return (
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            <Region pageProps={pageProps} regionProps={regions.pageContent} />
+        </LayoutContainer>
+    );
 };

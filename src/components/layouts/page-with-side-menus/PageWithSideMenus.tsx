@@ -29,8 +29,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const isNewLayoutPage =
         pageProps.type === ContentType.ProductPage ||
         pageProps.type === ContentType.GuidePage ||
-        pageProps.type === ContentType.ThemedArticlePage ||
-        pageProps.type === ContentType.SituationPage;
+        pageProps.type === ContentType.ThemedArticlePage;
 
     return (
         <LayoutContainer

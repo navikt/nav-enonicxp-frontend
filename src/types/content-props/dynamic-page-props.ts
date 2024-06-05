@@ -53,7 +53,7 @@ export type GuidePageProps = ContentCommonProps & {
 export type SituationPageProps = ContentCommonProps & {
     type: ContentType.SituationPage;
     data: ProductDataMixin;
-    page: PageWithSideMenusProps;
+    page: SingleColPageProps;
 };
 
 export type OfficeEditorialPageProps = ContentCommonProps & {
