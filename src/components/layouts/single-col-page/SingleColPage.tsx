@@ -3,6 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
+import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 
 type Props = {
     pageProps: ContentProps;
@@ -18,6 +19,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            <GeneralPageHeader pageProps={pageProps} />
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
         </LayoutContainer>
     );
