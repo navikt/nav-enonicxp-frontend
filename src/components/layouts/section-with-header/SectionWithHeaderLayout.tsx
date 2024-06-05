@@ -57,13 +57,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
 
     const style = isTemplateV2 ? styleV2 : styleV1;
+    const showTopMarker = !!(isTemplateV2 && title);
 
     return (
         <LayoutContainer
             className={classNames(
                 style.container,
                 iconImgProps && style.withIcon,
-                isTemplateV2 && style.topMarker,
+                showTopMarker && style.topMarker,
+                !showTopMarker && style.pullUp,
                 isTemplateV2 && isEditorView && style.editorViewBorder
             )}
             pageProps={pageProps}
