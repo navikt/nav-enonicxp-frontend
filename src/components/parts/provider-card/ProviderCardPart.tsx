@@ -24,6 +24,7 @@ export const ProviderCardPart = ({ config }: PartComponentProps<PartType.Provide
     const linkProps = getSelectableLinkProps(link);
 
     return (
+        //TODO
         <LargeCard
             link={linkProps}
             type={CardType.Provider}
