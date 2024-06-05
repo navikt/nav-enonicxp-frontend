@@ -11,7 +11,9 @@ $defaultBgColor: white;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 5.25rem;
+    margin-top: calc(
+        var(--a-spacing-20) + var(--a-spacing-5)
+    ); // Take topMarker negative pos into account
 
     :global(.icon-container) {
         align-items: center;
@@ -35,22 +37,23 @@ $defaultBgColor: white;
 .topMarker:before {
     background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
     content: '';
-    height: 6px;
+    height: 7px;
     left: 0;
     position: absolute;
-    top: -1rem;
+    top: calc(var(--a-spacing-5) * -1);
     width: 40px;
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
     color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
 }
 
 .headerWithIcon {
-    margin-top: 0.5rem;
+    margin-top: var(--a-spacing-2);
 }
 
 .editorViewBorder {
-    border: 1px dashed gray;
+    outline: 1px gray dashed;
+    outline-offset: 15px;
 }

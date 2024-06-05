@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { ArrowDownRightIcon } from '@navikt/aksel-icons';
-import { Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
@@ -29,6 +29,8 @@ export const PageNavigationMenu = ({
 
     const headingId = `heading-page-navigation-menu-${useId()}`;
 
+    if (links.length === 0) return null;
+
     return (
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
@@ -39,7 +41,7 @@ export const PageNavigationMenu = ({
                     isChapterNavigation && style.chapterNavigation
                 )}
             >
-                <Heading level="2" size="small" spacing id={headingId}>
+                <Heading level="2" size="xsmall" spacing id={headingId} className={style.heading}>
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
@@ -54,8 +56,8 @@ export const PageNavigationMenu = ({
                                 analyticsLabel={anchorLink.linkText}
                                 className={style.link}
                             >
-                                <ArrowDownRightIcon />
-                                {anchorLink.linkText}
+                                <ArrowDownRightIcon className={style.icon} />
+                                <BodyShort as="span">{anchorLink.linkText}</BodyShort>
                             </LenkeBase>
                         </li>
                     ))}

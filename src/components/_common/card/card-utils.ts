@@ -4,14 +4,21 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import {
+    GuidePageProps,
     ProductPageProps,
     SituationPageProps,
+    ThemedArticlePageProps,
     ToolsPageProps,
 } from 'types/content-props/dynamic-page-props';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-export type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
+export type CardTargetProps =
+    | ProductPageProps
+    | SituationPageProps
+    | ToolsPageProps
+    | GuidePageProps
+    | ThemedArticlePageProps;
 
 export type CardProps = {
     type: CardType;
@@ -36,6 +43,16 @@ const getCardTagline = (content: CardTargetProps, language: Language): string =>
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
     const selectedAudience = audience && getAudience(audience);
+    const guideTaglines = translator('guides', language);
+    const situationTaglines = translator('situations', language);
+
+    if (content.type === ContentType.GuidePage) {
+        return (selectedAudience && guideTaglines(selectedAudience)) || '';
+    }
+
+    if (content.type === ContentType.SituationPage) {
+        return (selectedAudience && situationTaglines(selectedAudience)) || '';
+    }
 
     if (taxonomy.length > 0 || customCategory) {
         const taxonomyStrings = getTranslatedTaxonomies(taxonomy, language);
@@ -46,17 +63,9 @@ const getCardTagline = (content: CardTargetProps, language: Language): string =>
         return joinWithConjunction(taxonomyStrings, language);
     }
 
+    // Catch all if no other taglines could be determined
     const productAudienceTranslations = translator('products', language);
-
-    if (selectedAudience === Audience.EMPLOYER) {
-        return productAudienceTranslations('employer');
-    }
-
-    if (selectedAudience === Audience.PROVIDER) {
-        return productAudienceTranslations('provider');
-    }
-
-    return '';
+    return selectedAudience ? productAudienceTranslations(selectedAudience) : '';
 };
 
 export const getCardProps = (

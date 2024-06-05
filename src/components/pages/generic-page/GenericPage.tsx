@@ -6,7 +6,6 @@ import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/
 export const GenericPage = (props: GenericPageProps) => {
     return (
         <article className={'genericPage'}>
-            <ThemedPageHeader contentProps={props} />
             <div className={'content'}>
                 <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>

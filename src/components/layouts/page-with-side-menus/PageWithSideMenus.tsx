@@ -26,12 +26,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     const { pageContent, topPageContent, bottomRow } = regions;
 
-    const isProductPage = pageProps.type === ContentType.ProductPage;
-
     const isNewLayoutPage =
         pageProps.type === ContentType.ProductPage ||
         pageProps.type === ContentType.GuidePage ||
-        pageProps.type === ContentType.ThemedArticlePage;
+        pageProps.type === ContentType.ThemedArticlePage ||
+        pageProps.type === ContentType.GenericPage;
 
     return (
         <LayoutContainer
@@ -42,7 +41,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
-                {isProductPage && <AlternativeAudience />}
+                {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
                     <PageNavigationMenu
                         anchorLinks={anchorLinks}

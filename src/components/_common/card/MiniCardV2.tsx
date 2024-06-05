@@ -5,6 +5,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { CardSize, CardType } from 'types/card';
+import { classNames } from 'utils/classnames';
 
 import style from './MiniCardV2.module.scss';
 
@@ -12,9 +13,10 @@ export type MiniCardProps = {
     link: LinkProps;
     type: CardType;
     tagline?: string;
+    className?: string;
 };
 
-export const MiniCardV2 = ({ link, type, tagline }: MiniCardProps) => {
+export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) => {
     const { analyticsProps } = useCard({
         type,
         size: CardSize.Mini,
@@ -22,7 +24,11 @@ export const MiniCardV2 = ({ link, type, tagline }: MiniCardProps) => {
     });
 
     return (
-        <LenkeBase className={style.container} href={link.url} {...analyticsProps}>
+        <LenkeBase
+            className={classNames(style.container, className)}
+            href={link.url}
+            {...analyticsProps}
+        >
             <div className={style.textContainer}>
                 <BodyShort className={style.linkText} size="medium">
                     {link.text}

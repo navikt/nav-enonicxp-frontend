@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
@@ -75,11 +75,9 @@ export const CallOption = ({
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
                 >
-                    <div className={style.linkContent}>
-                        <Heading level="3" size="small" className={style.link}>
-                            {title || callTranslations.title}
-                        </Heading>
-                    </div>
+                    <Heading level="3" size="small">
+                        {title || callTranslations.title}
+                    </Heading>
                 </LenkeBase>
                 {alertText && (
                     <Alert variant="warning" inline className={style.alert}>
@@ -102,7 +100,7 @@ export const CallOption = ({
                     className={style.moreLink}
                     href={getContactUrl()}
                 >
-                    {sharedTranslations.seeMoreOptions}
+                    <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
                 </LenkeBase>
             </div>
         </div>

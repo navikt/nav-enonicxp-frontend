@@ -69,7 +69,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            id={iconImgProps ? undefined : anchorId}
+            id={anchorId}
             tabIndex={-1}
         >
             {iconImgProps && !isTemplateV2 && (
@@ -99,8 +99,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     level="2"
                     justify={'left'}
                     hideCopyButton={true}
-                    anchorId={anchorId}
-                    setId={false}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}

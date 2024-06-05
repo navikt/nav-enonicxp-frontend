@@ -1,0 +1,50 @@
+.html {
+    word-break: break-word;
+    margin-bottom: var(--a-spacing-9);
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        float: none;
+        margin-bottom: var(--a-spacing-7);
+
+        th,
+        td {
+            font-size: 1.125rem;
+            line-height: 150%;
+            padding: var(--a-spacing-3);
+            vertical-align: top;
+        }
+    }
+
+    h5 {
+        color: rgb(64, 64, 64);
+        text-transform: uppercase;
+        font-variant-caps: all-small-caps;
+        margin-top: var(--a-spacing-9);
+    }
+
+    ul,
+    ol {
+        padding-left: var(--a-spacing-6);
+        margin-bottom: var(--a-spacing-9);
+
+        li::marker {
+            color: rgb(153, 24, 94);
+            font-variant-caps: all-small-caps;
+            font-weight: 800;
+        }
+
+        li:not(:last-child) {
+            margin-bottom: var(--a-spacing-3);
+        }
+    }
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+}

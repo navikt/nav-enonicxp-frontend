@@ -6,7 +6,9 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { classNames } from 'utils/classnames';
 
+import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './ReadMorePart.module.scss';
 
 export type PartConfigReadMore = {
@@ -42,7 +44,9 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
             onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
             className={styles.readMore}
         >
-            <ParsedHtml htmlProps={html} />
+            <div className={classNames(defaultHtml.html, 'parsedHtml')}>
+                <ParsedHtml htmlProps={html} />
+            </div>
         </ReadMore>
     );
 };

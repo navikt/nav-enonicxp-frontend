@@ -3,7 +3,15 @@
 .expandable {
     display: block;
 
+    :global(.navds-expansioncard__header-chevron) {
+        transform: rotate(0) !important;
+    }
+
     &:global(.navds-expansioncard--open) {
+        :global(.navds-expansioncard__header-chevron) {
+            transform: rotate(180deg) !important;
+        }
+
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
@@ -19,7 +27,7 @@
 
     :global(.navds-expansioncard__header-content) {
         align-items: center;
-        color: var(--a-surface-action);
+        color: var(--a-blue-600);
         display: flex;
         gap: var(--a-spacing-2);
     }
@@ -28,7 +36,7 @@
         min-height: 20px;
         svg {
             path {
-                fill: var(--a-surface-action);
+                fill: var(--a-blue-600);
             }
         }
     }
@@ -44,6 +52,10 @@
 
         :global(.navds-expansioncard__header-button) {
             background-color: transparent;
+        }
+
+        :global(.navds-expansioncard__header-chevron) {
+            transform: translateY(0);
         }
     }
     &:after {

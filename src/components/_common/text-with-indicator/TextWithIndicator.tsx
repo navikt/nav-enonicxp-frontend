@@ -1,4 +1,5 @@
 import React from 'react';
+import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import style from './TextWithIndicator.module.scss';
 
@@ -22,7 +23,7 @@ const TextWithIndicator = (props: Props) => {
                 >
                     <span className={style.indicatorInner} />
                 </span>
-                {text}
+                <BodyShort>{text}</BodyShort>
             </div>
         </div>
     );
