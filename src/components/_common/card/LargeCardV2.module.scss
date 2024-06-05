@@ -1,0 +1,14 @@
+.illustration {
+    width: 3.75rem;
+    height: 3.75rem;
+
+    //TODO dupliserte filtere fra GeneralPageHeader
+    :global(.back) {
+        filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
+            hue-rotate(286deg) brightness(92%) contrast(95%);
+    }
+    :global(.front) {
+        filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
+            hue-rotate(311deg) brightness(88%) contrast(94%);
+    }
+}

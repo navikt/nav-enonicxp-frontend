@@ -9,8 +9,9 @@ import { LinkProps } from 'types/link-props';
 import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
-import style from './LargeCard.module.scss';
+import style from './LargeCardV2.module.scss';
 import sharedStyle from './Card.module.scss';
+import { IllustrationStatic } from '../illustration/static/IllustrationStatic';
 
 enum LayoutVariation {
     DEFAULT = 'Default',
@@ -56,7 +57,10 @@ export const LargeCardV2 = (props: Props) => {
         >
             <div className={style.textContainer}>
                 {hasIllustration && (
-                    <Illustration illustration={illustration} className={style.illustration} />
+                    <IllustrationStatic
+                        illustration={illustration}
+                        className={style.illustration}
+                    />
                 )}
                 <BodyShort className={style.linkText} size="medium">
                     {link.text}
