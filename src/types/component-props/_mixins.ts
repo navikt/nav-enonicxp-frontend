@@ -90,6 +90,7 @@ export type AlternativeAudience = OptionSetMulti<{
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
+    hideIngress?: boolean;
     taxonomy: Taxonomy[];
     audience?: AudienceOptions;
     customCategory?: string;

@@ -17,7 +17,7 @@ export const GeneralPageHeader = (props: Props) => {
     const illustration = pageProps.data.illustration;
     const tagLine = getHeaderTagline(pageProps);
     const title = pageProps.data.title || pageProps.displayName;
-    const ingress = pageProps.data.ingress;
+    const { ingress, hideIngress } = pageProps.data;
 
     return (
         <div className={style.generalPageHeader}>
@@ -34,7 +34,7 @@ export const GeneralPageHeader = (props: Props) => {
             <Heading level="1" size="xlarge" className={style.header}>
                 {title}
             </Heading>
-            {ingress && (
+            {ingress && !hideIngress && (
                 <BodyLong size="large" className={style.ingress}>
                     {ingress}
                 </BodyLong>
