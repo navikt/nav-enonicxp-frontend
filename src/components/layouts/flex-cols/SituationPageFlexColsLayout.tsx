@@ -30,7 +30,11 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
         return regionProps.components.length % 3 === 0 ? 3 : 2;
     };
 
-    const colCount = typeof numCols === 'number' ? numCols : calculateColCount();
+    const isShelf = regionProps.components.some(
+        (component) => component.descriptor === 'no.nav.navno:product-card' //TODO test provider-card (nederst på /barn)
+    );
+
+    const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
 
     return (
         <LayoutContainer
