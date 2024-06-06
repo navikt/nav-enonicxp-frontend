@@ -80,7 +80,7 @@
         box-shadow: 0 0 0;
     }
     :global(.parsedHtml:last-child) {
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
     }
 
     :global(.part__html-area):has(.expandable) + :global(.part__html-area):has(.expandable) {
