@@ -1,5 +1,9 @@
 @use 'common' as common;
 
+.htmlArea {
+    margin-bottom: var(--a-spacing-9);
+}
+
 :global(.part__html-area):last-child {
     .htmlArea > :last-child {
         margin-bottom: 0;
