@@ -17,6 +17,7 @@
             top: var(--decorator-sticky-offset, 0px);
         }
     }
+
     .header {
         background-color: #e6f0ff;
         border-radius: 22px;
@@ -59,6 +60,13 @@
         }
         &:after {
             display: none;
+        }
+    }
+
+    &.legacy {
+        .header {
+            width: 100%;
+            padding-left: var(--a-spacing-4);
         }
     }
 

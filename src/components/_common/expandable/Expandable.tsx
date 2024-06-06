@@ -15,7 +15,6 @@ type Props = {
     className?: string;
     children: React.ReactNode;
     expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
-    isEditor?: boolean;
 };
 
 export const Expandable = ({
@@ -25,7 +24,6 @@ export const Expandable = ({
     children,
     className,
     expandableType,
-    isEditor,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
@@ -103,10 +101,15 @@ export const Expandable = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorId]);
 
+    // Adjust appearande in styling if not type was set for this content
+    // This is the wrong use of this component, but some legacy pages have still to
+    // be upradet editorial wise.
+    const isLegacyUsage = !expandableType;
+
     return (
         <ExpansionCard
             id={anchorId}
-            className={classNames(className, style.expandable)}
+            className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
             ref={accordionRef}
             onToggle={toggleExpandCollapse}
             open={isOpen}
