@@ -5,14 +5,9 @@ import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
-
-import style from './LargeCardV2.module.scss';
 import { IllustrationStatic } from '../illustration/static/IllustrationStatic';
 
-enum LayoutVariation {
-    DEFAULT = 'Default',
-    SITUATION = 'Situation',
-}
+import style from './LargeCardV2.module.scss';
 
 const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
     CardType.Product,
@@ -27,12 +22,10 @@ type Props = {
     illustration?: AnimatedIconsProps;
     link: LinkProps;
     type: CardType;
-    preferStaticIllustration?: boolean;
 };
 
 export const LargeCardV2 = (props: Props) => {
-    const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
-    const { text } = link;
+    const { link, description, type, tagline, illustration } = props;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
 
@@ -41,9 +34,6 @@ export const LargeCardV2 = (props: Props) => {
         size: CardSize.Large,
         link,
     });
-
-    const layoutVariation =
-        type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
 
     return (
         <div className={style.container}>
