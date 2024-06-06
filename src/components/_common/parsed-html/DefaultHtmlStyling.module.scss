@@ -40,7 +40,8 @@
             font-weight: 800;
         }
 
-        li {
+        li:not(:last-child) {
+            // last-child-selector needed for specificity
             margin-bottom: var(--a-spacing-3);
         }
 
