@@ -40,11 +40,11 @@
             font-weight: 800;
         }
 
-        li:not(:last-child) {
+        li {
             margin-bottom: var(--a-spacing-3);
         }
 
-        li:last-of-type {
+        li:last-child {
             margin-bottom: 0;
         }
     }
