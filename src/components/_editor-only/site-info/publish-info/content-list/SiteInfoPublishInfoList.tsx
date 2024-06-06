@@ -16,7 +16,7 @@ export const SiteInfoPublishInfoList = ({ title, titleEmpty, contentList }: Prop
     const { length } = contentList;
 
     return length > 0 ? (
-        <Expandable title={`${title} (${length})`} className={style.wrapper} isEditor>
+        <Expandable title={`${title} (${length})`} className={style.wrapper}>
             {contentList.map((content, index) => {
                 return (
                     <Fragment key={content.id}>

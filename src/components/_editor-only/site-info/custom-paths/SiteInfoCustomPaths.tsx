@@ -17,7 +17,7 @@ export const SiteInfoCustomPaths = ({ contentList }: Props) => {
     return (
         <div>
             <SiteInfoSubHeader text={"Kort-url'er"} />
-            <Expandable title={`Sider med kort-url (${contentList.length})`} isEditor>
+            <Expandable title={`Sider med kort-url (${contentList.length})`}>
                 <TextField
                     label={'Søk etter kort-url'}
                     size={'small'}
