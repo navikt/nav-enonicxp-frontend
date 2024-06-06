@@ -100,4 +100,10 @@
             margin-bottom: var(--a-spacing-7);
         }
     }
+
+    // Only applicable when a table is inside an expandable. This is
+    // why this rule is not inside the DefaultHtmlStyling.module.scss.
+    table {
+        table-layout: fixed;
+    }
 }
