@@ -43,6 +43,10 @@
         li:not(:last-child) {
             margin-bottom: var(--a-spacing-3);
         }
+
+        li:last-of-type {
+            margin-bottom: 0;
+        }
     }
 
     ol li {
