@@ -112,5 +112,8 @@
 
 .shelfLayout {
     display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @media #{common.$mq-screen-tablet} {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
