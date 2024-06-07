@@ -24,7 +24,7 @@
     &:active {
         @include common.panel-focus-mixin();
         background-color: transparent;
-        color: common.$a-text-action;
+        color: var(--a-blue-600);
     }
 }
 

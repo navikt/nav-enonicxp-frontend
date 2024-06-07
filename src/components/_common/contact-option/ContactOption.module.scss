@@ -38,7 +38,7 @@
     }
 
     .link {
-        color: common.$a-text-action;
+        color: var(--a-blue-600);
         text-decoration-thickness: 1px;
         text-underline-offset: 0.1em;
         text-decoration-line: underline;

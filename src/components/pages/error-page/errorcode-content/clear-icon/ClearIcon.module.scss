@@ -8,7 +8,7 @@
     & > * {
         height: $height;
         width: $width;
-        background-color: common.$a-text-action;
+        background-color: var(--a-blue-600);
         transform-origin: center;
     }
 

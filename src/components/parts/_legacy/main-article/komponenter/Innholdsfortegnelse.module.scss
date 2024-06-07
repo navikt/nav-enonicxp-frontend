@@ -21,7 +21,7 @@
 
         &:hover,
         &:active {
-            color: #0067c5;
+            color: #0056b4;
         }
         &:focus {
             outline: none;
@@ -32,8 +32,8 @@
         &:hover:before,
         &:focus:before,
         &:active:before {
-            border: 0.1875rem solid #0067c5;
-            background-color: #0067c5;
+            border: 0.1875rem solid #0056b4;
+            background-color: #0056b4;
             border-radius: 50%;
             display: inline-block;
             content: ' ';

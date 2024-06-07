@@ -3,7 +3,7 @@
 .filterCheckbox {
     background-color: transparent;
     border-radius: 0.25rem;
-    box-shadow: common.$a-text-action inset 0 0 0 1px;
+    box-shadow: var(--a-blue-600) inset 0 0 0 1px;
     cursor: pointer;
     display: flex;
     justify-items: center;
@@ -39,7 +39,7 @@
     &:hover {
         background-color: common.$a-surface-selected;
         .label {
-            color: common.$a-text-action;
+            color: var(--a-blue-600);
 
             img {
                 background-color: common.$a-surface-action;
@@ -51,15 +51,15 @@
         background-color: common.$a-surface-selected;
 
         &:hover {
-            background-color: common.$a-text-action;
+            background-color: var(--a-blue-600);
 
             .label {
                 color: white;
 
                 img {
                     background-color: transparent;
-                    filter: invert(98%) sepia(3%) saturate(538%)
-                        hue-rotate(223deg) brightness(119%) contrast(100%);
+                    filter: invert(98%) sepia(3%) saturate(538%) hue-rotate(223deg) brightness(119%)
+                        contrast(100%);
                 }
             }
         }

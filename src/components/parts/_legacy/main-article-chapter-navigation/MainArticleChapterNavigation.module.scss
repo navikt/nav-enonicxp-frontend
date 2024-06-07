@@ -44,7 +44,7 @@ $decorWidth: 0.5rem;
 
             &.active {
                 &:before {
-                    background-color: common.$a-text-action;
+                    background-color: var(--a-blue-600);
                     content: '';
                     display: inline-block;
                     height: 100%;
@@ -65,7 +65,7 @@ $decorWidth: 0.5rem;
             &:focus {
                 background: none;
                 box-shadow: 0 0 0 0.2rem common.$a-border-focus;
-                color: common.$a-text-action;
+                color: var(--a-blue-600);
                 cursor: pointer;
                 outline: none;
 
