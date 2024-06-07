@@ -42,10 +42,6 @@
     margin-bottom: 2.5rem;
 }
 
-.shelfHeader {
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
-}
-
 .layoutSituationOrProduct {
     $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
@@ -108,4 +104,13 @@
 
 .layoutSituation {
     background-color: rgb(254 245 239); // Finnes pr nå ikke i Aksel.
+}
+
+.shelfHeader {
+    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+}
+
+.shelfLayout {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }

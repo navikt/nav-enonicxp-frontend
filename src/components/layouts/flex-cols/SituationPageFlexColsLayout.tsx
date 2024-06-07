@@ -4,9 +4,9 @@ import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
 import { Header } from 'components/_common/headers/Header';
+import { classNames } from 'utils/classnames';
 
 import style from './FlexColsLayout.module.scss';
-import { classNames } from 'utils/classnames';
 
 type Props = {
     pageProps: ContentProps;
@@ -63,7 +63,8 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                 pageProps={pageProps}
                 regionProps={regionProps}
                 regionStyle={regionStyle}
-                bemModifier={`${colCount}-cols`}
+                bemModifier={isShelf ? '' : `${colCount}-cols`}
+                className={isShelf ? style.shelfLayout : ''}
             />
         </LayoutContainer>
     );
