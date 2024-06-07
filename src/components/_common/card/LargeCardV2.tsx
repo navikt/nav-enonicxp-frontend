@@ -42,7 +42,7 @@ export const LargeCardV2 = (props: Props) => {
             )}
             <div className={style.textContainer}>
                 <LenkeBase href={link.url} {...analyticsProps}>
-                    <BodyShort className={style.linkText} size="medium">
+                    <BodyShort className={style.linkText} size="large" spacing>
                         {link.text}
                     </BodyShort>
                 </LenkeBase>

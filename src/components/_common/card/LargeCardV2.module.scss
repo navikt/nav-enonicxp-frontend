@@ -3,7 +3,9 @@
     flex-direction: row;
     gap: 1.5rem;
     padding: 2rem;
-    border: 1px solid rgb(203 213 225);
+    border-bottom: 1px solid rgb(203 213 225);
+    border-right: 1px solid rgb(203 213 225);
+    height: 100%;
 }
 
 .illustration {
