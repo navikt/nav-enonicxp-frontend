@@ -26,6 +26,7 @@
 
 .lenketekst {
     display: inline;
+    color: var(--default-action-color);
     @include common.link-underline-mixin(false);
 }
 

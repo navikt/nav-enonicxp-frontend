@@ -28,7 +28,7 @@
 
         :global(.navds-expansioncard__header-content) {
             align-items: center;
-            color: var(--a-blue-600);
+            color: var(--default-action-color);
             display: flex;
             gap: var(--a-spacing-2);
         }
@@ -37,7 +37,7 @@
             min-height: 20px;
             svg {
                 path {
-                    fill: var(--a-blue-600);
+                    fill: var(--default-action-color);
                 }
             }
         }

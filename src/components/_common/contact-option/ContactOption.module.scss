@@ -38,7 +38,7 @@
     }
 
     .link {
-        color: common.$a-text-action;
+        color: var(--default-action-color);
         text-decoration-thickness: 1px;
         text-underline-offset: 0.1em;
         text-decoration-line: underline;
@@ -65,6 +65,7 @@
         text-decoration-line: underline;
         margin: 0.5rem 0 1rem 0;
         display: block;
+        color: var(--default-action-color);
     }
 
     .alert {

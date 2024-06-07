@@ -2,7 +2,7 @@
 
 .lenkepanelNavno {
     &:global(.navds-link-panel) {
-        border: 1px solid common.$a-text-action;
+        border: 1px solid var(--default-action-color);
     }
 
     :global {
@@ -12,12 +12,13 @@
 
         .navds-link-panel__title,
         .navds-link-panel__chevron {
-            color: common.$a-text-action;
+            color: var(--default-action-color);
         }
     }
 
     &:hover {
         :global(.navds-link-panel__title) {
+            color: var(--default-action-color);
             text-decoration-line: underline;
             text-decoration-thickness: 0.05em;
             text-underline-offset: 0.1em;
