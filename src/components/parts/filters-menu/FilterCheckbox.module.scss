@@ -3,7 +3,7 @@
 .filterCheckbox {
     background-color: transparent;
     border-radius: 0.25rem;
-    box-shadow: var(--a-blue-600) inset 0 0 0 1px;
+    box-shadow: var(--default-action-color) inset 0 0 0 1px;
     cursor: pointer;
     display: flex;
     justify-items: center;
@@ -39,7 +39,7 @@
     &:hover {
         background-color: common.$a-surface-selected;
         .label {
-            color: var(--a-blue-600);
+            color: var(--default-action-color);
 
             img {
                 background-color: common.$a-surface-action;
@@ -51,7 +51,7 @@
         background-color: common.$a-surface-selected;
 
         &:hover {
-            background-color: var(--a-blue-600);
+            background-color: var(--default-action-color);
 
             .label {
                 color: white;

@@ -25,7 +25,7 @@ $illustrationSizeSmall: common.px-to-rem(48);
     margin: 0;
 
     :global(.provider) & {
-        color: var(--a-blue-600);
+        color: var(--default-action-color);
     }
 }
 

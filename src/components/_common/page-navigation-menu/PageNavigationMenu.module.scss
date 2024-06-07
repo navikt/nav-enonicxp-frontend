@@ -36,6 +36,7 @@
         text-underline-offset: 2.5px;
         text-decoration-line: none;
         text-decoration-thickness: 2px;
+        color: var(--default-action-color);
 
         &:hover {
             text-decoration-line: underline;

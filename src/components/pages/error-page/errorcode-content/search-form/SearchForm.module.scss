@@ -14,7 +14,7 @@
         input {
             font-size: 150%;
             border-width: 2px;
-            border-color: var(--a-blue-600);
+            border-color: var(--default-action-color);
             border-radius: common.$border-radius-base;
             padding-right: 13rem;
             @media #{common.$mq-screen-mobile} {

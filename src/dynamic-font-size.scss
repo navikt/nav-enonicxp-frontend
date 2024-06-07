@@ -28,6 +28,7 @@
     --text-fluid-24-28: clamp(1.5rem, 1.4167rem + 0.4167vi, 1.75rem);
     --text-fluid-32-36: clamp(2rem, 1.9167rem + 0.4167vi, 2.25rem);
     --text-fluid-36-48: clamp(2.25rem, 2rem + 1.25vi, 3rem);
+    --default-action-color: var(--a-blue-600);
 }
 
 .page__page-with-side-menus {

@@ -10,9 +10,14 @@
         align-items: center;
         gap: var(--a-spacing-2);
 
+        color: var(--default-action-color);
+
         svg {
             width: var(--a-spacing-6);
             height: var(--a-spacing-7); // Needed to visually vertical align
+            path {
+                fill: var(--default-action-color);
+            }
         }
 
         &:hover {

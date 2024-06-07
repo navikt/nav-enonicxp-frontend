@@ -13,7 +13,7 @@ $iconSize: 2.1875rem;
         background-position: bottom right;
         background-size: contain;
         background-color: white;
-        border: 1px solid var(--a-blue-600);
+        border: 1px solid var(--default-action-color);
         box-sizing: border-box;
         text-decoration-line: none;
         color: black;
@@ -46,7 +46,7 @@ $iconSize: 2.1875rem;
     }
     .title {
         width: 100%;
-        color: var(--a-blue-600);
+        color: var(--default-action-color);
     }
     .ingress {
         width: 100%;
