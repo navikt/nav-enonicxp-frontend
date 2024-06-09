@@ -3,9 +3,30 @@
     flex-direction: row;
     gap: 1.5rem;
     padding: 2rem;
-    border-bottom: 1px solid rgb(203 213 225);
-    border-right: 1px solid rgb(203 213 225);
     height: 100%;
+    position: relative;
+}
+
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    background-color: var(--line-color);
+    z-index: 1;
+}
+
+.container::after {
+    inline-size: 100vw;
+    block-size: var(--line-thickness);
+    inset-inline-start: 0;
+    inset-block-start: calc(var(--line-offset) * -1);
+}
+
+.container::before {
+    inline-size: var(--line-thickness);
+    block-size: 100vh;
+    inset-block-start: 0;
+    inset-inline-start: calc(var(--line-offset) * -1);
 }
 
 .illustration {

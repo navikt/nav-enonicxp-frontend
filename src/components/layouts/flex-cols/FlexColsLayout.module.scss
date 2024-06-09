@@ -111,7 +111,14 @@
 }
 
 .shelfLayout {
+    --gap: 1em;
+    --line-offset: calc(var(--gap) / 2);
+    --line-thickness: 1px;
+    --line-color: rgb(203 213 225);
+
     display: grid !important;
+    overflow: hidden;
+    gap: var(--gap);
 
     @media #{common.$mq-screen-tablet-and-desktop} {
         grid-template-columns: repeat(2, minmax(0, 1fr));
