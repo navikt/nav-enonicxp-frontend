@@ -106,6 +106,11 @@
     background-color: rgb(254 245 239); // Finnes pr nå ikke i Aksel.
 }
 
+.layoutSituationShelf {
+    padding-left: calc((70vw - 100%) / 2);
+    padding-right: calc((70vw - 100%) / 2);
+}
+
 .shelfHeader {
     color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
 }
