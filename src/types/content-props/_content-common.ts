@@ -125,6 +125,7 @@ type ContentCommonData = Partial<{
     noindex: boolean;
     nosnippet: boolean;
     ingress: string;
+    hideIngress: boolean;
     title: string;
     description: string;
     audience: AudienceOptions;

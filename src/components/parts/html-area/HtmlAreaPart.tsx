@@ -22,12 +22,14 @@ export const HtmlAreaPart = ({ config }: PartComponentProps<PartType.HtmlArea>) 
     }
 
     return (
-        <FilteredContent {...config}>
-            <ExpandableComponentWrapper {...config}>
-                <div className={classNames(defaultHtml.html, style.htmlArea)}>
-                    <ParsedHtml htmlProps={config.html} />
-                </div>
-            </ExpandableComponentWrapper>
-        </FilteredContent>
+        <div className={style.htmlArea}>
+            <FilteredContent {...config}>
+                <ExpandableComponentWrapper {...config}>
+                    <div className={classNames(defaultHtml.html, style.htmlArea, 'parsedHtml')}>
+                        <ParsedHtml htmlProps={config.html} />
+                    </div>
+                </ExpandableComponentWrapper>
+            </FilteredContent>
+        </div>
     );
 };

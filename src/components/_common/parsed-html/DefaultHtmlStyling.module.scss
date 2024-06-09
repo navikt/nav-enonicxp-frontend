@@ -32,6 +32,7 @@
     ol {
         padding-left: var(--a-spacing-6);
         margin-bottom: var(--a-spacing-9);
+        margin-left: var(--a-spacing-1);
 
         li::marker {
             color: rgb(153, 24, 94);
@@ -40,11 +41,20 @@
         }
 
         li:not(:last-child) {
+            // last-child-selector needed for specificity
             margin-bottom: var(--a-spacing-3);
+        }
+
+        li:last-child {
+            margin-bottom: 0;
         }
     }
 
-    *:last-child {
+    ol li {
+        padding-left: var(--a-spacing-1);
+    }
+
+    > :last-child {
         margin-bottom: 0;
     }
 }

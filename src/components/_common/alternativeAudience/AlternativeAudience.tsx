@@ -81,7 +81,7 @@ export const AlternativeAudience = () => {
 
     return (
         <div className={style.alternativeAudience}>
-            <BodyLong>
+            <BodyLong size="small" className={style.text}>
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>

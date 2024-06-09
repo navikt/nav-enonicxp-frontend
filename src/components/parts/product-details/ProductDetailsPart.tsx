@@ -10,6 +10,8 @@ import { PageContextProvider, usePageContentProps } from 'store/pageContext';
 import { ComponentProps } from 'types/component-props/_component-common';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 
+import style from './ProductDetailsPart.module.scss';
+
 export type PartConfigProductDetails = {
     detailType: ProductDetailType;
     // Note: these two fields are defined as a special case on the backend
@@ -56,18 +58,20 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
     const expandableType = config.detailType as unknown as ExpandableMixin['type'];
 
     return (
-        <PageContextProvider content={pageContent}>
-            <FilteredContent {...config}>
-                <ExpandableComponentWrapper type={expandableType} {...config}>
-                    {components.map((component, index) => (
-                        <ComponentMapper
-                            key={index}
-                            componentProps={component}
-                            pageProps={pageProps}
-                        />
-                    ))}
-                </ExpandableComponentWrapper>
-            </FilteredContent>
-        </PageContextProvider>
+        <div className={style.productDetails}>
+            <PageContextProvider content={pageContent}>
+                <FilteredContent {...config}>
+                    <ExpandableComponentWrapper type={expandableType} {...config}>
+                        {components.map((component, index) => (
+                            <ComponentMapper
+                                key={index}
+                                componentProps={component}
+                                pageProps={pageProps}
+                            />
+                        ))}
+                    </ExpandableComponentWrapper>
+                </FilteredContent>
+            </PageContextProvider>
+        </div>
     );
 };

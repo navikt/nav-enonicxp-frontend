@@ -41,7 +41,7 @@ export const PageNavigationMenu = ({
                     isChapterNavigation && style.chapterNavigation
                 )}
             >
-                <Heading level="2" size="xsmall" spacing id={headingId}>
+                <Heading level="2" size="xsmall" spacing id={headingId} className={style.heading}>
                     {title}
                     {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
