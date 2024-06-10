@@ -69,12 +69,17 @@
     @include common.full-width-mixin();
 
     padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
     margin-bottom: 2rem;
     margin-top: 4rem;
 
     &:last-child {
         @include contactBackground();
+        padding-top: 5rem;
+
+        .contentWrapper {
+            margin: 0 -11rem;
+        }
     }
 
     :global(.region__flexcols.region__flexcols) {
