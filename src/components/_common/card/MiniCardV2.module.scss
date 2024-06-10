@@ -15,10 +15,6 @@
         background-color: #ecf3fe;
         border-color: #cbd4e1;
 
-        .arrow {
-            transform: translateX(0.25rem);
-        }
-
         .linkText {
             text-decoration: underline;
             text-decoration-thickness: 2px;
@@ -47,8 +43,4 @@
     font-variant-caps: all-small-caps;
     letter-spacing: 0.025rem;
     font-weight: 500;
-}
-
-.arrow {
-    transition: transform 0.2s;
 }

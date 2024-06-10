@@ -31,7 +31,8 @@
     --default-action-color: var(--a-blue-600);
 }
 
-.page__page-with-side-menus {
+.page__page-with-side-menus,
+.page__single-col-page {
     .navds-body-long--small,
     .navds-body-short--small,
     .navds-body-long--medium,

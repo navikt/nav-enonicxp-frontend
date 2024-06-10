@@ -9,7 +9,7 @@ import { LinkProps } from 'types/link-props';
 import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
-import style from './LargeCard.module.scss';
+import style from './LargeCardV1.module.scss';
 import sharedStyle from './Card.module.scss';
 
 enum LayoutVariation {
@@ -33,7 +33,7 @@ type Props = {
     preferStaticIllustration?: boolean;
 };
 
-export const LargeCard = (props: Props) => {
+export const LargeCardV1 = (props: Props) => {
     const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
     const { text } = link;
 

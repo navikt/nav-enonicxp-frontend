@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { LargeCard } from 'components/_common/card/LargeCard';
+import { LargeCardV2 } from 'components/_common/card/LargeCardV2';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
@@ -27,5 +27,5 @@ export const ProductCardPart = ({ config }: PartComponentProps<PartType.ProductC
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    return <LargeCard {...props} />;
+    return <LargeCardV2 {...props} />;
 };

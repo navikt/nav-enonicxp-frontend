@@ -10,6 +10,7 @@ import style from './GeneralPageHeader.module.scss';
 
 type Props = {
     pageProps: ContentProps;
+    hideIngressOverride?: boolean;
 };
 
 export const GeneralPageHeader = (props: Props) => {
@@ -34,7 +35,7 @@ export const GeneralPageHeader = (props: Props) => {
             <Heading level="1" size="xlarge" className={style.header}>
                 {title}
             </Heading>
-            {ingress && !hideIngress && (
+            {ingress && !hideIngress && !props.hideIngressOverride && (
                 <BodyLong size="large" className={style.ingress}>
                     {ingress}
                 </BodyLong>

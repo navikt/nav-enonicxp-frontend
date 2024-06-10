@@ -110,5 +110,42 @@
 }
 
 .layoutSituation {
-    background-color: var(--a-green-100);
+    background-color: rgb(254 245 239); // Finnes pr nå ikke i Aksel.
+}
+
+.layoutSituationShelf {
+    // TODO rydd i litt hacky midlertidig løsning, bruker samme metode som full-width-mixin, men med 70vw istedenfor 100vw. (tenker det kan gjøres etter lansering)
+    padding-left: calc((70vw - 100%) / 2);
+    padding-right: calc((70vw - 100%) / 2);
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.shelfHeader {
+    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.shelfLayout {
+    --gap: 2px;
+    --line-offset: calc(var(--gap) / 2);
+    --line-thickness: 1px;
+    --line-color: rgb(203 213 225);
+
+    display: grid !important;
+    overflow: hidden;
+    gap: var(--gap);
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    > * {
+        margin: 0 !important; //overstyr nth-child margin fra generell flexcols
+    }
 }
