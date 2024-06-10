@@ -6,6 +6,12 @@
     height: 100%;
     position: relative;
     cursor: pointer;
+
+    &:hover {
+        .link {
+            text-decoration-thickness: 2px;
+        }
+    }
 }
 
 .container::before,
@@ -44,6 +50,11 @@
         filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
             hue-rotate(311deg) brightness(88%) contrast(94%);
     }
+}
+
+.link {
+    text-underline-offset: 0.15625rem;
+    text-decoration-thickness: 1px;
 }
 
 .linkText {

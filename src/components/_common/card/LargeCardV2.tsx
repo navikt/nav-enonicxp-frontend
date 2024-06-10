@@ -41,7 +41,7 @@ export const LargeCardV2 = (props: Props) => {
                 <IllustrationStatic illustration={illustration} className={style.illustration} />
             )}
             <div className={style.textContainer}>
-                <LenkeBase href={link.url} {...analyticsProps}>
+                <LenkeBase className={style.link} href={link.url} {...analyticsProps}>
                     <BodyShort className={style.linkText} size="large">
                         {link.text}
                     </BodyShort>
