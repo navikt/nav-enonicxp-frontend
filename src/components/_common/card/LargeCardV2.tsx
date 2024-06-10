@@ -29,14 +29,14 @@ export const LargeCardV2 = (props: Props) => {
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
 
-    const { analyticsProps } = useCard({
+    const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Large,
         link,
     });
 
     return (
-        <div className={style.container}>
+        <div {...userEventProps} className={style.container}>
             {hasIllustration && (
                 <IllustrationStatic illustration={illustration} className={style.illustration} />
             )}
