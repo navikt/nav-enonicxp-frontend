@@ -30,7 +30,6 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                 <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
                 <Region pageProps={pageProps} regionProps={regions.pageContent} />
                 <PageUpdatedInfo datetime={pageProps.modifiedTime} />
-                {/* PageUpdatedInfo skal være over kontaktmodulen, ikke under */}
             </div>
         </LayoutContainer>
     );

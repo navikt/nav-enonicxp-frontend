@@ -107,7 +107,7 @@
 }
 
 .layoutSituationShelf {
-    //Litt hacky midlertidig løsning, bruker samme metode som full-width-mixin, men med 70vw istedenfor 100vw.
+    // TODO rydd i litt hacky midlertidig løsning, bruker samme metode som full-width-mixin, men med 70vw istedenfor 100vw. (tenker det kan gjøres etter lansering)
     padding-left: calc((70vw - 100%) / 2);
     padding-right: calc((70vw - 100%) / 2);
 
