@@ -49,6 +49,7 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
     const { language } = usePageContentProps();
+    const getLabel = translator('internalNavigation', language);
     const introAnchors = getAnchorsFromComponents(language, introRegion);
     const contentAnchors = getAnchorsFromComponents(language, contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
@@ -65,7 +66,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         <PageNavigationMenu
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
-            title="I dette kapittelet" //TODO fiks språkversjonering. Antar at man ikke ønsker at denne skal kunne endres redaksjonelt? Samme med "Innhold på siden" i PageNavigationMenu.tsx?
+            title={getLabel('sectionNavigation')}
         />
     );
 };

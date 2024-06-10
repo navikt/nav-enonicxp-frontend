@@ -7,6 +7,8 @@ import { PageNavigationMenu } from 'components/_common/page-navigation-menu/Page
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 import styles from './PageWithSideMenus.module.scss';
 
@@ -17,12 +19,14 @@ type Props = {
 
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+    const { language } = usePageContentProps();
+    const getLabel = translator('internalNavigation', language);
 
     if (!regions || !config) {
         return null;
     }
 
-    const { leftMenuHeader, showInternalNav, anchorLinks } = config;
+    const { showInternalNav, anchorLinks } = config;
 
     const { pageContent, topPageContent, bottomRow } = regions;
 
@@ -45,7 +49,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 {showInternalNav && (
                     <PageNavigationMenu
                         anchorLinks={anchorLinks}
-                        title={leftMenuHeader}
+                        title={getLabel('pageNavigationMenu')}
                         isChapterNavigation={true}
                     />
                 )}
