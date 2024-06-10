@@ -41,7 +41,7 @@
     height: 3.75rem;
     flex-shrink: 0;
 
-    //TODO dupliserte filtere fra GeneralPageHeader
+    //TODO rydd i dupliserte filtere fra GeneralPageHeader (kan tas senere)
     :global(.back) {
         filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
             hue-rotate(286deg) brightness(92%) contrast(95%);
