@@ -52,7 +52,7 @@ export type GuidePageProps = ContentCommonProps & {
 
 export type SituationPageProps = ContentCommonProps & {
     type: ContentType.SituationPage;
-    data: ProductDataMixin;
+    data: ProductDataMixin & { relatedSituations?: SituationPageProps[] };
     page: SingleColPageProps;
 };
 

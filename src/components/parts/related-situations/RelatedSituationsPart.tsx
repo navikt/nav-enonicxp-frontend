@@ -10,6 +10,7 @@ const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
     ContentType.ThemedArticlePage,
     ContentType.GuidePage,
+    ContentType.SituationPage,
 ] as const);
 
 export type PartConfigRelatedSituations = {
