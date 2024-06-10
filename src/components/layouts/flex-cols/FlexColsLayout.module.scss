@@ -1,9 +1,8 @@
 @use 'common' as common;
 
 @mixin contactBackground() {
-    margin-bottom: -2rem;
     padding-bottom: 4rem;
-    background-color: #f0f4f9 !important;
+    background-color: #f0f4f9;
     --size: 6px;
     --p: 3px;
     --R: 6px;
@@ -70,7 +69,6 @@
 
     padding-top: 4rem;
     padding-bottom: 4rem;
-    margin-bottom: 2rem;
     margin-top: 4rem;
 
     &:last-child {
@@ -126,32 +124,4 @@
 
     padding-top: 3rem;
     padding-bottom: 3rem;
-}
-
-.shelfHeader {
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
-    margin-bottom: 2rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    text-align: center;
-    text-wrap: balance;
-}
-
-.shelfLayout {
-    --gap: 2px;
-    --line-offset: calc(var(--gap) / 2);
-    --line-thickness: 1px;
-    --line-color: rgb(203 213 225);
-
-    display: grid !important;
-    overflow: hidden;
-    gap: var(--gap);
-
-    @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    > * {
-        margin: 0 !important; //overstyr nth-child margin fra generell flexcols
-    }
 }

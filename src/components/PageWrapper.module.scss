@@ -7,15 +7,15 @@
     line-height: common.$a-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 common.$padding-sides-mobile 2rem common.$padding-sides-mobile;
+        padding: 0 common.$padding-sides-mobile 0 common.$padding-sides-mobile;
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 common.$padding-sides-tablet 2rem common.$padding-sides-tablet;
+        padding: 0 common.$padding-sides-tablet 0 common.$padding-sides-tablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 common.$padding-sides-desktop 2rem common.$padding-sides-desktop;
+        padding: 0 common.$padding-sides-desktop 0 common.$padding-sides-desktop;
     }
 }
 

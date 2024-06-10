@@ -1,3 +1,24 @@
+@use 'common' as common;
+
+.contentWrapper {
+    @include common.full-width-mixin();
+
+    &.situationPage {
+        margin-top: 0;
+        padding: var(--a-spacing-6) 0;
+        background-color: #f1f1f1;
+        align-content: center;
+
+        .pageUpdatedInfo {
+            border-top: 0px;
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+    }
+}
+
 .pageUpdatedInfo {
     border-top: 1px solid var(--a-gray-200);
     font-style: italic;
