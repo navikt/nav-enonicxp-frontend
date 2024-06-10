@@ -1,5 +1,19 @@
 @use 'common' as common;
 
+@mixin contactBackground() {
+    margin-bottom: -2rem;
+    padding-bottom: 4rem;
+    background-color: #f0f4f9 !important;
+    --size: 6px;
+    --p: 3px;
+    --R: 6px;
+    mask:
+        radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #000 99%, #0000 101%)
+            calc(50% - 2 * var(--size)) 0 / calc(4 * var(--size)) 100%,
+        radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #0000 99%, #000 101%) left 50%
+            top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+}
+
 .flexCols {
     :global(.region__flexcols) {
         display: flex;
@@ -42,6 +56,12 @@
     margin-bottom: 2.5rem;
 }
 
+:global(.region__bottomRow) {
+    .layoutSituationOrProduct {
+        @include contactBackground();
+    }
+}
+
 .layoutSituationOrProduct {
     $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
@@ -54,21 +74,7 @@
     margin-top: 4rem;
 
     &:last-child {
-        margin-bottom: -2rem;
-        padding-bottom: 4rem;
-        background-color: #f0f4f9 !important;
-        --size: 6px;
-        --p: 3px;
-        --R: 6px;
-        mask:
-            radial-gradient(
-                    var(--R) at left 50% top calc(var(--size) + var(--p)),
-                    #000 99%,
-                    #0000 101%
-                )
-                calc(50% - 2 * var(--size)) 0 / calc(4 * var(--size)) 100%,
-            radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #0000 99%, #000 101%) left
-                50% top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+        @include contactBackground();
     }
 
     :global(.region__flexcols.region__flexcols) {
