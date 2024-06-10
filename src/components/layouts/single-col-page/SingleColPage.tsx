@@ -27,7 +27,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                <GeneralPageHeader pageProps={pageProps} />
+                <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
                 <Region pageProps={pageProps} regionProps={regions.pageContent} />
                 <PageUpdatedInfo datetime={pageProps.modifiedTime} />
                 {/* PageUpdatedInfo skal være over kontaktmodulen, ikke under */}
