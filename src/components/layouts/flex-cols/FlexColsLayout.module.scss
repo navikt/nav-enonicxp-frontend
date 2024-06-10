@@ -78,7 +78,8 @@
         padding-top: 5rem;
 
         .contentWrapper {
-            margin: 0 -11rem;
+            $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
+            margin: 0 $margin;
         }
     }
 
