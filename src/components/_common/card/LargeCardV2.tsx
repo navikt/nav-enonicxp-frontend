@@ -3,9 +3,9 @@ import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { LinkProps } from 'types/link-props';
 import { useCard } from './useCard';
-import { IllustrationStatic } from '../illustration/static/IllustrationStatic';
 
 import style from './LargeCardV2.module.scss';
 
