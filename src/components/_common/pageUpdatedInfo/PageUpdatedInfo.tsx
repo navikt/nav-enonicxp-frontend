@@ -15,7 +15,7 @@ export const PageUpdatedInfo = ({ datetime, language = 'no' }: PageUpdatedInfoPr
     const updatedString = getDatesTranslations('lastChanged');
 
     return (
-        <BodyShort className={styles.pageUpdatedInfo}>
+        <BodyShort className={styles.pageUpdatedInfo} size="small">
             {updatedString}&nbsp;{formattedDate}
         </BodyShort>
     );
