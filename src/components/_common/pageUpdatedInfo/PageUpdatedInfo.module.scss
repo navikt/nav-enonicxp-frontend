@@ -10,11 +10,11 @@
         align-content: center;
 
         .pageUpdatedInfo {
-            border-top: 0px;
             max-width: 1300px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 2rem;
+            border-top: 1px solid var(--a-gray-300);
+            padding: var(--a-spacing-5) var(--a-spacing-12) 0;
         }
     }
 }

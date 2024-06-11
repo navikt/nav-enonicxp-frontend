@@ -42,14 +42,14 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
 
     return (
-        <div className={style.contentWrapper}>
-            <LayoutContainer
-                className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
-                    isShelf && style.layoutSituationShelf
-                }`}
-                pageProps={pageProps}
-                layoutProps={layoutProps}
-            >
+        <LayoutContainer
+            className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
+                isShelf && style.layoutSituationShelf
+            }`}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
+            <div className={style.contentWrapper}>
                 {title && (
                     <Header
                         level="2"
@@ -69,7 +69,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                     bemModifier={isShelf ? '' : `${colCount}-cols`}
                     className={isShelf ? style.shelfLayout : ''}
                 />
-            </LayoutContainer>
-        </div>
+            </div>
+        </LayoutContainer>
     );
 };
