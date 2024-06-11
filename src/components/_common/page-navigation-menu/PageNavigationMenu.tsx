@@ -28,6 +28,7 @@ export const PageNavigationMenu = ({
     const links = getValidLinks(anchorLinks);
 
     const headingId = `heading-page-navigation-menu-${useId()}`;
+    const headingLevel = isChapterNavigation ? '2' : '3';
 
     if (links.length === 0) return null;
 
@@ -41,7 +42,13 @@ export const PageNavigationMenu = ({
                     isChapterNavigation && style.chapterNavigation
                 )}
             >
-                <Heading level="2" size="xsmall" spacing id={headingId} className={style.heading}>
+                <Heading
+                    level={headingLevel}
+                    size="xsmall"
+                    spacing
+                    id={headingId}
+                    className={style.heading}
+                >
                     {title}
                 </Heading>
                 <ul aria-labelledby={headingId} className={style.list}>

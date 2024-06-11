@@ -39,7 +39,7 @@
     .navds-body-short--medium,
     .navds-body-long--large,
     .navds-body-short--large {
-        font-weight: 390;
+        font-weight: 360;
     }
 
     .navds-body-long--small,
@@ -88,7 +88,7 @@
         font-weight: 700;
     }
     .navds-heading--medium {
-        font-size: var(--text-fluid-24-28);
+        font-size: var(--text-fluid-22-24);
         font-weight: 700;
     }
     .navds-heading--large {
@@ -98,5 +98,11 @@
     .navds-heading--xlarge {
         font-size: var(--text-fluid-36-48);
         font-weight: 700;
+    }
+
+    h3,
+    h4,
+    h5 {
+        color: var(--a-gray-800);
     }
 }
