@@ -7,6 +7,7 @@ $verticalMargin: 1.75rem;
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-rows: auto 1fr;
+    padding-top: var(--a-spacing-8);
 
     @media #{common.$mq-screen-mobile} {
         display: block;
