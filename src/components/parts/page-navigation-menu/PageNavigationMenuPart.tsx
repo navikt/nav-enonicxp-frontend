@@ -21,5 +21,11 @@ export const PageNavigationMenuPart = ({
         return null;
     }
 
-    return <PageNavigationMenu anchorLinks={config.anchorLinks} title={config.title} />;
+    return (
+        <PageNavigationMenu
+            anchorLinks={config.anchorLinks}
+            title={config.title}
+            isChapterNavigation
+        />
+    );
 };
