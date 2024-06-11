@@ -1,7 +1,5 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .situationPage {
     display: flex;
     flex-direction: column;
@@ -17,7 +15,7 @@ $margin: 2rem;
     }
 
     .content {
-        margin-top: 2rem;
+        margin-top: 4rem;
         display: flex;
         justify-content: flex-start;
         align-self: center;
