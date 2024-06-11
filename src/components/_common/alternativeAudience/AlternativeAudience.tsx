@@ -76,7 +76,7 @@ export const AlternativeAudience = () => {
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
 
-    const productName = showProductName ? displayName : getStringPart('this');
+    const productName = showProductName === false ? getStringPart('this') : displayName;
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
