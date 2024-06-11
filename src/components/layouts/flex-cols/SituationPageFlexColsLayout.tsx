@@ -3,6 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
+import { classNames } from 'utils/classnames';
 import { Header } from 'components/_common/headers/Header';
 
 import style from './FlexColsLayout.module.scss';
@@ -41,22 +42,22 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
 
     return (
-        <LayoutContainer
-            className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
-                isShelf && style.layoutSituationShelf
-            }`}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-        >
-            <div className={style.contentWrapper}>
+        <div className={style.contentWrapper}>
+            <LayoutContainer
+                className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
+                    isShelf && style.layoutSituationShelf
+                }`}
+                pageProps={pageProps}
+                layoutProps={layoutProps}
+            >
                 {title && (
                     <Header
                         level="2"
                         size="large"
-                        justify={'left'}
+                        justify={isShelf ? 'center' : 'left'}
                         hideCopyButton={!toggleCopyButton}
                         anchorId={anchorId}
-                        className={style.header}
+                        className={classNames(style.header, isShelf && style.shelfHeader)}
                     >
                         {title}
                     </Header>
@@ -65,9 +66,10 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                     pageProps={pageProps}
                     regionProps={regionProps}
                     regionStyle={regionStyle}
-                    bemModifier={`${colCount}-cols`}
+                    bemModifier={isShelf ? '' : `${colCount}-cols`}
+                    className={isShelf ? style.shelfLayout : ''}
                 />
-            </div>
-        </LayoutContainer>
+            </LayoutContainer>
+        </div>
     );
 };
