@@ -6,8 +6,6 @@ import Region from 'components/layouts/Region';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 
-import styles from '../page-with-side-menus/PageWithSideMenus.module.scss';
-
 type Props = {
     pageProps: ContentProps;
     layoutProps: SingleColPageProps;
@@ -32,20 +30,14 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const showHeaderAndChangedate = hasGeneralComponents.has(pageProps.type);
 
     return (
-        <LayoutContainer
-            className={styles.pageWithSideMenus}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-        >
-            <div className={styles.mainContent}>
-                {showHeaderAndChangedate && (
-                    <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
-                )}
-                <Region pageProps={pageProps} regionProps={regions.pageContent} />
-                {showHeaderAndChangedate && (
-                    <PageUpdatedInfo datetime={pageProps.modifiedTime} isSituationPage />
-                )}
-            </div>
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            {showHeaderAndChangedate && (
+                <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
+            )}
+            <Region pageProps={pageProps} regionProps={regions.pageContent} />
+            {showHeaderAndChangedate && (
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} isSituationPage />
+            )}
         </LayoutContainer>
     );
 };
