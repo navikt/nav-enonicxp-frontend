@@ -14,6 +14,10 @@
 }
 
 .flexCols {
+    &:last-child {
+        padding-bottom: 4rem;
+    }
+
     :global(.region__flexcols) {
         display: flex;
         flex-direction: row;
