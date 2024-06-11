@@ -29,7 +29,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
                 <Region pageProps={pageProps} regionProps={regions.pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} isSituationPage />
             </div>
         </LayoutContainer>
     );

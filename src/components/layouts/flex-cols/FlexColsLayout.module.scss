@@ -1,9 +1,8 @@
 @use 'common' as common;
 
 @mixin contactBackground() {
-    margin-bottom: -2rem;
     padding-bottom: 4rem;
-    background-color: #f0f4f9 !important;
+    background-color: #f0f4f9;
     --size: 6px;
     --p: 3px;
     --R: 6px;
@@ -15,6 +14,10 @@
 }
 
 .flexCols {
+    &:last-child {
+        padding-bottom: 4rem;
+    }
+
     :global(.region__flexcols) {
         display: flex;
         flex-direction: row;
@@ -69,12 +72,17 @@
     @include common.full-width-mixin();
 
     padding-top: 4rem;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    padding-bottom: 4rem;
     margin-top: 4rem;
 
     &:last-child {
         @include contactBackground();
+        padding-top: 5rem;
+
+        .contentWrapper {
+            $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
+            margin: 0 $margin;
+        }
     }
 
     :global(.region__flexcols.region__flexcols) {
