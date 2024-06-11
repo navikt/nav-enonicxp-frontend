@@ -6,6 +6,7 @@ $margin: 2rem;
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
+    padding-bottom: 3rem;
 
     @media #{common.$mq-screen-mobile} {
         padding-left: 1rem;
