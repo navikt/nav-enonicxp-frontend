@@ -34,8 +34,10 @@
 
 .tagline {
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.075rem;
     margin-top: var(--a-spacing-3);
+    font-variant: all-small-caps;
+    color: var(—-a-text-subtle);
 }
 
 .ingress {
