@@ -22,6 +22,7 @@ $margin: 2rem;
 .contentWrapper {
     display: flex;
     justify-content: center;
+    padding-bottom: var(--a-spacing-16);
     @include common.full-width-mixin;
 }
 
