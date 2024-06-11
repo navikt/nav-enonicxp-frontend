@@ -2,6 +2,13 @@
 
 .htmlArea {
     margin-bottom: var(--a-spacing-9);
+
+    // Exception because product details are somehow
+    // build with h4 and html in separate parts rather than one large
+    // Formattert innhold-parts.
+    &:has(h4:last-child) {
+        margin-bottom: var(--a-spacing-3);
+    }
 }
 
 :global(.part__html-area):last-child {
