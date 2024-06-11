@@ -43,7 +43,6 @@ export const PageNavigationMenu = ({
             >
                 <Heading level="2" size="xsmall" spacing id={headingId} className={style.heading}>
                     {title}
-                    {/* TODO: skal være "Innhold på siden", ikke "Innhold". Settes redaksjonelt, men kunne kanskje hardkodes? */}
                 </Heading>
                 <ul aria-labelledby={headingId} className={style.list}>
                     {links.map((anchorLink) => (
