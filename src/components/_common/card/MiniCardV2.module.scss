@@ -36,11 +36,12 @@
 .tagline,
 .arrow {
     color: var(--a-text-default);
-    opacity: 0.7;
 }
 
 .tagline {
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.025rem;
-    font-weight: 500;
+    color: var(--a-text-subtle);
+    font-variant: all-small-caps;
+    letter-spacing: 0.075rem;
+    margin-top: var(--a-spacing-3);
+    text-transform: uppercase;
 }
