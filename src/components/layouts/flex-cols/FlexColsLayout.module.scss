@@ -2,7 +2,7 @@
 
 @mixin contactBackground() {
     padding-bottom: 4rem;
-    background-color: #f0f4f9;
+    background-color: var(--a-gray-50);
     --size: 6px;
     --p: 3px;
     --R: 6px;
