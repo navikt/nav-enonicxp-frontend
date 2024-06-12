@@ -48,6 +48,10 @@
         &:focus {
             text-decoration-line: none;
         }
+
+        :global(.navds-heading) {
+            color: var(--default-action-color);
+        }
     }
 
     .text {

@@ -2,7 +2,9 @@
 
 @mixin contactBackground() {
     padding-bottom: 4rem;
-    background-color: var(--a-gray-50);
+    background-color: var(
+        --a-gray-50
+    ) !important; // To override inline colors set in XP (to be changed in the future)
     --size: 6px;
     --p: 3px;
     --R: 6px;
@@ -59,12 +61,6 @@
     margin-bottom: 2.5rem;
 }
 
-:global(.region__bottomRow) {
-    .layoutSituationOrProduct {
-        @include contactBackground();
-    }
-}
-
 .layoutSituationOrProduct {
     $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
@@ -75,7 +71,7 @@
     padding-bottom: 4rem;
     margin-top: 4rem;
 
-    &:last-child {
+    &:has(:global(.part__contact-option)) {
         @include contactBackground();
         padding-top: 5rem;
 
