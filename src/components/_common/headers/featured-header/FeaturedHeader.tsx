@@ -19,7 +19,7 @@ export const FeaturedHeader = ({ contentProps }: Props) => {
     const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;
 
-    const publishFrom = publish?.from || createdTime;
+    const publishFrom = publish?.from ?? createdTime;
     const getFeaturedTranslations = translator('currentTopic', language);
 
     const tagLineLabel = getFeaturedTranslations('tag');
