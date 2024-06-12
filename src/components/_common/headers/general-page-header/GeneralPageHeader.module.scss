@@ -29,6 +29,7 @@
     .header {
         margin-top: var(--a-spacing-3);
         color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+        margin-bottom: var(--a-spacing-6);
     }
 
     .tagline {
@@ -38,9 +39,5 @@
         margin-top: var(--a-spacing-3);
         font-variant: all-small-caps;
         color: var(--a-text-subtle);
-    }
-
-    .ingress {
-        margin-top: var(--a-spacing-6);
     }
 }
