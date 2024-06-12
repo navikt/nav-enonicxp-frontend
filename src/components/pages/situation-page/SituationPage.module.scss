@@ -13,11 +13,6 @@
     :global(.region__pageContent) {
         display: flex;
         flex-direction: column;
-
-        // Prevent margins between adjacent situation-flex-cols layouts
-        :global(.layout__situation-flex-cols) + :global(.layout__situation-flex-cols) {
-            margin-top: -1rem;
-        }
     }
 
     .content {
