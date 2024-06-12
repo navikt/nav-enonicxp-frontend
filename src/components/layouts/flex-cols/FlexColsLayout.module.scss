@@ -79,6 +79,12 @@
             $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
             margin: 0 $margin;
         }
+
+        :global(.region__flexcols--2-cols) {
+            :global(.part__contact-option) {
+                margin-bottom: var(--a-spacing-8);
+            }
+        }
     }
 
     :global(.region__flexcols.region__flexcols) {
