@@ -54,7 +54,8 @@
         }
     }
 
-    .text {
+    .text,
+    :global(.navds-body-long.navds-body-long--medium) {
         color: black;
         margin-bottom: 0;
 
