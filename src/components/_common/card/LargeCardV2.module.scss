@@ -17,6 +17,7 @@
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
     &:hover {
