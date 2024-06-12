@@ -1,139 +1,74 @@
-import React, { useEffect, useRef, useState } from 'react';
-import debounce from 'lodash.debounce';
-import Config from 'config';
-import {
-    AnchorLink,
-    PageNavViewStyle,
-} from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
-import { PageNavigationSidebar } from './views/PageNavigationSidebar';
-import { PageNavigationInContent } from './views/PageNavigationInContent';
+import React, { useId } from 'react';
+import { ArrowDownRightIcon } from '@navikt/aksel-icons';
+import { BodyShort, Heading } from '@navikt/ds-react';
+import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
+import { AnalyticsEvents } from 'utils/amplitude';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
-const MENU_UPDATE_RATE = 1000 / 30;
+import style from './PageNavigationMenu.module.scss';
 
-type PageNavCallbackArgs = {
-    index: number;
-    linkText?: string;
-    linkId?: string;
-};
-
-export type PageNavScrollDirection = 'up' | 'down';
+const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
+    anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
 
 type Props = {
     anchorLinks?: AnchorLink[];
-    title?: string;
-    currentLinkCallback?: (args: PageNavCallbackArgs) => void;
-    viewStyle: PageNavViewStyle;
+    analyticsComponent?: string;
+    title: string;
+    isChapterNavigation?: boolean;
 };
 
 export const PageNavigationMenu = ({
     anchorLinks = [],
+    analyticsComponent = 'Meny for intern-navigasjon',
     title,
-    currentLinkCallback,
-    viewStyle,
+    isChapterNavigation,
 }: Props) => {
-    const [currentIndex, setCurrentIndex] = useState(-1);
     const links = getValidLinks(anchorLinks);
 
-    const scrollDir = useRef<PageNavScrollDirection>('up');
-    const prevScrollPos = useRef(0);
+    const headingId = `heading-page-navigation-menu-${useId()}`;
+    const headingLevel = isChapterNavigation ? '2' : '3';
 
-    useEffect(() => {
-        if (!currentLinkCallback) {
-            return;
-        }
-
-        const targetLink = links[currentIndex];
-
-        currentLinkCallback({
-            index: currentIndex,
-            ...(targetLink && {
-                linkText: targetLink.linkText,
-                linkId: getPageNavigationLinkId(targetLink.anchorId),
-            }),
-        });
-    }, [currentIndex, links, currentLinkCallback]);
-
-    useEffect(() => {
-        const elementsSortedByVerticalPosition = links.reduce<HTMLElement[]>((acc, link) => {
-            const element = document.getElementById(link.anchorId);
-            if (element) {
-                acc.push(element);
-            }
-            return acc;
-        }, []);
-
-        const currentScrollPositionHandler = debounce(
-            () => {
-                const index = getCurrentLinkIndex(elementsSortedByVerticalPosition);
-
-                const scrollPos = window.scrollY;
-
-                scrollDir.current = scrollPos > prevScrollPos.current ? 'down' : 'up';
-                prevScrollPos.current = scrollPos;
-
-                setCurrentIndex(index);
-            },
-            MENU_UPDATE_RATE / 2,
-            { maxWait: MENU_UPDATE_RATE }
-        );
-
-        currentScrollPositionHandler();
-
-        window.addEventListener('scroll', currentScrollPositionHandler);
-        return () => window.removeEventListener('scroll', currentScrollPositionHandler);
-    }, [links]);
-
-    if (links.length === 0) {
-        return null;
-    }
-
-    const PageNavigationComponent =
-        viewStyle === 'sidebar' ? PageNavigationSidebar : PageNavigationInContent;
-
-    const props = {
-        currentIndex,
-        title,
-        links,
-        scrollDirection: scrollDir.current,
-    };
+    if (links.length === 0) return null;
 
     return (
         <>
             <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
-            <PageNavigationComponent {...props} />
+
+            <div
+                className={classNames(
+                    style.pageNavigationMenu,
+                    isChapterNavigation && style.chapterNavigation
+                )}
+            >
+                <Heading
+                    level={headingLevel}
+                    size="xsmall"
+                    spacing
+                    id={headingId}
+                    className={style.heading}
+                >
+                    {title}
+                </Heading>
+                <ul aria-labelledby={headingId} className={style.list}>
+                    {links.map((anchorLink) => (
+                        <li key={anchorLink.anchorId}>
+                            <LenkeBase
+                                href={`#${anchorLink.anchorId}`}
+                                analyticsEvent={AnalyticsEvents.NAVIGATION}
+                                analyticsLinkGroup={'Innhold'}
+                                analyticsComponent={analyticsComponent}
+                                analyticsLabel={anchorLink.linkText}
+                                className={style.link}
+                            >
+                                <ArrowDownRightIcon className={style.icon} />
+                                <BodyShort as="span">{anchorLink.linkText}</BodyShort>
+                            </LenkeBase>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </>
     );
 };
-
-export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
-
-const getCurrentLinkIndex = (targetElements: HTMLElement[]) => {
-    const scrollTarget = window.scrollY + Config.vars.dekoratorenHeight;
-
-    const scrolledToTop = !!(targetElements?.length && targetElements[0].offsetTop > scrollTarget);
-
-    if (scrolledToTop) {
-        return -1;
-    }
-
-    const scrolledToBottom =
-        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
-
-    if (scrolledToBottom) {
-        return targetElements.length - 1;
-    }
-
-    const foundIndex = targetElements.findIndex((target) => {
-        return target.offsetTop > scrollTarget;
-    });
-
-    if (foundIndex === -1) {
-        return targetElements.length - 1;
-    }
-
-    return Math.max(foundIndex - 1, 0);
-};
-
-const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
-    anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);

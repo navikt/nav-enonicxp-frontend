@@ -6,6 +6,8 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
+import style from './AlertBoxPart.module.scss';
+
 // These types were used by a previous version of the design system component
 // and are still used for the type property on the backend
 type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';
@@ -39,6 +41,7 @@ export const AlertBoxPart = ({ config }: PartComponentProps<PartType.AlertBox>) 
             variant={legacyTypeToVariant[type] || 'info'}
             size={size}
             inline={inline}
+            className={style.alertBox}
             style={{
                 ...(margin && { margin }),
             }}

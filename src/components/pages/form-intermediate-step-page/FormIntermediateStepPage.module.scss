@@ -43,12 +43,12 @@ $padding: 2rem;
 
 .stepAction {
     &:global(.navds-link-panel) {
-        border-color: var(--a-text-action);
+        border-color: var(--default-action-color);
     }
     & :global {
         .navds-link-panel__title,
         .navds-link-panel__chevron {
-            color: var(--a-text-action);
+            color: var(--default-action-color);
         }
     }
     @media #{common.$mq-screen-mobile} {

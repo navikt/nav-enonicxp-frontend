@@ -9,8 +9,8 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import { ChatData } from 'components/parts/contact-option/ContactOptionPart';
+import { Icon } from 'components/_common/contact-option/Icon';
 import { OpeningInfo } from './opening-info/OpeningInfo';
-import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -23,56 +23,48 @@ export const ChatOption = (props: ChatData) => {
 
     const translations = translator('contactPoint', language)('chat');
 
-    const { isActive, handlers } = useHoverAndFocus();
-
     return (
         <div className={style.contactOption}>
-            <LenkeBase
-                onClick={(e) => {
-                    e.preventDefault();
-                    openChatbot();
-                }}
-                href="#"
-                analyticsEvent={AnalyticsEvents.CHAT_OPEN}
-                analyticsLinkGroup={layoutConfig.title}
-                analyticsComponent={'Kontakt-oss kanal'}
-                className={style.link}
-                {...handlers}
-            >
-                <div className={style.linkContent}>
-                    {hoverFocusIcon({
-                        iconDefault: 'chat.svg',
-                        iconActive: 'chat-filled.svg',
-                        isActive: isActive,
-                        style: `${style.icon} ${style.chatIcon}`,
-                    })}
+            <Icon type="chat" />
+            <div className={style.content}>
+                <LenkeBase
+                    onClick={(e) => {
+                        e.preventDefault();
+                        openChatbot();
+                    }}
+                    href="#"
+                    analyticsEvent={AnalyticsEvents.CHAT_OPEN}
+                    analyticsLinkGroup={layoutConfig.title}
+                    analyticsComponent={'Kontakt-oss kanal'}
+                    className={style.link}
+                >
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
-                </div>
-            </LenkeBase>
-            {alertText && (
-                <Alert variant="warning" inline className={style.alert}>
-                    {alertText}
-                </Alert>
-            )}
-            <BodyLong as="div" className={style.text}>
-                <ParsedHtml htmlProps={overrideText || ingress || translations.ingress} />
-            </BodyLong>
-            {!alertText && (
-                <TextWithIndicator
-                    text={translations.alwaysOpen}
-                    prefix={'Chatbot:'}
-                    isActive={true}
-                />
-            )}
-            {!alertText && regularOpeningHours && specialOpeningHours && (
-                <OpeningInfo
-                    regularOpeningHours={regularOpeningHours}
-                    specialOpeningHours={specialOpeningHours}
-                    textPrefix={`${translations.chatWithCounsellor}:`}
-                />
-            )}
+                </LenkeBase>
+                {alertText && (
+                    <Alert variant="warning" inline className={style.alert}>
+                        {alertText}
+                    </Alert>
+                )}
+                <BodyLong as="div" className={style.text}>
+                    <ParsedHtml htmlProps={overrideText || ingress || translations.ingress} />
+                </BodyLong>
+                {!alertText && (
+                    <TextWithIndicator
+                        text={translations.alwaysOpen}
+                        prefix={'Chatbot:'}
+                        isActive={true}
+                    />
+                )}
+                {!alertText && regularOpeningHours && specialOpeningHours && (
+                    <OpeningInfo
+                        regularOpeningHours={regularOpeningHours}
+                        specialOpeningHours={specialOpeningHours}
+                        textPrefix={`${translations.chatWithCounsellor}:`}
+                    />
+                )}
+            </div>
         </div>
     );
 };

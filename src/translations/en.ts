@@ -74,7 +74,7 @@ export const translationsBundleEn: PartialTranslations = {
         shortcuts: 'Shortcuts',
     },
     linkPanels: {
-        label: 'Link panels'
+        label: 'Link panels',
     },
     linkList: {
         label: 'List of links',
@@ -316,9 +316,6 @@ export const translationsBundleEn: PartialTranslations = {
         minutes: 'min',
         error: 'An error occurred while loading the video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Jump to sub section',
-    },
     audience: {
         person: 'individuals',
         employer: 'employers',
@@ -337,5 +334,9 @@ export const translationsBundleEn: PartialTranslations = {
         relatedAudience: 'There is also information on {name} for',
         otherOffers: 'Other options',
         moreInformation: 'More information for you who',
+    },
+    internalNavigation: {
+        pageNavigationMenu: 'Contents',
+        sectionNavigation: 'In this chapter',
     },
 };

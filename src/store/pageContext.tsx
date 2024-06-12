@@ -16,14 +16,14 @@ const PageContextProvider: React.FC<any> = ({ children, content }) => {
     return <PageContext.Provider value={content}>{children}</PageContext.Provider>;
 };
 
-const usePageContentProps = () => {
+const usePageContentProps = <T = ContentProps,>() => {
     const context = useContext(PageContext);
 
     if (!context) {
         throw new Error('usePageContentProps must be used within a PageContextProvider');
     }
 
-    return context;
+    return context as T;
 };
 
 export { PageContextProvider, usePageContentProps };

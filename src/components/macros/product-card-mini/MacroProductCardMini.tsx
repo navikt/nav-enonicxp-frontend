@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroProductCardMiniProps } from 'types/macro-props/product-card-mini';
-import { MiniCard } from 'components/_common/card/MiniCard';
+import { MiniCardV2 } from 'components/_common/card/MiniCardV2';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -14,7 +14,13 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
 
     const { targetPage } = config.product_card_mini;
 
-    const props = getCardProps(targetPage, pageContext);
+    const cardProps = getCardProps(targetPage, pageContext);
 
-    return props && <MiniCard {...props} />;
+    if (!cardProps) {
+        return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
+    }
+
+    const { link, type, tagline } = cardProps;
+
+    return <MiniCardV2 link={link} type={type} tagline={tagline} />;
 };

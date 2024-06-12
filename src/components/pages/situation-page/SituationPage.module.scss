@@ -1,44 +1,30 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .situationPage {
     display: flex;
     flex-direction: column;
 
+    @media #{common.$mq-screen-mobile} {
+        display: block;
+        margin: 0rem 0.5rem;
+        width: calc(100% - 1rem);
+    }
+
     :global(.region__pageContent) {
         display: flex;
         flex-direction: column;
-
-        & > :not(:global(.layout__situation-flex-cols)) {
-            margin-bottom: $margin;
-            max-width: common.$sectionMaxWidth;
-        }
-
-        // Prevent margins between adjacent situation-flex-cols layouts
-        :global(.layout__situation-flex-cols) + :global(.layout__situation-flex-cols) {
-            margin-top: -3rem;
-        }
     }
 
     .content {
-        margin-top: 2rem;
+        margin-top: 4rem;
         display: flex;
         justify-content: flex-start;
         align-self: center;
         width: 100%;
-        max-width: common.$contentMaxWidth;
+        max-width: 40rem;
 
         & > * {
             width: 100%;
-        }
-    }
-
-    :global(.icon-container) {
-        background-color: var(--a-orange-200);
-        img {
-            height: 50%;
-            width: 50%;
         }
     }
 }

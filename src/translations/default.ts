@@ -344,9 +344,6 @@ export const translationsBundleNb = {
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Hopp til underseksjoner',
-    },
     audience: {
         person: 'privatpersoner',
         employer: 'arbeidsgivere',
@@ -365,6 +362,10 @@ export const translationsBundleNb = {
         relatedAudience: 'Det finnes også informasjon om {name} til',
         otherOffers: 'Andre tilbud',
         moreInformation: 'Mer informasjon til deg som',
+    },
+    internalNavigation: {
+        pageNavigationMenu: 'Innhold på siden',
+        sectionNavigation: 'I dette kapittelet',
     },
 };
 

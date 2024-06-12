@@ -4,14 +4,21 @@
     &.no-margin {
         margin-top: 0;
     }
-}
+    .description {
+        margin-bottom: var(--a-spacing-4);
+    }
 
-.description {
-    margin-bottom: var(--a-spacing-4);
-}
+    .situationsList {
+        padding: 0;
+        margin: 0;
+        list-style: none;
 
-.situationsList {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+        li:not(:last-of-type) {
+            padding-bottom: var(--a-spacing-4);
+        }
+    }
+
+    .card {
+        margin-bottom: 0;
+    }
 }

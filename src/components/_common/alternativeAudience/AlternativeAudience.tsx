@@ -4,11 +4,11 @@ import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
 } from 'types/component-props/_mixins';
-import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
+import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { getConjunction, joinWithConjunction } from 'utils/string';
 
 import style from './AlternativeAudience.module.scss';
@@ -16,52 +16,6 @@ import style from './AlternativeAudience.module.scss';
 type AudienceLink = {
     title: string;
     url: string;
-};
-
-type Props = {
-    alternativeAudience: AlternativeAudienceType;
-    productName: string;
-    showProductName: boolean;
-};
-
-export const AlternativeAudience = ({
-    alternativeAudience,
-    productName,
-    showProductName,
-}: Props) => {
-    const { language, editorView } = usePageContentProps();
-
-    const getRelatedString = translator('related', language);
-    const getStringPart = translator('stringParts', language);
-
-    const name = showProductName ? productName : getStringPart('this');
-
-    const audienceLinks = buildAudienceLinks(alternativeAudience, language);
-
-    return (
-        <div
-            className={classNames(
-                style.alternativeAudience,
-                editorView === 'edit' && style.noMargin
-            )}
-        >
-            <BodyLong>
-                {getRelatedString('relatedAudience').replace('{name}', name.toLowerCase())}{' '}
-                {audienceLinks.map((link, index) => (
-                    <Fragment key={index}>
-                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
-                            {link.title}
-                        </LenkeInline>
-                        {getConjunction({
-                            index,
-                            length: audienceLinks.length,
-                            language,
-                        })}
-                    </Fragment>
-                ))}
-            </BodyLong>
-        </div>
-    );
 };
 
 const buildAudienceLinks = (
@@ -107,4 +61,42 @@ const buildAudienceLinks = (
     }
 
     return links;
+};
+
+export const AlternativeAudience = () => {
+    const { data, language, displayName = '', page } = usePageContentProps<ProductPageProps>();
+    const { config } = page;
+    const { showProductName } = config;
+    const { alternativeAudience } = data;
+
+    if (!alternativeAudience) {
+        return null;
+    }
+
+    const getStringPart = translator('stringParts', language);
+    const getRelatedString = translator('related', language);
+
+    const productName =
+        showProductName === false ? getStringPart('this') : displayName.toLowerCase();
+    const audienceLinks = buildAudienceLinks(alternativeAudience, language);
+
+    return (
+        <div className={style.alternativeAudience}>
+            <BodyLong size="small" className={style.text}>
+                {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
+                {audienceLinks.map((link, index) => (
+                    <Fragment key={index}>
+                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
+                            {link.title}
+                        </LenkeInline>
+                        {getConjunction({
+                            index,
+                            length: audienceLinks.length,
+                            language,
+                        })}
+                    </Fragment>
+                ))}
+            </BodyLong>
+        </div>
+    );
 };

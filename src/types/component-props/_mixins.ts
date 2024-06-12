@@ -90,6 +90,7 @@ export type AlternativeAudience = OptionSetMulti<{
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
+    hideIngress?: boolean;
     taxonomy: Taxonomy[];
     audience?: AudienceOptions;
     customCategory?: string;
@@ -128,6 +129,7 @@ export type ExpandableMixin = {
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
+    type?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
 };
 
 export type FiltersMixin = {

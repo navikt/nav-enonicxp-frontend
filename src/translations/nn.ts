@@ -315,9 +315,6 @@ export const translationsBundleNn: PartialTranslations = {
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Hopp til underseksjonar',
-    },
     audience: {
         person: 'privatpersonar',
         employer: 'arbeidsgjevarar',
@@ -336,5 +333,9 @@ export const translationsBundleNn: PartialTranslations = {
         relatedAudience: 'Det finnes også informasjon om {name} til',
         otherOffers: 'Andre tilbod',
         moreInformation: 'Meir informasjon til deg som',
+    },
+    internalNavigation: {
+        pageNavigationMenu: 'Innhald på sida',
+        sectionNavigation: 'I dette kapittelet',
     },
 };

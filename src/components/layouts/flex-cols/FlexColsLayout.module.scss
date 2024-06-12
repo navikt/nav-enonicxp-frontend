@@ -1,6 +1,25 @@
 @use 'common' as common;
 
+@mixin contactBackground() {
+    padding-bottom: 4rem;
+    background-color: var(
+        --a-gray-50
+    ) !important; // To override inline colors set in XP (to be changed in the future)
+    --size: 6px;
+    --p: 3px;
+    --R: 6px;
+    mask:
+        radial-gradient(var(--R) at left 50% top calc(var(--size) + var(--p)), #000 99%, #0000 101%)
+            calc(50% - 2 * var(--size)) 0 / calc(4 * var(--size)) 100%,
+        radial-gradient(var(--R) at left 50% top calc(-1 * var(--p)), #0000 99%, #000 101%) left 50%
+            top var(--size) / calc(4 * var(--size)) 100% repeat-x;
+}
+
 .flexCols {
+    &:last-child {
+        padding-bottom: 4rem;
+    }
+
     :global(.region__flexcols) {
         display: flex;
         flex-direction: row;
@@ -50,13 +69,22 @@
 
     padding-top: 4rem;
     padding-bottom: 4rem;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
 
-    &:last-child {
-        // Compensate for 2rem content app-container bottom padding to
-        // get 4rem distance to dekoratøren
-        margin-bottom: 2rem;
+    &:has(:global(.part__contact-option)) {
+        @include contactBackground();
+        padding-top: 5rem;
+
+        .contentWrapper {
+            $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
+            margin: 0 $margin;
+        }
+
+        :global(.region__flexcols--2-cols) {
+            :global(.part__contact-option) {
+                margin-bottom: var(--a-spacing-8);
+            }
+        }
     }
 
     :global(.region__flexcols.region__flexcols) {
@@ -91,6 +119,35 @@
     }
 }
 
-.layoutSituation {
-    background-color: var(--a-green-100);
+.layoutSituationShelf {
+    padding-top: 2rem;
+    padding-bottom: 0rem;
+}
+
+.shelfHeader {
+    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    margin-bottom: 1rem;
+    text-wrap: balance;
+    align-items: start;
+}
+
+//TODO Duplisert, bør ryddes i senere
+.shelfHeader:before {
+    background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
+    content: '';
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: calc(var(--a-spacing-5) * -1);
+    width: 40px;
+}
+
+.shelfLayout {
+    display: flex;
+    gap: 0.75rem;
+
+    > * {
+        margin: 0 !important; //overstyr nth-child margin fra generell flexcols
+        width: 100%;
+    }
 }

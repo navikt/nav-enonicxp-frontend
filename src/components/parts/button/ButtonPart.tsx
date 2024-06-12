@@ -27,7 +27,7 @@ const partSizeToAkselSize: Record<ButtonSizePart, ButtonSizeAksel> = {
 } as const;
 
 const typePropToVariant: Record<ButtonTypePart, ButtonTypeAksel> = {
-    hoved: 'primary',
+    hoved: 'secondary',
     standard: 'secondary',
     flat: 'tertiary',
     fare: 'danger',

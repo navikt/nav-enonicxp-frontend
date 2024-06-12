@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { SectionNavigation } from 'components/_common/section-navigation/SectionNavigation';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { Header } from 'components/_common/headers/Header';
@@ -10,7 +10,8 @@ import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 
-import style from './SectionWithHeaderLayout.module.scss';
+import styleV1 from './SectionWithHeaderLayout.module.scss';
+import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
 
@@ -24,6 +25,16 @@ type Props = {
     layoutProps: SectionWithHeaderProps;
 };
 
+const templateV2 = new Set([
+    ContentType.ProductPage,
+    ContentType.GenericPage,
+    ContentType.SituationPage,
+    ContentType.ThemedArticlePage,
+    ContentType.CurrentTopicPage,
+    ContentType.GuidePage,
+    ContentType.ToolsPage,
+]);
+
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
@@ -31,7 +42,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
-    const { title, anchorId, icon, border, toggleCopyButton } = config;
+    const { title, anchorId, icon, border } = config;
+    const isTemplateV2 = templateV2.has(pageProps.type);
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
@@ -45,16 +57,27 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
 
+    const style = isTemplateV2 ? styleV2 : styleV1;
+    const showTopMarker = !!(isTemplateV2 && title);
+
+    const showIcon = !!(iconImgProps && !isTemplateV2);
+
     return (
         <LayoutContainer
-            className={classNames(style.container, iconImgProps && style.withIcon)}
+            className={classNames(
+                style.container,
+                iconImgProps && style.withIcon,
+                showTopMarker && style.topMarker,
+                !showTopMarker && style.pullUp,
+                isTemplateV2 && isEditorView && style.editorViewBorder
+            )}
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            id={iconImgProps ? undefined : anchorId}
+            id={!showIcon ? anchorId : undefined}
             tabIndex={-1}
         >
-            {iconImgProps && (
+            {showIcon && (
                 <div
                     className={'icon-container'}
                     id={anchorId} // Ensures anchor links scrolls to the correct position if the icon is rendered
@@ -80,9 +103,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     size="large"
                     level="2"
                     justify={'left'}
-                    hideCopyButton={toggleCopyButton}
-                    anchorId={anchorId}
-                    setId={false}
+                    hideCopyButton={true}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}

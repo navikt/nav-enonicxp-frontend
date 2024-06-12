@@ -4,7 +4,7 @@
 // The component this styling applies to is intended for very flexible styling
 
 $padding: 1.5rem;
-$blueLinkColor: common.$a-text-action;
+$blueLinkColor: var(--default-action-color);
 $blackLinkColor: common.$a-text-default;
 
 .linkPanelNavno {

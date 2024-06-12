@@ -18,17 +18,3 @@ const matchMediaLegacy = (mql: MediaQueryList) => {
 
     return mql;
 };
-
-export const windowMatchMedia = (mediaQuery: string) => {
-    if (typeof window === 'undefined' || !window.matchMedia) {
-        return noMatchMediaSupportFallback;
-    }
-
-    const mql = window.matchMedia(mediaQuery);
-
-    if (!mql.addEventListener || !mql.removeEventListener) {
-        return matchMediaLegacy(mql);
-    }
-
-    return mql;
-};

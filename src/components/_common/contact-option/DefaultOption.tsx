@@ -10,7 +10,7 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
-import { hoverFocusIcon, useHoverAndFocus } from './opening-info/helpers/iconUtils';
+import { Icon } from 'components/_common/contact-option/Icon';
 
 import style from './ContactOption.module.scss';
 
@@ -22,7 +22,6 @@ export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
-    const { isActive, handlers } = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
@@ -88,24 +87,17 @@ export const DefaultOption = (props: Props) => {
         ingress || (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
     const iconName = icon || 'place';
-    const iconElement = hoverFocusIcon({
-        iconDefault: `${iconName}.svg`,
-        iconActive: `${iconName}-filled.svg`,
-        isActive: isActive,
-        style: style.icon,
-    });
 
     return (
         <div className={style.contactOption}>
-            <LenkeBase
-                {...getUrlOrClickHandler(channel)}
-                analyticsLinkGroup={layoutConfig.title}
-                analyticsComponent={'Kontakt-oss kanal'}
-                className={style.link}
-                {...handlers}
-            >
-                <div className={style.linkContent}>
-                    {iconElement}
+            <Icon type={iconName} />
+            <div className={style.content}>
+                <LenkeBase
+                    {...getUrlOrClickHandler(channel)}
+                    analyticsLinkGroup={layoutConfig.title}
+                    analyticsComponent={'Kontakt-oss kanal'}
+                    className={style.link}
+                >
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}
@@ -113,15 +105,15 @@ export const DefaultOption = (props: Props) => {
                     ) : (
                         <EditorHelp text={'Tittel mangler!'} type={'error'} />
                     )}
-                </div>
-            </LenkeBase>
-            {ingressActual ? (
-                <BodyLong as="div" className={style.text}>
-                    <ParsedHtml htmlProps={ingressActual} />
-                </BodyLong>
-            ) : (
-                <EditorHelp text={'Ingress mangler!'} type={'error'} />
-            )}
+                </LenkeBase>
+                {ingressActual ? (
+                    <BodyLong as="div" className={style.text}>
+                        <ParsedHtml htmlProps={ingressActual} />
+                    </BodyLong>
+                ) : (
+                    <EditorHelp text={'Ingress mangler!'} type={'error'} />
+                )}
+            </div>
         </div>
     );
 };

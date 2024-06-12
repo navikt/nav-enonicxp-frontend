@@ -1,24 +1,26 @@
 import React from 'react';
 import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 export type AnchorLink = {
     anchorId: string;
     linkText: string;
     isDupe?: boolean;
+    isPartRelatedSituations?: boolean;
 };
 
-export type PageNavViewStyle = 'sidebar' | 'inContent';
-
 export type PartConfigPageNavigationMenu = {
-    title: string;
     anchorLinks: AnchorLink[];
-    viewStyle: PageNavViewStyle;
 };
 
 export const PageNavigationMenuPart = ({
     config,
 }: PartComponentProps<PartType.PageNavigationMenu>) => {
+    const { language } = usePageContentProps();
+    const getLabel = translator('internalNavigation', language);
+
     if (!config) {
         return null;
     }
@@ -26,8 +28,8 @@ export const PageNavigationMenuPart = ({
     return (
         <PageNavigationMenu
             anchorLinks={config.anchorLinks}
-            title={config.title}
-            viewStyle={config.viewStyle || 'inContent'}
+            title={getLabel('pageNavigationMenu')}
+            isChapterNavigation
         />
     );
 };

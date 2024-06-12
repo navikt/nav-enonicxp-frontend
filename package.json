@@ -88,6 +88,7 @@
         "@types/react-redux": "7.1.33",
         "@types/rss": "0.0.32",
         "@types/uuid": "9.0.8",
+        "@types/ws": "^8.5.10",
         "@typescript-eslint/eslint-plugin": "7.6.0",
         "@typescript-eslint/parser": "7.6.0",
         "eslint": "8.57.0",
