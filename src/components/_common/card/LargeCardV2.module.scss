@@ -1,3 +1,5 @@
+@use 'common' as common;
+
 .container {
     display: flex;
     flex-direction: row;
@@ -11,6 +13,10 @@
     border-radius: 0.5rem;
     border-style: solid;
     border-color: var(--a-gray-300);
+
+    @media #{common.$mq-screen-mobile-small} {
+        flex-direction: column;
+    }
 
     &:hover {
         background-color: #ecf3fe;
