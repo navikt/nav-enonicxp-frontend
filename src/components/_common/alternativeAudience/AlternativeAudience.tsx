@@ -64,7 +64,7 @@ const buildAudienceLinks = (
 };
 
 export const AlternativeAudience = () => {
-    const { data, language, displayName, page } = usePageContentProps<ProductPageProps>();
+    const { data, language, displayName = '', page } = usePageContentProps<ProductPageProps>();
     const { config } = page;
     const { showProductName } = config;
     const { alternativeAudience } = data;
@@ -76,7 +76,8 @@ export const AlternativeAudience = () => {
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
 
-    const productName = showProductName === false ? getStringPart('this') : displayName;
+    const productName =
+        showProductName === false ? getStringPart('this') : displayName.toLowerCase();
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
