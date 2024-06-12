@@ -70,8 +70,10 @@
     .navds-body-long--small,
     .navds-body-long--medium,
     .navds-body-long--large {
-        line-height: 32px;
-        margin-bottom: var(--a-spacing-9);
+        &:not(li) {
+            line-height: 32px;
+            margin-bottom: var(--a-spacing-9);
+        }
     }
 
     .navds-heading--xsmall,
