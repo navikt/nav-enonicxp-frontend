@@ -7,7 +7,14 @@
     position: relative;
     cursor: pointer;
 
+    border-width: 1px;
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-color: var(--a-gray-300);
+
     &:hover {
+        background-color: #ecf3fe;
+
         .link {
             text-decoration-thickness: 2px;
         }
