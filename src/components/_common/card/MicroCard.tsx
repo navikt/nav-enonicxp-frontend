@@ -18,7 +18,7 @@ export const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) =
         <LenkeBase
             href={link.url}
             {...analyticsProps}
-            className={classNames(sharedStyle.card, sharedStyle.inline)}
+            className={classNames(sharedStyle.card, sharedStyle.inline, style.container)}
         >
             <div className={classNames(sharedStyle.bed, style.micro, type)}>{link.text}</div>
         </LenkeBase>
