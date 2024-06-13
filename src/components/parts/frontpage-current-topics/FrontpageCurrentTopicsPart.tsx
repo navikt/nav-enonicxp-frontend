@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
-import { formatDate } from 'utils/datetime';
+import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
@@ -40,7 +40,7 @@ export const FrontpageCurrentTopicsPart = ({
                         return null;
                     }
 
-                    const displayDate = item.publish?.from ?? item.modifiedTime;
+                    const displayDate = getPublishedDateTime(item);
 
                     return (
                         <li key={item._id}>
