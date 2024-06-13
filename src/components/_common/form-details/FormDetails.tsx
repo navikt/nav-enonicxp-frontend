@@ -64,8 +64,11 @@ export const FormDetails = ({
         return acc;
     }, []);
 
-    const showTitleAsLevel4 =
-        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
+    const showTitleAsLevel4 = new Set([
+        ContentType.ProductPage,
+        ContentType.GuidePage,
+        ContentType.CurrentTopicPage,
+    ]).has(pageProps.type);
 
     const formNumberToHighlight =
         formNumberSelected &&
