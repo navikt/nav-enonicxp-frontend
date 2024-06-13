@@ -28,7 +28,8 @@
     box-shadow: 0 0 0 3px var(--default-action-color);
     color: var(--a-gray-900);
     display: inline-flex;
-    font-size: common.px-to-rem(14);
+    font-size: 1rem;
+    letter-spacing: 0.01em;
     line-height: 1.25rem;
     padding: 0.25rem 0.5rem;
     position: relative;
