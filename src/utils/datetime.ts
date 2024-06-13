@@ -45,7 +45,7 @@ type FormatDateProps = {
 
 export const formatDate = ({
     datetime,
-    language = 'no',
+    language = 'nb',
     short = false,
     year = false,
 }: FormatDateProps) => {
