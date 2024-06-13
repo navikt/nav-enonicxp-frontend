@@ -1,41 +1,15 @@
 import { Detail } from '@navikt/ds-react';
-import { Language, translator } from 'translations';
-import { formatDate } from 'utils/datetime';
+import { getPublishedAndModifiedString } from 'utils/datetime';
+import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './DateLine.module.scss';
 
 type DateLineProps = {
-    createdTime: string;
-    modifiedTime: string;
-    language: Language;
+    contentProps: ContentProps;
 };
 
-export const DateLine = ({ createdTime, modifiedTime, language }: DateLineProps) => {
-    const getDatesLabel = translator('dates', language);
-
-    const createdDate = createdTime.split('T')[0];
-    const modifiedDate = modifiedTime.split('T')[0];
-    const wasChangedAfterPublish = createdDate !== modifiedDate;
-
-    const buildDateString = (desc: string, date: string) => {
-        if (!date) {
-            return '';
-        }
-        return `${desc} ${formatDate({
-            datetime: date,
-            language,
-            short: true,
-            year: true,
-        })}`;
-    };
-
-    const publishedString = buildDateString(getDatesLabel('published'), createdTime);
-
-    const lastChangedString = buildDateString(getDatesLabel('lastChanged'), modifiedTime);
-
-    const dateString = wasChangedAfterPublish
-        ? `${publishedString} | ${lastChangedString}`
-        : publishedString;
+export const DateLine = ({ contentProps }: DateLineProps) => {
+    const dateString = getPublishedAndModifiedString(contentProps);
 
     return (
         <div className={styles.dateLine}>

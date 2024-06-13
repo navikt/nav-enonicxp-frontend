@@ -53,14 +53,7 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
     return (
         <article className={style.article}>
             <header className={headerClassName}>
-                <ArtikkelDato
-                    publish={publish}
-                    createdTime={createdTime}
-                    modifiedTime={modifiedTime}
-                    publishLabel={getLabel('published')}
-                    modifiedLabel={getLabel('lastChanged')}
-                    type={isNewsArticle ? 'newsPress' : 'normal'}
-                />
+                <ArtikkelDato contentProps={props} type={isNewsArticle ? 'newsPress' : 'normal'} />
                 {!isNewsArticle && (
                     <Heading level={'1'} size={'xlarge'} className={style.title} spacing>
                         {displayName}

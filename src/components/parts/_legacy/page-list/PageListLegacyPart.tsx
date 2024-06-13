@@ -39,13 +39,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
             </div>
             {!hideDatesOnPage && (
                 <div className={style.date}>
-                    <ArtikkelDato
-                        publish={publish}
-                        createdTime={createdTime}
-                        modifiedTime={modifiedTime}
-                        publishLabel={publishLabel}
-                        modifiedLabel={modifiedLabel}
-                    />
+                    <ArtikkelDato contentProps={props} />
                 </div>
             )}
             <div className={style.list}>
@@ -67,13 +61,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
                             )}
                             {!hideDatesInList && (
                                 <div className={style.date}>
-                                    <ArtikkelDato
-                                        publish={publish}
-                                        createdTime={createdTime}
-                                        modifiedTime={modifiedTime}
-                                        publishLabel={publishLabel}
-                                        modifiedLabel={modifiedLabel}
-                                    />
+                                    <ArtikkelDato contentProps={props} />
                                 </div>
                             )}
                         </article>

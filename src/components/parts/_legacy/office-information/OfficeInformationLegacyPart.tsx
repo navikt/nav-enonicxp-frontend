@@ -32,13 +32,7 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
     return (
         <article className={style.officeInformation}>
             <header>
-                <ArtikkelDato
-                    publish={props.publish}
-                    createdTime={props.createdTime}
-                    modifiedTime={props.modifiedTime}
-                    publishLabel={getLabelMain('published')}
-                    modifiedLabel={getLabelMain('lastChanged')}
-                />
+                <ArtikkelDato contentProps={props} />
                 <Heading level="1" size="large">{`${unit.navn} - kontorinformasjon`}</Heading>
             </header>
             {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (

@@ -2,6 +2,7 @@ import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
+import { getPublishedDateTime } from 'utils/datetime';
 import { translator } from 'translations';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
@@ -15,11 +16,11 @@ type Props = {
 };
 
 export const FeaturedHeader = ({ contentProps }: Props) => {
-    const { displayName, modifiedTime, data, publish, createdTime } = contentProps;
+    const { displayName, modifiedTime, data } = contentProps;
     const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;
 
-    const publishFrom = publish?.from ?? createdTime;
+    const publishedTime = getPublishedDateTime(contentProps);
     const getFeaturedTranslations = translator('currentTopic', language);
 
     const tagLineLabel = getFeaturedTranslations('tag');
@@ -32,7 +33,7 @@ export const FeaturedHeader = ({ contentProps }: Props) => {
                     {pageTitle}
                 </Heading>
             </header>
-            <DateLine createdTime={publishFrom} modifiedTime={modifiedTime} language={language} />
+            <DateLine contentProps={contentProps} />
         </>
     );
 };
