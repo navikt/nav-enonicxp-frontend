@@ -5,7 +5,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { ContentProps } from 'types/content-props/_content-common';
-import { Language, translator } from 'translations';
+import { translator } from 'translations';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
@@ -38,7 +38,7 @@ export const dayNameToIndex: Record<DayName, number> = {
 
 type FormatDateProps = {
     datetime: string;
-    language?: Language;
+    language?: string;
     short?: boolean;
     year?: boolean;
 };
