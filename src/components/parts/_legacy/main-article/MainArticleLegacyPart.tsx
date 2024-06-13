@@ -33,7 +33,7 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
         return null;
     }
 
-    const { data, language, publish, createdTime, modifiedTime, displayName, _path } = props;
+    const { data, language, displayName, _path } = props;
 
     const isNewsArticle = data.contentType === 'news' || data.contentType === 'pressRelease';
 

@@ -16,11 +16,10 @@ type Props = {
 };
 
 export const FeaturedHeader = ({ contentProps }: Props) => {
-    const { displayName, modifiedTime, data } = contentProps;
+    const { displayName, data } = contentProps;
     const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;
 
-    const publishedTime = getPublishedDateTime(contentProps);
     const getFeaturedTranslations = translator('currentTopic', language);
 
     const tagLineLabel = getFeaturedTranslations('tag');

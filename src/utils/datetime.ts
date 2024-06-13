@@ -38,14 +38,14 @@ export const dayNameToIndex: Record<DayName, number> = {
 
 type FormatDateProps = {
     datetime: string;
-    language?: string;
+    language?: Language;
     short?: boolean;
     year?: boolean;
 };
 
 export const formatDate = ({
     datetime,
-    language = 'nb',
+    language = 'no',
     short = false,
     year = false,
 }: FormatDateProps) => {

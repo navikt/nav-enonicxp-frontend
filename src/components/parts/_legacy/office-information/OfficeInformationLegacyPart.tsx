@@ -5,7 +5,6 @@ import {
     officeDetailsFormatPhoneNumber,
 } from 'components/pages/office-branch-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
-import { translator } from 'translations';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
@@ -22,7 +21,6 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
 
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
-    const getLabelMain = translator('mainArticle', props.language);
     const location = officeDetailsFormatAddress(contact.besoeksadresse, true);
     const address = officeDetailsFormatAddress(contact.postadresse, false);
     const fax = officeDetailsFormatPhoneNumber(contact.faksnummer);
