@@ -56,6 +56,7 @@
         border-radius: 0.5rem;
         margin: 0 0.5rem 0 0;
         flex: none;
+        background-color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
     }
 
     &:after {
@@ -64,9 +65,5 @@
         height: calc(100% - 2px);
         margin: 1px;
         width: calc(100% - 2px);
-    }
-
-    &:before {
-        background-color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
     }
 }
