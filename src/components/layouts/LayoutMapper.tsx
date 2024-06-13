@@ -10,7 +10,6 @@ import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
 import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
 import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
-import { SectionWithHeaderLayoutV2 } from './section-with-header-v2/SectionWithHeaderLayoutV2';
 import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
@@ -19,7 +18,6 @@ import { IndexPage } from './index-page/IndexPage';
 import { useLayoutConfig } from './useLayoutConfig';
 import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
 import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/FrontpageLoggedinSectionLayout';
-import { SingleColPageV2 } from './single-col-page-v2/SingleColPageV2';
 
 type Props = {
     pageProps: ContentProps;
@@ -37,10 +35,8 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
-    [LayoutType.SectionWithHeaderV2]: SectionWithHeaderLayoutV2,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
     [LayoutType.SingleColPage]: SingleColPage,
-    [LayoutType.SingleColPageV2]: SingleColPageV2,
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,

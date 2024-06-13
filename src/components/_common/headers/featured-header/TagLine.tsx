@@ -8,7 +8,7 @@ export const TagLine = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className={styles.tagLine}>
             <div className={styles.wrapper}>
-                <StaticImage imageData={pinIcon} alt={''} className={styles.tagIcon} />
+                <StaticImage imageData={pinIcon} className={styles.tagIcon} />
                 <Detail className={styles.tagLabel}>{children}</Detail>
             </div>
         </div>

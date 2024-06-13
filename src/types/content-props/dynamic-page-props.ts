@@ -23,15 +23,6 @@ export type ProductPageProps = ContentCommonProps & {
     page: PageWithSideMenusProps;
 };
 
-export type ProductPageV2Props = ContentCommonProps & {
-    type: ContentType.ProductPageV2;
-    data: ProductDataMixin & {
-        alternativeAudience?: AlternativeAudience;
-        relatedSituations?: SituationPageProps[];
-    };
-    page: PageWithSideMenusProps;
-};
-
 export type ProductDetailsProps = ContentCommonProps & {
     type: ContentType.ProductDetails;
     data: {
@@ -61,7 +52,7 @@ export type GuidePageProps = ContentCommonProps & {
 
 export type SituationPageProps = ContentCommonProps & {
     type: ContentType.SituationPage;
-    data: ProductDataMixin;
+    data: ProductDataMixin & { relatedSituations?: SituationPageProps[] };
     page: SingleColPageProps;
 };
 
@@ -95,7 +86,7 @@ export type ToolsPageProps = ContentCommonProps & {
 
 export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
-    data: ProductDataMixin;
+    data: ProductDataMixin
     page: PageWithSideMenusProps;
 };
 

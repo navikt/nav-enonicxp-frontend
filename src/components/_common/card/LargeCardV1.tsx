@@ -9,7 +9,7 @@ import { LinkProps } from 'types/link-props';
 import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
-import style from './LargeCard.module.scss';
+import style from './LargeCardV1.module.scss';
 import sharedStyle from './Card.module.scss';
 
 enum LayoutVariation {
@@ -25,7 +25,7 @@ const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
 ]);
 
 type Props = {
-    category?: string;
+    tagline?: string;
     description?: string;
     illustration?: AnimatedIconsProps;
     link: LinkProps;
@@ -33,8 +33,8 @@ type Props = {
     preferStaticIllustration?: boolean;
 };
 
-export const LargeCard = (props: Props) => {
-    const { link, description, type, category, illustration, preferStaticIllustration } = props;
+export const LargeCardV1 = (props: Props) => {
+    const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
     const { text } = link;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
@@ -78,7 +78,7 @@ export const LargeCard = (props: Props) => {
                     </LenkeBase>
                     <div className={style.textContainer}>
                         <BodyLong className={style.description}>{description}</BodyLong>
-                        <BodyShort className={style.category}>{category}</BodyShort>
+                        <BodyShort className={style.tagline}>{tagline}</BodyShort>
                     </div>
                 </div>
             </div>

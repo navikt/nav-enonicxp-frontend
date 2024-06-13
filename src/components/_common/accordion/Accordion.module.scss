@@ -1,32 +1,55 @@
 .accordion {
-    margin-bottom: var(--a-spacing-7);
+    margin-bottom: var(--a-spacing-9);
+
+    :global(.parsedHtml:last-child) {
+        margin-bottom: 0;
+    }
 }
 
 .item {
-    border-top: 1px solid transparent;
+    border-top: 1px solid var(--a-gray-300);
+    padding: 0 var(--a-spacing-3);
 
-    &:not(:first-child) {
-        border-top: 1px solid var(--a-gray-200);
+    &:last-of-type {
+        border-bottom: 1px solid var(--a-gray-300);
     }
 
-    &:hover {
+    // We want the gray borders in top and below (actually the border top of the next item)
+    // to disappear when hovering the header. However, we don't want the lower border
+    // (again, actually the border top of the next item) to disappear when the panel
+    // is actually expanded.
+    &:has(:global(.navds-accordion__header):hover) {
         border-top: 1px solid transparent;
+    }
+
+    :global(.navds-accordion__header-chevron) {
+        transform: rotate(0) !important;
+    }
+
+    :global(.navds-accordion__header-content) {
+        margin-bottom: 0;
     }
 
     &:global(.navds-accordion__item--open) {
-        box-shadow: 0 0 0;
-        border-top: 1px solid transparent;
-
+        box-shadow: 0 0 0 0;
         .header {
-            background-color: var(--a-gray-50);
-            border-top: 1px solid transparent;
+            box-shadow: 0 0 0 0;
+            position: sticky;
+            top: var(--decorator-sticky-offset, 0px);
+        }
+        :global(.navds-accordion__header-chevron) {
+            transform: rotate(-180deg) !important;
+        }
+    }
 
-            &:not(:focus) {
-                box-shadow: 0 0 0;
+    &:has(:global(.navds-accordion__header):hover) {
+        &:not(:global(.navds-accordion__item--open)) {
+            & + .item {
+                border-top: 1px solid transparent;
             }
 
-            :global(.navds-accordion__icon-wrapper) {
-                background-color: var(--a-white);
+            &:last-of-type {
+                border-bottom: 1px solid transparent;
             }
         }
     }
@@ -34,20 +57,22 @@
 
 .header {
     --__ac-accordion-header-shadow: 0;
-    border-radius: 4px;
+    background-color: var(--a-white);
+    border-radius: var(--a-border-radius-large);
     border-top: 1px solid transparent;
     margin: 0 calc(var(--a-spacing-3) * -1);
     width: calc(100% + 1.5rem);
 
     :global(.navds-accordion__icon-wrapper) {
         background-color: var(--a-surface-action-subtle);
-        border-radius: 8px;
+        border-radius: 9px;
         height: 22px;
         width: 22px;
+        margin-right: var(--a-spacing-1-alt); // Align with content
 
         // Chevron icon
         svg > path {
-            fill: var(--a-surface-action);
+            fill: var(--default-action-color);
         }
     }
 
@@ -56,17 +81,26 @@
         text-decoration: none;
 
         :global(.navds-accordion__icon-wrapper) {
-            background-color: var(--a-white);
+            background-color: var(--default-action-color);
+        }
+        :global(.navds-accordion__header-chevron) {
+            transform: translateY(0);
+        }
+        // Chevron icon
+        svg > path {
+            fill: var(--a-surface-action-subtle);
         }
     }
 }
 
 .headerTitle {
     font-weight: var(--a-font-weight-regular);
-    color: var(--a-surface-action);
+    color: var(--default-action-color);
 }
 
 .content {
-    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0
-        calc(var(--a-spacing-3) * -1);
+    margin: var(--a-spacing-3);
+    margin-left: 10px; // Need to align border precicely beneath the chevron square
+    padding: var(--a-spacing-2) var(--a-spacing-5);
+    border-left: var(--a-spacing-05) solid var(--a-gray-400);
 }

@@ -1,0 +1,43 @@
+@use 'common' as common;
+
+.generalPageHeader {
+    display: block;
+
+    .illustration {
+        width: 6rem;
+        height: 6rem;
+        position: absolute;
+        margin-left: -8rem;
+
+        :global(.back) {
+            filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
+                hue-rotate(286deg) brightness(92%) contrast(95%);
+        }
+        :global(.front) {
+            filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
+                hue-rotate(311deg) brightness(88%) contrast(94%);
+        }
+
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            margin-left: 0;
+        }
+    }
+
+    .header {
+        margin-top: var(--a-spacing-3);
+        color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+        margin-bottom: var(--a-spacing-6);
+    }
+
+    .tagline {
+        text-transform: uppercase;
+        font-size: var(--text-fluid-18-20);
+        letter-spacing: 0.075rem;
+        margin-top: var(--a-spacing-3);
+        font-variant: all-small-caps;
+        color: var(--a-text-subtle);
+    }
+}

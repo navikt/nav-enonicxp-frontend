@@ -73,7 +73,12 @@ export const translationsBundleEn: PartialTranslations = {
         niceToKnow: 'Nice to know',
         shortcuts: 'Shortcuts',
     },
-    linkPanels: { label: 'Link panels' },
+    linkPanels: {
+        label: 'Link panels',
+    },
+    linkList: {
+        label: 'List of links',
+    },
     filteredContent: {
         noFiltersSelected: 'No filters are selected. Showing all content.',
         filtersSelected: 'We have hidden content not relevant for your situation.',
@@ -311,9 +316,6 @@ export const translationsBundleEn: PartialTranslations = {
         minutes: 'min',
         error: 'An error occurred while loading the video',
     },
-    sectionNavigation: {
-        navigationLabel: 'Jump to sub section',
-    },
     audience: {
         person: 'individuals',
         employer: 'employers',
@@ -332,5 +334,9 @@ export const translationsBundleEn: PartialTranslations = {
         relatedAudience: 'There is also information on {name} for',
         otherOffers: 'Other options',
         moreInformation: 'More information for you who',
+    },
+    internalNavigation: {
+        pageNavigationMenu: 'Contents',
+        sectionNavigation: 'In this chapter',
     },
 };

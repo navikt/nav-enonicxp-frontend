@@ -9,11 +9,11 @@ import style from './FamilyAnimation.module.scss';
 export const FamilyAnimation = () => {
     return (
         <>
-            <StaticImage imageData={house} className={style.house} alt="" />
+            <StaticImage imageData={house} className={style.house} />
             <div className={style.letterPartOrange} />
             <div className={style.letterPartBlue} />
             <div className={style.mask} />
-            <StaticImage imageData={stroller} className={style.stroller} alt="" />
+            <StaticImage imageData={stroller} className={style.stroller} />
         </>
     );
 };

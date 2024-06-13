@@ -1,0 +1,63 @@
+@use 'common' as common;
+@use 'sass:math';
+
+$iconContainerRadius: common.px-to-rem(60px / 2);
+$iconContainerSize: $iconContainerRadius * 2;
+$defaultBgColor: white;
+
+.container {
+    background-color: $defaultBgColor;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: calc(
+        var(--a-spacing-20) + var(--a-spacing-5)
+    ); // Take topMarker negative pos into account
+
+    &.pullUp {
+        margin-top: var(--a-spacing-12);
+    }
+
+    :global(.icon-container) {
+        align-items: center;
+        align-self: flex-start;
+        background-color: $defaultBgColor;
+        border-radius: 50%;
+        display: flex;
+        height: $iconContainerSize;
+        justify-content: center;
+        position: relative;
+        width: $iconContainerSize;
+
+        img {
+            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            height: common.round-rem($iconSize);
+            width: common.round-rem($iconSize);
+        }
+    }
+}
+
+.topMarker:before {
+    background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
+    content: '';
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: calc(var(--a-spacing-5) * -1);
+    width: 40px;
+}
+
+.header {
+    margin-bottom: var(--a-spacing-4);
+    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+}
+
+.headerWithIcon {
+    margin-top: var(--a-spacing-2);
+}
+
+.editorViewBorder {
+    outline: 1px gray dashed;
+    outline-offset: 15px;
+}

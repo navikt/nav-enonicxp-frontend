@@ -56,7 +56,6 @@ export const Button = ({
                     <XpImage
                         imageProps={xpIcon}
                         className={style.button__icon}
-                        alt={''}
                         maxWidth={64}
                     />
                 ) : (

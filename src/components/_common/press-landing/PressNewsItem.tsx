@@ -44,7 +44,7 @@ export const PressNewsItem = ({ newsItem }: Props) => {
                 <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
             )}
             <div className={style.newsTagline}>
-                {icon && <StaticImage imageData={icon} alt={''} />}
+                {icon && <StaticImage imageData={icon} />}
                 {tagName && (
                     <Detail className={style.newsType} uppercase={true}>
                         {tagName}

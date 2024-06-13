@@ -6,6 +6,7 @@ $margin: 2rem;
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
+    padding-bottom: 3rem;
 
     @media #{common.$mq-screen-mobile} {
         padding-left: 1rem;
@@ -22,6 +23,7 @@ $margin: 2rem;
 .contentWrapper {
     display: flex;
     justify-content: center;
+    padding-bottom: var(--a-spacing-16);
     @include common.full-width-mixin;
 }
 

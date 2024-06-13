@@ -22,7 +22,7 @@ jobs:
       imagename: dev2-deploy
       ENV: dev2
       ADMIN_ORIGIN: https://portal-admin-q6.oera.no
-      APP_ORIGIN: https://www-2.ekstern.dev.nav.no
+      APP_ORIGIN: https://www-2.ansatt.dev.nav.no
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
       DECORATOR_URL: https://dekoratoren.ekstern.dev.nav.no
       XP_ORIGIN: https://portal-admin-q6.oera.no

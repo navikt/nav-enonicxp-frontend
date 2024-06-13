@@ -6,11 +6,10 @@ import styles from './FormDetailsButton.module.scss';
 
 type FormsListItemProps = {
     variation: Variation;
-    index: number;
 };
 
 export const FormDetailsButton = (props: FormsListItemProps) => {
-    const { variation, index } = props;
+    const { variation } = props;
     const { link, label } = variation;
 
     if (!link || !label) {
@@ -19,12 +18,10 @@ export const FormDetailsButton = (props: FormsListItemProps) => {
         return null;
     }
 
-    const variant = index === 0 ? 'primary' : 'secondary';
-
     const { url } = getSelectableLinkProps(link);
 
     return (
-        <Button className={styles.button} variant={variant} href={url}>
+        <Button className={styles.button} href={url}>
             {label}
         </Button>
     );

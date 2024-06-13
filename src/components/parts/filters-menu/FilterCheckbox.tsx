@@ -32,9 +32,9 @@ export const FilterCheckbox = ({
             />
             <label htmlFor={id} className={classNames(style.label, isSelected && style.selected)}>
                 {isSelected ? (
-                    <StaticImage imageData={checkedIcon} alt="" className={style.selected} />
+                    <StaticImage imageData={checkedIcon} className={style.selected} />
                 ) : (
-                    <StaticImage imageData={checkboxIcon} alt="" />
+                    <StaticImage imageData={checkboxIcon} />
                 )}
                 {filter.filterName}
             </label>

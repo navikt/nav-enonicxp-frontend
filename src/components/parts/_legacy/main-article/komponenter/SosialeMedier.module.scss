@@ -22,11 +22,11 @@
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
-        border: 1px solid var(--a-text-action);
+        border: 1px solid var(--default-action-color);
 
         &:focus,
         &:hover {
-            background-color: var(--a-text-action);
+            background-color: var(--default-action-color);
         }
     }
     img {

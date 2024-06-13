@@ -6,7 +6,9 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
+import { classNames } from 'utils/classnames';
 
+import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -20,12 +22,14 @@ export const HtmlAreaPart = ({ config }: PartComponentProps<PartType.HtmlArea>) 
     }
 
     return (
-        <FilteredContent {...config}>
-            <ExpandableComponentWrapper {...config}>
-                <div className={style.htmlArea}>
-                    <ParsedHtml htmlProps={config.html} />
-                </div>
-            </ExpandableComponentWrapper>
-        </FilteredContent>
+        <div className={style.htmlArea}>
+            <FilteredContent {...config}>
+                <ExpandableComponentWrapper {...config}>
+                    <div className={classNames(defaultHtml.html, style.htmlArea, 'parsedHtml')}>
+                        <ParsedHtml htmlProps={config.html} />
+                    </div>
+                </ExpandableComponentWrapper>
+            </FilteredContent>
+        </div>
     );
 };

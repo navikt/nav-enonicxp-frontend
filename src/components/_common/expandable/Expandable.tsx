@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Accordion } from '@navikt/ds-react';
+import React, { useEffect, useRef, useState, useId } from 'react';
+import { ExpansionCard } from '@navikt/ds-react';
+import { BriefcaseClockIcon, BarChartIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
@@ -13,11 +14,20 @@ type Props = {
     analyticsOriginTag?: string;
     className?: string;
     children: React.ReactNode;
+    expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
 };
 
-export const Expandable = ({ title, anchorId, analyticsOriginTag, children, className }: Props) => {
+export const Expandable = ({
+    title,
+    anchorId,
+    analyticsOriginTag,
+    children,
+    className,
+    expandableType,
+}: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
+    const componentId = useId();
 
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
@@ -60,6 +70,22 @@ export const Expandable = ({ title, anchorId, analyticsOriginTag, children, clas
         checkAndOpenPanel();
     };
 
+    const getHeaderIcon = () => {
+        if (expandableType === 'processing_times') {
+            return <BriefcaseClockIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'payout_dates') {
+            return <CalendarIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'rates') {
+            return <BarChartIcon className={style.headerIcon} />;
+        }
+        if (expandableType === 'documentation_requirements') {
+            return <TasklistIcon className={style.headerIcon} />;
+        }
+        return null;
+    };
+
     useEffect(() => {
         window.addEventListener('hashchange', hashChangeHandler);
 
@@ -75,16 +101,25 @@ export const Expandable = ({ title, anchorId, analyticsOriginTag, children, clas
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorId]);
 
+    // Adjust appearande in styling if not type was set for this content
+    // This is the wrong use of this component, but some legacy pages have still to
+    // be upradet editorial wise.
+    const isLegacyUsage = !expandableType;
+
     return (
-        <Accordion
+        <ExpansionCard
             id={anchorId}
-            className={classNames(className, style.expandableWrapper)}
+            className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
             ref={accordionRef}
+            onToggle={toggleExpandCollapse}
+            open={isOpen}
+            aria-labelledby={componentId}
         >
-            <Accordion.Item open={isOpen} className={style.expandable}>
-                <Accordion.Header onClick={toggleExpandCollapse}>{title}</Accordion.Header>
-                <Accordion.Content>{children}</Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+            <ExpansionCard.Header className={style.header} id={componentId}>
+                {getHeaderIcon()}
+                <div className={style.headerTitle}>{title}</div>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content className={style.content}>{children}</ExpansionCard.Content>
+        </ExpansionCard>
     );
 };

@@ -23,7 +23,7 @@ export const NewsPressHeader = ({ language, title, type }: NewsPressHeaderProps)
     return (
         <section className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
-                <StaticImage imageData={icon} alt={''} className={styles.tagIcon} />
+                <StaticImage imageData={icon} className={styles.tagIcon} />
                 <Detail className={styles.tagLabel}>{getLabel(tagLocaleId)}</Detail>
             </div>
             <Heading level={'1'} size={'xlarge'}>
