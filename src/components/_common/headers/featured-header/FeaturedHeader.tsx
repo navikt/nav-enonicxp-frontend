@@ -2,7 +2,6 @@ import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
-import { getPublishedDateTime } from 'utils/datetime';
 import { translator } from 'translations';
 import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';

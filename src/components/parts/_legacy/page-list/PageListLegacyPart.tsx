@@ -40,8 +40,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
             )}
             <div className={style.list}>
                 {sectionContents.map((section) => {
-                    const { displayName, _path, publish, modifiedTime, createdTime, data } =
-                        section;
+                    const { displayName, _path, data } = section;
 
                     const ingress = data ? data.ingress || data.description : undefined;
 
