@@ -31,9 +31,7 @@
     }
 
     &:global(.navds-accordion__item--open) {
-        box-shadow: 0 0 0 0;
         .header {
-            box-shadow: 0 0 0 0;
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
         }
