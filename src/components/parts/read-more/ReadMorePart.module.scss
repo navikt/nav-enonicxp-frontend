@@ -27,6 +27,10 @@
                 transform: translateY(0);
             }
         }
+
+        &:focus-visible {
+            outline: none;
+        }
     }
 
     :global(.navds-read-more__content) {
