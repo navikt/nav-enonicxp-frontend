@@ -1,7 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { translator } from 'translations';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
@@ -12,11 +11,8 @@ export const PageListLegacyPart = (props: ContentProps) => {
         return null;
     }
 
-    const { publish, modifiedTime, createdTime, language, data } = props;
+    const { data } = props;
 
-    const getDateLabel = translator('mainArticle', language);
-    const publishLabel = getDateLabel('published');
-    const modifiedLabel = getDateLabel('lastChanged');
     const hideDatesOnPage = data.hide_date;
     const hideDatesInList = data.hideSectionContentsDate;
     const orderListByPublishedDate = data.orderSectionContentsByPublished;
@@ -39,19 +35,12 @@ export const PageListLegacyPart = (props: ContentProps) => {
             </div>
             {!hideDatesOnPage && (
                 <div className={style.date}>
-                    <ArtikkelDato
-                        publish={publish}
-                        createdTime={createdTime}
-                        modifiedTime={modifiedTime}
-                        publishLabel={publishLabel}
-                        modifiedLabel={modifiedLabel}
-                    />
+                    <ArtikkelDato contentProps={props} />
                 </div>
             )}
             <div className={style.list}>
                 {sectionContents.map((section) => {
-                    const { displayName, _path, publish, modifiedTime, createdTime, data } =
-                        section;
+                    const { displayName, _path, data } = section;
 
                     const ingress = data ? data.ingress || data.description : undefined;
 
@@ -67,13 +56,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
                             )}
                             {!hideDatesInList && (
                                 <div className={style.date}>
-                                    <ArtikkelDato
-                                        publish={publish}
-                                        createdTime={createdTime}
-                                        modifiedTime={modifiedTime}
-                                        publishLabel={publishLabel}
-                                        modifiedLabel={modifiedLabel}
-                                    />
+                                    <ArtikkelDato contentProps={props} />
                                 </div>
                             )}
                         </article>

@@ -1,72 +1,31 @@
 import * as React from 'react';
 import { BodyLong, Detail } from '@navikt/ds-react';
-import { formatDate, getPublishedDateTime } from 'utils/datetime';
+import { getPublishedAndModifiedString } from 'utils/datetime';
 import { classNames } from 'utils/classnames';
-import { usePageContentProps } from 'store/pageContext';
+import { ContentProps } from 'types/content-props/_content-common';
 
 import styles from './ArtikkelDato.module.scss';
 
 type Props = {
-    publish?: {
-        first?: string;
-        from?: string;
-    };
-    createdTime: string;
-    modifiedTime: string;
-    publishLabel: string;
-    modifiedLabel: string;
+    contentProps: ContentProps;
     type?: 'normal' | 'newsPress';
 };
 
-const ArtikkelDato = (props: Props) => {
-    const { language } = usePageContentProps();
-    const { modifiedTime, publishLabel, modifiedLabel, type = 'normal' } = props;
+const ArtikkelDato = ({ contentProps, type = 'normal' }: Props) => {
+    const short = type === 'newsPress';
+    const year = type === 'newsPress';
 
-    const hasMonthName = type === 'newsPress';
-    const hasYear = type === 'newsPress';
-
-    const publishedDate = getPublishedDateTime(props);
-    const publishedString = `${publishLabel} ${formatDate({
-        datetime: publishedDate,
-        language,
-        short: hasMonthName,
-        year: hasYear,
-    })}`;
-    let modifiedString = '';
-    if (new Date(modifiedTime) > new Date(publishedDate)) {
-        modifiedString = `${modifiedLabel} ${formatDate({
-            datetime: modifiedTime,
-            language,
-            short: hasMonthName,
-            year: hasYear,
-        })}`;
-    }
-
-    const publishedAndModifiedString = (
-        <>
-            {publishedString}
-            {modifiedString && (
-                <>
-                    <span aria-hidden="true" className={styles.divider}>
-                        {'|'}
-                    </span>
-                    {modifiedString}
-                </>
-            )}
-        </>
-    );
+    const dateString = getPublishedAndModifiedString(contentProps, { short, year });
 
     if (type === 'newsPress') {
         return (
-            <Detail className={classNames(styles.artikkelDato, styles.small)}>
-                {publishedAndModifiedString}
-            </Detail>
+            <Detail className={classNames(styles.artikkelDato, styles.small)}>{dateString}</Detail>
         );
     }
 
     return (
-        <BodyLong as={'time'} dateTime={publishedDate}>
-            {publishedAndModifiedString}
+        <BodyLong as={'time'} dateTime={dateString}>
+            {dateString}
         </BodyLong>
     );
 };
