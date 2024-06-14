@@ -91,6 +91,10 @@
             fill: var(--a-surface-action-subtle);
         }
     }
+
+    &:focus-visible {
+        z-index: 2;
+    }
 }
 
 .headerTitle {
