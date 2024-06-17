@@ -13,6 +13,7 @@ import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart
 import { Icon } from 'components/_common/contact-option/Icon';
 
 import style from './ContactOption.module.scss';
+import style2 from './CallOption.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
@@ -97,7 +98,7 @@ export const CallOption = ({
                 )}
                 <LenkeBase
                     analyticsLinkGroup={layoutConfig.title}
-                    className={style.moreLink}
+                    className={style2.moreLink}
                     href={getContactUrl()}
                 >
                     <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
