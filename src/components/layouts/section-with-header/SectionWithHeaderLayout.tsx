@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { SectionNavigation } from 'components/_common/section-navigation/SectionNavigation';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { Header } from 'components/_common/headers/Header';
