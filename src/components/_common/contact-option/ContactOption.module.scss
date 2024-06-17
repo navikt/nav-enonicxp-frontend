@@ -6,54 +6,6 @@
     width: 100%;
     gap: var(--a-spacing-4);
 
-    .icon {
-        align-items: center;
-        align-self: flex-start;
-        background-color: white;
-        border-radius: 2.75rem;
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        min-height: 2.75rem;
-        min-width: 2.75rem;
-        max-height: 2.75rem;
-        max-width: 2.75rem;
-        margin-top: -7px;
-
-        img {
-            width: 25px;
-            height: auto;
-        }
-    }
-
-    .writeIcon {
-        transform: translateX(2px);
-    }
-
-    .content {
-        display: flex;
-        align-self: flex-start;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .link {
-        color: var(--default-action-color);
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.1em;
-        text-decoration-line: underline;
-        margin-bottom: 0;
-
-        &:hover,
-        &:focus {
-            text-decoration-line: none;
-        }
-
-        :global(.navds-heading) {
-            color: var(--default-action-color);
-        }
-    }
-
     .text,
     :global(.navds-body-long.navds-body-long--medium) {
         color: black;
@@ -63,17 +15,65 @@
             margin-bottom: var(--a-spacing-4);
         }
     }
+}
 
-    .moreLink {
-        text-decoration-thickness: 0.05em;
-        text-underline-offset: 0.1em;
-        text-decoration-line: underline;
-        margin: 0.5rem 0 1rem 0;
-        display: block;
+.icon {
+    align-items: center;
+    align-self: flex-start;
+    background-color: white;
+    border-radius: 2.75rem;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    max-height: 2.75rem;
+    max-width: 2.75rem;
+    margin-top: -7px;
+
+    img {
+        width: 25px;
+        height: auto;
+    }
+}
+
+.writeIcon {
+    transform: translateX(2px);
+}
+
+.content {
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.link {
+    color: var(--default-action-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1em;
+    text-decoration-line: underline;
+    margin-bottom: 0;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: none;
+    }
+
+    :global(.navds-heading) {
         color: var(--default-action-color);
     }
+}
 
-    .alert {
-        margin-bottom: 0.5rem;
-    }
+.moreLink {
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
+    text-decoration-line: underline;
+    margin: 0.5rem 0 1rem 0;
+    display: block;
+    color: var(--default-action-color);
+}
+
+.alert {
+    margin-bottom: 0.5rem;
 }
