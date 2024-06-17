@@ -10,7 +10,7 @@ import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 
-import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
+import style from './SectionWithHeaderLayout.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
 
@@ -63,11 +63,11 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer
             className={classNames(
-                styleV2.container,
-                iconImgProps && styleV2.withIcon,
-                showTopMarker && styleV2.topMarker,
-                !showTopMarker && styleV2.pullUp,
-                isTemplateV2 && isEditorView && styleV2.editorViewBorder
+                style.container,
+                iconImgProps && style.withIcon,
+                showTopMarker && style.topMarker,
+                !showTopMarker && style.pullUp,
+                isTemplateV2 && isEditorView && style.editorViewBorder
             )}
             pageProps={pageProps}
             layoutProps={layoutProps}
@@ -102,7 +102,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     level="2"
                     justify={'left'}
                     hideCopyButton={true}
-                    className={classNames(styleV2.header, !!iconImgProps && styleV2.headerWithIcon)}
+                    className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}
                 </Header>
