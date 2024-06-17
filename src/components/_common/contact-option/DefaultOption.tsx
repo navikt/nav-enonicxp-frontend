@@ -12,7 +12,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 
-import style from './ContactOption.module.scss';
+import sharedStyle from './ContactOption.module.scss';
 
 type Props = DefaultContactData & {
     channel: ChannelType;
@@ -89,14 +89,14 @@ export const DefaultOption = (props: Props) => {
     const iconName = icon || 'place';
 
     return (
-        <div className={style.contactOption}>
+        <div className={sharedStyle.contactOption}>
             <Icon type={iconName} />
-            <div className={style.content}>
+            <div className={sharedStyle.content}>
                 <LenkeBase
                     {...getUrlOrClickHandler(channel)}
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
-                    className={style.link}
+                    className={sharedStyle.link}
                 >
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
@@ -107,7 +107,7 @@ export const DefaultOption = (props: Props) => {
                     )}
                 </LenkeBase>
                 {ingressActual ? (
-                    <BodyLong as="div" className={style.text}>
+                    <BodyLong as="div" className={sharedStyle.text}>
                         <ParsedHtml htmlProps={ingressActual} />
                     </BodyLong>
                 ) : (
