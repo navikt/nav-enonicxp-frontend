@@ -10,7 +10,6 @@ import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 
-import styleV1 from './SectionWithHeaderLayout.module.scss';
 import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;
@@ -57,7 +56,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 || (shouldShowFilterBar && isEditorView);
 
-    const style = isTemplateV2 ? styleV2 : styleV1;
     const showTopMarker = !!(isTemplateV2 && title);
 
     const showIcon = !!(iconImgProps && !isTemplateV2);
@@ -65,11 +63,11 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer
             className={classNames(
-                style.container,
-                iconImgProps && style.withIcon,
-                showTopMarker && style.topMarker,
-                !showTopMarker && style.pullUp,
-                isTemplateV2 && isEditorView && style.editorViewBorder
+                styleV2.container,
+                iconImgProps && styleV2.withIcon,
+                showTopMarker && styleV2.topMarker,
+                !showTopMarker && styleV2.pullUp,
+                isTemplateV2 && isEditorView && styleV2.editorViewBorder
             )}
             pageProps={pageProps}
             layoutProps={layoutProps}
@@ -104,7 +102,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     level="2"
                     justify={'left'}
                     hideCopyButton={true}
-                    className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
+                    className={classNames(styleV2.header, !!iconImgProps && styleV2.headerWithIcon)}
                 >
                     {title}
                 </Header>
