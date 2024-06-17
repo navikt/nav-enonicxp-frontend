@@ -10,7 +10,7 @@ import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
 import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 
 import style from './ContactOption.module.scss';
 import style2 from './CallOption.module.scss';

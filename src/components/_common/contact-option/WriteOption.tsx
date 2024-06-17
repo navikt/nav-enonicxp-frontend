@@ -7,7 +7,7 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 
 import style from './ContactOption.module.scss';
 

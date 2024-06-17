@@ -9,7 +9,7 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
 import { ChatData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 import { OpeningInfo } from './opening-info/OpeningInfo';
 
 import style from './ContactOption.module.scss';

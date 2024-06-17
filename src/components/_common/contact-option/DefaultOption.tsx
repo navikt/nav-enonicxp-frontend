@@ -10,7 +10,7 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 
 import style from './ContactOption.module.scss';
 
