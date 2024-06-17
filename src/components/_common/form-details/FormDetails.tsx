@@ -76,7 +76,8 @@ export const FormDetails = ({
 
     const hasVisibleTitle = showTitle && title;
     const hasVisibleIngress = showIngress && ingress;
-    const hasVisibleFormNumbers = showFormNumbers && formNumbers;
+    const hasVisibleFormNumbers =
+        showFormNumbers && Array.isArray(formNumbers) && formNumbers.length > 0;
 
     return (
         <div className={classNames(style.formDetails, className)}>
