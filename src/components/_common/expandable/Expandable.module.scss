@@ -89,6 +89,12 @@
     }
     :global(.parsedHtml:last-child) {
         margin-bottom: 0;
+        > *:last-child {
+            margin-bottom: 0;
+            > *:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 
     :global(.part__html-area):has(.expandable) + :global(.part__html-area):has(.expandable) {
