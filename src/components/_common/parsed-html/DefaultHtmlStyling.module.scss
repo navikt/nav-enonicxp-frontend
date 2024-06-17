@@ -50,6 +50,12 @@
         }
     }
 
+    ul,
+    ol > li > ul,
+    ol {
+        margin: var(--a-spacing-3) var(--a-spacing-1);
+    }
+
     ol li {
         padding-left: var(--a-spacing-1);
     }
