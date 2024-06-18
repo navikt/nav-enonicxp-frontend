@@ -20,11 +20,11 @@ export const getContentTagline = (content: PagePropsForPageHeader, currentLangua
     const situationTaglines = translator('situations', language);
 
     if (content.type === ContentType.GuidePage) {
-        return (selectedAudience && guideTaglines(selectedAudience)) || '';
+        return (selectedAudience && guideTaglines(selectedAudience)) ?? '';
     }
 
     if (content.type === ContentType.SituationPage) {
-        return (selectedAudience && situationTaglines(selectedAudience)) || '';
+        return (selectedAudience && situationTaglines(selectedAudience)) ?? '';
     }
 
     if (taxonomy.length > 0 || customCategory) {
