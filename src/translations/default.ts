@@ -179,7 +179,7 @@ export const translationsBundleNb = {
     },
     situations: {
         person: 'Dette kan du ha rett til',
-        employer: 'For arbeidsgivere',
+        employer: 'Hva arbeidsgivere må vite',
         provider: 'For samarbeidspartnere',
     },
     guides: {
