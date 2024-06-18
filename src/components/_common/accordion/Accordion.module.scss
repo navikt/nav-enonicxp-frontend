@@ -16,8 +16,10 @@
     border-top: 1px solid var(--a-gray-300);
     padding: 0 var(--a-spacing-3);
 
-    &:last-of-type {
+    &:last-of-type,
+    &:last-child {
         border-bottom: 1px solid var(--a-gray-300);
+        box-shadow: 0 0 0 0;
     }
 
     // We want the gray borders in top and below (actually the border top of the next item)
@@ -40,6 +42,7 @@
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
+            box-shadow: 0 0 0 0;
         }
         :global(.navds-accordion__header-chevron) {
             transform: rotate(-180deg) !important;
