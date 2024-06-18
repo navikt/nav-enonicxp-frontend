@@ -10,9 +10,11 @@ import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
 import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 
-import style from './ContactOption.module.scss';
+import sharedStyle from './ContactOption.module.scss';
+import alertStyle from './Alert.module.scss';
+import style from './CallOption.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
@@ -65,12 +67,12 @@ export const CallOption = ({
     };
 
     return (
-        <div className={style.contactOption}>
+        <div className={sharedStyle.contactOption}>
             <Icon type="phone" />
-            <div className={style.content}>
+            <div className={sharedStyle.content}>
                 <LenkeBase
                     href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
-                    className={style.link}
+                    className={sharedStyle.link}
                     analyticsEvent={AnalyticsEvents.CALL}
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
@@ -80,11 +82,11 @@ export const CallOption = ({
                     </Heading>
                 </LenkeBase>
                 {alertText && (
-                    <Alert variant="warning" inline className={style.alert}>
+                    <Alert variant="warning" inline className={alertStyle.alert}>
                         {alertText}
                     </Alert>
                 )}
-                <BodyLong className={style.text}>
+                <BodyLong className={sharedStyle.text}>
                     <ParsedHtml
                         htmlProps={overrideText || ingress || text || callTranslations.ingress}
                     />
