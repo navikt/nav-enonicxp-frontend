@@ -1,35 +1,63 @@
+@use 'common' as common;
+@use 'sass:math';
+
+$iconContainerRadius: common.px-to-rem(64px / 2);
+
 .container {
-    background-color: white;
-    position: relative;
+    $iconContainerSize: $iconContainerRadius * 2;
+    $defaultBgColor: white;
+
+    @mixin adjust-for-padding($sectionPadding) {
+        $marginActual: 1rem;
+        top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
+        margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
+    }
+
     display: inline-flex;
     flex-direction: column;
+    background-color: $defaultBgColor;
     width: 100%;
-    margin-top: calc(
-        var(--a-spacing-20) + var(--a-spacing-5)
-    ); // Take topMarker negative pos into account
 
-    &.pullUp {
-        margin-top: var(--a-spacing-12);
+    @include common.section-padding-mixin();
+
+    :global(.icon-container) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: $iconContainerSize;
+        height: $iconContainerSize;
+        position: relative;
+        border-radius: 50%;
+        background-color: $defaultBgColor;
+        overflow: hidden;
+
+        @include adjust-for-padding(common.$sectionPaddingDesktop);
+
+        @media #{common.$mq-screen-tablet} {
+            @include adjust-for-padding(common.$sectionPaddingTablet);
+        }
+
+        @media #{common.$mq-screen-mobile} {
+            @include adjust-for-padding(common.$sectionPaddingMobile);
+        }
+
+        img {
+            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            height: common.round-rem($iconSize);
+            width: common.round-rem($iconSize);
+        }
     }
 }
 
-.topMarker:before {
-    background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
-    content: '';
-    height: 7px;
-    left: 0;
-    position: absolute;
-    top: calc(var(--a-spacing-5) * -1);
-    width: 40px;
+.withIcon {
+    margin-top: $iconContainerRadius;
 }
 
 .header {
-    margin-top: var(--a-spacing-2);
-    margin-bottom: var(--a-spacing-4);
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    margin-bottom: 1rem;
 }
 
-.editorViewBorder {
-    outline: 1px gray dashed;
-    outline-offset: 15px;
+.headerWithIcon {
+    margin-top: 1rem;
 }
