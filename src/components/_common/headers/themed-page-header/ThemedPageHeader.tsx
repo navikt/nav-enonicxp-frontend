@@ -7,7 +7,7 @@ import { translator } from 'translations';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import {
     PagePropsForPageHeader,
-    getHeaderTagline,
+    getContentTagline,
 } from 'components/_common/headers/sharedHeaderUtils';
 import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 
@@ -25,7 +25,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
     const getDatesLabel = translator('dates', language);
 
     const typeSpecificClassName = themedPageHeaderGetTypeClassName(type);
-    const subTitle = getHeaderTagline(contentProps);
+    const subTitle = getContentTagline(contentProps);
 
     const modified =
         showTimeStamp &&

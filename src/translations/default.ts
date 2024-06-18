@@ -184,8 +184,8 @@ export const translationsBundleNb = {
     },
     guides: {
         person: 'Slik gjør du det',
-        employer: 'For arbeidsgivere',
-        provider: 'For samarbeidspartnere',
+        employer: 'Slik gjør du det',
+        provider: 'Slik gjør du det',
     },
     publishingCalendar: {
         event: 'Hendelse',
