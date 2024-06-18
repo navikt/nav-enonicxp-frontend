@@ -7,9 +7,10 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import Config from 'config';
 import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/Icon';
+import { Icon } from 'components/_common/contact-option/icon/Icon';
 
-import style from './ContactOption.module.scss';
+import sharedStyle from './ContactOption.module.scss';
+import alertStyle from './Alert.module.scss';
 
 type Props = WriteData;
 
@@ -20,25 +21,25 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
     const translations = translator('contactPoint', language)('write');
 
     return (
-        <div className={style.contactOption}>
+        <div className={sharedStyle.contactOption}>
             <Icon type="message" />
-            <div className={style.content}>
+            <div className={sharedStyle.content}>
                 <LenkeBase
                     href={url || Config.urls.skrivTilOss}
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
-                    className={style.link}
+                    className={sharedStyle.link}
                 >
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
                 </LenkeBase>
                 {alertText && (
-                    <Alert variant="warning" className={style.alert} inline>
+                    <Alert variant="warning" className={alertStyle.alert} inline>
                         {alertText}
                     </Alert>
                 )}
-                <BodyLong as="div" className={style.text}>
+                <BodyLong as="div" className={sharedStyle.text}>
                     <ParsedHtml htmlProps={ingress || translations.ingress} />
                 </BodyLong>
             </div>
