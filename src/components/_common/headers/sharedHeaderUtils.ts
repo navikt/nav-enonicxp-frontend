@@ -14,7 +14,7 @@ export const getContentTagline = (content: PagePropsForPageHeader, currentLangua
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
 
-    const language = currentLanguage || content.language;
+    const language = currentLanguage ?? content.language;
     const selectedAudience = audience && getAudience(audience);
     const guideTaglines = translator('guides', language);
     const situationTaglines = translator('situations', language);
