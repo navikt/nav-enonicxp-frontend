@@ -157,9 +157,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                     size={'small'}
                     onClick={handleCalculateButtonClick}
                     className={style.calculateButton}
-                    dsIcon={
-                        <CalculatorIcon title={'Kalkulator-ikon'} className={style.calculateIcon} />
-                    }
+                    dsIcon={<CalculatorIcon aria-hidden className={style.calculateIcon} />}
                 >
                     <span>{getLabel('calculate')}</span>
                 </Button>

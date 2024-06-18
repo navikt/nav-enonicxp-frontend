@@ -39,7 +39,7 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
                     </BodyShort>
                 )}
             </div>
-            <ArrowRightIcon fontSize="1.25rem" />
+            <ArrowRightIcon aria-hidden fontSize="1.25rem" />
         </LenkeBase>
     );
 };

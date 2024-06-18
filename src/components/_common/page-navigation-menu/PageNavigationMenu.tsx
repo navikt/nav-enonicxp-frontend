@@ -62,7 +62,7 @@ export const PageNavigationMenu = ({
                                 analyticsLabel={anchorLink.linkText}
                                 className={style.link}
                             >
-                                <ArrowDownRightIcon className={style.icon} />
+                                <ArrowDownRightIcon aria-hidden className={style.icon} />
                                 <BodyShort as="span">{anchorLink.linkText}</BodyShort>
                             </LenkeBase>
                         </li>
