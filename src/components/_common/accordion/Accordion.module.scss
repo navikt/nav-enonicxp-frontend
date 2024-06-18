@@ -42,6 +42,8 @@
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
+        }
+        .header:not(:focus-visible) {
             box-shadow: 0 0 0 0;
         }
         :global(.navds-accordion__header-chevron) {
