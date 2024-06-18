@@ -40,4 +40,8 @@
         font-variant: all-small-caps;
         color: var(--a-text-subtle);
     }
+
+    .ingress:global(.navds-body-long) {
+        margin-bottom: 0;
+    }
 }
