@@ -21,7 +21,7 @@
         cursor: pointer;
         display: flex;
         font-size: common.px-to-rem(14px);
-        line-height: 1rem;
+        line-height: 1.3;
         position: relative;
         user-select: none;
 
@@ -38,6 +38,7 @@
 
     &:hover {
         background-color: common.$a-surface-selected;
+
         .label {
             color: var(--default-action-color);
 
@@ -58,8 +59,7 @@
 
                 img {
                     background-color: transparent;
-                    filter: invert(98%) sepia(3%) saturate(538%) hue-rotate(223deg) brightness(119%)
-                        contrast(100%);
+                    filter: invert(98%) sepia(3%) saturate(538%) hue-rotate(223deg) brightness(119%) contrast(100%);
                 }
             }
         }
