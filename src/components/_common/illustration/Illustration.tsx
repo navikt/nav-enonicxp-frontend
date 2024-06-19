@@ -1,10 +1,10 @@
 import React from 'react';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { IllustrationStatic } from './static/IllustrationStatic';
 import { FallbackChevron } from './static/FallbackChevron';
 
 type Props = {
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     className?: string;
     tryFallbackIllustration?: boolean;
 };

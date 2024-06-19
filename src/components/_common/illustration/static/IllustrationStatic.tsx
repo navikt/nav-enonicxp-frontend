@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { AnimatedIcon, AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { Icon, PictogramsProps } from 'types/content-props/pictograms';
 import { usePageContentProps } from 'store/pageContext';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
@@ -10,7 +10,7 @@ import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnSc
 import styleCommon from 'components/_common/illustration/Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
 
-type DefinedIcon = Required<NonNullable<AnimatedIcon['icon']>>;
+type DefinedIcon = Required<NonNullable<Icon['icon']>>;
 type ValidIcon = DefinedIcon & Required<Pick<DefinedIcon, 'mediaUrl'>>;
 
 type StaticIconProps = {
@@ -19,7 +19,7 @@ type StaticIconProps = {
     className?: string;
 };
 
-const isValidIcon = (icon?: AnimatedIcon['icon']): icon is ValidIcon => !!icon?.mediaUrl;
+const isValidIcon = (icon?: Icon['icon']): icon is ValidIcon => !!icon?.mediaUrl;
 
 const nextImageProps: NextImageProps = {
     maxWidth: 96,
@@ -75,7 +75,7 @@ const StaticIcon = (props: StaticIconProps) => {
 };
 
 type Props = {
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     className?: string;
 };
 

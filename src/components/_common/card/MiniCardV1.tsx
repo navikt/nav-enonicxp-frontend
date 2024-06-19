@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -12,7 +12,7 @@ import sharedStyle from './Card.module.scss';
 import style from './MiniCardV1.module.scss';
 
 export type MiniKortProps = {
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
     header?: string;

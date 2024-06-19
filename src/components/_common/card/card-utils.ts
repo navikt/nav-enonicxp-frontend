@@ -1,6 +1,6 @@
 import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import {
@@ -23,7 +23,7 @@ export type CardProps = {
     link: LinkProps;
     description?: string;
     tagline?: string;
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
 };
 
 export const cardTypeMap = {
