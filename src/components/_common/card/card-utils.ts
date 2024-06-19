@@ -2,7 +2,6 @@ import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Audience } from 'types/component-props/_mixins';
 import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import {
     GuidePageProps,
@@ -50,8 +49,6 @@ export const getCardProps = (
 
     const { data, type, _path, displayName } = targetContent;
     const { title, ingress, illustration, externalProductUrl } = data;
-
-    const audience = currentContent.data?.audience;
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { useRouter } from 'next/compat/router';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { CardSize, CardType } from 'types/card';
@@ -7,7 +6,6 @@ import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
-import { useClient } from 'utils/useClient';
 import { usePageContentProps } from 'store/pageContext';
 
 type AnalyticsProps = {

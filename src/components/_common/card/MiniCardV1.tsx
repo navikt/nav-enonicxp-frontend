@@ -6,7 +6,6 @@ import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
 import sharedStyle from './Card.module.scss';
@@ -29,8 +28,6 @@ export const MiniCardV1 = (props: MiniKortProps) => {
         size: CardSize.Mini,
         link,
     });
-
-    const { editorView } = usePageContentProps();
 
     return (
         <>
