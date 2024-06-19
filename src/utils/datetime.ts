@@ -5,6 +5,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { ContentProps } from 'types/content-props/_content-common';
+import { translator } from 'translations';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
@@ -88,4 +89,57 @@ export const isCurrentTimeInRange = (start?: string, end?: string) => {
     const now = dayjs();
 
     return (!start || now.isAfter(start)) && (!end || now.isBefore(end));
+};
+
+const buildDateString = ({
+    label,
+    date,
+    language,
+    short = true,
+    year = true,
+}: {
+    label: string;
+    date: string;
+    language: string;
+    short?: boolean;
+    year?: boolean;
+}) => {
+    if (!date) {
+        return '';
+    }
+    return `${label} ${formatDate({
+        datetime: date,
+        language,
+        short,
+        year,
+    })}`;
+};
+
+export const getPublishedAndModifiedString = (
+    content: Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime' | 'language'>,
+    config?: { short: boolean; year: boolean }
+) => {
+    const { modifiedTime, language } = content;
+    const publishedTime = getPublishedDateTime(content);
+    const getDatesLabel = translator('dates', language);
+
+    const wasModifiedAfterPublish = new Date(modifiedTime) > new Date(publishedTime);
+
+    const publishedString = buildDateString({
+        label: getDatesLabel('published'),
+        date: publishedTime,
+        language,
+        short: config?.short,
+        year: config?.year,
+    });
+
+    const modifiedString = buildDateString({
+        label: getDatesLabel('lastChanged'),
+        date: modifiedTime,
+        language,
+        short: config?.short,
+        year: config?.year,
+    });
+
+    return wasModifiedAfterPublish ? `${publishedString} | ${modifiedString}` : publishedString;
 };

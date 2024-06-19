@@ -64,8 +64,11 @@ export const FormDetails = ({
         return acc;
     }, []);
 
-    const showTitleAsLevel4 =
-        pageProps.type === ContentType.ProductPage && pageProps.data?.showSubsectionNavigation;
+    const showTitleAsLevel4 = new Set([
+        ContentType.ProductPage,
+        ContentType.GuidePage,
+        ContentType.CurrentTopicPage,
+    ]).has(pageProps.type);
 
     const formNumberToHighlight =
         formNumberSelected &&
@@ -73,7 +76,8 @@ export const FormDetails = ({
 
     const hasVisibleTitle = showTitle && title;
     const hasVisibleIngress = showIngress && ingress;
-    const hasVisibleFormNumbers = showFormNumbers && formNumbers;
+    const hasVisibleFormNumbers =
+        showFormNumbers && Array.isArray(formNumbers) && formNumbers.length > 0;
 
     return (
         <div className={classNames(style.formDetails, className)}>

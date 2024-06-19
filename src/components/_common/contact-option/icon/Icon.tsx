@@ -1,6 +1,6 @@
 const appOrigin = process.env.APP_ORIGIN;
 
-import style from './ContactOption.module.scss';
+import style from './Icon.module.scss';
 
 type IconProps = {
     type: string;

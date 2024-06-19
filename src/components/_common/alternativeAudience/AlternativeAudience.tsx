@@ -3,6 +3,8 @@ import { BodyLong } from '@navikt/ds-react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
+    AudienceOptions,
+    getAudience,
 } from 'types/component-props/_mixins';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
@@ -69,9 +71,41 @@ export const AlternativeAudience = () => {
     const { showProductName } = config;
     const { alternativeAudience } = data;
 
+    const getAudienceLabel = translator('audience', language);
+    const getProviderAudienceLabel = translator('providerAudience', language);
+
     if (!alternativeAudience) {
         return null;
     }
+
+    const getProviderTypes = (audience: AudienceOptions) => {
+        if (audience._selected !== Audience.PROVIDER) {
+            return [];
+        }
+        return audience[audience._selected].provider_audience;
+    };
+
+    const buildAudienceAffirmation = () => {
+        const { audience: currentAudience } = data;
+        const currentAudienceKey = getAudience(currentAudience);
+
+        if (!currentAudience || !currentAudienceKey || currentAudienceKey === 'person') {
+            return '';
+        }
+
+        const currentAudienceLabel = getAudienceLabel(currentAudienceKey);
+        const providerTypes = getProviderTypes(currentAudience) || [];
+        const providerTypesString = joinWithConjunction(
+            providerTypes.map((type) => getProviderAudienceLabel(type)),
+            language
+        );
+
+        const forString = `${getStringPart('for').charAt(0).toUpperCase()}${getStringPart(
+            'for'
+        ).slice(1)}`;
+
+        return `${forString} ${providerTypesString || currentAudienceLabel}. `;
+    };
 
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
@@ -83,6 +117,7 @@ export const AlternativeAudience = () => {
     return (
         <div className={style.alternativeAudience}>
             <BodyLong size="small" className={style.text}>
+                {buildAudienceAffirmation()}
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>

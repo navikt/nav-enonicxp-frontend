@@ -5,7 +5,6 @@ import {
     officeDetailsFormatPhoneNumber,
 } from 'components/pages/office-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
-import { translator } from 'translations';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
@@ -22,7 +21,6 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
 
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
-    const getLabelMain = translator('mainArticle', props.language);
     const location = officeDetailsFormatAddress(contact.besoeksadresse, true);
     const address = officeDetailsFormatAddress(contact.postadresse, false);
     const fax = officeDetailsFormatPhoneNumber(contact.faksnummer);
@@ -32,13 +30,7 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
     return (
         <article className={style.officeInformation}>
             <header>
-                <ArtikkelDato
-                    publish={props.publish}
-                    createdTime={props.createdTime}
-                    modifiedTime={props.modifiedTime}
-                    publishLabel={getLabelMain('published')}
-                    modifiedLabel={getLabelMain('lastChanged')}
-                />
+                <ArtikkelDato contentProps={props} />
                 <Heading level="1" size="large">{`${unit.navn} - kontorinformasjon`}</Heading>
             </header>
             {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (

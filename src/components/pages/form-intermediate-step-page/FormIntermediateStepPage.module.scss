@@ -37,7 +37,7 @@ $padding: 2rem;
     padding: 0;
 }
 
-.stepItem:not(:last-child) {
+.stepItem {
     margin-bottom: var(--a-spacing-7);
 }
 

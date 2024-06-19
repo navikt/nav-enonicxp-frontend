@@ -48,6 +48,11 @@
         li:last-child {
             margin-bottom: 0;
         }
+
+        ul,
+        ol {
+            margin: var(--a-spacing-3) var(--a-spacing-1);
+        }
     }
 
     ol li {
