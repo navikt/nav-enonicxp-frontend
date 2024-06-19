@@ -7,7 +7,6 @@ export type AnimatedIcon = {
 
 export type AnimatedIconsData = {
     icons: AnimatedIcon[];
-    lottieHover?: { mediaUrl: string };
 };
 
 export interface AnimatedIconsProps {

@@ -22,11 +22,7 @@ export const GeneralPageHeader = (props: Props) => {
 
     return (
         <div className={style.generalPageHeader}>
-            <Illustration
-                illustration={illustration}
-                preferStaticIllustration={true}
-                className={style.illustration}
-            />
+            <Illustration illustration={illustration} className={style.illustration} />
             {tagLine && (
                 <BodyShort className={style.tagline} size="small">
                     {tagLine}

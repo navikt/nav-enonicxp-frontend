@@ -10,7 +10,7 @@ type Props = {
     path: string;
     title: string;
     type: CardType;
-    withFallbackIllustration?: boolean;
+    tryFallbackIllustration?: boolean;
 };
 
 export const FrontPageCard = ({
@@ -18,7 +18,7 @@ export const FrontPageCard = ({
     path,
     title,
     type,
-    withFallbackIllustration,
+    tryFallbackIllustration,
 }: Props) => {
     const link: LinkProps = {
         url: path,
@@ -31,8 +31,7 @@ export const FrontPageCard = ({
             link={link}
             type={type}
             className={styles.frontpageCard}
-            preferStaticIllustration={true}
-            withFallbackIllustration={withFallbackIllustration}
+            tryFallbackIllustration={tryFallbackIllustration}
         />
     );
 };

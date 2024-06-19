@@ -30,16 +30,15 @@ type Props = {
     illustration?: AnimatedIconsProps;
     link: LinkProps;
     type: CardType;
-    preferStaticIllustration?: boolean;
 };
 
 export const LargeCardV1 = (props: Props) => {
-    const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
+    const { link, description, type, tagline, illustration } = props;
     const { text } = link;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
 
-    const { isHovering, userEventProps, analyticsProps } = useCard({
+    const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Large,
         link,
@@ -60,14 +59,7 @@ export const LargeCardV1 = (props: Props) => {
                     )}
                 >
                     {hasIllustration && (
-                        <Illustration
-                            illustration={illustration}
-                            className={style.illustration}
-                            isHovering={isHovering}
-                            preferStaticIllustration={
-                                editorView === 'edit' || preferStaticIllustration
-                            }
-                        />
+                        <Illustration illustration={illustration} className={style.illustration} />
                     )}
                     <LenkeBase
                         href={link.url}

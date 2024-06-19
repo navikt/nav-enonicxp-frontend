@@ -25,7 +25,6 @@ export type CardProps = {
     description?: string;
     tagline?: string;
     illustration?: AnimatedIconsProps;
-    preferStaticIllustration?: boolean;
 };
 
 export const cardTypeMap = {
@@ -65,7 +64,6 @@ export const getCardProps = (
 
     const tagline = getContentTagline(targetContent, language);
     const description = ingressOverride || ingress;
-    const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 
     return {
         type: cardType,
@@ -73,6 +71,5 @@ export const getCardProps = (
         description,
         illustration,
         tagline,
-        preferStaticIllustration,
     };
 };

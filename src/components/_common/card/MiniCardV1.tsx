@@ -18,22 +18,13 @@ export type MiniKortProps = {
     type: CardType;
     header?: string;
     className?: string;
-    preferStaticIllustration?: boolean;
-    withFallbackIllustration?: boolean;
+    tryFallbackIllustration?: boolean;
 };
 
 export const MiniCardV1 = (props: MiniKortProps) => {
-    const {
-        link,
-        illustration,
-        type,
-        header,
-        className,
-        preferStaticIllustration,
-        withFallbackIllustration,
-    } = props;
+    const { link, illustration, type, header, className, tryFallbackIllustration } = props;
     const { text } = link;
-    const { isHovering, userEventProps, analyticsProps } = useCard({
+    const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Mini,
         link,
@@ -53,9 +44,7 @@ export const MiniCardV1 = (props: MiniKortProps) => {
                     <Illustration
                         className={style.illustration}
                         illustration={illustration}
-                        isHovering={isHovering}
-                        preferStaticIllustration={preferStaticIllustration || editorView === 'edit'}
-                        withFallbackIllustration={withFallbackIllustration}
+                        tryFallbackIllustration={tryFallbackIllustration}
                     />
                     <LenkeBase
                         className={classNames(sharedStyle.lenkeBaseOverride, style.title)}
