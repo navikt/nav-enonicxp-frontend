@@ -43,7 +43,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
 
     return (
         <LayoutContainer
-            className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
+            className={`${style.layoutSituationOrProduct} ${
                 isShelf && style.layoutSituationShelf
             } ${isShelf && 'shelf-layout'}`}
             pageProps={pageProps}
