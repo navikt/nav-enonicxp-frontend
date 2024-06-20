@@ -4,9 +4,10 @@
 @import '@navikt/nav-office-reception-info/dist/style.css';
 
 :root {
-    --brand-purple-deep: #99185e; // Finnes pr nå ikke i Aksel
-    --brand-purple-light: #e6c7d8; // Finnes pr nå ikke i Aksel
-    --brand-beige: #fef5ef; // Finnes pr nå ikke i Aksel
+    // Disse finnes pr nå ikke i Aksel
+    --brand-purple-deep: #99185e;
+    --brand-purple-light: #e6c7d8;
+    --brand-beige: #fef5ef;
 }
 
 @media (prefers-reduced-motion: no-preference) {
