@@ -200,8 +200,8 @@ export const translationsBundleEn: PartialTranslations = {
         provider: 'For providers',
     },
     situations: {
-        person: 'You may have right to this',
-        employer: 'For employers',
+        person: 'Your rights',
+        employer: 'What employers should know',
         provider: 'For providers',
     },
     guides: {

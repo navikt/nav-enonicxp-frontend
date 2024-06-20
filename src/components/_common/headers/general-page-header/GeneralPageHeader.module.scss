@@ -32,6 +32,10 @@
         margin-bottom: var(--a-spacing-6);
     }
 
+    .reduceMarginBottom {
+        margin-bottom: -1.5rem;
+    }
+
     .tagline {
         text-transform: uppercase;
         font-size: var(--text-fluid-18-20);
@@ -39,5 +43,9 @@
         margin-top: var(--a-spacing-3);
         font-variant: all-small-caps;
         color: var(--a-text-subtle);
+    }
+
+    .ingress:global(.navds-body-long) {
+        margin-bottom: 0;
     }
 }

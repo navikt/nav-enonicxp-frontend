@@ -179,13 +179,13 @@ export const translationsBundleNb = {
     },
     situations: {
         person: 'Dette kan du ha rett til',
-        employer: 'For arbeidsgivere',
+        employer: 'Hva arbeidsgivere må vite',
         provider: 'For samarbeidspartnere',
     },
     guides: {
         person: 'Slik gjør du det',
-        employer: 'For arbeidsgivere',
-        provider: 'For samarbeidspartnere',
+        employer: 'Slik gjør du det',
+        provider: 'Slik gjør du det',
     },
     publishingCalendar: {
         event: 'Hendelse',

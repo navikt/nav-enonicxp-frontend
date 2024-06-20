@@ -9,6 +9,7 @@ import { GeneralPageHeader } from 'components/_common/headers/general-page-heade
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
+import { classNames } from 'utils/classnames';
 
 import styles from './PageWithSideMenus.module.scss';
 
@@ -19,7 +20,7 @@ type Props = {
 
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
-    const { language } = usePageContentProps();
+    const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
 
     if (!regions || !config) {
@@ -27,8 +28,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     }
 
     const { showInternalNav, anchorLinks } = config;
-
     const { pageContent, topPageContent, bottomRow } = regions;
+    const hasMultipleLanguages = languages && languages?.length > 0;
 
     const isNewLayoutPage =
         pageProps.type === ContentType.ProductPage ||
@@ -38,7 +39,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
-            className={styles.pageWithSideMenus}
+            className={classNames(styles.pageWithSideMenus, hasMultipleLanguages && styles.pullUp)}
             pageProps={pageProps}
             layoutProps={layoutProps}
         >

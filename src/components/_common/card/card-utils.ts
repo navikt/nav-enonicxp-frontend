@@ -2,7 +2,8 @@ import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Audience, getAudience } from 'types/component-props/_mixins';
+import { Audience } from 'types/component-props/_mixins';
+import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import {
     GuidePageProps,
     ProductPageProps,
@@ -10,8 +11,6 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
 } from 'types/content-props/dynamic-page-props';
-import { Language, translator } from 'translations';
-import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 export type CardTargetProps =
     | ProductPageProps
@@ -39,50 +38,21 @@ export const cardTypeMap = {
     [ContentType.GenericPage]: CardType.Generic,
 };
 
-const getCardTagline = (content: CardTargetProps, language: Language): string => {
-    const { data } = content;
-    const { taxonomy = [], customCategory, audience } = data;
-    const selectedAudience = audience && getAudience(audience);
-    const guideTaglines = translator('guides', language);
-    const situationTaglines = translator('situations', language);
-
-    if (content.type === ContentType.GuidePage) {
-        return (selectedAudience && guideTaglines(selectedAudience)) || '';
-    }
-
-    if (content.type === ContentType.SituationPage) {
-        return (selectedAudience && situationTaglines(selectedAudience)) || '';
-    }
-
-    if (taxonomy.length > 0 || customCategory) {
-        const taxonomyStrings = getTranslatedTaxonomies(taxonomy, language);
-        if (customCategory) {
-            taxonomyStrings.push(customCategory);
-        }
-
-        return joinWithConjunction(taxonomyStrings, language);
-    }
-
-    // Catch all if no other taglines could be determined
-    const productAudienceTranslations = translator('products', language);
-    return selectedAudience ? productAudienceTranslations(selectedAudience) : '';
-};
-
 export const getCardProps = (
     targetContent: CardTargetProps | undefined,
-    content: ContentProps,
+    currentContent: ContentProps,
     ingressOverride?: string
 ): CardProps | null => {
     if (!targetContent?.data) {
         return null;
     }
 
-    const { language } = content;
+    const { language } = currentContent;
 
     const { data, type, _path, displayName } = targetContent;
     const { title, ingress, illustration, externalProductUrl } = data;
 
-    const audience = content.data?.audience;
+    const audience = currentContent.data?.audience;
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;
@@ -93,7 +63,7 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const tagline = getCardTagline(targetContent, language);
+    const tagline = getContentTagline(targetContent, language);
     const description = ingressOverride || ingress;
     const preferStaticIllustration = audience?._selected === Audience.EMPLOYER;
 

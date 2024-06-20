@@ -1,10 +1,11 @@
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import {
     PagePropsForPageHeader,
-    getHeaderTagline,
+    getContentTagline,
 } from 'components/_common/headers/sharedHeaderUtils';
 import { Illustration } from 'components/_common/illustration/Illustration';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { classNames } from 'utils/classnames';
 
 import style from './GeneralPageHeader.module.scss';
 
@@ -16,9 +17,11 @@ type Props = {
 export const GeneralPageHeader = (props: Props) => {
     const { pageProps } = props as { pageProps: PagePropsForPageHeader };
     const illustration = pageProps.data.illustration;
-    const tagLine = getHeaderTagline(pageProps);
+    const tagLine = getContentTagline(pageProps);
     const title = pageProps.data.title || pageProps.displayName;
     const { ingress, hideIngress } = pageProps.data;
+
+    const isSituationPage = pageProps.type === ContentType.SituationPage;
 
     return (
         <div className={style.generalPageHeader}>
@@ -32,11 +35,17 @@ export const GeneralPageHeader = (props: Props) => {
                     {tagLine}
                 </BodyShort>
             )}
-            <Heading level="1" size="xlarge" className={style.header}>
+            <Heading
+                level="1"
+                size="xlarge"
+                className={classNames(style.header, isSituationPage && style.reduceMarginBottom)}
+            >
                 {title}
             </Heading>
             {ingress && !hideIngress && !props.hideIngressOverride && (
-                <BodyLong size="large">{ingress}</BodyLong>
+                <BodyLong className={style.ingress} size="large">
+                    {ingress}
+                </BodyLong>
             )}
         </div>
     );
