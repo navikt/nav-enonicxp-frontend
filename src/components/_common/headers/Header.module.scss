@@ -2,19 +2,29 @@
 
 .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
+    align-items: center;
     width: 100%;
 
     &:focus {
         outline: none;
         box-shadow: none;
     }
+
+    &.anchorButtonEnabled:hover {
+        .anchorButton {
+            display: flex;
+        }
+    }
 }
 
-.anchor {
-    display: none;
-    color: inherit;
-    text-decoration: inherit;
+.anchorButton {
     align-items: center;
+    color: inherit;
+    display: none;
+    height: var(--a-spacing-8);
+    justify-content: center;
+    text-decoration: inherit;
+    width: var(--a-spacing-8);
 }
