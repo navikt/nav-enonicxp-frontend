@@ -12,6 +12,12 @@
         box-shadow: none;
     }
 
+    &:hover {
+        .anchor {
+            display: block;
+        }
+    }
+
     &__left {
         align-items: flex-start;
     }
@@ -23,4 +29,11 @@
     &__right {
         align-items: flex-end;
     }
+}
+
+.anchor {
+    display: none;
+    color: inherit;
+    text-decoration: inherit;
+    align-items: center;
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { onlyText } from 'utils/react-children';
+import { LinkIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
 import { HeaderCommonConfig } from 'types/component-props/_mixins';
-import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
@@ -15,19 +14,10 @@ type Props = {
     size?: Size;
     justify?: HeaderCommonConfig['justify'];
     anchorId?: string;
-    setId?: boolean;
     className?: string;
 };
 
-export const Header = ({
-    children,
-    size,
-    level,
-    justify,
-    anchorId,
-    setId = true,
-    className,
-}: Props) => {
+export const Header = ({ children, size, level, justify, anchorId, className }: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
 
     const fallbackSizeByLevel = levelToSize[level] || 'large';
@@ -35,13 +25,15 @@ export const Header = ({
     return (
         <div
             className={classNames(style.header, justify && style[`header__${justify}`], className)}
-            id={setId ? anchorId : undefined}
+            id={anchorId ?? undefined}
             tabIndex={-1}
         >
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-            {anchor && <CopyLink heading={onlyText(children)} anchor={anchor} />}
+            <a href={anchor} className={style.anchor} aria-hidden>
+                <LinkIcon aria-hidden />
+            </a>
         </div>
     );
 };
