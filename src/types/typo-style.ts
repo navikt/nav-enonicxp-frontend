@@ -2,14 +2,6 @@ export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type Level = '1' | '2' | '3' | '4' | '5' | '6';
 export type Size = 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall';
 
-export enum HeaderTypoStyle {
-    Sidetittel = 'sidetittel',
-    Innholdstittel = 'innholdstittel',
-    Systemtittel = 'systemtittel',
-    Undertittel = 'undertittel',
-    Element = 'element',
-}
-
 export const headingToLevel: Record<HeadingTag, Level> = {
     h1: '1',
     h2: '2',
@@ -37,14 +29,6 @@ export const levelToSize: Record<Level, Size> = {
     4: 'small',
     5: 'xsmall',
     6: 'xsmall',
-};
-
-export const typoToSize: Record<HeaderTypoStyle, Size> = {
-    [HeaderTypoStyle.Sidetittel]: 'xlarge',
-    [HeaderTypoStyle.Innholdstittel]: 'large',
-    [HeaderTypoStyle.Systemtittel]: 'medium',
-    [HeaderTypoStyle.Undertittel]: 'small',
-    [HeaderTypoStyle.Element]: 'xsmall',
 };
 
 export const isHeadingTag = (tag?: string): tag is HeadingTag =>

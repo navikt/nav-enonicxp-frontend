@@ -3,31 +3,12 @@
 .header {
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
     width: 100%;
 
     &:focus {
         outline: none;
         box-shadow: none;
-    }
-
-    &:hover {
-        .anchor {
-            display: block;
-        }
-    }
-
-    &__left {
-        align-items: flex-start;
-    }
-
-    &__center {
-        align-items: center;
-    }
-
-    &__right {
-        align-items: flex-end;
     }
 }
 

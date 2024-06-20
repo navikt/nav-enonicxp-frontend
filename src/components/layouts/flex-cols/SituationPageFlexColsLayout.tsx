@@ -54,7 +54,6 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                     <Header
                         level="2"
                         size="large"
-                        justify={isShelf ? 'center' : 'left'}
                         anchorId={anchorId}
                         className={classNames(style.header, isShelf && style.shelfHeader)}
                     >

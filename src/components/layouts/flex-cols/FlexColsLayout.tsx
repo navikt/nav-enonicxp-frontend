@@ -36,13 +36,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps} className={style.flexCols}>
             {title && (
-                <Header
-                    level={'2'}
-                    size={'large'}
-                    justify={'left'}
-                    anchorId={anchorId}
-                    className={style.header}
-                >
+                <Header level={'2'} size={'large'} anchorId={anchorId} className={style.header}>
                     {title}
                 </Header>
             )}

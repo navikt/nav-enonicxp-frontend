@@ -34,13 +34,7 @@ export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => 
             layoutProps={layoutProps}
         >
             {title && (
-                <Header
-                    level="2"
-                    size="large"
-                    justify={'left'}
-                    anchorId={anchorId}
-                    className={style.header}
-                >
+                <Header level="2" size="large" anchorId={anchorId} className={style.header}>
                     {title}
                 </Header>
             )}

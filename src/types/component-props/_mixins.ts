@@ -1,6 +1,5 @@
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { ContentProps } from 'types/content-props/_content-common';
-import { HeaderTypoStyle } from 'types/typo-style';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
@@ -164,13 +163,3 @@ export type LayoutCommonConfigMixin = Partial<
         }>;
     } & RenderOnAuthStateMixin
 >;
-
-export type HeaderCommonConfig = {
-    justify: 'left' | 'center' | 'right';
-    typo: OptionSetSingle<{
-        default: EmptyObject;
-        custom: {
-            typo: HeaderTypoStyle;
-        };
-    }>;
-};

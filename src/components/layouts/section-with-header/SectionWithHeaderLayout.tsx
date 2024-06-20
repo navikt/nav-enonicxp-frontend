@@ -101,8 +101,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 <Header
                     size="large"
                     level="2"
-                    justify={'left'}
-                    anchorId={anchorId}
+                    hideCopyButton={true}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}

@@ -102,7 +102,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     return (
         <section className={style.filtersMenu} aria-describedby="description">
             {title && (
-                <Header level="2" size="large" justify="left">
+                <Header level="2" size="large">
                     {title}
                 </Header>
             )}
