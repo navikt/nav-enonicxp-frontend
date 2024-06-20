@@ -4,6 +4,7 @@ import { LinkIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
 import { useClient } from 'utils/useClient';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
@@ -20,6 +21,21 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const { hasMouse } = useClient();
 
+    const copyLinkToClipboard = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        if (navigator?.clipboard?.writeText) {
+            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split('#')[0];
+            if (baseUrl) {
+                navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
+            }
+
+            logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
+                seksjon: children?.toString(),
+            });
+        }
+    };
+
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (
@@ -32,7 +48,12 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
                 {children}
             </Heading>
             {anchor && (
-                <a href={anchor} className={style.anchorButton} aria-hidden>
+                <a
+                    href={anchor}
+                    onClick={copyLinkToClipboard}
+                    className={style.anchorButton}
+                    aria-hidden
+                >
                     <LinkIcon aria-hidden />
                 </a>
             )}
