@@ -1,4 +1,4 @@
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { MiniCardV1 } from 'components/_common/card/MiniCardV1';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
@@ -6,11 +6,11 @@ import { CardType } from 'types/card';
 import styles from './FrontPageCard.module.scss';
 
 type Props = {
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     path: string;
     title: string;
     type: CardType;
-    withFallbackIllustration?: boolean;
+    tryFallbackIllustration?: boolean;
 };
 
 export const FrontPageCard = ({
@@ -18,7 +18,7 @@ export const FrontPageCard = ({
     path,
     title,
     type,
-    withFallbackIllustration,
+    tryFallbackIllustration,
 }: Props) => {
     const link: LinkProps = {
         url: path,
@@ -31,8 +31,7 @@ export const FrontPageCard = ({
             link={link}
             type={type}
             className={styles.frontpageCard}
-            preferStaticIllustration={true}
-            withFallbackIllustration={withFallbackIllustration}
+            tryFallbackIllustration={tryFallbackIllustration}
         />
     );
 };

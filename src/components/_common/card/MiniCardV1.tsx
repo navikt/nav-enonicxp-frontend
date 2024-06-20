@@ -1,45 +1,33 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
 import sharedStyle from './Card.module.scss';
 import style from './MiniCardV1.module.scss';
 
 export type MiniKortProps = {
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
     header?: string;
     className?: string;
-    preferStaticIllustration?: boolean;
-    withFallbackIllustration?: boolean;
+    tryFallbackIllustration?: boolean;
 };
 
 export const MiniCardV1 = (props: MiniKortProps) => {
-    const {
-        link,
-        illustration,
-        type,
-        header,
-        className,
-        preferStaticIllustration,
-        withFallbackIllustration,
-    } = props;
+    const { link, illustration, type, header, className, tryFallbackIllustration } = props;
     const { text } = link;
-    const { isHovering, userEventProps, analyticsProps } = useCard({
+    const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Mini,
         link,
     });
-
-    const { editorView } = usePageContentProps();
 
     return (
         <>
@@ -53,9 +41,7 @@ export const MiniCardV1 = (props: MiniKortProps) => {
                     <Illustration
                         className={style.illustration}
                         illustration={illustration}
-                        isHovering={isHovering}
-                        preferStaticIllustration={preferStaticIllustration || editorView === 'edit'}
-                        withFallbackIllustration={withFallbackIllustration}
+                        tryFallbackIllustration={tryFallbackIllustration}
                     />
                     <LenkeBase
                         className={classNames(sharedStyle.lenkeBaseOverride, style.title)}

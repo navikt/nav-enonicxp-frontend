@@ -4,7 +4,7 @@ import { IndexPageProps } from 'types/component-props/pages/index-page';
 import { AudienceOptions, ColorMixin, LinkSelectable } from 'types/component-props/_mixins';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { SituationPageProps } from './dynamic-page-props';
-import { AnimatedIconsProps } from './animated-icons';
+import { PictogramsProps } from './pictograms';
 import { OverviewPageProps } from './overview-props';
 import { FormsOverviewProps } from './forms-overview';
 import { ExternalLinkProps } from './external-link-props';
@@ -26,7 +26,7 @@ export type FrontPageData = {
 
 export type FrontPageNestedData = {
     areasHeader: string;
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
 } & CommonData;
 
 export type FrontPageProps = ContentCommonProps & {

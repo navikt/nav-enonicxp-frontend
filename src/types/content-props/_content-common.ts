@@ -36,7 +36,7 @@ import {
     OfficePageProps,
 } from './dynamic-page-props';
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
-import { AnimatedIconsProps } from './animated-icons';
+import { PictogramsProps } from './pictograms';
 import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
 import { ContactInformationProps } from './contact-information-props';
 import { PayoutDatesProps } from './payout-dates';
@@ -77,7 +77,7 @@ export enum ContentType {
     ThemedArticlePage = 'no.nav.navno:themed-article-page',
     CurrentTopicPage = 'no.nav.navno:current-topic-page',
     SituationPage = 'no.nav.navno:situation-page',
-    AnimatedIcons = 'no.nav.navno:animated-icons',
+    Pictograms = 'no.nav.navno:animated-icons',
     ToolsPage = 'no.nav.navno:tools-page',
     Calculator = 'no.nav.navno:calculator',
     Overview = 'no.nav.navno:overview',
@@ -176,7 +176,7 @@ type SpecificContentProps =
     | OfficeEditorialPageProps
     | OfficeBranchPageProps
     | OfficePageProps
-    | AnimatedIconsProps
+    | PictogramsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
     | PayoutDatesProps

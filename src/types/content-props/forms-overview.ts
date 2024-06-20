@@ -1,6 +1,6 @@
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { EmptyObject, OptionSetSingle } from 'types/util-types';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
@@ -17,7 +17,7 @@ export type FormDetailsListItemProps = {
     type: ContentTypeInFormOverviewPages;
     targetLanguage: string;
     anchorId: string;
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
     area: Area[];
     taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
@@ -54,7 +54,7 @@ export type FormsOverviewData = {
     underTitle: string;
     ingress: string;
     overviewType: 'application' | 'complaint' | 'addendum';
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
     audience: FormsOverviewAudienceOptions;
     areasFilterToggle: boolean;
     taxonomyFilterToggle: boolean;

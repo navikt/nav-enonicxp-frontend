@@ -2,7 +2,7 @@ import { ContentCommonProps, ContentType } from 'types/content-props/_content-co
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { Audience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ProductDetailType as OverviewType } from 'types/content-props/product-details';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
@@ -22,7 +22,7 @@ export type OverviewPageProductItem = {
     anchorId: string;
     area: Area[];
     audience: Audience;
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
     ingress: string;
     productDetailsPath?: string;
     productLinks: OverviewPageProductLink[];

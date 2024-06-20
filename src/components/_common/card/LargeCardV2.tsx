@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
@@ -19,7 +19,7 @@ const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
 type Props = {
     tagline?: string;
     description?: string;
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
 };

@@ -7,7 +7,7 @@ import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 
 import style from './FrontpageShortcuts.module.scss';
 
@@ -17,12 +17,12 @@ type Shortcut = {
         displayName: string;
         data: {
             url?: string;
-            illustration?: AnimatedIconsProps;
+            illustration?: PictogramsProps;
             title?: string;
         };
     };
     customTitle: string;
-    customIllustration?: AnimatedIconsProps;
+    customIllustration?: PictogramsProps;
 };
 
 export type PartConfigFrontpageShortcuts = {
