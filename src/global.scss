@@ -3,13 +3,6 @@
 @import '@navikt/ds-css/dist/index.css';
 @import '@navikt/nav-office-reception-info/dist/style.css';
 
-:root {
-    // Disse finnes pr nå ikke i Aksel
-    --brand-purple-deep: #99185e;
-    --brand-purple-light: #e6c7d8;
-    --brand-beige: #fef5ef;
-}
-
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
