@@ -229,3 +229,13 @@ $versionSelectorMinHeight: 3rem;
     filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%) hue-rotate(311deg)
         brightness(88%) contrast(94%);
 }
+
+@mixin header-before-rectangle() {
+    background-color: var(--brand-purple-light);
+    content: '';
+    height: 7px;
+    left: 0;
+    position: absolute;
+    top: calc(var(--a-spacing-5) * -1);
+    width: 40px;
+}

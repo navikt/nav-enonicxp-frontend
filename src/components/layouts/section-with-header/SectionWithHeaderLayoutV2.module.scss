@@ -39,13 +39,7 @@ $defaultBgColor: white;
 }
 
 .topMarker:before {
-    background-color: var(--brand-purple-light);
-    content: '';
-    height: 7px;
-    left: 0;
-    position: absolute;
-    top: calc(var(--a-spacing-5) * -1);
-    width: 40px;
+    @include common.header-before-rectangle();
 }
 
 .header {
