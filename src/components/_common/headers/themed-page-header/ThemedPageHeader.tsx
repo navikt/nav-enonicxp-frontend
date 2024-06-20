@@ -40,7 +40,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
         <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
             <Illustration illustration={illustration} className={style.illustration} />
             <div className={style.text}>
-                <Header justify={'left'} level={'1'} size={'xlarge'} className={style.header}>
+                <Header level={'1'} size={'xlarge'} className={style.header}>
                     {title || displayName}
                 </Header>
                 {(subTitle || modified) && (

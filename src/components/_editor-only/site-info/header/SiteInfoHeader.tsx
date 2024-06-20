@@ -23,9 +23,7 @@ export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
     return (
         <div className={style.container}>
             <div>
-                <Header level={'1'} justify={'left'}>
-                    {'nav.no cms status'}
-                </Header>
+                <Header level={'1'}>{'nav.no cms status'}</Header>
             </div>
             {clusterState ? (
                 <AlertBox

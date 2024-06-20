@@ -37,7 +37,6 @@ export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => 
                 <Header
                     level="2"
                     size="large"
-                    justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
                     className={style.header}

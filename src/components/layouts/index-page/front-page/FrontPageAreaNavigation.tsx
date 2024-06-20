@@ -41,7 +41,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
 
     return (
         <div className={classNames(style.wrapper, audience && style[audience])}>
-            <Header level={'2'} justify={'left'} size={'large'} className={style.header}>
+            <Header level={'2'} size={'large'} className={style.header}>
                 {areasHeader}
             </Header>
             <nav aria-label="Velg område">
