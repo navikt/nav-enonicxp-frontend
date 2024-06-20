@@ -4,7 +4,7 @@
     margin: var(--a-spacing-6) 0 var(--a-spacing-14);
     padding: 1rem 1.25rem;
     border-radius: 0.5rem;
-    background-color: rgb(254 245 239); // Finnes pr nå ikke i Aksel.
+    background-color: var(--brand-beige);
 
     &.chapterNavigation {
         border-top: 5px solid var(--brand-purple-deep);
