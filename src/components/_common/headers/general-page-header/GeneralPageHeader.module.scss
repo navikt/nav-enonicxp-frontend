@@ -32,6 +32,10 @@
         margin-bottom: var(--a-spacing-6);
     }
 
+    .reduceMarginBottom {
+        margin-bottom: -1.5rem;
+    }
+
     .tagline {
         text-transform: uppercase;
         font-size: var(--text-fluid-18-20);
