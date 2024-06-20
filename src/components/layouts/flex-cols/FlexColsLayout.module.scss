@@ -133,7 +133,7 @@
 
 //TODO Duplisert, bør ryddes i senere
 .shelfHeader:before {
-    background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
+    background-color: var(--brand-purple-light);
     content: '';
     height: 7px;
     left: 0;
