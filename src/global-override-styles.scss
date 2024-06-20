@@ -29,6 +29,10 @@
     --text-fluid-32-36: clamp(2rem, 1.9167rem + 0.4167vi, 2.25rem);
     --text-fluid-36-48: clamp(2.25rem, 2rem + 1.25vi, 3rem);
     --default-action-color: var(--a-blue-600);
+
+    --brand-purple-deep: #99185e;
+    --brand-purple-light: #e6c7d8;
+    --brand-beige: #fef5ef;
 }
 
 .page__page-with-side-menus,

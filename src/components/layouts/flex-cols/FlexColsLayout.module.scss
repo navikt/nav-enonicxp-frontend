@@ -125,21 +125,14 @@
 }
 
 .shelfHeader {
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    color: var(--brand-purple-deep);
     margin-bottom: 1rem;
     text-wrap: balance;
     align-items: start;
 }
 
-//TODO Duplisert, bør ryddes i senere
 .shelfHeader:before {
-    background-color: rgb(230, 199, 216); // Finnes pr nå ikke i Aksel.
-    content: '';
-    height: 7px;
-    left: 0;
-    position: absolute;
-    top: calc(var(--a-spacing-5) * -1);
-    width: 40px;
+    @include common.header-before-rectangle();
 }
 
 .shelfLayout {
