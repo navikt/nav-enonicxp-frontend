@@ -125,7 +125,7 @@
 }
 
 .shelfHeader {
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    color: var(--brand-purple-deep);
     margin-bottom: 1rem;
     text-wrap: balance;
     align-items: start;

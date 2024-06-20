@@ -50,7 +50,7 @@ $defaultBgColor: white;
 
 .header {
     margin-bottom: var(--a-spacing-4);
-    color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+    color: var(--brand-purple-deep);
 }
 
 .headerWithIcon {
