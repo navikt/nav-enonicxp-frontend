@@ -14,7 +14,6 @@ type Props = {
     level: Level;
     size?: Size;
     justify?: HeaderCommonConfig['justify'];
-    hideCopyButton?: boolean;
     anchorId?: string;
     setId?: boolean;
     className?: string;
@@ -25,7 +24,6 @@ export const Header = ({
     size,
     level,
     justify,
-    hideCopyButton,
     anchorId,
     setId = true,
     className,
@@ -43,7 +41,7 @@ export const Header = ({
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-            {anchor && !hideCopyButton && <CopyLink heading={onlyText(children)} anchor={anchor} />}
+            {anchor && <CopyLink heading={onlyText(children)} anchor={anchor} />}
         </div>
     );
 };

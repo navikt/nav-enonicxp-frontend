@@ -12,12 +12,12 @@ type CopyLinkProps = {
     anchor: string;
     heading: string;
     className?: string;
-    label?: string;
+    showLabel?: boolean;
 };
 
 const linkCopiedDisplayTimeMs = 2500;
 
-export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) => {
+export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
@@ -52,7 +52,7 @@ export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) =
                 aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
             >
                 <LinkIcon className={style.anchorIcon} aria-hidden />
-                {label || getLabel('copyLink')}
+                {showLabel && getLabel('copyLink')}
             </a>
             <span
                 className={classNames(

@@ -27,7 +27,6 @@ export const MacroHeaderWithAnchor = ({ config }: MacroHeaderWithAnchorProps) =>
             level={level}
             size={size}
             anchorId={id}
-            hideCopyButton={true}
             justify={'left'}
             className={style.headerWithAnchor}
         >

@@ -33,7 +33,6 @@ export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
             size={size}
             anchorId={anchorId}
             justify={'left'}
-            hideCopyButton={true}
             className={style.headerPart}
         >
             {title}
