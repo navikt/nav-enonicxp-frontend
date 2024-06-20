@@ -10,12 +10,10 @@
         margin-left: -8rem;
 
         :global(.back) {
-            filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
-                hue-rotate(286deg) brightness(92%) contrast(95%);
+            @include common.brand-purple-filter-back();
         }
         :global(.front) {
-            filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
-                hue-rotate(311deg) brightness(88%) contrast(94%);
+            @include common.brand-purple-filter-front();
         }
 
         @media #{common.$mq-screen-tablet-and-mobile} {
@@ -28,7 +26,7 @@
 
     .header {
         margin-top: var(--a-spacing-3);
-        color: rgb(153, 24, 94); // Finnes pr nå ikke i Aksel.
+        color: var(--brand-purple-deep);
         margin-bottom: var(--a-spacing-6);
     }
 

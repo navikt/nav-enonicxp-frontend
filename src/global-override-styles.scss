@@ -29,6 +29,10 @@
     --text-fluid-32-36: clamp(2rem, 1.9167rem + 0.4167vi, 2.25rem);
     --text-fluid-36-48: clamp(2.25rem, 2rem + 1.25vi, 3rem);
     --default-action-color: var(--a-blue-600);
+
+    --brand-purple-deep: #99185e;
+    --brand-purple-light: #e6c7d8;
+    --brand-beige: #fef5ef;
 }
 
 .page__page-with-side-menus,
@@ -37,6 +41,7 @@
     .navds-body-short--small {
         font-size: var(--text-fluid-16-18);
     }
+
     .navds-body-long--medium,
     .navds-body-short--medium,
     .navds-read-more__button,
@@ -45,6 +50,7 @@
     .navds-label {
         font-size: var(--text-fluid-18-20);
     }
+
     li::marker,
     .navds-label {
         font-weight: 500;
@@ -53,6 +59,7 @@
     .navds-accordion__header-content.navds-heading--small {
         font-size: var(--text-fluid-18-20);
     }
+
     .navds-body-long--large,
     .navds-body-short--large {
         font-size: var(--text-fluid-20-22);
@@ -62,7 +69,7 @@
     .navds-body-long--medium,
     .navds-body-long--large {
         &:not(li) {
-            line-height: 32px;
+            line-height: 1.75;
             margin-bottom: var(--a-spacing-9);
         }
     }
@@ -76,18 +83,22 @@
     .navds-heading--xsmall {
         font-size: var(--text-fluid-18-20);
     }
+
     .navds-heading--small {
         font-size: var(--text-fluid-20-22);
         font-weight: 650;
     }
+
     .navds-heading--medium {
         font-size: var(--text-fluid-22-24);
         font-weight: 650;
     }
+
     .navds-heading--large {
         font-size: var(--text-fluid-32-36);
         font-weight: 650;
     }
+
     .navds-heading--xlarge {
         font-size: var(--text-fluid-36-48);
         font-weight: 650;
