@@ -74,7 +74,7 @@
             td {
                 vertical-align: top;
                 padding: 0.7rem;
-                line-height: 150%;
+                line-height: 1.5;
                 font-size: 1.125rem;
             }
         }
@@ -95,9 +95,11 @@
         h2 {
             font-size: common.$a-font-size-heading-large;
         }
+
         h3 {
             font-size: common.$a-font-size-heading-medium;
         }
+
         h4 {
             font-size: common.$a-font-size-heading-small;
         }

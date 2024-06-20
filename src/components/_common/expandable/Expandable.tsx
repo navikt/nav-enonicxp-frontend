@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState, useId } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
-import { BriefcaseClockIcon, BarChartIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
+import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
@@ -72,16 +72,16 @@ export const Expandable = ({
 
     const getHeaderIcon = () => {
         if (expandableType === 'processing_times') {
-            return <BriefcaseClockIcon className={style.headerIcon} />;
+            return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
         }
         if (expandableType === 'payout_dates') {
-            return <CalendarIcon className={style.headerIcon} />;
+            return <CalendarIcon aria-hidden className={style.headerIcon} />;
         }
         if (expandableType === 'rates') {
-            return <BarChartIcon className={style.headerIcon} />;
+            return <BarChartIcon aria-hidden className={style.headerIcon} />;
         }
         if (expandableType === 'documentation_requirements') {
-            return <TasklistIcon className={style.headerIcon} />;
+            return <TasklistIcon aria-hidden className={style.headerIcon} />;
         }
         return null;
     };

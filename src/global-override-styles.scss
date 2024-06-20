@@ -37,6 +37,7 @@
     .navds-body-short--small {
         font-size: var(--text-fluid-16-18);
     }
+
     .navds-body-long--medium,
     .navds-body-short--medium,
     .navds-read-more__button,
@@ -45,6 +46,7 @@
     .navds-label {
         font-size: var(--text-fluid-18-20);
     }
+
     li::marker,
     .navds-label {
         font-weight: 500;
@@ -53,6 +55,7 @@
     .navds-accordion__header-content.navds-heading--small {
         font-size: var(--text-fluid-18-20);
     }
+
     .navds-body-long--large,
     .navds-body-short--large {
         font-size: var(--text-fluid-20-22);
@@ -62,7 +65,7 @@
     .navds-body-long--medium,
     .navds-body-long--large {
         &:not(li) {
-            line-height: 32px;
+            line-height: 1.75;
             margin-bottom: var(--a-spacing-9);
         }
     }
@@ -76,18 +79,22 @@
     .navds-heading--xsmall {
         font-size: var(--text-fluid-18-20);
     }
+
     .navds-heading--small {
         font-size: var(--text-fluid-20-22);
         font-weight: 650;
     }
+
     .navds-heading--medium {
         font-size: var(--text-fluid-22-24);
         font-weight: 650;
     }
+
     .navds-heading--large {
         font-size: var(--text-fluid-32-36);
         font-weight: 650;
     }
+
     .navds-heading--xlarge {
         font-size: var(--text-fluid-36-48);
         font-weight: 650;
