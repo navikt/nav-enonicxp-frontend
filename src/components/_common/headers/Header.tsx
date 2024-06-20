@@ -22,8 +22,6 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
     const { hasMouse } = useClient();
 
     const copyLinkToClipboard = (e: React.MouseEvent) => {
-        e.preventDefault();
-
         if (navigator?.clipboard?.writeText) {
             const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split('#')[0];
             if (baseUrl) {
