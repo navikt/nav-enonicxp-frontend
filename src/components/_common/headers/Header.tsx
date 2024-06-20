@@ -12,12 +12,11 @@ type Props = {
     children: React.ReactNode;
     level: Level;
     size?: Size;
-    hideCopyButton?: boolean;
     anchorId?: string;
     className?: string;
 };
 
-export const Header = ({ children, size, level, hideCopyButton, anchorId, className }: Props) => {
+export const Header = ({ children, size, level, anchorId, className }: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const { hasMouse } = useClient();
 
