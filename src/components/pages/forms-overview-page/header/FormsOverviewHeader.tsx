@@ -12,7 +12,7 @@ export const FormsOverviewHeader = (props: FormsOverviewProps) => {
 
     return (
         <div className={style.container}>
-            <Header level={'1'} size={'xlarge'} justify={'left'} className={style.header}>
+            <Header level={'1'} size={'xlarge'} className={style.header}>
                 {title}
             </Header>
             <BodyShort className={style.subHeader}>{underTitle}</BodyShort>

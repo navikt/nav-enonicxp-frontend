@@ -60,7 +60,7 @@ export const FrontpageShortcutsPart = ({
             }
         >
             {sectionTitle && (
-                <Header size="large" level="2" justify="left" className={style.header}>
+                <Header size="large" level="2" className={style.header}>
                     {sectionTitle}
                 </Header>
             )}

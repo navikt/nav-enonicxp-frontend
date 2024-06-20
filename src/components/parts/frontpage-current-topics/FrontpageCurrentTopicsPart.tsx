@@ -30,7 +30,7 @@ export const FrontpageCurrentTopicsPart = ({
 
     return (
         <div className={style.currentTopics}>
-            <Header size={'large'} level={'2'} justify={'left'} className={style.header}>
+            <Header size={'large'} level={'2'} className={style.header}>
                 {title}
             </Header>
             <ul className={style.list}>
