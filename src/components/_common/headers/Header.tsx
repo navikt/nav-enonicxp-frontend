@@ -44,17 +44,19 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
         >
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
+                {anchor && (
+                    <div className={style.anchorWrapper}>
+                        <a
+                            href={anchor}
+                            onClick={copyLinkToClipboard}
+                            className={style.anchorButton}
+                            aria-hidden
+                        >
+                            <LinkIcon aria-hidden />
+                        </a>
+                    </div>
+                )}
             </Heading>
-            {anchor && (
-                <a
-                    href={anchor}
-                    onClick={copyLinkToClipboard}
-                    className={style.anchorButton}
-                    aria-hidden
-                >
-                    <LinkIcon aria-hidden />
-                </a>
-            )}
         </div>
     );
 };

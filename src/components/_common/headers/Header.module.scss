@@ -14,17 +14,28 @@
 
     &.anchorButtonEnabled:hover {
         .anchorButton {
-            display: flex;
+            display: inline-flex;
         }
     }
+}
+.anchorWrapper {
+    display: inline;
 }
 
 .anchorButton {
     align-items: center;
+    background-color: var(--a-lightblue-100);
+    border-radius: var(--a-spacing-7);
     color: inherit;
     display: none;
-    height: var(--a-spacing-8);
+    height: var(--a-spacing-7);
     justify-content: center;
+    margin: var(--a-spacing-1) 0 0 var(--a-spacing-1);
+    padding: var(--a-spacing-1);
     text-decoration: inherit;
     width: var(--a-spacing-8);
+
+    svg path {
+        fill: var(--default-action-color);
+    }
 }
