@@ -44,8 +44,8 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
         >
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
-                {anchor && (
-                    <div className={style.anchorWrapper}>
+                {anchor && level === '2' && (
+                    <div className={style.anchorHotspot}>
                         <a
                             href={anchor}
                             onClick={copyLinkToClipboard}

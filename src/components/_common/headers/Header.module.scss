@@ -13,29 +13,37 @@
     }
 
     &.anchorButtonEnabled:hover {
-        .anchorButton {
+        .anchorHotspot {
             display: inline-flex;
         }
     }
 }
-.anchorWrapper {
-    display: inline;
+
+.anchorHotspot {
+    position: absolute;
+    display: none;
+    cursor: pointer;
 }
 
 .anchorButton {
     align-items: center;
-    background-color: var(--a-lightblue-100);
-    border-radius: var(--a-spacing-7);
+    background-color: var(--a-surface-action-subtle);
+    border-radius: var(--a-spacing-6);
     color: inherit;
-    display: none;
-    height: var(--a-spacing-7);
+    display: flex;
+    height: var(--a-spacing-9);
     justify-content: center;
-    margin: var(--a-spacing-1) 0 0 var(--a-spacing-1);
+    margin: var(--a-spacing-05) 0 0 var(--a-spacing-2);
     padding: var(--a-spacing-1);
+    position: relative;
     text-decoration: inherit;
-    width: var(--a-spacing-8);
+    width: var(--a-spacing-9);
 
-    svg path {
-        fill: var(--default-action-color);
+    svg {
+        width: var(--a-spacing-6);
+        height: var(--a-spacing-6);
+        path {
+            fill: var(--default-action-color);
+        }
     }
 }
