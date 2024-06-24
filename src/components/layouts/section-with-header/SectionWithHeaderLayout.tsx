@@ -97,11 +97,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     />
                 </div>
             )}
+            <div className={style.anchorOffset} id={anchorId} />
             {title && (
                 <Header
                     size="large"
                     level="2"
                     anchorId={anchorId}
+                    addAnchor={false}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}

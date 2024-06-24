@@ -11,15 +11,20 @@ type Props = {
     level: Level;
     size?: Size;
     anchorId?: string;
+    addAnchor?: boolean;
     className?: string;
 };
 
-export const Header = ({ children, size, level, anchorId, className }: Props) => {
+export const Header = ({ children, size, level, anchorId, className, addAnchor }: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (
-        <div className={classNames(style.header, className)} id={anchorId} tabIndex={-1}>
+        <div
+            className={classNames(style.header, className)}
+            id={addAnchor ? anchorId : undefined}
+            tabIndex={-1}
+        >
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {anchor && level === '2' ? (
                     <a href={anchor} className={style.anchor}>
