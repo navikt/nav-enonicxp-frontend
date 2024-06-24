@@ -11,18 +11,25 @@ type Props = {
     level: Level;
     size?: Size;
     anchorId?: string;
-    addAnchor?: boolean;
+    addAnchorId?: boolean;
     className?: string;
 };
 
-export const Header = ({ children, size, level, anchorId, className, addAnchor }: Props) => {
+export const Header = ({
+    children,
+    size,
+    level,
+    anchorId,
+    className,
+    addAnchorId = true, // Can be set to false if anchor is added outside of Header
+}: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (
         <div
             className={classNames(style.header, className)}
-            id={addAnchor ? anchorId : undefined}
+            id={addAnchorId ? anchorId : undefined}
             tabIndex={-1}
         >
             <Heading size={size || fallbackSizeByLevel} level={level}>

@@ -2,9 +2,8 @@
 
 .header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
-    align-items: center;
     width: 100%;
 
     &:focus {
