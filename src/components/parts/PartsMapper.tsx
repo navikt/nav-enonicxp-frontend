@@ -53,7 +53,7 @@ import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
-import { AlternativeAudiencePart } from './_legacy/alternative-audience/AlternativeAudience';
+import { AlternativeAudiencePart } from './_legacy/alternative-audience/AlternativeAudiencePart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,
