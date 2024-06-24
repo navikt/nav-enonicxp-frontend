@@ -73,10 +73,8 @@ export const AlternativeAudience = () => {
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
-
-    if (!alternativeAudience) {
-        return null;
-    }
+    const getStringPart = translator('stringParts', language);
+    const getRelatedString = translator('related', language);
 
     const getProviderTypes = (audience: AudienceOptions) => {
         if (audience._selected !== Audience.PROVIDER) {
@@ -107,8 +105,15 @@ export const AlternativeAudience = () => {
         return `${forString} ${providerTypesString || currentAudienceLabel}. `;
     };
 
-    const getStringPart = translator('stringParts', language);
-    const getRelatedString = translator('related', language);
+    if (!alternativeAudience) {
+        return (
+            <div className={style.alternativeAudience}>
+                <BodyLong size="small" className={style.text}>
+                    {buildAudienceAffirmation()}
+                </BodyLong>
+            </div>
+        );
+    }
 
     const productName =
         showProductName === false ? getStringPart('this') : displayName.toLowerCase();
