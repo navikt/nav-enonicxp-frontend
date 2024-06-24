@@ -56,7 +56,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
                             )}
                             {!hideDatesInList && (
                                 <div className={style.date}>
-                                    <ArtikkelDato contentProps={props} />
+                                    <ArtikkelDato contentProps={section} />
                                 </div>
                             )}
                         </article>
