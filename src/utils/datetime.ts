@@ -123,6 +123,8 @@ export const getPublishedAndModifiedString = (
     const publishedTime = getPublishedDateTime(content);
     const getDatesLabel = translator('dates', language);
 
+    console.log(content);
+
     const wasModifiedAfterPublish = new Date(modifiedTime) > new Date(publishedTime);
 
     const publishedString = buildDateString({
