@@ -53,6 +53,7 @@ import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
+import { AlternativeAudiencePart } from './_legacy/alternative-audience/AlternativeAudience';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,
@@ -138,6 +139,8 @@ const PartComponentMapper = ({
         case PartType.UxSignalsWidget:
             return <UxSignalsWidgetPart {...partProps} />;
 
+        case PartLegacyType.AlternativeAudience:
+            return <AlternativeAudiencePart />;
         case PartLegacyType.LinkLists:
             return <LinkListsLegacyPart {...pageProps} />;
         case PartLegacyType.LinkPanels:
