@@ -56,6 +56,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                         level="2"
                         size="large"
                         anchorId={anchorId}
+                        addAnchorId={false}
                         className={classNames(style.header, isShelf && style.shelfHeader)}
                     >
                         {title}
