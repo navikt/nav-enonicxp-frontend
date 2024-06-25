@@ -10,7 +10,6 @@ export type HeaderWithAnchorMixin = {
     title: string;
     description?: string;
     anchorId: string;
-    toggleCopyButton: boolean;
 };
 
 export enum Audience {

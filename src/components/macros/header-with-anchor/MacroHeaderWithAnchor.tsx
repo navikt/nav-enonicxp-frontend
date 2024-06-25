@@ -23,13 +23,7 @@ export const MacroHeaderWithAnchor = ({ config }: MacroHeaderWithAnchorProps) =>
     }
 
     return (
-        <Header
-            level={level}
-            size={size}
-            anchorId={id}
-            hideCopyButton={true}
-            className={style.headerWithAnchor}
-        >
+        <Header level={level} size={size} anchorId={id} className={style.headerWithAnchor}>
             {headerText}
         </Header>
     );
