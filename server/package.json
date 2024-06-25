@@ -18,19 +18,19 @@
     },
     "dependencies": {
         "cookie-parser": "1.4.6",
-        "dotenv": "16.3.1",
+        "dotenv": "16.4.5",
         "express": "4.19.2",
         "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
         "on-headers": "1.0.2",
-        "prom-client": "15.1.0"
+        "prom-client": "15.1.2"
     },
     "devDependencies": {
-        "@types/cookie-parser": "1.4.6",
+        "@types/cookie-parser": "1.4.7",
         "@types/express": "4.17.21",
         "@types/on-headers": "1.0.3",
         "concurrently": "8.2.2",
-        "esbuild": "0.20.0",
-        "nodemon": "3.0.2"
+        "esbuild": "0.21.5",
+        "nodemon": "3.1.4"
     }
 }
