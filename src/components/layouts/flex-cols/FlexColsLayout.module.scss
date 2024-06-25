@@ -135,6 +135,11 @@
     }
 }
 
+.anchorOffset {
+    position: relative;
+    transform: translateY(calc(var(--a-spacing-20) * -1));
+}
+
 .shelfHeader:before {
     @include common.header-before-rectangle();
 }

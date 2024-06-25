@@ -27,13 +27,7 @@ export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
     const size = headingToSize[tag];
 
     return (
-        <Header
-            level={level}
-            size={size}
-            anchorId={anchorId}
-            hideCopyButton={true}
-            className={style.headerPart}
-        >
+        <Header level={level} size={size} anchorId={anchorId} className={style.headerPart}>
             {title}
         </Header>
     );

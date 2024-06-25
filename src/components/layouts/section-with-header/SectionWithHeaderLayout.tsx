@@ -75,13 +75,11 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            id={!showIcon ? anchorId : undefined}
             tabIndex={-1}
         >
             {showIcon && (
                 <div
                     className={'icon-container'}
-                    id={anchorId} // Ensures anchor links scrolls to the correct position if the icon is rendered
                     tabIndex={-1}
                     style={{
                         ...(icon.color && { backgroundColor: icon.color }),
@@ -99,11 +97,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     />
                 </div>
             )}
+            <div className={style.anchorOffset} id={anchorId} />
             {title && (
                 <Header
                     size="large"
                     level="2"
-                    hideCopyButton={true}
+                    anchorId={anchorId}
+                    addAnchorId={false}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}
