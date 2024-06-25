@@ -21,7 +21,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId, toggleCopyButton } = config;
+    const { title, numCols, justifyContent, anchorId } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -50,12 +50,13 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
             layoutProps={layoutProps}
         >
             <div className={style.contentWrapper}>
+                <div className={style.anchorOffset} id={anchorId} />
                 {title && (
                     <Header
                         level="2"
                         size="large"
-                        hideCopyButton={!toggleCopyButton}
                         anchorId={anchorId}
+                        addAnchorId={false}
                         className={classNames(style.header, isShelf && style.shelfHeader)}
                     >
                         {title}
