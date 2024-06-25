@@ -22,7 +22,7 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
         <div className={classNames(style.header, className)}>
             <div className={style.anchorOffset} id={anchorId} tabIndex={-1} />
             <Heading size={size || fallbackSizeByLevel} level={level}>
-                {(anchor && level === '2') || level === '3' ? (
+                {anchor && (level === '2' || level === '3') ? (
                     <a href={anchor} className={style.anchorLink}>
                         {children}
                     </a>
