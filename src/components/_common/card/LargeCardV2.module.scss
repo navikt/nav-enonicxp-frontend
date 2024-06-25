@@ -27,6 +27,10 @@
             text-decoration-thickness: 2px;
         }
     }
+
+    &:focus-within {
+        box-shadow: var(--a-shadow-focus);
+    }
 }
 
 .illustration {
@@ -45,6 +49,10 @@
 .link {
     text-underline-offset: 0.15625rem;
     text-decoration-thickness: 1px;
+
+    &:focus-visible {
+        outline: none;
+    }
 }
 
 .linkText {
