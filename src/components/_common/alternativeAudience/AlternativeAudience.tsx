@@ -83,7 +83,7 @@ export const AlternativeAudience = () => {
         return audience[audience._selected].provider_audience;
     };
 
-    const buildAudienceAffirmation = () => {
+    const buildAudienceAffirmation = (addPeriod: boolean) => {
         const { audience: currentAudience } = data;
         const currentAudienceKey = getAudience(currentAudience);
 
@@ -102,14 +102,14 @@ export const AlternativeAudience = () => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel} `;
+        return `${forString} ${providerTypesString || currentAudienceLabel}${addPeriod ? '.' : ''} `;
     };
 
     if (!alternativeAudience) {
         return (
             <div className={style.alternativeAudience}>
                 <BodyLong size="small" className={style.text}>
-                    {buildAudienceAffirmation()}
+                    {buildAudienceAffirmation(false)}
                 </BodyLong>
             </div>
         );
@@ -122,8 +122,7 @@ export const AlternativeAudience = () => {
     return (
         <div className={style.alternativeAudience}>
             <BodyLong size="small" className={style.text}>
-                {buildAudienceAffirmation()}
-                {'.'}
+                {buildAudienceAffirmation(true)}
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
