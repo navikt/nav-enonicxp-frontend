@@ -102,7 +102,7 @@ export const AlternativeAudience = () => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel}. `;
+        return `${forString} ${providerTypesString || currentAudienceLabel} `;
     };
 
     if (!alternativeAudience) {
@@ -123,6 +123,7 @@ export const AlternativeAudience = () => {
         <div className={style.alternativeAudience}>
             <BodyLong size="small" className={style.text}>
                 {buildAudienceAffirmation()}
+                {'.'}
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
