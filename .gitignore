@@ -56,3 +56,5 @@ yarn-error.log*
 /.env.prod-local.local
 /server/.next/
 /analyze/
+
+*storybook.log
