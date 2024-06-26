@@ -26,8 +26,11 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
     args: {
-        // size: 'xsmall',
         title: 'Innhold på siden',
-        anchorLinks: [{ anchorId: 'anchorId', linkText: 'linkText', isDupe: false }],
+        anchorLinks: [
+            { anchorId: 'anchorId', linkText: 'Hvem kan få?', isDupe: false },
+            { anchorId: 'anchorId', linkText: 'Hva kan du få?', isDupe: false },
+        ],
+        isChapterNavigation: true,
     },
 };
