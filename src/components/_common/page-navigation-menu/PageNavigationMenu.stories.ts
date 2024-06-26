@@ -34,3 +34,14 @@ export const Primary: Story = {
         isChapterNavigation: true,
     },
 };
+
+export const Secondary: Story = {
+    args: {
+        title: 'I dette kapittelet',
+        anchorLinks: [
+            { anchorId: 'anchorId', linkText: 'Hvem kan få?', isDupe: false },
+            { anchorId: 'anchorId', linkText: 'Hva kan du få?', isDupe: false },
+        ],
+        isChapterNavigation: false,
+    },
+};
