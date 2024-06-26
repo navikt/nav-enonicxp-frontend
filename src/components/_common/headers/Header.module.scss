@@ -12,7 +12,12 @@
     }
 }
 
-.anchor {
+.anchorOffset {
+    position: relative;
+    transform: translateY(calc(var(--a-spacing-20) * -1));
+}
+
+.anchorLink {
     font-size: inherit;
     color: inherit;
     text-decoration: inherit;

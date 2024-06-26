@@ -42,11 +42,6 @@ $defaultBgColor: white;
     @include common.header-before-rectangle();
 }
 
-.anchorOffset {
-    position: relative;
-    transform: translateY(calc(var(--a-spacing-20) * -1));
-}
-
 .header {
     margin-bottom: var(--a-spacing-4);
     color: var(--brand-purple-deep);
