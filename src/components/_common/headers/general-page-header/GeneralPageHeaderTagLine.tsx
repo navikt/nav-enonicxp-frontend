@@ -44,12 +44,13 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel}`;
+        return `  —  ${forString} ${providerTypesString || currentAudienceLabel}`;
     };
 
     return (
         <BodyShort className={style.tagline} size="small">
-            {`${props.tagLine}  —  ${buildAudienceAffirmation()}`}
+            {props.tagLine}
+            {buildAudienceAffirmation()}
         </BodyShort>
     );
 };
