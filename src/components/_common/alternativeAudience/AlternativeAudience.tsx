@@ -73,15 +73,7 @@ export const AlternativeAudience = () => {
     const getRelatedString = translator('related', language);
 
     if (!alternativeAudience) {
-        return (
-            <div className={style.alternativeAudience}>
-                <BodyLong size="small" className={style.text}>
-                    {/* {buildAudienceAffirmation(false)}
-                     TODO return ingenting?*/}
-                    Test
-                </BodyLong>
-            </div>
-        );
+        return null;
     }
 
     const productName =
