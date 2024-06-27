@@ -49,7 +49,7 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
 
     return (
         <BodyShort className={style.tagline} size="small">
-            {props.tagLine} - {buildAudienceAffirmation()}
+            {`${props.tagLine} — ${buildAudienceAffirmation()}`}
         </BodyShort>
     );
 };
