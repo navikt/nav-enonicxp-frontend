@@ -25,7 +25,7 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
         return audience[audience._selected].provider_audience;
     };
 
-    const buildAudienceAffirmation = (addPeriod: boolean) => {
+    const buildAudienceAffirmation = () => {
         const { audience: currentAudience } = data;
         const currentAudienceKey = getAudience(currentAudience);
 
@@ -44,14 +44,12 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel}${
-            addPeriod ? '.' : ''
-        } `;
+        return `${forString} ${providerTypesString || currentAudienceLabel}`;
     };
 
     return (
         <BodyShort className={style.tagline} size="small">
-            {props.tagLine} - {buildAudienceAffirmation(true)}
+            {props.tagLine} - {buildAudienceAffirmation()}
         </BodyShort>
     );
 };
