@@ -159,8 +159,8 @@ export const translationsBundleNn: PartialTranslations = {
     },
     guides: {
         person: 'Slik gjer du det',
-        employer: 'For arbeidsgjevarar',
-        provider: 'For samarbeidspartnarar',
+        employer: 'Slik gjer du det',
+        provider: 'Slik gjer du det',
     },
     publishingCalendar: {
         event: 'Hending',
