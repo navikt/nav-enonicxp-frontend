@@ -2,7 +2,7 @@ import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
-import { officeDetailsFormatAddress } from 'components/pages/office-branch-page/office-details/utils';
+import { officeDetailsFormatAddress } from 'components/pages/office-page/office-details/utils';
 
 import styles from './OfficeInformation.module.scss';
 
