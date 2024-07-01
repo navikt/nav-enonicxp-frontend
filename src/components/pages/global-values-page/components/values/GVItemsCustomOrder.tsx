@@ -1,6 +1,6 @@
 import React from 'react';
-import { List, arrayMove } from 'react-movable';
-import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
+import { arrayMove, List } from 'react-movable';
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { OnChangeMeta } from 'react-movable/lib/types';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
@@ -62,8 +62,8 @@ export const GVItemsCustomOrder = () => {
                                 !editorEnabled && styleCustomOrder.hidden
                             )}
                         >
-                            <ChevronUpIcon />
-                            <ChevronDownIcon />
+                            <ChevronUpIcon aria-hidden />
+                            <ChevronDownIcon aria-hidden />
                         </span>
                         <GVItem item={value} />
                     </div>

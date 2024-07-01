@@ -3,7 +3,7 @@ import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
@@ -13,7 +13,7 @@ import style from './ProductPanelExpandable.module.scss';
 type Props = {
     header: string;
     subHeader?: string;
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
     anchorId: string;
     contentLoaderCallback?: () => void;
     analyticsData?: Record<string, string>;

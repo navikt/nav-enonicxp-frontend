@@ -3,7 +3,7 @@ frontendApp: nav-enonicxp-frontend-dev2
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
 dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
-  - portal-admin-q6.oera.no
+  - www-q6.nav.no
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-2-failover.intern.dev.nav.no

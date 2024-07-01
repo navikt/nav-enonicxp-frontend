@@ -27,28 +27,10 @@
             text-decoration-thickness: 2px;
         }
     }
-}
 
-.container::before,
-.container::after {
-    content: '';
-    position: absolute;
-    background-color: var(--line-color);
-    z-index: 1;
-}
-
-.container::after {
-    inline-size: 100vw;
-    block-size: var(--line-thickness);
-    inset-inline-start: 0;
-    inset-block-start: calc(var(--line-offset) * -1);
-}
-
-.container::before {
-    inline-size: var(--line-thickness);
-    block-size: 100vh;
-    inset-block-start: 0;
-    inset-inline-start: calc(var(--line-offset) * -1);
+    &:focus-within {
+        box-shadow: var(--a-shadow-focus);
+    }
 }
 
 .illustration {
@@ -56,20 +38,21 @@
     height: 3.75rem;
     flex-shrink: 0;
 
-    //TODO rydd i dupliserte filtere fra GeneralPageHeader (kan tas senere)
     :global(.back) {
-        filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%)
-            hue-rotate(286deg) brightness(92%) contrast(95%);
+        @include common.brand-purple-filter-back();
     }
     :global(.front) {
-        filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%)
-            hue-rotate(311deg) brightness(88%) contrast(94%);
+        @include common.brand-purple-filter-front();
     }
 }
 
 .link {
     text-underline-offset: 0.15625rem;
     text-decoration-thickness: 1px;
+
+    &:focus-visible {
+        outline: none;
+    }
 }
 
 .linkText {

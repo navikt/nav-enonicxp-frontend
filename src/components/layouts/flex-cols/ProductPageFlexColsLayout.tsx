@@ -21,7 +21,7 @@ export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => 
     }
 
     const { config } = layoutProps;
-    const { title, anchorId, toggleCopyButton } = config;
+    const { title, anchorId } = config;
 
     const calculateColCount = () => {
         return regionProps.components.length % 3 === 0 ? 3 : 2;
@@ -34,14 +34,7 @@ export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => 
             layoutProps={layoutProps}
         >
             {title && (
-                <Header
-                    level="2"
-                    size="large"
-                    justify={'left'}
-                    hideCopyButton={!toggleCopyButton}
-                    anchorId={anchorId}
-                    className={style.header}
-                >
+                <Header level="2" size="large" anchorId={anchorId} className={style.header}>
                     {title}
                 </Header>
             )}

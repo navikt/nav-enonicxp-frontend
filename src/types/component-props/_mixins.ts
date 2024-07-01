@@ -1,7 +1,6 @@
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { ContentProps } from 'types/content-props/_content-common';
-import { HeaderTypoStyle } from 'types/typo-style';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetMulti, OptionSetSingle } from 'types/util-types';
@@ -11,7 +10,6 @@ export type HeaderWithAnchorMixin = {
     title: string;
     description?: string;
     anchorId: string;
-    toggleCopyButton: boolean;
 };
 
 export enum Audience {
@@ -94,7 +92,7 @@ export type ProductDataMixin = {
     taxonomy: Taxonomy[];
     audience?: AudienceOptions;
     customCategory?: string;
-    illustration: AnimatedIconsProps;
+    illustration: PictogramsProps;
     area: Area[];
     externalProductUrl?: string;
 };
@@ -165,13 +163,3 @@ export type LayoutCommonConfigMixin = Partial<
         }>;
     } & RenderOnAuthStateMixin
 >;
-
-export type HeaderCommonConfig = {
-    justify: 'left' | 'center' | 'right';
-    typo: OptionSetSingle<{
-        default: EmptyObject;
-        custom: {
-            typo: HeaderTypoStyle;
-        };
-    }>;
-};

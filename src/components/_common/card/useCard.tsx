@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { useRouter } from 'next/compat/router';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { CardSize, CardType } from 'types/card';
@@ -7,7 +6,6 @@ import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
-import { useClient } from 'utils/useClient';
 import { usePageContentProps } from 'store/pageContext';
 
 type AnalyticsProps = {
@@ -19,10 +17,6 @@ type AnalyticsProps = {
 type HandleUserEvent = (e: React.MouseEvent | React.TouchEvent) => void;
 
 type UserEventProps = {
-    onMouseEnter: HandleUserEvent;
-    onMouseLeave: HandleUserEvent;
-    onMouseDown: HandleUserEvent;
-    onMouseUp: HandleUserEvent;
     onTouchStart: HandleUserEvent;
     onTouchEnd: HandleUserEvent;
     onTouchCancel: HandleUserEvent;
@@ -30,8 +24,6 @@ type UserEventProps = {
 };
 
 type UseCardState = {
-    isHovering: boolean;
-    isPressed: boolean;
     analyticsProps: AnalyticsProps;
     userEventProps: UserEventProps | null;
 };
@@ -43,11 +35,8 @@ type UseCardSettings = {
 };
 
 export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => {
-    const [isHovering, setIsHovering] = useState(false);
-    const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
     const { editorView } = usePageContentProps();
-    const { hasTouch, hasMouse } = useClient();
 
     const { layoutConfig } = useLayoutConfig();
 
@@ -82,28 +71,6 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
         const type = Interaction[eventType];
 
         e.stopPropagation();
-
-        const isDeviceTouchOnly = hasTouch && !hasMouse;
-
-        if (type === Interaction.mouseenter || type === Interaction.mouseleave) {
-            setIsHovering(type === Interaction.mouseenter && !isDeviceTouchOnly);
-        }
-
-        if (type === Interaction.mouseleave) {
-            setIsPressed(false);
-        }
-
-        if (type === Interaction.mousedown || type === Interaction.mouseup) {
-            setIsPressed(type === Interaction.mousedown);
-        }
-
-        if (type === Interaction.touchstart) {
-            setIsPressed(true);
-        }
-
-        if (type === Interaction.touchend || type === Interaction.touchcancel) {
-            setIsPressed(false);
-        }
 
         if (type === Interaction.touch || type === Interaction.click) {
             // User should be able to select text for text-to-speech, so abort all
@@ -146,10 +113,6 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
         }
 
         return {
-            onMouseEnter: handleUserEvent,
-            onMouseLeave: handleUserEvent,
-            onMouseDown: handleUserEvent,
-            onMouseUp: handleUserEvent,
             onClick: handleUserEvent,
             onTouchStart: handleUserEvent,
             onTouchEnd: handleUserEvent,
@@ -159,8 +122,6 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
     };
 
     return {
-        isHovering,
-        isPressed,
         analyticsProps: buildAnalyticsProps(),
         userEventProps: buildUserEventProps(),
     };

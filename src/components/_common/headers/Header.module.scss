@@ -3,7 +3,6 @@
 .header {
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
     width: 100%;
 
@@ -11,16 +10,15 @@
         outline: none;
         box-shadow: none;
     }
+}
 
-    &__left {
-        align-items: flex-start;
-    }
+.anchorOffset {
+    position: relative;
+    transform: translateY(calc(var(--a-spacing-20) * -1));
+}
 
-    &__center {
-        align-items: center;
-    }
-
-    &__right {
-        align-items: flex-end;
-    }
+.anchorLink {
+    font-size: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }

@@ -2,7 +2,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { Taxonomy } from 'types/taxonomies';
 import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
-import { AnimatedIconsProps } from './animated-icons';
+import { PictogramsProps } from './pictograms';
 
 export type FormIntermediateStep_StepData<
     NextStep extends FormIntermediateStep_StepBase = FormIntermediateStep_StepBase,
@@ -48,7 +48,7 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
-        illustration: AnimatedIconsProps;
+        illustration: PictogramsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
     } & FormIntermediateStep_StepData<StepLevel1>;

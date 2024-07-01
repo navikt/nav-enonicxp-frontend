@@ -1,12 +1,11 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { usePageContentProps } from 'store/pageContext';
 import { useCard } from './useCard';
 
 import style from './LargeCardV1.module.scss';
@@ -27,25 +26,22 @@ const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
 type Props = {
     tagline?: string;
     description?: string;
-    illustration?: AnimatedIconsProps;
+    illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
-    preferStaticIllustration?: boolean;
 };
 
 export const LargeCardV1 = (props: Props) => {
-    const { link, description, type, tagline, illustration, preferStaticIllustration } = props;
+    const { link, description, type, tagline, illustration } = props;
     const { text } = link;
 
     const hasIllustration = illustration && cardTypesWithIllustration.has(type);
 
-    const { isHovering, userEventProps, analyticsProps } = useCard({
+    const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Large,
         link,
     });
-
-    const { editorView } = usePageContentProps();
 
     const layoutVariation =
         type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
@@ -60,14 +56,7 @@ export const LargeCardV1 = (props: Props) => {
                     )}
                 >
                     {hasIllustration && (
-                        <Illustration
-                            illustration={illustration}
-                            className={style.illustration}
-                            isHovering={isHovering}
-                            preferStaticIllustration={
-                                editorView === 'edit' || preferStaticIllustration
-                            }
-                        />
+                        <Illustration illustration={illustration} className={style.illustration} />
                     )}
                     <LenkeBase
                         href={link.url}

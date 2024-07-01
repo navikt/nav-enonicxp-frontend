@@ -22,7 +22,7 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const greetings = translator('greetings', language);
 
     return (
-        <Header level={'2'} size={'large'} justify={'left'} className={style.header}>
+        <Header level={'2'} size={'large'} className={style.header}>
             {name ? headerText.replace('$navn', capitalize(name)) : greetings('hi')}
         </Header>
     );
@@ -53,7 +53,7 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
                 data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
-                <Header level={'2'} size={'small'} justify={'left'} className={style.services}>
+                <Header level={'2'} size={'small'} className={style.services}>
                     {yourServicesText('yourServices')}
                 </Header>
                 <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
