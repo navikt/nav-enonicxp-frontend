@@ -12,10 +12,10 @@ const envMap: Record<AppEnv, DecoratorEnv> = {
     localhost: 'localhost',
     dev1: 'dev',
     dev2: 'beta',
-    prod: 'prod',
+    prod: 'prodNext',
 } as const;
 
-const decoratorEnv = envMap[process.env.ENV] || 'prod';
+const decoratorEnv = envMap[process.env.ENV || 'prod'] || 'prod';
 
 const envProps: DecoratorFetchProps = {
     noCache: process.env.DECORATOR_NOCACHE === 'true',
