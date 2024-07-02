@@ -16,7 +16,7 @@ type Props = {
     className?: string;
     children: React.ReactNode;
     expandableType?: ProductDetailType | 'documentation_requirements';
-    airaLabel?: string;
+    ariaLabel?: string;
 };
 
 export const Expandable = ({
@@ -26,7 +26,7 @@ export const Expandable = ({
     children,
     className,
     expandableType,
-    airaLabel,
+    ariaLabel,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
@@ -115,7 +115,7 @@ export const Expandable = ({
             ref={accordionRef}
             onToggle={toggleExpandCollapse}
             open={isOpen}
-            aria-label={airaLabel || title}
+            aria-label={ariaLabel || title}
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}
