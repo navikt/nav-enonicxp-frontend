@@ -7,7 +7,10 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
-import { ProductDetailType } from 'types/content-props/product-details';
+import {
+    ProcessingTimesVisibilityType,
+    ProductDetailType,
+} from 'types/content-props/product-details';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -69,6 +72,13 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
     [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
     [ProductDetailType.RATES]: 'satser',
     [ProductDetailType.ALL_PRODUCTS]: 'alle',
+    [ProductDetailType.DOC_REQUIREMENTS]: 'krav til dokumentasjon',
+};
+
+const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: string } = {
+    [ProcessingTimesVisibilityType.ALL]: '',
+    [ProcessingTimesVisibilityType.APPLICATION]: 'søknad',
+    [ProcessingTimesVisibilityType.COMPLAINT]: 'klage',
 };
 
 export const translationsBundleNb = {
@@ -169,7 +179,7 @@ export const translationsBundleNb = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
-    relatedContent: relatedContent,
+    relatedContent,
     taxonomies,
     areas,
     products: {
@@ -328,6 +338,7 @@ export const translationsBundleNb = {
         },
     },
     productDetailTypes,
+    processingTimesVisibilityTypes,
     payoutDates: {
         tableHeaderPrefix: 'Utbetalingsdatoer i',
         tableHeaderPrefixNoYear: 'Utbetalingsdatoer',

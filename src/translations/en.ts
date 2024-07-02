@@ -6,6 +6,10 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import {
+    ProcessingTimesVisibilityType,
+    ProductDetailType,
+} from 'types/content-props/product-details';
 import { PartialTranslations } from './default';
 
 const taxonomies: {
@@ -299,6 +303,18 @@ export const translationsBundleEn: PartialTranslations = {
             weeks: 'weeks',
             months: 'months',
         },
+    },
+    productDetailTypes: {
+        [ProductDetailType.PAYOUT_DATES]: 'payment dates',
+        [ProductDetailType.PROCESSING_TIMES]: 'processing times',
+        [ProductDetailType.RATES]: 'rates',
+        [ProductDetailType.ALL_PRODUCTS]: 'all',
+        [ProductDetailType.DOC_REQUIREMENTS]: 'documentation requirements',
+    },
+    processingTimesVisibilityTypes: {
+        [ProcessingTimesVisibilityType.ALL]: '',
+        [ProcessingTimesVisibilityType.APPLICATION]: 'application',
+        [ProcessingTimesVisibilityType.COMPLAINT]: 'complaints',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',

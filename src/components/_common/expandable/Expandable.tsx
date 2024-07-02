@@ -1,10 +1,16 @@
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import {
+    ProcessingTimesVisibilityType,
+    ProductDetailType,
+} from 'types/content-props/product-details';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 import style from './Expandable.module.scss';
 
@@ -14,7 +20,8 @@ type Props = {
     analyticsOriginTag?: string;
     className?: string;
     children: React.ReactNode;
-    expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
+    expandableType?: ProductDetailType;
+    visibilityType?: ProcessingTimesVisibilityType;
 };
 
 export const Expandable = ({
@@ -24,10 +31,11 @@ export const Expandable = ({
     children,
     className,
     expandableType,
+    visibilityType,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
-    const componentId = useId();
+    const { language } = usePageContentProps();
 
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
@@ -71,16 +79,16 @@ export const Expandable = ({
     };
 
     const getHeaderIcon = () => {
-        if (expandableType === 'processing_times') {
+        if (expandableType === ProductDetailType.PROCESSING_TIMES) {
             return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
         }
-        if (expandableType === 'payout_dates') {
+        if (expandableType === ProductDetailType.PAYOUT_DATES) {
             return <CalendarIcon aria-hidden className={style.headerIcon} />;
         }
-        if (expandableType === 'rates') {
+        if (expandableType === ProductDetailType.RATES) {
             return <BarChartIcon aria-hidden className={style.headerIcon} />;
         }
-        if (expandableType === 'documentation_requirements') {
+        if (expandableType === ProductDetailType.DOC_REQUIREMENTS) {
             return <TasklistIcon aria-hidden className={style.headerIcon} />;
         }
         return null;
@@ -105,6 +113,14 @@ export const Expandable = ({
     // This is the wrong use of this component, but some legacy pages have still to
     // be upradet editorial wise.
     const isLegacyUsage = !expandableType;
+    const getProductDetailsLabel = translator('productDetailTypes', language);
+    const getVisibilityLabel = translator('processingTimesVisibilityTypes', language);
+    const label =
+        expandableType === ProductDetailType.PROCESSING_TIMES &&
+        visibilityType &&
+        `${getProductDetailsLabel(ProductDetailType.PROCESSING_TIMES)} ${getVisibilityLabel(
+            visibilityType
+        )}`;
 
     return (
         <ExpansionCard
@@ -113,9 +129,9 @@ export const Expandable = ({
             ref={accordionRef}
             onToggle={toggleExpandCollapse}
             open={isOpen}
-            aria-labelledby={componentId}
+            aria-label={label || title}
         >
-            <ExpansionCard.Header className={style.header} id={componentId}>
+            <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}
                 <div className={style.headerTitle}>{title}</div>
             </ExpansionCard.Header>
