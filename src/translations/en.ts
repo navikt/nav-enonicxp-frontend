@@ -314,7 +314,7 @@ export const translationsBundleEn: PartialTranslations = {
     processingTimesVisibilityTypes: {
         [ProcessingTimesVisibilityType.ALL]: '',
         [ProcessingTimesVisibilityType.APPLICATION]: 'application',
-        [ProcessingTimesVisibilityType.COMPLAINT]: 'complaints',
+        [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',
