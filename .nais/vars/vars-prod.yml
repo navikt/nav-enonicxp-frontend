@@ -1,6 +1,6 @@
 appName: nav-enonicxp-frontend
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
-dekoratorenApp: decorator-next
+dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www.nav.no
   - www-failover.nav.no

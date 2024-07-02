@@ -75,7 +75,7 @@ const csp = async () => {
         localhost: 'localhost',
         dev1: 'dev',
         dev2: 'beta',
-        prod: 'prodNext',
+        prod: 'prod',
     };
 
     const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost];
