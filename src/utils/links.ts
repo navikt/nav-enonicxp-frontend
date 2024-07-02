@@ -14,11 +14,7 @@ const getLinkHref = (element: HTMLElement | null): string | null => {
     return getLinkHref(element.parentElement);
 };
 
-// TODO: should affect prod as well once decorator-next is released
-const closeDecoratorMenus =
-    process.env.ENV === 'prod'
-        ? () => {}
-        : () => window.dispatchEvent(new CustomEvent('closemenus'));
+const closeDecoratorMenus = () => window.dispatchEvent(new CustomEvent('closemenus'));
 
 export const hookAndInterceptInternalLink =
     (router: NextRouter, isEditorView: boolean) => (e: MouseEvent) => {
