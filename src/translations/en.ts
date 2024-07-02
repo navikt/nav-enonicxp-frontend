@@ -309,7 +309,6 @@ export const translationsBundleEn: PartialTranslations = {
         [ProductDetailType.PROCESSING_TIMES]: 'processing times',
         [ProductDetailType.RATES]: 'rates',
         [ProductDetailType.ALL_PRODUCTS]: 'all',
-        [ProductDetailType.DOC_REQUIREMENTS]: 'documentation requirements',
     },
     processingTimesVisibilityTypes: {
         [ProcessingTimesVisibilityType.ALL]: '',

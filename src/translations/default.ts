@@ -72,7 +72,6 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
     [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
     [ProductDetailType.RATES]: 'satser',
     [ProductDetailType.ALL_PRODUCTS]: 'alle',
-    [ProductDetailType.DOC_REQUIREMENTS]: 'krav til dokumentasjon',
 };
 
 const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: string } = {

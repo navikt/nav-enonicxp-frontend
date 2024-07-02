@@ -5,10 +5,7 @@ import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetMulti, OptionSetSingle } from 'types/util-types';
 import { Area } from 'types/areas';
-import {
-    ProcessingTimesVisibilityType,
-    ProductDetailType,
-} from 'types/content-props/product-details';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -131,8 +128,8 @@ export type ExpandableMixin = {
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
-    type?: ProductDetailType;
-    visibilityType?: ProcessingTimesVisibilityType;
+    type?: ProductDetailType | 'documentation_requirements';
+    ariaLabel?: string;
 };
 
 export type FiltersMixin = {
