@@ -1,10 +1,11 @@
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 import style from './Expandable.module.scss';
 
@@ -14,7 +15,8 @@ type Props = {
     analyticsOriginTag?: string;
     className?: string;
     children: React.ReactNode;
-    expandableType?: 'processing_times' | 'payout_dates' | 'rates' | 'documentation_requirements';
+    expandableType?: ProductDetailType | 'documentation_requirements';
+    ariaLabel?: string;
 };
 
 export const Expandable = ({
@@ -24,10 +26,10 @@ export const Expandable = ({
     children,
     className,
     expandableType,
+    ariaLabel,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
-    const componentId = useId();
 
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
@@ -71,13 +73,13 @@ export const Expandable = ({
     };
 
     const getHeaderIcon = () => {
-        if (expandableType === 'processing_times') {
+        if (expandableType === ProductDetailType.PROCESSING_TIMES) {
             return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
         }
-        if (expandableType === 'payout_dates') {
+        if (expandableType === ProductDetailType.PAYOUT_DATES) {
             return <CalendarIcon aria-hidden className={style.headerIcon} />;
         }
-        if (expandableType === 'rates') {
+        if (expandableType === ProductDetailType.RATES) {
             return <BarChartIcon aria-hidden className={style.headerIcon} />;
         }
         if (expandableType === 'documentation_requirements') {
@@ -113,9 +115,9 @@ export const Expandable = ({
             ref={accordionRef}
             onToggle={toggleExpandCollapse}
             open={isOpen}
-            aria-labelledby={componentId}
+            aria-label={ariaLabel || title}
         >
-            <ExpansionCard.Header className={style.header} id={componentId}>
+            <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}
                 <div className={style.headerTitle}>{title}</div>
             </ExpansionCard.Header>
