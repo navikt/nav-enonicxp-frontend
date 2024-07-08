@@ -11,6 +11,7 @@ import { translator } from 'translations';
 import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/parseInnholdsfortegnelse';
 
 import { createTypeGuard } from 'types/_type-guards';
+import { MainArticleData } from 'types/content-props/main-article-props';
 import stylePermanent from './MainArticlePermanent.module.scss';
 import styleNews from './MainArticleNewsPress.module.scss';
 
@@ -33,7 +34,8 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
         return null;
     }
 
-    const { data, language, displayName, _path } = props;
+    const { language, displayName, _path } = props;
+    const data = props.data as MainArticleData;
 
     const isNewsArticle = data.contentType === 'news' || data.contentType === 'pressRelease';
 
