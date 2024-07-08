@@ -14,8 +14,6 @@ type Props = {
     children?: React.ReactNode;
 };
 
-const descriptionMaxLength = 140;
-
 const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {
         return content.data.metaDescription;
@@ -50,7 +48,7 @@ export const getPageTitle = (content: ContentProps) =>
 
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = getPageTitle(content);
-    const description = getDescription(content).slice(0, descriptionMaxLength);
+    const description = getDescription(content);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
