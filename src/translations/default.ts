@@ -244,7 +244,7 @@ export const translationsBundleNb = {
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 9-15).',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 9-1430).',
         },
         write: {
             title: 'Skriv til oss',

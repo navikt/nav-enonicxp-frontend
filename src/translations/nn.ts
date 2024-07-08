@@ -239,7 +239,7 @@ export const translationsBundleNn: PartialTranslations = {
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-1430).',
         },
         write: {
             title: 'Skriv til oss',
