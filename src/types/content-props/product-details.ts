@@ -4,3 +4,9 @@ export enum ProductDetailType {
     PROCESSING_TIMES = 'processing_times',
     ALL_PRODUCTS = 'all_products',
 }
+
+export enum ProcessingTimesVisibilityType {
+    ALL = 'all',
+    APPLICATION = 'application',
+    COMPLAINT = 'complaint',
+}
