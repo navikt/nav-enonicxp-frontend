@@ -14,7 +14,7 @@ type Props = {
     children?: React.ReactNode;
 };
 
-const descriptionMaxLength = 140;
+const descriptionMaxLength = 250;
 
 const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {
