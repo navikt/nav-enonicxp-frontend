@@ -36,7 +36,11 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
             )}
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
             {showHeaderAndChangedate && (
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} isSituationPage />
+                <PageUpdatedInfo
+                    datetime={pageProps.modifiedTime}
+                    isSituationPage
+                    language={pageProps.language}
+                />
             )}
         </LayoutContainer>
     );
