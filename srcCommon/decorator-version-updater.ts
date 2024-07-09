@@ -32,7 +32,7 @@ const fetchAndUpdateVersion = () =>
 
         const { versionId, started } = response;
 
-        if (started > currentVersion.started) {
+        if (versionId !== currentVersion.versionId && started > currentVersion.started) {
             logger.info(`New decorator version: ${versionId} [${started}]`);
             currentVersion.versionId = versionId;
             currentVersion.started = started;
