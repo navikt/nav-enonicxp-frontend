@@ -26,7 +26,7 @@ const getXpCacheKey =
           })
         : () => ({});
 
-const redisCache = await new RedisCache().init(process.env.BUILD_ID);
+const redisCache = await new RedisCache().init(process.env.BUILD_ID, '');
 
 const fetchConfig = {
     headers: {
