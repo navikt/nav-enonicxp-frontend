@@ -4,11 +4,18 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
 import { pathToCacheKey } from 'srcCommon/cache-key';
 import { logger } from 'srcCommon/logger';
+import { addDecoratorUpdateListener } from 'srcCommon/decorator-version-updater';
 
 export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
+});
+
+addDecoratorUpdateListener((versionId) => {
+    logger.info('Decorator updated, clearing render cache!');
+    redisCache.updateRenderCacheKeyPrefix(versionId);
+    localCache.clear();
 });
 
 export default class PageCacheHandler {

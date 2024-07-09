@@ -31,8 +31,10 @@ class RedisCacheImpl {
     private readonly responseCacheTTL: number = TIME_72_HOURS_IN_MS;
     private readonly renderCacheTTL: number = TIME_24_HOURS_IN_MS;
 
-    private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
-    private renderCacheKeyPrefix = '';
+    private buildId: string = '';
+
+    readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
+    renderCacheKeyPrefix = '';
 
     constructor() {
         this.client = createClient(clientOptions)
@@ -53,8 +55,9 @@ class RedisCacheImpl {
             });
     }
 
-    public async init(buildId: string) {
-        this.renderCacheKeyPrefix = getRenderCacheKeyPrefix(buildId);
+    public async init(buildId: string, decoratorVersionId: string) {
+        this.buildId = buildId;
+        this.updateRenderCacheKeyPrefix(decoratorVersionId);
 
         return this.client.connect().then(() => {
             logger.info(
@@ -62,6 +65,10 @@ class RedisCacheImpl {
             );
             return this;
         });
+    }
+
+    public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
+        this.renderCacheKeyPrefix = `${process.env.ENV}:render:${this.buildId}:${decoratorVersionId}`;
     }
 
     public async getRender(key: string) {
@@ -123,6 +130,8 @@ class RedisCacheDummy extends RedisCacheImpl {
         return this;
     }
 
+    public updateRenderCacheKeyPrefix(key: string) {}
+
     public async getRender(key: string) {
         return null;
     }
@@ -146,7 +155,3 @@ export const RedisCache =
     validateClientOptions()
         ? RedisCacheImpl
         : RedisCacheDummy;
-
-export const getRenderCacheKeyPrefix = (buildId: string) => `${process.env.ENV}:render:${buildId}`;
-
-export const getResponseCacheKeyPrefix = () => `${process.env.ENV}:xp-response`;
