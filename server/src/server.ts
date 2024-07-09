@@ -9,6 +9,7 @@ import { getNextBuildId, getNextServer } from 'next-utils';
 import { logger } from 'srcCommon/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
+import { initDecoratorVersionUpdater } from 'srcCommon/decorator-version-updater';
 import { websockets } from './websockets';
 
 const promMiddleware = promBundle({
@@ -80,6 +81,7 @@ nextApp.prepare().then(async () => {
         if (!isFailover) {
             const buildId = getNextBuildId(nextServer);
             initRevalidatorProxyHeartbeat(buildId);
+            initDecoratorVersionUpdater();
         }
 
         logger.info(`Server started on port ${port}`);

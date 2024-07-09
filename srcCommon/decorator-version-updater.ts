@@ -50,7 +50,7 @@ export const removeDecoratorUpdateListener = (listener: DecoratorUpdateListener)
 
 let intervalId: number | null = null;
 
-export const startDecoratorVersionUpdater = () => {
+export const initDecoratorVersionUpdater = () => {
     if (intervalId !== null) {
         clearInterval(intervalId);
     }

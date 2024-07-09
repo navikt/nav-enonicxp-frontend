@@ -10,10 +10,7 @@ import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from 'srcCommon/logger';
 import { redisCache } from 'cache/page-cache-handler';
-import {
-    fetchDecoratorVersion,
-    startDecoratorVersionUpdater,
-} from 'srcCommon/decorator-version-updater';
+import { fetchDecoratorVersion } from 'srcCommon/decorator-version-updater';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -40,8 +37,6 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     }
 
     await redisCache.init(currentBuildId, decoratorVersionId ?? '');
-
-    startDecoratorVersionUpdater();
 
     logger.info(
         `Current build id: ${currentBuildId} - Current decorator version id: ${decoratorVersionId}`
