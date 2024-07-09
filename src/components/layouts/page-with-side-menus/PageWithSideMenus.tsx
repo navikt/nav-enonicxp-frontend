@@ -55,7 +55,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />
