@@ -16,8 +16,11 @@ export const PageUpdatedInfo = ({
     language = 'no',
     isSituationPage,
 }: PageUpdatedInfoProps) => {
-    const formattedDate = formatDate({ datetime, language });
-    const getDatesTranslations = translator('dates', language);
+    const usableLanguage =
+        language === 'nn' || language === 'no' || language === 'se' ? 'no' : 'en';
+
+    const formattedDate = formatDate({ datetime, language: usableLanguage });
+    const getDatesTranslations = translator('dates', usableLanguage);
     const updatedString = getDatesTranslations('lastChanged');
 
     return (
