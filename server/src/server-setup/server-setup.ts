@@ -9,11 +9,8 @@ import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
 import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from 'srcCommon/logger';
-import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
-import {
-    addDecoratorUpdateListener,
-    fetchDecoratorVersion,
-} from 'srcCommon/decorator-version-updater';
+import { redisCache } from 'cache/page-cache-handler';
+import { fetchDecoratorVersion } from 'srcCommon/decorator-version-updater';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -39,7 +36,7 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         logger.error('Failed to fetch decorator version!');
     }
 
-    await redisCache.init(currentBuildId, decoratorVersionId || '');
+    await redisCache.init(currentBuildId, decoratorVersionId ?? '');
 
     logger.info(
         `Current build id: ${currentBuildId} - Current decorator version id: ${decoratorVersionId}`

@@ -130,7 +130,9 @@ class RedisCacheDummy extends RedisCacheImpl {
         return this;
     }
 
-    public updateRenderCacheKeyPrefix(key: string) {}
+    public updateRenderCacheKeyPrefix(key: string) {
+        return;
+    }
 
     public async getRender(key: string) {
         return null;
