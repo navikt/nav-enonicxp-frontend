@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AreaCard } from './AreaCard';
 
 const meta = {
-    title: 'Example/AreaCard',
+    title: 'Components/Common/AreaCard',
     component: AreaCard,
     parameters: {
         layout: 'centered',
