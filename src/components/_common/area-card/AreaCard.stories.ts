@@ -7,7 +7,6 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
-    tags: ['autodocs'],
     args: { path: '' },
 } satisfies Meta<typeof AreaCard>;
 
