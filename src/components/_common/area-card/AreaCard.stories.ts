@@ -8,6 +8,7 @@ const meta = {
         layout: 'centered',
     },
     tags: ['autodocs'],
+    args: { path: '' },
 } satisfies Meta<typeof AreaCard>;
 
 export default meta;
@@ -15,8 +16,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Work: Story = {
     args: {
-        path: '',
         title: 'Arbeid',
         area: 'work',
+    },
+};
+
+export const Family: Story = {
+    args: {
+        title: 'Familie og barn',
+        area: 'family',
     },
 };
