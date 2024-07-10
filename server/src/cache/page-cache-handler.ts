@@ -13,7 +13,7 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
 });
 
 addDecoratorUpdateListener((versionId) => {
-    logger.info('Decorator updated, clearing render cache!');
+    logger.info(`Decorator updated, clearing render cache - ${versionId}`);
     redisCache.updateRenderCacheKeyPrefix(versionId);
     localCache.clear();
 });

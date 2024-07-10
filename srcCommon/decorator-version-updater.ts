@@ -55,5 +55,5 @@ export const initDecoratorVersionUpdater = () => {
         clearInterval(intervalId);
     }
 
-    setInterval(fetchAndUpdateVersion, UPDATE_RATE_MS);
+    intervalId = setInterval(fetchAndUpdateVersion, UPDATE_RATE_MS);
 };

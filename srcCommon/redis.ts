@@ -72,8 +72,11 @@ class RedisCacheImpl {
     }
 
     public async getRender(key: string) {
+        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
+        logger.info(`Fetching from response cache: ${fullKey}`);
+
         return this.client
-            .getEx(this.getFullKey(key, this.renderCacheKeyPrefix), {
+            .getEx(fullKey, {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
@@ -109,7 +112,10 @@ class RedisCacheImpl {
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), this.renderCacheTTL, data);
+        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
+        logger.info(`Saving to render cache: ${fullKey}`);
+
+        return this.set(fullKey, this.renderCacheTTL, data);
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
