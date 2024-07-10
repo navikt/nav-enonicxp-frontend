@@ -27,3 +27,10 @@ export const Family: Story = {
         area: 'family',
     },
 };
+
+export const Employment: Story = {
+    args: {
+        title: 'Test',
+        area: 'employment-status-form',
+    },
+};
