@@ -5,9 +5,6 @@ import { MacroType } from 'types/macro-props/_macros-common';
 const meta = {
     title: 'Components/Common/Accordion',
     component: Accordion,
-    parameters: {
-        layout: 'centered',
-    },
 } satisfies Meta<typeof Accordion>;
 
 export default meta;

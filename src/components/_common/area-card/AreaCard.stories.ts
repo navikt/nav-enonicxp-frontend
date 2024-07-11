@@ -4,9 +4,6 @@ import { AreaCard } from './AreaCard';
 const meta = {
     title: 'Components/Common/AreaCard',
     component: AreaCard,
-    parameters: {
-        layout: 'centered',
-    },
     args: { path: '' },
 } satisfies Meta<typeof AreaCard>;
 

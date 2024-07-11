@@ -4,9 +4,6 @@ import { Lenkeliste } from './Lenkeliste';
 const meta = {
     title: 'Components/Common/Lenkeliste',
     component: Lenkeliste,
-    parameters: {
-        layout: 'centered',
-    },
     args: {
         lenker: [
             { url: 'test', text: 'Lorem' },

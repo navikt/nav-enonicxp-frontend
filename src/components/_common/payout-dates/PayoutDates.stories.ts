@@ -4,9 +4,6 @@ import { PayoutDates } from './PayoutDates';
 const meta = {
     title: 'Components/Common/PayoutDates',
     component: PayoutDates,
-    parameters: {
-        layout: 'centered',
-    },
 } satisfies Meta<typeof PayoutDates>;
 
 export default meta;

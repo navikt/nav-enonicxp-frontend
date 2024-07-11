@@ -4,9 +4,6 @@ import { PageNavigationMenu } from './PageNavigationMenu';
 const meta = {
     title: 'Components/Common/PageNavigationMenu',
     component: PageNavigationMenu,
-    parameters: {
-        layout: 'centered',
-    },
     args: {
         anchorLinks: [
             { anchorId: 'anchorId', linkText: 'Hvem kan få?', isDupe: false },
