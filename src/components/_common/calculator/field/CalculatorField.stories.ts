@@ -13,13 +13,12 @@ export const Default: Story = {
     args: {
         field: {
             inputField: {
-                explanation: 'Enter the principal amount',
-                label: 'Principal',
-                variableName: 'principal',
+                label: 'Utgift',
+                variableName: 'utgift',
             },
         },
         onChange: () => {},
-        value: 200,
+        value: 100,
         autoComplete: false,
     },
 };
