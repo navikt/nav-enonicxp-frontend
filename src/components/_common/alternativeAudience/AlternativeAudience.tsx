@@ -73,10 +73,8 @@ export const AlternativeAudience = () => {
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
-
-    if (!alternativeAudience) {
-        return null;
-    }
+    const getStringPart = translator('stringParts', language);
+    const getRelatedString = translator('related', language);
 
     const getProviderTypes = (audience: AudienceOptions) => {
         if (audience._selected !== Audience.PROVIDER) {
@@ -85,7 +83,7 @@ export const AlternativeAudience = () => {
         return audience[audience._selected].provider_audience;
     };
 
-    const buildAudienceAffirmation = () => {
+    const buildAudienceAffirmation = (addPeriod: boolean) => {
         const { audience: currentAudience } = data;
         const currentAudienceKey = getAudience(currentAudience);
 
@@ -104,11 +102,18 @@ export const AlternativeAudience = () => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel}. `;
+        return `${forString} ${providerTypesString || currentAudienceLabel}${addPeriod ? '.' : ''} `;
     };
 
-    const getStringPart = translator('stringParts', language);
-    const getRelatedString = translator('related', language);
+    if (!alternativeAudience) {
+        return (
+            <div className={style.alternativeAudience}>
+                <BodyLong size="small" className={style.text}>
+                    {buildAudienceAffirmation(false)}
+                </BodyLong>
+            </div>
+        );
+    }
 
     const productName =
         showProductName === false ? getStringPart('this') : displayName.toLowerCase();
@@ -117,7 +122,7 @@ export const AlternativeAudience = () => {
     return (
         <div className={style.alternativeAudience}>
             <BodyLong size="small" className={style.text}>
-                {buildAudienceAffirmation()}
+                {buildAudienceAffirmation(true)}
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>

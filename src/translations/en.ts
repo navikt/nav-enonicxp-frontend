@@ -6,6 +6,10 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import {
+    ProcessingTimesVisibilityType,
+    ProductDetailType,
+} from 'types/content-props/product-details';
 import { PartialTranslations } from './default';
 
 const taxonomies: {
@@ -255,7 +259,7 @@ export const translationsBundleEn: PartialTranslations = {
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-15).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-1430).',
         },
         write: {
             title: 'Write to us',
@@ -299,6 +303,17 @@ export const translationsBundleEn: PartialTranslations = {
             weeks: 'weeks',
             months: 'months',
         },
+    },
+    productDetailTypes: {
+        [ProductDetailType.PAYOUT_DATES]: 'payment dates',
+        [ProductDetailType.PROCESSING_TIMES]: 'processing times',
+        [ProductDetailType.RATES]: 'rates',
+        [ProductDetailType.ALL_PRODUCTS]: 'all',
+    },
+    processingTimesVisibilityTypes: {
+        [ProcessingTimesVisibilityType.ALL]: '',
+        [ProcessingTimesVisibilityType.APPLICATION]: 'application',
+        [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',

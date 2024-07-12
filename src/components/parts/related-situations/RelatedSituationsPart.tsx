@@ -5,6 +5,7 @@ import { ContentType } from 'types/content-props/_content-common';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { createTypeGuard } from 'types/_type-guards';
+import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
@@ -21,7 +22,7 @@ export type PartConfigRelatedSituations = {
 export const RelatedSituationsPart = ({
     config,
 }: PartComponentProps<PartType.RelatedSituations>) => {
-    const { type, data } = usePageContentProps();
+    const { type, data } = usePageContentProps<ProductPageProps>();
 
     if (!isValidContentType(type)) {
         return <EditorHelp text={`Ugyldig content-type ${type}`} />;

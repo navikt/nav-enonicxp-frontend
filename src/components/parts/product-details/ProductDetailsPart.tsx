@@ -1,7 +1,10 @@
 import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
-import { ProductDetailType } from 'types/content-props/product-details';
+import {
+    ProcessingTimesVisibilityType,
+    ProductDetailType,
+} from 'types/content-props/product-details';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { Language, translator } from 'translations';
@@ -14,6 +17,7 @@ import style from './ProductDetailsPart.module.scss';
 
 export type PartConfigProductDetails = {
     detailType: ProductDetailType;
+    processingTimesVisibility: ProcessingTimesVisibilityType;
     // Note: these two fields are defined as a special case on the backend
     // and are not included in the Graphql schema
     components: ComponentProps[];
@@ -56,12 +60,25 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
     };
 
     const expandableType = config.detailType as unknown as ExpandableMixin['type'];
+    const visibilityType = config.processingTimesVisibility;
+    const getProductDetailsLabel = translator('productDetailTypes', pageContent.language);
+    const getVisibilityLabel = translator('processingTimesVisibilityTypes', pageContent.language);
+    const ariaLabel =
+        expandableType === ProductDetailType.PROCESSING_TIMES && visibilityType
+            ? `${getProductDetailsLabel(ProductDetailType.PROCESSING_TIMES)} ${getVisibilityLabel(
+                  visibilityType
+              )}`
+            : undefined;
 
     return (
         <div className={style.productDetails}>
             <PageContextProvider content={pageContent}>
                 <FilteredContent {...config}>
-                    <ExpandableComponentWrapper type={expandableType} {...config}>
+                    <ExpandableComponentWrapper
+                        type={expandableType}
+                        ariaLabel={ariaLabel}
+                        {...config}
+                    >
                         {components.map((component, index) => (
                             <ComponentMapper
                                 key={index}
