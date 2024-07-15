@@ -14,9 +14,7 @@ type Props = {
     children?: React.ReactNode;
 };
 
-const descriptionMaxLength = 140;
-
-const decoratorUrl = process.env.DECORATOR_URL;
+const descriptionMaxLength = 250;
 
 const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {
@@ -86,10 +84,6 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
                 name="google-site-verification"
                 content="svdLQanNMq_FTzsWHitPYTAvVASZp_KdWz3vQVMGt4Q"
             />
-            <link rel={'icon'} href={`${decoratorUrl}/media/favicon.ico`} sizes="any" />
-            <link rel={'icon'} href={`${decoratorUrl}/media/favicon.svg`} type={'image/svg+xml'} />
-            <link rel={'apple-touch-icon'} href={`${decoratorUrl}/media/apple-touch-icon.png`} />
-            <link rel={'manifest'} href={`${decoratorUrl}/media/site.webmanifest`} />
             {children}
         </Head>
     );

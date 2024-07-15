@@ -63,7 +63,10 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
 
                 // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
-                if (name === 'main_complaint' && detailType !== 'processing_times') {
+                if (
+                    name === 'main_complaint' &&
+                    detailType !== ProductDetailType.PROCESSING_TIMES
+                ) {
                     return null;
                 }
 
