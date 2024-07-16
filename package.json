@@ -26,7 +26,8 @@
         "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
         "prepare": "husky install",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "build-storybook": "storybook build",
+        "chromatic": "npx chromatic --project-token=chpt_65e294c41a4cf71"
     },
     "workspaces": [
         "server"
