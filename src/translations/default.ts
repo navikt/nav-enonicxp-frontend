@@ -255,13 +255,7 @@ export const translationsBundleNb = {
     },
     office: {
         youFindUsHere: 'Du finner oss her',
-        chooseBetweenOffices: 'Du kan velge ett av de følgende kontorene.',
         officeInformation: 'Kontorinformasjon',
-        closed: 'Stengt',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Spesielle åpningstider',
-        address: 'Adresse',
-        youCanMakeAppointment: 'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
         location: 'Beliggenhet',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
