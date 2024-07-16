@@ -125,9 +125,6 @@ export const translationsBundleNb = {
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Oppdatert',
-        linkedListDescription: 'Kapitler',
-        published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
         contents: 'Innholdsoversikt',
         news: 'Nyheter',
@@ -215,12 +212,7 @@ export const translationsBundleNb = {
             ariaItemExplanation: 'Vis type',
         },
     },
-    pagination: {
-        goTo: 'Gå til',
-        ariaExplanation: 'Navigering av innholdet via paginering',
-    },
     form: {
-        application: 'Søknad',
         back: 'Tilbake',
     },
     contactPoint: {
