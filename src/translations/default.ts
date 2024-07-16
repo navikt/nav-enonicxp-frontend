@@ -100,9 +100,6 @@ export const translationsBundleNb = {
         lastChanged: 'Oppdatert',
         published: 'Publisert',
     },
-    linkPanels: {
-        label: 'Valgpaneler',
-    },
     linkList: {
         label: 'Liste av lenker',
     },
@@ -121,11 +118,7 @@ export const translationsBundleNb = {
         published: 'Publisert',
     },
     linkLists: {
-        news: 'Nyheter',
         moreNews: 'Flere nyheter',
-        niceToKnow: 'Nyttig å vite',
-        shortcuts: 'Snarveier',
-        label: 'Lenker',
     },
     currentTopic: {
         tag: 'Aktuelt',
