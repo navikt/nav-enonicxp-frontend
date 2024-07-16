@@ -163,13 +163,7 @@ export const translationsBundleNn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'Du finn oss her',
-        chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
-        closed: 'Stengt',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Spesielle åpningstider',
-        address: 'Adresse',
-        youCanMakeAppointment: 'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
         location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',

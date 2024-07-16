@@ -133,14 +133,7 @@ export const translationsBundleEn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'You can find us here',
-        chooseBetweenOffices: 'You can choose one of the following offices.',
         officeInformation: 'Office information',
-        closed: 'Closed',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Special opening hours',
-        address: 'Address',
-        youCanMakeAppointment:
-            'You can book a meeting with your advisor outside of these opening hours.',
         location: 'Location',
         postalAddress: 'Postal address',
         orgNumber: 'Org number',
