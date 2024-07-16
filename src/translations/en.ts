@@ -54,9 +54,6 @@ const areas: { [key in Area]?: string } = {
 };
 
 export const translationsBundleEn: PartialTranslations = {
-    errors: {
-        componentError: 'An error occurred while loading this content element',
-    },
     stringParts: {
         conjunction: 'and',
         for: 'for',
