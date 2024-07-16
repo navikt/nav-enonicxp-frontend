@@ -68,14 +68,7 @@ export const translationsBundleEn: PartialTranslations = {
         error: 'Sorry, an error has occurred in the calculator with the following error message:',
     },
     linkLists: {
-        label: 'Links',
         moreNews: 'More news',
-        news: 'News',
-        niceToKnow: 'Nice to know',
-        shortcuts: 'Shortcuts',
-    },
-    linkPanels: {
-        label: 'Link panels',
     },
     linkList: {
         label: 'List of links',
@@ -128,9 +121,6 @@ export const translationsBundleEn: PartialTranslations = {
     },
     mainArticle: {
         facts: 'Facts',
-        lastChanged: 'Updated',
-        linkedListDescription: 'Chapters',
-        published: 'Published',
         tableOfContents: 'Table of contents',
         contents: 'Contents',
         news: 'News',
@@ -237,12 +227,7 @@ export const translationsBundleEn: PartialTranslations = {
             ariaItemExplanation: 'Show type',
         },
     },
-    pagination: {
-        goTo: 'Go to',
-        ariaExplanation: 'Navigate the content by pagination',
-    },
     form: {
-        application: 'Application',
         back: 'Back',
     },
     contactPoint: {
