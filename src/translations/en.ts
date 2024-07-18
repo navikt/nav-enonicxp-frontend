@@ -12,6 +12,21 @@ import {
 } from 'types/content-props/product-details';
 import { PartialTranslations } from './default';
 
+const relatedContent: { [key in MenuListItemKey]: string } = {
+    [MenuListItemKey.AppealRights]: 'Appeal rights',
+    [MenuListItemKey.FormAndApplication]: 'Form and application',
+    [MenuListItemKey.International]: 'International',
+    [MenuListItemKey.Membership]: 'Membership',
+    [MenuListItemKey.ProcessTimes]: 'Processing times',
+    [MenuListItemKey.Rates]: 'Rates',
+    [MenuListItemKey.RelatedInformation]: 'Related information',
+    [MenuListItemKey.ReportChanges]: 'Report changes',
+    [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
+    [MenuListItemKey.Saksbehandling]: 'Procedural',
+    [MenuListItemKey.Selfservice]: 'Selfservice',
+    [MenuListItemKey.Shortcuts]: 'Shortcuts',
+};
+
 const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
@@ -129,6 +144,7 @@ export const translationsBundleEn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
+    relatedContent,
     products: {
         person: 'For individuals',
         employer: 'For employers',
@@ -255,21 +271,6 @@ export const translationsBundleEn: PartialTranslations = {
         failoverWarning:
             'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
-    relatedContent: {
-        //TODO flytt?
-        [MenuListItemKey.AppealRights]: 'Appeal rights',
-        [MenuListItemKey.FormAndApplication]: 'Form and application',
-        [MenuListItemKey.International]: 'International',
-        [MenuListItemKey.Membership]: 'Membership',
-        [MenuListItemKey.ProcessTimes]: 'Processing times',
-        [MenuListItemKey.Rates]: 'Rates',
-        [MenuListItemKey.RelatedInformation]: 'Related information',
-        [MenuListItemKey.ReportChanges]: 'Report changes',
-        [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
-        [MenuListItemKey.Saksbehandling]: 'Procedural',
-        [MenuListItemKey.Selfservice]: 'Selfservice',
-        [MenuListItemKey.Shortcuts]: 'Shortcuts',
-    },
     caseTimeUnit: {
         single: {
             days: 'day',
@@ -283,6 +284,7 @@ export const translationsBundleEn: PartialTranslations = {
         },
     },
     productDetailTypes: {
+        //TODO sjekk inkonsistens med bokmål og nynorsk
         [ProductDetailType.PAYOUT_DATES]: 'payment dates',
         [ProductDetailType.PROCESSING_TIMES]: 'processing times',
         [ProductDetailType.RATES]: 'rates',
