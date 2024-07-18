@@ -28,9 +28,7 @@ export const OfficePage = (props: OfficePageProps) => {
 
     return (
         <div className={styles.officePage}>
-            {officeNorgData && (
-                <OfficePageHeader officeDetails={officeNorgData} showTimeStamp={false} />
-            )}
+            {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />

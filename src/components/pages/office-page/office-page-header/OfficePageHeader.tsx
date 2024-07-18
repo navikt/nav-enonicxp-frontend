@@ -10,7 +10,6 @@ import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import style from './OfficePageHeader.module.scss';
 
 type Props = {
-    showTimeStamp?: boolean;
     officeDetails: OfficeDetailsData;
 };
 
