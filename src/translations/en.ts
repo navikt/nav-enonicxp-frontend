@@ -69,6 +69,9 @@ const areas: { [key in Area]?: string } = {
 };
 
 export const translationsBundleEn: PartialTranslations = {
+    relatedContent,
+    taxonomies,
+    areas,
     stringParts: {
         conjunction: 'and',
         for: 'for',
@@ -144,7 +147,6 @@ export const translationsBundleEn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
-    relatedContent,
     products: {
         person: 'For individuals',
         employer: 'For employers',
@@ -164,8 +166,6 @@ export const translationsBundleEn: PartialTranslations = {
         publishdate: 'Date',
         event: 'Publication',
     },
-    taxonomies, //TODO sjekk inkonsistens med default.ts
-    areas,
     header: {
         copyLink: 'Copy link',
         copyLinkTo: 'Copy link to',
