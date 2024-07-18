@@ -64,6 +64,9 @@ const areas: { [key in Area]?: string } = {
 };
 
 export const translationsBundleNn: PartialTranslations = {
+    relatedContent,
+    taxonomies,
+    areas,
     stringParts: {
         conjunction: 'og',
         for: 'for',
@@ -142,9 +145,6 @@ export const translationsBundleNn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
-    relatedContent,
-    taxonomies,
-    areas,
     products: {
         person: 'For privatpersonar',
         employer: 'For arbeidsgjevarar',

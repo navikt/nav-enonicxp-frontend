@@ -12,6 +12,21 @@ import {
 } from 'types/content-props/product-details';
 import { PartialTranslations } from './default';
 
+const relatedContent: { [key in MenuListItemKey]: string } = {
+    [MenuListItemKey.AppealRights]: 'Appeal rights',
+    [MenuListItemKey.FormAndApplication]: 'Form and application',
+    [MenuListItemKey.International]: 'International',
+    [MenuListItemKey.Membership]: 'Membership',
+    [MenuListItemKey.ProcessTimes]: 'Processing times',
+    [MenuListItemKey.Rates]: 'Rates',
+    [MenuListItemKey.RelatedInformation]: 'Related information',
+    [MenuListItemKey.ReportChanges]: 'Report changes',
+    [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
+    [MenuListItemKey.Saksbehandling]: 'Procedural',
+    [MenuListItemKey.Selfservice]: 'Selfservice',
+    [MenuListItemKey.Shortcuts]: 'Shortcuts',
+};
+
 const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
@@ -53,7 +68,24 @@ const areas: { [key in Area]?: string } = {
     [Area.OTHER]: 'General',
 };
 
+const productDetailTypes: { [key in ProductDetailType]: string } = {
+    [ProductDetailType.PAYOUT_DATES]: 'payment dates',
+    [ProductDetailType.PROCESSING_TIMES]: 'processing times',
+    [ProductDetailType.RATES]: 'rates',
+    [ProductDetailType.ALL_PRODUCTS]: 'all',
+};
+const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: string } = {
+    [ProcessingTimesVisibilityType.ALL]: '',
+    [ProcessingTimesVisibilityType.APPLICATION]: 'application',
+    [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
+};
+
 export const translationsBundleEn: PartialTranslations = {
+    relatedContent,
+    taxonomies,
+    areas,
+    productDetailTypes,
+    processingTimesVisibilityTypes,
     stringParts: {
         conjunction: 'and',
         for: 'for',
@@ -148,8 +180,6 @@ export const translationsBundleEn: PartialTranslations = {
         publishdate: 'Date',
         event: 'Publication',
     },
-    taxonomies, //TODO sjekk inkonsistens med default.ts
-    areas,
     header: {
         copyLink: 'Copy link',
         copyLinkTo: 'Copy link to',
@@ -255,21 +285,6 @@ export const translationsBundleEn: PartialTranslations = {
         failoverWarning:
             'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
-    relatedContent: {
-        //TODO flytt?
-        [MenuListItemKey.AppealRights]: 'Appeal rights',
-        [MenuListItemKey.FormAndApplication]: 'Form and application',
-        [MenuListItemKey.International]: 'International',
-        [MenuListItemKey.Membership]: 'Membership',
-        [MenuListItemKey.ProcessTimes]: 'Processing times',
-        [MenuListItemKey.Rates]: 'Rates',
-        [MenuListItemKey.RelatedInformation]: 'Related information',
-        [MenuListItemKey.ReportChanges]: 'Report changes',
-        [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
-        [MenuListItemKey.Saksbehandling]: 'Procedural',
-        [MenuListItemKey.Selfservice]: 'Selfservice',
-        [MenuListItemKey.Shortcuts]: 'Shortcuts',
-    },
     caseTimeUnit: {
         single: {
             days: 'day',
@@ -281,17 +296,6 @@ export const translationsBundleEn: PartialTranslations = {
             weeks: 'weeks',
             months: 'months',
         },
-    },
-    productDetailTypes: {
-        [ProductDetailType.PAYOUT_DATES]: 'payment dates',
-        [ProductDetailType.PROCESSING_TIMES]: 'processing times',
-        [ProductDetailType.RATES]: 'rates',
-        [ProductDetailType.ALL_PRODUCTS]: 'all',
-    },
-    processingTimesVisibilityTypes: {
-        [ProcessingTimesVisibilityType.ALL]: '',
-        [ProcessingTimesVisibilityType.APPLICATION]: 'application',
-        [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',
