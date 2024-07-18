@@ -81,6 +81,11 @@ const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: 
 };
 
 export const translationsBundleNb = {
+    relatedContent,
+    taxonomies,
+    areas,
+    productDetailTypes,
+    processingTimesVisibilityTypes,
     localeNames: {
         no: 'norsk (bokmål)',
         nn: 'nynorsk',
@@ -165,9 +170,6 @@ export const translationsBundleNb = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
-    relatedContent,
-    taxonomies,
-    areas,
     products: {
         person: 'For privatpersoner',
         employer: 'For arbeidsgivere',
@@ -312,8 +314,6 @@ export const translationsBundleNb = {
             months: 'måneder',
         },
     },
-    productDetailTypes,
-    processingTimesVisibilityTypes,
     payoutDates: {
         tableHeaderPrefix: 'Utbetalingsdatoer i',
         tableHeaderPrefixNoYear: 'Utbetalingsdatoer',

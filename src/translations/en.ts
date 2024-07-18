@@ -12,6 +12,21 @@ import {
 } from 'types/content-props/product-details';
 import { PartialTranslations } from './default';
 
+const relatedContent: { [key in MenuListItemKey]: string } = {
+    [MenuListItemKey.AppealRights]: 'Appeal rights',
+    [MenuListItemKey.FormAndApplication]: 'Form and application',
+    [MenuListItemKey.International]: 'International',
+    [MenuListItemKey.Membership]: 'Membership',
+    [MenuListItemKey.ProcessTimes]: 'Processing times',
+    [MenuListItemKey.Rates]: 'Rates',
+    [MenuListItemKey.RelatedInformation]: 'Related information',
+    [MenuListItemKey.ReportChanges]: 'Report changes',
+    [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
+    [MenuListItemKey.Saksbehandling]: 'Procedural',
+    [MenuListItemKey.Selfservice]: 'Selfservice',
+    [MenuListItemKey.Shortcuts]: 'Shortcuts',
+};
+
 const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
@@ -53,22 +68,36 @@ const areas: { [key in Area]?: string } = {
     [Area.OTHER]: 'General',
 };
 
+const productDetailTypes: { [key in ProductDetailType]: string } = {
+    [ProductDetailType.PAYOUT_DATES]: 'payment dates',
+    [ProductDetailType.PROCESSING_TIMES]: 'processing times',
+    [ProductDetailType.RATES]: 'rates',
+    [ProductDetailType.ALL_PRODUCTS]: 'all',
+};
+const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: string } = {
+    [ProcessingTimesVisibilityType.ALL]: '',
+    [ProcessingTimesVisibilityType.APPLICATION]: 'application',
+    [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
+};
+
 export const translationsBundleEn: PartialTranslations = {
+    relatedContent,
+    taxonomies,
+    areas,
+    productDetailTypes,
+    processingTimesVisibilityTypes,
     stringParts: {
         conjunction: 'and',
         for: 'for',
         this: 'this',
     },
-    dates: {
-        published: 'Published',
-        lastChanged: 'Updated',
-    },
     calculator: {
         calculate: 'Calculate',
         error: 'Sorry, an error has occurred in the calculator with the following error message:',
     },
-    linkLists: {
-        moreNews: 'More news',
+    dates: {
+        published: 'Published',
+        lastChanged: 'Updated',
     },
     linkList: {
         label: 'List of links',
@@ -78,6 +107,30 @@ export const translationsBundleEn: PartialTranslations = {
         filtersSelected: 'We have hidden content not relevant for your situation.',
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
+    },
+    pressLanding: {
+        latestPressNews: 'Latest press and news',
+        morePressNews: 'More press releases and news',
+        pressShortcuts: 'Shortcuts',
+        news: 'News',
+        press: 'Press release',
+        published: 'Published',
+    },
+    linkLists: {
+        moreNews: 'More news',
+    },
+    currentTopic: {
+        tag: 'Featured',
+    },
+    mainArticle: {
+        facts: 'Facts',
+        tableOfContents: 'Table of contents',
+        contents: 'Contents',
+        news: 'News',
+        pressRelease: 'Press release',
+    },
+    mainPanels: {
+        label: 'Main panels',
     },
     audienceServices: {
         HJELP_KOMME_I_JOBB: 'Employment help',
@@ -108,76 +161,6 @@ export const translationsBundleEn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
-    currentTopic: {
-        tag: 'Featured',
-    },
-    pressLanding: {
-        latestPressNews: 'Latest press and news',
-        morePressNews: 'More press releases and news',
-        pressShortcuts: 'Shortcuts',
-        news: 'News',
-        press: 'Press release',
-        published: 'Published',
-    },
-    mainArticle: {
-        facts: 'Facts',
-        tableOfContents: 'Table of contents',
-        contents: 'Contents',
-        news: 'News',
-        pressRelease: 'Press release',
-    },
-    mainPanels: { label: 'Main panels' },
-    publishingCalendar: {
-        publishdate: 'Date',
-        event: 'Publication',
-    },
-    office: {
-        youFindUsHere: 'You can find us here',
-        officeInformation: 'Office information',
-        location: 'Location',
-        postalAddress: 'Postal address',
-        orgNumber: 'Org number',
-        officeNumber: 'Office number',
-        phoneToNav: 'NAV phone number is',
-        phoneToHMS: 'Phone number to Hjelpemiddelsentralen is',
-        phoneInformation:
-            'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
-        alternativeContacts: 'Other contact options:',
-        taglineOffice: 'NAV office',
-        taglineHMS: 'Assistive technology centre',
-    },
-    dateTime: {
-        weekDayNames: {
-            mon: 'Monday',
-            tue: 'Tuesday',
-            wed: 'Wednesday',
-            thu: 'Thursday',
-            fri: 'Friday',
-            sat: 'Saturday',
-            sun: 'Sunday',
-        },
-        relatives: {
-            today: 'today',
-            tomorrow: 'tomorrow',
-        },
-        time: 'time',
-        day: 'day',
-        date: 'date',
-    },
-    relatedContent: {
-        [MenuListItemKey.AppealRights]: 'Appeal rights',
-        [MenuListItemKey.FormAndApplication]: 'Form and application',
-        [MenuListItemKey.International]: 'International',
-        [MenuListItemKey.Membership]: 'Membership',
-        [MenuListItemKey.ProcessTimes]: 'Processing times',
-        [MenuListItemKey.Rates]: 'Rates',
-        [MenuListItemKey.RelatedInformation]: 'Related information',
-        [MenuListItemKey.ReportChanges]: 'Report changes',
-        [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
-        [MenuListItemKey.Saksbehandling]: 'Procedural',
-        [MenuListItemKey.Selfservice]: 'Selfservice',
-        [MenuListItemKey.Shortcuts]: 'Shortcuts',
-    },
     products: {
         person: 'For individuals',
         employer: 'For employers',
@@ -193,8 +176,10 @@ export const translationsBundleEn: PartialTranslations = {
         employer: 'For employers',
         provider: 'For providers',
     },
-    taxonomies,
-    areas,
+    publishingCalendar: {
+        publishdate: 'Date',
+        event: 'Publication',
+    },
     header: {
         copyLink: 'Copy link',
         copyLinkTo: 'Copy link to',
@@ -206,8 +191,8 @@ export const translationsBundleEn: PartialTranslations = {
         search: 'Search',
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
-        any: 'From A to Z',
         resetFilters: 'Reset filters',
+        any: 'From A to Z',
         more: 'More about',
         areas: {
             choose: 'Choose area',
@@ -262,6 +247,39 @@ export const translationsBundleEn: PartialTranslations = {
             seeMoreOptions: 'See more phone numbers and calling options',
         },
     },
+    office: {
+        youFindUsHere: 'You can find us here',
+        officeInformation: 'Office information',
+        location: 'Location',
+        postalAddress: 'Postal address',
+        orgNumber: 'Org number',
+        officeNumber: 'Office number',
+        phoneToNav: 'NAV phone number is',
+        phoneToHMS: 'Phone number to Hjelpemiddelsentralen is',
+        phoneInformation:
+            'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
+        alternativeContacts: 'Other contact options:',
+        taglineOffice: 'NAV office',
+        taglineHMS: 'Assistive technology centre',
+    },
+    dateTime: {
+        weekDayNames: {
+            mon: 'Monday',
+            tue: 'Tuesday',
+            wed: 'Wednesday',
+            thu: 'Thursday',
+            fri: 'Friday',
+            sat: 'Saturday',
+            sun: 'Sunday',
+        },
+        relatives: {
+            today: 'today',
+            tomorrow: 'tomorrow',
+        },
+        time: 'time',
+        day: 'day',
+        date: 'date',
+    },
     pageWarnings: {
         draftWarning: 'Draft - this page is still in progress',
         failoverWarning:
@@ -278,17 +296,6 @@ export const translationsBundleEn: PartialTranslations = {
             weeks: 'weeks',
             months: 'months',
         },
-    },
-    productDetailTypes: {
-        [ProductDetailType.PAYOUT_DATES]: 'payment dates',
-        [ProductDetailType.PROCESSING_TIMES]: 'processing times',
-        [ProductDetailType.RATES]: 'rates',
-        [ProductDetailType.ALL_PRODUCTS]: 'all',
-    },
-    processingTimesVisibilityTypes: {
-        [ProcessingTimesVisibilityType.ALL]: '',
-        [ProcessingTimesVisibilityType.APPLICATION]: 'application',
-        [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',
