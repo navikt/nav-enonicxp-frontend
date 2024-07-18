@@ -190,7 +190,7 @@ export const translationsBundleNn: PartialTranslations = {
         },
     },
     form: {
-        back: 'Tilbake', //TODO samme som bokmål, slett?
+        back: 'Tilbake',
     },
     contactPoint: {
         chat: {
