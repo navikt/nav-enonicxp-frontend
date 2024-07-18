@@ -86,6 +86,14 @@ export const translationsBundleNn: PartialTranslations = {
         customizeContent: 'Tilpass innhald',
         showingInformationFor: 'Viser informasjon for:',
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
+        pressShortcuts: 'Snarvegar',
+        news: 'Nyheit',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     linkLists: {
         moreNews: 'Fleire nyheiter',
     },
@@ -161,21 +169,6 @@ export const translationsBundleNn: PartialTranslations = {
         copyLinkTo: 'Kopier lenke til',
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
-    office: {
-        youFindUsHere: 'Du finn oss her',
-        officeInformation: 'Kontorinformasjon',
-        location: 'Plassering',
-        postalAddress: 'Postadresse',
-        orgNumber: 'Organisasjonsnummer',
-        officeNumber: 'Kontornummer',
-        phoneToNav: 'Telefonnummeret til NAV er',
-        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
-        phoneInformation:
-            'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
-        alternativeContacts: 'Andre kontaktopplysningar:',
-        taglineOffice: 'NAV-kontor',
-        taglineHMS: 'Hjelpemiddelsentral',
-    },
     overview: {
         noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
@@ -196,16 +189,8 @@ export const translationsBundleNn: PartialTranslations = {
             ariaItemExplanation: 'Vis type',
         },
     },
-    pressLanding: {
-        latestPressNews: 'Siste pressemeldingar og nyheiter',
-        morePressNews: 'Fleire pressemeldingar og nyheiter',
-        pressShortcuts: 'Snarvegar',
-        news: 'Nyheit',
-        press: 'Pressemelding',
-        published: 'Publisert',
-    },
     form: {
-        back: 'Tilbake',
+        back: 'Tilbake', //TODO samme som bokmål, slett?
     },
     contactPoint: {
         chat: {
@@ -244,6 +229,21 @@ export const translationsBundleNn: PartialTranslations = {
             closedNow: 'Stengt no',
             seeMoreOptions: 'Sjå fleire telefonnummer og tasteval.',
         },
+    },
+    office: {
+        youFindUsHere: 'Du finn oss her',
+        officeInformation: 'Kontorinformasjon',
+        location: 'Plassering',
+        postalAddress: 'Postadresse',
+        orgNumber: 'Organisasjonsnummer',
+        officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
+        phoneInformation:
+            'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
+        alternativeContacts: 'Andre kontaktopplysningar:',
+        taglineOffice: 'NAV-kontor',
+        taglineHMS: 'Hjelpemiddelsentral',
     },
     dateTime: {
         weekDayNames: {

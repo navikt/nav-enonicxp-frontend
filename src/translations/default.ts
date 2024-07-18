@@ -312,7 +312,7 @@ export const translationsBundleNb = {
             months: 'måneder',
         },
     },
-    productDetailTypes,
+    productDetailTypes, //TODO dette og andre ting duplisert? sjekk
     processingTimesVisibilityTypes,
     payoutDates: {
         tableHeaderPrefix: 'Utbetalingsdatoer i',
