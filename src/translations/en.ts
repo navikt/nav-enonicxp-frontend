@@ -191,8 +191,8 @@ export const translationsBundleEn: PartialTranslations = {
         search: 'Search',
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
-        any: 'From A to Z',
         resetFilters: 'Reset filters',
+        any: 'From A to Z',
         more: 'More about',
         areas: {
             choose: 'Choose area',

@@ -175,9 +175,9 @@ export const translationsBundleNn: PartialTranslations = {
         search: 'Søk',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
+        resetFilters: 'Nullstill filter',
         any: 'Frå A til Å',
         more: 'Meir om',
-        resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
