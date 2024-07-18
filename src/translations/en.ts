@@ -68,10 +68,24 @@ const areas: { [key in Area]?: string } = {
     [Area.OTHER]: 'General',
 };
 
+const productDetailTypes: { [key in ProductDetailType]: string } = {
+    [ProductDetailType.PAYOUT_DATES]: 'payment dates',
+    [ProductDetailType.PROCESSING_TIMES]: 'processing times',
+    [ProductDetailType.RATES]: 'rates',
+    [ProductDetailType.ALL_PRODUCTS]: 'all',
+};
+const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: string } = {
+    [ProcessingTimesVisibilityType.ALL]: '',
+    [ProcessingTimesVisibilityType.APPLICATION]: 'application',
+    [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
+};
+
 export const translationsBundleEn: PartialTranslations = {
     relatedContent,
     taxonomies,
     areas,
+    productDetailTypes,
+    processingTimesVisibilityTypes,
     stringParts: {
         conjunction: 'and',
         for: 'for',
@@ -282,18 +296,6 @@ export const translationsBundleEn: PartialTranslations = {
             weeks: 'weeks',
             months: 'months',
         },
-    },
-    productDetailTypes: {
-        //TODO sjekk inkonsistens med bokmål og nynorsk
-        [ProductDetailType.PAYOUT_DATES]: 'payment dates',
-        [ProductDetailType.PROCESSING_TIMES]: 'processing times',
-        [ProductDetailType.RATES]: 'rates',
-        [ProductDetailType.ALL_PRODUCTS]: 'all',
-    },
-    processingTimesVisibilityTypes: {
-        [ProcessingTimesVisibilityType.ALL]: '',
-        [ProcessingTimesVisibilityType.APPLICATION]: 'application',
-        [ProcessingTimesVisibilityType.COMPLAINT]: 'appeal',
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',
