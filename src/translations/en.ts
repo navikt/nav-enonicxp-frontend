@@ -59,16 +59,13 @@ export const translationsBundleEn: PartialTranslations = {
         for: 'for',
         this: 'this',
     },
-    dates: {
-        published: 'Published',
-        lastChanged: 'Updated',
-    },
     calculator: {
         calculate: 'Calculate',
         error: 'Sorry, an error has occurred in the calculator with the following error message:',
     },
-    linkLists: {
-        moreNews: 'More news',
+    dates: {
+        published: 'Published',
+        lastChanged: 'Updated',
     },
     linkList: {
         label: 'List of links',
@@ -78,6 +75,30 @@ export const translationsBundleEn: PartialTranslations = {
         filtersSelected: 'We have hidden content not relevant for your situation.',
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
+    },
+    pressLanding: {
+        latestPressNews: 'Latest press and news',
+        morePressNews: 'More press releases and news',
+        pressShortcuts: 'Shortcuts',
+        news: 'News',
+        press: 'Press release',
+        published: 'Published',
+    },
+    linkLists: {
+        moreNews: 'More news',
+    },
+    currentTopic: {
+        tag: 'Featured',
+    },
+    mainArticle: {
+        facts: 'Facts',
+        tableOfContents: 'Table of contents',
+        contents: 'Contents',
+        news: 'News',
+        pressRelease: 'Press release',
+    },
+    mainPanels: {
+        label: 'Main panels',
     },
     audienceServices: {
         HJELP_KOMME_I_JOBB: 'Employment help',
@@ -108,25 +129,21 @@ export const translationsBundleEn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
-    currentTopic: {
-        tag: 'Featured',
+    products: {
+        person: 'For individuals',
+        employer: 'For employers',
+        provider: 'For providers',
     },
-    pressLanding: {
-        latestPressNews: 'Latest press and news',
-        morePressNews: 'More press releases and news',
-        pressShortcuts: 'Shortcuts',
-        news: 'News',
-        press: 'Press release',
-        published: 'Published',
+    situations: {
+        person: 'Your rights',
+        employer: 'What employers should know',
+        provider: 'For providers',
     },
-    mainArticle: {
-        facts: 'Facts',
-        tableOfContents: 'Table of contents',
-        contents: 'Contents',
-        news: 'News',
-        pressRelease: 'Press release',
+    guides: {
+        person: 'How to',
+        employer: 'For employers',
+        provider: 'For providers',
     },
-    mainPanels: { label: 'Main panels' },
     publishingCalendar: {
         publishdate: 'Date',
         event: 'Publication',
@@ -165,6 +182,7 @@ export const translationsBundleEn: PartialTranslations = {
         date: 'date',
     },
     relatedContent: {
+        //TODO flytt?
         [MenuListItemKey.AppealRights]: 'Appeal rights',
         [MenuListItemKey.FormAndApplication]: 'Form and application',
         [MenuListItemKey.International]: 'International',
@@ -177,21 +195,6 @@ export const translationsBundleEn: PartialTranslations = {
         [MenuListItemKey.Saksbehandling]: 'Procedural',
         [MenuListItemKey.Selfservice]: 'Selfservice',
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
-    },
-    products: {
-        person: 'For individuals',
-        employer: 'For employers',
-        provider: 'For providers',
-    },
-    situations: {
-        person: 'Your rights',
-        employer: 'What employers should know',
-        provider: 'For providers',
-    },
-    guides: {
-        person: 'How to',
-        employer: 'For employers',
-        provider: 'For providers',
     },
     taxonomies,
     areas,
