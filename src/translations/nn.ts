@@ -77,9 +77,6 @@ export const translationsBundleNn: PartialTranslations = {
         lastChanged: 'Oppdatert',
         published: 'Publisert',
     },
-    linkPanels: {
-        label: 'Valpanel',
-    },
     linkList: {
         label: 'Liste av lenker',
     },
@@ -90,20 +87,13 @@ export const translationsBundleNn: PartialTranslations = {
         showingInformationFor: 'Viser informasjon for:',
     },
     linkLists: {
-        news: 'Nyheiter',
         moreNews: 'Fleire nyheiter',
-        niceToKnow: 'Nyttig å vete',
-        shortcuts: 'Snarvegar',
-        label: 'Lenker',
     },
     currentTopic: {
         tag: 'Aktuelt',
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Sist endra',
-        linkedListDescription: 'Kapittel',
-        published: 'Publisert',
         tableOfContents: 'Innhaldsoversikt',
         contents: 'Innhald',
         news: 'Nyheiter',
@@ -173,13 +163,7 @@ export const translationsBundleNn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'Du finn oss her',
-        chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
-        closed: 'Stengt',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Spesielle åpningstider',
-        address: 'Adresse',
-        youCanMakeAppointment: 'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
         location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
@@ -220,12 +204,7 @@ export const translationsBundleNn: PartialTranslations = {
         press: 'Pressemelding',
         published: 'Publisert',
     },
-    pagination: {
-        goTo: 'Gå til',
-        ariaExplanation: 'Navigering av innhaldet med paginering',
-    },
     form: {
-        application: 'Søknad',
         back: 'Tilbake',
     },
     contactPoint: {

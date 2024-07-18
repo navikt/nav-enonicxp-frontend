@@ -81,9 +81,6 @@ const processingTimesVisibilityTypes: { [key in ProcessingTimesVisibilityType]: 
 };
 
 export const translationsBundleNb = {
-    errors: {
-        componentError: 'Det oppsto en feil ved lasting av dette innholdselementet',
-    },
     localeNames: {
         no: 'norsk (bokmål)',
         nn: 'nynorsk',
@@ -103,9 +100,6 @@ export const translationsBundleNb = {
         lastChanged: 'Oppdatert',
         published: 'Publisert',
     },
-    linkPanels: {
-        label: 'Valgpaneler',
-    },
     linkList: {
         label: 'Liste av lenker',
     },
@@ -124,20 +118,13 @@ export const translationsBundleNb = {
         published: 'Publisert',
     },
     linkLists: {
-        news: 'Nyheter',
         moreNews: 'Flere nyheter',
-        niceToKnow: 'Nyttig å vite',
-        shortcuts: 'Snarveier',
-        label: 'Lenker',
     },
     currentTopic: {
         tag: 'Aktuelt',
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Oppdatert',
-        linkedListDescription: 'Kapitler',
-        published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
         contents: 'Innholdsoversikt',
         news: 'Nyheter',
@@ -225,12 +212,7 @@ export const translationsBundleNb = {
             ariaItemExplanation: 'Vis type',
         },
     },
-    pagination: {
-        goTo: 'Gå til',
-        ariaExplanation: 'Navigering av innholdet via paginering',
-    },
     form: {
-        application: 'Søknad',
         back: 'Tilbake',
     },
     contactPoint: {
@@ -273,13 +255,7 @@ export const translationsBundleNb = {
     },
     office: {
         youFindUsHere: 'Du finner oss her',
-        chooseBetweenOffices: 'Du kan velge ett av de følgende kontorene.',
         officeInformation: 'Kontorinformasjon',
-        closed: 'Stengt',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Spesielle åpningstider',
-        address: 'Adresse',
-        youCanMakeAppointment: 'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
         location: 'Beliggenhet',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
