@@ -14,7 +14,7 @@ import {
     addDecoratorUpdateListener,
     getDecoratorVersionId,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-import { decoratorEnvProps } from 'srcCommon/decorator/decorator-utils-serverside';
+import { decoratorEnvProps } from 'srcCommon/decorator-utils-serverside';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached

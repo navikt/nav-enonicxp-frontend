@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { ContentProps } from 'types/content-props/_content-common';
-import { getDecoratorParams } from 'srcCommon/decorator/decorator-utils';
+import { getDecoratorParams } from 'utils/decorator-utils';
 import { isLegacyContentType } from 'utils/content-types';
 
 type Props = {
