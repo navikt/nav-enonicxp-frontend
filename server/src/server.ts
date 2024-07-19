@@ -83,8 +83,7 @@ nextApp.prepare().then(async () => {
         }
 
         if (!isFailover) {
-            const buildId = getNextBuildId(nextServer);
-            initRevalidatorProxyHeartbeat(buildId);
+            initRevalidatorProxyHeartbeat();
         }
 
         logger.info(`Server started on port ${port}`);
