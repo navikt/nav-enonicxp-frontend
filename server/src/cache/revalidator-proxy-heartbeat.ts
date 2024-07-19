@@ -34,10 +34,7 @@ const getProxyLivenessUrl = (buildId: string) => {
     return podAddress
         ? `${REVALIDATOR_PROXY_ORIGIN}/liveness${objectToQueryString({
               address: podAddress,
-              redisPrefixes: [
-                  redisCache.responseCacheKeyPrefix,
-                  redisCache.renderCacheKeyPrefix,
-              ].join(','),
+              redisPrefixes: redisCache.getKeyPrefixes().join(','),
           })}`
         : null;
 };

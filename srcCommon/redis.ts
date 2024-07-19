@@ -33,8 +33,8 @@ class RedisCacheImpl {
 
     private buildId: string = '';
 
-    readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
-    renderCacheKeyPrefix = '';
+    private readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
+    private renderCacheKeyPrefix = '';
 
     constructor() {
         this.client = createClient(clientOptions)
@@ -67,31 +67,34 @@ class RedisCacheImpl {
         });
     }
 
+    public getKeyPrefixes() {
+        return [responseCacheKeyPrefix, renderCacheKeyPrefix];
+    }
+
     public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
         this.renderCacheKeyPrefix = `${process.env.ENV}:render:${this.buildId}:${decoratorVersionId}`;
     }
 
     public async getRender(key: string) {
         const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
-        logger.info(`Fetching from response cache: ${fullKey}`);
-
         return this.client
             .getEx(fullKey, {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(`Error getting render cache value for key ${key} - ${e}`);
+                logger.error(`Error getting render cache value for key ${fullKey} - ${e}`);
                 return Promise.resolve(null);
             });
     }
 
     public async getResponse(key: string) {
+        const fullKey = this.getFullKey(key, this.responseCacheKeyPrefix);
         return this.client
-            .get(this.getFullKey(key, this.responseCacheKeyPrefix))
+            .get(fullKey)
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(`Error getting value for key ${key} - ${e}`);
+                logger.error(`Error getting value for key ${fullKey} - ${e}`);
                 return Promise.resolve(null);
             });
     }
@@ -112,10 +115,7 @@ class RedisCacheImpl {
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
-        logger.info(`Saving to render cache: ${fullKey}`);
-
-        return this.set(fullKey, this.renderCacheTTL, data);
+        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), this.renderCacheTTL, data);
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
