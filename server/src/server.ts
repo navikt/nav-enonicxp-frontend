@@ -47,6 +47,11 @@ nextApp.prepare().then(async () => {
         next();
     });
 
+    expressApp.all('*', (req, res, next) => {
+        res.setHeader('app-name', 'nav-enonicxp-frontend');
+        next();
+    });
+
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {

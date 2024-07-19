@@ -68,7 +68,7 @@ class RedisCacheImpl {
     }
 
     public getKeyPrefixes() {
-        return [responseCacheKeyPrefix, renderCacheKeyPrefix];
+        return [this.responseCacheKeyPrefix, this.renderCacheKeyPrefix];
     }
 
     public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
