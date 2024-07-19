@@ -31,8 +31,10 @@ class RedisCacheImpl {
     private readonly responseCacheTTL: number = TIME_72_HOURS_IN_MS;
     private readonly renderCacheTTL: number = TIME_24_HOURS_IN_MS;
 
-    private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
-    private renderCacheKeyPrefix = '';
+    private buildId: string = '';
+
+    readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
+    renderCacheKeyPrefix = '';
 
     constructor() {
         this.client = createClient(clientOptions)
@@ -53,8 +55,9 @@ class RedisCacheImpl {
             });
     }
 
-    public async init(buildId: string) {
-        this.renderCacheKeyPrefix = getRenderCacheKeyPrefix(buildId);
+    public async init(buildId: string, decoratorVersionId: string) {
+        this.buildId = buildId;
+        this.updateRenderCacheKeyPrefix(decoratorVersionId);
 
         return this.client.connect().then(() => {
             logger.info(
@@ -64,9 +67,16 @@ class RedisCacheImpl {
         });
     }
 
+    public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
+        this.renderCacheKeyPrefix = `${process.env.ENV}:render:${this.buildId}:${decoratorVersionId}`;
+    }
+
     public async getRender(key: string) {
+        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
+        logger.info(`Fetching from response cache: ${fullKey}`);
+
         return this.client
-            .getEx(this.getFullKey(key, this.renderCacheKeyPrefix), {
+            .getEx(fullKey, {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
@@ -102,7 +112,10 @@ class RedisCacheImpl {
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), this.renderCacheTTL, data);
+        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
+        logger.info(`Saving to render cache: ${fullKey}`);
+
+        return this.set(fullKey, this.renderCacheTTL, data);
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
@@ -121,6 +134,10 @@ class RedisCacheImpl {
 class RedisCacheDummy extends RedisCacheImpl {
     public async init() {
         return this;
+    }
+
+    public updateRenderCacheKeyPrefix(key: string) {
+        return;
     }
 
     public async getRender(key: string) {
@@ -146,7 +163,3 @@ export const RedisCache =
     validateClientOptions()
         ? RedisCacheImpl
         : RedisCacheDummy;
-
-export const getRenderCacheKeyPrefix = (buildId: string) => `${process.env.ENV}:render:${buildId}`;
-
-export const getResponseCacheKeyPrefix = () => `${process.env.ENV}:xp-response`;

@@ -3,8 +3,8 @@
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
 import { logger } from 'srcCommon/logger';
-import { getRenderCacheKeyPrefix, getResponseCacheKeyPrefix } from 'srcCommon/redis';
 import { objectToQueryString } from 'srcCommon/fetch-utils';
+import { redisCache } from './page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =
     process.env;
@@ -22,10 +22,7 @@ const getPodAddress = () => {
     const podAddress = nets?.eth0?.[0]?.address;
 
     if (!podAddress) {
-        logger.error(
-            'Error: pod IP address could not be determined' +
-                ' - Event driven cache regeneration will not be active for this instance'
-        );
+        logger.error('Error: pod IP address could not be determined!');
         return null;
     }
 
@@ -37,9 +34,10 @@ const getProxyLivenessUrl = (buildId: string) => {
     return podAddress
         ? `${REVALIDATOR_PROXY_ORIGIN}/liveness${objectToQueryString({
               address: podAddress,
-              redisPrefixes: [getRenderCacheKeyPrefix(buildId), getResponseCacheKeyPrefix()].join(
-                  ','
-              ),
+              redisPrefixes: [
+                  redisCache.responseCacheKeyPrefix,
+                  redisCache.renderCacheKeyPrefix,
+              ].join(','),
           })}`
         : null;
 };
@@ -66,6 +64,12 @@ export const initRevalidatorProxyHeartbeat = (buildId: string) => {
     logger.info('Starting heartbeat loop');
 
     const heartbeatFunc = () => {
+        const url = getProxyLivenessUrl(buildId);
+        if (!url) {
+            logger.error('Failed to determine revalidator heartbeat url!');
+            return;
+        }
+
         fetch(url, {
             headers: { secret: SERVICE_SECRET },
         }).catch((e) => logger.error(`Failed to send heartbeat signal - ${e}`));
