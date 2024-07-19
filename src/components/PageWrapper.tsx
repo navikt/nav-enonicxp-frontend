@@ -4,7 +4,7 @@ import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-deko
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import { hasWhiteHeader, hasWhitePage } from 'utils/appearance';
-import { getDecoratorParams } from 'utils/decorator/decorator-utils';
+import { getDecoratorParams } from 'utils/decorator-utils';
 import { getInternalRelativePath } from 'utils/urls';
 import { store } from 'store/store';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';

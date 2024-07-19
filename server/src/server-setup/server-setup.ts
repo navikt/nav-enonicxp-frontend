@@ -9,7 +9,12 @@ import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
 import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from 'srcCommon/logger';
-import { redisCache } from 'cache/page-cache-handler';
+import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
+import {
+    addDecoratorUpdateListener,
+    getDecoratorVersionId,
+} from '@navikt/nav-dekoratoren-moduler/ssr';
+import { decoratorEnvProps } from 'srcCommon/decorator-utils-serverside';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -29,7 +34,18 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     const nextServer = await getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
-    await redisCache.init(currentBuildId);
+    const decoratorVersionId = await getDecoratorVersionId(decoratorEnvProps);
+    if (!decoratorVersionId) {
+        logger.error('Failed to fetch decorator version id!');
+    }
+
+    await redisCache.init(currentBuildId, decoratorVersionId);
+
+    addDecoratorUpdateListener(decoratorEnvProps, (versionId) => {
+        logger.info(`New decorator version: ${versionId} - clearing render caches`);
+        redisCache.updateRenderCacheKeyPrefix(versionId);
+        new PageCacheHandler().clear();
+    });
 
     logger.info(`Current build id: ${currentBuildId}`);
 

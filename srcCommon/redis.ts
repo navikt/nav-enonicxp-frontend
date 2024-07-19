@@ -31,7 +31,9 @@ class RedisCacheImpl {
     private readonly responseCacheTTL: number = TIME_72_HOURS_IN_MS;
     private readonly renderCacheTTL: number = TIME_24_HOURS_IN_MS;
 
-    private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
+    private buildId: string = '';
+
+    private readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
     private renderCacheKeyPrefix = '';
 
     constructor() {
@@ -53,8 +55,9 @@ class RedisCacheImpl {
             });
     }
 
-    public async init(buildId: string) {
-        this.renderCacheKeyPrefix = getRenderCacheKeyPrefix(buildId);
+    public async init(buildId: string, decoratorVersionId: string) {
+        this.buildId = buildId;
+        this.updateRenderCacheKeyPrefix(decoratorVersionId);
 
         return this.client.connect().then(() => {
             logger.info(
@@ -64,24 +67,34 @@ class RedisCacheImpl {
         });
     }
 
+    public getKeyPrefixes() {
+        return [this.responseCacheKeyPrefix, this.renderCacheKeyPrefix];
+    }
+
+    public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
+        this.renderCacheKeyPrefix = `${process.env.ENV}:render:${this.buildId}:${decoratorVersionId}`;
+    }
+
     public async getRender(key: string) {
+        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
         return this.client
-            .getEx(this.getFullKey(key, this.renderCacheKeyPrefix), {
+            .getEx(fullKey, {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(`Error getting render cache value for key ${key} - ${e}`);
+                logger.error(`Error getting render cache value for key ${fullKey} - ${e}`);
                 return Promise.resolve(null);
             });
     }
 
     public async getResponse(key: string) {
+        const fullKey = this.getFullKey(key, this.responseCacheKeyPrefix);
         return this.client
-            .get(this.getFullKey(key, this.responseCacheKeyPrefix))
+            .get(fullKey)
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(`Error getting value for key ${key} - ${e}`);
+                logger.error(`Error getting value for key ${fullKey} - ${e}`);
                 return Promise.resolve(null);
             });
     }
@@ -123,6 +136,10 @@ class RedisCacheDummy extends RedisCacheImpl {
         return this;
     }
 
+    public updateRenderCacheKeyPrefix(key: string) {
+        return;
+    }
+
     public async getRender(key: string) {
         return null;
     }
@@ -146,7 +163,3 @@ export const RedisCache =
     validateClientOptions()
         ? RedisCacheImpl
         : RedisCacheDummy;
-
-export const getRenderCacheKeyPrefix = (buildId: string) => `${process.env.ENV}:render:${buildId}`;
-
-export const getResponseCacheKeyPrefix = () => `${process.env.ENV}:xp-response`;
