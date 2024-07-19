@@ -31,10 +31,6 @@ const getPodAddress = () => {
 
 const getProxyLivenessUrl = () => {
     const podAddress = getPodAddress();
-    console.log(
-        `Redis prefixes: ${redisCache.getKeyPrefixes()} - ${redisCache.getKeyPrefixes().join(',')}`
-    );
-
     return podAddress
         ? `${REVALIDATOR_PROXY_ORIGIN}/liveness${objectToQueryString({
               address: podAddress,
@@ -65,8 +61,6 @@ export const initRevalidatorProxyHeartbeat = () => {
             logger.error('Failed to determine revalidator heartbeat url!');
             return;
         }
-
-        console.log(`Heartbeat url: ${url}`);
 
         fetch(url, {
             headers: { secret: SERVICE_SECRET },

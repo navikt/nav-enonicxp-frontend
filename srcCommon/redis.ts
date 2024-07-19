@@ -56,7 +56,6 @@ class RedisCacheImpl {
     }
 
     public async init(buildId: string, decoratorVersionId: string) {
-        console.log(`Initing with ${buildId} ${decoratorVersionId}`);
         this.buildId = buildId;
         this.updateRenderCacheKeyPrefix(decoratorVersionId);
 
@@ -73,9 +72,7 @@ class RedisCacheImpl {
     }
 
     public updateRenderCacheKeyPrefix(decoratorVersionId: string) {
-        console.log(`Setting prefix ${this.renderCacheKeyPrefix}`);
         this.renderCacheKeyPrefix = `${process.env.ENV}:render:${this.buildId}:${decoratorVersionId}`;
-        console.log(`Set prefix ${this.renderCacheKeyPrefix}`);
     }
 
     public async getRender(key: string) {
