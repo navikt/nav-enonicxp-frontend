@@ -4,7 +4,7 @@
 import { networkInterfaces } from 'os';
 import { logger } from 'srcCommon/logger';
 import { objectToQueryString } from 'srcCommon/fetch-utils';
-import { redisCache } from './page-cache-handler';
+import { redisCache } from 'cache/page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =
     process.env;
@@ -29,7 +29,7 @@ const getPodAddress = () => {
     return podAddress;
 };
 
-const getProxyLivenessUrl = (buildId: string) => {
+const getProxyLivenessUrl = () => {
     const podAddress = getPodAddress();
     console.log(
         `Redis prefixes: ${redisCache.getKeyPrefixes()} - ${redisCache.getKeyPrefixes().join(',')}`
@@ -45,7 +45,7 @@ const getProxyLivenessUrl = (buildId: string) => {
 
 let didStart = false;
 
-export const initRevalidatorProxyHeartbeat = (buildId: string) => {
+export const initRevalidatorProxyHeartbeat = () => {
     if (NODE_ENV === 'development') {
         return;
     }
@@ -55,17 +55,12 @@ export const initRevalidatorProxyHeartbeat = (buildId: string) => {
         return;
     }
 
-    const url = getProxyLivenessUrl(buildId);
-    if (!url) {
-        return;
-    }
-
     didStart = true;
 
     logger.info('Starting heartbeat loop');
 
     const heartbeatFunc = () => {
-        const url = getProxyLivenessUrl(buildId);
+        const url = getProxyLivenessUrl();
         if (!url) {
             logger.error('Failed to determine revalidator heartbeat url!');
             return;

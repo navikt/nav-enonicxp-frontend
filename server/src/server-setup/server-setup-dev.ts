@@ -1,6 +1,5 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { logger } from 'srcCommon/logger';
 
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
