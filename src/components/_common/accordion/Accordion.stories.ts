@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Accordion } from './Accordion';
 import { MacroType } from 'types/macro-props/_macros-common';
+import { Accordion } from './Accordion';
 
 const meta = {
     title: 'Components/Common/Accordion',
