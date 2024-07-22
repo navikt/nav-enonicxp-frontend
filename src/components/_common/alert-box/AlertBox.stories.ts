@@ -4,7 +4,7 @@ import { AlertBox } from './AlertBox';
 const meta = {
     title: 'Components/Common/AlertBox',
     component: AlertBox,
-    args: { children: 'Dette er en AlertBox' },
+    args: { children: 'Dette er en AlertBox', variant: 'info' },
 } satisfies Meta<typeof AlertBox>;
 
 export default meta;
@@ -31,5 +31,17 @@ export const Info: Story = {
 export const Error: Story = {
     args: {
         variant: 'error',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'small',
+    },
+};
+
+export const Inline: Story = {
+    args: {
+        inline: true,
     },
 };
