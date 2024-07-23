@@ -2,12 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
 import { Area } from 'types/areas';
-import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
-
+import { Taxonomy } from 'types/taxonomies';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
-
-import { PartType } from 'types/component-props/parts';
 import { SituationPage } from './SituationPage';
 
 const meta = {
