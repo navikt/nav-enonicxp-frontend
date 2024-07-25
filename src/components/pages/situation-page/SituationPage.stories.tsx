@@ -129,14 +129,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const EditorView: Story = {
-    args: {
-        editorView: 'edit',
-    },
-};
-
 export const English: Story = {
     args: {
         language: 'en',
+    },
+};
+
+export const EditorView: Story = {
+    args: {
+        editorView: 'edit',
     },
 };
