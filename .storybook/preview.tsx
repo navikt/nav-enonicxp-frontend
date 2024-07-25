@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import type { Preview } from '@storybook/react';
-import { PageContextProvider } from '../src/store/pageContext';
+// import { PageContextProvider } from '../src/store/pageContext';
 import { ContentProps, ContentType } from '../src/types/content-props/_content-common';
 import '../src/global.scss';
 
@@ -30,13 +30,13 @@ const preview: Preview = {
         }, //TODO: det over hører til Example, fjerne hvis ikke brukt
         layout: 'centered',
     },
-    decorators: [
-        (Story) => (
-            <PageContextProvider content={contentPropsFull}>
-                <Story />
-            </PageContextProvider>
-        ),
-    ],
+    // decorators: [
+    //     (Story) => (
+    //         <PageContextProvider content={contentPropsFull}>
+    //             <Story />
+    //         </PageContextProvider>
+    //     ),
+    // ],
     tags: ['autodocs'],
 };
 
