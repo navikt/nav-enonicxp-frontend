@@ -101,6 +101,23 @@ export const Default: Story = {
                                 },
                             },
                         },
+                        {
+                            path: '/pageContent/1',
+                            type: ComponentType.Part,
+                            descriptor: PartType.PageNavigationMenu,
+                            config: {
+                                anchorLinks: [
+                                    {
+                                        anchorId: 'innholdsseksjon',
+                                        linkText: 'Hjelpemidler og tilrettelegging i arbeidslivet',
+                                    },
+                                    {
+                                        anchorId: 'utdanning',
+                                        linkText: 'Hjelpemidler og tilrettelegging i utdanning',
+                                    },
+                                ],
+                            },
+                        },
                     ],
                     name: 'pageContent',
                 },
