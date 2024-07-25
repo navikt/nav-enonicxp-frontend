@@ -8,6 +8,7 @@ import { Taxonomy } from 'types/taxonomies';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
+import { PartType } from 'types/component-props/parts';
 import { SituationPage } from './SituationPage';
 
 const meta = {
@@ -83,7 +84,44 @@ export const Default: Story = {
             config: {},
             regions: {
                 pageContent: {
-                    components: [],
+                    components: [
+                        {
+                            path: '/pageContent/0',
+                            type: ComponentType.Layout,
+                            descriptor: LayoutType.SectionWithHeader,
+                            config: {
+                                // border: {
+                                //     width: 3,
+                                //     rounded: false,
+                                // },
+                                anchorId: 'kort-om',
+                                // toggleCopyButton: false,
+                                // hideFromInternalNavigation: false,
+                            },
+                            regions: {
+                                intro: {
+                                    components: [],
+                                    name: 'intro',
+                                },
+                                content: {
+                                    components: [
+                                        {
+                                            path: '/pageContent/0/content/0',
+                                            type: ComponentType.Part,
+                                            descriptor: PartType.HtmlArea,
+                                            config: {
+                                                html: '<p>Hvis du har nedsatt funksjonsevne, kan det hende du trenger tilrettelegging på arbeidsplassen eller på utdanningsinstitusjonen.</p>\n',
+                                                expandable: false,
+                                                // expandableOpenByDefault: false,
+                                                renderOnAuthState: 'always',
+                                            },
+                                        },
+                                    ],
+                                    name: 'content',
+                                },
+                            },
+                        },
+                    ],
                     name: 'pageContent',
                 },
             },
