@@ -1,6 +1,5 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { logger } from 'srcCommon/logger';
 
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
@@ -26,7 +25,6 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
         expressApp.all('*', (req, res, next) => {
             if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
-                logger.info('Redirecting!');
                 return res.redirect(302, `${APP_ORIGIN}${req.path}`);
             }
 

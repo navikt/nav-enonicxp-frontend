@@ -62,12 +62,6 @@ export type OfficeEditorialPageProps = ContentCommonProps & {
     page: LayoutComponentProps;
 };
 
-export type OfficeBranchPageProps = ContentCommonProps & {
-    type: ContentType.OfficeBranchPage;
-    data: OfficeDetailsData;
-    editorial: OfficeEditorialPageProps;
-};
-
 export type OfficePageProps = ContentCommonProps & {
     type: ContentType.OfficePage;
     data: {
@@ -75,6 +69,7 @@ export type OfficePageProps = ContentCommonProps & {
         officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
     };
     page: LayoutComponentProps;
+    editorial?: OfficeEditorialPageProps;
 };
 
 export type CurrentTopicPageProps = ContentCommonProps & {
@@ -91,7 +86,7 @@ export type ToolsPageProps = ContentCommonProps & {
 
 export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
-    data: ProductDataMixin
+    data: ProductDataMixin;
     page: PageWithSideMenusProps;
 };
 

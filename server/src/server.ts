@@ -5,7 +5,7 @@ import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
-import { getNextBuildId, getNextServer } from 'next-utils';
+import { getNextServer } from 'next-utils';
 import { logger } from 'srcCommon/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
@@ -47,6 +47,11 @@ nextApp.prepare().then(async () => {
         next();
     });
 
+    expressApp.all('*', (req, res, next) => {
+        res.setHeader('app-name', 'nav-enonicxp-frontend');
+        next();
+    });
+
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {
@@ -78,8 +83,7 @@ nextApp.prepare().then(async () => {
         }
 
         if (!isFailover) {
-            const buildId = getNextBuildId(nextServer);
-            initRevalidatorProxyHeartbeat(buildId);
+            initRevalidatorProxyHeartbeat();
         }
 
         logger.info(`Server started on port ${port}`);

@@ -280,10 +280,6 @@ const config = {
             source: '/:path*',
             headers: [
                 {
-                    key: 'app-name',
-                    value: 'nav-enonicxp-frontend',
-                },
-                {
                     key: 'Content-Security-Policy',
                     value: await csp(),
                 },

@@ -4,7 +4,7 @@ import { DocumentInitialProps } from 'next/dist/pages/_document';
 import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from 'utils/decorator/decorator-utils-serverside';
+import { getDecoratorComponents } from 'srcCommon/decorator-utils-serverside';
 
 type DocumentProps = {
     language: Language;
@@ -57,7 +57,14 @@ class MyDocument extends Document<DocumentProps> {
 
         return (
             <Html lang={language || 'no'}>
-                <Head>{Decorator && <Decorator.Styles />}</Head>
+                <Head>
+                    {Decorator && (
+                        <>
+                            <Decorator.Styles />
+                            <Decorator.HeadAssets />
+                        </>
+                    )}
+                </Head>
                 <body className={isLegacyContentType ? 'legacyContentType' : undefined}>
                     {Decorator && <Decorator.Header />}
                     <Main />
