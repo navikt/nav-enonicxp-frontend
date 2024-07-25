@@ -10,7 +10,6 @@ import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { SituationPage } from './SituationPage';
 
-
 const meta = {
     title: 'Components/Pages/SituationPage',
     component: SituationPage,
