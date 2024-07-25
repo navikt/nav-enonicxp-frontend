@@ -11,21 +11,15 @@ import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
 import { SituationPage } from './SituationPage';
 
-const meta = {
-    title: 'Components/Pages/SituationPage',
-    component: SituationPage,
-} satisfies Meta<typeof SituationPage>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
 const withStore: Decorator = (Story) => (
     <Provider store={mockStore}>
         <Story />
     </Provider>
 );
 
-export const Default: Story = {
+const meta = {
+    title: 'Components/Pages/SituationPage',
+    component: SituationPage,
     decorators: [withStore],
     args: {
         _id: '23a43b41-ac9f-4270-9397-30400aad1940',
@@ -127,5 +121,22 @@ export const Default: Story = {
             from: '2021-10-22T07:21:39.794Z',
             first: '2021-10-22T07:21:39.794Z',
         },
+    },
+} satisfies Meta<typeof SituationPage>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+
+export const EditorView: Story = {
+    args: {
+        editorView: 'edit',
+    },
+};
+
+export const English: Story = {
+    args: {
+        language: 'en',
     },
 };
