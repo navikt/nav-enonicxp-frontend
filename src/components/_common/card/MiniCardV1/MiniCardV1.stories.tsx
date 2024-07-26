@@ -14,7 +14,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Product: Story = {};
+
+export const Situation: Story = {
+    args: {
+        type: CardType.Situation,
+    },
+};
 
 export const WithHeader: Story = {
     args: {
