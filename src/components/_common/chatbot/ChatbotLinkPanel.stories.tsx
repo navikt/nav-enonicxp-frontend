@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ChatbotLinkPanel } from './ChatbotLinkPanel';
 
 const meta = {
-    title: 'Components/Common/ChatbotLinkPanel',
+    title: 'Components/Common/Chatbot/ChatbotLinkPanel',
     component: ChatbotLinkPanel,
     args: {
         analyticsGroup: '',
