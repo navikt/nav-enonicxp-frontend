@@ -6,10 +6,10 @@ import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-import { useCard } from './useCard';
+import { useCard } from 'components/_common/card/useCard';
 
+import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './LargeCardV1.module.scss';
-import sharedStyle from './Card.module.scss';
 
 enum LayoutVariation {
     DEFAULT = 'Default',

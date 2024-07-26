@@ -5,7 +5,7 @@ import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { LinkProps } from 'types/link-props';
-import { useCard } from './useCard';
+import { useCard } from 'components/_common/card/useCard';
 
 import style from './LargeCardV2.module.scss';
 

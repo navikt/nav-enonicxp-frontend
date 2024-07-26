@@ -7,9 +7,9 @@ import { classNames } from 'utils/classnames';
 import { CardProps, CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
-import { useCard } from './useCard';
+import { useCard } from 'components/_common/card/useCard';
 
-import sharedStyle from './Card.module.scss';
+import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './MicroCard.module.scss';
 
 export const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
