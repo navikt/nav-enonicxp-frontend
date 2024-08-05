@@ -88,6 +88,7 @@ export enum PartLegacyType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
+    AlternativeAudience = 'no.nav.navno:alternative-audience',
 }
 
 type PartConfigs = {
