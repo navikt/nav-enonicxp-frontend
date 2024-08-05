@@ -30,3 +30,10 @@ export const Employment: Story = {
         area: 'employment-status-form',
     },
 };
+
+export const Health: Story = {
+    args: {
+        title: 'Helse og sykdom',
+        area: 'health',
+    },
+};
