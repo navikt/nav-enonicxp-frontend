@@ -1,4 +1,4 @@
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import styles from './InfoBox.module.scss';
 
 type InfoBoxProps = {

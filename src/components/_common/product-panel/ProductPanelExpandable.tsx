@@ -4,7 +4,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
