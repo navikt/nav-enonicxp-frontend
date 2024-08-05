@@ -152,13 +152,13 @@ export const translationsBundleNn: PartialTranslations = {
     },
     situations: {
         person: 'Dette kan du ha rett til',
-        employer: 'For arbeidsgjevarar',
+        employer: 'Kva arbeidsgjevarar må vita',
         provider: 'For samarbeidspartnarar',
     },
     guides: {
         person: 'Slik gjer du det',
-        employer: 'For arbeidsgjevarar',
-        provider: 'For samarbeidspartnarar',
+        employer: 'Slik gjer du det',
+        provider: 'Slik gjer du det',
     },
     publishingCalendar: {
         event: 'Hending',
