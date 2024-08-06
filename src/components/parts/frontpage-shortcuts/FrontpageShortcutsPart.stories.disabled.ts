@@ -6,7 +6,6 @@ import { PartType } from 'types/component-props/parts';
 import { FrontpageShortcutsPart } from './FrontpageShortcutsPart';
 
 const meta = {
-    title: 'Components/Parts/FrontpageShortcutsPart',
     component: FrontpageShortcutsPart,
 } satisfies Meta<typeof FrontpageShortcutsPart>;
 

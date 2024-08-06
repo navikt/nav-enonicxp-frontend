@@ -3,7 +3,6 @@ import { CardType } from 'types/card';
 import { MiniCardV1 } from './MiniCardV1';
 
 const meta = {
-    title: 'Components/Common/Card/MiniCardV1',
     component: MiniCardV1,
     args: {
         link: { url: '', text: 'Tittel' },

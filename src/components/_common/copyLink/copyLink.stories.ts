@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CopyLink } from './copyLink';
 
 const meta = {
-    title: 'Components/Common/CopyLink',
     component: CopyLink,
     args: {
         anchor: 'https://www.nav.no',

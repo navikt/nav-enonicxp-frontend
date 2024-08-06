@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import TextWithIndicator from './TextWithIndicator';
 
 const meta = {
-    title: 'Components/Common/TextWithIndicator',
     component: TextWithIndicator,
 } satisfies Meta<typeof TextWithIndicator>;
 

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FancyChevron } from './FancyChevron';
 
 const meta = {
-    title: 'Components/Common/FancyChevron',
     component: FancyChevron,
     args: {
         color: 'white',

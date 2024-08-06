@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CalculatorResult } from './CalculatorResult';
 
 const meta = {
-    title: 'Components/Common/Calculator/Result',
     component: CalculatorResult,
 } satisfies Meta<typeof CalculatorResult>;
 

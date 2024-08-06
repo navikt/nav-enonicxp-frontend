@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PageUpdatedInfo } from './PageUpdatedInfo';
 
 const meta = {
-    title: 'Components/Common/PageUpdatedInfo',
     component: PageUpdatedInfo,
     args: {
         datetime: '2024-01-01',

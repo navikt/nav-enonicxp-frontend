@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CalculatorField } from './CalculatorField';
 
 const meta = {
-    title: 'Components/Common/Calculator/Field',
     component: CalculatorField,
 } satisfies Meta<typeof CalculatorField>;
 

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MoreLink } from './MoreLink';
 
 const meta = {
-    title: 'Components/Common/MoreLink',
     component: MoreLink,
 } satisfies Meta<typeof MoreLink>;
 

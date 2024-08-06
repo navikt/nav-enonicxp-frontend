@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PayoutDates } from './PayoutDates';
 
 const meta = {
-    title: 'Components/Common/PayoutDates',
     component: PayoutDates,
 } satisfies Meta<typeof PayoutDates>;
 

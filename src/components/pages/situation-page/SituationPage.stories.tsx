@@ -18,7 +18,6 @@ const withStore: Decorator = (Story) => (
 );
 
 const meta = {
-    title: 'Components/Pages/SituationPage',
     component: SituationPage,
     decorators: [withStore],
     //TODO: etterhvert finne en bedre måte å gjøre dette på

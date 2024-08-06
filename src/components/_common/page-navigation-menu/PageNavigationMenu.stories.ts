@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PageNavigationMenu } from './PageNavigationMenu';
 
 const meta = {
-    title: 'Components/Common/PageNavigationMenu',
     component: PageNavigationMenu,
     args: {
         anchorLinks: [

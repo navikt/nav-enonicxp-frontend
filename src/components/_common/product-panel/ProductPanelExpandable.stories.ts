@@ -3,7 +3,6 @@ import { ContentType } from 'types/content-props/_content-common';
 import { ProductPanelExpandable } from './ProductPanelExpandable';
 
 const meta = {
-    title: 'Components/Common/ProductPanelExpandable',
     component: ProductPanelExpandable,
 } satisfies Meta<typeof ProductPanelExpandable>;
 

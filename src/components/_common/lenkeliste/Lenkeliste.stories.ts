@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Lenkeliste } from './Lenkeliste';
 
 const meta = {
-    title: 'Components/Common/Lenkeliste',
     component: Lenkeliste,
     args: {
         lenker: [

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AreaCard } from './AreaCard';
 
 const meta = {
-    title: 'Components/Common/AreaCard',
     component: AreaCard,
     args: { path: '' },
 } satisfies Meta<typeof AreaCard>;
