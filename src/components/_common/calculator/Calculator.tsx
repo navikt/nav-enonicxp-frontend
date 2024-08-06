@@ -3,10 +3,10 @@ import { Heading } from '@navikt/ds-react';
 import { CalculatorIcon } from '@navikt/aksel-icons';
 import { Button } from 'components/_common/button/Button';
 import { translator } from 'translations';
-import { CalculatorField } from 'components/_common/calculator/field/CalculatorField';
+import { CalculatorField } from 'components/_common/calculator/calculatorField/CalculatorField';
 import { usePageContentProps } from 'store/pageContext';
 import { CalculatorData, CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
-import { CalculatorResult } from './result/CalculatorResult';
+import { CalculatorResult } from './calculatorResult/CalculatorResult';
 
 import style from './Calculator.module.scss';
 
