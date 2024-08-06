@@ -1,15 +1,15 @@
-@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module' as areaGraphics;
-@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
+@use 'src/components/_common/areaCard/graphics/AreaCardGraphicsCommon.module' as areaGraphics;
+@use 'src/components/_common/areaCard/AreaCard.module' as areaCard;
 
-.arrow {
+.shapes {
     @include areaCard.transitionMixin;
     position: absolute;
-    right: 0;
-    top: 127px;
+    right: -12px;
+    top: 124px;
 }
 
-@include areaGraphics.onExpandMixin('.arrow') {
-    right: 191px;
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 190px;
 }
 
 .letterPartOrange {
@@ -18,14 +18,14 @@
     @include areaCard.transitionMixin;
     position: absolute;
     width: 56px;
-    height: 44px;
-    right: -2px;
-    top: 58px;
+    height: 48px;
+    right: -21px;
+    top: 53px;
 }
 
 @include areaGraphics.onExpandMixin('.letterPartOrange') {
-    right: 48px;
-    top: 58px;
+    right: 51px;
+    top: 73px;
 }
 
 .letterPartBlue {
@@ -33,14 +33,15 @@
 
     @include areaCard.transitionMixin;
     position: absolute;
-    width: 48px;
+    width: 49.23px;
     height: 160px;
-    right: -26px;
+    right: -49px;
     top: 0;
+    transform: skewX(18.8967deg);
 }
 
 @include areaGraphics.onExpandMixin('.letterPartBlue') {
-    right: 0;
+    right: 27px;
 }
 
 .mask {
@@ -57,21 +58,22 @@
 
 @include areaGraphics.onExpandMixin('.mask') {
     background-color: #ffb8b8;
-    width: 48px;
+    width: 49.23px;
     height: 160px;
-    right: 100px;
+    right: 82px;
     top: 0;
-    transform: skewX(0);
+
+    transform: skewX(-18.8967deg);
 }
 
-.dog {
+.briefcase {
     @include areaCard.transitionMixin;
     position: absolute;
-    right: 30px;
-    top: 38px;
+    right: 50px;
+    top: 39px;
 }
 
-@include areaGraphics.onExpandMixin('.dog') {
-    right: 71px;
-    top: 76px;
+@include areaGraphics.onExpandMixin('.briefcase') {
+    right: 102px;
+    top: 83px;
 }

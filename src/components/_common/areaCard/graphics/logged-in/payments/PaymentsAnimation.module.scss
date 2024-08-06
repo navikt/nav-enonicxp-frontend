@@ -1,26 +1,27 @@
-@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module' as areaGraphics;
-@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
+@use 'src/components/_common/areaCard/graphics/AreaCardGraphicsCommon.module' as areaGraphics;
+@use 'src/components/_common/areaCard/AreaCard.module' as areaCard;
 
 .shapes {
     @include areaCard.transitionMixin;
     position: absolute;
-    right: 0;
-    top: 122px;
+    right: 52px;
+    top: 49px;
 }
 
 @include areaGraphics.onExpandMixin('.shapes') {
-    right: 203px;
+    right: 190px;
+    top: 118px;
 }
 
-.letterS {
+.letterU {
     @include areaCard.transitionMixin;
     position: absolute;
-    right: -74px;
+    right: -98px;
     top: 0;
 }
 
-@include areaGraphics.onExpandMixin('.letterS') {
-    right: 1px;
+@include areaGraphics.onExpandMixin('.letterU') {
+    right: 0;
 }
 
 .mask {
@@ -39,14 +40,16 @@
     right: -184px;
 }
 
-.document {
+.wallet {
     @include areaCard.transitionMixin;
     position: absolute;
-    right: 67px;
-    top: 42px;
+    width: 75.73px;
+    height: 71px;
+    right: 56.27px;
+    top: 40px;
 }
 
-@include areaGraphics.onExpandMixin('.document') {
-    right: 110px;
-    top: 85px;
+@include areaGraphics.onExpandMixin('.wallet') {
+    right: 98.27px;
+    top: 89px;
 }
