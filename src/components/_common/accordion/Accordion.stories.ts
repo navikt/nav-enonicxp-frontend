@@ -2,10 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { Accordion } from './Accordion';
 
-const meta = {
-    title: 'Components/Common/Accordion',
-    component: Accordion,
-} satisfies Meta<typeof Accordion>;
+const meta = { component: Accordion } satisfies Meta<typeof Accordion>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
