@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroPayoutDatesProps } from 'types/macro-props/payout-dates';
-import { PayoutDates } from 'components/_common/payout-dates/PayoutDates';
+import { PayoutDates } from 'components/_common/payoutDates/PayoutDates';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroPayoutDates = ({ config }: MacroPayoutDatesProps) => {
