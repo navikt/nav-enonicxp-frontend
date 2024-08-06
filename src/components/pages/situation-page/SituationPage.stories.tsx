@@ -21,6 +21,8 @@ const meta = {
     title: 'Components/Pages/SituationPage',
     component: SituationPage,
     decorators: [withStore],
+    //TODO: etterhvert finne en bedre måte å gjøre dette på
+    //https://storybook.js.org/docs/writing-stories/build-pages-with-storybook
     args: {
         _id: '23a43b41-ac9f-4270-9397-30400aad1940',
         _path: '/www.nav.no/no/person/hjelpemidler/livssituasjoner/trenger-tilrettelegging-pa-jobb-eller-i-utdanning',
