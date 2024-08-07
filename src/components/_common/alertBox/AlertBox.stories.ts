@@ -27,7 +27,8 @@ export const Info: Story = {
     },
 };
 
-export const Error: Story = {
+// (Sonarlint liker ikke at en variabel heter Error)
+export const ErrorVariant: Story = {
     args: {
         variant: 'error',
     },
