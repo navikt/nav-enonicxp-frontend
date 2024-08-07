@@ -17,7 +17,7 @@ export const Default: Story = {
     },
 };
 
-export const Error: Story = {
+export const ErrorVariant: Story = {
     args: {
         summaryText: 'Resultatet er: ',
         sum: 100,
