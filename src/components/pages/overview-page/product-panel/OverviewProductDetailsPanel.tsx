@@ -6,7 +6,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageContentProps } from 'store/pageContext';
-import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
+import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { OverviewPageProductItem } from 'types/content-props/overview-props';

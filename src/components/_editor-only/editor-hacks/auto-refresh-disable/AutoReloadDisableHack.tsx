@@ -1,6 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { ContentProps } from 'types/content-props/_content-common';

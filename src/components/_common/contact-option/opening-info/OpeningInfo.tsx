@@ -6,7 +6,7 @@ import { OpeningHours } from 'components/_common/contact-option/opening-info/hel
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
 
-import TextWithIndicator from 'components/_common/text-with-indicator/TextWithIndicator';
+import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,

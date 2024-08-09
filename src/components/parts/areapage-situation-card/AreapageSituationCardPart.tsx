@@ -3,7 +3,7 @@ import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getCardProps } from 'components/_common/card/card-utils';
-import { LargeCardV1 } from 'components/_common/card/LargeCardV1';
+import { LargeCardV1 } from 'components/_common/card/LargeCardV1/LargeCardV1';
 import { usePageContentProps } from 'store/pageContext';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';

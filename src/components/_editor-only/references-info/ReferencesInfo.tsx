@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyLong, BodyShort, Heading, Loader } from '@navikt/ds-react';
 import { ReferencesInfoResult } from 'components/_editor-only/references-info/result/ReferencesInfoResult';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { useFetchReferencesInfo } from 'components/_editor-only/references-info/useFetchReferencesInfo';
 import { ContentProps } from 'types/content-props/_content-common';
 

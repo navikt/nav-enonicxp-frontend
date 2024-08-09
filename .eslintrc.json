@@ -1,6 +1,10 @@
 {
     "plugins": ["css-modules", "no-relative-import-paths"],
-    "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
+    "extends": [
+        "next/core-web-vitals",
+        "plugin:css-modules/recommended",
+        "plugin:storybook/recommended"
+    ],
     "ignorePatterns": ["next.config.js"],
     "rules": {
         "@next/next/no-img-element": 0,

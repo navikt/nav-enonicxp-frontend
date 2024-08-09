@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';

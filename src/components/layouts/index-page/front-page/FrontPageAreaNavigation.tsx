@@ -1,7 +1,7 @@
 import React from 'react';
 import { FrontPageProps } from 'types/content-props/index-pages-props';
 import { Header } from 'components/_common/headers/Header';
-import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { AreaCard } from 'components/_common/areaCard/AreaCard';
 import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
 import { Audience, getAudience } from 'types/component-props/_mixins';

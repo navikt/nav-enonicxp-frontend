@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { MacroVarselBoksProps } from 'types/macro-props/varselBoks';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import style from './MacroVarselBoks.module.scss';

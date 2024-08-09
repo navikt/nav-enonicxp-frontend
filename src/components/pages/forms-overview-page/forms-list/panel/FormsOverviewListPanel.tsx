@@ -8,7 +8,7 @@ import {
     FormDetailsComponentProps,
 } from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
-import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
+import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';

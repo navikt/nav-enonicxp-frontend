@@ -1,4 +1,4 @@
-@use 'common' as common;
+@use 'src/common' as common;
 .appContainer {
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;

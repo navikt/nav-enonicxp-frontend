@@ -4,7 +4,7 @@ import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 import { fetchJson, objectToQueryString } from 'srcCommon/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 

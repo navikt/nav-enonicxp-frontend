@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'store/hooks/useAuthState';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { AreaCard } from 'components/_common/areaCard/AreaCard';
 import { usePageContentProps } from 'store/pageContext';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 

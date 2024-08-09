@@ -1,5 +1,5 @@
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { MiniCardV1 } from 'components/_common/card/MiniCardV1';
+import { MiniCardV1 } from 'components/_common/card/MiniCardV1/MiniCardV1';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AlertInContext } from 'components/_common/alert-in-context/AlertInContext';
+import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
 import { AlertData } from 'types/content-props/alerts';
 
 import style from './AlertInContextPage.module.scss';

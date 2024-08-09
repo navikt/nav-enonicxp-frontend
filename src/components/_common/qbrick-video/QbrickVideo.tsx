@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { logger } from 'srcCommon/logger';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';

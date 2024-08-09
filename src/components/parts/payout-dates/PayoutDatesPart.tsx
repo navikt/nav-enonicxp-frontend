@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PayoutDates } from 'components/_common/payout-dates/PayoutDates';
+import { PayoutDates } from 'components/_common/payoutDates/PayoutDates';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { PayoutDatesData } from 'types/content-props/payout-dates';
