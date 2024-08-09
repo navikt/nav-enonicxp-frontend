@@ -45,3 +45,10 @@ export const Inline: Story = {
         inline: true,
     },
 };
+
+export const InlineSmall: Story = {
+    args: {
+        inline: true,
+        size: 'small',
+    },
+};
