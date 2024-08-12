@@ -9,7 +9,9 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
+import * as PageNavigationMenu from 'components/_common/pageNavigationMenu/PageNavigationMenu.stories';
 import { SituationPage } from './SituationPage';
+
 
 const withStore: Decorator = (Story) => (
     <Provider store={mockStore}>
@@ -101,16 +103,7 @@ const meta = {
                             type: ComponentType.Part,
                             descriptor: PartType.PageNavigationMenu,
                             config: {
-                                anchorLinks: [
-                                    {
-                                        anchorId: 'innholdsseksjon',
-                                        linkText: 'Hjelpemidler og tilrettelegging i arbeidslivet',
-                                    },
-                                    {
-                                        anchorId: 'utdanning',
-                                        linkText: 'Hjelpemidler og tilrettelegging i utdanning',
-                                    },
-                                ],
+                                anchorLinks: PageNavigationMenu.default.args.anchorLinks,
                             },
                         },
                     ],
