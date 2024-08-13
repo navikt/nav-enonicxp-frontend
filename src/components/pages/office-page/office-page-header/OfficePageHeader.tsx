@@ -22,6 +22,11 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {
             return '';
         }
+
+        if (officeDetails.type === 'HMS') {
+            return '';
+        }
+
         const allPlaces = publikumsmottak.reduce<string[]>((acc, place) => {
             const { stedsbeskrivelse } = place;
             if (stedsbeskrivelse) {
