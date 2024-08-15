@@ -5,6 +5,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
@@ -30,7 +31,11 @@ export const PageNavigationMenu = ({
     const headingId = `heading-page-navigation-menu-${useId()}`;
     const headingLevel = isChapterNavigation ? '2' : '3';
 
-    if (links.length === 0) return null;
+    if (links.length === 0) {
+        return (
+            <EditorHelp text="Kunne ikke lage lenker til intern navigasjon. Enten finnes det ingen Innholdsseksjoner på denne siden, eller alle er satt til 'ikke vis under innhold'" />
+        );
+    }
 
     return (
         <>
