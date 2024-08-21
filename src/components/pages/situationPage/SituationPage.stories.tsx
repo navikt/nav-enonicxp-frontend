@@ -12,7 +12,6 @@ import { PartType } from 'types/component-props/parts';
 import * as PageNavigationMenu from 'components/_common/pageNavigationMenu/PageNavigationMenu.stories';
 import { SituationPage } from './SituationPage';
 
-
 const withStore: Decorator = (Story) => (
     <Provider store={mockStore}>
         <Story />
@@ -22,8 +21,9 @@ const withStore: Decorator = (Story) => (
 const meta = {
     component: SituationPage,
     decorators: [withStore],
-    //TODO: etterhvert finne en bedre måte å gjøre dette på
-    //https://storybook.js.org/docs/writing-stories/build-pages-with-storybook
+    //Ikke en komplett side.
+    //Bør kanskje finne en bedre måte å gjøre dette på om vi skal prøve å ha hele sider i storybook.
+    //Sjekk ut: https://storybook.js.org/docs/writing-stories/build-pages-with-storybook
     args: {
         _id: '23a43b41-ac9f-4270-9397-30400aad1940',
         _path: '/www.nav.no/no/person/hjelpemidler/livssituasjoner/trenger-tilrettelegging-pa-jobb-eller-i-utdanning',
