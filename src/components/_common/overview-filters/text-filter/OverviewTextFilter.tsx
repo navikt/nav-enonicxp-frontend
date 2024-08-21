@@ -35,6 +35,10 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                     }
                 )
             );
+            logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                komponent: 'skjemaoversikt-filter',
+                filtertekst: value,
+            });
         }, 500),
         [setTextFilter]
     );
@@ -42,10 +46,6 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);
         dispatchInput(inputValue);
-        logAmplitudeEvent(AnalyticsEvents.FILTER, {
-            komponent: 'skjemaoversikt-filter',
-            filtertekst: inputValue,
-        });
     };
 
     useEffect(() => {
