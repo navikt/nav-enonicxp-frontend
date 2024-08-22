@@ -5,11 +5,11 @@ import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import {
     OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
     OverviewFiltersTextInputEventDetail,
 } from 'store/slices/overviewFilters';
-
 import style from './OverviewTextFilter.module.scss';
 
 type Props = {
@@ -35,6 +35,10 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                     }
                 )
             );
+            logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                komponent: 'skjemaoversikt-filter',
+                filtertekst: value,
+            });
         }, 500),
         [setTextFilter]
     );

@@ -102,7 +102,9 @@ export const AlternativeAudience = () => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString || currentAudienceLabel}${addPeriod ? '.' : ''} `;
+        return `${forString} ${providerTypesString || currentAudienceLabel}${
+            addPeriod ? '.' : ''
+        } `;
     };
 
     if (!alternativeAudience) {
@@ -126,7 +128,7 @@ export const AlternativeAudience = () => {
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
-                        <LenkeInline href={link.url} analyticsLabel={'Aktuell målgruppe'}>
+                        <LenkeInline href={link.url} analyticsComponent="alternativ-målgruppe">
                             {link.title}
                         </LenkeInline>
                         {getConjunction({
