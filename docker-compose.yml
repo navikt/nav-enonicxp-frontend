@@ -9,61 +9,36 @@ services:
       SERVICE_SECRET: 'dummyToken'
       NO_REDIS: true
 
-  oidc-provider:
-    container_name: oidc-provider-xpfrontend
-    image: 'ghcr.io/navikt/stub-oidc-provider/stub-oidc-provider:latest'
-    ports:
-      - '9000:9000'
-    environment:
-      PORT: '9000'
-      CALLBACK_URL: 'http://localhost:50000/callback'
-      ISSUER: 'https://localhost:9000'
-
-  oidc-provider-gui:
-    container_name: oidc-provider-gui-xpfrontend
-    image: 'ghcr.io/navikt/pb-oidc-provider-gui/pb-oidc-provider-gui:latest'
-    ports:
-      - '50000:50000'
-    environment:
-      REDIRECT_URL: 'http://localhost:3000'
-      AUTO_REDIRECT_TO_FRONTEND: 'true'
-      OIDC_PROVIDER_GUI_URL: 'http://localhost:50000/callback'
-    depends_on:
-      - oidc-provider
-
-  mocks:
-    container_name: mocks-xpfrontend
-    image: 'ghcr.io/navikt/pb-nav-mocked/pb-nav-mocked:latest'
-    ports:
-      - '8095:8080'
-    environment:
-      CORS_ALLOWED_ORIGINS: 'localhost:3000'
-      CORS_ALLOWED_SCHEMES: 'http'
-      OIDC_ISSUER: 'https://localhost:9000'
-      OIDC_ACCEPTED_AUDIENCE: 'stubOidcClient'
-      OIDC_JWKS_URI: 'http://oidc-provider:9000/certs'
-    depends_on:
-      - oidc-provider
-
   dekoratoren:
     container_name: dekoratoren-xpfrontend
-    image: 'ghcr.io/navikt/nav-dekoratoren:latest'
+    image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-dekoratoren:latest'
     ports:
-      - '8100:8088'
+      - '8100:8089'
     environment:
-      ENV: 'localhost'
       XP_BASE_URL: 'http://localhost:3000'
-      APP_BASE_URL: 'http://localhost:8100'
-      APP_BASE_PATH: '/dekoratoren'
-      API_XP_SERVICES_URL: 'https://www.nav.no/_/service'
-      API_DEKORATOREN_URL: 'http://localhost:8095/nav-dekoratoren-api'
-      MINSIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver/'
       MIN_SIDE_URL: 'https://www.nav.no/minside/'
-      LOGIN_URL: 'http://localhost:50000'
-      LOGOUT_URL: 'http://localhost:50000/?logout'
-      VARSEL_API_URL: 'http://localhost:8095/tms-varsel-api'
-    depends_on:
-      - mocks
+      MIN_SIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver'
+
+      ENONICXP_SERVICES: 'http://localhost:8080/_/service/'
+      SEARCH_API_URL: 'https://navno-search-api.ekstern.dev.nav.no/content/decorator-search'
+      PORT: '8089'
+      NODE_ENV: 'production'
+      CDN_URL: 'http://localhost:8089/public'
+      APP_URL: 'http://localhost:8089'
+      LOGIN_URL: 'http://localhost:8089/oauth2/login'
+
+      LOGOUT_URL: 'http://localhost:8089/oauth2/logout'
+      PERSONOPPLYSNINGER_URL: 'https://www.nav.no/person/personopplysninger'
+      VARSEL_API_URL: 'http://localhost:8089/api'
+      LOGIN_SESSION_API_URL: 'http://localhost:8089/api/oauth2/session'
+      DEKORATOREN_API_URL: 'http://localhost:8089/api'
+      UNLEASH_SERVER_API_URL: 'http://localhost:8095/unleash'
+      UNLEASH_SERVER_API_TOKEN: 'dummy_token'
+
+      BOOST_ENV: 'navtest'
+      PUZZEL_CUSTOMER_ID: 'C1302192-8BEC-4EA2-84AB-F4EDE8AC6230'
+      VERSION_ID: 'asdf'
+      APP_NAME: 'nav-dekoratoren'
 
 volumes:
   event-cache-data:
