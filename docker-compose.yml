@@ -16,7 +16,7 @@ services:
       - '8100:8089'
     environment:
       XP_BASE_URL: 'http://localhost:3000'
-      MIN_SIDE_URL: 'https://www.nav.no/minside/'
+      MIN_SIDE_URL: 'https://www.nav.no/minside'
       MIN_SIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver'
 
       ENONICXP_SERVICES: 'http://localhost:8080/_/service/'
