@@ -219,7 +219,7 @@ export const translationsBundleEn: PartialTranslations = {
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-1430).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor.',
         },
         write: {
             title: 'Write to us',
