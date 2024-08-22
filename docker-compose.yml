@@ -13,14 +13,14 @@ services:
     container_name: dekoratoren-xpfrontend
     image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/decorator-next-prod:latest'
     ports:
-      - '8100:8100'
+      - '8100:8089'
     environment:
       XP_BASE_URL: 'http://localhost:3000'
       MIN_SIDE_URL: 'https://www.nav.no/minside'
       MIN_SIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver'
       ENONICXP_SERVICES: 'http://localhost:8080/_/service/'
       SEARCH_API_URL: 'https://navno-search-api.ekstern.dev.nav.no/content/decorator-search'
-      PORT: '8100'
+      PORT: '8089'
       NODE_ENV: 'production'
       CDN_URL: 'http://localhost:8100/public'
       APP_URL: 'http://localhost:8100'
@@ -36,6 +36,7 @@ services:
       PUZZEL_CUSTOMER_ID: 'C1302192-8BEC-4EA2-84AB-F4EDE8AC6230'
       VERSION_ID: 'asdf'
       APP_NAME: 'nav-dekoratoren'
+      MOCK_AUTH_LEVEL: '4'
 
 volumes:
   event-cache-data:
