@@ -36,7 +36,8 @@ services:
       PUZZEL_CUSTOMER_ID: 'C1302192-8BEC-4EA2-84AB-F4EDE8AC6230'
       VERSION_ID: 'asdf'
       APP_NAME: 'nav-dekoratoren'
-      MOCK_AUTH_LEVEL: '4'
+#     Set this to '3' or '4' to mock logged in state
+      MOCK_AUTH_LEVEL:
 
 volumes:
   event-cache-data:
