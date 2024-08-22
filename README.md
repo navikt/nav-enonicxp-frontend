@@ -25,11 +25,9 @@ Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://gith
 
 Kjør `npm run start-clean`
 
-### Docker compose
+### Andre lokale avhengigheter
 
-[Dekoratøren](https://github.com/navikt/nav-dekoratoren) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
-
-#### GAR
+[Dekoratøren](https://github.com/navikt/decorator-next) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
 
 ```
 gcloud auth login
