@@ -25,12 +25,9 @@ Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://gith
 
 Kjør `npm run start-clean`
 
-### Docker compose
+### Andre lokale avhengigheter
 
-[Dekoratøren](https://github.com/navikt/nav-dekoratoren), [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) og mocks for innlogging
-kan kjøres lokalt med `docker compose up`. Du må først autentisere til relevante image registries:
-
-#### GAR
+[Dekoratøren](https://github.com/navikt/decorator-next) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
 
 ```
 gcloud auth login
@@ -38,14 +35,6 @@ gcloud auth configure-docker europe-north1-docker.pkg.dev
 ```
 
 Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#gcloud-helper
-
-#### Github packages:
-
-Generer en token på Github med `read:packages` access og SSO auth for navikt. Bruk denne som passord ved login:
-
-```
-docker login ghcr.io
-```
 
 ## Deploy til test-miljø
 
