@@ -21,7 +21,7 @@ const withStore: Decorator = (Story) => (
 const meta = {
     component: SituationPage,
     decorators: [withStore],
-    //Ikke en komplett side.
+    //Ikke en komplett side. Ikke sikkert vi skal sette opp hele sider i storybook.
     //Bør kanskje finne en bedre måte å gjøre dette på om vi skal prøve å ha hele sider i storybook.
     //Sjekk ut: https://storybook.js.org/docs/writing-stories/build-pages-with-storybook
     args: {
