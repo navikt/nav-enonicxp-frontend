@@ -1,6 +1,6 @@
 import React from 'react';
 import { PayoutDatesProps } from 'types/content-props/payout-dates';
-import { PayoutDates } from 'components/_common/payout-dates/PayoutDates';
+import { PayoutDates } from 'components/_common/payoutDates/PayoutDates';
 import Config from 'config';
 import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
 
