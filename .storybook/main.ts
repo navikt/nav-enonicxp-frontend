@@ -19,7 +19,7 @@ const config: StorybookConfig = {
         options: {},
     },
 
-    webpackFinal: async (config, { configType }) => {
+    webpackFinal: async (config) => {
         const updatedConfig = {
             ...config,
             resolve: {
