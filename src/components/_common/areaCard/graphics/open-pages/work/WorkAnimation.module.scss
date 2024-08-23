@@ -1,5 +1,5 @@
-@use 'src/components/_common/areaCard/graphics/AreaCardGraphicsCommon.module' as areaGraphics;
-@use 'src/components/_common/areaCard/AreaCard.module' as areaCard;
+@use '../../AreaCardGraphicsCommon.module' as areaGraphics;
+@use '../../../AreaCard.module' as areaCard;
 
 .shapes {
     @include areaCard.transitionMixin;
