@@ -86,7 +86,7 @@ export type ToolsPageProps = ContentCommonProps & {
 
 export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
-    data: ProductDataMixin
+    data: ProductDataMixin;
     page: PageWithSideMenusProps;
 };
 

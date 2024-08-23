@@ -8,6 +8,8 @@
 
 # testing
 /coverage
+*storybook.log
+/storybook-static
 
 # next.js
 /.next/
