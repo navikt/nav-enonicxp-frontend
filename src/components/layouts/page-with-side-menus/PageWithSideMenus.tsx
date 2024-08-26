@@ -3,7 +3,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
-import { PageNavigationMenu } from 'components/_common/page-navigation-menu/PageNavigationMenu';
+import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
@@ -55,7 +55,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />

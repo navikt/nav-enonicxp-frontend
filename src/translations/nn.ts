@@ -64,6 +64,9 @@ const areas: { [key in Area]?: string } = {
 };
 
 export const translationsBundleNn: PartialTranslations = {
+    relatedContent,
+    taxonomies,
+    areas,
     stringParts: {
         conjunction: 'og',
         for: 'for',
@@ -77,9 +80,6 @@ export const translationsBundleNn: PartialTranslations = {
         lastChanged: 'Oppdatert',
         published: 'Publisert',
     },
-    linkPanels: {
-        label: 'Valpanel',
-    },
     linkList: {
         label: 'Liste av lenker',
     },
@@ -89,21 +89,22 @@ export const translationsBundleNn: PartialTranslations = {
         customizeContent: 'Tilpass innhald',
         showingInformationFor: 'Viser informasjon for:',
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
+        pressShortcuts: 'Snarvegar',
+        news: 'Nyheit',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     linkLists: {
-        news: 'Nyheiter',
         moreNews: 'Fleire nyheiter',
-        niceToKnow: 'Nyttig å vete',
-        shortcuts: 'Snarvegar',
-        label: 'Lenker',
     },
     currentTopic: {
         tag: 'Aktuelt',
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Sist endra',
-        linkedListDescription: 'Kapittel',
-        published: 'Publisert',
         tableOfContents: 'Innhaldsoversikt',
         contents: 'Innhald',
         news: 'Nyheiter',
@@ -144,9 +145,6 @@ export const translationsBundleNn: PartialTranslations = {
         STOTTEKONTAKT: 'Støttekontakt',
         TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
-    relatedContent,
-    taxonomies,
-    areas,
     products: {
         person: 'For privatpersonar',
         employer: 'For arbeidsgjevarar',
@@ -171,36 +169,15 @@ export const translationsBundleNn: PartialTranslations = {
         copyLinkTo: 'Kopier lenke til',
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
-    office: {
-        youFindUsHere: 'Du finn oss her',
-        chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
-        officeInformation: 'Kontorinformasjon',
-        closed: 'Stengt',
-        appointmentOnly: 'Kun timeavtale',
-        specialOpeningHours: 'Spesielle åpningstider',
-        address: 'Adresse',
-        youCanMakeAppointment: 'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
-        location: 'Plassering',
-        postalAddress: 'Postadresse',
-        orgNumber: 'Organisasjonsnummer',
-        officeNumber: 'Kontornummer',
-        phoneToNav: 'Telefonnummeret til NAV er',
-        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
-        phoneInformation:
-            'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
-        alternativeContacts: 'Andre kontaktopplysningar:',
-        taglineOffice: 'NAV-kontor',
-        taglineHMS: 'Hjelpemiddelsentral',
-    },
     overview: {
         noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
         search: 'Søk',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
+        resetFilters: 'Nullstill filter',
         any: 'Frå A til Å',
         more: 'Meir om',
-        resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
@@ -212,20 +189,7 @@ export const translationsBundleNn: PartialTranslations = {
             ariaItemExplanation: 'Vis type',
         },
     },
-    pressLanding: {
-        latestPressNews: 'Siste pressemeldingar og nyheiter',
-        morePressNews: 'Fleire pressemeldingar og nyheiter',
-        pressShortcuts: 'Snarvegar',
-        news: 'Nyheit',
-        press: 'Pressemelding',
-        published: 'Publisert',
-    },
-    pagination: {
-        goTo: 'Gå til',
-        ariaExplanation: 'Navigering av innhaldet med paginering',
-    },
     form: {
-        application: 'Søknad',
         back: 'Tilbake',
     },
     contactPoint: {
@@ -239,7 +203,7 @@ export const translationsBundleNn: PartialTranslations = {
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar.',
         },
         write: {
             title: 'Skriv til oss',
@@ -265,6 +229,21 @@ export const translationsBundleNn: PartialTranslations = {
             closedNow: 'Stengt no',
             seeMoreOptions: 'Sjå fleire telefonnummer og tasteval.',
         },
+    },
+    office: {
+        youFindUsHere: 'Du finn oss her',
+        officeInformation: 'Kontorinformasjon',
+        location: 'Plassering',
+        postalAddress: 'Postadresse',
+        orgNumber: 'Organisasjonsnummer',
+        officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
+        phoneInformation:
+            'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
+        alternativeContacts: 'Andre kontaktopplysningar:',
+        taglineOffice: 'NAV-kontor',
+        taglineHMS: 'Hjelpemiddelsentral',
     },
     dateTime: {
         weekDayNames: {

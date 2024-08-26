@@ -1,0 +1,20 @@
+.button {
+    &:global(.navds-button--primary),
+    &:global(.navds-button--danger) {
+        color: white;
+    }
+
+    &:global(.navds-button--danger) {
+        box-shadow: 0 0 0;
+
+        &:focus-visible {
+            box-shadow:
+                inset 0 0 0 1px
+                    var(
+                        --ac-button-primary-focus-border,
+                        var(--__ac-button-primary-focus-border, var(--a-surface-default))
+                    ),
+                var(--a-shadow-focus);
+        }
+    }
+}
