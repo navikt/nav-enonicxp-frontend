@@ -36,8 +36,9 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 )
             );
             logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                komponent: 'skjemaoversikt-fritekst-filter',
-                fritekst: value,
+                kategori: 'fritekst',
+                filternavn: value,
+                komponent: OverviewTextFilter.name,
             });
         }, 500),
         [setTextFilter]

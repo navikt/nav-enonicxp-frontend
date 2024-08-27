@@ -25,9 +25,10 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
-            komponent: 'skjemaoversikt-type-filter',
-            type: taxonomy,
+            kategori: 'type',
+            filternavn: taxonomy,
             opprinnelse: 'oversiktsside typer',
+            komponent: OverviewTaxonomyFilter.name,
         });
         setTaxonomyFilter(taxonomy);
     };

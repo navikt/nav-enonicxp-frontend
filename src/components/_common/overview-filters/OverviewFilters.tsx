@@ -50,7 +50,8 @@ const MobileView = ({
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
                                     logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                                        komponent: 'toggle-filter-mobil',
+                                        kategori: 'mobile-toggle',
+                                        komponent: MobileView.name,
                                         opprinnelse: 'oversiktsside filter mobil',
                                     });
                                 }}
