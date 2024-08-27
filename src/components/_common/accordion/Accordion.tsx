@@ -26,13 +26,13 @@ export const Accordion = ({ accordion }: AccordionProps) => {
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
-    const openChangeHandler = (isOpen: boolean, title: string, index: number) => {
-        if (isOpen) {
+    const openChangeHandler = (isOpening: boolean, title: string, index: number) => {
+        if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
         } else {
             setOpenAccordions(openAccordions.filter((i) => i !== index));
         }
-        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
+        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel: title,
             opprinnelse: 'trekkspill',
         });

@@ -90,6 +90,7 @@ export const FilterBar = ({ layoutProps }: Props) => {
                                     kategori: filter.categoryName,
                                     filternavn: filter.filterName,
                                     opprinnelse: 'innholdtekst',
+                                    komponent: 'FilterBar',
                                 });
                                 saveScrollPosition();
                                 toggleFilter(filter.id);

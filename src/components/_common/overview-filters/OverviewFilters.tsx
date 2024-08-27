@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FunnelIcon } from '@navikt/aksel-icons';
-import { Heading, Button } from '@navikt/ds-react';
+import { Button, Heading } from '@navikt/ds-react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
 import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
@@ -50,7 +50,9 @@ const MobileView = ({
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
                                     logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                                        kategori: 'mobile-toggle',
                                         opprinnelse: 'oversiktsside filter mobil',
+                                        komponent: 'MobileView',
                                     });
                                 }}
                                 className={style.mobileFilterButton}

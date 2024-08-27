@@ -26,8 +26,10 @@ export const OverviewAreaFilter = ({ items }: Props) => {
 
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
-            omrade: area,
+            kategori: 'område',
+            filternavn: area,
             opprinnelse: 'oversiktsside områder',
+            komponent: 'OverviewAreaFilter',
         });
         setAreaFilter(area);
     };
