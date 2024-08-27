@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
-import { MicroCard } from 'components/_common/card/MicroCard';
+import { MicroCard } from 'components/_common/card/MicroCard/MicroCard';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';

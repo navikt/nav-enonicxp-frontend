@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { MiniCardV2 } from 'components/_common/card/MiniCardV2';
+import { MiniCardV2 } from 'components/_common/card/MiniCardV2/MiniCardV2';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { usePageContentProps } from 'store/pageContext';
 import { stripXpPathPrefix } from 'utils/urls';
