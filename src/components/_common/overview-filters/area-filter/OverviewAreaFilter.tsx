@@ -29,7 +29,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
             kategori: 'område',
             filternavn: area,
             opprinnelse: 'oversiktsside områder',
-            komponent: OverviewAreaFilter.name,
+            komponent: 'OverviewAreaFilter',
         });
         setAreaFilter(area);
     };

@@ -51,8 +51,8 @@ const MobileView = ({
                                     setIsOpen(!isOpen);
                                     logAmplitudeEvent(AnalyticsEvents.FILTER, {
                                         kategori: 'mobile-toggle',
-                                        komponent: MobileView.name,
                                         opprinnelse: 'oversiktsside filter mobil',
+                                        komponent: 'MobileView',
                                     });
                                 }}
                                 className={style.mobileFilterButton}

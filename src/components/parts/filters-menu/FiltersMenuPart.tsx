@@ -69,8 +69,8 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
-            komponent: FiltersMenuPart.name,
             opprinnelse: 'filtermeny',
+            komponent: 'FiltersMenuPart',
         });
         toggleFilter(filter.id);
     };

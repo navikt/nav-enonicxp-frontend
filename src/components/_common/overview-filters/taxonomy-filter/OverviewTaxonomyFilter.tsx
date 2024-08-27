@@ -28,7 +28,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
             kategori: 'type',
             filternavn: taxonomy,
             opprinnelse: 'oversiktsside typer',
-            komponent: OverviewTaxonomyFilter.name,
+            komponent: 'OverviewTaxonomyFilter',
         });
         setTaxonomyFilter(taxonomy);
     };
