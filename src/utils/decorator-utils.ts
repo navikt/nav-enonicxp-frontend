@@ -92,8 +92,9 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ...(decoratorLanguage && { language: decoratorLanguage }),
         breadcrumbs:
             breadcrumbs?.map((crumb) => ({
-                handleInApp: true,
                 ...crumb,
+                handleInApp: true,
+                analyticsTitle: crumb.title,
             })) || [],
         availableLanguages: getDecoratorLanguagesParam(
             getContentLanguages(content),
