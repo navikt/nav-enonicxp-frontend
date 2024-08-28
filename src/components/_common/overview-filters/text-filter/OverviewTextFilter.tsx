@@ -17,7 +17,9 @@ type Props = {
 };
 
 const analyticsRedaction = (value: string) =>
-    isNaN(Number(value)) ? `tekst (${value.length})` : `nummer (${Math.log10(Number(value)) + 1})`;
+    isNaN(Number(value))
+        ? `tekst (${value.length})`
+        : `nummer (${Math.round(Math.log10(Number(value))) + 1})`;
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { setTextFilter } = useOverviewFilters();
