@@ -18,7 +18,7 @@ const orderedAreas: Area[] = [
 ];
 
 const analyticsAreas = {
-    [Area.ALL]: 'N/A',
+    [Area.ALL]: 'alle',
     [Area.WORK]: 'arbeid',
     [Area.HEALTH]: 'helse og sykdom',
     [Area.FAMILY]: 'familie og barn',
