@@ -16,6 +16,8 @@ type Props = {
     hideLabel?: boolean;
 };
 
+const analyticsRedaction = (value: string) =>
+    Number.isNaN(value) ? `tekst (${value.length})` : `nummer (${Math.log10(Number(value)) + 1})`;
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { setTextFilter } = useOverviewFilters();
     const { language } = usePageContentProps();
@@ -37,7 +39,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             );
             logAmplitudeEvent(AnalyticsEvents.FILTER, {
                 kategori: 'fritekst',
-                filternavn: value,
+                filternavn: analyticsRedaction(value),
                 komponent: 'OverviewTextFilter',
             });
         }, 500),
