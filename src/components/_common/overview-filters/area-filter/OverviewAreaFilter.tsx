@@ -17,6 +17,20 @@ const orderedAreas: Area[] = [
     Area.OTHER,
 ];
 
+const analyticsAreas = {
+    [Area.ALL]: 'N/A',
+    [Area.WORK]: 'arbeid',
+    [Area.HEALTH]: 'helse og sykdom',
+    [Area.FAMILY]: 'familie og barn',
+    [Area.PENSION]: 'pensjon',
+    [Area.SOCIAL_COUNSELLING]: 'sosiale tjenester',
+    [Area.ACCESSIBILITY]: 'hjelpemidler og tilrettelegging',
+    [Area.INCLUSION]: 'inkludering og tilrettelegging',
+    [Area.RECRUITMENT]: 'rekruttering',
+    [Area.DOWNSIZING]: 'permittering og nedbemanning',
+    [Area.OTHER]: 'på tvers',
+};
+
 type Props = {
     items: OverviewFilterableItem[];
 };
@@ -27,7 +41,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: 'område',
-            filternavn: area,
+            filternavn: analyticsAreas[area],
             opprinnelse: 'oversiktsside områder',
             komponent: 'OverviewAreaFilter',
         });

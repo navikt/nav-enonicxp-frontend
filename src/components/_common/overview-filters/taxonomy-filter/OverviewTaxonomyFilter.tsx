@@ -16,6 +16,19 @@ const orderedTaxonomies: ProductTaxonomy[] = [
     ProductTaxonomy.OTHER,
 ];
 
+const analyticsTaxonomi = {
+    [ProductTaxonomy.ALL]: 'N/A',
+    [ProductTaxonomy.BENEFITS]: 'pengestøtte',
+    [ProductTaxonomy.INSURANCE]: 'forsikring',
+    [ProductTaxonomy.MEASURES]: 'tiltak',
+    [ProductTaxonomy.SERVICE]: 'tjeneste',
+    [ProductTaxonomy.COUNSELLING]: 'veiledning',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'hjelpemiddel',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'pengestøtte til ansatt',
+    [ProductTaxonomy.REFUND]: 'refusjon',
+    [ProductTaxonomy.OTHER]: 'annet',
+};
+
 type Props = {
     items: OverviewFilterableItem[];
 };
@@ -26,7 +39,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: 'type',
-            filternavn: taxonomy,
+            filternavn: analyticsTaxonomi[taxonomy],
             opprinnelse: 'oversiktsside typer',
             komponent: 'OverviewTaxonomyFilter',
         });
