@@ -17,7 +17,7 @@ const orderedTaxonomies: ProductTaxonomy[] = [
 ];
 
 const analyticsTaxonomi = {
-    [ProductTaxonomy.ALL]: 'N/A',
+    [ProductTaxonomy.ALL]: 'alle',
     [ProductTaxonomy.BENEFITS]: 'pengestøtte',
     [ProductTaxonomy.INSURANCE]: 'forsikring',
     [ProductTaxonomy.MEASURES]: 'tiltak',
