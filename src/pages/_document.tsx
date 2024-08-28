@@ -1,14 +1,14 @@
 import React from 'react';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
-import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { DecoratorComponentsReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import { getDecoratorComponents } from 'srcCommon/decorator-utils-serverside';
 
 type DocumentProps = {
     language: Language;
-    Decorator: DecoratorComponents;
+    Decorator: DecoratorComponentsReact;
     isLegacyContentType: boolean;
 };
 
@@ -60,7 +60,6 @@ class MyDocument extends Document<DocumentProps> {
                 <Head>
                     {Decorator && (
                         <>
-                            <Decorator.Styles />
                             <Decorator.HeadAssets />
                         </>
                     )}
