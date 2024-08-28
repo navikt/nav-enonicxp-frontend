@@ -11,6 +11,7 @@ const config: StorybookConfig = {
         getAbsolutePath('@storybook/addon-interactions'),
         getAbsolutePath('@storybook/addon-mdx-gfm'),
         getAbsolutePath('@storybook/addon-storysource'),
+        getAbsolutePath('storybook-addon-pseudo-states'),
     ],
 
     framework: {

@@ -29,4 +29,16 @@ export const Illustration: Story = {
             data: { icons: [{ icon: { type: MediaType.Vector, mediaUrl: 'placeholder' } }] },
         },
     },
+    parameters: {
+        pseudo: { hover: true },
+    },
+};
+
+export const ProductHover: Story = {
+    args: {
+        ...Default.args,
+    },
+    parameters: {
+        pseudo: { hover: true },
+    },
 };
