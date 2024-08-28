@@ -34,3 +34,24 @@ export const ProductHover: Story = {
         pseudo: { hover: true },
     },
 };
+
+export const SituationHover: Story = {
+    args: { type: CardType.Situation },
+    parameters: {
+        pseudo: { hover: true },
+    },
+};
+
+export const ThemedArticleHover: Story = {
+    args: { type: CardType.ThemedArticle },
+    parameters: {
+        pseudo: { hover: true },
+    },
+};
+
+export const GuideHover: Story = {
+    args: { type: CardType.Guide },
+    parameters: {
+        pseudo: { hover: true },
+    },
+};
