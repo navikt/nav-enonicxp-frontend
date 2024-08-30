@@ -13,17 +13,22 @@ import newsIcon from '/public/gfx/news-paper-icon-black.svg';
 
 import style from './PressNewsItem.module.scss';
 
+type PressNewsItemProps = Pick<
+    ContentProps,
+    '_path' | 'language' | 'type' | 'displayName' | 'data' | 'publish' | 'createdTime'
+>;
+
 type Props = {
-    newsItem: ContentProps;
+    newsItem: PressNewsItemProps;
 };
 
 export const PressNewsItem = ({ newsItem }: Props) => {
-    const { language } = newsItem;
+    const { language, publish, createdTime } = newsItem;
     const getTranslations = translator('pressLanding', language);
 
-    const getTaglineElements = (newsItem: ContentProps) => {
+    const getTaglineElements = (newsItem: PressNewsItemProps) => {
         if (newsItem.type === ContentType.MainArticle) {
-            const isNews = newsItem.data.contentType === 'news';
+            const isNews = (newsItem.data as { contentType?: string }).contentType === 'news'; //TODO fix type
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
@@ -53,7 +58,7 @@ export const PressNewsItem = ({ newsItem }: Props) => {
                 <Detail className={style.publishDate}>
                     {getTranslations('published')}{' '}
                     {formatDate({
-                        datetime: getPublishedDateTime(newsItem),
+                        datetime: getPublishedDateTime({ publish, createdTime }),
                         language,
                         short: true,
                         year: true,
