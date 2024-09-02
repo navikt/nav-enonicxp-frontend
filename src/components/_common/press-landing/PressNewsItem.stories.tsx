@@ -38,3 +38,33 @@ export const News = {
         },
     },
 };
+
+export const English = { args: { newsItem: { ...meta.args.newsItem, language: 'en' } } };
+
+export const EnglishNews = {
+    args: {
+        newsItem: {
+            ...News.args.newsItem,
+            language: 'en',
+            data: {
+                ...meta.args.newsItem.data,
+                contentType: 'news',
+            },
+        },
+    },
+};
+
+export const Nynorsk = { args: { newsItem: { ...meta.args.newsItem, language: 'nn' } } };
+
+export const NynorskNews = {
+    args: {
+        newsItem: {
+            ...News.args.newsItem,
+            language: 'nn',
+            data: {
+                ...meta.args.newsItem.data,
+                contentType: 'news',
+            },
+        },
+    },
+};
