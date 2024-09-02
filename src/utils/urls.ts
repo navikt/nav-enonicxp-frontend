@@ -100,8 +100,7 @@ export function getMediaUrl(url: string | undefined, isEditorView: boolean) {
     );
 }
 
-export const getPublicPathname = (content: Pick<ContentProps, '_path'>) =>
-    stripXpPathPrefix(content._path); //TODO send inn kun path?
+export const getPublicPathname = (_path: string) => stripXpPathPrefix(_path);
 
 export const isUUID = (id: string) =>
     id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
