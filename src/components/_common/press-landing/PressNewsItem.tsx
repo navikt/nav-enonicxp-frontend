@@ -7,6 +7,7 @@ import { getPublicPathname } from 'utils/urls';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { ArticleContentType } from 'types/content-props/main-article-props';
 
 import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
 import newsIcon from '/public/gfx/news-paper-icon-black.svg';
@@ -28,7 +29,8 @@ export const PressNewsItem = ({ newsItem }: Props) => {
 
     const getTaglineElements = (newsItem: PressNewsItemProps) => {
         if (newsItem.type === ContentType.MainArticle) {
-            const isNews = (newsItem.data as { contentType?: string }).contentType === 'news';
+            const isNews =
+                (newsItem.data as { contentType?: ArticleContentType }).contentType === 'news';
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
