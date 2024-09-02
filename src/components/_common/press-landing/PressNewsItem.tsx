@@ -28,8 +28,7 @@ export const PressNewsItem = ({ newsItem }: Props) => {
 
     const getTaglineElements = (newsItem: PressNewsItemProps) => {
         if (newsItem.type === ContentType.MainArticle) {
-            const isNews = (newsItem.data as { contentType?: string }).contentType === 'news'; //TODO fix type
-            //TODO brukes news på denne siden i det hele tatt? Kan dette og ikonet fjernes?
+            const isNews = (newsItem.data as { contentType?: string }).contentType === 'news';
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
