@@ -1,4 +1,3 @@
-import { ContentProps } from 'types/content-props/_content-common';
 import { logger } from 'srcCommon/logger';
 
 export const appOriginProd = 'https://www.nav.no';
