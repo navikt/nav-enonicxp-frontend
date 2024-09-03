@@ -38,12 +38,13 @@ export const Expandable = ({
         },
     });
 
-    const toggleExpandCollapse = () => {
-        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
-            tittel: title,
+    const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
+        setIsOpen(isOpening);
+        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+            tittel,
             opprinnelse: analyticsOriginTag,
+            komponent: 'Expandable',
         });
-        setIsOpen(!isOpen);
     };
 
     const checkAndOpenPanel = () => {
@@ -113,7 +114,7 @@ export const Expandable = ({
             id={anchorId}
             className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
             ref={accordionRef}
-            onToggle={toggleExpandCollapse}
+            onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
             aria-label={ariaLabel || title}
         >

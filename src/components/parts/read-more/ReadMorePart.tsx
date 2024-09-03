@@ -27,11 +27,12 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
         return <EditorHelp text={'Legg inn tittel og beskrivelse for "les mer".'} type={'error'} />;
     }
 
-    const openChangeHandler = (isOpen: boolean, _title: string) => {
-        setIsOpen(isOpen);
-        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
-            tittel: _title,
+    const openChangeHandler = (isOpening: boolean, tittel: string) => {
+        setIsOpen(isOpening);
+        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+            tittel,
             opprinnelse: 'lesmer',
+            komponent: 'ReadMore',
         });
     };
 
