@@ -24,13 +24,12 @@ type Props = {
 };
 
 export const PressNewsItem = ({ newsItem }: Props) => {
-    const { language, publish, createdTime } = newsItem;
+    const { language, publish, createdTime, _path, displayName, data } = newsItem;
     const getTranslations = translator('pressLanding', language);
 
-    const getTaglineElements = (newsItem: PressNewsItemProps) => {
-        if (newsItem.type === ContentType.MainArticle) {
-            const isNews =
-                (newsItem.data as { contentType?: ArticleContentType }).contentType === 'news';
+    const getTaglineElements = ({ type, data }: PressNewsItemProps) => {
+        if (type === ContentType.MainArticle) {
+            const isNews = (data as { contentType?: ArticleContentType }).contentType === 'news';
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
@@ -41,14 +40,14 @@ export const PressNewsItem = ({ newsItem }: Props) => {
     const { icon, tagName } = getTaglineElements(newsItem);
 
     return (
-        <li key={newsItem._path} className={style.newsItem}>
-            <LenkeBase href={getPublicPathname(newsItem._path)}>
+        <li key={_path} className={style.newsItem}>
+            <LenkeBase href={getPublicPathname(_path)}>
                 <Heading level={'3'} size={'medium'}>
-                    {newsItem.displayName}
+                    {displayName}
                 </Heading>
             </LenkeBase>
-            {newsItem.data?.ingress && (
-                <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
+            {data?.ingress && (
+                <div className={style.ingress}>{shortenText(data.ingress, 240, 30)}</div>
             )}
             <div className={style.newsTagline}>
                 {icon && <StaticImage imageData={icon} />}
