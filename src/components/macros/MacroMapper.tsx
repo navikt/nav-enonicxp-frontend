@@ -7,7 +7,6 @@ import { MacroTall } from 'components/macros/tall/MacroTall';
 import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
 import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
 import { MacroButton } from './button/MacroButton';
-import { MacroButtonBlue } from './button-blue/MacroButtonBlue';
 import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLinkExternal';
 import { MacroChevronLinkInternal } from './chevron-link-internal/MacroChevronLinkInternal';
 import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
@@ -35,7 +34,7 @@ const macroComponents: {
 } = {
     [MacroType.AlertBox]: MacroAlertBox,
     [MacroType.Button]: MacroButton,
-    [MacroType.ButtonBlue]: MacroButtonBlue,
+    [MacroType.ButtonBlue]: MacroButton,
     [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.ChatbotLink]: MacroChatbotLink,
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
