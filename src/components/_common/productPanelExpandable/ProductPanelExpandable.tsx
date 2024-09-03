@@ -63,23 +63,29 @@ export const ProductPanelExpandable = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleClick = () => {
-        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
-            tittel: header,
+    const handleClick = (isOpening: boolean, tittel: string) => {
+        setIsOpen(isOpening);
+        contentLoaderCallback?.();
+        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+            tittel,
+            opprinnelse: 'produktdetalj',
+            komponent: 'ProductPanelExpandable',
             ...analyticsData,
         });
-
-        setIsOpen(!isOpen);
-        contentLoaderCallback?.();
     };
 
     return (
-        <ExpansionCard open={isOpen} className={style.expandable} id={anchorId} aria-label={header}>
+        <ExpansionCard
+            className={style.expandable}
+            id={anchorId}
+            open={isOpen}
+            onToggle={(isOpen) => handleClick(isOpen, header)}
+            aria-label={header}
+        >
             <ExpansionCard.Header
-                onClick={handleClick}
+                className={style.expandableHeader}
                 onMouseOver={contentLoaderCallback}
                 onFocus={contentLoaderCallback}
-                className={style.expandableHeader}
             >
                 <IllustrationStatic className={style.illustration} illustration={illustration} />
                 <span className={style.panelHeader}>
