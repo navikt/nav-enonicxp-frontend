@@ -24,7 +24,7 @@ type Props = {
 };
 
 export const PressNewsItem = ({ newsItem }: Props) => {
-    const { language, publish, createdTime, _path, displayName, data } = newsItem;
+    const { _path, language, displayName, data, publish, createdTime } = newsItem;
     const getTranslations = translator('pressLanding', language);
 
     const getTaglineElements = ({ type, data }: PressNewsItemProps) => {
