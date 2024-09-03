@@ -63,7 +63,7 @@ export const ProductPanelExpandable = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleClick = (isOpening: boolean, tittel: string) => {
+    const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         contentLoaderCallback?.();
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
@@ -79,7 +79,7 @@ export const ProductPanelExpandable = ({
             className={style.expandable}
             id={anchorId}
             open={isOpen}
-            onToggle={(isOpen) => handleClick(isOpen, header)}
+            onToggle={(isOpen) => toggleExpandCollapse(isOpen, header)}
             aria-label={header}
         >
             <ExpansionCard.Header
