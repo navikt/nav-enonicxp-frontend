@@ -42,7 +42,7 @@ export const Expandable = ({
         setIsOpen(isOpening);
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
-            opprinnelse: analyticsOriginTag,
+            opprinnelse: analyticsOriginTag || 'utvidbar tekst',
             komponent: 'Expandable',
         });
     };
