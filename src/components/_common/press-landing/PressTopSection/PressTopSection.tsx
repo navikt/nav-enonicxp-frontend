@@ -8,8 +8,8 @@ type PressTopSectionProps = {
     page: {
         displayName: PressLandingPageProps['displayName'];
         data: {
-            pressCall: PressLandingPageProps['data']['pressCall'];
-            title: PressLandingPageProps['data']['title'];
+            pressCall?: PressLandingPageProps['data']['pressCall'];
+            title?: PressLandingPageProps['data']['title'];
         };
     };
 };
