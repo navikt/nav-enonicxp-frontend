@@ -5,8 +5,12 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import styles from './PressTopSection.module.scss';
 
 type PressTopSectionProps = {
-    page: Pick<PressLandingPageProps, 'displayName' | 'data'> & {
-        data: Pick<PressLandingPageProps['data'], 'pressCall' | 'title'>;
+    page: {
+        displayName: PressLandingPageProps['displayName'];
+        data: {
+            pressCall: PressLandingPageProps['data']['pressCall'];
+            title: PressLandingPageProps['data']['title'];
+        };
     };
 };
 
