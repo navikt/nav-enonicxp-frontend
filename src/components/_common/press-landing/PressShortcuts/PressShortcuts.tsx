@@ -5,18 +5,16 @@ import { getPublicPathname } from 'utils/urls';
 
 import styles from './PressShortcuts.module.scss';
 
-type SectionContent = {
-    _path: PressLandingPageProps['_path'];
-    displayName: PressLandingPageProps['displayName'];
-};
-
 type PressShortcutsProps = {
     page: {
         language: PressLandingPageProps['language'];
         data: {
             shortcuts?: {
                 data?: {
-                    sectionContents?: Array<SectionContent>;
+                    sectionContents?: Array<{
+                        _path: PressLandingPageProps['_path'];
+                        displayName: PressLandingPageProps['displayName'];
+                    }>;
                 };
             };
         };
