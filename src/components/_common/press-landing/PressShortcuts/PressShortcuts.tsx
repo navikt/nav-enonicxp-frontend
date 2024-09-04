@@ -1,5 +1,4 @@
 import { Heading, LinkPanel } from '@navikt/ds-react';
-import { ContentAndMediaCommonProps } from 'types/content-props/_content-common';
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
 import { translator } from 'translations';
 import { getPublicPathname } from 'utils/urls';
@@ -7,8 +6,8 @@ import { getPublicPathname } from 'utils/urls';
 import styles from './PressShortcuts.module.scss';
 
 type SectionContent = {
-    _path: ContentAndMediaCommonProps['_path'];
-    displayName: ContentAndMediaCommonProps['displayName'];
+    _path: PressLandingPageProps['_path'];
+    displayName: PressLandingPageProps['displayName'];
 };
 
 type PressShortcutsProps = {
