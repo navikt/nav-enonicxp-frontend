@@ -5,8 +5,22 @@ import { getPublicPathname } from 'utils/urls';
 
 import styles from './PressShortcuts.module.scss';
 
+type SectionContent = {
+    _path: string;
+    displayName: string;
+};
+
 type PressShortcutsProps = {
-    page: PressLandingPageProps;
+    page: {
+        language: PressLandingPageProps['language'];
+        data: {
+            shortcuts?: {
+                data?: {
+                    sectionContents?: Array<SectionContent>;
+                };
+            };
+        };
+    };
 };
 
 export const PressShortcuts = (props: PressShortcutsProps) => {
