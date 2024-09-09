@@ -213,6 +213,16 @@ const config = {
             destination: `${process.env.APP_ORIGIN}/no/nav-og-samfunn/samarbeid/for-kommunen/digisos/til-kommuner-som-onsker-a-ta-i-bruk-digital-soknad-om-okonomisk-sosialhjelp/Håndbok for innføring av digital søknad %2800B%29 12.12.19.pdf`,
             permanent: false,
         },
+        // /_/* should point to XP services. Redirect only if XP is on a different origin
+        ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: `${process.env.XP_ORIGIN}/_/:path*`,
+                      permanent: false,
+                  },
+              ]
+            : []),
     ],
     rewrites: async () => [
         {
@@ -249,15 +259,6 @@ const config = {
             source: '/feilside',
             destination: '/404',
         },
-        // /_/* should point to XP services. Rewrite only if XP is on a different origin
-        ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
-            ? [
-                  {
-                      source: '/_/:path*',
-                      destination: `${process.env.XP_ORIGIN}/_/:path*`,
-                  },
-              ]
-            : []),
         ...(isLocal
             ? [
                   {
