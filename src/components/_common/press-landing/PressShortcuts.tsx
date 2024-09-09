@@ -6,7 +6,7 @@ import { getPublicPathname } from 'utils/urls';
 import styles from './PressShortcuts.module.scss';
 
 type PressShortcutsProps = {
-    page: PressLandingPageProps;
+    page: Pick<PressLandingPageProps, 'language' | 'data'>;
 };
 
 export const PressShortcuts = (props: PressShortcutsProps) => {
