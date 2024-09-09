@@ -11,9 +11,9 @@ type Props = {
     NextImageProps;
 
 export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
-    const imageUrl = getMediaUrl(imageProps.mediaUrl, !!editorView);
+    const imageUrl = getMediaUrl(imageProps.mediaUrl, !!editorView, language);
     if (!imageUrl) {
         return null;
     }
