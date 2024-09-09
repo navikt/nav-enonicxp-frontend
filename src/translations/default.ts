@@ -298,7 +298,7 @@ export const translationsBundleNb = {
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
         contentTypeChangedWarning: (type: string) =>
-            `Obs! Denne siden var opprinnelig av typen "${type}". Den inneholder versjonshistorikk og skal derfor ikke slettes. Innholdet bør endres tilbake til opprinnelig innholdstype før arkivering.`,
+            `Obs! Denne siden var opprinnelig en "${type}" og inneholder versjonshistorikk. Den skal derfor «ikke slettes». Hvis du ønsker å se tidligere versjoner av innholdet, kan du bruke funksjonen “Vis historisk innhold” nedenfor.`,
         layerRedirectWarning: (layer: string) =>
             `Obs! Denne siden er satt som redirect til språkversjonen for "${layer}". Husk å velge riktig språkversjon hvis du skal redigere.`,
     },
