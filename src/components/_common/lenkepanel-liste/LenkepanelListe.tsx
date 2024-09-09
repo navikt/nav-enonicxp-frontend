@@ -10,7 +10,6 @@ type Props = {
     title?: string;
     ingress?: string;
     items?: LinkPanel[];
-    className?: string;
 };
 
 export const LenkepanelListe = ({ title, ingress, items }: Props) => {
