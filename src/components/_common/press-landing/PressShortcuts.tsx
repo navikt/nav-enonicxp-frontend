@@ -30,7 +30,7 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                         return (
                             <li key={shortcut._path}>
                                 <LinkPanel
-                                    href={getPublicPathname(shortcut)}
+                                    href={getPublicPathname({ _path: shortcut._path })}
                                     className={styles.shortcutItem}
                                 >
                                     {shortcut.displayName}
