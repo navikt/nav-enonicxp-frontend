@@ -29,8 +29,8 @@ export const PressNewsItem = ({ newsItem }: Props) => {
     const getTranslations = translator('pressLanding', language);
 
     const getTaglineElements = ({ newsItem }: Props) => {
-        if (newsItem.type === ContentType.MainArticle && hasContentType(newsItem.data)) {
-            const isNews = newsItem.data.contentType === 'news';
+        if (newsItem.type === ContentType.MainArticle) {
+            const isNews = hasContentType(newsItem.data) && newsItem.data.contentType === 'news';
             const icon = isNews ? newsIcon : pressIcon;
             const tagName = getTranslations(isNews ? 'news' : 'press');
             return { icon, tagName };
