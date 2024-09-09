@@ -16,7 +16,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     // These paths should never redirect, to ensure the site will load correctly
     // when accessed from the Content Studio editor
     expressApp.all(
-        ['/draft/*', '/archive/*', '/editor/*', '/_next/*', '/gfx/*', '/api/*'],
+        ['/draft/*', '/archive/*', '/editor/*', '/_next/*', '/gfx/*', '/api/*', '/_/*'],
         (req, res) => {
             return nextRequestHandler(req, res);
         }
