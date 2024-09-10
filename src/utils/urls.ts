@@ -108,7 +108,7 @@ export function getMediaUrl(
         return undefined;
     }
 
-    return transformToXpLayerUrl(url, language).replace(
+    return transformToXpLayerUrl(url, isEditorView, language).replace(
         internalUrlPrefixPattern,
         isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin
     );
@@ -143,8 +143,9 @@ export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
 
 // Direct links to XP assets or services should point to the appropriate layer for the specified language
 // The /_/<language> repo mappings are defined in the vhost config on the XP servers
-export const transformToXpLayerUrl = (url: string, language: Language) => {
+export const transformToXpLayerUrl = (url: string, isEditorView: boolean, language: Language) => {
+    const path = getInternalRelativePath(url, isEditorView);
     const layer = pageLanguageToLayerLanguage[language];
 
-    return layer ? url.replace('/_', `/_/${layer}`) : url;
+    return layer ? path.replace(/^\/_/, `/_/${layer}`) : path;
 };

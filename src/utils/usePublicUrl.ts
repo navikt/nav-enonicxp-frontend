@@ -17,7 +17,7 @@ export const usePublicUrl = (href: string): ReturnValue => {
 
     if (isXpUrl(href)) {
         return {
-            url: transformToXpLayerUrl(href, language),
+            url: transformToXpLayerUrl(href, !!editorView, language),
             canRouteClientSide: false,
         };
     }
