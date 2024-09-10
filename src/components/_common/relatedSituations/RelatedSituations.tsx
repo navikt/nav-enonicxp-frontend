@@ -11,7 +11,9 @@ import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 import style from './RelatedSituations.module.scss';
 
 type Props = {
-    relatedSituations: SituationPageProps[];
+    relatedSituations: (Pick<SituationPageProps, '_id' | '_path' | 'displayName'> & {
+        data: Pick<SituationPageProps['data'], 'title'>;
+    })[];
     title: string;
     description: string;
 };
@@ -40,7 +42,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
             </BodyLong>
             <ul className={style.situationsList}>
                 {relatedSituations.map((situation) => {
-                    const { tagline } = getCardProps(situation, page?.config) || {};
+                    // const { tagline } = getCardProps(situation, page?.config) || {};
 
                     return (
                         <li key={situation._id}>
@@ -50,7 +52,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                                     text: situation.data.title || situation.displayName,
                                 }}
                                 type={CardType.Situation}
-                                tagline={tagline}
+                                // tagline={tagline}
                                 className={style.card}
                             />
                         </li>
