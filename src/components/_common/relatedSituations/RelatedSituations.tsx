@@ -11,18 +11,18 @@ import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 import style from './RelatedSituations.module.scss';
 
 type Props = {
+    title: string;
+    description: string;
     relatedSituations: (Pick<SituationPageProps, '_id' | '_path' | 'displayName'> & {
         data: Pick<SituationPageProps['data'], 'title'>;
     })[];
-    title: string;
-    description: string;
 };
 
 export const getAnchorId = (test: string) => {
     return test.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens and make lowercase
 };
 
-export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
+export const RelatedSituations = ({ title, description, relatedSituations }: Props) => {
     const { language, editorView, page } = usePageContentProps();
 
     const getStringPart = translator('related', language);

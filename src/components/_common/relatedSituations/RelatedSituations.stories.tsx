@@ -12,11 +12,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
+        title: 'Related situations',
+        description: 'Beskrivelse av relaterte situasjoner',
         relatedSituations: [
             { _id: '1', _path: '', displayName: 'test', data: { title: 'En situasjon' } },
             { _id: '2', _path: '', displayName: 'test', data: { title: 'En annen situasjon' } },
         ],
-        title: 'Related situations',
-        description: 'Beskrivelse av relaterte situasjoner',
     },
 };
