@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
@@ -18,6 +18,8 @@ export type PartConfigReadMore = {
 
 export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
     const [isOpen, setIsOpen] = useState(false);
+    const divRef = useRef<HTMLDivElement | null>(null);
+
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
         callback: () => setIsOpen(true),
@@ -29,6 +31,21 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
+
+        console.log('openChangeHandler', isOpening, tittel, divRef.current);
+
+        if (!isOpening && divRef.current) {
+            const verticalPosition = divRef.current.getBoundingClientRect().top;
+            console.log(
+                `Read more "${tittel}" is being closed. Vertical position: ${verticalPosition}px`
+            );
+            if (verticalPosition < 0) {
+                window.scrollBy({
+                    top: verticalPosition,
+                    behavior: 'instant',
+                });
+            }
+        }
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'lesmer',
@@ -39,15 +56,18 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const { title, html } = config;
 
     return (
-        <ReadMore
-            header={title}
-            open={isOpen}
-            onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
-            className={styles.readMore}
-        >
-            <div className={classNames(defaultHtml.html, 'parsedHtml')}>
-                <ParsedHtml htmlProps={html} />
-            </div>
-        </ReadMore>
+        <div ref={divRef}>
+            <ReadMore
+                header={title}
+                open={isOpen}
+                onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
+                className={styles.readMore}
+            >
+                {/* ref={refmao} */}
+                <div className={classNames(defaultHtml.html, 'parsedHtml')}>
+                    <ParsedHtml htmlProps={html} />
+                </div>
+            </ReadMore>
+        </div>
     );
 };
