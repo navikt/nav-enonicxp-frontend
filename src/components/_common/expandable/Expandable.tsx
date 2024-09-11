@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
-import { handleScrollPosition } from 'components/_common/accordion/Accordion';
+import { handleStickyScrollOffset } from 'components/_common/accordion/Accordion';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
@@ -41,7 +41,7 @@ export const Expandable = ({
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        handleScrollPosition(isOpening, accordionRef.current);
+        handleStickyScrollOffset(isOpening, accordionRef.current);
 
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,

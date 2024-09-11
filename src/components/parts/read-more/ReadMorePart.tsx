@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { handleScrollPosition } from 'components/_common/accordion/Accordion';
+import { handleStickyScrollOffset } from 'components/_common/accordion/Accordion';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -32,7 +32,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        handleScrollPosition(isOpening, divRef.current);
+        handleStickyScrollOffset(isOpening, divRef.current);
 
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,

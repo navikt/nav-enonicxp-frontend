@@ -14,7 +14,7 @@ import styles from './Accordion.module.scss';
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
-export const handleScrollPosition = (isOpening: boolean, current: HTMLDivElement | null) => {
+export const handleStickyScrollOffset = (isOpening: boolean, current: HTMLDivElement | null) => {
     if (!isOpening && current) {
         const verticalPosition = current.getBoundingClientRect().top;
         if (verticalPosition < 0) {
@@ -41,7 +41,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
-        handleScrollPosition(isOpening, itemRefs.current[index]);
+        handleStickyScrollOffset(isOpening, itemRefs.current[index]);
 
         if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
