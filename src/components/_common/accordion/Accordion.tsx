@@ -51,19 +51,6 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         });
     };
 
-    const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
-        if (!isOpening && itemRefs.current[index]) {
-            const verticalPosition = itemRefs.current[index].getBoundingClientRect().top;
-            if (verticalPosition < 0) {
-                window.scrollBy({
-                    top: verticalPosition,
-                    behavior: 'instant',
-                });
-            }
-        }
-        openChangeHandler(isOpening, tittel, index);
-    };
-
     useEffect(() => {
         const anchorHash = window.location.hash || '';
         const matchingAccordion = accordion.findIndex(
