@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -15,6 +15,8 @@ type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
     const { editorView } = usePageContentProps();
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
@@ -27,6 +29,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
+        console.log('openChangeHandler', isOpening, tittel, index);
         if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
         } else {
@@ -37,6 +40,20 @@ export const Accordion = ({ accordion }: AccordionProps) => {
             opprinnelse: 'trekkspill',
             komponent: 'Accordion',
         });
+    };
+
+    const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
+        if (!isOpening && itemRefs.current[index]) {
+            const verticalPosition = itemRefs.current[index].getBoundingClientRect().top;
+            console.log(
+                `Accordion item "${tittel}" is being closed. Vertical position: ${verticalPosition}px`
+            );
+            window.scrollBy({
+                top: verticalPosition,
+                behavior: 'instant',
+            });
+        }
+        openChangeHandler(isOpening, tittel, index);
     };
 
     useEffect(() => {
@@ -63,7 +80,10 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         key={index}
                         className={styles.item}
                         open={openAccordions.includes(index)}
-                        onOpenChange={(open) => openChangeHandler(open, item.title, index)}
+                        onOpenChange={(open) => handleOpenChange(open, item.title, index)}
+                        ref={(el) => {
+                            itemRefs.current[index] = el;
+                        }}
                     >
                         <DSAccordion.Header className={styles.header} id={item.anchorId}>
                             {!isValid && (
