@@ -40,6 +40,17 @@ export const Expandable = ({
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
+
+        if (!isOpening && accordionRef.current) {
+            const verticalPosition = accordionRef.current.getBoundingClientRect().top;
+            if (verticalPosition < 0) {
+                window.scrollBy({
+                    top: verticalPosition,
+                    behavior: 'instant',
+                });
+            }
+        }
+
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
