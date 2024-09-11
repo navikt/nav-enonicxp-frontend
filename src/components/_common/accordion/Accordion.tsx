@@ -7,24 +7,13 @@ import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
+import { handleStickyScrollOffset } from 'utils/scroll-to';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
 
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
-
-export const handleStickyScrollOffset = (isOpening: boolean, current: HTMLDivElement | null) => {
-    if (!isOpening && current) {
-        const verticalPosition = current.getBoundingClientRect().top;
-        if (verticalPosition < 0) {
-            window.scrollBy({
-                top: verticalPosition,
-                behavior: 'instant',
-            });
-        }
-    }
-};
 
 export const Accordion = ({ accordion }: AccordionProps) => {
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
