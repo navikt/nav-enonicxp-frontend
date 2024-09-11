@@ -1,5 +1,7 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { logger } from 'srcCommon/logger';
+import { Language } from 'translations';
+import { pageLanguageToLayerLanguage } from './languages';
 
 export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
@@ -91,10 +93,22 @@ export const getInternalAbsoluteUrl = (url: string, isEditorView: boolean) => {
 };
 
 // Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
-export function getMediaUrl(url: string, isEditorView: boolean): string;
-export function getMediaUrl(url: string | undefined, isEditorView: boolean): string | undefined;
-export function getMediaUrl(url: string | undefined, isEditorView: boolean) {
-    return url?.replace(
+export function getMediaUrl(url: string, isEditorView: boolean, language?: Language): string;
+export function getMediaUrl(
+    url: string | undefined,
+    isEditorView: boolean,
+    language?: Language
+): string | undefined;
+export function getMediaUrl(
+    url: string | undefined,
+    isEditorView: boolean,
+    language: Language = 'no'
+) {
+    if (!url) {
+        return undefined;
+    }
+
+    return transformToXpLayerUrl(url, isEditorView, language).replace(
         internalUrlPrefixPattern,
         isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin
     );
@@ -125,4 +139,13 @@ export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const path = `/${typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')}`;
 
     return `${xpContentPathPrefix}${path}`;
+};
+
+// Direct links to XP assets or services should point to the appropriate layer for the specified language
+// The /_/<language> repo mappings are defined in the vhost config on the XP servers
+export const transformToXpLayerUrl = (url: string, isEditorView: boolean, language: Language) => {
+    const path = getInternalRelativePath(url, isEditorView);
+    const layer = pageLanguageToLayerLanguage[language];
+
+    return layer ? path.replace(/^\/_/, `/_/${layer}`) : path;
 };
