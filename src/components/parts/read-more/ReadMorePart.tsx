@@ -32,13 +32,8 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
 
-        console.log('openChangeHandler', isOpening, tittel, divRef.current);
-
         if (!isOpening && divRef.current) {
             const verticalPosition = divRef.current.getBoundingClientRect().top;
-            console.log(
-                `Read more "${tittel}" is being closed. Vertical position: ${verticalPosition}px`
-            );
             if (verticalPosition < 0) {
                 window.scrollBy({
                     top: verticalPosition,
@@ -46,6 +41,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
                 });
             }
         }
+
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'lesmer',
@@ -63,7 +59,6 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
                 onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
                 className={styles.readMore}
             >
-                {/* ref={refmao} */}
                 <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                     <ParsedHtml htmlProps={html} />
                 </div>
