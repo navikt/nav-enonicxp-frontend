@@ -14,7 +14,7 @@ import styles from './Accordion.module.scss';
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
-const handleScrollPosition = (isOpening: boolean, current: HTMLDivElement | null) => {
+export const handleScrollPosition = (isOpening: boolean, current: HTMLDivElement | null) => {
     if (!isOpening && current) {
         const verticalPosition = current.getBoundingClientRect().top;
         if (verticalPosition < 0) {
