@@ -14,6 +14,18 @@ import styles from './Accordion.module.scss';
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
+const handleScrollPosition = (isOpening: boolean, current: HTMLDivElement | null) => {
+    if (!isOpening && current) {
+        const verticalPosition = current.getBoundingClientRect().top;
+        if (verticalPosition < 0) {
+            window.scrollBy({
+                top: verticalPosition,
+                behavior: 'instant',
+            });
+        }
+    }
+};
+
 export const Accordion = ({ accordion }: AccordionProps) => {
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -29,15 +41,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
-        if (!isOpening && itemRefs.current[index]) {
-            const verticalPosition = itemRefs.current[index].getBoundingClientRect().top;
-            if (verticalPosition < 0) {
-                window.scrollBy({
-                    top: verticalPosition,
-                    behavior: 'instant',
-                });
-            }
-        }
+        handleScrollPosition(isOpening, itemRefs.current[index]);
 
         if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
