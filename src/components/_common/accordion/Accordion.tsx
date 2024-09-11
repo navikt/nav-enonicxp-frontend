@@ -48,10 +48,12 @@ export const Accordion = ({ accordion }: AccordionProps) => {
             console.log(
                 `Accordion item "${tittel}" is being closed. Vertical position: ${verticalPosition}px`
             );
-            window.scrollBy({
-                top: verticalPosition,
-                behavior: 'instant',
-            });
+            if (verticalPosition < 0) {
+                window.scrollBy({
+                    top: verticalPosition,
+                    behavior: 'instant',
+                });
+            }
         }
         openChangeHandler(isOpening, tittel, index);
     };
