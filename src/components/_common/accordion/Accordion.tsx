@@ -29,7 +29,16 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
-        console.log('openChangeHandler', isOpening, tittel, index);
+        if (!isOpening && itemRefs.current[index]) {
+            const verticalPosition = itemRefs.current[index].getBoundingClientRect().top;
+            if (verticalPosition < 0) {
+                window.scrollBy({
+                    top: verticalPosition,
+                    behavior: 'instant',
+                });
+            }
+        }
+
         if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
         } else {
@@ -45,9 +54,6 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
         if (!isOpening && itemRefs.current[index]) {
             const verticalPosition = itemRefs.current[index].getBoundingClientRect().top;
-            console.log(
-                `Accordion item "${tittel}" is being closed. Vertical position: ${verticalPosition}px`
-            );
             if (verticalPosition < 0) {
                 window.scrollBy({
                     top: verticalPosition,
@@ -82,7 +88,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         key={index}
                         className={styles.item}
                         open={openAccordions.includes(index)}
-                        onOpenChange={(open) => handleOpenChange(open, item.title, index)}
+                        onOpenChange={(open) => openChangeHandler(open, item.title, index)}
                         ref={(el) => {
                             itemRefs.current[index] = el;
                         }}
