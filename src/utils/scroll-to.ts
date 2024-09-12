@@ -27,7 +27,7 @@ export const handleStickyScrollOffset = (isOpening: boolean, current: HTMLDivEle
         const verticalPosition = current.getBoundingClientRect().top;
         if (verticalPosition < 0) {
             window.scrollBy({
-                top: verticalPosition,
+                top: verticalPosition - 80,
                 behavior: 'instant',
             });
         }
