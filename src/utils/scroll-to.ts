@@ -23,7 +23,7 @@ export const smoothScrollToTarget = (targetId: string, offset = 0) => {
 };
 
 const getHeaderOffset = (): number => {
-    const fallbackHeaderHeight = 80;
+    const fallbackHeaderHeight = 72;
     const headerElement = document.getElementById('decorator-header') as HTMLElement;
 
     if (headerElement) {
