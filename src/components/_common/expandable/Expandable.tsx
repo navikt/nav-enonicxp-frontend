@@ -3,10 +3,9 @@ import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
-import { smoothScrollToTarget } from 'utils/scroll-to';
+import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { handleStickyScrollOffset } from 'utils/scroll-to';
 
 import style from './Expandable.module.scss';
 
