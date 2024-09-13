@@ -7,7 +7,6 @@ import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { classNames } from 'utils/classnames';
-import { handleStickyScrollOffset } from 'utils/scroll-to';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './ReadMorePart.module.scss';
@@ -19,8 +18,6 @@ export type PartConfigReadMore = {
 
 export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
     const [isOpen, setIsOpen] = useState(false);
-    const divRef = useRef<HTMLDivElement | null>(null);
-
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
         callback: () => setIsOpen(true),
@@ -32,8 +29,6 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        handleStickyScrollOffset(isOpening, divRef.current);
-
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'lesmer',
@@ -44,17 +39,15 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const { title, html } = config;
 
     return (
-        <div ref={divRef}>
-            <ReadMore
-                header={title}
-                open={isOpen}
-                onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
-                className={styles.readMore}
-            >
-                <div className={classNames(defaultHtml.html, 'parsedHtml')}>
-                    <ParsedHtml htmlProps={html} />
-                </div>
-            </ReadMore>
-        </div>
+        <ReadMore
+            header={title}
+            open={isOpen}
+            onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
+            className={styles.readMore}
+        >
+            <div className={classNames(defaultHtml.html, 'parsedHtml')}>
+                <ParsedHtml htmlProps={html} />
+            </div>
+        </ReadMore>
     );
 };
