@@ -22,28 +22,14 @@ export const smoothScrollToTarget = (targetId: string, offset = 0) => {
     }
 };
 
-const getHeaderOffset = (): number => {
-    const fallbackHeaderHeight = 72;
-    const headerElement = document.getElementById('decorator-header') as HTMLElement;
-
-    if (headerElement) {
-        const computedStyleHeader = getComputedStyle(headerElement);
-        const headerHeight = computedStyleHeader.getPropertyValue('--header-height');
-        return parseInt(headerHeight) || fallbackHeaderHeight;
-    } else {
-        return fallbackHeaderHeight;
-    }
-};
-
 export const handleStickyScrollOffset = (isOpening: boolean, current: HTMLDivElement | null) => {
     if (!isOpening && current) {
         const verticalPosition = current.getBoundingClientRect().top;
 
         if (verticalPosition < 0) {
-            window.scrollBy({
-                top: verticalPosition - getHeaderOffset(),
-                behavior: 'instant',
-            });
+            document.documentElement.style.scrollBehavior = 'auto';
+            current.focus();
+            document.documentElement.style.scrollBehavior = 'smooth';
         }
     }
 };

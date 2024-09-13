@@ -72,6 +72,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         ref={(el) => {
                             itemRefs.current[index] = el;
                         }}
+                        tabIndex={-1}
                     >
                         <DSAccordion.Header className={styles.header} id={item.anchorId}>
                             {!isValid && (

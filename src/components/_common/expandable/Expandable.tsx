@@ -119,6 +119,7 @@ export const Expandable = ({
             onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
             aria-label={ariaLabel || title}
+            tabIndex={-1}
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}
