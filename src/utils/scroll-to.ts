@@ -27,9 +27,10 @@ export const handleStickyScrollOffset = (isOpening: boolean, current: HTMLDivEle
         const verticalPosition = current.getBoundingClientRect().top;
 
         if (verticalPosition < 0) {
-            document.documentElement.style.scrollBehavior = 'auto';
-            current.focus();
-            document.documentElement.style.scrollBehavior = 'smooth';
+            window.scrollBy({
+                top: verticalPosition,
+                behavior: 'instant',
+            });
         }
     }
 };
