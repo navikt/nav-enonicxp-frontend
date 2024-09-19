@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -7,6 +7,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
+import { handleStickyScrollOffset } from 'utils/scroll-to';
 
 import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
@@ -15,6 +16,8 @@ type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
     const { editorView } = usePageContentProps();
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
@@ -27,6 +30,8 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
+        handleStickyScrollOffset(isOpening, itemRefs.current[index]);
+
         if (isOpening) {
             setOpenAccordions([...openAccordions, index]);
         } else {
@@ -64,6 +69,10 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         className={styles.item}
                         open={openAccordions.includes(index)}
                         onOpenChange={(open) => openChangeHandler(open, item.title, index)}
+                        ref={(el) => {
+                            itemRefs.current[index] = el;
+                        }}
+                        tabIndex={-1}
                     >
                         <DSAccordion.Header className={styles.header} id={item.anchorId}>
                             {!isValid && (
