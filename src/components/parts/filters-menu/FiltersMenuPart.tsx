@@ -70,6 +70,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
             kategori: category.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'filtermeny',
+            komponent: 'FiltersMenuPart',
         });
         toggleFilter(filter.id);
     };

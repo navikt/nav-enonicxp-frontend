@@ -3,7 +3,7 @@ import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
-import { smoothScrollToTarget } from 'utils/scroll-to';
+import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
 
@@ -38,12 +38,15 @@ export const Expandable = ({
         },
     });
 
-    const toggleExpandCollapse = () => {
-        logAmplitudeEvent(isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND, {
-            tittel: title,
-            opprinnelse: analyticsOriginTag,
+    const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
+        setIsOpen(isOpening);
+        handleStickyScrollOffset(isOpening, accordionRef.current);
+
+        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+            tittel,
+            opprinnelse: analyticsOriginTag || 'utvidbar tekst',
+            komponent: 'Expandable',
         });
-        setIsOpen(!isOpen);
     };
 
     const checkAndOpenPanel = () => {
@@ -113,9 +116,10 @@ export const Expandable = ({
             id={anchorId}
             className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
             ref={accordionRef}
-            onToggle={toggleExpandCollapse}
+            onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
             aria-label={ariaLabel || title}
+            tabIndex={-1}
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}

@@ -10,7 +10,7 @@ export const ExpandableComponentWrapper = ({
     expandable,
     expandableTitle,
     expandableAnchorId,
-    analyticsOriginTag = '',
+    analyticsOriginTag,
     type,
     ariaLabel,
     children,

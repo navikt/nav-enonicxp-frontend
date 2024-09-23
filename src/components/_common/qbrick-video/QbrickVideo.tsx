@@ -36,7 +36,9 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
 
     const durationAsString = getTimestampFromDuration(duration);
 
-    const imageUrl = poster?.startsWith('http') ? poster : getMediaUrl(poster, !!editorView);
+    const imageUrl = poster?.startsWith('http')
+        ? poster
+        : getMediaUrl(poster, !!editorView, contentLanguage);
 
     return (
         <div className={style.wrapper}>

@@ -44,7 +44,7 @@
         "@navikt/ds-css": "6.13.0",
         "@navikt/ds-react": "6.13.0",
         "@navikt/ds-tokens": "6.13.0",
-        "@navikt/nav-dekoratoren-moduler": "3.0.0-beta.4",
+        "@navikt/nav-dekoratoren-moduler": "3.1.0",
         "@navikt/nav-office-reception-info": "1.0.7",
         "@reduxjs/toolkit": "2.2.6",
         "csp-header": "5.2.1",
@@ -52,7 +52,6 @@
         "fuse.js": "6.6.2",
         "html-react-parser": "5.1.10",
         "js-cookie": "3.0.5",
-        "jsdom": "24.1.0",
         "jsep": "1.3.8",
         "lodash.debounce": "4.0.8",
         "lru-cache": "10.4.0",
@@ -138,9 +137,6 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "browser": {
-        "jsdom": false
     },
     "lint-staged": {
         "*.{ts,tsx}": [
