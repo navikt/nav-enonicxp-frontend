@@ -15,3 +15,8 @@ export const Default: Story = {
         type: CardType.Product,
     },
 };
+
+export const Hover: Story = {
+    parameters: { pseudo: { hover: true } },
+    args: { ...Default.args },
+};
