@@ -15,7 +15,10 @@ type Story = StoryObj<typeof meta>;
 
 export const Product: Story = {};
 
-export const Situation: Story = {
+export const SituationHover: Story = {
+    parameters: {
+        pseudo: { hover: true },
+    },
     args: {
         type: CardType.Situation,
     },
