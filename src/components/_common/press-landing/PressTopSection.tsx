@@ -5,7 +5,7 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import styles from './PressTopSection.module.scss';
 
 type PressTopSectionProps = {
-    page: PressLandingPageProps;
+    page: Pick<PressLandingPageProps, 'displayName' | 'data'>;
 };
 
 export const PressTopSection = (props: PressTopSectionProps) => {
