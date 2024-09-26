@@ -15,19 +15,24 @@ import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: PagePropsForPageHeader;
+    contentProps: Pick<PagePropsForPageHeader, 'type' | 'displayName' | 'modifiedTime'>; //TODO pick fra ContentProps direkte?
     showTimeStamp?: boolean;
 };
 
 export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
-    const { type, displayName, modifiedTime, data } = contentProps;
-    const { title, illustration } = data;
+    const {
+        type,
+        displayName,
+        modifiedTime,
+        // data
+    } = contentProps;
+    // const { title, illustration } = data;
     const { language } = usePageContentProps();
 
     const getDatesLabel = translator('dates', language);
 
     const typeSpecificClassName = themedPageHeaderGetTypeClassName(type);
-    const subTitle = getContentTagline(contentProps);
+    // const subTitle = getContentTagline(contentProps);
 
     const modified =
         showTimeStamp &&
@@ -40,12 +45,14 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
 
     return (
         <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
-            <Illustration illustration={illustration} className={style.illustration} />
+            {/* <Illustration illustration={illustration} className={style.illustration} /> */}
             <div className={style.text}>
                 <Header level={'1'} size={'xlarge'} className={style.header}>
-                    {title || displayName}
+                    {/* {title || displayName} */}
+
+                    {displayName}
                 </Header>
-                {(subTitle || modified) && (
+                {/* {(subTitle || modified) && (
                     <div className={style.taglineWrapper}>
                         {subTitle && (
                             <BodyShort size="small" className={style.taglineLabel}>
@@ -59,7 +66,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
                         )}
                         {modified && <Detail>{modified}</Detail>}
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );

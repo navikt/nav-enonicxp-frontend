@@ -21,11 +21,16 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
         <div className={style.formIntermediateStepPage}>
             <ThemedPageHeader
                 contentProps={{
-                    ...props,
-                    data: {
-                        ...props.data,
-                        taxonomy: [],
-                    },
+                    // ...props,
+                    type: props.type,
+                    displayName: props.displayName,
+                    modifiedTime: props.modifiedTime,
+                    // data: {
+                    //     // ...props.data,
+                    //     title: props.data.title,
+                    //     illustration: props.data.illustration,
+                    //     taxonomy: [],
+                    // },
                 }}
                 showTimeStamp={false}
             />

@@ -38,7 +38,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     return (
         <article className={style.overviewPage}>
-            <ThemedPageHeader contentProps={props} showTimeStamp={false} />
+            {/* <ThemedPageHeader contentProps={props} showTimeStamp={false} /> */}
             <div className={style.content}>
                 <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
