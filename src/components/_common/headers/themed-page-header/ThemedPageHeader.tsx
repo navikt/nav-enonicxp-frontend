@@ -5,11 +5,7 @@ import { classNames } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { Illustration } from 'components/_common/illustration/Illustration';
-import {
-    PagePropsForPageHeader,
-    getContentTagline,
-} from 'components/_common/headers/sharedHeaderUtils';
-import { usePageContentProps } from 'store/pageContext';
+import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps } from 'types/content-props/_content-common';
 import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
