@@ -54,7 +54,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
                 <Header level={'1'} size={'xlarge'} className={style.header}>
                     {title || displayName}
                 </Header>
-                {/* {(subTitle || modified) && (
+                {(subTitle || modified) && (
                     <div className={style.taglineWrapper}>
                         {subTitle && (
                             <BodyShort size="small" className={style.taglineLabel}>
@@ -68,7 +68,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
                         )}
                         {modified && <Detail>{modified}</Detail>}
                     </div>
-                )} */}
+                )}
             </div>
         </div>
     );
