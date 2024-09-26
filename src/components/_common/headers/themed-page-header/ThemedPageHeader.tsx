@@ -17,25 +17,26 @@ import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: Pick<ContentProps, 'type' | 'displayName' | 'modifiedTime' | 'data'> & {
+    contentProps: Pick<
+        ContentProps,
+        'type' | 'displayName' | 'modifiedTime' | 'data' | 'language'
+    > & {
         data: Pick<
             ProductDataMixin,
-            // 'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
-            'title' | 'illustration'
+            'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
         >;
     };
     showTimeStamp?: boolean;
 };
 
 export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
-    const { type, displayName, modifiedTime, data } = contentProps;
+    const { type, displayName, modifiedTime, data, language } = contentProps;
     const { title, illustration } = data;
-    const { language } = usePageContentProps();
 
     const getDatesLabel = translator('dates', language);
 
     const typeSpecificClassName = themedPageHeaderGetTypeClassName(type);
-    // const subTitle = getContentTagline(contentProps);
+    const subTitle = getContentTagline(contentProps);
 
     const modified =
         showTimeStamp &&

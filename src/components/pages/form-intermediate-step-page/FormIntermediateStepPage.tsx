@@ -24,6 +24,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     type,
                     displayName,
                     modifiedTime,
+                    language,
                     data: {
                         // ...props.data,
                         title: props.data.title,

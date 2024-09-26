@@ -18,6 +18,7 @@ export const Default: Story = {
             type: ContentType.FormIntermediateStepPage,
             displayName: 'Søknad om arbeidsavklaringspenger (AAP)',
             modifiedTime: '2023-07-03T07:02:26.724412Z',
+            language: 'no',
             data: {
                 title: 'Søknad om arbeidsavklaringspenger (AAP)',
                 illustration: {
