@@ -40,7 +40,7 @@ const getCanonicalUrl = (content: ContentProps) => {
         return content.data.canonicalUrl;
     }
 
-    const path = getPublicPathname(content);
+    const path = getPublicPathname({ _path: content._path });
 
     return `${appOrigin}${path}`;
 };

@@ -78,7 +78,7 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
     if (!htmlProps) {
         return null;
@@ -123,7 +123,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     <NextImage
                         {...props}
                         alt={attribs.alt || ''}
-                        src={getMediaUrl(attribs.src, !!editorView)}
+                        src={getMediaUrl(attribs.src, !!editorView, language)}
                     />
                 );
             }

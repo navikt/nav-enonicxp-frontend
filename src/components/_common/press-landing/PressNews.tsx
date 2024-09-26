@@ -7,7 +7,7 @@ import { PressNewsItem } from './PressNewsItem';
 import styles from './PressNews.module.scss';
 
 type PressNewsProps = {
-    page: PressLandingPageProps;
+    page: Pick<PressLandingPageProps, 'language' | 'data'>;
 };
 
 export const PressNews = (props: PressNewsProps) => {

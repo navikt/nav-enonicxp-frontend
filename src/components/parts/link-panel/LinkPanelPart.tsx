@@ -28,7 +28,7 @@ export type PartConfigLinkPanel = {
 } & LinkWithIngressMixin;
 
 export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;
@@ -40,7 +40,7 @@ export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>
 
     const linkProps = getSelectableLinkProps(link);
 
-    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
+    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView, language);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
@@ -86,10 +86,7 @@ export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>
                                 }),
                             }}
                         >
-                            <XpImage
-                                imageProps={icon}
-                                maxWidth={isVerticalLayout ? 384 : 64}
-                            />
+                            <XpImage imageProps={icon} maxWidth={isVerticalLayout ? 384 : 64} />
                         </div>
                     )}
                     <Heading level="2" size="medium" className={style.title}>
