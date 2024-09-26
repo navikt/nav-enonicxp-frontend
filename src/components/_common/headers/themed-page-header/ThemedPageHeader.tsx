@@ -30,7 +30,7 @@ type Props = {
 };
 
 export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
-    const { type, displayName, modifiedTime, data, language } = contentProps;
+    const { type, displayName, modifiedTime, language, data } = contentProps;
     const { title, illustration } = data;
 
     const getDatesLabel = translator('dates', language);
