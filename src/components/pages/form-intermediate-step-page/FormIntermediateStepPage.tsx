@@ -25,12 +25,12 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     type: props.type,
                     displayName: props.displayName,
                     modifiedTime: props.modifiedTime,
-                    // data: {
-                    //     // ...props.data,
-                    //     title: props.data.title,
-                    //     illustration: props.data.illustration,
-                    //     taxonomy: [],
-                    // },
+                    data: {
+                        // ...props.data,
+                        title: props.data.title,
+                        illustration: props.data.illustration,
+                        taxonomy: [],
+                    },
                 }}
                 showTimeStamp={false}
             />

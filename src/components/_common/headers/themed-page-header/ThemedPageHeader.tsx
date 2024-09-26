@@ -15,18 +15,13 @@ import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: Pick<PagePropsForPageHeader, 'type' | 'displayName' | 'modifiedTime'>; //TODO pick fra ContentProps direkte?
+    contentProps: Pick<PagePropsForPageHeader, 'type' | 'displayName' | 'modifiedTime' | 'data'>; //TODO pick fra ContentProps direkte?
     showTimeStamp?: boolean;
 };
 
 export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
-    const {
-        type,
-        displayName,
-        modifiedTime,
-        // data
-    } = contentProps;
-    // const { title, illustration } = data;
+    const { type, displayName, modifiedTime, data } = contentProps;
+    const { title, illustration } = data;
     const { language } = usePageContentProps();
 
     const getDatesLabel = translator('dates', language);
@@ -45,12 +40,10 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
 
     return (
         <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
-            {/* <Illustration illustration={illustration} className={style.illustration} /> */}
+            <Illustration illustration={illustration} className={style.illustration} />
             <div className={style.text}>
                 <Header level={'1'} size={'xlarge'} className={style.header}>
-                    {/* {title || displayName} */}
-
-                    {displayName}
+                    {title || displayName}
                 </Header>
                 {/* {(subTitle || modified) && (
                     <div className={style.taglineWrapper}>
