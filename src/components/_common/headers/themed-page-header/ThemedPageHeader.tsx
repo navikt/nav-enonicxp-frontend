@@ -19,7 +19,7 @@ import style from './ThemedPageHeader.module.scss';
 type Props = {
     contentProps: Pick<
         ContentProps,
-        'type' | 'displayName' | 'modifiedTime' | 'language' | 'data'
+        'type' | 'displayName' | 'modifiedTime' | 'data' | 'language'
     > & {
         data: Pick<
             ProductDataMixin,
