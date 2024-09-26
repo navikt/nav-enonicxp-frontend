@@ -11,7 +11,7 @@ import { FormIntermediateStepLink } from 'components/pages/form-intermediate-ste
 import style from './FormIntermediateStepPage.module.scss';
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
-    const { language } = props;
+    const { language, type, displayName, modifiedTime } = props;
 
     const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
 
@@ -21,10 +21,9 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
         <div className={style.formIntermediateStepPage}>
             <ThemedPageHeader
                 contentProps={{
-                    // ...props,
-                    type: props.type,
-                    displayName: props.displayName,
-                    modifiedTime: props.modifiedTime,
+                    type,
+                    displayName,
+                    modifiedTime,
                     data: {
                         // ...props.data,
                         title: props.data.title,
