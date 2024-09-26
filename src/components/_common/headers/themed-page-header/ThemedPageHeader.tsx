@@ -9,6 +9,7 @@ import {
     PagePropsForPageHeader,
     getContentTagline,
 } from 'components/_common/headers/sharedHeaderUtils';
+import { usePageContentProps } from 'store/pageContext';
 import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 
 import style from './ThemedPageHeader.module.scss';
@@ -19,8 +20,9 @@ type Props = {
 };
 
 export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) => {
-    const { type, displayName, modifiedTime, language, data } = contentProps;
+    const { type, displayName, modifiedTime, data } = contentProps;
     const { title, illustration } = data;
+    const { language } = usePageContentProps();
 
     const getDatesLabel = translator('dates', language);
 
