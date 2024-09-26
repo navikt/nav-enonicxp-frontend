@@ -10,12 +10,20 @@ import {
     getContentTagline,
 } from 'components/_common/headers/sharedHeaderUtils';
 import { usePageContentProps } from 'store/pageContext';
+import { ProductDataMixin } from 'types/component-props/_mixins';
+import { ContentProps } from 'types/content-props/_content-common';
 import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: Pick<PagePropsForPageHeader, 'type' | 'displayName' | 'modifiedTime' | 'data'>; //TODO pick fra ContentProps direkte?
+    contentProps: Pick<ContentProps, 'type' | 'displayName' | 'modifiedTime' | 'data'> & {
+        data: Pick<
+            ProductDataMixin,
+            // 'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
+            'title' | 'illustration'
+        >;
+    };
     showTimeStamp?: boolean;
 };
 
