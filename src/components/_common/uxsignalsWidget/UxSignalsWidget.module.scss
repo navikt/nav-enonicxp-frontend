@@ -6,12 +6,12 @@
     :global(.uxsignals-embed) {
         h2 {
             font-size: var(--a-font-size-heading-large) !important;
-            line-height: var(--a-font-line-height-heading-large) !important;
+            line-height: 1.5 !important;
         }
         p,
         span {
             font-size: var(--a-font-size-large) !important;
-            line-height: var(--a-font-size-xlarge) !important;
+            line-height: 1.5 !important;
         }
     }
 
