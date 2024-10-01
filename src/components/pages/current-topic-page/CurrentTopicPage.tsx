@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { FeaturedHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
+import { FeaturedHeader } from 'components/_common/headers/featuredHeader/FeaturedHeader';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 
