@@ -41,3 +41,13 @@ export const WithTimeStamp: Story = {
         showTimeStamp: true,
     },
 };
+
+export const OverviewPage: Story = {
+    args: {
+        contentProps: {
+            ...Default.args.contentProps,
+            type: ContentType.Overview,
+        },
+        showTimeStamp: false,
+    },
+};
