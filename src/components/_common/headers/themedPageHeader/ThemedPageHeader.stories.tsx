@@ -32,3 +32,12 @@ export const Default: Story = {
         },
     },
 };
+
+export const WithTimeStamp: Story = {
+    args: {
+        contentProps: {
+            ...Default.args.contentProps,
+        },
+        showTimeStamp: true,
+    },
+};
