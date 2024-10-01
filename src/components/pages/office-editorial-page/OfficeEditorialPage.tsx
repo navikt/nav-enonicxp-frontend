@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficeEditorialPageProps } from 'types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themedPageHeader/ThemedPageHeader';
 
 import style from './OfficeEditorialPage.module.scss';
 

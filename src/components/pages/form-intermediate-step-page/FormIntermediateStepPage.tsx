@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themedPageHeader/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
