@@ -8,7 +8,7 @@ export type PagePropsForPageHeader = ContentProps & {
         ProductDataMixin,
         'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
     >;
-}; // TODO fjern denne?
+};
 
 type Props = Pick<ContentProps, 'language' | 'type'> & {
     data: Pick<ProductDataMixin, 'taxonomy' | 'audience' | 'customCategory'>;
