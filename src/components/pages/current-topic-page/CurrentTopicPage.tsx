@@ -1,9 +1,15 @@
 import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
 import { FeaturedHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
+import { ProductDataMixin } from 'types/component-props/_mixins';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './CurrentTopicPage.module.scss';
+
+export type CurrentTopicPageProps = ContentCommonProps & {
+    type: ContentType.CurrentTopicPage;
+    data: Omit<ProductDataMixin, 'illustration'>;
+};
 
 export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
     return (
