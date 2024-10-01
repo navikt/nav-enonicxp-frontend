@@ -8,7 +8,7 @@ import style from './CurrentTopicPage.module.scss';
 
 export type CurrentTopicPageProps = ContentCommonProps & {
     type: ContentType.CurrentTopicPage;
-    data: Omit<ProductDataMixin, 'illustration'>;
+    data: Pick<ProductDataMixin, 'title'>;
 };
 
 export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
