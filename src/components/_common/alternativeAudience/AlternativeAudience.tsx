@@ -77,7 +77,10 @@ export const AlternativeAudience = () => {
     }
 
     const productName =
-        showProductName === false ? getStringPart('this') : displayName.toLowerCase();
+        showProductName === false
+            ? getStringPart('this')
+            : displayName.charAt(0).toLowerCase() + displayName.slice(1);
+
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
