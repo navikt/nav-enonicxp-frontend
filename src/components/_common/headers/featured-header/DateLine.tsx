@@ -1,15 +1,10 @@
 import { Detail } from '@navikt/ds-react';
-import { getPublishedAndModifiedString } from 'utils/datetime';
-import { ContentProps } from 'types/content-props/_content-common';
+import { getPublishedAndModifiedString, GetPublishedAndModifiedStringProps } from 'utils/datetime';
 
 import styles from './DateLine.module.scss';
 
-type DateLineProps = {
-    contentProps: ContentProps;
-};
-
-export const DateLine = ({ contentProps }: DateLineProps) => {
-    const dateString = getPublishedAndModifiedString(contentProps);
+export const DateLine = ({ content }: GetPublishedAndModifiedStringProps) => {
+    const dateString = getPublishedAndModifiedString({ content });
 
     return (
         <div className={styles.dateLine}>
