@@ -8,7 +8,7 @@ import style from './OfficeEditorialPage.module.scss';
 export const OfficeEditorialPage = (props: OfficeEditorialPageProps) => {
     return (
         <div className={style.officeEditorialPage}>
-            {/* <ThemedPageHeader contentProps={props} showTimeStamp={false} /> */}
+            <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
                 <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
