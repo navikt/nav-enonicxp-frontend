@@ -16,11 +16,11 @@ export const Default: Story = {
     args: {
         contentProps: {
             type: ContentType.FormIntermediateStepPage,
-            displayName: 'Søknad om arbeidsavklaringspenger (AAP)',
+            displayName: 'Themed Page Header',
             modifiedTime: '2023-07-03T07:02:26.724412Z',
             language: 'no',
             data: {
-                title: 'Søknad om arbeidsavklaringspenger (AAP)',
+                title: 'Themed Page Header',
                 illustration: {
                     type: ContentType.Pictograms,
                     data: {
