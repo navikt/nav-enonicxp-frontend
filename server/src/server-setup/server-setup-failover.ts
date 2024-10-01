@@ -13,7 +13,8 @@ export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) =>
     // This is served via the public-facing regular frontend when needed
     expressApp.all('*', (req, res) => {
         if (req.headers.secret !== process.env.SERVICE_SECRET) {
-            return res.status(404).send();
+            res.status(404).send();
+            return;
         }
 
         return nextRequestHandler(req, res);

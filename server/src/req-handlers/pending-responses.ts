@@ -1,5 +1,5 @@
 import NextNodeServer from 'next/dist/server/next-server';
-import { RequestHandler } from 'express';
+import { RequestHandler, Response } from 'express';
 import { logger } from 'srcCommon/logger';
 
 const getPendingResponses = (nextServer: NextNodeServer) => {
@@ -17,7 +17,9 @@ export const handleGetPendingResponses =
     (req, res) => {
         const pending = getPendingResponses(nextServer);
 
-        return pending
-            ? res.status(200).send(pending)
-            : res.status(500).send('Failed to retrieve pending responses - see logs for details');
+        if (pending) {
+            res.status(200).send(pending);
+        } else {
+            res.status(500).send('Failed to retrieve pending responses - see logs for details');
+        }
     };
