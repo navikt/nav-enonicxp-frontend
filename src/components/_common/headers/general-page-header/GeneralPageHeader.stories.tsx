@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         pageProps: {
-            type: ContentType.SituationPage,
+            type: ContentType.ProductPage,
             displayName: 'displayName',
             language: 'no',
             data: {
