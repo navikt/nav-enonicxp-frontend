@@ -13,7 +13,7 @@ import style from './FeaturedHeader.module.scss';
 type Props = {
     showTimeStamp?: boolean;
     contentProps: Pick<CurrentTopicPageProps, 'displayName' | 'data'> &
-        Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime'>; //TODO gjenbruk del av GetPublishedAndModifiedStringProps?
+        Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime'>;
 };
 
 export const FeaturedHeader = ({ contentProps }: Props) => {
