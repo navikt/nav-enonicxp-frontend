@@ -8,21 +8,19 @@ import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 import style from './GeneralPageHeader.module.scss';
 
-type PagePropsForPageHeader = Pick<ContentProps, 'type' | 'displayName' | 'language'> & {
-    data: Pick<
-        ProductDataMixin,
-        | 'title'
-        | 'illustration'
-        | 'taxonomy'
-        | 'audience'
-        | 'customCategory'
-        | 'ingress'
-        | 'hideIngress'
-    >;
-};
-
 type Props = {
-    pageProps: PagePropsForPageHeader;
+    pageProps: Pick<ContentProps, 'type' | 'displayName' | 'language'> & {
+        data: Pick<
+            ProductDataMixin,
+            | 'title'
+            | 'illustration'
+            | 'taxonomy'
+            | 'audience'
+            | 'customCategory'
+            | 'ingress'
+            | 'hideIngress'
+        >;
+    };
     hideIngressOverride?: boolean;
 };
 
