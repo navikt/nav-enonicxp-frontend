@@ -87,6 +87,18 @@ export const CustomCategory: Story = {
     },
 };
 
+export const HideIngress: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            data: {
+                ...Default.args.pageProps.data,
+                hideIngress: true,
+            },
+        },
+    },
+};
+
 export const SituationPage: Story = {
     args: {
         pageProps: {
