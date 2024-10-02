@@ -26,11 +26,10 @@ type Props = {
 
 export const GeneralPageHeader = (props: Props) => {
     const { pageProps } = props;
-    const illustration = pageProps.data.illustration;
-    const tagLine = getContentTagline(pageProps);
+    const { illustration, ingress, hideIngress } = pageProps.data;
     const title = pageProps.data.title || pageProps.displayName;
-    const { ingress, hideIngress } = pageProps.data;
 
+    const tagLine = getContentTagline(pageProps);
     const isSituationPage = pageProps.type === ContentType.SituationPage;
 
     return (
