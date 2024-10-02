@@ -22,7 +22,7 @@ type PagePropsForPageHeader = Pick<ContentProps, 'type' | 'displayName' | 'langu
 };
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: PagePropsForPageHeader;
     hideIngressOverride?: boolean;
 };
 
@@ -30,7 +30,8 @@ type Props = {
 //data.illustration, data.title, data.taxonomy, data.audience, data.customCategory, data.ingress, data.hideIngress
 
 export const GeneralPageHeader = (props: Props) => {
-    const { pageProps } = props as { pageProps: PagePropsForPageHeader };
+    // const { pageProps } = props as { pageProps: PagePropsForPageHeader };
+    const { pageProps } = props;
     const illustration = pageProps.data.illustration;
     const tagLine = getContentTagline(pageProps);
     const title = pageProps.data.title || pageProps.displayName;

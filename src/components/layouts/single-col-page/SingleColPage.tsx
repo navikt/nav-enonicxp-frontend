@@ -5,9 +5,12 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
+import { ProductDataMixin } from 'types/component-props/_mixins';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: ContentProps & {
+        data: Pick<ProductDataMixin, 'illustration' | 'customCategory' | 'taxonomy'>;
+    };
     layoutProps: SingleColPageProps;
 };
 
@@ -23,6 +26,8 @@ const hasGeneralComponents = new Set([
 export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
 
+    const { type, displayName, language, data } = pageProps;
+
     if (!regions) {
         return null;
     }
@@ -32,7 +37,23 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {showHeaderAndChangedate && (
-                <GeneralPageHeader pageProps={pageProps} hideIngressOverride />
+                <GeneralPageHeader
+                    pageProps={{
+                        type,
+                        displayName,
+                        language,
+                        data: {
+                            title: pageProps.data.title ?? '',
+                            illustration: pageProps.data.illustration,
+                            taxonomy: pageProps.data.taxonomy,
+                            audience: pageProps.data.audience,
+                            customCategory: pageProps.data.customCategory,
+                            ingress: pageProps.data.ingress,
+                            hideIngress: pageProps.data.hideIngress,
+                        },
+                    }}
+                    hideIngressOverride
+                />
             )}
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
             {showHeaderAndChangedate && (
