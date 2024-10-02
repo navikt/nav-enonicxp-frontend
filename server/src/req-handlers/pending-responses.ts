@@ -17,7 +17,9 @@ export const handleGetPendingResponses =
     (req, res) => {
         const pending = getPendingResponses(nextServer);
 
-        return pending
-            ? res.status(200).send(pending)
-            : res.status(500).send('Failed to retrieve pending responses - see logs for details');
+        if (pending) {
+            res.status(200).send(pending);
+        } else {
+            res.status(500).send('Failed to retrieve pending responses - see logs for details');
+        }
     };
