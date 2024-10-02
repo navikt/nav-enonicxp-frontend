@@ -41,3 +41,12 @@ export const Default: Story = {
         },
     },
 };
+
+export const SituationPage: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            type: ContentType.SituationPage,
+        },
+    },
+};
