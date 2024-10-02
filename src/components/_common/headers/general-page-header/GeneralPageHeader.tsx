@@ -1,14 +1,19 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
-import {
-    PagePropsForPageHeader,
-    getContentTagline,
-} from 'components/_common/headers/sharedHeaderUtils';
+import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import { Illustration } from 'components/_common/illustration/Illustration';
+import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
 import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 import style from './GeneralPageHeader.module.scss';
+
+type PagePropsForPageHeader = ContentProps & {
+    data: Pick<
+        ProductDataMixin,
+        'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
+    >;
+};
 
 type Props = {
     pageProps: ContentProps;
