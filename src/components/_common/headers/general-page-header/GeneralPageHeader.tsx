@@ -8,10 +8,16 @@ import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 import style from './GeneralPageHeader.module.scss';
 
-type PagePropsForPageHeader = ContentProps & {
+type PagePropsForPageHeader = Pick<ContentProps, 'type' | 'displayName' | 'language'> & {
     data: Pick<
         ProductDataMixin,
-        'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
+        | 'title'
+        | 'illustration'
+        | 'taxonomy'
+        | 'audience'
+        | 'customCategory'
+        | 'ingress'
+        | 'hideIngress'
     >;
 };
 
@@ -19,6 +25,9 @@ type Props = {
     pageProps: ContentProps;
     hideIngressOverride?: boolean;
 };
+
+//type, displayName, language
+//data.illustration, data.title, data.taxonomy, data.audience, data.customCategory, data.ingress, data.hideIngress
 
 export const GeneralPageHeader = (props: Props) => {
     const { pageProps } = props as { pageProps: PagePropsForPageHeader };
