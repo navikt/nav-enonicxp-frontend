@@ -46,7 +46,7 @@ export const SituationPage: Story = {
     args: {
         pageProps: {
             ...Default.args.pageProps,
-            type: ContentType.SituationPage,
+            type: ContentType.SituationPage, //En hack med negativ margin gjør at ingressen krasjer med overskriften i Storybook
         },
     },
 };
