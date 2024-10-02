@@ -53,14 +53,6 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
     };
 };
 
-const EntryName = ({ displayName, link }: PublishingCalendarEntryData) => {
-    return link ? (
-        <LenkeInline href={link}>{displayName}</LenkeInline>
-    ) : (
-        <BodyLong>{displayName}</BodyLong>
-    );
-};
-
 export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.PublishingCalendarEntry) {
         return null;
@@ -78,7 +70,11 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
             </Table.DataCell>
             <Table.DataCell>
                 <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>
-                <EntryName {...entry} />
+                {entry.link ? (
+                    <LenkeInline href={entry.link}>{entry.displayName}</LenkeInline>
+                ) : (
+                    <BodyLong>{entry.displayName}</BodyLong>
+                )}
             </Table.DataCell>
         </Table.Row>
     );
