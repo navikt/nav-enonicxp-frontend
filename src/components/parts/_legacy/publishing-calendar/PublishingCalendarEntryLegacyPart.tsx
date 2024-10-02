@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
@@ -12,6 +13,7 @@ interface PublishingCalendarEntryData {
     publDate: Date;
     day: string;
     month: string;
+    link?: string;
 }
 
 const monthShortName = [
@@ -47,7 +49,18 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
         publDate,
         day: publDate.getDate().toString() + '.',
         month: monthShortName[publDate.getMonth()],
+        link: item.data.link?._path,
     };
+};
+
+const EntryName = ({ displayName, link }: PublishingCalendarEntryData) => {
+    return link ? (
+        <LenkeInline href={link}>
+            <BodyLong>{displayName}</BodyLong>
+        </LenkeInline>
+    ) : (
+        <BodyLong>{displayName}</BodyLong>
+    );
 };
 
 export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
@@ -56,6 +69,7 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
     }
 
     const entry = processEntry(props);
+
     return (
         <Table.Row>
             <Table.DataCell>
@@ -66,7 +80,7 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
             </Table.DataCell>
             <Table.DataCell>
                 <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>
-                <BodyLong>{entry.displayName}</BodyLong>
+                <EntryName {...entry} />
             </Table.DataCell>
         </Table.Row>
     );
