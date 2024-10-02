@@ -5,7 +5,7 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
-import { GeneralPageHeader } from 'components/_common/headers/general-page-header/GeneralPageHeader';
+import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
