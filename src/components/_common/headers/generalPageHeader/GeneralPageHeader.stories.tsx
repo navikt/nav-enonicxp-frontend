@@ -34,7 +34,8 @@ export const Default: Story = {
                     [Audience.EMPLOYER]: {},
                     [Audience.PROVIDER]: {},
                 },
-                ingress: 'ingress',
+                ingress:
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 hideIngress: false,
             },
         },
