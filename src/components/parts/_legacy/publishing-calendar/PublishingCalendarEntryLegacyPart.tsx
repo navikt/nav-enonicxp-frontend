@@ -55,9 +55,7 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
 
 const EntryName = ({ displayName, link }: PublishingCalendarEntryData) => {
     return link ? (
-        <LenkeInline href={link}>
-            <BodyLong>{displayName}</BodyLong>
-        </LenkeInline>
+        <LenkeInline href={link}>{displayName}</LenkeInline>
     ) : (
         <BodyLong>{displayName}</BodyLong>
     );
