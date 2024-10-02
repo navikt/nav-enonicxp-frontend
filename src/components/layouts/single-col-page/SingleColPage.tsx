@@ -24,9 +24,10 @@ const hasGeneralComponents = new Set([
 ]);
 
 export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
-    const { regions } = layoutProps;
-
     const { type, displayName, language, data } = pageProps;
+    const { title, illustration, taxonomy, audience, customCategory, ingress, hideIngress } = data;
+
+    const { regions } = layoutProps;
 
     if (!regions) {
         return null;
@@ -43,13 +44,13 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                         displayName,
                         language,
                         data: {
-                            title: pageProps.data.title ?? '',
-                            illustration: pageProps.data.illustration,
-                            taxonomy: pageProps.data.taxonomy,
-                            audience: pageProps.data.audience,
-                            customCategory: pageProps.data.customCategory,
-                            ingress: pageProps.data.ingress,
-                            hideIngress: pageProps.data.hideIngress,
+                            title: title ?? '',
+                            illustration,
+                            taxonomy,
+                            audience,
+                            customCategory,
+                            ingress,
+                            hideIngress,
                         },
                     }}
                     hideIngressOverride
