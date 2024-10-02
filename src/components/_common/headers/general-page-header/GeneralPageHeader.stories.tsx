@@ -34,9 +34,54 @@ export const Default: Story = {
                     [Audience.EMPLOYER]: {},
                     [Audience.PROVIDER]: {},
                 },
-                customCategory: 'customCategory',
                 ingress: 'ingress',
                 hideIngress: false,
+            },
+        },
+    },
+};
+
+export const Employer: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            data: {
+                ...Default.args.pageProps.data,
+                audience: {
+                    _selected: Audience.EMPLOYER,
+                    [Audience.PERSON]: {},
+                    [Audience.EMPLOYER]: {},
+                    [Audience.PROVIDER]: {},
+                },
+            },
+        },
+    },
+};
+
+export const Provider: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            data: {
+                ...Default.args.pageProps.data,
+                audience: {
+                    _selected: Audience.PROVIDER,
+                    [Audience.PERSON]: {},
+                    [Audience.EMPLOYER]: {},
+                    [Audience.PROVIDER]: {},
+                },
+            },
+        },
+    },
+};
+
+export const CustomCategory: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            data: {
+                ...Default.args.pageProps.data,
+                customCategory: 'customCategory',
             },
         },
     },
