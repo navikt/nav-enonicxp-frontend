@@ -9,8 +9,8 @@ import Config from 'config';
 import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 
-import sharedStyle from './ContactOption.module.scss';
-import alertStyle from './Alert.module.scss';
+import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
+import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 
 type Props = WriteData;
 
