@@ -6,14 +6,14 @@ const preview: Preview = {
     parameters: {
         viewport: {
             viewports: {
-                small: { name: 'Small', styles: { width: '640px', height: '800px' } },
-                large: { name: 'Large', styles: { width: '1024px', height: '1000px' } },
+                small: { name: 'small', styles: { width: '390px', height: '100%' } },
+                large: { name: 'large', styles: { width: '820px', height: '100%' } },
             },
         },
         chromatic: {
             modes: {
-                mobile: allModes['mobile'],
-                desktop: allModes['desktop'],
+                small: allModes['small'],
+                large: allModes['large'],
             },
         },
     },
