@@ -6,6 +6,7 @@ import { ReadMorePart } from './ReadMorePart';
 
 const meta = {
     component: ReadMorePart,
+    args: { type: ComponentType.Part, descriptor: PartType.ReadMore },
 } satisfies Meta<typeof ReadMorePart>;
 
 export default meta;
@@ -14,9 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        config: { title: 'title', html: { processedHtml: 'test', macros: [] } },
+        config: { title: 'Read More', html: { processedHtml: 'test', macros: [] } },
         path: '',
-        type: ComponentType.Part,
-        descriptor: PartType.ReadMore,
     },
 };
