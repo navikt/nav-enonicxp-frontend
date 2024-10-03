@@ -10,7 +10,7 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
 import { ChatData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
-import { OpeningInfo } from './opening-info/OpeningInfo';
+import { OpeningInfo } from './openingInfo/OpeningInfo';
 
 import sharedStyle from './ContactOption.module.scss';
 import alertStyle from './Alert.module.scss';
