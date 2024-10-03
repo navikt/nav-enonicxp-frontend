@@ -3,7 +3,7 @@ import { Alert } from '@navikt/ds-react';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
 import { CallOption } from 'components/_common/contact-option/CallOption/CallOption';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
-import { ChatOption } from 'components/_common/contact-option/ChatOption';
+import { ChatOption } from 'components/_common/contact-option/ChatOption/ChatOption';
 
 import style from './ContactInformationPage.module.scss';
 
