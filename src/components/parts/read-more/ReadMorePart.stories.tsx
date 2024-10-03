@@ -6,7 +6,7 @@ import { ReadMorePart } from './ReadMorePart';
 
 const meta = {
     component: ReadMorePart,
-    args: { type: ComponentType.Part, descriptor: PartType.ReadMore },
+    args: { type: ComponentType.Part, descriptor: PartType.ReadMore, path: '' },
 } satisfies Meta<typeof ReadMorePart>;
 
 export default meta;
@@ -23,6 +23,14 @@ export const Default: Story = {
                 macros: [],
             },
         },
-        path: '',
+    },
+};
+
+export const Opened: Story = {
+    args: {
+        config: {
+            ...Default.args.config,
+            isOpen: true,
+        },
     },
 };
