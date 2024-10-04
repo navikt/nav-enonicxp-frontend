@@ -50,7 +50,7 @@ import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSit
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
-import { ReadMorePart } from './read-more/ReadMorePart';
+import { ReadMorePart } from './readMorePart/ReadMorePart';
 import { AccordionPart } from './accordion/AccordionPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
