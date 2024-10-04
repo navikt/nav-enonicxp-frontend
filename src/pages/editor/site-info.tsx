@@ -1,7 +1,13 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextApiRequest } from 'next';
 import express from 'express';
 import util from 'util';
-import { SiteInfo } from 'components/_editor-only/site-info/SiteInfo';
+import dynamic from 'next/dynamic';
+
+// import { SiteInfo } from 'components/_editor-only/site-info/SiteInfo';
+
+const SiteInfo = dynamic(() => import('../../components/_editor-only/site-info/SiteInfo'), {
+    ssr: false,
+});
 
 const parseReqBody = util.promisify(express.json({ limit: '10MB' }));
 

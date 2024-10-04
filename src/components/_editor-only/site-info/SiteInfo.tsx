@@ -42,3 +42,5 @@ export const SiteInfo = ({
         </>
     );
 };
+
+export default SiteInfo;
