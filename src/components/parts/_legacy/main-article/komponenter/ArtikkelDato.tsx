@@ -15,7 +15,10 @@ const ArtikkelDato = ({ contentProps, type = 'normal' }: Props) => {
     const short = type === 'newsPress';
     const year = type === 'newsPress';
 
-    const dateString = getPublishedAndModifiedString(contentProps, { short, year });
+    const dateString = getPublishedAndModifiedString({
+        content: contentProps,
+        config: { short, year },
+    });
 
     if (type === 'newsPress') {
         return (
