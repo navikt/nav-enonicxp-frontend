@@ -5,15 +5,15 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
+import { OpeningInfo } from 'components/_common/contact-option/openingInfo/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
 import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 
-import sharedStyle from './ContactOption.module.scss';
-import alertStyle from './Alert.module.scss';
+import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
+import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 import style from './CallOption.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {

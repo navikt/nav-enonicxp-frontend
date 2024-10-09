@@ -115,12 +115,14 @@ const buildDateString = ({
     })}`;
 };
 
-export const getPublishedAndModifiedString = (
-    content: Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime' | 'language'>,
-    config?: { short: boolean; year: boolean }
-) => {
-    const { modifiedTime, language } = content;
-    const publishedTime = getPublishedDateTime(content);
+export type GetPublishedAndModifiedStringProps = {
+    content: Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime' | 'language'>;
+    config?: { short: boolean; year: boolean };
+};
+
+export const getPublishedAndModifiedString = (props: GetPublishedAndModifiedStringProps) => {
+    const { modifiedTime, language } = props.content;
+    const publishedTime = getPublishedDateTime(props.content);
     const getDatesLabel = translator('dates', language);
 
     const wasModifiedAfterPublish = new Date(modifiedTime) > new Date(publishedTime);
@@ -129,16 +131,16 @@ export const getPublishedAndModifiedString = (
         label: getDatesLabel('published'),
         date: publishedTime,
         language,
-        short: config?.short,
-        year: config?.year,
+        short: props.config?.short,
+        year: props.config?.year,
     });
 
     const modifiedString = buildDateString({
         label: getDatesLabel('lastChanged'),
         date: modifiedTime,
         language,
-        short: config?.short,
-        year: config?.year,
+        short: props.config?.short,
+        year: props.config?.year,
     });
 
     return wasModifiedAfterPublish ? `${publishedString} | ${modifiedString}` : publishedString;

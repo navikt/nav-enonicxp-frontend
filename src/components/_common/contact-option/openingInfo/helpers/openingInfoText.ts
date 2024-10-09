@@ -4,14 +4,14 @@ import timezone from 'dayjs/plugin/timezone';
 import {
     OpeningHours,
     OpeningHoursOpen,
-} from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+} from 'components/_common/contact-option/openingInfo/helpers/openingInfoTypes';
 import { Language, translator } from 'translations';
 import { norwayTz } from 'utils/datetime';
 import {
     getOpeningHoursForDateTime,
     openingHourDateFormat,
     openingHourTimeFormat,
-} from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+} from 'components/_common/contact-option/openingInfo/helpers/openingInfoUtils';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

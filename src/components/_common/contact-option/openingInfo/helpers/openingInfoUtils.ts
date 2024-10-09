@@ -3,7 +3,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import { daysNameArray, norwayTz } from 'utils/datetime';
-import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+import { OpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoTypes';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

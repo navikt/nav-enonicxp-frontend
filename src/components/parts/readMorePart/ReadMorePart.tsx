@@ -15,10 +15,11 @@ import styles from './ReadMorePart.module.scss';
 export type PartConfigReadMore = {
     title: string;
     html: ProcessedHtmlProps;
+    isOpen?: boolean;
 };
 
 export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(config?.isOpen ?? false);
     const divRef = useRef<HTMLDivElement | null>(null);
 
     useShortcuts({

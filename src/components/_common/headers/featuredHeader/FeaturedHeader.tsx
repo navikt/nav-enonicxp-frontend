@@ -3,19 +3,21 @@ import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
-import { CurrentTopicPageProps } from 'types/content-props/dynamic-page-props';
-import { DateLine } from './DateLine';
-import { TagLine } from './TagLine';
+import { CurrentTopicPageProps } from 'components/pages/current-topic-page/CurrentTopicPage';
+import { ContentProps } from 'types/content-props/_content-common';
+import { DateLine } from './DateLine/DateLine';
+import { TagLine } from './TagLine/TagLine';
 
 import style from './FeaturedHeader.module.scss';
 
 type Props = {
     showTimeStamp?: boolean;
-    contentProps: CurrentTopicPageProps;
+    contentProps: Pick<CurrentTopicPageProps, 'displayName' | 'data'> &
+        Pick<ContentProps, 'publish' | 'modifiedTime' | 'createdTime'>;
 };
 
 export const FeaturedHeader = ({ contentProps }: Props) => {
-    const { displayName, data } = contentProps;
+    const { displayName, data, publish, modifiedTime, createdTime } = contentProps;
     const { language } = usePageContentProps();
     const pageTitle = data.title || displayName;
 
@@ -31,7 +33,7 @@ export const FeaturedHeader = ({ contentProps }: Props) => {
                     {pageTitle}
                 </Heading>
             </header>
-            <DateLine contentProps={contentProps} />
+            <DateLine content={{ publish, modifiedTime, createdTime, language }} />
         </>
     );
 };

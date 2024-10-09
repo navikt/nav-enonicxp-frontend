@@ -5,16 +5,23 @@ import { classNames } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { Illustration } from 'components/_common/illustration/Illustration';
-import {
-    PagePropsForPageHeader,
-    getContentTagline,
-} from 'components/_common/headers/sharedHeaderUtils';
+import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
+import { ProductDataMixin } from 'types/component-props/_mixins';
+import { ContentProps } from 'types/content-props/_content-common';
 import { themedPageHeaderGetTypeClassName } from './themedPageHeaderUtils';
 
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: PagePropsForPageHeader;
+    contentProps: Pick<
+        ContentProps,
+        'type' | 'displayName' | 'modifiedTime' | 'data' | 'language'
+    > & {
+        data: Pick<
+            ProductDataMixin,
+            'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
+        >;
+    };
     showTimeStamp?: boolean;
 };
 

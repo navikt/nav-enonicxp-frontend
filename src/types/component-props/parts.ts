@@ -25,7 +25,7 @@ import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDates
 import { PartConfigProductCard } from 'components/parts/product-card/ProductCardPart';
 import { PartConfigProductDetails } from 'components/parts/product-details/ProductDetailsPart';
 import { PartConfigProviderCard } from 'components/parts/provider-card/ProviderCardPart';
-import { PartConfigReadMore } from 'components/parts/read-more/ReadMorePart';
+import { PartConfigReadMore } from 'components/parts/readMorePart/ReadMorePart';
 import { PartConfigRelatedSituations } from 'components/parts/related-situations/RelatedSituationsPart';
 import { PartConfigUserTests } from 'components/parts/user-tests/UserTestsPart';
 import { PartConfigUxSignalsWidget } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
