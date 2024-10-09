@@ -1,6 +1,6 @@
-import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
-import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
-import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
+import { processOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/processOpeningHours';
+import { getCurrentOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoUtils';
+import { getOpeningInfoText } from 'components/_common/contact-option/openingInfo/helpers/openingInfoText';
 import { translator } from 'translations';
 import {
     OpeningHourRegularRaw,
