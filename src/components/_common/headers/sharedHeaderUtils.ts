@@ -3,13 +3,6 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-export type PagePropsForPageHeader = ContentProps & {
-    data: Pick<
-        ProductDataMixin,
-        'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
-    >;
-};
-
 type Props = Pick<ContentProps, 'language' | 'type'> & {
     data: Pick<ProductDataMixin, 'taxonomy' | 'audience' | 'customCategory'>;
 };
