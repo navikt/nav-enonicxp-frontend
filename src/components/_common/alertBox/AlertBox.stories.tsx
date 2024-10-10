@@ -13,18 +13,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Short: Story = {
     args: {
-        children: (
-            <div>
-                <p>AlertBox</p>
-            </div>
-        ),
+        children: 'AlertBox',
     },
 };
 
 export const Long: Story = {
     args: {
         children: (
-            <div>
+            <>
                 <Heading size="medium" spacing>
                     Lovendring om etterbetaling av barnetrygd
                 </Heading>
@@ -37,7 +33,7 @@ export const Long: Story = {
                     regelverk. Etter gammelt regelverk kan du få etterbetalt barnetrygd i inntil tre
                     år.
                 </BodyLong>
-            </div>
+            </>
         ),
     },
 };
