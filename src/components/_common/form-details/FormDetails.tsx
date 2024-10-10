@@ -119,7 +119,8 @@ export const FormDetails = ({
                 </div>
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
-            {alerts && alerts.map((alert, index) => <AlertInContext key={index} alert={alert} />)}
+            {alerts &&
+                alerts.map((alert, index) => <AlertInContext key={index} data={alert.data} />)}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation) => (
