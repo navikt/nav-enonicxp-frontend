@@ -16,3 +16,10 @@ export const FullWidth: Story = {
         fullWidth: true,
     },
 };
+
+//ser på dette senere, når vi finner ut hvordan vi skal håndtere ikoner
+// export const Icon: Story = {
+//     args: {
+//         xpIcon: <HandFingerIcon title="a11y-title" />,
+//     },
+// };
