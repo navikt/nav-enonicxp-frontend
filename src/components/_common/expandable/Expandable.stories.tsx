@@ -41,3 +41,9 @@ export const DocumentationRequirements: Story = {
         expandableType: 'documentation_requirements',
     },
 };
+
+export const IsOpen: Story = {
+    args: {
+        isOpenDefault: true,
+    },
+};
