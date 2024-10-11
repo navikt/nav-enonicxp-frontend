@@ -15,8 +15,8 @@ import style from './RelatedSituations.module.scss';
 
 type Props = {
     relatedSituations: (GetContentTaglineProps &
-        Pick<SituationPageProps, '_path' | '_id' | 'displayName' | 'data'> & {
-            data: { title: string };
+        Pick<SituationPageProps, '_path' | '_id' | 'displayName'> & {
+            data: Pick<SituationPageProps['data'], 'title'>;
         })[];
     title: string;
     description: string;
