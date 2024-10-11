@@ -9,7 +9,7 @@ import { getCommonLayoutStyle } from './LayoutStyle';
 import style from './LayoutContainer.module.scss';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: Pick<ContentProps, 'editorView'>;
     layoutProps: LayoutComponentProps;
     layoutStyle?: React.CSSProperties;
     children: React.ReactNode;
