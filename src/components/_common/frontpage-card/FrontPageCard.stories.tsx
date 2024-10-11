@@ -5,12 +5,21 @@ import { FrontPageCard } from './FrontPageCard';
 
 const meta = {
     component: FrontPageCard,
+    args: { path: '', title: 'Title' },
 } satisfies Meta<typeof FrontPageCard>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    args: { path: '', title: 'Title', type: CardType.EmployerFrontpage },
+export const Person: Story = {
+    args: { type: CardType.PersonFrontPage },
+};
+
+export const Employer: Story = {
+    args: { type: CardType.EmployerFrontpage },
+};
+
+export const ProviderFrontpage: Story = {
+    args: { type: CardType.ProviderFrontpage },
 };
