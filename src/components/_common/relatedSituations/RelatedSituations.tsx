@@ -1,7 +1,7 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { MiniCardV2 } from 'components/_common/card/MiniCardV2/MiniCardV2';
-import { getCardProps } from 'components/_common/card/card-utils';
+import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import { usePageContentProps } from 'store/pageContext';
 import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
@@ -40,7 +40,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
             </BodyLong>
             <ul className={style.situationsList}>
                 {relatedSituations.map((situation) => {
-                    const { tagline } = getCardProps(situation, page?.config) || {};
+                    const tagline = getContentTagline(situation, page?.config.language);
 
                     return (
                         <li key={situation._id}>
