@@ -10,7 +10,7 @@ import style from './LayoutContainer.module.scss';
 
 type Props = {
     pageProps: Pick<ContentProps, 'editorView'>;
-    layoutProps: LayoutComponentProps;
+    layoutProps: Pick<LayoutComponentProps, 'descriptor' | 'path' | 'type' | 'config'>;
     layoutStyle?: React.CSSProperties;
     children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
