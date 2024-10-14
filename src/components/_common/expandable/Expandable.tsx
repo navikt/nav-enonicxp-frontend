@@ -17,6 +17,7 @@ type Props = {
     children: React.ReactNode;
     expandableType?: ProductDetailType | 'documentation_requirements';
     ariaLabel?: string;
+    isOpenDefault?: boolean;
 };
 
 export const Expandable = ({
@@ -27,8 +28,9 @@ export const Expandable = ({
     className,
     expandableType,
     ariaLabel,
+    isOpenDefault,
 }: Props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
 
     useShortcuts({

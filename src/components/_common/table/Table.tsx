@@ -1,6 +1,5 @@
 import React, { ReactElement, useContext, useMemo } from 'react';
 import { Table as DsTable, TableProps } from '@navikt/ds-react';
-
 import style from './Table.module.scss';
 
 type TableContextProps = { shadeOnHover?: boolean };
