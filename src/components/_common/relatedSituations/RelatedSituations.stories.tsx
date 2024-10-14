@@ -39,7 +39,16 @@ export const Default: Story = {
                 _path: '',
                 _id: '',
                 displayName: '',
-                data: { taxonomy: [], title: 'test' },
+                data: {
+                    taxonomy: [],
+                    title: 'Side med tilbud',
+                    audience: {
+                        _selected: Audience.PERSON,
+                        [Audience.PERSON]: {},
+                        [Audience.EMPLOYER]: {},
+                        [Audience.PROVIDER]: {},
+                    },
+                },
             },
         ],
         title: 'Andre tilbud',
