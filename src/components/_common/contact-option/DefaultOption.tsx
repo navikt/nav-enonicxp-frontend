@@ -3,7 +3,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';

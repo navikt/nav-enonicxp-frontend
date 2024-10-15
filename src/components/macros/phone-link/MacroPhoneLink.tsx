@@ -1,7 +1,7 @@
 import React from 'react';
 import { MacroPhoneLinkProps } from 'types/macro-props/phone-link';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 
 export const MacroPhoneLink = ({ config }: MacroPhoneLinkProps) => {
     if (!config?.phone_link) {

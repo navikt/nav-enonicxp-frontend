@@ -2,9 +2,9 @@ import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { Chevron } from 'components/_common/chevron/Chevron';
-import { LenkeBase } from './LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
-import style from './LenkeStandalone.module.scss';
+import style from 'components/_common/lenke/lenkeStandalone/LenkeStandalone.module.scss';
 
 type Props = {
     href: string;

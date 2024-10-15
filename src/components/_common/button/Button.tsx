@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { XpImageProps } from 'types/media';
 import { XpImage } from 'components/_common/image/XpImage';
 
@@ -53,11 +53,7 @@ export const Button = ({
             disabled={disabled}
             icon={
                 xpIcon ? (
-                    <XpImage
-                        imageProps={xpIcon}
-                        className={style.button__icon}
-                        maxWidth={64}
-                    />
+                    <XpImage imageProps={xpIcon} className={style.button__icon} maxWidth={64} />
                 ) : (
                     dsIcon
                 )

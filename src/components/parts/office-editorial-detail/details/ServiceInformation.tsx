@@ -2,7 +2,7 @@ import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-de
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 /* ES lint complains about unused style in a shared styles class: */
 /* eslint-disable-next-line */
