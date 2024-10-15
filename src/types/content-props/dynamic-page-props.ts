@@ -72,11 +72,6 @@ export type OfficePageProps = ContentCommonProps & {
     editorial?: OfficeEditorialPageProps;
 };
 
-export type CurrentTopicPageProps = ContentCommonProps & {
-    type: ContentType.CurrentTopicPage;
-    data: Omit<ProductDataMixin, 'illustration'>;
-};
-
 export type ToolsPageProps = ContentCommonProps & {
     type: ContentType.ToolsPage;
     data: Omit<ProductDataMixin, 'taxonomy'> & {

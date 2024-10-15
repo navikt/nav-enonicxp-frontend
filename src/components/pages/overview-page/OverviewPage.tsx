@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
+import { ThemedPageHeader } from 'components/_common/headers/themedPageHeader/ThemedPageHeader';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 import { OverviewProductDetailsPanel } from 'components/pages/overview-page/product-panel/OverviewProductDetailsPanel';

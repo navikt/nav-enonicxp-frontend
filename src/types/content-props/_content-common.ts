@@ -4,6 +4,7 @@ import { LayoutComponentProps } from 'types/component-props/layouts';
 import { MediaType } from 'types/media';
 import { LanguageProps, LayerLocale } from 'types/language';
 import { AudienceOptions } from 'types/component-props/_mixins';
+import { CurrentTopicPageProps } from 'components/pages/current-topic-page/CurrentTopicPage';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
@@ -25,7 +26,6 @@ import {
     GenericPageProps,
     GuidePageProps,
     OfficeEditorialPageProps,
-    CurrentTopicPageProps,
     ProductDetailsProps,
     ProductPageProps,
     SituationPageProps,

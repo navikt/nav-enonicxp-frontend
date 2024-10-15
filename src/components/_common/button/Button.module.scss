@@ -8,10 +8,11 @@
     &__icon {
         height: 1.5rem;
     }
-    &--fullWidth {
-        width: 100%;
-    }
     :global(.navds-label) {
         text-align: center;
     }
+}
+
+.buttonFullWidth {
+    width: 100%;
 }
