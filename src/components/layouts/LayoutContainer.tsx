@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { BEM, classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
-import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/EditorAuthstateClassname';
 import { getCommonLayoutStyle } from './LayoutStyle';
 
 import style from './LayoutContainer.module.scss';
