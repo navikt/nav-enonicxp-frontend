@@ -16,6 +16,13 @@ const meta: Meta<typeof LenkeBase> = {
 export default meta;
 type Story = StoryObj<typeof LenkeBase>;
 
+export const Default: Story = {
+    args: {
+        href: '/',
+        children: 'Trykk her',
+    },
+};
+
 export const BadLinkWarning: Story = {
     args: {
         href: adminPreviewUrlPrefix,
