@@ -16,7 +16,7 @@ import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-t
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
-import { editorAuthstateClassname } from 'components/_common/auth-dependant-render/editorAuthstateClassname/EditorAuthstateClassname';
+import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
