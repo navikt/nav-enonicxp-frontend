@@ -97,3 +97,25 @@ export const RenderWaitingStateWaiting: Story = {
     },
     decorators: [withMockedAuthState({ authState: 'waiting' })],
 };
+
+//renderOn: always
+export const RenderAlwaysStateLoggedIn: Story = {
+    args: {
+        renderOn: 'always',
+    },
+    decorators: [withMockedAuthState({ authState: 'loggedIn' })],
+};
+
+export const RenderAlwaysStateLoggedOut: Story = {
+    args: {
+        renderOn: 'always',
+    },
+    decorators: [withMockedAuthState({ authState: 'loggedOut' })],
+};
+
+export const RenderAlwaysStateWaiting: Story = {
+    args: {
+        renderOn: 'always',
+    },
+    decorators: [withMockedAuthState({ authState: 'waiting' })],
+};
