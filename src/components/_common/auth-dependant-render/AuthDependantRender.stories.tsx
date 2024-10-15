@@ -32,6 +32,7 @@ const meta = { args: { children: 'Visible' }, component: AuthDependantRender } s
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+//renderOn: loggedIn
 export const RenderLoggedInStateLoggedIn: Story = {
     args: {
         renderOn: 'loggedIn',
@@ -49,6 +50,28 @@ export const RenderLoggedInStateLoggedOut: Story = {
 export const RenderLoggedInStateWaiting: Story = {
     args: {
         renderOn: 'loggedIn',
+    },
+    decorators: [withMockedAuthState({ authState: 'waiting' })],
+};
+
+//renderOn: loggedOut
+export const RenderLoggedOutStateLoggedIn: Story = {
+    args: {
+        renderOn: 'loggedOut',
+    },
+    decorators: [withMockedAuthState({ authState: 'loggedIn' })],
+};
+
+export const RenderLoggedOutStateLoggedOut: Story = {
+    args: {
+        renderOn: 'loggedOut',
+    },
+    decorators: [withMockedAuthState({ authState: 'loggedOut' })],
+};
+
+export const RenderLoggedOutStateWaiting: Story = {
+    args: {
+        renderOn: 'loggedOut',
     },
     decorators: [withMockedAuthState({ authState: 'waiting' })],
 };
