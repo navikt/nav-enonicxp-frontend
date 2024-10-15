@@ -33,21 +33,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 //renderOn: loggedIn
-export const RenderLoggedInStateLoggedIn: Story = {
+export const RenderOnLoggedInStateLoggedIn: Story = {
     args: {
         renderOn: 'loggedIn',
     },
     decorators: [withMockedAuthState({ authState: 'loggedIn' })],
 };
 
-export const RenderLoggedInStateLoggedOut: Story = {
+export const RenderOnLoggedInStateLoggedOut: Story = {
     args: {
         renderOn: 'loggedIn',
     },
     decorators: [withMockedAuthState({ authState: 'loggedOut' })],
 };
 
-export const RenderLoggedInStateWaiting: Story = {
+export const RenderOnLoggedInStateWaiting: Story = {
     args: {
         renderOn: 'loggedIn',
     },
@@ -55,21 +55,21 @@ export const RenderLoggedInStateWaiting: Story = {
 };
 
 //renderOn: loggedOut
-export const RenderLoggedOutStateLoggedIn: Story = {
+export const RenderOnLoggedOutStateLoggedIn: Story = {
     args: {
         renderOn: 'loggedOut',
     },
     decorators: [withMockedAuthState({ authState: 'loggedIn' })],
 };
 
-export const RenderLoggedOutStateLoggedOut: Story = {
+export const RenderOnLoggedOutStateLoggedOut: Story = {
     args: {
         renderOn: 'loggedOut',
     },
     decorators: [withMockedAuthState({ authState: 'loggedOut' })],
 };
 
-export const RenderLoggedOutStateWaiting: Story = {
+export const RenderOnLoggedOutStateWaiting: Story = {
     args: {
         renderOn: 'loggedOut',
     },
@@ -77,21 +77,21 @@ export const RenderLoggedOutStateWaiting: Story = {
 };
 
 //renderOn: waiting
-export const RenderWaitingStateLoggedIn: Story = {
+export const RenderOnWaitingStateLoggedIn: Story = {
     args: {
         renderOn: 'waiting',
     },
     decorators: [withMockedAuthState({ authState: 'loggedIn' })],
 };
 
-export const RenderWaitingStateLoggedOut: Story = {
+export const RenderOnWaitingStateLoggedOut: Story = {
     args: {
         renderOn: 'waiting',
     },
     decorators: [withMockedAuthState({ authState: 'loggedOut' })],
 };
 
-export const RenderWaitingStateWaiting: Story = {
+export const RenderOnWaitingStateWaiting: Story = {
     args: {
         renderOn: 'waiting',
     },
@@ -99,21 +99,21 @@ export const RenderWaitingStateWaiting: Story = {
 };
 
 //renderOn: always
-export const RenderAlwaysStateLoggedIn: Story = {
+export const RenderOnAlwaysStateLoggedIn: Story = {
     args: {
         renderOn: 'always',
     },
     decorators: [withMockedAuthState({ authState: 'loggedIn' })],
 };
 
-export const RenderAlwaysStateLoggedOut: Story = {
+export const RenderOnAlwaysStateLoggedOut: Story = {
     args: {
         renderOn: 'always',
     },
     decorators: [withMockedAuthState({ authState: 'loggedOut' })],
 };
 
-export const RenderAlwaysStateWaiting: Story = {
+export const RenderOnAlwaysStateWaiting: Story = {
     args: {
         renderOn: 'always',
     },
