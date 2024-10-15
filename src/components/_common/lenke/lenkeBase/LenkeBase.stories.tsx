@@ -10,7 +10,7 @@ const withMockedPageContent = (Story: any) => (
 );
 const meta: Meta<typeof LenkeBase> = {
     component: LenkeBase,
-    decorators: [withMockedPageContent], // Apply the decorator globally
+    decorators: [withMockedPageContent],
 };
 
 export default meta;
