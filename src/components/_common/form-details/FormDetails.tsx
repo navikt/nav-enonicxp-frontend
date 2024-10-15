@@ -7,7 +7,7 @@ import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
-import { FormDetailsButton } from './FormDetailsButton';
+import { FormDetailsButton } from 'components/_common/form-details/FormDetailsButton';
 
 import style from './FormDetails.module.scss';
 
