@@ -1,5 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/office-details/utils';
 

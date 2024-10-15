@@ -6,7 +6,7 @@ import {
 } from 'components/pages/office-page/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { forceArray } from 'utils/arrays';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { SpecialInformation } from './SpecialInfo';

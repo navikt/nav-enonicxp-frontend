@@ -7,9 +7,9 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 
-import style from './LenkeBase.module.scss';
+import style from 'components/_common/lenke/lenkeBase/LenkeBase.module.scss';
 
-const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
+export const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
 
 const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
     <span className={style.badLinkWarning}>

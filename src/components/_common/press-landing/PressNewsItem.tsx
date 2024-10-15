@@ -6,7 +6,7 @@ import { StaticImage } from 'components/_common/image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
 import newsIcon from '/public/gfx/news-paper-icon-black.svg';

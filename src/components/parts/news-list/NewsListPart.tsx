@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentList } from 'components/_common/content-list/ContentList';
-import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

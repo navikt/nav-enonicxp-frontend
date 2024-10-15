@@ -6,7 +6,7 @@ import {
 } from 'types/component-props/_mixins';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { getConjunction, joinWithConjunction } from 'utils/string';

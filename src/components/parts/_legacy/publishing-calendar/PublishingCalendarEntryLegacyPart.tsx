@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
