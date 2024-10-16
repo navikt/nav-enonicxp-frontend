@@ -12,17 +12,17 @@ ARG GITHUB_PAT
 ARG SERVICE_SECRET
 ARG ENV_FILE
 
-COPY package*.json /.failover/.npmrc /app/
-COPY server /app/server/
+COPY packages/nextjs/package*.json /.failover/.npmrc /app/nextjs/
+COPY packages/server /app/server/
 
 RUN npm ci --ignore-scripts
 RUN rm -f .npmrc
 
-COPY public /app/public/
-COPY src /app/src/
-COPY srcCommon /app/srcCommon/
-COPY next.config.js tsconfig.json .eslintrc.json /app/
-COPY "/.failover/$ENV_FILE" /app/.env
+COPY packages/nextjs/public /app/public/
+COPY packages/nextjs/src /app/nextjs/src/
+COPY packages/common /app/srcommon/
+COPY packages/nextjs/next.config.js packages/nextjs/tsconfig.json packages/nextjs/.eslintrc.json /app/nextjs/
+COPY "/.failover/$ENV_FILE" /app/nextjs/.env
 
 RUN npm run build
 

@@ -23,10 +23,7 @@
             }
         ],
         "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true,
-        "paths": {
-            "srcCommon/*": ["../srcCommon/*"]
-        }
+        "skipLibCheck": true
     },
     "include": [
         "packages/nextjs/next-env.d.ts",

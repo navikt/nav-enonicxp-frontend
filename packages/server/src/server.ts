@@ -6,9 +6,9 @@ import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
-import { logger } from 'srcCommon/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
+import { logger } from '@/common/logger';
 import { websockets } from './websockets';
 
 const promMiddleware = promBundle({
