@@ -3,11 +3,11 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-type Props = Pick<ContentProps, 'language' | 'type'> & {
+export type GetContentTaglineProps = Pick<ContentProps, 'language' | 'type'> & {
     data: Pick<ProductDataMixin, 'taxonomy' | 'audience' | 'customCategory'>;
 };
 
-export const getContentTagline = (content: Props, currentLanguage?: Language) => {
+export const getContentTagline = (content: GetContentTaglineProps, currentLanguage?: Language) => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
 
