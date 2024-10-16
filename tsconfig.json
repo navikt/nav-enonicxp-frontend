@@ -29,8 +29,8 @@
         }
     },
     "include": [
-        "next-env.d.ts",
-        "nodeenv.d.ts",
+        "packages/nextjs/next-env.d.ts",
+        "packages/nextjs/nodeenv.d.ts",
         "src/**/*.ts",
         "src/**/*.tsx",
         "srcCommon/**/*.ts"
