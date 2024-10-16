@@ -5,7 +5,7 @@ import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { PartsMapper } from './parts/PartsMapper';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
-import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
+import { AuthDependantRender } from './_common/authDependantRender/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 
 type Props = {
