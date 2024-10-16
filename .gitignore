@@ -42,8 +42,8 @@ yarn-error.log*
 
 # secrets, careful!
 /.github-token
-/failover/.secret-dev1
-/failover/.secret-dev2
+/.failover/.secret-dev1
+/.failover/.secret-dev2
 
 /tsconfig.tsbuildinfo
 /image-manifest

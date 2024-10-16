@@ -60,8 +60,8 @@ og servere denne som en fallback.
 
 Failover deployes ikke automatisk til dev-miljøer. For å bygge og deploye til et dev-miljø, gjør følgende:
 
--   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `/failover/build-dev-failover-image.sh`
--   Kjør `/failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
+-   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `/.failover/build-dev-failover-image.sh`
+-   Kjør `/.failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
 -   Vent på at imaget bygges (det tar normalt 15-20 min)
 -   Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
 

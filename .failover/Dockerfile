@@ -12,7 +12,7 @@ ARG GITHUB_PAT
 ARG SERVICE_SECRET
 ARG ENV_FILE
 
-COPY package*.json /failover/.npmrc /app/
+COPY package*.json /.failover/.npmrc /app/
 COPY server /app/server/
 
 RUN npm ci --ignore-scripts
@@ -22,7 +22,7 @@ COPY public /app/public/
 COPY src /app/src/
 COPY srcCommon /app/srcCommon/
 COPY next.config.js tsconfig.json .eslintrc.json /app/
-COPY "/failover/$ENV_FILE" /app/.env
+COPY "/.failover/$ENV_FILE" /app/.env
 
 RUN npm run build
 
