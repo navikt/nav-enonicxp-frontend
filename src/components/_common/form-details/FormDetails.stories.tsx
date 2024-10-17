@@ -48,29 +48,6 @@ export const LanguageDisclaimer: Story = {
     args: {
         formDetails: {
             languageDisclaimer: 'Språkdisclaimer',
-            alerts: [],
-            formType: [
-                {
-                    _selected: 'complaint',
-                    application: { variations: [{ label: 'Søk om tolk' }] },
-                    complaint: {
-                        variations: [
-                            {
-                                type: 'appeal',
-                                label: 'Søk om tolk',
-                                link: {
-                                    _selected: 'external',
-                                    internal: { target: { _path: '', displayName: '' } },
-                                    external: { url: '', text: '' },
-                                },
-                            },
-                        ],
-                    },
-                    addendum: {
-                        variations: [{ label: 'Tillegg' }],
-                    },
-                },
-            ],
         },
     },
 };
@@ -78,28 +55,6 @@ export const LanguageDisclaimer: Story = {
 export const Alerts: Story = {
     args: {
         formDetails: {
-            formType: [
-                {
-                    _selected: 'complaint',
-                    application: { variations: [{ label: 'Søk om tolk' }] },
-                    complaint: {
-                        variations: [
-                            {
-                                type: 'appeal',
-                                label: 'Søk om tolk',
-                                link: {
-                                    _selected: 'external',
-                                    internal: { target: { _path: '', displayName: '' } },
-                                    external: { url: '', text: '' },
-                                },
-                            },
-                        ],
-                    },
-                    addendum: {
-                        variations: [{ label: 'Tillegg' }],
-                    },
-                },
-            ],
             alerts: [
                 {
                     data: {
