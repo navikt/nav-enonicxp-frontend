@@ -130,7 +130,7 @@ export const Alert: Story = {
                         text: 'Dette er informasjon',
                         target: {
                             _selected: 'formDetails',
-                            formDetails: { targetContent: 'Søk om tolk' },
+                            formDetails: { targetContent: null },
                         },
                     },
                 },
