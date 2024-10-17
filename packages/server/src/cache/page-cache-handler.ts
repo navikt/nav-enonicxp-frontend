@@ -1,9 +1,9 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { RedisCache } from 'srcCommon/redis';
-import { pathToCacheKey } from 'srcCommon/cache-key';
-import { logger } from 'srcCommon/logger';
+import { RedisCache } from '../../../common/redis';
+import { logger } from '@/common/logger';
+import { pathToCacheKey } from '../../../common/cache-key';
 
 export const redisCache = new RedisCache();
 

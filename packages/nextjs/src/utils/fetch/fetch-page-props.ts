@@ -15,7 +15,7 @@ import {
     redirectPageProps,
 } from 'utils/redirects';
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 import { fetchPage } from './fetch-content';
 
 type FetchPagePropsArgs = {

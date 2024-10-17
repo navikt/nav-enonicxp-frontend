@@ -1,6 +1,6 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
 import { xpServiceUrl } from 'utils/urls';
-import { logger } from 'srcCommon/logger';
+import { fetchJson } from '@/common/fetch-utils';
+import { logger } from '@/common/logger';
 
 const excludedPaths: ReadonlySet<string> = new Set([
     '/', // This is already rendered by /index.tsx

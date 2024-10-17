@@ -1,8 +1,8 @@
 import Cache from 'node-cache';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { fetchJson } from 'srcCommon/fetch-utils';
+import { fetchJson } from '@/common/fetch-utils';
 import { apiErrorHandler } from 'utils/api-error-handler';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 
 interface SitemapLanguageVersion {
     language: string;

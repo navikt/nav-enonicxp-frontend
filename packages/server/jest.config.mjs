@@ -8,7 +8,7 @@ export default {
         "^.+\\.tsx?$": "ts-jest"
     },
     "moduleNameMapper": {
-        "srcCommon/(.*)": "<rootDir>/../srcCommon/$1",
+        "@/common/(.*)": "<rootDir>/../srcCommon/$1",
         "cache/(.*)": "<rootDir>/src/cache/$1"
     },
 };

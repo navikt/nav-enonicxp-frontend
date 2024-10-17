@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { make404Props } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 
 const loopDetectionParam = 'error';
 

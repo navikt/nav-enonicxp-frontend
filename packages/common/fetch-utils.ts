@@ -1,4 +1,4 @@
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 
 const TIMEOUT_DEFAULT = 15000;
 

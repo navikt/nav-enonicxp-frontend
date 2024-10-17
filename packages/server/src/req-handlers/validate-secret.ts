@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 
 export const validateSecret =
     (nextApp: NextServer): RequestHandler =>

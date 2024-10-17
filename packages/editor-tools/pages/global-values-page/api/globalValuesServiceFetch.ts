@@ -1,5 +1,5 @@
-import { fetchJson, objectToQueryString } from 'srcCommon/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { xpDraftPathPrefix, xpServicePath } from '@nav-enonicxp-frontend/nextjs/src/utils/urls';
+import { fetchJson, objectToQueryString } from '@/common/fetch-utils';
 
 const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
 

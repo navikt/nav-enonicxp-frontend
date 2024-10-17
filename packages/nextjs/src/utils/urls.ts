@@ -1,6 +1,6 @@
 import { ContentProps } from 'types/content-props/_content-common';
-import { logger } from 'srcCommon/logger';
 import { Language } from 'translations';
+import { logger } from '@/common/logger';
 import { pageLanguageToLayerLanguage } from './languages';
 
 export const appOriginProd = 'https://www.nav.no';

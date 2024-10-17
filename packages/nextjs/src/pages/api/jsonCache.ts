@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { LRUCache } from 'lru-cache';
-import { fetchJson } from 'srcCommon/fetch-utils';
-import { logger } from 'srcCommon/logger';
+import { fetchJson } from '@/common/fetch-utils';
+import { logger } from '@/common/logger';
 
 const xpOrigin = process.env.XP_ORIGIN;
 

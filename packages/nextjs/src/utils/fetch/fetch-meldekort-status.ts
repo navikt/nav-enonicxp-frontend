@@ -1,7 +1,7 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
 import { setMeldekortStatusAction } from 'store/slices/authState';
 import { store } from 'store/store';
-import { logger } from 'srcCommon/logger';
+import { fetchJson } from '@/common/fetch-utils';
+import { logger } from '@/common/logger';
 
 export type MeldekortStatusResponse = {
     meldekort: number;

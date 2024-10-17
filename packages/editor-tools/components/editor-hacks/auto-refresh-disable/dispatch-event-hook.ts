@@ -7,7 +7,7 @@ import {
 } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {

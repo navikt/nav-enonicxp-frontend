@@ -1,4 +1,4 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
+import { fetchJson } from '@/common/fetch-utils';
 
 export type UrlSearchResponse = {
     url?: string;

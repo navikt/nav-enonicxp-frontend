@@ -5,7 +5,7 @@ import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
-import { logger } from 'srcCommon/logger';
+import { logger } from '@/common/logger';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { QbrickVideoProps } from './utils/videoProps';

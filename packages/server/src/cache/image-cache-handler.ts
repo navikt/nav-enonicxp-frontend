@@ -1,9 +1,9 @@
 import ResponseCache from 'next/dist/server/response-cache';
-import { logger } from 'srcCommon/logger';
 import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 import NextNodeServer from 'next/dist/server/next-server';
 import { propagateServerField } from 'next/dist/server/lib/render-server';
 import path from 'path';
+import { logger } from '@/common/logger';
 
 class ImageCacheWithCustomCacheDir extends ResponseCache {
     private readonly cacheDir: string;

@@ -11,9 +11,6 @@
         "module": "esnext",
         "baseUrl": "src",
         "noEmit": true,
-        "paths": {
-            "@/common/*": ["../common/*"]
-        }
     },
-    "include": ["src/**/*.ts", "../srcCommon/**/*.ts", "../nodeenv.d.ts"]
+    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts"]
 }

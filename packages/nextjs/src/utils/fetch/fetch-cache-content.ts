@@ -1,6 +1,6 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
 import { stripXpPathPrefix } from 'utils/urls';
 import { ContentProps } from 'types/content-props/_content-common';
+import { fetchJson } from '@/common/fetch-utils';
 
 const origin = process.env.APP_ORIGIN;
 const buildId = process.env.BUILD_ID;
