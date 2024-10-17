@@ -10,66 +10,37 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: {
     args: {
-        displayConfig: { showTitle: boolean; showIngress: boolean };
         formDetails: {
-            alerts: any[];
-            ingress: { macros: any[]; processedHtml: string };
-            formType: {
-                _selected: string;
-                application: { variations: { label: string }[] };
-                complaint: {
-                    variations: {
-                        link: {
-                            _selected: string;
-                            internal: { target: { displayName: string; _path: string } };
-                            external: { text: string; url: string };
-                        };
-                        label: string;
-                        type: string;
-                    }[];
-                };
-                addendum: { variations: { label: string }[] };
-            }[];
-            title: string;
-        };
-    };
-} = {
-    args: {
-        formDetails: {
-            title: 'Søk om tolk for første gang',
+            title: 'Søk om tolk for første gang';
             ingress: {
-                processedHtml:
-                    'Søknaden skal brukes hvis du søker om tolk første gang.\n' +
-                    '\n' +
-                    'Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
-                macros: [],
-            },
-            alerts: [],
+                processedHtml: 'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.';
+                macros: [];
+            };
+            alerts: [];
             formType: [
                 {
-                    _selected: 'complaint',
-                    application: { variations: [{ label: 'Søk om tolk' }] },
+                    _selected: 'complaint';
+                    application: { variations: [{ label: 'Søk om tolk' }] };
                     complaint: {
                         variations: [
                             {
-                                type: 'appeal',
-                                label: 'Søk om tolk',
+                                type: 'appeal';
+                                label: 'Søk om tolk';
                                 link: {
-                                    _selected: 'external',
-                                    internal: { target: { _path: '', displayName: '' } },
-                                    external: { url: '', text: '' },
-                                },
+                                    _selected: 'external';
+                                    internal: { target: { _path: ''; displayName: '' } };
+                                    external: { url: ''; text: '' };
+                                };
                             },
-                        ],
-                    },
+                        ];
+                    };
                     addendum: {
-                        variations: [{ label: 'Tillegg' }],
-                    },
+                        variations: [{ label: 'Tillegg' }];
+                    };
                 },
-            ],
-        },
-        displayConfig: { showTitle: true, showIngress: true },
-    },
+            ];
+        };
+    };
 };
 
 export const LanguageDisclaimer: Story = {
@@ -78,9 +49,7 @@ export const LanguageDisclaimer: Story = {
             title: 'Søk om tolk for første gang',
             ingress: {
                 processedHtml:
-                    'Søknaden skal brukes hvis du søker om tolk første gang.\n' +
-                    '\n' +
-                    'Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
+                    'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
                 macros: [],
             },
             languageDisclaimer: 'Språkdisclaimer',
@@ -118,9 +87,7 @@ export const Alert: Story = {
             title: 'Søk om tolk for første gang',
             ingress: {
                 processedHtml:
-                    'Søknaden skal brukes hvis du søker om tolk første gang.\n' +
-                    '\n' +
-                    'Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
+                    'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
                 macros: [],
             },
             alerts: [
@@ -130,7 +97,6 @@ export const Alert: Story = {
                         text: 'Dette er informasjon',
                         target: {
                             _selected: 'formDetails',
-                            formDetails: { targetContent: '' },
                         },
                     },
                 },
