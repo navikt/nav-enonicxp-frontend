@@ -11,7 +11,6 @@ const meta = {
     component: FormDetails,
     args: {
         formDetails: {
-            alerts: [],
             formType: [
                 {
                     _selected: 'complaint',
@@ -34,6 +33,7 @@ const meta = {
                     },
                 },
             ],
+            alerts: [],
             title: 'Søk om tolk for første gang',
             ingress: {
                 processedHtml:
