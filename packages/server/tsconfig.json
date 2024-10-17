@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "../../tsconfig.json",
     "compilerOptions": {
         "target": "es2022",
         "strict": true,
@@ -9,8 +9,7 @@
         "lib": ["es2023"],
         "moduleResolution": "bundler",
         "module": "esnext",
-        "baseUrl": "src",
-        "noEmit": true,
+        "noEmit": true
     },
-    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts"]
+    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts", "@/common/**/*.ts"]
 }

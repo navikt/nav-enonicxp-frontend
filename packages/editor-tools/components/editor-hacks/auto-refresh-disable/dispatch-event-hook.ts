@@ -1,13 +1,12 @@
-import {
-    ContentProps,
-    ContentType,
-} from '@nav-enonicxp-frontend/nextjs/src/types/content-props/_content-common';
-import { Branch } from '@nav-enonicxp-frontend/nextjs/src/types/branch';
+import { ContentProps, ContentType } from '@/nextjs/src/types/content-props/_content-common';
+import { Branch } from '@/nextjs/src/types/branch';
 import { logger } from '@/common/logger';
 import {
     editorFetchAdminContent,
-    editorFetchAdminUserId, editorFetchUserInfo,
-    isContentRepo, isCurrentEditorRepo,
+    editorFetchAdminUserId,
+    editorFetchUserInfo,
+    isContentRepo,
+    isCurrentEditorRepo,
 } from '../editor-hacks-utils';
 
 // From lib-admin-ui

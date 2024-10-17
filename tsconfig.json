@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "strict": true,
         "target": "es2022",
@@ -25,7 +26,10 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "paths": {
-            "@/common/*": ["packages/common/*"]
+            "@/common/*": ["packages/common/*"],
+            "@/nextjs/*": ["packages/nextjs/*"],
+            "@/server/*": ["packages/server/*"],
+            "@/editor-tools/*": ["packages/editor-tools/*"]
         }
     },
     "include": [
