@@ -3,20 +3,8 @@ import { FormDetails } from 'components/_common/form-details/FormDetails';
 
 const meta = {
     component: FormDetails,
-} satisfies Meta<typeof FormDetails>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
     args: {
         formDetails: {
-            title: 'Søk om tolk for første gang',
-            ingress: {
-                processedHtml:
-                    'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
-                macros: [],
-            },
             alerts: [],
             formType: [
                 {
@@ -40,20 +28,25 @@ export const Default: Story = {
                     },
                 },
             ],
-        },
-        displayConfig: { showTitle: true, showIngress: true },
-    },
-};
-
-export const LanguageDisclaimer: Story = {
-    args: {
-        formDetails: {
             title: 'Søk om tolk for første gang',
             ingress: {
                 processedHtml:
                     'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
                 macros: [],
             },
+        },
+        displayConfig: { showTitle: true, showIngress: true },
+    },
+} satisfies Meta<typeof FormDetails>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+
+export const LanguageDisclaimer: Story = {
+    args: {
+        formDetails: {
             languageDisclaimer: 'Språkdisclaimer',
             alerts: [],
             formType: [
@@ -79,31 +72,12 @@ export const LanguageDisclaimer: Story = {
                 },
             ],
         },
-        displayConfig: { showTitle: true, showIngress: true },
     },
 };
 
 export const Alerts: Story = {
     args: {
         formDetails: {
-            title: 'Søk om tolk for første gang',
-            ingress: {
-                processedHtml:
-                    'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
-                macros: [],
-            },
-            alerts: [
-                {
-                    data: {
-                        type: 'information',
-                        text: 'Dette er informasjon',
-                        target: {
-                            _selected: 'targetContent',
-                            formDetails: { targetContent: '', _selected: 'targetContent' },
-                        },
-                    },
-                },
-            ],
             formType: [
                 {
                     _selected: 'complaint',
@@ -126,7 +100,18 @@ export const Alerts: Story = {
                     },
                 },
             ],
+            alerts: [
+                {
+                    data: {
+                        type: 'information',
+                        text: 'Dette er informasjon',
+                        target: {
+                            _selected: 'targetContent',
+                            formDetails: { targetContent: '', _selected: 'targetContent' },
+                        },
+                    },
+                },
+            ],
         },
-        displayConfig: { showTitle: true, showIngress: true },
     },
 };
