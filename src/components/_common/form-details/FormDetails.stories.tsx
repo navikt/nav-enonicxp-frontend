@@ -98,8 +98,8 @@ export const Alerts: Story = {
                         type: 'information',
                         text: 'Dette er informasjon',
                         target: {
-                            _selected: 'formDetails',
-                            formDetails: { targetContent: '' },
+                            _selected: 'targetContent',
+                            formDetails: { targetContent: '', _selected: 'targetContent' },
                         },
                     },
                 },
