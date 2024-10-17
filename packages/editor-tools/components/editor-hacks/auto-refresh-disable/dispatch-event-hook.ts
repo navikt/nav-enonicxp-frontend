@@ -1,13 +1,14 @@
 import {
-    editorFetchAdminContent,
-    editorFetchAdminUserId,
-    editorFetchUserInfo,
-    isContentRepo,
-    isCurrentEditorRepo,
-} from 'components/_editor-only/editor-hacks/editor-hacks-utils';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Branch } from 'types/branch';
+    ContentProps,
+    ContentType,
+} from '@nav-enonicxp-frontend/nextjs/src/types/content-props/_content-common';
+import { Branch } from '@nav-enonicxp-frontend/nextjs/src/types/branch';
 import { logger } from '@/common/logger';
+import {
+    editorFetchAdminContent,
+    editorFetchAdminUserId, editorFetchUserInfo,
+    isContentRepo, isCurrentEditorRepo,
+} from '../editor-hacks-utils';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {
