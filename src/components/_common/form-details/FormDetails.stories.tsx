@@ -83,7 +83,7 @@ export const LanguageDisclaimer: Story = {
     },
 };
 
-export const Alert: Story = {
+export const Alerts: Story = {
     args: {
         formDetails: {
             title: 'Søk om tolk for første gang',
