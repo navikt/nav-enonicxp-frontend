@@ -31,7 +31,7 @@ yarn-error.log*
 .vercel
 
 # local env
-*.env*
+*.env
 
 /.idea/
 
