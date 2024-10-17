@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 
+// Problem:
+// formDetails is defined in meta
+// formDetails is not defined in the languageDisclaimer story, but should read from meta
+// if I add formDetails to a const, it is not defined anywhere
+// if I add it to all stories, sonarCloud will complain about duplicated code
+
 const meta = {
     component: FormDetails,
     args: {
