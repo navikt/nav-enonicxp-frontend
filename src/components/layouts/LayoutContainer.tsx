@@ -5,6 +5,7 @@ import { BEM, classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
 import { getCommonLayoutStyle } from './LayoutStyle';
+import { useLayoutConfig } from './useLayoutConfig';
 
 import style from './LayoutContainer.module.scss';
 
@@ -23,22 +24,19 @@ export const LayoutContainer = ({
     ...divElementProps
 }: Props) => {
     const { editorView } = usePageContentProps();
-    const { descriptor, path, type, config = {} } = layoutProps;
+    const { layoutConfig } = useLayoutConfig();
+
+    const { descriptor, type, config = {} } = layoutProps;
     const layoutName = descriptor.split(':')[1];
     const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
-    const editorProps = !!pageProps.editorView
-        ? {
-              'data-portal-component-type': type,
-              'data-portal-component': path,
-          }
-        : undefined;
+
     const bem = BEM(type);
 
     return (
         <div
             {...divElementProps}
-            {...editorProps}
+            {...layoutConfig.editorProps}
             className={classNames(
                 style.layout,
                 bem(layoutName),
