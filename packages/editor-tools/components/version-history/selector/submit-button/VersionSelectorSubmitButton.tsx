@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'components/_common/button/Button';
+import { Button } from '@/nextjs/components/_common/button/Button';
 
 type Props = {
     url: string;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Select } from '@navikt/ds-react';
-import { ContentProps } from 'types/content-props/_content-common';
-import { formatDateTime } from 'utils/datetime';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
+import { formatDateTime } from '@/nextjs/utils/datetime';
 import { getVersionSelectorUrl } from '@/editor-tools/components/version-history/selector/versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '@/editor-tools/components/version-history/selector/submit-button/VersionSelectorSubmitButton';
 

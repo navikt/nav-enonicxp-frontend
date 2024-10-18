@@ -1,4 +1,4 @@
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
 import { isEditorFeatureEnabled } from '@/editor-tools/pages/site-info/feature-toggles/editor-feature-toggles-utils';
 import { EditorFeature } from '@/editor-tools/pages/site-info/feature-toggles/SiteInfoFeatureToggles';
 import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';

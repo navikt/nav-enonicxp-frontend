@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { ContentProps } from 'types/content-props/_content-common';
-import { getCurrentDateAndTime, getCurrentISODate, getUtcTimeFromLocal } from 'utils/datetime';
-import { Branch } from 'types/branch';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
+import {
+    getCurrentDateAndTime,
+    getCurrentISODate,
+    getUtcTimeFromLocal,
+} from '@/nextjs/utils/datetime';
+import { Branch } from '@/nextjs/types/branch';
 import { getVersionSelectorUrl } from '@/editor-tools/components/version-history/selector/versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '@/editor-tools/components/version-history/selector/submit-button/VersionSelectorSubmitButton';
 

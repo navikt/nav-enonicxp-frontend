@@ -2,9 +2,9 @@ import React, { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BodyLong } from '@navikt/ds-react';
 import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
-import { removeDuplicates } from 'utils/arrays';
-import { Header } from 'components/_common/headers/Header';
-import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
+import { removeDuplicates } from '@/nextjs/utils/arrays';
+import { Header } from '@/nextjs/components/_common/headers/Header';
+import { LenkeInline } from '@/nextjs/components/_common/lenke/lenkeInline/LenkeInline';
 import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 
 import style from './DuplicateIdsWarning.module.scss';

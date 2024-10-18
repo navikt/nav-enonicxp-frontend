@@ -1,11 +1,11 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
+import { LenkeInline } from '@/nextjs/components/_common/lenke/lenkeInline/LenkeInline';
 import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 import { ReferenceItem } from '@/editor-tools/components/references-info/types';
-import { translator } from 'translations';
-import { adminOrigin } from 'utils/urls';
-import { usePageContentProps } from 'store/pageContext';
+import { translator } from '@/nextjs/translations';
+import { adminOrigin } from '@/nextjs/utils/urls';
+import { usePageContentProps } from '@/nextjs/store/pageContext';
 
 import style from './ReferencesLinks.module.scss';
 

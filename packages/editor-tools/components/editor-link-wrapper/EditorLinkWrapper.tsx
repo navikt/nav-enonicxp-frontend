@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePageContentProps } from 'store/pageContext';
-import { getRelativePathIfInternal } from 'utils/urls';
+import { usePageContentProps } from '@/nextjs/store/pageContext';
+import { getRelativePathIfInternal } from '@/nextjs/utils/urls';
 
 //
 // This wrapper component can be used for making links clickable in the Content Studio

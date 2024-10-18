@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { xpDraftPathPrefix, xpServicePath } from '@/nextjs/utils/urls';
 import { ReferencesDataByType } from '@/editor-tools/components/references-info/types';
 import { fetchJson } from '@/common/fetch-utils';
 

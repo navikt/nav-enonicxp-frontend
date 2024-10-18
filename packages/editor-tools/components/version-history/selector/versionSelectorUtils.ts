@@ -1,5 +1,5 @@
-import { ContentProps } from 'types/content-props/_content-common';
-import { Branch } from 'types/branch';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
+import { Branch } from '@/nextjs/types/branch';
 import { objectToQueryString } from '@/common/fetch-utils';
 
 export const getVersionSelectorUrl = (

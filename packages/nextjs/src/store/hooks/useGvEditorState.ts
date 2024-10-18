@@ -8,6 +8,17 @@ import {
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVMessageProps } from '@/editor-tools/pages/global-values-page/components/messages/GVMessages';
 
+type UseGvEditorState = {
+    contentId: string;
+    valueItems: GlobalValueItem[];
+    messages: GVMessageProps[];
+    setValueItems: (valueItems: GlobalValueItem[]) => void;
+    setMessages: (messages: GVMessageProps[]) => void;
+    itemsEditState: { [key: string]: boolean };
+    setItemEditState: (key: string, isEditMode: boolean) => void;
+    editorEnabled: boolean;
+};
+
 export const useGvEditorState = () => {
     const dispatch = useAppDispatch();
 

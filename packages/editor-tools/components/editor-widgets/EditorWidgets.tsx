@@ -1,11 +1,11 @@
 import React from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
 import { EditorHacks } from '@/editor-tools/components/editor-hacks/EditorHacks';
 import { EditorGlobalWarnings } from '@/editor-tools/components/global-warnings/EditorGlobalWarnings';
 import { ReferencesInfo } from '@/editor-tools/components/references-info/ReferencesInfo';
 import { VersionHistory } from '@/editor-tools/components/version-history/VersionHistory';
-import { hasWhiteHeader } from 'utils/appearance';
-import { classNames } from 'utils/classnames';
+import { hasWhiteHeader } from '@/nextjs/utils/appearance';
+import { classNames } from '@/nextjs/utils/classnames';
 
 import style from './EditorWidgets.module.scss';
 

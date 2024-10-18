@@ -1,6 +1,6 @@
-import { adminOrigin } from 'utils/urls';
+import { adminOrigin } from '@/nextjs/utils/urls';
 import { fetchJson } from '@/common/fetch-utils';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
 import { logger } from '@/common/logger';
 
 const ADMIN_AUTH_URL = `${adminOrigin}/admin/rest/auth/authenticated`;

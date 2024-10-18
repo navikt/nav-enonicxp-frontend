@@ -1,9 +1,9 @@
 import React from 'react';
 import { BodyLong, BodyShort, Heading, Loader } from '@navikt/ds-react';
 import { ReferencesInfoResult } from '@/editor-tools/components/references-info/result/ReferencesInfoResult';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { AlertBox } from '@/nextjs/components/_common/alertBox/AlertBox';
 import { useFetchReferencesInfo } from '@/editor-tools/components/references-info/useFetchReferencesInfo';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from '@/nextjs/types/content-props/_content-common';
 
 import style from './ReferencesInfo.module.scss';
 

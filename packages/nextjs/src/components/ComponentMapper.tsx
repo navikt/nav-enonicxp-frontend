@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentProps, ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
+import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
 import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { PartsMapper } from './parts/PartsMapper';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/authDependantRender/AuthDependantRender';
-import { EditorHelp } from '../../../editor-tools/components/editor-help/EditorHelp';
 
 type Props = {
     componentProps?: ComponentProps;
