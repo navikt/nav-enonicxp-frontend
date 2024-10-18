@@ -64,7 +64,13 @@ const ComponentToRender = ({ componentProps, pageProps, isCustomNestedComponent 
                 />
             );
         case ComponentType.Fragment:
-            return <FragmentComponent componentProps={componentProps} pageProps={pageProps} />;
+            return (
+                <FragmentComponent
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         default:
             return <div>{`Unimplemented component type: ${(componentProps as any).type}`}</div>;
     }

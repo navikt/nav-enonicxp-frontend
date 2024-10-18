@@ -181,7 +181,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     if (!descriptor || partsDeprecated.has(descriptor)) {
         // We still need to render invalid components in the editor to prevent errors
         // and allow users to remove the invalid component
-        return isEditView ? <div {...editorProps} /> : null;
+        return editorProps ? <div {...editorProps} /> : null;
     }
 
     const partName = descriptor.split(':')[1];

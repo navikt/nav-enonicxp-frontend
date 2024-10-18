@@ -11,7 +11,7 @@ export const TextComponentXp = ({ textProps, editorProps }: Props) => {
     const { text } = textProps;
 
     if (!text) {
-        if (editMode) {
+        if (editorProps) {
             return <div {...editorProps}>{'Tom tekst-komponent, klikk for å redigere'}</div>;
         }
         return null;

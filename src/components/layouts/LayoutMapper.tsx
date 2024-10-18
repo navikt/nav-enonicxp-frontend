@@ -49,12 +49,11 @@ const layoutComponents: {
 
 export const LayoutMapper = ({ pageProps, layoutProps, editorProps }: Props) => {
     const { config, descriptor, regions } = layoutProps;
-    const isEditView = pageProps.editorView === 'edit';
 
     const { LayoutConfigProvider } = useLayoutConfig();
 
     if (!descriptor || !regions) {
-        return isEditView ? <div {...editorProps} /> : null;
+        return editorProps ? <div {...editorProps} /> : null;
     }
 
     const LayoutComponent = layoutComponents[descriptor];

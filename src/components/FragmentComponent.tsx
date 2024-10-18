@@ -21,11 +21,17 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
         );
     }
 
-    return <ComponentMapper pageProps={pageProps} componentProps={componentProps.fragment} />;
+    return (
+        <ComponentMapper
+            pageProps={pageProps}
+            componentProps={componentProps.fragment}
+            isCustomNestedComponent={true}
+        />
+    );
 };
 
 export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Props) => {
-    if (pageProps.editorView === 'edit') {
+    if (editorProps) {
         return (
             <div {...editorProps}>
                 <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />
