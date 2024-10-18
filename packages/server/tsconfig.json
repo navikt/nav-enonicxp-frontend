@@ -6,10 +6,17 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
+        "baseUrl": "src",
         "lib": ["es2023"],
         "moduleResolution": "bundler",
         "module": "esnext",
-        "noEmit": true
+        "noEmit": true,
+        "paths": {
+            "@/nextjs/*": ["../../nextjs/*"],
+            "@/common/*": ["../../common/*"],
+            "@/server/*": ["../../server/*"],
+            "@/editor-tools/*": ["../../editor-tools/*"]
+        }
     },
     "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts"]
 }

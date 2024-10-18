@@ -9,7 +9,6 @@
         "esModuleInterop": true,
         "declaration": true, // Emit type declaration files (.d.ts)
         "declarationMap": true, // Emit .d.ts.map files for better debugging
-        "emitDeclarationOnly": true, // Only emit the declaration files
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
