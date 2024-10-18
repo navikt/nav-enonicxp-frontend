@@ -23,9 +23,9 @@ const serverOptions = {
     external: ['./page-cache-handler.cjs'],
     // Rewrite the import path for the cache handler
     alias: {
-        'cache/page-cache-handler': './page-cache-handler.cjs'
+        'cache/page-cache-handler': './page-cache-handler.cjs',
     },
-}
+};
 
 if (isWatchMode) {
     console.log('Building in watch mode');
@@ -33,15 +33,9 @@ if (isWatchMode) {
     const cacheHandlerContext = await context(cacheHandlerOptions);
     const serverContext = await context(serverOptions);
 
-    await Promise.all([
-        cacheHandlerContext.watch(),
-        serverContext.watch()
-    ]);
+    await Promise.all([cacheHandlerContext.watch(), serverContext.watch()]);
 } else {
     console.log('Building in normal mode');
 
-    await Promise.all([
-        build(cacheHandlerOptions),
-        build(serverOptions)
-    ]);
+    await Promise.all([build(cacheHandlerOptions), build(serverOptions)]);
 }
