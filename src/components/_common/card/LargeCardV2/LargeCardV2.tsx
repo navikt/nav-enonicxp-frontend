@@ -2,7 +2,7 @@ import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';

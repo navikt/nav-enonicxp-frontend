@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { XpImage } from 'components/_common/image/XpImage';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from 'utils/urls';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import style from './Innholdsfortegnelse.module.scss';
 

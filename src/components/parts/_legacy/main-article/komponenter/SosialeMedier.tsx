@@ -1,6 +1,6 @@
 import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
 import { usePageContentProps } from 'store/pageContext';
 import {
