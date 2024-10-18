@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FormDetailsData } from 'types/content-props/form-details';
+import { FormDetails } from './FormDetails';
 
 const baseFormDetails = {
     formType: [

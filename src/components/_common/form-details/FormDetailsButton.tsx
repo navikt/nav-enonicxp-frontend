@@ -2,7 +2,7 @@ import { Variation } from 'types/content-props/form-details';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from 'components/_common/button/Button';
 
-import styles from 'components/_common/form-details/FormDetailsButton.module.scss';
+import styles from './FormDetailsButton.module.scss';
 
 type FormsListItemProps = {
     variation: Variation;
