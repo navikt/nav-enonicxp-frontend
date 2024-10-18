@@ -1,12 +1,13 @@
 import React from 'react';
-import { ComponentType, FragmentComponentProps } from 'types/component-props/_component-common';
+import { FragmentComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ComponentMapper } from './ComponentMapper';
+import { ComponentEditorProps, ComponentMapper } from './ComponentMapper';
 
 type Props = {
     componentProps: FragmentComponentProps;
     pageProps: ContentProps;
+    editorProps?: ComponentEditorProps;
 };
 
 const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
@@ -23,13 +24,8 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
     return <ComponentMapper pageProps={pageProps} componentProps={componentProps.fragment} />;
 };
 
-export const FragmentComponent = ({ componentProps, pageProps }: Props) => {
+export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Props) => {
     if (pageProps.editorView === 'edit') {
-        const editorProps = {
-            'data-portal-component-type': ComponentType.Fragment,
-            'data-portal-component': componentProps.path,
-        };
-
         return (
             <div {...editorProps}>
                 <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />

@@ -11,9 +11,20 @@ import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 type Props = {
     componentProps?: ComponentProps;
     pageProps: ContentProps;
+    isNestedComponent?: boolean;
 };
 
-export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
+export type ComponentEditorProps = {
+    'data-portal-component-type': ComponentType;
+    'data-portal-component': string;
+};
+
+const buildEditorProps = (componentProps: ComponentProps): ComponentEditorProps => ({
+    'data-portal-component-type': componentProps.type,
+    'data-portal-component': componentProps.path,
+});
+
+export const ComponentToRender = ({ componentProps, pageProps, isNestedComponent }: Props) => {
     if (!componentProps?.type) {
         return (
             <EditorHelp
@@ -25,14 +36,29 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
         );
     }
 
+    const editorProps =
+        !!pageProps.editorView && !isNestedComponent ? buildEditorProps(componentProps) : undefined;
+
     switch (componentProps.type) {
         case ComponentType.Text:
-            return <TextComponentXp textProps={componentProps} editMode={!!pageProps.editorView} />;
+            return <TextComponentXp textProps={componentProps} editorProps={editorProps} />;
         case ComponentType.Layout:
         case ComponentType.Page:
-            return <LayoutMapper layoutProps={componentProps} pageProps={pageProps} />;
+            return (
+                <LayoutMapper
+                    layoutProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         case ComponentType.Part:
-            return <PartsMapper partProps={componentProps} pageProps={pageProps} />;
+            return (
+                <PartsMapper
+                    partProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         case ComponentType.Fragment:
             return <FragmentComponent componentProps={componentProps} pageProps={pageProps} />;
         default:
@@ -40,10 +66,11 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
     }
 };
 
-export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+export const ComponentMapper = (props: Props) => {
+    const { componentProps } = props;
     return (
         <AuthDependantRender renderOn={componentProps?.config?.renderOnAuthState}>
-            <ComponentToRender componentProps={componentProps} pageProps={pageProps} />
+            <ComponentToRender {...props} />
         </AuthDependantRender>
     );
 };

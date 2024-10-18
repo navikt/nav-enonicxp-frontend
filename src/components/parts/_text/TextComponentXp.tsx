@@ -1,20 +1,14 @@
 import React from 'react';
-import { ComponentType, TextComponentProps } from 'types/component-props/_component-common';
+import { TextComponentProps } from 'types/component-props/_component-common';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 
 type Props = {
     textProps: TextComponentProps;
-    editMode?: boolean;
+    editorProps?: ComponentEditorProps;
 };
 
-export const TextComponentXp = ({ textProps, editMode }: Props) => {
-    const { text, path } = textProps;
-
-    const editorProps = editMode
-        ? {
-              'data-portal-component-type': ComponentType.Text,
-              'data-portal-component': path,
-          }
-        : undefined;
+export const TextComponentXp = ({ textProps, editorProps }: Props) => {
+    const { text } = textProps;
 
     if (!text) {
         if (editMode) {

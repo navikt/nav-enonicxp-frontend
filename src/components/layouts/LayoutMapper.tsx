@@ -3,8 +3,8 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutComponentProps, LayoutType } from 'types/component-props/layouts';
-import { ComponentType } from 'types/component-props/_component-common';
 import { TwoColsPage } from 'components/layouts/two-cols-page/TwoColsPage';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
@@ -22,6 +22,7 @@ import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/Fro
 type Props = {
     pageProps: ContentProps;
     layoutProps?: LayoutComponentProps;
+    editorProps?: ComponentEditorProps;
 };
 
 const layoutComponents: {
@@ -46,16 +47,11 @@ const layoutComponents: {
     [LayoutType.TwoColsPage]: TwoColsPage,
 };
 
-export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { config, descriptor, path, regions } = layoutProps;
+export const LayoutMapper = ({ pageProps, layoutProps, editorProps }: Props) => {
+    const { config, descriptor, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
 
     const { LayoutConfigProvider } = useLayoutConfig();
-
-    const editorProps = {
-        'data-portal-component-type': ComponentType.Layout,
-        'data-portal-component': path,
-    };
 
     if (!descriptor || !regions) {
         return isEditView ? <div {...editorProps} /> : null;
@@ -72,6 +68,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
             value={{
                 type: descriptor,
                 title: config?.title,
+                editorProps,
             }}
         >
             <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />

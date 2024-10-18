@@ -31,6 +31,7 @@ import { LinkListsLegacyPart } from 'components/parts/_legacy/link-lists/LinkLis
 import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/MainArticleLegacyPart';
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
@@ -61,11 +62,6 @@ const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
 ]) satisfies ReadonlySet<PartDeprecatedType>;
 
 const bem = BEM(ComponentType.Part);
-
-const buildEditorProps = (componentPath: string) => ({
-    'data-portal-component-type': ComponentType.Part,
-    'data-portal-component': componentPath,
-});
 
 const PartComponentMapper = ({
     partProps,
@@ -171,19 +167,20 @@ const PartComponentMapper = ({
     }
 };
 
-export const PartsMapper = ({
-    pageProps,
-    partProps,
-}: {
+type Props = {
     partProps: PartComponentProps;
     pageProps: ContentProps;
-}) => {
-    const { path, descriptor, config } = partProps;
+    editorProps?: ComponentEditorProps;
+};
+
+export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
+    const { descriptor, config } = partProps;
 
     const isEditView = pageProps.editorView === 'edit';
-    const editorProps = isEditView ? buildEditorProps(path) : undefined;
 
     if (!descriptor || partsDeprecated.has(descriptor)) {
+        // We still need to render invalid components in the editor to prevent errors
+        // and allow users to remove the invalid component
         return isEditView ? <div {...editorProps} /> : null;
     }
 
