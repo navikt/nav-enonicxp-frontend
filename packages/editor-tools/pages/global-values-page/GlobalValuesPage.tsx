@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Select, Heading } from '@navikt/ds-react';
 import Head from 'next/head';
-import { GlobalValuesProps } from 'types/content-props/global-values-props';
+import { GlobalValuesProps } from '@/nextjs/types/content-props/global-values-props';
 import {
     setContentIdAction,
     setEditorEnabledAction,
     setValueItemsAction,
-} from 'store/slices/gvEditorState';
-import { store } from 'store/store';
-import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { ContentType } from 'types/content-props/_content-common';
-import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
-import Config from 'config';
-import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
+} from '@/nextjs/store/slices/gvEditorState';
+import { store } from '@/nextjs/store/store';
+import { useGvEditorState } from '@/nextjs/store/hooks/useGvEditorState';
+import { ContentType } from '@/nextjs/types/content-props/_content-common';
+import { DocumentParameter } from '@/nextjs/components/_common/metatags/DocumentParameterMetatags';
+import Config from '@/nextjs/config';
+import { LayersEditorWarning } from '@/editor-tools/components/layers-editor-warning/LayersEditorWarning';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVAddItem } from './components/values/add-item/GVAddItem';

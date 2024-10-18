@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
-import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
+import { ReferencesDataByType } from '@/editor-tools/components/references-info/types';
 import { fetchJson } from '@/common/fetch-utils';
 
 type ServiceResponse =

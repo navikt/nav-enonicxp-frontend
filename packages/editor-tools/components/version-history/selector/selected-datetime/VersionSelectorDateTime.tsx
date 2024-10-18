@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getCurrentDateAndTime, getCurrentISODate, getUtcTimeFromLocal } from 'utils/datetime';
 import { Branch } from 'types/branch';
-import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
-import { VersionSelectorSubmitButton } from 'components/_editor-only/version-history/selector/submit-button/VersionSelectorSubmitButton';
+import { getVersionSelectorUrl } from '@/editor-tools/components/version-history/selector/versionSelectorUtils';
+import { VersionSelectorSubmitButton } from '@/editor-tools/components/version-history/selector/submit-button/VersionSelectorSubmitButton';
 
 import style from './VersionSelectorDateTime.module.scss';
 

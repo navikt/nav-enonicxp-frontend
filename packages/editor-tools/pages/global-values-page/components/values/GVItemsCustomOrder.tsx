@@ -2,13 +2,13 @@ import React from 'react';
 import { arrayMove, List } from 'react-movable';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { OnChangeMeta } from 'react-movable/lib/types';
-import { useGvEditorState } from '@nav-enonicxp-frontend/nextjs/src/store/hooks/useGvEditorState';
-import { classNames } from '@nav-enonicxp-frontend/nextjs/src/utils/classnames';
+import { useGvEditorState } from '@/nextjs/store/hooks/useGvEditorState';
+import { classNames } from '@/nextjs/utils/classnames';
 import { logger } from '@/common/logger';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 import { GVItem } from './item/GVItem';
 
-import styleCommon from './GVItems.module.scss'
+import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {

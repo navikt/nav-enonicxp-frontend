@@ -1,5 +1,5 @@
 import React from 'react';
-import { adminOrigin, appOrigin, editorPathPrefix, stripXpPathPrefix } from 'utils/urls';
+import { adminOrigin, appOrigin, editorPathPrefix, stripXpPathPrefix } from '@/nextjs/utils/urls';
 
 import style from './SiteInfoLink.module.scss';
 

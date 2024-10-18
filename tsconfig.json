@@ -27,7 +27,7 @@
         "skipLibCheck": true,
         "paths": {
             "@/common/*": ["packages/common/*"],
-            "@/nextjs/*": ["packages/nextjs/*"],
+            "@/nextjs/*": ["packages/nextjs/src/*"],
             "@/server/*": ["packages/server/*"],
             "@/editor-tools/*": ["packages/editor-tools/*"]
         }

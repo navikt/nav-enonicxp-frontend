@@ -2,7 +2,7 @@ import Cookie from 'js-cookie';
 import {
     EditorFeature,
     editorFeatures,
-} from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
+} from '@/editor-tools/pages/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 export const isEditorFeatureEnabled = (feature: EditorFeature) => {
     const { key, defaultValue } = editorFeatures[feature];

@@ -1,4 +1,4 @@
-import { SectionPageData } from 'types/content-props/section-page-props';
+import { SectionPageData } from '@/nextjs/types/content-props/section-page-props';
 
 export const linkPanelsDataMock: SectionPageData = {
     panelsHeading: 'Hva er din situasjon?',

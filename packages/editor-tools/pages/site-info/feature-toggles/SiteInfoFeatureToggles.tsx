@@ -3,8 +3,8 @@ import { Checkbox } from '@navikt/ds-react';
 import {
     isEditorFeatureEnabled,
     setEditorFeatureToggle,
-} from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
-import { SiteInfoSubHeader } from 'components/_editor-only/site-info/_common/sub-header/SiteInfoSubHeader';
+} from '@/editor-tools/pages/site-info/feature-toggles/editor-feature-toggles-utils';
+import { SiteInfoSubHeader } from '@/editor-tools/pages/site-info/_common/sub-header/SiteInfoSubHeader';
 
 export enum EditorFeature {
     HideLeftPanel = 'hide-left-panel',

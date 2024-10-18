@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 import { Button } from 'components/_common/button/Button';
-import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
+import { ReferencesLinks } from '@/editor-tools/components/references-info/result/link/ReferencesLinks';
 import { removeDuplicates } from 'utils/arrays';
-import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
+import { ReferencesDataByType } from '@/editor-tools/components/references-info/types';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './ReferencesInfoResult.module.scss';

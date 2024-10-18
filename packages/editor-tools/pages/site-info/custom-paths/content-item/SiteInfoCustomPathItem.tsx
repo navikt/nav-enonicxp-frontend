@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { SiteInfoContentProps } from 'components/_editor-only/site-info/types';
-import { SiteInfoLink } from 'components/_editor-only/site-info/_common/links/SiteInfoLink';
+import { SiteInfoContentProps } from '@/editor-tools/pages/site-info/types';
+import { SiteInfoLink } from '@/editor-tools/pages/site-info/_common/links/SiteInfoLink';
 
 import style from './SiteInfoCustomPathItem.module.scss';
 

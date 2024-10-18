@@ -1,6 +1,9 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-import { GlobalCaseTimeSetItem, GlobalCaseTimeUnit } from 'types/content-props/global-values-props';
+import {
+    GlobalCaseTimeSetItem,
+    GlobalCaseTimeUnit,
+} from '@/nextjs/types/content-props/global-values-props';
 
 type Errors = { [key in keyof GlobalCaseTimeSetItem]?: string };
 

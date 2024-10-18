@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { DuplicateIdsWarning } from 'components/_editor-only/duplicate-ids-warning/DuplicateIdsWarning';
+import { DuplicateIdsWarning } from '@/editor-tools/components/duplicate-ids-warning/DuplicateIdsWarning';
 
 import style from './EditorGlobalWarnings.module.scss';
 

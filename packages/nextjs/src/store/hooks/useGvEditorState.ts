@@ -6,7 +6,7 @@ import {
     setValueItemsAction,
 } from 'store/slices/gvEditorState';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
-import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
+import { GVMessageProps } from '@/editor-tools/pages/global-values-page/components/messages/GVMessages';
 
 export const useGvEditorState = () => {
     const dispatch = useAppDispatch();

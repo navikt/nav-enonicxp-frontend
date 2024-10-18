@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { editorFetchAdminContent } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
+import { editorFetchAdminContent } from '@/editor-tools/components/editor-hacks/editor-hacks-utils';
 
 /*
  * Closes the left-side data editor panel for content which has been customized

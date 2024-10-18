@@ -1,5 +1,5 @@
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { SectionPageData } from 'types/content-props/section-page-props';
+import { ContentProps, ContentType } from '@/nextjs/types/content-props/_content-common';
+import { SectionPageData } from '@/nextjs/types/content-props/section-page-props';
 
 const commonProps = {
     _path: '/',

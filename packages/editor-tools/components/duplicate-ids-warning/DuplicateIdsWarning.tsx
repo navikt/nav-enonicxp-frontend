@@ -1,11 +1,11 @@
 import React, { useEffect, useId, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BodyLong } from '@navikt/ds-react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
 import { removeDuplicates } from 'utils/arrays';
 import { Header } from 'components/_common/headers/Header';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 
 import style from './DuplicateIdsWarning.module.scss';
 

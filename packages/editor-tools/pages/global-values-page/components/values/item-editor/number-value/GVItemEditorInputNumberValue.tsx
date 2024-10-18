@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from '@navikt/ds-react';
-import { GlobalNumberValueItem } from 'types/content-props/global-values-props';
+import { GlobalNumberValueItem } from '@/nextjs/types/content-props/global-values-props';
 
 type Errors = { [key in keyof GlobalNumberValueItem]?: string };
 

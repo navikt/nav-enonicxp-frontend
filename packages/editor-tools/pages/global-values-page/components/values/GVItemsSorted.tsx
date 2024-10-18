@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGvEditorState } from 'store/hooks/useGvEditorState';
+import { useGvEditorState } from '@/nextjs/store/hooks/useGvEditorState';
 import { GVItem } from './item/GVItem';
 
 import style from './GVItems.module.scss';

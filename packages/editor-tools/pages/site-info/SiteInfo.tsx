@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
+import { DocumentParameter } from '@/nextjs/components/_common/metatags/DocumentParameterMetatags';
 import { SiteInfoHeader } from './header/SiteInfoHeader';
 import { SiteInfoProps } from './types';
 import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';

@@ -11,5 +11,5 @@
         "module": "esnext",
         "noEmit": true
     },
-    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts", "@/common/**/*.ts"]
+    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts"]
 }

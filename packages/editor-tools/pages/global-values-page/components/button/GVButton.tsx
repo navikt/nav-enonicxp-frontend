@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'components/_common/button/Button';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 import style from './GVButton.module.scss';
 
 export const GVButton = (props: React.ComponentProps<typeof Button>) => (

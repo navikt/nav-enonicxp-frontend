@@ -3,9 +3,9 @@ import { BodyShort } from '@navikt/ds-react';
 import { usePageContentProps } from 'store/pageContext';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '@/editor-tools/components/editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { RenderToEditorGlobalWarnings } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
+import { RenderToEditorGlobalWarnings } from '@/editor-tools/components/global-warnings/EditorGlobalWarnings';
 
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';

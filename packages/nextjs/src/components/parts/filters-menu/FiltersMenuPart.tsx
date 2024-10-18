@@ -7,7 +7,7 @@ import { ExpandableComponentWrapper } from 'components/_common/expandable/Expand
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { ExpandableMixin } from 'types/component-props/_mixins';

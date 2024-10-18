@@ -1,4 +1,4 @@
-import { MainArticleData } from 'types/content-props/main-article-props';
+import { MainArticleData } from '@/nextjs/types/content-props/main-article-props';
 
 export const mainArticleDataMock: MainArticleData = {
     ingress: '',

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField } from '@navikt/ds-react';
-import { SiteInfoContentProps } from 'components/_editor-only/site-info/types';
-import { SiteInfoSubHeader } from 'components/_editor-only/site-info/_common/sub-header/SiteInfoSubHeader';
-import { Expandable } from 'components/_common/expandable/Expandable';
+import { SiteInfoContentProps } from '@/editor-tools/pages/site-info/types';
+import { SiteInfoSubHeader } from '@/editor-tools/pages/site-info/_common/sub-header/SiteInfoSubHeader';
+import { Expandable } from '@/nextjs/components/_common/expandable/Expandable';
 import { SiteInfoCustomPathItem } from './content-item/SiteInfoCustomPathItem';
 
 import style from './SiteInfoCustomPaths.module.scss';

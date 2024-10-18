@@ -1,6 +1,6 @@
 import React from 'react';
-import { SiteInfoProps } from 'components/_editor-only/site-info/types';
-import { SiteInfoSubHeader } from 'components/_editor-only/site-info/_common/sub-header/SiteInfoSubHeader';
+import { SiteInfoProps } from '@/editor-tools/pages/site-info/types';
+import { SiteInfoSubHeader } from '@/editor-tools/pages/site-info/_common/sub-header/SiteInfoSubHeader';
 import { SiteInfoPublishInfoList } from './content-list/SiteInfoPublishInfoList';
 
 import style from './SiteInfoPublishInfo.module.scss';
