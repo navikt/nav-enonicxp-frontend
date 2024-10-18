@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
-import { FormDetailsData } from 'types/content-props/form-details';
 
 const baseFormDetails = {
     formType: [
@@ -49,33 +48,29 @@ export const Default: Story = {};
 
 export const LanguageDisclaimer: Story = {
     args: {
-        formDetails:
-            ({ ...baseFormDetails },
-            baseFormDetails,
-            {
-                languageDisclaimer: 'Språkdisclaimer',
-            }),
+        formDetails: {
+            ...baseFormDetails,
+            languageDisclaimer: 'Språkdisclaimer',
+        },
     },
 };
 
 export const Alerts: Story = {
     args: {
-        formDetails:
-            ({ ...baseFormDetails },
-            baseFormDetails,
-            {
-                alerts: [
-                    {
-                        data: {
-                            type: 'information',
-                            text: 'Dette er informasjon',
-                            target: {
-                                _selected: 'targetContent',
-                                formDetails: { targetContent: '', _selected: 'targetContent' },
-                            },
+        formDetails: {
+            ...baseFormDetails,
+            alerts: [
+                {
+                    data: {
+                        type: 'information',
+                        text: 'Dette er informasjon',
+                        target: {
+                            _selected: 'targetContent',
+                            formDetails: { targetContent: '', _selected: 'targetContent' },
                         },
                     },
-                ],
-            }),
+                },
+            ],
+        },
     },
 };
