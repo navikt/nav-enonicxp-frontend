@@ -32,9 +32,8 @@ const baseFormDetails = {
             'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
         macros: [],
     },
-} satisfies FormDetailsData; // Ensure it satisfies the correct type
+} satisfies FormDetailsData;
 
-// Meta definition
 const meta = {
     component: FormDetails,
     args: {
@@ -50,27 +49,33 @@ export const Default: Story = {};
 
 export const LanguageDisclaimer: Story = {
     args: {
-        formDetails: Object.assign({}, baseFormDetails, {
-            languageDisclaimer: 'Språkdisclaimer',
-        }),
+        formDetails:
+            ({ ...baseFormDetails },
+            baseFormDetails,
+            {
+                languageDisclaimer: 'Språkdisclaimer',
+            }),
     },
 };
 
 export const Alerts: Story = {
     args: {
-        formDetails: Object.assign({}, baseFormDetails, {
-            alerts: [
-                {
-                    data: {
-                        type: 'information',
-                        text: 'Dette er informasjon',
-                        target: {
-                            _selected: 'targetContent',
-                            formDetails: { targetContent: '', _selected: 'targetContent' },
+        formDetails:
+            ({ ...baseFormDetails },
+            baseFormDetails,
+            {
+                alerts: [
+                    {
+                        data: {
+                            type: 'information',
+                            text: 'Dette er informasjon',
+                            target: {
+                                _selected: 'targetContent',
+                                formDetails: { targetContent: '', _selected: 'targetContent' },
+                            },
                         },
                     },
-                },
-            ],
-        }),
+                ],
+            }),
     },
 };
