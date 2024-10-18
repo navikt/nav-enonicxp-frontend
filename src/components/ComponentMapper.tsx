@@ -11,7 +11,9 @@ import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 type Props = {
     componentProps?: ComponentProps;
     pageProps: ContentProps;
-    isNestedComponent?: boolean;
+    // Must be set true if the component is not a part of the regular XP component tree structure
+    // This prevents errors in the editor due to invalid editor props
+    isCustomNestedComponent?: boolean;
 };
 
 export type ComponentEditorProps = {
@@ -24,7 +26,7 @@ const buildEditorProps = (componentProps: ComponentProps): ComponentEditorProps 
     'data-portal-component': componentProps.path,
 });
 
-export const ComponentToRender = ({ componentProps, pageProps, isNestedComponent }: Props) => {
+const ComponentToRender = ({ componentProps, pageProps, isCustomNestedComponent }: Props) => {
     if (!componentProps?.type) {
         return (
             <EditorHelp
@@ -37,7 +39,9 @@ export const ComponentToRender = ({ componentProps, pageProps, isNestedComponent
     }
 
     const editorProps =
-        !!pageProps.editorView && !isNestedComponent ? buildEditorProps(componentProps) : undefined;
+        !!pageProps.editorView && !isCustomNestedComponent
+            ? buildEditorProps(componentProps)
+            : undefined;
 
     switch (componentProps.type) {
         case ComponentType.Text:
