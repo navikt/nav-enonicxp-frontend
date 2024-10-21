@@ -1,13 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import {
-    hasCanonicalUrl,
-    hasDescription,
-    hasIngress,
-    hasMetaDescription,
-} from 'types/_type-guards';
 import { appOrigin, getPublicPathname } from 'utils/urls';
+import { trimIfString } from 'utils/string';
 
 type Props = {
     content: ContentProps;
@@ -17,32 +12,19 @@ type Props = {
 const descriptionMaxLength = 250;
 
 const getDescription = (content: ContentProps) => {
-    if (hasMetaDescription(content)) {
-        return content.data.metaDescription;
-    }
-
-    if (hasIngress(content)) {
-        return content.data.ingress;
-    }
-
-    if (hasDescription(content)) {
-        return content.data.description;
-    }
-
-    return content.displayName;
+    return (
+        trimIfString(content.data?.metaDescription) ||
+        trimIfString(content.data?.ingress) ||
+        trimIfString(content.data?.description) ||
+        content.displayName
+    );
 };
 
 const shouldNotIndex = (content: ContentProps) =>
     content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
-    if (hasCanonicalUrl(content)) {
-        return content.data.canonicalUrl;
-    }
-
-    const path = getPublicPathname({ _path: content._path });
-
-    return `${appOrigin}${path}`;
+    return trimIfString(content.data?.canonicalUrl) || `${appOrigin}${getPublicPathname(content)}`;
 };
 
 export const getPageTitle = (content: ContentProps) =>
