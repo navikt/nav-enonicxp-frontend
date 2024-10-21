@@ -1,7 +1,7 @@
 import React, { useId } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
-import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
@@ -34,9 +34,10 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     }
 
     return (
-        <nav className={classNames(className, style.lenker)}
-             aria-labelledby={tittel ? headingId : undefined}
-             aria-label={tittel ?  undefined : getLabel('label')}
+        <nav
+            className={classNames(className, style.lenker)}
+            aria-labelledby={tittel ? headingId : undefined}
+            aria-label={tittel ? undefined : getLabel('label')}
         >
             {tittel && (
                 <Heading className={style.tittel} id={headingId} size="small" level="2">

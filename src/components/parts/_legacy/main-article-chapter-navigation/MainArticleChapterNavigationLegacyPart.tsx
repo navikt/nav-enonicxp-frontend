@@ -5,7 +5,7 @@ import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { usePageContentProps } from 'store/pageContext';
 
 import style from './MainArticleChapterNavigation.module.scss';

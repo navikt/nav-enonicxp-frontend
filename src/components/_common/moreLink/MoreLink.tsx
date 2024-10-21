@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { LinkSelectable } from 'types/component-props/_mixins';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 
 import styles from './MoreLink.module.scss';
 

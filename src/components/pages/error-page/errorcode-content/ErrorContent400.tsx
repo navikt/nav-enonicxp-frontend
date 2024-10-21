@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import { ErrorProps } from 'types/content-props/error-props';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import Config from 'config';
 import { appOrigin, stripXpPathPrefix } from 'utils/urls';
 import { errorMessageURIErrorPublic } from 'utils/make-error-props';

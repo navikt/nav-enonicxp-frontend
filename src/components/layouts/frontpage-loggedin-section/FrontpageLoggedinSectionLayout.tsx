@@ -5,7 +5,7 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { Header } from 'components/_common/headers/Header';
 import Region from 'components/layouts/Region';
-import { AuthDependantRender } from 'components/_common/auth-dependant-render/AuthDependantRender';
+import { AuthDependantRender } from 'components/_common/authDependantRender/AuthDependantRender';
 import { useAuthState } from 'store/hooks/useAuthState';
 import { capitalize } from 'utils/string';
 import { translator } from 'translations';

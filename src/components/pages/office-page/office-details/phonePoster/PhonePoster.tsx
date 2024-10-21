@@ -6,7 +6,7 @@ import { translator } from 'translations';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/office-details/utils';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import Config from 'config';
 import { AudienceChannels } from './AudienceChannels';
 

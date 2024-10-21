@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const AlertInContext = ({ data }: Props) => {
-    if (!alert) {
+    if (!data?.text) {
         return null;
     }
 

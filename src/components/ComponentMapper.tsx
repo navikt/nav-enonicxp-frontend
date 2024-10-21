@@ -5,15 +5,28 @@ import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { PartsMapper } from './parts/PartsMapper';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
-import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
+import { AuthDependantRender } from './_common/authDependantRender/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 
 type Props = {
     componentProps?: ComponentProps;
     pageProps: ContentProps;
+    // Must be set true if the component is not a part of the regular XP component tree structure
+    // This prevents errors in the editor due to invalid editor props
+    isCustomNestedComponent?: boolean;
 };
 
-export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
+export type ComponentEditorProps = {
+    'data-portal-component-type': ComponentType;
+    'data-portal-component': string;
+};
+
+const buildEditorProps = (componentProps: ComponentProps): ComponentEditorProps => ({
+    'data-portal-component-type': componentProps.type,
+    'data-portal-component': componentProps.path,
+});
+
+const ComponentToRender = ({ componentProps, pageProps, isCustomNestedComponent }: Props) => {
     if (!componentProps?.type) {
         return (
             <EditorHelp
@@ -25,25 +38,49 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
         );
     }
 
+    const editorProps =
+        !!pageProps.editorView && !isCustomNestedComponent
+            ? buildEditorProps(componentProps)
+            : undefined;
+
     switch (componentProps.type) {
         case ComponentType.Text:
-            return <TextComponentXp textProps={componentProps} editMode={!!pageProps.editorView} />;
+            return <TextComponentXp textProps={componentProps} editorProps={editorProps} />;
         case ComponentType.Layout:
         case ComponentType.Page:
-            return <LayoutMapper layoutProps={componentProps} pageProps={pageProps} />;
+            return (
+                <LayoutMapper
+                    layoutProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         case ComponentType.Part:
-            return <PartsMapper partProps={componentProps} pageProps={pageProps} />;
+            return (
+                <PartsMapper
+                    partProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         case ComponentType.Fragment:
-            return <FragmentComponent componentProps={componentProps} pageProps={pageProps} />;
+            return (
+                <FragmentComponent
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                    editorProps={editorProps}
+                />
+            );
         default:
             return <div>{`Unimplemented component type: ${(componentProps as any).type}`}</div>;
     }
 };
 
-export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+export const ComponentMapper = (props: Props) => {
+    const { componentProps } = props;
     return (
         <AuthDependantRender renderOn={componentProps?.config?.renderOnAuthState}>
-            <ComponentToRender componentProps={componentProps} pageProps={pageProps} />
+            <ComponentToRender {...props} />
         </AuthDependantRender>
     );
 };
