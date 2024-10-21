@@ -9,18 +9,21 @@ type Props = {
     children?: React.ReactNode;
 };
 
-const descriptionMaxLength = 250;
+const DESCRIPTION_MAX_LENGTH = 250;
+
+const SOCIAL_SHARE_IMG_URL = `${appOrigin}/gfx/social-share-fallback.png`;
 
 const getDescription = (content: ContentProps) => {
-    return (
+    const description =
         trimIfString(content.data?.metaDescription) ||
         trimIfString(content.data?.ingress) ||
         trimIfString(content.data?.description) ||
-        content.displayName
-    );
+        content.displayName;
+
+    return description.slice(0, DESCRIPTION_MAX_LENGTH);
 };
 
-const shouldNotIndex = (content: ContentProps) =>
+const isNoIndex = (content: ContentProps) =>
     content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
@@ -32,15 +35,13 @@ export const getPageTitle = (content: ContentProps) =>
 
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = getPageTitle(content);
-    const description = getDescription(content).slice(0, descriptionMaxLength);
+    const description = getDescription(content);
     const url = getCanonicalUrl(content);
-    const noIndex = shouldNotIndex(content);
-    const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
     return (
         <Head>
             <title>{title}</title>
-            {noIndex ? (
+            {isNoIndex(content) ? (
                 <meta name={'robots'} content={'noindex, nofollow'} />
             ) : (
                 <link rel={'canonical'} href={url} />
@@ -49,14 +50,14 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
             <meta property={'og:description'} content={description} />
-            <meta property={'og:image'} content={imageUrl} />
+            <meta property={'og:image'} content={SOCIAL_SHARE_IMG_URL} />
             <meta property={'og:image:width'} content={'200'} />
             <meta property={'og:image:height'} content={'200'} />
             <meta name={'twitter:card'} content={'summary'} />
             <meta name={'twitter:domain'} content={'nav.no'} />
             <meta name={'twitter:title'} content={title} />
             <meta name={'twitter:description'} content={description} />
-            <meta name={'twitter:image:src'} content={imageUrl} />
+            <meta name={'twitter:image:src'} content={SOCIAL_SHARE_IMG_URL} />
             <meta name={'description'} content={description} />
             <meta name={'contentId'} content={content._id} />
             {content.contentLayer && <meta name={'contentLayer'} content={content.contentLayer} />}
