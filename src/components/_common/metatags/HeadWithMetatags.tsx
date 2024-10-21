@@ -24,7 +24,7 @@ const shouldNotIndex = (content: ContentProps) =>
     content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
-    return trimIfString(content.data?.canonicalUrl) || `${appOrigin}${getPublicPathname(content)}`;
+    return content.data?.canonicalUrl || `${appOrigin}${getPublicPathname(content)}`;
 };
 
 export const getPageTitle = (content: ContentProps) =>
