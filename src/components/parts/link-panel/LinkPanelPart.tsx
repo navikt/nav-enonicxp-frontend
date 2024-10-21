@@ -16,7 +16,7 @@ import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins'
 import style from './LinkPanelPart.module.scss';
 
 export type PartConfigLinkPanel = {
-    background?: XpImageProps;
+    background?: XpImageProps; // Brukes potensielt ikke?
     icon?: XpImageProps;
     variant?: OptionSetSingle<{
         vertical: EmptyObject;
