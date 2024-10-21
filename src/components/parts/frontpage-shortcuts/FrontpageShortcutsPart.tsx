@@ -79,7 +79,6 @@ export const FrontpageShortcutsPart = ({
                         <li key={title}>
                             <LinkPanelNavnoSimple
                                 href={href}
-                                linkUnderline={'none'}
                                 analyticsLinkGroup={title}
                                 icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(

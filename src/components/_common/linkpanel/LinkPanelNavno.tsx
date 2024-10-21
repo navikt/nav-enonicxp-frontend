@@ -10,10 +10,7 @@ type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 type Props = {
     href: string;
     linkText: string;
-    linkTextSize?: DsHeadingSize;
-    linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
-    icon?: React.ReactNode;
     analyticsLinkGroup?: string;
     children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLAnchorElement>;
@@ -24,42 +21,29 @@ type Props = {
 export const LinkPanelNavno = ({
     href,
     linkText,
-    linkTextSize = 'medium',
-    linkUnderline = 'default',
     linkColor = 'blue',
-    icon,
     analyticsLinkGroup,
     children,
     ...elementAttribs
 }: Props) => {
     return (
-        <div
-            className={classNames(
-                styles.linkPanelNavno,
-                icon && styles.linkPanelWithIcon,
-                elementAttribs.className
-            )}
-        >
-            {icon && <div className={styles.linkPanelNavnoIcon}>{icon}</div>}
+        <div className={classNames(styles.linkPanelNavno, elementAttribs.className)}>
             <div className="linkPanelNavnoTextContent">
-                <span>
-                    <LenkeBase
-                        {...elementAttribs}
-                        href={href}
-                        className={classNames(
-                            styles.linkPanelNavnoLink,
-                            'navds-heading',
-                            `navds-heading--${linkTextSize}`,
-                            linkUnderline === 'onHover' && 'underline',
-                            linkColor === 'black' && styles.linkBlack
-                        )}
-                        analyticsComponent={'Lenkepanel navno'}
-                        analyticsLinkGroup={analyticsLinkGroup}
-                        analyticsLabel={linkText}
-                    >
-                        {linkText}
-                    </LenkeBase>
-                </span>
+                <LenkeBase
+                    {...elementAttribs}
+                    href={href}
+                    className={classNames(
+                        styles.linkPanelNavnoLink,
+                        'navds-heading',
+                        'navds-heading--medium',
+                        linkColor === 'black' && styles.linkBlack
+                    )}
+                    analyticsComponent={'Lenkepanel navno'}
+                    analyticsLinkGroup={analyticsLinkGroup}
+                    analyticsLabel={linkText}
+                >
+                    {linkText}
+                </LenkeBase>
                 {children && <div className={styles.linkPanelNavnoIngress}>{children}</div>}
             </div>
         </div>

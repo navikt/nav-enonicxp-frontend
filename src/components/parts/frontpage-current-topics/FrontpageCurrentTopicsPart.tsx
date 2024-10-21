@@ -47,7 +47,6 @@ export const FrontpageCurrentTopicsPart = ({
                             <LinkPanelNavno
                                 analyticsLinkGroup={title}
                                 linkText={item.displayName}
-                                linkTextSize={'medium'}
                                 linkColor={'black'}
                                 href={url}
                                 className={style.item}
