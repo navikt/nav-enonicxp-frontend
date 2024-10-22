@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { QbrickVideo } from './QbrickVideo';
-import { useQbrickPlayerState } from './useQbrickPlayerState';
 
 const meta = {
     component: QbrickVideo,
