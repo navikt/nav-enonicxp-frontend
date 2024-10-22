@@ -1,0 +1,6 @@
+@use 'common' as common;
+
+.header {
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid common.$a-gray-500;
+}

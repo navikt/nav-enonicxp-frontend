@@ -1,0 +1,32 @@
+@use 'common' as common;
+
+.wrapper {
+    width: 100%;
+
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.nameWrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.name {
+    margin-bottom: 0.25rem;
+    margin-right: 0.5rem;
+}
+
+.publish {
+    margin-top: 0.25rem;
+}
+
+.warning {
+    display: flex;
+    align-items: center;
+    svg {
+        margin-right: 0.25rem;
+        color: common.$a-orange-500;
+    }
+}

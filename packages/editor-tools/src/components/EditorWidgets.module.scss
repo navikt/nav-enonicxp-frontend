@@ -1,0 +1,19 @@
+@use 'common' as common;
+
+.outer {
+    display: flex;
+    padding-top: 1rem;
+    @include common.full-width-mixin();
+}
+
+.inner {
+    width: 100%;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.whiteBackground {
+    background-color: var(--a-bg-default);
+}

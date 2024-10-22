@@ -1,0 +1,9 @@
+@use 'common' as common;
+
+.liveLink {
+    @include common.link-underline-mixin;
+}
+
+.editorLink {
+    @include common.link-underline-mixin(false);
+}

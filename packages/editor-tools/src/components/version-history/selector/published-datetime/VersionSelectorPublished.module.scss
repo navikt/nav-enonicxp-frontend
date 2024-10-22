@@ -1,0 +1,15 @@
+@use 'common' as common;
+
+.versionSelectorPublished {
+    display: flex;
+    align-items: flex-end;
+
+    .select {
+        min-height: common.$versionSelectorMinHeight;
+    }
+
+    :global(.version-selector-submit) {
+        margin-left: 1rem;
+        min-height: common.$versionSelectorMinHeight;
+    }
+}
