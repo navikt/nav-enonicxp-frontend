@@ -1,23 +1,32 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/common/*": ["../common/src/*"],
-            "@/editor-tools/*": ["../editor-tools/src/*"]
-        },
-        "allowJs": true,
-        "noEmit": true,
-        "incremental": true
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/common/*": [
+        "../common/src/*"
+      ],
+      "@/editor-tools/*": [
+        "../editor-tools/src/*"
+      ]
     },
-    "include": ["src"],
-    "exclude": ["node_modules"],
-    "references": [
-        {
-            "path": "../common"
-        },
-        {
-            "path": "../editor-tools"
-        }
-    ]
+    "allowJs": true,
+    "incremental": true,
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "../../nodeenv.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../common"
+    },
+    {
+      "path": "../editor-tools"
+    }
+  ]
 }

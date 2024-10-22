@@ -27,10 +27,7 @@
             "@/editor-tools/*": ["./packages/editor-tools/src*"]
         }
     },
-    "references": [
-        { "path": "./packages/common" },
-        { "path": "./packages/nextjs" },
-        { "path": "./packages/editor-tools" }
-    ],
+    "references": [{ "path": "./packages/common" }, { "path": "./packages/editor-tools" }],
+    "include": ["nodeenv.d.ts"],
     "files": []
 }
