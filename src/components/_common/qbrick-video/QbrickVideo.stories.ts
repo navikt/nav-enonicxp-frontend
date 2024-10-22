@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { QbrickVideo } from './QbrickVideo';
+import { useQbrickPlayerState } from './useQbrickPlayerState';
 
 const meta = {
     component: QbrickVideo,
     args: {
-        title: 'title',
-        mediaId: 'cfb46ba5-cdc8-490c-8749-bdc21720ae1b',
-        duration: 200,
-        poster: '',
+        title: 'Har du økonomiske bekymringer?',
+        mediaId: 'aca3526f-93c1-49a6-9998-1d1495b47163',
+        duration: 134.08,
+        poster: 'http://www.nav.no/no/person/sosialhjelp-og-radgiving/livssituasjoner/trenger-okonomi-og-gjeldsradgivning/har-okonomiske-bekymringer/har-okonomiske-bekymringer.jpg',
         language: '',
         accountId: '763558',
     },
