@@ -11,9 +11,9 @@ node_modules/
 /storybook-static
 
 # next.js
-/.next/
-/.next-static/
-/out/
+.next
+.next-static
+out
 
 # production
 /build

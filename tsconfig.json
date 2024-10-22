@@ -8,6 +8,8 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "jsx": "preserve",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
         "strict": true,
         "lib": ["dom", "dom.iterable", "esnext", "es2023"],
         "plugins": [

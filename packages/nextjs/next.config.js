@@ -121,7 +121,7 @@ console.log(
 
 const config = {
     ...(!isFailover && {
-        cacheHandler: path.resolve(__dirname, 'server', '.dist', 'page-cache-handler.cjs'),
+        cacheHandler: path.resolve(__dirname, '../server', '.dist', 'page-cache-handler.cjs'),
         cacheMaxMemorySize: 0,
     }),
     experimental: {

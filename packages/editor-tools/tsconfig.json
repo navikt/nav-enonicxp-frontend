@@ -3,15 +3,7 @@
     "compilerOptions": {
         "declaration": true,
         "emitDeclarationOnly": true,
-        "outDir": "./dist",
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules",
-                "options": {
-                    "classnameTransform": "dashesOnly"
-                }
-            }
-        ]
+        "outDir": "./dist"
     },
     "include": ["src", "./global.d.ts"],
     "exclude": ["node_modules"]

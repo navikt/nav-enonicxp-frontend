@@ -2,25 +2,22 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "target": "es2022",
-        "allowJs": true,
-        "isolatedModules": true,
-        "skipLibCheck": true,
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules",
-                "options": {
-                    "classnameTransform": "dashesOnly"
-                }
-            }
-        ],
         "paths": {
             "@/common/*": ["../common/src/*"],
             "@/editor-tools/*": ["../editor-tools/src/*"]
-        }
+        },
+        "allowJs": true,
+        "noEmit": true,
+        "incremental": true
     },
-
     "include": ["src"],
     "exclude": ["node_modules"],
-    "references": [{ "path": "../common" }, { "path": "../editor-tools" }]
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../editor-tools"
+        }
+    ]
 }
