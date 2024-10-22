@@ -16,18 +16,10 @@ $blackLinkColor: common.$a-text-default;
     padding: $padding;
     border-radius: common.$border-radius-xlarge;
 
-    &.linkPanelWithIcon {
-        align-items: center;
-    }
-
     &:hover {
         .linkPanelNavnoLink {
             text-decoration: none;
             color: $blueLinkColor;
-
-            &.underline {
-                text-decoration: none;
-            }
         }
     }
 
