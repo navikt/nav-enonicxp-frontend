@@ -1,6 +1,6 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { AreaCardGraphicsType } from 'components/parts/area-card/AreaCardPart';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';

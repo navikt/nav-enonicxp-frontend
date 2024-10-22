@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { ContentType } from 'types/content-props/_content-common';
 import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';

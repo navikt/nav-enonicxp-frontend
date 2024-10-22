@@ -2,7 +2,7 @@ import React, { useId } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';

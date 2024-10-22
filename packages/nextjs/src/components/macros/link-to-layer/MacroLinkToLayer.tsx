@@ -1,7 +1,7 @@
 import React from 'react';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { MacroLinkToLayerProps } from 'types/macro-props/link-to-layer';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 
 export const MacroLinkToLayer = ({ config }: MacroLinkToLayerProps) => {
     if (!config?.link_to_layer) {

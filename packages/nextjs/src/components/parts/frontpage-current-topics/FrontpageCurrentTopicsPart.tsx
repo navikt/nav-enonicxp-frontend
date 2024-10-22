@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';

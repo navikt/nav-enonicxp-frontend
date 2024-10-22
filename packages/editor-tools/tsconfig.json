@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "./dist",
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules",
+                "options": {
+                    "classnameTransform": "dashesOnly"
+                }
+            }
+        ]
+    },
+    "include": ["src", "./global.d.ts"],
+    "exclude": ["node_modules"]
+}

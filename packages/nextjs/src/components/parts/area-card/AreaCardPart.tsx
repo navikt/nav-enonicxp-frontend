@@ -1,7 +1,7 @@
 import React from 'react';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { AreaCard } from 'components/_common/areaCard/AreaCard';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 

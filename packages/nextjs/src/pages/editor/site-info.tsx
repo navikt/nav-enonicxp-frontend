@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextApiRequest } from 'next';
 import express from 'express';
 import util from 'util';
-import { SiteInfo } from '@/editor-tools/pages/site-info/SiteInfo';
+import { SiteInfo } from '@/editor-tools/src/pages/site-info/SiteInfo';
 
 const parseReqBody = util.promisify(express.json({ limit: '10MB' }));
 

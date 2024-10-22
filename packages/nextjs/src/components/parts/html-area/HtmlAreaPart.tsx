@@ -2,7 +2,7 @@ import React from 'react';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PayoutDates } from 'components/_common/payoutDates/PayoutDates';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

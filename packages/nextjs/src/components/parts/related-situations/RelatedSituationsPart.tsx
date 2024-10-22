@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
 import { ContentType } from 'types/content-props/_content-common';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

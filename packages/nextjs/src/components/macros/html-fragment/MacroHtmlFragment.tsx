@@ -1,7 +1,7 @@
 import React from 'react';
 import { MacroHtmlFragmentProps } from 'types/macro-props/html-fragment';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 
 export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
     if (!config?.html_fragment) {

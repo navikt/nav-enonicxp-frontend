@@ -1,22 +1,12 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "target": "es2022",
-        "strict": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
-        "baseUrl": "src",
-        "lib": ["es2023"],
+        "baseUrl": ".",
         "moduleResolution": "bundler",
-        "module": "esnext",
-        "noEmit": true,
         "paths": {
-            "@/nextjs/*": ["../../nextjs/*"],
-            "@/common/*": ["../../common/*"],
-            "@/server/*": ["../../server/*"],
-            "@/editor-tools/*": ["../../editor-tools/*"]
+            "@/common/*": ["../common/src/*"]
         }
     },
-    "include": ["src/**/*.ts", "../common/**/*.ts", "../nodeenv.d.ts"]
+    "include": ["src"],
+    "exclude": ["node_modules"]
 }

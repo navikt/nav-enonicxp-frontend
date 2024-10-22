@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { LinkSelectable } from 'types/component-props/_mixins';

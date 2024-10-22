@@ -1,6 +1,6 @@
 import React from 'react';
 import { VideoPageProps } from 'types/content-props/video';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { QbrickVideo } from 'components/_common/qbrick-video/QbrickVideo';
 import { buildQbrickVideoProps } from 'components/_common/qbrick-video/utils/videoProps';
 

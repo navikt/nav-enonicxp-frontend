@@ -18,7 +18,7 @@ import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from 'components/macros/MacroMapper';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 

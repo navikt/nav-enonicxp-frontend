@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calculator } from 'components/_common/calculator/Calculator';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
 type BaseInputFields = {

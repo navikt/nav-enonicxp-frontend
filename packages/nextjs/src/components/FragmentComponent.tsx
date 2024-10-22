@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentType, FragmentComponentProps } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { ComponentMapper } from './ComponentMapper';
 
 type Props = {

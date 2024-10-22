@@ -2,7 +2,7 @@ import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { MacroGlobalValueProps } from 'types/macro-props/global-value';
 import { formatNumber, isStringOnlyNumber } from 'utils/math';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 
 export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
     const { language } = usePageContentProps();

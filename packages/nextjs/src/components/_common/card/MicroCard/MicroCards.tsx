@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { CardProps, CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
 
 import { MicroCard } from './MicroCard';

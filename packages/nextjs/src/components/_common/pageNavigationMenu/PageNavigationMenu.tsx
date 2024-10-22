@@ -5,7 +5,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';

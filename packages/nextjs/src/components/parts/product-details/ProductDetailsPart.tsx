@@ -6,7 +6,7 @@ import {
     ProductDetailType,
 } from 'types/content-props/product-details';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { Language, translator } from 'translations';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { PageContextProvider, usePageContentProps } from 'store/pageContext';

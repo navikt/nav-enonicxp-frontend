@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AreaCardGraphics } from './graphics/AreaCardGraphics';

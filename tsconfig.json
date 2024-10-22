@@ -1,22 +1,15 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "strict": true,
-        "target": "es2022",
-        "allowJs": true,
-        "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "esModuleInterop": true,
-        "declaration": true, // Emit type declaration files (.d.ts)
-        "declarationMap": true, // Emit .d.ts.map files for better debugging
-        "module": "esnext",
+        "composite": true,
+        "skipLibCheck": true,
+        "module": "ESNext",
+        "target": "ESNext",
         "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "baseUrl": ".",
+        "esModuleInterop": true,
         "jsx": "preserve",
-        "incremental": true,
-        "downlevelIteration": true,
+        "strict": true,
+        "lib": ["dom", "dom.iterable", "esnext", "es2023"],
         "plugins": [
             {
                 "name": "typescript-plugin-css-modules",
@@ -25,22 +18,17 @@
                 }
             }
         ],
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true,
         "paths": {
-            "@/common/*": ["packages/common/*"],
-            "@/nextjs/*": ["packages/nextjs/src/*"],
-            "@/server/*": ["packages/server/*"],
-            "@/editor-tools/*": ["packages/editor-tools/*"]
+            "@/common/*": ["./packages/common/src*"],
+            "@/nextjs/*": ["./packages/nextjs/src/*"],
+            "@/server/*": ["./packages/server/src*"],
+            "@/editor-tools/*": ["./packages/editor-tools/src*"]
         }
     },
-    "include": [
-        "packages/nextjs/next-env.d.ts",
-        "packages/nextjs/nodeenv.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "common/**/*.ts"
+    "references": [
+        { "path": "./packages/common" },
+        { "path": "./packages/nextjs" },
+        { "path": "./packages/editor-tools" }
     ],
-
-    "exclude": ["node_modules"]
+    "files": []
 }

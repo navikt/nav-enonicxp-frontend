@@ -1,5 +1,5 @@
 import { FormDetails } from 'components/_common/form-details/FormDetails';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { MacroFormDetailsProps } from 'types/macro-props/form-details';
 
 export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {

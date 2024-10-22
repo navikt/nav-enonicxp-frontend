@@ -2,7 +2,7 @@ import React from 'react';
 import { headingToLevel, headingToSize } from 'types/typo-style';
 import { MacroHeaderWithAnchorProps } from 'types/macro-props/header-with-anchor';
 import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 
 import style from './MacroheaderWithAnchor.module.scss';
 

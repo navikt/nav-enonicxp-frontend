@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';

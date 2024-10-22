@@ -1,6 +1,6 @@
 import React from 'react';
 import { MicroCards } from 'components/_common/card/MicroCard/MicroCards';
-import { EditorHelp } from '@/editor-tools/components/editor-help/EditorHelp';
+import { EditorHelp } from '@/editor-tools/src/components/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { CardTargetProps } from 'components/_common/card/card-utils';
 
