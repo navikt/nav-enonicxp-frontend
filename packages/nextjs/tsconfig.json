@@ -1,7 +1,7 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "baseUrl": ".",
+        "baseUrl": "src",
         "paths": {
             "@/common/*": ["../../common/src/*"],
             "@/editor-tools/*": ["../../editor-tools/src/*"]
