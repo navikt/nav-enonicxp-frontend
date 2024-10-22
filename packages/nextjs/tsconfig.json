@@ -1,32 +1,36 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/common/*": [
-        "../common/src/*"
-      ],
-      "@/editor-tools/*": [
-        "../editor-tools/src/*"
-      ]
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/common/*": ["../../common/src/*"],
+            "@/editor-tools/*": ["../../editor-tools/src/*"]
+        },
+        "allowJs": true,
+        "incremental": true,
+        "noEmit": true,
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules",
+                "options": {
+                    "classnameTransform": "dashesOnly",
+                    "rendererOptions": {
+                        "sass": {
+                            "includePaths": ["./src"]
+                        }
+                    }
+                }
+            }
+        ]
     },
-    "allowJs": true,
-    "incremental": true,
-    "noEmit": true
-  },
-  "include": [
-    "src",
-    "../../nodeenv.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "references": [
-    {
-      "path": "../common"
-    },
-    {
-      "path": "../editor-tools"
-    }
-  ]
+    "include": ["src", "../../nodeenv.d.ts"],
+    "exclude": ["node_modules"],
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../editor-tools"
+        }
+    ]
 }

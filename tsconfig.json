@@ -12,14 +12,6 @@
         "isolatedModules": true,
         "strict": true,
         "lib": ["dom", "dom.iterable", "esnext", "es2023"],
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules",
-                "options": {
-                    "classnameTransform": "dashesOnly"
-                }
-            }
-        ],
         "paths": {
             "@/common/*": ["./packages/common/src*"],
             "@/nextjs/*": ["./packages/nextjs/src/*"],

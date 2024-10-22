@@ -7,7 +7,7 @@ import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/E
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { RenderToEditorGlobalWarnings } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
 
-import helpIcon from '/public/gfx/help.svg';
+import helpIcon from '@/nextjs/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
 import lightBulb from '/public/gfx/lightbulb.svg';
 import arrowUp from '/public/gfx/arrowUp.svg';
