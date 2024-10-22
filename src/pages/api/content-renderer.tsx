@@ -11,7 +11,7 @@ type Body = {
     contentProps?: ContentProps;
 };
 
-// TODO: add decorator
+// TODO: add decorator, next.js scripts, css, etc
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
