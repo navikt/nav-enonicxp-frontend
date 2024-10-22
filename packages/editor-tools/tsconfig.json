@@ -1,15 +1,26 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "baseUrl": "src",
+        "baseUrl": "./src",
         "declaration": true,
         "emitDeclarationOnly": true,
         "outDir": "./dist",
         "paths": {
             "@/common/*": ["../../common/src/*"],
-            "@/nextjs/*": ["../../nextjs/src/*"]
+            "@/nextjs/*": ["../../nextjs/src/*"],
+            "@/server/*": ["../../server/*"]
         }
     },
-    "include": ["src", "./global.d.ts"],
-    "exclude": ["node_modules"]
+    "include": ["src/**/*.ts, src/**/*.tsx, src/**/*.scss"],
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../nextjs"
+        },
+        {
+            "path": "../server"
+        }
+    ]
 }

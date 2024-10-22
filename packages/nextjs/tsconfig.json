@@ -3,17 +3,13 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@/common/*": ["../../common/src/*"],
-            "@/editor-tools/*": ["../../editor-tools/src/*"]
+            "@/common/*": ["../../common/*"],
+            "@/server/*": ["../../server/*"],
+            "@/editor-tools/*": ["../../editor-tools/*"]
         },
-        "allowJs": true,
-        "incremental": true,
-        "noEmit": true,
         "plugins": [
             {
-                "name": "typescript-plugin-css-modules",
                 "options": {
-                    "classnameTransform": "dashesOnly",
                     "rendererOptions": {
                         "sass": {
                             "includePaths": ["./src"]
@@ -23,14 +19,16 @@
             }
         ]
     },
-    "include": ["src", "../../nodeenv.d.ts"],
-    "exclude": ["node_modules"],
+    "include": ["src/**/*.ts, src/**/*.tsx, src/**/*.scss"],
     "references": [
         {
             "path": "../common"
         },
         {
             "path": "../editor-tools"
+        },
+        {
+            "path": "../server"
         }
     ]
 }

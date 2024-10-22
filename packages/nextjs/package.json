@@ -65,7 +65,10 @@
         "swr": "2.2.5",
         "tough-cookie": "4.1.4",
         "uuid": "10.0.0",
-        "word-wrap": "1.2.5"
+        "word-wrap": "1.2.5",
+        "@nav-enonicxp-frontend/server": "*",
+        "@nav-enonicxp-frontend/editor-tools": "*",
+        "@nav-enonicxp-frontend/common": "*"
     },
     "devDependencies": {
         "@chromatic-com/storybook": "2.0.2",

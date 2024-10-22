@@ -1,0 +1,10 @@
+{
+  "name": "@nav-enonicxp-frontend/common",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@nav-enonicxp-frontend/server": "*",
+    "@nav-enonicxp-frontend/nextjs": "*",
+    "@nav-enonicxp-frontend/editor-tools": "*"
+  }
+}

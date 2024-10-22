@@ -1,12 +1,23 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "baseUrl": ".",
-        "moduleResolution": "bundler",
+        "baseUrl": "./src",
         "paths": {
-            "@/common/*": ["../common/src/*"]
+            "@/nextjs/*": ["../../nextjs/*"],
+            "@/common/*": ["../../common/*"],
+            "@/editor-tools/*": ["../../editor-tools/*"]
         }
     },
-    "include": ["src"],
-    "exclude": ["node_modules"]
+    "include": ["src/**/*.ts, src/**/*.tsx, src/**/*.scss"],
+    "references": [
+        {
+            "path": "../common"
+        },
+        {
+            "path": "../nextjs"
+        },
+        {
+            "path": "../editor-tools"
+        }
+    ]
 }
