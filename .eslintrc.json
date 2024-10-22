@@ -30,7 +30,7 @@
                 ],
                 "pathGroups": [
                     {
-                        "pattern": "./**/*.module.scss",
+                        "pattern": "**/*.module.scss",
                         "group": "sibling",
                         "position": "after"
                     }
@@ -45,10 +45,5 @@
                 "rootDir": "src"
             }
         ]
-    },
-    "settings": {
-        "css-modules": {
-            "basePath": "src"
-        }
     }
 }
