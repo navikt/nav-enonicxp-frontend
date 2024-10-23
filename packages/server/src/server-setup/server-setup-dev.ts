@@ -14,9 +14,18 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     });
 
     // These paths should never redirect, to ensure the site will load correctly
-    // when accessed from the Content Studio editor
+    // when accessed via other applications (Content Studio editor or external archive/version history frontend)
     expressApp.all(
-        ['/draft/*', '/archive/*', '/editor/*', '/_next/*', '/gfx/*', '/api/*', '/_/*'],
+        [
+            '/render-from-props/*',
+            '/draft/*',
+            '/archive/*',
+            '/editor/*',
+            '/_next/*',
+            '/gfx/*',
+            '/api/*',
+            '/_/*',
+        ],
         (req, res) => {
             return nextRequestHandler(req, res);
         }
