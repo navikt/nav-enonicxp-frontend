@@ -3,9 +3,11 @@
     "extends": [
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
-        "plugin:storybook/recommended"
+        "plugin:storybook/recommended",
+        "../../.eslintrc.json"
     ],
     "ignorePatterns": ["next.config.js"],
+    "root": true,
     "rules": {
         "@next/next/no-img-element": 0,
         "css-modules/no-unused-class": [
@@ -37,6 +39,7 @@
                 ]
             }
         ],
+        "no-unused-vars": "warn",
         "no-console": "warn",
         "no-alert": "error",
         "no-relative-import-paths/no-relative-import-paths": [
