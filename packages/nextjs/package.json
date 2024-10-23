@@ -136,7 +136,7 @@
     "lint-staged": {
         "*.{ts,tsx}": [
             "prettier --write",
-            "eslint --fix src shared server/src"
+            "eslint --fix packages/nextjs/src packages/server/src packages/shared/src"
         ],
         "*.{scss,css}": [
             "prettier --write"
