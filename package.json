@@ -22,7 +22,7 @@
       "lint:client": "npm run lint:client --workspace packages/nextjs",
       "lint:server": "npm run lint:server --workspace packages/nextjs",
       "test": "npm run test --workspace packages/nextjs",
-      "test:server": "npm run test:server --workspace server",
+      "test:server": "npm run test:server --workspace packages/server",
       "test:client": "npm run test:client --workspace packages/nextjs",
       "prepare": "npm run prepare --workspace packages/nextjs",
       "storybook": "npm run storybook --workspace packages/nextjs",
