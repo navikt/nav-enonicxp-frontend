@@ -6,6 +6,7 @@ import { apiErrorHandler } from 'utils/api-error-handler';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PageBase } from 'components/PageBase';
 import { mockStore } from 'store/store';
+import { validateSecretHeader } from 'srcCommon/auth';
 
 type Body = {
     contentProps?: ContentProps;
@@ -15,7 +16,7 @@ type Body = {
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
-        if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        if (!validateSecretHeader(req)) {
             return res.status(401).send({ message: 'Unauthorized' });
         }
 
