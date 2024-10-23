@@ -12,20 +12,20 @@ const commonOptions = {
 const cacheHandlerOptions = {
     ...commonOptions,
     entryPoints: ['src/cache/page-cache-handler.ts'],
-    outfile: '.dist/page-cache-handler.cjs',
+    outfile: '../../build/.server/page-cache-handler.cjs',
 };
 
 const serverOptions = {
     ...commonOptions,
     entryPoints: ['src/server.ts'],
-    outfile: '.dist/server.cjs',
+    outfile: '../../build/build/.server/server.cjs',
     // Externalize the cache-handler to ensure our server and next.js both import the same file
     external: ['./page-cache-handler.cjs'],
     // Rewrite the import path for the cache handler
     alias: {
-        'cache/page-cache-handler': './page-cache-handler.cjs'
+        'cache/page-cache-handler': './page-cache-handler.cjs',
     },
-}
+};
 
 if (isWatchMode) {
     console.log('Building in watch mode');
@@ -33,15 +33,9 @@ if (isWatchMode) {
     const cacheHandlerContext = await context(cacheHandlerOptions);
     const serverContext = await context(serverOptions);
 
-    await Promise.all([
-        cacheHandlerContext.watch(),
-        serverContext.watch()
-    ]);
+    await Promise.all([cacheHandlerContext.watch(), serverContext.watch()]);
 } else {
     console.log('Building in normal mode');
 
-    await Promise.all([
-        build(cacheHandlerOptions),
-        build(serverOptions)
-    ]);
+    await Promise.all([build(cacheHandlerOptions), build(serverOptions)]);
 }

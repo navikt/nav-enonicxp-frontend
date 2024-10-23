@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 
 export const apiErrorHandler = async (
     req: NextApiRequest,

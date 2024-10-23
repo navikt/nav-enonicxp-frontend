@@ -8,13 +8,13 @@ import { setCacheKey } from 'req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
 import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
 import {
     addDecoratorUpdateListener,
     getDecoratorVersionId,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-import { decoratorEnvProps } from 'srcCommon/decorator-utils-serverside';
+import { decoratorEnvProps } from 'shared/decorator-utils-serverside';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached

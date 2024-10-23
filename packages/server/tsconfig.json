@@ -10,10 +10,7 @@
         "moduleResolution": "bundler",
         "module": "esnext",
         "baseUrl": "src",
-        "noEmit": true,
-        "paths": {
-            "srcCommon/*": ["../../srcCommon/*"]
-        }
+        "noEmit": true
     },
-    "include": ["src/**/*.ts", "../srcCommon/**/*.ts", "../nodeenv.d.ts"]
+    "include": ["src/**/*.ts", "../shared/**/*.ts", "../nodeenv.d.ts"]
 }

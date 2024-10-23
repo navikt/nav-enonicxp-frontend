@@ -4,7 +4,7 @@ import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-wi
 import { usePageContentProps } from 'store/pageContext';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 
 type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 

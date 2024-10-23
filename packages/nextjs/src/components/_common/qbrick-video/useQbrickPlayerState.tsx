@@ -1,5 +1,5 @@
 import { useCallback, useId, useState } from 'react';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { QbrickVideoProps } from './utils/videoProps';
 

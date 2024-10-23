@@ -5,10 +5,10 @@ export default {
     resetMocks: false,
     moduleDirectories: ['../node_modules'],
     transform: {
-        "^.+\\.tsx?$": "ts-jest"
+        '^.+\\.tsx?$': 'ts-jest',
     },
-    "moduleNameMapper": {
-        "srcCommon/(.*)": "<rootDir>/../srcCommon/$1",
-        "cache/(.*)": "<rootDir>/src/cache/$1"
+    moduleNameMapper: {
+        'shared/(.*)': '<rootDir>/../shared/$1',
+        'cache/(.*)': '<rootDir>/src/cache/$1',
     },
 };

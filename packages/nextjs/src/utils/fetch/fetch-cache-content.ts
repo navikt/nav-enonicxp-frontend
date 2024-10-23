@@ -1,4 +1,4 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
+import { fetchJson } from 'shared/fetch-utils';
 import { stripXpPathPrefix } from 'utils/urls';
 import { ContentProps } from 'types/content-props/_content-common';
 

@@ -4,7 +4,7 @@ import { DocumentInitialProps } from 'next/dist/pages/_document';
 import { DecoratorComponentsReact } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from 'srcCommon/decorator-utils-serverside';
+import { getDecoratorComponents } from 'shared/decorator-utils-serverside';
 
 type DocumentProps = {
     language: Language;

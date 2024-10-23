@@ -3,12 +3,12 @@ import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from 'utils/make-error-props';
 import { stripXpPathPrefix, xpServiceUrl } from 'utils/urls';
-import { fetchWithTimeout, objectToQueryString } from 'srcCommon/fetch-utils';
+import { fetchWithTimeout, objectToQueryString } from 'shared/fetch-utils';
 import { MediaProps } from 'types/media';
 import { logPageLoadError } from 'utils/errors';
 import { stripLineBreaks } from 'utils/string';
-import { logger } from 'srcCommon/logger';
-import { RedisCache } from 'srcCommon/redis';
+import { logger } from 'shared/logger';
+import { RedisCache } from 'shared/redis';
 
 export type XpResponseProps = ContentProps | MediaProps;
 

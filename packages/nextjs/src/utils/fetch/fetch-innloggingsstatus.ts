@@ -1,7 +1,7 @@
-import { fetchJson } from 'srcCommon/fetch-utils';
+import { fetchJson } from 'shared/fetch-utils';
 import { setAuthStateAction } from 'store/slices/authState';
 import { store } from 'store/store';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 
 type InnloggingsstatusResponse =
     | {

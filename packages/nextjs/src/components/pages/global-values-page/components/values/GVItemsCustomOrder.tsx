@@ -5,7 +5,7 @@ import { OnChangeMeta } from 'react-movable/lib/types';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceReorderItems } from 'components/pages/global-values-page/api/services/reorder';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 import { GVItem } from './item/GVItem';
 
 import styleCommon from './GVItems.module.scss';

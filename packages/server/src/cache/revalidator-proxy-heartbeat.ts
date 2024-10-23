@@ -2,8 +2,8 @@
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
-import { logger } from 'srcCommon/logger';
-import { objectToQueryString } from 'srcCommon/fetch-utils';
+import { logger } from 'shared/logger';
+import { objectToQueryString } from 'shared/fetch-utils';
 import { redisCache } from 'cache/page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =

@@ -5,8 +5,8 @@ import { makeErrorProps } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { logPageLoadError } from 'utils/errors';
-import { fetchWithTimeout } from 'srcCommon/fetch-utils';
-import { logger } from 'srcCommon/logger';
+import { fetchWithTimeout } from 'shared/fetch-utils';
+import { logger } from 'shared/logger';
 
 const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
 

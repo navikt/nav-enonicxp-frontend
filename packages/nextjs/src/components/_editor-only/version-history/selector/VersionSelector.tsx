@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
-import { fetchJson, objectToQueryString } from 'srcCommon/fetch-utils';
+import { fetchJson, objectToQueryString } from 'shared/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';

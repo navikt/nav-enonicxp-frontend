@@ -25,7 +25,7 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "paths": {
-            "srcCommon/*": ["../srcCommon/*"]
+            "shared/*": ["../../shared/src/*"]
         }
     },
     "include": [
@@ -33,7 +33,7 @@
         "nodeenv.d.ts",
         "src/**/*.ts",
         "src/**/*.tsx",
-        "srcCommon/**/*.ts"
+        "../shared/**/*.ts"
     ],
     "exclude": ["node_modules"]
 }

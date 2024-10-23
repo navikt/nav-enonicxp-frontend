@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
 import { classNames } from 'utils/classnames';
-import { logger } from 'srcCommon/logger';
+import { logger } from 'shared/logger';
 
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/office-details/OfficeDetails';
