@@ -1,11 +1,11 @@
 import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import Script from 'next/script';
+import { logger } from 'shared/logger';
 import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
-import { logger } from 'shared/logger';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { QbrickVideoProps } from './utils/videoProps';

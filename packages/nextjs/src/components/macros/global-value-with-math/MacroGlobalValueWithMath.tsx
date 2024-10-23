@@ -1,10 +1,10 @@
 import React from 'react';
 import jsep, { Expression } from 'jsep';
+import { logger } from 'shared/logger';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
 import { usePageContentProps } from 'store/pageContext';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
-import { logger } from 'shared/logger';
 
 type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 

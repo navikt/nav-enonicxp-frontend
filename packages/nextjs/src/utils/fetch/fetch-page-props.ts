@@ -1,3 +1,4 @@
+import { logger } from 'shared/logger';
 import {
     getMediaUrl,
     getRelativePathIfInternal,
@@ -15,7 +16,6 @@ import {
     redirectPageProps,
 } from 'utils/redirects';
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
-import { logger } from 'shared/logger';
 import { fetchPage } from './fetch-content';
 
 type FetchPagePropsArgs = {

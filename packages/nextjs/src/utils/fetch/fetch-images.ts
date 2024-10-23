@@ -1,7 +1,7 @@
 import fs, { readFileSync } from 'fs';
 import pLimit from 'p-limit';
-import { removeDuplicates } from 'utils/arrays';
 import { logger } from 'shared/logger';
+import { removeDuplicates } from 'utils/arrays';
 
 // Limit concurrent fetches
 const limit = pLimit(5);

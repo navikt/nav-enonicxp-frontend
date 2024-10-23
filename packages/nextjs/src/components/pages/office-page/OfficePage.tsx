@@ -1,8 +1,8 @@
 import React from 'react';
+import { logger } from 'shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
 import { classNames } from 'utils/classnames';
-import { logger } from 'shared/logger';
 
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/office-details/OfficeDetails';

@@ -1,5 +1,5 @@
-import { ContentProps } from 'types/content-props/_content-common';
 import { logger } from 'shared/logger';
+import { ContentProps } from 'types/content-props/_content-common';
 import { Language } from 'translations';
 import { pageLanguageToLayerLanguage } from './languages';
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { arrayMove, List } from 'react-movable';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 import { OnChangeMeta } from 'react-movable/lib/types';
+import { logger } from 'shared/logger';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceReorderItems } from 'components/pages/global-values-page/api/services/reorder';
-import { logger } from 'shared/logger';
 import { GVItem } from './item/GVItem';
 
 import styleCommon from './GVItems.module.scss';

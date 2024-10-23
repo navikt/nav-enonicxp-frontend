@@ -2,9 +2,9 @@ import React from 'react';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
 import { DecoratorComponentsReact } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { getDecoratorComponents } from 'shared/decorator-utils-serverside';
 import { Language } from 'translations';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from 'shared/decorator-utils-serverside';
 
 type DocumentProps = {
     language: Language;

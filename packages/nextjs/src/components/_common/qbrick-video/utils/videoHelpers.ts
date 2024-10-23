@@ -1,5 +1,5 @@
-import { QbrickMeta } from 'types/qbrickMeta';
 import { fetchJson } from 'shared/fetch-utils';
+import { QbrickMeta } from 'types/qbrickMeta';
 import { QbrickVideoProps } from './videoProps';
 
 const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {

@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { logger } from 'shared/logger';
 import { PageBase } from 'components/PageBase';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
-import { logger } from 'shared/logger';
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 

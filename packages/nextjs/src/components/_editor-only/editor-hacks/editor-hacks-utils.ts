@@ -1,7 +1,7 @@
-import { adminOrigin } from 'utils/urls';
-import { fetchJson } from 'shared/fetch-utils';
-import { ContentProps } from 'types/content-props/_content-common';
 import { logger } from 'shared/logger';
+import { fetchJson } from 'shared/fetch-utils';
+import { adminOrigin } from 'utils/urls';
+import { ContentProps } from 'types/content-props/_content-common';
 
 const ADMIN_AUTH_URL = `${adminOrigin}/admin/rest/auth/authenticated`;
 const USER_INFO_URL = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;

@@ -1,6 +1,6 @@
+import { objectToQueryString } from 'shared/fetch-utils';
 import { ContentProps } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
-import { objectToQueryString } from 'shared/fetch-utils';
 
 export const getVersionSelectorUrl = (
     content: ContentProps,
