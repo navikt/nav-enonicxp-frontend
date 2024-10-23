@@ -2,6 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext, NextApiRequest } from 'n
 import express from 'express';
 import util from 'util';
 import { SiteInfo } from 'components/_editor-only/site-info/SiteInfo';
+import { validateSecretHeader } from 'srcCommon/auth';
 
 const parseReqBody = util.promisify(express.json({ limit: '10MB' }));
 
@@ -9,8 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     req,
     res,
 }: GetServerSidePropsContext) => {
-    const secret = req.headers.secret;
-    if (secret !== process.env.SERVICE_SECRET) {
+    if (!validateSecretHeader(req)) {
         return {
             notFound: true,
         };

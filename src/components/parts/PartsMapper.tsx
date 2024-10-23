@@ -33,7 +33,7 @@ import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishin
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
-import { LinkPanelPart } from './link-panel/LinkPanelPart';
+import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';

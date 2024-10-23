@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple';
+import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -79,7 +79,6 @@ export const FrontpageShortcutsPart = ({
                         <li key={title}>
                             <LinkPanelNavnoSimple
                                 href={href}
-                                linkUnderline={'none'}
                                 analyticsLinkGroup={title}
                                 icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(

@@ -21,6 +21,7 @@ type Props = {
     layoutProps: SectionWithHeaderProps;
 };
 
+/** @deprecated */
 export const FilterBar = ({ layoutProps }: Props) => {
     const filterBarRef = useRef(null);
 
