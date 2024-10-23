@@ -17,7 +17,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     // when accessed via other applications (Content Studio editor or external archive/version history frontend)
     expressApp.all(
         [
-            '/render-from-props/*',
+            '/render-from-props',
             '/draft/*',
             '/archive/*',
             '/editor/*',
