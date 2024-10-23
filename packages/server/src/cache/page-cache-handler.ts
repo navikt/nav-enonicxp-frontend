@@ -1,7 +1,7 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { RedisCache } from 'shared/redis';
+import { RedisCache } from 'shared/redis_local';
 import { pathToCacheKey } from 'shared/cache-key';
 import { logger } from 'shared/logger';
 

@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchWithTimeout, objectToQueryString } from 'shared/fetch-utils';
 import { logger } from 'shared/logger';
-import { RedisCache } from 'shared/redis';
+import { RedisCache } from 'shared/redis_local';
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from 'utils/make-error-props';
 import { stripXpPathPrefix, xpServiceUrl } from 'utils/urls';
