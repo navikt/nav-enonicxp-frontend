@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { parseBody } from 'next/dist/server/api-utils/node/parse-body';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
