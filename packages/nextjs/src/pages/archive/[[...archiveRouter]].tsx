@@ -3,9 +3,10 @@ import { PageBase } from 'components/PageBase';
 import { getFirstElementIfArray } from 'utils/arrays';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
+import { validateSecretHeader } from 'srcCommon/auth';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    if (context.req.headers.secret !== process.env.SERVICE_SECRET) {
+    if (!validateSecretHeader(context.req)) {
         return {
             notFound: true,
         };
