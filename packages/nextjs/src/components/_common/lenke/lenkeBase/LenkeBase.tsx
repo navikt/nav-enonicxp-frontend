@@ -7,7 +7,7 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 
-import style from 'components/_common/lenke/lenkeBase/LenkeBase.module.scss';
+import style from './LenkeBase.module.scss';
 
 export const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
 

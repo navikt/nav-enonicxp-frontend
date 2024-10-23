@@ -4,7 +4,7 @@ import { classNames } from 'utils/classnames';
 import { Chevron } from 'components/_common/chevron/Chevron';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
-import style from 'components/_common/lenke/lenkeStandalone/LenkeStandalone.module.scss';
+import style from './LenkeStandalone.module.scss';
 
 type Props = {
     href: string;
