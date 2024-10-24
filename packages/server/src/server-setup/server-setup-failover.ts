@@ -1,6 +1,6 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { validateSecretHeader } from 'shared/auth';
+import { validateSecretHeader } from '@/shared/auth';
 
 export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();

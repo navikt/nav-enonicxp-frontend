@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { make404Props } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
 

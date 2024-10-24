@@ -1,4 +1,4 @@
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { isContentTypeImplemented } from 'components/ContentMapper';
 import { ErrorProps } from 'types/content-props/error-props';

@@ -12,7 +12,7 @@
         "baseUrl": "src",
         "noEmit": true,
         "paths": {
-            "shared/*": ["../../shared/src/*"]
+            "@/shared/*": ["../../shared/src/*"]
         }
     },
     "include": ["src/**/*.ts", "../shared/**/*.ts", "../nodeenv.d.ts"]

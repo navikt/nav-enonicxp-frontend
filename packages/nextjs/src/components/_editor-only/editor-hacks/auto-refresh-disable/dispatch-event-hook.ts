@@ -1,4 +1,4 @@
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import {
     editorFetchAdminContent,
     editorFetchAdminUserId,

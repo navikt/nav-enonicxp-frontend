@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Cache from 'node-cache';
 import RSS from 'rss';
-import { fetchJson } from 'shared/fetch-utils';
-import { logger } from 'shared/logger';
+import { fetchJson } from '@/shared/fetch-utils';
+import { logger } from '@/shared/logger';
 import { apiErrorHandler } from 'utils/api-error-handler';
 
 type FeedItem = {

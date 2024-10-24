@@ -1,5 +1,5 @@
 import React from 'react';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
 import { classNames } from 'utils/classnames';

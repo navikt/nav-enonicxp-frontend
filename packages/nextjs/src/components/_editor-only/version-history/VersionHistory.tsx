@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Heading, Loader } from '@navikt/ds-react';
 import { useRouter } from 'next/compat/router';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { translator } from 'translations';

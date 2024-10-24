@@ -1,5 +1,5 @@
-import { fetchJson } from 'shared/fetch-utils';
-import { logger } from 'shared/logger';
+import { fetchJson } from '@/shared/fetch-utils';
+import { logger } from '@/shared/logger';
 
 type GetCacheKeyResponse = {
     key: string;

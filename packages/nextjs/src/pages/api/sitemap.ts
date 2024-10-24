@@ -1,6 +1,6 @@
 import Cache from 'node-cache';
-import { fetchJson } from 'shared/fetch-utils';
-import { logger } from 'shared/logger';
+import { fetchJson } from '@/shared/fetch-utils';
+import { logger } from '@/shared/logger';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import type { NextApiRequest, NextApiResponse } from 'next';
 

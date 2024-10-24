@@ -1,8 +1,8 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 import { NextApiResponse, NextPageContext } from 'next';
-import { fetchWithTimeout } from 'shared/fetch-utils';
-import { logger } from 'shared/logger';
+import { fetchWithTimeout } from '@/shared/fetch-utils';
+import { logger } from '@/shared/logger';
 import { makeErrorProps } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';

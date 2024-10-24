@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { PageBase } from 'components/PageBase';
 import Config from 'config';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';

@@ -6,7 +6,7 @@ import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 import { websockets } from './websockets';
@@ -23,7 +23,7 @@ const promMiddleware = promBundle({
 const nextApp = next({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
-    dir: path.join(__dirname, '..', '..', 'packages', 'nextjs'),
+    dir: path.join(__dirname, '..', '..', 'nextjs'),
 });
 
 nextApp.prepare().then(async () => {

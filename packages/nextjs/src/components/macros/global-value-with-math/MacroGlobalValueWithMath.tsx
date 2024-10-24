@@ -1,6 +1,6 @@
 import React from 'react';
 import jsep, { Expression } from 'jsep';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
 import { usePageContentProps } from 'store/pageContext';
 import { Language } from 'translations';

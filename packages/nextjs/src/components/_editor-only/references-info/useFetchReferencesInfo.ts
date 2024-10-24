@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchJson } from 'shared/fetch-utils';
+import { fetchJson } from '@/shared/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
 

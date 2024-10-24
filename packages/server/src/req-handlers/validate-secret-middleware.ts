@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { logger } from 'shared/logger';
-import { validateSecretHeader } from 'shared/auth';
+import { logger } from '@/shared/logger';
+import { validateSecretHeader } from '@/shared/auth';
 
 export const buildValidateSecretMiddleware =
     (nextApp: NextServer): RequestHandler =>

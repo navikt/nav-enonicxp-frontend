@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
-import { fetchJson, objectToQueryString } from 'shared/fetch-utils';
+import { fetchJson, objectToQueryString } from '@/shared/fetch-utils';
 import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';

@@ -17,9 +17,7 @@ export const websockets = (expressServer: Server) => {
         const [_path] = connectionRequest?.url?.split('?') || [];
 
         websocketConnection.on('message', (message) => {
-            websocketConnection.send(
-                JSON.stringify({ message: 'There be gold in them thar hills.' })
-            );
+            websocketConnection.send(JSON.stringify({ message: `Received message: ${message}` }));
         });
     });
 

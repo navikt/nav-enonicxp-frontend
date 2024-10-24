@@ -25,7 +25,7 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "paths": {
-            "shared/*": ["../../shared/src/*"]
+            "@/shared/*": ["../../shared/src/*"]
         }
     },
     "include": [

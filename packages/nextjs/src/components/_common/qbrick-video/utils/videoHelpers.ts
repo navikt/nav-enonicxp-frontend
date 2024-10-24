@@ -1,4 +1,4 @@
-import { fetchJson } from 'shared/fetch-utils';
+import { fetchJson } from '@/shared/fetch-utils';
 import { QbrickMeta } from 'types/qbrickMeta';
 import { QbrickVideoProps } from './videoProps';
 

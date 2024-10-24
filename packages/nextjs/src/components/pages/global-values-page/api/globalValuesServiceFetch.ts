@@ -1,4 +1,4 @@
-import { fetchJson, objectToQueryString } from 'shared/fetch-utils';
+import { fetchJson, objectToQueryString } from '@/shared/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 
 const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;

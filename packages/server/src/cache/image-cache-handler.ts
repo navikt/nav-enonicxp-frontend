@@ -1,5 +1,5 @@
 import ResponseCache from 'next/dist/server/response-cache';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 import NextNodeServer from 'next/dist/server/next-server';
 import { propagateServerField } from 'next/dist/server/lib/render-server';

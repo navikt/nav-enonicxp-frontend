@@ -1,7 +1,7 @@
 import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import Script from 'next/script';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';

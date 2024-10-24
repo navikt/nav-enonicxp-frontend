@@ -1,6 +1,6 @@
 import fs, { readFileSync } from 'fs';
 import pLimit from 'p-limit';
-import { logger } from 'shared/logger';
+import { logger } from '@/shared/logger';
 import { removeDuplicates } from 'utils/arrays';
 
 // Limit concurrent fetches

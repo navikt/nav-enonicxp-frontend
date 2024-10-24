@@ -15,7 +15,10 @@
         "incremental": true,
         "downlevelIteration": true,
         "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            "@/shared/*": ["../../shared/src/*"]
+        }
     },
     "include": ["nodeenv.d.ts"],
     "exclude": ["node_modules"]

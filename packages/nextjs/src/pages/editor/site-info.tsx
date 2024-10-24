@@ -2,7 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext, NextApiRequest } from 'n
 import express from 'express';
 import util from 'util';
 import { SiteInfo } from 'components/_editor-only/site-info/SiteInfo';
-import { validateSecretHeader } from 'shared/auth';
+import { validateSecretHeader } from '@/shared/auth';
 
 const parseReqBody = util.promisify(express.json({ limit: '10MB' }));
 

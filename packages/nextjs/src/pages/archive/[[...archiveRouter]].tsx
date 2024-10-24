@@ -3,7 +3,7 @@ import { PageBase } from 'components/PageBase';
 import { getFirstElementIfArray } from 'utils/arrays';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
-import { validateSecretHeader } from 'shared/auth';
+import { validateSecretHeader } from '@/shared/auth';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     if (!validateSecretHeader(context.req)) {
