@@ -3,8 +3,7 @@
     "extends": [
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
-        "plugin:storybook/recommended",
-        "../../.eslintrc.json"
+        "plugin:storybook/recommended"
     ],
     "ignorePatterns": ["next.config.js"],
     "root": true,

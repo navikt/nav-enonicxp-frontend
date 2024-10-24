@@ -1,5 +1,5 @@
 {
-    "plugins": ["css-modules", "no-relative-import-paths"],
+    "plugins": ["no-relative-import-paths"],
     "extends": [],
     "rules": {}
 }
