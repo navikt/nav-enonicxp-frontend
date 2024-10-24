@@ -8,7 +8,7 @@ const meta = {
         title: 'Har du økonomiske bekymringer?',
         mediaId: 'aca3526f-93c1-49a6-9998-1d1495b47163',
         duration: 134.08,
-        poster: 'http://www.nav.no/no/person/sosialhjelp-og-radgiving/livssituasjoner/trenger-okonomi-og-gjeldsradgivning/har-okonomiske-bekymringer/har-okonomiske-bekymringer.jpg',
+        poster: 'https://www.nav.no/no/person/sosialhjelp-og-radgiving/livssituasjoner/trenger-okonomi-og-gjeldsradgivning/har-okonomiske-bekymringer/har-okonomiske-bekymringer.jpg',
         language: '',
         accountId: '123456',
     },
