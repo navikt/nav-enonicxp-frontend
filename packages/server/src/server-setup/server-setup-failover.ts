@@ -1,6 +1,6 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { validateSecretHeader } from 'srcCommon/auth';
+import { validateSecretHeader } from 'shared/auth';
 
 export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
@@ -14,7 +14,7 @@ export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) =>
     // This is served via the public-facing regular frontend when needed
     expressApp.all('*', (req, res) => {
         if (!validateSecretHeader(req)) {
-            return res.status(404).send();
+            res.status(404).send();
         }
 
         return nextRequestHandler(req, res);

@@ -10,5 +10,5 @@ export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
     const msg = `Cleared page cache - event id ${eventid}`;
     logger.info(msg);
 
-    return res.status(200).send(msg);
+    res.status(200).send(msg);
 };

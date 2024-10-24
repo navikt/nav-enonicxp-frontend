@@ -4,7 +4,7 @@ import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
 import { isPropsWithContent } from 'types/_type-guards';
 import { getFirstElementIfArray } from 'utils/arrays';
-import { validateSecretHeader } from 'srcCommon/auth';
+import { validateSecretHeader } from 'shared/auth';
 
 const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
     const { time, id, branch, locale } = context.query;
