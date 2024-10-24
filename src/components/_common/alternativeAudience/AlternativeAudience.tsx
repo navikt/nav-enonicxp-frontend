@@ -64,10 +64,14 @@ const buildAudienceLinks = (
 };
 
 export const AlternativeAudience = () => {
-    const { data, language, displayName = '', page } = usePageContentProps<ProductPageProps>();
-    const { config } = page;
-    const { showProductName } = config;
-    const { alternativeAudience } = data;
+    const {
+        data: { alternativeAudience },
+        language,
+        displayName = '',
+        page: {
+            config: { showProductName },
+        },
+    } = usePageContentProps<ProductPageProps>();
 
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
