@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno';
+import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno/LinkPanelNavno';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';
 import { getUrlFromContent } from 'utils/links-from-content';
@@ -47,7 +47,6 @@ export const FrontpageCurrentTopicsPart = ({
                             <LinkPanelNavno
                                 analyticsLinkGroup={title}
                                 linkText={item.displayName}
-                                linkTextSize={'medium'}
                                 linkColor={'black'}
                                 href={url}
                                 className={style.item}

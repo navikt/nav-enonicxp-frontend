@@ -4,6 +4,7 @@ import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
 import { isPropsWithContent } from 'types/_type-guards';
 import { getFirstElementIfArray } from 'utils/arrays';
+import { validateSecretHeader } from 'srcCommon/auth';
 
 const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
     const { time, id, branch, locale } = context.query;
@@ -35,7 +36,7 @@ const getPageProps = async (context: GetServerSidePropsContext) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    if (context.req.headers.secret !== process.env.SERVICE_SECRET) {
+    if (!validateSecretHeader(context.req)) {
         return {
             notFound: true,
         };

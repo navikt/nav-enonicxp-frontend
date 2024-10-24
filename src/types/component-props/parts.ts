@@ -15,7 +15,7 @@ import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcu
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
-import { PartConfigLinkPanel } from 'components/parts/link-panel/LinkPanelPart';
+import { PartConfigLinkPanel } from 'components/parts/linkPanelPart/LinkPanelPart';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
