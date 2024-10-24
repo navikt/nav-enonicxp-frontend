@@ -8,6 +8,16 @@ Kjøres lokalt på [http://localhost:3000](http://localhost:3000).
 
 Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://github.com/navikt/nav-enonicxp) installert. Alternativt kan en dev eller prod-instans av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
 
+### VS Code
+
+Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følgende innstillinger i .vscode/settings.json:
+
+```
+{
+  "eslint.workingDirectories": ["./packages/nextjs", "./packages/shared", "./packages/server"]
+}
+```
+
 ### Development mode:
 
 #### Med lokal XP:
