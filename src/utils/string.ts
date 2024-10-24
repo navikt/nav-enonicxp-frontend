@@ -89,3 +89,5 @@ export const shortenText = (text: string, maxLength: number, maxOverflowLength: 
     }
     return text;
 };
+
+export const trimIfString = (value: unknown) => typeof value === 'string' && value.trim();
