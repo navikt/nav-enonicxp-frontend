@@ -56,6 +56,7 @@ spec:
     inbound:
       rules:
         - application: {{revalidatorApp}}
+        - application: navno-xp-archive
   resources:
   {{#with resources}}
     requests:
