@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { QbrickVideo } from './QbrickVideo';
 
 const meta = {
@@ -10,7 +9,7 @@ const meta = {
         duration: 134.08,
         poster: 'http://www.nav.no/no/person/sosialhjelp-og-radgiving/livssituasjoner/trenger-okonomi-og-gjeldsradgivning/har-okonomiske-bekymringer/har-okonomiske-bekymringer.jpg',
         language: '',
-        accountId: '763558',
+        accountId: '123456',
     },
 } satisfies Meta<typeof QbrickVideo>;
 
