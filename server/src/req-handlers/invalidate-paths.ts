@@ -10,6 +10,7 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
         const msg = `Invalid path array for event ${eventid}`;
         logger.error(msg);
         res.status(400).send(msg);
+        return;
     }
 
     const cacheHandler = new PageCacheHandler();
