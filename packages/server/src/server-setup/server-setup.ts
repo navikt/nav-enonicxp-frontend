@@ -5,7 +5,6 @@ import { getNextBuildId, getNextServer } from 'next-utils';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { setCacheKey } from 'req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
-import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from '@/shared/logger';
 import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
@@ -63,8 +62,6 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         setCacheKey,
         handleInvalidateAllReq
     );
-
-    expressApp.get('/api/pending', validateSecretMiddleware, handleGetPendingResponses(nextServer));
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
         serverSetupDev(expressApp, nextApp);
