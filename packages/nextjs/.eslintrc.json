@@ -46,7 +46,8 @@
                 "allowSameFolder": true,
                 "rootDir": "src"
             }
-        ]
+        ],
+        "@next/next/no-html-link-for-pages": "off"
     },
     "settings": {
         "css-modules": {

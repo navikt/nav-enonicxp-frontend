@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { parseBody } from 'next/dist/server/api-utils/node/parse-body';
-import { PageBase } from 'components/PageBase';
 import { validateSecretHeader } from '@/shared/auth';
+import { PageBase } from 'components/PageBase';
 
 // Render a page using props from the request body
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {

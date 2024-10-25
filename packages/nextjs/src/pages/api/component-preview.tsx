@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { validateSecretHeader } from '@/shared/auth';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { mockStore } from 'store/store';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageContextProvider } from 'store/pageContext';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import { ComponentProps } from 'types/component-props/_component-common';
-import { validateSecretHeader } from '@/shared/auth';
 
 type Body = {
     props: ComponentProps;

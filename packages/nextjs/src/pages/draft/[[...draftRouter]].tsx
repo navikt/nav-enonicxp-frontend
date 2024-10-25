@@ -1,10 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { validateSecretHeader } from '@/shared/auth';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
 import { isPropsWithContent } from 'types/_type-guards';
 import { getFirstElementIfArray } from 'utils/arrays';
-import { validateSecretHeader } from '@/shared/auth';
 
 const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
     const { time, id, branch, locale } = context.query;

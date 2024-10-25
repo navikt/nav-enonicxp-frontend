@@ -12,13 +12,13 @@ const commonOptions = {
 const cacheHandlerOptions = {
     ...commonOptions,
     entryPoints: ['src/cache/page-cache-handler.ts'],
-    outfile: '../../build/.server/page-cache-handler.cjs',
+    outfile: './.dist/page-cache-handler.cjs',
 };
 
 const serverOptions = {
     ...commonOptions,
     entryPoints: ['src/server.ts'],
-    outfile: '../../build/.server/server.cjs',
+    outfile: './.dist/server.cjs',
     // Externalize the cache-handler to ensure our server and next.js both import the same file
     external: ['./page-cache-handler.cjs'],
     // Rewrite the import path for the cache handler

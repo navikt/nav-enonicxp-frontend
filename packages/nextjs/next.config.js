@@ -121,7 +121,7 @@ console.log(
 
 const config = {
     ...(!isFailover && {
-        cacheHandler: path.resolve(__dirname, '../../build/.server', 'page-cache-handler.cjs'),
+        cacheHandler: path.resolve(__dirname, '../server/.dist', 'page-cache-handler.cjs'),
         cacheMaxMemorySize: 0,
     }),
     experimental: {
@@ -138,7 +138,7 @@ const config = {
         '@navikt/nav-office-reception-info',
     ],
     productionBrowserSourceMaps: true,
-    distDir: isFailover && isLocal ? '../../build/.next-static' : '../../build/.next',
+    distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
     env: {
         ENV: process.env.ENV,
