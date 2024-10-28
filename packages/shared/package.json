@@ -1,13 +1,5 @@
 {
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.1.0",
-        "next": "14.2.4",
-        "redis": "4.6.15"
-    },
-    "devDependencies": {
-        "@types/node": "20.14.10"
-    }
+    "private": true
 }
