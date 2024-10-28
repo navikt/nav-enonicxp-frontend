@@ -13,6 +13,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const AudienceEmptyObjects = {
+    [Audience.PERSON]: {},
+    [Audience.EMPLOYER]: {},
+    [Audience.PROVIDER]: {},
+};
+
 export const Default: Story = {
     args: {
         pageProps: {
@@ -30,9 +36,7 @@ export const Default: Story = {
                 taxonomy: [],
                 audience: {
                     _selected: Audience.PERSON,
-                    [Audience.PERSON]: {},
-                    [Audience.EMPLOYER]: {},
-                    [Audience.PROVIDER]: {},
+                    ...AudienceEmptyObjects,
                 },
                 ingress:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -50,9 +54,7 @@ export const Employer: Story = {
                 ...Default.args.pageProps.data,
                 audience: {
                     _selected: Audience.EMPLOYER,
-                    [Audience.PERSON]: {},
-                    [Audience.EMPLOYER]: {},
-                    [Audience.PROVIDER]: {},
+                    ...AudienceEmptyObjects,
                 },
             },
         },
@@ -67,9 +69,7 @@ export const Provider: Story = {
                 ...Default.args.pageProps.data,
                 audience: {
                     _selected: Audience.PROVIDER,
-                    [Audience.PERSON]: {},
-                    [Audience.EMPLOYER]: {},
-                    [Audience.PROVIDER]: {},
+                    ...AudienceEmptyObjects,
                 },
             },
         },
