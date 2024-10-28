@@ -1,5 +1,9 @@
 {
     "plugins": [],
-    "extends": [],
+    "extends": [
+        "./packages/nextjs/.eslintrc.json",
+        "./packages/server/.eslintrc.json",
+        "./packages/shared/.eslintrc.json"
+    ],
     "rules": {}
 }

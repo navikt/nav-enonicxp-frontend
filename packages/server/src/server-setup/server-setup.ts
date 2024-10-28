@@ -1,19 +1,19 @@
 import express, { Express, Request, Response } from 'express';
 import { NextServer } from 'next/dist/server/next';
 import onHeaders from 'on-headers';
-import { getNextBuildId, getNextServer } from 'next-utils';
-import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
-import { setCacheKey } from 'req-handlers/set-cache-key';
-import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
-import { serverSetupDev } from 'server-setup/server-setup-dev';
-import { logger } from '@/shared/logger';
-import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
 import {
     addDecoratorUpdateListener,
     getDecoratorVersionId,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { logger } from '@/shared/logger';
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
-import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
+import { buildValidateSecretMiddleware } from '@/server/req-handlers/validate-secret-middleware';
+import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
+import { getNextBuildId, getNextServer } from 'next-utils';
+import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
+import { setCacheKey } from 'req-handlers/set-cache-key';
+import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
+import { serverSetupDev } from 'server-setup/server-setup-dev';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached

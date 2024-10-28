@@ -2,12 +2,12 @@ import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
+import path from 'path';
+import { logger } from '@/shared/logger';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
-import { logger } from '@/shared/logger';
-import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 import { websockets } from './websockets';
 

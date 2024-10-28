@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
-import PageCacheHandler from 'cache/page-cache-handler';
 import { logger } from '@/shared/logger';
+import PageCacheHandler from 'cache/page-cache-handler';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const { eventid } = req.headers;

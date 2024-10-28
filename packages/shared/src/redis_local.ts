@@ -136,23 +136,23 @@ class RedisCacheDummy extends RedisCacheImpl {
         return this;
     }
 
-    public updateRenderCacheKeyPrefix(key: string) {
+    public updateRenderCacheKeyPrefix(_key: string) {
         return;
     }
 
-    public async getRender(key: string) {
+    public async getRender(_key: string) {
         return null;
     }
 
-    public async getResponse(key: string) {
+    public async getResponse(_key: string) {
         return null;
     }
 
-    public async setRender(key: string, data: CacheHandlerValue) {
+    public async setRender(_key: string, _data: CacheHandlerValue) {
         return null;
     }
 
-    public async setResponse(key: string, data: XpResponseProps) {
+    public async setResponse(_key: string, _data: XpResponseProps) {
         return null;
     }
 }

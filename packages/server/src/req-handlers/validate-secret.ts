@@ -1,11 +1,7 @@
 import { RequestHandler } from 'express';
 import { NextServer } from 'next/dist/server/next';
-<<<<<<<< HEAD:packages/server/src/req-handlers/validate-secret.ts
-import { logger } from 'shared/logger';
-========
-import { logger } from 'srcCommon/logger';
-import { validateSecretHeader } from 'srcCommon/auth';
->>>>>>>> 1d868f885 (Refactor validering av secret header):packages/server/src/req-handlers/validate-secret-middleware.ts
+import { logger } from '@/shared/logger';
+import { validateSecretHeader } from '@/shared/auth';
 
 export const buildValidateSecretMiddleware =
     (nextApp: NextServer): RequestHandler =>
