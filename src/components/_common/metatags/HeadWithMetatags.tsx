@@ -23,8 +23,10 @@ const getDescription = (content: ContentProps) => {
     return description.slice(0, DESCRIPTION_MAX_LENGTH);
 };
 
+const contentTypesWithNoIndex = new Set([ContentType.Error, ContentType.FormIntermediateStepPage]);
+
 const isNoIndex = (content: ContentProps) =>
-    content.isPagePreview || content.type === ContentType.Error || content.data?.noindex;
+    content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
     return content.data?.canonicalUrl || `${appOrigin}${getPublicPathname(content)}`;
