@@ -12,13 +12,13 @@ import style from './RedirectPage.module.scss';
 // render a page showing the redirect target, while also giving access to the version
 // history selector in the editor
 export const RedirectPage = (props: ContentProps) => {
-    const { editorView } = props;
+    const { editorView, noRedirect } = props;
 
     const router = useRouter();
 
     const target = getTargetIfRedirect(props);
 
-    const shouldNotRedirect = !!editorView;
+    const shouldNotRedirect = !!editorView || noRedirect;
 
     useEffect(() => {
         if (shouldNotRedirect || !target) {

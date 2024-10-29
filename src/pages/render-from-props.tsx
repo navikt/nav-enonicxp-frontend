@@ -5,10 +5,14 @@ import { validateSecretHeader } from 'srcCommon/auth';
 
 // Render a page using props from the request body
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    if (!validateSecretHeader(req) || req.method !== 'POST') {
+    if (!validateSecretHeader(req)) {
         return {
             notFound: true,
         };
+    }
+
+    if (req.method !== 'POST') {
+        return (res as any).status(405).send();
     }
 
     const contentProps = (await parseBody(req, '5MB'))?.contentProps;
