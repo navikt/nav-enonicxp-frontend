@@ -35,7 +35,7 @@ export const GeneralPageHeader = (props: Props) => {
     return (
         <div className={style.generalPageHeader}>
             <Illustration illustration={illustration} className={style.illustration} />
-            {tagLine && <GeneralPageHeaderTagLine tagLine={tagLine} />}
+            <GeneralPageHeaderTagLine tagLine={tagLine} />
             <Heading
                 level="1"
                 size="xlarge"
