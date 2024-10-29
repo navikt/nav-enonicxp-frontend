@@ -17,6 +17,7 @@
         "lint": "npm-run-all --parallel lint:*",
         "lint:tsc": "tsc",
         "lint:eslint": "eslint src",
+        "lint-staged": "lint-staged",
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace ../server",
         "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",

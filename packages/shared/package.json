@@ -2,6 +2,9 @@
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
     "private": true,
+    "scripts": {
+        "lint-staged": "lint-staged"
+    },
     "devDependencies": {
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10"

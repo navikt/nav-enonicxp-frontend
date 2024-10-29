@@ -11,7 +11,8 @@
         "test": "next build __test-utils/next-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
         "lint": "npm-run-all --parallel lint:*",
         "lint:tsc": "tsc",
-        "lint:eslint": "eslint src"
+        "lint:eslint": "eslint src",
+        "lint-staged": "lint-staged"
     },
     "nodemonConfig": {
         "delay": 500
@@ -19,7 +20,7 @@
     "dependencies": {
         "cookie-parser": "1.4.6",
         "dotenv": "16.4.5",
-        "express": "4.19.2",
+        "express": "5.0.0",
         "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
         "on-headers": "1.0.2",
