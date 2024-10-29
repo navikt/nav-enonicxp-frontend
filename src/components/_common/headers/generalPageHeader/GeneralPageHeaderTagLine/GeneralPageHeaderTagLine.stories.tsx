@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { PageContextProvider } from 'store/pageContext';
 import { Audience } from 'types/component-props/_mixins';
-import { AudienceEmptyObjects } from './GeneralPageHeader.stories';
+import { AudienceEmptyObjects } from 'components/_common/headers/generalPageHeader/GeneralPageHeader.stories';
 import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 // eslint-disable-next-line react/display-name

@@ -5,7 +5,7 @@ import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { Audience, AudienceOptions, getAudience } from 'types/component-props/_mixins';
 import { joinWithConjunction } from 'utils/string';
 
-import style from './GeneralPageHeader.module.scss';
+import style from './GeneralPageHeaderTagLine.module.scss';
 
 type Props = {
     tagLine: string;

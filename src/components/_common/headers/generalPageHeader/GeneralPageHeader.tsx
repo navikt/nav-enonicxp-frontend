@@ -4,7 +4,7 @@ import { Illustration } from 'components/_common/illustration/Illustration';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
-import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
+import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine/GeneralPageHeaderTagLine';
 
 import style from './GeneralPageHeader.module.scss';
 
