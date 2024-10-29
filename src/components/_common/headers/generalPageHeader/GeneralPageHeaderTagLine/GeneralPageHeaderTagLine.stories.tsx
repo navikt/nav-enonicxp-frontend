@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { PageContextProvider } from 'store/pageContext';
 import { Audience } from 'types/component-props/_mixins';
-import { AudienceEmptyObjects } from 'components/_common/headers/generalPageHeader/GeneralPageHeader.stories';
 import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 // eslint-disable-next-line react/display-name
@@ -12,7 +11,9 @@ const withMockedPageContent = (audience: Audience) => (Story: any) => (
             data: {
                 audience: {
                     _selected: audience,
-                    ...AudienceEmptyObjects,
+                    [Audience.PERSON]: {},
+                    [Audience.EMPLOYER]: {},
+                    [Audience.PROVIDER]: {},
                 },
             },
         }}
