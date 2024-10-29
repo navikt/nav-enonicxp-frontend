@@ -42,18 +42,6 @@ export const Default: Story = {
     },
 };
 
-export const CustomCategory: Story = {
-    args: {
-        pageProps: {
-            ...Default.args.pageProps,
-            data: {
-                ...Default.args.pageProps.data,
-                customCategory: 'customCategory',
-            },
-        },
-    },
-};
-
 export const HideIngress: Story = {
     args: {
         pageProps: {
@@ -66,11 +54,32 @@ export const HideIngress: Story = {
     },
 };
 
+export const GuidePage: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            type: ContentType.GuidePage,
+        },
+    },
+};
+
 export const SituationPage: Story = {
     args: {
         pageProps: {
             ...Default.args.pageProps,
             type: ContentType.SituationPage, //En hack med negativ margin gjør at ingressen krasjer med overskriften i Storybook (.reduceMarginBottom)
+        },
+    },
+};
+
+export const CustomCategory: Story = {
+    args: {
+        pageProps: {
+            ...Default.args.pageProps,
+            data: {
+                ...Default.args.pageProps.data,
+                customCategory: 'Egendefinert kategori',
+            },
         },
     },
 };
