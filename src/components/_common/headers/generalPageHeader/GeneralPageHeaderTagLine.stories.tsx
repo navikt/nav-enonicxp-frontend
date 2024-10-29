@@ -44,6 +44,6 @@ export const Provider: Story = {
     decorators: [withMockedPageContent(Audience.PROVIDER)],
 };
 
-export const Undefined: Story = {
+export const UndefinedAudience: Story = {
     decorators: [withMockedPageContent('Something' as Audience)],
 };
