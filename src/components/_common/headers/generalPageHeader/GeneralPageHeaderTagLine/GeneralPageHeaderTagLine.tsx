@@ -53,13 +53,17 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
             'for'
         ).slice(1)}`;
 
-        return `  —  ${forString} ${providerTypesString || currentAudienceLabel}`;
+        return `${forString} ${providerTypesString || currentAudienceLabel}`;
     };
+
+    const audienceAffirmation = buildAudienceAffirmation();
+    const showLine = props.tagLine && audienceAffirmation;
 
     return (
         <BodyShort className={style.tagline} size="small">
             {props.tagLine}
-            {buildAudienceAffirmation()}
+            {showLine && `  —  `}
+            {audienceAffirmation}
         </BodyShort>
     );
 };
