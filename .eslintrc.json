@@ -1,9 +1,23 @@
 {
-    "plugins": [],
+    "plugins": ["css-modules"],
+
     "extends": [
-        "./packages/nextjs/.eslintrc.json",
-        "./packages/server/.eslintrc.json",
-        "./packages/shared/.eslintrc.json"
+        //        "./packages/nextjs/.eslintrc.json",
+        //        "./packages/server/.eslintrc.json",
+        //        "./packages/shared/.eslintrc.json"
     ],
-    "rules": {}
+    "rules": {
+        "css-modules/no-unused-class": [
+            1,
+            {
+                "camelCase": true
+            }
+        ],
+        "css-modules/no-undef-class": [
+            2,
+            {
+                "camelCase": true
+            }
+        ]
+    }
 }
