@@ -40,6 +40,10 @@ export const Employer: Story = {
     decorators: [withMockedPageContent(Audience.EMPLOYER)],
 };
 
+export const Provider: Story = {
+    decorators: [withMockedPageContent(Audience.PROVIDER)],
+};
+
 export const Undefined: Story = {
     decorators: [withMockedPageContent('Something' as Audience)],
 };
