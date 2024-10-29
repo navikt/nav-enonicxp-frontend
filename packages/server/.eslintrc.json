@@ -29,5 +29,5 @@
         ],
         "@typescript-eslint/no-explicit-any": "off"
     },
-    "ignorePatterns": ["node_modules/"]
+    "ignorePatterns": ["node_modules/", "nodeenv.d.ts"]
 }

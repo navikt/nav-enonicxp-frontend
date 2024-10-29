@@ -31,5 +31,14 @@
         "@types/on-headers": "1.0.3",
         "concurrently": "8.2.2",
         "nodemon": "3.1.4"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.{scss,css}": [
+            "prettier --write"
+        ]
     }
 }

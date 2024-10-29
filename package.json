@@ -23,7 +23,7 @@
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace packages/server",
         "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
-        "prepare": "husky install",
+        "prepare": "husky || true",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
@@ -64,15 +64,6 @@
             "last 1 chrome version",
             "last 1 firefox version",
             "last 1 safari version"
-        ]
-    },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "eslint --fix packages/nextjs packages/server packages/shared"
-        ],
-        "*.{scss,css}": [
-            "prettier --write"
         ]
     }
 }
