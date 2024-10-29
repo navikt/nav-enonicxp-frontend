@@ -11,13 +11,16 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "baseUrl": "src",
+        "rootDir": "src",
         "jsx": "preserve",
         "incremental": true,
         "downlevelIteration": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "paths": {
-            "@/shared/*": ["../../shared/src/*"]
+//            "@/server/*": ["../../server/src/*"],
+//            "@/nextjs/*": ["../../nextjs/src/*"]
+
         }
     },
     "include": ["nodeenv.d.ts"],

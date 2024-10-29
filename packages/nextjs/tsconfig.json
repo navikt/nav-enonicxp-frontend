@@ -11,6 +11,7 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "baseUrl": "src",
+        "rootDir": "src",
         "jsx": "preserve",
         "incremental": true,
         "downlevelIteration": true,

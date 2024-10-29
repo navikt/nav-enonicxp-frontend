@@ -1,6 +1,7 @@
 {
     "name": "nav-enonicxp-frontend",
     "version": "1.2.1",
+    "packageManager": "npm@10.9.0",
     "private": true,
     "scripts": {
         "build": "npm run build:server && npm run build:nextjs",
@@ -20,6 +21,8 @@
         "lint": "npm-run-all --parallel lint:*",
         "lint:client": "npm run lint --workspace packages/nextjs",
         "lint:server": "npm run lint --workspace packages/server",
+        "lint:staged": "turbo run lint-staged",
+        "lint-staged": "turbo run lint-staged --parallel",
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace packages/server",
         "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
@@ -33,7 +36,8 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.1.0",
         "next": "14.2.10",
-        "redis": "4.6.15"
+        "redis": "4.6.15",
+        "turbo": "^2.2.3"
     },
     "devDependencies": {
         "@types/node": "20.14.10",
@@ -42,10 +46,10 @@
         "esbuild": "0.23.0",
         "eslint": "8.57.0",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
         "eslint-nibble": "8.1.0",
         "eslint-plugin-css-modules": "2.12.0",
         "eslint-plugin-no-relative-import-paths": "1.5.5",
+        "eslint-plugin-prettier": "^5.2.1",
         "lint-staged": "15.2.7",
         "prettier": "^3.3.3",
         "typescript": "5.5.3",

@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd packages/nextjs
-npx lint-staged
+npm run lint:staged

@@ -10,10 +10,10 @@
         "moduleResolution": "node",
         "module": "esnext",
         "baseUrl": "src",
+        "rootDir": "src",
         "noEmit": true,
         "paths": {
             "@/shared/*": ["../../shared/src/*"],
-            "@/server/*": ["../../server/src/*"]
         }
     },
     "include": ["nodeenv.d.ts", "src/**/*.ts", "../shared/**/*.ts", "../nodeenv.d.ts"]

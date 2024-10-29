@@ -1,5 +1,11 @@
 {
-    "plugins": ["no-relative-import-paths"],
+    "plugins": [
+        "eslint-plugin-no-relative-import-paths",
+        "no-relative-import-paths",
+        "eslint-plugin-import",
+        "css-modules",
+        "storybook"
+    ],
     "extends": [
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
