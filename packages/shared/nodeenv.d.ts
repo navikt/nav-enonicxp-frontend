@@ -27,7 +27,7 @@ declare global {
         }
     }
 
-    var cacheKey: string | undefined;
+    const cacheKey: string | undefined;
 }
 
 export {};
