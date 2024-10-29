@@ -11,6 +11,10 @@ type Props = {
     tagLine: string;
 };
 
+function isValidAudience(value: string): value is Audience {
+    return (Object.values(Audience) as string[]).includes(value);
+}
+
 export const GeneralPageHeaderTagLine = (props: Props) => {
     const { data, language } = usePageContentProps<ProductPageProps>();
 
@@ -29,7 +33,12 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
         const { audience: currentAudience } = data;
         const currentAudienceKey = getAudience(currentAudience);
 
-        if (!currentAudience || !currentAudienceKey || currentAudienceKey === 'person') {
+        if (
+            !currentAudience ||
+            !isValidAudience(currentAudience._selected) ||
+            !currentAudienceKey ||
+            currentAudienceKey === 'person'
+        ) {
             return '';
         }
 
