@@ -7,7 +7,7 @@ type Props = {
 } & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const StaticImage = (props: Props) => {
-    const { imageData, alt, ...imgAttribs } = props;
+    const { imageData, ...imgAttribs } = props;
 
     return <NextImage {...imgAttribs} src={imageData.src} alt="" aria-hidden="true" />;
 };

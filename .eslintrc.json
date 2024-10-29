@@ -1,11 +1,6 @@
 {
-    "plugins": ["css-modules"],
-
-    "extends": [
-        //        "./packages/nextjs/.eslintrc.json",
-        //        "./packages/server/.eslintrc.json",
-        //        "./packages/shared/.eslintrc.json"
-    ],
+    "plugins": ["css-modules", "@typescript-eslint"],
+    "extends": [],
     "rules": {
         "css-modules/no-unused-class": [
             1,
@@ -17,6 +12,14 @@
             2,
             {
                 "camelCase": true
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
             }
         ]
     }

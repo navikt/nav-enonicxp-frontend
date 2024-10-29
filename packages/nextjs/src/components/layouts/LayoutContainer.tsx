@@ -17,7 +17,6 @@ type Props = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const LayoutContainer = ({
-    pageProps,
     layoutProps,
     layoutStyle,
     children,

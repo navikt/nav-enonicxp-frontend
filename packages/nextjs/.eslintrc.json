@@ -1,9 +1,5 @@
 {
-    "plugins": [
-        //        "css-modules",
-        "no-relative-import-paths"
-        //        "@typescript-eslint"
-    ],
+    "plugins": ["no-relative-import-paths"],
     "extends": [
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
@@ -14,26 +10,6 @@
     "root": true,
     "rules": {
         "@next/next/no-img-element": 0,
-        //        "@typescript-eslint/no-unused-vars": [
-        //            "warn",
-        //            {
-        //                "varsIgnorePattern": "^_",
-        //                "argsIgnorePattern": "^_",
-        //                "caughtErrorsIgnorePattern": "^_"
-        //            }
-        //        ],
-        //        "css-modules/no-unused-class": [
-        //            1,
-        //            {
-        //                "camelCase": true
-        //            }
-        //        ],
-        //        "css-modules/no-undef-class": [
-        //            2,
-        //            {
-        //                "camelCase": true
-        //            }
-        //        ],
         "import/order": [
             "warn",
             {

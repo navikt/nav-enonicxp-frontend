@@ -1,11 +1,8 @@
 import React from 'react';
-import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import style from './LinkPanelNavnoSimple.module.scss';
-
-type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
 type Props = {
     href: string;

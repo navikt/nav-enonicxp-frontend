@@ -7,7 +7,6 @@ import {
     isCurrentEditorRepo,
 } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Branch } from 'types/branch';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {
@@ -23,22 +22,6 @@ export enum NodeServerChangeType {
     MOVE,
     UPDATE_PERMISSIONS,
 }
-
-export type BatchContentServerEventItem = {
-    id: string;
-    branch: Branch;
-    path: {
-        refString: string;
-    };
-};
-
-type BatchContentServerEventDetail = {
-    type: NodeServerChangeType;
-    items?: BatchContentServerEventItem[];
-    // We add this field to the event detail when an event should be
-    // dispatched on behalf of the user via the alertbox dialog
-    userTriggered?: true;
-};
 
 const getUserNameFromEmail = (email: string) => email.split('@')[0].replace('.', ' ');
 
