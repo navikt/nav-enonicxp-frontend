@@ -1,6 +1,6 @@
 .tagline {
     text-transform: uppercase;
-    font-size: var(--text-fluid-18-20);
+    font-size: var(--text-fluid-18-20) !important;
     letter-spacing: 0.075rem;
     margin-top: var(--a-spacing-3);
     font-variant: all-small-caps;
