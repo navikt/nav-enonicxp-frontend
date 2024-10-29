@@ -1,5 +1,5 @@
 {
-    "plugins": ["css-modules", "no-relative-import-paths"],
+    "plugins": ["css-modules", "no-relative-import-paths", "@typescript-eslint"],
     "extends": [
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
@@ -19,6 +19,14 @@
             2,
             {
                 "camelCase": true
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
             }
         ],
         "import/order": [
