@@ -23,6 +23,9 @@ const withMockedPageContent = (audience: Audience) => (Story: any) => (
 
 const meta = {
     component: GeneralPageHeaderTagLine,
+    args: {
+        tagLine: 'Tagline',
+    },
 } satisfies Meta<typeof GeneralPageHeaderTagLine>;
 
 export default meta;
@@ -31,21 +34,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Person: Story = {
     decorators: [withMockedPageContent(Audience.PERSON)],
-    args: {
-        tagLine: 'Tagline',
-    },
 };
 
 export const Employer: Story = {
     decorators: [withMockedPageContent(Audience.EMPLOYER)],
-    args: {
-        tagLine: 'Tagline',
-    },
 };
 
-export const Provider: Story = {
-    decorators: [withMockedPageContent(Audience.PROVIDER)],
-    args: {
-        tagLine: 'Tagline',
-    },
+export const Undefined: Story = {
+    decorators: [withMockedPageContent('Something' as Audience)],
 };
