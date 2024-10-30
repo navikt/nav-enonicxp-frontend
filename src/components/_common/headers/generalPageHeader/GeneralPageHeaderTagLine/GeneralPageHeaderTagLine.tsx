@@ -5,11 +5,15 @@ import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { Audience, AudienceOptions, getAudience } from 'types/component-props/_mixins';
 import { joinWithConjunction } from 'utils/string';
 
-import style from './GeneralPageHeader.module.scss';
+import style from './GeneralPageHeaderTagLine.module.scss';
 
 type Props = {
     tagLine: string;
 };
+
+function isValidAudience(value: string): value is Audience {
+    return (Object.values(Audience) as string[]).includes(value);
+}
 
 export const GeneralPageHeaderTagLine = (props: Props) => {
     const { data, language } = usePageContentProps<ProductPageProps>();
@@ -29,7 +33,12 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
         const { audience: currentAudience } = data;
         const currentAudienceKey = getAudience(currentAudience);
 
-        if (!currentAudience || !currentAudienceKey || currentAudienceKey === 'person') {
+        if (
+            !currentAudience ||
+            !isValidAudience(currentAudience._selected) ||
+            !currentAudienceKey ||
+            currentAudienceKey === 'person'
+        ) {
             return '';
         }
 
@@ -44,13 +53,17 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
             'for'
         ).slice(1)}`;
 
-        return `  —  ${forString} ${providerTypesString || currentAudienceLabel}`;
+        return `${forString} ${providerTypesString || currentAudienceLabel}`;
     };
+
+    const audienceAffirmation = buildAudienceAffirmation();
+    const showLine = props.tagLine && audienceAffirmation;
 
     return (
         <BodyShort className={style.tagline} size="small">
             {props.tagLine}
-            {buildAudienceAffirmation()}
+            {showLine && `  —  `}
+            {audienceAffirmation}
         </BodyShort>
     );
 };
