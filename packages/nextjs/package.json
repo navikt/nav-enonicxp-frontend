@@ -116,19 +116,5 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "npx eslint --fix ."
-        ],
-        "*.{scss,css}": [
-            "prettier --write"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npx lint-staged"
-        }
     }
 }

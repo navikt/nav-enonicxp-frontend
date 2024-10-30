@@ -25,7 +25,7 @@
         "test": "npm-run-all --parallel test:*",
         "test:server": "npm run test --workspace packages/server",
         "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
-        "prepare": "husky || true",
+        "prepare": "husky install",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },

@@ -8,19 +8,5 @@
     "devDependencies": {
         "husky": "^9.1.6",
         "lint-staged": "^15.2.10"
-    },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "npx eslint --fix ."
-        ],
-        "*.{scss,css}": [
-            "prettier --write"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npx lint-staged"
-        }
     }
 }
