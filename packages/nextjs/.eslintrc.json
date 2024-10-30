@@ -51,7 +51,7 @@
             }
         },
         "css-modules": {
-            "basePath": "packages/nextjs/src"
+            "basePath": "src"
         }
     }
 }

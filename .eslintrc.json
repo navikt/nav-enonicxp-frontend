@@ -22,5 +22,15 @@
                 "caughtErrorsIgnorePattern": "^_"
             }
         ]
-    }
+    },
+    "overrides": [
+        {
+            "files": ["workspaces/nextjs/**/*.ts", "workspaces/nextjs/**/*.tsx"],
+            "settings": {
+                "css-modules": {
+                    "basePath": "workspaces/nextjs/src"
+                }
+            }
+        }
+    ]
 }
