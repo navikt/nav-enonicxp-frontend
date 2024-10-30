@@ -45,8 +45,13 @@
         "@next/next/no-html-link-for-pages": "off"
     },
     "settings": {
+        "import/resolver": {
+            "typescript": {
+                "project": "./tsconfig.json"
+            }
+        },
         "css-modules": {
-            "basePath": "src"
+            "basePath": "packages/nextjs/src"
         }
     }
 }

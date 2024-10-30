@@ -55,7 +55,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         /* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, []);
 
-    const foo = 'bar!!!';
+    const foo = 'bar';
 
     // Show all panels in edit mode, but only valid panels in view mode
     const validAccordion = accordion.filter(validatePanel);
