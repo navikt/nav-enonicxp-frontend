@@ -7,7 +7,7 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@/shared/logger';
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
-import { buildValidateSecretMiddleware } from '@/server/req-handlers/validate-secret-middleware';
+import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { getNextBuildId, getNextServer } from 'next-utils';
 import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
