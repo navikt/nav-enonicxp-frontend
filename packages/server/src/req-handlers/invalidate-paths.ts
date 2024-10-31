@@ -3,8 +3,8 @@ import { logger } from '@/shared/logger';
 import PageCacheHandler from 'cache/page-cache-handler';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
-    const { eventid } = req.headers;
-    const { paths } = req.body;
+    const { eventid = '' } = req.headers;
+    const paths = req.body.paths as string[];
 
     if (!Array.isArray(paths)) {
         const msg = `Invalid path array for event ${eventid}`;

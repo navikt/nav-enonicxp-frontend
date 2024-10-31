@@ -113,6 +113,7 @@ export type ContentAndMediaCommonProps = {
     serverEnv?: string;
     layerLocale?: string;
     isPagePreview?: boolean;
+    noRedirect?: boolean;
 };
 
 type ContentCommonData = Partial<{

@@ -15,6 +15,7 @@ export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) =>
     expressApp.all('*', (req, res) => {
         if (!validateSecretHeader(req)) {
             res.status(404).send();
+            return;
         }
 
         return nextRequestHandler(req, res);

@@ -33,7 +33,5 @@ export const getContentTagline = (content: GetContentTaglineProps, currentLangua
         return joinWithConjunction(taxonomyStrings, language);
     }
 
-    // Catch all if no other taglines could be determined
-    const productAudienceTranslations = translator('products', language);
-    return selectedAudience ? productAudienceTranslations(selectedAudience) : '';
+    return '';
 };
