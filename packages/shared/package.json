@@ -1,14 +1,5 @@
 {
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
-    "private": true,
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "eslint --fix"
-        ],
-        "*.{scss,css}": [
-            "prettier --write"
-        ]
-    }
+    "private": true
 }
