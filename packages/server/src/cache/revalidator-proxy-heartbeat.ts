@@ -4,7 +4,7 @@
 import { networkInterfaces } from 'os';
 import { logger } from '@/shared/logger';
 import { objectToQueryString } from '@/shared/fetch-utils';
-import { redisCache } from 'cache/page-cache-handler';
+import { redisCache } from './page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =
     process.env;
