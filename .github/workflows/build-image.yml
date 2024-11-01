@@ -101,6 +101,8 @@ jobs:
           IMAGE_CACHE_DIR=/tmp/images
           NEXT_TELEMETRY_DISABLED=1
           EOF
+      - name: Copy env to nextjs and server workspaces
+        run: cp .env packages/nextjs/.env && cp .env packages/server/.env
       - name: Nextjs cache
         uses: actions/cache@v4
         with:
