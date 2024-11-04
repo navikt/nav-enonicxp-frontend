@@ -5,7 +5,7 @@
     "scripts": {
         "build": "node build.mjs",
         "build-watch": "WATCH=true node build.mjs",
-        "start": "node -r dotenv/config .dist/server.cjs dotenv_config_path=../nextjs/.env",
+        "start": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=../.next/.env",
         "nodemon-start": "nodemon -r dotenv/config -w .dist .dist/server.cjs dotenv_config_path=../nextjs/.env",
         "dev": "npm run build && concurrently \"npm run build-watch\" \"npm run nodemon-start\"",
         "test": "next build __test-utils/next-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
@@ -20,6 +20,7 @@
     "dependencies": {
         "cookie-parser": "1.4.7",
         "dotenv": "16.4.5",
+        "@navikt/nav-dekoratoren-moduler": "3.1.0",
         "express": "5.0.0",
         "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
