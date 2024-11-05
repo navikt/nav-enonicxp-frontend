@@ -7,14 +7,14 @@ WORKDIR /app
 
 COPY package*.json /app/
 
+COPY .env /app/packages/nextjs/
 COPY packages/nextjs/package*.json packages/nextjs/next.config.js /app/packages/nextjs/
-COPY packages/nextjs/.env /app/packages/nextjs/
 COPY packages/nextjs/.next /app/packages/nextjs/.next/
 COPY packages/nextjs/public /app/packages/nextjs/public/
 
 COPY node_modules /app/node_modules/
 
-COPY packages/nextjs/.env /app/packages/server/
+COPY .env /app/packages/server/
 COPY packages/server/package*.json /app/packages/server/
 COPY packages/server/node_modules /app/packages/server/node_modules/
 COPY packages/server/.dist /app/packages/server/.dist/
