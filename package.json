@@ -7,7 +7,7 @@
         "build:nextjs": "npm run build --workspace packages/nextjs",
         "build:server": "npm run build --workspace packages/server",
         "build:storybook": "npm run build:storybook --workspace packages/nextjs",
-        "start": "npm run start --workspace server",
+        "start": "npm run start --workspace packages/server",
         "storybook": "npm run storybook --workspace packages/nextjs",
         "dev": "npm run copy-env-development && npm run build:server && npm run start",
         "dev-custom": "npm run copy-env-development && npm start",

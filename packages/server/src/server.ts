@@ -23,7 +23,7 @@ const promMiddleware = promBundle({
 const nextApp = next({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
-    dir: path.join(__dirname, '..', '..'),
+    dir: path.join(__dirname, '..', '..', 'nextjs'),
 });
 
 nextApp.prepare().then(async () => {
