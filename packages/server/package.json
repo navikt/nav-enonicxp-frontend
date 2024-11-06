@@ -17,11 +17,14 @@
     "nodemonConfig": {
         "delay": 500
     },
+    "dependenciesComments": {
+        "express": "Major v5 not compatible per 6. November. Keep to 4.x.x"
+    },
     "dependencies": {
         "cookie-parser": "1.4.7",
         "dotenv": "16.4.5",
         "@navikt/nav-dekoratoren-moduler": "3.1.0",
-        "express": "5.0.0",
+        "express": "4.21.1",
         "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
         "on-headers": "1.0.2",
