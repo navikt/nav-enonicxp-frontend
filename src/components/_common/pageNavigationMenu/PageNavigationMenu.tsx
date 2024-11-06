@@ -2,7 +2,7 @@ import React, { useId } from 'react';
 import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';

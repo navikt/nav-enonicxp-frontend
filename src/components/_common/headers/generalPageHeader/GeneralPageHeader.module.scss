@@ -1,0 +1,40 @@
+@use 'common' as common;
+
+.generalPageHeader {
+    display: block;
+
+    .illustration {
+        width: 6rem;
+        height: 6rem;
+        position: absolute;
+        margin-left: -8rem;
+
+        :global(.back) {
+            @include common.brand-purple-filter-back();
+        }
+        :global(.front) {
+            @include common.brand-purple-filter-front();
+        }
+
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            margin-left: 0;
+        }
+    }
+
+    .header {
+        margin-top: var(--a-spacing-3);
+        color: var(--brand-purple-deep);
+        margin-bottom: var(--a-spacing-6);
+    }
+
+    .reduceMarginBottom {
+        margin-bottom: -1.5rem;
+    }
+
+    .ingress:global(.navds-body-long) {
+        margin-bottom: 0;
+    }
+}

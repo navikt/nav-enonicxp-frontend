@@ -6,7 +6,7 @@ import { getPublicPathname } from 'utils/urls';
 import styles from './PressShortcuts.module.scss';
 
 type PressShortcutsProps = {
-    page: PressLandingPageProps;
+    page: Pick<PressLandingPageProps, 'language' | 'data'>;
 };
 
 export const PressShortcuts = (props: PressShortcutsProps) => {
@@ -30,7 +30,7 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                         return (
                             <li key={shortcut._path}>
                                 <LinkPanel
-                                    href={getPublicPathname(shortcut)}
+                                    href={getPublicPathname({ _path: shortcut._path })}
                                     className={styles.shortcutItem}
                                 >
                                     {shortcut.displayName}

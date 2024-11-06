@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import dayjs from 'dayjs';
-import { LenkeStandalone } from 'components/_common/lenke/LenkeStandalone';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { formatDateTime } from 'utils/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';

@@ -5,7 +5,7 @@ export type Icon = {
     icon?: XpImageProps;
 };
 
-export type PictogramsData = {
+type PictogramsData = {
     icons: Icon[];
 };
 

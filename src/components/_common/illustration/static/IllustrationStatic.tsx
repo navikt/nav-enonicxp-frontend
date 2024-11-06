@@ -6,6 +6,7 @@ import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from 'components/_common/image/NextImage';
 import { XpImage } from 'components/_common/image/XpImage';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
+import { Language } from 'translations';
 
 import styleCommon from 'components/_common/illustration/Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
@@ -16,6 +17,7 @@ type ValidIcon = DefinedIcon & Required<Pick<DefinedIcon, 'mediaUrl'>>;
 type StaticIconProps = {
     icon: ValidIcon;
     isEditorView: boolean;
+    language: Language;
     className?: string;
 };
 
@@ -31,13 +33,13 @@ const fetchSvgData = (url: string) =>
         .then((res) => (res.ok ? res.text() : null))
         .catch((_) => null);
 
-const SvgIcon = ({ icon, isEditorView, className }: StaticIconProps) => {
+const SvgIcon = ({ icon, isEditorView, className, language }: StaticIconProps) => {
     const elementId = useId();
 
     const { data: svgData } = useSWRImmutableOnScrollIntoView({
         url: buildImageCacheUrl({
             ...nextImageProps,
-            src: getMediaUrl(icon.mediaUrl, isEditorView),
+            src: getMediaUrl(icon.mediaUrl, isEditorView, language),
             isEditorView,
         }),
         fetchFunc: fetchSvgData,
@@ -80,7 +82,7 @@ type Props = {
 };
 
 export const IllustrationStatic = ({ illustration, className }: Props) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
     if (!illustration) {
         return null;
@@ -96,10 +98,20 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
     return (
         <span className={classNames(styleCommon.image, className)} aria-hidden={'true'}>
             {isValidIcon(icon1?.icon) && (
-                <StaticIcon icon={icon1.icon} isEditorView={!!editorView} className={'back'} />
+                <StaticIcon
+                    icon={icon1.icon}
+                    isEditorView={!!editorView}
+                    language={language}
+                    className={'back'}
+                />
             )}
             {isValidIcon(icon2?.icon) && (
-                <StaticIcon icon={icon2.icon} isEditorView={!!editorView} className={'front'} />
+                <StaticIcon
+                    icon={icon2.icon}
+                    isEditorView={!!editorView}
+                    language={language}
+                    className={'front'}
+                />
             )}
         </span>
     );

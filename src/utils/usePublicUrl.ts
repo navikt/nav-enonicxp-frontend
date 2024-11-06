@@ -1,21 +1,37 @@
 import { usePageContentProps } from 'store/pageContext';
-import { getInternalRelativePath, isAppUrl, isInternalUrl, stripXpPathPrefix } from './urls';
+import {
+    getInternalRelativePath,
+    isAppUrl,
+    isXpUrl,
+    stripXpPathPrefix,
+    transformToXpLayerUrl,
+} from './urls';
 
 type ReturnValue = {
     url: string;
-    canRouteClientSide: boolean; // If this is true, navigation to the url can be done client-side with next router
+    canRouteClientSide: boolean; // If true, navigation to the url can be done client-side with next router
 };
 
 export const usePublicUrl = (href: string): ReturnValue => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
-    if (isInternalUrl(href)) {
-        const internalPath = getInternalRelativePath(href, !!editorView);
+    if (isXpUrl(href)) {
         return {
-            url: internalPath,
-            canRouteClientSide: isAppUrl(internalPath),
+            url: transformToXpLayerUrl(href, !!editorView, language),
+            canRouteClientSide: false,
         };
     }
 
-    return { url: stripXpPathPrefix(href) || '/', canRouteClientSide: false };
+    if (isAppUrl(href)) {
+        const internalPath = getInternalRelativePath(href, !!editorView);
+        return {
+            url: internalPath,
+            canRouteClientSide: true,
+        };
+    }
+
+    return {
+        url: stripXpPathPrefix(href) || '/',
+        canRouteClientSide: false,
+    };
 };

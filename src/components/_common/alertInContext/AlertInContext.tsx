@@ -5,19 +5,19 @@ import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import style from './AlertInContext.module.scss';
 
 type Props = {
-    alert: AlertData;
+    data: Pick<AlertData['data'], 'type' | 'text'>;
 };
 
-export const AlertInContext = ({ alert }: Props) => {
-    if (!alert) {
+export const AlertInContext = ({ data }: Props) => {
+    if (!data?.text) {
         return null;
     }
 
-    const variant = alert.data.type === 'critical' ? 'warning' : 'info';
+    const variant = data.type === 'critical' ? 'warning' : 'info';
 
     return (
         <AlertBox className={style.alertInContext} variant={variant}>
-            {alert.data.text}
+            {data.text}
         </AlertBox>
     );
 };

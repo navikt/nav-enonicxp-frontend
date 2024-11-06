@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { classNames } from 'utils/classnames';
 import { UserTestsConfigData, UserTestVariantProps } from 'types/content-props/user-tests-config';
 

@@ -3,14 +3,11 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-export type PagePropsForPageHeader = ContentProps & {
-    data: Pick<
-        ProductDataMixin,
-        'title' | 'illustration' | 'taxonomy' | 'audience' | 'customCategory'
-    >;
+export type GetContentTaglineProps = Pick<ContentProps, 'language' | 'type'> & {
+    data: Pick<ProductDataMixin, 'taxonomy' | 'audience' | 'customCategory'>;
 };
 
-export const getContentTagline = (content: PagePropsForPageHeader, currentLanguage?: Language) => {
+export const getContentTagline = (content: GetContentTaglineProps, currentLanguage?: Language) => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
 
@@ -36,7 +33,5 @@ export const getContentTagline = (content: PagePropsForPageHeader, currentLangua
         return joinWithConjunction(taxonomyStrings, language);
     }
 
-    // Catch all if no other taglines could be determined
-    const productAudienceTranslations = translator('products', language);
-    return selectedAudience ? productAudienceTranslations(selectedAudience) : '';
+    return '';
 };

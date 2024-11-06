@@ -1,7 +1,7 @@
 import React from 'react';
 import { AreaPageProps } from 'types/content-props/index-pages-props';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { FancyChevron } from 'components/_common/chevron/FancyChevron';

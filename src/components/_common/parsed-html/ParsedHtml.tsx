@@ -19,7 +19,7 @@ import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from 'components/macros/MacroMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
@@ -78,7 +78,7 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, language } = usePageContentProps();
 
     if (!htmlProps) {
         return null;
@@ -123,7 +123,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     <NextImage
                         {...props}
                         alt={attribs.alt || ''}
-                        src={getMediaUrl(attribs.src, !!editorView)}
+                        src={getMediaUrl(attribs.src, !!editorView, language)}
                     />
                 );
             }

@@ -3,7 +3,7 @@ import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
-import { smoothScrollToTarget } from 'utils/scroll-to';
+import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
 
@@ -17,6 +17,7 @@ type Props = {
     children: React.ReactNode;
     expandableType?: ProductDetailType | 'documentation_requirements';
     ariaLabel?: string;
+    isOpenDefault?: boolean;
 };
 
 export const Expandable = ({
@@ -27,8 +28,9 @@ export const Expandable = ({
     className,
     expandableType,
     ariaLabel,
+    isOpenDefault,
 }: Props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
 
     useShortcuts({
@@ -40,6 +42,8 @@ export const Expandable = ({
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
+        handleStickyScrollOffset(isOpening, accordionRef.current);
+
         logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
@@ -117,6 +121,7 @@ export const Expandable = ({
             onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
             aria-label={ariaLabel || title}
+            tabIndex={-1}
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}

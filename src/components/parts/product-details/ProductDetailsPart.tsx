@@ -84,6 +84,7 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
                                 key={index}
                                 componentProps={component}
                                 pageProps={pageProps}
+                                isCustomNestedComponent={true}
                             />
                         ))}
                     </ExpandableComponentWrapper>

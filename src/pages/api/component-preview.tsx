@@ -8,6 +8,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageContextProvider } from 'store/pageContext';
 import { apiErrorHandler } from 'utils/api-error-handler';
 import { ComponentProps } from 'types/component-props/_component-common';
+import { validateSecretHeader } from 'srcCommon/auth';
 
 type Body = {
     props: ComponentProps;
@@ -16,7 +17,7 @@ type Body = {
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
-        if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        if (!validateSecretHeader(req)) {
             return res.status(401).send({ message: 'Unauthorized' });
         }
 

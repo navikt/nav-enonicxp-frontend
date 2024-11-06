@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { BodyLong, Loader } from '@navikt/ds-react';
 import { getTargetIfRedirect } from 'utils/redirects';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { ContentProps } from 'types/content-props/_content-common';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
@@ -12,13 +12,13 @@ import style from './RedirectPage.module.scss';
 // render a page showing the redirect target, while also giving access to the version
 // history selector in the editor
 export const RedirectPage = (props: ContentProps) => {
-    const { editorView } = props;
+    const { editorView, noRedirect } = props;
 
     const router = useRouter();
 
     const target = getTargetIfRedirect(props);
 
-    const shouldNotRedirect = !!editorView;
+    const shouldNotRedirect = !!editorView || noRedirect;
 
     useEffect(() => {
         if (shouldNotRedirect || !target) {

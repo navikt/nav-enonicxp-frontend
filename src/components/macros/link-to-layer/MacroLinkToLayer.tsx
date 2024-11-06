@@ -1,5 +1,5 @@
 import React from 'react';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { MacroLinkToLayerProps } from 'types/macro-props/link-to-layer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 

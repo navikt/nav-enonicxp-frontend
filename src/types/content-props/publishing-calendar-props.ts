@@ -6,6 +6,9 @@ export type PublishingCalendarEntryProps = ContentCommonProps & {
     data: {
         date: string;
         period: string;
+        link?: {
+            _path: string;
+        };
     };
 };
 

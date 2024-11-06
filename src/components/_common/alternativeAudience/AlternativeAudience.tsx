@@ -6,7 +6,7 @@ import {
 } from 'types/component-props/_mixins';
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { getConjunction, joinWithConjunction } from 'utils/string';
@@ -64,10 +64,14 @@ const buildAudienceLinks = (
 };
 
 export const AlternativeAudience = () => {
-    const { data, language, displayName = '', page } = usePageContentProps<ProductPageProps>();
-    const { config } = page;
-    const { showProductName } = config;
-    const { alternativeAudience } = data;
+    const {
+        data: { alternativeAudience },
+        language,
+        displayName = '',
+        page: {
+            config: { showProductName },
+        },
+    } = usePageContentProps<ProductPageProps>();
 
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
@@ -77,7 +81,10 @@ export const AlternativeAudience = () => {
     }
 
     const productName =
-        showProductName === false ? getStringPart('this') : displayName.toLowerCase();
+        showProductName === false
+            ? getStringPart('this')
+            : displayName.charAt(0).toLowerCase() + displayName.slice(1);
+
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
