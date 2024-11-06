@@ -29,6 +29,15 @@ export const Default: Story = {
                     type: ComponentType.Part,
                     config: { title: 'Header H4', anchorId: 'headerh4', titleTag: 'h4' },
                 },
+                {
+                    descriptor: PartType.RelatedSituations,
+                    path: '',
+                    type: ComponentType.Part,
+                    config: {
+                        title: 'Related Situations Part',
+                        description: '',
+                    },
+                },
             ],
         },
     },
