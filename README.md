@@ -74,6 +74,6 @@ nav.no-appen i XP og så slette frontend-cachen (helst ikke i prod :).
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
 
-### For NAV-ansatte
+### For Nav-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-personbruker

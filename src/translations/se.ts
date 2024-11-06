@@ -16,7 +16,7 @@ export const translationsBundleSe: PartialTranslations = {
         [MenuListItemKey.RelatedInformation]: 'Dehálaš dieđutdehálaš dieđut',
         [MenuListItemKey.ReportChanges]: 'Dieđit daid rievdadusaid',
         [MenuListItemKey.RulesAndRegulations]: 'Njuolggadusat',
-        [MenuListItemKey.Saksbehandling]: 'NAV áššemeannudanáiggit',
+        [MenuListItemKey.Saksbehandling]: 'Nav áššemeannudanáiggit',
         [MenuListItemKey.Selfservice]: 'Ieš-bálvaleapmi',
         [MenuListItemKey.Shortcuts]: 'Njuolggobálgát',
     },

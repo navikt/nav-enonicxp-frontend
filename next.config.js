@@ -54,7 +54,7 @@ const csp = async () => {
     ];
     const salesforceVideoHost = 'ihb.nav.no';
 
-    // These are used by a NAV-funded research project for accessibility-related feedback
+    // These are used by a Nav-funded research project for accessibility-related feedback
     const tingtunHost = '*.tingtun.no';
     const termerHost = 'termer.no';
     const tiTiHosts = [tingtunHost, termerHost];

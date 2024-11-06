@@ -40,7 +40,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         return null;
     }
     const rssFeed = new RSS({
-        title: 'Nyheter fra NAV',
+        title: 'Nyheter fra Nav',
         description: 'www.nav.no',
         feed_url: 'https://www.nav.no/no/rss',
         site_url: 'https://www.nav.no',
