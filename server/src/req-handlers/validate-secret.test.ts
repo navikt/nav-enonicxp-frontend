@@ -1,5 +1,5 @@
 import { NextFunction } from 'express';
-import { validateSecret } from './validate-secret';
+import { buildValidateSecretMiddleware } from './validate-secret-middleware';
 
 const mySecret = 'mySecret';
 
@@ -15,7 +15,7 @@ describe('Validate secret header middleware', () => {
     beforeEach(() => {
         nextFunction = jest.fn();
         nextAppMock = { renderError: jest.fn() };
-        validateSecretMiddleware = validateSecret(nextAppMock);
+        validateSecretMiddleware = buildValidateSecretMiddleware(nextAppMock);
     });
 
     test('Next function should be called on valid secrets', () => {

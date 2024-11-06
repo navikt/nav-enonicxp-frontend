@@ -10,8 +10,6 @@ type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 type Props = {
     href: string;
     analyticsLinkGroup?: string;
-    linkTextSize?: DsHeadingSize;
-    linkUnderline?: 'default' | 'onHover' | 'none';
     icon?: React.ReactNode;
     children: React.ReactNode;
 } & React.ComponentProps<typeof LenkeBase>;
@@ -22,8 +20,6 @@ type Props = {
 export const LinkPanelNavnoSimple = ({
     href,
     analyticsLinkGroup,
-    linkTextSize = 'medium',
-    linkUnderline = 'default',
     icon,
     children,
     className,
@@ -38,7 +34,7 @@ export const LinkPanelNavnoSimple = ({
             analyticsLinkGroup={analyticsLinkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
-            <div className={classNames('navds-heading', `navds-heading--${linkTextSize}`)}>
+            <div className={classNames('navds-heading', 'navds-heading--medium')}>
                 <span className={style.text}>{children}</span>
             </div>
         </LenkeBase>
