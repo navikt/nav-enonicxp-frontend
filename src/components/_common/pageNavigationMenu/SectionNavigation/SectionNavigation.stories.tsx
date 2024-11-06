@@ -23,6 +23,12 @@ export const Default: Story = {
                     type: ComponentType.Part,
                     config: { title: 'Header H3', anchorId: 'headerh3', titleTag: 'h3' },
                 },
+                {
+                    descriptor: PartType.Header,
+                    path: '',
+                    type: ComponentType.Part,
+                    config: { title: 'Header H4', anchorId: 'headerh4', titleTag: 'h4' },
+                },
             ],
         },
     },
