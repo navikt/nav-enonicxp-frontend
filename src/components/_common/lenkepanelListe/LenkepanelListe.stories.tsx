@@ -17,7 +17,7 @@ export const Default: Story = {
         items: [
             { title: 'Lenkepanel 1', url: { text: 'test' } },
             { title: 'Lenkepanel 2', url: { text: 'test' } },
-            { title: 'Lenkepanel 3', url: { text: 'test' } },
+            { title: 'Lenkepanel 3', ingress: 'Ingress', url: { text: 'test' } },
         ],
     },
 };
