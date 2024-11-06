@@ -15,7 +15,6 @@ COPY node_modules /app/node_modules/
 
 COPY .env /app/server/
 COPY packages/server/package*.json /app/server/
-COPY packages/server/node_modules /app/server/node_modules/
 COPY packages/server/.dist /app/server/.dist/
 
 USER nextjs
