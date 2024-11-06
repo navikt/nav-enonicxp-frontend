@@ -38,6 +38,13 @@ export const Default: Story = {
                         description: '',
                     },
                 },
+                {
+                    type: ComponentType.Text,
+                    text: 'Text',
+                    path: '',
+                    descriptor: 'no.nav.navno:text',
+                    config: {},
+                },
             ],
         },
     },
