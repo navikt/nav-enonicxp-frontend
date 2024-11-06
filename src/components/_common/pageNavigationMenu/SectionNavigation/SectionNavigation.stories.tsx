@@ -34,7 +34,7 @@ export const Default: Story = {
                     path: '',
                     type: ComponentType.Part,
                     config: {
-                        title: 'Related Situations Part',
+                        title: '',
                         description: '',
                     },
                 },
