@@ -49,3 +49,16 @@ export const Default: Story = {
         },
     },
 };
+
+export const WithContentRegion: Story = {
+    args: {
+        introRegion: {
+            name: 'intro',
+            components: Default.args?.introRegion?.components ?? [],
+        },
+        contentRegion: {
+            name: 'content',
+            components: Default.args?.introRegion?.components ?? [],
+        },
+    },
+};
