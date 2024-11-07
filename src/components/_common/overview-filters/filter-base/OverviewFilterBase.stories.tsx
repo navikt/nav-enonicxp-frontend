@@ -16,6 +16,6 @@ export const Default: Story = {
         type: 'areas',
         selected: Area.PENSION,
         options: [Area.PENSION, Area.ACCESSIBILITY, Area.DOWNSIZING],
-        // selectionCallback: (filter: Type) => void
+        selectionCallback: () => {},
     },
 };
