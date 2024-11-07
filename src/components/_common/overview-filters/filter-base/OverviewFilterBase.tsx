@@ -17,14 +17,14 @@ type FilterType<Type extends FilterOptions> = Type extends Area
 
 type Props<Type extends FilterOptions> = {
     type: FilterType<Type>;
-    selectionCallback: (filter: Type) => void;
+    // selectionCallback: (filter: Type) => void;
     selected: Type;
     options: Type[];
 };
 
 export const OverviewFilterBase = <Type extends FilterOptions>({
     type,
-    selectionCallback,
+    // selectionCallback,
     selected,
     options,
 }: Props<Type>) => {
@@ -46,7 +46,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
                         return (
                             <Chips.Toggle
                                 type={'button'}
-                                onClick={() => selectionCallback(option)}
+                                // onClick={() => selectionCallback(option)}
                                 aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
                                 className={styles.filterButton}
                                 checkmark={false}
