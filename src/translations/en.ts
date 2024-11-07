@@ -30,7 +30,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
-    [ProductTaxonomy.ALL]: 'Alle',
+    [ProductTaxonomy.ALL]: 'All',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
     [ProductTaxonomy.INSURANCE]: 'Insurance',
     [ProductTaxonomy.MEASURES]: 'Measures',
