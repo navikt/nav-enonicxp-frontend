@@ -18,16 +18,20 @@ const withDefaultHtmlStyling = (Story: any) => (
     </div>
 );
 
-const UnorderedListExample =
-    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua:&nbsp;</p><ul><li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li><li>Aduis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</li></ul><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+const p =
+    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua:&nbsp;</p>';
 
-const OrderedListExample =
-    '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua:&nbsp;</p><ol><li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li><li>Aduis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</li></ol><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>';
+const ul =
+    '<ul><li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li><li>Aduis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</li></ul>';
 
-const HeaderExample =
-    '<h4><strong>Første utbetaling</strong></h4>\n\n<p>Du får første utbetaling etter at søknaden din er behandlet og godkjent.Vi etterbetaler pengene fra og med dagen du har rett til AAP. </p>\n\n<h4><strong>Regelmessige utbetalinger</strong> </h4>\n\n<p>For å få utbetalt AAP, må du sende inn <a href="content://699b4cec-5185-40aa-9186-3c067a6146c3"><u>meldekort</u></a> hver 14. dag. Pengene blir utbetalt 1-3 virkedager etter at vi har mottatt meldekortet. </p>\n\n<p>Det er viktig at du følger med på din<u> <a href="https://www.nav.no/nav.no-ressurser/lenker/selvbetjening/tjenester-pa-nav.no/dine-utbetalinger">utbetalingsoversikt</a></u>. Der kan du se når du har fått utbetalinger og hvor mye du har fått.</p>\n';
+const ol =
+    '<ol><li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;</li><li>Aduis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.&nbsp;</li></ol>';
 
-const AllExamples = UnorderedListExample + OrderedListExample + HeaderExample;
+const h4 = '<h4>Lorem ipsum</h4>';
+
+const a = '<a href="/"><u>lenke</u></a>';
+
+const AllExamples = p + ul + ol + p + h4 + a + ul + h4 + ol + p + a;
 
 export const Default: Story = {
     args: {
