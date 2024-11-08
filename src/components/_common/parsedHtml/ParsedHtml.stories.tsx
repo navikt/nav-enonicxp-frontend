@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { classNames } from 'utils/classnames';
-import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
-import { MacroType } from 'types/macro-props/_macros-common';
+import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { ParsedHtml } from './ParsedHtml';
 
 const withDefaultHtmlStyling = (Story: any) => (

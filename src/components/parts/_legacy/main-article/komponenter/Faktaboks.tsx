@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { Heading } from '@navikt/ds-react';
