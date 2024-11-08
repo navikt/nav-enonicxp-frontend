@@ -8,8 +8,6 @@ export const SamledeVarsler = ({ content }: { content: ContentProps }) => {
     const pathIncludesArbeidsgiver = path.includes('/arbeidsgiver');
     const feilKortUrl = malgruppeErArbeidsgiver && !pathIncludesArbeidsgiver;
 
-    console.log(content.data);
-
     return (
         <>
             {feilKortUrl && (
