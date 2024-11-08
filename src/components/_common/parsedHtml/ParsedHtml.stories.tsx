@@ -31,12 +31,12 @@ const h4 = '<h4>Lorem ipsum</h4>';
 
 const a = '<a href="/"><u>lenke</u></a>';
 
-const AllExamples = p + ul + ol + p + h4 + a + ul + h4 + ol + p + a;
+const RandomizedHtml = p + ul + ol + p + h4 + a + ul + h4 + ol + p + a;
 
 export const Default: Story = {
     args: {
         htmlProps: {
-            processedHtml: AllExamples,
+            processedHtml: RandomizedHtml,
             macros: [],
         },
     },
@@ -46,7 +46,7 @@ export const WithStyling: Story = {
     decorators: [withDefaultHtmlStyling],
     args: {
         htmlProps: {
-            processedHtml: AllExamples,
+            processedHtml: RandomizedHtml,
             macros: [],
         },
     },
