@@ -5,7 +5,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 export const SamledeVarsler = ({ content }: { content: ContentProps }) => {
     const malgruppeErArbeidsgiver = content.data?.audience?._selected === 'employer';
     const path = content.data?.customPath;
-    const pathIncludesArbeidsgiver = path.includes('/arbeidsgiver');
+    const pathIncludesArbeidsgiver = path?.includes('/arbeidsgiver');
     const feilKortUrl = malgruppeErArbeidsgiver && !pathIncludesArbeidsgiver;
 
     return (
