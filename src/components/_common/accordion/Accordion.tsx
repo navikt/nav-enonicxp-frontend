@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
@@ -9,7 +9,7 @@ import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 
-import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
+import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import styles from './Accordion.module.scss';
 
 type AccordionProps = PartConfigAccordion;

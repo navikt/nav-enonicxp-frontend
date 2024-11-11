@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 const injectTableOfContentsIds = (htmlText: string) => {

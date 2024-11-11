@@ -1,6 +1,6 @@
 import { Heading } from '@navikt/ds-react';
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import styles from './PressTopSection.module.scss';
 
