@@ -25,7 +25,7 @@ export const Ukrainian: Story = {
     },
 };
 
-export const SitutationPage: Story = {
+export const SituationPage: Story = {
     args: {
         isSituationPage: true,
     },
