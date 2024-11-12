@@ -13,7 +13,7 @@ const preview: Preview = {
         chromatic: {
             modes: {
                 small: allModes['small'],
-                large: allModes['large'],
+                // large: allModes['large'],
             },
         },
     },
