@@ -65,7 +65,9 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
         <>
             {harFeil && (
                 <Alert variant="warning">
-                    Det er problemer med denne siden som må rettes:
+                    Redaktørvarsel:
+                    <br />
+                    Disse problemene må rettes før publisering:
                     <ul>
                         {feilKortUrl && <KortIdWarning />}
                         {uniqueDupeIds.length > 0 && (

@@ -20,10 +20,8 @@ export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds }: Prop
     return (
         <>
             <li>
-                <BodyLong>
-                    {`Hver id må være unik på siden, bl.a. for at anker-lenker skal fungere
-                        konsistent. Følgende duplikate id'er må fjernes eller erstattes med unike id'er.`}
-                </BodyLong>
+                Anker-ID-ene på siden må være unike for å fungere. Følgende anker-ID-er må derfor
+                justeres:
                 <ul>
                     {uniqueDupeIds.map((id) => (
                         <li key={id}>
@@ -58,7 +56,7 @@ export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds }: Prop
                 return createPortal(
                     <span className={style.warning} id={linkId}>
                         <EditorHelp
-                            text={`Elementet nedenfor har en duplikat id: "${element.id}"`}
+                            text={`Elementet nedenfor har en duplikat anker-id: "${element.id}"`}
                             type={'error'}
                         />
                     </span>,

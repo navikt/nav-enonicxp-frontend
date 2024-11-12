@@ -3,8 +3,8 @@ import React from 'react';
 export const KortIdWarning = () => {
     return (
         <li>
-            Målgruppe er satt til Arbeidsgiver, så kort-url må også starte med
-            {' "/arbeidsgiver"'}
+            Når målgruppen er satt til “arbeidsgiver,” må kort-URL-en begynne med
+            {' "/arbeidsgiver"'}.
         </li>
     );
 };
