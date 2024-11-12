@@ -1,6 +1,5 @@
 import React, { useId } from 'react';
 import { createPortal } from 'react-dom';
-import { BodyLong } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
