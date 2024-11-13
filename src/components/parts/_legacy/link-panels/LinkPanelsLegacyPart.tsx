@@ -1,5 +1,5 @@
 import React from 'react';
-import { LenkepanelListe } from 'components/_common/lenkepanel-liste/LenkepanelListe';
+import { LenkepanelListe } from 'components/_common/lenkepanelListe/LenkepanelListe';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 export const LinkPanelsLegacyPart = (props: ContentProps) => {
