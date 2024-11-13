@@ -1,7 +1,7 @@
 import React from 'react';
 import { MacroInfoBoksProps } from 'types/macro-props/infoBoks';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import style from './MacroInfoBoks.module.scss';
 

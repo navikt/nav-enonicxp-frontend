@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';

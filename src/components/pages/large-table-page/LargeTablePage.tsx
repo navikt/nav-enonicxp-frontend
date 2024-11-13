@@ -1,6 +1,6 @@
 import React from 'react';
 import { LargeTableProps } from 'types/content-props/large-table-props';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import style from './LargeTablePage.module.scss';
 

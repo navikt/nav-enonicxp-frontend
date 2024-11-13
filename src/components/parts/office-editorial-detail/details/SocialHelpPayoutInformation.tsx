@@ -1,5 +1,5 @@
 import { Alert } from '@navikt/ds-react';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 
 export const SocialHelpPayoutInformation = ({ officeData }: OfficeEditorialDetailProps) => {
