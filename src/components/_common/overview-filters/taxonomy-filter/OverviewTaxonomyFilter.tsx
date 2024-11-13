@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
+import { OverviewFilterBase } from 'components/_common/overview-filters/OverViewFilterBase/OverviewFilterBase';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
 const orderedTaxonomies: ProductTaxonomy[] = [
