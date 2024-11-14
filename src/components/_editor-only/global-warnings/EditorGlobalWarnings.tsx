@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { DuplicateIdsWarning } from 'components/_editor-only/warnings/duplicate-ids-warning/DuplicateIdsWarning';
-import { KortIdWarning } from 'components/_editor-only/warnings/kort-id-warning/KortIdWarning';
+import { KortUrlWarning } from 'components/_editor-only/warnings/kort-id-warning/KortUrlWarning';
 import { removeDuplicates } from 'utils/arrays';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
@@ -28,10 +28,11 @@ export const RenderToEditorGlobalWarnings = ({ children }: { children: React.Rea
 };
 
 export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => {
-    const malgruppeErArbeidsgiver = content.data?.audience?._selected === 'employer';
+    const maalgruppe = content.data?.audience?._selected;
     const path = content.data?.customPath;
-    const pathIncludesArbeidsgiver = path?.includes('/arbeidsgiver');
-    const feilKortUrl = malgruppeErArbeidsgiver && !pathIncludesArbeidsgiver;
+    const feilKortUrl =
+        (maalgruppe === 'employer' && !path?.includes('/arbeidsgiver')) ||
+        (maalgruppe === 'provider' && !path?.includes('/samarbeidspartner'));
 
     const [elementsWithDupeIds, setElementsWithDupeIds] = useState<HTMLElement[]>([]);
     const uniqueDupeIds = removeDuplicates(elementsWithDupeIds, (a, b) => a.id === b.id).map(
@@ -69,7 +70,7 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
                     <br />
                     Disse problemene må rettes før publisering:
                     <ul>
-                        {feilKortUrl && <KortIdWarning />}
+                        {feilKortUrl && <KortUrlWarning maalgruppe={maalgruppe} />}
                         {uniqueDupeIds.length > 0 && (
                             <DuplicateIdsWarning
                                 uniqueDupeIds={uniqueDupeIds}
