@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatPhoneNumber,
@@ -74,7 +74,7 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                     <BodyLong>
                         Skal du sende søknader og skjemaer, må du bruke{' '}
                         <LenkeInline href="https://www.nav.no/soknader/nb/person">
-                            NAVs skjemaveileder.
+                            Navs skjemaveileder.
                         </LenkeInline>{' '}
                         Skjemaveilederen gir deg hjelp til å velge rett skjema og rett adresse det
                         skal sendes til.
