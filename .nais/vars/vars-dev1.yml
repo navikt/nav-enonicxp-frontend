@@ -8,6 +8,7 @@ secret: nav-enonicxp-dev1
 ingresses:
   - https://www.ansatt.dev.nav.no
   - https://www.ekstern.dev.nav.no
+  - https://www.intern.dev.nav.no
 resources:
   requests:
     cpu: 500m
