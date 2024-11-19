@@ -6,7 +6,7 @@ externalHosts:
   - www.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:
-  - https://www-failover.intern.dev.nav.no
+  - https://www-failover.ansatt.dev.nav.no
 resources:
   requests:
     cpu: 100m

@@ -6,7 +6,7 @@ externalHosts:
   - www-q6.nav.no
 secret: nav-enonicxp-dev2
 ingresses:
-  - https://www-2-failover.intern.dev.nav.no
+  - https://www-2-failover.ansatt.dev.nav.no
 resources:
   requests:
     cpu: 100m

@@ -24,14 +24,14 @@ jobs:
       ADMIN_ORIGIN: https://portal-admin-q6.oera.no
       APP_ORIGIN: https://www-2.ansatt.dev.nav.no
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
-      DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
+      DECORATOR_URL: https://dekoratoren-beta.ansatt.dev.nav.no
       XP_ORIGIN: https://www-q6.nav.no
       TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
       INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev2-${{ github.sha }}
-      NAVNO_API_URL: https://www.intern.dev.nav.no/person/navno-api
+      NAVNO_API_URL: https://www.ansatt.dev.nav.no/person/navno-api
       NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
-      FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
+      FAILOVER_ORIGIN: https://www-2-failover.ansatt.dev.nav.no
       NODE_ENV: ${{ inputs.NODE_ENV }}
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
