@@ -5,7 +5,9 @@
         margin-top: 0;
     }
     .description {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(
+            --a-spacing-4
+        ) !important; //override margin-bottom fra global-override-styles.scss
     }
 
     .situationsList {
