@@ -13,7 +13,8 @@
 
 :global(.part__html-area):last-child {
     .htmlArea > :last-child {
-        margin-bottom: 0;
+        // margin-bottom: 0;
+        background-color: red !important;
     }
 }
 
