@@ -20,7 +20,7 @@ Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://gith
 #### Via dev-proxy:
 
 -   Kopier .env.development til .env.development.local.
--   Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.ansatt.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
+-   Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
 -   Kjør `npm run dev-custom`
 
 ### Production mode:
