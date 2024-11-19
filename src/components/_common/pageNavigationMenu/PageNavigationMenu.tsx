@@ -6,7 +6,6 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { PageNavigationDupeLinkWarning } from './PageNavigationDupeLinkWarning';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -38,42 +37,38 @@ export const PageNavigationMenu = ({
     }
 
     return (
-        <>
-            <PageNavigationDupeLinkWarning anchorLinks={anchorLinks} />
-
-            <div
-                className={classNames(
-                    style.pageNavigationMenu,
-                    isChapterNavigation && style.chapterNavigation
-                )}
+        <div
+            className={classNames(
+                style.pageNavigationMenu,
+                isChapterNavigation && style.chapterNavigation
+            )}
+        >
+            <Heading
+                level={headingLevel}
+                size="xsmall"
+                spacing
+                id={headingId}
+                className={style.heading}
             >
-                <Heading
-                    level={headingLevel}
-                    size="xsmall"
-                    spacing
-                    id={headingId}
-                    className={style.heading}
-                >
-                    {title}
-                </Heading>
-                <ul aria-labelledby={headingId} className={style.list}>
-                    {links.map((anchorLink) => (
-                        <li key={anchorLink.anchorId}>
-                            <LenkeBase
-                                href={`#${anchorLink.anchorId}`}
-                                analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                analyticsLinkGroup={'Innhold'}
-                                analyticsComponent={analyticsComponent}
-                                analyticsLabel={anchorLink.linkText}
-                                className={style.link}
-                            >
-                                <ArrowDownRightIcon aria-hidden className={style.icon} />
-                                <BodyShort as="span">{anchorLink.linkText}</BodyShort>
-                            </LenkeBase>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
+                {title}
+            </Heading>
+            <ul aria-labelledby={headingId} className={style.list}>
+                {links.map((anchorLink) => (
+                    <li key={anchorLink.anchorId}>
+                        <LenkeBase
+                            href={`#${anchorLink.anchorId}`}
+                            analyticsEvent={AnalyticsEvents.NAVIGATION}
+                            analyticsLinkGroup={'Innhold'}
+                            analyticsComponent={analyticsComponent}
+                            analyticsLabel={anchorLink.linkText}
+                            className={style.link}
+                        >
+                            <ArrowDownRightIcon aria-hidden className={style.icon} />
+                            <BodyShort as="span">{anchorLink.linkText}</BodyShort>
+                        </LenkeBase>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
