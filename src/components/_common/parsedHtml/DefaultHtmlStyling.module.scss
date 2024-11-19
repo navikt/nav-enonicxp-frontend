@@ -1,6 +1,6 @@
 .html {
     word-break: break-word;
-    margin-bottom: var(--a-spacing-9);
+    // margin-bottom: var(--a-spacing-9);
 
     img {
         display: block;
@@ -10,7 +10,7 @@
 
     table {
         float: none;
-        margin-bottom: var(--a-spacing-7);
+        // margin-bottom: var(--a-spacing-7);
 
         th,
         td {
@@ -57,9 +57,5 @@
 
     ol li {
         padding-left: var(--a-spacing-1);
-    }
-
-    > :last-child {
-        margin-bottom: 0;
     }
 }

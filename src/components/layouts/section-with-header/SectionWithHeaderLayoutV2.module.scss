@@ -11,12 +11,11 @@ $defaultBgColor: white;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    margin-top: calc(
-        var(--a-spacing-20) + var(--a-spacing-5)
-    ); // Take topMarker negative pos into account
+    margin-top: calc(var(--a-spacing-11)); // Take topMarker negative pos into account
+    margin-bottom: var(--a-spacing-14);
 
     &.pullUp {
-        margin-top: var(--a-spacing-12);
+        margin-top: var(--a-spacing-12); //TODO: nesten lik spacing-11, fjern hele pullUp?
     }
 
     :global(.icon-container) {
@@ -43,7 +42,7 @@ $defaultBgColor: white;
 }
 
 .header {
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--a-spacing-10);
     color: var(--brand-purple-deep);
 }
 

@@ -2,6 +2,7 @@
 
 .expandable {
     display: block;
+    margin-bottom: var(--a-spacing-9);
 
     :global(.navds-expansioncard__header-chevron) {
         transform: rotate(0) !important;

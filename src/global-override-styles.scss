@@ -70,7 +70,9 @@
     .navds-body-long--large {
         &:not(li) {
             line-height: 1.75;
-            margin-bottom: var(--a-spacing-9);
+            margin-bottom: var(
+                --a-spacing-9
+            ); //usikker på om denne skal være med, pagenavigationmenu kommer nærme
         }
     }
 

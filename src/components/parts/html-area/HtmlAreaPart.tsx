@@ -9,7 +9,7 @@ import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import style from './HtmlAreaPart.module.scss';
+// import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
     html: ProcessedHtmlProps;
@@ -22,14 +22,14 @@ export const HtmlAreaPart = ({ config }: PartComponentProps<PartType.HtmlArea>) 
     }
 
     return (
-        <div className={style.htmlArea}>
-            <FilteredContent {...config}>
-                <ExpandableComponentWrapper {...config}>
-                    <div className={classNames(defaultHtml.html, style.htmlArea, 'parsedHtml')}>
-                        <ParsedHtml htmlProps={config.html} />
-                    </div>
-                </ExpandableComponentWrapper>
-            </FilteredContent>
-        </div>
+        // <div className={style.htmlArea}>
+        <FilteredContent {...config}>
+            <ExpandableComponentWrapper {...config}>
+                <div className={classNames(defaultHtml.html, 'parsedHtml')}>
+                    <ParsedHtml htmlProps={config.html} />
+                </div>
+            </ExpandableComponentWrapper>
+        </FilteredContent>
+        // </div>
     );
 };
