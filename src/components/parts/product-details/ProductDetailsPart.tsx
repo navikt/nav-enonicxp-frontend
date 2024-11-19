@@ -13,7 +13,7 @@ import { PageContextProvider, usePageContentProps } from 'store/pageContext';
 import { ComponentProps } from 'types/component-props/_component-common';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 
-import style from './ProductDetailsPart.module.scss';
+// import style from './ProductDetailsPart.module.scss';
 
 export type PartConfigProductDetails = {
     detailType: ProductDetailType;
@@ -71,25 +71,21 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
             : undefined;
 
     return (
-        <div className={style.productDetails}>
-            <PageContextProvider content={pageContent}>
-                <FilteredContent {...config}>
-                    <ExpandableComponentWrapper
-                        type={expandableType}
-                        ariaLabel={ariaLabel}
-                        {...config}
-                    >
-                        {components.map((component, index) => (
-                            <ComponentMapper
-                                key={index}
-                                componentProps={component}
-                                pageProps={pageProps}
-                                isCustomNestedComponent={true}
-                            />
-                        ))}
-                    </ExpandableComponentWrapper>
-                </FilteredContent>
-            </PageContextProvider>
-        </div>
+        // <div className={style.productDetails}>
+        <PageContextProvider content={pageContent}>
+            <FilteredContent {...config}>
+                <ExpandableComponentWrapper type={expandableType} ariaLabel={ariaLabel} {...config}>
+                    {components.map((component, index) => (
+                        <ComponentMapper
+                            key={index}
+                            componentProps={component}
+                            pageProps={pageProps}
+                            isCustomNestedComponent={true}
+                        />
+                    ))}
+                </ExpandableComponentWrapper>
+            </FilteredContent>
+        </PageContextProvider>
+        // </div>
     );
 };
