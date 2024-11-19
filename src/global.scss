@@ -54,7 +54,9 @@ table {
 
 // Catch-all to prevent unnecessary margin-bottom whitespace
 .layout:last-child,
-.part:last-child {
+.part:last-child,
+.region:last-child,
+.parsedHtml:last-child {
     margin-bottom: 0;
     & > :last-child {
         margin-bottom: 0;
