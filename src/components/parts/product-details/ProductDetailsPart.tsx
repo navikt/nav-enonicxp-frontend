@@ -13,8 +13,6 @@ import { PageContextProvider, usePageContentProps } from 'store/pageContext';
 import { ComponentProps } from 'types/component-props/_component-common';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 
-// import style from './ProductDetailsPart.module.scss';
-
 export type PartConfigProductDetails = {
     detailType: ProductDetailType;
     processingTimesVisibility: ProcessingTimesVisibilityType;
@@ -71,7 +69,6 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
             : undefined;
 
     return (
-        // <div className={style.productDetails}>
         <PageContextProvider content={pageContent}>
             <FilteredContent {...config}>
                 <ExpandableComponentWrapper type={expandableType} ariaLabel={ariaLabel} {...config}>
@@ -86,6 +83,5 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
                 </ExpandableComponentWrapper>
             </FilteredContent>
         </PageContextProvider>
-        // </div>
     );
 };
