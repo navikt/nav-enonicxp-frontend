@@ -176,7 +176,7 @@ type Props = {
 export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const { descriptor, config } = partProps;
 
-    const isEditView = pageProps.editorView === 'edit';
+    const isEditView = pageProps.editorView === 'edit'; //TODO
 
     if (!descriptor || partsDeprecated.has(descriptor)) {
         // We still need to render invalid components in the editor to prevent errors
@@ -188,15 +188,15 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const renderOnAuthState = config?.renderOnAuthState;
 
     return (
-        <div
-            className={classNames(
-                bem(),
-                bem(partName),
-                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
-            )}
-            {...editorProps}
-        >
-            <PartComponentMapper pageProps={pageProps} partProps={partProps} />
-        </div>
+        // <div
+        //     className={classNames(
+        //         bem(),
+        //         bem(partName),
+        //         isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
+        //     )}
+        //     {...editorProps}
+        // >
+        <PartComponentMapper pageProps={pageProps} partProps={partProps} />
+        // </div>
     );
 };
