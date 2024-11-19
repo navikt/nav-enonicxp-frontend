@@ -11,7 +11,7 @@ $defaultBgColor: white;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    margin-top: calc(var(--a-spacing-11)); // Take topMarker negative pos into account
+    margin-top: var(--a-spacing-5); // Take topMarker negative pos into account
     margin-bottom: var(--a-spacing-14);
 
     &.pullUp {
