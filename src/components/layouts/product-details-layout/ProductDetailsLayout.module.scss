@@ -2,4 +2,8 @@
     table {
         table-layout: fixed;
     }
+
+    :global(.region__main_complaint) {
+        margin-top: 2rem;
+    }
 }
