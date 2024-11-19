@@ -9,7 +9,6 @@ import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-// import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
     html: ProcessedHtmlProps;
