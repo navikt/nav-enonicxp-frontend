@@ -2,7 +2,5 @@
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
     "private": true,
-    "dependencies": {
-        "redis": "4.6.15"
-    }
+    "dependencies": {}
 }

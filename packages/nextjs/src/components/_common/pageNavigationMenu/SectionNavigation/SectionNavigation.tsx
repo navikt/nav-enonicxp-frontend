@@ -4,8 +4,8 @@ import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
+import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type SectionNavigationProps = {
