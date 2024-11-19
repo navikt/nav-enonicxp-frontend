@@ -61,6 +61,23 @@
     margin-bottom: 2.5rem;
 }
 
+.layoutSituationOrProduct:not(.layoutSituationShelf) {
+    @include contactBackground();
+    padding-top: 5rem;
+
+    .contentWrapper {
+        $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
+        margin: 0 $margin;
+    }
+
+    :global(.region__flexcols--2-cols) {
+        :global(.part__contact-option) {
+            //TODO dette vil ikke funke når part__contact-option er borte, sjekk med fire (og to viss finnes) kolonner
+            margin-bottom: var(--a-spacing-8);
+        }
+    }
+}
+
 .layoutSituationOrProduct {
     $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
@@ -70,22 +87,6 @@
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-top: 4rem;
-
-    &:has(:global(.part__contact-option)) {
-        @include contactBackground();
-        padding-top: 5rem;
-
-        .contentWrapper {
-            $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
-            margin: 0 $margin;
-        }
-
-        :global(.region__flexcols--2-cols) {
-            :global(.part__contact-option) {
-                margin-bottom: var(--a-spacing-8);
-            }
-        }
-    }
 
     :global(.region__flexcols.region__flexcols) {
         //Double class to increase specificity, to avoid media query being overridden
