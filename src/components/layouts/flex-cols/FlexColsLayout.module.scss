@@ -63,7 +63,7 @@
 
 .layoutSituationOrProduct:not(.layoutSituationShelf) {
     @include contactBackground();
-    padding-top: 5rem;
+    padding-top: 4rem;
 
     .contentWrapper {
         $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
@@ -83,10 +83,6 @@
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
 
     @include common.full-width-mixin();
-
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    margin-top: 4rem;
 
     :global(.region__flexcols.region__flexcols) {
         //Double class to increase specificity, to avoid media query being overridden
@@ -121,8 +117,7 @@
 }
 
 .layoutSituationShelf {
-    padding-top: 2rem;
-    padding-bottom: 0rem;
+    margin-bottom: var(--a-spacing-16);
 }
 
 .shelfHeader {
@@ -138,6 +133,10 @@
 
 .shelfHeader:before {
     @include common.header-before-rectangle();
+}
+
+.hasHeader {
+    padding-top: var(--a-spacing-5);
 }
 
 .shelfLayout {
