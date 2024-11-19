@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import style from './SpecialInfo.module.scss';
 

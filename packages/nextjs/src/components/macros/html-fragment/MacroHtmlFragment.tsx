@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroHtmlFragmentProps } from 'types/macro-props/html-fragment';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {

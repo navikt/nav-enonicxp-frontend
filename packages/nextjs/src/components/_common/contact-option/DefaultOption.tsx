@@ -6,7 +6,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';

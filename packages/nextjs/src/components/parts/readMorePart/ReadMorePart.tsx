@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -9,7 +9,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 
-import defaultHtml from 'components/_common/parsed-html/DefaultHtmlStyling.module.scss';
+import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import styles from './ReadMorePart.module.scss';
 
 export type PartConfigReadMore = {

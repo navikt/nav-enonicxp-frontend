@@ -2,6 +2,8 @@
 
 React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytter Enonic XP som headless CMS.
 
+[Dokumentasjon av caching](https://github.com/navikt/nav-enonicxp/wiki/Caching)
+
 ## Lokal utvikling
 
 Kjøres lokalt på [http://localhost:3000](http://localhost:3000).
