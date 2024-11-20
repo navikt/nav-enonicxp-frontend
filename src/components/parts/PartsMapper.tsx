@@ -67,10 +67,12 @@ const PartComponentMapper = ({
     partProps,
     pageProps,
     dataPortalComponent,
+    dataPortalComponentType,
 }: {
     partProps: PartComponentProps;
     pageProps: ContentProps;
     dataPortalComponent?: string;
+    dataPortalComponentType?: ComponentType;
 }) => {
     console.log('PartComponentMapper', dataPortalComponent);
 
@@ -100,7 +102,13 @@ const PartComponentMapper = ({
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
         case PartType.Header:
-            return <HeaderPart {...partProps} dataPortalComponent={dataPortalComponent} />;
+            return (
+                <HeaderPart
+                    {...partProps}
+                    dataPortalComponent={dataPortalComponent}
+                    dataPortalComponentType={dataPortalComponentType}
+                />
+            );
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
         case PartType.LinkList:
@@ -206,6 +214,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
                 pageProps={pageProps}
                 partProps={partProps}
                 dataPortalComponent={editorProps?.['data-portal-component']}
+                dataPortalComponentType={editorProps?.['data-portal-component-type']}
             />
         </div>
     );

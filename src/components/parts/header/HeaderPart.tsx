@@ -3,6 +3,7 @@ import { Header } from 'components/_common/headers/Header';
 import { HeadingTag, headingToLevel, headingToSize } from 'types/typo-style';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
+import { ComponentType } from 'types/component-props/_component-common';
 import style from './HeaderPart.module.scss';
 
 export type PartConfigHeader = {
@@ -14,7 +15,11 @@ export type PartConfigHeader = {
 export const HeaderPart = ({
     config,
     dataPortalComponent,
-}: PartComponentProps<PartType.Header> & { dataPortalComponent?: string }) => {
+    dataPortalComponentType,
+}: PartComponentProps<PartType.Header> & {
+    dataPortalComponent?: string;
+    dataPortalComponentType?: ComponentType;
+}) => {
     if (!config) {
         return null;
     }
@@ -38,6 +43,7 @@ export const HeaderPart = ({
             anchorId={anchorId}
             className={style.headerPart}
             dataPortalComponent={dataPortalComponent}
+            dataPortalComponentType={dataPortalComponentType}
         >
             {title}
         </Header>
