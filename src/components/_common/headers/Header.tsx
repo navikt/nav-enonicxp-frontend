@@ -12,14 +12,27 @@ type Props = {
     size?: Size;
     anchorId?: string;
     className?: string;
+    dataPortalComponent?: string;
 };
 
-export const Header = ({ children, size, level, anchorId, className }: Props) => {
+export const Header = ({
+    children,
+    size,
+    level,
+    anchorId,
+    className,
+    dataPortalComponent,
+}: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
+    console.log('Header', dataPortalComponent);
+
     return (
-        <div className={classNames(style.header, className)}>
+        <div
+            className={classNames(style.header, className)}
+            data-portal-component={dataPortalComponent}
+        >
             <div className={style.anchorOffset} id={anchorId} tabIndex={-1} />
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {anchor && (level === '2' || level === '3') ? (

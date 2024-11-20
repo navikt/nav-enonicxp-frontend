@@ -11,12 +11,17 @@ export type PartConfigHeader = {
     titleTag: HeadingTag;
 };
 
-export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
+export const HeaderPart = ({
+    config,
+    dataPortalComponent,
+}: PartComponentProps<PartType.Header> & { dataPortalComponent?: string }) => {
     if (!config) {
         return null;
     }
 
     const { title, titleTag, anchorId } = config;
+
+    console.log('HeaderPart', dataPortalComponent);
 
     if (!title) {
         return null;
@@ -27,7 +32,13 @@ export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
     const size = headingToSize[tag];
 
     return (
-        <Header level={level} size={size} anchorId={anchorId} className={style.headerPart}>
+        <Header
+            level={level}
+            size={size}
+            anchorId={anchorId}
+            className={style.headerPart}
+            dataPortalComponent={dataPortalComponent}
+        >
             {title}
         </Header>
     );

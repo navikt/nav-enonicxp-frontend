@@ -66,10 +66,14 @@ const bem = BEM(ComponentType.Part);
 const PartComponentMapper = ({
     partProps,
     pageProps,
+    dataPortalComponent,
 }: {
     partProps: PartComponentProps;
     pageProps: ContentProps;
+    dataPortalComponent?: string;
 }) => {
+    console.log('PartComponentMapper', dataPortalComponent);
+
     switch (partProps.descriptor) {
         case PartType.Accordion:
             return <AccordionPart {...partProps} />;
@@ -96,7 +100,7 @@ const PartComponentMapper = ({
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
         case PartType.Header:
-            return <HeaderPart {...partProps} />;
+            return <HeaderPart {...partProps} dataPortalComponent={dataPortalComponent} />;
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
         case PartType.LinkList:
@@ -187,6 +191,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
 
+    console.log('PartsMapper', editorProps);
+
     return (
         <div
             className={classNames(
@@ -194,9 +200,13 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
                 bem(partName),
                 isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
             )}
-            {...editorProps}
+            // {...editorProps}
         >
-            <PartComponentMapper pageProps={pageProps} partProps={partProps} />
+            <PartComponentMapper
+                pageProps={pageProps}
+                partProps={partProps}
+                dataPortalComponent={editorProps?.['data-portal-component']}
+            />
         </div>
     );
 };
