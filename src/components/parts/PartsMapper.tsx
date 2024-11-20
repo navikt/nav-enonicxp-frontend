@@ -188,15 +188,15 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const renderOnAuthState = config?.renderOnAuthState;
 
     return (
-        // <div
-        //     className={classNames(
-        //         bem(),
-        //         bem(partName),
-        //         isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
-        //     )}
-        //     {...editorProps}
-        // >
-        <PartComponentMapper pageProps={pageProps} partProps={partProps} />
-        // </div>
+        <div
+            className={classNames(
+                bem(),
+                bem(partName),
+                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
+            )}
+            {...editorProps}
+        >
+            <PartComponentMapper pageProps={pageProps} partProps={partProps} />
+        </div>
     );
 };
