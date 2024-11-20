@@ -15,7 +15,7 @@ $defaultBgColor: white;
     margin-bottom: var(--a-spacing-14);
 
     &.pullUp {
-        margin-top: var(--a-spacing-12); //TODO: nesten lik spacing-11, fjern hele pullUp?
+        margin-top: var(--a-spacing-12);
     }
 
     :global(.icon-container) {
@@ -48,6 +48,10 @@ $defaultBgColor: white;
 
 .headerWithIcon {
     margin-top: var(--a-spacing-2);
+}
+
+.container + :global(.part__page-navigation-menu) {
+    margin-top: -3rem;
 }
 
 .editorViewBorder {
