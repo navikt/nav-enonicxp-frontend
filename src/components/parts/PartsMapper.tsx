@@ -66,16 +66,10 @@ const bem = BEM(ComponentType.Part);
 const PartComponentMapper = ({
     partProps,
     pageProps,
-    dataPortalComponent,
-    dataPortalComponentType,
 }: {
     partProps: PartComponentProps;
     pageProps: ContentProps;
-    dataPortalComponent?: string;
-    dataPortalComponentType?: ComponentType;
 }) => {
-    console.log('PartComponentMapper', dataPortalComponent);
-
     switch (partProps.descriptor) {
         case PartType.Accordion:
             return <AccordionPart {...partProps} />;
@@ -191,10 +185,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
 
-    console.log('PartsMapper', editorProps);
-
     if (descriptor === PartType.Header) {
-        console.log('PARTHeader', descriptor);
         return (
             //TODO: bli kvitt denne div'en
             // <div
