@@ -190,7 +190,6 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
 
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
-    // const renderOnAuthState = 'waiting';
 
     console.log('PartsMapper', editorProps);
 
@@ -206,11 +205,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
             //     )}
             //     // {...editorProps}
             // >
-            <HeaderPart
-                {...partProps}
-                dataPortalComponent={editorProps?.['data-portal-component']}
-                dataPortalComponentType={editorProps?.['data-portal-component-type']}
-            />
+            <HeaderPart {...partProps} editorProps={editorProps} />
             // </div>
         );
     }

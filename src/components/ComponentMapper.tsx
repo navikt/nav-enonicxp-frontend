@@ -58,7 +58,7 @@ const ComponentToRender = ({ componentProps, pageProps, isCustomNestedComponent 
         case ComponentType.Part:
             return (
                 <PartsMapper
-                    partProps={componentProps}
+                    partProps={componentProps} //TODO: as PartComponentProps?
                     pageProps={pageProps}
                     editorProps={editorProps}
                 />
