@@ -1,7 +1,8 @@
-import React, { useId } from 'react';
+import React, { Component, useId } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
@@ -22,9 +23,10 @@ type Props = {
     tittel?: string;
     className?: string;
     listType: ListType;
+    editorProps?: ComponentEditorProps;
 };
 
-export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
+export const Lenkeliste = ({ tittel, lenker, listType, className, editorProps }: Props) => {
     const { language } = usePageContentProps();
     const getLabel = translator('linkList', language);
     const headingId = `heading-linklist-${useId()}`;
@@ -38,6 +40,7 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
             className={classNames(className, style.lenker)}
             aria-labelledby={tittel ? headingId : undefined}
             aria-label={tittel ? undefined : getLabel('label')}
+            {...editorProps}
         >
             {tittel && (
                 <Heading className={style.tittel} id={headingId} size="small" level="2">

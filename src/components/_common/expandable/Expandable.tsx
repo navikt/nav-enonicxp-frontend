@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
@@ -18,6 +19,7 @@ type Props = {
     expandableType?: ProductDetailType | 'documentation_requirements';
     ariaLabel?: string;
     isOpenDefault?: boolean;
+    editorProps?: ComponentEditorProps;
 };
 
 export const Expandable = ({
@@ -29,6 +31,7 @@ export const Expandable = ({
     expandableType,
     ariaLabel,
     isOpenDefault,
+    editorProps,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
@@ -122,6 +125,7 @@ export const Expandable = ({
             open={isOpen}
             aria-label={ariaLabel || title}
             tabIndex={-1}
+            {...editorProps}
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}

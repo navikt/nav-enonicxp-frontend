@@ -97,8 +97,6 @@ const PartComponentMapper = ({
             return <FrontpageShortcutsPart {...partProps} />;
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
-        case PartType.LinkList:
-            return <LinkListPart {...partProps} />;
         case PartType.LinkPanel:
             return <LinkPanelPart {...partProps} />;
         case PartType.LoggedinCard:
@@ -186,19 +184,10 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const renderOnAuthState = config?.renderOnAuthState;
 
     if (descriptor === PartType.Header) {
-        return (
-            //TODO: bli kvitt denne div'en
-            // <div
-            //     className={classNames(
-            //         bem(),
-            //         bem(partName),
-            //         isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
-            //     )}
-            //     // {...editorProps}
-            // >
-            <HeaderPart {...partProps} editorProps={editorProps} />
-            // </div>
-        );
+        return <HeaderPart {...partProps} editorProps={editorProps} />;
+    }
+    if (descriptor === PartType.LinkList) {
+        return <LinkListPart {...partProps} editorProps={editorProps} />;
     }
 
     return (

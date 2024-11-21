@@ -8,6 +8,7 @@ import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 
 const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
     const dateLabel = dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);
@@ -21,6 +22,7 @@ type Props = {
     showDateLabel?: boolean;
     listType: ListType;
     className?: string;
+    editorProps?: ComponentEditorProps;
 };
 
 export const ContentList = ({
@@ -30,6 +32,7 @@ export const ContentList = ({
     showDateLabel,
     listType,
     className,
+    editorProps,
 }: Props) => {
     if (!content?.data?.sectionContents) {
         return <EditorHelp text={'Tom lenkeliste'} />;
@@ -64,6 +67,7 @@ export const ContentList = ({
             tittel={hideTitle ? undefined : title || content.displayName}
             listType={listType}
             className={className}
+            editorProps={editorProps}
         />
     );
 };

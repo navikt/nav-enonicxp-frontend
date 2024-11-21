@@ -1,9 +1,11 @@
 import React from 'react';
 import { ExpandableMixin } from 'types/component-props/_mixins';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { Expandable } from './Expandable';
 
 type Props = {
     children: React.ReactNode;
+    editorProps?: ComponentEditorProps;
 } & ExpandableMixin;
 
 export const ExpandableComponentWrapper = ({
@@ -14,6 +16,7 @@ export const ExpandableComponentWrapper = ({
     type,
     ariaLabel,
     children,
+    editorProps,
 }: Props) => {
     if (!expandable) {
         return <>{children}</>;
@@ -26,6 +29,7 @@ export const ExpandableComponentWrapper = ({
             analyticsOriginTag={analyticsOriginTag}
             expandableType={type}
             ariaLabel={ariaLabel}
+            editorProps={editorProps}
         >
             {children}
         </Expandable>
