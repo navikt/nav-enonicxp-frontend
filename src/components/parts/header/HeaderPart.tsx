@@ -4,8 +4,6 @@ import { ComponentEditorProps } from 'components/ComponentMapper';
 import { HeadingTag, headingToLevel, headingToSize } from 'types/typo-style';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
-import style from './HeaderPart.module.scss';
-
 export type PartConfigHeader = {
     title: string;
     anchorId: string;
@@ -33,13 +31,7 @@ export const HeaderPart = ({
     const size = headingToSize[tag];
 
     return (
-        <Header
-            level={level}
-            size={size}
-            anchorId={anchorId}
-            className={style.headerPart}
-            editorProps={editorProps}
-        >
+        <Header level={level} size={size} anchorId={anchorId} editorProps={editorProps}>
             {title}
         </Header>
     );
