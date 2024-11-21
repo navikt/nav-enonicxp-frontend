@@ -123,8 +123,6 @@ const PartComponentMapper = ({
             return <ProviderCardPart {...partProps} />;
         case PartType.ReadMore:
             return <ReadMorePart {...partProps} />;
-        case PartType.RelatedSituations:
-            return <RelatedSituationsPart {...partProps} />;
         case PartType.UserTests:
             return <UserTestsPart {...partProps} />;
         case PartType.UxSignalsWidget:
@@ -183,12 +181,12 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
 
-    if (descriptor === PartType.Header) {
+    if (descriptor === PartType.Header)
         return <HeaderPart {...partProps} editorProps={editorProps} />;
-    }
-    if (descriptor === PartType.LinkList) {
+    if (descriptor === PartType.LinkList)
         return <LinkListPart {...partProps} editorProps={editorProps} />;
-    }
+    if (descriptor === PartType.RelatedSituations)
+        return <RelatedSituationsPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en

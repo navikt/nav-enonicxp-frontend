@@ -5,6 +5,7 @@ import {
     getContentTagline,
     GetContentTaglineProps,
 } from 'components/_common/headers/sharedHeaderUtils';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { usePageContentProps } from 'store/pageContext';
 import { stripXpPathPrefix } from 'utils/urls';
 import { CardType } from 'types/card';
@@ -20,13 +21,19 @@ type Props = {
         })[];
     title: string;
     description: string;
+    editorProps?: ComponentEditorProps;
 };
 
 export const getAnchorId = (test: string) => {
     return test.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens and make lowercase
 };
 
-export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
+export const RelatedSituations = ({
+    relatedSituations,
+    title,
+    description,
+    editorProps,
+}: Props) => {
     const { language, editorView, page } = usePageContentProps();
 
     const getStringPart = translator('related', language);
@@ -37,6 +44,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
             id={getAnchorId(actualTitle)}
+            {...editorProps}
         >
             <Heading level="3" size="medium" spacing>
                 {actualTitle}

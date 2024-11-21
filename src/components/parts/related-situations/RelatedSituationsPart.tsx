@@ -6,6 +6,7 @@ import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { createTypeGuard } from 'types/_type-guards';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 
 const isValidContentType = createTypeGuard([
     ContentType.ProductPage,
@@ -21,7 +22,10 @@ export type PartConfigRelatedSituations = {
 
 export const RelatedSituationsPart = ({
     config,
-}: PartComponentProps<PartType.RelatedSituations>) => {
+    editorProps,
+}: PartComponentProps<PartType.RelatedSituations> & {
+    editorProps?: ComponentEditorProps;
+}) => {
     const { type, data } = usePageContentProps<ProductPageProps>();
 
     if (!isValidContentType(type)) {
@@ -45,6 +49,7 @@ export const RelatedSituationsPart = ({
             relatedSituations={relatedSituations}
             title={config.title}
             description={config.description}
+            editorProps={editorProps}
         />
     );
 };
