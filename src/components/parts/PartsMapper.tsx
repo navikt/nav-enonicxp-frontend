@@ -101,14 +101,6 @@ const PartComponentMapper = ({
             return <FrontpageCurrentTopicsPart {...partProps} />;
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
-        case PartType.Header:
-            return (
-                <HeaderPart
-                    {...partProps}
-                    dataPortalComponent={dataPortalComponent}
-                    dataPortalComponentType={dataPortalComponentType}
-                />
-            );
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
         case PartType.LinkList:
@@ -198,24 +190,42 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
 
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
+    // const renderOnAuthState = 'waiting';
 
     console.log('PartsMapper', editorProps);
 
+    if (descriptor === PartType.Header) {
+        console.log('PARTHeader', descriptor);
+        return (
+            //TODO: bli kvitt denne div'en
+            // <div
+            //     className={classNames(
+            //         bem(),
+            //         bem(partName),
+            //         isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
+            //     )}
+            //     // {...editorProps}
+            // >
+            <HeaderPart
+                {...partProps}
+                dataPortalComponent={editorProps?.['data-portal-component']}
+                dataPortalComponentType={editorProps?.['data-portal-component-type']}
+            />
+            // </div>
+        );
+    }
+
     return (
+        //TODO: bli kvitt denne div'en
         <div
             className={classNames(
                 bem(),
                 bem(partName),
                 isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
             )}
-            // {...editorProps}
+            {...editorProps}
         >
-            <PartComponentMapper
-                pageProps={pageProps}
-                partProps={partProps}
-                dataPortalComponent={editorProps?.['data-portal-component']}
-                dataPortalComponentType={editorProps?.['data-portal-component-type']}
-            />
+            <PartComponentMapper pageProps={pageProps} partProps={partProps} />
         </div>
     );
 };
