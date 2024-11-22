@@ -113,8 +113,6 @@ const PartComponentMapper = ({
             return <ProductCardMiniPart {...partProps} />;
         case PartType.ProductCardMicro:
             return <ProductCardMicroPart {...partProps} />;
-        case PartType.ProductDetails:
-            return <ProductDetailsPart {...partProps} />;
         case PartType.ProviderCard:
             return <ProviderCardPart {...partProps} />;
         case PartType.UserTests:
@@ -185,9 +183,10 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <AccordionPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.Calculator)
         return <CalculatorPart {...partProps} editorProps={editorProps} />;
-
     if (descriptor === PartType.ReadMore)
         return <ReadMorePart {...partProps} editorProps={editorProps} />;
+    if (descriptor === PartType.ProductDetails)
+        return <ProductDetailsPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en

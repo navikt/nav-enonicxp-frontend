@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentMapper } from 'components/ComponentMapper';
+import { ComponentEditorProps, ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import {
     ProcessingTimesVisibilityType,
@@ -25,7 +25,10 @@ export type PartConfigProductDetails = {
 } & ExpandableMixin &
     FiltersMixin;
 
-export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.ProductDetails>) => {
+export const ProductDetailsPart = ({
+    config,
+    editorProps,
+}: PartComponentProps<PartType.ProductDetails> & { editorProps?: ComponentEditorProps }) => {
     const pageProps = usePageContentProps();
 
     if (!config?.detailType) {
@@ -71,7 +74,7 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
             : undefined;
 
     return (
-        <div className={style.productDetails}>
+        <div className={style.productDetails} {...editorProps}>
             <PageContextProvider content={pageContent}>
                 <FilteredContent {...config}>
                     <ExpandableComponentWrapper
