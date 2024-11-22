@@ -71,8 +71,6 @@ const PartComponentMapper = ({
     pageProps: ContentProps;
 }) => {
     switch (partProps.descriptor) {
-        case PartType.Accordion:
-            return <AccordionPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;
         case PartType.AreaCard:
@@ -187,6 +185,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <LinkListPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.RelatedSituations)
         return <RelatedSituationsPart {...partProps} editorProps={editorProps} />;
+    if (descriptor === PartType.Accordion)
+        return <AccordionPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en

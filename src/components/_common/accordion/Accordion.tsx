@@ -15,7 +15,7 @@ import styles from './Accordion.module.scss';
 type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
-export const Accordion = ({ accordion }: AccordionProps) => {
+export const Accordion = ({ accordion, editorProps }: AccordionProps) => {
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const { editorView } = usePageContentProps();
@@ -60,7 +60,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     const relevantAccordion = editorView === 'edit' ? accordion : validAccordion;
 
     return (
-        <DSAccordion className={styles.accordion}>
+        <DSAccordion className={styles.accordion} {...editorProps}>
             {relevantAccordion.map((item, index) => {
                 const isValid = validatePanel(item);
                 return (
