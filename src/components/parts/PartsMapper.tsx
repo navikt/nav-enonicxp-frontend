@@ -83,8 +83,6 @@ const PartComponentMapper = ({
             return <ContactOptionPart {...partProps} />;
         case PartType.FiltersMenu:
             return <FiltersMenuPart {...partProps} />;
-        case PartType.FormDetails:
-            return <FormDetailsPart {...partProps} />;
         case PartType.FrontpageContact:
             return <FrontpageContactPart {...partProps} />;
         case PartType.FrontpageCurrentTopics:
@@ -187,6 +185,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <ReadMorePart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.ProductDetails)
         return <ProductDetailsPart {...partProps} editorProps={editorProps} />;
+    if (descriptor === PartType.FormDetails)
+        return <FormDetailsPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en

@@ -5,6 +5,7 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormDetailsButton } from './FormDetailsButton';
@@ -23,6 +24,7 @@ export type FormDetailsComponentProps = {
     };
     className?: string;
     formNumberSelected?: string;
+    editorProps?: ComponentEditorProps;
 };
 
 export const FormDetails = ({
@@ -30,6 +32,7 @@ export const FormDetails = ({
     displayConfig,
     className,
     formNumberSelected,
+    editorProps,
 }: FormDetailsComponentProps) => {
     const {
         showTitle,
@@ -80,7 +83,7 @@ export const FormDetails = ({
         showFormNumbers && Array.isArray(formNumbers) && formNumbers.length > 0;
 
     return (
-        <div className={classNames(style.formDetails, className)}>
+        <div className={classNames(style.formDetails, className)} {...editorProps}>
             {hasVisibleTitle && (
                 <Heading
                     size={showTitleAsLevel4 ? 'small' : 'medium'}

@@ -5,6 +5,7 @@ import { FilteredContent } from 'components/_common/filtered-content/FilteredCon
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { FiltersMixin } from 'types/component-props/_mixins';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 
 export type PartConfigFormDetails = {
     targetFormDetails: FormDetailsPageProps;
@@ -15,7 +16,10 @@ export type PartConfigFormDetails = {
     showApplications: boolean;
 } & FiltersMixin;
 
-export const FormDetailsPart = ({ config }: PartComponentProps<PartType.FormDetails>) => {
+export const FormDetailsPart = ({
+    config,
+    editorProps,
+}: PartComponentProps<PartType.FormDetails> & { editorProps?: ComponentEditorProps }) => {
     const { targetFormDetails, ...displayConfig } = config;
 
     if (!targetFormDetails) {
@@ -25,7 +29,11 @@ export const FormDetailsPart = ({ config }: PartComponentProps<PartType.FormDeta
 
     return (
         <FilteredContent {...config}>
-            <FormDetails formDetails={formDetails} displayConfig={displayConfig} />
+            <FormDetails
+                formDetails={formDetails}
+                displayConfig={displayConfig}
+                editorProps={editorProps}
+            />
         </FilteredContent>
     );
 };
