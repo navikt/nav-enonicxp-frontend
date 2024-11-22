@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -16,9 +17,13 @@ export type PartConfigReadMore = {
     title: string;
     html: ProcessedHtmlProps;
     isOpen?: boolean;
+    editorProps?: ComponentEditorProps;
 };
 
-export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
+export const ReadMorePart = ({
+    config,
+    editorProps,
+}: PartComponentProps<PartType.ReadMore> & { editorProps?: ComponentEditorProps }) => {
     const [isOpen, setIsOpen] = useState(config?.isOpen ?? false);
     const divRef = useRef<HTMLDivElement | null>(null);
 
@@ -45,7 +50,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const { title, html } = config;
 
     return (
-        <div tabIndex={-1} ref={divRef}>
+        <div tabIndex={-1} ref={divRef} {...editorProps}>
             <ReadMore
                 header={title}
                 open={isOpen}

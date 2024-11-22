@@ -117,8 +117,6 @@ const PartComponentMapper = ({
             return <ProductDetailsPart {...partProps} />;
         case PartType.ProviderCard:
             return <ProviderCardPart {...partProps} />;
-        case PartType.ReadMore:
-            return <ReadMorePart {...partProps} />;
         case PartType.UserTests:
             return <UserTestsPart {...partProps} />;
         case PartType.UxSignalsWidget:
@@ -187,6 +185,9 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <AccordionPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.Calculator)
         return <CalculatorPart {...partProps} editorProps={editorProps} />;
+
+    if (descriptor === PartType.ReadMore)
+        return <ReadMorePart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en
