@@ -79,8 +79,6 @@ const PartComponentMapper = ({
             return <AreapageSituationCardPart {...partProps} />;
         case PartType.Button:
             return <ButtonPart {...partProps} />;
-        case PartType.Calculator:
-            return <CalculatorPart {...partProps} />;
         case PartType.ContactOption:
             return <ContactOptionPart {...partProps} />;
         case PartType.FiltersMenu:
@@ -187,6 +185,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <RelatedSituationsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.Accordion)
         return <AccordionPart {...partProps} editorProps={editorProps} />;
+    if (descriptor === PartType.Calculator)
+        return <CalculatorPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en

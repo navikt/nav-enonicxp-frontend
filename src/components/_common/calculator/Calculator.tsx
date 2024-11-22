@@ -4,6 +4,7 @@ import { CalculatorIcon } from '@navikt/aksel-icons';
 import { Button } from 'components/_common/button/Button';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/calculatorField/CalculatorField';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { usePageContentProps } from 'store/pageContext';
 import { CalculatorData, CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
 import { CalculatorResult } from './calculatorResult/CalculatorResult';
@@ -66,9 +67,10 @@ const populateDefaultValues = (fields: CalculatorFieldData[]) => {
 type Props = {
     header?: string;
     calculatorData: CalculatorData;
+    editorProps?: ComponentEditorProps;
 };
 
-export const Calculator = ({ header, calculatorData }: Props) => {
+export const Calculator = ({ header, calculatorData, editorProps }: Props) => {
     const { fields, useThousandSeparator } = calculatorData;
 
     const { language } = usePageContentProps();
@@ -128,7 +130,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
     };
 
     return (
-        <div className={style.calculator}>
+        <div className={style.calculator} {...editorProps}>
             {header && (
                 <Heading level="4" size="medium" className={style.title}>
                     {header}
