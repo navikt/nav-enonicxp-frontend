@@ -89,8 +89,6 @@ const PartComponentMapper = ({
             return <FrontpageCurrentTopicsPart {...partProps} />;
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
-        case PartType.HtmlArea:
-            return <HtmlAreaPart {...partProps} />;
         case PartType.LinkPanel:
             return <LinkPanelPart {...partProps} />;
         case PartType.LoggedinCard:
@@ -187,6 +185,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <ProductDetailsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.FormDetails)
         return <FormDetailsPart {...partProps} editorProps={editorProps} />;
+    if (descriptor === PartType.HtmlArea)
+        return <HtmlAreaPart {...partProps} editorProps={editorProps} />;
 
     return (
         //TODO: bli kvitt denne div'en
