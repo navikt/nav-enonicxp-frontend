@@ -33,7 +33,7 @@ Kjør Storybook lokalt med `npm run storybook`
 
 ### Andre lokale avhengigheter
 
-[Dekoratøren](https://github.com/navikt/decorator-next) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
+[Dekoratøren](https://github.com/navikt/nav-dekoratoren) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
 
 ```
 gcloud auth login
