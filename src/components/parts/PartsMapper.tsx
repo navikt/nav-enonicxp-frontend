@@ -171,6 +171,11 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     const editorAuthstateClassname =
         (isEditView && renderOnAuthState && getEditorAuthstateClassname(renderOnAuthState)) || '';
 
+    const editorPropsAndClassname = {
+        editorProps: editorProps,
+        className: editorAuthstateClassname,
+    };
+
     if (descriptor === PartType.Header)
         return <HeaderPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.LinkList)
@@ -188,13 +193,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     if (descriptor === PartType.FormDetails)
         return <FormDetailsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.HtmlArea) {
-        const mergedProps = {
-            ...partProps,
-            editorProps: editorProps,
-            className: editorAuthstateClassname,
-        };
-
-        return <HtmlAreaPart {...mergedProps} />;
+        return <HtmlAreaPart {...partProps} {...editorPropsAndClassname} />;
     }
 
     return (
