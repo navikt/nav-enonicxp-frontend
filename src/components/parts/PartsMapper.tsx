@@ -187,14 +187,15 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         return <ProductDetailsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.FormDetails)
         return <FormDetailsPart {...partProps} editorProps={editorProps} />;
-    if (descriptor === PartType.HtmlArea)
-        return (
-            <HtmlAreaPart
-                {...partProps}
-                editorProps={editorProps}
-                className={editorAuthstateClassname}
-            />
-        );
+    if (descriptor === PartType.HtmlArea) {
+        const mergedProps = {
+            ...partProps,
+            editorProps: editorProps,
+            className: editorAuthstateClassname,
+        };
+
+        return <HtmlAreaPart {...mergedProps} />;
+    }
 
     return (
         //TODO: bli kvitt denne div'en
