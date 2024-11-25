@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { BEM, classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
-import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
+import { getEditorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { useLayoutConfig } from './useLayoutConfig';
 
@@ -43,7 +43,7 @@ export const LayoutContainer = ({
                 paddingConfig === 'fullWidth' && style.fullwidth,
                 paddingConfig === 'standard' && style.standard,
                 config.bgColor?.color && style.bg,
-                editorView === 'edit' && editorAuthstateClassname(config.renderOnAuthState),
+                editorView === 'edit' && getEditorAuthstateClassname(config.renderOnAuthState),
                 divElementProps.className
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}

@@ -16,7 +16,7 @@ import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-t
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
-import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
+import { getEditorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
@@ -168,6 +168,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
 
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
+    const editorAuthstateClassname =
+        (isEditView && renderOnAuthState && getEditorAuthstateClassname(renderOnAuthState)) || '';
 
     if (descriptor === PartType.Header)
         return <HeaderPart {...partProps} editorProps={editorProps} />;
@@ -190,23 +192,14 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
             <HtmlAreaPart
                 {...partProps}
                 editorProps={editorProps}
-                className={
-                    (isEditView &&
-                        renderOnAuthState &&
-                        editorAuthstateClassname(renderOnAuthState)) ||
-                    ''
-                }
+                className={editorAuthstateClassname}
             />
         );
 
     return (
         //TODO: bli kvitt denne div'en
         <div
-            className={classNames(
-                bem(),
-                bem(partName),
-                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
-            )}
+            className={classNames(bem(), bem(partName), editorAuthstateClassname)}
             {...editorProps}
         >
             <PartComponentMapper pageProps={pageProps} partProps={partProps} />
