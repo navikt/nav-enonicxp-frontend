@@ -186,7 +186,18 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     if (descriptor === PartType.FormDetails)
         return <FormDetailsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.HtmlArea)
-        return <HtmlAreaPart {...partProps} editorProps={editorProps} />;
+        return (
+            <HtmlAreaPart
+                {...partProps}
+                editorProps={editorProps}
+                className={
+                    (isEditView &&
+                        renderOnAuthState &&
+                        editorAuthstateClassname(renderOnAuthState)) ||
+                    ''
+                }
+            />
+        );
 
     return (
         //TODO: bli kvitt denne div'en

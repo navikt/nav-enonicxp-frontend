@@ -19,7 +19,11 @@ export type PartConfigHtmlArea = {
 export const HtmlAreaPart = ({
     config,
     editorProps,
-}: PartComponentProps<PartType.HtmlArea> & { editorProps?: ComponentEditorProps }) => {
+    className,
+}: PartComponentProps<PartType.HtmlArea> & {
+    editorProps?: ComponentEditorProps;
+    className?: string;
+}) => {
     if (!config?.html) {
         return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
     }
@@ -28,7 +32,7 @@ export const HtmlAreaPart = ({
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config} {...(config.expandable && editorProps)}>
                 <div
-                    className={classNames(defaultHtml.html, 'parsedHtml')}
+                    className={classNames(defaultHtml.html, 'parsedHtml', className)}
                     {...(!config.expandable && editorProps)}
                 >
                     <ParsedHtml htmlProps={config.html} />
