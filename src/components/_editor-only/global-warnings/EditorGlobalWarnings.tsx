@@ -31,8 +31,8 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
     const maalgruppe = content.data?.audience?._selected;
     const path = content.data?.customPath;
     const feilKortUrl =
-        (maalgruppe === 'employer' && !path?.includes('/arbeidsgiver')) ||
-        (maalgruppe === 'provider' && !path?.includes('/samarbeidspartner'));
+        (maalgruppe === 'employer' && path && !path?.includes('/arbeidsgiver')) ||
+        (maalgruppe === 'provider' && path && !path?.includes('/samarbeidspartner'));
 
     const [elementsWithDupeIds, setElementsWithDupeIds] = useState<HTMLElement[]>([]);
     const uniqueDupeIds = removeDuplicates(elementsWithDupeIds, (a, b) => a.id === b.id).map(
