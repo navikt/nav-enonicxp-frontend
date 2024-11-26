@@ -172,8 +172,8 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
         (isEditView && renderOnAuthState && getEditorAuthstateClassname(renderOnAuthState)) || '';
 
     const editorPropsAndClassname = {
-        editorProps: editorProps,
-        className: editorAuthstateClassname,
+        editorProps,
+        editorAuthstateClassname,
     };
 
     if (descriptor === PartType.Header)

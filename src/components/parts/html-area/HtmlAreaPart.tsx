@@ -3,7 +3,6 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ComponentEditorProps } from 'components/ComponentMapper';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
@@ -19,7 +18,7 @@ export type PartConfigHtmlArea = {
 export const HtmlAreaPart = ({
     config,
     editorProps,
-    className,
+    editorAuthstateClassname,
 }: PartComponentProps<PartType.HtmlArea>) => {
     if (!config?.html) {
         return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
@@ -29,7 +28,7 @@ export const HtmlAreaPart = ({
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config} {...(config.expandable && editorProps)}>
                 <div
-                    className={classNames(defaultHtml.html, 'parsedHtml', className)}
+                    className={classNames(defaultHtml.html, 'parsedHtml', editorAuthstateClassname)}
                     {...(!config.expandable && editorProps)}
                 >
                     <ParsedHtml htmlProps={config.html} />

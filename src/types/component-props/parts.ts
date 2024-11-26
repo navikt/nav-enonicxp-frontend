@@ -135,7 +135,7 @@ export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
               Descriptor extends keyof PartConfigs ? PartConfigs[Descriptor] : EmptyObject
           > & {
               editorProps?: ComponentEditorProps;
-              className?: string;
+              editorAuthstateClassname?: string;
           }
         : never;
 
