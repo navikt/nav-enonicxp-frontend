@@ -191,7 +191,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
     if (descriptor === PartType.ProductDetails)
         return <ProductDetailsPart {...partProps} editorProps={editorProps} />;
     if (descriptor === PartType.FormDetails)
-        return <FormDetailsPart {...partProps} editorProps={editorProps} />;
+        return <FormDetailsPart {...partProps} {...editorPropsAndClassname} />;
     if (descriptor === PartType.HtmlArea) {
         return <HtmlAreaPart {...partProps} {...editorPropsAndClassname} />;
     }

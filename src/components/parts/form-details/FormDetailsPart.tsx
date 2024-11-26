@@ -5,7 +5,6 @@ import { FilteredContent } from 'components/_common/filtered-content/FilteredCon
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { FiltersMixin } from 'types/component-props/_mixins';
-import { ComponentEditorProps } from 'components/ComponentMapper';
 
 export type PartConfigFormDetails = {
     targetFormDetails: FormDetailsPageProps;
@@ -19,7 +18,7 @@ export type PartConfigFormDetails = {
 export const FormDetailsPart = ({
     config,
     editorProps,
-}: PartComponentProps<PartType.FormDetails> & { editorProps?: ComponentEditorProps }) => {
+}: PartComponentProps<PartType.FormDetails>) => {
     const { targetFormDetails, ...displayConfig } = config;
 
     if (!targetFormDetails) {
