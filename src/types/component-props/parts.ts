@@ -1,5 +1,6 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
+import { ComponentEditorProps } from 'components/ComponentMapper';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
 import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
@@ -132,7 +133,10 @@ export type PartComponentProps<Descriptor extends PartTypeAll = PartTypeAll> =
               ComponentType.Part,
               Descriptor,
               Descriptor extends keyof PartConfigs ? PartConfigs[Descriptor] : EmptyObject
-          >
+          > & {
+              editorProps?: ComponentEditorProps;
+              className?: string;
+          }
         : never;
 
 export type PartComponent<Descriptor extends PartType> = Descriptor extends PartType

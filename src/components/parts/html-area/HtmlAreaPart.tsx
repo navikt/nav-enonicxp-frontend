@@ -20,10 +20,7 @@ export const HtmlAreaPart = ({
     config,
     editorProps,
     className,
-}: PartComponentProps<PartType.HtmlArea> & {
-    editorProps?: ComponentEditorProps;
-    className?: string;
-}) => {
+}: PartComponentProps<PartType.HtmlArea>) => {
     if (!config?.html) {
         return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
     }
