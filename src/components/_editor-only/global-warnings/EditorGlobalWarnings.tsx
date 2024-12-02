@@ -6,6 +6,7 @@ import { DuplicateIdsWarning } from 'components/_editor-only/warnings/duplicate-
 import { KortUrlWarning } from 'components/_editor-only/warnings/kort-url-warning/KortUrlWarning';
 import { removeDuplicates } from 'utils/arrays';
 import { FormNumbersWarning } from 'components/_editor-only/warnings/form-numbers-warning/FormNumbersWarning';
+import { FormDetailsData } from 'types/content-props/form-details';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
@@ -44,10 +45,15 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
 
     //Skjemanummer
     const formNumberRegex: RegExp = /^NAV\s\d{2}-\d{2}\.\d{2}$/ as RegExp;
-    const formNumbersAreWrong = content.data?.formNumbers?.some(
-        (formNumber: string | null) =>
-            formNumber === null || !formNumberRegex.test(formNumber || '')
-    );
+    let formNumbersAreWrong = false;
+
+    if (content.type === 'no.nav.navno:form-details') {
+        content.data?.formNumbers?.some(
+            (formNumber: string | null) =>
+                (formNumbersAreWrong =
+                    formNumber === null || !formNumberRegex.test(formNumber || ''))
+        );
+    }
 
     useEffect(() => {
         // Delay the check slightly to avoid certain false positives.
