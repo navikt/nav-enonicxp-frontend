@@ -50,8 +50,7 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
     if (content.type === 'no.nav.navno:form-details') {
         content.data?.formNumbers?.some(
             (formNumber: string | null) =>
-                (formNumbersAreWrong =
-                    formNumber === null || !formNumberRegex.test(formNumber || ''))
+                (formNumbersAreWrong = !formNumberRegex.test(formNumber || ''))
         );
     }
 
