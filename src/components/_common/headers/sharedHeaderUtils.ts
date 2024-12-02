@@ -26,7 +26,8 @@ export const getContentTagline = (content: GetContentTaglineProps, currentLangua
 
     if (taxonomy.length > 0 || customCategory) {
         const taxonomyStrings = getTranslatedTaxonomies(taxonomy, language);
-        if (customCategory) {
+
+        if (customCategory && taxonomyStrings.length === 0) {
             taxonomyStrings.push(customCategory);
         }
 
