@@ -41,6 +41,9 @@ on:
       FAILOVER_ORIGIN:
         required: true
         type: string
+      CMS_ARCHIVE_URL:
+        required: true
+        type: string
       RELEASE_TAG:
         required: false
         type: string
@@ -93,6 +96,7 @@ jobs:
           TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
+          CMS_ARCHIVE_URL=${{ inputs.CMS_ARCHIVE_URL }}
           IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           NAVNO_API_URL=${{ inputs.NAVNO_API_URL }}

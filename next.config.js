@@ -113,6 +113,10 @@ const corsHeaders = [
         key: 'Access-Control-Allow-Origin',
         value: isFailover ? process.env.APP_ORIGIN : process.env.ADMIN_ORIGIN,
     },
+    {
+        key: 'Access-Control-Allow-Origin',
+        value: process.env.CMS_ARCHIVE_URL,
+    },
 ];
 
 console.log(
@@ -146,6 +150,7 @@ const config = {
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
+        CMS_ARCHIVE_URL: process.env.CMS_ARCHIVE_URL,
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         NAVNO_API_URL: process.env.NAVNO_API_URL,

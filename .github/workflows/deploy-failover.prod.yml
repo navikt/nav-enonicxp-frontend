@@ -24,6 +24,7 @@ jobs:
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
       FAILOVER_ORIGIN: https://www-failover.nav.no
+      CMS_ARCHIVE_URL: https://cms-arkiv.ansatt.nav.no
       IS_FAILOVER_INSTANCE: true
       NODE_ENV: production
     secrets:
