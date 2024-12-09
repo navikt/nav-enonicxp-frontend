@@ -3,6 +3,7 @@ import { NextServer } from 'next/dist/server/next';
 
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
+const CMS_ARCHIVE_URL = process.env.CMS_ARCHIVE_URL;
 
 // Redirects requests for other domains to the ansatt.dev.nav.no
 export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
@@ -25,6 +26,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
             '/gfx/*',
             '/api/*',
             '/_/*',
+            '/oauth2/login*',
         ],
         (req, res) => {
             return nextRequestHandler(req, res);
@@ -33,7 +35,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
 
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
         expressApp.all('*', (req, res, next) => {
-            if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
+            if (!req.hostname.endsWith(DEV_NAIS_DOMAIN) || req.path.includes('_next/image')) {
                 return res.redirect(302, `${APP_ORIGIN}${req.path}`);
             }
 
