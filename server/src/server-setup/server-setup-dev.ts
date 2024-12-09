@@ -26,7 +26,6 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
             '/gfx/*',
             '/api/*',
             '/_/*',
-            '/oauth2/login*',
         ],
         (req, res) => {
             return nextRequestHandler(req, res);

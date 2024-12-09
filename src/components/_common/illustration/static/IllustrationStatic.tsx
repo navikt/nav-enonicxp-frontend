@@ -29,7 +29,7 @@ const nextImageProps: NextImageProps = {
 };
 
 const fetchSvgData = (url: string) =>
-    fetch(url)
+    fetch(url, { credentials: 'include' })
         .then((res) => (res.ok ? res.text() : null))
         .catch((_) => null);
 
