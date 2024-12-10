@@ -117,6 +117,10 @@ const corsHeaders = [
         key: 'Access-Control-Allow-Origin',
         value: process.env.CMS_ARCHIVE_URL,
     },
+    {
+        key: 'Access-Control-Allow-Credentials',
+        value: 'true',
+    },
 ];
 
 console.log(
