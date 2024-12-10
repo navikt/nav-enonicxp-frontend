@@ -88,10 +88,6 @@ nextApp.prepare().then(async () => {
         logger.info(`Server started on port ${port}`);
     });
 
-    if (process.env.ENV === 'localhost') {
-        // websockets(expressServer);
-    }
-
     const httpTerminator = createHttpTerminator({ server: expressServer });
 
     const shutdown = () => {
