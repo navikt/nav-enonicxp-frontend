@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
-import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { officeDetailsFormatAddress } from 'components/pages/office-page/office-details/utils';
 
@@ -14,8 +15,9 @@ export interface OfficeInformationProps {
 
 export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { language } = usePageContentProps();
-    const getOfficeTranslations = translator('office', language);
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const getOfficeTranslations = translator('office', contentProps.language);
     const title = getOfficeTranslations('officeInformation');
     const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } = officeData;
     const visitingAddress = officeDetailsFormatAddress(beliggenhet, true);
@@ -27,6 +29,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
             tittel,
             opprinnelse: 'kontorinformasjon',
             komponent: 'OfficeInformation',
+            målgruppe: context,
         });
     };
 

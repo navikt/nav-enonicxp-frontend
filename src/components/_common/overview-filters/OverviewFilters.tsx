@@ -7,8 +7,9 @@ import { OverviewTextFilter } from 'components/_common/overview-filters/text-fil
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
 
 import style from './OverviewFilters.module.scss';
 
@@ -18,16 +19,14 @@ const MobileView = ({
     showAreaFilter,
     showTaxonomyFilter,
 }: Props) => {
-    const { language } = usePageContentProps();
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
     const [isOpen, setIsOpen] = useState(false);
     const filtersRef = useRef<HTMLDivElement>(null);
-
     const hasToggleFilters = showAreaFilter || showTaxonomyFilter;
-
     const searchLabel = translator(
         'overview',
-        language
+        contentProps.language
     )(hasToggleFilters ? 'filterOrSearch' : 'search');
 
     return (
@@ -53,6 +52,7 @@ const MobileView = ({
                                         kategori: 'mobile-toggle',
                                         opprinnelse: 'oversiktsside filter mobil',
                                         komponent: 'MobileView',
+                                        målgruppe: context,
                                     });
                                 }}
                                 className={style.mobileFilterButton}

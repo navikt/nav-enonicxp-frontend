@@ -2,14 +2,16 @@ import React, { useCallback, useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import {
     OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
     OverviewFiltersTextInputEventDetail,
 } from 'store/slices/overviewFilters';
+
 import style from './OverviewTextFilter.module.scss';
 
 type Props = {
@@ -23,9 +25,10 @@ const analyticsRedaction = (value: string) =>
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { setTextFilter } = useOverviewFilters();
-    const { language } = usePageContentProps();
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const label = translator('overview', contentProps.language)('search');
     const inputId = useId();
-
     const [textInput, setTextInput] = useState('');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,6 +47,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 kategori: 'fritekst',
                 filternavn: analyticsRedaction(value),
                 komponent: 'OverviewTextFilter',
+                målgruppe: context,
             });
         }, 500),
         [setTextFilter]
@@ -61,7 +65,6 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 setTextInput(value);
             }
         };
-
         window.addEventListener(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, handleInputFromEvent);
         return () => {
             window.removeEventListener(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, handleInputFromEvent);
@@ -95,7 +98,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             <Search
                 onChange={handleUserInput}
                 value={textInput}
-                label={translator('overview', language)('search')}
+                label={label}
                 hideLabel={hideLabel}
                 variant={'secondary'}
                 autoComplete={'off'}

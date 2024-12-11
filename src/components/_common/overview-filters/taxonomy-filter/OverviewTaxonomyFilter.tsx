@@ -1,6 +1,8 @@
 import React from 'react';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
 import { OverviewFilterBase } from 'components/_common/overview-filters/OverViewFilterBase/OverviewFilterBase';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
@@ -35,6 +37,8 @@ type Props = {
 
 export const OverviewTaxonomyFilter = ({ items }: Props) => {
     const { taxonomyFilter, setTaxonomyFilter } = useOverviewFilters();
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
@@ -42,6 +46,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
             filternavn: analyticsTaxonomi[taxonomy],
             opprinnelse: 'oversiktsside typer',
             komponent: 'OverviewTaxonomyFilter',
+            målgruppe: context,
         });
         setTaxonomyFilter(taxonomy);
     };

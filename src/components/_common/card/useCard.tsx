@@ -7,6 +7,7 @@ import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -36,10 +37,10 @@ type UseCardSettings = {
 
 export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => {
     const router = useRouter();
-    const { editorView } = usePageContentProps();
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const { editorView } = contentProps;
     const { layoutConfig } = useLayoutConfig();
-
     const { url, canRouteClientSide } = usePublicUrl(link.url);
 
     const getComponentAnalyticsName = (type: CardType, size: CardSize) => {
@@ -64,6 +65,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
         seksjon: layoutConfig.title,
         destinasjon: link.url,
         lenketekst: link.text,
+        målgruppe: context,
     };
 
     const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
