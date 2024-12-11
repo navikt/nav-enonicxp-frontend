@@ -10,6 +10,7 @@ import { translator } from 'translations';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 
 import style from './OverviewFilters.module.scss';
 
@@ -53,6 +54,7 @@ const MobileView = ({
                                         opprinnelse: 'oversiktsside filter mobil',
                                         komponent: 'MobileView',
                                         målgruppe: context,
+                                        innholdstype: innholdsType(contentProps.type),
                                     });
                                 }}
                                 className={style.mobileFilterButton}

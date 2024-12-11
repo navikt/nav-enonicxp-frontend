@@ -5,6 +5,7 @@ import { translator } from 'translations';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
 import {
@@ -48,6 +49,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 filternavn: analyticsRedaction(value),
                 komponent: 'OverviewTextFilter',
                 målgruppe: context,
+                innholdstype: innholdsType(contentProps.type),
             });
         }, 500),
         [setTextFilter]

@@ -3,6 +3,7 @@ import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 import { OverviewFilterBase } from 'components/_common/overview-filters/OverViewFilterBase/OverviewFilterBase';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
@@ -47,6 +48,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
             opprinnelse: 'oversiktsside typer',
             komponent: 'OverviewTaxonomyFilter',
             målgruppe: context,
+            innholdstype: innholdsType(contentProps.type),
         });
         setTaxonomyFilter(taxonomy);
     };

@@ -11,6 +11,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 import { ExpandableMixin } from 'types/component-props/_mixins';
 import { checkIfFilterFirstInPage } from './helpers';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -69,6 +70,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
             opprinnelse: 'filtermeny',
             komponent: 'FiltersMenuPart',
             målgruppe: context,
+            innholdstype: innholdsType(contentProps.type),
         });
         toggleFilter(filter.id);
     };

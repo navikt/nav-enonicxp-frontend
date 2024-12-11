@@ -8,6 +8,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -66,6 +67,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
         destinasjon: link.url,
         lenketekst: link.text,
         målgruppe: context,
+        innholdstype: innholdsType(contentProps.type),
     };
 
     const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {

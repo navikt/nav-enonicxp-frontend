@@ -12,9 +12,15 @@ type Props = {
     videoProps: QbrickVideoProps;
     videoContainerId: string;
     context?: string;
+    innholdstype?: string;
 };
 
-export const useQbrickPlayerState = ({ videoProps, videoContainerId, context }: Props) => {
+export const useQbrickPlayerState = ({
+    videoProps,
+    videoContainerId,
+    context,
+    innholdstype,
+}: Props) => {
     const [playerState, setPlayerState] = useState<PlayerState>('stopped');
     const widgetId = useId();
 
@@ -29,7 +35,7 @@ export const useQbrickPlayerState = ({ videoProps, videoContainerId, context }: 
             return;
         }
 
-        createAndStart(videoProps, videoContainer, widgetId, setPlayerState, context);
+        createAndStart(videoProps, videoContainer, widgetId, setPlayerState, context, innholdstype);
     }, [videoProps, videoContainerId, widgetId, playerState, setPlayerState, context]);
 
     const resetPlayer = useCallback(() => {
@@ -53,7 +59,8 @@ const createAndStart = (
     videoContainer: HTMLElement,
     widgetId: string,
     setPlayerState: (state: PlayerState) => void,
-    context?: string
+    context?: string,
+    innholdstype?: string
 ) => {
     const createPlayer = (timeLeft: number = PLAYER_TIMEOUT_MS) => {
         if (timeLeft <= 0) {
@@ -91,6 +98,7 @@ const createAndStart = (
                     varighet: duration,
                     språk: language,
                     målgruppe: context,
+                    innholdstype,
                 });
             })
             .on('playable', () => {

@@ -7,6 +7,7 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsType } from 'types/content-props/_content-common';
 
 import style from 'components/_common/lenke/lenkeBase/LenkeBase.module.scss';
 
@@ -51,7 +52,6 @@ export const LenkeBase = ({
     const { editorView } = contentProps;
     const { context } = getDecoratorParams(contentProps);
     const { layoutConfig } = useLayoutConfig();
-
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
         komponent: analyticsComponent,
@@ -60,6 +60,7 @@ export const LenkeBase = ({
         destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
         målgruppe: context,
+        innholdstype: innholdsType(contentProps.type),
     };
 
     const WrapperComponent =
