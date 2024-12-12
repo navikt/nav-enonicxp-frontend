@@ -21,6 +21,7 @@ const baseProps: UserTestsComponentProps = {
             variants: [],
         },
     },
+    _path: 'test',
 };
 
 const buildProps = (variants: UserTestVariantProps[], selectedTestIds: string[] = []) => {
