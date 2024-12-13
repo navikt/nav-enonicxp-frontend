@@ -11,7 +11,7 @@ import { PageContextProvider } from 'store/pageContext';
 
 const cookieId = 'cookie-1234';
 
-const baseProps: UserTestsComponentProps = {
+const baseProps: UserTestsComponentProps & { _path: string } = {
     selectedTestIds: [],
     tests: {
         data: {

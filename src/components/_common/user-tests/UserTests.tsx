@@ -11,7 +11,6 @@ export type UserTestsComponentProps = {
         data: UserTestsConfigData;
     };
     selectedTestIds: string[];
-    _path?: string;
 };
 
 export const UserTests = (props: UserTestsComponentProps) => {
