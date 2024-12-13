@@ -36,7 +36,15 @@ export const useQbrickPlayerState = ({
         }
 
         createAndStart(videoProps, videoContainer, widgetId, setPlayerState, context, innholdstype);
-    }, [videoProps, videoContainerId, widgetId, playerState, setPlayerState, context]);
+    }, [
+        videoProps,
+        videoContainerId,
+        widgetId,
+        playerState,
+        setPlayerState,
+        context,
+        innholdstype,
+    ]);
 
     const resetPlayer = useCallback(() => {
         setPlayerState('stopped');
