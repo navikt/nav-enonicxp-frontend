@@ -7,7 +7,7 @@ import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
@@ -44,7 +44,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
             opprinnelse: 'lesmer',
             komponent: 'ReadMore',
             målgruppe: context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
     };
 

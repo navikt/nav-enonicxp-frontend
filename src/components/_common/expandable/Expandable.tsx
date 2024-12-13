@@ -4,7 +4,7 @@ import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@n
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
@@ -54,7 +54,7 @@ export const Expandable = ({
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
             komponent: 'Expandable',
             målgruppe: context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
     };
 

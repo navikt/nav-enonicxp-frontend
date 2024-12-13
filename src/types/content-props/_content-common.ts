@@ -95,92 +95,55 @@ export enum ContentType {
     FallbackPage = 'no.nav.navno:fallback-page',
 }
 
-export const innholdsType = (type: ContentType) => {
-    switch (type) {
-        case ContentType.InternalLink:
-            return 'Intern Lenke';
-        case ContentType.ExternalLink:
-            return 'Ekstern Lenke';
-        case ContentType.SectionPage:
-            return 'Oppslagstavle';
-        case ContentType.TransportPage:
-            return 'Transportside';
-        case ContentType.DynamicPage:
-            return 'Dynamisk side';
-        case ContentType.ContentList:
-            return 'Innholdsliste';
-        case ContentType.ContactInformationPage:
-            return 'Kontaktinformasjon';
-        case ContentType.GenericPage:
-            return 'Generisk side';
-        case ContentType.PageList:
-            return 'Artikkelliste';
-        case ContentType.MainArticle:
-            return 'Artikkel';
-        case ContentType.MainArticleChapter:
-            return 'Kapittel';
-        case ContentType.Melding:
-            return 'Driftsmelding';
-        case ContentType.LargeTable:
-            return 'Ekstra stor tabell';
-        case ContentType.OfficeInformation:
-            return 'Enhetsinformasjon';
-        case ContentType.PublishingCalendar:
-            return 'Publiseringskalender';
-        case ContentType.PublishingCalendarEntry:
-            return 'Kalenderhendelse';
-        case ContentType.GlobalNumberValuesSet:
-            return 'Globale tall-verdier';
-        case ContentType.ProductPage:
-            return 'Produktside';
-        case ContentType.ProductDetails:
-            return 'Produktdetaljer';
-        case ContentType.OfficeEditorialPage:
-            return 'Kontorside for redaktørinnhold';
-        case ContentType.GuidePage:
-            return 'Slik gjør du det';
-        case ContentType.ThemedArticlePage:
-            return 'Temaartikkel';
-        case ContentType.CurrentTopicPage:
-            return 'Aktuelt';
-        case ContentType.SituationPage:
-            return 'Situasjonsside';
-        case ContentType.Pictograms:
-            return 'Piktogram';
-        case ContentType.ToolsPage:
-            return 'Verktøy-side';
-        case ContentType.Calculator:
-            return 'Kalkulator';
-        case ContentType.Overview:
-            return 'Oversiktsside';
-        case ContentType.GlobalCaseTimeSet:
-            return 'Saksbehandlingstider';
-        case ContentType.PayoutDates:
-            return 'Utbetalingsdatoer';
-        case ContentType.FrontPage:
-            return 'Forside';
-        case ContentType.FrontPageNested:
-            return 'Underforside';
-        case ContentType.AreaPage:
-            return 'Områdeside';
-        case ContentType.PressLandingPage:
-            return 'Landingsside for presse';
-        case ContentType.FormDetails:
-            return 'Skjemadetaljer';
-        case ContentType.FormIntermediateStepPage:
-            return 'Mellomsteg for søknad, skjema, klage og ettersendelse';
-        case ContentType.FormsOverview:
-            return 'Skjemaoversikt';
-        case ContentType.UserTestsConfig:
-            return 'Brukertester';
-        case ContentType.Video:
-            return 'Qbrick Video';
-        case ContentType.AlertInContext:
-            return 'Varsel i kontekst';
-        case ContentType.OfficePage:
-            return 'Kontorside (gammel)';
-    }
-    return `Ugyldig [${type}]`;
+export const innholdsTypeMap: Record<ContentType, string> = {
+    [ContentType.InternalLink]: 'Intern Lenke',
+    [ContentType.ExternalLink]: 'Ekstern Lenke',
+    [ContentType.SectionPage]: 'Oppslagstavle',
+    [ContentType.TransportPage]: 'Transportside',
+    [ContentType.DynamicPage]: 'Dynamisk side',
+    [ContentType.ContentList]: 'Innholdsliste',
+    [ContentType.ContactInformationPage]: 'Kontaktinformasjon',
+    [ContentType.GenericPage]: 'Generisk side',
+    [ContentType.PageList]: 'Artikkelliste',
+    [ContentType.MainArticle]: 'Artikkel',
+    [ContentType.MainArticleChapter]: 'Kapittel',
+    [ContentType.Melding]: 'Driftsmelding',
+    [ContentType.LargeTable]: 'Ekstra stor tabell',
+    [ContentType.OfficeInformation]: 'Enhetsinformasjon',
+    [ContentType.PublishingCalendar]: 'Publiseringskalender',
+    [ContentType.PublishingCalendarEntry]: 'Kalenderhendelse',
+    [ContentType.GlobalNumberValuesSet]: 'Globale tall-verdier',
+    [ContentType.ProductPage]: 'Produktside',
+    [ContentType.ProductDetails]: 'Produktdetaljer',
+    [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
+    [ContentType.GuidePage]: 'Slik gjør du det',
+    [ContentType.ThemedArticlePage]: 'Temaartikkel',
+    [ContentType.CurrentTopicPage]: 'Aktuelt',
+    [ContentType.SituationPage]: 'Situasjonsside',
+    [ContentType.Pictograms]: 'Piktogram',
+    [ContentType.ToolsPage]: 'Verktøy-side',
+    [ContentType.Calculator]: 'Kalkulator',
+    [ContentType.Overview]: 'Oversiktsside',
+    [ContentType.GlobalCaseTimeSet]: 'Saksbehandlingstider',
+    [ContentType.PayoutDates]: 'Utbetalingsdatoer',
+    [ContentType.FrontPage]: 'Forside',
+    [ContentType.FrontPageNested]: 'Underforside',
+    [ContentType.AreaPage]: 'Områdeside',
+    [ContentType.PressLandingPage]: 'Landingsside for presse',
+    [ContentType.FormDetails]: 'Skjemadetaljer',
+    [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
+    [ContentType.FormsOverview]: 'Skjemaoversikt',
+    [ContentType.UserTestsConfig]: 'Brukertester',
+    [ContentType.Video]: 'Qbrick Video',
+    [ContentType.AlertInContext]: 'Varsel i kontekst',
+    [ContentType.OfficePage]: 'Kontorside (gammel)',
+
+    [ContentType.Error]: `Ugyldig type: [${ContentType.Error}]`,
+    [ContentType.Site]: `Ugyldig type: [${ContentType.Site}]`,
+    [ContentType.Fragment]: `Ugyldig type: [${ContentType.Fragment}]`,
+    [ContentType.TemplatePage]: `Ugyldig type: [${ContentType.TemplatePage}]`,
+    [ContentType.Url]: `Ugyldig type: [${ContentType.Url}]`,
+    [ContentType.FallbackPage]: `Ugyldig type: [${ContentType.FallbackPage}]`,
 };
 
 export type ContentAndMediaCommonProps = {

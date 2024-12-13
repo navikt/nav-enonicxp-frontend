@@ -4,7 +4,7 @@ import { translator } from 'translations';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { officeDetailsFormatAddress } from 'components/pages/office-page/office-details/utils';
 
@@ -31,7 +31,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
             opprinnelse: 'kontorinformasjon',
             komponent: 'OfficeInformation',
             målgruppe: context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
     };
 

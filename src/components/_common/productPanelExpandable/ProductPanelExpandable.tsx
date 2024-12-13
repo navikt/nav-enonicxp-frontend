@@ -4,7 +4,7 @@ import { PictogramsProps } from 'types/content-props/pictograms';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
@@ -71,7 +71,7 @@ export const ProductPanelExpandable = ({
             opprinnelse: 'produktdetalj',
             komponent: 'ProductPanelExpandable',
             målgruppe: context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
             ...analyticsData,
         });
     };

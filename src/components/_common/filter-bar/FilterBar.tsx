@@ -5,7 +5,7 @@ import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { useScrollPosition } from 'utils/useStickyScroll';
@@ -91,7 +91,7 @@ export const FilterBar = ({ layoutProps }: Props) => {
                                     opprinnelse: 'innholdtekst',
                                     komponent: 'FilterBar',
                                     målgruppe: context,
-                                    innholdstype: innholdsType(contentProps.type),
+                                    innholdstype: innholdsTypeMap[contentProps.type],
                                 });
                                 saveScrollPosition();
                                 toggleFilter(filter.id);

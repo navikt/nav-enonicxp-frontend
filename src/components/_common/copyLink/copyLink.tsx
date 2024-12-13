@@ -5,7 +5,7 @@ import { classNames } from 'utils/classnames';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 
 import style from './copyLink.module.scss';
@@ -44,7 +44,7 @@ export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyL
             logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
                 målgruppe: context,
                 seksjon: layoutConfig.title,
-                innholdstype: innholdsType(type),
+                innholdstype: innholdsTypeMap[type],
             });
         }
     };

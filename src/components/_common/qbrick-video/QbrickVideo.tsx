@@ -9,7 +9,7 @@ import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { QbrickVideoProps } from './utils/videoProps';
 import { getTimestampFromDuration } from './utils/videoHelpers';
 import { useQbrickPlayerState } from './useQbrickPlayerState';
@@ -27,7 +27,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
             videoProps: props,
             videoContainerId,
             context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
         }
     );
 

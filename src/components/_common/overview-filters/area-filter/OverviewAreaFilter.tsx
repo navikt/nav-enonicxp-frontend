@@ -3,7 +3,7 @@ import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { OverviewFilterBase } from 'components/_common/overview-filters/OverViewFilterBase/OverviewFilterBase';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
@@ -49,7 +49,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
             opprinnelse: 'oversiktsside områder',
             komponent: 'OverviewAreaFilter',
             målgruppe: context,
-            innholdstype: innholdsType(contentProps.type),
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
         setAreaFilter(area);
     };

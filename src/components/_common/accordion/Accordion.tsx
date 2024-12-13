@@ -5,7 +5,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
-import { innholdsType } from 'types/content-props/_content-common';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
@@ -43,7 +43,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
             opprinnelse: 'trekkspill',
             komponent: 'Accordion',
             målgruppe: context,
-            innholdstype: innholdsType(type),
+            innholdstype: innholdsTypeMap[type],
         });
     };
 
