@@ -1,6 +1,9 @@
 import React from 'react';
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { OverviewFilterBase } from 'components/_common/overview-filters/OverViewFilterBase/OverviewFilterBase';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
@@ -37,13 +40,16 @@ type Props = {
 
 export const OverviewAreaFilter = ({ items }: Props) => {
     const { areaFilter, setAreaFilter } = useOverviewFilters();
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: 'område',
             filternavn: analyticsAreas[area],
             opprinnelse: 'oversiktsside områder',
             komponent: 'OverviewAreaFilter',
+            målgruppe: context,
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
         setAreaFilter(area);
     };

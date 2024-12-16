@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { LinkIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 
 import style from './copyLink.module.scss';
@@ -19,7 +21,9 @@ const linkCopiedDisplayTimeMs = 2500;
 
 export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
-    const { language } = usePageContentProps();
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const { language, type } = contentProps;
     const { layoutConfig } = useLayoutConfig();
     const getLabel = translator('header', language);
 
@@ -38,7 +42,9 @@ export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyL
                 setTimeout(() => setShowCopyTooltip(false), linkCopiedDisplayTimeMs);
             }
             logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
+                målgruppe: context,
                 seksjon: layoutConfig.title,
+                innholdstype: innholdsTypeMap[type],
             });
         }
     };

@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
@@ -32,6 +35,8 @@ export const Expandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
 
     useShortcuts({
         shortcut: Shortcuts.SEARCH,
@@ -48,6 +53,8 @@ export const Expandable = ({
             tittel,
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
             komponent: 'Expandable',
+            målgruppe: context,
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
     };
 

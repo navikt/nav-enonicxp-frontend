@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
+import { PictogramsProps } from 'types/content-props/pictograms';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { PictogramsProps } from 'types/content-props/pictograms';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { translator } from 'translations';
-import { usePageContentProps } from 'store/pageContext';
 
 import style from './ProductPanelExpandable.module.scss';
 
@@ -36,12 +38,10 @@ export const ProductPanelExpandable = ({
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    const { language } = usePageContentProps();
-    const loadingText = translator('overview', language)('loading');
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const loadingText = translator('overview', contentProps.language)('loading');
     const anchorIdWithHash = `#${anchorId}`;
-
     const checkHashAndExpandPanel = () => {
         if (window.location.hash === anchorIdWithHash) {
             contentLoaderCallback?.();
@@ -70,6 +70,8 @@ export const ProductPanelExpandable = ({
             tittel,
             opprinnelse: 'produktdetalj',
             komponent: 'ProductPanelExpandable',
+            målgruppe: context,
+            innholdstype: innholdsTypeMap[contentProps.type],
             ...analyticsData,
         });
     };

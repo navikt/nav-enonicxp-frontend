@@ -4,6 +4,8 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
@@ -17,14 +19,13 @@ type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-    const { editorView } = usePageContentProps();
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const { editorView, type } = contentProps;
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
-
     const expandAll = () => {
         setOpenAccordions(accordion.map((_, index) => index));
     };
-
     const validatePanel = (item: PanelItem) => !!(item.title && item.html);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
@@ -41,6 +42,8 @@ export const Accordion = ({ accordion }: AccordionProps) => {
             tittel,
             opprinnelse: 'trekkspill',
             komponent: 'Accordion',
+            målgruppe: context,
+            innholdstype: innholdsTypeMap[type],
         });
     };
 

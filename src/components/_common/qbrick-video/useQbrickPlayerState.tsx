@@ -11,9 +11,16 @@ const PLAYER_POLLING_RATE_MS = 50;
 type Props = {
     videoProps: QbrickVideoProps;
     videoContainerId: string;
+    context?: string;
+    innholdstype?: string;
 };
 
-export const useQbrickPlayerState = ({ videoProps, videoContainerId }: Props) => {
+export const useQbrickPlayerState = ({
+    videoProps,
+    videoContainerId,
+    context,
+    innholdstype,
+}: Props) => {
     const [playerState, setPlayerState] = useState<PlayerState>('stopped');
     const widgetId = useId();
 
@@ -28,8 +35,16 @@ export const useQbrickPlayerState = ({ videoProps, videoContainerId }: Props) =>
             return;
         }
 
-        createAndStart(videoProps, videoContainer, widgetId, setPlayerState);
-    }, [videoProps, videoContainerId, widgetId, playerState, setPlayerState]);
+        createAndStart(videoProps, videoContainer, widgetId, setPlayerState, context, innholdstype);
+    }, [
+        videoProps,
+        videoContainerId,
+        widgetId,
+        playerState,
+        setPlayerState,
+        context,
+        innholdstype,
+    ]);
 
     const resetPlayer = useCallback(() => {
         setPlayerState('stopped');
@@ -51,7 +66,9 @@ const createAndStart = (
     { accountId, mediaId, language, title, duration }: QbrickVideoProps,
     videoContainer: HTMLElement,
     widgetId: string,
-    setPlayerState: (state: PlayerState) => void
+    setPlayerState: (state: PlayerState) => void,
+    context?: string,
+    innholdstype?: string
 ) => {
     const createPlayer = (timeLeft: number = PLAYER_TIMEOUT_MS) => {
         if (timeLeft <= 0) {
@@ -88,6 +105,8 @@ const createAndStart = (
                     tittel: title,
                     varighet: duration,
                     språk: language,
+                    målgruppe: context,
+                    innholdstype,
                 });
             })
             .on('playable', () => {
