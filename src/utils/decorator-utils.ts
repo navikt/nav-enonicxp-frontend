@@ -1,6 +1,6 @@
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { Language } from 'translations';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType, innholdsTypeMap } from 'types/content-props/_content-common';
 import { LanguageProps } from 'types/language';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { stripXpPathPrefix } from './urls';
@@ -76,20 +76,19 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     }
 
     const { _path, breadcrumbs, language, data, editorView } = content;
-
     const audience = data?.audience ? getAudience(data.audience) : undefined;
-
     const rolePathSegment = _path.split('/')[2];
     const context = audience ? audienceToRoleContext[audience] : pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
     const chatbotDisabled =
         data?.chatbotToggle === false || editorView === 'edit' || editorView === 'inline';
-
+    const pageType = innholdsTypeMap[content.type];
     return {
         ...defaultParams,
         ...(context && { context }),
         ...(decoratorLanguage && { language: decoratorLanguage }),
+        pageType,
         breadcrumbs:
             breadcrumbs?.map((crumb) => ({
                 ...crumb,
