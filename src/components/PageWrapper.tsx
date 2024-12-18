@@ -103,7 +103,6 @@ export const PageWrapper = (props: Props) => {
 
         // Updates decorator-parameters client-side when navigating to new content
         const decoratorParams = getDecoratorParams(content);
-        console.log('pagetype', decoratorParams.pageType);
         setParams(decoratorParams);
 
         if (decoratorParams.availableLanguages && router) {
