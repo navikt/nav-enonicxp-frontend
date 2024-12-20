@@ -35,7 +35,6 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     useEffect(() => {
         if (window.location.toString().includes('expandall=true')) {
             setIsOpen(true);
-            return;
         }
     }, []);
 
