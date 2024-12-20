@@ -44,7 +44,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
     return (
         <div className={style.wrapper} data-qplayer-analytics="off">
             <Script
-                src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
+                src={'https://play2.qbrick.com/qplayer-beta/loader/qplayer-loader.js'}
                 async={true}
                 onError={(error) => {
                     logger.error(`Failed to load QBrick player script - ${error}`);
