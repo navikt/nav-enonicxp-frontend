@@ -42,7 +42,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
         : getMediaUrl(poster, !!editorView, contentLanguage);
 
     return (
-        <div className={style.wrapper}>
+        <div className={style.wrapper} data-qplayer-analytics="off">
             <Script
                 src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
                 async={true}
