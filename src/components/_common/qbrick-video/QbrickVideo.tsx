@@ -42,9 +42,10 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
         : getMediaUrl(poster, !!editorView, contentLanguage);
 
     return (
-        <div className={style.wrapper} data-qplayer-analytics="off">
+        <div className={style.wrapper}>
             <Script
-                src={'https://play2.qbrick.com/qplayer-beta/loader/qplayer-loader.js'}
+                // src={'https://play2.qbrick.com/qplayer-beta/loader/qplayer-loader.js'}
+                src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
                 async={true}
                 onError={(error) => {
                     logger.error(`Failed to load QBrick player script - ${error}`);
@@ -100,6 +101,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
+                data-qplayer-analytics="off"
             />
         </div>
     );
