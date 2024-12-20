@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -31,6 +31,12 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
         shortcut: Shortcuts.SEARCH,
         callback: () => setIsOpen(true),
     });
+
+    useEffect(() => {
+        if (window.location.toString().includes('expandall=true')) {
+            setIsOpen(true);
+        }
+    }, []);
 
     if (!config?.html || !config.title) {
         return <EditorHelp text={'Legg inn tittel og beskrivelse for "les mer".'} type={'error'} />;

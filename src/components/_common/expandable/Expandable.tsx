@@ -63,6 +63,11 @@ export const Expandable = ({
             return;
         }
 
+        if (window.location.toString().includes('expandall=true')) {
+            setIsOpen(true);
+            return;
+        }
+
         const targetId = window.location.hash.replace('#', '');
         if (!targetId) {
             return;
