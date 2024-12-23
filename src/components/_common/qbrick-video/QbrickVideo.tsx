@@ -44,7 +44,6 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
     return (
         <div className={style.wrapper}>
             <Script
-                // src={'https://play2.qbrick.com/qplayer-beta/loader/qplayer-loader.js'}
                 src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
                 async={true}
                 onError={(error) => {
@@ -101,7 +100,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
-                data-qplayer-analytics="off"
+                // data-qplayer-analytics="off"
             />
         </div>
     );
