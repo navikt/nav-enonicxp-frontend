@@ -98,7 +98,6 @@ const createAndStart = (
             language,
             autoplay: true,
             widgetId,
-            [`data-qplayer-analytics`]: 'off',
         })
             .on('ready', () => {
                 setPlayerState('ready');

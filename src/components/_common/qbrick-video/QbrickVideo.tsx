@@ -100,7 +100,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
-                // data-qplayer-analytics="off"
+                data-qplayer-analytics="off"
             />
         </div>
     );
