@@ -98,6 +98,7 @@ const createAndStart = (
             language,
             autoplay: true,
             widgetId,
+            ignoreAnalytics: true,
         })
             .on('ready', () => {
                 setPlayerState('ready');
