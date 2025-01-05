@@ -48,6 +48,10 @@ export const Accordion = ({ accordion }: AccordionProps) => {
     };
 
     useEffect(() => {
+        if (window.location.toString().includes('expandall=true')) {
+            expandAll();
+            return;
+        }
         const anchorHash = window.location.hash || '';
         const matchingAccordion = accordion.findIndex(
             (item) => validatePanel(item) && item.anchorId === anchorHash.slice(1)
