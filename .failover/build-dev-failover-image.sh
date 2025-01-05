@@ -2,10 +2,13 @@
 
 # Script for building failover-images for dev-environments
 # Usage: "build-dev-failover-image.sh <dev1|dev2> <image name>"
-# XP service secret should be put in the appropriate file (.secret-dev1|.secret-dev2)
-# You also need a Github PAT with repo and packages write access in the .github-token
-# file at the root of the project
-# Take care not to expose secrets!
+#
+# About secrets:
+# As NPM packages with ie post-install scripts could potentially sniff and compromise secrets,
+# we need to read secrets from environment variables. These variables should be set using
+# ie. 1Password CLI or similar.
+#
+# The secrets are: NAV_ENONICXP_DEV1, NAV_ENONICXP_DEV2 AND GITHUB_PAT.
 #
 # Once the image is built, use the relevant deploy action on Github with the chosen
 # image name to deploy
@@ -24,19 +27,17 @@ fi
 if [[ "$APP_ENV" == "dev1" ]]
 then
   echo "Building image $IMAGE_NAME for dev1"
-  SERVICE_SECRET=$(<.secret-dev1)
+  SERVICE_SECRET=$NAV_ENONICXP_DEV1
   ENV_FILE=".env-dev1"
 elif [[ "$APP_ENV" == "dev2" ]]
 then
   echo "Building image $IMAGE_NAME for dev2"
-  SERVICE_SECRET=$(<.secret-dev2)
+  SERVICE_SECRET=$NAV_ENONICXP_DEV2
   ENV_FILE=".env-dev2"
 else
   echo "Invalid ENV specified, aborting"
   exit
 fi
-
-GITHUB_PAT=$(<../.github-token)
 
 IMAGE_NAME_FULL="ghcr.io/navikt/nav-enonicxp-frontend:$IMAGE_NAME"
 
