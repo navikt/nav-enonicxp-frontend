@@ -8,6 +8,8 @@ import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { QbrickVideoProps } from './utils/videoProps';
 import { getTimestampFromDuration } from './utils/videoHelpers';
 import { useQbrickPlayerState } from './useQbrickPlayerState';
@@ -15,16 +17,17 @@ import { useQbrickPlayerState } from './useQbrickPlayerState';
 import style from './QbrickVideo.module.scss';
 
 export const QbrickVideo = (props: QbrickVideoProps) => {
-    const { language: contentLanguage, editorView } = usePageContentProps();
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const { language: contentLanguage, editorView } = contentProps;
     const { title, duration, poster } = props;
-
     const videoContainerId = useId();
-
     const { createAndStartPlayer, resetPlayer, playerState, setPlayerState } = useQbrickPlayerState(
         {
             videoProps: props,
             videoContainerId,
+            context,
+            innholdstype: innholdsTypeMap[contentProps.type],
         }
     );
 
@@ -33,9 +36,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
     }, [resetPlayer]);
 
     const translations = translator('macroVideo', contentLanguage);
-
     const durationAsString = getTimestampFromDuration(duration);
-
     const imageUrl = poster?.startsWith('http')
         ? poster
         : getMediaUrl(poster, !!editorView, contentLanguage);
@@ -99,6 +100,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
+                data-qplayer-analytics="off"
             />
         </div>
     );

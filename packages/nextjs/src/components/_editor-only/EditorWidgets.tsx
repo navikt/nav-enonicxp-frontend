@@ -29,7 +29,7 @@ export const EditorWidgets = ({ content }: Props) => {
                 {!liveId && (editorView === 'inline' || editorView === 'edit') && (
                     <ReferencesInfo content={content} />
                 )}
-                <EditorGlobalWarnings key={content._id} />
+                <EditorGlobalWarnings content={content} />
                 {editorView !== 'edit' && <VersionHistory content={content} />}
             </div>
         </div>

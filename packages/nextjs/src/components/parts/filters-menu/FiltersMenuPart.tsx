@@ -10,6 +10,8 @@ import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { ExpandableMixin } from 'types/component-props/_mixins';
 import { checkIfFilterFirstInPage } from './helpers';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -33,16 +35,13 @@ export type PartConfigFilterMenu = {
 } & ExpandableMixin;
 
 export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.FiltersMenu>) => {
-    const { language, editorView, page } = usePageContentProps();
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const { language, editorView, page } = contentProps;
     const { categories, description, expandableTitle, title } = config;
-
     const { clearFiltersForPage, selectedFilters, setAvailableFilters, toggleFilter } =
         useFilterState();
-
-    const isFirstFilterInPage = checkIfFilterFirstInPage({
-        path,
-        page,
-    });
+    const isFirstFilterInPage = checkIfFilterFirstInPage({ path, page });
 
     useEffect(() => {
         // Multiple FilterMenus in same page will break.
@@ -64,13 +63,14 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     }, []);
 
     const getLabel = translator('filteredContent', language);
-
     const onToggleFilterHandler = (filter: Filter, category: FilterMenuCategory) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'filtermeny',
             komponent: 'FiltersMenuPart',
+            målgruppe: context,
+            innholdstype: innholdsTypeMap[contentProps.type],
         });
         toggleFilter(filter.id);
     };

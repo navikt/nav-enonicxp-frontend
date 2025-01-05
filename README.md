@@ -37,9 +37,13 @@ Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følg
 
 Kjør `npm run start-clean`
 
+### Storybook
+
+Kjør Storybook lokalt med `npm run storybook`
+
 ### Andre lokale avhengigheter
 
-[Dekoratøren](https://github.com/navikt/decorator-next) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
+[Dekoratøren](https://github.com/navikt/nav-dekoratoren) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:
 
 ```
 gcloud auth login
@@ -84,6 +88,6 @@ nav.no-appen i XP og så slette frontend-cachen (helst ikke i prod :).
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
 
-### For NAV-ansatte
+### For Nav-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-personbruker

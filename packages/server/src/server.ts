@@ -9,7 +9,6 @@ import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
-import { websockets } from './websockets';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -88,10 +87,6 @@ nextApp.prepare().then(async () => {
 
         logger.info(`Server started on port ${port}`);
     });
-
-    if (process.env.ENV === 'localhost') {
-        websockets(expressServer);
-    }
 
     const httpTerminator = createHttpTerminator({ server: expressServer });
 

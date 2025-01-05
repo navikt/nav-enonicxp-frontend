@@ -1,0 +1,10 @@
+@use '../../../../common' as common;
+
+.warning {
+    min-width: 400px;
+    background-color: common.$a-white;
+}
+
+.lenkeInline {
+    margin-left: 0.5rem;
+}

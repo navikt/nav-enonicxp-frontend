@@ -30,7 +30,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
-    [ProductTaxonomy.ALL]: 'Alle',
+    [ProductTaxonomy.ALL]: 'All',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
     [ProductTaxonomy.INSURANCE]: 'Insurance',
     [ProductTaxonomy.MEASURES]: 'Measures',
@@ -46,7 +46,7 @@ const taxonomies: {
     [ThemedArticlePageTaxonomy.PAYMENT]: 'Payment',
     [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Right to appeal',
     [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'User support',
-    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'About NAV',
+    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'About Nav',
     [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]:
         'Membership in Folketrygden (The National Insurance Scheme)',
     [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Recruitment',
@@ -227,8 +227,8 @@ export const translationsBundleEn: PartialTranslations = {
                 'Send messages or new information regarding your case. You may also ask questions should you have any. <br/> <br/> Response time is a few business days. If you need answers faster, please see our chat service.',
         },
         navoffice: {
-            title: 'Find your local NAV office',
-            ingress: 'Search for a NAV office using postal code or city.',
+            title: 'Find your local Nav office',
+            ingress: 'Search for a Nav office using postal code or city.',
         },
         aidcentral: {
             title: 'Find your Assistive Technology Center',
@@ -254,12 +254,12 @@ export const translationsBundleEn: PartialTranslations = {
         postalAddress: 'Postal address',
         orgNumber: 'Org number',
         officeNumber: 'Office number',
-        phoneToNav: 'NAV phone number is',
-        phoneToHMS: 'Phone number to Hjelpemiddelsentralen is',
+        phoneToNav: 'Nav phone number is',
+        phoneToHMS: 'Phone number to hjelpemiddelsentralen is',
         phoneInformation:
-            'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
+            'Phone hours, weekdays at 9-15. Nav call center will assist you or connect you with your Nav office.',
         alternativeContacts: 'Other contact options:',
-        taglineOffice: 'NAV office',
+        taglineOffice: 'Nav office',
         taglineHMS: 'Assistive technology centre',
     },
     dateTime: {

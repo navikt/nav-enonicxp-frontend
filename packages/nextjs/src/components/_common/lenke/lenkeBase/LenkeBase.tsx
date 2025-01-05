@@ -6,6 +6,8 @@ import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 
 import style from './LenkeBase.module.scss';
 
@@ -46,9 +48,10 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const { editorView } = usePageContentProps();
+    const contentProps = usePageContentProps();
+    const { editorView } = contentProps;
+    const { context } = getDecoratorParams(contentProps);
     const { layoutConfig } = useLayoutConfig();
-
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
         komponent: analyticsComponent,
@@ -56,6 +59,8 @@ export const LenkeBase = ({
         seksjon: analyticsLinkGroup || layoutConfig.title,
         destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
+        målgruppe: context,
+        innholdstype: innholdsTypeMap[contentProps.type],
     };
 
     const WrapperComponent =

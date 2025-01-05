@@ -4,6 +4,8 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
+import { getDecoratorParams } from 'utils/decorator-utils';
+import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { useScrollPosition } from 'utils/useStickyScroll';
@@ -24,19 +26,15 @@ type Props = {
 /** @deprecated */
 export const FilterBar = ({ layoutProps }: Props) => {
     const filterBarRef = useRef(null);
-
-    const { language } = usePageContentProps();
-    const getLabel = translator('filteredContent', language);
-
+    const contentProps = usePageContentProps();
+    const { context } = getDecoratorParams(contentProps);
+    const getLabel = translator('filteredContent', contentProps.language);
     const { selectedFilters, availableFilters, toggleFilter } = useFilterState();
-
     const { saveScrollPosition, scrollBackToElement } = useScrollPosition(filterBarRef.current);
-
     const [filtersToDisplay, setFiltersToDisplay] = useState<FilterWithCategory[]>([]);
 
     useEffect(() => {
         const { content, intro } = layoutProps.regions;
-
         const components = [
             ...(content ? content.components : []),
             ...(intro ? intro.components : []),
@@ -92,6 +90,8 @@ export const FilterBar = ({ layoutProps }: Props) => {
                                     filternavn: filter.filterName,
                                     opprinnelse: 'innholdtekst',
                                     komponent: 'FilterBar',
+                                    målgruppe: context,
+                                    innholdstype: innholdsTypeMap[contentProps.type],
                                 });
                                 saveScrollPosition();
                                 toggleFilter(filter.id);

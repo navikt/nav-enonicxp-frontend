@@ -42,7 +42,7 @@ const taxonomies: {
     [ThemedArticlePageTaxonomy.PAYMENT]: 'Utbetaling',
     [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Klagerettar',
     [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'Brukarstøtte',
-    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om NAV',
+    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om Nav',
     [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]: 'Medlemskap i folketrygda',
     [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering',
     [ToolsPageTaxonomy.CALCULATOR]: 'Kalkulator',
@@ -211,8 +211,8 @@ export const translationsBundleNn: PartialTranslations = {
                 'Send beskjed eller nye opplysningar i saka di. Du kan òg sende spørsmål. <br/><br/> Svartida er nokre arbeidsdagar. Vil du ha raskare svar, kan du bruke chat.',
         },
         navoffice: {
-            title: 'Finn ditt NAV-kontor',
-            ingress: 'Søk opp NAV-kontor med postnummer, sted eller by.',
+            title: 'Finn ditt Nav-kontor',
+            ingress: 'Søk opp Nav-kontor med postnummer, sted eller by.',
         },
         aidcentral: {
             title: 'Finn din hjelpemiddelsentral',
@@ -237,12 +237,12 @@ export const translationsBundleNn: PartialTranslations = {
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
-        phoneToNav: 'Telefonnummeret til NAV er',
-        phoneToHMS: 'Telefonnummeret til Hjelpemiddelsentralen er',
+        phoneToNav: 'Telefonnummeret til Nav er',
+        phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
         phoneInformation:
-            'Telefontid kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
+            'Telefontid kvardagar kl 9–15. Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
-        taglineOffice: 'NAV-kontor',
+        taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
     },
     dateTime: {
