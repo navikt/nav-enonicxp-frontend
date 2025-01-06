@@ -12,7 +12,7 @@ type PressNewsProps = {
 
 export const PressNews = (props: PressNewsProps) => {
     const { language } = props.page;
-    const { pressNews, moreNewsUrl } = props.page.data;
+    const { pressNews, moreNewsUrl } = props.page?.data;
 
     const getTranslations = translator('pressLanding', language);
 
