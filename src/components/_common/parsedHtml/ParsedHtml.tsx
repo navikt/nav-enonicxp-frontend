@@ -111,7 +111,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle macros
             if (tag === processedHtmlMacroTag) {
-                return <MacroMapper macros={macros} macroRef={attribs?.['data-macro-ref']} />;
+                return (
+                    <MacroMapper
+                        key={attribs?.['data-macro-ref']}
+                        macros={macros}
+                        macroRef={attribs?.['data-macro-ref']}
+                    />
+                );
             }
 
             // Remove img without src
