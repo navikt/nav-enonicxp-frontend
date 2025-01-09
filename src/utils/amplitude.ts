@@ -18,9 +18,14 @@ export function logAmplitudeEvent(
     eventName: AnalyticsEvents,
     data?: Record<string, any>
 ): Promise<any> {
-    return logAmplitudeEventDecorator({
-        eventName,
-        origin: 'navno-frontend',
-        eventData: data,
-    });
+    try {
+        return logAmplitudeEventDecorator({
+            eventName,
+            origin: 'navno-frontend',
+            eventData: data,
+        });
+    } catch (e) {
+        console.error('Amplitude fails', e);
+        return new Promise(() => 'amplitude issues');
+    }
 }
