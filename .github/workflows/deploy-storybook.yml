@@ -1,4 +1,4 @@
-name: Deploy storybook to github pages
+name: Deploy Storybook to github pages
 
 on:
   push:
@@ -43,4 +43,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
