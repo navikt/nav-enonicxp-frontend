@@ -10,7 +10,7 @@ type Props = {
 export const UxSignalsWidget = ({ embedCode }: Props) => {
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = 'https://uxsignals-frontend.uxsignals.app.iterate.no/embed.js';
+        script.src = 'https://widget.uxsignals.com/embed.js';
         script.async = true;
         document.body.appendChild(script);
         return () => {
