@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 const port = 4243;
 
 export default defineConfig({
+    testDir: './playwrightTests',
     reporter: 'html',
 
     use: {
