@@ -32,6 +32,7 @@ jobs:
       - name: Run Playwright update snapshots
         run: docker run --rm -v $(pwd):/workspace -w /workspace --ipc=host mcr.microsoft.com/playwright:v1.49.1-noble /bin/bash -c "CI=true npx playwright test --update-snapshots"
       - name: Commit and push updated snapshots
+        if: always()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update playwright snapshots"
