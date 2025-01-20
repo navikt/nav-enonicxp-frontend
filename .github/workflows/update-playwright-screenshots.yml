@@ -1,0 +1,45 @@
+name: Update Playwright screenshots
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  update-snapshots:
+    name: Update Snapshots
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Get branch of PR
+        uses: xt0rted/pull-request-comment-branch@v2
+        id: comment-branch
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+      - name: Comment action started
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            ### Updating snapshots. Click [here](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) to see the status.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - run: npm run build-storybook
+      - name: Run Playwright update snapshots
+        run: docker run --rm -v $(pwd):/workspace -w /workspace --ipc=host mcr.microsoft.com/playwright:v1.49.1-noble /bin/bash -c "CI=true npx playwright test --update-snapshots"
+      - name: Commit and push updated snapshots
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update playwright snapshots"
+      - name: Comment success
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            ### 🎉 Successfully updated and committed Playwright snapshots! 🎉

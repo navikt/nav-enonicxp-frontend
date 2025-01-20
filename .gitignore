@@ -58,3 +58,9 @@ yarn-error.log*
 /.env.prod-local.local
 /server/.next/
 /analyze/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
