@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
   pull_request:
-    branches: [master]
+    branches: [playwright-regresiion-test]
 jobs:
   update-snapshots:
     name: Update Snapshots
