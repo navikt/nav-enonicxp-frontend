@@ -1,9 +1,9 @@
 name: Update Playwright screenshots
 on:
   push:
-    branches: [master] # TODO: endre tilbake til master før merge til master
+    branches: [playwright-regresiion-test] # TODO: endre tilbake til master før merge til master
   pull_request:
-    branches: [master] # TODO: endre tilbake til master før merge til master
+    branches: [playwright-regresiion-test] # TODO: endre tilbake til master før merge til master
 jobs:
   update-screenshots:
     name: Update screenshots
