@@ -69,7 +69,6 @@
         "uuid": "10.0.0"
     },
     "devDependencies": {
-        "@chromatic-com/storybook": "2.0.2",
         "@next/bundle-analyzer": "14.2.15",
         "@next/eslint-plugin-next": "14.2.4",
         "@playwright/test": "^1.49.1",
