@@ -5,7 +5,7 @@ const port = 4243;
 export default defineConfig({
     testDir: './playwrightTests',
     reporter: 'html',
-    workers: 8,
+    workers: 14,
     fullyParallel: true,
     use: {
         baseURL: `http://localhost:${port}`,
