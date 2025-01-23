@@ -1,6 +1,6 @@
 import { useCallback, useId, useState } from 'react';
 import { logger } from 'srcCommon/logger';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { QbrickVideoProps } from './utils/videoProps';
 
 type PlayerState = 'loading' | 'ready' | 'error' | 'stopped';
@@ -102,7 +102,7 @@ const createAndStart = (
         })
             .on('ready', () => {
                 setPlayerState('ready');
-                logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
+                logAnalyticsEvent(AnalyticsEvents.VIDEO_START, {
                     tittel: title,
                     varighet: duration,
                     språk: language,

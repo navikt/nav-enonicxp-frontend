@@ -4,7 +4,7 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { AnalyticsEvents } from 'utils/amplitude';
+import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';

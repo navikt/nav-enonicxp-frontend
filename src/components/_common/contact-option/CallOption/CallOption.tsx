@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert, BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { AnalyticsEvents } from 'utils/amplitude';
+import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/openingInfo/OpeningInfo';
