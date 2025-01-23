@@ -32,3 +32,7 @@ for (const story of stories) {
         );
     });
 }
+
+// TODO:   Slow test file: [desktop] › example.spec.ts (1.1m)
+// Consider splitting slow test files to speed up parallel execution
+// 138 passed (1.2m)
