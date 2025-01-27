@@ -7,7 +7,7 @@ import { OverviewTextFilter } from 'components/_common/overview-filters/text-fil
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -49,7 +49,7 @@ const MobileView = ({
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
-                                    logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                                    logAnalyticsEvent(AnalyticsEvents.FILTER, {
                                         kategori: 'mobile-toggle',
                                         opprinnelse: 'oversiktsside filter mobil',
                                         komponent: 'MobileView',

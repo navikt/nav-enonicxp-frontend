@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LinkIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -41,7 +41,7 @@ export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyL
                 setShowCopyTooltip(true);
                 setTimeout(() => setShowCopyTooltip(false), linkCopiedDisplayTimeMs);
             }
-            logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
+            logAnalyticsEvent(AnalyticsEvents.COPY_LINK, {
                 målgruppe: context,
                 seksjon: layoutConfig.title,
                 innholdstype: innholdsTypeMap[type],

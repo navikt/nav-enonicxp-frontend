@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 import { adminOrigin, isNofollowUrl, xpDraftPathPrefix } from 'utils/urls';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
@@ -80,7 +80,7 @@ export const LenkeBase = ({
                 {...rest}
                 href={url}
                 onClick={(e) => {
-                    logAmplitudeEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
+                    logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
                     onClick?.(e);
                 }}
                 shallow={shallow}

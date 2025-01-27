@@ -1,4 +1,4 @@
-import { logAmplitudeEvent as logAmplitudeEventDecorator } from '@navikt/nav-dekoratoren-moduler';
+import { logAnalyticsEvent as logAnalyticsEventDecorator } from '@navikt/nav-dekoratoren-moduler';
 
 export enum AnalyticsEvents {
     NAVIGATION = 'navigere',
@@ -14,11 +14,11 @@ export enum AnalyticsEvents {
     VIDEO_STOP = 'video stopp',
 }
 
-export function logAmplitudeEvent(
+export function logAnalyticsEvent(
     eventName: AnalyticsEvents,
     data?: Record<string, any>
 ): Promise<any> {
-    return logAmplitudeEventDecorator({
+    return logAnalyticsEventDecorator({
         eventName,
         origin: 'navno-frontend',
         eventData: data,

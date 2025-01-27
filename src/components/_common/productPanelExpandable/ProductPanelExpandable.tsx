@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -66,7 +66,7 @@ export const ProductPanelExpandable = ({
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         contentLoaderCallback?.();
-        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'produktdetalj',
             komponent: 'ProductPanelExpandable',

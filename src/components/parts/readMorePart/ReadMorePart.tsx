@@ -4,7 +4,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -45,7 +45,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         handleStickyScrollOffset(isOpening, divRef.current);
         setIsOpen(isOpening);
-        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'lesmer',
             komponent: 'ReadMore',
