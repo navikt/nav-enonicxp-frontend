@@ -12,6 +12,7 @@ import { PartConfigFormDetails } from 'components/parts/form-details/FormDetails
 import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
 import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
+import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
@@ -60,6 +61,7 @@ export enum PartType {
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
+    FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
@@ -103,6 +105,7 @@ type PartConfigs = {
     [PartType.FrontpageContact]: PartConfigFrontpageContact;
     [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
     [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
+    [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.LinkList]: PartConfigLinkList;
