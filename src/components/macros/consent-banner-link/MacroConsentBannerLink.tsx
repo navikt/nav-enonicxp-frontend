@@ -23,7 +23,7 @@ export const MacroConsentBannerLink = ({ config }: MacroConsentBannerLinkProps) 
             href={'/'}
             onClick={(e) => {
                 e.preventDefault();
-                window.webStorageController.showConsentBanner();
+                window.webStorageController?.showConsentBanner();
             }}
             {...extraProps}
         >
