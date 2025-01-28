@@ -1,5 +1,4 @@
 import React from 'react';
-import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Button } from 'components/_common/button/Button';
 import { MacroConsentBannerLinkProps } from 'types/macro-props/consent-banner-link';
