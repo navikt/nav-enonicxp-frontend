@@ -28,6 +28,7 @@ import { MacroIngress } from './ingress/MacroIngress';
 import { MacroAlertBox } from './alert-box/MacroAlertBox';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
+import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBannerLink';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -37,6 +38,7 @@ const macroComponents: {
     [MacroType.ButtonBlue]: MacroButton,
     [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.ChatbotLink]: MacroChatbotLink,
+    [MacroType.ConsentBannerLink]: MacroConsentBannerLink,
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
