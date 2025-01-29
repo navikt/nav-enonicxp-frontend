@@ -1,9 +1,16 @@
 import React from 'react';
+import {
+    BriefcaseClockIcon,
+    CalendarIcon,
+    FolderFileIcon,
+    TasklistStartIcon,
+    WalletIcon,
+} from '@navikt/aksel-icons';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
-import { Icon } from 'types/content-props/pictograms';
+import style from './FrontpagePersonShortcutsPart.module.scss';
 
 type Shortcut = {
     target: {
@@ -11,12 +18,10 @@ type Shortcut = {
         displayName: string;
         data: {
             url?: string;
-            icon?: Icon;
             title?: string;
         };
     };
     customTitle: string;
-    customIcon?: Icon;
 };
 
 export type PartConfigFrontpagePersonShortcuts = {
@@ -34,13 +39,13 @@ export const FrontpagePersonShortcutsPart = ({
     }
 
     return (
-        <div>
+        <div className={style.personShortcuts}>
             {sectionTitle && (
-                <Header size="large" level="2">
+                <Header size="large" level="2" className={style.header}>
                     {sectionTitle}
                 </Header>
             )}
-            <ul>
+            <ul className={style.list}>
                 {shortcuts.map((item) => {
                     const { target, customTitle } = item;
                     if (!target?.data) {
@@ -49,14 +54,33 @@ export const FrontpagePersonShortcutsPart = ({
 
                     const href = target.data.url || target._path;
                     const title = customTitle || target.data.title || target.displayName;
-                    // const illustration = customIllustration || target.data.illustration;
 
                     return (
-                        <li key={title}>
+                        <li key={title} className={style.listItem}>
                             <LinkPanelNavnoSimple
                                 href={href}
                                 analyticsLinkGroup={title}
-                                // icon={<IllustrationStatic illustration={illustration} />}
+                                className={style.link}
+                                //Hardkoder ikonene istedenfor å legge de inn i Enonic da det
+                                //kun er her vi bruker ikoner
+                                icon={
+                                    <>
+                                        {title === 'Saksbehandlingstider' && (
+                                            <BriefcaseClockIcon title="Koffert med klokke" />
+                                        )}
+                                        {title === 'Utbetalingsdatoer' && (
+                                            <CalendarIcon title="Kalender" />
+                                        )}
+                                        {title === 'Satser' && <WalletIcon title="Lommebok" />}
+                                        {title === 'Søknad og skjema' && (
+                                            <TasklistStartIcon title="Oppgaveliste start" />
+                                        )}
+                                        {title === 'Ettersendelse' && (
+                                            <FolderFileIcon title="Mappefil" />
+                                        )}
+                                    </>
+                                }
+                                iconClassname={style.icon}
                             >
                                 {title}
                             </LinkPanelNavnoSimple>

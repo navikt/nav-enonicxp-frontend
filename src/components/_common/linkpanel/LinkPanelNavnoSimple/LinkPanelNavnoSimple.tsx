@@ -1,17 +1,15 @@
 import React from 'react';
-import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import style from './LinkPanelNavnoSimple.module.scss';
-
-type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
 type Props = {
     href: string;
     analyticsLinkGroup?: string;
     icon?: React.ReactNode;
     children: React.ReactNode;
+    iconClassname?: string;
 } & React.ComponentProps<typeof LenkeBase>;
 
 // This component is meant to be used with "simple" content, ie just a line of text
@@ -23,6 +21,7 @@ export const LinkPanelNavnoSimple = ({
     icon,
     children,
     className,
+    iconClassname,
     ...rest
 }: Props) => {
     return (
@@ -33,7 +32,7 @@ export const LinkPanelNavnoSimple = ({
             analyticsComponent={'Lenkepanel navno enkel'}
             analyticsLinkGroup={analyticsLinkGroup}
         >
-            {icon && <div className={style.icon}>{icon}</div>}
+            {icon && <div className={classNames(iconClassname, style.icon)}>{icon}</div>}
             <div className={classNames('navds-heading', 'navds-heading--medium')}>
                 <span className={style.text}>{children}</span>
             </div>
