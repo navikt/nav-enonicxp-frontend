@@ -10,6 +10,7 @@ declare global {
             destroy: (widgetId: string, deleteElement?: boolean) => any;
             widgets: (widgetId: string) => any;
         };
+        webStorageController: any;
     }
 
     interface WindowEventMap {

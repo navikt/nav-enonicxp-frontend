@@ -3,6 +3,7 @@ export enum MacroType {
     Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
+    ConsentBannerLink = 'consent-banner-link',
     ChevronLinkInternal = 'chevron-link-internal',
     ChevronLinkExternal = 'chevron-link-external',
     Fotnote = 'fotnote',

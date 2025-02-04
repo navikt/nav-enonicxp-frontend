@@ -59,7 +59,7 @@ const csp = async () => {
     const termerHost = 'termer.no';
     const tiTiHosts = [tingtunHost, termerHost];
 
-    const uxSignalsScriptHost = 'uxsignals-frontend.uxsignals.app.iterate.no';
+    const uxSignalsScriptHost = 'widget.uxsignals.com';
     const uxSignalsApiHost = 'api.uxsignals.com';
 
     // Filter duplicates, as some origins may be identical, depending on
