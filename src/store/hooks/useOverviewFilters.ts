@@ -16,7 +16,7 @@ import type Fuse from 'fuse.js';
 
 export type OverviewFilterableItem = {
     area: Area[];
-    taxonomy: ProductTaxonomy[];
+    taxonomy?: ProductTaxonomy[];
     type?: ContentType;
 };
 
@@ -43,7 +43,7 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
 
     const isTaxonomyMatching = (item: ItemType) =>
         taxonomyFilter === ProductTaxonomy.ALL ||
-        item.taxonomy.includes(taxonomyFilter) ||
+        item.taxonomy?.includes(taxonomyFilter) ||
         (taxonomyFilter === ProductTaxonomy.OTHER && item.type === 'no.nav.navno:guide-page');
 
     const itemsMatchingToggleFilters = filterableItems.filter(

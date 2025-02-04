@@ -54,7 +54,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     };
 
     const taxonomiesPresent = orderedTaxonomies.filter((taxonomy) =>
-        items.some((item) => item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy))
+        items.some((item) => item.taxonomy?.some((itemTaxonomy) => itemTaxonomy === taxonomy))
     );
 
     const listHasGuidePage = items.some((product) => product.type === 'no.nav.navno:guide-page');

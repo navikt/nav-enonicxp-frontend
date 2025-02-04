@@ -24,7 +24,7 @@ export const getContentTagline = (content: GetContentTaglineProps, currentLangua
         return (selectedAudience && situationTaglines(selectedAudience)) ?? '';
     }
 
-    if (taxonomy.length > 0 || customCategory) {
+    if ((taxonomy && taxonomy.length > 0) || customCategory) {
         const taxonomyStrings = getTranslatedTaxonomies(taxonomy, language);
 
         if (customCategory && taxonomyStrings.length === 0) {
