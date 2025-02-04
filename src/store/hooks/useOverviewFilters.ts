@@ -16,7 +16,7 @@ import type Fuse from 'fuse.js';
 
 export type OverviewFilterableItem = {
     area: Area[];
-    taxonomy: ProductTaxonomy[];
+    taxonomy?: ProductTaxonomy[];
     type?: ContentType;
 };
 
