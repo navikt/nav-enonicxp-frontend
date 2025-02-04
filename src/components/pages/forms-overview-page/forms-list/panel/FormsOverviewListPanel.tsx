@@ -31,8 +31,8 @@ const getFormDetailsDisplayOptions = (
 };
 
 const buildSubHeader = (
-    taxonomy: FormDetailsListItemProps['taxonomy'],
-    area: FormDetailsListItemProps['area'],
+    taxonomy: FormDetailsListItemProps['taxonomy'] = [],
+    area: FormDetailsListItemProps['area'] = [],
     language: Language
 ) => {
     const taxonomyTranslations = translator('taxonomies', language);
