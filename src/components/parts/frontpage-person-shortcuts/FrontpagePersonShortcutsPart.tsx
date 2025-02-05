@@ -8,8 +8,9 @@ import {
 } from '@navikt/aksel-icons';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
+import { classNames } from 'utils/classnames';
 import style from './FrontpagePersonShortcutsPart.module.scss';
 
 type Shortcut = {
@@ -41,7 +42,7 @@ export const FrontpagePersonShortcutsPart = ({
     return (
         <div className={style.personShortcuts}>
             {sectionTitle && (
-                <Header size="large" level="2" className={style.header}>
+                <Header size="large" level="2">
                     {sectionTitle}
                 </Header>
             )}
@@ -57,33 +58,35 @@ export const FrontpagePersonShortcutsPart = ({
 
                     return (
                         <li key={title} className={style.listItem}>
-                            <LinkPanelNavnoSimple
+                            <LenkeBase
                                 href={href}
+                                className={style.linkPanel}
+                                analyticsComponent="Lenkepanel navno enkel"
                                 analyticsLinkGroup={title}
-                                className={style.link}
-                                //Hardkoder ikonene istedenfor å legge de inn i Enonic da det
-                                //kun er her vi bruker ikoner
-                                icon={
-                                    <>
-                                        {title === 'Saksbehandlingstider' && (
-                                            <BriefcaseClockIcon title="Koffert med klokke" />
-                                        )}
-                                        {title === 'Utbetalingsdatoer' && (
-                                            <CalendarIcon title="Kalender" />
-                                        )}
-                                        {title === 'Satser' && <WalletIcon title="Lommebok" />}
-                                        {title === 'Søknad og skjema' && (
-                                            <TasklistStartIcon title="Oppgaveliste start" />
-                                        )}
-                                        {title === 'Ettersendelse' && (
-                                            <FolderFileIcon title="Mappefil" />
-                                        )}
-                                    </>
-                                }
-                                iconClassname={style.icon}
                             >
-                                {title}
-                            </LinkPanelNavnoSimple>
+                                <div className={style.icon}>
+                                    {
+                                        // Hardkoder ikonene istedenfor å legge de inn i Enonic da det
+                                        // kun er her vi bruker ikoner
+                                        <>
+                                            {title === 'Saksbehandlingstider' && (
+                                                <BriefcaseClockIcon title="Koffert med klokke" />
+                                            )}
+                                            {title === 'Utbetalingsdatoer' && (
+                                                <CalendarIcon title="Kalender" />
+                                            )}
+                                            {title === 'Satser' && <WalletIcon title="Lommebok" />}
+                                            {title === 'Søknad og skjema' && (
+                                                <TasklistStartIcon title="Oppgaveliste start" />
+                                            )}
+                                            {title === 'Ettersendelse' && (
+                                                <FolderFileIcon title="Mappefil" />
+                                            )}
+                                        </>
+                                    }
+                                </div>
+                                <span className={style.text}>{title}</span>
+                            </LenkeBase>
                         </li>
                     );
                 })}

@@ -7,12 +7,7 @@
     background-color: var(--bg-color, var(--a-red-50));
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 2rem;
-        padding-bottom: 1.75rem;
-    }
-
-    .header {
-        margin-bottom: 0.5rem;
+        padding: 2rem 1rem 0.5rem;
     }
 
     .list {
@@ -43,20 +38,54 @@
                 }
             }
 
-            a {
+            .linkPanel {
+                display: flex;
+                text-decoration-thickness: 0.05em;
+                align-items: center;
                 padding: 0;
                 gap: 0.5rem;
-            }
-        }
+                width: 100%;
 
-        .link {
-            .icon {
-                width: 2.25rem;
-                height: 100%;
-                color: black;
-                display: flex;
-                margin: 4px;
-                align-items: flex-start;
+                &:focus {
+                    @include common.panel-focus-mixin(true);
+                }
+
+                .text {
+                    color: var(--a-text-default);
+                    font-feature-settings:
+                        'liga' off,
+                        'clig' off;
+                    font-size: 24px;
+                    font-style: normal;
+                    line-height: 150%; /* 36px */
+                    letter-spacing: -0.024px;
+                    text-decoration-style: solid;
+                    text-decoration-thickness: auto;
+                    text-underline-offset: auto;
+                    font-weight: 400;
+                    text-decoration-line: underline;
+                    text-decoration-skip-ink: none;
+                    text-underline-position: from-font;
+
+                    @media #{common.$mq-screen-mobile-small} {
+                        font-size: 1.25rem;
+                        letter-spacing: -0.02px;
+                    }
+                }
+                .icon {
+                    display: flex;
+                    flex-shrink: 0;
+                    width: 2rem;
+                    height: auto;
+                    color: var(--a-icon-subtle);
+
+                    margin: 4px;
+
+                    & > * {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
             }
         }
     }
