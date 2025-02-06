@@ -37,5 +37,8 @@ export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null>
                 return paths;
             }
 
-            return paths.filter((path) => !excludedPaths.has(path));
+            return paths
+                .filter((path) => !excludedPaths.has(path))
+                .filter((path) => (path.match(/\//g) || []).length < 2)
+                .slice(0, 20);
         });
