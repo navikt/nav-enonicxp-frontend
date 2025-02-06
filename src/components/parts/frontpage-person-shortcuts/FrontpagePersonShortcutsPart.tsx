@@ -69,17 +69,24 @@ export const FrontpagePersonShortcutsPart = ({
                                         // Hardkoder ikonene istedenfor å legge de inn i Enonic da det
                                         // kun er her vi bruker ikoner
                                         <>
-                                            {title === 'Saksbehandlingstider' && (
+                                            {(href.includes('saksbehandlingstider') ||
+                                                title.includes('Saksbehandlingstider')) && (
                                                 <BriefcaseClockIcon title="Koffert med klokke" />
                                             )}
-                                            {title === 'Utbetalingsdatoer' && (
+                                            {(href.includes('utbetalingsdatoer') ||
+                                                title.includes('Utbetalingsdatoer')) && (
                                                 <CalendarIcon title="Kalender" />
                                             )}
-                                            {title === 'Satser' && <WalletIcon title="Lommebok" />}
-                                            {title === 'Søknad og skjema' && (
+                                            {(href.includes('satser') ||
+                                                title.includes('Satser og beløp')) && (
+                                                <WalletIcon title="Lommebok" />
+                                            )}
+                                            {(href.includes('privatperson-soknader') ||
+                                                title.includes('Søknad og skjema')) && (
                                                 <TasklistStartIcon title="Oppgaveliste start" />
                                             )}
-                                            {title === 'Ettersendelse' && (
+                                            {(href.includes('privatperson-ettersendelse') ||
+                                                title.includes('Ettersendelse')) && (
                                                 <FolderFileIcon title="Mappefil" />
                                             )}
                                         </>
