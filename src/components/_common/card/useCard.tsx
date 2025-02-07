@@ -4,7 +4,7 @@ import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
@@ -84,7 +84,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
                 return;
             }
 
-            logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsPayload);
+            logAnalyticsEvent(AnalyticsEvents.NAVIGATION, analyticsPayload);
 
             const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
             if (isOpeningInNewWindow) {

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -44,7 +44,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                     }
                 )
             );
-            logAmplitudeEvent(AnalyticsEvents.FILTER, {
+            logAnalyticsEvent(AnalyticsEvents.FILTER, {
                 kategori: 'fritekst',
                 filternavn: analyticsRedaction(value),
                 komponent: 'OverviewTextFilter',

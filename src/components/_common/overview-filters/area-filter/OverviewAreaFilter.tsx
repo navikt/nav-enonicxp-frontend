@@ -1,6 +1,6 @@
 import React from 'react';
 import { Area } from 'types/areas';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -43,7 +43,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const handleFilterUpdate = (area: Area) => {
-        logAmplitudeEvent(AnalyticsEvents.FILTER, {
+        logAnalyticsEvent(AnalyticsEvents.FILTER, {
             kategori: 'område',
             filternavn: analyticsAreas[area],
             opprinnelse: 'oversiktsside områder',

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
@@ -38,7 +38,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         } else {
             setOpenAccordions(openAccordions.filter((i) => i !== index));
         }
-        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'trekkspill',
             komponent: 'Accordion',
