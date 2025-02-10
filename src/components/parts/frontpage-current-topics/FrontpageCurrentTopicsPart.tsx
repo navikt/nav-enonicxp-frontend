@@ -16,20 +16,30 @@ export type PartConfigFrontpageCurrentTopics = {
     title: string;
     contentList?: { data: ContentListData };
     link: LinkSelectable;
+    bgColor?: string;
+    itemColor?: string;
 };
 
 export const FrontpageCurrentTopicsPart = ({
     config,
 }: PartComponentProps<PartType.FrontpageCurrentTopics>) => {
     const { language } = usePageContentProps();
-    const { contentList, title, link } = config;
+    const { contentList, title, link, bgColor, itemColor } = config;
 
     if (!contentList?.data.sectionContents) {
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
 
     return (
-        <div className={style.currentTopics}>
+        <div
+            className={style.currentTopics}
+            style={
+                {
+                    '--bg-color': bgColor,
+                    '--item-color': itemColor,
+                } as React.CSSProperties
+            }
+        >
             <Header size={'large'} level={'2'} className={style.header}>
                 {title}
             </Header>
