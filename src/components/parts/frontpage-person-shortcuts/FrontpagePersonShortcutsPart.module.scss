@@ -4,7 +4,7 @@
     @include common.full-width-mixin();
     padding-top: 2.25rem;
     padding-bottom: 2.25rem;
-    background-color: var(--bg-color, var(--a-red-50));
+    background-color: var(--a-red-50);
 
     @media #{common.$mq-screen-mobile} {
         padding: 2rem 1rem 0.5rem;
