@@ -36,7 +36,7 @@ on:
         required: true
         type: string
       MELDEKORT_API_URL:
-        required: false
+        required: true
         type: string
       NAVNO_SEARCH_API_URL:
         required: true
