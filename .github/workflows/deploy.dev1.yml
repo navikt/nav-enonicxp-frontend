@@ -29,8 +29,8 @@ jobs:
       TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
       INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev1-${{ github.sha }}
-      NAVNO_API_URL: https://www.ansatt.dev.nav.no/person/navno-api
       NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
+      MELDEKORT_API_URL: https://meldekort-api-q1.intern.dev.nav.no/meldekort/meldekort-api/api/person
       FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
       NODE_ENV: ${{ inputs.NODE_ENV }}
     secrets:
