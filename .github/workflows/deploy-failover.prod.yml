@@ -21,7 +21,6 @@ jobs:
       XP_ORIGIN: https://www.nav.no
       TELEMETRY_URL: https://telemetry.nav.no/collect
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
-      NAVNO_API_URL: https://www.nav.no/person/navno-api
       NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
       FAILOVER_ORIGIN: https://www-failover.nav.no
       IS_FAILOVER_INSTANCE: true
