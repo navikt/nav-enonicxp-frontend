@@ -152,6 +152,7 @@ const config = {
         NAVNO_SEARCH_API_URL: process.env.NAVNO_SEARCH_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
+        MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
