@@ -35,6 +35,9 @@ on:
       NAVNO_API_URL:
         required: true
         type: string
+      MELDEKORT_API_URL:
+        required: false
+        type: string
       NAVNO_SEARCH_API_URL:
         required: true
         type: string
