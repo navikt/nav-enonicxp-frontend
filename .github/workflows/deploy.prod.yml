@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    if: github.event.release.target_commitish == 'master'
+    if: github.event.release.target_commitish == 'main'
     uses: ./.github/workflows/build-image.yml
     permissions:
       contents: "read"

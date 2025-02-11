@@ -119,7 +119,7 @@ jobs:
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
       - name: Upload static files to Nav CDN
-        uses: nais/deploy/actions/cdn-upload/v2@master
+        uses: nais/deploy/actions/cdn-upload/v2@main
         with:
           team: personbruker
           source: ./.next/static
