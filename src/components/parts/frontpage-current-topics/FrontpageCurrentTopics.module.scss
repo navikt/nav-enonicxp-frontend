@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .currentTopics {
-    background-color: common.$a-bg-subtle;
+    background-color: var(--bg-color, common.$a-bg-subtle);
     padding: 2.75rem;
     @include common.full-width-mixin();
 
@@ -32,7 +32,7 @@
 }
 
 .item {
-    background-color: white;
+    background-color: var(--item-color, var(--a-white));
     height: 100%;
 
     :global(.linkPanelNavnoTextContent) {
