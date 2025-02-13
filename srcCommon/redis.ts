@@ -9,9 +9,9 @@ import { pathToCacheKey } from 'srcCommon/cache-key';
 type XpResponseProps = Record<string, any>;
 
 const clientOptions: RedisClientOptions = {
-    url: process.env.REDIS_URI_PAGECACHE,
-    username: process.env.REDIS_USERNAME_PAGECACHE,
-    password: process.env.REDIS_PASSWORD_PAGECACHE,
+    url: process.env.VALKEY_URI_PAGECACHE,
+    username: process.env.VALKEY_USERNAME_PAGECACHE,
+    password: process.env.VALKEY_PASSWORD_PAGECACHE,
     socket: { keepAlive: 5000, connectTimeout: 10000 },
 } as const;
 
@@ -19,7 +19,7 @@ const validateClientOptions = () => {
     const isValid = !!(clientOptions.url && clientOptions.username && clientOptions.password);
 
     if (!isValid) {
-        logger.error(`Client options for Redis has missing parameters!`);
+        logger.error(`Client options for Valkey has missing parameters!`);
     }
 
     return isValid;
@@ -39,19 +39,19 @@ class RedisCacheImpl {
     constructor() {
         this.client = createClient(clientOptions)
             .on('connect', () => {
-                logger.info('Redis client connected');
+                logger.info('Valkey client connected');
             })
             .on('ready', () => {
-                logger.info('Redis client ready');
+                logger.info('Valkey client ready');
             })
             .on('end', () => {
-                logger.info('Redis client connection closed');
+                logger.info('Valkey client connection closed');
             })
             .on('reconnecting', () => {
-                logger.info('Redis client reconnecting');
+                logger.info('Valkey client reconnecting');
             })
             .on('error', (err) => {
-                logger.error(`Redis client error: ${err}`);
+                logger.error(`Valkey client error: ${err}`);
             });
     }
 
@@ -61,7 +61,7 @@ class RedisCacheImpl {
 
         return this.client.connect().then(() => {
             logger.info(
-                `Initialized redis client with url ${clientOptions.url} - Render key prefix: ${this.renderCacheKeyPrefix} - Response key prefix: ${this.responseCacheKeyPrefix}`
+                `Initialized valkey client with url ${clientOptions.url} - Render key prefix: ${this.renderCacheKeyPrefix} - Response key prefix: ${this.responseCacheKeyPrefix}`
             );
             return this;
         });
