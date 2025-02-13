@@ -69,24 +69,19 @@ export const FrontpagePersonShortcutsPart = ({
                                         // Hardkoder ikonene istedenfor å legge de inn i Enonic da det
                                         // kun er her vi bruker ikoner
                                         <>
-                                            {(href.includes('saksbehandlingstider') ||
-                                                title.includes('Saksbehandlingstider')) && (
+                                            {href.includes('saksbehandlingstider') && (
                                                 <BriefcaseClockIcon title="Koffert med klokke" />
                                             )}
-                                            {(href.includes('utbetalingsdatoer') ||
-                                                title.includes('Utbetalingsdatoer')) && (
+                                            {href.includes('utbetalingsdatoer') && (
                                                 <CalendarIcon title="Kalender" />
                                             )}
-                                            {(href.includes('satser') ||
-                                                title.includes('Satser og beløp')) && (
+                                            {href.includes('satser') && (
                                                 <WalletIcon title="Lommebok" />
                                             )}
-                                            {(href.includes('soknader') ||
-                                                title.includes('Søknad og skjema')) && (
+                                            {href.includes('soknader') && (
                                                 <TasklistStartIcon title="Oppgaveliste start" />
                                             )}
-                                            {(href.includes('ettersende') ||
-                                                title.includes('Ettersendelse')) && (
+                                            {href.includes('ettersende') && (
                                                 <FolderFileIcon title="Mappefil" />
                                             )}
                                         </>
