@@ -81,11 +81,11 @@ export const FrontpagePersonShortcutsPart = ({
                                                 title.includes('Satser og beløp')) && (
                                                 <WalletIcon title="Lommebok" />
                                             )}
-                                            {(href.includes('privatperson-soknader') ||
+                                            {(href.includes('soknader') ||
                                                 title.includes('Søknad og skjema')) && (
                                                 <TasklistStartIcon title="Oppgaveliste start" />
                                             )}
-                                            {(href.includes('privatperson-ettersendelse') ||
+                                            {(href.includes('ettersende') ||
                                                 title.includes('Ettersendelse')) && (
                                                 <FolderFileIcon title="Mappefil" />
                                             )}
