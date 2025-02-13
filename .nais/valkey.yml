@@ -1,18 +1,18 @@
 apiVersion: aiven.io/v1alpha1
-kind: Redis
+kind: Valkey
 metadata:
   labels:
     app: nav-enonicxp-frontend
     team: personbruker
-  name: redis-personbruker-{{ redis.instance }}
+  name: valkey-personbruker-{{ valkey.instance }}
   namespace: personbruker
 spec:
-  plan: {{ redis.plan }}
-  project: {{ redis.project }}
+  plan: {{ valkey.plan }}
+  project: {{ valkey.project }}
   maintenanceWindowDow: saturday
   maintenanceWindowTime: 20:00:00
   userConfig:
-    redis_maxmemory_policy: allkeys-lru
+    valkey_maxmemory_policy: allkeys-lru
 
 ---
 apiVersion: aiven.io/v1alpha1
@@ -20,10 +20,10 @@ kind: ServiceIntegration
 metadata:
   labels:
     team: personbruker
-  name: redis-personbruker-{{ redis.instance }}
+  name: valkey-personbruker-{{ valkey.instance }}
   namespace: personbruker
 spec:
-  project: {{ redis.project }}
+  project: {{ valkey.project }}
   integrationType: prometheus
-  destinationEndpointId: {{ redis.endpointId }}
-  sourceServiceName: redis-personbruker-{{ redis.instance }}
+  destinationEndpointId: {{ valkey.endpointId }}
+  sourceServiceName: valkey-personbruker-{{ valkey.instance }}
