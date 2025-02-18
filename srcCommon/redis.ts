@@ -37,6 +37,8 @@ class RedisCacheImpl {
     private renderCacheKeyPrefix = '';
 
     constructor() {
+        logger.info(clientOptions.url);
+        logger.info(clientOptions.username);
         this.client = createClient(clientOptions)
             .on('connect', () => {
                 logger.info('Valkey client connected');
