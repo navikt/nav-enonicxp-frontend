@@ -9,7 +9,7 @@ import { pathToCacheKey } from 'srcCommon/cache-key';
 type XpResponseProps = Record<string, any>;
 
 const clientOptions: RedisClientOptions = {
-    url: process.env.VALKEY_URI_PAGECACHE,
+    url: process.env.VALKEY_URI_PAGECACHE.replace('valkeys', 'rediss'),
     username: process.env.VALKEY_USERNAME_PAGECACHE,
     password: process.env.VALKEY_PASSWORD_PAGECACHE,
     socket: { keepAlive: 5000, connectTimeout: 10000 },
