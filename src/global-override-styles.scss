@@ -68,10 +68,8 @@
     .navds-body-long--small,
     .navds-body-long--medium,
     .navds-body-long--large {
-        &:not(li) {
-            line-height: 1.75;
-            margin-bottom: var(--a-spacing-9);
-        }
+        line-height: 1.75;
+        margin-bottom: var(--a-spacing-9);
     }
 
     .navds-heading--xsmall,
@@ -102,12 +100,6 @@
     .navds-heading--xlarge {
         font-size: var(--text-fluid-36-48);
         font-weight: 650;
-    }
-
-    h3,
-    h4,
-    h5 {
-        color: var(--a-gray-800);
     }
 
     strong {
