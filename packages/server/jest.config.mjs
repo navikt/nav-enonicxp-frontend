@@ -9,5 +9,6 @@ export default {
     },
     moduleNameMapper: {
         '@/shared/(.*)': '<rootDir>/../shared/src/$1',
+        'cache/(.*)': '<rootDir>/src/cache/$1',
     },
 };
