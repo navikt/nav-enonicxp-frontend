@@ -4,7 +4,7 @@
 import { networkInterfaces } from 'os';
 import { logger } from '@/shared/logger';
 import { objectToQueryString } from '@/shared/fetch-utils';
-import { redisCache } from './page-cache-handler';
+import { redisCache } from 'cache/page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =
     process.env;
@@ -57,6 +57,7 @@ export const initRevalidatorProxyHeartbeat = () => {
 
     const heartbeatFunc = () => {
         const url = getProxyLivenessUrl();
+        logger.info(`Revalidtor: heartbeat url: ${url}`);
         if (!url) {
             logger.error('Failed to determine revalidator heartbeat url!');
             return;
