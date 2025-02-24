@@ -8,8 +8,8 @@ jobs:
   build:
     uses: ./.github/workflows/build-image.yml
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: read
+      id-token: write
     with:
       environment: prod-gcp:failover
       imagename: failover-prod
@@ -34,7 +34,7 @@ jobs:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
     permissions:
-      id-token: "write"
+      id-token: write
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-gcp

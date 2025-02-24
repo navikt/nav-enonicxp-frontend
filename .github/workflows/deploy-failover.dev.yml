@@ -19,7 +19,7 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     permissions:
-      id-token: "write"
+      id-token: write
     with:
       image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
       cluster: dev-gcp

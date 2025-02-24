@@ -67,8 +67,8 @@ jobs:
     name: Build docker image
     runs-on: ubuntu-latest
     permissions:
-      contents: "read"
-      id-token: "write"
+      contents: read
+      id-token: write
     environment: ${{ inputs.environment }}
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
@@ -78,7 +78,7 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
       - name: Set app environmment
