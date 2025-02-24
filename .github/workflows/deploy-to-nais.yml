@@ -1,56 +1,56 @@
 name: Deploy to nais
 on:
-  workflow_call:
-    inputs:
-      image:
-        required: true
-        type: string
-      cluster:
-        required: true
-        type: string
-      config_file:
-        required: true
-        type: string
-      vars_file:
-        required: true
-        type: string
-      hpa_file:
-        required: false
-        type: string
-      deploy_redis:
-        required: false
-        type: boolean
+    workflow_call:
+        inputs:
+            image:
+                required: true
+                type: string
+            cluster:
+                required: true
+                type: string
+            config_file:
+                required: true
+                type: string
+            vars_file:
+                required: true
+                type: string
+            hpa_file:
+                required: false
+                type: string
+            deploy_redis:
+                required: false
+                type: boolean
 
 jobs:
-  deploy:
-    name: Deploy to nais k8s
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Deploy Redis
-        if: ${{ inputs.deploy_redis == true }}
-        uses: nais/deploy/actions/deploy@v2
-        timeout-minutes: 1
-        continue-on-error: true
-        env:
-          CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/redis.yml
-          VARS: .nais/vars/${{ inputs.vars_file }}
-      - name: Deploy HPA
-        if: ${{ inputs.hpa_file }}
-        uses: nais/deploy/actions/deploy@v2
-        timeout-minutes: 1
-        continue-on-error: true
-        env:
-          CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/hpa/${{inputs.hpa_file}}
-      - name: Deploy application
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/${{ inputs.config_file }}
-          VAR: image=${{ inputs.image }}
-          VARS: .nais/vars/${{ inputs.vars_file }}
+    deploy:
+        name: Deploy to nais k8s
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+            - name: Deploy Redis
+              if: ${{ inputs.deploy_redis == true }}
+              uses: nais/deploy/actions/deploy@v2
+              timeout-minutes: 1
+              continue-on-error: true
+              env:
+                  CLUSTER: ${{ inputs.cluster }}
+                  RESOURCE: .nais/redis.yml
+                  VARS: .nais/vars/${{ inputs.vars_file }}
+            - name: Deploy HPA
+              if: ${{ inputs.hpa_file }}
+              uses: nais/deploy/actions/deploy@v2
+              timeout-minutes: 1
+              continue-on-error: true
+              env:
+                  CLUSTER: ${{ inputs.cluster }}
+                  RESOURCE: .nais/hpa/${{inputs.hpa_file}}
+            - name: Deploy application
+              uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: ${{ inputs.cluster }}
+                  RESOURCE: .nais/${{ inputs.config_file }}
+                  VAR: image=${{ inputs.image }}
+                  VARS: .nais/vars/${{ inputs.vars_file }}

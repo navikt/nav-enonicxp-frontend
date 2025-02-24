@@ -1,27 +1,27 @@
 name: Deploy failover image to dev
 on:
-  workflow_dispatch:
-    inputs:
-      image_name:
-        description: 'Image name'
-        required: true
-        type: string
-      app_env:
-        description: 'Dev environment'
-        required: true
-        default: 'dev1'
-        type: choice
-        options:
-          - dev1
-          - dev2
+    workflow_dispatch:
+        inputs:
+            image_name:
+                description: 'Image name'
+                required: true
+                type: string
+            app_env:
+                description: 'Dev environment'
+                required: true
+                default: 'dev1'
+                type: choice
+                options:
+                    - dev1
+                    - dev2
 
 jobs:
-  deploy:
-    uses: ./.github/workflows/deploy-to-nais.yml
-    permissions:
-      id-token: write
-    with:
-      image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
-      cluster: dev-gcp
-      vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
-      config_file: config-failover.yml
+    deploy:
+        uses: ./.github/workflows/deploy-to-nais.yml
+        permissions:
+            id-token: write
+        with:
+            image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
+            cluster: dev-gcp
+            vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
+            config_file: config-failover.yml
