@@ -63,74 +63,74 @@ on:
                 value: ${{ jobs.build_image.outputs.image }}
 
 jobs:
-  build_image:
-    name: Build docker image
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    environment: ${{ inputs.environment }}
-    outputs:
-      image: ${{ steps.docker-push.outputs.image }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: 'https://npm.pkg.github.com'
-          cache: 'npm'
-      - name: Set app environmment
-        run: |
-          cat > .env <<EOF
-          ENV=${{ inputs.ENV }}
-          NODE_ENV=${{ inputs.NODE_ENV }}
-          ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
-          APP_ORIGIN=${{ inputs.APP_ORIGIN }}
-          DECORATOR_URL=${{ inputs.DECORATOR_URL }}
-          XP_ORIGIN=${{ inputs.XP_ORIGIN }}
-          TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
-          REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
-          FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
-          IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
-          INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
-          NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
-          MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
-          ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
-          IMAGE_CACHE_DIR=/tmp/images
-          NEXT_TELEMETRY_DISABLED=1
-          EOF
-      - name: Nextjs cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Run linting
-        run: npm run lint
-      - name: Run tests
-        run: npm run test
-      - name: Build application
-        run: npm run build
-        env:
-          SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-      - name: Upload static files to Nav CDN
-        uses: nais/deploy/actions/cdn-upload/v2@master
-        with:
-          team: personbruker
-          source: ./.next/static
-          destination: nav-enonicxp-frontend/_next
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-      - name: Build and push docker image
-        uses: nais/docker-build-push@v0
-        id: docker-push
-        with:
-          team: personbruker
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          image_suffix: ${{ inputs.imagename }}
+    build_image:
+        name: Build docker image
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        environment: ${{ inputs.environment }}
+        outputs:
+            image: ${{ steps.docker-push.outputs.image }}
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+            - name: Setup node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  registry-url: 'https://npm.pkg.github.com'
+                  cache: 'npm'
+            - name: Set app environmment
+              run: |
+                  cat > .env <<EOF
+                  ENV=${{ inputs.ENV }}
+                  NODE_ENV=${{ inputs.NODE_ENV }}
+                  ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
+                  APP_ORIGIN=${{ inputs.APP_ORIGIN }}
+                  DECORATOR_URL=${{ inputs.DECORATOR_URL }}
+                  XP_ORIGIN=${{ inputs.XP_ORIGIN }}
+                  TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
+                  REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
+                  FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
+                  IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
+                  INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
+                  NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
+                  MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
+                  ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
+                  IMAGE_CACHE_DIR=/tmp/images
+                  NEXT_TELEMETRY_DISABLED=1
+                  EOF
+            - name: Nextjs cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ github.workspace }}/.next/cache
+                  key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies
+              run: npm ci
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Run linting
+              run: npm run lint
+            - name: Run tests
+              run: npm run test
+            - name: Build application
+              run: npm run build
+              env:
+                  SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+            - name: Upload static files to Nav CDN
+              uses: nais/deploy/actions/cdn-upload/v2@master
+              with:
+                  team: personbruker
+                  source: ./.next/static
+                  destination: nav-enonicxp-frontend/_next
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+            - name: Build and push docker image
+              uses: nais/docker-build-push@v0
+              id: docker-push
+              with:
+                  team: personbruker
+                  project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+                  identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+                  image_suffix: ${{ inputs.imagename }}

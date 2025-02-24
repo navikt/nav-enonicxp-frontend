@@ -16,12 +16,12 @@ on:
                     - dev2
 
 jobs:
-  deploy:
-    uses: ./.github/workflows/deploy-to-nais.yml
-    permissions:
-      id-token: write
-    with:
-      image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
-      cluster: dev-gcp
-      vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
-      config_file: config-failover.yml
+    deploy:
+        uses: ./.github/workflows/deploy-to-nais.yml
+        permissions:
+            id-token: write
+        with:
+            image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
+            cluster: dev-gcp
+            vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
+            config_file: config-failover.yml
