@@ -41,7 +41,7 @@ jobs:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
     permissions:
-      id-token: "write"
+      id-token: write
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: dev-gcp

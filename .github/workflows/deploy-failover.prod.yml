@@ -5,39 +5,39 @@ on:
     workflow_dispatch:
 
 jobs:
-    build:
-        uses: ./.github/workflows/build-image.yml
-        permissions:
-            contents: read
-            id-token: write
-        with:
-            environment: prod-gcp:failover
-            imagename: failover-prod
-            ENV: prod
-            ADMIN_ORIGIN: https://portal-admin.oera.no
-            APP_ORIGIN: https://www.nav.no
-            REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
-            DECORATOR_URL: https://www.nav.no/dekoratoren
-            XP_ORIGIN: https://www.nav.no
-            TELEMETRY_URL: https://telemetry.nav.no/collect
-            MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
-            INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
-            NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
-            FAILOVER_ORIGIN: https://www-failover.nav.no
-            IS_FAILOVER_INSTANCE: true
-            NODE_ENV: production
-        secrets:
-            READER_TOKEN: ${{ secrets.READER_TOKEN }}
-            SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-            NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-    deploy:
-        uses: ./.github/workflows/deploy-to-nais.yml
-        needs: build
-        permissions:
-            id-token: write
-        with:
-            image: ${{ needs.build.outputs.image }}
-            cluster: prod-gcp
-            vars_file: vars-prod-failover.yml
-            config_file: config-failover.yml
-            hpa_file: hpa-prod-failover.yml
+  build:
+    uses: ./.github/workflows/build-image.yml
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      environment: prod-gcp:failover
+      imagename: failover-prod
+      ENV: prod
+      ADMIN_ORIGIN: https://portal-admin.oera.no
+      APP_ORIGIN: https://www.nav.no
+      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
+      DECORATOR_URL: https://www.nav.no/dekoratoren
+      XP_ORIGIN: https://www.nav.no
+      TELEMETRY_URL: https://telemetry.nav.no/collect
+      MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
+      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
+      NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
+      FAILOVER_ORIGIN: https://www-failover.nav.no
+      IS_FAILOVER_INSTANCE: true
+      NODE_ENV: production
+    secrets:
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+  deploy:
+    uses: ./.github/workflows/deploy-to-nais.yml
+    needs: build
+    permissions:
+      id-token: write
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: prod-gcp
+      vars_file: vars-prod-failover.yml
+      config_file: config-failover.yml
+      hpa_file: hpa-prod-failover.yml
