@@ -48,4 +48,4 @@ jobs:
             vars_file: vars-dev1.yml
             config_file: config.yml
             hpa_file: hpa-dev1.yml
-            deploy-valkey: true
+            deploy_valkey: true
