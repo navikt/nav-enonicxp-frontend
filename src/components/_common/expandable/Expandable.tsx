@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
@@ -10,6 +10,7 @@ import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to'
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
 
+import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
 import style from './Expandable.module.scss';
 
 type Props = {
@@ -45,6 +46,8 @@ export const Expandable = ({
         },
     });
 
+    useCheckAndOpenPanel(isOpen, setIsOpen, accordionRef, anchorId);
+
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         handleStickyScrollOffset(isOpening, accordionRef.current);
@@ -56,37 +59,6 @@ export const Expandable = ({
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });
-    };
-
-    const checkAndOpenPanel = () => {
-        if (isOpen) {
-            return;
-        }
-
-        if (window.location.toString().includes('expandall=true')) {
-            setIsOpen(true);
-            return;
-        }
-
-        const targetId = window.location.hash.replace('#', '');
-        if (!targetId) {
-            return;
-        }
-
-        if (targetId === anchorId) {
-            setIsOpen(true);
-            return;
-        }
-
-        const elementWithId = document.getElementById(targetId);
-        if (accordionRef.current?.contains(elementWithId)) {
-            setIsOpen(true);
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
-        }
-    };
-
-    const hashChangeHandler = () => {
-        checkAndOpenPanel();
     };
 
     const getHeaderIcon = () => {
@@ -105,24 +77,8 @@ export const Expandable = ({
         return null;
     };
 
-    useEffect(() => {
-        window.addEventListener('hashchange', hashChangeHandler);
-
-        return () => {
-            window.removeEventListener('hashchange', hashChangeHandler);
-        };
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        checkAndOpenPanel();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorId]);
-
-    // Adjust appearande in styling if not type was set for this content
     // This is the wrong use of this component, but some legacy pages have still to
-    // be upradet editorial wise.
+    // be uprated editorial wise.
     const isLegacyUsage = !expandableType;
 
     return (

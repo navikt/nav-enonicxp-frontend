@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -13,6 +13,7 @@ import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
+import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
 import styles from './ReadMorePart.module.scss';
 
 export type PartConfigReadMore = {
@@ -32,11 +33,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
         callback: () => setIsOpen(true),
     });
 
-    useEffect(() => {
-        if (window.location.toString().includes('expandall=true')) {
-            setIsOpen(true);
-        }
-    }, []);
+    useCheckAndOpenPanel(isOpen, setIsOpen, divRef);
 
     if (!config?.html || !config.title) {
         return <EditorHelp text={'Legg inn tittel og beskrivelse for "les mer".'} type={'error'} />;
