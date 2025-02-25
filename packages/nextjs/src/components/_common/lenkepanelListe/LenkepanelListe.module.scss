@@ -1,0 +1,35 @@
+@use 'common' as common;
+
+.lenkepanelListe {
+    width: 100%;
+    margin-bottom: 2rem;
+
+    .tittel {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .ingress {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .item {
+        text-align: start;
+        margin-bottom: 1rem;
+        @media #{common.$mq-screen-mobile} {
+            width: 100%;
+        }
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            width: calc(50% - 0.5rem);
+        }
+    }
+}

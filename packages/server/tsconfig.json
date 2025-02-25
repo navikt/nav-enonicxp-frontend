@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "target": "es2022",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "lib": ["esnext"],
+        "moduleResolution": "node",
+        "module": "esnext",
+        "baseUrl": "src",
+        "noEmit": true,
+        "paths": {
+            "@/shared/*": ["../../shared/src/*"],
+            "@/cache/*": ["src/cache/*"]
+        }
+    },
+    "include": ["nodeenv.d.ts", "src/**/*.ts", "../nodeenv.d.ts"]
+}

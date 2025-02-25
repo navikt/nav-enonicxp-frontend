@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "es2022",
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "baseUrl": "src",
+        "jsx": "preserve",
+        "incremental": true,
+        "downlevelIteration": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "skipLibCheck": true,
+        "paths": {
+            "@/nextjs/*": ["../../nextjs/src/*"],
+            "@/shared/*": ["../../shared/src/*"]
+        }
+    },
+    "include": ["nodeenv.d.ts"],
+    "exclude": ["node_modules"]
+}

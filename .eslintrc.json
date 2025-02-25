@@ -1,13 +1,7 @@
 {
-    "plugins": ["css-modules", "no-relative-import-paths"],
-    "extends": [
-        "next/core-web-vitals",
-        "plugin:css-modules/recommended",
-        "plugin:storybook/recommended"
-    ],
-    "ignorePatterns": ["next.config.js"],
+    "plugins": ["css-modules", "@typescript-eslint"],
+    "extends": [],
     "rules": {
-        "@next/next/no-img-element": 0,
         "css-modules/no-unused-class": [
             1,
             {
@@ -20,36 +14,23 @@
                 "camelCase": true
             }
         ],
-        "import/order": [
+        "@typescript-eslint/no-unused-vars": [
             "warn",
             {
-                "groups": [
-                    ["builtin", "external"],
-                    ["internal", "parent", "index", "object", "unknown", "type"],
-                    "sibling"
-                ],
-                "pathGroups": [
-                    {
-                        "pattern": "./**/*.module.scss",
-                        "group": "sibling",
-                        "position": "after"
-                    }
-                ]
-            }
-        ],
-        "no-console": "warn",
-        "no-alert": "error",
-        "no-relative-import-paths/no-relative-import-paths": [
-            "warn",
-            {
-                "allowSameFolder": true,
-                "rootDir": "src"
+                "varsIgnorePattern": "^_",
+                "argsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
             }
         ]
     },
-    "settings": {
-        "css-modules": {
-            "basePath": "src"
+    "overrides": [
+        {
+            "files": ["workspaces/nextjs/**/*.ts", "workspaces/nextjs/**/*.tsx"],
+            "settings": {
+                "css-modules": {
+                    "basePath": "workspaces/nextjs/src"
+                }
+            }
         }
-    }
+    ]
 }
