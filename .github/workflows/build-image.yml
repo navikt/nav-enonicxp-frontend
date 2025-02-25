@@ -32,7 +32,7 @@ on:
       INNLOGGINGSSTATUS_URL:
         required: true
         type: string
-      NAVNO_API_URL:
+      MELDEKORT_API_URL:
         required: true
         type: string
       NAVNO_SEARCH_API_URL:
@@ -95,8 +95,8 @@ jobs:
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
           IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
-          NAVNO_API_URL=${{ inputs.NAVNO_API_URL }}
           NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
+          MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
           ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
           IMAGE_CACHE_DIR=/tmp/images
           NEXT_TELEMETRY_DISABLED=1

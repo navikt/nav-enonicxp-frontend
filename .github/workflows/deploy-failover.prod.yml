@@ -20,8 +20,8 @@ jobs:
       DECORATOR_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
       TELEMETRY_URL: https://telemetry.nav.no/collect
+      MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
-      NAVNO_API_URL: https://www.nav.no/person/navno-api
       NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
       FAILOVER_ORIGIN: https://www-failover.nav.no
       IS_FAILOVER_INSTANCE: true

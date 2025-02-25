@@ -7,7 +7,7 @@
 
     @include common.full-width-mixin();
 
-    background-color: common.$a-white;
+    background-color: var(--a-deepblue-50);
     padding-top: $padding-desktop - $whiteGap;
     padding-bottom: $padding-desktop;
 

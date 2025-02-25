@@ -2,7 +2,7 @@ name: Deploy prod-alerts
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - .nais/alerts.yml
 

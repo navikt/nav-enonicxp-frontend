@@ -32,6 +32,7 @@ import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/Mai
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
+import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
@@ -95,6 +96,8 @@ const PartComponentMapper = ({
             return <FrontpageCurrentTopicsPart {...partProps} />;
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
+        case PartType.FrontpagePersonShortcuts:
+            return <FrontpagePersonShortcutsPart {...partProps} />;
         case PartType.Header:
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:

@@ -3,7 +3,7 @@
 $chatPointerSize: 1.5rem;
 
 .chat {
-    $bgColor: common.$a-blue-50;
+    $bgColor: var(--a-white);
     $borderRadius: 24px;
 
     position: relative;
@@ -19,7 +19,6 @@ $chatPointerSize: 1.5rem;
         height: 0;
         border-right: $chatPointerSize solid transparent;
         border-top: $chatPointerSize solid $bgColor;
-
         display: block;
     }
 }

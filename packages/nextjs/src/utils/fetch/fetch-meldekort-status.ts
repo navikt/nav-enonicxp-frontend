@@ -19,7 +19,7 @@ const meldekortStatusMock: MeldekortStatusResponse = {
     nesteInnsendingAvMeldekort: '2022-07-23',
 };
 
-const meldekortStatusUrl = `${process.env.NAVNO_API_URL}/meldekortstatus`;
+const meldekortStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
 
 export const fetchAndSetMeldekortStatus = () => {
     if (process.env.ENV === 'localhost') {

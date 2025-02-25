@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -26,7 +26,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        logAmplitudeEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
+        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'kontorinformasjon',
             komponent: 'OfficeInformation',
@@ -54,7 +54,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('location')}
                         </Heading>
-                        {beliggenhet.adresseTilleggsnavn && (
+                        {beliggenhet?.adresseTilleggsnavn && (
                             <BodyShort>{beliggenhet.adresseTilleggsnavn}</BodyShort>
                         )}
                         <BodyShort>{visitingAddress}</BodyShort>
