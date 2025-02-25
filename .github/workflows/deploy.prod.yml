@@ -1,44 +1,64 @@
 name: Deploy to prod
 on:
-  release:
-       types: [released]
+    push:
+        branches:
+            - main
 
 jobs:
-  build:
-    if: github.event.release.target_commitish == 'main'
-    uses: ./.github/workflows/build-image.yml
-    permissions:
-      contents: "read"
-      id-token: "write"
-    with:
-      environment: prod-gcp
-      imagename: release-${{ github.ref_name }}
-      ENV: prod
-      ADMIN_ORIGIN: https://portal-admin.oera.no
-      APP_ORIGIN: https://www.nav.no
-      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
-      DECORATOR_URL: https://www.nav.no/nav-dekoratoren
-      XP_ORIGIN: https://www.nav.no
-      TELEMETRY_URL: https://telemetry.nav.no/collect
-      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
-      NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
-      RELEASE_TAG: ${{  github.ref_name }}
-      MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
-      FAILOVER_ORIGIN: https://www-failover.nav.no
-      NODE_ENV: production
-    secrets:
-      READER_TOKEN: ${{ secrets.READER_TOKEN }}
-      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-  deploy:
-    uses: ./.github/workflows/deploy-to-nais.yml
-    needs: build
-    permissions:
-      id-token: "write"
-    with:
-      image: ${{ needs.build.outputs.image }}
-      cluster: prod-gcp
-      vars_file: vars-prod.yml
-      config_file: config.yml
-      hpa_file: hpa-prod.yml
-      deploy_valkey: true
+    build:
+        uses: ./.github/workflows/build-image.yml
+        permissions:
+            contents: read
+            id-token: write
+        with:
+            environment: prod-gcp
+            imagename: release-${{ github.ref_name }}
+            ENV: prod
+            ADMIN_ORIGIN: https://portal-admin.oera.no
+            APP_ORIGIN: https://www.nav.no
+            REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
+            DECORATOR_URL: https://www.nav.no/nav-dekoratoren
+            XP_ORIGIN: https://www.nav.no
+            TELEMETRY_URL: https://telemetry.nav.no/collect
+            INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
+            NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
+            RELEASE_TAG: ${{  github.ref_name }}
+            MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
+            FAILOVER_ORIGIN: https://www-failover.nav.no
+            NODE_ENV: production
+        secrets:
+            READER_TOKEN: ${{ secrets.READER_TOKEN }}
+            SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+            NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+    deploy:
+        uses: ./.github/workflows/deploy-to-nais.yml
+        needs: build
+        permissions:
+            id-token: write
+        with:
+            image: ${{ needs.build.outputs.image }}
+            cluster: prod-gcp
+            vars_file: vars-prod.yml
+            config_file: config.yml
+            hpa_file: hpa-prod.yml
+            deploy_valkey: true
+
+    release:
+        name: Create a new release
+        needs: deploy
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            id-token: write
+        steps:
+            - name: Generate unique tag name
+              run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  target_commitish: main
+                  tag_name: release/prod@${{ env.TAG_NAME }} # Generates a unique tag using timestamp
+                  name: Release ${{ github.ref_name }}
+                  generate_release_notes: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }} # This is a PAT with repo permissions
