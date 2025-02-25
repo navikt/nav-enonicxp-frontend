@@ -41,4 +41,4 @@ jobs:
       vars_file: vars-prod.yml
       config_file: config.yml
       hpa_file: hpa-prod.yml
-      deploy_redis: true
+      deploy_valkey: true

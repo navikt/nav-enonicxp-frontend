@@ -17,7 +17,7 @@ on:
       hpa_file:
         required: false
         type: string
-      deploy_redis:
+      deploy_valkey:
         required: false
         type: boolean
 
@@ -30,14 +30,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Deploy Redis
-        if: ${{ inputs.deploy_redis == true }}
+      - name: Deploy Valkey
+        if: ${{ inputs.deploy_valkey == true }}
         uses: nais/deploy/actions/deploy@v2
         timeout-minutes: 1
         continue-on-error: true
         env:
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/redis.yml
+          RESOURCE: .nais/valkey.yml
           VARS: .nais/vars/${{ inputs.vars_file }}
       - name: Deploy HPA
         if: ${{ inputs.hpa_file }}

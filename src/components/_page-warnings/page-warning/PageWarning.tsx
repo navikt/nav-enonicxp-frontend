@@ -12,10 +12,10 @@ type Props = {
 
 export const PageWarning = ({ whiteBg, size = 'small', children }: Props) => {
     return (
-        <div className={classNames(style.container, whiteBg && style.whiteBg)}>
+        <section className={classNames(style.container, whiteBg && style.whiteBg)}>
             <AlertBox variant={'warning'} size={size} className={style.warning}>
                 {children}
             </AlertBox>
-        </div>
+        </section>
     );
 };
