@@ -1,9 +1,9 @@
 name: Update Playwright screenshots
 on:
   push:
-    branches: [main]
+    branches: [playwright-regresiion-test] # TODO: endre tilbake til main før merge
   pull_request:
-    branches: [main]
+    branches: [playwright-regresiion-test]
 jobs:
   update-screenshots:
     name: Update screenshots
