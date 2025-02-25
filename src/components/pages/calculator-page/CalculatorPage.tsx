@@ -9,9 +9,9 @@ import { usePageContentProps } from 'store/pageContext';
 import style from './CalculatorPage.module.scss';
 
 export const CalculatorPage = (props: CalculatorProps) => {
-    const { editorView } = usePageContentProps();
+    const { editorView, noRedirect } = usePageContentProps();
 
-    if (!editorView) {
+    if (!editorView && !noRedirect) {
         return <RedirectTo404 />;
     }
 
