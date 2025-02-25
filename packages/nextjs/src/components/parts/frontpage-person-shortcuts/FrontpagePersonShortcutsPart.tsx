@@ -10,7 +10,6 @@ import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { classNames } from 'utils/classnames';
 import style from './FrontpagePersonShortcutsPart.module.scss';
 
 type Shortcut = {

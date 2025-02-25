@@ -21,25 +21,22 @@
         "express": "Major v5 not compatible per 6. November. Keep to 4.x.x"
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.1.0",
         "cookie-parser": "1.4.7",
         "dotenv": "16.4.5",
         "express": "4.21.1",
         "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
         "on-headers": "1.0.2",
-        "prom-client": "15.1.3",
-        "ws": "8.18.0"
+        "prom-client": "15.1.3"
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.7",
         "@types/express": "4.17.21",
         "@types/on-headers": "1.0.3",
-        "@types/ws": "8.5.10",
         "@types/mock-fs": "4.13.4",
-        "concurrently": "8.2.2",
-        "mock-fs": "5.2.0",
-        "husky": "9.1.6",
+        "concurrently": "9.0.1",
+        "mock-fs": "5.5.0",
+        "husky": "9.1.7",
         "lint-staged": "15.2.10",
         "nodemon": "3.1.4"
     }
