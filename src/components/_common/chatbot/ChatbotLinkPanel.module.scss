@@ -7,10 +7,8 @@ $chatPointerSize: 1.5rem;
     $borderRadius: 24px;
 
     position: relative;
-    background-color: purple !important;
+    background-color: $bgColor;
     border-radius: $borderRadius $borderRadius $borderRadius 0;
-
-    padding: 1rem !important;
 
     &:after {
         content: '';
