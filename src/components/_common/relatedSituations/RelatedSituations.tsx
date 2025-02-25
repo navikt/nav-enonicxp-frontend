@@ -31,16 +31,18 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
 
     const getStringPart = translator('related', language);
     const defaultTitle = getStringPart('otherOffers');
-    const actualTitle = title || defaultTitle;
+    const actualTitle = (title || defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
 
     return (
         <div
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
             id={getAnchorId(actualTitle)}
         >
-            <Heading level="3" size="medium" spacing>
-                {actualTitle}
-            </Heading>
+            {actualTitle && (
+                <Heading level="3" size="medium" spacing>
+                    {actualTitle}
+                </Heading>
+            )}
             <BodyLong className={style.description}>
                 {description || getStringPart('moreInformation')}
             </BodyLong>
