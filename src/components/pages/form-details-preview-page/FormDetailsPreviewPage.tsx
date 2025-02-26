@@ -13,9 +13,9 @@ const displayConfig = {
 };
 
 export const FormDetailsPreviewPage = (props: FormDetailsPageProps) => {
-    const { data, editorView } = props;
+    const { data, editorView, noRedirect } = props;
 
-    if (!editorView) {
+    if (!editorView && !noRedirect) {
         return <RedirectTo404 />;
     }
 
