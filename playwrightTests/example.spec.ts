@@ -21,6 +21,7 @@ for (const story of stories) {
         await page.goto(`/iframe.html?${params.toString()}`);
         await page.waitForSelector('#storybook-root');
         // await page.waitForLoadState('networkidle'); TODO sjekk senere :)
+        //provoke test run
 
         await expect(page.locator('#storybook-root')).toHaveScreenshot(
             `${story.id}-${workerInfo.project.name}-${process.platform}.png`,
