@@ -52,26 +52,14 @@ jobs:
                 pull_number: context.payload.pull_request.number
               });
               
-              const screenshotsByComponent = {};
+              const screenshotFiles = changedFiles.data
+                .filter(file => file.filename.endsWith('.png'));
               
-              for (const file of changedFiles.data) {
-                if (file.filename.endsWith('.png')) {
-                  const componentName = file.filename.split('/')[0];
-                  if (!screenshotsByComponent[componentName]) {
-                    screenshotsByComponent[componentName] = [];
-                  }
-                  screenshotsByComponent[componentName].push(file.filename);
-                }
-              }
+              let message = '## Visual changes detected, check before merging:\n\n';
               
-              let message = '## Visual changes detected, check before merging:';
-              
-              for (const file of files) {
-                const fileName = file.split('/').pop();
-                const fileId = Buffer.from(file).toString('base64');
-                message += `- \`${fileName}\`\n`;
-              }
-              message += '\n';
+              screenshotFiles.forEach(file => {
+                message += `- \`${file.filename}\`\n`;
+              });
               
               await github.rest.pulls.createReview({
                 owner,
