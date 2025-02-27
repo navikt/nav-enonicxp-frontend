@@ -36,8 +36,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Playwright screenshots"
-      - name: Comment success
-        uses: thollander/actions-comment-pull-request@v3
-        with:
-          message: |
-            ### 🎉 Successfully updated and committed Playwright snapshots! 🎉
