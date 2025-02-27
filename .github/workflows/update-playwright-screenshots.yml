@@ -1,9 +1,9 @@
 name: Update Playwright screenshots
 on:
   push:
-    branches: [main]
+    branches: [playwright-regresiion-test] # TODO: endre tilbake til main før merge
   pull_request:
-    branches: [main]
+    branches: [playwright-regresiion-test]
 jobs:
   update-screenshots:
     name: Update screenshots
@@ -36,8 +36,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Playwright screenshots"
-      - name: Comment success
-        uses: thollander/actions-comment-pull-request@v3
-        with:
-          message: |
-            ### 🎉 Successfully updated and committed Playwright snapshots! 🎉
