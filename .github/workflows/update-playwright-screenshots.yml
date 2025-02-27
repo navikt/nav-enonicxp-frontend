@@ -53,12 +53,13 @@ jobs:
               });
               
               const screenshotFiles = changedFiles.data
-                .filter(file => file.filename.endsWith('.png'));
+                .filter(file => file.filename.endsWith('.png'))
+                .map(file => file.filename.split('/').pop());
               
               let message = '## Visual changes detected, check before merging:\n\n';
               
-              screenshotFiles.forEach(file => {
-                message += `- \`${file.filename}\`\n`;
+              screenshotFiles.forEach(fileName => {
+                message += `- \`${fileName}\`\n`;
               });
               
               await github.rest.pulls.createReview({
