@@ -6,7 +6,7 @@ import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
-import { smoothScrollToTarget, handleStickyScrollOffset } from 'utils/scroll-to';
+import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
 

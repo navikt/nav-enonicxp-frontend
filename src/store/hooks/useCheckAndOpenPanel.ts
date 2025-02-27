@@ -8,6 +8,9 @@ export const useCheckAndOpenPanel = (
     anchorId?: string
 ) => {
     const checkAndOpenPanel = () => {
+        const targetId = window.location.hash.replace('#', '');
+        const elementWithId = document.getElementById(targetId);
+
         if (isOpen) {
             return;
         }
@@ -17,7 +20,6 @@ export const useCheckAndOpenPanel = (
             return;
         }
 
-        const targetId = window.location.hash.replace('#', '');
         if (!targetId) {
             return;
         }
@@ -27,22 +29,17 @@ export const useCheckAndOpenPanel = (
             return;
         }
 
-        const elementWithId = document.getElementById(targetId);
         if (ref.current?.contains(elementWithId)) {
             setIsOpen(true);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
     };
 
-    const hashChangeHandler = () => {
-        checkAndOpenPanel();
-    };
-
     useEffect(() => {
-        window.addEventListener('hashchange', hashChangeHandler);
+        window.addEventListener('hashchange', checkAndOpenPanel);
 
         return () => {
-            window.removeEventListener('hashchange', hashChangeHandler);
+            window.removeEventListener('hashchange', checkAndOpenPanel);
         };
     }, []);
 
