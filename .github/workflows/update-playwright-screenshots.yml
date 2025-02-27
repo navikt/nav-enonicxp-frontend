@@ -45,11 +45,42 @@ jobs:
           script: |
             try {
               const { repo, owner } = context.repo;
+              
+              // Get the list of changed files from the commit
+              const changedFiles = await github.rest.pulls.listFiles({
+                owner,
+                repo,
+                pull_number: context.payload.pull_request.number
+              });
+              
+              // Filter for only screenshot files
+              const screenshotFiles = changedFiles.data
+                .filter(file => file.filename.endsWith('.png'))
+                .map(file => `- ${file.filename}`);
+              
+              const reviewBody = [
+                '## 🔍 Visual Regression Test Changes Detected',
+                '',
+                '### Changed Screenshot Files:',
+                screenshotFiles.join('\n'),
+                '',
+                '### Required Actions:',
+                '1. Review each screenshot change above',
+                '2. Verify that the visual changes are intentional and correct',
+                '3. If the changes look correct:',
+                '   - Approve this PR to confirm the changes',
+                '   - The "Screenshot Review Required" check will then pass',
+                '4. If the changes look incorrect:',
+                '   - Request changes and explain what needs to be fixed',
+                '',
+                '> ⚠️ This PR cannot be merged until the screenshots are explicitly approved via PR review.'
+              ].join('\n');
+              
               await github.rest.pulls.createReview({
                 owner,
                 repo,
                 pull_number: context.payload.pull_request.number,
-                body: '⚠️ Visual changes detected! Please review the updated screenshots carefully before merging.',
+                body: reviewBody,
                 event: 'REQUEST_CHANGES'
               });
             } catch (error) {
