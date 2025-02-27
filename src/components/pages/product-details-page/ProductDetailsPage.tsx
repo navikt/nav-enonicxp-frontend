@@ -4,7 +4,7 @@ import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
 export const ProductDetailsPage = (props: ProductDetailsProps) => {
-    if (!props.editorView) {
+    if (!props.editorView && !props.noRedirect) {
         return <RedirectTo404 />;
     }
 
