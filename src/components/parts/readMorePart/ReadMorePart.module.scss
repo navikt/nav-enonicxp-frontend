@@ -2,6 +2,7 @@
     margin-bottom: var(--a-spacing-9);
 
     :global(.navds-read-more__button) {
+        z-index: 1;
         margin-bottom: var(--a-spacing-3);
         background-color: var(--a-blue-50);
         padding: var(--a-spacing-2) var(--a-spacing-6) var(--a-spacing-2) 13px;
