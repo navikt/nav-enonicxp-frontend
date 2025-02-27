@@ -65,10 +65,15 @@
         font-size: var(--text-fluid-20-22);
     }
 
+    .navds-body-short--medium,
+    .navds-body-short--large {
+        line-height: 1.5;
+    }
+
     .navds-body-long--small,
     .navds-body-long--medium,
     .navds-body-long--large {
-        line-height: 1.75;
+        line-height: 1.65;
         margin-bottom: var(--a-spacing-9);
     }
 
