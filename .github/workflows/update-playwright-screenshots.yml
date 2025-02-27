@@ -64,17 +64,14 @@ jobs:
                 }
               }
               
-              let message = '# Visual changes detected, check before merging:';
+              let message = '## Visual changes detected, check before merging:';
               
-              for (const [component, files] of Object.entries(screenshotsByComponent)) {
-                message += `### 📁 ${component}\n`;
-                for (const file of files) {
-                  const fileName = file.split('/').pop();
-                  const fileId = Buffer.from(file).toString('base64');
-                  message += `- \`${fileName}\`\n`;
-                }
-                message += '\n';
+              for (const file of files) {
+                const fileName = file.split('/').pop();
+                const fileId = Buffer.from(file).toString('base64');
+                message += `- \`${fileName}\`\n`;
               }
+              message += '\n';
               
               await github.rest.pulls.createReview({
                 owner,
