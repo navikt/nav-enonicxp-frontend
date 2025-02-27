@@ -56,7 +56,7 @@ jobs:
                 .filter(file => file.filename.endsWith('.png'))
                 .map(file => file.filename.split('/').pop());
               
-              let message = '## Visual changes detected, check before merging:\n\n';
+              let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
               
               screenshotFiles.forEach(fileName => {
                 message += `- \`${fileName}\`\n`;
