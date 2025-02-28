@@ -53,11 +53,10 @@ jobs:
               });
               
               // Only get PNG files that show as modified in the PR diff
-              const screenshotFiles = changedFiles.data
-                .filter(file => file.filename.endsWith('.png') && file.status === 'modified')
-                .map(file => file.filename.split('/').pop());
+              const hasScreenshotChanges = changedFiles.data
+                .some(file => file.filename.endsWith('.png') && file.status === 'modified');
               
-              // Get existing reviews to avoid duplicates
+              // Get existing reviews to handle cleanup if needed
               const reviews = await github.rest.pulls.listReviews({
                 owner,
                 repo,
@@ -70,19 +69,12 @@ jobs:
               );
               
               // If we have actual screenshot changes
-              if (screenshotFiles.length > 0) {
-                let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
-                
-                screenshotFiles.forEach(fileName => {
-                  message += `- \`${fileName}\`\n`;
-                });
-                
-                // Create new review
+              if (hasScreenshotChanges) {
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
                   pull_number: context.payload.pull_request.number,
-                  body: message,
+                  body: '## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.',
                   event: 'REQUEST_CHANGES'
                 });
               } else {
