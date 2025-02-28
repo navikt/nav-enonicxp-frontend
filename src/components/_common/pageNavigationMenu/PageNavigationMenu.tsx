@@ -64,7 +64,9 @@ export const PageNavigationMenu = ({
                             className={style.link}
                         >
                             <ArrowDownRightIcon aria-hidden className={style.icon} />
-                            <BodyLong as="span">{anchorLink.linkText}</BodyLong>
+                            <BodyLong as="span" className={style.linkText}>
+                                {anchorLink.linkText}
+                            </BodyLong>
                         </LenkeBase>
                     </li>
                 ))}

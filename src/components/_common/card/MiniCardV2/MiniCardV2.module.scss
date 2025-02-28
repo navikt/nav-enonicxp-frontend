@@ -29,8 +29,9 @@
     color: var(--default-action-color);
 }
 
-.linkText {
+.linkText.linkText {
     font-weight: 600;
+    margin-bottom: 0;
 }
 
 .tagline {
