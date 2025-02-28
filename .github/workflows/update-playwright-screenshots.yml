@@ -45,30 +45,59 @@ jobs:
             try {
               const { repo, owner } = context.repo;
               
+              // Get all files in the PR that have actual changes
               const changedFiles = await github.rest.pulls.listFiles({
                 owner,
                 repo,
                 pull_number: context.payload.pull_request.number
               });
               
+              // Only get PNG files that show as modified in the PR diff
               const screenshotFiles = changedFiles.data
-                .filter(file => file.filename.endsWith('.png'))
+                .filter(file => file.filename.endsWith('.png') && file.status === 'modified')
                 .map(file => file.filename.split('/').pop());
               
-              let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
-              
-              screenshotFiles.forEach(fileName => {
-                message += `- \`${fileName}\`\n`;
-              });
-              
-              await github.rest.pulls.createReview({
+              // Get existing reviews to avoid duplicates
+              const reviews = await github.rest.pulls.listReviews({
                 owner,
                 repo,
-                pull_number: context.payload.pull_request.number,
-                body: message,
-                event: 'REQUEST_CHANGES'
+                pull_number: context.payload.pull_request.number
               });
+              
+              const botReviews = reviews.data.filter(review => 
+                review.user.login === 'github-actions[bot]' && 
+                review.state === 'CHANGES_REQUESTED'
+              );
+              
+              // If we have actual screenshot changes
+              if (screenshotFiles.length > 0) {
+                let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
+                
+                screenshotFiles.forEach(fileName => {
+                  message += `- \`${fileName}\`\n`;
+                });
+                
+                // Create new review
+                await github.rest.pulls.createReview({
+                  owner,
+                  repo,
+                  pull_number: context.payload.pull_request.number,
+                  body: message,
+                  event: 'REQUEST_CHANGES'
+                });
+              } else {
+                // If no actual changes but we have an existing review, dismiss it
+                for (const review of botReviews) {
+                  await github.rest.pulls.dismissReview({
+                    owner,
+                    repo,
+                    pull_number: context.payload.pull_request.number,
+                    review_id: review.id,
+                    message: 'No visual changes detected anymore'
+                  });
+                }
+              }
             } catch (error) {
-              console.log('Error creating review:', error);
-              core.setFailed('Failed to create PR review');
+              console.log('Error handling review:', error);
+              core.setFailed('Failed to handle review');
             }
