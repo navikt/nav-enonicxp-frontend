@@ -106,11 +106,12 @@ jobs:
               
               if (hasScreenshotChanges && !botReview) {
                 console.log('Creating new review');
+                const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files?ts=${Date.now()}`;
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
                   pull_number: prNumber,
-                  body: `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.`,
+                  body: `## Visual changes detected\n\nPlease [review the screenshot changes](${filesUrl}) before merging.`,
                   event: 'REQUEST_CHANGES'
                 });
               } else if (!hasScreenshotChanges && botReview) {
