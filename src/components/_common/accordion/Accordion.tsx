@@ -12,6 +12,7 @@ import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
+import { useCheckAndOpenAccordionPanel } from 'store/hooks/useCheckAndOpenAccordionPanel';
 import styles from './Accordion.module.scss';
 
 type AccordionProps = PartConfigAccordion;
@@ -19,6 +20,7 @@ type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
     const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const divRefs = useRef<Array<React.RefObject<HTMLDivElement>>>([]);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
@@ -47,20 +49,11 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         });
     };
 
-    useEffect(() => {
-        if (window.location.toString().includes('expandall=true')) {
-            expandAll();
-            return;
-        }
-        const anchorHash = window.location.hash || '';
-        const matchingAccordion = accordion.findIndex(
-            (item) => validatePanel(item) && item.anchorId === anchorHash.slice(1)
-        );
-        if (matchingAccordion !== -1) {
-            setOpenAccordions([matchingAccordion]);
-        }
-        /* eslint-disable-next-line react-hooks/exhaustive-deps */
-    }, []);
+    if (divRefs.current.length !== accordion.length) {
+        divRefs.current = accordion.map(() => React.createRef<HTMLDivElement>());
+    }
+
+    useCheckAndOpenAccordionPanel(openAccordions, setOpenAccordions, divRefs.current, expandAll);
 
     // Show all panels in edit mode, but only valid panels in view mode
     const validAccordion = accordion.filter(validatePanel);
@@ -76,9 +69,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         className={styles.item}
                         open={openAccordions.includes(index)}
                         onOpenChange={(open) => openChangeHandler(open, item.title, index)}
-                        ref={(el) => {
-                            itemRefs.current[index] = el;
-                        }}
+                        ref={divRefs.current[index]}
                         tabIndex={-1}
                     >
                         <DSAccordion.Header className={styles.header} id={item.anchorId}>
