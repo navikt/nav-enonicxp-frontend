@@ -1,8 +1,5 @@
 @use 'common' as common;
 
-$sectionGutterSmall: 0.75rem;
-$verticalMargin: 1.75rem;
-
 .pageWithSideMenus {
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
@@ -16,7 +13,7 @@ $verticalMargin: 1.75rem;
     }
 
     :global(.region__intro) {
-        margin-bottom: $verticalMargin;
+        margin-bottom: var(--a-spacing-9);
     }
 
     :global(.region__pageContent),
