@@ -64,16 +64,23 @@ jobs:
               
               console.log('Total files in PR:', changedFiles.data.length);
               
-              // Get PNG files that are actually modified or added
-              const pngFiles = changedFiles.data.filter(file => 
+              // Separate files by status
+              const modifiedOrAddedPngs = changedFiles.data.filter(file => 
                 file.filename.endsWith('.png') && 
-                (file.status === 'modified' || file.status === 'added' || file.status === 'removed')
+                (file.status === 'modified' || file.status === 'added')
               );
               
-              console.log('Changed PNG files:', pngFiles.map(f => `${f.filename} (${f.status})`));
+              const removedPngs = changedFiles.data.filter(file => 
+                file.filename.endsWith('.png') && 
+                file.status === 'removed'
+              );
               
-              const hasScreenshotChanges = pngFiles.length > 0;
-              console.log('Has screenshot changes:', hasScreenshotChanges);
+              console.log('Modified/Added PNG files:', modifiedOrAddedPngs.map(f => `${f.filename} (${f.status})`));
+              console.log('Removed PNG files:', removedPngs.map(f => `${f.filename} (${f.status})`));
+              
+              // Only consider files as "changed" if they are modified or added
+              const hasScreenshotChanges = modifiedOrAddedPngs.length > 0;
+              console.log('Has active screenshot changes:', hasScreenshotChanges);
               
               const reviews = await github.rest.pulls.listReviews({
                 owner,
