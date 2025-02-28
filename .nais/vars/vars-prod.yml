@@ -13,7 +13,7 @@ resources:
     memory: 2048Mi
   limits:
     memory: 4096Mi
-redis:
+valkey:
   plan: startup-4
   project: nav-prod
   instance: pagecache

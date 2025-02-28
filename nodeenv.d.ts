@@ -20,9 +20,9 @@ declare global {
             ASSET_PREFIX: string;
             TELEMETRY_URL: string;
             NEXT_PHASE: string;
-            REDIS_URI_PAGECACHE: string;
-            REDIS_USERNAME_PAGECACHE: string;
-            REDIS_PASSWORD_PAGECACHE: string;
+            VALKEY_URI_PAGECACHE: string;
+            VALKEY_USERNAME_PAGECACHE: string;
+            VALKEY_PASSWORD_PAGECACHE: string;
             DECORATOR_NOCACHE?: 'true' | 'false';
         }
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
@@ -30,11 +30,11 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
             {...analyticsProps}
         >
             <div className={style.textContainer}>
-                <BodyShort className={style.linkText} size="medium">
+                <BodyLong as="span" className={style.linkText}>
                     {link.text}
-                </BodyShort>
+                </BodyLong>
                 {tagline && (
-                    <BodyShort className={style.tagline} size="medium">
+                    <BodyShort as="span" className={style.tagline}>
                         {tagline}
                     </BodyShort>
                 )}
