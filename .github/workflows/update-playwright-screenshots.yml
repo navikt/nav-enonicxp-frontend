@@ -54,9 +54,9 @@ jobs:
               
               // Only get PNG files that show as modified in the PR diff
               const hasScreenshotChanges = changedFiles.data
-                .some(file => file.filename.endsWith('.png') && file.status === 'modified');
+                .some(file => file.filename.endsWith('.png'));
               
-              // Get existing reviews to handle cleanup if needed
+              // Get existing reviews
               const reviews = await github.rest.pulls.listReviews({
                 owner,
                 repo,
@@ -68,8 +68,8 @@ jobs:
                 review.state === 'CHANGES_REQUESTED'
               );
               
-              // If we have actual screenshot changes
               if (hasScreenshotChanges) {
+                // Create new review if we have changes
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
@@ -77,17 +77,15 @@ jobs:
                   body: '## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.',
                   event: 'REQUEST_CHANGES'
                 });
-              } else {
-                // If no actual changes but we have an existing review, dismiss it
-                for (const review of botReviews) {
-                  await github.rest.pulls.dismissReview({
-                    owner,
-                    repo,
-                    pull_number: context.payload.pull_request.number,
-                    review_id: review.id,
-                    message: 'No visual changes detected anymore'
-                  });
-                }
+              } else if (botReviews.length > 0 && !hasScreenshotChanges) {
+                // Only dismiss if we have an existing review AND no screenshot changes
+                await github.rest.pulls.dismissReview({
+                  owner,
+                  repo,
+                  pull_number: context.payload.pull_request.number,
+                  review_id: botReviews[0].id,
+                  message: 'Visual changes have been reverted'
+                });
               }
             } catch (error) {
               console.log('Error handling review:', error);
