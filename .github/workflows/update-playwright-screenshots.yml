@@ -51,8 +51,12 @@ jobs:
                 pull_number: context.issue.number
               });
               
-              const hasScreenshotChanges = changedFiles.data
-                .some(file => file.filename.endsWith('.png') && file.status === 'modified');
+              // Log all PNG files and their status
+              const pngFiles = changedFiles.data.filter(file => file.filename.endsWith('.png'));
+              console.log('PNG files in PR:', pngFiles.map(f => `${f.filename} (${f.status})`));
+              
+              const hasScreenshotChanges = pngFiles.length > 0;
+              console.log('Has screenshot changes:', hasScreenshotChanges);
               
               const reviews = await github.rest.pulls.listReviews({
                 owner,
@@ -65,7 +69,10 @@ jobs:
                 review.state === 'CHANGES_REQUESTED'
               );
               
+              console.log('Found bot review:', botReview ? 'yes' : 'no');
+              
               if (hasScreenshotChanges && !botReview) {
+                console.log('Creating new review');
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
@@ -74,6 +81,7 @@ jobs:
                   event: 'REQUEST_CHANGES'
                 });
               } else if (!hasScreenshotChanges && botReview) {
+                console.log('Dismissing review because no PNG changes found');
                 await github.rest.pulls.dismissReview({
                   owner,
                   repo,
@@ -81,6 +89,11 @@ jobs:
                   review_id: botReview.id,
                   message: 'Visual changes have been reverted'
                 });
+              } else {
+                console.log('No action needed:', 
+                  hasScreenshotChanges ? 'Has changes' : 'No changes',
+                  botReview ? 'Has review' : 'No review'
+                );
               }
             } catch (error) {
               console.log('Error:', error);
