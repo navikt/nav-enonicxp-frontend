@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { ArrowDownRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
@@ -64,7 +64,7 @@ export const PageNavigationMenu = ({
                             className={style.link}
                         >
                             <ArrowDownRightIcon aria-hidden className={style.icon} />
-                            <BodyShort as="span">{anchorLink.linkText}</BodyShort>
+                            <BodyLong as="span">{anchorLink.linkText}</BodyLong>
                         </LenkeBase>
                     </li>
                 ))}
