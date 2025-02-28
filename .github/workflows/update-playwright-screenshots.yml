@@ -13,13 +13,10 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Get branch of PR
-        uses: xt0rted/pull-request-comment-branch@v2
-        id: comment-branch
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          ref: ${{ github.head_ref || github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
