@@ -109,7 +109,8 @@ jobs:
               
               if (hasScreenshotChanges && !botReview) {
                 console.log('Creating new review');
-                const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files?ts=${Date.now()}`;
+                const firstPng = modifiedOrAddedPngs[0];
+                const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files#diff-${firstPng.sha}`;
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
