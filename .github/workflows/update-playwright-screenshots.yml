@@ -52,8 +52,15 @@ jobs:
                 pull_number: context.payload.pull_request.number
               });
               
+              // Only consider files that are actually modified/added, not just renamed or moved
               const hasScreenshotChanges = changedFiles.data
-                .some(file => file.filename.endsWith('.png'));
+                .some(file => 
+                  file.filename.endsWith('.png') && 
+                  (file.status === 'modified' || file.status === 'added')
+                );
+              
+              console.log('Files in PR:', changedFiles.data.map(f => `${f.filename} (${f.status})`));
+              console.log('Has screenshot changes:', hasScreenshotChanges);
               
               // Get existing reviews from our bot
               const reviews = await github.rest.pulls.listReviews({
