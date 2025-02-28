@@ -77,8 +77,9 @@ export const Expandable = ({
         return null;
     };
 
+    // Adjust appearande in styling if not type was set for this content
     // This is the wrong use of this component, but some legacy pages have still to
-    // be uprated editorial wise.
+    // be upradet editorial wise.
     const isLegacyUsage = !expandableType;
 
     return (
