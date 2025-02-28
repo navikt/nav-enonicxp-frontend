@@ -1,9 +1,9 @@
 name: Update Playwright screenshots
 on:
   push:
-    branches: [playwright-regresiion-test]
+    branches: [test-playwright-torsdag]
   pull_request:
-    branches: [playwright-regresiion-test]
+    branches: [test-playwright-torsdag]
 jobs:
   update-screenshots:
     name: Update screenshots
