@@ -45,50 +45,40 @@ jobs:
             try {
               const { repo, owner } = context.repo;
               
-              // Get all files in the PR that have actual changes
               const changedFiles = await github.rest.pulls.listFiles({
                 owner,
                 repo,
-                pull_number: context.payload.pull_request.number
+                pull_number: context.issue.number
               });
               
-              // Only consider files that are actually modified/added, not just renamed or moved
               const hasScreenshotChanges = changedFiles.data
-                .some(file => 
-                  file.filename.endsWith('.png') && 
-                  (file.status === 'modified' || file.status === 'added')
-                );
+                .some(file => file.filename.endsWith('.png') && file.status === 'modified');
               
-              console.log('Files in PR:', changedFiles.data.map(f => `${f.filename} (${f.status})`));
-              console.log('Has screenshot changes:', hasScreenshotChanges);
-              
-              // Get existing reviews from our bot
               const reviews = await github.rest.pulls.listReviews({
                 owner,
                 repo,
-                pull_number: context.payload.pull_request.number
+                pull_number: context.issue.number
               });
               
-              const botReviews = reviews.data.filter(review => 
+              const botReview = reviews.data.find(review => 
                 review.user.login === 'github-actions[bot]' && 
-                review.state === 'CHANGES_REQUESTED' &&
-                review.body.includes('<!-- visual-regression-bot -->')
+                review.state === 'CHANGES_REQUESTED'
               );
               
-              if (hasScreenshotChanges) {
+              if (hasScreenshotChanges && !botReview) {
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
-                  pull_number: context.payload.pull_request.number,
-                  body: '<!-- visual-regression-bot -->\n## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.',
+                  pull_number: context.issue.number,
+                  body: '## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.',
                   event: 'REQUEST_CHANGES'
                 });
-              } else if (botReviews.length > 0) {
+              } else if (!hasScreenshotChanges && botReview) {
                 await github.rest.pulls.dismissReview({
                   owner,
                   repo,
-                  pull_number: context.payload.pull_request.number,
-                  review_id: botReviews[0].id,
+                  pull_number: context.issue.number,
+                  review_id: botReview.id,
                   message: 'Visual changes have been reverted'
                 });
               }
