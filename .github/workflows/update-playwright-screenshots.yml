@@ -45,15 +45,32 @@ jobs:
             try {
               const { repo, owner } = context.repo;
               
+              // Get PR number from event context
+              let prNumber;
+              if (context.payload.pull_request) {
+                prNumber = context.payload.pull_request.number;
+              } else {
+                console.log('No PR number found in context');
+                return;
+              }
+              
+              console.log('PR number:', prNumber);
+              
               const changedFiles = await github.rest.pulls.listFiles({
                 owner,
                 repo,
-                pull_number: context.issue.number
+                pull_number: prNumber
               });
               
-              // Log all PNG files and their status
-              const pngFiles = changedFiles.data.filter(file => file.filename.endsWith('.png'));
-              console.log('PNG files in PR:', pngFiles.map(f => `${f.filename} (${f.status})`));
+              console.log('Total files in PR:', changedFiles.data.length);
+              
+              // Get PNG files that are actually modified or added
+              const pngFiles = changedFiles.data.filter(file => 
+                file.filename.endsWith('.png') && 
+                (file.status === 'modified' || file.status === 'added' || file.status === 'removed')
+              );
+              
+              console.log('Changed PNG files:', pngFiles.map(f => `${f.filename} (${f.status})`));
               
               const hasScreenshotChanges = pngFiles.length > 0;
               console.log('Has screenshot changes:', hasScreenshotChanges);
@@ -61,7 +78,7 @@ jobs:
               const reviews = await github.rest.pulls.listReviews({
                 owner,
                 repo,
-                pull_number: context.issue.number
+                pull_number: prNumber
               });
               
               const botReview = reviews.data.find(review => 
@@ -76,8 +93,8 @@ jobs:
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
-                  pull_number: context.issue.number,
-                  body: '## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.',
+                  pull_number: prNumber,
+                  body: `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging.`,
                   event: 'REQUEST_CHANGES'
                 });
               } else if (!hasScreenshotChanges && botReview) {
@@ -85,7 +102,7 @@ jobs:
                 await github.rest.pulls.dismissReview({
                   owner,
                   repo,
-                  pull_number: context.issue.number,
+                  pull_number: prNumber,
                   review_id: botReview.id,
                   message: 'Visual changes have been reverted'
                 });
@@ -97,5 +114,6 @@ jobs:
               }
             } catch (error) {
               console.log('Error:', error);
+              console.log('Error details:', error.message);
               core.setFailed('Failed to handle review');
             }
