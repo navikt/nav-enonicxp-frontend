@@ -56,6 +56,9 @@ jobs:
               
               console.log('PR number:', prNumber);
               
+              // Add a small delay to ensure files are available
+              await new Promise(resolve => setTimeout(resolve, 5000));
+              
               const changedFiles = await github.rest.pulls.listFiles({
                 owner,
                 repo,
@@ -63,6 +66,7 @@ jobs:
               });
               
               console.log('Total files in PR:', changedFiles.data.length);
+              console.log('All files in PR:', changedFiles.data.map(f => `${f.filename} (${f.status})`));
               
               // Separate files by status
               const modifiedOrAddedPngs = changedFiles.data.filter(file => 
@@ -77,6 +81,11 @@ jobs:
               
               console.log('Modified/Added PNG files:', modifiedOrAddedPngs.map(f => `${f.filename} (${f.status})`));
               console.log('Removed PNG files:', removedPngs.map(f => `${f.filename} (${f.status})`));
+              
+              if (changedFiles.data.length === 0) {
+                console.log('Warning: No files detected in PR. This might be a timing issue.');
+                return;
+              }
               
               // Only consider files as "changed" if they are modified or added
               const hasScreenshotChanges = modifiedOrAddedPngs.length > 0;
