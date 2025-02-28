@@ -97,12 +97,15 @@ jobs:
                 pull_number: prNumber
               });
               
+              const REVIEW_MARKER = '<!-- playwright-screenshot-bot -->';
+              
               const botReview = reviews.data.find(review => 
                 review.user.login === 'github-actions[bot]' && 
-                review.state === 'CHANGES_REQUESTED'
+                review.state === 'CHANGES_REQUESTED' &&
+                review.body.includes(REVIEW_MARKER)
               );
               
-              console.log('Found bot review:', botReview ? 'yes' : 'no');
+              console.log('Found screenshot bot review:', botReview ? 'yes' : 'no');
               
               if (hasScreenshotChanges && !botReview) {
                 console.log('Creating new review');
@@ -111,7 +114,7 @@ jobs:
                   owner,
                   repo,
                   pull_number: prNumber,
-                  body: `## Visual changes detected\n\nPlease [review the screenshot changes](${filesUrl}) before merging.`,
+                  body: `${REVIEW_MARKER}\n## Visual changes detected\n\nPlease [review the screenshot changes](${filesUrl}) before merging.`,
                   event: 'REQUEST_CHANGES'
                 });
               } else if (!hasScreenshotChanges && botReview) {
@@ -121,7 +124,7 @@ jobs:
                   repo,
                   pull_number: prNumber,
                   review_id: botReview.id,
-                  message: 'Visual changes have been reverted'
+                  message: `${REVIEW_MARKER}\nVisual changes have been reverted`
                 });
               } else {
                 console.log('No action needed:', 
