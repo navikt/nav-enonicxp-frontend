@@ -52,23 +52,30 @@ jobs:
                 pull_number: context.payload.pull_request.number
               });
               
+              // Only include files that have actual changes (not just renamed/moved)
               const screenshotFiles = changedFiles.data
-                .filter(file => file.filename.endsWith('.png'))
+                .filter(file => file.filename.endsWith('.png') && file.status !== 'renamed')
+                .filter(file => file.changes > 0)
                 .map(file => file.filename.split('/').pop());
               
-              let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
-              
-              screenshotFiles.forEach(fileName => {
-                message += `- \`${fileName}\`\n`;
-              });
-              
-              await github.rest.pulls.createReview({
-                owner,
-                repo,
-                pull_number: context.payload.pull_request.number,
-                body: message,
-                event: 'REQUEST_CHANGES'
-              });
+              // Only create review if we have actual screenshot changes
+              if (screenshotFiles.length > 0) {
+                let message = `## Visual changes detected, [check](${context.payload.pull_request.html_url}/files) before merging:\n\n`;
+                
+                screenshotFiles.forEach(fileName => {
+                  message += `- \`${fileName}\`\n`;
+                });
+                
+                await github.rest.pulls.createReview({
+                  owner,
+                  repo,
+                  pull_number: context.payload.pull_request.number,
+                  body: message,
+                  event: 'REQUEST_CHANGES'
+                });
+              } else {
+                console.log('No screenshot changes detected in the PR');
+              }
             } catch (error) {
               console.log('Error creating review:', error);
               core.setFailed('Failed to create PR review');
