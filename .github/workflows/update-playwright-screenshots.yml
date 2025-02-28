@@ -109,9 +109,7 @@ jobs:
               
               if (hasScreenshotChanges && !botReview) {
                 console.log('Creating new review');
-                const firstPng = modifiedOrAddedPngs[0];
-                console.log('First PNG file details:', JSON.stringify(firstPng, null, 2));
-                const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files#diff-${firstPng.blob_id}`;
+                const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files?file-filters[]=.png&file-filters[]=^playwrightTests/`;
                 await github.rest.pulls.createReview({
                   owner,
                   repo,
