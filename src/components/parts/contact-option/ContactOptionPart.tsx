@@ -171,7 +171,6 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
                     {...sharedContactInformation.data.contactType.telephone}
                     ingress={ingress}
                     audience={audience}
-                    hideMoreLink={channelData.hideMoreLink}
                 />
             );
         }
