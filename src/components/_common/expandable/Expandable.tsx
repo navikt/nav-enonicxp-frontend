@@ -9,7 +9,6 @@ import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { ProductDetailType } from 'types/content-props/product-details';
-
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
 import style from './Expandable.module.scss';
 
@@ -39,19 +38,12 @@ export const Expandable = ({
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
 
-    useShortcuts({
-        shortcut: Shortcuts.SEARCH,
-        callback: () => {
-            setIsOpen(true);
-        },
-    });
-
+    useShortcuts({ shortcut: Shortcuts.SEARCH, callback: () => setIsOpen(true) });
     useCheckAndOpenPanel(isOpen, setIsOpen, accordionRef, anchorId);
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         handleStickyScrollOffset(isOpening, accordionRef.current);
-
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
@@ -62,19 +54,18 @@ export const Expandable = ({
     };
 
     const getHeaderIcon = () => {
-        if (expandableType === ProductDetailType.PROCESSING_TIMES) {
-            return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
+        switch (expandableType) {
+            case ProductDetailType.PROCESSING_TIMES:
+                return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
+            case ProductDetailType.PAYOUT_DATES:
+                return <CalendarIcon aria-hidden className={style.headerIcon} />;
+            case ProductDetailType.RATES:
+                return <BarChartIcon aria-hidden className={style.headerIcon} />;
+            case 'documentation_requirements':
+                return <TasklistIcon aria-hidden className={style.headerIcon} />;
+            default:
+                return null;
         }
-        if (expandableType === ProductDetailType.PAYOUT_DATES) {
-            return <CalendarIcon aria-hidden className={style.headerIcon} />;
-        }
-        if (expandableType === ProductDetailType.RATES) {
-            return <BarChartIcon aria-hidden className={style.headerIcon} />;
-        }
-        if (expandableType === 'documentation_requirements') {
-            return <TasklistIcon aria-hidden className={style.headerIcon} />;
-        }
-        return null;
     };
 
     // Adjust appearande in styling if not type was set for this content
