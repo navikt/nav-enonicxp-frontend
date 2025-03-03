@@ -63,6 +63,7 @@ export type DefaultContactData = {
     ingress?: ProcessedHtmlProps;
     title?: string;
     url?: string;
+    hideMoreLink?: boolean;
     icon?: 'facebook' | 'linkedin';
     sharedContactInformation?: {
         _path: string;
@@ -81,6 +82,7 @@ export type TelephoneData = {
     title?: string;
     text?: string;
     alertText?: string;
+    hideMoreLink?: boolean;
     regularOpeningHours?: RegularOpeningHours;
     specialOpeningHours?: SpecialOpeningHours;
     audience?: AudienceOptions;

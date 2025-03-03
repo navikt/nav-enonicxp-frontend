@@ -43,6 +43,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                     title={telephone.title}
                     alertText={telephone.alertText}
                     text={telephone.text}
+                    hideMoreLink={telephone.hideMoreLink}
                     phoneNumber={telephone.phoneNumber}
                     regularOpeningHours={telephone.regularOpeningHours}
                     specialOpeningHours={telephone.specialOpeningHours}
