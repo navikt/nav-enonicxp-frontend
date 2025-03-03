@@ -42,6 +42,7 @@ export const CallOption = ({
     phoneNumber,
     regularOpeningHours,
     specialOpeningHours,
+    hideMoreLink,
     text,
     audience,
 }: Props) => {
@@ -102,7 +103,9 @@ export const CallOption = ({
                     className={style.moreLink}
                     href={getContactUrl()}
                 >
-                    <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
+                    {!hideMoreLink && (
+                        <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
+                    )}
                 </LenkeBase>
             </div>
         </div>
