@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 export const useCheckAndOpenAccordionPanel = (
@@ -7,34 +7,28 @@ export const useCheckAndOpenAccordionPanel = (
     refs: React.RefObject<HTMLDivElement>[],
     expandAll: () => void
 ) => {
-    const checkAndOpenPanels = () => {
-        const targetId = window.location.hash.replace('#', '');
-        const elementWithId = document.getElementById(targetId);
+    const checkAndOpenPanels = useCallback(() => {
+        const targetId = window.location.hash.slice(1);
+        if (!targetId) return;
 
-        if (window.location.toString().includes('expandall=true')) {
+        if (window.location.search.includes('expandall=true')) {
             expandAll();
             return;
         }
 
-        if (!targetId) return;
+        const targetElement = document.getElementById(targetId);
+        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
 
-        for (let i = 0; i < refs.length; i++) {
-            if (refs[i].current?.contains(elementWithId)) {
-                setOpenPanels([...openPanels, i]);
-                setTimeout(() => smoothScrollToTarget(targetId), 500);
-                return;
-            }
+        if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
+            setOpenPanels([...openPanels, panelIndex]);
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
-    };
+    }, [openPanels, refs, setOpenPanels, expandAll]);
 
     useEffect(() => {
         window.addEventListener('hashchange', checkAndOpenPanels);
-        return () => {
-            window.removeEventListener('hashchange', checkAndOpenPanels);
-        };
-    }, []);
+        return () => window.removeEventListener('hashchange', checkAndOpenPanels);
+    }, [checkAndOpenPanels]);
 
-    useEffect(() => {
-        checkAndOpenPanels();
-    }, []);
+    useEffect(checkAndOpenPanels, [checkAndOpenPanels]);
 };

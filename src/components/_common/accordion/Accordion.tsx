@@ -19,27 +19,22 @@ type AccordionProps = PartConfigAccordion;
 type PanelItem = AccordionProps['accordion'][number];
 
 export const Accordion = ({ accordion }: AccordionProps) => {
-    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const divRefs = useRef<Array<React.RefObject<HTMLDivElement>>>([]);
+    const itemRefs = useRef(accordion.map(() => React.createRef<HTMLDivElement>()));
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
-    const expandAll = () => {
-        setOpenAccordions(accordion.map((_, index) => index));
-    };
-    const validatePanel = (item: PanelItem) => !!(item.title && item.html);
+
+    const expandAll = () => setOpenAccordions(accordion.map((_, index) => index));
+    const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
-    const openChangeHandler = (isOpening: boolean, tittel: string, index: number) => {
-        handleStickyScrollOffset(isOpening, itemRefs.current[index]);
-
-        if (isOpening) {
-            setOpenAccordions([...openAccordions, index]);
-        } else {
-            setOpenAccordions(openAccordions.filter((i) => i !== index));
-        }
+    const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
+        handleStickyScrollOffset(isOpening, itemRefs.current[index].current);
+        setOpenAccordions((prev) =>
+            isOpening ? [...prev, index] : prev.filter((i) => i !== index)
+        );
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'trekkspill',
@@ -49,11 +44,11 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         });
     };
 
-    if (divRefs.current.length !== accordion.length) {
-        divRefs.current = accordion.map(() => React.createRef<HTMLDivElement>());
+    if (itemRefs.current.length !== accordion.length) {
+        itemRefs.current = accordion.map(() => React.createRef<HTMLDivElement>());
     }
 
-    useCheckAndOpenAccordionPanel(openAccordions, setOpenAccordions, divRefs.current, expandAll);
+    useCheckAndOpenAccordionPanel(openAccordions, setOpenAccordions, itemRefs.current, expandAll);
 
     // Show all panels in edit mode, but only valid panels in view mode
     const validAccordion = accordion.filter(validatePanel);
@@ -68,19 +63,16 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                         key={index}
                         className={styles.item}
                         open={openAccordions.includes(index)}
-                        onOpenChange={(open) => openChangeHandler(open, item.title, index)}
-                        ref={divRefs.current[index]}
+                        onOpenChange={(open) => handleOpenChange(open, item.title, index)}
+                        ref={itemRefs.current[index]}
                         tabIndex={-1}
                     >
                         <DSAccordion.Header className={styles.header} id={item.anchorId}>
-                            {!isValid && (
-                                <EditorHelp
-                                    text={
-                                        'Panelet mangler tittel eller innhold. Klikk for å redigere'
-                                    }
-                                />
+                            {!isValid ? (
+                                <EditorHelp text="Panelet mangler tittel eller innhold. Klikk for å redigere" />
+                            ) : (
+                                <div className={styles.headerTitle}>{item.title}</div>
                             )}
-                            {isValid && <div className={styles.headerTitle}>{item.title}</div>}
                         </DSAccordion.Header>
                         <DSAccordion.Content className={styles.content}>
                             <div className={classNames(defaultHtml.html, 'parsedHtml')}>

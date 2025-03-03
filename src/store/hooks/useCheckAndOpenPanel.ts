@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 export const useCheckAndOpenPanel = (
@@ -7,43 +7,28 @@ export const useCheckAndOpenPanel = (
     ref: React.RefObject<HTMLDivElement>,
     anchorId?: string
 ) => {
-    const checkAndOpenPanel = () => {
-        const targetId = window.location.hash.replace('#', '');
-        const elementWithId = document.getElementById(targetId);
+    const checkAndOpenPanel = useCallback(() => {
+        if (isOpen) return;
 
-        if (isOpen) {
-            return;
-        }
+        const targetId = window.location.hash.slice(1);
+        if (!targetId) return;
 
-        if (window.location.toString().includes('expandall=true')) {
+        if (window.location.search.includes('expandall=true') || targetId === anchorId) {
             setIsOpen(true);
             return;
         }
 
-        if (!targetId) {
-            return;
-        }
-
-        if (targetId === anchorId) {
-            setIsOpen(true);
-            return;
-        }
-
-        if (ref.current?.contains(elementWithId)) {
+        const targetElement = document.getElementById(targetId);
+        if (ref.current?.contains(targetElement)) {
             setIsOpen(true);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
-    };
+    }, [isOpen, setIsOpen, ref, anchorId]);
 
     useEffect(() => {
         window.addEventListener('hashchange', checkAndOpenPanel);
+        return () => window.removeEventListener('hashchange', checkAndOpenPanel);
+    }, [checkAndOpenPanel]);
 
-        return () => {
-            window.removeEventListener('hashchange', checkAndOpenPanel);
-        };
-    }, []);
-
-    useEffect(() => {
-        checkAndOpenPanel();
-    }, [anchorId]);
+    useEffect(checkAndOpenPanel, [checkAndOpenPanel]);
 };
