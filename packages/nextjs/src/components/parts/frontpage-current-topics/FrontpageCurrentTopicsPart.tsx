@@ -23,11 +23,19 @@ export type PartConfigFrontpageCurrentTopics = {
 export const FrontpageCurrentTopicsPart = ({
     config,
 }: PartComponentProps<PartType.FrontpageCurrentTopics>) => {
-    const { language } = usePageContentProps();
+    const { language, editorView } = usePageContentProps();
     const { contentList, title, link, bgColor, itemColor } = config;
 
-    if (!contentList?.data.sectionContents) {
-        return <EditorHelp text={'Velg en innholdsliste'} />;
+    if (
+        !contentList ||
+        !contentList.data.sectionContents ||
+        contentList.data.sectionContents.length === 0
+    ) {
+        if (!!editorView) {
+            return <EditorHelp text={'Velg en innholdsliste'} />;
+        } else {
+            return null;
+        }
     }
 
     return (
