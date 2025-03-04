@@ -1,0 +1,22 @@
+@use 'common' as common;
+
+.illustration {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    margin-left: -8rem;
+
+    :global(.back) {
+        @include common.brand-purple-filter-back();
+    }
+    :global(.front) {
+        @include common.brand-purple-filter-front();
+    }
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+        margin-left: 0;
+    }
+}

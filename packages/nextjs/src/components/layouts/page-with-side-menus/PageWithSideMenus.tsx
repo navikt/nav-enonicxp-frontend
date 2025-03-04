@@ -5,6 +5,7 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
+import { HeaderWithTextAboveTitle } from 'components/_common/headers/headerWithTextAboveTitle/HeaderWithTextAboveTitle';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
@@ -44,6 +45,13 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
+                {isNewLayoutPage && (
+                    <HeaderWithTextAboveTitle
+                        textAboveTitle={pageProps.data?.textAboveTitle}
+                        title={pageProps.data?.title}
+                        // illustration={pageProps.data?.illustration}
+                    />
+                )}
                 {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
