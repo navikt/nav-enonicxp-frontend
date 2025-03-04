@@ -64,7 +64,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                {isNewLayoutPage && isMainContactPage && (
+                {isNewLayoutPage && !pageProps.data.textAboveTitle && (
                     <PageUpdatedInfo
                         datetime={pageProps.modifiedTime}
                         language={pageProps.language}
