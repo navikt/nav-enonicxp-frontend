@@ -19,7 +19,9 @@ export const HeaderWithTextAboveTitle = (props: Props) => {
     return (
         <div>
             <Illustration illustration={illustration} className={style.illustration} />
-            <BodyShort>{textAboveTitle}</BodyShort>
+            <BodyShort textColor="subtle" className={style.textAboveTitle}>
+                {textAboveTitle}
+            </BodyShort>
             <Heading level="1" size="large" className={style.header} spacing>
                 {title}
             </Heading>
