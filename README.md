@@ -58,9 +58,7 @@ Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#g
 
 ## Prodsetting
 
--   Lag en PR til main, og merge inn etter godkjenning
--   Lag en release på main med versjon-bump, beskrivende tittel og oppsummering av endringene dine
--   Publiser release'en for å starte deploy til prod
+Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main)
 
 ## Logger og metrikker
 
