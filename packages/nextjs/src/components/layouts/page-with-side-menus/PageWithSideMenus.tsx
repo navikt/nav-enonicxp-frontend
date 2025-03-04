@@ -39,6 +39,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         pageProps.type === ContentType.GenericPage;
 
     const isGenericPage = pageProps.type === ContentType.GenericPage;
+    const isMainContactPage = isGenericPage && !pageProps.data.textAboveTitle;
 
     return (
         <LayoutContainer
@@ -47,8 +48,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                {isGenericPage && <HeaderWithTextAboveTitle pageProps={pageProps} />}
-                {isNewLayoutPage && !isGenericPage && <GeneralPageHeader pageProps={pageProps} />}
+                {isNewLayoutPage &&
+                    (isMainContactPage ? (
+                        <GeneralPageHeader pageProps={pageProps} />
+                    ) : (
+                        <HeaderWithTextAboveTitle pageProps={pageProps} />
+                    ))}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
@@ -59,7 +64,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                {!isGenericPage && (
+                {isNewLayoutPage && isMainContactPage && (
                     <PageUpdatedInfo
                         datetime={pageProps.modifiedTime}
                         language={pageProps.language}
