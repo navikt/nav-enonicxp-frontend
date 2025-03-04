@@ -58,7 +58,8 @@ Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#g
 
 ## Prodsetting
 
-Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main)
+Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main).
+
 
 ## Logger og metrikker
 
