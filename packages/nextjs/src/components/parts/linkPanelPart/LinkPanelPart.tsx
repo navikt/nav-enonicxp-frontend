@@ -89,7 +89,7 @@ export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>
                             <XpImage imageProps={icon} maxWidth={isVerticalLayout ? 384 : 64} />
                         </div>
                     )}
-                    <Heading level="2" size="medium" className={style.title}>
+                    <Heading level="2" size="small" className={style.title}>
                         {linkProps.text}
                     </Heading>
                 </div>
