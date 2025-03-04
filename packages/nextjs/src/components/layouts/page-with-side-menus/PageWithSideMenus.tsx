@@ -47,14 +47,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                {isGenericPage && (
-                    <HeaderWithTextAboveTitle
-                        textAboveTitle={pageProps.data?.textAboveTitle}
-                        title={pageProps.data?.title}
-                        // illustration={pageProps.data?.illustration}
-                    />
-                )}
-                {isNewLayoutPage && !isGenericPage && <GeneralPageHeader pageProps={pageProps} />}
+                {isGenericPage && <HeaderWithTextAboveTitle pageProps={pageProps} />}
+                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
@@ -65,7 +59,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
+                {!isGenericPage && (
+                    <PageUpdatedInfo
+                        datetime={pageProps.modifiedTime}
+                        language={pageProps.language}
+                    />
+                )}
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />
