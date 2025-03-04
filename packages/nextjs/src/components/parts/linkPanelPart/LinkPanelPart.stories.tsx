@@ -19,7 +19,7 @@ const meta = {
                         displayName: 'displayName',
                     },
                 },
-                external: { url: 'url', text: 'text' },
+                external: { url: 'url', text: 'Overskrift' },
             },
         },
     },
@@ -34,6 +34,16 @@ export const Default: Story = {
             description: {
                 story: 'Descriptor og type må være henholdsvis LinkPanel og Part for denne komponenten.',
             },
+        },
+    },
+};
+
+export const WithIngress: Story = {
+    args: {
+        config: {
+            ...meta.args.config,
+            ingress:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         },
     },
 };

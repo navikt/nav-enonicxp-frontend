@@ -1,0 +1,19 @@
+@use 'common' as common;
+
+.illustration {
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin-left: -6.25rem;
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+        margin-left: 0;
+    }
+}
+
+.textAboveTitle {
+    margin-bottom: 0.25rem;
+}

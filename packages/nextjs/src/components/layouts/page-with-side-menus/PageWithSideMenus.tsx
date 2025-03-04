@@ -5,6 +5,7 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
+import { HeaderWithTextAboveTitle } from 'components/_common/headers/headerWithTextAboveTitle/HeaderWithTextAboveTitle';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
@@ -37,6 +38,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         pageProps.type === ContentType.ThemedArticlePage ||
         pageProps.type === ContentType.GenericPage;
 
+    const isGenericPage = pageProps.type === ContentType.GenericPage;
+    const isMainContactPage = isGenericPage && !pageProps.data.textAboveTitle;
+
     return (
         <LayoutContainer
             className={classNames(styles.pageWithSideMenus, hasMultipleLanguages && styles.pullUp)}
@@ -44,7 +48,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                {isNewLayoutPage &&
+                    (isMainContactPage ? (
+                        <GeneralPageHeader pageProps={pageProps} />
+                    ) : (
+                        <HeaderWithTextAboveTitle pageProps={pageProps} />
+                    ))}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
@@ -55,7 +64,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
+                {isNewLayoutPage && !pageProps.data.textAboveTitle && (
+                    <PageUpdatedInfo
+                        datetime={pageProps.modifiedTime}
+                        language={pageProps.language}
+                    />
+                )}
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />

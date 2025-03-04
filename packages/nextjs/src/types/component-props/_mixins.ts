@@ -96,6 +96,7 @@ export type ProductDataMixin = {
     illustration: PictogramsProps;
     area: Area[];
     externalProductUrl?: string;
+    textAboveTitle?: string;
 };
 
 export type LinkSelectable = OptionSetSingle<{
