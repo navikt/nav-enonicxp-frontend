@@ -46,10 +46,12 @@ $iconSize: 2.1875rem;
         width: 100%;
     }
     .title {
+        margin-bottom: 0;
         width: 100%;
         color: var(--default-action-color);
     }
     .ingress {
+        margin-top: var(--a-spacing-2);
         width: 100%;
     }
 }

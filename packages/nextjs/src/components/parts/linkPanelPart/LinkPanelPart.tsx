@@ -93,7 +93,7 @@ export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>
                         {linkProps.text}
                     </Heading>
                 </div>
-                <div className={style.ingress}>{ingress}</div>
+                {ingress && <div className={style.ingress}>{ingress}</div>}
             </div>
         </LinkPanel>
     );
