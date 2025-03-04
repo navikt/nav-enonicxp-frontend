@@ -10,7 +10,7 @@
         "start": "npm run start --workspace packages/server",
         "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
         "storybook": "npm run storybook --workspace packages/nextjs",
-        "dev": "npm run copy-env-development && npm run build && npm run start",
+        "dev": "npm run copy-env-development && rm -fr packages/nextjs/.next && npm run build:server && npm run start",
         "dev-custom": "npm run copy-env-development-custom && npm run build && npm run start",
         "dev-server": "npm run copy-env-prod-local && npm run dev --workspace packages/server",
         "build-local": "npm run copy-env-prod-local && npm run build",
@@ -27,9 +27,9 @@
         "test:client": "npm run test --workspace packages/nextjs",
         "test:server": "npm run test --workspace packages/server",
         "prepare": "husky || true",
-        "copy-env-prod-local": "cp packages/nextjs/.env.prod-local packages/nextjs/.env",
-        "copy-env-development": "cp packages/nextjs/.env.development packages/nextjs/.env",
-        "copy-env-development-custom": "cp packages/nextjs/.env.development.local packages/nextjs/.env"
+        "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
+        "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
+        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env"
     },
     "workspaces": [
         "packages/*"
