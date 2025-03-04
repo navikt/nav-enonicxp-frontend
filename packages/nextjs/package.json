@@ -35,7 +35,7 @@
         "jsep": "1.4.0",
         "lodash.debounce": "4.0.8",
         "lru-cache": "11.0.2",
-        "next": "14.2.15",
+        "next": "14.2.21",
         "node-cache": "5.1.2",
         "p-limit": "6.2.0",
         "pino": "9.6.0",
