@@ -48,7 +48,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         >
             <div className={styles.mainContent}>
                 {isGenericPage && <HeaderWithTextAboveTitle pageProps={pageProps} />}
-                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                {isNewLayoutPage && !isGenericPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
