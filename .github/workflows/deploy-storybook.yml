@@ -31,7 +31,7 @@ jobs:
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
             - name: Build Storybook
-              run: npm run build-storybook
+              run: npm run build:storybook
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
