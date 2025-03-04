@@ -7,7 +7,7 @@ services:
       - '3002:3002'
     environment:
       SERVICE_SECRET: 'dummyToken'
-      NO_VALKEY: true
+      NO_REDIS: true
 
   dekoratoren:
     container_name: dekoratoren-xpfrontend
