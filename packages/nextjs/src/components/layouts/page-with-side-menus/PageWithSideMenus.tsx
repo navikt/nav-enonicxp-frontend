@@ -38,6 +38,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         pageProps.type === ContentType.ThemedArticlePage ||
         pageProps.type === ContentType.GenericPage;
 
+    const isGenericPage = pageProps.type === ContentType.GenericPage;
+
     return (
         <LayoutContainer
             className={classNames(styles.pageWithSideMenus, hasMultipleLanguages && styles.pullUp)}
@@ -45,14 +47,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
         >
             <div className={styles.mainContent}>
-                {isNewLayoutPage && (
+                {isGenericPage && (
                     <HeaderWithTextAboveTitle
                         textAboveTitle={pageProps.data?.textAboveTitle}
                         title={pageProps.data?.title}
                         // illustration={pageProps.data?.illustration}
                     />
                 )}
-                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                {isNewLayoutPage && !isGenericPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AlternativeAudience />}
                 {showInternalNav && (
