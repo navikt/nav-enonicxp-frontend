@@ -98,16 +98,16 @@ export const CallOption = ({
                         specialOpeningHours={specialOpeningHours}
                     />
                 )}
-                <LenkeBase
-                    analyticsLinkGroup={layoutConfig.title}
-                    className={style.moreLink}
-                    href={getContactUrl()}
-                >
-                    {!hideMoreLink && (
+                {!hideMoreLink && (
+                    <LenkeBase
+                        analyticsLinkGroup={layoutConfig.title}
+                        className={style.moreLink}
+                        href={getContactUrl()}
+                    >
                         <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
-                    )}
-                </LenkeBase>
-            </div>
+                    </LenkeBase>
+                )}
+                </div>
         </div>
     );
 };
