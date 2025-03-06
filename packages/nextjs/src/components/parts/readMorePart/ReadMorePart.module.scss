@@ -1,0 +1,53 @@
+.readMore {
+    margin-bottom: var(--a-spacing-9);
+
+    :global(.navds-read-more__button) {
+        z-index: 1;
+        margin-bottom: var(--a-spacing-3);
+        background-color: var(--a-blue-50);
+        padding: var(--a-spacing-2) var(--a-spacing-6) var(--a-spacing-2) 13px;
+        outline: 4px solid var(--a-white);
+        border-radius: 22px; // Atm. not in Aksel
+        align-items: center;
+        gap: var(--a-spacing-2);
+
+        color: var(--default-action-color);
+
+        svg {
+            width: var(--a-spacing-6);
+            height: var(--a-spacing-7); // Needed to visually vertical align
+            path {
+                fill: var(--default-action-color);
+            }
+        }
+
+        &:hover {
+            background-color: var(--a-blue-100);
+
+            :global(.navds-read-more__expand-icon) {
+                transform: translateY(0);
+            }
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    :global(.navds-read-more__content) {
+        border-left: var(--a-spacing-05) solid var(--a-gray-400);
+        margin-left: var(--a-spacing-6);
+        padding: 0 0 0 var(--a-spacing-5);
+    }
+
+    &:global(.navds-read-more--open) {
+        :global(.navds-read-more__button) {
+            position: sticky;
+            top: var(--decorator-sticky-offset, 0px);
+        }
+
+        :global(.navds-read-more__expand-icon) {
+            transform: rotate(-180deg) !important;
+        }
+    }
+}

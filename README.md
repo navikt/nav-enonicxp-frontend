@@ -10,6 +10,16 @@ Kjøres lokalt på [http://localhost:3000](http://localhost:3000).
 
 Som default kreves en lokal instans av Enonic XP med [nav-enonicxp](https://github.com/navikt/nav-enonicxp) installert. Alternativt kan en dev eller prod-instans av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
 
+### VS Code
+
+Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følgende innstillinger i .vscode/settings.json:
+
+```
+{
+  "eslint.workingDirectories": ["./packages/nextjs", "./packages/shared", "./packages/server"]
+}
+```
+
 ### Development mode:
 
 #### Med lokal XP:
@@ -48,9 +58,8 @@ Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#g
 
 ## Prodsetting
 
--   Lag en PR til main, og merge inn etter godkjenning
--   Lag en release på main med versjon-bump, beskrivende tittel og oppsummering av endringene dine
--   Publiser release'en for å starte deploy til prod
+Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main).
+
 
 ## Logger og metrikker
 
@@ -66,8 +75,8 @@ og servere denne som en fallback.
 
 Failover deployes ikke automatisk til dev-miljøer. For å bygge og deploye til et dev-miljø, gjør følgende:
 
--   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `/failover/build-dev-failover-image.sh`
--   Kjør `/failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
+-   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `.failover/build-dev-failover-image.sh`
+-   Kjør `./.failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
 -   Vent på at imaget bygges (det tar normalt 15-20 min)
 -   Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
 
