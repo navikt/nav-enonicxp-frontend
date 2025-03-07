@@ -47,4 +47,4 @@ jobs:
               uses: actions/github-script@v7
               with:
                   script: |
-                      require('../../playwright/handle-review.js')
+                      require('../../packages/nextjs/playwright/handle-review.js')
