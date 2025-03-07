@@ -1,4 +1,4 @@
-name: Update Playwright screenshots
+name: Visual changes bot
 on:
     push:
         branches: [playwright-regresiion-test] #TODO: change to main
