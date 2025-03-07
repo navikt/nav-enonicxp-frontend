@@ -30,7 +30,7 @@ jobs:
               run: npm ci
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-            - run: npm run build-storybook
+            - run: npm run build:storybook
 
             - name: Run Playwright update screenshots
               run: docker run --rm -v $(pwd):/workspace -w /workspace --ipc=host mcr.microsoft.com/playwright:v1.49.1-noble /bin/bash -c "CI=true npx playwright test --update-snapshots"
