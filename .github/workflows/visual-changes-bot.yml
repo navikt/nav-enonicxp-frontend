@@ -62,7 +62,7 @@ jobs:
                         console.log('PR number:', prNumber);
                         
                         // Add a small delay to ensure files are available
-                        await new Promise(resolve => setTimeout(resolve, 5000));
+                        await new Promise(resolve => setTimeout(resolve, 1000));
                         
                         const changedFiles = await github.rest.pulls.listFiles({
                           owner,
