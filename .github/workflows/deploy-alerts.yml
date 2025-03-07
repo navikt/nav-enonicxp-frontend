@@ -1,22 +1,22 @@
 name: Deploy prod-alerts
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - .nais/alerts.yml
+    push:
+        branches:
+            - main
+        paths:
+            - .nais/alerts.yml
 
 jobs:
-  deploy_alerts:
-    name: Deploy nais-alerts
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: "write"
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/alerts.yml
+    deploy_alerts:
+        name: Deploy nais-alerts
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v3
+            - name: Deploy to nais
+              uses: nais/deploy/actions/deploy@v2
+              env:
+                  CLUSTER: prod-gcp
+                  RESOURCE: .nais/alerts.yml

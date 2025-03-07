@@ -1,51 +1,51 @@
 name: Deploy to dev1
 on:
-  workflow_dispatch:
-    inputs:
-      NODE_ENV:
-        description: 'Node environment'
-        required: true
-        default: 'production'
-        type: choice
-        options:
-          - production
-          - development
+    workflow_dispatch:
+        inputs:
+            NODE_ENV:
+                description: 'Node environment'
+                required: true
+                default: 'production'
+                type: choice
+                options:
+                    - production
+                    - development
 
 jobs:
-  build:
-    uses: ./.github/workflows/build-image.yml
-    permissions:
-      contents: "read"
-      id-token: "write"
-    with:
-      environment: dev-gcp:dev1
-      imagename: dev1-deploy
-      ENV: dev1
-      ADMIN_ORIGIN: https://portal-admin-dev.oera.no
-      APP_ORIGIN: https://www.ansatt.dev.nav.no
-      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev1
-      DECORATOR_URL: https://dekoratoren.ekstern.dev.nav.no
-      XP_ORIGIN: https://www.dev.nav.no
-      TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
-      INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
-      RELEASE_TAG: dev1-${{ github.sha }}
-      NAVNO_API_URL: https://www.ansatt.dev.nav.no/person/navno-api
-      NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
-      FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
-      NODE_ENV: ${{ inputs.NODE_ENV }}
-    secrets:
-      READER_TOKEN: ${{ secrets.READER_TOKEN }}
-      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-  deploy:
-    uses: ./.github/workflows/deploy-to-nais.yml
-    needs: build
-    permissions:
-      id-token: "write"
-    with:
-      image: ${{ needs.build.outputs.image }}
-      cluster: dev-gcp
-      vars_file: vars-dev1.yml
-      config_file: config.yml
-      hpa_file: hpa-dev1.yml
-      deploy_redis: true
+    build:
+        uses: ./.github/workflows/build-image.yml
+        permissions:
+            contents: read
+            id-token: write
+        with:
+            environment: dev-gcp:dev1
+            imagename: dev1-deploy
+            ENV: dev1
+            ADMIN_ORIGIN: https://portal-admin-dev.oera.no
+            APP_ORIGIN: https://www.ansatt.dev.nav.no
+            REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev1
+            DECORATOR_URL: https://dekoratoren.ekstern.dev.nav.no
+            XP_ORIGIN: https://www.dev.nav.no
+            TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
+            INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
+            RELEASE_TAG: dev1-${{ github.sha }}
+            NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
+            MELDEKORT_API_URL: https://meldekort-api-q1.intern.dev.nav.no/meldekort/meldekort-api/api/person
+            FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
+            NODE_ENV: ${{ inputs.NODE_ENV }}
+        secrets:
+            READER_TOKEN: ${{ secrets.READER_TOKEN }}
+            SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+            NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+    deploy:
+        uses: ./.github/workflows/deploy-to-nais.yml
+        needs: build
+        permissions:
+            id-token: write
+        with:
+            image: ${{ needs.build.outputs.image }}
+            cluster: dev-gcp
+            vars_file: vars-dev1.yml
+            config_file: config.yml
+            hpa_file: hpa-dev1.yml
+            deploy_valkey: true

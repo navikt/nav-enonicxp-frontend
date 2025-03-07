@@ -1,0 +1,29 @@
+apiVersion: aiven.io/v1alpha1
+kind: Valkey
+metadata:
+  labels:
+    app: nav-enonicxp-frontend
+    team: personbruker
+  name: valkey-personbruker-{{ valkey.instance }}
+  namespace: personbruker
+spec:
+  plan: {{ valkey.plan }}
+  project: {{ valkey.project }}
+  maintenanceWindowDow: saturday
+  maintenanceWindowTime: 20:00:00
+  userConfig:
+    valkey_maxmemory_policy: allkeys-lru
+
+---
+apiVersion: aiven.io/v1alpha1
+kind: ServiceIntegration
+metadata:
+  labels:
+    team: personbruker
+  name: valkey-personbruker-{{ valkey.instance }}
+  namespace: personbruker
+spec:
+  project: {{ valkey.project }}
+  integrationType: prometheus
+  destinationEndpointId: {{ valkey.endpointId }}
+  sourceServiceName: valkey-personbruker-{{ valkey.instance }}

@@ -15,7 +15,7 @@ resources:
     memory: 1000Mi
   limits:
     memory: 2000Mi
-redis:
+valkey:
   plan: hobbyist
   project: nav-dev
   instance: pagecache

@@ -1,0 +1,42 @@
+@use 'common' as common;
+
+.pageWithSideMenus {
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-rows: auto 1fr;
+    padding-top: var(--a-spacing-16);
+
+    @media #{common.$mq-screen-mobile} {
+        display: block;
+        margin: 0rem 0.5rem;
+        width: calc(100% - 1rem);
+    }
+
+    :global(.region__intro) {
+        margin-bottom: var(--a-spacing-9);
+    }
+
+    :global(.region__pageContent),
+    :global(.region__topPageContent) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.pullUp {
+    padding-top: 0;
+}
+
+.mainContent {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.bottomContent {
+    position: relative;
+    grid-column: 1 / -1;
+
+    :global(.region) {
+        position: relative;
+    }
+}
