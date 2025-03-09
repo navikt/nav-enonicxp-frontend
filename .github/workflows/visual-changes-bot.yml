@@ -1,9 +1,9 @@
 name: Visual changes bot
 on:
     push:
-        branches: [playwright-regresiion-test] #TODO: change to main
+        branches: [main]
     pull_request:
-        branches: [playwright-regresiion-test] #TODO: change to main
+        branches: [main]
 jobs:
     update-screenshots:
         name: Update screenshots
