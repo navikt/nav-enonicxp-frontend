@@ -53,3 +53,9 @@
 **/.vscode
 **/.env.prod-local.local
 **/analyze
+
+# Playwright
+**/test-results
+**/playwright-report
+**/blob-report
+**/playwright/.cache
