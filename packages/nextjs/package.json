@@ -54,6 +54,7 @@
         "@chromatic-com/storybook": "2.0.2",
         "@next/bundle-analyzer": "14.2.4",
         "@next/eslint-plugin-next": "14.2.4",
+        "@playwright/test": "1.51.0",
         "@storybook/addon-essentials": "8.5.8",
         "@storybook/addon-interactions": "8.5.8",
         "@storybook/addon-links": "8.5.8",
