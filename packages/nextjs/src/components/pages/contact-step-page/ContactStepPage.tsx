@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentCommonProps, ContentType } from '../../../types/content-props/_content-common';
-import { PictogramsProps } from '../../../types/content-props/pictograms';
-import { ContactPageHeader } from '../../_common/headers/contactPageHeader/ContactPageHeader';
-import { ParsedHtml } from '../../_common/parsedHtml/ParsedHtml';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
+import { PictogramsProps } from 'types/content-props/pictograms';
+import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 export type ContactStepPageProps = ContentCommonProps & {
     type: ContentType.ContactStepPage;

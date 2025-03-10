@@ -1,7 +1,6 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { ProductDataMixin } from 'types/component-props/_mixins';
-import { ContentProps } from 'types/content-props/_content-common';
 
 // type Props = {
 //     pageProps: Pick<ContentProps, 'type'> & {

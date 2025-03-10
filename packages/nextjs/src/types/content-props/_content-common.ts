@@ -9,6 +9,7 @@ import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
+import { ContactStepPageProps } from 'components/pages/contact-step-page/ContactStepPage';
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
@@ -44,7 +45,6 @@ import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pag
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FallbackPageProps } from './fallback-page-props';
-import { ContactStepPageProps } from '../../components/pages/contact-step-page/ContactStepPage';
 
 export enum ContentType {
     Error = 'error',
