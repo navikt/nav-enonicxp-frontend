@@ -1,8 +1,9 @@
 import React from 'react';
-import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
-import { PictogramsProps } from 'types/content-props/pictograms';
 import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
+import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
+import { PictogramsProps } from 'types/content-props/pictograms';
+import style from './ContactStepPage.module.scss';
 
 export type ContactStepPageProps = ContentCommonProps & {
     type: ContentType.ContactStepPage;
@@ -15,67 +16,21 @@ export type ContactStepPageProps = ContentCommonProps & {
 };
 
 export const ContactStepPage = (props: ContactStepPageProps) => {
-    const { data, type } = props;
-    const { title, illustration, textAboveTitle, html } = data;
+    const { data } = props;
+    const { title, html, textAboveTitle, illustration } = data;
 
     return (
-        <div>
+        <div className={style.contactStepPage}>
             <ContactPageHeader
-                pageProps={{
-                    type,
+                contentProps={{
                     data: {
                         title,
                         illustration,
-                        textAboveTitle,
                     },
                 }}
+                textAboveTitle={textAboveTitle}
             />
             <ParsedHtml htmlProps={html} />
-
-            {/* <ul>
-                {currentStepData.steps.map((step) => (
-                    <li key={step.label}>
-                        <FormIntermediateStepLink
-                            {...step}
-                            analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={currentStepData.stepsHeadline}
-                            analyticsLabel={step.label}
-                        />
-                    </li>
-                ))}
-            </ul> */}
-
-            {/*        <ul className={style.stepList}>*/}
-            {/*            {currentStepData.steps.map((step) => (*/}
-            {/*                <li key={step.label} className={style.stepItem}>*/}
-            {/*                    <FormIntermediateStepLink*/}
-            {/*                        {...step}*/}
-            {/*                        className={style.stepAction}*/}
-            {/*                        analyticsComponent={'mellomsteg'}*/}
-            {/*                        analyticsLinkGroup={currentStepData.stepsHeadline}*/}
-            {/*                        analyticsLabel={step.label}*/}
-            {/*                    />*/}
-            {/*                </li>*/}
-            {/*            ))}*/}
-            {/*        </ul>*/}
-            {/*    </div>*/}
-            {/*    {backUrl && (*/}
-            {/*        <div className={style.buttonGroup}>*/}
-            {/*            <Button*/}
-            {/*                href={backUrl}*/}
-            {/*                shallow={true}*/}
-            {/*                as={LenkeBase}*/}
-            {/*                variant={'tertiary'}*/}
-            {/*                className={style.backButton}*/}
-            {/*                analyticsComponent={'mellomsteg'}*/}
-            {/*                analyticsLinkGroup={currentStepData.stepsHeadline}*/}
-            {/*                analyticsLabel={'Tilbake'}*/}
-            {/*            >*/}
-            {/*                {getTranslations('back')}*/}
-            {/*            </Button>*/}
-            {/*        </div>*/}
-            {/*    )}*/}
-            {/*</div>*/}
         </div>
     );
 };

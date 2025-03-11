@@ -1,0 +1,20 @@
+.contactPageHeader {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 4px solid transparent;
+
+    .textAboveTitle {
+        font-family: Source Sans Pro;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.1%;
+    }
+
+    .header {
+        font-size: 40px;
+        line-height: 52px;
+    }
+}
