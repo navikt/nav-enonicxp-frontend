@@ -1,81 +1,110 @@
 import React from 'react';
-import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
+import { ContentCommonProps } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
-import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
+
+// Type for the external next step
+export interface ExternalNextStep {
+    externalUrl: string;
+}
+
+// Type for the internal next step
+export interface InternalNextStep {
+    internalContent: string; // UUID reference to internal content
+}
+
+// Using discriminated unions for better type safety
+export type NextStepExternal = {
+    external: ExternalNextStep;
+    internal?: never;
+    _selected: 'external';
+};
+
+export type NextStepInternal = {
+    external?: never;
+    internal: InternalNextStep;
+    _selected: 'internal';
+};
+
+// Union type for the next step
+export type NextStep = NextStepExternal | NextStepInternal;
+
+// Type for an individual step
+export interface Step {
+    label: string;
+    explanation: string;
+    nextStep: NextStep;
+}
+
+// Type for the entire data structure
+// export interface StepsData {
+//     steps: Step[];
+//     title: string;
+//     sortTitle: string;
+//     illustration: string; // UUID reference to an illustration
+//     customPath: string;
+// }
 
 export type ContactStepPageProps = ContentCommonProps & {
-    type: ContentType.ContactStepPage;
+    // type: ContentType.ContactStepPage;
     data: {
         title: string;
         illustration: PictogramsProps;
         textAboveTitle?: string;
         html: string;
+        steps: Step[];
     };
 };
 
 export const ContactStepPage = (props: ContactStepPageProps) => {
-    const { data, type } = props;
-    const { title, illustration, textAboveTitle, html } = data;
+    const { data } = props;
+    const { title, illustration, textAboveTitle, html, steps } = data;
 
     return (
-        <div>
-            <ContactPageHeader
-                pageProps={{
-                    type,
-                    data: {
-                        title,
-                        illustration,
-                        textAboveTitle,
-                    },
-                }}
-            />
-            <ParsedHtml htmlProps={html} />
+        <div className="contact-step-page">
+            {illustration && (
+                <div className="illustration">{/* Render illustration component */}</div>
+            )}
 
-            {/* <ul>
-                {currentStepData.steps.map((step) => (
-                    <li key={step.label}>
-                        <FormIntermediateStepLink
-                            {...step}
-                            analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={currentStepData.stepsHeadline}
-                            analyticsLabel={step.label}
-                        />
-                    </li>
-                ))}
-            </ul> */}
+            {textAboveTitle && <div className="text-above-title">{textAboveTitle}</div>}
 
-            {/*        <ul className={style.stepList}>*/}
-            {/*            {currentStepData.steps.map((step) => (*/}
-            {/*                <li key={step.label} className={style.stepItem}>*/}
-            {/*                    <FormIntermediateStepLink*/}
-            {/*                        {...step}*/}
-            {/*                        className={style.stepAction}*/}
-            {/*                        analyticsComponent={'mellomsteg'}*/}
-            {/*                        analyticsLinkGroup={currentStepData.stepsHeadline}*/}
-            {/*                        analyticsLabel={step.label}*/}
-            {/*                    />*/}
-            {/*                </li>*/}
-            {/*            ))}*/}
-            {/*        </ul>*/}
-            {/*    </div>*/}
-            {/*    {backUrl && (*/}
-            {/*        <div className={style.buttonGroup}>*/}
-            {/*            <Button*/}
-            {/*                href={backUrl}*/}
-            {/*                shallow={true}*/}
-            {/*                as={LenkeBase}*/}
-            {/*                variant={'tertiary'}*/}
-            {/*                className={style.backButton}*/}
-            {/*                analyticsComponent={'mellomsteg'}*/}
-            {/*                analyticsLinkGroup={currentStepData.stepsHeadline}*/}
-            {/*                analyticsLabel={'Tilbake'}*/}
-            {/*            >*/}
-            {/*                {getTranslations('back')}*/}
-            {/*            </Button>*/}
-            {/*        </div>*/}
-            {/*    )}*/}
-            {/*</div>*/}
+            <h1 className="title">{title}</h1>
+
+            {html && <div className="html-content" dangerouslySetInnerHTML={{ __html: html }} />}
+
+            {steps && steps.length > 0 && (
+                <div className="steps-container">
+                    <ul className="steps-list">
+                        {steps.map((step, index) => (
+                            <li key={index} className="step-item">
+                                <h2 className="step-title">{step.label}</h2>
+                                <p className="step-explanation">{step.explanation}</p>
+
+                                {step.nextStep._selected === 'external' &&
+                                    step.nextStep.external && (
+                                        <a
+                                            href={step.nextStep.external.externalUrl}
+                                            className="step-link external"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            Gå til ekstern side
+                                        </a>
+                                    )}
+
+                                {step.nextStep._selected === 'internal' &&
+                                    step.nextStep.internal && (
+                                        <a
+                                            href={`/content/${step.nextStep.internal.internalContent}`}
+                                            className="step-link internal"
+                                        >
+                                            Gå til intern side
+                                        </a>
+                                    )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 };
