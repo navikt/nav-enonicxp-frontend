@@ -26,6 +26,7 @@ export const LayoutContainer = ({
     const { layoutConfig } = useLayoutConfig();
 
     const { descriptor, type, config = {} } = layoutProps;
+    const { pageProps, ...filteredDivElementProps } = divElementProps;
     const layoutName = descriptor.split(':')[1];
     const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
@@ -34,7 +35,7 @@ export const LayoutContainer = ({
 
     return (
         <div
-            {...divElementProps}
+            {...filteredDivElementProps}
             {...layoutConfig.editorProps}
             className={classNames(
                 style.layout,
