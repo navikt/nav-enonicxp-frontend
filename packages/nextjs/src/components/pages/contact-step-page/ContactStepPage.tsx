@@ -5,6 +5,8 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PictogramsProps } from 'types/content-props/pictograms';
+import { stripXpPathPrefix } from 'utils/urls';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './ContactStepPage.module.scss';
 
 // Type for the external next step
@@ -63,6 +65,8 @@ export type ContactStepPageProps = ContentCommonProps & {
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
     const { title, illustration, textAboveTitle, html, steps } = data;
+    // console.log('internalContent', steps[0].nextStep?.internal?.internalContent);
+    // console.log('steps', steps);
 
     return (
         <>
@@ -101,12 +105,14 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
 
                                     {step.nextStep._selected === 'internal' &&
                                         step.nextStep.internal && (
-                                            <a
-                                                href={`/content/${step.nextStep.internal.internalContent}`}
+                                            <LenkeBase
+                                                href={stripXpPathPrefix(
+                                                    step.nextStep.internal?.internalContent._path
+                                                )}
                                                 className="step-link internal"
                                             >
                                                 Gå til intern side
-                                            </a>
+                                            </LenkeBase>
                                         )}
                                 </li>
                             ))}
