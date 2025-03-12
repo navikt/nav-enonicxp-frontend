@@ -1,0 +1,18 @@
+.contactPageHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .textAboveTitle {
+        color: var(--a-text-subtle);
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        letter-spacing: -0.1%;
+    }
+
+    .header {
+        font-size: 40px;
+        line-height: 52px;
+    }
+}
