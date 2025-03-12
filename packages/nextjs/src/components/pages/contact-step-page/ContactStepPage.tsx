@@ -77,40 +77,36 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
             </div>
             {steps && steps.length > 0 && (
-                <div className="steps-container">
-                    <ul className="steps-list">
-                        {steps.map((step, index) => (
-                            <li key={index} className="step-item">
-                                <h2 className="step-title">{step.label}</h2>
-                                <p className="step-explanation">{step.explanation}</p>
+                <ul className="steps-list">
+                    {steps.map((step, index) => (
+                        <li key={index} className="step-item">
+                            <h2 className="step-title">{step.label}</h2>
+                            <p className="step-explanation">{step.explanation}</p>
 
-                                {step.nextStep._selected === 'external' &&
-                                    step.nextStep.external && (
-                                        <a
-                                            href={step.nextStep.external.externalUrl}
-                                            className="step-link external"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Gå til ekstern side
-                                        </a>
-                                    )}
+                            {step.nextStep._selected === 'external' && step.nextStep.external && (
+                                <a
+                                    href={step.nextStep.external.externalUrl}
+                                    className="step-link external"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Gå til ekstern side
+                                </a>
+                            )}
 
-                                {step.nextStep._selected === 'internal' &&
-                                    step.nextStep.internal && (
-                                        <LenkeBase
-                                            href={stripXpPathPrefix(
-                                                step.nextStep.internal?.internalContent._path
-                                            )}
-                                            className="step-link internal"
-                                        >
-                                            Gå til intern side
-                                        </LenkeBase>
+                            {step.nextStep._selected === 'internal' && step.nextStep.internal && (
+                                <LenkeBase
+                                    href={stripXpPathPrefix(
+                                        step.nextStep.internal?.internalContent._path
                                     )}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                                    className="step-link internal"
+                                >
+                                    Gå til intern side
+                                </LenkeBase>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );
