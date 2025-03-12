@@ -1,36 +1,25 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { Illustration } from 'components/_common/illustration/Illustration';
 import { ProductDataMixin } from 'types/component-props/_mixins';
-
-// type Props = {
-//     pageProps: Pick<ContentProps, 'type'> & {
-//         data: Pick<ProductDataMixin, 'title' | 'illustration' | 'textAboveTitle'>;        // data: Pick<ProductDataMixin, 'title'>;
-//     };
-// };
+import { ContentProps } from 'types/content-props/_content-common';
+import style from './ContactPageHeader.module.scss';
 
 type Props = {
-        data: Pick<
-            ProductDataMixin,
-            'title' | 'illustration'
-        >;
+    contentProps: Pick<ContentProps, 'data'> & {
+        data: Pick<ProductDataMixin, 'title' | 'illustration'>;
+    };
     textAboveTitle?: string;
 };
 
-export const ContactPageHeader = (props: Props) => {
-    // const { textAboveTitle } = contentProps;
-    const { title, illustration } = props.data;
-
-    //const { pageProps } = props;
-    //const { textAboveTitle, title, illustration } = pageProps.data;
-
-    
+export const ContactPageHeader = ({ contentProps, textAboveTitle }: Props) => {
+    const { data } = contentProps;
 
     return (
-        <div>
-            <Illustration illustration={illustration} />
-            <BodyShort textColor="subtle">{props.textAboveTitle}</BodyShort>
-            <Heading level="1" size="large" spacing>
-                {title}
+        <div className={style.contactPageHeader}>
+            <BodyShort textColor="subtle" className={style.textAboveTitle}>
+                {textAboveTitle}
+            </BodyShort>
+            <Heading level="1" size="large" spacing className={style.header}>
+                {data.title}
             </Heading>
         </div>
     );
