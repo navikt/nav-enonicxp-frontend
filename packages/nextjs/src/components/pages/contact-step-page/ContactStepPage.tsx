@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { LinkPanel } from '@navikt/ds-react';
 import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
@@ -77,32 +78,23 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
             </div>
             {steps && steps.length > 0 && (
-                <ul className="steps-list">
+                <ul>
                     {steps.map((step, index) => (
                         <li key={index} className="step-item">
-                            <h2 className="step-title">{step.label}</h2>
-                            <p className="step-explanation">{step.explanation}</p>
-
-                            {step.nextStep._selected === 'external' && step.nextStep.external && (
-                                <a
-                                    href={step.nextStep.external.externalUrl}
-                                    className="step-link external"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Gå til ekstern side
-                                </a>
-                            )}
-
                             {step.nextStep._selected === 'internal' && step.nextStep.internal && (
-                                <LenkeBase
+                                <LinkPanel
+                                    // {...rest}
+                                    as={LenkeBase}
                                     href={stripXpPathPrefix(
                                         step.nextStep.internal?.internalContent._path
                                     )}
-                                    className="step-link internal"
+                                    // shallow={isStepNavigation}
                                 >
-                                    Gå til intern side
-                                </LenkeBase>
+                                    <LinkPanel.Title>{step.label}</LinkPanel.Title>
+                                    <LinkPanel.Description>
+                                        {step.explanation}
+                                    </LinkPanel.Description>
+                                </LinkPanel>
                             )}
                         </li>
                     ))}
