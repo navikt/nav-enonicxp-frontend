@@ -251,8 +251,7 @@ type SpecificContentProps =
     | FormDetailsPageProps
     | FormIntermediateStepPageProps
     | FormsOverviewProps
-    | FallbackPageProps
-    | ContactStepPageProps;
+    | FallbackPageProps;
 
 export type ContentProps<Type extends ContentType = ContentType> = ContentCommonProps<Type> &
     SpecificContentProps;
