@@ -1,3 +1,41 @@
+@use 'common' as common;
+
 .contactStepPage {
     padding-bottom: 1rem;
+    display: grid;
+    row-gap: var(--a-spacing-5);
+    margin: 1.25rem auto var(--a-spacing-10);
+    grid-template-areas:
+        'header'
+        'content';
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        grid-template-columns: 6rem 2fr 6rem;
+        grid-template-areas:
+            'pictogram header .'
+            '. content .';
+        column-gap: var(--a-spacing-10);
+    }
+}
+
+.pictogram {
+    grid-area: pictogram;
+}
+.header {
+    grid-area: header;
+}
+
+.content {
+    grid-area: content;
+
+    & > * {
+        border-radius: common.$border-radius-large;
+    }
+}
+
+/* Innrykk i ekspanderende paneler */
+.header :global(.navds-expansioncard__content) {
+    @media #{common.$mq-screen-desktop} {
+        padding-left: 82px;
+    }
 }

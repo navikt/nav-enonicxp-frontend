@@ -1,9 +1,7 @@
 .contactPageHeader {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 4px solid transparent;
 
     .textAboveTitle {
         font-family: Source Sans Pro;
