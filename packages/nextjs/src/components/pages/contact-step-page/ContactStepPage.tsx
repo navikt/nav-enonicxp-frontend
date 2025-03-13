@@ -10,31 +10,24 @@ import { stripXpPathPrefix } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './ContactStepPage.module.scss';
 
-export interface ExternalNextStep {
-    externalUrl: string;
-}
-export interface InternalNextStep {
-    internalContent: Pick<ContentCommonProps, '_path'>;
-}
+export type LinkInternal = {
+    external?: never;
+    internal: { internalContent: Pick<ContentCommonProps, '_path'> };
+    _selected: 'internal';
+};
 
-export type NextStepExternal = {
-    external: ExternalNextStep;
+export type LinkExternal = {
+    external: { externalUrl: string };
     internal?: never;
     _selected: 'external';
 };
 
-export type NextStepInternal = {
-    external?: never;
-    internal: InternalNextStep;
-    _selected: 'internal';
-};
+export type Link = LinkInternal | LinkExternal;
 
-export type NextStep = NextStepExternal | NextStepInternal;
-
-export interface Step {
+export interface LinkPanel {
     label: string;
     explanation: string;
-    nextStep: NextStep;
+    link: Link;
 }
 
 export type ContactStepPageProps = ContentCommonProps & {
@@ -46,20 +39,20 @@ export type ContactStepPageProps = ContentCommonProps & {
         html: string;
         linksHeading: string;
         linksSubHeadline: string;
-        steps: Step[];
+        links: LinkPanel[];
     };
 };
 
-const getHref = (step: Step) => {
-    if (step.nextStep._selected === 'internal') {
-        return stripXpPathPrefix(step.nextStep.internal?.internalContent._path);
+const getHref = (link: Link) => {
+    if (link._selected === 'internal') {
+        return stripXpPathPrefix(link.internal?.internalContent._path);
     }
-    return step.nextStep.external.externalUrl;
+    return link.external.externalUrl;
 };
 
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
-    const { title, illustration, textAboveTitle, html, steps, linksHeading, linksSubHeadline } =
+    const { title, illustration, textAboveTitle, html, links, linksHeading, linksSubHeadline } =
         data;
 
     return (
@@ -85,21 +78,23 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                 </Heading>
             )}
             {linksSubHeadline && <BodyShort>{linksSubHeadline}</BodyShort>}
-            {steps && steps.length > 0 && (
-                <ul className={style.steps}>
-                    {steps.map((step, index) => (
+            {links && links.length > 0 && (
+                <ul className={style.links}>
+                    {links.map((linkPanel, index) => (
                         <li key={index}>
                             <LinkPanel
                                 as={LenkeBase}
-                                href={getHref(step)}
+                                href={getHref(linkPanel.link)}
                                 className={style.linkPanel}
                                 // TODO finn utav analytics
                                 // analyticsComponent={'mellomsteg'}
                                 // analyticsLinkGroup={currentStepData.stepsHeadline}
                                 // analyticsLabel={step.label}s
                             >
-                                <LinkPanel.Title>{step.label}</LinkPanel.Title>
-                                <LinkPanel.Description>{step.explanation}</LinkPanel.Description>
+                                <LinkPanel.Title>{linkPanel.label}</LinkPanel.Title>
+                                <LinkPanel.Description>
+                                    {linkPanel.explanation}
+                                </LinkPanel.Description>
                             </LinkPanel>
                         </li>
                     ))}
