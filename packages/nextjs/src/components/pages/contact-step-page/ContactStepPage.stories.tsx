@@ -121,6 +121,7 @@ const meta = {
                 searchOrder: {},
             },
         },
+        // @ts-ignore
         page: {},
         attachments: {},
         publish: {
