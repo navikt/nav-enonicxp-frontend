@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
 import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -8,6 +6,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { stripXpPathPrefix } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import style from './ContactStepPage.module.scss';
 
 export type LinkInternal = {
@@ -40,20 +39,36 @@ export type ContactStepPageProps = ContentCommonProps & {
         linksHeading: string;
         linksSubHeadline: string;
         links: LinkPanel[];
+        link: {
+            internal: {
+                target: { _path: string };
+                text: string;
+            };
+        };
     };
-};
-
-const getHref = (link: Link) => {
-    if (link._selected === 'internal') {
-        return stripXpPathPrefix(link.internal?.internalContent._path);
-    }
-    return link.external.externalUrl;
 };
 
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
-    const { title, illustration, textAboveTitle, html, links, linksHeading, linksSubHeadline } =
-        data;
+    const {
+        title,
+        illustration,
+        textAboveTitle,
+        html,
+        links,
+        linksHeading,
+        linksSubHeadline,
+        link,
+    } = data;
+
+    const getHref = (link: Link) => {
+        if (link._selected === 'internal') {
+            return stripXpPathPrefix(link.internal?.internalContent._path);
+        }
+        return link.external.externalUrl;
+    };
+
+    const { target, text } = link.internal;
 
     return (
         <div className={style.contactStepPage}>
@@ -100,6 +115,9 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                     ))}
                 </ul>
             )}
+            <LenkeInline href={target._path} className={style.link}>
+                {text}
+            </LenkeInline>
         </div>
     );
 };

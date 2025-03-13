@@ -7,19 +7,26 @@
     margin: 1.25rem auto var(--a-spacing-10);
     grid-template-areas:
         'header'
-        'content';
+        'content'
+        'link';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
         grid-template-columns: 6rem 2fr 6rem;
         grid-template-areas:
             'pictogram header .'
-            '. content .';
+            '. content .'
+            '. link .';
         column-gap: var(--a-spacing-10);
     }
 }
 
 .pictogram {
     grid-area: pictogram;
+    display: none;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        display: block;
+    }
 }
 .header {
     grid-area: header;
@@ -31,6 +38,10 @@
     & > * {
         border-radius: common.$border-radius-large;
     }
+}
+
+.link {
+    grid-area: link;
 }
 
 /* Innrykk i ekspanderende paneler */
