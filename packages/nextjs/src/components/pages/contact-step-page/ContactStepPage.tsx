@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LinkPanel } from '@navikt/ds-react';
+import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
 import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
@@ -44,6 +44,8 @@ export type ContactStepPageProps = ContentCommonProps & {
         illustration: PictogramsProps;
         textAboveTitle?: string;
         html: string;
+        linksHeading: string;
+        linksSubHeadline: string;
         steps: Step[];
     };
 };
@@ -57,7 +59,8 @@ const getHref = (step: Step) => {
 
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
-    const { title, illustration, textAboveTitle, html, steps } = data;
+    const { title, illustration, textAboveTitle, html, steps, linksHeading, linksSubHeadline } =
+        data;
 
     return (
         <div className={style.contactStepPage}>
@@ -76,6 +79,12 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />
             </div>
+            {linksHeading && (
+                <Heading size="medium" level="2">
+                    {linksHeading}
+                </Heading>
+            )}
+            {linksSubHeadline && <BodyShort>{linksSubHeadline}</BodyShort>}
             {steps && steps.length > 0 && (
                 <ul className={style.steps}>
                     {steps.map((step, index) => (
