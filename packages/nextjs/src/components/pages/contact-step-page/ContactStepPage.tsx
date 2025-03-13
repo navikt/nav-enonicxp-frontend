@@ -79,7 +79,7 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
             {steps && steps.length > 0 && (
                 <ul className={style.steps}>
                     {steps.map((step, index) => (
-                        <li key={index} className="step-item">
+                        <li key={index}>
                             <LinkPanel
                                 as={LenkeBase}
                                 href={getHref(step)}
