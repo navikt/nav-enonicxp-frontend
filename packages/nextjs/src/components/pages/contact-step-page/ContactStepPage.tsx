@@ -10,17 +10,13 @@ import { stripXpPathPrefix } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './ContactStepPage.module.scss';
 
-// Type for the external next step
 export interface ExternalNextStep {
     externalUrl: string;
 }
-
-// Type for the internal next step
 export interface InternalNextStep {
-    internalContent: ContentCommonProps; // UUID reference to internal content
+    internalContent: Pick<ContentCommonProps, '_path'>;
 }
 
-// Using discriminated unions for better type safety
 export type NextStepExternal = {
     external: ExternalNextStep;
     internal?: never;
@@ -33,10 +29,8 @@ export type NextStepInternal = {
     _selected: 'internal';
 };
 
-// Union type for the next step
 export type NextStep = NextStepExternal | NextStepInternal;
 
-// Type for an individual step
 export interface Step {
     label: string;
     explanation: string;
@@ -85,6 +79,22 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                                     href={stripXpPathPrefix(
                                         step.nextStep.internal?.internalContent._path
                                     )}
+                                    className={style.linkPanel}
+                                    // analyticsComponent={'mellomsteg'}
+                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
+                                    // analyticsLabel={step.label}
+                                    // shallow={isStepNavigation}
+                                >
+                                    <LinkPanel.Title>{step.label}</LinkPanel.Title>
+                                    <LinkPanel.Description>
+                                        {step.explanation}
+                                    </LinkPanel.Description>
+                                </LinkPanel>
+                            )}
+                            {step.nextStep._selected === 'external' && step.nextStep.external && (
+                                <LinkPanel
+                                    as={LenkeBase}
+                                    href={step.nextStep.external.externalUrl}
                                     className={style.linkPanel}
                                     // analyticsComponent={'mellomsteg'}
                                     // analyticsLinkGroup={currentStepData.stepsHeadline}
