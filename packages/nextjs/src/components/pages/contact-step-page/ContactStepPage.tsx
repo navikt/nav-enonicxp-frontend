@@ -48,6 +48,13 @@ export type ContactStepPageProps = ContentCommonProps & {
     };
 };
 
+const getHref = (step: Step) => {
+    if (step.nextStep._selected === 'internal') {
+        return stripXpPathPrefix(step.nextStep.internal?.internalContent._path);
+    }
+    return step.nextStep.external.externalUrl;
+};
+
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
     const { title, illustration, textAboveTitle, html, steps } = data;
@@ -73,40 +80,18 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                 <ul className={style.steps}>
                     {steps.map((step, index) => (
                         <li key={index} className="step-item">
-                            {step.nextStep._selected === 'internal' && step.nextStep.internal && (
-                                <LinkPanel
-                                    as={LenkeBase}
-                                    href={stripXpPathPrefix(
-                                        step.nextStep.internal?.internalContent._path
-                                    )}
-                                    className={style.linkPanel}
-                                    // analyticsComponent={'mellomsteg'}
-                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
-                                    // analyticsLabel={step.label}
-                                    // shallow={isStepNavigation}
-                                >
-                                    <LinkPanel.Title>{step.label}</LinkPanel.Title>
-                                    <LinkPanel.Description>
-                                        {step.explanation}
-                                    </LinkPanel.Description>
-                                </LinkPanel>
-                            )}
-                            {step.nextStep._selected === 'external' && step.nextStep.external && (
-                                <LinkPanel
-                                    as={LenkeBase}
-                                    href={step.nextStep.external.externalUrl}
-                                    className={style.linkPanel}
-                                    // analyticsComponent={'mellomsteg'}
-                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
-                                    // analyticsLabel={step.label}
-                                    // shallow={isStepNavigation}
-                                >
-                                    <LinkPanel.Title>{step.label}</LinkPanel.Title>
-                                    <LinkPanel.Description>
-                                        {step.explanation}
-                                    </LinkPanel.Description>
-                                </LinkPanel>
-                            )}
+                            <LinkPanel
+                                as={LenkeBase}
+                                href={getHref(step)}
+                                className={style.linkPanel}
+                                // analyticsComponent={'mellomsteg'}
+                                // analyticsLinkGroup={currentStepData.stepsHeadline}
+                                // analyticsLabel={step.label}
+                                // shallow={isStepNavigation}
+                            >
+                                <LinkPanel.Title>{step.label}</LinkPanel.Title>
+                                <LinkPanel.Description>{step.explanation}</LinkPanel.Description>
+                            </LinkPanel>
                         </li>
                     ))}
                 </ul>
