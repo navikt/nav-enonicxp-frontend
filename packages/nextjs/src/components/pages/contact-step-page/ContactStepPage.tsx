@@ -57,8 +57,6 @@ export type ContactStepPageProps = ContentCommonProps & {
 export const ContactStepPage = (props: ContactStepPageProps) => {
     const { data } = props;
     const { title, illustration, textAboveTitle, html, steps } = data;
-    // console.log('internalContent', steps[0].nextStep?.internal?.internalContent);
-    // console.log('steps', steps);
 
     return (
         <div className={style.contactStepPage}>
@@ -78,16 +76,19 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
             </div>
             {steps && steps.length > 0 && (
-                <ul>
+                <ul className={style.steps}>
                     {steps.map((step, index) => (
                         <li key={index} className="step-item">
                             {step.nextStep._selected === 'internal' && step.nextStep.internal && (
                                 <LinkPanel
-                                    // {...rest}
                                     as={LenkeBase}
                                     href={stripXpPathPrefix(
                                         step.nextStep.internal?.internalContent._path
                                     )}
+                                    className={style.linkPanel}
+                                    // analyticsComponent={'mellomsteg'}
+                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
+                                    // analyticsLabel={step.label}
                                     // shallow={isStepNavigation}
                                 >
                                     <LinkPanel.Title>{step.label}</LinkPanel.Title>
