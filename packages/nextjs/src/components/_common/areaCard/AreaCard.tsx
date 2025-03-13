@@ -19,7 +19,7 @@ type Props = {
 
 export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     const { layoutConfig } = useLayoutConfig();
-    const analyticsLinkGroup= linkGroup || layoutConfig.title;
+    const analyticsLinkGroup= linkGroup ?? layoutConfig.title;
 
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
