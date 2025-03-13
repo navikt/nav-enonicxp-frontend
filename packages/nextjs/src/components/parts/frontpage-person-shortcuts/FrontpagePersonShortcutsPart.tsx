@@ -61,7 +61,7 @@ export const FrontpagePersonShortcutsPart = ({
                                 href={href}
                                 className={style.linkPanel}
                                 analyticsComponent="Lenkepanel navno enkel"
-                                analyticsLinkGroup={title}
+                                analyticsLinkGroup={sectionTitle}
                             >
                                 <div className={style.icon}>
                                     {
