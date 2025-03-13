@@ -55,9 +55,9 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
         illustration,
         textAboveTitle,
         html,
-        links,
-        linksHeading,
-        linksSubHeadline,
+        links: linkPanels,
+        linksHeading: linksPanelHeading,
+        linksSubHeadline: linksPanelSubHeadline,
         link,
     } = data;
 
@@ -73,51 +73,52 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
     return (
         <div className={style.contactStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
-            <div className={style.header}>
-                <ContactPageHeader
-                    contentProps={{
-                        data: {
-                            title,
-                            illustration,
-                        },
-                    }}
-                    textAboveTitle={textAboveTitle}
-                />
-            </div>
+            <ContactPageHeader
+                contentProps={{
+                    data: {
+                        title,
+                        illustration,
+                    },
+                }}
+                textAboveTitle={textAboveTitle}
+                className={style.header}
+            />
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />
+
+                {linksPanelHeading && (
+                    <Heading size="medium" level="2">
+                        {linksPanelHeading}
+                    </Heading>
+                )}
+                {linksPanelSubHeadline && <BodyShort>{linksPanelSubHeadline}</BodyShort>}
+
+                {linkPanels && linkPanels.length > 0 && (
+                    <ul className={style.linkPanels}>
+                        {linkPanels.map((linkPanel, index) => (
+                            <li key={index}>
+                                <LinkPanel
+                                    as={LenkeBase}
+                                    href={getHref(linkPanel.link)}
+                                    className={style.linkPanel}
+                                    // TODO finn utav analytics
+                                    // analyticsComponent={'mellomsteg'}
+                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
+                                    // analyticsLabel={step.label}s
+                                >
+                                    <LinkPanel.Title>{linkPanel.label}</LinkPanel.Title>
+                                    <LinkPanel.Description>
+                                        {linkPanel.explanation}
+                                    </LinkPanel.Description>
+                                </LinkPanel>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
-            {linksHeading && (
-                <Heading size="medium" level="2">
-                    {linksHeading}
-                </Heading>
-            )}
-            {linksSubHeadline && <BodyShort>{linksSubHeadline}</BodyShort>}
-            {links && links.length > 0 && (
-                <ul className={style.links}>
-                    {links.map((linkPanel, index) => (
-                        <li key={index}>
-                            <LinkPanel
-                                as={LenkeBase}
-                                href={getHref(linkPanel.link)}
-                                className={style.linkPanel}
-                                // TODO finn utav analytics
-                                // analyticsComponent={'mellomsteg'}
-                                // analyticsLinkGroup={currentStepData.stepsHeadline}
-                                // analyticsLabel={step.label}s
-                            >
-                                <LinkPanel.Title>{linkPanel.label}</LinkPanel.Title>
-                                <LinkPanel.Description>
-                                    {linkPanel.explanation}
-                                </LinkPanel.Description>
-                            </LinkPanel>
-                        </li>
-                    ))}
-                </ul>
-            )}
-            <LenkeInline href={target._path} className={style.link}>
-                {text}
-            </LenkeInline>
+            <div className={style.link}>
+                <LenkeInline href={target._path}>{text}</LenkeInline>
+            </div>
         </div>
     );
 };
