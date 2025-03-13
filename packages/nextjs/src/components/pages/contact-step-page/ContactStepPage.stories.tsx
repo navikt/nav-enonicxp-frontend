@@ -25,6 +25,7 @@ const meta = {
         createdTime: '2025-03-06T09:12:39.492046Z',
         modifiedTime: '2025-03-13T11:26:18.994311Z',
         owner: 'user:system:su',
+        // @ts-ignore
         type: 'no.nav.navno:contact-step-page',
         displayName: 'Skriv til oss',
         hasChildren: true,
@@ -34,6 +35,7 @@ const meta = {
         data: {
             audience: {
                 person: {},
+                // @ts-ignore
                 _selected: 'person',
             },
             steps: {
@@ -54,6 +56,7 @@ const meta = {
             text: 'Skriv til oss om noe annet',
             link: {
                 internal: {
+                    // @ts-ignore
                     target: '419e1783-25af-4513-aebb-2cce0b6bd7da',
                     text: 'Kontakt oss på en annen måte',
                 },
@@ -67,6 +70,7 @@ const meta = {
                     link: {
                         internal: {
                             internalContent: {
+                                // @ts-ignore
                                 createdTime: '2025-03-13T11:18:33.082857Z',
                                 displayName: '"Melde fra om endringer i saken din"',
                                 language: 'no',
@@ -90,6 +94,7 @@ const meta = {
                     link: {
                         internal: {
                             internalContent: {
+                                // @ts-ignore
                                 createdTime: '2025-03-13T11:18:33.082857Z',
                                 displayName: 'Skriv til oss',
                                 language: 'no',
