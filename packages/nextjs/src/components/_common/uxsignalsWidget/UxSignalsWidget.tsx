@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
 
@@ -17,31 +17,30 @@ type Consent = {
 };
 
 const uxSignalsScriptUrl = 'https://widget.uxsignals.com/embed.js';
+let scriptAddTimeout: ReturnType<typeof setTimeout>;
 
 export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
     // If the cookie banner is visible, the user has not taken any action yet.
     // Wait and see if the user takes action before adding the script if consent is given..
-    const checkConsentOrWait = ({ consent, userActionTaken }: Consent) => {
+    const checkConsentOrWait = (tries: number = 0) => {
+        const { consent, userActionTaken }: Consent = getCurrentConsent();
         if (consent.surveys && consent.analytics) {
             addUXSignalsScript();
             return;
         }
-        if (!userActionTaken) {
-            setTimeout(() => {
-                console.log('waiting...');
-                checkConsentOrWait(getCurrentConsent());
-            }, 1000);
+        // Wait max 20 seconds for user respond to the cookie banner
+        // (userActionTaken) or give up.
+        if (!userActionTaken && tries < 20) {
+            scriptAddTimeout = setTimeout(() => {
+                checkConsentOrWait(tries + 1);
+            }, 3000);
         }
-
-        console.log('no consent or user action taken');
     };
 
     const addUXSignalsScript = () => {
         if (document.querySelector(`script[src="${uxSignalsScriptUrl}"]`)) {
             return;
         }
-
-        console.log('adding script');
 
         const script = document.createElement('script');
         script.src = uxSignalsScriptUrl;
@@ -50,7 +49,6 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
     };
 
     const removeUXSignalsScript = () => {
-        console.log('removing script');
         const script = document.querySelector(`script[src="${uxSignalsScriptUrl}"]`);
         if (script) {
             document.body.removeChild(script);
@@ -58,11 +56,14 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
     };
 
     useEffect(() => {
-        const consent = getCurrentConsent();
-        checkConsentOrWait(consent);
+        checkConsentOrWait();
         return () => {
+            if (scriptAddTimeout) {
+                clearTimeout(scriptAddTimeout);
+            }
             removeUXSignalsScript();
         };
+        /* eslint-disable-next-line react-hooks/exhaustive-deps */
     }, []);
 
     return (
