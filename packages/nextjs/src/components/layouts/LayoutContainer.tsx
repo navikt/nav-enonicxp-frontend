@@ -20,13 +20,14 @@ export const LayoutContainer = ({
     layoutProps,
     layoutStyle,
     children,
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    pageProps,
     ...divElementProps
 }: Props) => {
     const { editorView } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
 
     const { descriptor, type, config = {} } = layoutProps;
-    const { pageProps: _pageProps, ...filteredDivElementProps } = divElementProps;
     const layoutName = descriptor.split(':')[1];
     const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
@@ -35,7 +36,7 @@ export const LayoutContainer = ({
 
     return (
         <div
-            {...filteredDivElementProps}
+            {...divElementProps}
             {...layoutConfig.editorProps}
             className={classNames(
                 style.layout,
