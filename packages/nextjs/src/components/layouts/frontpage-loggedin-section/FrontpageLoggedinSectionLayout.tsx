@@ -44,6 +44,7 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
 
     const { header, mypage } = config;
     const title = yourServicesText('yourServices');
+    layoutProps.config.title = title; //for at kortene i region skal kunne plukke opp title til analytics
 
     return (
         <AuthDependantRender renderOn={'loggedIn'}>
