@@ -28,12 +28,12 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
             addUXSignalsScript();
             return;
         }
-        // Wait max 20 seconds for user respond to the cookie banner
+        // Wait max 60 seconds for user respond to the cookie banner
         // (userActionTaken) or give up.
-        if (!userActionTaken && tries < 20) {
+        if (!userActionTaken && tries < 60) {
             scriptAddTimeout = setTimeout(() => {
                 checkConsentOrWait(tries + 1);
-            }, 3000);
+            }, 1000);
         }
     };
 
