@@ -8,6 +8,7 @@ export interface FrontpageLoggedinSectionLayoutProps extends LayoutBaseProps {
     regions: Regions<'cards'>;
     config: {
         header: string;
+        title: string;
         mypage: {
             link: LinkSelectable;
         };
