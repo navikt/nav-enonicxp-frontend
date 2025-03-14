@@ -5,15 +5,25 @@ import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeS
 
 import styles from './MoreLink.module.scss';
 
-export const MoreLink = ({ link }: { link?: LinkSelectable }) => {
-    if (!link) {
+type Props = {
+    link: LinkSelectable;
+    analyticsGroup?: string;
+};
+
+export const MoreLink = ( props: Props) => {
+    if (!props.link) {
         return null;
     }
 
-    const { text, url } = getSelectableLinkProps(link);
+    const { text, url } = getSelectableLinkProps(props.link);
 
     return (
-        <LenkeStandalone href={url} className={styles.moreLink} withChevron={false}>
+        <LenkeStandalone
+            href={url}
+            linkGroup={props.analyticsGroup}
+            className={styles.moreLink}
+            withChevron={false}
+        >
             <ArrowRightIcon aria-hidden={true} className={styles.arrow} />
             {text}
         </LenkeStandalone>

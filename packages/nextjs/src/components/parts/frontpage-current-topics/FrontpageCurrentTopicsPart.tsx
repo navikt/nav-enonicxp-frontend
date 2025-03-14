@@ -82,7 +82,7 @@ export const FrontpageCurrentTopicsPart = ({
                     );
                 })}
             </ul>
-            {link && <MoreLink link={link} />}
+            {link && <MoreLink analyticsGroup={title} link={link} />}
         </div>
     );
 };
