@@ -9,6 +9,7 @@ import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
+import { ContactStepPageProps } from 'components/pages/contact-step-page/ContactStepPage';
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
@@ -93,6 +94,7 @@ export enum ContentType {
     AlertInContext = 'no.nav.navno:alert-in-context',
     OfficePage = 'no.nav.navno:office-page',
     FallbackPage = 'no.nav.navno:fallback-page',
+    ContactStepPage = 'no.nav.navno:contact-step-page',
 }
 
 export const innholdsTypeMap: Record<ContentType, string> = {
@@ -137,6 +139,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.Video]: 'Qbrick Video',
     [ContentType.AlertInContext]: 'Varsel i kontekst',
     [ContentType.OfficePage]: 'Kontorside (gammel)',
+    [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
 
     [ContentType.Error]: `Ugyldig type: [${ContentType.Error}]`,
     [ContentType.Site]: `Ugyldig type: [${ContentType.Site}]`,
@@ -209,6 +212,7 @@ type SpecificContentProps =
     | SiteProps
     | TemplateProps
     | ContentListProps
+    | ContactStepPageProps
     | ErrorProps
     | ExternalLinkProps
     | InternalLinkProps
