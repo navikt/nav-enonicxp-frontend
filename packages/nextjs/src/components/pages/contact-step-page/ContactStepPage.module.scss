@@ -11,7 +11,7 @@
         'link';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 6rem 2fr 6rem;
+        grid-template-columns: 1fr 40rem 1fr;
         grid-template-areas:
             'pictogram header .'
             '. content .'
@@ -24,6 +24,8 @@
 
         @media #{common.$mq-screen-tablet-and-desktop} {
             display: block;
+            width: 7rem;
+            justify-self: end;
         }
     }
     .header {
@@ -32,6 +34,7 @@
 
     .content {
         grid-area: content;
+        max-width: 40rem;
 
         & > * {
             border-radius: common.$border-radius-large;
