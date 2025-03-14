@@ -25,7 +25,7 @@ export type Link = LinkInternal | LinkExternal;
 
 export interface LinkPanel {
     label: string;
-    explanation: string;
+    explanation?: string;
     link: Link;
 }
 
@@ -107,9 +107,11 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                                     // analyticsLabel={step.label}s
                                 >
                                     <LinkPanel.Title>{linkPanel.label}</LinkPanel.Title>
-                                    <LinkPanel.Description>
-                                        {linkPanel.explanation}
-                                    </LinkPanel.Description>
+                                    {linkPanel.explanation && (
+                                        <LinkPanel.Description>
+                                            {linkPanel.explanation}
+                                        </LinkPanel.Description>
+                                    )}
                                 </LinkPanel>
                             </li>
                         ))}
