@@ -20,6 +20,8 @@ export const LayoutContainer = ({
     layoutProps,
     layoutStyle,
     children,
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    pageProps,
     ...divElementProps
 }: Props) => {
     const { editorView } = usePageContentProps();
