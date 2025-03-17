@@ -23,13 +23,14 @@ const getDescription = (content: ContentProps) => {
     return description.slice(0, DESCRIPTION_MAX_LENGTH);
 };
 
-const contentTypesWithNoIndex = new Set([ContentType.Error, ContentType.FormIntermediateStepPage]);
+const contentTypesWithNoIndex = new Set([
+    ContentType.Error,
+    ContentType.FormIntermediateStepPage,
+    ContentType.ContactStepPage,
+]);
 
 const isNoIndex = (content: ContentProps) =>
-    content.isPagePreview ||
-    contentTypesWithNoIndex.has(content.type) ||
-    content.data?.noindex ||
-    content.type === 'no.nav.navno:contact-step-page';
+    content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
     return content.data?.canonicalUrl || `${appOrigin}${getPublicPathname(content)}`;
