@@ -2,7 +2,7 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
-import style from './ContactPageHeader.module.scss';
+import style from './headerWithParent.module.scss';
 
 type Props = {
     contentProps: Pick<ContentProps, 'data'> & {
@@ -12,11 +12,11 @@ type Props = {
     className?: string;
 };
 
-export const ContactPageHeader = ({ contentProps, textAboveTitle, className }: Props) => {
+export const HeaderWithParent = ({ contentProps, textAboveTitle, className }: Props) => {
     const { data } = contentProps;
 
     return (
-        <div className={classNames(style.contactPageHeader, className)}>
+        <div className={classNames(style.headerContainer, className)}>
             <BodyShort textColor="subtle" className={style.textAboveTitle}>
                 {textAboveTitle}
             </BodyShort>

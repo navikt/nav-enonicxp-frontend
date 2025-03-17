@@ -1,5 +1,5 @@
 import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
-import { ContactPageHeader } from 'components/_common/headers/contactPageHeader/ContactPageHeader';
+import { HeaderWithParent } from 'components/_common/headers/headerWithParent/HeaderWithParent';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
@@ -73,7 +73,7 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
     return (
         <div className={style.contactStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
-            <ContactPageHeader
+            <HeaderWithParent
                 contentProps={{
                     data: {
                         title,
