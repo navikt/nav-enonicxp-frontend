@@ -2,7 +2,7 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
-import style from './headerWithParent.module.scss';
+import style from './HeaderWithParent.module.scss';
 
 type Props = {
     contentProps: Pick<ContentProps, 'data'> & {
