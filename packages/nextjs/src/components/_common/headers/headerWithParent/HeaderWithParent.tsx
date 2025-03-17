@@ -10,9 +10,10 @@ type Props = {
     };
     textAboveTitle?: string;
     className?: string;
+    tags?: string[];
 };
 
-export const HeaderWithParent = ({ contentProps, textAboveTitle, className }: Props) => {
+export const HeaderWithParent = ({ contentProps, textAboveTitle, className, tags }: Props) => {
     const { data } = contentProps;
 
     return (
@@ -23,6 +24,15 @@ export const HeaderWithParent = ({ contentProps, textAboveTitle, className }: Pr
             <Heading level="1" size="large" spacing className={style.header}>
                 {data.title}
             </Heading>
+            {tags && (
+                <ul className={style.tagsList}>
+                    {tags.map((tag, index) => (
+                        <li key={index} className={style.tag}>
+                            {tag}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
