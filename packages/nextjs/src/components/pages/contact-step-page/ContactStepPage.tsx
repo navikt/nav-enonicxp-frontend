@@ -6,7 +6,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { LinkWithIngressMixin } from 'types/component-props/_mixins';
+import { InternalLinkMixin } from 'types/component-props/_mixins';
 import style from './ContactStepPage.module.scss';
 
 export type ContactStepPageProps = ContentCommonProps & {
@@ -18,13 +18,8 @@ export type ContactStepPageProps = ContentCommonProps & {
         html: string;
         linkPanelsHeading: string;
         linkPanelsSubHeading: string;
-        linkPanels: LinkWithIngressMixin[];
-        link: {
-            internal: {
-                target: { _path: string };
-                text: string;
-            };
-        };
+        linkPanels: (InternalLinkMixin & { ingress?: string })[];
+        backLink: InternalLinkMixin;
     };
 };
 
@@ -38,7 +33,7 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
         linkPanelsHeading,
         linkPanelsSubHeading,
         linkPanels,
-        link,
+        backLink,
     } = data;
 
     return (
@@ -69,15 +64,16 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                         <li key={index}>
                             <LinkPanel
                                 as={LenkeBase}
-                                //TODO finn utav ekstern lenke
-                                href={linkPanel.link.internal.target._path}
+                                href={linkPanel.target._path}
                                 className={style.linkPanel}
                                 // TODO finn utav analytics
                                 // analyticsComponent={'mellomsteg'}
                                 // analyticsLinkGroup={currentStepData.stepsHeadline}
                                 // analyticsLabel={step.label}s
                             >
-                                <LinkPanel.Title>{linkPanel.link.internal.text}</LinkPanel.Title>
+                                <LinkPanel.Title>
+                                    {linkPanel.text ?? linkPanel.target.displayName}
+                                </LinkPanel.Title>
                                 {linkPanel.ingress && (
                                     <LinkPanel.Description>
                                         {linkPanel.ingress}
@@ -88,9 +84,9 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                     ))}
                 </ul>
             </div>
-            <div className={style.link}>
-                <LenkeInline href={link.internal.target._path}>{link.internal.text}</LenkeInline>
-            </div>
+            <LenkeInline href={backLink.target._path} className={style.backLink}>
+                {backLink.text ?? backLink.target.displayName}
+            </LenkeInline>
         </div>
     );
 };

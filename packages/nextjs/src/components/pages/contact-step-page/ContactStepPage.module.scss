@@ -8,14 +8,14 @@
     grid-template-areas:
         'header'
         'content'
-        'link';
+        'backLink';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
         grid-template-columns: 1fr 40rem 1fr;
         grid-template-areas:
             'pictogram header .'
             '. content .'
-            '. link .';
+            '. backLink .';
         column-gap: var(--a-spacing-10);
     }
     .pictogram {
@@ -60,7 +60,7 @@
             }
         }
     }
-    .link {
-        grid-area: link;
+    .backLink {
+        grid-area: backLink;
     }
 }
