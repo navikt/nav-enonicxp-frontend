@@ -29,7 +29,7 @@ interface LinkPanel {
     link: Link;
 }
 
-type ContactStepPageProps = ContentCommonProps & {
+export type ContactStepPageProps = ContentCommonProps & {
     type: ContentType.ContactStepPage;
     data: {
         title: string;
