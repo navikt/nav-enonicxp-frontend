@@ -26,7 +26,10 @@ const getDescription = (content: ContentProps) => {
 const contentTypesWithNoIndex = new Set([ContentType.Error, ContentType.FormIntermediateStepPage]);
 
 const isNoIndex = (content: ContentProps) =>
-    content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
+    content.isPagePreview ||
+    contentTypesWithNoIndex.has(content.type) ||
+    content.data?.noindex ||
+    content.type === 'no.nav.navno:contact-step-page';
 
 const getCanonicalUrl = (content: ContentProps) => {
     return content.data?.canonicalUrl || `${appOrigin}${getPublicPathname(content)}`;

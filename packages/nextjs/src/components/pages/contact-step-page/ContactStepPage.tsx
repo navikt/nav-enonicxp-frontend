@@ -9,27 +9,27 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import style from './ContactStepPage.module.scss';
 
-export type LinkInternal = {
+type LinkInternal = {
     external?: never;
     internal: { internalContent: Pick<ContentCommonProps, '_path'> };
     _selected: 'internal';
 };
 
-export type LinkExternal = {
+type LinkExternal = {
     external: { externalUrl: string };
     internal?: never;
     _selected: 'external';
 };
 
-export type Link = LinkInternal | LinkExternal;
+type Link = LinkInternal | LinkExternal;
 
-export interface LinkPanel {
+interface LinkPanel {
     label: string;
     explanation?: string;
     link: Link;
 }
 
-export type ContactStepPageProps = ContentCommonProps & {
+type ContactStepPageProps = ContentCommonProps & {
     type: ContentType.ContactStepPage;
     data: {
         title: string;
@@ -48,8 +48,7 @@ export type ContactStepPageProps = ContentCommonProps & {
     };
 };
 
-export const ContactStepPage = (props: ContactStepPageProps) => {
-    const { data } = props;
+export const ContactStepPage = ({ data }: ContactStepPageProps) => {
     const {
         title,
         illustration,
@@ -62,10 +61,9 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
     } = data;
 
     const getHref = (link: Link) => {
-        if (link._selected === 'internal') {
-            return stripXpPathPrefix(link.internal?.internalContent._path);
-        }
-        return link.external.externalUrl;
+        return link._selected === 'internal'
+            ? stripXpPathPrefix(link.internal?.internalContent._path)
+            : link.external.externalUrl;
     };
 
     const { target, text } = link.internal;
@@ -74,12 +72,7 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
         <div className={style.contactStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
-                contentProps={{
-                    data: {
-                        title,
-                        illustration,
-                    },
-                }}
+                contentProps={{ data: { title, illustration } }}
                 textAboveTitle={textAboveTitle}
                 className={style.header}
             />
@@ -92,7 +85,6 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                     </Heading>
                 )}
                 {linksPanelSubHeadline && <BodyShort>{linksPanelSubHeadline}</BodyShort>}
-
                 {linkPanels && linkPanels.length > 0 && (
                     <ul className={style.linkPanels}>
                         {linkPanels.map((linkPanel, index) => (
@@ -101,10 +93,6 @@ export const ContactStepPage = (props: ContactStepPageProps) => {
                                     as={LenkeBase}
                                     href={getHref(linkPanel.link)}
                                     className={style.linkPanel}
-                                    // TODO finn utav analytics
-                                    // analyticsComponent={'mellomsteg'}
-                                    // analyticsLinkGroup={currentStepData.stepsHeadline}
-                                    // analyticsLabel={step.label}s
                                 >
                                     <LinkPanel.Title>{linkPanel.label}</LinkPanel.Title>
                                     {linkPanel.explanation && (
