@@ -15,4 +15,20 @@
         font-size: 40px;
         line-height: 52px;
     }
+
+    .tagsList {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        flex-wrap: wrap;
+
+        .tag {
+            background-color: var(--a-surface-neutral-subtle);
+            border-radius: 2px;
+            padding: 3px 6px;
+        }
+    }
 }
