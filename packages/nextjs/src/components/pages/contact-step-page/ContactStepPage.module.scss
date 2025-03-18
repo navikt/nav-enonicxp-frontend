@@ -1,31 +1,36 @@
-@use 'common' as common;
-
 .contactStepPage {
     padding-bottom: 1rem;
-    display: grid;
-    row-gap: var(--a-spacing-5);
+    row-gap: var(--a-spacing-2);
+    column-gap: var(--a-spacing-2);
     margin: 1.25rem auto var(--a-spacing-10);
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
-        'header'
-        'content'
-        'backLink';
+        'pictogram header .'
+        '. content .'
+        '. backLink .';
 
-    @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 1fr 40rem 1fr;
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: none;
         grid-template-areas:
-            'pictogram header .'
+            '. pictogram .'
+            '. header .'
             '. content .'
             '. backLink .';
-        column-gap: var(--a-spacing-10);
     }
     .pictogram {
         grid-area: pictogram;
-        display: none;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        display: block;
+        align-self: flex-start;
 
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            display: block;
-            width: 7rem;
-            justify-self: end;
+        @media only screen and (max-width: 1024px) {
+            width: 4rem;
+            justify-self: start;
         }
     }
     .header {
@@ -34,11 +39,6 @@
 
     .content {
         grid-area: content;
-        max-width: 40rem;
-
-        & > * {
-            border-radius: common.$border-radius-large;
-        }
 
         .linkPanels {
             display: flex;
@@ -48,7 +48,7 @@
             padding: 0;
 
             .linkPanel {
-                border-radius: common.$border-radius-large;
+                border-radius: 6px;
                 border: 1px solid var(--a-border-subtle);
 
                 & :global {
@@ -60,6 +60,7 @@
             }
         }
     }
+
     .backLink {
         grid-area: backLink;
     }
