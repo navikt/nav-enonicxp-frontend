@@ -51,11 +51,9 @@
                 border-radius: 6px;
                 border: 1px solid var(--a-border-subtle);
 
-                & :global {
-                    .navds-link-panel__title {
-                        color: var(--default-action-color);
-                        font-size: 1.25rem;
-                    }
+                :global(.navds-link-panel__title) {
+                    color: var(--default-action-color);
+                    font-size: 1.25rem;
                 }
             }
         }
