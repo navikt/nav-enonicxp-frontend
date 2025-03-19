@@ -14,7 +14,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const { language, type, displayName, modifiedTime, data } = props;
     const { title, illustration } = data;
 
-    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
+    const { currentStepData, backUrl, previousStepTitle } = useFormIntermediateStepPage(props);
 
     const getTranslations = translator('form', language);
 
@@ -37,6 +37,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
             <div className={style.content}>
                 <div className={style.stepOptionsWrapper}>
                     <ParsedHtml htmlProps={currentStepData.editorial} />
+                    {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
                     {currentStepData.stepsHeadline && (
                         <Heading level={'2'} size={'medium'} spacing>
                             {currentStepData.stepsHeadline}
