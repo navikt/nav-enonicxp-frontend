@@ -60,10 +60,6 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                                 as={LenkeBase}
                                 href={linkPanel.target._path}
                                 className={style.linkPanel}
-                                // TODO finn utav analytics
-                                // analyticsComponent={'mellomsteg'}
-                                // analyticsLinkGroup={currentStepData.stepsHeadline}
-                                // analyticsLabel={step.label}s
                             >
                                 <LinkPanel.Title>
                                     {linkPanel.text ?? linkPanel.target.displayName}
