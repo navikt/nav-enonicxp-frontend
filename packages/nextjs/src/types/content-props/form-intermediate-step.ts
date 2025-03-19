@@ -4,45 +4,28 @@ import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { PictogramsProps } from './pictograms';
 
-export type FormIntermediateStep_StepData<
-    NextStep extends FormIntermediateStep_StepBase = FormIntermediateStep_StepBase,
-> = {
-    editorial: ProcessedHtmlProps;
-    stepsHeadline: string;
-    steps: NextStep[];
+type ExternalOption = any;
+type InternalOption = any;
+type NextOption = any;
+
+export type StepOptions = {
+    external?: ExternalOption;
+    internal?: InternalOption;
+    next?: NextOption;
 };
 
-export type FormIntermediateStep_StepBase = {
+export type SelectableStep = {
     label: string;
     explanation: string;
     languageDisclaimer?: string;
+    nextStep: OptionSetSingle<StepOptions>;
 };
 
-type StepBaseOptions = {
-    external: {
-        externalUrl: string;
-    };
-    internal: {
-        internalContent: ContentCommonProps;
-    };
+export type StepBase = {
+    editorial: ProcessedHtmlProps;
+    stepsHeadline: string;
+    steps: SelectableStep[];
 };
-
-type StepLevel1 = FormIntermediateStep_StepBase & {
-    nextStep: OptionSetSingle<
-        StepBaseOptions & {
-            next: FormIntermediateStep_StepData<StepLevel2>;
-        }
-    >;
-};
-
-type StepLevel2 = FormIntermediateStep_StepBase & {
-    nextStep: OptionSetSingle<StepBaseOptions>;
-};
-
-export type FormIntermediateStep_StepLevel = StepLevel1 | StepLevel2;
-
-export type FormIntermediateStep_CompoundedStepData =
-    FormIntermediateStep_StepData<FormIntermediateStep_StepLevel>;
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
@@ -51,5 +34,5 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
         illustration: PictogramsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
-    } & FormIntermediateStep_StepData<StepLevel1>;
+    } & StepBase;
 };

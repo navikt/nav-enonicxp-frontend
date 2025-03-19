@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { FormIntermediateStep_StepLinkData } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
+import { FormIntermediateStep_StepLinkData } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type Props = FormIntermediateStep_StepLinkData &
@@ -14,6 +14,8 @@ export const FormIntermediateStepLink = ({
     languageDisclaimer,
     href,
     isStepNavigation,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    nextStep,
     ...rest
 }: Props) => {
     if (!href) {
