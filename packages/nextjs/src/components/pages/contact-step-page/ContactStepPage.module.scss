@@ -1,0 +1,63 @@
+.contactStepPage {
+    padding-bottom: 1rem;
+    column-gap: 1.75rem;
+    margin: 1.25rem auto 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-areas:
+        'pictogram header .'
+        '. content .'
+        '. backLink .';
+
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: none;
+        grid-template-areas:
+            '. pictogram .'
+            '. header .'
+            '. content .'
+            '. backLink .';
+    }
+    .pictogram {
+        grid-area: pictogram;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        align-self: flex-start;
+
+        @media only screen and (max-width: 1024px) {
+            width: 4rem;
+            justify-self: start;
+        }
+    }
+    .header {
+        grid-area: header;
+    }
+
+    .content {
+        grid-area: content;
+
+        .linkPanels {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style-type: none;
+            padding: 0;
+
+            .linkPanel {
+                border-radius: 0.5rem;
+                border: 1px solid var(--a-border-subtle);
+
+                & :global(.navds-link-panel__title) {
+                    color: var(--default-action-color);
+                    font-size: 1.25rem;
+                }
+            }
+        }
+    }
+
+    .backLink {
+        grid-area: backLink;
+    }
+}

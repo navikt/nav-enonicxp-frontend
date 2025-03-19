@@ -23,7 +23,11 @@ const getDescription = (content: ContentProps) => {
     return description.slice(0, DESCRIPTION_MAX_LENGTH);
 };
 
-const contentTypesWithNoIndex = new Set([ContentType.Error, ContentType.FormIntermediateStepPage]);
+const contentTypesWithNoIndex = new Set([
+    ContentType.Error,
+    ContentType.FormIntermediateStepPage,
+    ContentType.ContactStepPage,
+]);
 
 const isNoIndex = (content: ContentProps) =>
     content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
