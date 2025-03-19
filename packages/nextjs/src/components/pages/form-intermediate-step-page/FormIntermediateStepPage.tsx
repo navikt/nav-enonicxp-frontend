@@ -5,7 +5,7 @@ import { ThemedPageHeader } from 'components/_common/headers/themedPageHeader/Th
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { useFormIntermediateStepPageState } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
+import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
 import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
 
 import style from './FormIntermediateStepPage.module.scss';
@@ -14,7 +14,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const { language, type, displayName, modifiedTime, data } = props;
     const { title, illustration } = data;
 
-    const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
+    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
     const getTranslations = translator('form', language);
 
