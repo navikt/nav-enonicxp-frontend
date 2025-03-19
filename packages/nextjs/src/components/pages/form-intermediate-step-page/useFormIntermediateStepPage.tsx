@@ -15,10 +15,10 @@ export type FormIntermediateStep_StepLinkData = SelectableStep & {
 };
 
 type StepPath = number[];
-export const buildStepUrl = (basePath: string, stepPath: StepPath) =>
+const buildStepUrl = (basePath: string, stepPath: StepPath) =>
     `${basePath}?${STEP_PARAM}=${stepPath.join(',')}`;
 
-export const resolveStepUrl = ({
+const resolveStepUrl = ({
     step,
     nextStepPath,
     basePath,
@@ -50,10 +50,7 @@ export const resolveStepUrl = ({
     }
 };
 
-export const getStepData = (
-    data: FormIntermediateStepPageProps['data'],
-    stepPath: StepPath
-): StepBase => {
+const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: StepPath): StepBase => {
     // No steps selected (meaning the user is on first step)
     if (stepPath.length === 0) {
         return {
@@ -84,7 +81,7 @@ export const getStepData = (
     };
 };
 
-export const buildCurrentStepData = (
+const buildCurrentStepData = (
     allData: FormIntermediateStepPageProps['data'],
     basePath: string,
     stepPath: StepPath
@@ -99,7 +96,7 @@ export const buildCurrentStepData = (
     };
 };
 
-export const buildBackUrl = (basePath: string, stepPath: StepPath): string | null => {
+const buildBackUrl = (basePath: string, stepPath: StepPath): string | null => {
     if (stepPath.length === 0) {
         return null; // No back URL if on the first step
     }
@@ -110,13 +107,41 @@ export const buildBackUrl = (basePath: string, stepPath: StepPath): string | nul
     return buildStepUrl(basePath, stepPath.slice(0, -1));
 };
 
-export const getStepPathFromParam = (url: string): StepPath => {
+const getStepPathFromParam = (url: string): StepPath => {
     const stepQuery = new URL(url, window.location.origin).searchParams.get(STEP_PARAM);
     const stepPath = stepQuery ? stepQuery.split(',').map(Number) : [];
     if (stepPath.some(isNaN)) {
         return [];
     }
     return stepPath;
+};
+
+const getPreviousStepTitle = (
+    stepPath: StepPath,
+    allData: FormIntermediateStepPageProps['data']
+) => {
+    if (stepPath.length === 0) {
+        return null; // No previous step title if on the first step
+    }
+
+    const previousStepPath = stepPath.slice(0, -1);
+
+    // Previous step was the first page, so just get the
+    // headline from the data root.
+    if (previousStepPath.length === 0) {
+        return allData.stepsHeadline;
+    }
+
+    // Traverse the tree to find the previous step.
+    let step: StepBase = allData;
+    previousStepPath.forEach((index) => {
+        const foundStep = step.steps[index];
+        if (foundStep) {
+            step = foundStep.nextStep?.next;
+        }
+    });
+
+    return step.stepsHeadline;
 };
 
 export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
@@ -127,6 +152,7 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     const currentStepData = buildCurrentStepData(props.data, pagePath, stepPath);
 
     const backUrl = buildBackUrl(pagePath, stepPath);
+    const previousStepTitle = getPreviousStepTitle(stepPath, props.data);
 
     useEffect(() => {
         if (!router) {
@@ -148,5 +174,6 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     return {
         currentStepData,
         backUrl,
+        previousStepTitle,
     };
 };
