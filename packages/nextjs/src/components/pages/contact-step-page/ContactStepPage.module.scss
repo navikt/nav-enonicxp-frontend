@@ -1,31 +1,34 @@
-@use 'common' as common;
-
 .contactStepPage {
     padding-bottom: 1rem;
+    column-gap: 1.75rem;
+    margin: 1.25rem auto 2.5rem;
     display: grid;
-    row-gap: var(--a-spacing-5);
-    margin: 1.25rem auto var(--a-spacing-10);
+    grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
-        'header'
-        'content'
-        'link';
+        'pictogram header .'
+        '. content .'
+        '. backLink .';
 
-    @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 1fr 40rem 1fr;
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: none;
         grid-template-areas:
-            'pictogram header .'
+            '. pictogram .'
+            '. header .'
             '. content .'
-            '. link .';
-        column-gap: var(--a-spacing-10);
+            '. backLink .';
     }
     .pictogram {
         grid-area: pictogram;
-        display: none;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        align-self: flex-start;
 
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            display: block;
-            width: 7rem;
-            justify-self: end;
+        @media only screen and (max-width: 1024px) {
+            width: 4rem;
+            justify-self: start;
         }
     }
     .header {
@@ -34,11 +37,6 @@
 
     .content {
         grid-area: content;
-        max-width: 40rem;
-
-        & > * {
-            border-radius: common.$border-radius-large;
-        }
 
         .linkPanels {
             display: flex;
@@ -48,19 +46,18 @@
             padding: 0;
 
             .linkPanel {
-                border-radius: common.$border-radius-large;
+                border-radius: 0.5rem;
                 border: 1px solid var(--a-border-subtle);
 
-                & :global {
-                    .navds-link-panel__title {
-                        color: var(--default-action-color);
-                        font-size: 1.25rem;
-                    }
+                & :global(.navds-link-panel__title) {
+                    color: var(--default-action-color);
+                    font-size: 1.25rem;
                 }
             }
         }
     }
-    .link {
-        grid-area: link;
+
+    .backLink {
+        grid-area: backLink;
     }
 }

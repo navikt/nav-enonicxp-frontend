@@ -43,6 +43,8 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
     }
 
     const { header, mypage } = config;
+    const title = yourServicesText('yourServices');
+    layoutProps.config.title = title; //for at kortene i region skal kunne plukke opp title til analytics
 
     return (
         <AuthDependantRender renderOn={'loggedIn'}>
@@ -53,11 +55,11 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
                 data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
-                <Header level={'2'} size={'small'} className={style.services}>
-                    {yourServicesText('yourServices')}
+                <Header level="3" size="small" className={style.services}>
+                    {title}
                 </Header>
                 <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
-                <MoreLink link={mypage?.link} />
+                <MoreLink analyticsGroup={title} link={mypage?.link} />
             </LayoutContainer>
         </AuthDependantRender>
     );
