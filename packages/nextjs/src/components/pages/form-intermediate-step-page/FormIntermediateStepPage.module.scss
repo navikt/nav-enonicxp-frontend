@@ -8,65 +8,64 @@ $padding: 2rem;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-}
 
-.content {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-self: center;
-    width: 100%;
-    max-width: common.$contentMaxWidth;
-
-    & > * {
+    .content {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-self: center;
         width: 100%;
-    }
-}
+        max-width: common.$contentMaxWidth;
 
-.stepOptionsWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: common.$sectionMaxWidth;
-}
-
-.stepList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.stepItem {
-    margin-bottom: var(--a-spacing-7);
-}
-
-.stepAction {
-    &:global(.navds-link-panel) {
-        border-color: var(--default-action-color);
-    }
-    & :global {
-        .navds-link-panel__title,
-        .navds-link-panel__chevron {
-            color: var(--default-action-color);
+        & > * {
+            width: 100%;
         }
-    }
-    @media #{common.$mq-screen-mobile} {
-        padding: 0.75rem;
-    }
-}
 
-.buttonGroup {
-    display: flex;
-}
+        .stepOptionsWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: common.$sectionMaxWidth;
 
-.backButton {
-    text-decoration-line: underline;
-    text-underline-offset: 4px;
-    padding: 0;
-    margin-top: 1rem;
+            .stepList {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
 
-    &:hover {
-        background-color: transparent;
+                .stepItem {
+                    margin-bottom: var(--a-spacing-7);
+
+                    .stepAction {
+                        &:global(.navds-link-panel) {
+                            border-color: var(--default-action-color);
+                        }
+                        & :global {
+                            .navds-link-panel__title,
+                            .navds-link-panel__chevron {
+                                color: var(--default-action-color);
+                            }
+                        }
+                        @media #{common.$mq-screen-mobile} {
+                            padding: 0.75rem;
+                        }
+                    }
+                }
+            }
+        }
+        .buttonGroup {
+            display: flex;
+        }
+
+        .backButton {
+            text-decoration-line: underline;
+            text-underline-offset: 4px;
+            padding: 0;
+            margin-top: 1rem;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
 }

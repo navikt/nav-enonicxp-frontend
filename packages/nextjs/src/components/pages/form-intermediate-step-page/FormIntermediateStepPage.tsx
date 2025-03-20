@@ -6,7 +6,7 @@ import { FormIntermediateStepPageProps } from 'types/content-props/form-intermed
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
-import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
+import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 
 import style from './FormIntermediateStepPage.module.scss';
 
