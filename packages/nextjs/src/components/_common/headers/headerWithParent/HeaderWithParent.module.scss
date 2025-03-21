@@ -16,7 +16,7 @@
         line-height: 52px;
     }
 
-    .skjemanummerListe {
+    .formNumberListe {
         display: flex;
         list-style: none;
         padding: 0;
@@ -24,11 +24,5 @@
         gap: 5px;
         margin: 0;
         flex-wrap: wrap;
-
-        .skjemanummer {
-            background-color: var(--a-surface-neutral-subtle);
-            border-radius: 2px;
-            padding: 3px 6px;
-        }
     }
 }

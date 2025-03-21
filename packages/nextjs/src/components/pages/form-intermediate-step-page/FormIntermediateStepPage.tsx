@@ -43,45 +43,44 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 formNumbers={formNumbers}
             />
             <div className={style.content}>
-                <div className={style.stepOptionsWrapper}>
-                    <ParsedHtml htmlProps={currentStepData.editorial} />
-                    {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
-                    {currentStepData.stepsHeadline && (
-                        <Heading level={'2'} size={'medium'} spacing>
-                            {currentStepData.stepsHeadline}
-                        </Heading>
-                    )}
-                    <ul className={style.stepList}>
-                        {currentStepData.steps.map((step) => (
-                            <li key={step.label} className={style.stepItem}>
-                                <FormIntermediateStepLink
-                                    {...step}
-                                    className={style.stepAction}
-                                    analyticsComponent={'mellomsteg'}
-                                    analyticsLinkGroup={currentStepData.stepsHeadline}
-                                    analyticsLabel={step.label}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {backUrl && (
-                    <div className={style.buttonGroup}>
-                        <Button
-                            href={backUrl}
-                            shallow={true}
-                            as={LenkeBase}
-                            variant={'tertiary'}
-                            className={style.backButton}
-                            analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={currentStepData.stepsHeadline}
-                            analyticsLabel={'Tilbake'}
-                        >
-                            {getTranslations('back')}
-                        </Button>
-                    </div>
+                <ParsedHtml htmlProps={currentStepData.editorial} />
+                {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
+                {currentStepData.stepsHeadline && (
+                    <Heading level={'2'} size={'medium'} spacing>
+                        {currentStepData.stepsHeadline}
+                    </Heading>
                 )}
+                <ul className={style.stepList}>
+                    {currentStepData.steps.map((step) => (
+                        <li key={step.label} className={style.stepItem}>
+                            <FormIntermediateStepLink
+                                {...step}
+                                className={style.stepAction}
+                                analyticsComponent={'mellomsteg'}
+                                analyticsLinkGroup={currentStepData.stepsHeadline}
+                                analyticsLabel={step.label}
+                                formNumberStepData={step.formNumberStepData}
+                            />
+                        </li>
+                    ))}
+                </ul>
             </div>
+            {backUrl && (
+                <div className={style.buttonGroup}>
+                    <Button
+                        href={backUrl}
+                        shallow={true}
+                        as={LenkeBase}
+                        variant={'tertiary'}
+                        className={style.backButton}
+                        analyticsComponent={'mellomsteg'}
+                        analyticsLinkGroup={currentStepData.stepsHeadline}
+                        analyticsLabel={'Tilbake'}
+                    >
+                        {getTranslations('back')}
+                    </Button>
+                </div>
+            )}
         </div>
     );
 };

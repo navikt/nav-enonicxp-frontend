@@ -2,6 +2,7 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 import { ContentProps } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
+import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
 import style from './HeaderWithParent.module.scss';
 
 type Props = {
@@ -19,7 +20,6 @@ export const HeaderWithParent = ({
     className,
     formNumbers,
 }: Props) => {
-
     const { data } = contentProps;
     return (
         <div className={classNames(style.headerContainer, className)}>
@@ -30,11 +30,9 @@ export const HeaderWithParent = ({
                 {data.title}
             </Heading>
             {formNumbers && (
-                <ul className={style.skjemanummerListe}>
+                <ul className={style.formNumberListe}>
                     {formNumbers.map((nummer, index) => (
-                        <li key={index} className={style.skjemanummer}>
-                            {nummer}
-                        </li>
+                        <FormNumberTag key={index} formNumber={nummer} />
                     ))}
                 </ul>
             )}

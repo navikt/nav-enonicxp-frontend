@@ -1,7 +1,3 @@
-@use 'common' as common;
-
-$padding: 2rem;
-
 .formIntermediateStepPage {
     padding-bottom: 1rem;
     column-gap: 1.75rem;
@@ -43,44 +39,22 @@ $padding: 2rem;
     .content {
         grid-area: content;
         margin-top: 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-self: center;
-        width: 100%;
-        max-width: common.$contentMaxWidth;
 
         & > * {
             width: 100%;
         }
 
-        .stepOptionsWrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            max-width: common.$sectionMaxWidth;
+        .stepList {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
 
-            .stepList {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
+            .stepItem {
+                margin-bottom: var(--a-spacing-7);
 
-                .stepItem {
-                    margin-bottom: var(--a-spacing-7);
-
-                    .stepAction {
-                        &:global(.navds-link-panel) {
-                            border-color: var(--default-action-color);
-                        }
-                        & :global {
-                            .navds-link-panel__title,
-                            .navds-link-panel__chevron {
-                                color: var(--default-action-color);
-                            }
-                        }
-                        @media #{common.$mq-screen-mobile} {
-                            padding: 0.75rem;
-                        }
+                .stepAction {
+                    &:global(.navds-link-panel) {
+                        border-color: var(--default-action-color);
                     }
                 }
             }

@@ -12,6 +12,7 @@ export type StepOptions = {
 };
 
 export type SelectableStep = {
+    formNumberStepData: string | undefined;
     label: string;
     explanation: string;
     languageDisclaimer?: string;
