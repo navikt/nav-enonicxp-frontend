@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/compat/router';
-import {
-    FormIntermediateStepPageProps,
-    SelectableStep,
-    StepBase,
-} from 'types/content-props/form-intermediate-step';
+import { SelectableStep, StepBase } from 'types/content-props/form-intermediate-step';
 import { stripXpPathPrefix } from 'utils/urls';
+import { FormIntermediateStepPageProps } from './FormIntermediateStepPage';
 
 const STEP_PARAM = 'stegvalg';
 
