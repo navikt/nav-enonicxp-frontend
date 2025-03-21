@@ -46,12 +46,36 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                             <div className={style.level3}>
                                 <div className={style.level3Item}>
                                     Send digitalt uten å logge inn
+                                    <div className={style.level4}>
+                                        <div className={style.level4Item}>
+                                            Søke om alderspensjon
+                                        </div>
+                                        <div className={style.level4Item}>
+                                            Søke om AFP i privat sektor (afp.no)
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className={style.level3Item}>
                                     Fyll ut digitalt og send i posten
+                                    <div className={style.level4}>
+                                        <div className={style.level4Item}>
+                                            Søke om alderspensjon
+                                        </div>
+                                        <div className={style.level4Item}>
+                                            Søke om AFP i privat sektor (afp.no)
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className={style.level3Item}>
                                     Fyll ut papirsøknad og send i posten
+                                    <div className={style.level4}>
+                                        <div className={style.level4Item}>
+                                            Søke om alderspensjon
+                                        </div>
+                                        <div className={style.level4Item}>
+                                            Søke om AFP i privat sektor (afp.no)
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
