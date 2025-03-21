@@ -34,54 +34,82 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const getTranslations = translator('form', language);
 
     return (
-        <div className={style.formIntermediateStepPage}>
-            <IllustrationStatic illustration={illustration} className={style.pictogram} />
-            <HeaderWithParent
-                contentProps={{ data: { title } }}
-                textAboveTitle={textAboveTitle}
-                className={style.header}
-                formNumbers={formNumbers}
-            />
-            <div className={style.content}>
-                <div className={style.stepOptionsWrapper}>
-                    <ParsedHtml htmlProps={currentStepData.editorial} />
-                    {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
-                    {currentStepData.stepsHeadline && (
-                        <Heading level={'2'} size={'medium'} spacing>
-                            {currentStepData.stepsHeadline}
-                        </Heading>
-                    )}
-                    <ul className={style.stepList}>
-                        {currentStepData.steps.map((step) => (
-                            <li key={step.label} className={style.stepItem}>
-                                <FormIntermediateStepLink
-                                    {...step}
-                                    className={style.stepAction}
-                                    analyticsComponent={'mellomsteg'}
-                                    analyticsLinkGroup={currentStepData.stepsHeadline}
-                                    analyticsLabel={step.label}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {backUrl && (
-                    <div className={style.buttonGroup}>
-                        <Button
-                            href={backUrl}
-                            shallow={true}
-                            as={LenkeBase}
-                            variant={'tertiary'}
-                            className={style.backButton}
-                            analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={currentStepData.stepsHeadline}
-                            analyticsLabel={'Tilbake'}
-                        >
-                            {getTranslations('back')}
-                        </Button>
+        <>
+            {props.editorView === 'edit' && (
+                <div className={style.level1}>
+                    <div className={style.level1Item}>
+                        Søknad om alderspensjon og AFP i privat sektor
+                        <div className={style.level2}>
+                            <div className={style.level2Item}>Logg inn og send digitalt</div>
+                            <div className={style.level2Item}>
+                                Kan ikke logge inn
+                                <div className={style.level3}>
+                                    <div className={style.level3Item}>
+                                        Send digitalt uten å logge inn
+                                    </div>
+                                    <div className={style.level3Item}>
+                                        Fyll ut digitalt og send i posten
+                                    </div>
+                                    <div className={style.level3Item}>
+                                        Fyll ut papirsøknad og send i posten
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                )}
+                </div>
+            )}
+            <div className={style.formIntermediateStepPage}>
+                <div className={style.pictogram}>
+                    <IllustrationStatic illustration={illustration} />
+                </div>
+                <HeaderWithParent
+                    contentProps={{ data: { title } }}
+                    textAboveTitle={textAboveTitle}
+                    className={style.header}
+                    formNumbers={formNumbers}
+                />
+                <div className={style.content}>
+                    <div className={style.stepOptionsWrapper}>
+                        <ParsedHtml htmlProps={currentStepData.editorial} />
+                        {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
+                        {currentStepData.stepsHeadline && (
+                            <Heading level={'2'} size={'medium'} spacing>
+                                {currentStepData.stepsHeadline}
+                            </Heading>
+                        )}
+                        <ul className={style.stepList}>
+                            {currentStepData.steps.map((step) => (
+                                <li key={step.label} className={style.stepItem}>
+                                    <FormIntermediateStepLink
+                                        {...step}
+                                        className={style.stepAction}
+                                        analyticsComponent={'mellomsteg'}
+                                        analyticsLinkGroup={currentStepData.stepsHeadline}
+                                        analyticsLabel={step.label}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    {backUrl && (
+                        <div className={style.buttonGroup}>
+                            <Button
+                                href={backUrl}
+                                shallow={true}
+                                as={LenkeBase}
+                                variant={'tertiary'}
+                                className={style.backButton}
+                                analyticsComponent={'mellomsteg'}
+                                analyticsLinkGroup={currentStepData.stepsHeadline}
+                                analyticsLabel={'Tilbake'}
+                            >
+                                {getTranslations('back')}
+                            </Button>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
