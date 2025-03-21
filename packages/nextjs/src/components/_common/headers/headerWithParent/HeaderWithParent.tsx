@@ -19,6 +19,7 @@ export const HeaderWithParent = ({
     className,
     formNumbers,
 }: Props) => {
+
     const { data } = contentProps;
     return (
         <div className={classNames(style.headerContainer, className)}>

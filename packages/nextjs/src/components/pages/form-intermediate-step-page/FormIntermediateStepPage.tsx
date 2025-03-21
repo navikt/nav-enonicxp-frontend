@@ -11,6 +11,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
+
 import style from './FormIntermediateStepPage.module.scss';
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
