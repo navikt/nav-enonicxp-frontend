@@ -20,6 +20,7 @@ export type ContactStepPageProps = ContentCommonProps & {
         linkPanelsSubHeading: string;
         linkPanels: (InternalLinkMixin & { ingress?: string })[];
         backLink: InternalLinkMixin;
+        formNumbers?: string[];
     };
 };
 
@@ -33,15 +34,17 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
         linkPanelsSubHeading,
         linkPanels,
         backLink,
+        formNumbers,
     } = data;
 
     return (
         <div className={style.contactStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
-                contentProps={{ data: { title, illustration } }}
+                contentProps={{ data: { title } }}
                 textAboveTitle={textAboveTitle}
                 className={style.header}
+                formNumbers={formNumbers}
             />
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />
