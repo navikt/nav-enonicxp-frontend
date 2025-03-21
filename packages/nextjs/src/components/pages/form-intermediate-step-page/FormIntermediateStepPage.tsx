@@ -35,30 +35,30 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
 
     return (
         <>
-            {props.editorView === 'edit' && (
-                <div className={style.level1}>
-                    <div className={style.level1Item}>
-                        Søknad om alderspensjon og AFP i privat sektor
-                        <div className={style.level2}>
-                            <div className={style.level2Item}>Logg inn og send digitalt</div>
-                            <div className={style.level2Item}>
-                                Kan ikke logge inn
-                                <div className={style.level3}>
-                                    <div className={style.level3Item}>
-                                        Send digitalt uten å logge inn
-                                    </div>
-                                    <div className={style.level3Item}>
-                                        Fyll ut digitalt og send i posten
-                                    </div>
-                                    <div className={style.level3Item}>
-                                        Fyll ut papirsøknad og send i posten
-                                    </div>
+            {/* {props.editorView === 'edit' && ( */}
+            <div className={style.level1}>
+                <div className={style.level1Item}>
+                    Søknad om alderspensjon og AFP i privat sektor
+                    <div className={style.level2}>
+                        <div className={style.level2Item}>Logg inn og send digitalt</div>
+                        <div className={style.level2Item}>
+                            Kan ikke logge inn
+                            <div className={style.level3}>
+                                <div className={style.level3Item}>
+                                    Send digitalt uten å logge inn
+                                </div>
+                                <div className={style.level3Item}>
+                                    Fyll ut digitalt og send i posten
+                                </div>
+                                <div className={style.level3Item}>
+                                    Fyll ut papirsøknad og send i posten
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
+            {/* )} */}
             <div className={style.formIntermediateStepPage}>
                 <div className={style.pictogram}>
                     <IllustrationStatic illustration={illustration} />
