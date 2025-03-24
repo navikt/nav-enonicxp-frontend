@@ -51,7 +51,7 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
     // No steps selected (meaning the user is on first step)
     if (stepPath.length === 0) {
         return {
-            title: data.title,
+            overrideTitle: data.title,
             editorial: data.editorial,
             stepsHeadline: data.stepsHeadline,
             steps: data.steps,
@@ -73,7 +73,7 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
     }
 
     return {
-        title: tmp.title,
+        overrideTitle: tmp.overrideTitle,
         editorial: tmp.editorial,
         stepsHeadline: tmp.stepsHeadline,
         steps: tmp.steps,
