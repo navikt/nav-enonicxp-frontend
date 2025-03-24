@@ -37,7 +37,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
         <div className={style.formIntermediateStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
-                contentProps={{ data: { title } }}
+                contentProps={{ data: { title: currentStepData.overrideTitle ?? title } }}
                 textAboveTitle={textAboveTitle}
                 className={style.header}
                 formNumbers={formNumbers}
