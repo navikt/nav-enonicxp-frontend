@@ -9,7 +9,7 @@ ingresses:
   - https://www-2-failover.intern.dev.nav.no
 resources:
   requests:
-    cpu: 100m
+    cpu: 50m
     memory: 250Mi
   limits:
     memory: 250Mi

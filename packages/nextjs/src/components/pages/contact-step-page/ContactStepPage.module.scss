@@ -1,8 +1,7 @@
 .contactStepPage {
     padding-bottom: 1rem;
-    row-gap: var(--a-spacing-2);
-    column-gap: var(--a-spacing-2);
-    margin: 1.25rem auto var(--a-spacing-10);
+    column-gap: 1.75rem;
+    margin: 1.25rem auto 2.5rem;
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
@@ -25,7 +24,6 @@
         width: 4.5rem;
         height: auto;
         position: relative;
-        display: block;
         align-self: flex-start;
 
         @media only screen and (max-width: 1024px) {
@@ -48,10 +46,10 @@
             padding: 0;
 
             .linkPanel {
-                border-radius: 6px;
+                border-radius: 0.5rem;
                 border: 1px solid var(--a-border-subtle);
 
-                :global(.navds-link-panel__title) {
+                & :global(.navds-link-panel__title) {
                     color: var(--default-action-color);
                     font-size: 1.25rem;
                 }
