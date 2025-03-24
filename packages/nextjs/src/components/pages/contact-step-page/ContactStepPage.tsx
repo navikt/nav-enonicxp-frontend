@@ -63,10 +63,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                                     as={LenkeBase}
                                     href={linkPanel.target._path}
                                     className={style.linkPanel}
-                                    analyticsComponent={'mellomsteg kontaktsider'}
-                                    analyticsLinkGroup={
-                                        linkPanelsHeading + ', ' + linkPanelsSubHeading
-                                    }
+                                    analyticsComponent={'ContactStepPage'}
                                     analyticsLabel={linkPaneltitle}
                                 >
                                     <LinkPanel.Title>{linkPaneltitle}</LinkPanel.Title>
@@ -84,9 +81,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
             <LenkeInline
                 href={backLink.target._path}
                 className={style.backLink}
-                analyticsComponent={'mellomsteg kontaktsider'}
-                analyticsLinkGroup={data.title}
-                analyticsLabel={'Tilbake'}
+                analyticsComponent={'ContactStepPage'}
             >
                 {backLink.text ?? backLink.target.displayName}
             </LenkeInline>
