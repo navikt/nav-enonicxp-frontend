@@ -28,7 +28,7 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { language, data } = props;
-    const { title, illustration, textAboveTitle, formNumbers } = data;
+    const { illustration, textAboveTitle, formNumbers } = data;
     const { currentStepData, backUrl, previousStepTitle } = useFormIntermediateStepPage(props);
 
     const getTranslations = translator('form', language);
@@ -37,7 +37,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
         <div className={style.formIntermediateStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
-                contentProps={{ data: { title } }}
+                contentProps={{ data: { title: currentStepData.title } }}
                 textAboveTitle={textAboveTitle}
                 className={style.header}
                 formNumbers={formNumbers}
