@@ -59,10 +59,12 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
     }
 
     let tmp: any = data;
+    let lastStepLabel: string | undefined;
 
     stepPath.forEach((index) => {
         const foundStep = tmp.steps[index];
         if (foundStep) {
+            lastStepLabel = foundStep.label;
             tmp = foundStep.nextStep?.next;
         }
     });
@@ -73,7 +75,7 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
     }
 
     return {
-        overrideTitle: tmp.overrideTitle,
+        overrideTitle: tmp.overrideTitle || lastStepLabel,
         editorial: tmp.editorial,
         stepsHeadline: tmp.stepsHeadline,
         steps: tmp.steps,
