@@ -21,7 +21,7 @@ export type SelectableStep = {
 };
 
 export type StepBase = {
-    overrideTitle: string;
+    overrideTitle?: string;
     editorial: ProcessedHtmlProps;
     stepsHeadline: string;
     steps: SelectableStep[];
