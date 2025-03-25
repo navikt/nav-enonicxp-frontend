@@ -79,7 +79,7 @@ const getStepData = (
     }
 
     return {
-        textAboveTitle: data.title ?? displayName, // Use title or displayName for subsequent pages
+        textAboveTitle: data.title ?? displayName,
         title: lastStepLabel,
         editorial: tmp.editorial,
         steps: tmp.steps,
