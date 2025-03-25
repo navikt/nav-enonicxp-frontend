@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@navikt/ds-react';
+import { Button, BodyLong } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { StepBase } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -44,7 +44,13 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 formNumbers={formNumbers}
             />
             <div className={style.content}>
-                <ParsedHtml htmlProps={currentStepData.editorial} />
+                {currentStepData.previousStepExplanation ? (
+                    <BodyLong spacing>{currentStepData.previousStepExplanation}</BodyLong>
+                ) : (
+                    currentStepData.editorial && (
+                        <ParsedHtml htmlProps={currentStepData.editorial} />
+                    )
+                )}
                 <ul className={style.stepList}>
                     {currentStepData.steps.map((step) => (
                         <li key={step.label} className={style.stepItem}>

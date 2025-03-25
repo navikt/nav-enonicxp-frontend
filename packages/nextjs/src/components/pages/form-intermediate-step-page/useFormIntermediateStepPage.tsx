@@ -59,16 +59,19 @@ const getStepData = (
             title: data.title,
             editorial: data.editorial,
             steps: data.steps,
+            previousStepExplanation: '',
         };
     }
 
     let tmp: any = data;
     let lastStepLabel: string | undefined;
+    let previousStepExplanation: string | undefined;
 
     stepPath.forEach((index) => {
         const foundStep = tmp.steps[index];
         if (foundStep) {
             lastStepLabel = foundStep.label;
+            previousStepExplanation = foundStep.explanation;
             tmp = foundStep.nextStep?.next;
         }
     });
@@ -83,6 +86,7 @@ const getStepData = (
         title: lastStepLabel,
         editorial: tmp.editorial,
         steps: tmp.steps,
+        previousStepExplanation,
     };
 };
 
