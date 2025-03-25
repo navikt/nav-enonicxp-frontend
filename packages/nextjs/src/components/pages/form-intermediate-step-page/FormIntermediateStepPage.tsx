@@ -51,52 +51,54 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const stepTree = buildStepTree(data.steps);
 
     return (
-        <div className={style.formIntermediateStepPage}>
-            <IllustrationStatic illustration={illustration} className={style.pictogram} />
-            <HeaderWithParent
-                contentProps={{ data: { title: currentStepTitle } }}
-                textAboveTitle={currentStepData.textAboveTitle}
-                className={style.header}
-                formNumbers={formNumbers}
-            />
-            <StepVisualization steps={stepTree} />
-            <div className={style.content}>
-                {currentStepData.previousStepExplanation ? (
-                    <BodyLong spacing>{currentStepData.previousStepExplanation}</BodyLong>
-                ) : (
-                    currentStepData.editorial && (
-                        <ParsedHtml htmlProps={currentStepData.editorial} />
-                    )
-                )}
-                <ul className={style.stepList}>
-                    {currentStepData.steps.map((step) => (
-                        <li key={step.label} className={style.stepItem}>
-                            <FormIntermediateStepLink
-                                {...step}
-                                className={style.stepAction}
-                                analyticsComponent={'mellomsteg'}
-                                analyticsLabel={step.label}
-                                formNumberStepData={step.formNumberStepData}
-                            />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            {backUrl && (
-                <div className={style.buttonGroup}>
-                    <Button
-                        href={backUrl}
-                        shallow={true}
-                        as={LenkeBase}
-                        variant={'tertiary'}
-                        className={style.backButton}
-                        analyticsComponent={'mellomsteg'}
-                        analyticsLabel={'Tilbake'}
-                    >
-                        {getTranslations('back')}
-                    </Button>
+        <>
+            <div className={style.formIntermediateStepPage}>
+                <IllustrationStatic illustration={illustration} className={style.pictogram} />
+                <HeaderWithParent
+                    contentProps={{ data: { title: currentStepTitle } }}
+                    textAboveTitle={currentStepData.textAboveTitle}
+                    className={style.header}
+                    formNumbers={formNumbers}
+                />
+                <div className={style.content}>
+                    {currentStepData.previousStepExplanation ? (
+                        <BodyLong spacing>{currentStepData.previousStepExplanation}</BodyLong>
+                    ) : (
+                        currentStepData.editorial && (
+                            <ParsedHtml htmlProps={currentStepData.editorial} />
+                        )
+                    )}
+                    <ul className={style.stepList}>
+                        {currentStepData.steps.map((step) => (
+                            <li key={step.label} className={style.stepItem}>
+                                <FormIntermediateStepLink
+                                    {...step}
+                                    className={style.stepAction}
+                                    analyticsComponent={'mellomsteg'}
+                                    analyticsLabel={step.label}
+                                    formNumberStepData={step.formNumberStepData}
+                                />
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            )}
-        </div>
+                {backUrl && (
+                    <div className={style.buttonGroup}>
+                        <Button
+                            href={backUrl}
+                            shallow={true}
+                            as={LenkeBase}
+                            variant={'tertiary'}
+                            className={style.backButton}
+                            analyticsComponent={'mellomsteg'}
+                            analyticsLabel={'Tilbake'}
+                        >
+                            {getTranslations('back')}
+                        </Button>
+                    </div>
+                )}
+            </div>
+            <StepVisualization steps={stepTree} />
+        </>
     );
 };
