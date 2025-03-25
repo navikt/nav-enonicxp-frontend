@@ -43,7 +43,7 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
     );
 
     //Skjemanummer
-    const formNumberRegex: RegExp = /^NAV\s\d{2}-\d{2}\.\d{2}$/ as RegExp;
+    const formNumberRegex: RegExp = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/ as RegExp;
     let formNumbersAreWrong = false;
 
     if (content.type === 'no.nav.navno:form-details') {
