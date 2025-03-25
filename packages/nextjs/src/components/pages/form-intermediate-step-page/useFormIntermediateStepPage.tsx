@@ -155,5 +155,6 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     return {
         currentStepData,
         backUrl,
+        stepPath,
     };
 };

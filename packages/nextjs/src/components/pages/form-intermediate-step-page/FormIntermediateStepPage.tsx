@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, BodyLong } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { StepBase } from 'types/content-props/form-intermediate-step';
+import { SelectableStep, StepBase } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
@@ -11,6 +11,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
+import { StepVisualization } from 'components/_common/step-visualization/StepVisualization';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -25,14 +26,29 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
     } & StepBase;
 };
 
+const buildStepTree = (
+    steps: SelectableStep[],
+    level: number = 0
+): Array<{ label: string; level: number }> => {
+    return steps.flatMap((step) => {
+        const result = [{ label: step.label, level }];
+        if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
+            return [...result, ...buildStepTree(step.nextStep.next.steps, level + 1)];
+        }
+        return result;
+    });
+};
+
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { language, data, displayName } = props;
     const { illustration, formNumbers } = data;
-    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
+    const { currentStepData, backUrl, stepPath } = useFormIntermediateStepPage(props);
 
     const currentStepTitle = currentStepData.title ?? displayName;
 
     const getTranslations = translator('form', language);
+
+    const stepTree = buildStepTree(data.steps);
 
     return (
         <div className={style.formIntermediateStepPage}>
@@ -42,6 +58,11 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 textAboveTitle={currentStepData.textAboveTitle}
                 className={style.header}
                 formNumbers={formNumbers}
+            />
+            <StepVisualization
+                steps={stepTree}
+                currentStep={stepPath.length}
+                totalSteps={stepTree.length}
             />
             <div className={style.content}>
                 {currentStepData.previousStepExplanation ? (
