@@ -11,7 +11,10 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
-import { StepVisualization } from 'components/_common/step-visualization/StepVisualization';
+import {
+    StepVisualization,
+    type TreeNode,
+} from 'components/_common/step-visualization/StepVisualization';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -26,23 +29,20 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
     } & StepBase;
 };
 
-const buildStepTree = (
-    steps: SelectableStep[],
-    level: number = 0
-): Array<{ label: string; level: number }> => {
-    return steps.flatMap((step) => {
-        const result = [{ label: step.label, level }];
+const buildStepTree = (steps: SelectableStep[]): TreeNode[] => {
+    return steps.map((step) => {
+        const node: TreeNode = { label: step.label };
         if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
-            return [...result, ...buildStepTree(step.nextStep.next.steps, level + 1)];
+            node.children = buildStepTree(step.nextStep.next.steps);
         }
-        return result;
+        return node;
     });
 };
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { language, data, displayName } = props;
     const { illustration, formNumbers } = data;
-    const { currentStepData, backUrl, stepPath } = useFormIntermediateStepPage(props);
+    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
     const currentStepTitle = currentStepData.title ?? displayName;
 
@@ -59,11 +59,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 className={style.header}
                 formNumbers={formNumbers}
             />
-            <StepVisualization
-                steps={stepTree}
-                currentStep={stepPath.length}
-                totalSteps={stepTree.length}
-            />
+            <StepVisualization steps={stepTree} />
             <div className={style.content}>
                 {currentStepData.previousStepExplanation ? (
                     <BodyLong spacing>{currentStepData.previousStepExplanation}</BodyLong>
