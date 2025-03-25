@@ -98,7 +98,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     </div>
                 )}
             </div>
-            <StepVisualization steps={stepTree} />
+            {props.editorView === 'edit' && <StepVisualization steps={stepTree} />}
         </>
     );
 };
