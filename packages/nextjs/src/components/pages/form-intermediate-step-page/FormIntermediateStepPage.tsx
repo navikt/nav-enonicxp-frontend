@@ -21,14 +21,13 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
         illustration: PictogramsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
-        textAboveTitle?: string;
         formNumbers?: string[];
     } & StepBase;
 };
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { language, data, displayName } = props;
-    const { illustration, textAboveTitle, formNumbers } = data;
+    const { illustration, formNumbers } = data;
     const { currentStepData, backUrl, previousStepTitle } = useFormIntermediateStepPage(props);
 
     const currentStepTitle = currentStepData.title ?? displayName;
@@ -40,7 +39,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
                 contentProps={{ data: { title: currentStepTitle } }}
-                textAboveTitle={textAboveTitle}
+                textAboveTitle={currentStepData.textAboveTitle}
                 className={style.header}
                 formNumbers={formNumbers}
             />

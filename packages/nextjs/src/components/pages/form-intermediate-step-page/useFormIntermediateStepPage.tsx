@@ -47,10 +47,15 @@ const resolveStepUrl = ({
     }
 };
 
-const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: StepPath): StepBase => {
+const getStepData = (
+    data: FormIntermediateStepPageProps['data'],
+    stepPath: StepPath,
+    displayName: string
+): StepBase => {
     // No steps selected (meaning the user is on first step)
     if (stepPath.length === 0) {
         return {
+            textAboveTitle: '',
             title: data.title,
             editorial: data.editorial,
             stepsHeadline: data.stepsHeadline,
@@ -75,6 +80,7 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
     }
 
     return {
+        textAboveTitle: data.title ?? displayName, // Use title or displayName for subsequent pages
         title: lastStepLabel,
         editorial: tmp.editorial,
         stepsHeadline: tmp.stepsHeadline,
@@ -85,9 +91,10 @@ const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: Step
 const buildCurrentStepData = (
     allData: FormIntermediateStepPageProps['data'],
     basePath: string,
-    stepPath: StepPath
+    stepPath: StepPath,
+    displayName: string
 ): StepBase => {
-    const stepData = getStepData(allData, stepPath);
+    const stepData = getStepData(allData, stepPath, displayName);
 
     return {
         ...stepData,
@@ -150,7 +157,7 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     const router = useRouter();
 
     const pagePath = stripXpPathPrefix(props._path);
-    const currentStepData = buildCurrentStepData(props.data, pagePath, stepPath);
+    const currentStepData = buildCurrentStepData(props.data, pagePath, stepPath, props.displayName);
 
     const backUrl = buildBackUrl(pagePath, stepPath);
     const previousStepTitle = getPreviousStepTitle(stepPath, props.data);
