@@ -14,7 +14,7 @@ import { Taxonomy } from 'types/taxonomies';
 import {
     StepVisualization,
     type TreeNode,
-} from 'components/_common/step-visualization/StepVisualization';
+} from 'components/pages/form-intermediate-step-page/step-visualization/StepVisualization';
 
 import style from './FormIntermediateStepPage.module.scss';
 
