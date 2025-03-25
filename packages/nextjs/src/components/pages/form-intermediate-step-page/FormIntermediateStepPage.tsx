@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Heading } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { StepBase } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -28,7 +28,7 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { language, data, displayName } = props;
     const { illustration, formNumbers } = data;
-    const { currentStepData, backUrl, previousStepTitle } = useFormIntermediateStepPage(props);
+    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
     const currentStepTitle = currentStepData.title ?? displayName;
 
@@ -45,12 +45,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
             />
             <div className={style.content}>
                 <ParsedHtml htmlProps={currentStepData.editorial} />
-                {previousStepTitle && <div>Forrige steg: {previousStepTitle}</div>}
-                {currentStepData.stepsHeadline && (
-                    <Heading level={'2'} size={'medium'} spacing>
-                        {currentStepData.stepsHeadline}
-                    </Heading>
-                )}
                 <ul className={style.stepList}>
                     {currentStepData.steps.map((step) => (
                         <li key={step.label} className={style.stepItem}>
@@ -58,7 +52,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                                 {...step}
                                 className={style.stepAction}
                                 analyticsComponent={'mellomsteg'}
-                                analyticsLinkGroup={currentStepData.stepsHeadline}
                                 analyticsLabel={step.label}
                                 formNumberStepData={step.formNumberStepData}
                             />
@@ -75,7 +68,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                         variant={'tertiary'}
                         className={style.backButton}
                         analyticsComponent={'mellomsteg'}
-                        analyticsLinkGroup={currentStepData.stepsHeadline}
                         analyticsLabel={'Tilbake'}
                     >
                         {getTranslations('back')}

@@ -23,6 +23,5 @@ export type StepBase = {
     textAboveTitle?: string;
     title?: string;
     editorial: ProcessedHtmlProps;
-    stepsHeadline: string;
     steps: SelectableStep[];
 };

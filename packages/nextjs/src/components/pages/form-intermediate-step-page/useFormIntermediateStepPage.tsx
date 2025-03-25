@@ -58,7 +58,6 @@ const getStepData = (
             textAboveTitle: '',
             title: data.title,
             editorial: data.editorial,
-            stepsHeadline: data.stepsHeadline,
             steps: data.steps,
         };
     }
@@ -83,7 +82,6 @@ const getStepData = (
         textAboveTitle: data.title ?? displayName, // Use title or displayName for subsequent pages
         title: lastStepLabel,
         editorial: tmp.editorial,
-        stepsHeadline: tmp.stepsHeadline,
         steps: tmp.steps,
     };
 };
@@ -124,34 +122,6 @@ const getStepPathFromParam = (url: string): StepPath => {
     return stepPath;
 };
 
-const getPreviousStepTitle = (
-    stepPath: StepPath,
-    allData: FormIntermediateStepPageProps['data']
-) => {
-    if (stepPath.length === 0) {
-        return null; // No previous step title if on the first step
-    }
-
-    const previousStepPath = stepPath.slice(0, -1);
-
-    // Previous step was the first page, so just get the
-    // headline from the data root.
-    if (previousStepPath.length === 0) {
-        return allData.stepsHeadline;
-    }
-
-    // Traverse the tree to find the previous step.
-    let step: StepBase = allData;
-    previousStepPath.forEach((index) => {
-        const foundStep = step.steps[index];
-        if (foundStep) {
-            step = foundStep.nextStep?.next;
-        }
-    });
-
-    return step.stepsHeadline;
-};
-
 export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const [stepPath, setStepPath] = useState<StepPath>([]);
     const router = useRouter();
@@ -160,7 +130,6 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     const currentStepData = buildCurrentStepData(props.data, pagePath, stepPath, props.displayName);
 
     const backUrl = buildBackUrl(pagePath, stepPath);
-    const previousStepTitle = getPreviousStepTitle(stepPath, props.data);
 
     useEffect(() => {
         if (!router) {
@@ -182,6 +151,5 @@ export const useFormIntermediateStepPage = (props: FormIntermediateStepPageProps
     return {
         currentStepData,
         backUrl,
-        previousStepTitle,
     };
 };
