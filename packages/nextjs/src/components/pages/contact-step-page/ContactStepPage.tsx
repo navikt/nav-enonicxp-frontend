@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
 import { HeaderWithParent } from 'components/_common/headers/headerWithParent/HeaderWithParent';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -47,7 +48,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
 
                 {linkPanelsHeading && (
-                    <Heading size="medium" level="2">
+                    <Heading size="medium" level="2" spacing>
                         {linkPanelsHeading}
                     </Heading>
                 )}
@@ -66,12 +67,19 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                                     analyticsComponent={'ContactStepPage'}
                                     analyticsLabel={linkPaneltitle}
                                 >
-                                    <LinkPanel.Title>{linkPaneltitle}</LinkPanel.Title>
-                                    {linkPanel.ingress && (
-                                        <LinkPanel.Description>
-                                            {linkPanel.ingress}
-                                        </LinkPanel.Description>
-                                    )}
+                                    <div>
+                                        <LinkPanel.Title>{linkPaneltitle}</LinkPanel.Title>
+                                        {linkPanel.ingress && (
+                                            <LinkPanel.Description>
+                                                {linkPanel.ingress}
+                                            </LinkPanel.Description>
+                                        )}
+                                    </div>
+                                    <ArrowRightIcon
+                                        aria-hidden
+                                        fontSize="1.25rem"
+                                        className={style.arrowRightIcon}
+                                    />
                                 </LinkPanel>
                             </li>
                         );
