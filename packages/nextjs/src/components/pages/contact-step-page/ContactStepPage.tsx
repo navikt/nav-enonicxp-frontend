@@ -48,7 +48,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
 
                 {linkPanelsHeading && (
-                    <Heading size="medium" level="2">
+                    <Heading size="medium" level="2" spacing>
                         {linkPanelsHeading}
                     </Heading>
                 )}
