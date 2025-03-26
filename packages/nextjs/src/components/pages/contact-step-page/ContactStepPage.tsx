@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
 import { HeaderWithParent } from 'components/_common/headers/headerWithParent/HeaderWithParent';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -50,34 +51,49 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                 <ParsedHtml htmlProps={html} />
 
                 {linkPanelsHeading && (
-                    <Heading size="medium" level="2">
+                    <Heading size="medium" level="2" spacing>
                         {linkPanelsHeading}
                     </Heading>
                 )}
                 {linkPanelsSubHeading && <BodyShort>{linkPanelsSubHeading}</BodyShort>}
 
                 <ul className={style.linkPanels}>
-                    {linkPanels.map((linkPanel, index) => (
-                        <li key={index}>
-                            <LinkPanel
-                                as={LenkeBase}
-                                href={linkPanel.target._path}
-                                className={style.linkPanel}
-                            >
-                                <LinkPanel.Title>
-                                    {linkPanel.text ?? linkPanel.target.displayName}
-                                </LinkPanel.Title>
-                                {linkPanel.ingress && (
-                                    <LinkPanel.Description>
-                                        {linkPanel.ingress}
-                                    </LinkPanel.Description>
-                                )}
-                            </LinkPanel>
-                        </li>
-                    ))}
+                    {linkPanels.map((linkPanel, index) => {
+                        const linkPaneltitle = linkPanel.text ?? linkPanel.target.displayName;
+
+                        return (
+                            <li key={index}>
+                                <LinkPanel
+                                    as={LenkeBase}
+                                    href={linkPanel.target._path}
+                                    className={style.linkPanel}
+                                    analyticsComponent={'ContactStepPage'}
+                                    analyticsLabel={linkPaneltitle}
+                                >
+                                    <div>
+                                        <LinkPanel.Title>{linkPaneltitle}</LinkPanel.Title>
+                                        {linkPanel.ingress && (
+                                            <LinkPanel.Description>
+                                                {linkPanel.ingress}
+                                            </LinkPanel.Description>
+                                        )}
+                                    </div>
+                                    <ArrowRightIcon
+                                        aria-hidden
+                                        fontSize="1.25rem"
+                                        className={style.arrowRightIcon}
+                                    />
+                                </LinkPanel>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
-            <LenkeInline href={backLink.target._path} className={style.backLink}>
+            <LenkeInline
+                href={backLink.target._path}
+                className={style.backLink}
+                analyticsComponent={'ContactStepPage'}
+            >
                 {backLink.text ?? backLink.target.displayName}
             </LenkeInline>
         </div>
