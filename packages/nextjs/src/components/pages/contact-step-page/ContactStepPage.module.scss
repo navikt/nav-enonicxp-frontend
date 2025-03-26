@@ -38,6 +38,7 @@
 
     .content {
         grid-area: content;
+        margin-top: 0.5rem;
 
         .linkPanels {
             display: flex;
@@ -45,6 +46,8 @@
             gap: 0.5rem;
             list-style-type: none;
             padding: 0;
+            margin-bottom: 2rem;
+            margin-top: 1.5rem;
 
             .linkPanel {
                 border-radius: 0.5rem;
