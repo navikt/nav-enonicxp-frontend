@@ -25,14 +25,8 @@ export const Default: Story = {
 
 export const LanguageDisclaimer: Story = {
     args: {
+        ...Default.args,
         label: 'Steg med språk',
-        explanation: 'Dette er et eksempel på hva som kan stå her',
         languageDisclaimer: 'Kun på bokmål',
-        href: '/example-path',
-        isStepNavigation: true,
-        analyticsComponent: 'mellomsteg',
-        analyticsLinkGroup: 'Example Group',
-        analyticsLabel: 'Example Step',
-        formNumberStepData: 'Nav 04-01.02',
     },
 };
