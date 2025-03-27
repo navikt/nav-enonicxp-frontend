@@ -20,15 +20,6 @@ export const Default: Story = {
         analyticsLinkGroup: 'Example Group',
         analyticsLabel: 'Example Step',
         formNumberStepData: 'Nav 04-01.02',
-        nextStep: {
-            _selected: 'next',
-            next: {
-                editorial: { html: '' },
-                stepsHeadline: '',
-                steps: [],
-                formNumberStepData: 'Nav 04-01.02',
-            },
-        },
     },
 };
 
@@ -43,14 +34,5 @@ export const LanguageDisclaimer: Story = {
         analyticsLinkGroup: 'Example Group',
         analyticsLabel: 'Example Step',
         formNumberStepData: 'Nav 04-01.02',
-        nextStep: {
-            _selected: 'next',
-            next: {
-                editorial: { html: '' },
-                stepsHeadline: '',
-                steps: [],
-                formNumberStepData: 'Nav 04-01.02',
-            },
-        },
     },
 };
