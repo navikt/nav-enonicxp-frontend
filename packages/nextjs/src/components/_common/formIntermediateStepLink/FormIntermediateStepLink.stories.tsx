@@ -13,44 +13,53 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         label: 'Steg 1',
-        explanation: 'Dette er et eksempel på hva som kan stå her',
         href: '/example-path',
         isStepNavigation: true,
         analyticsComponent: 'mellomsteg',
         analyticsLinkGroup: 'Example Group',
         analyticsLabel: 'Example Step',
+    },
+};
+
+export const WithExplanation: Story = {
+    args: {
+        ...Default.args,
+        explanation: 'Dette er et eksempel på hva som kan stå her',
+    },
+};
+
+export const WithFormNumber: Story = {
+    args: {
+        ...Default.args,
         formNumberStepData: 'Nav 04-01.02',
-        nextStep: {
-            _selected: 'next',
-            next: {
-                editorial: { html: '' },
-                stepsHeadline: '',
-                steps: [],
-                formNumberStepData: 'Nav 04-01.02',
-            },
-        },
     },
 };
 
 export const LanguageDisclaimer: Story = {
     args: {
+        ...Default.args,
         label: 'Steg med språk',
-        explanation: 'Dette er et eksempel på hva som kan stå her',
         languageDisclaimer: 'Kun på bokmål',
-        href: '/example-path',
-        isStepNavigation: true,
-        analyticsComponent: 'mellomsteg',
-        analyticsLinkGroup: 'Example Group',
-        analyticsLabel: 'Example Step',
-        formNumberStepData: 'Nav 04-01.02',
-        nextStep: {
-            _selected: 'next',
-            next: {
-                editorial: { html: '' },
-                stepsHeadline: '',
-                steps: [],
-                formNumberStepData: 'Nav 04-01.02',
-            },
-        },
+    },
+};
+
+export const WithExplanationAndFormNumber: Story = {
+    args: {
+        ...WithExplanation.args,
+        ...WithFormNumber.args,
+    },
+};
+
+export const WithExplanationAndLanguageDisclaimer: Story = {
+    args: {
+        ...WithExplanation.args,
+        ...LanguageDisclaimer.args,
+    },
+};
+
+export const WithExplanationAndFormNumberAndLanguageDisclaimer: Story = {
+    args: {
+        ...WithExplanationAndFormNumber.args,
+        ...LanguageDisclaimer.args,
     },
 };

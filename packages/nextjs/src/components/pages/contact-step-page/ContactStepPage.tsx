@@ -1,11 +1,10 @@
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { BodyShort, Heading, LinkPanel } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { HeaderWithParent } from 'components/_common/headers/headerWithParent/HeaderWithParent';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ContentType, ContentCommonProps } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
+import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
 import style from './ContactStepPage.module.scss';
@@ -63,27 +62,13 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
 
                         return (
                             <li key={index}>
-                                <LinkPanel
-                                    as={LenkeBase}
+                                <FormIntermediateStepLink
+                                    label={linkPaneltitle}
+                                    explanation={linkPanel.ingress ?? ''}
                                     href={linkPanel.target._path}
-                                    className={style.linkPanel}
                                     analyticsComponent={'ContactStepPage'}
                                     analyticsLabel={linkPaneltitle}
-                                >
-                                    <div>
-                                        <LinkPanel.Title>{linkPaneltitle}</LinkPanel.Title>
-                                        {linkPanel.ingress && (
-                                            <LinkPanel.Description>
-                                                {linkPanel.ingress}
-                                            </LinkPanel.Description>
-                                        )}
-                                    </div>
-                                    <ArrowRightIcon
-                                        aria-hidden
-                                        fontSize="1.25rem"
-                                        className={style.arrowRightIcon}
-                                    />
-                                </LinkPanel>
+                                />
                             </li>
                         );
                     })}
