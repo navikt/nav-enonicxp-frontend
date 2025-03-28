@@ -10,7 +10,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
 import style from './ContactStepPage.module.scss';
 
-export type ContactStepPageProps = ContentCommonProps & {
+export type ContactStepPageProps = Pick<ContentCommonProps, '_path'> & {
     type: ContentType.ContactStepPage;
     data: {
         title: string;
