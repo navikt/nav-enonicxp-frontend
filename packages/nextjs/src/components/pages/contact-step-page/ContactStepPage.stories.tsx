@@ -60,7 +60,7 @@ export const Default: Story = {
             ],
             backLink: {
                 target: {
-                    _path: '/person/kontakt-oss',
+                    _path: '',
                     displayName: 'Tilbake',
                 },
                 text: 'Tilbake til kontakt',
