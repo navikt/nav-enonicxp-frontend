@@ -1,46 +1,57 @@
 import React from 'react';
-import { Button, Heading } from '@navikt/ds-react';
+import { Button, BodyLong } from '@navikt/ds-react';
 import { translator } from 'translations';
-import { ThemedPageHeader } from 'components/_common/headers/themedPageHeader/ThemedPageHeader';
-import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+import { StepBase } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { useFormIntermediateStepPageState } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
-import { FormIntermediateStepLink } from 'components/pages/form-intermediate-step-page/FormIntermediateStepLink';
+import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
+import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
+import { HeaderWithParent } from 'components/_common/headers/headerWithParent/HeaderWithParent';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
+import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
+import { PictogramsProps } from 'types/content-props/pictograms';
+import { Taxonomy } from 'types/taxonomies';
+import { StepVisualization } from 'components/pages/form-intermediate-step-page/step-visualization/StepVisualization';
 
 import style from './FormIntermediateStepPage.module.scss';
 
-export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
-    const { language, type, displayName, modifiedTime, data } = props;
-    const { title, illustration } = data;
+export type FormIntermediateStepPageProps = ContentCommonProps & {
+    type: ContentType.FormIntermediateStepPage;
+    data: {
+        title: string;
+        illustration: PictogramsProps;
+        taxonomy?: Taxonomy[];
+        customCategory: string;
+        formNumbers?: string[];
+    } & StepBase;
+};
 
-    const { currentStepData, backUrl } = useFormIntermediateStepPageState(props);
+export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
+    const { language, data, displayName } = props;
+    const { illustration, formNumbers } = data;
+    const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
+
+    const currentStepTitle = currentStepData.title ?? displayName;
 
     const getTranslations = translator('form', language);
 
     return (
-        <div className={style.formIntermediateStepPage}>
-            <ThemedPageHeader
-                contentProps={{
-                    type,
-                    displayName,
-                    modifiedTime,
-                    language,
-                    data: {
-                        title,
-                        illustration,
-                        taxonomy: [],
-                    },
-                }}
-                showTimeStamp={false}
-            />
-            <div className={style.content}>
-                <div className={style.stepOptionsWrapper}>
-                    <ParsedHtml htmlProps={currentStepData.editorial} />
-                    {currentStepData.stepsHeadline && (
-                        <Heading level={'2'} size={'medium'} spacing>
-                            {currentStepData.stepsHeadline}
-                        </Heading>
+        <>
+            <div className={style.formIntermediateStepPage}>
+                <IllustrationStatic illustration={illustration} className={style.pictogram} />
+                <HeaderWithParent
+                    contentProps={{ data: { title: currentStepTitle } }}
+                    textAboveTitle={currentStepData.textAboveTitle}
+                    className={style.header}
+                    formNumbers={formNumbers}
+                />
+                <div className={style.content}>
+                    {currentStepData.previousStepExplanation ? (
+                        <BodyLong spacing>{currentStepData.previousStepExplanation}</BodyLong>
+                    ) : (
+                        currentStepData.editorial && (
+                            <ParsedHtml htmlProps={currentStepData.editorial} />
+                        )
                     )}
                     <ul className={style.stepList}>
                         {currentStepData.steps.map((step) => (
@@ -49,8 +60,8 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                                     {...step}
                                     className={style.stepAction}
                                     analyticsComponent={'mellomsteg'}
-                                    analyticsLinkGroup={currentStepData.stepsHeadline}
                                     analyticsLabel={step.label}
+                                    formNumberStepData={step.formNumberStepData}
                                 />
                             </li>
                         ))}
@@ -65,7 +76,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                             variant={'tertiary'}
                             className={style.backButton}
                             analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={currentStepData.stepsHeadline}
                             analyticsLabel={'Tilbake'}
                         >
                             {getTranslations('back')}
@@ -73,6 +83,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     </div>
                 )}
             </div>
-        </div>
+            {props.editorView === 'edit' && <StepVisualization steps={data.steps} />}
+        </>
     );
 };
