@@ -17,7 +17,7 @@ import style from './FormIntermediateStepPage.module.scss';
 
 export type FormIntermediateStepPageProps = Pick<
     ContentCommonProps,
-    'language' | 'displayName' | 'editorView'
+    '_path' | 'language' | 'displayName' | 'editorView'
 > & {
     type: ContentType.FormIntermediateStepPage;
     data: {

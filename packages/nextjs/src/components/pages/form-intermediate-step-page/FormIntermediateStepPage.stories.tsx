@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
+        _path: 'placeholder',
         language: 'no',
         displayName: 'Form Intermediate Step',
         type: ContentType.FormIntermediateStepPage,
