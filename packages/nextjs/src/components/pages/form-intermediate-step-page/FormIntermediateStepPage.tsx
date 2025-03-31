@@ -15,13 +15,15 @@ import { StepVisualization } from 'components/pages/form-intermediate-step-page/
 
 import style from './FormIntermediateStepPage.module.scss';
 
-export type FormIntermediateStepPageProps = ContentCommonProps & {
+export type FormIntermediateStepPageProps = Pick<
+    ContentCommonProps,
+    '_path' | 'language' | 'displayName' | 'editorView'
+> & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
         illustration: PictogramsProps;
         taxonomy?: Taxonomy[];
-        customCategory: string;
         formNumbers?: string[];
     } & StepBase;
 };
