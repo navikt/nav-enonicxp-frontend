@@ -22,10 +22,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        _path: 'test',
+        _path: 'placeholder',
         type: ContentType.ContactStepPage,
         data: {
-            title: 'Skriv til oss',
+            textAboveTitle: 'Forrige side',
+            title: 'Tittel',
             illustration: {
                 type: ContentType.Pictograms,
                 data: {
@@ -63,7 +64,7 @@ export const Default: Story = {
                     _path: 'placeholder',
                     displayName: 'Tilbake',
                 },
-                text: 'Tilbake til kontakt',
+                text: 'Tilbakelenke',
             },
         },
     },
