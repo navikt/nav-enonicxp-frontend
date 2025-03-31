@@ -10,54 +10,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    args: {
-        _path: 'placeholder',
-        language: 'no',
-        displayName: 'Form Intermediate Step',
-        type: ContentType.FormIntermediateStepPage,
-        data: {
-            textAboveTitle: 'Forrige side',
-            title: 'Tittel',
-            illustration: {
-                type: ContentType.Pictograms,
-                data: {
-                    icons: [
-                        {
-                            icon: {
-                                type: MediaType.Vector,
-                                mediaUrl: 'placeholder',
-                            },
-                        },
-                    ],
-                },
-            },
-            editorial: {
-                processedHtml: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
-                macros: [],
-            },
+const valg1 = {
+    label: 'Valg 1',
+    explanation: 'Ingress til valg 1',
+    languageDisclaimer: 'Info om språk',
+    nextStep: {
+        _selected: 'next' as const,
+        next: {
             steps: [
                 {
-                    label: 'Tittel',
-                    explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-                    languageDisclaimer: 'Info om språk',
+                    label: 'Neste steg',
+                    explanation: 'Dette er neste steg',
                     nextStep: {
-                        _selected: 'next',
-                    },
-                },
-                {
-                    label: 'Tittel',
-                    explanation:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    formNumberStepData: 'NAV 01-02.03',
-                    nextStep: {
-                        _selected: 'next',
-                    },
-                },
-                {
-                    label: 'Tittel',
-                    nextStep: {
-                        _selected: 'next',
+                        _selected: 'next' as const,
                     },
                 },
             ],
@@ -65,15 +30,14 @@ export const Default: Story = {
     },
 };
 
-export const SecondStep: Story = {
+export const LandingPage: Story = {
     args: {
-        _path: '/form-intermediate-step',
+        _path: 'placeholder',
         language: 'no',
         displayName: 'Form Intermediate Step',
         type: ContentType.FormIntermediateStepPage,
         data: {
-            textAboveTitle: 'Forrige side',
-            title: 'Tittel',
+            title: 'Landingsside',
             illustration: {
                 type: ContentType.Pictograms,
                 data: {
@@ -88,35 +52,53 @@ export const SecondStep: Story = {
                 },
             },
             editorial: {
-                processedHtml: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                processedHtml: '<p>Ingress til landingsside.</p>',
                 macros: [],
             },
             steps: [
+                valg1,
                 {
-                    label: 'Første steg',
-                    explanation: 'Dette er første steg',
+                    label: 'Valg 3',
+                    explanation:
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    formNumberStepData: 'NAV 01-02.03',
                     nextStep: {
-                        _selected: 'next',
-                        next: {
-                            textAboveTitle: 'Forrige side',
-                            title: 'Andre steg',
-                            editorial: {
-                                processedHtml: '<p>Dette er andre steg</p>',
-                                macros: [],
-                            },
-                            steps: [
-                                {
-                                    label: 'Neste steg',
-                                    explanation: 'Dette er neste steg',
-                                    nextStep: {
-                                        _selected: 'next',
-                                    },
-                                },
-                            ],
-                        },
+                        _selected: 'next' as const,
+                    },
+                },
+                {
+                    label: 'Valg 3',
+                    nextStep: {
+                        _selected: 'next' as const,
                     },
                 },
             ],
+        },
+    },
+};
+
+export const Step: Story = {
+    args: {
+        _path: '/form-intermediate-step',
+        language: 'no',
+        displayName: 'placeholder',
+        type: ContentType.FormIntermediateStepPage,
+        data: {
+            title: 'Tittel',
+            illustration: {
+                type: ContentType.Pictograms,
+                data: {
+                    icons: [
+                        {
+                            icon: {
+                                type: MediaType.Vector,
+                                mediaUrl: 'placeholder',
+                            },
+                        },
+                    ],
+                },
+            },
+            steps: [valg1],
         },
     },
     parameters: {
