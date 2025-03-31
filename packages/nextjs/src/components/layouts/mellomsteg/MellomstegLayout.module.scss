@@ -1,0 +1,21 @@
+.mellomstegLayout {
+    padding-bottom: 1rem;
+    column-gap: 1.75rem;
+    margin: 1.25rem auto 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-areas:
+        'pictogram header .'
+        '. content .'
+        '. backLink .';
+
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: none;
+        grid-template-areas:
+            'pictogram'
+            'header'
+            'content'
+            'backLink';
+        padding: 0 0.5rem;
+    }
+}

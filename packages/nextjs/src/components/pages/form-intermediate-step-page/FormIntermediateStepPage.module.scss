@@ -1,70 +1,49 @@
-.formIntermediateStepPage {
-    padding-bottom: 1rem;
-    column-gap: 1.75rem;
-    margin: 1.25rem auto 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 40rem 1fr;
-    grid-template-areas:
-        'pictogram header .'
-        '. content .'
-        '. backButton .';
+.pictogram {
+    grid-area: pictogram;
+    display: block;
+    justify-self: end;
+    width: 4.5rem;
+    height: auto;
+    position: relative;
+    align-self: flex-start;
 
     @media only screen and (max-width: 1024px) {
-        grid-template-columns: none;
-        grid-template-areas:
-            '. pictogram .'
-            '. header .'
-            '. content .'
-            '. backButton .';
+        width: 4rem;
+        justify-self: start;
     }
-    .pictogram {
-        grid-area: pictogram;
-        display: block;
-        justify-self: end;
-        width: 4.5rem;
-        height: auto;
-        position: relative;
-        align-self: flex-start;
+}
 
-        @media only screen and (max-width: 1024px) {
-            width: 4rem;
-            justify-self: start;
-        }
+.header {
+    grid-area: header;
+}
+
+.content {
+    grid-area: content;
+    margin-top: 2rem;
+
+    & > * {
+        width: 100%;
     }
 
-    .header {
-        grid-area: header;
-    }
+    .stepList {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
 
-    .content {
-        grid-area: content;
-        margin-top: 2rem;
+        .stepItem {
+            margin-bottom: var(--a-spacing-7);
 
-        & > * {
-            width: 100%;
-        }
-
-        .stepList {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-
-            .stepItem {
-                margin-bottom: var(--a-spacing-7);
-
-                .stepAction {
-                    &:global(.navds-link-panel) {
-                        border-color: var(--default-action-color);
-                    }
+            .stepAction {
+                &:global(.navds-link-panel) {
+                    border-color: var(--default-action-color);
                 }
             }
         }
-        .buttonGroup {
-            display: flex;
-        }
-
-        .backButton {
-            grid-area: backButton;
+    }
+    .buttonGroup {
+        display: flex;
+        .backLink {
+            grid-area: backLink;
             text-decoration-line: underline;
             text-underline-offset: 4px;
             padding: 0;

@@ -8,6 +8,7 @@ import { PictogramsProps } from 'types/content-props/pictograms';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
+import { MellomstegLayout } from 'components/layouts/mellomsteg/MellomstegLayout';
 import style from './ContactStepPage.module.scss';
 
 export type ContactStepPageProps = Pick<ContentCommonProps, '_path'> & {
@@ -39,7 +40,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
     } = data;
 
     return (
-        <div className={style.contactStepPage}>
+        <MellomstegLayout>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
                 contentProps={{ data: { title } }}
@@ -56,7 +57,6 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                     </Heading>
                 )}
                 {linkPanelsSubHeading && <BodyShort>{linkPanelsSubHeading}</BodyShort>}
-
                 <ul className={style.linkPanels}>
                     {linkPanels.map((linkPanel, index) => {
                         const linkPaneltitle = linkPanel.text ?? linkPanel.target.displayName;
@@ -96,6 +96,6 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
             >
                 {backLink.text ?? backLink.target.displayName}
             </LenkeInline>
-        </div>
+        </MellomstegLayout>
     );
 };

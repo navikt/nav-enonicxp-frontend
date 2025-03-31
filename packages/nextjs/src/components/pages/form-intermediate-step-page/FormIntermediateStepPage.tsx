@@ -12,6 +12,7 @@ import { ContentCommonProps, ContentType } from 'types/content-props/_content-co
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
 import { StepVisualization } from 'components/pages/form-intermediate-step-page/step-visualization/StepVisualization';
+import { MellomstegLayout } from 'components/layouts/mellomsteg/MellomstegLayout';
 
 import style from './FormIntermediateStepPage.module.scss';
 
@@ -37,7 +38,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
 
     return (
         <>
-            <div className={style.formIntermediateStepPage}>
+            <MellomstegLayout>
                 <IllustrationStatic illustration={illustration} className={style.pictogram} />
                 <HeaderWithParent
                     contentProps={{ data: { title: currentStepTitle } }}
@@ -74,7 +75,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                             shallow={true}
                             as={LenkeBase}
                             variant={'tertiary'}
-                            className={style.backButton}
+                            className={style.backLink}
                             analyticsComponent={'mellomsteg'}
                             analyticsLabel={'Tilbake'}
                         >
@@ -82,7 +83,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                         </Button>
                     </div>
                 )}
-            </div>
+            </MellomstegLayout>
             {props.editorView === 'edit' && <StepVisualization steps={data.steps} />}
         </>
     );
