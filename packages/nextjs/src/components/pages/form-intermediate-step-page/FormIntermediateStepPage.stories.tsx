@@ -86,32 +86,16 @@ export const LandingPage: Story = {
 
 export const Step: Story = {
     args: {
-        _path: '/form-intermediate-step',
-        language: 'no',
-        displayName: 'placeholder',
-        type: ContentType.FormIntermediateStepPage,
+        ...LandingPage.args,
         data: {
-            title: 'Tittel',
-            illustration: {
-                type: ContentType.Pictograms,
-                data: {
-                    icons: [
-                        {
-                            icon: {
-                                type: MediaType.Vector,
-                                mediaUrl: 'placeholder',
-                            },
-                        },
-                    ],
-                },
-            },
+            ...LandingPage.args.data,
             steps: [valg1],
         },
     },
     parameters: {
         nextjs: {
             router: {
-                asPath: '/form-intermediate-step?stegvalg=0',
+                asPath: '/placeholder?stegvalg=0',
             },
         },
     },
