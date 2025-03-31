@@ -19,14 +19,38 @@ const valg1 = {
         next: {
             steps: [
                 {
-                    label: 'Neste steg',
-                    explanation: 'Dette er neste steg',
+                    label: 'Valg 1.1',
+                    explanation: 'Ingress til valg 1.1',
+                    nextStep: {
+                        _selected: 'next' as const,
+                    },
+                },
+                {
+                    label: 'Valg 1.2',
+                    explanation: 'Ingress til valg 1.2',
                     nextStep: {
                         _selected: 'next' as const,
                     },
                 },
             ],
         },
+    },
+};
+
+const valg2 = {
+    label: 'Valg 2',
+    explanation:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    formNumberStepData: 'NAV 01-02.03',
+    nextStep: {
+        _selected: 'next' as const,
+    },
+};
+
+const valg3 = {
+    label: 'Valg 3',
+    nextStep: {
+        _selected: 'next' as const,
     },
 };
 
@@ -55,24 +79,7 @@ export const LandingPage: Story = {
                 processedHtml: '<p>Ingress til landingsside.</p>',
                 macros: [],
             },
-            steps: [
-                valg1,
-                {
-                    label: 'Valg 3',
-                    explanation:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    formNumberStepData: 'NAV 01-02.03',
-                    nextStep: {
-                        _selected: 'next' as const,
-                    },
-                },
-                {
-                    label: 'Valg 3',
-                    nextStep: {
-                        _selected: 'next' as const,
-                    },
-                },
-            ],
+            steps: [valg1, valg2, valg3],
         },
     },
 };
