@@ -27,6 +27,10 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
   valkey:
     - instance: {{ valkey.instance }}
       access: readwrite
