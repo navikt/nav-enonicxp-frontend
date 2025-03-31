@@ -45,7 +45,7 @@ export const Default: Story = {
             linkPanels: [
                 {
                     target: {
-                        _path: '',
+                        _path: 'placeholder',
                         displayName: 'Ledige jobber',
                     },
                     text: 'Finn ledige stillinger',
@@ -53,14 +53,14 @@ export const Default: Story = {
                 },
                 {
                     target: {
-                        _path: '',
+                        _path: 'placeholder',
                         displayName: 'Nav hjelpemiddelsentral',
                     },
                 },
             ],
             backLink: {
                 target: {
-                    _path: '',
+                    _path: 'placeholder',
                     displayName: 'Tilbake',
                 },
                 text: 'Tilbake til kontakt',
