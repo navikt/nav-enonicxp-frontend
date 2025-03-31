@@ -49,7 +49,7 @@ export const Default: Story = {
                     label: 'Tittel',
                     explanation:
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    formNumberStepData: '1234567890',
+                    formNumberStepData: 'NAV 01-02.03',
                     nextStep: {
                         _selected: 'next',
                     },
