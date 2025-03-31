@@ -100,3 +100,10 @@ export const Step: Story = {
         },
     },
 };
+
+export const EditorView: Story = {
+    args: {
+        ...LandingPage.args,
+        editorView: 'edit',
+    },
+};
