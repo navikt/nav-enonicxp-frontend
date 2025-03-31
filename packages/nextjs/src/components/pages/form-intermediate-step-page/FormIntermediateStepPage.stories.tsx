@@ -33,22 +33,29 @@ export const Default: Story = {
                 },
             },
             editorial: {
-                processedHtml: '<p>Hva vil du gjøre?</p>',
+                processedHtml: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
                 macros: [],
             },
             steps: [
                 {
-                    label: 'Finn ledige stillinger',
-                    explanation:
-                        'Finn ledige stillinger, registrer CV og jobbprofil på Arbeidsplassen',
+                    label: 'Tittel',
+                    explanation: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    languageDisclaimer: 'Info om språk',
                     nextStep: {
                         _selected: 'next',
                     },
                 },
                 {
-                    label: 'Finn ledige stillinger',
+                    label: 'Tittel',
                     explanation:
-                        'Finn ledige stillinger, registrer CV og jobbprofil på Arbeidsplassen',
+                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                    formNumberStepData: '1234567890',
+                    nextStep: {
+                        _selected: 'next',
+                    },
+                },
+                {
+                    label: 'Tittel',
                     nextStep: {
                         _selected: 'next',
                     },
