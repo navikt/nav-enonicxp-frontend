@@ -39,7 +39,7 @@ Kjør `npm run start-clean`
 
 ### Storybook
 
-Kjør Storybook lokalt med `npm run storybook`
+Kjør Storybook lokalt med `npm run storybook` eller besøk den deploya versjonen [https://navikt.github.io/nav-enonicxp-frontend/](https://navikt.github.io/nav-enonicxp-frontend/)
 
 ### Andre lokale avhengigheter
 
