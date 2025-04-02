@@ -12,7 +12,7 @@ $defaultBgColor: white;
     flex-direction: column;
     width: 100%;
     margin-top: calc(
-        var(--a-spacing-20) + var(--a-spacing-5)
+        var(--a-spacing-24)
     ); // Take topMarker negative pos into account
 
     &.pullUp {
@@ -38,13 +38,14 @@ $defaultBgColor: white;
     }
 }
 
-.topMarker:before {
-    @include common.header-before-rectangle();
-}
-
 .header {
+    position: relative;
     margin-bottom: var(--a-spacing-4);
     color: var(--brand-purple-deep);
+
+    &:before {
+        @include common.header-before-rectangle();
+    }
 }
 
 .headerWithIcon {
