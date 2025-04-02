@@ -14,13 +14,14 @@ jobs:
             pull-requests: write
         steps:
             - name: Get branch of PR
+              if: github.event_name == 'pull_request'
               uses: xt0rted/pull-request-comment-branch@v3
               id: comment-branch
 
             - name: Checkout PR branch
               uses: actions/checkout@v4
               with:
-                  ref: ${{ steps.comment-branch.outputs.head_ref }}
+                  ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
             - uses: actions/setup-node@v4
               with:
                   node-version: lts/*
