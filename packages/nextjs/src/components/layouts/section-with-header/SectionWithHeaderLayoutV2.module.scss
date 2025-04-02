@@ -36,14 +36,14 @@ $defaultBgColor: white;
     }
 }
 
-.header {
-    position: relative;
-    margin-bottom: var(--a-spacing-4);
-    color: var(--brand-purple-deep);
+.topMarker .header {
+  position: relative;
+  margin-bottom: var(--a-spacing-4);
+  color: var(--brand-purple-deep);
 
-    &:before {
-        @include common.header-before-rectangle();
-    }
+  &:before {
+      @include common.header-before-rectangle();
+  }
 }
 
 .headerWithIcon {
