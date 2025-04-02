@@ -13,7 +13,7 @@ export type FormIntermediateStepPageProps = Pick<ContentCommonProps, '_path' | '
         title: string;
         illustration: PictogramsProps;
         formNumbers?: string[];
-        editorial?: string;
+        html?: string;
         textAboveTitle?: string;
     } & StepBase;
 };

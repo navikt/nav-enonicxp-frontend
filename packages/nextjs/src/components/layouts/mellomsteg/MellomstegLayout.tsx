@@ -19,7 +19,6 @@ interface Props {
         formNumbers?: string[];
         displayName?: string;
         html?: string;
-        editorial?: string;
     };
 }
 
@@ -30,10 +29,9 @@ export const MellomstegLayout = ({
     backLink,
     analyticsComponent,
 }: Props) => {
-    const { title, illustration, textAboveTitle, html, formNumbers, displayName, editorial } = data;
+    const { title, illustration, textAboveTitle, html, formNumbers, displayName } = data;
 
     const currentTitle = title ?? displayName;
-    const currentHtml = html ?? editorial; //fordi formIntermediateStepPage har editorial i stedet for html
 
     return (
         <div className={style.mellomstegLayout}>
@@ -45,7 +43,7 @@ export const MellomstegLayout = ({
                 formNumbers={formNumbers}
             />
             <div className={style.content}>
-                {currentHtml && <ParsedHtml htmlProps={currentHtml} />}
+                {html && <ParsedHtml htmlProps={html} />}
                 <ul className={style.stepList}>{listItems}</ul>
                 {backLink ? (
                     <LenkeInline
@@ -56,8 +54,8 @@ export const MellomstegLayout = ({
                         {backLink.target.displayName}
                     </LenkeInline>
                 ) : null}
+                {editorView ?? null}
             </div>
-            {editorView ?? null}
         </div>
     );
 };

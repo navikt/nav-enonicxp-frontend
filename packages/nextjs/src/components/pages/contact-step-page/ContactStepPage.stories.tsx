@@ -41,8 +41,6 @@ export const Default: Story = {
                 },
             },
             html: '<p>Hva vil du gjøre?</p>',
-            linkPanelsHeading: 'Velg tema',
-            linkPanelsSubHeading: 'Du blir bedt om å logge inn',
             linkPanels: [
                 {
                     target: {
