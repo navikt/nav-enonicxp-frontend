@@ -60,6 +60,7 @@ export const LandingPage: Story = {
         type: ContentType.FormIntermediateStepPage,
         data: {
             title: 'Landingsside',
+            // @ts-ignore
             html: '<p>Hva vil du gjøre?</p>',
             illustration: {
                 type: ContentType.Pictograms,
