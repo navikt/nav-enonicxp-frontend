@@ -6,16 +6,52 @@
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
         'pictogram header .'
-        '. content .'
-        '. backLink .';
+        '. content .';
 
     @media only screen and (max-width: 1024px) {
         grid-template-columns: none;
         grid-template-areas:
             'pictogram'
             'header'
-            'content'
-            'backLink';
+            'content';
         padding: 0 0.5rem;
+    }
+    .pictogram {
+        grid-area: pictogram;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        align-self: flex-start;
+
+        @media only screen and (max-width: 1024px) {
+            width: 4rem;
+            justify-self: start;
+        }
+    }
+
+    .header {
+        grid-area: header;
+        margin-bottom: 1.5rem;
+    }
+
+    .content {
+        grid-area: content;
+        margin-top: 0.5rem;
+
+        & > * {
+            width: 100%;
+        }
+
+        .stepList {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            margin-top: 1.5rem;
+        }
     }
 }
