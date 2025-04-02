@@ -10,15 +10,23 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nav-enonicxp-frontend-failover
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 40
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+      selectPolicy: Max
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 70
     - type: Pods
       pods:
         metric:
