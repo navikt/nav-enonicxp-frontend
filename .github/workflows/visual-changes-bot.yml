@@ -45,7 +45,7 @@ jobs:
               with:
                   commit_message: 'Update screenshots'
 
-            - name: Add PR-review comment
+            - name: Review PR
               uses: actions/github-script@v7
               with:
                   script: |
@@ -93,7 +93,7 @@ jobs:
                         const REVIEW_MARKER = '<!-- playwright-screenshot-bot -->';
                         
                         const botReview = reviews.data.find(review => 
-                          review.user.login === 'Visual changes[bot]' && 
+                          review.user.login === 'github-actions[bot]' && 
                           review.state === 'CHANGES_REQUESTED' &&
                           review.body.includes(REVIEW_MARKER)
                         );
