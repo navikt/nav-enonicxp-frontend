@@ -1,72 +1,78 @@
-@use 'common' as common;
-
-$padding: 2rem;
-
 .formIntermediateStepPage {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
-}
+    padding-bottom: 1rem;
+    column-gap: 1.75rem;
+    margin: 1.25rem auto 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-areas:
+        'pictogram header .'
+        '. content .'
+        '. backButton .';
 
-.content {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-self: center;
-    width: 100%;
-    max-width: common.$contentMaxWidth;
-
-    & > * {
-        width: 100%;
+    @media only screen and (max-width: 1024px) {
+        grid-template-columns: none;
+        grid-template-areas:
+            '. pictogram .'
+            '. header .'
+            '. content .'
+            '. backButton .';
     }
-}
+    .pictogram {
+        grid-area: pictogram;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        align-self: flex-start;
 
-.stepOptionsWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: common.$sectionMaxWidth;
-}
-
-.stepList {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.stepItem {
-    margin-bottom: var(--a-spacing-7);
-}
-
-.stepAction {
-    &:global(.navds-link-panel) {
-        border-color: var(--default-action-color);
-    }
-    & :global {
-        .navds-link-panel__title,
-        .navds-link-panel__chevron {
-            color: var(--default-action-color);
+        @media only screen and (max-width: 1024px) {
+            width: 4rem;
+            justify-self: start;
         }
     }
-    @media #{common.$mq-screen-mobile} {
-        padding: 0.75rem;
+
+    .header {
+        grid-area: header;
     }
-}
 
-.buttonGroup {
-    display: flex;
-}
+    .content {
+        grid-area: content;
+        margin-top: 2rem;
 
-.backButton {
-    text-decoration-line: underline;
-    text-underline-offset: 4px;
-    padding: 0;
-    margin-top: 1rem;
+        & > * {
+            width: 100%;
+        }
 
-    &:hover {
-        background-color: transparent;
+        .stepList {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            .stepItem {
+                margin-bottom: var(--a-spacing-3);
+
+                .stepAction {
+                    &:global(.navds-link-panel) {
+                        border-color: var(--default-action-color);
+                    }
+                }
+            }
+        }
+        .buttonGroup {
+            display: flex;
+        }
+
+        .backButton {
+            grid-area: backButton;
+            text-decoration-line: underline;
+            text-underline-offset: 4px;
+            padding: 0;
+            margin-top: 1rem;
+
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
 }
