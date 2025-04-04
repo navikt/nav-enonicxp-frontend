@@ -1,5 +1,7 @@
 name: Deploy failover image to dev1 new
 on:
+    push:
+        branches: [failover-dev-build-deploy]
     workflow_dispatch:
 
 jobs:
