@@ -40,7 +40,7 @@ export const Default: Story = {
                     ],
                 },
             },
-            html: '<p>Hva vil du gjøre?</p>',
+            editorial: '<p>Hva vil du gjøre?</p>',
             linkPanels: [
                 {
                     target: {

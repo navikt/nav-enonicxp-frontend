@@ -22,7 +22,7 @@ export type SelectableStep = {
 export type StepBase = {
     textAboveTitle?: string;
     title?: string;
-    html?: ProcessedHtmlProps;
+    editorial?: ProcessedHtmlProps;
     steps: SelectableStep[];
     previousStepExplanation?: string;
 };

@@ -18,7 +18,7 @@ interface Props {
         textAboveTitle?: string;
         formNumbers?: string[];
         displayName?: string;
-        html?: string;
+        editorial?: string;
     };
 }
 
@@ -29,7 +29,7 @@ export const MellomstegLayout = ({
     backLink,
     analyticsComponent,
 }: Props) => {
-    const { title, illustration, textAboveTitle, html, formNumbers, displayName } = data;
+    const { title, illustration, textAboveTitle, editorial, formNumbers, displayName } = data;
 
     const currentTitle = title ?? displayName;
 
@@ -43,7 +43,7 @@ export const MellomstegLayout = ({
                 formNumbers={formNumbers}
             />
             <div className={style.content}>
-                {html && <ParsedHtml htmlProps={html} />}
+                {editorial && <ParsedHtml htmlProps={editorial} />}
                 <ul className={style.stepList}>{listItems}</ul>
                 {backLink ? (
                     <LenkeInline

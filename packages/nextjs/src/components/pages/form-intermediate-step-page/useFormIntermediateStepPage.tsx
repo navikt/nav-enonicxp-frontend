@@ -56,7 +56,7 @@ const getStepData = (
         return {
             textAboveTitle: '',
             title: data.title,
-            html: data.html,
+            editorial: data.editorial,
             steps: data.steps,
             previousStepExplanation: '',
         };
@@ -83,7 +83,7 @@ const getStepData = (
     return {
         textAboveTitle: data.title,
         title: lastStepLabel,
-        html: tmp.html,
+        editorial: tmp.editorial,
         steps: tmp.steps,
         previousStepExplanation,
     };

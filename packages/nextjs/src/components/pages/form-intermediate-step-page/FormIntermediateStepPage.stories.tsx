@@ -61,7 +61,7 @@ export const LandingPage: Story = {
         data: {
             title: 'Landingsside',
             // @ts-ignore
-            html: '<p>Hva vil du gjøre?</p>',
+            editorial: '<p>Hva vil du gjøre?</p>',
             illustration: {
                 type: ContentType.Pictograms,
                 data: {

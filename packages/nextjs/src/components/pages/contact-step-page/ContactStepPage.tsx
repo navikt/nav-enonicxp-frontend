@@ -10,7 +10,7 @@ export type ContactStepPageProps = Pick<ContentCommonProps, '_path'> & {
         title: string;
         illustration: PictogramsProps;
         textAboveTitle?: string;
-        html?: string;
+        editorial?: string;
         linkPanels: (InternalLinkMixin & { ingress?: string })[];
         backLink: InternalLinkMixin;
         formNumbers?: string[];
