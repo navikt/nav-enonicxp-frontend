@@ -38,7 +38,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
             backLink={{
                 target: {
                     _path: backUrl ?? '',
-                    displayName: 'Tilbake',
+                    displayName: backUrl ? 'Tilbake' : '',
                 },
             }}
             analyticsComponent={'FormIntermediateStepPage'}
