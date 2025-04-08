@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
@@ -15,7 +15,7 @@ export const PageHeadingLegacyPart = (props: ContentProps) => {
             </Heading>
             {ingress && (
                 <div className={style.ingress}>
-                    <Ingress>{ingress}</Ingress>
+                    <BodyLong size={'large'}>{ingress}</BodyLong>
                 </div>
             )}
         </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
@@ -61,7 +61,7 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
                         {displayName}
                     </Heading>
                 )}
-                {data.ingress && <Ingress>{data.ingress}</Ingress>}
+                {data.ingress && <BodyLong size={'large'}>{data.ingress}</BodyLong>}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
                     label={getLabel('tableOfContents')}
