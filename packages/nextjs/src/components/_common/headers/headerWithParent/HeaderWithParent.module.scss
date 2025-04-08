@@ -5,10 +5,8 @@
 
     .textAboveTitle {
         color: var(--a-text-subtle);
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 28px;
-        letter-spacing: -0.1%;
+        font-size: var(--text-fluid-18-20);
+        line-height: 1.5;
     }
 
     .formNumberListe {

@@ -18,18 +18,15 @@ export const Header = ({ children, size, level, anchorId, className }: Props) =>
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
-    return (
-        <div className={classNames(style.header, className)}>
-            <div className={style.anchorOffset} id={anchorId} tabIndex={-1} />
-            <Heading size={size || fallbackSizeByLevel} level={level}>
-                {anchor && (level === '2' || level === '3') ? (
-                    <a href={anchor} className={style.anchorLink}>
-                        {children}
-                    </a>
-                ) : (
-                    children
-                )}
-            </Heading>
-        </div>
+    return (        
+        <Heading id={anchorId} size={size || fallbackSizeByLevel} level={level} className={classNames(style.header, className)}>
+            {anchor && (level === '2' || level === '3') ? (
+                <a href={anchor} className={style.anchorLink}>
+                    {children}
+                </a>
+            ) : (
+                children
+            )}
+        </Heading>
     );
 };
