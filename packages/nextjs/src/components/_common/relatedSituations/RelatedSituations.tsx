@@ -28,15 +28,16 @@ export const getAnchorId = (test: string) => {
 
 export const RelatedSituations = ({ relatedSituations, title, description }: Props) => {
     const { language, editorView, page } = usePageContentProps();
-
     const getStringPart = translator('related', language);
     const defaultTitle = getStringPart('otherOffers');
     const actualTitle = (title || defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
+    const actualDescription = description || getStringPart('moreInformation');
 
     return (
-        <section
+        <nav
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
             id={getAnchorId(actualTitle)}
+            aria-label={actualTitle || actualDescription}
         >
             {actualTitle && (
                 <Heading level="3" size="medium" spacing>
@@ -44,7 +45,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                 </Heading>
             )}
             <BodyLong className={style.description}>
-                {description || getStringPart('moreInformation')}
+                {actualDescription}
             </BodyLong>
             <ul className={style.situationsList}>
                 {relatedSituations.map((situation) => {
@@ -65,6 +66,6 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                     );
                 })}
             </ul>
-        </section>
+        </nav>
     );
 };
