@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { LinkPanel } from 'types/link-panel';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { getUrlFromContent } from 'utils/links-from-content';
@@ -22,7 +22,11 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                     </Heading>
                 </div>
             )}
-            {ingress && <Ingress className={style.ingress}>{ingress}</Ingress>}
+            {ingress && (
+                <BodyLong size={'large'} className={style.ingress}>
+                    {ingress}
+                </BodyLong>
+            )}
             {items && (
                 <div className={style.items}>
                     {items.map((item) => {

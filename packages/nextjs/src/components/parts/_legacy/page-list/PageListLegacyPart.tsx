@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
@@ -31,7 +31,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
                 {props.displayName}
             </Heading>
             <div className={style.ingress}>
-                <Ingress>{data.ingress}</Ingress>
+                <BodyLong size={'large'}>{data.ingress}</BodyLong>
             </div>
             {!hideDatesOnPage && (
                 <div className={style.date}>
