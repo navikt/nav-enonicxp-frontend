@@ -68,7 +68,7 @@ export const CallOption = ({
     };
 
     return (
-        <div className={sharedStyle.contactOption}>
+        <section className={sharedStyle.contactOption}>
             <Icon type="phone" />
             <div className={sharedStyle.content}>
                 <LenkeBase
@@ -108,6 +108,6 @@ export const CallOption = ({
                     </LenkeBase>
                 )}
                 </div>
-        </div>
+        </section>
     );
 };

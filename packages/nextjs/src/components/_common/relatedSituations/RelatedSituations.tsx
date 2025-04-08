@@ -34,7 +34,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const actualTitle = (title || defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
 
     return (
-        <div
+        <section
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
             id={getAnchorId(actualTitle)}
         >
@@ -65,6 +65,6 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                     );
                 })}
             </ul>
-        </div>
+        </section>
     );
 };

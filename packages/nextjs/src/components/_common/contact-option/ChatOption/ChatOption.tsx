@@ -25,7 +25,7 @@ export const ChatOption = (props: ChatData) => {
     const translations = translator('contactPoint', language)('chat');
 
     return (
-        <div className={sharedStyle.contactOption}>
+        <section className={sharedStyle.contactOption}>
             <Icon type="chat" />
             <div className={sharedStyle.content}>
                 <LenkeBase
@@ -66,6 +66,6 @@ export const ChatOption = (props: ChatData) => {
                     />
                 )}
             </div>
-        </div>
+        </section>
     );
 };

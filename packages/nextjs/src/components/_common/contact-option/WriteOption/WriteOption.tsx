@@ -21,7 +21,7 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
     const translations = translator('contactPoint', language)('write');
 
     return (
-        <div className={sharedStyle.contactOption}>
+        <section className={sharedStyle.contactOption}>
             <Icon type="message" />
             <div className={sharedStyle.content}>
                 <LenkeBase
@@ -43,6 +43,6 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
                     <ParsedHtml htmlProps={ingress || translations.ingress} />
                 </BodyLong>
             </div>
-        </div>
+        </section>
     );
 };

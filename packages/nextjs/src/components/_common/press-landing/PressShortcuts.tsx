@@ -20,7 +20,7 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
     }
 
     return (
-        <div className={styles.pressShortcuts}>
+        <section className={styles.pressShortcuts}>
             <div className={styles.content}>
                 <Heading level={'2'} size={'large'}>
                     {getTranslations('pressShortcuts')}
@@ -40,6 +40,6 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                     })}
                 </ul>
             </div>
-        </div>
+        </section>
     );
 };

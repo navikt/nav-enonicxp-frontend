@@ -17,8 +17,8 @@ export const UserTests = (props: UserTestsComponentProps) => {
     const { editorView } = usePageContentProps();
 
     return (
-        <div className={style.wrapper}>
+        <section className={style.wrapper}>
             {editorView ? <UserTestsEditorView {...props} /> : <UserTestsPublicView {...props} />}
-        </div>
+        </section>
     );
 };

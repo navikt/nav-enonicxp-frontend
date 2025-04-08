@@ -49,7 +49,7 @@ export const FrontpageShortcutsPart = ({
     const threeCols = shortcuts.length % 3 === 0;
 
     return (
-        <div
+        <section
             className={classNames(style.shortcuts, audience && style[audience])}
             style={
                 {
@@ -92,6 +92,6 @@ export const FrontpageShortcutsPart = ({
                     );
                 })}
             </ul>
-        </div>
+        </section>
     );
 };

@@ -75,10 +75,12 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     return (
         <div className={style.contactInformationPage}>
             <div className={style.content}>
-                <Alert variant="warning" className={style.editorAlert}>
-                    Redaktørvarsel: Denne informasjonen kan være i bruk på tvers av
-                    livssituasjonssider. Endres med varsomhet.
-                </Alert>
+                <section>
+                    <Alert variant="warning" className={style.editorAlert}>
+                        Redaktørvarsel: Denne informasjonen kan være i bruk på tvers av
+                        livssituasjonssider. Endres med varsomhet.
+                    </Alert>
+                </section>
                 {buildPreview()}
             </div>
         </div>

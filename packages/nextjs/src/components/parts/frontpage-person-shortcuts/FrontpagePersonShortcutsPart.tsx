@@ -39,7 +39,7 @@ export const FrontpagePersonShortcutsPart = ({
     }
 
     return (
-        <div className={style.personShortcuts}>
+        <section className={style.personShortcuts}>
             {sectionTitle && (
                 <Header size="large" level="2">
                     {sectionTitle}
@@ -92,6 +92,6 @@ export const FrontpagePersonShortcutsPart = ({
                     );
                 })}
             </ul>
-        </div>
+        </section>
     );
 };
