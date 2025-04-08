@@ -26,7 +26,7 @@ export const HeaderWithParent = ({
             <BodyShort textColor="subtle" className={style.textAboveTitle}>
                 {textAboveTitle}
             </BodyShort>
-            <Heading level="1" size="large" spacing className={style.header}>
+            <Heading level="1" size="xlarge" spacing>
                 {data.title}
             </Heading>
             {formNumbers && (

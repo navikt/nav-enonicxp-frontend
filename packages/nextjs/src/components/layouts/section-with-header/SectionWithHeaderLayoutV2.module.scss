@@ -11,9 +11,7 @@ $defaultBgColor: white;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    margin-top: calc(
-        var(--a-spacing-20) + var(--a-spacing-5)
-    ); // Take topMarker negative pos into account
+    margin-top: var(--a-spacing-24); // Take topMarker negative pos into account
 
     &.pullUp {
         margin-top: var(--a-spacing-12);
@@ -38,13 +36,14 @@ $defaultBgColor: white;
     }
 }
 
-.topMarker:before {
-    @include common.header-before-rectangle();
-}
+.topMarker .header {
+  position: relative;
+  margin-bottom: var(--a-spacing-4);
+  color: var(--brand-purple-deep);
 
-.header {
-    margin-bottom: var(--a-spacing-4);
-    color: var(--brand-purple-deep);
+  &:before {
+      @include common.header-before-rectangle();
+  }
 }
 
 .headerWithIcon {

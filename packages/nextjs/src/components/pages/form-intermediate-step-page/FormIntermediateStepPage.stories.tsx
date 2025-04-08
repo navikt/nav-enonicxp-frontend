@@ -57,11 +57,11 @@ const valg3 = {
 export const LandingPage: Story = {
     args: {
         _path: 'placeholder',
-        language: 'no',
-        displayName: 'Form Intermediate Step',
         type: ContentType.FormIntermediateStepPage,
         data: {
             title: 'Landingsside',
+            // @ts-ignore
+            editorial: '<p>Hva vil du gjøre?</p>',
             illustration: {
                 type: ContentType.Pictograms,
                 data: {
@@ -74,10 +74,6 @@ export const LandingPage: Story = {
                         },
                     ],
                 },
-            },
-            editorial: {
-                processedHtml: '<p>Ingress til landingsside.</p>',
-                macros: [],
             },
             steps: [valg1, valg2, valg3],
         },

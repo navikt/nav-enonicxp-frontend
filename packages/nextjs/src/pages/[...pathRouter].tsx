@@ -12,16 +12,23 @@ import { fetchPrerenderPaths } from 'utils/fetch/fetch-prerender-paths';
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const getStaticPropsFailover: GetStaticProps = async (context) => {
-    const pageProps = await fetchPageProps({
-        routerQuery: context?.params?.pathRouter,
-        noRedirect: true,
-    });
+    try {
+        const pageProps = await fetchPageProps({
+            routerQuery: context?.params?.pathRouter,
+            noRedirect: true,
+        });
 
-    if (isPropsWithContent(pageProps.props)) {
-        pageProps.props.content.isFailover = true;
+        if (isPropsWithContent(pageProps.props)) {
+            pageProps.props.content.isFailover = true;
+        }
+
+        return pageProps;
+    } catch (error) {
+        logger.error('Error fetching page props in failover mode:', error);
+        return {
+            notFound: true,
+        };
     }
-
-    return pageProps;
 };
 
 const getStaticPathsFailover = async () => {

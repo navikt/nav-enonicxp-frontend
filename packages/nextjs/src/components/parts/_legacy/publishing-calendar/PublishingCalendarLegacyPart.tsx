@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Heading, Ingress, Table } from '@navikt/ds-react';
+import { BodyLong, Heading, Table } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import {
@@ -24,7 +24,9 @@ export const PublishingCalendarLegacyPart = (props: ContentProps) => {
                 {props.displayName}
             </Heading>
             {props.data.ingress && (
-                <Ingress className={style.ingress}>{props.data.ingress}</Ingress>
+                <BodyLong size={'large'} className={style.ingress}>
+                    {props.data.ingress}
+                </BodyLong>
             )}
             <Table zebraStripes>
                 <Table.Header>

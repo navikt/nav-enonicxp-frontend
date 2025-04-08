@@ -1,4 +1,4 @@
-.formIntermediateStepPage {
+.mellomstegLayout {
     padding-bottom: 1rem;
     column-gap: 1.75rem;
     margin: 1.25rem auto 2.5rem;
@@ -6,16 +6,15 @@
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
         'pictogram header .'
-        '. content .'
-        '. backButton .';
+        '. content .';
 
     @media only screen and (max-width: 1024px) {
         grid-template-columns: none;
         grid-template-areas:
-            '. pictogram .'
-            '. header .'
-            '. content .'
-            '. backButton .';
+            'pictogram'
+            'header'
+            'content';
+        padding: 0 0.5rem;
     }
     .pictogram {
         grid-area: pictogram;
@@ -38,41 +37,20 @@
 
     .content {
         grid-area: content;
-        margin-top: 2rem;
+        margin-top: 0.5rem;
 
         & > * {
             width: 100%;
         }
 
         .stepList {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-
-            .stepItem {
-                margin-bottom: var(--a-spacing-3);
-
-                .stepAction {
-                    &:global(.navds-link-panel) {
-                        border-color: var(--default-action-color);
-                    }
-                }
-            }
-        }
-        .buttonGroup {
             display: flex;
-        }
-
-        .backButton {
-            grid-area: backButton;
-            text-decoration-line: underline;
-            text-underline-offset: 4px;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style-type: none;
             padding: 0;
-            margin-top: 1rem;
-
-            &:hover {
-                background-color: transparent;
-            }
+            margin-bottom: 2rem;
+            margin-top: 1.5rem;
         }
     }
 }
