@@ -1,4 +1,5 @@
 import React from 'react';
+import { translator } from 'translations';
 import { StepBase } from 'types/content-props/form-intermediate-step';
 import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
 import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
@@ -9,7 +10,7 @@ import { StepVisualization } from './step-visualization/StepVisualization';
 
 export type FormIntermediateStepPageProps = Pick<
     ContentCommonProps,
-    '_path' | 'displayName' | 'editorView'
+    '_path' | 'displayName' | 'editorView' | 'language'
 > & {
     type: ContentType.FormIntermediateStepPage;
     data: {
@@ -22,10 +23,11 @@ export type FormIntermediateStepPageProps = Pick<
 };
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
-    const { data, displayName } = props;
+    const { data, displayName, language } = props;
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
-    // TODO: translations back url
+    const getTranslations = translator('form', language);
+
     return (
         <MellomstegLayout
             data={{
@@ -46,7 +48,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
             backLink={{
                 target: {
                     _path: backUrl ?? '',
-                    displayName: backUrl ? 'Tilbake' : '',
+                    displayName: backUrl ? getTranslations('back') : '',
                 },
             }}
             analyticsComponent={'FormIntermediateStepPage'}
