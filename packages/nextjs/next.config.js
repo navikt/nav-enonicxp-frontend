@@ -60,6 +60,7 @@ const csp = async () => {
     const tiTiHosts = [tingtunHost, termerHost];
 
     const uxSignalsScriptHost = 'widget.uxsignals.com';
+    const skyraScriptHost = 'survey.skyra.no';
     const uxSignalsApiHost = 'api.uxsignals.com';
 
     // Filter duplicates, as some origins may be identical, depending on
@@ -78,7 +79,7 @@ const csp = async () => {
         prod: 'prod',
     };
 
-    const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost];
+    const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost, skyraScriptHost];
 
     const directives = {
         'default-src': internalHosts,
