@@ -9,7 +9,7 @@ import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
-import { ContactStepPageProps } from 'components/pages/contact-step-page/ContactStepPage';
+import { ContactStepPageProps } from 'components/pages/contactStepPage/ContactStepPage';
 import { FormIntermediateStepPageProps } from 'components/pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
