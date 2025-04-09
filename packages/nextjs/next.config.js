@@ -60,7 +60,7 @@ const csp = async () => {
     const tiTiHosts = [tingtunHost, termerHost];
 
     const uxSignalsScriptHost = 'widget.uxsignals.com';
-    const skyraScriptHost = 'survey.skyra.no';
+    const skyraScriptHost = '*.skyra.no';
     const uxSignalsApiHost = 'api.uxsignals.com';
 
     // Filter duplicates, as some origins may be identical, depending on
