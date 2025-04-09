@@ -103,3 +103,13 @@ export const EditorView: Story = {
         editorView: 'edit',
     },
 };
+
+export const English: Story = {
+    args: {
+        ...Step.args,
+        language: 'en',
+    },
+    parameters: {
+        ...Step.parameters,
+    },
+};
