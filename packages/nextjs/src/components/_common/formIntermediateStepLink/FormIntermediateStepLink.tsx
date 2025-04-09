@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { LinkPanel } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { FormIntermediateStep_StepLinkData } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
+import { FormIntermediateStep_StepLinkData } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LanguageDisclaimer } from 'components/_common/languageDisclaimer/LanguageDisclaimer';
 import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';

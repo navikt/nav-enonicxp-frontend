@@ -1,7 +1,7 @@
 import React from 'react';
 import { translator } from 'translations';
 import { StepBase } from 'types/content-props/form-intermediate-step';
-import { useFormIntermediateStepPage } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPage';
+import { useFormIntermediateStepPage } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
 import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';

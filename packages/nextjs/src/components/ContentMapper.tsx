@@ -26,7 +26,7 @@ import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
-import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
+import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
 import { OfficePage } from './pages/office-page/OfficePage';
