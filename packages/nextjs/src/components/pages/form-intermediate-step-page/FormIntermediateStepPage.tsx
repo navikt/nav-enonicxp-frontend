@@ -7,7 +7,10 @@ import { PictogramsProps } from 'types/content-props/pictograms';
 import { MellomstegLayout } from 'components/layouts/mellomsteg/MellomstegLayout';
 import { StepVisualization } from './step-visualization/StepVisualization';
 
-export type FormIntermediateStepPageProps = Pick<ContentCommonProps, '_path' | 'editorView'> & {
+export type FormIntermediateStepPageProps = Pick<
+    ContentCommonProps,
+    '_path' | 'displayName' | 'editorView'
+> & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
@@ -19,12 +22,17 @@ export type FormIntermediateStepPageProps = Pick<ContentCommonProps, '_path' | '
 };
 
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
-    const { data } = props;
+    const { data, displayName } = props;
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
+    // TODO: translations back url
     return (
         <MellomstegLayout
-            data={data}
+            data={{
+                ...data,
+                textAboveTitle: currentStepData.textAboveTitle,
+                title: currentStepData.title ?? displayName,
+            }}
             listItems={currentStepData.steps.map((step) => (
                 <li key={step.label}>
                     <FormIntermediateStepLink
