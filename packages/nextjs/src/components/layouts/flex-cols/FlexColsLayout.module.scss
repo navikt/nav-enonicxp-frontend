@@ -120,7 +120,7 @@
 }
 
 .layoutSituationShelf {
-    padding-top: 2rem;
+    padding-top: var(--a-spacing-10);
     padding-bottom: 0rem;
 }
 
@@ -128,16 +128,16 @@
     color: var(--brand-purple-deep);
     margin-bottom: 1rem;
     text-wrap: balance;
-    align-items: start;
+    position: relative;
 
-    :global(.navds-heading) {
-        margin-top: var(--a-spacing-2);
+    &:before {
+        @include common.header-before-rectangle();
     }
+    :global(.navds-heading) {
+      margin-top: var(--a-spacing-2);
+  }
 }
 
-.shelfHeader:before {
-    @include common.header-before-rectangle();
-}
 
 .shelfLayout {
     display: flex;
