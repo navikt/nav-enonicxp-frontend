@@ -90,7 +90,7 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
-        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost],
         'media-src': [...qbrickHosts, salesforceVideoHost],
     };
 
