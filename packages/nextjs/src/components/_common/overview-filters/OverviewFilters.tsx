@@ -31,7 +31,7 @@ const MobileView = ({
     )(hasToggleFilters ? 'filterOrSearch' : 'search');
 
     return (
-        <section className={style.mobile}>
+        <div className={style.mobile}>
             {showTextInputFilter && (
                 <>
                     <Heading level={'2'} size={'xsmall'}>
@@ -79,7 +79,7 @@ const MobileView = ({
                     {showTaxonomyFilter && <OverviewTaxonomyFilter items={filterableItems} />}
                 </div>
             )}
-        </section>
+        </div>
     );
 };
 
@@ -92,14 +92,14 @@ const DesktopView = ({
     const { language } = usePageContentProps();
     const searchLabel = translator('overview', language)('filterOrSearch');
     return (
-        <section className={style.desktop}>
+        <div className={style.desktop}>
             <Heading className="sr-only" level={'2'} size={'xsmall'}>
                 {searchLabel}
             </Heading>
             {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
             {showTaxonomyFilter && <OverviewTaxonomyFilter items={filterableItems} />}
             {showTextInputFilter && <OverviewTextFilter hideLabel={false} />}
-        </section>
+        </div>
     );
 };
 

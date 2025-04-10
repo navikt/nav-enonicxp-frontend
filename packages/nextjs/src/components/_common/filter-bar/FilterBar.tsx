@@ -73,7 +73,7 @@ export const FilterBar = ({ layoutProps }: Props) => {
     }
 
     return (
-        <section className={style.wrapper}>
+        <div className={style.wrapper}>
             <Heading level="3" size="small" className={style.header}>
                 {getLabel('showingInformationFor')}
             </Heading>
@@ -106,6 +106,6 @@ export const FilterBar = ({ layoutProps }: Props) => {
                 selectedFilters={selectedFilters}
                 availableFilters={filtersToDisplay.map((filter) => filter.id)}
             />
-        </section>
+        </div>
     );
 };

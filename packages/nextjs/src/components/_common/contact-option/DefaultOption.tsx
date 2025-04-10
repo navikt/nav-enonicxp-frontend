@@ -89,7 +89,7 @@ export const DefaultOption = (props: Props) => {
     const iconName = icon || 'place';
 
     return (
-        <section className={sharedStyle.contactOption}>
+        <div className={sharedStyle.contactOption}>
             <Icon type={iconName} />
             <div className={sharedStyle.content}>
                 <LenkeBase
@@ -114,6 +114,6 @@ export const DefaultOption = (props: Props) => {
                     <EditorHelp text={'Ingress mangler!'} type={'error'} />
                 )}
             </div>
-        </section>
+        </div>
     );
 };
