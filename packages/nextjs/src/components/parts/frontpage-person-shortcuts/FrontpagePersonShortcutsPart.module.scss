@@ -7,7 +7,8 @@
     background-color: var(--a-red-50);
 
     @media #{common.$mq-screen-mobile} {
-        padding: 2rem 1rem 0.5rem;
+        padding-top: 2rem;
+        padding-bottom: 0.5rem;
     }
 
     .list {
