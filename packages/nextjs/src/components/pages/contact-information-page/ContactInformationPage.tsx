@@ -73,7 +73,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     };
 
     return (
-        <div className={style.contactInformationPage}>
+        <article className={style.contactInformationPage}>
             <div className={style.content}>
                 <section>
                     <Alert variant="warning" className={style.editorAlert}>
@@ -83,6 +83,6 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                 </section>
                 {buildPreview()}
             </div>
-        </div>
+        </article>
     );
 };

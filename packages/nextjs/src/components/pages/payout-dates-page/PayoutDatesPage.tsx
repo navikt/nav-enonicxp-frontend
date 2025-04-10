@@ -10,9 +10,9 @@ export const PayoutDatesPage = (props: PayoutDatesProps) => {
     const { layerLocale } = props;
 
     return (
-        <>
+        <article>
             {layerLocale !== Config.vars.defaultLocale && <LayersEditorWarning />}
             <PayoutDates payoutDatesData={props.data} className={style.payoutDatesPage} />
-        </>
+        </article>
     );
 };
