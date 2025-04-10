@@ -53,7 +53,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
     }, []);
 
     return (
-        <div className={style.globalValuesPage}>
+        <article className={style.globalValuesPage}>
             <Head>
                 <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />
             </Head>
@@ -108,7 +108,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
                 </div>
                 <GVMessages />
             </div>
-        </div>
+        </article>
     );
 };
 

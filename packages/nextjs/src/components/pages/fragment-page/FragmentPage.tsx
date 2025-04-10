@@ -6,10 +6,10 @@ import style from './FragmentPage.module.scss';
 
 export const FragmentPage = (props: FragmentPageProps) => {
     return (
-        <div className={style.fragmentPage}>
+        <article className={style.fragmentPage}>
             <div className={style.components}>
                 <ComponentMapper componentProps={props.fragment} pageProps={props} />
             </div>
-        </div>
+        </article>
     );
 };

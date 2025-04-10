@@ -7,8 +7,8 @@ import style from './AlertInContextPage.module.scss';
 
 export const AlertInContextPage = (props: AlertData) => {
     return (
-        <div className={style.alertInContextPage}>
+        <section className={style.alertInContextPage}>
             <AlertInContext data={props.data} />
-        </div>
+        </section>
     );
 };

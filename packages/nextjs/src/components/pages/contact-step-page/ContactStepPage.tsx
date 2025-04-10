@@ -37,7 +37,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
     } = data;
 
     return (
-        <div className={style.contactStepPage}>
+        <article className={style.contactStepPage}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
                 contentProps={{ data: { title, illustration } }}
@@ -93,6 +93,6 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
             >
                 {backLink.text ?? backLink.target.displayName}
             </LenkeInline>
-        </div>
+        </article>
     );
 };

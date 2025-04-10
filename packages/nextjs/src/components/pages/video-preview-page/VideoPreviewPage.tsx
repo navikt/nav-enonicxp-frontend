@@ -16,8 +16,8 @@ export const VideoPreviewPage = (props: VideoPageProps) => {
     const videoProps = buildQbrickVideoProps(props.data, props.language);
 
     return (
-        <div className={styles.videoPage}>
+        <section className={styles.videoPage}>
             <QbrickVideo {...videoProps} />
-        </div>
+        </section>
     );
 };

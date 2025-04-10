@@ -20,7 +20,7 @@ export const ErrorPage = (props: ErrorProps) => {
     const ErrorContent = errorContentByCode[errorCode] || ErrorContentDefault;
 
     return (
-        <div className={style.errorPage}>
+        <article className={style.errorPage}>
             <BodyLong size={'small'}>{`Statuskode ${errorCode}`}</BodyLong>
             <div className={style.header}>
                 <Heading level={'1'} size={'large'} className={style.headerMsg}>
@@ -30,6 +30,6 @@ export const ErrorPage = (props: ErrorProps) => {
             <div className={style.content}>
                 <ErrorContent {...props} />
             </div>
-        </div>
+        </article>
     );
 };

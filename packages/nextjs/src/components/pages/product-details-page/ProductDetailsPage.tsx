@@ -10,10 +10,10 @@ export const ProductDetailsPage = (props: ProductDetailsProps) => {
 
     return (
         // Samme styling som ProductPage
-        <div className={'productPage'}>
+        <article className={'productPage'}>
             <div className={'content'}>
                 <ComponentMapper componentProps={props.page} pageProps={props} />
             </div>
-        </div>
+        </article>
     );
 };
