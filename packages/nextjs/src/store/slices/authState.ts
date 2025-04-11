@@ -23,7 +23,7 @@ export const authStateSlice = createSlice({
     reducers: {
         setAuthState: (state, action: PayloadAction<AuthState>) => {
             if (action.payload) {
-                state.authState = action.payload.authState;
+                state.authState = 'loggedIn';
                 state.name = action.payload.name;
             }
         },

@@ -33,7 +33,7 @@ export const GeneralPageHeader = (props: Props) => {
     const isSituationPage = pageProps.type === ContentType.SituationPage;
 
     return (
-        <div className={style.generalPageHeader}>
+        <header className={style.generalPageHeader}>
             <Illustration illustration={illustration} className={style.illustration} />
             <GeneralPageHeaderTagLine tagLine={tagLine} />
             <Heading
@@ -48,6 +48,6 @@ export const GeneralPageHeader = (props: Props) => {
                     {ingress}
                 </BodyLong>
             )}
-        </div>
+        </header>
     );
 };

@@ -26,14 +26,14 @@ export const FeaturedHeader = ({ contentProps }: Props) => {
     const tagLineLabel = getFeaturedTranslations('tag');
 
     return (
-        <>
+        <header>
             <TagLine>{tagLineLabel}</TagLine>
-            <header className={classNames(style.featuredHeader)}>
+            <div className={classNames(style.featuredHeader)}>
                 <Heading className={style.header} level={'1'} size={'xlarge'}>
                     {pageTitle}
                 </Heading>
-            </header>
+            </div>
             <DateLine content={{ publish, modifiedTime, createdTime, language }} />
-        </>
+        </header>
     );
 };

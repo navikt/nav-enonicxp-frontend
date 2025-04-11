@@ -21,7 +21,7 @@ export const PressNews = (props: PressNewsProps) => {
     }
 
     return (
-        <div className={styles.pressNews}>
+        <section className={styles.pressNews}>
             <div className={styles.content}>
                 <Heading level={'2'} size={'large'}>
                     {getTranslations('latestPressNews')}
@@ -38,6 +38,6 @@ export const PressNews = (props: PressNewsProps) => {
                     </Link>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
