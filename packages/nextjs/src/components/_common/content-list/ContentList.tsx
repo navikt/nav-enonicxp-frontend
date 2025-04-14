@@ -61,7 +61,7 @@ export const ContentList = ({
     return (
         <Lenkeliste
             lenker={lenkeData}
-            tittel={hideTitle ? undefined : title || content.displayName}
+            tittel={hideTitle ? undefined : (title ?? content.displayName)}
             listType={listType}
             className={className}
         />

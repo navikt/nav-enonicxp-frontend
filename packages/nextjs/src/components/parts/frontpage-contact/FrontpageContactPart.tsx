@@ -65,7 +65,7 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
             sharedContact?.ingress?.processedHtml ||
             '';
 
-        const chatAlertText = config.chatAlertText || sharedContact?.alertText || '';
+        const chatAlertText = config.chatAlertText ?? sharedContact?.alertText ?? '';
 
         return { chatTitle, chatIngress, chatAlertText };
     };

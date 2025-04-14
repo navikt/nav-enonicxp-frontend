@@ -33,7 +33,7 @@ const isNoIndex = (content: ContentProps) =>
     content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
-    return content.data?.canonicalUrl || `${appOrigin}${getPublicPathname(content)}`;
+    return content.data?.canonicalUrl ?? `${appOrigin}${getPublicPathname(content)}`;
 };
 
 export const getPageTitle = (content: ContentProps) =>

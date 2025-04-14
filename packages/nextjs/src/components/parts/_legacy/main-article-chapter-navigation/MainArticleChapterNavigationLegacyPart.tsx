@@ -38,8 +38,8 @@ export const MainArticleChapterNavigationLegacyPart = (props: ContentProps) => {
     }
     const getLabel = translator('mainArticle', language);
     const currentPath = stripXpPathPrefix(props._path);
-    const parentPath = stripXpPathPrefix(props.parent?._path || props._path);
-    const parentTitle = props.parent?.displayName || props.displayName;
+    const parentPath = stripXpPathPrefix(props.parent?._path ?? props._path);
+    const parentTitle = props.parent?.displayName ?? props.displayName;
     const parentSelected = parentPath === currentPath;
     const headingId = `heading-chapter-navigation`;
 

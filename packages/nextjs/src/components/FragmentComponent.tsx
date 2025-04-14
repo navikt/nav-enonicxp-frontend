@@ -10,7 +10,7 @@ type Props = {
     editorProps?: ComponentEditorProps;
 };
 
-const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
+const NestedFragmentComponent = ({ componentProps, pageProps }: Props) => {
     if (!componentProps.fragment?.type) {
         return (
             <EditorHelp
@@ -34,10 +34,10 @@ export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Pr
     if (editorProps) {
         return (
             <div {...editorProps}>
-                <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />
+                <NestedFragmentComponent pageProps={pageProps} componentProps={componentProps} />
             </div>
         );
     }
 
-    return <_FragmentComponent pageProps={pageProps} componentProps={componentProps} />;
+    return <NestedFragmentComponent pageProps={pageProps} componentProps={componentProps} />;
 };

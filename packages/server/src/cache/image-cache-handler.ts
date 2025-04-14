@@ -38,7 +38,7 @@ export const injectNextImageCacheDir = async (nextServer: NextNodeServer, cacheD
 
     // Also override the response cache for the request handler worker server
     try {
-        const nextDir = nextServer['serverOptions'].dir || '.';
+        const nextDir = nextServer['serverOptions'].dir ?? '.';
 
         await propagateServerField(
             path.resolve(nextDir),

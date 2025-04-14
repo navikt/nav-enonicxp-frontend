@@ -35,7 +35,7 @@ export const ReferencesInfoResult = ({ references, content }: Props) => {
 
     const numUniqueRefs = getNumUniqueRefs(references);
 
-    const contentTypeName = contentTypeNameMap[type] || 'Innholdet';
+    const contentTypeName = contentTypeNameMap[type] ?? 'Innholdet';
 
     return (
         <>

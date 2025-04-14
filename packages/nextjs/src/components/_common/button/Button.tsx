@@ -39,7 +39,7 @@ export const Button = ({
     return (
         <DsButton
             as={LenkeBase}
-            href={href || '#'}
+            href={href ?? '#'}
             className={classNames(style.button, fullWidth && style.buttonFullWidth, className)}
             onClick={(e) => {
                 if (!href) {

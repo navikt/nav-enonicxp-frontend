@@ -54,7 +54,7 @@ export const OpeningHours = (props: {
                         <tr key={compKey}>
                             <td className="dayInformation">{dayInformation}</td>
                             <td className="openingInformation">
-                                {openingInformation || ''}
+                                {openingInformation ?? ''}
                                 {(!openingInformation &&
                                     !hasSomeOpeningInformationAndComments &&
                                     opening.kommentar) ||

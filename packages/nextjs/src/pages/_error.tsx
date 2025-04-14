@@ -114,7 +114,7 @@ ErrorComponent.getInitialProps = async ({
     const errorContent = parseErrorContent(err, asPath);
 
     if (errorContent?.type === ContentType.Error) {
-        res.statusCode = errorContent.data.errorCode || 500;
+        res.statusCode = errorContent.data.errorCode ?? 500;
         logPageLoadError(
             errorId,
             `Error on path ${asPath} - ${errorContent.data.errorCode} ${errorContent.data.errorMessageInternal}`
@@ -122,7 +122,7 @@ ErrorComponent.getInitialProps = async ({
         return errorContent;
     }
 
-    const errorMsg = err?.toString() || 'Empty error message';
+    const errorMsg = err?.toString() ?? 'Empty error message';
 
     logPageLoadError(
         errorId,

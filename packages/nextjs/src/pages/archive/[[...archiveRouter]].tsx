@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
-    const locale = getFirstElementIfArray(context.query.locale) || 'no';
+    const locale = getFirstElementIfArray(context.query.locale) ?? 'no';
 
     const pageProps = await fetchPageProps({
         locale,

@@ -58,7 +58,7 @@ const formatAudienceReception = (
 
     return {
         address: officeDetailsFormatAddress(audienceReception.besoeksadresse, true),
-        place: audienceReception.stedsbeskrivelse || audienceReception.besoeksadresse.poststed,
+        place: audienceReception.stedsbeskrivelse ?? audienceReception.besoeksadresse.poststed,
         openingHoursExceptions: aapningstider.exceptions,
         openingHours: aapningstider.regular.sort(sortOpeningHours),
     };

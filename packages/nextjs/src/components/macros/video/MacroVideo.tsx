@@ -12,7 +12,7 @@ import { fetchQbrickMissingProps } from 'components/_common/qbrick-video/utils/v
 const buildVideoProps = (macroConfig: MacroVideoProps['config'], contentLanguage: string) => {
     const { targetContent, video, title, language } = macroConfig.video;
     return targetContent?.data
-        ? buildQbrickVideoProps(targetContent.data, language || contentLanguage)
+        ? buildQbrickVideoProps(targetContent.data, language ?? contentLanguage)
         : buildQbrickVideoPropsLegacy(title, video);
 };
 

@@ -43,7 +43,7 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
         }
 
         const currentAudienceLabel = getAudienceLabel(currentAudienceKey);
-        const providerTypes = getProviderTypes(currentAudience) || [];
+        const providerTypes = getProviderTypes(currentAudience) ?? [];
         const providerTypesString = joinWithConjunction(
             providerTypes.map((type) => getProviderAudienceLabel(type)),
             language

@@ -50,7 +50,7 @@ const populateDefaultValues = (fields: CalculatorFieldData[]) => {
             return collection;
         }
 
-        const fieldWithUserInput = inputField || dropdownField;
+        const fieldWithUserInput = inputField ?? dropdownField;
 
         if (fieldWithUserInput) {
             const { variableName } = fieldWithUserInput;
@@ -139,7 +139,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                     {fields
                         .filter((field) => !field.globalValue)
                         .map((field) => {
-                            const fieldKey = (field.dropdownField?.variableName ||
+                            const fieldKey = (field.dropdownField?.variableName ??
                                 field.inputField?.variableName) as string;
 
                             return (

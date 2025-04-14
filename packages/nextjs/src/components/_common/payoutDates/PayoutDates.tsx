@@ -36,7 +36,7 @@ export const PayoutDates = ({ payoutDatesData, className }: Props) => {
                     <tr key={month}>
                         <td>
                             {formatDate({
-                                datetime: `${month} ${day} ${year || ''}`,
+                                datetime: `${month} ${day} ${year ?? ''}`,
                                 language,
                                 short: true,
                             })}

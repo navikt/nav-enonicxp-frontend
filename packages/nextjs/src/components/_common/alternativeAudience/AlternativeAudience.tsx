@@ -92,7 +92,7 @@ export const AlternativeAudience = () => {
             <BodyLong size="small" className={style.text}>
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (
-                    <Fragment key={index}>
+                    <Fragment key={`${link.url}-${link.title}`}>
                         <LenkeInline href={link.url} analyticsComponent="alternativ-målgruppe">
                             {link.title}
                         </LenkeInline>

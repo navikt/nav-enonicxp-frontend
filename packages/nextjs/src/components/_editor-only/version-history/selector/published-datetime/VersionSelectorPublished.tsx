@@ -21,7 +21,7 @@ export const VersionSelectorPublished = ({
     initialSelection,
 }: Props) => {
     const [selectedDateTime, setSelectedDateTime] = useState(
-        initialSelection || versionTimestamps[0]
+        initialSelection ?? versionTimestamps[0]
     );
 
     if (versionTimestamps.length === 0) {

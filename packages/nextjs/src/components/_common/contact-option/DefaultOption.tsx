@@ -31,7 +31,7 @@ export const DefaultOption = (props: Props) => {
     ): Partial<React.ComponentProps<typeof LenkeBase>> & { href: string } => {
         if (channel === 'write') {
             return {
-                href: url || Config.urls.skrivTilOss,
+                href: url ?? Config.urls.skrivTilOss,
             };
         }
 
@@ -72,7 +72,7 @@ export const DefaultOption = (props: Props) => {
 
         if (channel === 'custom') {
             return {
-                href: url || '#',
+                href: url ?? '#',
                 target: '_blank',
                 analyticsEvent: AnalyticsEvents.NAVIGATION,
             };
@@ -81,12 +81,12 @@ export const DefaultOption = (props: Props) => {
         return { href: '#' };
     };
 
-    const titleActual = title || (channel !== 'custom' ? getTranslations(channel).title : null);
+    const titleActual = title ?? (channel !== 'custom' ? getTranslations(channel).title : null);
 
     const ingressActual =
-        ingress || (channel !== 'custom' ? getTranslations(channel).ingress : null);
+        ingress ?? (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
-    const iconName = icon || 'place';
+    const iconName = icon ?? 'place';
 
     return (
         <div className={sharedStyle.contactOption}>
