@@ -16,13 +16,13 @@ export const HeaderWithParent = ({ contentProps, textAboveTitle, className }: Pr
     const { data } = contentProps;
 
     return (
-        <div className={classNames(style.headerContainer, className)}>
+        <header className={classNames(style.headerContainer, className)}>
             <BodyShort textColor="subtle" className={style.textAboveTitle}>
                 {textAboveTitle}
             </BodyShort>
             <Heading level="1" size="large" spacing className={style.header}>
                 {data.title}
             </Heading>
-        </div>
+        </header>
     );
 };

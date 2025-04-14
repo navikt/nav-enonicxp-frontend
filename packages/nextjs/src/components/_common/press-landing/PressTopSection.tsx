@@ -13,7 +13,7 @@ export const PressTopSection = (props: PressTopSectionProps) => {
     const { pressCall, title } = data;
 
     return (
-        <div className={styles.pressTopSection}>
+        <section className={styles.pressTopSection}>
             <div className={styles.content}>
                 <Heading size={'xlarge'} level={'1'}>
                     {title || displayName}
@@ -24,6 +24,6 @@ export const PressTopSection = (props: PressTopSectionProps) => {
                     </div>
                 )}
             </div>
-        </div>
+        </section>
     );
 };

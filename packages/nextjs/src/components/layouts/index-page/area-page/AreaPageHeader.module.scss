@@ -9,13 +9,6 @@
 
     @media #{common.$mq-screen-mobile} {
         padding-bottom: 0.75rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    @media #{common.$mq-screen-tablet} {
-        padding-left: 2rem;
-        padding-right: 2rem;
     }
 }
 

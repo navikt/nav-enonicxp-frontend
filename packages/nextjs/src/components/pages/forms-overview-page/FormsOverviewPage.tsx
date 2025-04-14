@@ -48,7 +48,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
     return (
-        <div className={classNames(style.page, config.sideColToggle && style.withSideCol)}>
+        <article className={classNames(style.page, config.sideColToggle && style.withSideCol)}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <div className={style.main}>
                 <FormsOverviewHeader {...props} />
@@ -61,6 +61,6 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
             {config.sideColToggle && (
                 <Region pageProps={props} regionProps={regions.sideCol} className={style.aside} />
             )}
-        </div>
+        </article>
     );
 };

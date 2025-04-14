@@ -19,7 +19,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const getTranslations = translator('form', language);
 
     return (
-        <div className={style.formIntermediateStepPage}>
+        <article className={style.formIntermediateStepPage}>
             <ThemedPageHeader
                 contentProps={{
                     type,
@@ -73,6 +73,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     </div>
                 )}
             </div>
-        </div>
+        </article>
     );
 };

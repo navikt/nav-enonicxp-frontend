@@ -6,8 +6,8 @@ import style from './LargeTablePage.module.scss';
 
 export const LargeTablePage = (content: LargeTableProps) => {
     return content.data.text ? (
-        <div className={style.largeTablePage}>
+        <article className={style.largeTablePage}>
             <ParsedHtml htmlProps={content.data.text} />
-        </div>
+        </article>
     ) : null;
 };

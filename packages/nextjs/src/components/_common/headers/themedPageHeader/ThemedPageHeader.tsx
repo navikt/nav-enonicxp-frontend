@@ -44,7 +44,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
         })}`;
 
     return (
-        <div className={classNames(style.themedPageHeader, typeSpecificClassName)}>
+        <header className={classNames(style.themedPageHeader, typeSpecificClassName)}>
             <Illustration illustration={illustration} className={style.illustration} />
             <div className={style.text}>
                 <Header level={'1'} size={'xlarge'} className={style.header}>
@@ -66,6 +66,6 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
                     </div>
                 )}
             </div>
-        </div>
+        </header>
     );
 };

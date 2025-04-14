@@ -16,8 +16,8 @@ export const CalculatorPage = (props: CalculatorProps) => {
     }
 
     return (
-        <div className={style.calculatorPage}>
+        <section className={style.calculatorPage}>
             <Calculator calculatorData={props.data} />
-        </div>
+        </section>
     );
 };

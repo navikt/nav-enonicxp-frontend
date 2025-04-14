@@ -6,6 +6,8 @@ import {
     TasklistStartIcon,
     WalletIcon,
 } from '@navikt/aksel-icons';
+import { translator } from 'translations';
+import { usePageContentProps } from 'store/pageContext';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -33,13 +35,15 @@ export const FrontpagePersonShortcutsPart = ({
     config,
 }: PartComponentProps<PartType.FrontpagePersonShortcuts>) => {
     const { shortcuts, title: sectionTitle } = config;
+    const { language } = usePageContentProps();
 
     if (!shortcuts || shortcuts.length === 0) {
         return <EditorHelp text={'Velg minst en snarvei'} />;
     }
+    const getLabel = translator('frontPage', language);
 
     return (
-        <div className={style.personShortcuts}>
+        <nav className={style.personShortcuts} aria-label={getLabel('shortcuts')}>
             {sectionTitle && (
                 <Header size="large" level="2">
                     {sectionTitle}
@@ -92,6 +96,6 @@ export const FrontpagePersonShortcutsPart = ({
                     );
                 })}
             </ul>
-        </div>
+        </nav>
     );
 };
