@@ -94,7 +94,7 @@ type Props = {
 };
 
 export const ContentMapper = ({ content }: Props) => {
-    const Component = contentToReactComponent[content.type] || ContentTypeNotSupportedPage;
+    const Component = contentToReactComponent[content.type] ?? ContentTypeNotSupportedPage;
 
     // @ts-ignore
     return <Component {...content} />;
