@@ -61,7 +61,7 @@ export const processOpeningHours = (
         const dayToCheck = now.add(i, 'day');
 
         const openingHour =
-            getSpecialOpeningHour(specialOpeningHours, dayToCheck) ||
+            getSpecialOpeningHour(specialOpeningHours, dayToCheck) ??
             getRegularOpeningHour(regularOpeningHours, dayToCheck);
 
         openingHours.push(transformOpeningHour({ openingHour, day: dayToCheck }));

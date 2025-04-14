@@ -33,7 +33,7 @@ export const CalculatorField = (props: Props) => {
                     name={field.inputField.variableName}
                     label={field.inputField.label}
                     type="number"
-                    value={value?.toString() || ''}
+                    value={value?.toString() ?? ''}
                     onChange={(e) => onChange(field.inputField.variableName, e.currentTarget.value)}
                     autoComplete={autoComplete ? 'on' : 'off'}
                 />
@@ -45,7 +45,7 @@ export const CalculatorField = (props: Props) => {
                     onChange={(e) =>
                         onChange(field.dropdownField.variableName, e.currentTarget.value)
                     }
-                    value={value || ''}
+                    value={value ?? ''}
                     autoComplete={autoComplete ? 'on' : 'off'}
                 >
                     {field.dropdownField.optionItems.map((option) => (

@@ -12,7 +12,7 @@ export type PageProps = {
 
 export const PageBase = (props: PageProps) => {
     const content =
-        props?.content || makeErrorProps('www.nav.no', 'Ukjent feil - kunne ikke laste innhold');
+        props?.content ?? makeErrorProps('www.nav.no', 'Ukjent feil - kunne ikke laste innhold');
 
     return (
         <PageContextProvider content={content}>

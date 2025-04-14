@@ -40,7 +40,7 @@ export const ChatOption = (props: ChatData) => {
                     className={sharedStyle.link}
                 >
                     <Heading level="3" size="small">
-                        {title || translations.title}
+                        {title ?? translations.title}
                     </Heading>
                 </LenkeBase>
                 {alertText && (
@@ -49,7 +49,7 @@ export const ChatOption = (props: ChatData) => {
                     </Alert>
                 )}
                 <BodyLong as="div" className={sharedStyle.text}>
-                    <ParsedHtml htmlProps={overrideText || ingress || translations.ingress} />
+                    <ParsedHtml htmlProps={overrideText ?? ingress ?? translations.ingress} />
                 </BodyLong>
                 {!alertText && (
                     <TextWithIndicator
