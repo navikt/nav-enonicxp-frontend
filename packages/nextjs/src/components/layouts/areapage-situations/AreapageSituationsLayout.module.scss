@@ -5,15 +5,6 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     background-color: common.$a-deepblue-50;
-
-    @media #{common.$mq-screen-tablet} {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }
 
 .situations {
