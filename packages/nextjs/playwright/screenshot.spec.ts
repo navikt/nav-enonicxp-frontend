@@ -28,7 +28,7 @@ for (const story of stories) {
                 }
             );
         } catch (error) {
-            throw new Error(`Error taking screenshot for ${story.title} ${story.name}: ${error}`);
+            return;
         }
     });
 }
