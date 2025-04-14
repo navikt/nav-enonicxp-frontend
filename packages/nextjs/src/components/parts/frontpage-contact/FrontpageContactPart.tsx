@@ -58,11 +58,11 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
         const sharedContact = sharedContactInformation[0]?.data?.contactType?.chat;
         const specialOpeningHours = sharedContact?.specialOpeningHours;
 
-        const chatTitle = config.chatTitle ?? sharedContact?.title ?? '';
+        const chatTitle = config.chatTitle || sharedContact?.title || '';
         const chatIngress =
-            config.chatIngress ??
-            specialOpeningHours?.overrideText ??
-            sharedContact?.ingress?.processedHtml ??
+            config.chatIngress ||
+            specialOpeningHours?.overrideText ||
+            sharedContact?.ingress?.processedHtml ||
             '';
 
         const chatAlertText = config.chatAlertText ?? sharedContact?.alertText ?? '';

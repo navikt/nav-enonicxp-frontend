@@ -39,7 +39,7 @@ export const ContentList = ({
 
     const lenkeData = sectionContents.reduce<LinkProps[]>((acc, scContent) => {
         const url = getUrlFromContent(scContent);
-        const text = scContent.data?.title ?? scContent.displayName;
+        const text = scContent.data?.title || scContent.displayName;
 
         if (url && text) {
             acc.push({

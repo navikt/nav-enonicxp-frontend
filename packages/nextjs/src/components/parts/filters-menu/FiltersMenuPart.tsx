@@ -112,7 +112,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
             </BodyLong>
             <ExpandableComponentWrapper
                 {...config}
-                expandableTitle={expandableTitle ?? defaultExpandableTitle}
+                expandableTitle={expandableTitle || defaultExpandableTitle}
                 analyticsOriginTag="filter"
             >
                 {categories.map((category) => {

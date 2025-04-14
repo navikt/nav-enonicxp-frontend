@@ -53,7 +53,7 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
             'for'
         ).slice(1)}`;
 
-        return `${forString} ${providerTypesString ?? currentAudienceLabel}`;
+        return `${forString} ${providerTypesString || currentAudienceLabel}`;
     };
 
     const audienceAffirmation = buildAudienceAffirmation();

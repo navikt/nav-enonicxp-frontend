@@ -32,7 +32,7 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
         }
 
         if (component.descriptor === PartType.RelatedSituations) {
-            const actualTitle = component.config?.title ?? defaultTitle;
+            const actualTitle = component.config?.title || defaultTitle;
             return [
                 ...acc,
                 {

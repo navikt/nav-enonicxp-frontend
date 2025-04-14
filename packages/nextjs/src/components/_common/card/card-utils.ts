@@ -52,7 +52,7 @@ export const getCardProps = (
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl ?? _path;
-    const cardTitle = title ?? displayName;
+    const cardTitle = title || displayName;
 
     const link = {
         url: cardUrl,
