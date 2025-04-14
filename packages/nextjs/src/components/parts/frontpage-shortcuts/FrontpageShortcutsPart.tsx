@@ -73,9 +73,9 @@ export const FrontpageShortcutsPart = ({
                         return null;
                     }
 
-                    const href = target.data.url || target._path;
-                    const title = customTitle || target.data.title || target.displayName;
-                    const illustration = customIllustration || target.data.illustration;
+                    const href = target.data.url ?? target._path;
+                    const title = customTitle ?? target.data.title ?? target.displayName;
+                    const illustration = customIllustration ?? target.data.illustration;
 
                     return (
                         <li key={title}>

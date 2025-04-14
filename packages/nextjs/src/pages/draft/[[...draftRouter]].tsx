@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
-            (context.query.mode as ContentProps['editorView']) || 'preview';
+            (context.query.mode as ContentProps['editorView']) ?? 'preview';
         pageProps.props.content.layerLocale = getFirstElementIfArray(locale);
     }
 

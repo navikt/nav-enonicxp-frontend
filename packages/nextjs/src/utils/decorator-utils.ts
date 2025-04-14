@@ -22,7 +22,7 @@ const xpLangToDecoratorLang: {
 };
 
 const getDecoratorLangFromXpLang = (xpLang: Language) =>
-    xpLangToDecoratorLang[xpLang] || defaultLanguage;
+    xpLangToDecoratorLang[xpLang] ?? defaultLanguage;
 
 const getDecoratorLanguagesParam = (
     languages: LanguageProps[],
@@ -61,7 +61,7 @@ const audienceToRoleContext: {
 
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
-    breadcrumbs: content?.breadcrumbs || [],
+    breadcrumbs: content?.breadcrumbs ?? [],
 });
 
 const defaultParams = {
@@ -94,7 +94,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
                 ...crumb,
                 handleInApp: true,
                 analyticsTitle: crumb.title,
-            })) || [],
+            })) ?? [],
         availableLanguages: getDecoratorLanguagesParam(
             getContentLanguages(content),
             language,

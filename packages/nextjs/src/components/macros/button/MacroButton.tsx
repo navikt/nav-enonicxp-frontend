@@ -3,7 +3,7 @@ import { MacroButtonProps } from 'types/macro-props/button';
 import { Button } from 'components/_common/button/Button';
 
 export const MacroButton = ({ config }: MacroButtonProps) => {
-    const buttonConfig = config?.button || config?.button_blue;
+    const buttonConfig = config?.button ?? config?.button_blue;
 
     if (!buttonConfig) {
         return null;
@@ -11,7 +11,7 @@ export const MacroButton = ({ config }: MacroButtonProps) => {
 
     const { content, text, url } = buttonConfig;
 
-    const href = content?._path || url;
+    const href = content?._path ?? url;
 
     return (
         <Button variant={'secondary'} href={href}>

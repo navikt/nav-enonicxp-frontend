@@ -57,7 +57,7 @@ export const getSelectableLinkProps = (link?: LinkSelectable): LinkProps => {
 
         return {
             url,
-            text: internal.text || internal.target.displayName,
+            text: internal.text ?? internal.target.displayName,
         };
     }
 

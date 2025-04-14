@@ -20,9 +20,9 @@ export const UserTestVariant = ({ testsData, variant, className }: Props) => {
     return (
         <div className={classNames(style.testVariant, className)}>
             <Heading size={'medium'} level="2">
-                {variantTitle || title}
+                {variantTitle ?? title}
             </Heading>
-            <BodyLong>{variantIngress || ingress}</BodyLong>
+            <BodyLong>{variantIngress ?? ingress}</BodyLong>
             <LenkeInline href={url}>{linkText}</LenkeInline>
         </div>
     );

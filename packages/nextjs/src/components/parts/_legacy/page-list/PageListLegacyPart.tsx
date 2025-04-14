@@ -17,7 +17,7 @@ export const PageListLegacyPart = (props: ContentProps) => {
     const hideDatesInList = data.hideSectionContentsDate;
     const orderListByPublishedDate = data.orderSectionContentsByPublished;
 
-    const sectionContents = (data.sectionContents || [])
+    const sectionContents = (data.sectionContents ?? [])
         .filter((section) => props._id !== section._id)
         .sort(
             orderListByPublishedDate

@@ -64,7 +64,7 @@ export const getSubAudience = (
     }
 
     if (audience._selected === Audience.PROVIDER) {
-        return audience[Audience.PROVIDER].provider_audience || [];
+        return audience[Audience.PROVIDER].provider_audience ?? [];
     }
 
     return null;

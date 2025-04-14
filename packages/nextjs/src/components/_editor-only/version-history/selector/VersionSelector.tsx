@@ -30,8 +30,8 @@ export const VersionSelector = ({ content, isOpen, setIsOpen, submitVersionUrl }
 
     useEffect(() => {
         const params = objectToQueryString({
-            id: content.liveId || content._id,
-            locale: content.liveLocale || content.layerLocale,
+            id: content.liveId ?? content._id,
+            locale: content.liveLocale ?? content.layerLocale,
         });
 
         fetchJson<string[]>(`${PUBLISHED_VERSIONS_SERVICE_URL}${params}`, 15000).then(

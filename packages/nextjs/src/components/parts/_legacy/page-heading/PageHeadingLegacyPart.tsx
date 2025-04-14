@@ -11,7 +11,7 @@ export const PageHeadingLegacyPart = (props: ContentProps) => {
     return (
         <section className={style.pageHeading}>
             <Heading level="1" size="xlarge">
-                {displayName || 'Tittel'}
+                {displayName ?? 'Tittel'}
             </Heading>
             {ingress && (
                 <div className={style.ingress}>

@@ -54,7 +54,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
             <AlertBox variant={'warning'} size={'small'}>
                 <BodyLong>
                     {`OBS! ${
-                        externalUserName || 'Noen andre'
+                        externalUserName ?? 'Noen andre'
                     } redigerte denne siden nå. Hvis du gjør endringer, vil du overskrive det som allerede er gjort. Du bør vente med å redigere siden til den andre har avsluttet. `}
                     <EditorLinkWrapper>
                         <LenkeInline

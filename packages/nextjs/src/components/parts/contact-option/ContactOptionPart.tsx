@@ -153,7 +153,7 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
             return (
                 <WriteOption
                     {...sharedContactInformation.data.contactType.write}
-                    ingress={ingress || sharedContactInformation.data.contactType.write?.ingress}
+                    ingress={ingress ?? sharedContactInformation.data.contactType.write?.ingress}
                 />
             );
         }
@@ -161,7 +161,7 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
             return (
                 <ChatOption
                     {...sharedContactInformation.data.contactType.chat}
-                    ingress={ingress || sharedContactInformation.data.contactType.chat?.ingress}
+                    ingress={ingress ?? sharedContactInformation.data.contactType.chat?.ingress}
                 />
             );
         }

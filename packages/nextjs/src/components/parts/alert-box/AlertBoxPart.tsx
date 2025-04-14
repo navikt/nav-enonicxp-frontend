@@ -38,7 +38,7 @@ export const AlertBoxPart = ({ config }: PartComponentProps<PartType.AlertBox>) 
 
     return (
         <AlertBox
-            variant={legacyTypeToVariant[type] || 'info'}
+            variant={legacyTypeToVariant[type] ?? 'info'}
             size={size}
             inline={inline}
             className={style.alertBox}

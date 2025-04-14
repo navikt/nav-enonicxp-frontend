@@ -18,5 +18,5 @@ export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
         return null;
     }
 
-    return <NextImage {...rest} src={imageUrl} alt={alt || ''} />;
+    return <NextImage {...rest} src={imageUrl} alt={alt ?? ''} />;
 };

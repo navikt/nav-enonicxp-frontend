@@ -27,7 +27,7 @@ const nextApp = next({
 
 nextApp.prepare().then(async () => {
     const expressApp = express();
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT ?? 3000;
 
     const nextServer = await getNextServer(nextApp);
 

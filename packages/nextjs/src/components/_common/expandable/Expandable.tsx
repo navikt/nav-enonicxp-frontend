@@ -46,7 +46,7 @@ export const Expandable = ({
         handleStickyScrollOffset(isOpening, accordionRef.current);
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
-            opprinnelse: analyticsOriginTag || 'utvidbar tekst',
+            opprinnelse: analyticsOriginTag ?? 'utvidbar tekst',
             komponent: 'Expandable',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
@@ -80,7 +80,7 @@ export const Expandable = ({
             ref={accordionRef}
             onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
-            aria-label={ariaLabel || title}
+            aria-label={ariaLabel ?? title}
             tabIndex={-1}
         >
             <ExpansionCard.Header className={style.header}>

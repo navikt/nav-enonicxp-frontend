@@ -26,7 +26,7 @@ export const SiteInfoPublishInfoItem = ({
                     {isPrepublish ? (
                         displayName
                     ) : (
-                        <SiteInfoLink target={'live'} path={customPath || path}>
+                        <SiteInfoLink target={'live'} path={customPath ?? path}>
                             {displayName}
                         </SiteInfoLink>
                     )}

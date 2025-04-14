@@ -56,7 +56,7 @@ class MyDocument extends Document<DocumentProps> {
         const { Decorator, language, isLegacyContentType } = this.props;
 
         return (
-            <Html lang={language || 'no'}>
+            <Html lang={language ?? 'no'}>
                 <Head>
                     {Decorator && (
                         <>

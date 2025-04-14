@@ -27,7 +27,7 @@ type Props = {
 export const GeneralPageHeader = (props: Props) => {
     const { pageProps } = props;
     const { illustration, ingress, hideIngress } = pageProps.data;
-    const title = pageProps.data.title || pageProps.displayName;
+    const title = pageProps.data.title ?? pageProps.displayName;
 
     const tagLine = getContentTagline(pageProps);
     const isSituationPage = pageProps.type === ContentType.SituationPage;

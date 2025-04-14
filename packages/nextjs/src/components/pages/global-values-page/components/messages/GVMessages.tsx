@@ -19,7 +19,7 @@ export const GVMessages = () => {
     return (
         <div className={style.gvMessages}>
             {messages.map((msg, index) => (
-                <div className={classNames(msg.level || 'info', 'navds-body-long')} key={index}>
+                <div className={classNames(msg.level ?? 'info', 'navds-body-long')} key={index}>
                     {msg.message}
                 </div>
             ))}

@@ -56,9 +56,9 @@ export const LenkeBase = ({
     const analyticsData = {
         komponent: analyticsComponent,
         lenkegruppe: analyticsLinkGroup,
-        seksjon: analyticsLinkGroup || layoutConfig.title,
+        seksjon: analyticsLinkGroup ?? layoutConfig.title,
         destinasjon: url,
-        lenketekst: analyticsLabel || onlyText(children),
+        lenketekst: analyticsLabel ?? onlyText(children),
         målgruppe: context,
         innholdstype: innholdsTypeMap[contentProps.type],
     };
@@ -80,7 +80,7 @@ export const LenkeBase = ({
                 {...rest}
                 href={url}
                 onClick={(e) => {
-                    logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
+                    logAnalyticsEvent(analyticsEvent ?? AnalyticsEvents.NAVIGATION, analyticsData);
                     onClick?.(e);
                 }}
                 shallow={shallow}

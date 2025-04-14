@@ -3,7 +3,7 @@ import { LanguageProps } from 'types/language';
 import { Language } from 'translations';
 
 export const getContentLanguages = (content: ContentProps): LanguageProps[] =>
-    content.languages || [];
+    content.languages ?? [];
 
 const norwegianLanguagesSet: ReadonlySet<string> = new Set(['no', 'nn', 'nb']);
 

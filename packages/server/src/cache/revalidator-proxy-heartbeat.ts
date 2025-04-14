@@ -15,7 +15,7 @@ const getPodAddress = () => {
     if (ENV === 'localhost') {
         // If the revalidator-proxy app is running in a docker container, you need to
         // set DOCKER_HOST_ADDRESS to a host address reachable from your docker network
-        return DOCKER_HOST_ADDRESS || 'localhost';
+        return DOCKER_HOST_ADDRESS ?? 'localhost';
     }
 
     const nets = networkInterfaces();

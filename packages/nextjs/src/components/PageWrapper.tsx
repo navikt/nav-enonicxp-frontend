@@ -111,7 +111,7 @@ export const PageWrapper = (props: Props) => {
             );
         }
 
-        document.documentElement.lang = content.language || 'no';
+        document.documentElement.lang = content.language ?? 'no';
     }, [content, router]);
 
     return (

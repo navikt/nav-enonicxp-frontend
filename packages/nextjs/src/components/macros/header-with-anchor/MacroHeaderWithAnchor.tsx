@@ -13,10 +13,10 @@ export const MacroHeaderWithAnchor = ({ config }: MacroHeaderWithAnchorProps) =>
 
     const { id, tag, text, body } = config.header_with_anchor;
 
-    const level = headingToLevel[tag] || '3';
-    const size = headingToSize[tag] || 'large';
+    const level = headingToLevel[tag] ?? '3';
+    const size = headingToSize[tag] ?? 'large';
 
-    const headerText = body || text;
+    const headerText = body ?? text;
 
     if (!headerText) {
         return <EditorHelp type={'error'} text={'Header-macroen mangler tekst!'} />;

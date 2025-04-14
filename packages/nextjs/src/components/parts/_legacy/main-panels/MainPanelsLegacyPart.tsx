@@ -28,8 +28,8 @@ const getUrl = (content: ContentProps) => {
 
 const getLinkData = (content: ContentProps): TableData => {
     return {
-        tittel: content.data?.title || content.displayName,
-        ingress: content.data?.ingress || content.data?.description,
+        tittel: content.data?.title ?? content.displayName,
+        ingress: content.data?.ingress ?? content.data?.description,
         url: getUrl(content),
     };
 };

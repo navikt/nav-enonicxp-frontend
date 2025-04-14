@@ -15,7 +15,7 @@ const envMap: Record<AppEnv, DecoratorEnv> = {
     prod: 'prod',
 } as const;
 
-const decoratorEnv = envMap[process.env.ENV] || 'prod';
+const decoratorEnv = envMap[process.env.ENV] ?? 'prod';
 
 export const decoratorEnvProps: DecoratorFetchProps = {
     noCache: process.env.DECORATOR_NOCACHE === 'true',

@@ -18,7 +18,7 @@ export const officeDetailsFormatAddress = (
         formatedAddress = `${address.gatenavn}${husnummer}${husbokstav}`;
     }
     if (withZip) {
-        let poststed = address ? address.poststed || '' : '';
+        let poststed = address ? (address.poststed ?? '') : '';
         poststed = poststed.toUpperCase();
         formatedAddress += `, ${address.postnummer} ${poststed}`;
     }

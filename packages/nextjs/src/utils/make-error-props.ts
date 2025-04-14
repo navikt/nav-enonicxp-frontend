@@ -29,7 +29,7 @@ export const makeErrorProps = (
     errorId?: string
 ): ErrorProps => {
     const publicMessage =
-        errorMessageByMessage(errorMessage) || errorMessageByCode[errorCode] || errorMessageDefault;
+        errorMessageByMessage(errorMessage) ?? errorMessageByCode[errorCode] ?? errorMessageDefault;
     const title = `Feil: ${publicMessage}`;
     const time = Date.now().toString();
 

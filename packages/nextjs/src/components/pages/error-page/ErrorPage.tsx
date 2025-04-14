@@ -17,7 +17,7 @@ const errorContentByCode: Record<number, React.FunctionComponent<ErrorProps>> = 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
 
-    const ErrorContent = errorContentByCode[errorCode] || ErrorContentDefault;
+    const ErrorContent = errorContentByCode[errorCode] ?? ErrorContentDefault;
 
     return (
         <article className={style.errorPage}>

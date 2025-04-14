@@ -9,8 +9,8 @@ export const getVersionSelectorUrl = (
 ) => {
     const params = objectToQueryString({
         ...(utcDateTime && { time: utcDateTime }),
-        id: content.liveId || content._id,
-        locale: content.liveLocale || content.layerLocale,
+        id: content.liveId ?? content._id,
+        locale: content.liveLocale ?? content.layerLocale,
         branch: branch === 'draft' ? branch : undefined,
     });
 

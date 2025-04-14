@@ -114,7 +114,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
 
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
     store.dispatch(setContentIdAction({ contentId: props._id }));
-    store.dispatch(setValueItemsAction({ valueItems: props.data?.valueItems || [] }));
+    store.dispatch(setValueItemsAction({ valueItems: props.data?.valueItems ?? [] }));
     store.dispatch(setEditorEnabledAction(props.layerLocale === Config.vars.defaultLocale));
 
     return <GlobalValuesDisplay {...props} />;

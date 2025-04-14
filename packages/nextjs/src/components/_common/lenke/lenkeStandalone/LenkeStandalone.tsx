@@ -35,7 +35,7 @@ export const LenkeStandalone = ({
             className={classNames(style.navnoLenke, withChevron && style.withChevron, className)}
             analyticsComponent={component}
             analyticsLinkGroup={linkGroup}
-            analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
+            analyticsLabel={analyticsLabel ?? (typeof children === 'string' ? children : undefined)}
         >
             <BodyShort className={style.lenketekst} as={'span'}>
                 {withChevron && (

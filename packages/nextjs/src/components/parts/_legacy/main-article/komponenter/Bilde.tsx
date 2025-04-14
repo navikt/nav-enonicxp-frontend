@@ -22,7 +22,7 @@ export const Bilde = (props: Props) => {
     return (
         <div className={style.figureContainer}>
             <figure className={imgClass}>
-                <XpImage imageProps={target} alt={picture.altText || ''} maxWidth={768} />
+                <XpImage imageProps={target} alt={picture.altText ?? ''} maxWidth={768} />
                 {picture.caption && (
                     <figcaption className="decorated">{picture.caption}</figcaption>
                 )}

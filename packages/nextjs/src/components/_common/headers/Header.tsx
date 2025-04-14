@@ -16,10 +16,15 @@ type Props = {
 
 export const Header = ({ children, size, level, anchorId, className }: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
-    const fallbackSizeByLevel = levelToSize[level] || 'large';
+    const fallbackSizeByLevel = levelToSize[level] ?? 'large';
 
-    return (        
-        <Heading id={anchorId} size={size || fallbackSizeByLevel} level={level} className={classNames(style.header, className)}>
+    return (
+        <Heading
+            id={anchorId}
+            size={size ?? fallbackSizeByLevel}
+            level={level}
+            className={classNames(style.header, className)}
+        >
             {anchor && (level === '2' || level === '3') ? (
                 <a href={anchor} className={style.anchorLink}>
                     {children}

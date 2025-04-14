@@ -57,7 +57,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
 
 const getRSSFeedFromCache = async () => {
     const currentTime = Date.now();
-    const cacheExpires = cache.getTtl(cacheKey) || currentTime;
+    const cacheExpires = cache.getTtl(cacheKey) ?? currentTime;
     const isCacheExpired = cacheExpires - currentTime <= 0;
 
     // There's nothing in the cache, so we're forced to await for the fetch to return.
