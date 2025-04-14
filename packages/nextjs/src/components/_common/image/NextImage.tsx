@@ -41,7 +41,7 @@ export const buildImageCacheUrl = ({
     maxWidth,
     quality,
 }: { src: string; isEditorView: boolean } & NextImageProps) => {
-    if (isEditorView ?? !isValidImageUrl(src)) {
+    if (isEditorView || !isValidImageUrl(src)) {
         return src;
     }
 
