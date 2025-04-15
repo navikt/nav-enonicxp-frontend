@@ -1,0 +1,16 @@
+name: Deploy to dev2-failover
+on:
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        uses: ./.github/workflows/deploy-to-nais.yml
+        permissions:
+            id-token: write
+            contents: read
+            packages: write
+        with:
+            image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
+            cluster: dev-gcp
+            vars_file: vars-dev2-failover.yml
+            config_file: config-failover.yml
