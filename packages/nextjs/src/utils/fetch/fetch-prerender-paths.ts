@@ -6,8 +6,14 @@ const excludedPaths: ReadonlySet<string> = new Set([
     '/', // This is already rendered by /index.tsx
 ]);
 
-export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null> =>
-    fetchJson<string[]>(`${xpServiceUrl}/sitecontentPaths`, 60000, {
+export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null> => {
+    logger.info('Fetching paths to prerender');
+    if (!process.env.SERVICE_SECRET) {
+        logger.error('SERVICE_SECRET is not set');
+        return null;
+    }
+
+    return fetchJson<string[]>(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
             secret: process.env.SERVICE_SECRET,
         },
@@ -39,3 +45,4 @@ export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null>
 
             return paths.filter((path) => !excludedPaths.has(path));
         });
+};
