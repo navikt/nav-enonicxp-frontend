@@ -12,6 +12,7 @@ type Props = Omit<FormIntermediateStep_StepLinkData, 'nextStep'> &
     Omit<React.ComponentProps<typeof LenkeBase>, 'children' | 'href'> & {
         analyticsComponent: string;
         analyticsLabel: string;
+        formNumberStepData?: string;
     };
 
 export const FormIntermediateStepLink = ({
