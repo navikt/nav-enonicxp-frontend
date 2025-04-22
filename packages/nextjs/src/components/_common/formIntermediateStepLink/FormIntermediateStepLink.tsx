@@ -12,7 +12,7 @@ type Props = Omit<FormIntermediateStep_StepLinkData, 'nextStep'> &
     Omit<React.ComponentProps<typeof LenkeBase>, 'children' | 'href'> & {
         analyticsComponent: string;
         analyticsLabel: string;
-        formNumberStepData?: string;
+        formNumber?: string;
     };
 
 export const FormIntermediateStepLink = ({
@@ -21,8 +21,7 @@ export const FormIntermediateStepLink = ({
     languageDisclaimer,
     href,
     isStepNavigation,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    formNumberStepData,
+    formNumber,
     analyticsComponent,
     analyticsLabel,
 }: Props) => {
@@ -41,7 +40,7 @@ export const FormIntermediateStepLink = ({
         >
             <div>
                 <LinkPanel.Title>{label}</LinkPanel.Title>
-                {formNumberStepData && <FormNumberTag formNumber={formNumberStepData} />}
+                {formNumber && <FormNumberTag formNumber={formNumber} />}
                 {explanation && <LinkPanel.Description>{explanation}</LinkPanel.Description>}
                 {languageDisclaimer && (
                     <LanguageDisclaimer>{languageDisclaimer}</LanguageDisclaimer>

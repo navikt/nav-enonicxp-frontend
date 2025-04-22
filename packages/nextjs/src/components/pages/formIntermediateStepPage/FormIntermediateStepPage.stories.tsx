@@ -41,7 +41,7 @@ const valg2 = {
     label: 'Valg 2',
     explanation:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    formNumberStepData: 'NAV 01-02.03',
+    formNumber: 'NAV 01-02.03',
     nextStep: {
         _selected: 'next' as const,
     },

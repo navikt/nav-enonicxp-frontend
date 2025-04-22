@@ -55,7 +55,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                         {...step}
                         analyticsComponent={'FormIntermediateStepPage'}
                         analyticsLabel={step.label}
-                        formNumberStepData={step.formNumber || step.defaultFormNumber}
+                        formNumber={step.formNumber || step.defaultFormNumber}
                     />
                 </li>
             ))}
