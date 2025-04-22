@@ -26,10 +26,24 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const { data, displayName, language } = props;
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
 
+    const getFormNumbers = (steps: any[]): string[] => {
+        return steps.flatMap((step) => {
+            const formNumbers: string[] = [];
+            if (step.nextStep?._selected === 'external' && step.nextStep.external?.formNumber) {
+                formNumbers.push(step.nextStep.external.formNumber);
+            }
+            if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
+                formNumbers.push(...getFormNumbers(step.nextStep.next.steps));
+            }
+            return formNumbers;
+        });
+    };
+
     const getTranslations = translator('form', language);
 
     return (
         <MellomstegLayout
+            allFormNumbers={getFormNumbers(data.steps)}
             data={{
                 ...data,
                 textAboveTitle: currentStepData.textAboveTitle,
@@ -41,7 +55,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                         {...step}
                         analyticsComponent={'FormIntermediateStepPage'}
                         analyticsLabel={step.label}
-                        formNumberStepData={step.formNumberStepData}
+                        formNumberStepData={step.formNumber || step.defaultFormNumber}
                     />
                 </li>
             ))}
