@@ -43,7 +43,7 @@
         "@types/node": "20.14.10",
         "@typescript-eslint/eslint-plugin": "7.18.0",
         "@typescript-eslint/parser": "7.18.0",
-        "esbuild": "0.25.0",
+        "esbuild": "0.25.2",
         "eslint": "8.57.0",
         "eslint-config-prettier": "9.1.0",
         "eslint-nibble": "8.1.0",
@@ -52,7 +52,7 @@
         "eslint-plugin-prettier": "5.2.3",
         "husky": "9.1.7",
         "prettier": "3.5.2",
-        "typescript": "5.7.3",
+        "typescript": "5.8.3",
         "typescript-plugin-css-modules": "5.1.0"
     },
     "browserslist": {

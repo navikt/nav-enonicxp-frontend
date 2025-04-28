@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { IFuseOptions } from 'fuse.js';
 import { useAppDispatch, useAppSelector } from 'store/store';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
@@ -12,7 +13,6 @@ import {
 } from 'store/slices/overviewFilters';
 import { ContentType } from 'types/content-props/_content-common';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
-import type Fuse from 'fuse.js';
 
 export type OverviewFilterableItem = {
     area: Area[];
@@ -23,7 +23,7 @@ export type OverviewFilterableItem = {
 type FilteredListProps<ItemType extends OverviewFilterableItem> = {
     filterableItems: ItemType[];
     textFilterOverride?: string;
-    fuseOptions?: Fuse.IFuseOptions<ItemType>;
+    fuseOptions?: IFuseOptions<ItemType>;
 };
 
 const _getFilteredList = async <ItemType extends OverviewFilterableItem>({

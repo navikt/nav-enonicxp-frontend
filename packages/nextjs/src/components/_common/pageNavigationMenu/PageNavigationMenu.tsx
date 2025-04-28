@@ -37,7 +37,7 @@ export const PageNavigationMenu = ({
     }
 
     return (
-        <div
+        <nav
             className={classNames(
                 style.pageNavigationMenu,
                 isChapterNavigation && style.chapterNavigation
@@ -71,6 +71,6 @@ export const PageNavigationMenu = ({
                     </li>
                 ))}
             </ul>
-        </div>
+        </nav>
     );
 };

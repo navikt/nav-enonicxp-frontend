@@ -1,6 +1,6 @@
-import type Fuse from 'fuse.js';
+import { IFuseOptions } from 'fuse.js';
 
-const defaultOptions: Fuse.IFuseOptions<unknown> = {
+const defaultOptions: IFuseOptions<unknown> = {
     includeScore: true,
     includeMatches: true,
     findAllMatches: true,
@@ -10,7 +10,7 @@ const defaultOptions: Fuse.IFuseOptions<unknown> = {
 
 export const getFuseSearchFunc = async <Type>(
     list: Type[],
-    options?: Fuse.IFuseOptions<Type>,
+    options?: IFuseOptions<Type>,
     maxScore = 0.35
 ) => {
     const Fuse = (await import('fuse.js')).default;

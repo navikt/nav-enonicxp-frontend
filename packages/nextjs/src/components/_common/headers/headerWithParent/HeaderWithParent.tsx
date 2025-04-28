@@ -22,7 +22,7 @@ export const HeaderWithParent = ({
 }: Props) => {
     const { data } = contentProps;
     return (
-        <div className={classNames(style.headerContainer, className)}>
+        <header className={classNames(style.headerContainer, className)}>
             <BodyShort textColor="subtle" className={style.textAboveTitle}>
                 {textAboveTitle}
             </BodyShort>
@@ -36,6 +36,6 @@ export const HeaderWithParent = ({
                     ))}
                 </ul>
             )}
-        </div>
+        </header>
     );
 };

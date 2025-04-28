@@ -39,7 +39,7 @@ export const FrontpageCurrentTopicsPart = ({
     }
 
     return (
-        <div
+        <section
             className={style.currentTopics}
             style={
                 {
@@ -83,6 +83,6 @@ export const FrontpageCurrentTopicsPart = ({
                 })}
             </ul>
             {link && <MoreLink analyticsGroup={title} link={link} />}
-        </div>
+        </section>
     );
 };
