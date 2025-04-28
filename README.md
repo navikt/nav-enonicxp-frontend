@@ -24,18 +24,18 @@ Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følg
 
 #### Med lokal XP:
 
--   Start en XP sandbox (se nav-enonicxp readme for fremgangsmåte)
--   Kjør `npm run dev`
+- Start en XP sandbox (se nav-enonicxp readme for fremgangsmåte)
+- Kjør `npm run dev`
 
 #### Via dev-proxy:
 
--   Kopier .env.development til .env.development.local.
--   Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
--   Kjør `npm run dev-custom`
+- Kopier .env.development til .env.development.local.
+- Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
+- Kjør `npm run dev-custom`
 
 ### Production mode:
 
-Kjør `npm run start-clean`
+Kjør `npm run start-local-clean`
 
 ### Storybook
 
@@ -60,7 +60,6 @@ Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#g
 
 Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil oppstå ved deploy til main).
 
-
 ## Logger og metrikker
 
 [Kibana](https://logs.adeo.no/app/discover#/view/952d2110-d396-11eb-af21-ffc7c2f0592f)
@@ -69,19 +68,23 @@ Lag en PR til main, og merge inn etter godkjenning (En automatisk release vil op
 
 ## Failover
 
-I tillegg til den ordinære instansen av appen på www.nav.no, deployes også daglig et statisk bygg av appen til www-failover.nav.no.
+I tillegg til den ordinære instansen av appen på www.nav.no, deployes også nattlig et statisk bygg av appen til www-failover.nav.no.
 Ved server-feil ved rendring av en side i den ordinære app-instansen, vil error-page'en forsøke å hente html for tilsvarende side fra failover-appen,
 og servere denne som en fallback.
 
-Failover deployes ikke automatisk til dev-miljøer. For å bygge og deploye til et dev-miljø, gjør følgende:
+Fordi Github workflows ikke har tilgang til q-miljøer i Nav (dvs dev), så må imaget bygges lokalt, pushes til registeret og deretter deployes via
+Github Actions. Det er fordi failover bygger NextJS-applikasjonen statisk og trenger å hente paths og content fra XP i dev.
 
--   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `.failover/build-dev-failover-image.sh`
--   Kjør `./.failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
--   Vent på at imaget bygges (det tar normalt 15-20 min)
--   Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
+- Legg inn relevante secrets lokalt som spesifisert i kommentarer i `.failover/build-dev-failover-image.sh`
+- Kjør `npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_name=ditt-image-navn`
+- Vent på at imaget bygges (det tar normalt 15-20 min)
+- Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
 
-Failover-appen kan ikke navigeres direkte, kun via den ordinære appen. For å teste en deployet failover-instans kan du f.eks. slå av
-nav.no-appen i XP og så slette frontend-cachen (helst ikke i prod :).
+Merk at Failover-appen ikke kan brukes direkte, selv om den kjører på egen ingress. Den er sattopp til å blokkere kall utenifra. Istedet vil den vanlige
+NextJS-instansen hente statisk rendret html- og json-innhold fra Failover via API dersom det ikke er mulig å hente fra hverken NextJS sin egen cache, Valkey eller XP.
+
+For å teste en deployet failover-instans i dev kan du f.eks. slå av nav.no-appen i XP og så slette frontend-cachen. Ikke i prod, med mindre det er helt nødvendig og
+varslet i god tid på #varsling-nedetid.
 
 ## Henvendelser
 

@@ -24,8 +24,8 @@ RUN rm -f .npmrc
 COPY ".failover/${ENV_FILE}" /app/.env
 # Also copy this .env file to the nextjs and server packages so they can
 # pick the environment variables as needed.
-COPY /app/.env /app/packages/nextjs/.env
-COPY /app/.env /app/packages/server/.env
+COPY ".failover/${ENV_FILE}" /app/packages/nextjs/.env
+COPY ".failover/${ENV_FILE}" /app/packages/server/.env
 
 RUN npm run build
 

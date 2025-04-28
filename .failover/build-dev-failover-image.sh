@@ -41,5 +41,5 @@ fi
 
 IMAGE_NAME_FULL="ghcr.io/navikt/nav-enonicxp-frontend:$IMAGE_NAME"
 
-docker build -f Dockerfile -t "$IMAGE_NAME_FULL" --no-cache --build-arg ENV_FILE="$ENV_FILE" --build-arg SERVICE_SECRET="$SERVICE_SECRET" --build-arg GITHUB_PAT="$GITHUB_PAT" ../.
-docker push $IMAGE_NAME_FULL
+docker build -f .failover/Dockerfile.failover -t "$IMAGE_NAME_FULL" --no-cache --build-arg ENV_FILE="$ENV_FILE" --build-arg SERVICE_SECRET="$SERVICE_SECRET" --build-arg GITHUB_PAT="$GITHUB_PAT" .
+# docker push $IMAGE_NAME_FULL
