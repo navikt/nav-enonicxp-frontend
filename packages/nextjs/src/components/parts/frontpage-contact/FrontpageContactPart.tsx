@@ -73,7 +73,7 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
     const { chatTitle, chatIngress, chatAlertText } = getChatIngress();
 
     return (
-        <div className={style.container}>
+        <section className={style.container}>
             <Heading size={'large'} level={'2'} className={style.header}>
                 {title}
             </Heading>
@@ -95,6 +95,6 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
                     {contactUsIngress}
                 </LinkPanelNavno>
             </div>
-        </div>
+        </section>
     );
 };

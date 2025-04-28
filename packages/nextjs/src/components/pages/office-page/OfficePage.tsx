@@ -27,12 +27,12 @@ export const OfficePage = (props: OfficePageProps) => {
     const page = isOfficeBranch && editorialPage ? editorialPage.page : props.page;
 
     return (
-        <div className={styles.officePage}>
+        <article className={styles.officePage}>
             {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
-        </div>
+        </article>
     );
 };

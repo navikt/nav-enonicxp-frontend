@@ -37,7 +37,7 @@ export const MellomstegLayout = ({
     const currentTitle = title ?? displayName;
 
     return (
-        <div className={style.mellomstegLayout}>
+        <article className={style.mellomstegLayout}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <HeaderWithParent
                 contentProps={{ data: { title: currentTitle } }}
@@ -66,6 +66,6 @@ export const MellomstegLayout = ({
                 ) : null}
                 {editorView ?? null}
             </div>
-        </div>
+        </article>
     );
 };

@@ -27,7 +27,6 @@ function hasContentType(data: any): data is { contentType: string } {
 export const PressNewsItem = ({ newsItem }: Props) => {
     const { language } = newsItem;
     const getTranslations = translator('pressLanding', language);
-
     const getTaglineElements = ({ newsItem }: Props) => {
         if (newsItem.type === ContentType.MainArticle) {
             const isNews = hasContentType(newsItem.data) && newsItem.data.contentType === 'news';
@@ -37,36 +36,37 @@ export const PressNewsItem = ({ newsItem }: Props) => {
         }
         return { icon: null, tagName: null };
     };
-
     const { icon, tagName } = getTaglineElements({ newsItem });
 
     return (
         <li key={newsItem._path} className={style.newsItem}>
-            <LenkeBase href={getPublicPathname({ _path: newsItem._path })}>
-                <Heading level={'3'} size={'medium'}>
-                    {newsItem.displayName}
-                </Heading>
-            </LenkeBase>
-            {newsItem.data?.ingress && (
-                <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
-            )}
-            <div className={style.newsTagline}>
-                {icon && <StaticImage imageData={icon} />}
-                {tagName && (
-                    <Detail className={style.newsType} uppercase={true}>
-                        {tagName}
-                    </Detail>
+            <article>
+                <LenkeBase href={getPublicPathname({ _path: newsItem._path })}>
+                    <Heading level={'3'} size={'medium'}>
+                        {newsItem.displayName}
+                    </Heading>
+                </LenkeBase>
+                {newsItem.data?.ingress && (
+                    <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
                 )}
-                <Detail className={style.publishDate}>
-                    {getTranslations('published')}{' '}
-                    {formatDate({
-                        datetime: getPublishedDateTime(newsItem),
-                        language,
-                        short: true,
-                        year: true,
-                    })}
-                </Detail>
-            </div>
+                <div className={style.newsTagline}>
+                    {icon && <StaticImage imageData={icon} />}
+                    {tagName && (
+                        <Detail className={style.newsType} uppercase={true}>
+                            {tagName}
+                        </Detail>
+                    )}
+                    <Detail className={style.publishDate}>
+                        {getTranslations('published')}{' '}
+                        {formatDate({
+                            datetime: getPublishedDateTime(newsItem),
+                            language,
+                            short: true,
+                            year: true,
+                        })}
+                    </Detail>
+                </div>
+            </article>
         </li>
     );
 };
