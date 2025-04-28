@@ -29,6 +29,7 @@ const resolveStepUrl = ({
             return {
                 ...step,
                 href: step.nextStep.external?.externalUrl,
+                formNumber: step.nextStep.external?.formNumber,
             };
         }
         case 'internal': {
@@ -47,10 +48,7 @@ const resolveStepUrl = ({
     }
 };
 
-const getStepData = (
-    data: FormIntermediateStepPageProps['data'],
-    stepPath: StepPath,
-): StepBase => {
+const getStepData = (data: FormIntermediateStepPageProps['data'], stepPath: StepPath): StepBase => {
     // No steps selected (meaning the user is on first step)
     if (stepPath.length === 0) {
         return {
@@ -92,7 +90,7 @@ const getStepData = (
 const buildCurrentStepData = (
     allData: FormIntermediateStepPageProps['data'],
     basePath: string,
-    stepPath: StepPath,
+    stepPath: StepPath
 ): StepBase => {
     const stepData = getStepData(allData, stepPath);
 

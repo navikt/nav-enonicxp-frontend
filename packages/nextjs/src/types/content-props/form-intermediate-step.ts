@@ -20,7 +20,6 @@ export type StepOptions = {
 
 export type SelectableStep = {
     formNumber?: string;
-    defaultFormNumber?: string;
     label: string;
     explanation?: string;
     languageDisclaimer?: string;
