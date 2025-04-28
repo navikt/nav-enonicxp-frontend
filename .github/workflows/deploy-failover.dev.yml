@@ -2,8 +2,8 @@ name: Deploy failover image to dev
 on:
     workflow_dispatch:
         inputs:
-            image_name:
-                description: 'Image name'
+            digest:
+                description: 'GAR Digest'
                 required: true
                 type: string
             app_env:
@@ -21,7 +21,7 @@ jobs:
         permissions:
             id-token: write
         with:
-            image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}
+            image: europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-enonicxp-frontend@sha256:${{ github.event.inputs.digest }}
             cluster: dev-gcp
             vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
             config_file: config-failover.yml

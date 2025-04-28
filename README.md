@@ -72,13 +72,16 @@ I tillegg til den ordinære instansen av appen på www.nav.no, deployes også na
 Ved server-feil ved rendring av en side i den ordinære app-instansen, vil error-page'en forsøke å hente html for tilsvarende side fra failover-appen,
 og servere denne som en fallback.
 
-Fordi Github workflows ikke har tilgang til q-miljøer i Nav (dvs dev), så må imaget bygges lokalt, pushes til registeret og deretter deployes via
-Github Actions. Det er fordi failover bygger NextJS-applikasjonen statisk og trenger å hente paths og content fra XP i dev.
+Github workflows ikke har tilgang til q-miljøer i Nav (feks dev), så imaget må bygges lokalt slik at byggeprosessen får tak i tjenestene i XP i dev. Deretter pushes imaget til GAR (Google Artifact Registry) og så deployes via Github Actions.
 
-- Legg inn relevante secrets lokalt som spesifisert i kommentarer i `.failover/build-dev-failover-image.sh`
-- Kjør `npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_name=ditt-image-navn`
+### Slik bygger og deployer du failover til dev
+
+- Legg inn relevante secrets lokalt som spesifisert i kommentarene øverst i `.failover/build-dev-failover-image.sh`
+- Husk at du i tillegg må være på naisdevice!
+- Kjør `npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_name=ditt-valgte-image-navn`
 - Vent på at imaget bygges (det tar normalt 15-20 min)
-- Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
+- I rapporten vil du få en Digest ("sha256:ab372a...."). Kopier selve sha'en (dvs ikke 'sha256:') til bruk i neste steg.
+- Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og sha'en som du fikk etter push.
 
 Merk at Failover-appen ikke kan brukes direkte, selv om den kjører på egen ingress. Den er sattopp til å blokkere kall utenifra. Istedet vil den vanlige
 NextJS-instansen hente statisk rendret html- og json-innhold fra Failover via API dersom det ikke er mulig å hente fra hverken NextJS sin egen cache, Valkey eller XP.

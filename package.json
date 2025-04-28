@@ -15,7 +15,7 @@
         "build-test-production": "npm run copy-env-prod-local && npm run build",
         "start-test-production": "npm run copy-env-prod-local && npm run start",
         "start-local": "rm -fr packages/nextjs/.next && npm run build-test-production && npm run start-test-production",
-        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh $npm_config_app_env $npm_config_image_name",
+        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh $npm_config_app_env $npm_config_image_tag",
         "analyze-bundle": "npm run analyze-bundle --workspace packages/nextjs",
         "lint": "npm-run-all --parallel lint:*",
         "lint:client": "npm run lint --workspace packages/nextjs",
