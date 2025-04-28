@@ -43,7 +43,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
 
     return (
         <MellomstegLayout
-            allFormNumbers={getFormNumbers(data.steps)}
+            allChildFormNumbers={getFormNumbers(currentStepData.steps)}
             data={{
                 ...data,
                 textAboveTitle: currentStepData.textAboveTitle,

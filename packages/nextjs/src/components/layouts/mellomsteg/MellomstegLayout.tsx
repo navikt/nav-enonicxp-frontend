@@ -13,7 +13,7 @@ interface Props {
     backLink?: InternalLinkMixin;
     editorView?: React.ReactNode;
     analyticsComponent?: string;
-    allFormNumbers?: string[];
+    allChildFormNumbers?: string[];
     data: {
         title: string;
         illustration: PictogramsProps;
@@ -30,7 +30,7 @@ export const MellomstegLayout = ({
     listItems,
     backLink,
     analyticsComponent,
-    allFormNumbers,
+    allChildFormNumbers,
 }: Props) => {
     const { title, illustration, textAboveTitle, editorial, formNumbers, displayName } = data;
 
@@ -45,10 +45,10 @@ export const MellomstegLayout = ({
                 className={style.header}
                 formNumbers={formNumbers}
             />
-            {allFormNumbers && (
+            {allChildFormNumbers && (
                 <div className={style.formNumbers}>
-                    {allFormNumbers.map((formNumber) => (
-                        <FormNumberTag key={formNumber} formNumber={formNumber} />
+                    {allChildFormNumbers.map((allChildFormNumbers) => (
+                        <FormNumberTag key={allChildFormNumbers} formNumber={allChildFormNumbers} />
                     ))}
                 </div>
             )}
