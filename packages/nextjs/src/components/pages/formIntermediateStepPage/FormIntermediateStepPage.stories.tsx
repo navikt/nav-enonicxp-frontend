@@ -22,7 +22,11 @@ const valg1 = {
                     label: 'Valg 1.1',
                     explanation: 'Ingress til valg 1.1',
                     nextStep: {
-                        _selected: 'next' as const,
+                        _selected: 'external' as const,
+                        external: {
+                            externalUrl: 'https://www.nav.no',
+                            formNumber: 'NAV 01-02.03',
+                        },
                     },
                 },
                 {
@@ -41,7 +45,6 @@ const valg2 = {
     label: 'Valg 2',
     explanation:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    formNumber: 'NAV 01-02.03',
     nextStep: {
         _selected: 'next' as const,
     },
@@ -51,6 +54,17 @@ const valg3 = {
     label: 'Valg 3',
     nextStep: {
         _selected: 'next' as const,
+    },
+};
+
+const valg4 = {
+    label: 'Valg 4',
+    nextStep: {
+        _selected: 'external' as const,
+        external: {
+            externalUrl: 'https://www.nav.no',
+            formNumber: 'NAV 01-02.04',
+        },
     },
 };
 
@@ -75,7 +89,7 @@ export const LandingPage: Story = {
                     ],
                 },
             },
-            steps: [valg1, valg2, valg3],
+            steps: [valg1, valg2, valg3, valg4],
         },
     },
 };
