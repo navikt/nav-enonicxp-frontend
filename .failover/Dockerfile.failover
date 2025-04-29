@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim AS build
+FROM node:22-alpine AS build
 
 # No need to add user or group here.
 RUN apt-get update && apt-get --assume-yes --no-install-recommends install ca-certificates && apt-get clean
@@ -24,7 +24,7 @@ COPY ".failover/${ENV_FILE}" /app/packages/server/.env
 RUN npm run build
 
 # --------- Final stage ---------
-FROM node:20-bullseye-slim
+FROM node:22-alpine
 
 # Only now create the non-root user for runtime!
 RUN addgroup --system --gid 1001 nodejs \

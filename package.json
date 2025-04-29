@@ -31,7 +31,6 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@next/bundle-analyzer": "14.2.15",
         "@next/eslint-plugin-next": "14.2.4",
         "@types/escape-html": "1.0.4",
         "@types/lodash.debounce": "4.0.9",
@@ -68,6 +67,8 @@
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
+        "@next/bundle-analyzer": "14.2.4",
+        "dotenv": "16.5.0",
         "lru-cache": "11.0.2",
         "pino": "9.6.0",
         "pino-pretty": "12.1.0",
