@@ -11,8 +11,7 @@
         "lint": "npm-run-all --parallel lint:*",
         "lint:tsc": "tsc",
         "lint:eslint": "eslint src",
-        "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
-        "prepare": "husky install"
+        "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },
     "dependenciesComments": {
         "tough-cookie": "Transitive dependency only, bumped directly due to vulnerability alert",
