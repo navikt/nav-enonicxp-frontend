@@ -21,6 +21,7 @@
     "dependencies": {
         "@grafana/faro-web-sdk": "1.15.0",
         "@grafana/faro-web-tracing": "1.15.0",
+        "@next/bundle-analyzer": "14.2.4",
         "@navikt/aksel-icons": "7.19.0",
         "@navikt/ds-css": "7.19.0",
         "@navikt/ds-react": "7.19.0",
@@ -52,7 +53,6 @@
     },
     "devDependencies": {
         "@chromatic-com/storybook": "2.0.2",
-        "@next/bundle-analyzer": "14.2.4",
         "@next/eslint-plugin-next": "14.2.4",
         "@playwright/test": "1.51.1",
         "@storybook/addon-essentials": "8.6.12",
