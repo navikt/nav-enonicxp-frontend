@@ -72,7 +72,7 @@ I tillegg til den ordinære instansen av appen på www.nav.no, deployes også na
 Ved server-feil ved rendring av en side i den ordinære app-instansen, vil error-page'en forsøke å hente html for tilsvarende side fra failover-appen,
 og servere denne som en fallback.
 
-Github workflows ikke har tilgang til q-miljøer i Nav (feks dev), så imaget må bygges lokalt slik at byggeprosessen får tak i tjenestene i XP i dev. Deretter pushes imaget til GAR (Google Artifact Registry) og så deployes via Github Actions.
+Github workflows har ikke tilgang til q-miljøer i Nav (feks dev), så imaget må bygges lokalt slik at byggeprosessen får tak i tjenestene i XP i dev. Deretter pushes imaget til GAR (Google Artifact Registry) og så deployes via Github Actions.
 
 ### Slik bygger og deployer du failover til dev
 
