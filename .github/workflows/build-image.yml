@@ -129,7 +129,7 @@ jobs:
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
             - name: Prune dependencies
-              run: npm prune --production --workspaces
+              run: npm prune --omit=dev --workspaces
               working-directory: packages/server
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
