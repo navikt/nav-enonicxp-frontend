@@ -1,4 +1,4 @@
-FROM node:20-bullseye-slim
+FROM node:22-bullseye-slim
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs

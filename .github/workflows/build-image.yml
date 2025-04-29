@@ -78,7 +78,7 @@ jobs:
             - name: Setup node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
+                  node-version: '22'
                   registry-url: 'https://npm.pkg.github.com'
                   cache: 'npm'
             - name: Set app environmment
@@ -128,6 +128,9 @@ jobs:
                   destination: nav-enonicxp-frontend/_next
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+            - name: Prune dependencies
+              run: npm prune --production --workspaces
+              working-directory: packages/server
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
               id: docker-push
