@@ -1,0 +1,41 @@
+FROM node:20-bullseye-slim AS build
+
+# No need to add user or group here.
+RUN apt-get update && apt-get --assume-yes --no-install-recommends install ca-certificates && apt-get clean
+
+WORKDIR /app
+
+ARG GITHUB_PAT
+ARG SERVICE_SECRET
+ARG ENV_FILE
+
+COPY package*.json .failover/.npmrc /app/
+COPY packages/server /app/packages/server/
+COPY packages/nextjs /app/packages/nextjs/
+COPY packages/shared /app/packages/shared/
+
+RUN npm ci --ignore-scripts
+RUN rm -f .npmrc
+
+COPY ".failover/${ENV_FILE}" /app/.env
+COPY ".failover/${ENV_FILE}" /app/packages/nextjs/.env
+COPY ".failover/${ENV_FILE}" /app/packages/server/.env
+
+RUN npm run build
+
+# --------- Final stage ---------
+FROM node:20-bullseye-slim
+
+# Only now create the non-root user for runtime!
+RUN addgroup --system --gid 1001 nodejs \
+ && adduser --system --uid 1001 --ingroup nodejs nextjs
+
+WORKDIR /app
+
+COPY --from=build /app /app/
+COPY --from=build /tmp/images/image-manifest /tmp/images/image-manifest
+
+USER nextjs
+
+EXPOSE 3000
+CMD ["npm", "start"]
