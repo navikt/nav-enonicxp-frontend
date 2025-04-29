@@ -22,22 +22,22 @@ export type FormIntermediateStepPageProps = Pick<
     } & StepBase;
 };
 
+export const getFormNumbers = (steps: any[]): string[] => {
+    return steps.flatMap((step) => {
+        const formNumbers: string[] = [];
+        if (step.nextStep?._selected === 'external' && step.nextStep.external?.formNumber) {
+            formNumbers.push(step.nextStep.external.formNumber);
+        }
+        if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
+            formNumbers.push(...getFormNumbers(step.nextStep.next.steps));
+        }
+        return formNumbers;
+    });
+};
+
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { data, displayName, language } = props;
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
-
-    const getFormNumbers = (steps: any[]): string[] => {
-        return steps.flatMap((step) => {
-            const formNumbers: string[] = [];
-            if (step.nextStep?._selected === 'external' && step.nextStep.external?.formNumber) {
-                formNumbers.push(step.nextStep.external.formNumber);
-            }
-            if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
-                formNumbers.push(...getFormNumbers(step.nextStep.next.steps));
-            }
-            return formNumbers;
-        });
-    };
 
     const getTranslations = translator('form', language);
 

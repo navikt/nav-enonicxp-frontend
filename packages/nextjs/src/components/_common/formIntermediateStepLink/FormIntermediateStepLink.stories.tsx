@@ -31,7 +31,7 @@ export const WithExplanation: Story = {
 export const WithFormNumber: Story = {
     args: {
         ...Default.args,
-        formNumber: 'Nav 04-01.02',
+        formNumber: 'NAV 04-01.02',
     },
 };
 
