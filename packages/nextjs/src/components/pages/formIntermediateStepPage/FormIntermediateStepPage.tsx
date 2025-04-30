@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
-import { StepBase } from 'types/content-props/form-intermediate-step';
+import { SelectableStep, StepBase } from 'types/content-props/form-intermediate-step';
 import { useFormIntermediateStepPage } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
 import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
@@ -22,7 +22,7 @@ export type FormIntermediateStepPageProps = Pick<
     } & StepBase;
 };
 
-export const getFormNumbers = (steps: any[]): string[] => {
+export const getFormNumbers = (steps: SelectableStep[]): string[] => {
     return steps.flatMap((step) => {
         const formNumbers: string[] = [];
         if (step.nextStep?._selected === 'external' && step.nextStep.external?.formNumber) {
