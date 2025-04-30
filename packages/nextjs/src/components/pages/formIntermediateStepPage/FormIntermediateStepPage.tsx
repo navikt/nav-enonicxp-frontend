@@ -31,7 +31,8 @@ export const getFormNumbers = (steps: SelectableStep[]): string[] => {
         if (step.nextStep?._selected === 'next' && step.nextStep.next?.steps) {
             formNumbers.push(...getFormNumbers(step.nextStep.next.steps));
         }
-        return formNumbers;
+        const uniqueFormNumbers = [...new Set(formNumbers)];
+        return uniqueFormNumbers;
     });
 };
 
