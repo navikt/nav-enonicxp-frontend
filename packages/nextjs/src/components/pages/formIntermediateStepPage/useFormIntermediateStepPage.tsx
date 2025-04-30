@@ -57,7 +57,7 @@ const getStepData = (
     if (stepPath.length === 0) {
         return {
             textAboveTitle: '',
-            title: data.title,
+            title: displayName,
             editorial: data.editorial,
             steps: data.steps,
             previousStepExplanation: '',

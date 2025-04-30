@@ -71,9 +71,9 @@ const valg4 = {
 export const LandingPage: Story = {
     args: {
         _path: 'placeholder',
+        displayName: 'Landingsside',
         type: ContentType.FormIntermediateStepPage,
         data: {
-            title: 'Landingsside',
             // @ts-ignore
             editorial: '<p>Hva vil du gjøre?</p>',
             illustration: {
