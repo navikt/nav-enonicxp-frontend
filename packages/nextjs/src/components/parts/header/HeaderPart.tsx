@@ -22,7 +22,7 @@ export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
         return null;
     }
 
-    const tag = titleTag || 'h3';
+    const tag = titleTag ?? 'h3';
     const level = headingToLevel[tag];
     const size = headingToSize[tag];
 

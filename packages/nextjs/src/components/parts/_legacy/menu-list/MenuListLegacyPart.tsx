@@ -44,7 +44,7 @@ export const MenuListLegacyPart = (props: ContentProps) => {
                     return (
                         <Accordion key={key}>
                             <Accordion.Item defaultOpen={isOpen} className={style.panel}>
-                                <Accordion.Header>{getLabel(key) || key}</Accordion.Header>
+                                <Accordion.Header>{getLabel(key) ?? key}</Accordion.Header>
                                 <Accordion.Content>
                                     <ul>
                                         {links.map((link, i) => (

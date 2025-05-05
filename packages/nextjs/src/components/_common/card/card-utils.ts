@@ -51,7 +51,7 @@ export const getCardProps = (
     const { title, ingress, illustration, externalProductUrl } = data;
 
     const cardType = cardTypeMap[type];
-    const cardUrl = externalProductUrl || _path;
+    const cardUrl = externalProductUrl ?? _path;
     const cardTitle = title || displayName;
 
     const link = {
@@ -60,7 +60,7 @@ export const getCardProps = (
     };
 
     const tagline = getContentTagline(targetContent, language);
-    const description = ingressOverride || ingress;
+    const description = ingressOverride ?? ingress;
 
     return {
         type: cardType,

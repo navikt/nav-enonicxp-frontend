@@ -31,7 +31,7 @@ const getSocialmediaShareUrl = (
         linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${requestUrl}&title=${displayName}&source=nav.no`,
     };
 
-    return encodeURI(shareUrl[socialMediaType]) || null;
+    return encodeURI(shareUrl[socialMediaType]) ?? null;
 };
 
 type LinkProps = { type: string; text: string; href: string };

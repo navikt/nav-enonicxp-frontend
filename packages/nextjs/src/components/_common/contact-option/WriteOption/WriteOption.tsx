@@ -25,13 +25,13 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
             <Icon type="message" />
             <div className={sharedStyle.content}>
                 <LenkeBase
-                    href={url || Config.urls.skrivTilOss}
+                    href={url ?? Config.urls.skrivTilOss}
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent={'Kontakt-oss kanal'}
                     className={sharedStyle.link}
                 >
                     <Heading level="3" size="small">
-                        {title || translations.title}
+                        {title ?? translations.title}
                     </Heading>
                 </LenkeBase>
                 {alertText && (
@@ -40,7 +40,7 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
                     </Alert>
                 )}
                 <BodyLong as="div" className={sharedStyle.text}>
-                    <ParsedHtml htmlProps={ingress || translations.ingress} />
+                    <ParsedHtml htmlProps={ingress ?? translations.ingress} />
                 </BodyLong>
             </div>
         </div>

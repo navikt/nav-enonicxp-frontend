@@ -17,13 +17,13 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
 
-    const machineReadablePhone = (officeData.telefonnummer || Config.vars.hovedNummer).replace(
+    const machineReadablePhone = (officeData.telefonnummer ?? Config.vars.hovedNummer).replace(
         /\s|\+47/g,
         ''
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
     const phoneInformation =
-        officeData.telefonnummerKommentar || getOfficeTranslations('phoneInformation');
+        officeData.telefonnummerKommentar ?? getOfficeTranslations('phoneInformation');
 
     const phoneHeader =
         officeData.type === 'HMS'

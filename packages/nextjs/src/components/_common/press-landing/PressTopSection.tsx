@@ -16,7 +16,7 @@ export const PressTopSection = (props: PressTopSectionProps) => {
         <section className={styles.pressTopSection}>
             <div className={styles.content}>
                 <Heading size={'xlarge'} level={'1'}>
-                    {title || displayName}
+                    {title ?? displayName}
                 </Heading>
                 {pressCall && (
                     <div className={styles.pressCall}>

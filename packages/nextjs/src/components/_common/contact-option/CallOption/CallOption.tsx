@@ -79,7 +79,7 @@ export const CallOption = ({
                     analyticsComponent={'Kontakt-oss kanal'}
                 >
                     <Heading level="3" size="small">
-                        {title || callTranslations.title}
+                        {title ?? callTranslations.title}
                     </Heading>
                 </LenkeBase>
                 {alertText && (
@@ -89,7 +89,7 @@ export const CallOption = ({
                 )}
                 <BodyLong className={sharedStyle.text}>
                     <ParsedHtml
-                        htmlProps={overrideText || ingress || text || callTranslations.ingress}
+                        htmlProps={overrideText ?? ingress ?? text ?? callTranslations.ingress}
                     />
                 </BodyLong>
                 {!alertText && regularOpeningHours && specialOpeningHours && (
@@ -107,7 +107,7 @@ export const CallOption = ({
                         <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
                     </LenkeBase>
                 )}
-                </div>
+            </div>
         </div>
     );
 };

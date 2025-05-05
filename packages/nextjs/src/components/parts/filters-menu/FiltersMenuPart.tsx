@@ -108,7 +108,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
                 </Header>
             )}
             <BodyLong className={style.introduction} id="description">
-                {description || ''}
+                {description ?? ''}
             </BodyLong>
             <ExpandableComponentWrapper
                 {...config}

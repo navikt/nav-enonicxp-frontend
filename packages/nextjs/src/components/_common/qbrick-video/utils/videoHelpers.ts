@@ -24,7 +24,7 @@ const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
 
     const imageHref = selectedImage.renditions[0]?.links[0]?.href;
 
-    return imageHref || undefined;
+    return imageHref ?? undefined;
 };
 
 const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
@@ -37,7 +37,7 @@ const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
     const firstFoundVideo = firstFoundResource && firstFoundResource.renditions[0]?.videos;
     const duration = firstFoundVideo && firstFoundVideo[0]?.duration;
 
-    return duration || 0;
+    return duration ?? 0;
 };
 
 export const getTimestampFromDuration = (duration: number) => {

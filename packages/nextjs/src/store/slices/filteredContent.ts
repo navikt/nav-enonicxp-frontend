@@ -31,7 +31,7 @@ export const filteredContentSlice = createSlice({
         },
         toggleFilterSelection: (state, action: PayloadAction<FilterSelectionPayload>) => {
             const { pageId, filterId } = action.payload;
-            const filtersForPage = state[pageId] || {
+            const filtersForPage = state[pageId] ?? {
                 ...defaultFiltersForPage,
             };
             const { selectedFilters } = filtersForPage;
@@ -47,7 +47,7 @@ export const filteredContentSlice = createSlice({
         },
         setAvailableFilters: (state, action: PayloadAction<AvailableFiltersPayload>) => {
             const { pageId, availableFilters } = action.payload;
-            const filtersForPage = state[pageId] || {
+            const filtersForPage = state[pageId] ?? {
                 ...defaultFiltersForPage,
             };
 
@@ -64,15 +64,15 @@ export const {
 } = filteredContentSlice.actions;
 
 export const selectedFiltersAtPage = (state: RootState, pageId: string): string[] => {
-    const pageFilters = state.contentFilters[pageId] || defaultFiltersForPage;
+    const pageFilters = state.contentFilters[pageId] ?? defaultFiltersForPage;
 
-    return pageFilters.selectedFilters || [];
+    return pageFilters.selectedFilters ?? [];
 };
 
 export const availableFiltersAtPage = (state: RootState, pageId: string): Category[] => {
-    const pageFilters = state.contentFilters[pageId] || defaultFiltersForPage;
+    const pageFilters = state.contentFilters[pageId] ?? defaultFiltersForPage;
 
-    return pageFilters.availableFilters || [];
+    return pageFilters.availableFilters ?? [];
 };
 
 export default filteredContentSlice.reducer;

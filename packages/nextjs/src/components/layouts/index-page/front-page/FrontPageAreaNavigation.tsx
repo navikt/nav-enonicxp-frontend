@@ -72,7 +72,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                 <FrontPageCard
                                     illustration={illustration}
                                     path={page._path}
-                                    title={page.data?.title || page.displayName}
+                                    title={page.data?.title ?? page.displayName}
                                     type={cardType}
                                     tryFallbackIllustration={!illustration}
                                 />

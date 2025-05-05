@@ -30,7 +30,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const { language, editorView, page } = usePageContentProps();
     const getStringPart = translator('related', language);
     const defaultTitle = getStringPart('otherOffers');
-    const actualTitle = (title || defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
+    const actualTitle = (title ?? defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
     const actualDescription = description || getStringPart('moreInformation');
 
     return (
@@ -44,9 +44,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                     {actualTitle}
                 </Heading>
             )}
-            <BodyLong className={style.description}>
-                {actualDescription}
-            </BodyLong>
+            <BodyLong className={style.description}>{actualDescription}</BodyLong>
             <ul className={style.situationsList}>
                 {relatedSituations.map((situation) => {
                     const tagline = getContentTagline(situation, page?.config.language);
