@@ -35,6 +35,7 @@ export const MellomstegLayout = ({
     const { title, illustration, textAboveTitle, editorial, formNumbers, displayName } = data;
 
     const currentTitle = title ?? displayName;
+    const uniqueFormNumbers = [...new Set(allChildFormNumbers)];
 
     return (
         <article className={style.mellomstegLayout}>
@@ -45,10 +46,10 @@ export const MellomstegLayout = ({
                 className={style.header}
                 formNumbers={formNumbers}
             />
-            {allChildFormNumbers && (
+            {uniqueFormNumbers && (
                 <div className={style.formNumbers}>
-                    {allChildFormNumbers.map((allChildFormNumbers) => (
-                        <FormNumberTag key={allChildFormNumbers} formNumber={allChildFormNumbers} />
+                    {uniqueFormNumbers.map((uniqueFormNumbers) => (
+                        <FormNumberTag key={uniqueFormNumbers} formNumber={uniqueFormNumbers} />
                     ))}
                 </div>
             )}
