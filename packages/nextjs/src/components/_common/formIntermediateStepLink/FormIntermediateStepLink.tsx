@@ -40,8 +40,8 @@ export const FormIntermediateStepLink = ({
         >
             <div>
                 <LinkPanel.Title>{label}</LinkPanel.Title>
-                {formNumber && <FormNumberTag formNumber={formNumber} />}
                 {explanation && <LinkPanel.Description>{explanation}</LinkPanel.Description>}
+                {formNumber && <FormNumberTag formNumber={formNumber} />}
                 {languageDisclaimer && (
                     <LanguageDisclaimer>{languageDisclaimer}</LanguageDisclaimer>
                 )}
