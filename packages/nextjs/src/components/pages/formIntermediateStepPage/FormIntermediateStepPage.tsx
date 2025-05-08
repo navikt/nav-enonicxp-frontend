@@ -22,6 +22,7 @@ export type FormIntermediateStepPageProps = Pick<
     } & StepBase;
 };
 
+// TODO: brukes ikke her lenger, flytt?
 export const getFormNumbers = (steps: SelectableStep[]): string[] => {
     return steps.flatMap((step) => {
         const formNumbers: string[] = [];
@@ -44,7 +45,6 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
 
     return (
         <MellomstegLayout
-            allChildFormNumbers={getFormNumbers(currentStepData.steps)}
             data={{
                 ...data,
                 textAboveTitle: currentStepData.textAboveTitle,
