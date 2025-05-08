@@ -41,6 +41,7 @@ export const FormDetails = ({
     } = displayConfig;
 
     const pageProps = usePageContentProps();
+    const { editorView } = pageProps;
 
     const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
 
@@ -90,9 +91,9 @@ export const FormDetails = ({
                     {title}
                 </Heading>
             )}
-            {hasVisibleFormNumbers && (
+            {(hasVisibleFormNumbers || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
-                    {formNumbers.map((formNumber, index) => (
+                    {formNumbers?.map((formNumber, index) => (
                         <Fragment key={formNumber}>
                             {index > 0 && (
                                 <span aria-hidden={true} className={style.separator}>
