@@ -5,7 +5,6 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
-import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
 import style from './MellomstegLayout.module.scss';
 
 interface Props {
@@ -13,7 +12,6 @@ interface Props {
     backLink?: InternalLinkMixin;
     editorView?: React.ReactNode;
     analyticsComponent?: string;
-    allChildFormNumbers?: string[];
     data: {
         title: string;
         illustration: PictogramsProps;
@@ -30,12 +28,10 @@ export const MellomstegLayout = ({
     listItems,
     backLink,
     analyticsComponent,
-    allChildFormNumbers,
 }: Props) => {
     const { title, illustration, textAboveTitle, editorial, formNumbers, displayName } = data;
 
     const currentTitle = title ?? displayName;
-    const uniqueFormNumbers = [...new Set(allChildFormNumbers)];
 
     return (
         <article className={style.mellomstegLayout}>
@@ -46,13 +42,6 @@ export const MellomstegLayout = ({
                 className={style.header}
                 formNumbers={formNumbers}
             />
-            {uniqueFormNumbers && (
-                <div className={style.formNumbers}>
-                    {uniqueFormNumbers.map((uniqueFormNumbers) => (
-                        <FormNumberTag key={uniqueFormNumbers} formNumber={uniqueFormNumbers} />
-                    ))}
-                </div>
-            )}
             <div className={style.content}>
                 {editorial && <ParsedHtml htmlProps={editorial} pSize="large" />}
                 <ul className={style.stepList}>{listItems}</ul>

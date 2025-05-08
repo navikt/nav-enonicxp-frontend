@@ -6,7 +6,6 @@
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
         'pictogram header .'
-        '. formNumbers .'
         '. content .';
 
     @media only screen and (max-width: 1024px) {
@@ -14,7 +13,6 @@
         grid-template-areas:
             'pictogram'
             'header'
-            'formNumbers'
             'content';
         padding: 0 0.5rem;
     }
@@ -35,16 +33,6 @@
 
     .header {
         grid-area: header;
-    }
-
-    .formNumbers {
-        grid-area: formNumbers;
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        flex-wrap: wrap;
-        margin-top: -0.75rem;
-        margin-bottom: 1.25rem;
     }
 
     .content {
