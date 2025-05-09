@@ -15,6 +15,10 @@
         font-size: 1.25rem;
     }
 
+    & :global(.navds-link-panel__description) {
+        margin-bottom: 0.5rem;
+    }
+
     & :global(.navds-link-panel__chevron) {
         display: none;
     }
