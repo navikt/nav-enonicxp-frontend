@@ -43,6 +43,7 @@ export const sortEntries = (
 
 const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
     const publDate = new Date(item.data.date);
+    publDate.setHours(8); //Statistikk publiseres kl 08.00
     return {
         displayName: item.displayName,
         period: item.data.period,
@@ -63,10 +64,10 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
     return (
         <Table.Row>
             <Table.DataCell>
-                <div className={style.dateCell}>
+                <time dateTime={entry.publDate.toISOString()} className={style.dateCell}>
                     <span>{entry.day}</span>
                     <span>{entry.month}</span>
-                </div>
+                </time>
             </Table.DataCell>
             <Table.DataCell>
                 <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>

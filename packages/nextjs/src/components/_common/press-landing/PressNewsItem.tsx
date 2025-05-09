@@ -37,15 +37,16 @@ export const PressNewsItem = ({ newsItem }: Props) => {
         return { icon: null, tagName: null };
     };
     const { icon, tagName } = getTaglineElements({ newsItem });
+    const datetime = getPublishedDateTime(newsItem);
 
     return (
         <li key={newsItem._path} className={style.newsItem}>
             <article>
-                <LenkeBase href={getPublicPathname({ _path: newsItem._path })}>
-                    <Heading level={'3'} size={'medium'}>
+                <Heading level={'3'} size={'medium'}>
+                    <LenkeBase href={getPublicPathname({ _path: newsItem._path })}>
                         {newsItem.displayName}
-                    </Heading>
-                </LenkeBase>
+                    </LenkeBase>
+                </Heading>
                 {newsItem.data?.ingress && (
                     <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
                 )}
@@ -56,10 +57,10 @@ export const PressNewsItem = ({ newsItem }: Props) => {
                             {tagName}
                         </Detail>
                     )}
-                    <Detail className={style.publishDate}>
+                    <Detail as={'time'} dateTime={datetime} className={style.publishDate}>
                         {getTranslations('published')}{' '}
                         {formatDate({
-                            datetime: getPublishedDateTime(newsItem),
+                            datetime,
                             language,
                             short: true,
                             year: true,

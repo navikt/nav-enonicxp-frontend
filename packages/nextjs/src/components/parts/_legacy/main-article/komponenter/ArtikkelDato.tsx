@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BodyLong, Detail } from '@navikt/ds-react';
-import { getPublishedAndModifiedString } from 'utils/datetime';
+import { getPublishedAndModifiedString, getPublishedDateTime } from 'utils/datetime';
 import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 
@@ -22,12 +22,18 @@ const ArtikkelDato = ({ contentProps, type = 'normal' }: Props) => {
 
     if (type === 'newsPress') {
         return (
-            <Detail className={classNames(styles.artikkelDato, styles.small)}>{dateString}</Detail>
+            <Detail
+                as={'time'}
+                dateTime={getPublishedDateTime(contentProps)}
+                className={classNames(styles.artikkelDato, styles.small)}
+            >
+                {dateString}
+            </Detail>
         );
     }
 
     return (
-        <BodyLong as={'time'} dateTime={dateString}>
+        <BodyLong as={'time'} dateTime={getPublishedDateTime(contentProps)}>
             {dateString}
         </BodyLong>
     );
