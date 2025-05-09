@@ -39,14 +39,16 @@ nextApp.prepare().then(async () => {
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
-    expressApp.use('*', promMiddleware);
+    expressApp.use(promMiddleware);
 
-    expressApp.use('/*.(svg|png|ico|webmanifest)', (req, res, next) => {
-        res.setHeader('Cache-Control', 'public,max-age=86400');
+    expressApp.use((req, res, next) => {
+        if (/\.(svg|png|ico|webmanifest)$/.test(req.path)) {
+            res.setHeader('Cache-Control', 'public,max-age=86400');
+        }
         next();
     });
 
-    expressApp.all('*', (req, res, next) => {
+    expressApp.use((req, res, next) => {
         res.setHeader('app-name', 'nav-enonicxp-frontend');
         next();
     });
