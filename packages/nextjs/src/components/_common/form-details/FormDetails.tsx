@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
@@ -7,6 +7,7 @@ import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
+import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
@@ -98,24 +99,14 @@ export const FormDetails = ({
             )}
             {(hasVisibleFormNumbers || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
-                    {formNumbers?.map((formNumber, index) => (
-                        <Fragment key={formNumber}>
-                            {index > 0 && (
-                                <span aria-hidden={true} className={style.separator}>
-                                    {'|'}
-                                </span>
-                            )}
-                            <span
-                                className={
-                                    formNumber === formNumberToHighlight
-                                        ? style.highlight
-                                        : undefined
-                                }
-                                key={formNumber}
-                            >
-                                {formNumber}
-                            </span>
-                        </Fragment>
+                    {formNumbers?.map((formNumber) => (
+                        <FormNumberTag
+                            className={
+                                formNumber === formNumberToHighlight ? style.highlight : undefined
+                            }
+                            key={formNumber}
+                            formNumber={formNumber}
+                        />
                     ))}
                 </Detail>
             )}

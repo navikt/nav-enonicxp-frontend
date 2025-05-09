@@ -73,11 +73,3 @@
     color: var(--a-gray-800);
     border-radius: var(--a-border-radius-medium);
 }
-
-.separator {
-    color: var(--a-border-default);
-
-    @media #{common.$mq-screen-mobile} {
-        display: none;
-    }
-}
