@@ -8,7 +8,7 @@ import {
 } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -45,9 +45,9 @@ export const FrontpagePersonShortcutsPart = ({
     return (
         <nav className={style.personShortcuts} aria-label={getLabel('shortcuts')}>
             {sectionTitle && (
-                <Header size="large" level="2">
+                <Heading size="large" level="2">
                     {sectionTitle}
-                </Header>
+                </Heading>
             )}
             <ul className={style.list}>
                 {shortcuts.map((item) => {
