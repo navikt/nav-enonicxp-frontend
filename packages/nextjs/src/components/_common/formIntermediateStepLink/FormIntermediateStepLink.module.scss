@@ -13,6 +13,7 @@
     & :global(.navds-link-panel__title) {
         color: var(--default-action-color);
         font-size: 1.25rem;
+        margin-bottom: var(--a-spacing-1);
     }
 
     & :global(.navds-link-panel__description) {
