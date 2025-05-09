@@ -91,6 +91,11 @@ export const FormDetails = ({
                     {title}
                 </Heading>
             )}
+            {hasVisibleIngress && (
+                <div className={style.ingress}>
+                    <ParsedHtml htmlProps={ingress} />
+                </div>
+            )}
             {(hasVisibleFormNumbers || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {formNumbers?.map((formNumber, index) => (
@@ -113,11 +118,6 @@ export const FormDetails = ({
                         </Fragment>
                     ))}
                 </Detail>
-            )}
-            {hasVisibleIngress && (
-                <div className={style.ingress}>
-                    <ParsedHtml htmlProps={ingress} />
-                </div>
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
