@@ -37,11 +37,6 @@
 
     .content {
         grid-area: content;
-        margin-top: 0.5rem;
-
-        & > * {
-            width: 100%;
-        }
 
         .stepList {
             display: flex;
