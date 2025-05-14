@@ -1,16 +1,23 @@
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { OptionSetSingle } from 'types/util-types';
 
-//TODO: gjør noe med any?
-type ExternalOption = any;
-// {
-//     external: {
-//         formNumber?: string;
-//         externalUrl?: string;
-//     };
-// };
-type InternalOption = any;
-type NextOption = any;
+type ExternalOption = {
+    formNumber?: string;
+    externalUrl?: string;
+};
+type InternalOption = {
+    internalContent: {
+        _path: string;
+    };
+};
+type NextOption = {
+    steps: Array<{
+        label: string;
+        explanation?: string;
+        languageDisclaimer?: string;
+        nextStep: OptionSetSingle<StepOptions>;
+    }>;
+};
 
 export type StepOptions = {
     external?: ExternalOption;

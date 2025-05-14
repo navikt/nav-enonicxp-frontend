@@ -33,9 +33,10 @@ const resolveStepUrl = ({
             };
         }
         case 'internal': {
+            const path = step.nextStep.internal?.internalContent._path;
             return {
                 ...step,
-                href: stripXpPathPrefix(step.nextStep.internal?.internalContent._path),
+                href: path ? stripXpPathPrefix(path) : undefined,
             };
         }
         default: {
