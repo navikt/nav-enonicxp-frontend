@@ -127,3 +127,10 @@ export const English: Story = {
         ...Step.parameters,
     },
 };
+
+export const NoIngress: Story = {
+    args: {
+        ...LandingPage.args,
+        data: { ...LandingPage.args.data, editorial: undefined },
+    },
+};
