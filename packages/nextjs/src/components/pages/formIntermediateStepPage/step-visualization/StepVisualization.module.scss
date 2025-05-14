@@ -7,7 +7,7 @@
 
     li {
         padding-block: 0.5ch;
-        padding-inline-start: 1.5ch; //midlertidig fiks
+        padding-inline-start: 1.5ch;
         position: relative;
         list-style: none;
 
@@ -32,14 +32,4 @@
             inset-block-start: 0.5ch;
         }
     }
-
-    //Kommenter ut foreløpig, stylingen trenger finjustering. Se https://codepen.io/macbruker/pen/EaxRLKZ?editors=1100
-    // & > li:first-child:before {
-    //     inset-block: 1.25ch -1ch;
-    // }
-
-    // & > li:first-child:after {
-    //     inset-block-start: 1.25ch;
-    //     border-width: var(--stroke-width) 0 0 0;
-    // }
 }
