@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
@@ -62,9 +62,9 @@ export const FrontpageShortcutsPart = ({
             aria-label={getLabel('shortcuts')}
         >
             {sectionTitle && (
-                <Header size="large" level="2" className={style.header}>
+                <Heading size="large" level="2" className={style.header}>
                     {sectionTitle}
-                </Header>
+                </Heading>
             )}
             <ul className={classNames(style.list, threeCols && style.threeCols)}>
                 {shortcuts.map((item) => {

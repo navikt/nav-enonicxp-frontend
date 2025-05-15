@@ -1,6 +1,6 @@
 import React from 'react';
 import { FrontPageProps } from 'types/content-props/index-pages-props';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { AreaCard } from 'components/_common/areaCard/AreaCard';
 import { FrontPageCard } from 'components/_common/frontpageCard/FrontPageCard';
 import { classNames } from 'utils/classnames';
@@ -41,9 +41,9 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
 
     return (
         <div className={classNames(style.wrapper, audience && style[audience])}>
-            <Header level={'2'} size={'large'} className={style.header}>
+            <Heading level={'2'} size={'large'} className={style.header}>
                 {areasHeader}
-            </Header>
+            </Heading>
             <nav aria-label="Velg område">
                 <ul
                     className={classNames(

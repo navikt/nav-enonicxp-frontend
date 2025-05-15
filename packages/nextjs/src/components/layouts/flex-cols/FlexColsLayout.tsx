@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { FlexColsLayoutProps } from 'types/component-props/layouts/flex-cols';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 
 import style from './FlexColsLayout.module.scss';
 
@@ -36,9 +36,9 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps} className={style.flexCols}>
             {title && (
-                <Header level={'2'} size={'large'} anchorId={anchorId} className={style.header}>
+                <Heading level={'2'} size={'large'} anchorId={anchorId} className={style.header}>
                     {title}
-                </Header>
+                </Heading>
             )}
             <Region
                 pageProps={pageProps}

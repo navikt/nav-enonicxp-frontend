@@ -3,7 +3,7 @@ import { AreapageSituationsProps } from 'types/component-props/layouts/areapage-
 import { ContentProps } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 
 import Region from 'components/layouts/Region';
 
@@ -33,9 +33,9 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.container}
         >
-            <Header level={'2'} size={'large'} className={style.header}>
+            <Heading level={'2'} size={'large'} className={style.header}>
                 {title}
-            </Header>
+            </Heading>
             <EditorHelp
                 text={
                     'Listen oppdateres automatisk ut fra målgruppe og område, og kan ikke endres manuelt.' +

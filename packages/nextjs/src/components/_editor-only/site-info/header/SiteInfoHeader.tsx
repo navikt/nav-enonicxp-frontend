@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { ClusterState } from 'components/_editor-only/site-info/types';
 
@@ -23,7 +23,7 @@ export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
     return (
         <div className={style.container}>
             <div>
-                <Header level={'1'}>{'nav.no cms status'}</Header>
+                <Heading level={'1'}>{'nav.no cms status'}</Heading>
             </div>
             {clusterState ? (
                 <AlertBox
