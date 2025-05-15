@@ -43,7 +43,7 @@ export const FrontpagePersonShortcutsPart = ({
     const getLabel = translator('frontPage', language);
 
     return (
-        <nav className={style.personShortcuts} aria-label={getLabel('shortcuts')}>
+        <section className={style.personShortcuts} aria-label={getLabel('shortcuts')}>
             {sectionTitle && (
                 <Heading size="large" level="2">
                     {sectionTitle}
@@ -96,6 +96,6 @@ export const FrontpagePersonShortcutsPart = ({
                     );
                 })}
             </ul>
-        </nav>
+        </section>
     );
 };
