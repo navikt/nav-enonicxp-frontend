@@ -187,6 +187,9 @@ const config = {
 
         return config;
     },
+    sassOptions: {
+        silenceDeprecations: ['legacy-js-api'],
+    },
     redirects: async () => [
         {
             source: '/forsiden',

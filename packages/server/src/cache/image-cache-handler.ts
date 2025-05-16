@@ -31,7 +31,7 @@ export const injectNextImageCacheDir = async (nextServer: NextNodeServer, cacheD
     const responseCache = new ImageCacheWithCustomCacheDir(false, cacheDir);
 
     try {
-        nextServer['imageResponseCache'] = responseCache;
+        nextServer.nextServer['server']['imageResponseCache'] = responseCache;
     } catch (e) {
         logger.error(`Failed to set image cache dir on main server - ${e}`);
     }

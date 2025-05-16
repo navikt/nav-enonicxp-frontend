@@ -15,5 +15,6 @@ export const getNextServer = async (
 };
 
 export const getNextBuildId = (nextServer: NextNodeServer) => {
-    return nextServer['getBuildId']();
+    const anyServer = nextServer as any;
+    return anyServer['server']['buildId'];
 };

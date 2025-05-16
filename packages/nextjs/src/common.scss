@@ -1,12 +1,13 @@
 @forward '@navikt/ds-tokens/dist/tokens';
 @use '@navikt/ds-tokens/dist/tokens' as *;
 @use 'sass:math';
+@use 'sass:meta';
 
 $pixel-size-rem: math.div(1, 16);
 
 // In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
 @function stripUnit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
+    @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
         @return $number / ($number * 0 + 1);
     }
     @return $number;

@@ -33,12 +33,9 @@ nextApp.prepare().then(async () => {
 
     const nextServer = await getNextServer(nextApp);
     const test = nextServer as any;
-    console.log(test['server']['imageResponseCache']);
-
-    return;
 
     if (process.env.IMAGE_CACHE_DIR) {
-        await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
+        // await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     } else {
         logger.error('IMAGE_CACHE_DIR is not defined!');
     }
