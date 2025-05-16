@@ -10,14 +10,19 @@
         align-items: center;
     }
 
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
     & :global(.navds-link-panel__title) {
         color: var(--default-action-color);
         font-size: 1.25rem;
-        margin-bottom: var(--a-spacing-1);
     }
 
     & :global(.navds-link-panel__description) {
-        margin-bottom: 0.5rem;
+        margin-top: 0;
     }
 
     & :global(.navds-link-panel__chevron) {

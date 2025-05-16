@@ -38,7 +38,7 @@ export const FormIntermediateStepLink = ({
             analyticsLabel={analyticsLabel}
             shallow={isStepNavigation}
         >
-            <div>
+            <div className={style.content}>
                 <LinkPanel.Title>{label}</LinkPanel.Title>
                 {explanation && <LinkPanel.Description>{explanation}</LinkPanel.Description>}
                 {formNumber && <FormNumberTag formNumber={formNumber} />}
