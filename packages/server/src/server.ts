@@ -1,5 +1,5 @@
 import express, { ErrorRequestHandler } from 'express';
-import next from 'next';
+import createNextApp from 'next';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
 import path from 'path';
@@ -10,6 +10,8 @@ import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 
+export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
+
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
     customLabels: { hpa: 'rate' },
@@ -19,7 +21,7 @@ const promMiddleware = promBundle({
     },
 });
 
-const nextApp = next({
+const nextApp = createNextApp({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
     dir: path.join(__dirname, '..', '..', 'nextjs'),
@@ -30,6 +32,10 @@ nextApp.prepare().then(async () => {
     const port = process.env.PORT || 3000;
 
     const nextServer = await getNextServer(nextApp);
+    const test = nextServer as any;
+    console.log(test['server']['imageResponseCache']);
+
+    return;
 
     if (process.env.IMAGE_CACHE_DIR) {
         await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
@@ -40,16 +46,6 @@ nextApp.prepare().then(async () => {
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     expressApp.use('*', promMiddleware);
-
-    expressApp.use('/*.(svg|png|ico|webmanifest)', (req, res, next) => {
-        res.setHeader('Cache-Control', 'public,max-age=86400');
-        next();
-    });
-
-    expressApp.all('*', (req, res, next) => {
-        res.setHeader('app-name', 'nav-enonicxp-frontend');
-        next();
-    });
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);

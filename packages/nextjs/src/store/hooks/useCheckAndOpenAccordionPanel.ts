@@ -4,7 +4,7 @@ import { smoothScrollToTarget } from 'utils/scroll-to';
 export const useCheckAndOpenAccordionPanel = (
     openPanels: number[],
     setOpenPanels: (indexes: number[]) => void,
-    refs: React.RefObject<HTMLDivElement>[],
+    refs: React.RefObject<HTMLDivElement | null>[],
     expandAll: () => void
 ) => {
     const checkAndOpenPanels = useCallback(() => {

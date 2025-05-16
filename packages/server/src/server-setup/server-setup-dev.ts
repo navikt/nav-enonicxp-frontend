@@ -1,11 +1,12 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
+import { InferredNextWrapperServer } from 'server';
 
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
 
 // Redirects requests for other domains to the ansatt.dev.nav.no
-export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
+export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
     expressApp.all('*', (req, res, next) => {

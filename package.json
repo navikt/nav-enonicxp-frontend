@@ -73,6 +73,8 @@
         "lru-cache": "11.0.2",
         "pino": "9.6.0",
         "pino-pretty": "12.1.0",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
         "redis": "4.7.0"
     }
 }

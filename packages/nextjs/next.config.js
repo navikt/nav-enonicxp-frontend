@@ -271,6 +271,15 @@ const config = {
     ],
     headers: async () => [
         {
+            source: '/:path*',
+            headers: [
+                {
+                    key: 'app-name',
+                    value: 'nav-enonicxp-frontend',
+                },
+            ],
+        },
+        {
             source: '/_next/(.*)',
             headers: corsHeaders,
         },
@@ -284,6 +293,15 @@ const config = {
                 {
                     key: 'Content-Security-Policy',
                     value: await csp(),
+                },
+            ],
+        },
+        {
+            source: '/:all*\\.(svg|png|ico|webmanifest)',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'public, max-age=86400, immutable',
                 },
             ],
         },

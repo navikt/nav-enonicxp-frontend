@@ -14,6 +14,7 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
 import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
+import { InferredNextWrapperServer } from 'server';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -24,7 +25,7 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
     });
 };
 
-export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
+export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const jsonBodyParser = express.json();
 
     const validateSecretMiddleware = buildValidateSecretMiddleware(nextApp);
