@@ -15,6 +15,7 @@
             'header'
             'content';
         padding: 0;
+        margin-top: 0;
     }
     .pictogram {
         grid-area: pictogram;
@@ -24,6 +25,7 @@
         height: auto;
         position: relative;
         align-self: flex-start;
+        margin-bottom: 1.25rem;
 
         @media only screen and (max-width: 1024px) {
             width: 4rem;
