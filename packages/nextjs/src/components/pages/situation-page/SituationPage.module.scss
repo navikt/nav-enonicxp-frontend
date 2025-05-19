@@ -4,12 +4,6 @@
     display: flex;
     flex-direction: column;
 
-    @media #{common.$mq-screen-mobile} {
-        display: block;
-        margin: 0rem 0.5rem;
-        width: calc(100% - 1rem);
-    }
-
     :global(.region__pageContent) {
         display: flex;
         flex-direction: column;
