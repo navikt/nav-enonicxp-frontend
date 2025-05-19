@@ -38,6 +38,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
+            aria-labelledby={headingId}
             className={classNames(
                 style.pageNavigationMenu,
                 isChapterNavigation && style.chapterNavigation
@@ -52,7 +53,7 @@ export const PageNavigationMenu = ({
             >
                 {title}
             </Heading>
-            <ul aria-labelledby={headingId} className={style.list}>
+            <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
                         <LenkeBase

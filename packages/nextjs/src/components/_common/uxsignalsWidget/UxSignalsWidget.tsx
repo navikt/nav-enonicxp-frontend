@@ -67,9 +67,9 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
     }, []);
 
     return (
-        <section>
+        <aside>
             <div data-uxsignals-embed={embedCode} className={style.uxSignalsWidget} />
             <EditorHelp text={'UX Signals rekrutterings-widget'} type={'info'} />
-        </section>
+        </aside>
     );
 };
