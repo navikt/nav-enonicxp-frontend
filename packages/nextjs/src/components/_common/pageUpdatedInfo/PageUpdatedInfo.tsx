@@ -1,7 +1,6 @@
 import { BodyShort } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
-import { classNames } from 'utils/classnames';
 
 import styles from './PageUpdatedInfo.module.scss';
 
@@ -19,10 +18,8 @@ export const PageUpdatedInfo = ({ datetime, language = 'no' }: PageUpdatedInfoPr
     const updatedString = getDatesTranslations('lastChanged');
 
     return (
-        <div className={classNames(styles.contentWrapper)}>
-            <BodyShort className={styles.pageUpdatedInfo} size="small">
-                {updatedString}&nbsp;{formattedDate}
-            </BodyShort>
-        </div>
+        <BodyShort className={styles.pageUpdatedInfo} size="small">
+            {updatedString}&nbsp;{formattedDate}
+        </BodyShort>
     );
 };
