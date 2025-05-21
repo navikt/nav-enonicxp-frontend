@@ -8,14 +8,9 @@ import styles from './PageUpdatedInfo.module.scss';
 type PageUpdatedInfoProps = {
     datetime: string;
     language?: Language;
-    isSituationPage?: boolean;
 };
 
-export const PageUpdatedInfo = ({
-    datetime,
-    language = 'no',
-    isSituationPage,
-}: PageUpdatedInfoProps) => {
+export const PageUpdatedInfo = ({ datetime, language = 'no' }: PageUpdatedInfoProps) => {
     const usableLanguage =
         language === 'nn' || language === 'no' || language === 'se' ? 'no' : 'en';
 
@@ -24,7 +19,7 @@ export const PageUpdatedInfo = ({
     const updatedString = getDatesTranslations('lastChanged');
 
     return (
-        <div className={classNames(styles.contentWrapper, isSituationPage && styles.situationPage)}>
+        <div className={classNames(styles.contentWrapper)}>
             <BodyShort className={styles.pageUpdatedInfo} size="small">
                 {updatedString}&nbsp;{formattedDate}
             </BodyShort>

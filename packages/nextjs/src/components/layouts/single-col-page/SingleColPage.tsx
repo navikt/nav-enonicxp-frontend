@@ -35,6 +35,23 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     const showHeaderAndChangedate = hasGeneralComponents.has(pageProps.type);
 
+    const wrapWithSecondLastUpdatedInfo = (element: JSX.Element, key: string) => {
+        const isSecondLastElement =
+            key === regions.pageContent.components[regions.pageContent.components.length - 2]?.path;
+
+        return (
+            <React.Fragment key={key}>
+                {element}
+                {showHeaderAndChangedate && isSecondLastElement && (
+                    <PageUpdatedInfo
+                        datetime={pageProps.modifiedTime}
+                        language={pageProps.language}
+                    />
+                )}
+            </React.Fragment>
+        );
+    };
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {showHeaderAndChangedate && (
@@ -56,14 +73,11 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                     hideIngressOverride
                 />
             )}
-            <Region pageProps={pageProps} regionProps={regions.pageContent} />
-            {showHeaderAndChangedate && (
-                <PageUpdatedInfo
-                    datetime={pageProps.modifiedTime}
-                    isSituationPage
-                    language={pageProps.language}
-                />
-            )}
+            <Region
+                pageProps={pageProps}
+                regionProps={regions.pageContent}
+                wrapperFunction={wrapWithSecondLastUpdatedInfo}
+            />
         </LayoutContainer>
     );
 };
