@@ -35,6 +35,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--a-spacing-2);
+    margin-bottom: 1rem;
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
@@ -55,7 +56,6 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 5px;
-    margin-bottom: 1rem;
 }
 
 .highlight {

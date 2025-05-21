@@ -97,6 +97,17 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
+            {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
+            {alerts &&
+                alerts.map((alert, index) => <AlertInContext key={index} data={alert.data} />)}
+
+            {variations.length > 0 && (
+                <div className={style.variation}>
+                    {variations.map((variation) => (
+                        <FormDetailsButton key={variation.label} variation={variation} />
+                    ))}
+                </div>
+            )}
             {(hasVisibleFormNumbers || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {formNumbers?.map((formNumber) => (
@@ -109,16 +120,6 @@ export const FormDetails = ({
                         />
                     ))}
                 </Detail>
-            )}
-            {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
-            {alerts &&
-                alerts.map((alert, index) => <AlertInContext key={index} data={alert.data} />)}
-            {variations.length > 0 && (
-                <div className={style.variation}>
-                    {variations.map((variation) => (
-                        <FormDetailsButton key={variation.label} variation={variation} />
-                    ))}
-                </div>
             )}
         </div>
     );
