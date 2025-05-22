@@ -24,9 +24,3 @@ export const Ukrainian: Story = {
         language: 'uk',
     },
 };
-
-export const SitutationPage: Story = {
-    args: {
-        isSituationPage: true,
-    },
-};
