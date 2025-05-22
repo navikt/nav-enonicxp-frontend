@@ -1,4 +1,4 @@
-import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { FormDetails } from 'components/_common/formDetails/FormDetails';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { MacroFormDetailsProps } from 'types/macro-props/form-details';
 
