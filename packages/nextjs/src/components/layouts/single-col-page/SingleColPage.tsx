@@ -43,9 +43,16 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const wrapWithSecondLastUpdatedInfo = (element: JSX.Element, key: string) => {
         const components = regions.pageContent.components;
         const currentIndex = components.findIndex((comp) => comp.path === key);
+
         const isLastElement = currentIndex === components.length - 1;
         const isSecondLastElement = currentIndex === components.length - 2;
-        const shouldShowUpdatedInfo = hasContactOptions ? isSecondLastElement : isLastElement;
+
+        let shouldShowUpdatedInfo = false;
+        if (hasContactOptions) {
+            shouldShowUpdatedInfo = isSecondLastElement;
+        } else {
+            shouldShowUpdatedInfo = isLastElement;
+        }
 
         return (
             <React.Fragment key={key}>
