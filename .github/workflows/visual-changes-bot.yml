@@ -104,7 +104,7 @@ jobs:
                             owner,
                             repo,
                             pull_number: prNumber,
-                            body: `${REVIEW_MARKER}\n## 👀 Visual changes detected\n\nPlease [review the screenshot changes](${filesUrl}) before merging.`,
+                            body: `${REVIEW_MARKER}\n## 👀 Visual changes detected\n\nPlease review the [screenshot changes](${filesUrl}) before merging.`,
                             event: 'REQUEST_CHANGES'
                           });
                         } else if (!hasScreenshotChanges && botReview) {
