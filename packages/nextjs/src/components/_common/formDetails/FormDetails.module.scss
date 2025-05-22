@@ -35,7 +35,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--a-spacing-2);
-    margin-bottom: 1rem;
+    margin-bottom: 1.125rem;
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
