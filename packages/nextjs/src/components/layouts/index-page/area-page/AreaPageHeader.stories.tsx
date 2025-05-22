@@ -22,3 +22,14 @@ export const Default: Story = {
         },
     },
 };
+
+export const WithoutBanner: Story = {
+    args: {
+        content: {
+            data: {
+                header: 'Familie og barn',
+                area: Area.FAMILY,
+            },
+        },
+    },
+};

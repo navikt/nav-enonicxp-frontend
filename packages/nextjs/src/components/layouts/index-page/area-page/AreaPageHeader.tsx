@@ -10,7 +10,9 @@ import style from './AreaPageHeader.module.scss';
 
 type Props = {
     content: {
-        data: Pick<AreaPageProps['data'], 'header' | 'banner' | 'area'>;
+        data: Pick<AreaPageProps['data'], 'header' | 'area'> & {
+            banner?: AreaPageProps['data']['banner'];
+        };
     };
 };
 
