@@ -40,7 +40,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     const showHeaderAndChangedate = hasGeneralComponents.has(pageProps.type);
 
-    const wrapWithSecondLastUpdatedInfo = (element: JSX.Element, key: string) => {
+    const insertPageUpdatedInfo = (element: JSX.Element, key: string) => {
         const components = regions.pageContent.components;
         const currentIndex = components.findIndex((comp) => comp.path === key);
 
@@ -92,7 +92,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                 <Region
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
-                    wrapperFunction={wrapWithSecondLastUpdatedInfo}
+                    wrapperFunction={insertPageUpdatedInfo}
                 />
             </div>
         </LayoutContainer>
