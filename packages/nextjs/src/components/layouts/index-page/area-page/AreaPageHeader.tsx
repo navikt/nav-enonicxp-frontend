@@ -9,7 +9,9 @@ import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 import style from './AreaPageHeader.module.scss';
 
 type Props = {
-    content: AreaPageProps;
+    content: {
+        data: Pick<AreaPageProps['data'], 'header' | 'banner' | 'area'>;
+    };
 };
 
 export const AreaPageHeader = ({ content }: Props) => {
