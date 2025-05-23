@@ -27,11 +27,56 @@ export const Person: Story = {
                 navigationRefs: [
                     {
                         _id: '1',
-                        _path: '/arbeid',
+                        _path: '',
                         type: ContentType.AreaPage,
                         data: {
                             header: 'Arbeid',
                             area: Area.WORK,
+                        },
+                    },
+                    {
+                        _id: '2',
+                        _path: '',
+                        type: ContentType.AreaPage,
+                        data: {
+                            header: 'Helse og sykdom',
+                            area: Area.HEALTH,
+                        },
+                    },
+                    {
+                        _id: '3',
+                        _path: '',
+                        type: ContentType.AreaPage,
+                        data: {
+                            header: 'Familie og barn',
+                            area: Area.FAMILY,
+                        },
+                    },
+                    {
+                        _id: '4',
+                        _path: '',
+                        type: ContentType.AreaPage,
+                        data: {
+                            header: 'Pensjon',
+                            area: Area.PENSION,
+                        },
+                    },
+                    {
+                        _id: '5',
+                        _path: '',
+                        type: ContentType.AreaPage,
+                        data: {
+                            header: 'Sosiale tjenester og veiledning',
+                            area: Area.SOCIAL_COUNSELLING,
+                        },
+                    },
+                    {
+                        _id: '6',
+                        _path: '',
+                        type: ContentType.AreaPage,
+                        data: {
+                            header: 'Hjelpemidler og tilrettelegging',
+                            area: Area.ACCESSIBILITY,
                         },
                     },
                 ],
