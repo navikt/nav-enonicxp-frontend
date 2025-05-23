@@ -1,7 +1,6 @@
 import { Area } from 'types/areas';
-import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { IndexPageProps } from 'types/component-props/pages/index-page';
-import { AudienceOptions, ColorMixin, LinkSelectable } from 'types/component-props/_mixins';
+import { AudienceOptions } from 'types/component-props/_mixins';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { SituationPageProps } from './dynamic-page-props';
 import { PictogramsProps } from './pictograms';
@@ -30,7 +29,7 @@ export type FrontPageNestedData = {
 } & CommonData;
 
 export type FrontPageProps = {
-    type: ContentType.FrontPage;
+    type: ContentType.FrontPage; //fjern?
     data: FrontPageData;
 };
 
@@ -45,11 +44,9 @@ export type OtherRefsProps = OverviewPageProps | FormsOverviewProps | ExternalLi
 export type AreaPageData = {
     area: Area;
     header: string;
-    banner: { link: LinkSelectable; html: ProcessedHtmlProps } & ColorMixin;
-} & CommonData;
+};
 
-export type AreaPageProps = ContentCommonProps & {
+export type AreaPageProps = Pick<ContentCommonProps, '_id' | '_path'> & {
     type: ContentType.AreaPage;
     data: AreaPageData;
-    page: IndexPageProps;
 };
