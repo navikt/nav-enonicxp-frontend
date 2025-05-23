@@ -29,10 +29,9 @@ export type FrontPageNestedData = {
     illustration: PictogramsProps;
 } & CommonData;
 
-export type FrontPageProps = ContentCommonProps & {
+export type FrontPageProps = {
     type: ContentType.FrontPage;
     data: FrontPageData;
-    page: IndexPageProps;
 };
 
 export type FrontPageNestedProps = ContentCommonProps & {
