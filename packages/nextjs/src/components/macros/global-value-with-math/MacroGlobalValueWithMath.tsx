@@ -68,7 +68,7 @@ export const evaluateExpression = (
         const expressionWithDotSeparators = expressionSubstituted.replace(',', '.');
 
         const parsedExpression = jsep(expressionWithDotSeparators);
-        const result = evaluateExpressionJSEP(parsedExpression);
+        const result = Number(evaluateExpressionJSEP(parsedExpression).toFixed(1));
         return formatNumber({
             num: result,
             minDecimals: decimals,
