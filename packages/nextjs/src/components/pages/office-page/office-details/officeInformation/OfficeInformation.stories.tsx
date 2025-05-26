@@ -43,63 +43,16 @@ const mockOfficeData = {
     },
 };
 
-export const Default: Story = {
+export const Open: Story = {
     args: {
         officeData: mockOfficeData,
         initialOpen: true,
     },
 };
 
-export const WithAdditionalInfo: Story = {
+export const Closed: Story = {
     args: {
-        officeData: {
-            ...mockOfficeData,
-            telefonnummerKommentar: 'Telefontid: man-fre 09:00-15:00',
-            spesielleOpplysninger: 'Tilgjengelig for rullestolbrukere',
-            sosialeTjenester: 'Tilbyr sosialhjelp og økonomisk rådgivning',
-        },
-        initialOpen: true,
-    },
-};
-
-export const WithMultipleContactChannels: Story = {
-    args: {
-        officeData: {
-            ...mockOfficeData,
-            brukerkontakt: {
-                ...mockOfficeData.brukerkontakt,
-                publikumskanaler: [
-                    {
-                        beskrivelse: 'Generelt',
-                        telefon: '12345678',
-                        epost: 'oslo@nav.no',
-                        sortOrder: 1,
-                    },
-                    {
-                        beskrivelse: 'Sosialhjelp',
-                        telefon: '87654321',
-                        epost: 'sosial.oslo@nav.no',
-                        sortOrder: 2,
-                    },
-                ],
-            },
-        },
-        initialOpen: true,
-    },
-};
-
-export const WithAdditionalAddressInfo: Story = {
-    args: {
-        officeData: {
-            ...mockOfficeData,
-            beliggenhet: {
-                gatenavn: 'Karl Johans gate',
-                husnummer: '1',
-                husbokstav: 'B',
-                postnummer: '0154',
-                poststed: 'OSLO',
-            },
-        },
-        initialOpen: true,
+        officeData: mockOfficeData,
+        initialOpen: false,
     },
 };
