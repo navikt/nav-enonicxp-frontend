@@ -12,10 +12,11 @@ import styles from './OfficeInformation.module.scss';
 
 export interface OfficeInformationProps {
     officeData: OfficeDetailsData;
+    initialOpen?: boolean;
 }
 
-export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInformationProps) => {
+    const [isOpen, setIsOpen] = useState(initialOpen);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const getOfficeTranslations = translator('office', contentProps.language);

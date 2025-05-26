@@ -46,6 +46,7 @@ const mockOfficeData = {
 export const Default: Story = {
     args: {
         officeData: mockOfficeData,
+        initialOpen: true,
     },
 };
 
@@ -57,6 +58,7 @@ export const WithAdditionalInfo: Story = {
             spesielleOpplysninger: 'Tilgjengelig for rullestolbrukere',
             sosialeTjenester: 'Tilbyr sosialhjelp og økonomisk rådgivning',
         },
+        initialOpen: true,
     },
 };
 
@@ -82,6 +84,7 @@ export const WithMultipleContactChannels: Story = {
                 ],
             },
         },
+        initialOpen: true,
     },
 };
 
@@ -97,5 +100,6 @@ export const WithAdditionalAddressInfo: Story = {
                 poststed: 'OSLO',
             },
         },
+        initialOpen: true,
     },
 };
