@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { OfficeInformation } from './OfficeInformation';
 
 const meta = {
@@ -10,7 +10,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const mockOfficeData = {
+export const MockOfficeData: OfficeDetailsData = {
     enhetNr: '1234',
     type: 'NAV_KONTOR',
     telefonnummer: '12345678',
@@ -45,14 +45,14 @@ const mockOfficeData = {
 
 export const Open: Story = {
     args: {
-        officeData: mockOfficeData,
+        officeData: MockOfficeData,
         initialOpen: true,
     },
 };
 
 export const Closed: Story = {
     args: {
-        officeData: mockOfficeData,
+        officeData: MockOfficeData,
         initialOpen: false,
     },
 };
