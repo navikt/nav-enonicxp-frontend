@@ -2,7 +2,7 @@ import React from 'react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
 import { GVMessageProps } from './components/messages/GVMessages';
 
