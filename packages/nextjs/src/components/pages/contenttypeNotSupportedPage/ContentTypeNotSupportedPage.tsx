@@ -6,7 +6,7 @@ import { DocumentParameter } from 'components/_common/metatags/DocumentParameter
 
 import style from './ContentTypeNotSupportedPage.module.scss';
 
-export const ContentTypeNotSupportedPage = (props: ContentProps) => {
+export const ContentTypeNotSupportedPage = (props: Pick<ContentProps, 'type'>) => {
     return (
         <div className={style.notSupported}>
             <Head>
