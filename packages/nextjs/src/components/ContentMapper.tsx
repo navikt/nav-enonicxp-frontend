@@ -30,7 +30,7 @@ import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/Fo
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
 import { OfficePage } from './pages/office-page/OfficePage';
-import { ContactStepPage } from './pages/contact-step-page/ContactStepPage';
+import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
