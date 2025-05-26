@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MockOfficeData } from 'components/pages/office-page/office-details/officeInformation/OfficeInformation.stories';
+import { mockOfficeData } from 'components/pages/office-page/office-details/mockData';
 import { PhonePoster } from './PhonePoster';
 
 const meta = {
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         officeData: {
-            ...MockOfficeData,
+            ...mockOfficeData,
         },
     },
 };
