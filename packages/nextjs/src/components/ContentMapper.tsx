@@ -12,7 +12,7 @@ import { ContactInformationPage } from './pages/contact-information-page/Contact
 import { LargeTablePage } from './pages/large-table-page/LargeTablePage';
 import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
-import { SituationPage } from './pages/situation-page/SituationPage';
+import { SituationPage } from './pages/situationPage/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
