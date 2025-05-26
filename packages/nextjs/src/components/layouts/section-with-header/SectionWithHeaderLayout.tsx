@@ -7,7 +7,7 @@ import Region from 'components/layouts/Region';
 import { Heading } from 'components/_common/headers/Heading';
 import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';

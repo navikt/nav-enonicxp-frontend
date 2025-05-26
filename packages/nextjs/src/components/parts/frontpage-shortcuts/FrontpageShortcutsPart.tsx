@@ -1,7 +1,7 @@
 import React from 'react';
 import { translator } from 'translations';
 import { Heading } from 'components/_common/headers/Heading';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';

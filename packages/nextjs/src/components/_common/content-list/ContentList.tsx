@@ -7,7 +7,7 @@ import { getUrlFromContent } from 'utils/links-from-content';
 import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
     const dateLabel = dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);

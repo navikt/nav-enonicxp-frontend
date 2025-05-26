@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { ProductDetailType } from 'types/content-props/product-details';
 import {
     ProductDetailsPageProps,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AreapageSituationsProps } from 'types/component-props/layouts/areapage-situations';
 import { ContentProps } from 'types/content-props/_content-common';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { Heading } from 'components/_common/headers/Heading';
 

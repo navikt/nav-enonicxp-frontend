@@ -2,7 +2,7 @@ import React from 'react';
 import { LargeCardV2 } from 'components/_common/card/LargeCardV2/LargeCardV2';
 import { CardType } from 'types/card';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 import { XpImageProps } from 'types/media';

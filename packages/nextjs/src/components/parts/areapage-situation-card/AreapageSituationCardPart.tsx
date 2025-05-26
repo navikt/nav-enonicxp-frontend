@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { LargeCardV1 } from 'components/_common/card/LargeCardV1/LargeCardV1';
 import { usePageContentProps } from 'store/pageContext';
