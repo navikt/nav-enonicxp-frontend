@@ -218,7 +218,7 @@ export const translationsBundleNb = {
         },
     },
     form: {
-        back: 'Tilbake',
+        back: 'Velg en annen måte å sende inn på',
     },
     contactPoint: {
         chat: {

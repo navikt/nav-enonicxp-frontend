@@ -206,7 +206,7 @@ export const translationsBundleEn: PartialTranslations = {
         },
     },
     form: {
-        back: 'Back',
+        back: 'Choose a different way to submit the form',
     },
     contactPoint: {
         chat: {

@@ -56,6 +56,17 @@ export const LanguageDisclaimer: Story = {
     },
 };
 
+export const WithFormNumbers: Story = {
+    args: {
+        formDetails: {
+            ...baseFormDetails,
+            formNumbers: ['NAV 01-01.01', 'NAV 01-01.02', 'NAV 01-01.03a', 'NAV 01-01.03b'],
+        },
+        formNumberSelected: 'nav 01-01.03a',
+        displayConfig: { showTitle: true, showIngress: true, showFormNumbers: true },
+    },
+};
+
 export const Alerts: Story = {
     args: {
         formDetails: {

@@ -3,10 +3,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormDetailsListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
-import {
-    FormDetails,
-    FormDetailsComponentProps,
-} from 'components/_common/form-details/FormDetails';
+import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';

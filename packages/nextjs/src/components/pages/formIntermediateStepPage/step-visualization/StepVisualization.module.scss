@@ -1,0 +1,35 @@
+.tree {
+    --stroke-width: 2px;
+    --stroke-color: #777;
+    font-family: system-ui, sans-serif;
+    padding-inline-start: 0;
+    margin: 2rem;
+
+    li {
+        padding-block: 0.5ch;
+        padding-inline-start: 1.5ch;
+        position: relative;
+        list-style: none;
+
+        &:not(:last-child):before {
+            content: '';
+            inline-size: var(--stroke-width);
+            inset-block: 0 -0.5ch;
+            inset-inline-start: 0;
+            background-color: var(--stroke-color);
+            position: absolute;
+        }
+
+        &:after {
+            content: '';
+            inline-size: 10px;
+            block-size: 1ch;
+            inset-inline-start: 0;
+            border-width: 0 0 var(--stroke-width) var(--stroke-width);
+            border-style: solid;
+            border-color: var(--stroke-color);
+            position: absolute;
+            inset-block-start: 0.5ch;
+        }
+    }
+}
