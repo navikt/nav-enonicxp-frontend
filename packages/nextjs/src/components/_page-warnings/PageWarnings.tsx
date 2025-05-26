@@ -5,13 +5,23 @@ import { hasWhiteHeader } from 'utils/appearance';
 import { PageWarning } from './page-warning/PageWarning';
 
 type Props = {
-    content: ContentProps;
+    content: Pick<
+        ContentProps,
+        | 'isFailover'
+        | 'isPagePreview'
+        | 'originalType'
+        | 'language'
+        | 'redirectToLayer'
+        | 'editorView'
+        | 'type'
+        | 'data'
+    >;
 };
 
 export const PageWarnings = ({ content }: Props) => {
     const { isFailover, isPagePreview, originalType, language, redirectToLayer } = content;
 
-    const whiteBg = hasWhiteHeader(content);
+    const whiteBg = hasWhiteHeader({ type: content.type, data: content.data });
 
     const isEditorView = !!content.editorView;
 
