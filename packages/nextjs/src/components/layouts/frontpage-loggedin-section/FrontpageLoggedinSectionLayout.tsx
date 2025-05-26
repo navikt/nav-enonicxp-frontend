@@ -2,7 +2,7 @@ import React from 'react';
 import { FrontpageLoggedinSectionLayoutProps } from 'types/component-props/layouts/frontpage-loggedin-section';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { Heading } from 'components/_common/headers/Heading';
 import Region from 'components/layouts/Region';
 import { AuthDependantRender } from 'components/_common/authDependantRender/AuthDependantRender';

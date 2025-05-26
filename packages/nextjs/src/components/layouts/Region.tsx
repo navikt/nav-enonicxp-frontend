@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { RegionProps } from 'types/component-props/layouts';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 type Props = {
     pageProps: ContentProps;

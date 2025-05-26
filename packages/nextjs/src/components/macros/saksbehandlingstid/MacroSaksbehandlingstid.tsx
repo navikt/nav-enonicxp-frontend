@@ -3,7 +3,7 @@ import { MacroSaksbehandlingstidProps } from 'types/macro-props/saksbehandlingst
 import { usePageContentProps } from 'store/pageContext';
 import { Language, translator } from 'translations';
 import { GlobalCaseTimeUnit } from 'types/content-props/global-values-props';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 export const getCaseTimeString = (
     value: number | string,

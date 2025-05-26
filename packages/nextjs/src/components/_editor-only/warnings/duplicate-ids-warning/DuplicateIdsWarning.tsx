@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 import { createPortal } from 'react-dom';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 

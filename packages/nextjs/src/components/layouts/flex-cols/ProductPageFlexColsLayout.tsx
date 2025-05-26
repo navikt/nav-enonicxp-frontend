@@ -4,7 +4,7 @@ import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { ProductPageFlexColsLayoutProps } from 'types/component-props/layouts/product-flex-cols';
 import { Heading } from 'components/_common/headers/Heading';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './FlexColsLayout.module.scss';
 

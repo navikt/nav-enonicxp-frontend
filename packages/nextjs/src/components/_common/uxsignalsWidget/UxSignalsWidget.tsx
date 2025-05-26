@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
 
