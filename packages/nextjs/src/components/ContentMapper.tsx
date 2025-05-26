@@ -5,7 +5,7 @@ import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-pa
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
-import { ErrorPage } from './pages/error-page/ErrorPage';
+import { ErrorPage } from './pages/errorPage/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import { ContactInformationPage } from './pages/contact-information-page/ContactInformationPage';
