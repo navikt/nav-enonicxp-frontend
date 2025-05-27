@@ -29,7 +29,6 @@ $iconContainerRadius: 2rem;
         height: $iconContainerSize;
         position: relative;
         border-radius: 50%;
-        background-color: $defaultBgColor;
         overflow: hidden;
 
         @include adjust-for-padding(common.$sectionPaddingDesktop);
@@ -43,7 +42,7 @@ $iconContainerRadius: 2rem;
         }
 
         img {
-            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
+            $iconSize: 2.8125rem;
             height: common.round-rem($iconSize);
             width: common.round-rem($iconSize);
         }

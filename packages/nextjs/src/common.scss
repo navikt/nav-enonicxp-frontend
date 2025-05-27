@@ -4,14 +4,6 @@
 
 $pixel-size-rem: math.div(1, 16);
 
-// In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
-@function stripUnit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
-    }
-    @return $number;
-}
-
 @function round-rem($value: 0) {
     $valueUpper: $value + $pixel-size-rem / 2;
     @return $valueUpper - ($valueUpper % $pixel-size-rem);
