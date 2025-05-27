@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
-import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/office-details/utils';
+import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/officeDetails/utils';
 
 import styles from './AudienceChannels.module.scss';
 

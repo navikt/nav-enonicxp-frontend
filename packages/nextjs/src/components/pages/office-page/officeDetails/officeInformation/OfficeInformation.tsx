@@ -6,16 +6,17 @@ import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
-import { officeDetailsFormatAddress } from 'components/pages/office-page/office-details/utils';
+import { officeDetailsFormatAddress } from 'components/pages/office-page/officeDetails/utils';
 
 import styles from './OfficeInformation.module.scss';
 
 export interface OfficeInformationProps {
     officeData: OfficeDetailsData;
+    initialOpen?: boolean;
 }
 
-export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInformationProps) => {
+    const [isOpen, setIsOpen] = useState(initialOpen);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const getOfficeTranslations = translator('office', contentProps.language);
