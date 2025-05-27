@@ -54,10 +54,10 @@ const openingHours: OpeningHours[] = [
         dag: 'Torsdag',
         kunTimeavtale: 'true',
     },
+    { dag: 'Fredag', fra: '12:00', til: '15:00' },
 ];
 
 const specialOpeningHours: OpeningHours[] = [
-    { dag: 'Fredag', fra: '12:00', til: '15:00' },
     { dato: '1999-12-24', stengt: 'true' },
     { dato: '2042-12-24', stengt: 'true' },
     { dato: '2042-12-31', fra: '09:00', til: '12:00' },
