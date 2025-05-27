@@ -14,7 +14,7 @@ import style from './ProductPanelExpandable.module.scss';
 
 type Props = {
     header: string;
-    subHeader?: string;
+    ingress?: string;
     illustration: PictogramsProps;
     anchorId: string;
     contentLoaderCallback?: () => void;
@@ -27,7 +27,7 @@ type Props = {
 
 export const ProductPanelExpandable = ({
     header,
-    subHeader,
+    ingress,
     anchorId,
     illustration,
     contentLoaderCallback,
@@ -92,17 +92,10 @@ export const ProductPanelExpandable = ({
                 <IllustrationStatic className={style.illustration} illustration={illustration} />
                 <span className={style.panelHeader}>
                     <span>{header}</span>
-                    {subHeader && <span className={style.subHeader}>{subHeader}</span>}
+                    {ingress && <span className={style.ingress}>{ingress}</span>}
                 </span>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>
-                {withCopyLink && (
-                    <CopyLink
-                        anchor={anchorIdWithHash}
-                        heading={header}
-                        className={style.copyLink}
-                    />
-                )}
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                 {isLoading ? (
                     <div className={style.loader}>
@@ -111,6 +104,13 @@ export const ProductPanelExpandable = ({
                     </div>
                 ) : (
                     children
+                )}
+                {withCopyLink && (
+                    <CopyLink
+                        anchor={anchorIdWithHash}
+                        heading={header}
+                        className={style.copyLink}
+                    />
                 )}
             </ExpansionCard.Content>
         </ExpansionCard>
