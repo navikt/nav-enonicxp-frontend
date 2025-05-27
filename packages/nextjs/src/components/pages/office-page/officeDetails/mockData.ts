@@ -1,6 +1,13 @@
 import { AudienceReception } from '@navikt/nav-office-reception-info';
 import { OpeningHours } from '@navikt/nav-office-reception-info/dist/utils/types';
-import { OfficeDetailsData } from 'types/content-props/office-details-props';
+import { AudienceContact, OfficeDetailsData } from 'types/content-props/office-details-props';
+
+export const mockAudienceContact: AudienceContact = {
+    beskrivelse:
+        'Hvis du i en nødssituasjon og trenger rask kontakt med Nav-kontoret ditt kan du ringe vakttelefon',
+    telefon: '99527885',
+    sortOrder: 1,
+};
 
 export const mockOfficeData: OfficeDetailsData = {
     enhetNr: '1234',
@@ -26,12 +33,7 @@ export const mockOfficeData: OfficeDetailsData = {
     brukerkontakt: {
         spraakdrakt: 'NB' as const,
         publikumsmottak: [],
-        publikumskanaler: {
-            beskrivelse: 'Kontakt oss',
-            telefon: '12345678',
-            epost: 'oslo@nav.no',
-            sortOrder: 1,
-        },
+        publikumskanaler: [mockAudienceContact],
     },
 };
 
