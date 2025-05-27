@@ -22,7 +22,7 @@ export const MoreLink = ( props: Props) => {
             href={url}
             linkGroup={props.analyticsGroup}
             className={styles.moreLink}
-            withChevron={false}
+            withChevron
         >
             <ArrowRightIcon aria-hidden={true} className={styles.arrow} />
             {text}
