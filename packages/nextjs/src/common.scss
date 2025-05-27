@@ -1,4 +1,3 @@
-@use '@navikt/ds-tokens/dist/tokens' as *;
 @use 'sass:math';
 
 $pixel-size-rem: math.div(1, 16);
@@ -138,7 +137,7 @@ $versionSelectorMinHeight: 3rem;
 
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
-    box-shadow: 0 0 0 3px if($inset, inset, null) $a-border-focus;
+    box-shadow: 0 0 0 3px if($inset, inset, null) var(--a-border-focus);
 }
 
 @mixin link-underline-mixin($underlineDefault: true) {
