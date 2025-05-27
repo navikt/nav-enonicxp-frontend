@@ -26,8 +26,8 @@
         &:focus {
             outline: none;
             color: white;
-            background-color: common.$a-border-focus;
-            box-shadow: 0 0 0 2px common.$a-border-focus;
+            background-color: var(--a-border-focus);
+            box-shadow: 0 0 0 2px var(--a-border-focus);
         }
         &:hover:before,
         &:focus:before,

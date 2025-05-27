@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .overviewFilter {
     display: flex;
     flex-direction: column;
@@ -15,11 +13,11 @@
 }
 
 .filterButton {
-    background-color: var(--a-deepblue-50, common.$a-deepblue-50);
+    background-color: var(--a-deepblue-50);
     box-shadow: none;
 
     &:hover {
-        background-color: var(--a-deepblue-100, common.$a-deepblue-100);
+        background-color: var(--a-deepblue-100);
     }
 
     &:hover:not(:focus) {

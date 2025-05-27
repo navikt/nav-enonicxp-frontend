@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .filtersMenu {
-    box-shadow: common.$a-blue-200 inset 0 0 0 8px;
+    box-shadow: var(--a-blue-200) inset 0 0 0 8px;
     border-radius: 0.2em;
     background-color: white;
 
@@ -19,7 +19,7 @@
         margin-top: 1.5em;
 
         :global(.navds-fieldset__legend) {
-            font-size: common.$a-font-size-large;
+            font-size: var(--a-font-size-large);
         }
         :global(.navds-checkboxes) {
             display: flex;

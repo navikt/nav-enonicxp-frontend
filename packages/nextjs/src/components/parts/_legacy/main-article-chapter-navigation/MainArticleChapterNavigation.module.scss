@@ -30,7 +30,7 @@ $decorWidth: 0.5rem;
             position: relative;
             text-decoration: none;
             z-index: 1;
-            font-weight: common.$a-font-weight-bold;
+            font-weight: var(--a-font-weight-bold);
 
             &:before {
                 content: ' ';
@@ -58,13 +58,13 @@ $decorWidth: 0.5rem;
 
         a {
             &:hover {
-                background-color: common.$a-blue-100;
-                color: common.$a-gray-900;
+                background-color: var(--a-blue-100);
+                color: var(--a-gray-900);
                 text-decoration: none;
             }
             &:focus {
                 background: none;
-                box-shadow: 0 0 0 0.2rem common.$a-border-focus;
+                box-shadow: 0 0 0 0.2rem var(--a-border-focus);
                 color: var(--default-action-color);
                 cursor: pointer;
                 outline: none;

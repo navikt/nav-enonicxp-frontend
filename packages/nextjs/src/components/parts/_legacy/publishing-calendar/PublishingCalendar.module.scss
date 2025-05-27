@@ -1,8 +1,6 @@
-@use 'common' as common;
-
 .publishingCalendar {
     padding: 2rem;
-    background: common.$a-white;
+    background: var(--a-white);
 
     h1 {
         margin-bottom: 1rem;

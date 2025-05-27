@@ -5,7 +5,7 @@
 
 $padding: 1.5rem;
 $blueLinkColor: var(--default-action-color);
-$blackLinkColor: common.$a-text-default;
+$blackLinkColor: var(--a-text-default);
 
 .linkPanelNavno {
     position: relative;

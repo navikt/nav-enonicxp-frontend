@@ -1,6 +1,6 @@
 @use 'common' as common;
 
-$color: common.$a-deepblue-100;
+$color: var(--a-deepblue-100);
 $separator-attribs: 1px $color solid;
 
 .expandable {
@@ -32,7 +32,7 @@ $separator-attribs: 1px $color solid;
     &:hover,
     &:focus {
         background-color: var(--a-deepblue-100);
-        color: common.$a-text-default;
+        color: var(--a-text-default);
         box-shadow: 0 0 0 0;
 
         & + :global(.navds-expansioncard__content) {
@@ -41,7 +41,7 @@ $separator-attribs: 1px $color solid;
 
         .illustration {
             & > :first-child:not(:last-child) * {
-                fill: common.$a-white;
+                fill: var(--a-white);
             }
         }
     }

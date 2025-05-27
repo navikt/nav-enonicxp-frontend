@@ -1,13 +1,13 @@
 @use 'common' as common;
 
-$blackLinkColor: common.$a-text-default;
+$blackLinkColor: var(--a-text-default);
 
 .linkPanel {
     display: flex;
     padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
     text-decoration-line: underline;
-    text-decoration-color: common.$a-text-default !important;
+    text-decoration-color: var(--a-text-default) !important;
     text-decoration-thickness: 0.05em;
     text-underline-offset: 0.1em;
 
@@ -53,5 +53,5 @@ $blackLinkColor: common.$a-text-default;
         line-height: 1.75rem;
     }
 
-    color: common.$a-text-default;
+    color: var(--a-text-default);
 }

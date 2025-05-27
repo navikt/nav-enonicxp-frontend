@@ -1,7 +1,5 @@
-@use 'common' as common;
-
 .header {
-    font-weight: common.$a-font-weight-bold;
+    font-weight: var(--a-font-weight-bold);
 }
 
 .wrapper {

@@ -4,7 +4,7 @@
     width: 100%;
     background-color: white;
     padding: common.$editorPaddingVertical common.$editorPaddingHorizontal;
-    border: 4px solid common.$a-green-200;
+    border: 4px solid var(--a-green-200);
 
     .headerRow {
         display: flex;
