@@ -1,7 +1,7 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: common.px-to-rem(60px / 2);
+$iconContainerRadius: 1.875rem;
 $iconContainerSize: $iconContainerRadius * 2;
 $defaultBgColor: white;
 
@@ -37,13 +37,13 @@ $defaultBgColor: white;
 }
 
 .topMarker .header {
-  position: relative;
-  margin-bottom: var(--a-spacing-4);
-  color: var(--brand-purple-deep);
+    position: relative;
+    margin-bottom: var(--a-spacing-4);
+    color: var(--brand-purple-deep);
 
-  &:before {
-      @include common.header-before-rectangle();
-  }
+    &:before {
+        @include common.header-before-rectangle();
+    }
 }
 
 .headerWithIcon {

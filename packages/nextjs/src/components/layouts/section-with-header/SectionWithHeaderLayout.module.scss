@@ -1,7 +1,7 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: common.px-to-rem(64px / 2);
+$iconContainerRadius: 2rem;
 
 .container {
     $iconContainerSize: $iconContainerRadius * 2;

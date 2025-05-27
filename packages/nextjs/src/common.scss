@@ -12,10 +12,6 @@ $pixel-size-rem: math.div(1, 16);
     @return $number;
 }
 
-@function px-to-rem($px) {
-    @return stripUnit($px) * $pixel-size-rem * 1rem;
-}
-
 @function round-rem($value: 0) {
     $valueUpper: $value + $pixel-size-rem / 2;
     @return $valueUpper - ($valueUpper % $pixel-size-rem);
@@ -44,7 +40,7 @@ $mq-screen-mobile-small: 'only screen and (max-width: #{$mobileSmallMaxWidth})';
 $mq-screen-desktop-small: 'only screen and (max-width: #{$desktopSmallMaxWidth})';
 
 // Max-width for SituationPage & Layouts
-$contentMaxWidth: px-to-rem(900);
+$contentMaxWidth: 56.25rem;
 $sectionMaxWidth: calc(#{$contentMaxWidth} * 2 / 3);
 
 $padding-sides-desktop: 3rem;

@@ -103,7 +103,7 @@
         &:global(.tool),
         &:global(.themed-article),
         &:global(.situation) {
-            min-height: common.px-to-rem(400);
+            min-height: 25rem;
         }
         &:not(:hover):not(:active) {
             box-shadow: var(--a-shadow-medium);
