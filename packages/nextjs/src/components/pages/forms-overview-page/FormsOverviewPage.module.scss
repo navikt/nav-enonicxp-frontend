@@ -6,34 +6,17 @@
 
     margin: 1.25rem auto var(--a-spacing-10);
     grid-template-areas:
-        'main'
-        'side';
+        'main';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 6rem 2fr 6rem;
+        grid-template-columns: 6rem auto 6rem;
         grid-template-areas:
             'pictogram main .'
-            '. side .';
-    }
-
-    &.withSideCol {
-        @media #{common.$mq-screen-desktop-small-up} {
-            grid-template-areas: 'pictogram main side';
-            grid-template-columns: 6rem 2fr 1fr;
-        }
     }
 }
 
 .main {
     grid-area: main;
-}
-
-.aside {
-    grid-area: side;
-
-    & > * {
-        border-radius: common.$border-radius-large;
-    }
 }
 
 .pictogram {
