@@ -22,6 +22,18 @@ export const WithReception: Story = {
     },
 };
 
+export const WithSpecialOpeningHours: Story = {
+    args: {
+        officeData: {
+            ...mockOfficeData,
+            brukerkontakt: {
+                ...mockOfficeData.brukerkontakt,
+                publikumsmottak: [mockReception2],
+            },
+        },
+    },
+};
+
 export const WithMultipleReceptions: Story = {
     args: {
         officeData: {

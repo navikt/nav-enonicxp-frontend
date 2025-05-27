@@ -1,4 +1,5 @@
 import { AudienceReception } from '@navikt/nav-office-reception-info';
+import { OpeningHours } from '@navikt/nav-office-reception-info/dist/utils/types';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 export const mockOfficeData: OfficeDetailsData = {
@@ -34,6 +35,34 @@ export const mockOfficeData: OfficeDetailsData = {
     },
 };
 
+const openingHours: OpeningHours[] = [
+    {
+        dag: 'Mandag',
+        fra: '09:00',
+        til: '15:00',
+    },
+    {
+        dag: 'Tirsdag',
+        fra: '09:00',
+        til: '15:00',
+    },
+    {
+        dag: 'Onsdag',
+        stengt: 'true',
+    },
+    {
+        dag: 'Torsdag',
+        kunTimeavtale: 'true',
+    },
+];
+
+const specialOpeningHours: OpeningHours[] = [
+    { dag: 'Fredag', fra: '12:00', til: '15:00' },
+    { dato: '1999-12-24', stengt: 'true' },
+    { dato: '2042-12-24', stengt: 'true' },
+    { dato: '2042-12-31', fra: '09:00', til: '12:00' },
+];
+
 export const mockReception1: AudienceReception = {
     officeType: 'NAV_KONTOR',
     besoeksadresse: {
@@ -43,30 +72,7 @@ export const mockReception1: AudienceReception = {
         postnummer: '1234',
         poststed: 'Herøy',
     },
-    aapningstider: [
-        {
-            dag: 'Mandag',
-            fra: '09:00',
-            til: '15:00',
-        },
-        {
-            dag: 'Tirsdag',
-            fra: '09:00',
-            til: '15:00',
-        },
-        {
-            dag: 'Onsdag',
-            stengt: 'true',
-        },
-        {
-            dag: 'Torsdag',
-            kunTimeavtale: 'true',
-        },
-        { dag: 'Fredag', fra: '12:00', til: '15:00' },
-        { dato: '1999-12-24', stengt: 'true' },
-        { dato: '2042-12-24', stengt: 'true' },
-        { dato: '2042-12-31', fra: '09:00', til: '12:00' },
-    ],
+    aapningstider: [...openingHours],
 };
 
 export const mockReception2: AudienceReception = {
@@ -78,11 +84,5 @@ export const mockReception2: AudienceReception = {
         postnummer: '0155',
         poststed: 'Dønna',
     },
-    aapningstider: [
-        {
-            dag: 'Mandag',
-            fra: '10:00',
-            til: '16:00',
-        },
-    ],
+    aapningstider: [...openingHours, ...specialOpeningHours],
 };
