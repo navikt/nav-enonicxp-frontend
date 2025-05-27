@@ -6,8 +6,8 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { Filter } from 'types/store/filter-menu';
-import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
@@ -103,9 +103,9 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     return (
         <section className={style.filtersMenu} aria-describedby="description">
             {title && (
-                <Header level="2" size="large">
+                <Heading level="2" size="large">
                     {title}
-                </Header>
+                </Heading>
             )}
             <BodyLong className={style.introduction} id="description">
                 {description || ''}

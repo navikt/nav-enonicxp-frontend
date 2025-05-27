@@ -3,10 +3,4 @@
 .genericPage {
     display: flex;
     flex-direction: column;
-    padding-bottom: 3rem;
-
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { headingToLevel, headingToSize } from 'types/typo-style';
 import { MacroHeaderWithAnchorProps } from 'types/macro-props/header-with-anchor';
-import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './MacroheaderWithAnchor.module.scss';
 
@@ -23,8 +23,8 @@ export const MacroHeaderWithAnchor = ({ config }: MacroHeaderWithAnchorProps) =>
     }
 
     return (
-        <Header level={level} size={size} anchorId={id} className={style.headerWithAnchor}>
+        <Heading level={level} size={size} anchorId={id} className={style.headerWithAnchor}>
             {headerText}
-        </Header>
+        </Heading>
     );
 };

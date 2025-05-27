@@ -3,7 +3,7 @@ import { LinkPanel } from '@navikt/ds-react';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { FormIntermediateStep_StepLinkData } from 'components/pages/form-intermediate-step-page/useFormIntermediateStepPageState';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 type Props = FormIntermediateStep_StepLinkData &
     Omit<React.ComponentProps<typeof LenkeBase>, 'children' | 'href'>;

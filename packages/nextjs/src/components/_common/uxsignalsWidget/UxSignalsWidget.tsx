@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
 
@@ -67,9 +67,9 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
     }, []);
 
     return (
-        <section>
+        <aside>
             <div data-uxsignals-embed={embedCode} className={style.uxSignalsWidget} />
             <EditorHelp text={'UX Signals rekrutterings-widget'} type={'info'} />
-        </section>
+        </aside>
     );
 };

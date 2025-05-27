@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

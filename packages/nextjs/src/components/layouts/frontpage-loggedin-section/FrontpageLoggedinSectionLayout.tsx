@@ -2,8 +2,8 @@ import React from 'react';
 import { FrontpageLoggedinSectionLayoutProps } from 'types/component-props/layouts/frontpage-loggedin-section';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { Header } from 'components/_common/headers/Header';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
 import Region from 'components/layouts/Region';
 import { AuthDependantRender } from 'components/_common/authDependantRender/AuthDependantRender';
 import { useAuthState } from 'store/hooks/useAuthState';
@@ -22,9 +22,9 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const greetings = translator('greetings', language);
 
     return (
-        <Header level={'2'} size={'large'} className={style.header}>
+        <Heading level={'2'} size={'large'} className={style.header}>
             {name ? headerText.replace('$navn', capitalize(name)) : greetings('hi')}
-        </Header>
+        </Heading>
     );
 };
 
@@ -55,9 +55,9 @@ export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props
                 data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
-                <Header level="3" size="small" className={style.services}>
+                <Heading level="3" size="small" className={style.services}>
                     {title}
-                </Header>
+                </Heading>
                 <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
                 <MoreLink analyticsGroup={title} link={mypage?.link} />
             </LayoutContainer>

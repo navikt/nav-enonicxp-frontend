@@ -2,7 +2,7 @@ import React from 'react';
 import { DynamicPage } from 'components/pages/dynamic-page/DynamicPage';
 import { ContentType } from 'types/content-props/_content-common';
 import { TemplateProps } from 'types/content-props/template-props';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { linkListDataMock } from './mocks/linkListDataMock';
 import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';

@@ -3,7 +3,7 @@ import { Lenkeliste, ListType } from 'components/_common/lenkeliste/Lenkeliste';
 import { ContentList } from 'components/_common/content-list/ContentList';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { ContentListMixin, ExpandableMixin, LinkSelectable } from 'types/component-props/_mixins';
