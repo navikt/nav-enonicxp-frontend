@@ -43,8 +43,8 @@ $iconContainerRadius: 2rem;
 
         img {
             $iconSize: 2.8125rem;
-            height: common.round-rem($iconSize);
-            width: common.round-rem($iconSize);
+            height: $iconSize;
+            width: $iconSize;
         }
     }
 }

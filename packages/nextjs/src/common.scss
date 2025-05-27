@@ -4,11 +4,6 @@
 
 $pixel-size-rem: math.div(1, 16);
 
-@function round-rem($value: 0) {
-    $valueUpper: $value + $pixel-size-rem / 2;
-    @return $valueUpper - ($valueUpper % $pixel-size-rem);
-}
-
 // Screen size breakpoints
 $mobileMaxWidth: 48rem; // 768px
 $tabletMinWidth: $mobileMaxWidth;

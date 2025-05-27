@@ -30,8 +30,8 @@ $defaultBgColor: white;
 
         img {
             $iconSize: 2.7386rem;
-            height: common.round-rem($iconSize);
-            width: common.round-rem($iconSize);
+            height: $iconSize;
+            width: $iconSize;
         }
     }
 }
