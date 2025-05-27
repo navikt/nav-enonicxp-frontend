@@ -1,9 +1,9 @@
 import React from 'react';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { PhoneFillIcon } from '@navikt/aksel-icons';
-import { OfficeDetailsProps } from 'components/pages/office-page/office-details/OfficeDetails';
+import { OfficeDetailsProps } from 'components/pages/office-page/officeDetails/OfficeDetails';
 import { translator } from 'translations';
-import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/office-details/utils';
+import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/officeDetails/utils';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
