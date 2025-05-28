@@ -43,8 +43,7 @@ jobs:
                     --ipc=host \
                     mcr.microsoft.com/playwright:v1.51.0-noble \
                     /bin/bash -c "
-                      npm install -g ts-node typescript && \
-                      NODE_OPTIONS='--loader ts-node/esm' ts-node packages/nextjs/playwright/cleanup-screenshots.ts && \
+                      npx ts-node --esm packages/nextjs/playwright/cleanup-screenshots.ts && \
                       CI=true npx playwright test --update-snapshots
                     "
 
