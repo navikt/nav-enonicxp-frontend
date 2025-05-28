@@ -1,3 +1,5 @@
+@use 'common' as common;
+
 .mellomstegLayout {
     padding-bottom: 1rem;
     column-gap: 1.75rem;
@@ -9,7 +11,7 @@
         'pictogram header .'
         '. content .';
 
-    @media only screen and (max-width: 1024px) {
+    @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-columns: none;
         grid-template-areas:
             'pictogram'
@@ -27,8 +29,8 @@
         position: relative;
         align-self: flex-start;
         margin-bottom: 1.25rem;
-
-        @media only screen and (max-width: 1024px) {
+        
+        @media #{common.$mq-screen-tablet-and-mobile} {
             width: 4rem;
             justify-self: start;
         }
