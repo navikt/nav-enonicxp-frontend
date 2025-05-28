@@ -38,7 +38,7 @@ import {
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { PictogramsProps } from './pictograms';
 import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
-import { ContactInformationProps } from './contact-information-props';
+import { ContactInformationData, ContactInformationProps } from './contact-information-props';
 import { PayoutDatesProps } from './payout-dates';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
@@ -184,7 +184,7 @@ type ContentCommonData = Partial<{
     audience: AudienceOptions;
     showSubsectionNavigation?: boolean;
     customPath?: string;
-    contactType: string;
+    contactType: ContactInformationData;
 }>;
 
 // These fields are returned only when using the version selector
