@@ -67,9 +67,9 @@ $versionSelectorMinHeight: 3rem;
         display: flex;
         flex-grow: 1;
         flex-shrink: 0;
-        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        flex-basis: calc(math.percentage(1 / $numColsPlus1) + 1px);
         max-width: calc(
-            #{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px
+            #{math.percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px
         );
 
         &:not(:last-child) {
