@@ -20,13 +20,10 @@ for (const story of stories) {
             await page.waitForSelector('#storybook-root', { state: 'visible', timeout: 2000 });
             await page.waitForLoadState('networkidle');
 
-            await expect(page.locator('#storybook-root')).toHaveScreenshot(
-                `${story.id}-${testInfo.project.name}-${process.platform}.png`,
-                {
-                    animations: 'disabled',
-                    stylePath: path.join(__dirname, 'screenshot.css'),
-                }
-            );
+            await expect(page.locator('#storybook-root')).toHaveScreenshot({
+                animations: 'disabled',
+                stylePath: path.join(__dirname, 'screenshot.css'),
+            });
         } catch (error) {
             return;
         }

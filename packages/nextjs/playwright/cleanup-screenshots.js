@@ -18,9 +18,15 @@ async function cleanupScreenshots() {
     for (const file of files) {
         if (!file.endsWith('.png')) continue;
 
-        // Extract story ID from filename (format: storyId-projectName-platform.png)
-        const storyId = file.split('-')[0];
-        if (!currentStoryIds.has(storyId)) {
+        // Extract story ID from the test name in the snapshot path
+        // Playwright creates paths like: "story-title-story-name-should-not-have-visual-regressions-1.png"
+        const testName = file.replace('.png', '');
+        const storyTitle = testName.split('-should-not-have-visual-regressions')[0];
+
+        // Find the story that matches this title
+        const story = stories.find((s) => `${s.title} ${s.name}` === storyTitle);
+
+        if (!story) {
             const filePath = path.join(snapshotsDir, file);
             try {
                 fs.unlinkSync(filePath);
