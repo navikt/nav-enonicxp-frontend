@@ -1,10 +1,9 @@
 import React from 'react';
-import { BodyLong, Chips, Heading } from '@navikt/ds-react';
+import { BodyLong, Button, Heading } from '@navikt/ds-react';
+import { XMarkIcon } from '@navikt/aksel-icons';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { Area } from 'types/areas';
-import { ProductTaxonomy } from 'types/taxonomies';
 
 import style from './OverviewFiltersSummary.module.scss';
 
@@ -16,19 +15,8 @@ type Props = {
 
 export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }: Props) => {
     const { language } = usePageContentProps();
-
-    const {
-        hasDefaultFilters,
-        areaFilter,
-        taxonomyFilter,
-        setAreaFilter,
-        setTaxonomyFilter,
-        resetFilters,
-    } = useOverviewFilters();
-
+    const { hasDefaultFilters } = useOverviewFilters();
     const overviewTranslations = translator('overview', language);
-    const taxonomyTranslations = translator('taxonomies', language);
-    const areaTranslations = translator('areas', language);
 
     return (
         <>
@@ -39,25 +27,9 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }:
                         .replace('$2', numTotal.toString())}
                 </Heading>
                 {showResetChips && !hasDefaultFilters && (
-                    <Chips className={style.chips}>
-                        {areaFilter !== Area.ALL && (
-                            <Chips.Removable onClick={() => setAreaFilter(Area.ALL)}>
-                                {areaTranslations(areaFilter)}
-                            </Chips.Removable>
-                        )}
-                        {taxonomyFilter !== ProductTaxonomy.ALL && (
-                            <Chips.Removable onClick={() => setTaxonomyFilter(ProductTaxonomy.ALL)}>
-                                {taxonomyTranslations(taxonomyFilter)}
-                            </Chips.Removable>
-                        )}
-                        <Chips.Removable
-                            onClick={() => {
-                                resetFilters();
-                            }}
-                        >
-                            {overviewTranslations('resetFilters')}
-                        </Chips.Removable>
-                    </Chips>
+                    <Button size={'small'} variant={'secondary'} icon={<XMarkIcon />}>
+                        {overviewTranslations('resetFilters')}
+                    </Button>
                 )}
             </div>
             {numMatches === 0 && (
