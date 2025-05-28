@@ -46,7 +46,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     return (
         <article className={style.page}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
-            <div className={style.main}>
+            <div className={style.content}>
                 <FormsOverviewHeader {...props} />
                 {audienceSubCategoryLinks ? (
                     <FormsOverviewAudienceLinks links={audienceSubCategoryLinks} />

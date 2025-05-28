@@ -2,31 +2,37 @@
 
 .page {
     display: grid;
-    gap: var(--a-spacing-10);
-
     margin: 1.25rem auto var(--a-spacing-10);
-    grid-template-areas:
-        'main';
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-areas: 'pictogram content .';
+    column-gap: 1.75rem;
 
-    @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 6rem auto 6rem;
+    @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
-            'pictogram main .'
+            'pictogram'
+            'content';
+        grid-template-columns: none;
     }
 }
 
-.main {
-    grid-area: main;
+.content {
+    grid-area: content;
 }
 
 .pictogram {
-    display: none;
     grid-area: pictogram;
+    width: 6rem;
+    height: 6rem;
+    display: block;
 
-    @media #{common.$mq-screen-tablet-and-desktop} {
-        width: 6rem;
-        height: 6rem;
-        display: block;
+    justify-self: end;
+    position: relative;
+    align-self: flex-start;
+    margin-bottom: 1.25rem;
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        width: 4rem;
+        justify-self: start;
     }
 }
 
