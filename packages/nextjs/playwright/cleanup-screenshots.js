@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import storybook from '../storybook-static/index.json' with { type: 'json' };
+const fs = require('fs');
+const path = require('path');
+const storybook = require('../storybook-static/index.json');
 
 async function cleanupScreenshots() {
     const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
