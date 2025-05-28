@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
 import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
