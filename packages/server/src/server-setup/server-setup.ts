@@ -67,18 +67,26 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
         serverSetupDev(expressApp, nextApp);
     }
 
-    expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
-        const { buildId } = req.params;
-        if (buildId !== currentBuildId) {
-            logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
-            req.url = req.url.replace(buildId, currentBuildId);
+    expressApp.use((req, res, next) => {
+        // Check if this is a /_next/data/ path ending with .json
+        if (req.path.startsWith('/_next/data/') && req.path.endsWith('.json')) {
+            const pathSegments = req.path.split('/');
+            const buildId = pathSegments[3]; // /_next/data/[buildId]/...
+
+            if (buildId !== currentBuildId) {
+                logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
+                req.url = req.url.replace(buildId, currentBuildId);
+            }
+
+            setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
         }
 
-        setJsonCacheHeaders(req, res);
-        return nextRequestHandler(req, res);
+        next();
     });
 
-    expressApp.all('*', (req, res) => {
+    expressApp.use((req: Request, res: Response) => {
+        console.log('Request URL:', req.url);
         return nextRequestHandler(req, res);
     });
 };
