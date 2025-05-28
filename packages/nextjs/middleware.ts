@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
     const response = NextResponse.next();
+    const pathname = request.nextUrl.pathname;
 
-    // Set cache control for static assets (svg, png, ico, webmanifest)
-    const staticAssetExtensions = /\.(svg|png|ico|webmanifest)$/;
-    if (staticAssetExtensions.test(request.nextUrl.pathname)) {
+    // Handle static assets (svg, png, ico, webmanifest)
+    if (pathname.match(/\.(svg|png|ico|webmanifest)$/)) {
         response.headers.set('Cache-Control', 'public,max-age=86400');
     }
 
@@ -16,6 +16,7 @@ export function middleware(request: NextRequest) {
 }
 
 // Configure which paths the middleware should run on
+// Keep current exclusion pattern for optimal performance
 export const config = {
     matcher: [
         // Match all request paths except for the ones starting with:
