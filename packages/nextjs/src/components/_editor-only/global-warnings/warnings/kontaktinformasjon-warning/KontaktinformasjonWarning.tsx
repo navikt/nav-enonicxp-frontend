@@ -1,12 +1,14 @@
 import React from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
-import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 type Props = {
     content: ContentProps;
-} & TelephoneData;
+};
 
 export const KontaktinformasjonWarning = ({ content }: Props) => {
+    if (content.type !== ContentType.ContactInformationPage) {
+        return null;
+    }
     const contactType = content.data?.contactType;
 
     const specialOpeningHours = contactType?.telephone?.specialOpeningHours;
