@@ -18,7 +18,7 @@ $margin: 1rem;
             width: 100%;
         }
         @media #{common.$mq-screen-tablet-and-desktop} {
-            width: calc(math.percentage(1 / $numCols));
+            width: calc(math.percentage(math.div(1, $numCols)));
             &:not(:last-child) {
                 margin-right: $margin;
             }

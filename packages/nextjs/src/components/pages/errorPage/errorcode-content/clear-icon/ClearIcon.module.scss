@@ -1,9 +1,10 @@
+@use 'sass:math';
 @use 'common' as common;
 
 .crossIcon {
     $height: 0.125rem;
     $width: 1.5rem;
-    transform: translateY(-$height / 2);
+    transform: translateY(math.div(-$height, 2));
 
     & > * {
         height: $height;
