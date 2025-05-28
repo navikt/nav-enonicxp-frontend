@@ -38,7 +38,7 @@ import {
 import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { PictogramsProps } from './pictograms';
 import { GlobalCaseTimeSetProps, GlobalValuesProps } from './global-values-props';
-import { ContactInformationData, ContactInformationProps } from './contact-information-props';
+import { ContactInformationProps } from './contact-information-props';
 import { PayoutDatesProps } from './payout-dates';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
@@ -47,99 +47,99 @@ import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {
-    Error = 'error',
-    Site = 'portal:site',
-    Fragment = 'portal:fragment',
-    TemplatePage = 'portal:page-template',
-    InternalLink = 'no.nav.navno:internal-link',
-    ExternalLink = 'no.nav.navno:external-link',
-    Url = 'no.nav.navno:url',
-    SectionPage = 'no.nav.navno:section-page',
-    TransportPage = 'no.nav.navno:transport-page',
-    DynamicPage = 'no.nav.navno:dynamic-page',
-    ContentList = 'no.nav.navno:content-list',
+    AlertInContext = 'no.nav.navno:alert-in-context',
+    AreaPage = 'no.nav.navno:area-page',
+    Calculator = 'no.nav.navno:calculator',
     ContactInformationPage = 'no.nav.navno:contact-information',
+    ContactStepPage = 'no.nav.navno:contact-step-page',
+    ContentList = 'no.nav.navno:content-list',
+    CurrentTopicPage = 'no.nav.navno:current-topic-page',
+    DynamicPage = 'no.nav.navno:dynamic-page',
+    Error = 'error',
+    ExternalLink = 'no.nav.navno:external-link',
+    FallbackPage = 'no.nav.navno:fallback-page',
+    FormDetails = 'no.nav.navno:form-details',
+    FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
+    FormsOverview = 'no.nav.navno:forms-overview',
+    Fragment = 'portal:fragment',
+    FrontPage = 'no.nav.navno:front-page',
+    FrontPageNested = 'no.nav.navno:front-page-nested',
     GenericPage = 'no.nav.navno:generic-page',
-    PageList = 'no.nav.navno:page-list',
+    GlobalCaseTimeSet = 'no.nav.navno:global-case-time-set',
+    GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
+    GuidePage = 'no.nav.navno:guide-page',
+    InternalLink = 'no.nav.navno:internal-link',
+    LargeTable = 'no.nav.navno:large-table',
     MainArticle = 'no.nav.navno:main-article',
     MainArticleChapter = 'no.nav.navno:main-article-chapter',
     Melding = 'no.nav.navno:melding',
-    LargeTable = 'no.nav.navno:large-table',
+    OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
     OfficeInformation = 'no.nav.navno:office-information',
+    OfficePage = 'no.nav.navno:office-page',
+    Overview = 'no.nav.navno:overview',
+    PageList = 'no.nav.navno:page-list',
+    PayoutDates = 'no.nav.navno:payout-dates',
+    Pictograms = 'no.nav.navno:animated-icons',
+    PressLandingPage = 'no.nav.navno:press-landing-page',
+    ProductDetails = 'no.nav.navno:product-details',
+    ProductPage = 'no.nav.navno:content-page-with-sidemenus',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
-    GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
-    ProductPage = 'no.nav.navno:content-page-with-sidemenus',
-    ProductDetails = 'no.nav.navno:product-details',
-    OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
-    GuidePage = 'no.nav.navno:guide-page',
-    ThemedArticlePage = 'no.nav.navno:themed-article-page',
-    CurrentTopicPage = 'no.nav.navno:current-topic-page',
+    SectionPage = 'no.nav.navno:section-page',
+    Site = 'portal:site',
     SituationPage = 'no.nav.navno:situation-page',
-    Pictograms = 'no.nav.navno:animated-icons',
+    TemplatePage = 'portal:page-template',
+    ThemedArticlePage = 'no.nav.navno:themed-article-page',
     ToolsPage = 'no.nav.navno:tools-page',
-    Calculator = 'no.nav.navno:calculator',
-    Overview = 'no.nav.navno:overview',
-    GlobalCaseTimeSet = 'no.nav.navno:global-case-time-set',
-    PayoutDates = 'no.nav.navno:payout-dates',
-    FrontPage = 'no.nav.navno:front-page',
-    FrontPageNested = 'no.nav.navno:front-page-nested',
-    AreaPage = 'no.nav.navno:area-page',
-    PressLandingPage = 'no.nav.navno:press-landing-page',
-    FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
-    FormDetails = 'no.nav.navno:form-details',
-    FormsOverview = 'no.nav.navno:forms-overview',
+    TransportPage = 'no.nav.navno:transport-page',
+    Url = 'no.nav.navno:url',
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
-    AlertInContext = 'no.nav.navno:alert-in-context',
-    OfficePage = 'no.nav.navno:office-page',
-    FallbackPage = 'no.nav.navno:fallback-page',
-    ContactStepPage = 'no.nav.navno:contact-step-page',
 }
 
 export const innholdsTypeMap: Record<ContentType, string> = {
+    [ContentType.CurrentTopicPage]: 'Aktuelt',
     [ContentType.InternalLink]: 'Intern Lenke',
     [ContentType.ExternalLink]: 'Ekstern Lenke',
-    [ContentType.SectionPage]: 'Oppslagstavle',
-    [ContentType.TransportPage]: 'Transportside',
-    [ContentType.DynamicPage]: 'Dynamisk side',
-    [ContentType.ContentList]: 'Innholdsliste',
-    [ContentType.ContactInformationPage]: 'Kontaktinformasjon',
+    [ContentType.LargeTable]: 'Ekstra stor tabell',
+    [ContentType.OfficeInformation]: 'Enhetsinformasjon',
+    [ContentType.AreaPage]: 'Områdeside',
     [ContentType.GenericPage]: 'Generisk side',
+    [ContentType.GlobalCaseTimeSet]: 'Saksbehandlingstider',
+    [ContentType.GlobalNumberValuesSet]: 'Globale tall-verdier',
+    [ContentType.GuidePage]: 'Slik gjør du det',
+    [ContentType.FrontPage]: 'Forside',
+    [ContentType.FrontPageNested]: 'Underforside',
+    [ContentType.Melding]: 'Driftsmelding',
+    [ContentType.FormDetails]: 'Skjemadetaljer',
+    [ContentType.FormsOverview]: 'Skjemaoversikt',
+    [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
+    [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
+    [ContentType.ContactInformationPage]: 'Kontaktinformasjon',
+    [ContentType.Calculator]: 'Kalkulator',
+    [ContentType.Pictograms]: 'Piktogram',
+    [ContentType.PressLandingPage]: 'Landingsside for presse',
+    [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
+    [ContentType.OfficePage]: 'Kontorside (gammel)',
     [ContentType.PageList]: 'Artikkelliste',
     [ContentType.MainArticle]: 'Artikkel',
     [ContentType.MainArticleChapter]: 'Kapittel',
-    [ContentType.Melding]: 'Driftsmelding',
-    [ContentType.LargeTable]: 'Ekstra stor tabell',
-    [ContentType.OfficeInformation]: 'Enhetsinformasjon',
-    [ContentType.PublishingCalendar]: 'Publiseringskalender',
-    [ContentType.PublishingCalendarEntry]: 'Kalenderhendelse',
-    [ContentType.GlobalNumberValuesSet]: 'Globale tall-verdier',
-    [ContentType.ProductPage]: 'Produktside',
     [ContentType.ProductDetails]: 'Produktdetaljer',
-    [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
-    [ContentType.GuidePage]: 'Slik gjør du det',
-    [ContentType.ThemedArticlePage]: 'Temaartikkel',
-    [ContentType.CurrentTopicPage]: 'Aktuelt',
-    [ContentType.SituationPage]: 'Situasjonsside',
-    [ContentType.Pictograms]: 'Piktogram',
-    [ContentType.ToolsPage]: 'Verktøy-side',
-    [ContentType.Calculator]: 'Kalkulator',
+    [ContentType.ProductPage]: 'Produktside',
     [ContentType.Overview]: 'Oversiktsside',
-    [ContentType.GlobalCaseTimeSet]: 'Saksbehandlingstider',
     [ContentType.PayoutDates]: 'Utbetalingsdatoer',
-    [ContentType.FrontPage]: 'Forside',
-    [ContentType.FrontPageNested]: 'Underforside',
-    [ContentType.AreaPage]: 'Områdeside',
-    [ContentType.PressLandingPage]: 'Landingsside for presse',
-    [ContentType.FormDetails]: 'Skjemadetaljer',
-    [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
-    [ContentType.FormsOverview]: 'Skjemaoversikt',
+    [ContentType.ContentList]: 'Innholdsliste',
     [ContentType.UserTestsConfig]: 'Brukertester',
     [ContentType.Video]: 'Qbrick Video',
     [ContentType.AlertInContext]: 'Varsel i kontekst',
-    [ContentType.OfficePage]: 'Kontorside (gammel)',
-    [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
+    [ContentType.PublishingCalendar]: 'Publiseringskalender',
+    [ContentType.PublishingCalendarEntry]: 'Kalenderhendelse',
+    [ContentType.SectionPage]: 'Oppslagstavle',
+    [ContentType.SituationPage]: 'Situasjonsside',
+    [ContentType.ThemedArticlePage]: 'Temaartikkel',
+    [ContentType.ToolsPage]: 'Verktøy-side',
+    [ContentType.TransportPage]: 'Transportside',
+    [ContentType.DynamicPage]: 'Dynamisk side',
 
     [ContentType.Error]: `Ugyldig type: [${ContentType.Error}]`,
     [ContentType.Site]: `Ugyldig type: [${ContentType.Site}]`,
@@ -171,20 +171,19 @@ export type ContentAndMediaCommonProps = {
 };
 
 type ContentCommonData = Partial<{
-    feedbackToggle: boolean;
-    chatbotToggle: boolean;
-    metaDescription: string;
+    audience: AudienceOptions;
     canonicalUrl: string;
+    chatbotToggle: boolean;
+    customPath?: string;
+    description: string;
+    feedbackToggle: boolean;
+    hideIngress: boolean;
+    ingress: string;
+    metaDescription: string;
     noindex: boolean;
     nosnippet: boolean;
-    ingress: string;
-    hideIngress: boolean;
-    title: string;
-    description: string;
-    audience: AudienceOptions;
     showSubsectionNavigation?: boolean;
-    customPath?: string;
-    contactType: ContactInformationData;
+    title: string;
 }>;
 
 // These fields are returned only when using the version selector
@@ -210,49 +209,49 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     VersionSelectorProps;
 
 type SpecificContentProps =
-    | SiteProps
-    | TemplateProps
-    | ContentListProps
+    | AreaPageProps
+    | ContactInformationProps
     | ContactStepPageProps
+    | ContentListProps
+    | CurrentTopicPageProps
+    | DynamicPageProps
     | ErrorProps
     | ExternalLinkProps
-    | InternalLinkProps
-    | UrlProps
-    | LargeTableProps
-    | MainArticleProps
-    | MainArticleChapterProps
-    | OfficeInformationProps
-    | PageListProps
-    | SectionPageProps
-    | TransportPageProps
-    | PublishingCalendarProps
-    | PublishingCalendarEntryProps
-    | ProductPageProps
-    | SituationPageProps
-    | OfficeEditorialPageProps
-    | OfficePageProps
-    | PictogramsProps
-    | GlobalValuesProps
-    | GlobalCaseTimeSetProps
-    | PayoutDatesProps
-    | CurrentTopicPageProps
-    | ThemedArticlePageProps
-    | GuidePageProps
-    | ToolsPageProps
-    | DynamicPageProps
-    | OverviewPageProps
-    | ProductDetailsProps
-    | FragmentPageProps
-    | ContactInformationProps
-    | FrontPageProps
-    | FrontPageNestedProps
-    | AreaPageProps
-    | GenericPageProps
-    | PressLandingPageProps
+    | FallbackPageProps
     | FormDetailsPageProps
     | FormIntermediateStepPageProps
     | FormsOverviewProps
-    | FallbackPageProps;
+    | FragmentPageProps
+    | FrontPageNestedProps
+    | FrontPageProps
+    | GenericPageProps
+    | GlobalCaseTimeSetProps
+    | GlobalValuesProps
+    | GuidePageProps
+    | InternalLinkProps
+    | LargeTableProps
+    | MainArticleChapterProps
+    | MainArticleProps
+    | OfficeEditorialPageProps
+    | OfficeInformationProps
+    | OfficePageProps
+    | OverviewPageProps
+    | PageListProps
+    | PayoutDatesProps
+    | PictogramsProps
+    | PressLandingPageProps
+    | ProductDetailsProps
+    | ProductPageProps
+    | PublishingCalendarEntryProps
+    | PublishingCalendarProps
+    | SectionPageProps
+    | SiteProps
+    | SituationPageProps
+    | TemplateProps
+    | ThemedArticlePageProps
+    | ToolsPageProps
+    | TransportPageProps
+    | UrlProps;
 
 export type ContentProps<Type extends ContentType = ContentType> = ContentCommonProps<Type> &
     SpecificContentProps;
