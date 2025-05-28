@@ -6,7 +6,10 @@ async function cleanupScreenshots() {
     const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
     const currentStoryIds = new Set(stories.map((story) => story.id));
 
-    const snapshotsDir = path.join(__dirname, 'screenshot.spec.ts-snapshots');
+    // Use absolute path from workspace root
+    const snapshotsDir = path.join(
+        '/workspace/packages/nextjs/playwright/screenshot.spec.ts-snapshots'
+    );
     if (!fs.existsSync(snapshotsDir)) {
         console.log('No snapshots directory found');
         return;
