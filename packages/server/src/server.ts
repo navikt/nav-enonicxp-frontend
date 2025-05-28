@@ -41,16 +41,6 @@ nextApp.prepare().then(async () => {
 
     expressApp.use('*', promMiddleware);
 
-    expressApp.use('/*.(svg|png|ico|webmanifest)', (req, res, next) => {
-        res.setHeader('Cache-Control', 'public,max-age=86400');
-        next();
-    });
-
-    expressApp.all('*', (req, res, next) => {
-        res.setHeader('app-name', 'nav-enonicxp-frontend');
-        next();
-    });
-
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {
