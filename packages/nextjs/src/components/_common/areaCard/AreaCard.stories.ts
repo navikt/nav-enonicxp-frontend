@@ -16,13 +16,6 @@ export const Work: Story = {
     },
 };
 
-export const Family: Story = {
-    args: {
-        title: 'Familie og barn',
-        area: 'family',
-    },
-};
-
 export const Employment: Story = {
     args: {
         title: 'Test',
@@ -33,6 +26,13 @@ export const Employment: Story = {
 export const Health: Story = {
     args: {
         title: 'Helse og sykdom',
+        area: 'health',
+    },
+};
+
+export const New: Story = {
+    args: {
+        title: 'Nytt',
         area: 'health',
     },
 };
