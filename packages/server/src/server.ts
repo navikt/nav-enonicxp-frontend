@@ -39,7 +39,7 @@ nextApp.prepare().then(async () => {
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
-    expressApp.use('*', promMiddleware);
+    expressApp.use(promMiddleware);
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);

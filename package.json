@@ -45,6 +45,7 @@
         "eslint-plugin-css-modules": "2.12.0",
         "eslint-plugin-no-relative-import-paths": "1.6.1",
         "eslint-plugin-prettier": "5.2.3",
+        "@types/express": "5.0.2",
         "husky": "9.1.7",
         "prettier": "3.5.2",
         "typescript": "5.8.3",
@@ -68,6 +69,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.2.2",
         "@next/bundle-analyzer": "14.2.4",
+        "express": "5.1.0",
         "dotenv": "16.5.0",
         "lru-cache": "11.0.2",
         "pino": "9.6.0",
