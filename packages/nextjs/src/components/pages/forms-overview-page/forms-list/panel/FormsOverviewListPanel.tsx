@@ -9,8 +9,7 @@ import {
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
-
-import style from './FormsOverviewListPanel.module.scss';
+import style from './FormsOverviewListPanel.module.scss'
 
 type OverviewType = FormsOverviewData['overviewType'];
 
