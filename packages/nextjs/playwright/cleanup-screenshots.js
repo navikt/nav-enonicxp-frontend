@@ -23,8 +23,12 @@ async function cleanupScreenshots() {
     let removedCount = 0;
 
     for (const file of files) {
-        // Extract story ID from filename (format: components-common-componentname--variant_platform.png)
-        const storyId = file.split('_')[0];
+        // Extract story ID from filename by removing the platform suffix
+        // Format: storyId-platform-platform.png
+        const storyId = file.replace(/-[^-]+-[^-]+-[^-]+-[^-]+\.png$/, '');
+
+        // Debug log to verify extraction
+        console.log(`Extracted story ID from ${file}: ${storyId}`);
 
         // If the story no longer exists, remove its screenshot
         if (!currentStoryIds.has(storyId)) {
