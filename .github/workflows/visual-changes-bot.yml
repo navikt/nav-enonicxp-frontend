@@ -35,7 +35,7 @@ jobs:
             - name: Build static storybook
               run: npm run build:storybook
 
-            - name: Clean up and update screenshots
+            - name: Update and clean up screenshots
               run: |
                   docker run --rm \
                     -v $(pwd):/workspace \
@@ -43,8 +43,8 @@ jobs:
                     --ipc=host \
                     mcr.microsoft.com/playwright:v1.51.0-noble \
                     /bin/bash -c "
-                      node packages/nextjs/playwright/cleanup-screenshots.js && \
-                      CI=true npx playwright test --update-snapshots
+                      CI=true npx playwright test --update-snapshots && \
+                      node packages/nextjs/playwright/cleanup-screenshots.js
                     "
 
             - name: Commit and push updated screenshots if any changes
