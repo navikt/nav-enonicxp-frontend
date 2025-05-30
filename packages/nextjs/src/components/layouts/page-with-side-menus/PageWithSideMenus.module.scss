@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'common' as common;
 
 .pageWithSideMenus {
@@ -32,7 +33,7 @@
 
 .bottomContent {
     position: relative;
-    grid-column: 1 / -1;
+    grid-column: math.div(1, -1);
 
     :global(.region) {
         position: relative;

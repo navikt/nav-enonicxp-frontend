@@ -94,15 +94,15 @@
         }
 
         h2 {
-            font-size: common.$a-font-size-heading-large;
+            font-size: var(--a-font-size-heading-large);
         }
 
         h3 {
-            font-size: common.$a-font-size-heading-medium;
+            font-size: var(--a-font-size-heading-medium);
         }
 
         h4 {
-            font-size: common.$a-font-size-heading-small;
+            font-size: var(--a-font-size-heading-small);
         }
 
         ul,

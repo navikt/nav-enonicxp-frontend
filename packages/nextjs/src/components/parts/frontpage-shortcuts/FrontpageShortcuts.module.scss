@@ -33,10 +33,11 @@
 }
 
 .list {
-    @include common.grid-layout-mixin(2);
     list-style: none;
     position: relative;
     padding: 0;
+
+    @include common.grid-layout-mixin(2);
 
     &.threeCols {
         @include common.grid-layout-mixin(3);

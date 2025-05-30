@@ -30,7 +30,7 @@ $illustrationSizeSmall: 3rem;
 }
 
 .header {
-    font-weight: common.$a-font-weight-bold;
+    font-weight: var(--a-font-weight-bold);
     margin-bottom: 0.5rem;
 }
 

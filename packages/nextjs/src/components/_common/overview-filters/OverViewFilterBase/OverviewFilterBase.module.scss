@@ -13,11 +13,11 @@
 }
 
 .filterButton {
-    background-color: var(--a-deepblue-50, var(--a-deepblue-50));
+    background-color: var(--a-deepblue-50);
     box-shadow: none;
 
     &:hover {
-        background-color: var(--a-deepblue-100, var(--a-deepblue-100));
+        background-color: var(--a-deepblue-100);
     }
 
     &:hover:not(:focus) {

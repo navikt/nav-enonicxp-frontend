@@ -46,10 +46,10 @@
 }
 
 .text {
+    color: var(--a-text-default);
+
     @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
-
-    color: var(--a-text-default);
 }

@@ -1,0 +1,12 @@
+.header {
+    font-weight: var(--a-font-weight-bold);
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    column-gap: 0.75rem;
+    margin-top: var(--a-spacing-1);
+    margin-bottom: var(--a-spacing-7);
+}
