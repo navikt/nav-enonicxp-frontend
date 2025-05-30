@@ -35,7 +35,7 @@ jobs:
             - name: Build static storybook
               run: npm run build:storybook
 
-            - name: Update and clean up screenshots
+            - name: Update Playwright screenshots
               run: |
                   docker run --rm \
                     -v $(pwd):/workspace \
