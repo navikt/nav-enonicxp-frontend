@@ -11,7 +11,7 @@
         max-width: 100%;
         background-color: var(--a-white);
         &::after {
-            border-top-color: white;
+            border-top-color: var(--a-white);
         }
     }
 }

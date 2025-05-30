@@ -73,7 +73,7 @@
         }
         .bed:global(.large) {
             &:after {
-                box-shadow: 0 0 0 4px white;
+                box-shadow: 0 0 0 4px var(--a-white);
                 border-radius: 6px;
                 height: calc(100% - 8px);
                 width: calc(100% - 8px);

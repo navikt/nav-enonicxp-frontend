@@ -1,7 +1,7 @@
 @use 'common' as common;
 
-$illustrationSize: common.px-to-rem(64);
-$illustrationSizeSmall: common.px-to-rem(48);
+$illustrationSize: 4rem;
+$illustrationSizeSmall: 3rem;
 
 .illustration {
     width: $illustrationSize;
@@ -44,7 +44,7 @@ $illustrationSizeSmall: common.px-to-rem(48);
     width: 100%;
 
     &:after {
-        box-shadow: 0 0 0 2px white;
+        box-shadow: 0 0 0 2px var(--a-white);
         height: calc(100% - 2px);
         margin: 1px;
         width: calc(100% - 2px);

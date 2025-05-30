@@ -2,7 +2,7 @@
 
 .pageList {
     width: 100%;
-    background: white;
+    background: var(--a-white);
     border-radius: 0.28rem;
 
     @media #{common.$mq-screen-mobile} {
