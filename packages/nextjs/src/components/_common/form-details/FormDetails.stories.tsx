@@ -47,26 +47,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Extra: Story = {
-    args: {
-        formDetails: {
-            ...baseFormDetails,
-            alerts: [
-                {
-                    data: {
-                        type: 'information',
-                        text: 'Dette er extra',
-                        target: {
-                            _selected: 'targetContent',
-                            formDetails: { targetContent: '', _selected: 'targetContent' },
-                        },
-                    },
-                },
-            ],
-        },
-    },
-};
-
 export const Alerts: Story = {
     args: {
         formDetails: {
