@@ -22,7 +22,7 @@ const getUsageMessages = (usage: UsageContentInfo[]) => {
                         <LenkeStandalone
                             href={content.path.replace('/www.nav.no', xpDraftPathPrefix)}
                             target={'_blank'}
-                            withChevron={false}
+                            withChevron
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
@@ -35,7 +35,7 @@ const getUsageMessages = (usage: UsageContentInfo[]) => {
                         <LenkeStandalone
                             href={`${adminOrigin}${editorPathPrefix}/${content.id}`}
                             target={'_blank'}
-                            withChevron={false}
+                            withChevron
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}

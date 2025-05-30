@@ -7,6 +7,7 @@ import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
+import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
@@ -90,29 +91,6 @@ export const FormDetails = ({
                     {title}
                 </Heading>
             )}
-            {hasVisibleFormNumbers && (
-                <Detail className={style.formNumbers}>
-                    {formNumbers.map((formNumber, index) => (
-                        <Fragment key={formNumber}>
-                            {index > 0 && (
-                                <span aria-hidden={true} className={style.separator}>
-                                    {'|'}
-                                </span>
-                            )}
-                            <span
-                                className={
-                                    formNumber === formNumberToHighlight
-                                        ? style.highlight
-                                        : undefined
-                                }
-                                key={formNumber}
-                            >
-                                {formNumber}
-                            </span>
-                        </Fragment>
-                    ))}
-                </Detail>
-            )}
             {hasVisibleIngress && (
                 <div className={style.ingress}>
                     <ParsedHtml htmlProps={ingress} />
@@ -127,6 +105,19 @@ export const FormDetails = ({
                         <FormDetailsButton key={variation.label} variation={variation} />
                     ))}
                 </div>
+            )}
+            {hasVisibleFormNumbers && (
+                <Detail className={style.formNumbers}>
+                    {formNumbers.map((formNumber) => (
+                        <Fragment key={formNumber}>
+                            <FormNumberTag
+                                formNumber={formNumber}
+                                className={style.formNumber}
+                                selected={formNumber === formNumberToHighlight}
+                            />
+                        </Fragment>
+                    ))}
+                </Detail>
             )}
         </div>
     );
