@@ -1,4 +1,5 @@
 @use 'common' as common;
+
 .appContainer {
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
@@ -20,7 +21,7 @@
 }
 
 .defaultBackground {
-    background-color: common.$a-bg-subtle;
+    background-color: var(--a-gray-100);
 }
 
 .whiteBackground {

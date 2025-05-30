@@ -1,8 +1,5 @@
 @use 'common' as common;
 
-$numCols: 3;
-$margin: 1rem;
-
 .linkLists {
     display: flex;
     justify-content: center;
@@ -17,16 +14,16 @@ $margin: 1rem;
             width: 100%;
         }
         @media #{common.$mq-screen-tablet-and-desktop} {
-            width: calc(percentage(1 / $numCols));
+            width: calc(percentage(1 / 3));
             &:not(:last-child) {
-                margin-right: $margin;
+                margin-right: 1rem;
             }
             &:nth-child(2):not(:last-child) {
-                margin-left: $margin;
-                margin-right: $margin;
+                margin-left: 1rem;
+                margin-right: 1rem;
             }
             &:last-child {
-                margin-left: $margin;
+                margin-left: 1rem;
             }
         }
     }

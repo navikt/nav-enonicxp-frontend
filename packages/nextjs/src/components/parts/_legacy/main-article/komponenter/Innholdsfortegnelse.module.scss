@@ -5,14 +5,14 @@
 
     ol {
         @include common.unstyled-list();
-        border-top: 1px solid #d1d1d1;
+        border-top: 1px solid var(--a-gray-200);
     }
     li {
         font-size: 1.2rem;
-        border-bottom: 1px solid #d1d1d1;
+        border-bottom: 1px solid var(--a-gray-200);
     }
     a {
-        color: #3e3832;
+        color: var(--a-gray-800);
         font-weight: 600;
         display: block;
         padding: 0.43rem 0;
@@ -21,19 +21,19 @@
 
         &:hover,
         &:active {
-            color: #0056b4;
+            color: var(--a-blue-600);
         }
         &:focus {
             outline: none;
-            color: white;
-            background-color: common.$a-border-focus;
-            box-shadow: 0 0 0 2px common.$a-border-focus;
+            color: var(--a-white);
+            background-color: var(--a-border-focus);
+            box-shadow: 0 0 0 2px var(--a-border-focus);
         }
         &:hover:before,
         &:focus:before,
         &:active:before {
-            border: 0.1875rem solid #0056b4;
-            background-color: #0056b4;
+            border: 0.1875rem solid var(--a-blue-600);
+            background-color: var(--a-blue-600);
             border-radius: 50%;
             display: inline-block;
             content: ' ';

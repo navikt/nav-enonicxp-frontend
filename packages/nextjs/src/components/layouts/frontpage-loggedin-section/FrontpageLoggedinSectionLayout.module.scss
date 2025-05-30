@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .layout {
-    background-color: white;
+    background-color: var(--a-white);
     @include common.full-width-mixin();
     padding-top: 1.25rem;
     padding-bottom: 0.75rem;

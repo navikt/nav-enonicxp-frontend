@@ -7,9 +7,9 @@
 
 .item {
     padding: 1.5rem 0;
-    border-top: 1px solid common.$a-gray-200;
+    border-top: 1px solid var(--a-gray-200);
 
     &:last-child {
-        border-bottom: 1px solid common.$a-gray-200;
+        border-bottom: 1px solid var(--a-gray-200);
     }
 }

@@ -2,7 +2,7 @@
 
 .officePageHeader {
     align-items: center;
-    background-color: white;
+    background-color: var(--a-white);
     border: none;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
 }
 
 .content {
-    background-color: white;
+    background-color: var(--a-white);
     max-width: 56.25rem;
     text-align: center;
     width: 100%;
