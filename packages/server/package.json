@@ -17,9 +17,6 @@
     "nodemonConfig": {
         "delay": 500
     },
-    "dependenciesComments": {
-        "express": "Major v5 not compatible per 6. November. Keep to 4.x.x"
-    },
     "dependencies": {
         "cookie-parser": "1.4.7",
         "express-prom-bundle": "8.0.0",
