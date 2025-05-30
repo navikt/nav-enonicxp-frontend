@@ -1,7 +1,6 @@
 @use 'common' as common;
 
-$color: common.$a-deepblue-100;
-$separator-attribs: 1px $color solid;
+$separator-attribs: 1px var(--a-deepblue-100) solid;
 
 .expandable {
     border-bottom: $separator-attribs;
@@ -74,12 +73,12 @@ $separator-attribs: 1px $color solid;
     }
 
     & > :first-child:not(:last-child) * {
-        fill: $color;
+        fill: var(--a-deepblue-100);
     }
 }
 
 .copyLink {
-    margin-top: 0;
+    margin-top: 2.5rem;
     margin-bottom: 0.5rem;
 }
 

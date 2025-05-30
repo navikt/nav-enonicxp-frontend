@@ -93,9 +93,10 @@ export const FormsOverviewListPanel = ({
             analyticsData={{
                 opprinnelse: 'skjemaoversikt accordion',
             }}
+            withCopyLink
         >
-            {!isAddendumPage && url && (
-                <div className={style.merOmLenke}>
+            <div className={style.formsOverviewListPanel}>
+                {!isAddendumPage && url && (
                     <OversiktMerOmLenke
                         productLinks={[
                             {
@@ -106,17 +107,16 @@ export const FormsOverviewListPanel = ({
                             },
                         ]}
                     />
-                </div>
-            )}
-            {formDetailsPages?.map((formDetail) => (
-                <FormDetails
-                    formDetails={formDetail.data}
-                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
-                    className={style.formDetails}
-                    formNumberSelected={formNumberSelected}
-                    key={formDetail._id}
-                />
-            ))}
+                )}
+                {formDetailsPages?.map((formDetail) => (
+                    <FormDetails
+                        formDetails={formDetail.data}
+                        displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                        formNumberSelected={formNumberSelected}
+                        key={formDetail._id}
+                    />
+                ))}
+            </div>
         </ProductPanelExpandable>
     );
 };
