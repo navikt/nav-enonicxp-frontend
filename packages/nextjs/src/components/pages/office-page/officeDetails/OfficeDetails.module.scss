@@ -1,7 +1,5 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .officeDetails {
     align-self: center;
     border: none;
@@ -27,7 +25,7 @@ $margin: 2rem;
 }
 
 .wide {
-    background-color: white;
+    background-color: var(--a-white);
     display: flex;
     justify-content: center;
     @include common.full-width-mixin();

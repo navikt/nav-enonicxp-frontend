@@ -1,10 +1,7 @@
 @use 'common' as common;
 
-$color: var(--a-deepblue-100);
-$separator-attribs: 1px $color solid;
-
 .expandable {
-    border-bottom: $separator-attribs;
+    border-bottom: 1px var(--a-deepblue-100) solid;
     border-radius: 0;
     --__ac-expansioncard-border-width: 0;
 
@@ -74,7 +71,7 @@ $separator-attribs: 1px $color solid;
     }
 
     & > :first-child:not(:last-child) * {
-        fill: $color;
+        fill: var(--a-deepblue-100);
     }
 }
 

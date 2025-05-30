@@ -78,8 +78,8 @@
                 }
 
                 &:hover {
-                    background-color: #ecf3fe;
-                    border-color: #cbd4e1;
+                    background-color: var(--a-blue-50);
+                    border-color: var(--a-border-default);
                     box-shadow: none;
                 }
             }

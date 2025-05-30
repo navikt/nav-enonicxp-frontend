@@ -5,7 +5,6 @@ $iconContainerRadius: 2rem;
 
 .container {
     $iconContainerSize: $iconContainerRadius * 2;
-    $defaultBgColor: white;
 
     @mixin adjust-for-padding($sectionPadding) {
         $marginActual: 1rem;
@@ -15,7 +14,7 @@ $iconContainerRadius: 2rem;
 
     display: inline-flex;
     flex-direction: column;
-    background-color: $defaultBgColor;
+    background-color: var(--a-white);
     width: 100%;
 
     @include common.section-padding-mixin();
@@ -29,6 +28,7 @@ $iconContainerRadius: 2rem;
         height: $iconContainerSize;
         position: relative;
         border-radius: 50%;
+        background-color: var(--a-white);
         overflow: hidden;
 
         @include adjust-for-padding(common.$sectionPaddingDesktop);

@@ -3,7 +3,7 @@
 .filtersMenu {
     box-shadow: var(--a-blue-200) inset 0 0 0 8px;
     border-radius: 0.2em;
-    background-color: white;
+    background-color: var(--a-white);
 
     @include common.section-padding-mixin();
 

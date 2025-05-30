@@ -1,19 +1,13 @@
 @use 'common' as common;
 
-// Use global CSS rather than module to simplify overriding of styles
-// The component this styling applies to is intended for very flexible styling
-
-$padding: 1.5rem;
 $blueLinkColor: var(--default-action-color);
 $blackLinkColor: var(--a-text-default);
 
 .linkPanelNavno {
     position: relative;
-
     display: flex;
     align-items: flex-start;
-
-    padding: $padding;
+    padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
 
     &:hover {

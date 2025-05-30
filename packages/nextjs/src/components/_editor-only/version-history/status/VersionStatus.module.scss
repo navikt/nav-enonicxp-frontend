@@ -4,7 +4,7 @@
     display: flex;
     padding: 1rem 3rem;
     margin-bottom: 1rem;
-    background-color: white;
+    background-color: var(--a-white);
     border-radius: common.$border-radius-base;
     box-shadow: 0 0 0 2px var(--a-orange-500) inset;
 }

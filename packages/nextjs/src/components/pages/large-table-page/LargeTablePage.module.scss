@@ -52,7 +52,7 @@
     :global(.statPage) {
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--a-white);
         padding: 1rem;
     }
 

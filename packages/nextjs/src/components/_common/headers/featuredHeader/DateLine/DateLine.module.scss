@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .dateLine {
-    background-color: white;
+    background-color: var(--a-white);
     display: flex;
     justify-content: center;
     margin-top: 1.5rem;

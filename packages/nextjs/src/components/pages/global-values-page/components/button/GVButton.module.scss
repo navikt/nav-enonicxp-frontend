@@ -1,7 +1,7 @@
 .button {
     &:global(.navds-button--primary),
     &:global(.navds-button--danger) {
-        color: white;
+        color: var(--a-white);
     }
 
     &:global(.navds-button--danger) {
