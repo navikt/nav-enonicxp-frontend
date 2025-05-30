@@ -6,9 +6,7 @@ import storybook from '../storybook-static/index.json' with { type: 'json' };
 const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
 
 for (const story of stories) {
-    test(`${story.title} ${story.name} should not have visual regressions`, async ({
-        page,
-    }, testInfo) => {
+    test(`${story.title} ${story.name} should not have visual regressions`, async ({ page }) => {
         const params = new URLSearchParams({
             id: story.id,
             viewMode: 'story',
@@ -21,7 +19,7 @@ for (const story of stories) {
             await page.waitForLoadState('networkidle');
 
             await expect(page.locator('#storybook-root')).toHaveScreenshot(
-                `${story.id}-${testInfo.project.name}-${process.platform}.png`,
+                `${story.id}_${process.platform}.png`,
                 {
                     animations: 'disabled',
                     stylePath: path.join(__dirname, 'screenshot.css'),

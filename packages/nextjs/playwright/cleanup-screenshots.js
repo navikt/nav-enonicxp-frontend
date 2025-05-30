@@ -3,27 +3,30 @@ const path = require('path');
 const storybook = require('../storybook-static/index.json');
 
 async function cleanupScreenshots() {
-    const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
-    const currentStoryIds = new Set(stories.map((story) => story.id));
-
-    // Use absolute path from workspace root
-    const snapshotsDir = path.join(
-        '/workspace/packages/nextjs/playwright/screenshot.spec.ts-snapshots'
+    // Get all current story IDs from storybook
+    const currentStoryIds = new Set(
+        Object.values(storybook.entries)
+            .filter((entry) => entry.type === 'story')
+            .map((story) => story.id)
     );
+
+    // Path to screenshots directory
+    const snapshotsDir = path.join(__dirname, 'screenshot.spec.ts-snapshots');
+
     if (!fs.existsSync(snapshotsDir)) {
         console.log('No snapshots directory found');
         return;
     }
 
+    // Get all screenshot files
     const files = fs.readdirSync(snapshotsDir);
     let removedCount = 0;
 
     for (const file of files) {
-        if (!file.endsWith('.png')) continue;
+        // Extract story ID from filename (format: components-common-componentname--variant_platform.png)
+        const storyId = file.split('_')[0];
 
-        // Extract story ID from filename (format: storyId-variant-desktop-linux-desktop-linux.png)
-        const storyId = file.split('-desktop-linux')[0];
-
+        // If the story no longer exists, remove its screenshot
         if (!currentStoryIds.has(storyId)) {
             const filePath = path.join(snapshotsDir, file);
             try {
