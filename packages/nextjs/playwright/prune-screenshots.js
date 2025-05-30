@@ -8,7 +8,6 @@ async function pruneScreenshots() {
             .filter((entry) => entry.type === 'story')
             .map((story) => story.id)
     );
-
     const screenshotsDir = path.join(__dirname, 'screenshot.spec.ts-snapshots');
 
     if (!fs.existsSync(screenshotsDir)) {
@@ -34,7 +33,9 @@ async function pruneScreenshots() {
         }
     }
 
-    console.log(`Deleted ${deletedCount} orphaned screenshots.`);
+    if (deletedCount > 0) {
+        console.log(`Deleted ${deletedCount} orphaned screenshots`);
+    }
 }
 
 pruneScreenshots().catch(console.error);
