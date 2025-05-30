@@ -2,7 +2,7 @@
 
 .currentTopics {
     @include common.full-width-mixin();
-    background-color: var(--bg-color, common.$a-bg-subtle);
+    background-color: var(--bg-color, var(--a-bg-subtle));
     padding-top: 2.75rem;
     padding-bottom: 2.75rem;
 
@@ -49,5 +49,5 @@
 }
 
 .date {
-    color: common.$a-gray-700;
+    color: var(--a-gray-700);
 }

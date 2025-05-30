@@ -30,7 +30,7 @@
 
     thead {
         tr {
-            border-bottom: 1px common.$a-gray-200 solid;
+            border-bottom: 1px var(--a-gray-200) solid;
         }
     }
 
@@ -43,7 +43,7 @@
         }
 
         tr:nth-of-type(even) {
-            background-color: common.$a-blue-100;
+            background-color: var(--a-blue-100);
         }
 
         td {
@@ -54,7 +54,7 @@
     :global(.statPage) {
         display: flex;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--a-white);
         padding: 1rem;
     }
 

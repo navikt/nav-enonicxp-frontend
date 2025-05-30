@@ -1,9 +1,7 @@
 @use 'common' as common;
 
-$padding: 2rem;
-
 .formIntermediateStepPage {
-    background-color: white;
+    background-color: var(--a-white);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

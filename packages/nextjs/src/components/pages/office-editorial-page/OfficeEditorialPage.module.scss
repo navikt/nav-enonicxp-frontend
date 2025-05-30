@@ -1,14 +1,12 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .officeEditorialPage {
     display: flex;
     flex-direction: column;
 
     :global {
         .layout__section-with-header {
-            margin-bottom: $margin;
+            margin-bottom: 2rem;
         }
     }
 

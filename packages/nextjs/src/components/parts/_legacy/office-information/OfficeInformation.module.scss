@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .officeInformation {
-    background-color: common.$a-surface-default;
+    background-color: var(--a-surface-default);
     padding: 1.68rem;
 
     header {

@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 $navGronnLighten40Filter: invert(98%) sepia(83%) saturate(920%) hue-rotate(62deg) brightness(85%)
     contrast(80%);
 $redErrorFilter: invert(22%) sepia(84%) saturate(1767%) hue-rotate(346deg) brightness(100%)
@@ -31,7 +29,7 @@ $redErrorFilter: invert(22%) sepia(84%) saturate(1767%) hue-rotate(346deg) brigh
         align-self: flex-start;
 
         &.error {
-            color: common.$a-red-600;
+            color: var(--a-red-600);
         }
     }
 }
