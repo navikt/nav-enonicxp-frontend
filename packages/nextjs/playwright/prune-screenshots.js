@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const storybook = require('../storybook-static/index.json');
 
-async function cleanupScreenshots() {
+async function pruneScreenshots() {
     // Get all current story IDs from storybook
     const currentStoryIds = new Set(
         Object.values(storybook.entries)
@@ -43,7 +43,7 @@ async function cleanupScreenshots() {
         }
     }
 
-    console.log(`Cleanup complete. Removed ${removedCount} orphaned screenshots.`);
+    console.log(`Deleted ${removedCount} orphaned screenshots.`);
 }
 
-cleanupScreenshots().catch(console.error);
+pruneScreenshots().catch(console.error);
