@@ -47,15 +47,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const LanguageDisclaimer: Story = {
-    args: {
-        formDetails: {
-            ...baseFormDetails,
-            languageDisclaimer: 'Språkdisclaimer',
-        },
-    },
-};
-
 export const Alerts: Story = {
     args: {
         formDetails: {
