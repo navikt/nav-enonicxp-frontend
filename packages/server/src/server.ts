@@ -9,6 +9,7 @@ import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { getNextServer } from 'next-utils';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
+import { express5CompatibilityMiddleware } from 'middleware/express5-compatibility';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -28,6 +29,9 @@ const nextApp = next({
 nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
+    // Add Express 5 compatibility middleware before any other middleware
+    // and before Next.js server setup
+    expressApp.use(express5CompatibilityMiddleware);
 
     const nextServer = await getNextServer(nextApp);
 
