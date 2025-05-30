@@ -30,3 +30,12 @@ export const Illustration: Story = {
         },
     },
 };
+
+export const Extra: Story = {
+    args: {
+        link: { url: '', text: 'LargeCardV2' },
+        type: CardType.Product,
+        description: 'Extra',
+        tagline: 'Tagline',
+    },
+};
