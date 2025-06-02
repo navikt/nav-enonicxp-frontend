@@ -3,7 +3,7 @@ import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { LinkPanel } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { FormIntermediateStep_StepLinkData } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LanguageDisclaimer } from 'components/_common/languageDisclaimer/LanguageDisclaimer';
 import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
 import style from './FormIntermediateStepLink.module.scss';
