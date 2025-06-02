@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';

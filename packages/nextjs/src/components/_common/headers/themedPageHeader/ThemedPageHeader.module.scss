@@ -3,7 +3,7 @@
 .themedPageHeader {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: var(--a-white);
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     border-bottom: 4px solid transparent;
@@ -89,5 +89,5 @@
 
 .divider,
 .modifiedLabel {
-    color: common.$a-gray-700;
+    color: var(--a-gray-700);
 }

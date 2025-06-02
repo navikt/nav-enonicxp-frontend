@@ -1,7 +1,5 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .officePage {
     display: flex;
     flex-direction: column;
@@ -13,7 +11,7 @@ $margin: 2rem;
     :global {
         .layout__section-with-header {
             max-width: common.$sectionMaxWidth;
-            margin-bottom: $margin;
+            margin-bottom: 2rem;
         }
     }
 }

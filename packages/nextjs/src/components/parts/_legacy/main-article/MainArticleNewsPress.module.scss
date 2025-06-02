@@ -47,7 +47,7 @@
 
         .chapterHeader:focus {
             outline-offset: 0.2109rem;
-            outline: 0.2109rem solid common.$a-border-focus;
+            outline: 0.2109rem solid var(--a-border-focus);
         }
 
         figure {

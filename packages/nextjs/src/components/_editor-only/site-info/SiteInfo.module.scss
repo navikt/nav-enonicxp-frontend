@@ -1,7 +1,5 @@
-@use 'common' as common;
-
 .container {
-    background-color: common.$a-bg-subtle;
+    background-color: var(--a-bg-subtle);
     width: 100%;
     min-height: 100vh;
     padding: 1.25rem;
@@ -9,7 +7,7 @@
 
 .content {
     & > * {
-        background-color: white;
+        background-color: var(--a-white);
         padding: 1.25rem;
         &:not(:last-child) {
             margin-bottom: 0.75rem;

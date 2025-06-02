@@ -22,16 +22,16 @@
 }
 
 .mobileFilterButton {
-    background-color: common.$a-deepblue-100;
-    color: common.$a-text-default;
+    background-color: var(--a-blue-100);
+    color: var(--a-text-default);
 
     :global(.navds-label) {
         font-weight: normal;
     }
 
     &:hover {
-        background-color: common.$a-deepblue-500;
-        color: common.$a-white;
+        background-color: var(--a-deepblue-500);
+        color: var(--a-white);
     }
 }
 

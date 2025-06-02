@@ -1,0 +1,50 @@
+@use 'common' as common;
+
+.phonePoster {
+    background-color: var(--a-gray-50);
+    border-radius: var(--a-border-radius-small);
+    padding: common.$sectionPaddingMobile;
+    margin-top: 1rem;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$sectionPaddingTablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$sectionPaddingDesktop;
+    }
+}
+
+.heading {
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+}
+
+.phoneNumberWrapper {
+    margin-bottom: 1rem;
+}
+
+.phoneNumber {
+    align-items: center;
+    color: rgb(0, 0, 0);
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: var(--a-font-weight-bold);
+    padding-right: 1rem;
+    text-decoration: none;
+
+    &:focus {
+        background-color: transparent;
+        color: rgb(0, 0, 0);
+    }
+}
+
+.telephoneIcon {
+    background-color: var(--a-white);
+    border-radius: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin-right: 0.25rem;
+    padding: 0.6rem;
+    transform: translateY(-1px) translateX(-6px);
+}

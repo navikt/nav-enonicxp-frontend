@@ -3,7 +3,7 @@ import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import {
     officeDetailsFormatAddress,
     officeDetailsFormatPhoneNumber,
-} from 'components/pages/office-page/office-details/utils';
+} from 'components/pages/office-page/officeDetails/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';

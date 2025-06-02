@@ -1,11 +1,7 @@
 @use 'common' as common;
 
-$verticalPadding: 0.75rem;
-$horizontalPadding: 0.5rem;
-$decorWidth: 0.5rem;
-
 .mainArticleChapterNavigation {
-    background-color: white;
+    background-color: var(--a-white);
     border-radius: 0.28rem;
     display: flex;
     flex-direction: column;
@@ -25,8 +21,8 @@ $decorWidth: 0.5rem;
         .item {
             display: block;
             font-size: 1.125rem;
-            margin: 0 $decorWidth;
-            padding: $verticalPadding $horizontalPadding;
+            margin: 0 0.5rem;
+            padding: 0.75rem 0.5rem;
             position: relative;
             text-decoration: none;
             z-index: 1;
@@ -36,10 +32,10 @@ $decorWidth: 0.5rem;
                 content: ' ';
                 display: inline-block;
                 height: 100%;
-                left: -($decorWidth);
+                left: -(0.5rem);
                 position: absolute;
                 top: 0;
-                width: $decorWidth;
+                width: 0.5rem;
             }
 
             &.active {
@@ -48,23 +44,23 @@ $decorWidth: 0.5rem;
                     content: '';
                     display: inline-block;
                     height: 100%;
-                    left: -($decorWidth);
+                    left: -(0.5rem);
                     position: absolute;
                     top: 0;
-                    width: $decorWidth;
+                    width: 0.5rem;
                 }
             }
         }
 
         a {
             &:hover {
-                background-color: common.$a-blue-100;
-                color: common.$a-gray-900;
+                background-color: var(--a-blue-100);
+                color: var(--a-gray-900);
                 text-decoration: none;
             }
             &:focus {
                 background: none;
-                box-shadow: 0 0 0 0.2rem common.$a-border-focus;
+                box-shadow: 0 0 0 0.2rem var(--a-border-focus);
                 color: var(--default-action-color);
                 cursor: pointer;
                 outline: none;

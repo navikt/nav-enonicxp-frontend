@@ -7,7 +7,7 @@ import { ExpandableComponentWrapper } from 'components/_common/expandable/Expand
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
 import { Filter } from 'types/store/filter-menu';
 import { Heading } from 'components/_common/headers/Heading';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';

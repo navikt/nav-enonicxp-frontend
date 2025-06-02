@@ -1,4 +1,5 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { MainArticleData } from 'types/content-props/main-article-props';
 
 const contentTypeWithWhiteBackground: ReadonlySet<ContentType> = new Set([
     ContentType.CurrentTopicPage,
@@ -32,18 +33,18 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ThemedArticlePage,
 ]);
 
-export const hasWhitePage = (content: ContentProps) => {
+export const hasWhitePage = (content: Pick<ContentProps, 'type' | 'data'>) => {
     const { type } = content;
 
     if (type === ContentType.MainArticle) {
-        const contentType = content.data?.contentType;
+        const contentType = (content.data as MainArticleData)?.contentType;
         return contentType === 'news' || contentType === 'pressRelease';
     }
 
     return contentTypeWithWhiteBackground.has(content.type);
 };
 
-export const hasWhiteHeader = (content: ContentProps) => {
+export const hasWhiteHeader = (content: Pick<ContentProps, 'type' | 'data'>) => {
     const { type } = content;
 
     if (hasWhitePage(content)) {

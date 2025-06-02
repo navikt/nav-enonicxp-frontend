@@ -9,7 +9,7 @@ import {
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { Heading } from 'components/_common/headers/Heading';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './FrontpagePersonShortcutsPart.module.scss';

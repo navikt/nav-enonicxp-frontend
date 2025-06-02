@@ -1,11 +1,9 @@
-@use 'common' as common;
-
 .summaryError {
     margin-top: 2rem;
-    background-color: common.$a-orange-200;
+    background-color: var(--a-orange-200);
 }
 
 .summaryText {
     margin-top: 2rem;
-    background-color: common.$a-lightblue-100;
+    background-color: var(--a-lightblue-100);
 }

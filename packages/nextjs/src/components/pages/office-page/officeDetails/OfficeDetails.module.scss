@@ -1,0 +1,40 @@
+@use 'common' as common;
+
+.officeDetails {
+    align-self: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    max-width: common.$contentMaxWidth;
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.pageContent {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        max-width: common.$sectionMaxWidth;
+    }
+}
+
+.wide {
+    background-color: var(--a-white);
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin();
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.addressPoster {
+    background-color: var(--a-orange-50);
+}

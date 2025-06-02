@@ -6,7 +6,7 @@ import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';

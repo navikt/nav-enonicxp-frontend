@@ -8,7 +8,7 @@ import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import Config from 'config';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 

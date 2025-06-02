@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { UserTests, UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
