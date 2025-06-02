@@ -10,6 +10,7 @@ import { SiteProps } from 'types/content-props/site-props';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
 import { ContactStepPageProps } from 'components/pages/contactStepPage/ContactStepPage';
+import { FormIntermediateStepPageProps } from 'components/pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
@@ -43,7 +44,6 @@ import { PayoutDatesProps } from './payout-dates';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
 import { FormDetailsPageProps } from './form-details';
-import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {

@@ -22,10 +22,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        _path: 'test',
+        _path: 'placeholder',
         type: ContentType.ContactStepPage,
         data: {
-            title: 'Skriv til oss',
+            textAboveTitle: 'Forrige side',
+            title: 'Tittel',
             illustration: {
                 type: ContentType.Pictograms,
                 data: {
@@ -39,13 +40,11 @@ export const Default: Story = {
                     ],
                 },
             },
-            html: '<p>Hva vil du gjøre?</p>',
-            linkPanelsHeading: 'Velg tema',
-            linkPanelsSubHeading: 'Du blir bedt om å logge inn',
+            editorial: '<p>Hva vil du gjøre?</p>',
             linkPanels: [
                 {
                     target: {
-                        _path: '',
+                        _path: 'placeholder',
                         displayName: 'Ledige jobber',
                     },
                     text: 'Finn ledige stillinger',
@@ -53,17 +52,17 @@ export const Default: Story = {
                 },
                 {
                     target: {
-                        _path: '',
+                        _path: 'placeholder',
                         displayName: 'Nav hjelpemiddelsentral',
                     },
                 },
             ],
             backLink: {
                 target: {
-                    _path: '',
+                    _path: 'placeholder',
                     displayName: 'Tilbake',
                 },
-                text: 'Tilbake til kontakt',
+                text: 'Tilbakelenke',
             },
         },
     },

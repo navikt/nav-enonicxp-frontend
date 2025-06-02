@@ -35,6 +35,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--a-spacing-2);
+    margin-bottom: 1.125rem;
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
@@ -54,30 +55,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.125rem;
-    margin-bottom: 1rem;
-
-    & > * {
-        padding: 0.0625rem 0.3125rem;
-        white-space: nowrap;
-        color: var(--a-gray-700);
-
-        &:first-child:not(.highlight) {
-            padding-left: 0;
-        }
-    }
+    gap: 5px;
 }
 
 .highlight {
     background-color: var(--a-lightblue-200);
     color: var(--a-gray-800);
-    border-radius: var(--a-border-radius-medium);
-}
-
-.separator {
-    color: var(--a-border-default);
-
-    @media #{common.$mq-screen-mobile} {
-        display: none;
-    }
 }

@@ -75,9 +75,10 @@ const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
 
 type Props = {
     htmlProps: ProcessedHtmlProps | string;
+    pSize?: 'large' | 'small'
 };
 
-export const ParsedHtml = ({ htmlProps }: Props) => {
+export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
     const { editorView, language } = usePageContentProps();
 
     if (!htmlProps) {
@@ -164,7 +165,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <>{domToReact(domNodes, parserOptions)}</>;
                 }
                 return (
-                    <BodyLong spacing {...props} className={undefined}>
+                    <BodyLong spacing {...props} className={undefined} size={pSize ?? 'medium'}>
                         {domToReact(domNodes, parserOptions)}
                     </BodyLong>
                 );
