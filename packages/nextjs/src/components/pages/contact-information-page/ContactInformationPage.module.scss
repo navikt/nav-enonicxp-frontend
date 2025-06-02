@@ -1,12 +1,10 @@
-@use 'common' as common;
-
 .contactInformationPage {
     display: flex;
     flex-direction: column;
 }
 
 .content {
-    background-color: common.$a-white;
+    background-color: var(--a-white);
     padding: 2.5rem;
     width: 37.5rem;
 }

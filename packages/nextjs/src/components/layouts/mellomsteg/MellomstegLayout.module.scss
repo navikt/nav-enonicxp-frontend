@@ -1,0 +1,57 @@
+@use 'common' as common;
+
+.mellomstegLayout {
+    padding-bottom: 1rem;
+    column-gap: 1.75rem;
+
+    margin-bottom: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-areas:
+        'pictogram header .'
+        '. content .';
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        grid-template-columns: none;
+        grid-template-areas:
+            'pictogram'
+            'header'
+            'content';
+        padding: 0;
+        margin-top: 0;
+    }
+    .pictogram {
+        grid-area: pictogram;
+        display: block;
+        justify-self: end;
+        width: 4.5rem;
+        height: auto;
+        position: relative;
+        align-self: flex-start;
+        margin-bottom: 1.25rem;
+        
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            width: 4rem;
+            justify-self: start;
+        }
+    }
+
+    .header {
+        grid-area: header;
+        margin-bottom: 1rem;
+    }
+
+    .content {
+        grid-area: content;
+
+        .stepList {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+    }
+}

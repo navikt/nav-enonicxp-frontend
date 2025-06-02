@@ -9,7 +9,7 @@
     width: 100%;
     perspective: 500px;
     perspective-origin: top;
-    max-width: common.px-to-rem(480);
+    max-width: 30rem;
 
     .inner {
         position: absolute;
@@ -23,7 +23,7 @@
         transition-property: visibility, transform;
         transition-duration: 0.25s;
         transition-timing-function: ease-out;
-        background-color: white;
+        background-color: var(--a-white);
         border-radius: common.$border-radius-base;
         box-shadow: 0 0 0 2px var(--a-green-200) inset;
         padding: 1rem 2rem;

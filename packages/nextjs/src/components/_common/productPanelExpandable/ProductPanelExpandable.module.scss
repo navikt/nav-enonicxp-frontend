@@ -1,9 +1,7 @@
 @use 'common' as common;
 
-$separator-attribs: 1px var(--a-deepblue-100) solid;
-
 .expandable {
-    border-bottom: $separator-attribs;
+    border-bottom: 1px var(--a-deepblue-100) solid;
     border-radius: 0;
     --__ac-expansioncard-border-width: 0;
 
@@ -31,7 +29,7 @@ $separator-attribs: 1px var(--a-deepblue-100) solid;
     &:hover,
     &:focus {
         background-color: var(--a-deepblue-100);
-        color: common.$a-text-default;
+        color: var(--a-text-default);
         box-shadow: 0 0 0 0;
 
         & + :global(.navds-expansioncard__content) {
@@ -40,7 +38,7 @@ $separator-attribs: 1px var(--a-deepblue-100) solid;
 
         .illustration {
             & > :first-child:not(:last-child) * {
-                fill: common.$a-white;
+                fill: var(--a-white);
             }
         }
     }

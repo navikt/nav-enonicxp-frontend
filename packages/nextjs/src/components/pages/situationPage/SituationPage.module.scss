@@ -1,0 +1,26 @@
+.situationPage {
+    display: flex;
+    flex-direction: column;
+
+    :global(.region__pageContent) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content {
+        margin-top: 4rem;
+        display: flex;
+        justify-content: flex-start;
+        align-self: center;
+        width: 100%;
+        max-width: 40rem;
+
+        & > * {
+            width: 100%;
+        }
+    }
+
+    .pullUp {
+        margin-top: 0;
+    }
+}
