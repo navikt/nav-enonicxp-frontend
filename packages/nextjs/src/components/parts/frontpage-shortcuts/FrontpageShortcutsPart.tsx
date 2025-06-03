@@ -1,5 +1,4 @@
 import React from 'react';
-import { translator } from 'translations';
 import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
@@ -44,13 +43,11 @@ export const FrontpageShortcutsPart = ({
         return <EditorHelp text={'Velg minst en snarvei'} />;
     }
 
-    const language = pageProps.language;
     const audience = getAudience(pageProps.data?.audience);
     const threeCols = shortcuts.length % 3 === 0;
-    const getLabel = translator('frontPage', language);
 
     return (
-        <nav
+        <section
             className={classNames(style.shortcuts, audience && style[audience])}
             style={
                 {
@@ -59,7 +56,6 @@ export const FrontpageShortcutsPart = ({
                     '--hover-color': hoverColor,
                 } as React.CSSProperties
             }
-            aria-label={getLabel('shortcuts')}
         >
             {sectionTitle && (
                 <Heading size="large" level="2" className={style.header}>
@@ -94,6 +90,6 @@ export const FrontpageShortcutsPart = ({
                     );
                 })}
             </ul>
-        </nav>
+        </section>
     );
 };
