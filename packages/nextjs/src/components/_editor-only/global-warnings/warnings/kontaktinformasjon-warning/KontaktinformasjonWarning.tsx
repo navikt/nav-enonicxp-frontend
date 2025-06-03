@@ -5,69 +5,90 @@ type Props = {
     content: ContentProps;
 };
 
-export const KontaktinformasjonWarning = ({ content }: Props) => {
-    if (content.type !== ContentType.ContactInformationPage) {
-        return null;
+type OpeningHours = {
+    validFrom?: string;
+    validTo?: string;
+    hours?: { date: string }[];
+};
+
+const isValidDate = (date: Date | null): date is Date =>
+    date instanceof Date && !isNaN(date.getTime());
+
+const dateToStr = (date: Date) => date.toISOString().slice(0, 10);
+
+const validateOpeningHours = (
+    specialHours: OpeningHours | undefined,
+    regularHours: unknown,
+    warnings: React.ReactNode[],
+    type: 'telephone' | 'chat'
+) => {
+    if (!specialHours?.validFrom || !specialHours?.validTo) return;
+
+    const validFrom = new Date(specialHours.validFrom);
+    const validTo = new Date(specialHours.validTo);
+    const hours = specialHours.hours || [];
+
+    const fromStr = dateToStr(validFrom);
+    const toStr = dateToStr(validTo);
+
+    if (validFrom > validTo) {
+        warnings.push(
+            <li key={`${type}-range-error`}>
+                Synlig fra-dato ({fromStr}) må være <strong>før</strong> synlig til-dato ({toStr})
+            </li>
+        );
     }
 
+    if (!regularHours) {
+        hours.forEach(({ date }) => {
+            const dayDate = new Date(date);
+            const dayStr = dateToStr(dayDate);
+
+            if (!isValidDate(dayDate)) {
+                warnings.push(
+                    <li key={`${type}-invalid-date-${date}`}>Dato må være gyldig ({date})</li>
+                );
+            }
+
+            if (dayDate < validFrom) {
+                warnings.push(
+                    <li key={`${type}-before-from-${dayStr}`}>
+                        Dag ({dayStr}) må være <strong>etter</strong> synlig fra-dato ({fromStr})
+                    </li>
+                );
+            }
+
+            if (dayDate > validTo) {
+                warnings.push(
+                    <li key={`${type}-after-to-${dayStr}`}>
+                        Dag ({dayStr}) må være <strong>før</strong> synlig til-dato ({toStr})
+                    </li>
+                );
+            }
+        });
+    }
+};
+
+export const KontaktinformasjonWarning = ({ content }: Props) => {
+    if (content.type !== ContentType.ContactInformationPage) return null;
+
     const contactType = content.data?.contactType;
-    const specialOpeningHours = contactType?.telephone?.specialOpeningHours;
-    const regularOpeningHours = contactType?.telephone?.regularOpeningHours;
-
-    const validDateFrom = specialOpeningHours?.validFrom
-        ? new Date(specialOpeningHours.validFrom)
-        : null;
-    const validDateTo = specialOpeningHours?.validTo ? new Date(specialOpeningHours.validTo) : null;
-    const hours = specialOpeningHours?.hours || [];
-
     const warnings: React.ReactNode[] = [];
 
-    const isValidDate = (date: Date | null): date is Date =>
-        date instanceof Date && !isNaN(date.getTime());
-
-    if (validDateFrom && validDateTo) {
-        const dateFromStr = validDateFrom.toISOString().slice(0, 10);
-        const dateToStr = validDateTo.toISOString().slice(0, 10);
-
-        if (validDateFrom > validDateTo) {
-            warnings.push(
-                <li key="range-error">
-                    Synlig fra-dato ({dateFromStr}) må være <strong>før</strong> synlig til-dato (
-                    {dateToStr})
-                </li>
-            );
-        }
-
-        if (!regularOpeningHours) {
-            hours.forEach((day: { date: string }) => {
-                const dagDato = new Date(day.date);
-                const dagDatoStr = dagDato.toISOString().slice(0, 10);
-
-                if (!isValidDate(dagDato)) {
-                    warnings.push(
-                        <li key={`invalid-date-${day.date}`}>Dato må være gyldig ({day.date})</li>
-                    );
-                }
-
-                if (dagDato < validDateFrom) {
-                    warnings.push(
-                        <li key={`before-from-${dagDatoStr}`}>
-                            Dag ({dagDatoStr}) må være <strong>etter</strong> synlig fra-dato (
-                            {dateFromStr})
-                        </li>
-                    );
-                }
-
-                if (dagDato > validDateTo) {
-                    warnings.push(
-                        <li key={`after-to-${dagDatoStr}`}>
-                            Dag ({dagDatoStr}) må være <strong>før</strong> synlig til-dato (
-                            {dateToStr})
-                        </li>
-                    );
-                }
-            });
-        }
+    if (contactType?.telephone) {
+        validateOpeningHours(
+            contactType.telephone.specialOpeningHours,
+            contactType.telephone.regularOpeningHours,
+            warnings,
+            'telephone'
+        );
+    } else if (contactType?.chat) {
+        validateOpeningHours(
+            contactType.chat.specialOpeningHours,
+            contactType.chat.regularOpeningHours,
+            warnings,
+            'chat'
+        );
     }
 
     return warnings.length > 0 ? <>{warnings}</> : null;
