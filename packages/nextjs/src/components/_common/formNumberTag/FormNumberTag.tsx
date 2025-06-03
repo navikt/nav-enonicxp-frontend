@@ -14,5 +14,3 @@ export const FormNumberTag = ({ formNumber, className, selected }: Props) => {
         </div>
     );
 };
-
-export default FormNumberTag;

@@ -7,7 +7,7 @@ import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
-import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
+import { FormNumberTag } from 'components/_common/formNumberTag/FormNumberTag';
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
@@ -108,15 +108,15 @@ export const FormDetails = ({
                     ))}
                 </div>
             )}
-            {hasVisibleFormNumbers || editorView === 'edit' && (
+            {(hasVisibleFormNumbers || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {formNumbers?.map((formNumber) => (
-                            <FormNumberTag
-                                formNumber={formNumber}
-                                className={style.formNumber}
-                                selected={formNumber === formNumberToHighlight}
-                                key={formNumber}
-                            />
+                        <FormNumberTag
+                            formNumber={formNumber}
+                            className={style.formNumber}
+                            selected={formNumber === formNumberToHighlight}
+                            key={formNumber}
+                        />
                     ))}
                 </Detail>
             )}
