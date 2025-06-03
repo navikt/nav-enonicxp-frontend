@@ -108,7 +108,7 @@ export const FormDetails = ({
                     ))}
                 </div>
             )}
-            {(hasVisibleFormNumbers || editorView === 'edit') && (
+            {(hasVisibleFormNumbers || editorView === 'inline' || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {formNumbers?.map((formNumber) => (
                         <FormNumberTag
