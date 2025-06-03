@@ -78,6 +78,7 @@ export const FrontpageShortcutsPart = ({
                             <LinkPanelNavnoSimple
                                 href={href}
                                 analyticsLinkGroup={sectionTitle}
+                                analyticsComponent="FrontpageShortcutsPart"
                                 icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(
                                     style.item,
