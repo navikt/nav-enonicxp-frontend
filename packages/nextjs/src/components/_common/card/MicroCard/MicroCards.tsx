@@ -5,7 +5,7 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
 
 import { MicroCard } from './MicroCard';
-import style from './MicroCard.module.scss';
+import style from './MicroCards.module.scss';
 
 type Props = {
     header?: string;
