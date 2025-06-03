@@ -12,6 +12,10 @@ export default defineConfig({
     },
     projects: [
         {
+            name: 'mobile',
+            use: { ...devices['Pixel 5'] },
+        },
+        {
             name: 'desktop',
             use: { ...devices['Desktop Chrome'] },
         },

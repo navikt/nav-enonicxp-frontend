@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { FormDetails } from 'components/_common/formDetails/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 

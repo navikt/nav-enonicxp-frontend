@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { Button } from 'components/_common/button/Button';
 import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
 import { removeDuplicates } from 'utils/arrays';

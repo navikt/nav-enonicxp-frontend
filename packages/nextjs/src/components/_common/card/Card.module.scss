@@ -73,7 +73,7 @@
         }
         .bed:global(.large) {
             &:after {
-                box-shadow: 0 0 0 4px white;
+                box-shadow: 0 0 0 4px var(--a-white);
                 border-radius: 6px;
                 height: calc(100% - 8px);
                 width: calc(100% - 8px);
@@ -83,7 +83,7 @@
     }
 
     :global(.large) {
-        background-color: white;
+        background-color: var(--a-white);
         border-radius: 8px;
         display: block;
         padding: 1.5rem;
@@ -103,7 +103,7 @@
         &:global(.tool),
         &:global(.themed-article),
         &:global(.situation) {
-            min-height: common.px-to-rem(400);
+            min-height: 25rem;
         }
         &:not(:hover):not(:active) {
             box-shadow: var(--a-shadow-medium);

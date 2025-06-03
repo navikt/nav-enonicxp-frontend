@@ -190,7 +190,7 @@ export const translationsBundleNn: PartialTranslations = {
         },
     },
     form: {
-        back: 'Tilbake',
+        back: 'Vel ein annan måte å sende inn på',
     },
     contactPoint: {
         chat: {

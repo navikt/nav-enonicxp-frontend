@@ -3,7 +3,7 @@ import {
     FormsOverviewAudienceOptions,
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header/FormsOverviewHeader';
 import Region from 'components/layouts/Region';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

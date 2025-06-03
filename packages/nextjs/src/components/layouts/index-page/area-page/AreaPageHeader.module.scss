@@ -3,7 +3,7 @@
 .panel {
     display: flex;
     padding-bottom: 1.75rem;
-    background-color: common.$a-white;
+    background-color: var(--a-white);
     padding-top: 2rem;
     @include common.full-width-mixin();
 
@@ -30,7 +30,7 @@
     justify-content: center;
     align-self: flex-end;
     flex: 1;
-    height: common.px-to-rem(160px);
+    height: 10rem;
     margin-bottom: -1.75rem;
     pointer-events: none;
 

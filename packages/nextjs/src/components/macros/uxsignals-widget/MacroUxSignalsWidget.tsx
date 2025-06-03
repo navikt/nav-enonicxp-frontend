@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { UxSignalsWidget } from 'components/_common/uxsignalsWidget/UxSignalsWidget';
 import { MacroUxSignalsWidgetProps } from 'types/macro-props/uxSignalsWidget';
 

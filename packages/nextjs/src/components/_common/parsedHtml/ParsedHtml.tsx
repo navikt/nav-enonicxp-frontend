@@ -18,7 +18,7 @@ import { processedHtmlMacroTag, ProcessedHtmlProps } from 'types/processed-html-
 import { headingToLevel, headingToSize, isHeadingTag } from 'types/typo-style';
 import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from 'components/macros/MacroMapper';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
@@ -75,9 +75,10 @@ const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
 
 type Props = {
     htmlProps: ProcessedHtmlProps | string;
+    pSize?: 'large' | 'small'
 };
 
-export const ParsedHtml = ({ htmlProps }: Props) => {
+export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
     const { editorView, language } = usePageContentProps();
 
     if (!htmlProps) {
@@ -164,7 +165,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <>{domToReact(domNodes, parserOptions)}</>;
                 }
                 return (
-                    <BodyLong spacing {...props} className={undefined}>
+                    <BodyLong spacing {...props} className={undefined} size={pSize ?? 'medium'}>
                         {domToReact(domNodes, parserOptions)}
                     </BodyLong>
                 );

@@ -18,7 +18,7 @@ import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
 import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
 import { MainArticleChapterNavigationLegacyPart } from 'components/parts/_legacy/main-article-chapter-navigation/MainArticleChapterNavigationLegacyPart';

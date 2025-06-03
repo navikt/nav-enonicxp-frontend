@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .card {
     width: 100%;
     position: relative;
@@ -31,5 +29,5 @@
     text-align: center;
     z-index: 1;
     border-radius: 4px;
-    background-color: common.$a-orange-100;
+    background-color: var(--a-orange-100);
 }

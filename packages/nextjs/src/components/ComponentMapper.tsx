@@ -6,7 +6,7 @@ import { PartsMapper } from './parts/PartsMapper';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/authDependantRender/AuthDependantRender';
-import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from './_editor-only/editorHelp/EditorHelp';
 
 type Props = {
     componentProps?: ComponentProps;

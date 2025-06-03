@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -19,7 +19,7 @@ type Props = {
 
 export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     const { layoutConfig } = useLayoutConfig();
-    const analyticsLinkGroup= linkGroup ?? layoutConfig.title;
+    const analyticsLinkGroup = linkGroup ?? layoutConfig.title;
 
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
