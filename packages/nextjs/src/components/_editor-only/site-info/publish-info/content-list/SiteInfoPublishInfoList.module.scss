@@ -1,10 +1,8 @@
-@use 'common' as common;
-
 .wrapper {
     margin-bottom: 1rem;
 }
 
 .separator {
     height: 0;
-    border-color: common.$a-gray-300;
+    border-color: var(--a-gray-300);
 }

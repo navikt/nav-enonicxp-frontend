@@ -1,11 +1,9 @@
-@use 'common' as common;
-
 .container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: common.$a-green-100;
+    background-color: var(--a-green-100);
     padding: 1.25rem;
     margin-bottom: 1.25rem;
 }

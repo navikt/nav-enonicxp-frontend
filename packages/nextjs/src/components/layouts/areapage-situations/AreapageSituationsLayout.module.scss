@@ -4,7 +4,7 @@
     @include common.full-width-mixin();
     padding-top: 2rem;
     padding-bottom: 2rem;
-    background-color: common.$a-deepblue-50;
+    background-color: var(--a-deepblue-50);
 }
 
 .situations {
