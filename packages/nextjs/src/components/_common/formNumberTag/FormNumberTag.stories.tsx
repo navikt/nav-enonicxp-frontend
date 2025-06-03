@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import FormNumberTag from './FormNumberTag';
+import { FormNumberTag } from './FormNumberTag';
 
 const meta = {
     component: FormNumberTag,
