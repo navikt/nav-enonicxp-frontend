@@ -25,6 +25,10 @@ const config: StorybookConfig = {
                 alias: {
                     ...config.resolve?.alias,
                     common: path.resolve(__dirname, '../src/common.scss'),
+                    '@navikt/nav-dekoratoren-moduler': path.resolve(
+                        __dirname,
+                        'mocks/nav-dekoratoren-moduler.js'
+                    ),
                 },
             },
         };
