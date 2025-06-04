@@ -34,16 +34,16 @@ export const Expandable = ({
     isOpenDefault,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
-    const accordionRef = useRef<HTMLDivElement | null>(null);
+    const trekkspillRef = useRef<HTMLDivElement | null>(null);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: () => setIsOpen(true) });
-    useCheckAndOpenPanel(isOpen, setIsOpen, accordionRef, anchorId);
+    useCheckAndOpenPanel(isOpen, setIsOpen, trekkspillRef, anchorId);
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        handleStickyScrollOffset(isOpening, accordionRef.current);
+        handleStickyScrollOffset(isOpening, trekkspillRef.current);
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: analyticsOriginTag || 'utvidbar tekst',
@@ -77,7 +77,7 @@ export const Expandable = ({
         <ExpansionCard
             id={anchorId}
             className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
-            ref={accordionRef}
+            ref={trekkspillRef}
             onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
             open={isOpen}
             aria-label={ariaLabel || title}
