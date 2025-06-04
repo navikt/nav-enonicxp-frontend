@@ -6,6 +6,7 @@ import { DuplicateIdsWarning } from 'components/_editor-only/warnings/duplicate-
 import { KortUrlWarning } from 'components/_editor-only/warnings/kort-url-warning/KortUrlWarning';
 import { removeDuplicates } from 'utils/arrays';
 import { FormNumbersWarning } from 'components/_editor-only/warnings/form-numbers-warning/FormNumbersWarning';
+import { getFormNumbers } from 'components/pages/formIntermediateStepPage/FormIntermediateStepPage';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
@@ -46,8 +47,9 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
     const formNumberRegex: RegExp = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/ as RegExp;
     let formNumbersAreWrong = false;
 
-    if (content.type === 'no.nav.navno:form-details') {
-        content.data?.formNumbers?.some(
+    if (content.type === 'no.nav.navno:form-intermediate-step') {
+        const formNumbers = getFormNumbers(content.data?.steps);
+        formNumbers.some(
             (formNumber: string) => (formNumbersAreWrong = !formNumberRegex.test(formNumber))
         );
     }

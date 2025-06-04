@@ -1,6 +1,6 @@
 import React from 'react';
+import { FormDetails } from 'components/_common/formDetails/FormDetails';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { FormDetailsPageProps } from 'types/content-props/form-details';

@@ -7,7 +7,7 @@ import {
     LegacyOfficeOpeningHoursProps,
 } from 'types/content-props/office-information-props';
 import { forceArray } from 'utils/arrays';
-import { officeDetailsFormatAddress } from 'components/pages/office-page/office-details/utils';
+import { officeDetailsFormatAddress } from 'components/pages/office-page/officeDetails/utils';
 import { OpeningHours } from './OpeningHours';
 
 import style from './Reception.module.scss';

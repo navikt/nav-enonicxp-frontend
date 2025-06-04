@@ -1,8 +1,6 @@
-@use '../../../../common' as common;
-
 .warning {
     min-width: 400px;
-    background-color: common.$a-white;
+    background-color: var(--a-white);
 
     &::before {
         content: '';

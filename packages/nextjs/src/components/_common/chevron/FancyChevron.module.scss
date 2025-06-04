@@ -1,9 +1,7 @@
-@use 'common' as common;
 @use './FancyChevronCommon.module' as chevronCommon;
 
 $defaultScale: 1;
 $size: 96px;
-$blueColor: #cce2f0;
 
 .scaleWrapper {
     display: flex;
@@ -30,7 +28,7 @@ $blueColor: #cce2f0;
     &.blue {
         .circle,
         .colorLine {
-            background-color: $blueColor;
+            background-color: var(--a-deepblue-100);
         }
     }
 }
@@ -38,7 +36,7 @@ $blueColor: #cce2f0;
 .circle {
     position: absolute;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--a-white);
     width: $size;
     height: $size;
 }
@@ -66,7 +64,7 @@ $colorLineStrokeWidth: 6px;
 }
 
 .colorLine {
-    background-color: white;
+    background-color: var(--a-white);
     height: $colorLineStrokeWidth;
 }
 

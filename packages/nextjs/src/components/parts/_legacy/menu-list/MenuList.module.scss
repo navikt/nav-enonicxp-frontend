@@ -11,7 +11,7 @@
 
     .panel {
         margin-bottom: 0.5rem;
-        background-color: common.$a-white;
+        background-color: var(--a-white);
         border-radius: common.$border-radius-base;
 
         :global(.navds-accordion__header) {
@@ -22,7 +22,7 @@
             }
 
             &:hover {
-                background-color: common.$a-white;
+                background-color: var(--a-white);
             }
         }
 

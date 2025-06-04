@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormDetailsListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
-import {
-    FormDetails,
-    FormDetailsComponentProps,
-} from 'components/_common/form-details/FormDetails';
+import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
-
-import style from './FormsOverviewListPanel.module.scss';
+import style from './FormsOverviewListPanel.module.scss'
 
 type OverviewType = FormsOverviewData['overviewType'];
 
@@ -93,9 +89,10 @@ export const FormsOverviewListPanel = ({
             analyticsData={{
                 opprinnelse: 'skjemaoversikt accordion',
             }}
+            withCopyLink
         >
-            {!isAddendumPage && url && (
-                <div className={style.merOmLenke}>
+            <div className={style.formsOverviewListPanel}>
+                {!isAddendumPage && url && (
                     <OversiktMerOmLenke
                         productLinks={[
                             {
@@ -106,17 +103,16 @@ export const FormsOverviewListPanel = ({
                             },
                         ]}
                     />
-                </div>
-            )}
-            {formDetailsPages?.map((formDetail) => (
-                <FormDetails
-                    formDetails={formDetail.data}
-                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
-                    className={style.formDetails}
-                    formNumberSelected={formNumberSelected}
-                    key={formDetail._id}
-                />
-            ))}
+                )}
+                {formDetailsPages?.map((formDetail) => (
+                    <FormDetails
+                        formDetails={formDetail.data}
+                        displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                        formNumberSelected={formNumberSelected}
+                        key={formDetail._id}
+                    />
+                ))}
+            </div>
         </ProductPanelExpandable>
     );
 };

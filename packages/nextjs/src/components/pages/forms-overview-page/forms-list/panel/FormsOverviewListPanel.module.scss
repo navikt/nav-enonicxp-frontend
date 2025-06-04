@@ -1,14 +1,5 @@
-@use 'common' as common;
-
-.formDetails:not(:last-child) {
-    padding-bottom: 2rem;
-    border-bottom: 1px common.$a-blue-100 solid;
-}
-
-.ingress {
-    margin-bottom: 1.5rem;
-}
-
-.merOmLenke {
-    padding-bottom: 2rem;
+.formsOverviewListPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }

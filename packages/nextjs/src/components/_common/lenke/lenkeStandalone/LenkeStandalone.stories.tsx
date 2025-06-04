@@ -11,4 +11,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const NoChevron: Story = { args: { withChevron: false } };
+export const WithChevron: Story = { args: { withChevron: true } };
+export const WithArrow: Story = { args: { withArrow: true } };

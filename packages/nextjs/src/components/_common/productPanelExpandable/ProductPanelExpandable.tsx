@@ -9,7 +9,6 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { translator } from 'translations';
-
 import style from './ProductPanelExpandable.module.scss';
 
 type Props = {
@@ -34,7 +33,7 @@ export const ProductPanelExpandable = ({
     analyticsData,
     isLoading,
     error,
-    withCopyLink = true,
+    withCopyLink = false,
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);

@@ -40,11 +40,11 @@
     // and sets the "Last updated" component to white.
     &:global(.page__single-col-page) {
         :global(.region:has(.layout__section-with-header:last-child)) ~ div {
-            background-color: white;
+            background-color: var(--a-white);
         }
 
         :global(.region:has(.shelf-layout:last-child)) ~ div {
-            background-color: white;
+            background-color: var(--a-white);
         }
     }
 }

@@ -1,8 +1,6 @@
-@use 'common' as common;
-
 .publishingCalendar {
     padding: 2rem;
-    background: common.$a-white;
+    background: var(--a-white);
 
     h1 {
         margin-bottom: 1rem;
@@ -35,7 +33,7 @@
                 font-weight: 600;
                 padding: 1rem;
                 border-radius: 50%;
-                background-color: #d1d1d1;
+                background-color: var(--a-gray-200);
             }
 
             .dateInfo {
