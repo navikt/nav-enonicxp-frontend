@@ -15,7 +15,7 @@ type Props = {
 
 export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }: Props) => {
     const { language } = usePageContentProps();
-    const { hasDefaultFilters } = useOverviewFilters();
+    const { hasDefaultFilters, resetFilters } = useOverviewFilters();
     const overviewTranslations = translator('overview', language);
 
     return (
@@ -27,7 +27,11 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }:
                         .replace('$2', numTotal.toString())}
                 </Heading>
                 {showResetChips && !hasDefaultFilters && (
-                    <Button size={'small'} variant={'secondary'} icon={<XMarkIcon />}>
+                    <Button
+                        size={'small'}
+                        variant={'secondary'}
+                        icon={<XMarkIcon />}
+                        onClick={resetFilters}>
                         {overviewTranslations('resetFilters')}
                     </Button>
                 )}
