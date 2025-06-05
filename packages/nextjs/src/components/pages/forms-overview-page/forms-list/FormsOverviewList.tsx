@@ -28,11 +28,8 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     } = props.data;
 
     const [filteredList, setFilteredList] = useState(formDetailsList);
-
     const { textFilter, getFilteredList } = useOverviewFilters();
-
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
-
     const numFilterTypes = [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
         Boolean
     ).length;

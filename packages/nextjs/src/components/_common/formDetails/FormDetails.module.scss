@@ -1,8 +1,6 @@
 @use 'common' as common;
 
 .formDetails {
-    margin-bottom: var(--a-spacing-9);
-
     ul {
         list-style: disc;
         margin-bottom: 1.75rem;
@@ -55,10 +53,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 5px;
-}
-
-.highlight {
-    background-color: var(--a-lightblue-200);
-    color: var(--a-gray-800);
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
