@@ -1,6 +1,4 @@
 import { expect, test } from '@playwright/test';
-import path from 'path';
-
 import storybook from '../storybook-static/index.json' with { type: 'json' };
 
 const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
@@ -24,7 +22,6 @@ for (const story of stories) {
                 `${story.id}-${testInfo.project.name}-${process.platform}.png`,
                 {
                     animations: 'disabled',
-                    stylePath: path.join(__dirname, 'screenshot.css'),
                 }
             );
         } catch (error) {

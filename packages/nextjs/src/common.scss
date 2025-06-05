@@ -1,25 +1,6 @@
-@forward '@navikt/ds-tokens/dist/tokens';
-@use '@navikt/ds-tokens/dist/tokens' as *;
 @use 'sass:math';
 
 $pixel-size-rem: math.div(1, 16);
-
-// In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
-@function stripUnit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
-    }
-    @return $number;
-}
-
-@function px-to-rem($px) {
-    @return stripUnit($px) * $pixel-size-rem * 1rem;
-}
-
-@function round-rem($value: 0) {
-    $valueUpper: $value + $pixel-size-rem / 2;
-    @return $valueUpper - ($valueUpper % $pixel-size-rem);
-}
 
 // Screen size breakpoints
 $mobileMaxWidth: 48rem; // 768px
@@ -86,9 +67,10 @@ $versionSelectorMinHeight: 3rem;
         display: flex;
         flex-grow: 1;
         flex-shrink: 0;
-        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        flex-basis: calc(math.percentage(math.div(1, $numColsPlus1)) + 1px);
         max-width: calc(
-            #{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px
+            #{math.percentage(math.div(1, $numCols))} -
+                #{math.div(($marginX * ($numCols - 1)), $numCols)} + 1px
         );
 
         &:not(:last-child) {
@@ -156,7 +138,7 @@ $versionSelectorMinHeight: 3rem;
 
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
-    box-shadow: 0 0 0 3px if($inset, inset, null) $a-border-focus;
+    box-shadow: 0 0 0 3px if($inset, inset, null) var(--a-border-focus);
 }
 
 @mixin link-underline-mixin($underlineDefault: true) {

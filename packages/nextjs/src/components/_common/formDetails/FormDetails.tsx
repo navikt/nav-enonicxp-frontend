@@ -1,6 +1,7 @@
 import React from 'react';
 import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
+import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
@@ -108,9 +109,9 @@ export const FormDetails = ({
                     ))}
                 </div>
             )}
-            {(hasVisibleFormNumbers || editorView === 'edit') && (
+            {(hasVisibleFormNumbers || editorView === 'inline' || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
-                    {formNumbers?.map((formNumber) => (
+                    {forceArray(formNumbers).map((formNumber) => (
                         <FormNumberTag
                             formNumber={formNumber}
                             className={style.formNumber}

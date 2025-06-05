@@ -3,7 +3,7 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
-        "build": "npm run build:server && npm run build:nextjs && npm run build:storybook",
+        "build": "npm run build:server && npm run build:nextjs",
         "build:nextjs": "npm run build --workspace packages/nextjs",
         "build:server": "npm run build --workspace packages/server",
         "build:storybook": "npm run build:storybook --workspace packages/nextjs",

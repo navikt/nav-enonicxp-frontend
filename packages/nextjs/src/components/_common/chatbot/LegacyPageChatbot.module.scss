@@ -1,7 +1,9 @@
+@use 'sass:math';
 @use 'common' as common;
 
 .legacyChat {
-    $width: common.$desktopMaxWidth / 2;
+    $width: math.div(common.$desktopMaxWidth, 2);
+
     display: flex;
     justify-content: center;
     margin: 2rem 0 1rem 0;
