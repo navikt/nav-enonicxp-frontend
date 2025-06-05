@@ -101,13 +101,13 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     const defaultExpandableTitle = getLabel('customizeContent');
 
     return (
-        <section className={style.filtersMenu} aria-describedby="description">
+        <section className={style.filtersMenu} aria-describedby="filters-menu-description">
             {title && (
                 <Heading level="2" size="large">
                     {title}
                 </Heading>
             )}
-            <BodyLong className={style.introduction} id="description">
+            <BodyLong className={style.introduction} id="filters-menu-description">
                 {description || ''}
             </BodyLong>
             <ExpandableComponentWrapper

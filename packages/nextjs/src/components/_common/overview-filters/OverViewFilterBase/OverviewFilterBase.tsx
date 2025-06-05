@@ -29,36 +29,33 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
     options,
 }: Props<Type>) => {
     const { language } = usePageContentProps();
-
     const translations = translator('overview', language)(type);
     const optionsTranslations = translator(type, language) as (key: Type) => string;
 
     return (
-        <div className={styles.overviewFilter}>
+        <section className={styles.overviewFilter}>
             <Heading size={'xsmall'} level={'3'}>
                 {translations['choose']}
             </Heading>
-            <nav aria-label={translations['ariaExplanation']}>
-                <Chips className={styles.filterWrapper}>
-                    {options.map((option) => {
-                        const optionLabel = optionsTranslations(option);
+            <Chips className={styles.filterWrapper}>
+                {options.map((option) => {
+                    const optionLabel = optionsTranslations(option);
 
-                        return (
-                            <Chips.Toggle
-                                type={'button'}
-                                onClick={() => selectionCallback(option)}
-                                aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
-                                className={styles.filterButton}
-                                checkmark={false}
-                                selected={selected === option}
-                                key={option}
-                            >
-                                {optionLabel}
-                            </Chips.Toggle>
-                        );
-                    })}
-                </Chips>
-            </nav>
-        </div>
+                    return (
+                        <Chips.Toggle
+                            type={'button'}
+                            onClick={() => selectionCallback(option)}
+                            aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
+                            className={styles.filterButton}
+                            checkmark={false}
+                            selected={selected === option}
+                            key={option}
+                        >
+                            {optionLabel}
+                        </Chips.Toggle>
+                    );
+                })}
+            </Chips>
+        </section>
     );
 };
