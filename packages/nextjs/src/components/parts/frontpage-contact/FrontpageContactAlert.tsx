@@ -1,6 +1,5 @@
 import React from 'react';
-import { BodyLong } from '@navikt/ds-react';
-import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Alert } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 
 import style from './FrontpageContactAlert.module.scss';
@@ -14,12 +13,9 @@ export const FrontpageContactAlert = ({ alertText, yellow = false }: Props) => {
     return (
         //Inspirert av Alert fra Designsystemet, med noen modifikasjoner på ikon og styling.
         <section className={classNames(style.alert, yellow ? style.yellow : style.white)}>
-            <ExclamationmarkTriangleIcon
-                title="Advarsel"
-                className={style.alertIcon}
-                aria-hidden={true}
-            />
-            <BodyLong as="div">{alertText}</BodyLong>
+            <Alert variant="warning" inline>
+                {alertText}
+            </Alert>
         </section>
     );
 };
