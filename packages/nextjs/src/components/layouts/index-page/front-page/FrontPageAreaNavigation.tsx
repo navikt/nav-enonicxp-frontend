@@ -34,53 +34,49 @@ type Props = {
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { areasHeader, navigationRefs = [] } = content.data;
-
     const audience = getAudience(content.data.audience);
-
     const cardType = audienceCardType[audience];
 
     return (
-        <div className={classNames(style.wrapper, audience && style[audience])}>
+        <section className={classNames(style.wrapper, audience && style[audience])}>
             <Heading level={'2'} size={'large'} className={style.header}>
                 {areasHeader}
             </Heading>
-            <nav aria-label="Velg område">
-                <ul
-                    className={classNames(
-                        style.cards,
-                        navigationRefs.length === 2 ? style.twocols : style.threecols
-                    )}
-                >
-                    {navigationRefs.map((page) => {
-                        if (page.type === ContentType.AreaPage) {
-                            return (
-                                <li key={page._id}>
-                                    <AreaCard
-                                        path={page._path}
-                                        title={page.data.header}
-                                        area={page.data.area}
-                                        linkGroup={areasHeader}
-                                    />
-                                </li>
-                            );
-                        }
-
-                        const illustration = getIllustrationFromProps(page);
-
+            <ul
+                className={classNames(
+                    style.cards,
+                    navigationRefs.length === 2 ? style.twocols : style.threecols
+                )}
+            >
+                {navigationRefs.map((page) => {
+                    if (page.type === ContentType.AreaPage) {
                         return (
                             <li key={page._id}>
-                                <FrontPageCard
-                                    illustration={illustration}
+                                <AreaCard
                                     path={page._path}
-                                    title={page.data?.title || page.displayName}
-                                    type={cardType}
-                                    tryFallbackIllustration={!illustration}
+                                    title={page.data.header}
+                                    area={page.data.area}
+                                    linkGroup={areasHeader}
                                 />
                             </li>
                         );
-                    })}
-                </ul>
-            </nav>
-        </div>
+                    }
+
+                    const illustration = getIllustrationFromProps(page);
+
+                    return (
+                        <li key={page._id}>
+                            <FrontPageCard
+                                illustration={illustration}
+                                path={page._path}
+                                title={page.data?.title || page.displayName}
+                                type={cardType}
+                                tryFallbackIllustration={!illustration}
+                            />
+                        </li>
+                    );
+                })}
+            </ul>
+        </section>
     );
 };
