@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
-import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import { OverviewFilterableItem, useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { usePageContentProps } from 'store/pageContext';
@@ -12,12 +11,11 @@ import style from './OverviewFilters.module.scss';
 type Props = {
     filterableItems: OverviewFilterableItem[];
     showTextInputFilter: boolean;
-    showTaxonomyFilter: boolean;
     showAreaFilter: boolean;
 };
 
 export const OverviewFilters = (props: Props) => {
-    const { filterableItems, showTextInputFilter, showAreaFilter, showTaxonomyFilter } = props;
+    const { filterableItems, showTextInputFilter, showAreaFilter} = props;
     const { resetFilters } = useOverviewFilters();
     const { language } = usePageContentProps();
 
@@ -28,7 +26,7 @@ export const OverviewFilters = (props: Props) => {
         };
     }, [resetFilters]);
 
-    if (!showAreaFilter && !showTaxonomyFilter && !showTextInputFilter) {
+    if (!showAreaFilter && !showTextInputFilter) {
         return null;
     }
     const searchLabel = translator('overview', language)('filterOrSearch');
@@ -39,7 +37,6 @@ export const OverviewFilters = (props: Props) => {
                 {searchLabel}
             </Heading>
             {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
-            {showTaxonomyFilter && <OverviewTaxonomyFilter items={filterableItems} />}
             {showTextInputFilter && <OverviewTextFilter hideLabel={false} />}
         </div>
     );

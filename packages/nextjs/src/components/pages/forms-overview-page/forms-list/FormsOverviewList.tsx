@@ -22,7 +22,6 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
         formDetailsList,
         areasFilterToggle,
-        taxonomyFilterToggle,
         textFilterToggle,
         overviewType,
     } = props.data;
@@ -30,7 +29,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     const [filteredList, setFilteredList] = useState(formDetailsList);
     const { textFilter, getFilteredList } = useOverviewFilters();
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
-    const numFilterTypes = [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
+    const numFilterTypes = [areasFilterToggle, textFilterToggle].filter(
         Boolean
     ).length;
 
@@ -65,7 +64,6 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         <>
             <OverviewFilters
                 filterableItems={formDetailsList}
-                showTaxonomyFilter={taxonomyFilterToggle}
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}
             />
@@ -73,7 +71,6 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 <OverviewFiltersSummary
                     numMatches={filteredList.length}
                     numTotal={formDetailsList.length}
-                    showResetChips={numFilterTypes > 1}
                 />
             )}
             <ul className={style.list}>
