@@ -14,8 +14,6 @@
 
 .expandableHeader {
     padding: var(--a-spacing-5);
-    margin: 0 -0.5rem -1px -0.5rem;
-    width: calc(100% + 1rem);
     border-radius: common.$border-radius-xlarge;
 
     @media #{common.$mq-screen-mobile} {
@@ -31,6 +29,7 @@
         background-color: var(--a-deepblue-100);
         color: var(--a-text-default);
         box-shadow: 0 0 0 0;
+        outline: 5px solid var(--a-bg-default);
 
         & + :global(.navds-expansioncard__content) {
             box-shadow: 0 0 0 0;

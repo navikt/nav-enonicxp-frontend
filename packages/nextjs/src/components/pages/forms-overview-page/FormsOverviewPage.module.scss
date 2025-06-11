@@ -3,15 +3,15 @@
 .page {
     display: grid;
     margin: 1.25rem auto var(--a-spacing-10);
-    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-columns: 1fr minmax(0, 40rem) 1fr;
     grid-template-areas: 'pictogram content .';
     column-gap: 1.75rem;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
-            'pictogram'
-            'content';
-        grid-template-columns: none;
+            '. pictogram .'
+            '. content .';
+      column-gap: 0;
     }
 }
 
@@ -37,9 +37,10 @@
 }
 
 /* Innrykk i ekspanderende paneler */
+/* Ikon + gap + padding */
 
-.main :global(.navds-expansioncard__content) {
+.page :global(.navds-expansioncard__content) {
     @media #{common.$mq-screen-desktop} {
-        padding-left: 82px;
+        padding-left: calc(64px + var(--a-spacing-4) + var(--a-spacing-5));
     }
 }
