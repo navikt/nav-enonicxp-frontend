@@ -22,7 +22,6 @@
 
 .lenketekst {
     display: inline;
-    align-items: center;
     color: var(--default-action-color);
     @include common.link-underline-mixin();
 }
