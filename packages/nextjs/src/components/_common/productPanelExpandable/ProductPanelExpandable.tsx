@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
+import { BodyLong, BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
@@ -89,10 +89,10 @@ export const ProductPanelExpandable = ({
                 onFocus={contentLoaderCallback}
             >
                 <IllustrationStatic className={style.illustration} illustration={illustration} />
-                <span className={style.panelHeader}>
-                    <span>{header}</span>
-                    {ingress && <span className={style.ingress}>{ingress}</span>}
-                </span>
+                <div className={style.panelHeader}>
+                    <BodyLong weight="semibold">{header}</BodyLong>
+                    {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
+                </div>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}

@@ -96,10 +96,13 @@
     font-weight: var(--a-font-weight-bold);
     font-size: var(--a-font-size-heading-small);
     word-break: break-word;
+
+    > * {
+        line-height: 1.5;
+    }
 }
 
 .ingress {
-    font-size: 1rem;
-    font-weight: normal;
     color: var(--a-gray-700);
+    text-wrap: pretty;
 }
