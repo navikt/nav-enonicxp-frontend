@@ -3,15 +3,15 @@
 .page {
     display: grid;
     margin: 1.25rem auto var(--a-spacing-10);
-    grid-template-columns: 1fr 40rem 1fr;
+    grid-template-columns: 1fr minmax(0, 40rem) 1fr;
     grid-template-areas: 'pictogram content .';
     column-gap: 1.75rem;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
-            'pictogram'
-            'content';
-        grid-template-columns: none;
+            '. pictogram .'
+            '. content .';
+      column-gap: 0;
     }
 }
 
