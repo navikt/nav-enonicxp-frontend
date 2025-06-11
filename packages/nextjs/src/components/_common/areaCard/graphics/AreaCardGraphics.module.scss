@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'common' as common;
 @use '../AreaCard.module' as areaCard;
 
@@ -16,13 +17,13 @@
 .insideCard {
     @media only screen and (max-width: common.$desktopMaxWidth) {
         transform: scale(areaCard.$size-medium) translateX(-(areaCard.$size-medium) * 10%);
-        width: (1 / areaCard.$size-medium) * 100%;
-        height: (1 / areaCard.$size-medium) * 100%;
+        width: (math.div(1, areaCard.$size-medium) * 100%);
+        height: (math.div(1, areaCard.$size-medium) * 100%);
     }
 
     @media #{common.$mq-screen-mobile-small} {
         transform: scale(areaCard.$size-small) translateX(-(areaCard.$size-small) * 100%);
-        width: (1 / areaCard.$size-small) * 100%;
-        height: (1 / areaCard.$size-small) * 100%;
+        width: (math.div(1, areaCard.$size-small) * 100%);
+        height: (math.div(1, areaCard.$size-small) * 100%);
     }
 }

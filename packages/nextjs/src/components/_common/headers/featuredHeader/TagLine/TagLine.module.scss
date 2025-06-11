@@ -17,7 +17,7 @@
 
 .tagLabel {
     color: var(--a-lightblue-800);
-    font-weight: common.$a-font-weight-bold;
+    font-weight: var(--a-font-weight-bold);
     padding-left: 0.5rem;
     text-transform: uppercase;
 }

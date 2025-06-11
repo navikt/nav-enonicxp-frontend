@@ -2,13 +2,12 @@ import path, { dirname, join } from 'path';
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-    stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+    stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
     addons: [
         getAbsolutePath('@storybook/addon-links'),
         getAbsolutePath('@storybook/addon-essentials'),
         getAbsolutePath('@storybook/addon-interactions'),
-        getAbsolutePath('@storybook/addon-mdx-gfm'),
         getAbsolutePath('@storybook/addon-storysource'),
         getAbsolutePath('storybook-addon-pseudo-states'),
     ],
@@ -26,6 +25,10 @@ const config: StorybookConfig = {
                 alias: {
                     ...config.resolve?.alias,
                     common: path.resolve(__dirname, '../src/common.scss'),
+                    '@navikt/nav-dekoratoren-moduler': path.resolve(
+                        __dirname,
+                        'mocks/nav-dekoratoren-moduler.js'
+                    ),
                 },
             },
         };
