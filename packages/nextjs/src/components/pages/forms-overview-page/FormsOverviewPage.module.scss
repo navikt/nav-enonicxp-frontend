@@ -36,11 +36,3 @@
     }
 }
 
-/* Innrykk i ekspanderende paneler */
-/* Ikon + gap + padding */
-
-.page :global(.navds-expansioncard__content) {
-    @media #{common.$mq-screen-desktop} {
-        padding-left: calc(64px + var(--a-spacing-4) + var(--a-spacing-5));
-    }
-}
