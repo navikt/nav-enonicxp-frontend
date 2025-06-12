@@ -13,12 +13,8 @@ import style from './OverviewPage.module.scss';
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
     const { language } = usePageContentProps();
-
     const [filteredList, setFilteredList] = useState(productList);
-
     const { getFilteredList } = useOverviewFilters();
-
-    const isSimpleOverview = overviewType === 'all_products';
 
     useEffect(() => {
         getFilteredList({
@@ -47,13 +43,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     <OverviewFilters
                         filterableItems={productList}
                         showAreaFilter={true}
-                        showTaxonomyFilter={isSimpleOverview}
                         showTextInputFilter={true}
                     />
                     <OverviewFiltersSummary
                         numMatches={filteredList.length}
                         numTotal={productList.length}
-                        showResetChips={true}
                     />
                 </div>
                 <ul className={style.productListWrapper}>

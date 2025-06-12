@@ -9,5 +9,5 @@ export const MacroChevronLinkExternal = ({ config }: MacroChevronLinkExternalPro
 
     const { url, text } = config.chevron_link_external;
 
-    return <LenkeStandalone href={url}>{text}</LenkeStandalone>;
+    return <LenkeStandalone href={url} withChevron>{text}</LenkeStandalone>;
 };
