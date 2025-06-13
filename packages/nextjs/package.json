@@ -52,6 +52,7 @@
     "devDependencies": {
         "@next/eslint-plugin-next": "14.2.4",
         "@playwright/test": "1.51.1",
+        "@storybook/addon-docs": "9.0.4",
         "@storybook/nextjs": "9.0.4",
         "@storybook/react": "9.0.4",
         "@testing-library/jest-dom": "6.6.3",
