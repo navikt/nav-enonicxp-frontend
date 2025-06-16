@@ -19,19 +19,12 @@ const getExactFormNumberIfFormSearch = (term: string) => {
 };
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
-    const {
-        formDetailsList,
-        areasFilterToggle,
-        textFilterToggle,
-        overviewType,
-    } = props.data;
+    const { formDetailsList, areasFilterToggle, textFilterToggle, overviewType } = props.data;
 
     const [filteredList, setFilteredList] = useState(formDetailsList);
     const { textFilter, getFilteredList } = useOverviewFilters();
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
-    const numFilterTypes = [areasFilterToggle, textFilterToggle].filter(
-        Boolean
-    ).length;
+    const numFilterTypes = [areasFilterToggle, textFilterToggle].filter(Boolean).length;
 
     useEffect(() => {
         getFilteredList({

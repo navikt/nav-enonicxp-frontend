@@ -33,8 +33,8 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
     const textFilterActual = textFilterOverride || textFilter;
     const isAreaMatching = (item: ItemType) =>
         areaFilter === Area.ALL || item.area.includes(areaFilter);
-    const itemsMatchingToggleFilters = filterableItems.filter(
-        (item: ItemType) => isAreaMatching(item)
+    const itemsMatchingToggleFilters = filterableItems.filter((item: ItemType) =>
+        isAreaMatching(item)
     );
 
     if (!textFilterActual || !fuseOptions) {

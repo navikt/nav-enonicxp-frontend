@@ -16,5 +16,5 @@ export const Default: Story = {
 };
 
 export const Selected: Story = {
-    args: { selected: true},
+    args: { selected: true },
 };

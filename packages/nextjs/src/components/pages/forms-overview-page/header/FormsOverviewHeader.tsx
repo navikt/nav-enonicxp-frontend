@@ -15,9 +15,7 @@ export const FormsOverviewHeader = (props: FormsOverviewProps) => {
             <Heading level={'1'} size={'xlarge'} className={style.header}>
                 {title}
             </Heading>
-            { underTitle &&
-                <BodyShort className={style.subHeader}>{underTitle}</BodyShort>
-            }
+            {underTitle && <BodyShort className={style.subHeader}>{underTitle}</BodyShort>}
             <Region pageProps={props} regionProps={page.regions.mainCol} />
         </div>
     );

@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const OverviewFilters = (props: Props) => {
-    const { filterableItems, showTextInputFilter, showAreaFilter} = props;
+    const { filterableItems, showTextInputFilter, showAreaFilter } = props;
     const { resetFilters } = useOverviewFilters();
     const { language } = usePageContentProps();
 
