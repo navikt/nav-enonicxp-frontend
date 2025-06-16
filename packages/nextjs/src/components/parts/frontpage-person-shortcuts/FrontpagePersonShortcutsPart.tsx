@@ -74,9 +74,7 @@ export const FrontpagePersonShortcutsPart = ({
                                     {href.includes('utbetalingsdatoer') && (
                                         <CalendarIcon title="Kalender" />
                                     )}
-                                    {href.includes('satser') && (
-                                        <WalletIcon title="Lommebok" />
-                                    )}
+                                    {href.includes('satser') && <WalletIcon title="Lommebok" />}
                                     {href.includes('soknader') && (
                                         <TasklistStartIcon title="Oppgaveliste start" />
                                     )}

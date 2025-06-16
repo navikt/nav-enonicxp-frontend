@@ -107,7 +107,7 @@ export const CallOption = ({
                         <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
                     </LenkeBase>
                 )}
-                </div>
+            </div>
         </div>
     );
 };
