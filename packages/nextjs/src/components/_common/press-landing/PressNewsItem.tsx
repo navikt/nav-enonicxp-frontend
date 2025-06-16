@@ -48,7 +48,9 @@ export const PressNewsItem = ({ newsItem }: Props) => {
                     </LenkeBase>
                 </Heading>
                 {newsItem.data?.ingress && (
-                    <div className={style.ingress}>{shortenText(newsItem.data.ingress, 240, 30)}</div>
+                    <div className={style.ingress}>
+                        {shortenText(newsItem.data.ingress, 240, 30)}
+                    </div>
                 )}
                 <div className={style.newsTagline}>
                     {icon && <StaticImage imageData={icon} />}

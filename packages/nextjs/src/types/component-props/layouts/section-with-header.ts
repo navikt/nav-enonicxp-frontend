@@ -21,5 +21,3 @@ export interface SectionWithHeaderProps extends LayoutBaseProps {
     } & Partial<HeaderWithAnchorMixin> &
         Pick<LayoutCommonConfigMixin, 'bgColor'>;
 }
-
-

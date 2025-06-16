@@ -10,7 +10,7 @@ type Props = {
     analyticsGroup?: string;
 };
 
-export const MoreLink = ( props: Props) => {
+export const MoreLink = (props: Props) => {
     if (!props.link) {
         return null;
     }

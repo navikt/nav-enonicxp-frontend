@@ -75,7 +75,7 @@ const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
 
 type Props = {
     htmlProps: ProcessedHtmlProps | string;
-    pSize?: 'large' | 'small'
+    pSize?: 'large' | 'small';
 };
 
 export const ParsedHtml = ({ htmlProps, pSize }: Props) => {

@@ -4,7 +4,10 @@ import type { StorybookConfig } from '@storybook/nextjs';
 const config: StorybookConfig = {
     stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
-    addons: [getAbsolutePath('storybook-addon-pseudo-states')],
+    addons: [
+        getAbsolutePath('@storybook/addon-docs'),
+        getAbsolutePath('storybook-addon-pseudo-states'),
+    ],
 
     framework: {
         name: getAbsolutePath('@storybook/nextjs'),
