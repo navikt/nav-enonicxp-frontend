@@ -9,12 +9,10 @@ import {
     setAreaFilterAction,
     setTextFilterAction,
 } from 'store/slices/overviewFilters';
-import { ContentType } from 'types/content-props/_content-common';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
 
 export type OverviewFilterableItem = {
     area: Area[];
-    type?: ContentType;
 };
 
 type FilteredListProps<ItemType extends OverviewFilterableItem> = {
