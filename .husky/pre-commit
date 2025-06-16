@@ -1,10 +1,7 @@
 cd packages/nextjs
-npx eslint --max-warnings=0 '**/*.{ts,tsx}'
-npx prettier --write '**/*.{ts,tsx,css,scss}'
+npx lint-staged
 cd ../server
-npx eslint --max-warnings=0 '**/*.{ts,tsx}'
-npx prettier --write '**/*.{ts,tsx,css,scss}'
+npx lint-staged
 cd ../shared
-npx eslint --max-warnings=0 '**/*.{ts,tsx}'
-npx prettier --write '**/*.{ts,tsx,css,scss}'
+npx lint-staged
 cd ../../

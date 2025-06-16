@@ -13,6 +13,12 @@
         "lint:eslint": "eslint src",
         "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },
+    "lint-staged": {
+        "*.{ts,tsx,css,scss}": [
+            "prettier --write",
+            "eslint --max-warnings=0"
+        ]
+    },
     "dependenciesComments": {
         "tough-cookie": "Transitive dependency only, bumped directly due to vulnerability alert",
         "word-wrap": "Transitive dependency only, bumped directly due to vulnerability alert"
