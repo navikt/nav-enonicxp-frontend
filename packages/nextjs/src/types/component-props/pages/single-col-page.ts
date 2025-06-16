@@ -14,4 +14,3 @@ export interface SingleColPageProps extends LayoutBaseProps {
     };
     config: {};
 }
-
