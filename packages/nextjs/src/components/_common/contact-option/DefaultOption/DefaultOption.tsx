@@ -28,12 +28,10 @@ export const DefaultOption = (props: Props) => {
     const getUrlOrClickHandler = (
         channel: ChannelType
     ): Partial<React.ComponentProps<typeof LenkeBase>> & { href: string } => {
-        const openInNewTab = { target: '_blank' };
-
         switch (channel) {
             case 'write':
                 return {
-                    href: url ?? Config.urls.skrivTilOss,
+                    href: url || Config.urls.skrivTilOss,
                 };
 
             case 'call':
@@ -47,20 +45,20 @@ export const DefaultOption = (props: Props) => {
                     href: ['no', 'nn', 'se'].includes(language)
                         ? Config.urls.sokNavKontor
                         : Config.urls.sokNavKontorEn,
-                    ...openInNewTab,
+                    target: '_blank',
                 };
 
             case 'aidcentral':
                 return {
                     href: Config.urls.kontaktHjelpemiddelSentral,
-                    ...openInNewTab,
+                    target: '_blank',
                 };
 
             case 'custom':
                 return {
-                    href: url ?? '#',
+                    href: url || '#',
+                    target: '_blank',
                     analyticsEvent: AnalyticsEvents.NAVIGATION,
-                    ...openInNewTab,
                 };
 
             default:
@@ -68,11 +66,10 @@ export const DefaultOption = (props: Props) => {
         }
     };
 
-    const titleActual = title || (channel !== 'custom' ? getTranslations(channel).title : null);
+    const channelIsNotCustom = channel !== 'custom';
 
-    const ingressActual =
-        ingress || (channel !== 'custom' ? getTranslations(channel).ingress : null);
-
+    const titleActual = title || (channelIsNotCustom ? getTranslations(channel).title : null);
+    const ingressActual = ingress || (channelIsNotCustom ? getTranslations(channel).ingress : null);
     const iconName = icon || 'place';
 
     return (
@@ -114,6 +111,7 @@ export const DefaultOption = (props: Props) => {
                         )}
                     </LenkeBase>
                 )}
+
                 {ingressActual ? (
                     <BodyLong as="div" className={sharedStyle.text}>
                         <ParsedHtml htmlProps={ingressActual} />
