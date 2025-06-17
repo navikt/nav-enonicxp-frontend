@@ -4,8 +4,6 @@
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
     margin: 0 auto;
-    font-size: var(--a-font-size-large);
-    line-height: var(--a-font-line-height-xlarge);
 
     @media #{common.$mq-screen-mobile} {
         padding: 0 common.$padding-sides-mobile 0 common.$padding-sides-mobile;
