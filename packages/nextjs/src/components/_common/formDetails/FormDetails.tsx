@@ -114,7 +114,6 @@ export const FormDetails = ({
                     {forceArray(formNumbers).map((formNumber) => (
                         <FormNumberTag
                             formNumber={formNumber}
-                            className={formNumber === formNumberToHighlight && style.highlight}
                             selected={formNumber === formNumberToHighlight}
                             key={formNumber}
                         />
