@@ -32,5 +32,10 @@
                 }
             }
         }
-    ]
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "legacyDecorators": true
+        }
+    }
 }

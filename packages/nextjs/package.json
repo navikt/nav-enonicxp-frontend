@@ -14,9 +14,11 @@
         "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },
     "lint-staged": {
-        "*.{ts,tsx,css,scss}": [
-            "prettier --write",
+        "*.{ts,tsx}": [
             "eslint --max-warnings=0"
+        ],
+        "*.{ts,tsx,css,scss}": [
+            "prettier --write"
         ]
     },
     "dependenciesComments": {
