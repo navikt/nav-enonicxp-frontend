@@ -61,11 +61,11 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                   },
         }).then((result) => {
             const sorted = [...result].sort((a, b) =>
-                a.sortTitle.localeCompare(b.sortTitle, 'nb', { sensitivity: 'base' })
+                a.sortTitle.localeCompare(b.sortTitle, props.language, { sensitivity: 'base' })
             );
             setFilteredList(sorted);
         });
-    }, [getFilteredList, formDetailsList, formNumberFromSearch]);
+    }, [getFilteredList, formDetailsList, formNumberFromSearch, props.language]);
 
     return (
         <>
