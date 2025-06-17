@@ -5,11 +5,15 @@ import { AreaCardGraphics } from 'components/_common/areaCard/graphics/AreaCardG
 import { AreaPageProps } from 'types/content-props/index-pages-props';
 
 import graphicsStyle from 'components/_common/areaCard/graphics/AreaCardGraphicsCommon.module.scss';
-import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
+import { AreaPageHeaderBanner, Banner } from './banner/AreaPageHeaderBanner';
 import style from './AreaPageHeader.module.scss';
 
 type Props = {
-    content: AreaPageProps;
+    content: {
+        data: Pick<AreaPageProps['data'], 'header' | 'area'> & {
+            banner?: Banner;
+        };
+    };
 };
 
 export const AreaPageHeader = ({ content }: Props) => {
