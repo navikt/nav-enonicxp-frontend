@@ -1,8 +1,5 @@
-.formDetails:not(:last-child) {
-    padding-bottom: 2rem;
-    border-bottom: 1px var(--a-blue-100) solid;
-}
-
-.ingress {
-    margin-bottom: 1.5rem;
+.formsOverviewListPanel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-10);
 }

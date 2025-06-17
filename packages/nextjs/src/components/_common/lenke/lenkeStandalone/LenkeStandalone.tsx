@@ -1,5 +1,6 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
 import { Chevron } from 'components/_common/chevron/Chevron';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -13,6 +14,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
+    withArrow?: boolean;
     analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -23,7 +25,8 @@ export const LenkeStandalone = ({
     className,
     component,
     linkGroup,
-    withChevron = true,
+    withChevron = false,
+    withArrow = false,
     children,
     analyticsLabel,
     ...rest
@@ -44,6 +47,11 @@ export const LenkeStandalone = ({
                     </span>
                 )}
                 <>{children}</>
+                {withArrow && (
+                    <span className={style.iconContainer}>
+                        <ArrowRightIcon className={style.arrowIcon} />
+                    </span>
+                )}
             </BodyShort>
             {label && (
                 <BodyLong size="small" className={style.label} as={'span'}>

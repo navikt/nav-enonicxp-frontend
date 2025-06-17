@@ -34,7 +34,7 @@ export const NewsListPart = ({ config }: PartComponentProps<PartType.NewsList>) 
                     listType={'chevron'}
                 />
                 {moreNews && (
-                    <LenkeStandalone href={moreNews.url} className={style.moreNews}>
+                    <LenkeStandalone href={moreNews.url} className={style.moreNews} withChevron>
                         {moreNews.text}
                     </LenkeStandalone>
                 )}
