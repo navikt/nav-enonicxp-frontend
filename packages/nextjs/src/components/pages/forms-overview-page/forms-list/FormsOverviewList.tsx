@@ -60,7 +60,10 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                       ],
                   },
         }).then((result) => {
-            setFilteredList(result);
+            const sorted = [...result].sort((a, b) =>
+                a.sortTitle.localeCompare(b.sortTitle, 'nb', { sensitivity: 'base' })
+            );
+            setFilteredList(sorted);
         });
     }, [getFilteredList, formDetailsList, formNumberFromSearch]);
 
