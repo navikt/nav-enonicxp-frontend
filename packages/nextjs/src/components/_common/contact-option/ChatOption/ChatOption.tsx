@@ -11,6 +11,8 @@ import { ChatData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 import { OpeningInfo } from 'components/_common/contact-option/openingInfo/OpeningInfo';
 
+//vet ikke hvorfor denne klager på unused class når den ÅPENBART ikke er unused
+// eslint-disable-next-line css-modules/no-unused-class
 import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
 import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 
@@ -27,12 +29,10 @@ export const ChatOption = (props: ChatData) => {
             <Icon type="chat" />
             <div className={sharedStyle.content}>
                 <Button
-                    onClick={() => {
-                        openChatbot();
-                    }}
+                    onClick={openChatbot}
                     analyticsEvent={AnalyticsEvents.CHAT_OPEN}
                     analyticsComponent={'Kontakt-oss kanal'}
-                    className={sharedStyle.link}
+                    lenkestyling
                 >
                     <Heading level="3" size="small">
                         {title || translations.title}

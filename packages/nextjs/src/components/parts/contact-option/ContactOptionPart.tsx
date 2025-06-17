@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
+import { DefaultOption } from 'components/_common/contact-option/DefaultOption/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption/CallOption';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption/WriteOption';

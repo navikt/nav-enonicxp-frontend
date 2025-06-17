@@ -29,6 +29,7 @@ type Props = {
     analyticsEvent?: AnalyticsEvents;
     analyticsComponent?: string;
     analyticsLabel?: string;
+    lenkestyling?: boolean;
 };
 
 export const Button = ({
@@ -47,6 +48,7 @@ export const Button = ({
     analyticsEvent,
     analyticsComponent,
     analyticsLabel,
+    lenkestyling = false,
 }: Props) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -63,7 +65,12 @@ export const Button = ({
         <DsButton
             as={LenkeBase}
             href={href || '#'}
-            className={classNames(style.button, fullWidth && style.buttonFullWidth, className)}
+            className={classNames(
+                style.button,
+                fullWidth && style.buttonFullWidth,
+                className,
+                lenkestyling && style.lenkestyling
+            )}
             onClick={(e) => {
                 logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
                 if (!href) {
