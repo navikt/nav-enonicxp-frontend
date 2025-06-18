@@ -5,7 +5,7 @@ import { OverviewFiltersSummary } from 'components/_common/overview-filters/summ
 import { OversiktPageProps } from 'types/content-props/oversikt-props';
 import { OversiktListPanel } from './panel/OversiktListPanel';
 
-import style from './FormsOverviewList.module.scss';
+import style from './OversiktList.module.scss';
 
 // Matches on form number-like queries and returns the full valid form number if match found
 // Form numbers are formatted like "NAV 01-23.45"

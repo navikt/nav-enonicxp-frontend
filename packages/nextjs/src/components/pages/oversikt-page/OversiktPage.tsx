@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { FormsOverviewHeader } from 'components/pages/oversikt-page/header/OversiktHeader';
+import { OversiktHeader } from 'components/pages/oversikt-page/header/OversiktHeader';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
-import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
+import { OversiktAudienceOptions, OversiktPageProps } from 'types/content-props/oversikt-props';
+import { OversiktList } from './forms-list/OversiktList';
 
 import style from './OversiktPage.module.scss';
-import { OversiktAudienceOptions, OversiktPageProps } from 'types/content-props/oversikt-props';
 
 const getLinksIfTransportPage = (audience: OversiktAudienceOptions) => {
     if (audience?._selected !== 'provider') {
@@ -27,7 +27,10 @@ const getLinksIfTransportPage = (audience: OversiktAudienceOptions) => {
 
 export const OversiktPage = (props: OversiktPageProps) => {
     const { page, data } = props;
-    const { audience, illustration } = data;
+    const { audience, illustration } = data as {
+        audience: OversiktAudienceOptions;
+        illustration: any;
+    };
 
     if (!page) {
         return <EditorHelp text={'Ingen page-komponent er valgt'} />;
@@ -39,7 +42,7 @@ export const OversiktPage = (props: OversiktPageProps) => {
         );
     }
 
-    if (!audience || !audience._selected) {
+    if (!audience?._selected) {
         return <EditorHelp text={'Ingen målgruppe valgt for skjemaoversikt'} />;
     }
 
@@ -49,11 +52,11 @@ export const OversiktPage = (props: OversiktPageProps) => {
         <article className={style.page}>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <div className={style.content}>
-                <FormsOverviewHeader {...props} />
+                <OversiktHeader {...props} />
                 {audienceSubCategoryLinks ? (
                     <FormsOverviewAudienceLinks links={audienceSubCategoryLinks} />
                 ) : (
-                    <FormsOverviewList {...props} />
+                    <OversiktList {...props} />
                 )}
             </div>
         </article>
