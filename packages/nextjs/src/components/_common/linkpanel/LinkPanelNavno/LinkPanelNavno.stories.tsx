@@ -1,4 +1,5 @@
-import type { Meta, StoryObj, action } from '@storybook/react';
+import { fn } from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/react';
 import { LinkPanelNavno } from './LinkPanelNavno';
 
 const meta = {
@@ -28,6 +29,6 @@ export const LinkColorBlack: Story = {
 export const ButtonLink: Story = {
     args: {
         children: 'Hvis lenken skal ha et JS-event (ChatOptions), skal vi bruke knapp',
-        onClickEvent: () => action('Clicked'),
+        onClickEvent: fn(),
     },
 };
