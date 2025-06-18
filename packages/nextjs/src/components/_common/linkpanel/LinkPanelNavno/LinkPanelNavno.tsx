@@ -10,7 +10,7 @@ type Props = {
     linkColor?: 'blue' | 'black';
     analyticsLinkGroup?: string;
     children?: React.ReactNode;
-    onClickEvent?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    onClickEvent?: (e: any) => void;
 } & React.HTMLAttributes<HTMLAnchorElement>;
 
 export const LinkPanelNavno = ({
@@ -29,7 +29,7 @@ export const LinkPanelNavno = ({
                     <Button
                         className={styles.button}
                         href={'#'}
-                        onClick={() => onClickEvent}
+                        onClick={(e) => onClickEvent(e)}
                         lenkestyling
                     >
                         {linkText}

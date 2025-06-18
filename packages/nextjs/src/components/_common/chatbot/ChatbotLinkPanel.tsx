@@ -19,7 +19,7 @@ export const ChatbotLinkPanel = ({ analyticsGroup, linkText, alertText, ingress 
             href={'#'}
             analyticsLinkGroup={analyticsGroup}
             linkText={linkText}
-            onClickEvent={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            onClickEvent={(e) => {
                 e.preventDefault();
                 openChatbot();
             }}
