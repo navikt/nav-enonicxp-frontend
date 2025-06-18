@@ -21,8 +21,10 @@ $blackLinkColor: var(--a-text-default);
     &:focus-within {
         @include common.panel-focus-mixin(true);
     }
+
     :global(.navds-label) {
         font-size: 24px;
+        background-color: #ec56e0;
     }
 }
 

@@ -26,7 +26,18 @@ export const LinkPanelNavno = ({
         <div className={classNames(styles.linkPanelNavno, elementAttribs.className)}>
             <div className="linkPanelNavnoTextContent">
                 {onClickEvent ? (
-                    <Button href={'#'} onClick={(e) => onClickEvent(e)} lenkestyling>
+                    <Button
+                        {...elementAttribs}
+                        href={href}
+                        className={classNames(
+                            'navds-heading',
+                            'navds-heading--medium',
+                            linkColor === 'black' && styles.linkBlack
+                        )}
+                        analyticsComponent={'Lenkepanel navno'}
+                        onClick={(e) => onClickEvent(e)}
+                        lenkestyling
+                    >
                         {linkText}
                     </Button>
                 ) : (
