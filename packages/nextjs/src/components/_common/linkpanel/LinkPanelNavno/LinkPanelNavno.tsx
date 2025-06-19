@@ -32,7 +32,8 @@ export const LinkPanelNavno = ({
                         className={classNames(
                             'navds-heading',
                             'navds-heading--medium',
-                            linkColor === 'black' && styles.linkBlack
+                            linkColor === 'black' && styles.linkBlack,
+                            styles.clickArea
                         )}
                         analyticsComponent={'Lenkepanel navno'}
                         onClick={(e) => onClickEvent(e)}
