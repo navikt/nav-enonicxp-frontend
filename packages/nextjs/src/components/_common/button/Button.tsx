@@ -30,6 +30,7 @@ type Props = {
     analyticsComponent?: string;
     analyticsLabel?: string;
     lenkestyling?: boolean;
+    typeButton: boolean;
 };
 
 export const Button = ({
@@ -49,6 +50,7 @@ export const Button = ({
     analyticsComponent,
     analyticsLabel,
     lenkestyling = false,
+    typeButton = false,
 }: Props) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -82,6 +84,7 @@ export const Button = ({
             variant={variant}
             size={size}
             disabled={disabled}
+            type={typeButton ? 'button' : 'submit'}
             icon={
                 xpIcon ? (
                     <XpImage imageProps={xpIcon} className={style.button__icon} maxWidth={64} />
