@@ -10,7 +10,7 @@ type Props = {
     numTotal: number;
 };
 
-export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
+export const OversiktFiltersSummary = ({ numMatches, numTotal }: Props) => {
     const { language } = usePageContentProps();
     const oversiktTranslations = translator('oversikt', language);
 

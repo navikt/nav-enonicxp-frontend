@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
+import { OversiktFilters } from 'components/_common/oversikt-filters/OvertsiktFilters';
 import { useOversiktFilters } from 'store/hooks/useOversiktFilters';
-import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
+import { OversiktFiltersSummary } from 'components/_common/oversikt-filters/summary/OversiktFiltersSummary';
 import { OversiktPageProps } from 'types/content-props/oversikt-props';
 import { OversiktListPanel } from './panel/OversiktListPanel';
 
@@ -55,13 +55,13 @@ export const OversiktList = (props: OversiktPageProps) => {
 
     return (
         <>
-            <OverviewFilters
+            <OversiktFilters
                 filterableItems={itemList}
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}
             />
             {numFilterTypes > 0 && (
-                <OverviewFiltersSummary
+                <OversiktFiltersSummary
                     numMatches={filteredList.length}
                     numTotal={itemList.length}
                 />
