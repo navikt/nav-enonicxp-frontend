@@ -1,6 +1,7 @@
 import React from 'react';
-import { Alert, BodyLong, BodyShort, Heading } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
+import { ContactOptionAlert } from 'components/_common/contact-option/ContactOptionAlert/ContactOptionAlert';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
@@ -13,7 +14,6 @@ import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 
 import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
-import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 import style from './CallOption.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
@@ -82,11 +82,7 @@ export const CallOption = ({
                         {title || callTranslations.title}
                     </Heading>
                 </LenkeBase>
-                {alertText && (
-                    <Alert variant="warning" inline className={alertStyle.alert}>
-                        {alertText}
-                    </Alert>
-                )}
+                {alertText && <ContactOptionAlert alertText={alertText} />}
                 <BodyLong className={sharedStyle.text}>
                     <ParsedHtml
                         htmlProps={overrideText || ingress || text || callTranslations.ingress}

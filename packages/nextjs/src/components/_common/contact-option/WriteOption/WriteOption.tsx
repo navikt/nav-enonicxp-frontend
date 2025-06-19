@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { ContactOptionAlert } from 'components/_common/contact-option/ContactOptionAlert/ContactOptionAlert';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -10,7 +11,6 @@ import { WriteData } from 'components/parts/contact-option/ContactOptionPart';
 import { Icon } from 'components/_common/contact-option/icon/Icon';
 
 import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
-import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 
 type Props = WriteData;
 
@@ -34,11 +34,7 @@ export const WriteOption = ({ ingress, url, alertText, title }: Props) => {
                         {title || translations.title}
                     </Heading>
                 </LenkeBase>
-                {alertText && (
-                    <Alert variant="warning" className={alertStyle.alert} inline>
-                        {alertText}
-                    </Alert>
-                )}
+                {alertText && <ContactOptionAlert alertText={alertText} />}
                 <BodyLong as="div" className={sharedStyle.text}>
                     <ParsedHtml htmlProps={ingress || translations.ingress} />
                 </BodyLong>

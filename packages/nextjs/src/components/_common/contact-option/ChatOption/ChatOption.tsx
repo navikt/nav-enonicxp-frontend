@@ -1,6 +1,7 @@
 import React from 'react';
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
+import { ContactOptionAlert } from 'components/_common/contact-option/ContactOptionAlert/ContactOptionAlert';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/analytics';
@@ -14,7 +15,6 @@ import { OpeningInfo } from 'components/_common/contact-option/openingInfo/Openi
 //vet ikke hvorfor denne klager på unused class når den ÅPENBART ikke er unused
 // eslint-disable-next-line css-modules/no-unused-class
 import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
-import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 
 export const ChatOption = (props: ChatData) => {
     const { ingress, title, alertText, regularOpeningHours, specialOpeningHours } = props;
@@ -38,11 +38,7 @@ export const ChatOption = (props: ChatData) => {
                         {title || translations.title}
                     </Heading>
                 </Button>
-                {alertText && (
-                    <Alert variant="warning" inline className={alertStyle.alert}>
-                        {alertText}
-                    </Alert>
-                )}
+                {alertText && <ContactOptionAlert alertText={alertText} />}
                 <BodyLong as="div" className={sharedStyle.text}>
                     <ParsedHtml htmlProps={overrideText || ingress || translations.ingress} />
                 </BodyLong>
