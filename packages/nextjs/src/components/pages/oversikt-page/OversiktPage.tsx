@@ -5,6 +5,7 @@ import { OversiktHeader } from 'components/pages/oversikt-page/header/OversiktHe
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { OversiktAudienceOptions, OversiktPageProps } from 'types/content-props/oversikt-props';
+import { PictogramsProps } from 'types/content-props/pictograms';
 import { OversiktList } from './forms-list/OversiktList';
 
 import style from './OversiktPage.module.scss';
@@ -27,16 +28,17 @@ const getLinksIfTransportPage = (audience: OversiktAudienceOptions) => {
 
 export const OversiktPage = (props: OversiktPageProps) => {
     const { page, data } = props;
+
     const { audience, illustration } = data as {
         audience: OversiktAudienceOptions;
-        illustration: any;
+        illustration: PictogramsProps;
     };
 
     if (!page) {
         return <EditorHelp text={'Ingen page-komponent er valgt'} />;
     }
 
-    if (page.descriptor !== 'no.nav.navno:two-cols-page') {
+    if (page.descriptor !== 'no.nav.navno:single-col-page') {
         return (
             <EditorHelp text={`Ugyldig page-komponent for skjemaoversikt: ${page.descriptor}`} />
         );

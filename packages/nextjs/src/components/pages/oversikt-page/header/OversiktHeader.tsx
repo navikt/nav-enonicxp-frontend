@@ -16,7 +16,7 @@ export const OversiktHeader = (props: OversiktPageProps) => {
                 {title}
             </Heading>
             {underTitle && <BodyShort className={style.subHeader}>{underTitle}</BodyShort>}
-            <Region pageProps={props} regionProps={page.regions.mainCol} />
+            <Region pageProps={props} regionProps={page.regions.pageContent} />
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { PictogramsProps } from 'types/content-props/pictograms';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
 import { EmptyObject, OptionSetSingle } from 'types/util-types';
-import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
+import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 
 type ContentTypeInOversiktPages =
     | ContentType.ProductPage
@@ -80,5 +80,5 @@ export type OversiktPageData = {
 export type OversiktPageProps = ContentCommonProps & {
     type: ContentType.Oversikt;
     data: OversiktPageData;
-    page: TwoColsPageProps;
+    page: SingleColPageProps;
 };
