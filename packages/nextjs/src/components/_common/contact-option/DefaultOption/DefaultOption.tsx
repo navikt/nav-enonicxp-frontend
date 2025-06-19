@@ -84,6 +84,7 @@ export const DefaultOption = (props: Props) => {
                     analyticsEvent={AnalyticsEvents.CHAT_OPEN}
                     analyticsComponent="Kontakt-oss kanal"
                     lenkestyling
+                    typeButton
                 >
                     {titleActual ? (
                         <Heading level="3" size="small">

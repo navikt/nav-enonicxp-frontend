@@ -30,7 +30,7 @@ type Props = {
     analyticsComponent?: string;
     analyticsLabel?: string;
     lenkestyling?: boolean;
-    typeButton: boolean;
+    typeButton?: boolean;
 };
 
 export const Button = ({
