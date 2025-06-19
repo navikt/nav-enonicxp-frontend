@@ -28,7 +28,7 @@ export const LinkColorBlack: Story = {
 
 export const ButtonLink: Story = {
     args: {
-        children: 'Hvis lenken skal ha et JS-event (ChatOptions), skal vi bruke knapp',
+        children: 'Hvis lenken skal ha et JS-event (f.eks ChatOptions), skal vi bruke knapp',
         onClickEvent: fn(),
     },
 };
