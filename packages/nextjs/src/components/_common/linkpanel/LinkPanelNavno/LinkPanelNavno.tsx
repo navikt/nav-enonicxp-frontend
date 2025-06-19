@@ -22,6 +22,12 @@ export const LinkPanelNavno = ({
     onClickEvent,
     ...elementAttribs
 }: Props) => {
+    const textClassNames = classNames(
+        'navds-heading',
+        'navds-heading--medium',
+        linkColor === 'black' && styles.linkBlack
+    );
+
     return (
         <div className={classNames(styles.linkPanelNavno, elementAttribs.className)}>
             <div className="linkPanelNavnoTextContent">
@@ -29,14 +35,9 @@ export const LinkPanelNavno = ({
                     <Button
                         {...elementAttribs}
                         href={href}
-                        className={classNames(
-                            'navds-heading',
-                            'navds-heading--medium',
-                            linkColor === 'black' && styles.linkBlack,
-                            styles.clickArea
-                        )}
-                        analyticsComponent={'Lenkepanel navno'}
-                        onClick={(e) => onClickEvent(e)}
+                        className={classNames(styles.clickArea, textClassNames)}
+                        analyticsComponent="Lenkepanel navno"
+                        onClick={onClickEvent}
                         lenkestyling
                     >
                         {linkText}
@@ -45,13 +46,8 @@ export const LinkPanelNavno = ({
                     <LenkeBase
                         {...elementAttribs}
                         href={href}
-                        className={classNames(
-                            styles.linkPanelNavnoLink,
-                            'navds-heading',
-                            'navds-heading--medium',
-                            linkColor === 'black' && styles.linkBlack
-                        )}
-                        analyticsComponent={'Lenkepanel navno'}
+                        className={classNames(styles.linkPanelNavnoLink, textClassNames)}
+                        analyticsComponent="Lenkepanel navno"
                         analyticsLinkGroup={analyticsLinkGroup}
                         analyticsLabel={linkText}
                     >
