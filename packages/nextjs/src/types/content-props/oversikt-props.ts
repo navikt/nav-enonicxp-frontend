@@ -72,7 +72,6 @@ export type OversiktPageData = {
     illustration: PictogramsProps;
     audience: OversiktAudienceOptions;
     areasFilterToggle: boolean;
-    taxonomyFilterToggle: boolean;
     textFilterToggle: boolean;
     itemList: OversiktItemListItem[];
 } & ProductDataMixin;
