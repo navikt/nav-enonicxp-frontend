@@ -67,10 +67,10 @@ export const OversiktList = (props: OversiktPageProps) => {
                 />
             )}
             <ul className={style.list}>
-                {filteredList.map((formDetail) => (
-                    <li key={`${formDetail.anchorId}-${props.language}`}>
+                {filteredList.map((listItem) => (
+                    <li key={`${listItem.anchorId}-${props.language}`}>
                         <OversiktListPanel
-                            panelDetails={formDetail}
+                            panelDetails={listItem}
                             oversiktType={oversiktType}
                             formNumberSelected={formNumberFromSearch}
                         />

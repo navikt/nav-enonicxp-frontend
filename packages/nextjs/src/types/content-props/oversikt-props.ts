@@ -68,7 +68,14 @@ export type OversiktPageData = {
     title: string;
     underTitle: string;
     ingress: string;
-    oversiktType: 'application' | 'complaint' | 'addendum';
+    oversiktType:
+        | 'application'
+        | 'complaint'
+        | 'addendum'
+        | 'rates'
+        | 'payout_dates'
+        | 'processing_times'
+        | 'all_products';
     illustration: PictogramsProps;
     audience: OversiktAudienceOptions;
     areasFilterToggle: boolean;

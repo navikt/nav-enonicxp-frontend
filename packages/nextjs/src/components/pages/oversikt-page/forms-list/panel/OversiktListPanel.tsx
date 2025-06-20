@@ -7,6 +7,7 @@ import { ProductPanelExpandable } from 'components/_common/productPanelExpandabl
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import { OversiktItemListItem, OversiktPageData } from 'types/content-props/oversikt-props';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
+import { ProductDetails } from 'components/_common/productDetails/ProductDetails';
 import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
@@ -68,7 +69,10 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                         return false;
                     }
 
-                    return content.type === ContentType.FormDetails;
+                    return (
+                        content.type === ContentType.FormDetails ||
+                        content.type === ContentType.ProductDetails
+                    );
                 }) as FormDetailsPageProps[] | ProductDetailsProps[];
 
                 setLoadedPanelDetails(validItemsContent);
@@ -114,6 +118,11 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                                 formNumberSelected={formNumberSelected}
                                 key={panelDetail._id}
                             />
+                        );
+                    }
+                    if (panelDetail.type === ContentType.ProductDetails) {
+                        return (
+                            <ProductDetails productDetails={panelDetail} key={panelDetail._id} />
                         );
                     }
                 })}
