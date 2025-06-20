@@ -3,14 +3,14 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import { openingHourDateFormat } from 'components/_common/contact-option/openingInfo/helpers/openingInfoUtils';
 import { dayNameToIndex, daysNameArray } from 'utils/datetime';
-import { OpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoTypes';
 import {
     OpeningHourRaw,
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
 } from 'components/parts/contact-option/ContactOptionPart';
+import { openingHourDateFormat } from './openingInfoUtils';
+import { OpeningHours } from './openingInfoTypes';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(isSameOrAfter);

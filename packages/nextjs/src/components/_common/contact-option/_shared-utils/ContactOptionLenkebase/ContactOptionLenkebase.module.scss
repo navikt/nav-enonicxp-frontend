@@ -1,0 +1,16 @@
+.link {
+    color: var(--default-action-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1em;
+    text-decoration-line: underline;
+    margin-bottom: 0;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: none;
+    }
+
+    :global(.navds-heading) {
+        color: var(--default-action-color);
+    }
+}

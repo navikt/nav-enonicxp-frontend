@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Loader } from '@navikt/ds-react';
-import { getCurrentOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoUtils';
-import { usePageContentProps } from 'store/pageContext';
-import { OpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoTypes';
-import { getOpeningInfoText } from 'components/_common/contact-option/openingInfo/helpers/openingInfoText';
-import { processOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/processOpeningHours';
-
-import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
 } from 'components/parts/contact-option/ContactOptionPart';
+import { usePageContentProps } from 'store/pageContext';
+import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
+import { getCurrentOpeningHours } from './helpers/openingInfoUtils';
+import { OpeningHours } from './helpers/openingInfoTypes';
+import { getOpeningInfoText } from './helpers/openingInfoText';
+import { processOpeningHours } from './helpers/processOpeningHours';
 
 type Props = {
     regularOpeningHours: RegularOpeningHours;

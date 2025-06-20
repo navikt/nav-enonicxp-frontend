@@ -6,7 +6,7 @@ import { usePageContentProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
-} from 'components/_common/contact-option/openingInfo/helpers/iconUtils';
+} from 'components/_common/contact-option/_shared-utils/openingInfo/helpers/iconUtils';
 
 import style from './SosialeMedier.module.scss';
 
