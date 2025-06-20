@@ -10,3 +10,7 @@ export enum ProcessingTimesVisibilityType {
     APPLICATION = 'application',
     COMPLAINT = 'complaint',
 }
+
+export type ProductDetailsProps = {
+    detailType: ProductDetailType;
+};
