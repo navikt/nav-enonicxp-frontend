@@ -189,6 +189,26 @@ export const translationsBundleNn: PartialTranslations = {
             ariaItemExplanation: 'Vis type',
         },
     },
+    oversikt: {
+        noHits: 'Ingen treff med dei valde filtera.',
+        numHits: 'Viser $1 av $2',
+        search: 'Søk',
+        filterOrSearch: 'Bruk filter eller søk',
+        loading: 'Laster innhald...',
+        resetFilters: 'Nullstill filter',
+        any: 'Frå A til Å',
+        more: 'Meir om',
+        areas: {
+            choose: 'Vel område',
+            ariaExplanation: 'Filtrer lista etter område',
+            ariaItemExplanation: 'Vis område',
+        },
+        taxonomies: {
+            choose: 'Vel type',
+            ariaExplanation: 'Filtrer lista etter type',
+            ariaItemExplanation: 'Vis type',
+        },
+    },
     form: {
         back: 'Vel ein annan måte å sende inn på',
     },

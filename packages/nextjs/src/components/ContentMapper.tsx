@@ -3,6 +3,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { ContentTypeNotSupportedPage } from 'components/pages/contenttypeNotSupportedPage/ContentTypeNotSupportedPage';
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
+import { OversiktPage } from 'components/pages/oversikt-page/OversiktPage';
 import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 import { ErrorPage } from './pages/errorPage/ErrorPage';
@@ -51,6 +52,7 @@ const contentToReactComponent: {
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
+    [ContentType.Oversikt]: OversiktPage,
     [ContentType.GenericPage]: GenericPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.OfficePage]: OfficePage,
