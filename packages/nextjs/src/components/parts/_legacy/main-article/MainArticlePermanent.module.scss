@@ -82,7 +82,7 @@
         .h3,
         h4,
         .h4 {
-            font-size: common.$a-font-size-heading-small;
+            font-size: var(--a-font-size-heading-small);
             margin: 1.75rem 0 0.6875rem;
 
             &:first-child {

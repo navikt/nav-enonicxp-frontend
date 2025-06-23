@@ -13,6 +13,14 @@
         "lint:eslint": "eslint src",
         "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --max-warnings=0"
+        ],
+        "*.{ts,tsx,css,scss}": [
+            "prettier --write"
+        ]
+    },
     "dependenciesComments": {
         "tough-cookie": "Transitive dependency only, bumped directly due to vulnerability alert",
         "word-wrap": "Transitive dependency only, bumped directly due to vulnerability alert"
@@ -52,14 +60,9 @@
     "devDependencies": {
         "@next/eslint-plugin-next": "14.2.4",
         "@playwright/test": "1.51.1",
-        "@storybook/addon-essentials": "8.6.12",
-        "@storybook/addon-interactions": "8.6.12",
-        "@storybook/addon-links": "8.6.12",
-        "@storybook/addon-storysource": "8.6.12",
-        "@storybook/blocks": "8.6.12",
-        "@storybook/nextjs": "8.6.12",
-        "@storybook/react": "8.6.12",
-        "@storybook/test": "8.6.12",
+        "@storybook/addon-docs": "9.0.4",
+        "@storybook/nextjs": "9.0.4",
+        "@storybook/react": "9.0.4",
         "@testing-library/jest-dom": "6.6.3",
         "@testing-library/react": "16.3.0",
         "@types/jest": "29.5.14",
@@ -77,8 +80,8 @@
         "jest-environment-jsdom": "29.7.0",
         "jest-fetch-mock": "3.0.3",
         "npm-run-all": "4.1.5",
-        "storybook": "8.6.12",
-        "storybook-addon-pseudo-states": "4.0.3",
+        "storybook": "9.0.4",
+        "storybook-addon-pseudo-states": "9.0.4",
         "sass": "1.86.3",
         "ts-jest": "29.3.1"
     },

@@ -10,9 +10,10 @@
         "next/core-web-vitals",
         "plugin:css-modules/recommended",
         "plugin:storybook/recommended",
-        "../../.eslintrc.json"
+        "../../.eslintrc.json",
+        "prettier"
     ],
-    "ignorePatterns": ["next.config.js"],
+    "ignorePatterns": ["next.config.js", "!.storybook"],
     "root": true,
     "rules": {
         "@next/next/no-img-element": 0,

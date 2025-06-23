@@ -4,8 +4,6 @@
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
     margin: 0 auto;
-    font-size: common.$a-font-size-large;
-    line-height: common.$a-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
         padding: 0 common.$padding-sides-mobile 0 common.$padding-sides-mobile;
@@ -21,7 +19,7 @@
 }
 
 .defaultBackground {
-    background-color: var(--a-gray-100);
+    background-color: var(--a-bg-subtle);
 }
 
 .whiteBackground {

@@ -13,7 +13,9 @@
     .content {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+    }
+    .metadata {
+        margin-top: var(--a-spacing-2);
     }
 
     & :global(.navds-link-panel__title) {
