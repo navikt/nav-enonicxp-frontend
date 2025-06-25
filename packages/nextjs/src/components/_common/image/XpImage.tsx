@@ -13,7 +13,21 @@ type Props = {
 export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
     const { editorView, language } = usePageContentProps();
 
-    const imageUrl = getMediaUrl(imageProps.mediaUrl, !!editorView, language);
+    const isFullUrl = (url: string) => /^https?:\/\//.test(url);
+
+    // Determine the image URL based on whether it's a full URL or relative path
+    let imageUrl: string | undefined;
+
+    if (imageProps.mediaUrl) {
+        if (isFullUrl(imageProps.mediaUrl)) {
+            // Use the URL as-is if it's already a full URL
+            imageUrl = imageProps.mediaUrl;
+        } else {
+            // Process relative URLs through the media URL utility
+            imageUrl = getMediaUrl(imageProps.mediaUrl, !!editorView, language);
+        }
+    }
+
     if (!imageUrl) {
         return null;
     }

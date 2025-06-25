@@ -26,7 +26,22 @@ export const Illustration: Story = {
         ...Default.args,
         illustration: {
             type: ContentType.Pictograms,
-            data: { icons: [{ icon: { type: MediaType.Vector, mediaUrl: 'placeholder' } }] },
+            data: {
+                icons: [
+                    {
+                        icon: {
+                            type: MediaType.Image,
+                            mediaUrl: 'https://picsum.photos/200/200',
+                            imageUrl: 'https://picsum.photos/200/200',
+                            imageInfo: {
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                contentType: 'image/jpeg',
+                            },
+                        },
+                    },
+                ],
+            },
         },
     },
 };

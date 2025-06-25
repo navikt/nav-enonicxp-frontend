@@ -38,12 +38,12 @@
     height: 4rem;
     flex-shrink: 0;
 
-    :global(.back) {
-        @include common.brand-purple-filter-back();
-    }
-    :global(.front) {
-        @include common.brand-purple-filter-front();
-    }
+    // :global(.back) {
+    //     @include common.brand-purple-filter-back();
+    // }
+    // :global(.front) {
+    //     @include common.brand-purple-filter-front();
+    // }
 }
 
 .link {
