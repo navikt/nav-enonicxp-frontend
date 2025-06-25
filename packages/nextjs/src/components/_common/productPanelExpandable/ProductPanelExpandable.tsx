@@ -96,6 +96,13 @@ export const ProductPanelExpandable = ({
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}
+                {withCopyLink && (
+                    <CopyLink
+                        anchor={anchorIdWithHash}
+                        heading={header}
+                        className={style.copyLink}
+                    />
+                )}
                 {isLoading ? (
                     <div className={style.loader}>
                         <Loader size={'2xlarge'} />
@@ -103,13 +110,6 @@ export const ProductPanelExpandable = ({
                     </div>
                 ) : (
                     children
-                )}
-                {withCopyLink && (
-                    <CopyLink
-                        anchor={anchorIdWithHash}
-                        heading={header}
-                        className={style.copyLink}
-                    />
                 )}
             </ExpansionCard.Content>
         </ExpansionCard>

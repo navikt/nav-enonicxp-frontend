@@ -97,18 +97,6 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
             withCopyLink
         >
             <div className={style.oversiktListPanel}>
-                {!isAddendumPage && url && (
-                    <OversiktMerOmLenke
-                        productLinks={[
-                            {
-                                type,
-                                url,
-                                title,
-                                language: targetLanguage,
-                            },
-                        ]}
-                    />
-                )}
                 {loadedPanelDetails?.map((panelDetail) => {
                     if (panelDetail.type === ContentType.FormDetails) {
                         return (
@@ -126,6 +114,19 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                         );
                     }
                 })}
+                {!isAddendumPage && url && (
+                    <OversiktMerOmLenke
+                        className={style.merOmLenke}
+                        productLinks={[
+                            {
+                                type,
+                                url,
+                                title,
+                                language: targetLanguage,
+                            },
+                        ]}
+                    />
+                )}
             </div>
         </ProductPanelExpandable>
     );
