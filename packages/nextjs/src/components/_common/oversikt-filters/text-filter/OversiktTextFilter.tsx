@@ -102,7 +102,7 @@ export const OversiktTextFilter = ({ hideLabel }: Props) => {
                 value={textInput}
                 label={label}
                 hideLabel={hideLabel}
-                variant={'secondary'}
+                variant={'simple'}
                 autoComplete={'off'}
             />
         </form>
