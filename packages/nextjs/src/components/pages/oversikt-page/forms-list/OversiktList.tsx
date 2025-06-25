@@ -42,10 +42,10 @@ export const OversiktList = (props: OversiktPageProps) => {
                           { name: 'sortTitle', weight: 10 },
                           { name: 'title', weight: 10 },
                           { name: 'ingress', weight: 8 },
-                          { name: 'formDetailsTitles', weight: 2 },
+                          { name: 'subItems.title', weight: 2 },
                           { name: 'keywords', weight: 2 },
-                          { name: 'formDetailsIngresses', weight: 1 },
-                          { name: 'formNumbers', weight: 1 },
+                          { name: 'subItems.ingress', weight: 1 },
+                          { name: 'subItems.formNumbers', weight: 1 },
                       ],
                   },
         }).then((result) => {
