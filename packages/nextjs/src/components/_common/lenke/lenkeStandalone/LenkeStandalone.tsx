@@ -11,6 +11,7 @@ type Props = {
     href: string;
     label?: string;
     className?: string;
+    tekstClassName?: string;
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
@@ -23,6 +24,7 @@ export const LenkeStandalone = ({
     href,
     label,
     className,
+    tekstClassName,
     component,
     linkGroup,
     withChevron = false,
@@ -40,7 +42,7 @@ export const LenkeStandalone = ({
             analyticsLinkGroup={linkGroup}
             analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
         >
-            <BodyShort className={style.lenketekst} as={'span'}>
+            <BodyShort className={classNames(style.lenketekst, tekstClassName)} as={'span'}>
                 {withChevron && (
                     <span className={style.iconContainer}>
                         <Chevron className={style.customChevronStyle} />

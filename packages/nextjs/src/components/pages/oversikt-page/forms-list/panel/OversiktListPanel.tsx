@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BodyLong } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
@@ -8,6 +10,9 @@ import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/O
 import { OversiktItemListItem, OversiktPageData } from 'types/content-props/oversikt-props';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetails } from 'components/_common/productDetails/ProductDetails';
+import { ProductDetailType } from 'types/content-props/product-details';
+import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
@@ -50,6 +55,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
         null | FormDetailsPageProps[] | ProductDetailsProps[]
     >(null);
     const isAddendumPage = oversiktType === 'addendum';
+    const isTjenesterOversikt = oversiktType === ProductDetailType.ALL_PRODUCTS;
 
     const handlePanelDetailsFetch = () => {
         if (isLoading || loadedPanelDetails) {
@@ -81,6 +87,24 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                 setIsLoading(false);
             });
     };
+
+    if (isTjenesterOversikt) {
+        return (
+            <div className={style.tjenesterPanel}>
+                <IllustrationStatic illustration={illustration} className={style.icon} />
+                <LenkeStandalone
+                    href={url}
+                    title={title}
+                    className={style.title}
+                    tekstClassName={style.lenketekst}
+                >
+                    {title}
+                </LenkeStandalone>
+                <BodyLong className={style.tjenesterIngress}>{ingress}</BodyLong>
+                <ArrowRightIcon title="Pil høyre" className={style.arrow} />
+            </div>
+        );
+    }
 
     return (
         <ProductPanelExpandable
