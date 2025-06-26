@@ -25,13 +25,7 @@
 
     .icon {
         grid-area: icon;
-        width: 1.5rem;
         flex-shrink: 0;
-
-        @media #{common.$mq-screen-mobile} {
-            width: 1rem;
-            height: 1rem;
-        }
 
         & > :first-child:not(:last-child) * {
             fill: var(--a-deepblue-100);
