@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { setParams } from '@navikt/nav-dekoratoren-moduler';
 import { translator } from 'translations';
 import { SelectableStep, StepBase } from 'types/content-props/form-intermediate-step';
 import { useFormIntermediateStepPage } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
@@ -39,8 +40,16 @@ export const getFormNumbers = (steps: SelectableStep[]): string[] => {
 export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) => {
     const { data, displayName, language } = props;
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
-
     const getTranslations = translator('form', language);
+
+    // Mellomsteg skal bruke simple decorator
+    useEffect(() => {
+        setParams({simple: true});
+
+        return () => {
+            setParams({simple: false});
+        }
+    }, []);
 
     return (
         <MellomstegLayout
