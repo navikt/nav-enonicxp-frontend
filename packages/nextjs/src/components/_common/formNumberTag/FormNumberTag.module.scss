@@ -7,3 +7,9 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+
+.selectedTag {
+    background-color: var(--a-lightblue-200);
+    color: var(--a-gray-800);
+    border-radius: var(--a-border-radius-medium);
+}

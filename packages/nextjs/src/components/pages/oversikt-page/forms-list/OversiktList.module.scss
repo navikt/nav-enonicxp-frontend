@@ -1,0 +1,5 @@
+@use 'common' as common;
+
+.list {
+    @include common.unstyled-list();
+}

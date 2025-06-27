@@ -43,7 +43,6 @@ export const LinkListsLegacyPart = (props: ContentProps) => {
                                         href={newsUrlAbsolute}
                                         className={style.moreNews}
                                         component={'link-list'}
-                                        withChevron={false}
                                         analyticsLabel={'Flere nyheter'}
                                     >
                                         {getLabel('moreNews')}
