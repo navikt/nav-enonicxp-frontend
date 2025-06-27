@@ -40,8 +40,9 @@
     &:active {
         box-shadow: none;
         background-color: transparent;
-        text-decoration-line: underline;
+        text-decoration-line: none;
         text-decoration-color: var(--default-action-color);
+        color: var(--default-action-color);
     }
 
     :global(.navds-heading) {
