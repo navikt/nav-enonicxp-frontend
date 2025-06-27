@@ -23,7 +23,7 @@ $blackLinkColor: var(--a-text-default);
     }
 
     :global(.navds-label) {
-        font-size: 19px;
+        font-size: var(--a-font-size-heading-medium);
     }
 }
 
