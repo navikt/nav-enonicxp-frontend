@@ -13,7 +13,7 @@
         "../../.eslintrc.json",
         "prettier"
     ],
-    "ignorePatterns": ["next.config.js", "!.storybook"],
+    "ignorePatterns": ["next.config.js"],
     "root": true,
     "rules": {
         "@next/next/no-img-element": 0,
