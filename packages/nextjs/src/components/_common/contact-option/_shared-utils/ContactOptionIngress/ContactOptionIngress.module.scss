@@ -1,6 +1,6 @@
 .text {
     // Siden processedHtml er en p-tag, må vi legge til important for å overstyre margin-bottom for å få riktig avstand
-    margin-bottom: var(--a-spacing-4) !important;
+    margin-bottom: 0 !important;
 
     :global(.navds-body-long.navds-body-long--medium) {
         color: black;
