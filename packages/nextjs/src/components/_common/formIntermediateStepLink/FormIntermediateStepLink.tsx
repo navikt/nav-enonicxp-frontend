@@ -43,7 +43,9 @@ export const FormIntermediateStepLink = ({
                 {explanation && <LinkPanel.Description>{explanation}</LinkPanel.Description>}
                 {formNumber && <FormNumberTag className={style.metadata} formNumber={formNumber} />}
                 {languageDisclaimer && (
-                    <LanguageDisclaimer className={style.metadata}>{languageDisclaimer}</LanguageDisclaimer>
+                    <LanguageDisclaimer className={style.metadata}>
+                        {languageDisclaimer}
+                    </LanguageDisclaimer>
                 )}
             </div>
             <ArrowRightIcon aria-hidden fontSize="1.25rem" className={style.arrowRightIcon} />
