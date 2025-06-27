@@ -29,7 +29,7 @@ export type FrontPageNestedData = {
 } & CommonData;
 
 export type FrontPageProps = {
-    type: ContentType.FrontPage; //fjern?
+    type: ContentType.FrontPage;
     data: FrontPageData;
 };
 
