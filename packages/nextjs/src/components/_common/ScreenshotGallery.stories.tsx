@@ -28,7 +28,7 @@ const ScreenshotGallery = () => {
                 // Use require.context to dynamically import all PNG files
                 // This works in Storybook's webpack environment
                 const screenshotContext = require.context(
-                    '../../../playwright/screenshot.spec.ts-snapshots',
+                    '../../../public/screenshot.spec.ts-snapshots',
                     false,
                     /\.png$/
                 );
