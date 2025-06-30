@@ -1,19 +1,90 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+
+// Add this type declaration for webpack's require.context
+declare const require: {
+    context: (
+        directory: string,
+        useSubdirectories?: boolean,
+        regExp?: RegExp
+    ) => {
+        keys: () => string[];
+        (id: string): string | { default: string };
+    };
+};
 
 const ScreenshotGallery = () => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [screenshots, setScreenshots] = useState<string[]>([]);
+    const [screenshotFiles, setScreenshotFiles] = useState<
+        Array<{ path: string; url: string; filename: string }>
+    >([]);
+    const [loading, setLoading] = useState(true);
 
-    // This would be populated with your actual screenshot paths
-    const screenshots = [
-        '/components-common-accordion--default-desktop-linux-desktop-linux.png',
-        '/playwright/screenshot.spec.ts-snapshots/components-layouts-index-page-area-page-banner-areapageheaderbanner--default-desktop-linux-desktop-linux.png',
-        // ... add all your screenshots
-    ];
+    useEffect(() => {
+        // Function to automatically discover all PNG files in the screenshots directory
+        const discoverScreenshots = async () => {
+            try {
+                // Use require.context to dynamically import all PNG files
+                // This works in Storybook's webpack environment
+                const screenshotContext = require.context(
+                    '../../../playwright/screenshot.spec.ts-snapshots',
+                    false,
+                    /\.png$/
+                );
+
+                const files = screenshotContext.keys().map((key) => {
+                    const moduleData = screenshotContext(key);
+
+                    // Handle different module formats
+                    let url: string;
+                    if (typeof moduleData === 'string') {
+                        url = moduleData;
+                    } else if (moduleData && typeof moduleData === 'object') {
+                        // Try to get the src property from the module
+                        const moduleObj = moduleData as any;
+                        const defaultExport = moduleObj.default;
+                        const imageData =
+                            typeof defaultExport === 'function' ? defaultExport() : defaultExport;
+                        url = imageData?.src || '';
+                    } else {
+                        url = '';
+                    }
+
+                    // console.log('Module:', module, 'Extracted URL:', url, 'Type:', typeof url);
+
+                    return {
+                        path: key,
+                        url,
+                        filename: key.replace(/^\.\//, '').replace('.png', ''),
+                    };
+                });
+
+                setScreenshotFiles(files);
+                setScreenshots(files.map((file) => file.url));
+            } catch (error) {
+                // console.error('Error loading screenshots:', error);
+                // Fallback to empty array if dynamic loading fails
+                setScreenshots([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        discoverScreenshots();
+    }, []);
+
+    if (loading) {
+        return (
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+                <h2>Loading Screenshots...</h2>
+            </div>
+        );
+    }
 
     return (
         <div style={{ padding: '20px' }}>
-            <h2>Screenshot Gallery</h2>
+            <h2>Screenshot Gallery ({screenshots.length} images)</h2>
             <div
                 style={{
                     display: 'grid',
@@ -44,6 +115,10 @@ const ScreenshotGallery = () => {
                                 height: 'auto',
                                 borderRadius: '4px',
                             }}
+                            onError={(e) => {
+                                // console.error('Failed to load image:', screenshot);
+                                e.currentTarget.style.display = 'none';
+                            }}
                         />
                         <p
                             style={{
@@ -53,7 +128,7 @@ const ScreenshotGallery = () => {
                                 wordBreak: 'break-word',
                             }}
                         >
-                            {screenshot.split('/').pop()?.replace('.png', '')}
+                            {screenshotFiles[index]?.filename || `Screenshot ${index + 1}`}
                         </p>
                     </div>
                 ))}
