@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
+import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { AlertData } from 'types/content-props/alerts';
 
 import style from './AlertInContextPage.module.scss';
@@ -8,7 +8,7 @@ import style from './AlertInContextPage.module.scss';
 export const AlertInContextPage = (props: AlertData) => {
     return (
         <section className={style.alertInContextPage}>
-            <AlertInContext data={props.data} />
+            <VarselIKontekst data={props.data} />
         </section>
     );
 };

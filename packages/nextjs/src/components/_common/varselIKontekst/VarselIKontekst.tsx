@@ -2,13 +2,13 @@ import React from 'react';
 import { AlertData } from 'types/content-props/alerts';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 
-import style from './AlertInContext.module.scss';
+import style from './VarselIKontekst.module.scss';
 
 type Props = {
     data: Pick<AlertData['data'], 'type' | 'text'>;
 };
 
-export const AlertInContext = ({ data }: Props) => {
+export const VarselIKontekst = ({ data }: Props) => {
     if (!data?.text) {
         return null;
     }
@@ -16,7 +16,7 @@ export const AlertInContext = ({ data }: Props) => {
     const variant = data.type === 'critical' ? 'warning' : 'info';
 
     return (
-        <AlertBox className={style.alertInContext} variant={variant}>
+        <AlertBox className={style.varselIKontekst} variant={variant}>
             {data.text}
         </AlertBox>
     );
