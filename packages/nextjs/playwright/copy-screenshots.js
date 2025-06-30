@@ -1,4 +1,4 @@
-// scripts/move-screenshots.js
+// scripts/copy-screenshots.js
 const fs = require('fs');
 const path = require('path');
 
@@ -9,11 +9,6 @@ if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
 
 fs.readdirSync(srcDir).forEach((file) => {
     if (file.endsWith('.png')) {
-        fs.renameSync(path.join(srcDir, file), path.join(destDir, file));
+        fs.copyFileSync(path.join(srcDir, file), path.join(destDir, file));
     }
 });
-
-// Remove the source directory if it's empty
-if (fs.existsSync(srcDir) && fs.readdirSync(srcDir).length === 0) {
-    fs.rmdirSync(srcDir);
-}
