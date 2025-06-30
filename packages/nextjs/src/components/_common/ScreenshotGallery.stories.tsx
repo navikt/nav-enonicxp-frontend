@@ -110,6 +110,7 @@ const ScreenshotGallery = () => {
                         <img
                             src={screenshot}
                             alt={`Screenshot ${index + 1}`}
+                            loading="lazy"
                             style={{
                                 width: '100%',
                                 height: 'auto',
@@ -130,6 +131,33 @@ const ScreenshotGallery = () => {
                         >
                             {screenshotFiles[index]?.filename || `Screenshot ${index + 1}`}
                         </p>
+                        {/*
+                          Add a link to the story in Storybook (full UI, not just iframe)
+                          Assumes filename starts with the storyId, e.g. "components-common-accordion--default-desktop-linux.png"
+                        */}
+                        {(() => {
+                            const filename = screenshotFiles[index]?.filename;
+                            if (!filename) return null;
+                            // Extract the storyId (everything up to the last double dash)
+                            const match = filename.match(/^(.*--.*?)(-|$)/);
+                            const storyId = match ? match[1] : filename;
+                            return (
+                                <a
+                                    href={`/?path=/story/${storyId}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{
+                                        fontSize: '12px',
+                                        color: '#0070f3',
+                                        textDecoration: 'underline',
+                                        display: 'block',
+                                        marginTop: '4px',
+                                    }}
+                                >
+                                    View in Storybook
+                                </a>
+                            );
+                        })()}
                     </div>
                 ))}
             </div>
