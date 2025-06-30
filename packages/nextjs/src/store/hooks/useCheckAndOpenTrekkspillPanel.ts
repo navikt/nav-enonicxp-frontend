@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
-export const useCheckAndOpenAccordionPanel = (
+export const useCheckAndOpenTrekkspillPanel = (
     openPanels: number[],
     setOpenPanels: (indexes: number[]) => void,
     refs: React.RefObject<HTMLDivElement>[],

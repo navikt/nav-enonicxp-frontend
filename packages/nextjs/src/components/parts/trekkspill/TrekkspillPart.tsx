@@ -1,23 +1,23 @@
 import React from 'react';
-import { Accordion } from 'components/_common/accordion/Accordion';
+import { Trekkspill } from 'components/_common/trekkspill/Trekkspill';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-export type PartConfigAccordion = {
-    accordion: Array<{
+export type PartConfigTrekkspill = {
+    trekkspill: Array<{
         title: string;
         anchorId?: string;
         html: ProcessedHtmlProps;
     }>;
 };
 
-export const AccordionPart = ({ config }: PartComponentProps<PartType.Accordion>) => {
-    if (!config?.accordion || config.accordion.length === 0) {
+export const TrekkspillPart = ({ config }: PartComponentProps<PartType.Trekkspill>) => {
+    if (!config?.trekkspill || config.trekkspill.length === 0) {
         return <EditorHelp text={'Kortet mangler innhold'} />;
     }
 
-    const { accordion } = config;
+    const { trekkspill } = config;
 
-    return <Accordion accordion={accordion} />;
+    return <Trekkspill trekkspill={trekkspill} />;
 };
