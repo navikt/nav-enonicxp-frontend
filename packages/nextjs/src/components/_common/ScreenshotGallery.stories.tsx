@@ -102,37 +102,36 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                     const match = filename.match(/^(.*--.*?)(-|$)/);
                     const storyId = match ? match[1] : filename;
                     return (
-                        <div
+                        <a
                             key={file.url}
+                            href={`/?path=/story/${storyId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             style={{
+                                display: 'block',
                                 border: '1px solid #ddd',
                                 borderRadius: '8px',
                                 padding: '10px',
                                 cursor: 'pointer',
                                 transition: 'transform 0.2s',
+                                textDecoration: 'none',
+                                color: 'inherit',
                             }}
                         >
-                            <a
-                                href={`/?path=/story/${storyId}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{ display: 'block' }}
-                            >
-                                <img
-                                    src={file.url}
-                                    alt={file.filename}
-                                    loading="lazy"
-                                    style={{
-                                        width: '100%',
-                                        height: 'auto',
-                                        borderRadius: '4px',
-                                    }}
-                                    onError={(e) => {
-                                        e.currentTarget.style.display = 'none';
-                                    }}
-                                />
-                            </a>
-                        </div>
+                            <img
+                                src={file.url}
+                                alt={file.filename}
+                                loading="lazy"
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    borderRadius: '4px',
+                                }}
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                }}
+                            />
+                        </a>
                     );
                 })}
             </div>
