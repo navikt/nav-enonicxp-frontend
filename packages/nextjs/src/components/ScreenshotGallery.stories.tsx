@@ -76,7 +76,6 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
 
     return (
         <div style={{ padding: '20px' }}>
-            <h2>Screenshot Gallery ({tab === 'desktop' ? 'Desktop' : 'Mobile'})</h2>
             <div
                 style={{
                     display: 'grid',
