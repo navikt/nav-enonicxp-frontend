@@ -19,6 +19,7 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
         Array<{ path: string; url: string; filename: string }>
     >([]);
     const [loading, setLoading] = useState(true);
+    const [hoveredUrl, setHoveredUrl] = useState<string | null>(null);
     const tab = initialTab;
 
     useEffect(() => {
@@ -101,6 +102,7 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                     if (!filename) return null;
                     const match = filename.match(/^(.*--.*?)(-|$)/);
                     const storyId = match ? match[1] : filename;
+                    const isHovered = hoveredUrl === file.url;
                     return (
                         <a
                             key={file.url}
@@ -113,10 +115,14 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                                 borderRadius: '8px',
                                 padding: '10px',
                                 cursor: 'pointer',
-                                transition: 'transform 0.2s',
+                                transition: 'outline-color 0.2s',
                                 textDecoration: 'none',
                                 color: 'inherit',
+                                outline: isHovered ? '2px solid #0070f3' : '2px solid transparent',
+                                outlineOffset: '2px',
                             }}
+                            onMouseEnter={() => setHoveredUrl(file.url)}
+                            onMouseLeave={() => setHoveredUrl(null)}
                         >
                             <img
                                 src={file.url}
