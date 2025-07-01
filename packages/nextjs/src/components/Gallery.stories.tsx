@@ -75,53 +75,51 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
     );
 
     return (
-        <div style={{ padding: '20px' }}>
-            <div
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                    gap: '20px',
-                    marginTop: '20px',
-                }}
-            >
-                {filteredFiles.map((file) => {
-                    const filename = file.filename;
-                    if (!filename) return null;
-                    const storyId = filename.split(/-(mobile|desktop|darwin)/)[0];
-                    const isHovered = hoveredUrl === file.url;
-                    return (
-                        <a
-                            key={file.url}
-                            href={`/?path=/story/${storyId}`}
-                            target="_parent"
+        <div
+            style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                gap: '20px',
+                padding: '20px',
+            }}
+        >
+            {filteredFiles.map((file) => {
+                const filename = file.filename;
+                if (!filename) return null;
+                const storyId = filename.split(/-(mobile|desktop|darwin)/)[0];
+                const isHovered = hoveredUrl === file.url;
+                return (
+                    <a
+                        key={file.url}
+                        href={`/?path=/story/${storyId}`}
+                        target="_parent"
+                        style={{
+                            display: 'block',
+                            border: '1px solid #ddd',
+                            borderRadius: '8px',
+                            padding: '10px',
+                            transition: 'outline-color 0.2s',
+                            outline: isHovered ? '2px solid #0070f3' : '2px solid transparent',
+                        }}
+                        onMouseEnter={() => setHoveredUrl(file.url)}
+                        onMouseLeave={() => setHoveredUrl(null)}
+                    >
+                        <img
+                            src={file.url}
+                            alt={file.filename}
+                            loading="lazy"
                             style={{
-                                display: 'block',
-                                border: '1px solid #ddd',
-                                borderRadius: '8px',
-                                padding: '10px',
-                                transition: 'outline-color 0.2s',
-                                outline: isHovered ? '2px solid #0070f3' : '2px solid transparent',
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: '4px',
                             }}
-                            onMouseEnter={() => setHoveredUrl(file.url)}
-                            onMouseLeave={() => setHoveredUrl(null)}
-                        >
-                            <img
-                                src={file.url}
-                                alt={file.filename}
-                                loading="lazy"
-                                style={{
-                                    width: '100%',
-                                    height: 'auto',
-                                    borderRadius: '4px',
-                                }}
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                }}
-                            />
-                        </a>
-                    );
-                })}
-            </div>
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                            }}
+                        />
+                    </a>
+                );
+            })}
         </div>
     );
 };
