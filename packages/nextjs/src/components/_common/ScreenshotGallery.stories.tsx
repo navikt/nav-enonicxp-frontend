@@ -96,65 +96,45 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                     marginTop: '20px',
                 }}
             >
-                {filteredFiles.map((file) => (
-                    <div
-                        key={file.url}
-                        style={{
-                            border: '1px solid #ddd',
-                            borderRadius: '8px',
-                            padding: '10px',
-                            cursor: 'pointer',
-                            transition: 'transform 0.2s',
-                        }}
-                        onClick={() => setSelectedImage(file.url)}
-                    >
-                        <img
-                            src={file.url}
-                            alt={file.filename}
-                            loading="lazy"
+                {filteredFiles.map((file) => {
+                    const filename = file.filename;
+                    if (!filename) return null;
+                    const match = filename.match(/^(.*--.*?)(-|$)/);
+                    const storyId = match ? match[1] : filename;
+                    return (
+                        <div
+                            key={file.url}
                             style={{
-                                width: '100%',
-                                height: 'auto',
-                                borderRadius: '4px',
-                            }}
-                            onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                            }}
-                        />
-                        <p
-                            style={{
-                                marginTop: '8px',
-                                fontSize: '12px',
-                                color: '#666',
-                                wordBreak: 'break-word',
+                                border: '1px solid #ddd',
+                                borderRadius: '8px',
+                                padding: '10px',
+                                cursor: 'pointer',
+                                transition: 'transform 0.2s',
                             }}
                         >
-                            {file.filename}
-                        </p>
-                        {(() => {
-                            const filename = file.filename;
-                            if (!filename) return null;
-                            const match = filename.match(/^(.*--.*?)(-|$)/);
-                            const storyId = match ? match[1] : filename;
-                            return (
-                                <a
-                                    href={`/?path=/story/${storyId}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                            <a
+                                href={`/?path=/story/${storyId}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ display: 'block' }}
+                            >
+                                <img
+                                    src={file.url}
+                                    alt={file.filename}
+                                    loading="lazy"
                                     style={{
-                                        fontSize: '12px',
-                                        color: '#0070f3',
-                                        textDecoration: 'underline',
-                                        display: 'block',
-                                        marginTop: '4px',
+                                        width: '100%',
+                                        height: 'auto',
+                                        borderRadius: '4px',
                                     }}
-                                >
-                                    View in Storybook
-                                </a>
-                            );
-                        })()}
-                    </div>
-                ))}
+                                    onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
+                            </a>
+                        </div>
+                    );
+                })}
             </div>
 
             {selectedImage && (
