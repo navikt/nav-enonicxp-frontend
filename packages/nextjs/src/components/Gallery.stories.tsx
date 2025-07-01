@@ -39,7 +39,7 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                         const defaultExport = moduleObj.default;
                         const imageData =
                             typeof defaultExport === 'function' ? defaultExport() : defaultExport;
-                        url = imageData?.src || '';
+                        url = imageData?.src ?? '';
                     } else {
                         url = '';
                     }
