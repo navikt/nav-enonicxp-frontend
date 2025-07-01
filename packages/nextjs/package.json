@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "build": "next build",
+        "prebuild:storybook": "node packages/nextjs/playwright/copy-screenshots.js",
         "build:storybook": "storybook build",
         "storybook": "storybook dev -p 6006",
         "dev": "npm start",
