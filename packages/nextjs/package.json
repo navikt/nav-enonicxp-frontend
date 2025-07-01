@@ -4,8 +4,9 @@
     "private": true,
     "scripts": {
         "build": "next build",
-        "prebuild:storybook": "node packages/nextjs/playwright/copy-screenshots.js",
+        "prebuild:storybook": "node playwright/copy-screenshots.js",
         "build:storybook": "storybook build",
+        "prestorybook": "node playwright/copy-screenshots.js",
         "storybook": "storybook dev -p 6006",
         "dev": "npm start",
         "analyze-bundle": "ANALYZE_BUNDLE=true npm run build",
