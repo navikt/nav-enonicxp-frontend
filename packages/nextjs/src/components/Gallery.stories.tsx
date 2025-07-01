@@ -12,7 +12,7 @@ declare const require: {
     };
 };
 
-const ScreenshotGallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile' }) => {
+const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile' }) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [screenshotFiles, setScreenshotFiles] = useState<
         Array<{ path: string; url: string; filename: string }>
@@ -161,18 +161,18 @@ const ScreenshotGallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' 
     );
 };
 
-const meta: Meta<typeof ScreenshotGallery> = {
-    component: ScreenshotGallery,
+const meta: Meta<typeof Gallery> = {
+    component: Gallery,
     parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
-type Story = StoryObj<typeof ScreenshotGallery>;
+type Story = StoryObj<typeof Gallery>;
 
 export const Mobile: Story = {
-    render: () => <ScreenshotGallery deviceType="mobile" />,
+    render: () => <Gallery deviceType="mobile" />,
 };
 
 export const Desktop: Story = {
-    render: () => <ScreenshotGallery deviceType="desktop" />,
+    render: () => <Gallery deviceType="desktop" />,
 };
