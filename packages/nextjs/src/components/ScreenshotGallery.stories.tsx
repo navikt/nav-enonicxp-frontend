@@ -12,14 +12,14 @@ declare const require: {
     };
 };
 
-const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' | 'mobile' }) => {
+const ScreenshotGallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile' }) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [screenshotFiles, setScreenshotFiles] = useState<
         Array<{ path: string; url: string; filename: string }>
     >([]);
     const [loading, setLoading] = useState(true);
     const [hoveredUrl, setHoveredUrl] = useState<string | null>(null);
-    const tab = initialTab;
+    const tab = deviceType;
 
     useEffect(() => {
         const discoverScreenshots = async () => {
@@ -169,9 +169,9 @@ export default meta;
 type Story = StoryObj<typeof ScreenshotGallery>;
 
 export const Mobile: Story = {
-    render: () => <ScreenshotGallery initialTab="mobile" />,
+    render: () => <ScreenshotGallery deviceType="mobile" />,
 };
 
 export const Desktop: Story = {
-    render: () => <ScreenshotGallery initialTab="desktop" />,
+    render: () => <ScreenshotGallery deviceType="desktop" />,
 };
