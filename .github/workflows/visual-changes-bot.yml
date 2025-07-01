@@ -45,7 +45,8 @@ jobs:
                     mcr.microsoft.com/playwright:v1.51.0-noble \
                     /bin/bash -c "
                       CI=true npx playwright test --update-snapshots && \
-                      node packages/nextjs/playwright/prune-screenshots.js
+                      node packages/nextjs/playwright/prune-screenshots.js && \
+                      node packages/nextjs/playwright/copy-screenshots.js
                     "
 
             - name: Commit and push updated screenshots if any changes
