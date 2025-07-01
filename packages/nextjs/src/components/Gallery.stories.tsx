@@ -88,14 +88,13 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                 {filteredFiles.map((file) => {
                     const filename = file.filename;
                     if (!filename) return null;
-                    const match = filename.match(/^(.*--.*?)(-|$)/);
-                    const storyId = match ? match[1] : filename;
+                    const storyId = filename.split(/-(mobile|desktop|darwin)/)[0];
                     const isHovered = hoveredUrl === file.url;
                     return (
                         <a
                             key={file.url}
                             href={`/?path=/story/${storyId}`}
-                            target="_blank"
+                            target="_parent"
                             rel="noopener noreferrer"
                             style={{
                                 display: 'block',
