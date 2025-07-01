@@ -19,7 +19,6 @@ const ScreenshotGallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' 
     >([]);
     const [loading, setLoading] = useState(true);
     const [hoveredUrl, setHoveredUrl] = useState<string | null>(null);
-    const tab = deviceType;
 
     useEffect(() => {
         const discoverScreenshots = async () => {
@@ -71,7 +70,9 @@ const ScreenshotGallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' 
     }
 
     const filteredFiles = screenshotFiles.filter((file) =>
-        tab === 'desktop' ? file.filename.includes('-desktop-') : file.filename.includes('-mobile-')
+        deviceType === 'desktop'
+            ? file.filename.includes('-desktop-')
+            : file.filename.includes('-mobile-')
     );
 
     return (
