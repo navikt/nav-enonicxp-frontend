@@ -13,7 +13,6 @@ declare const require: {
 };
 
 const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile' }) => {
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [screenshotFiles, setScreenshotFiles] = useState<
         Array<{ path: string; url: string; filename: string }>
     >([]);
@@ -128,34 +127,6 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                     );
                 })}
             </div>
-
-            {selectedImage && (
-                <div
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'rgba(0,0,0,0.8)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        zIndex: 1000,
-                    }}
-                    onClick={() => setSelectedImage(null)}
-                >
-                    <img
-                        src={selectedImage}
-                        alt="Full size screenshot"
-                        style={{
-                            maxWidth: '90%',
-                            maxHeight: '90%',
-                            objectFit: 'contain',
-                        }}
-                    />
-                </div>
-            )}
         </div>
     );
 };
