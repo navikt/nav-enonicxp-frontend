@@ -94,7 +94,6 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                             key={file.url}
                             href={`/?path=/story/${storyId}`}
                             target="_parent"
-                            rel="noopener noreferrer"
                             style={{
                                 display: 'block',
                                 border: '1px solid #ddd',
