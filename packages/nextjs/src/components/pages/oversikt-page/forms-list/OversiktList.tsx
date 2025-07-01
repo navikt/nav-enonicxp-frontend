@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { OversiktFilters } from 'components/_common/oversikt-filters/OvertsiktFilters';
 import { useOversiktFilters } from 'store/hooks/useOversiktFilters';
 import { OversiktFiltersSummary } from 'components/_common/oversikt-filters/summary/OversiktFiltersSummary';
-import { OversiktPageProps } from 'types/content-props/oversikt-props';
+import { OversiktPageData, OversiktPageProps } from 'types/content-props/oversikt-props';
 import { OversiktListPanel } from './panel/OversiktListPanel';
 
 import style from './OversiktList.module.scss';
@@ -16,6 +16,34 @@ const getExactFormNumberIfFormSearch = (term: string) => {
     }
 
     return `nav ${match[2]}-${match[3]}.${match[4]}`;
+};
+
+// Weight lets ut adjst fuzzy search results when using Fuse.js
+const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
+    // Produktdetaljer
+    if (
+        oversiktType === 'processing_times' ||
+        oversiktType === 'rates' ||
+        oversiktType === 'payout_dates'
+    ) {
+        return [
+            { name: 'title', weight: 10 },
+            { name: 'ingress', weight: 1 },
+            { name: 'itemList.title', weight: 1 },
+            { name: 'keywords', weight: 2 },
+        ];
+    }
+
+    // Sjemadetaljer or "tjeneste fra A til Å"
+    return [
+        { name: 'sortTitle', weight: 10 },
+        { name: 'title', weight: 10 },
+        { name: 'ingress', weight: 8 },
+        { name: 'subItems.title', weight: 2 },
+        { name: 'keywords', weight: 2 },
+        { name: 'subItems.ingress', weight: 1 },
+        { name: 'subItems.formNumbers', weight: 1 },
+    ];
 };
 
 export const OversiktList = (props: OversiktPageProps) => {
@@ -38,20 +66,12 @@ export const OversiktList = (props: OversiktPageProps) => {
                       threshold: 0,
                   }
                 : {
-                      keys: [
-                          { name: 'sortTitle', weight: 10 },
-                          { name: 'title', weight: 10 },
-                          { name: 'ingress', weight: 8 },
-                          { name: 'subItems.title', weight: 2 },
-                          { name: 'keywords', weight: 2 },
-                          { name: 'subItems.ingress', weight: 1 },
-                          { name: 'subItems.formNumbers', weight: 1 },
-                      ],
+                      keys: getWeights(oversiktType),
                   },
         }).then((result) => {
             setFilteredList(result);
         });
-    }, [getFilteredList, itemList, formNumberFromSearch]);
+    }, [getFilteredList, itemList, formNumberFromSearch, oversiktType]);
 
     return (
         <>
