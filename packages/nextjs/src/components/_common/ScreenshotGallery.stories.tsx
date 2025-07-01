@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Add this type declaration for webpack's require.context
@@ -13,13 +13,13 @@ declare const require: {
     };
 };
 
-const ScreenshotGallery = () => {
+const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' | 'mobile' }) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const [screenshots, setScreenshots] = useState<string[]>([]);
     const [screenshotFiles, setScreenshotFiles] = useState<
         Array<{ path: string; url: string; filename: string }>
     >([]);
     const [loading, setLoading] = useState(true);
+    const tab = initialTab;
 
     useEffect(() => {
         // Function to automatically discover all PNG files in the screenshots directory
@@ -61,11 +61,9 @@ const ScreenshotGallery = () => {
                 });
 
                 setScreenshotFiles(files);
-                setScreenshots(files.map((file) => file.url));
             } catch (error) {
                 // console.error('Error loading screenshots:', error);
                 // Fallback to empty array if dynamic loading fails
-                setScreenshots([]);
             } finally {
                 setLoading(false);
             }
@@ -82,9 +80,14 @@ const ScreenshotGallery = () => {
         );
     }
 
+    // Filter screenshots by tab
+    const filteredFiles = screenshotFiles.filter((file) =>
+        tab === 'desktop' ? file.filename.includes('-desktop-') : file.filename.includes('-mobile-')
+    );
+
     return (
         <div style={{ padding: '20px' }}>
-            <h2>Screenshot Gallery ({screenshots.length} images)</h2>
+            <h2>Screenshot Gallery ({tab === 'desktop' ? 'Desktop' : 'Mobile'})</h2>
             <div
                 style={{
                     display: 'grid',
@@ -93,9 +96,9 @@ const ScreenshotGallery = () => {
                     marginTop: '20px',
                 }}
             >
-                {screenshots.map((screenshot, index) => (
+                {filteredFiles.map((file) => (
                     <div
-                        key={index}
+                        key={file.url}
                         style={{
                             border: '1px solid #ddd',
                             borderRadius: '8px',
@@ -103,11 +106,11 @@ const ScreenshotGallery = () => {
                             cursor: 'pointer',
                             transition: 'transform 0.2s',
                         }}
-                        onClick={() => setSelectedImage(screenshot)}
+                        onClick={() => setSelectedImage(file.url)}
                     >
                         <img
-                            src={screenshot}
-                            alt={`Screenshot ${index + 1}`}
+                            src={file.url}
+                            alt={file.filename}
                             loading="lazy"
                             style={{
                                 width: '100%',
@@ -115,7 +118,6 @@ const ScreenshotGallery = () => {
                                 borderRadius: '4px',
                             }}
                             onError={(e) => {
-                                // console.error('Failed to load image:', screenshot);
                                 e.currentTarget.style.display = 'none';
                             }}
                         />
@@ -127,16 +129,11 @@ const ScreenshotGallery = () => {
                                 wordBreak: 'break-word',
                             }}
                         >
-                            {screenshotFiles[index]?.filename || `Screenshot ${index + 1}`}
+                            {file.filename}
                         </p>
-                        {/*
-                          Add a link to the story in Storybook (full UI, not just iframe)
-                          Assumes filename starts with the storyId, e.g. "components-common-accordion--default-desktop-linux.png"
-                        */}
                         {(() => {
-                            const filename = screenshotFiles[index]?.filename;
+                            const filename = file.filename;
                             if (!filename) return null;
-                            // Extract the storyId (everything up to the last double dash)
                             const match = filename.match(/^(.*--.*?)(-|$)/);
                             const storyId = match ? match[1] : filename;
                             return (
@@ -200,4 +197,10 @@ const meta: Meta<typeof ScreenshotGallery> = {
 export default meta;
 type Story = StoryObj<typeof ScreenshotGallery>;
 
-export const Default: Story = {};
+export const Desktop: Story = {
+    render: () => <ScreenshotGallery initialTab="desktop" />,
+};
+
+export const Mobile: Story = {
+    render: () => <ScreenshotGallery initialTab="mobile" />,
+};
