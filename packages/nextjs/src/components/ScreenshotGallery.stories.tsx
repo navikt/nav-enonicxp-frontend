@@ -25,7 +25,7 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
         const discoverScreenshots = async () => {
             try {
                 const screenshotContext = require.context(
-                    '../../../public/screenshot.spec.ts-snapshots',
+                    '../../public/screenshot.spec.ts-snapshots',
                     false,
                     /\.png$/
                 );
@@ -162,7 +162,6 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
 };
 
 const meta: Meta<typeof ScreenshotGallery> = {
-    title: 'Screenshots/Gallery',
     component: ScreenshotGallery,
     parameters: { layout: 'fullscreen' },
 };
