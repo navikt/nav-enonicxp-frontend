@@ -5,6 +5,7 @@
     "scripts": {
         "build": "next build",
         "build:storybook": "storybook build",
+        "prestorybook": "node playwright/copy-screenshots.js",
         "storybook": "storybook dev -p 6006",
         "dev": "npm start",
         "analyze-bundle": "ANALYZE_BUNDLE=true npm run build",

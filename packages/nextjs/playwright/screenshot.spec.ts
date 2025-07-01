@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test';
 import storybook from '../storybook-static/index.json' with { type: 'json' };
 
-const stories = Object.values(storybook.entries).filter((e) => e.type === 'story');
+const stories = Object.values(storybook.entries)
+    .filter((e) => e.type === 'story')
+    .filter((e) => e.title !== 'components/Gallery');
 
 for (const story of stories) {
     test(`${story.title} ${story.name} should not have visual regressions`, async ({
