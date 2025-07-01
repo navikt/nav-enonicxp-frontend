@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-// Add this type declaration for webpack's require.context
 declare const require: {
     context: (
         directory: string,
@@ -23,11 +22,8 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
     const tab = initialTab;
 
     useEffect(() => {
-        // Function to automatically discover all PNG files in the screenshots directory
         const discoverScreenshots = async () => {
             try {
-                // Use require.context to dynamically import all PNG files
-                // This works in Storybook's webpack environment
                 const screenshotContext = require.context(
                     '../../../public/screenshot.spec.ts-snapshots',
                     false,
@@ -37,12 +33,10 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                 const files = screenshotContext.keys().map((key) => {
                     const moduleData = screenshotContext(key);
 
-                    // Handle different module formats
                     let url: string;
                     if (typeof moduleData === 'string') {
                         url = moduleData;
                     } else if (moduleData && typeof moduleData === 'object') {
-                        // Try to get the src property from the module
                         const moduleObj = moduleData as any;
                         const defaultExport = moduleObj.default;
                         const imageData =
@@ -52,8 +46,6 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                         url = '';
                     }
 
-                    // console.log('Module:', module, 'Extracted URL:', url, 'Type:', typeof url);
-
                     return {
                         path: key,
                         url,
@@ -62,9 +54,6 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
                 });
 
                 setScreenshotFiles(files);
-            } catch (error) {
-                // console.error('Error loading screenshots:', error);
-                // Fallback to empty array if dynamic loading fails
             } finally {
                 setLoading(false);
             }
@@ -81,7 +70,6 @@ const ScreenshotGallery = ({ initialTab = 'desktop' }: { initialTab?: 'desktop' 
         );
     }
 
-    // Filter screenshots by tab
     const filteredFiles = screenshotFiles.filter((file) =>
         tab === 'desktop' ? file.filename.includes('-desktop-') : file.filename.includes('-mobile-')
     );
