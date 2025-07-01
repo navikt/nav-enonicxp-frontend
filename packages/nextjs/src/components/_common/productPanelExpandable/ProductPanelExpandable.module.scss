@@ -53,6 +53,12 @@
     :global(.navds-expansioncard__header-button) {
         align-self: center;
     }
+
+    @media #{common.$mq-screen-mobile} {
+        :global(.navds-expansioncard__header-button) {
+            transform: translateX(10px);
+        }
+    }
 }
 
 .expandableContent {
