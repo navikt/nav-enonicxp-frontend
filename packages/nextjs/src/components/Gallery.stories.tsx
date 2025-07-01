@@ -99,12 +99,8 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                                 border: '1px solid #ddd',
                                 borderRadius: '8px',
                                 padding: '10px',
-                                cursor: 'pointer',
                                 transition: 'outline-color 0.2s',
-                                textDecoration: 'none',
-                                color: 'inherit',
                                 outline: isHovered ? '2px solid #0070f3' : '2px solid transparent',
-                                outlineOffset: '2px',
                             }}
                             onMouseEnter={() => setHoveredUrl(file.url)}
                             onMouseLeave={() => setHoveredUrl(null)}
