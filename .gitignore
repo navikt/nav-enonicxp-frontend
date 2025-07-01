@@ -59,3 +59,4 @@
 **/playwright-report
 **/blob-report
 **/playwright/.cache
+**/public/screenshot.spec.ts-snapshots/
