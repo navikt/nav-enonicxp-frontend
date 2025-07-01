@@ -104,8 +104,6 @@ const ScreenshotGallery = () => {
                             transition: 'transform 0.2s',
                         }}
                         onClick={() => setSelectedImage(screenshot)}
-                        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.02)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                     >
                         <img
                             src={screenshot}
