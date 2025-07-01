@@ -197,10 +197,10 @@ const meta: Meta<typeof ScreenshotGallery> = {
 export default meta;
 type Story = StoryObj<typeof ScreenshotGallery>;
 
-export const Desktop: Story = {
-    render: () => <ScreenshotGallery initialTab="desktop" />,
-};
-
 export const Mobile: Story = {
     render: () => <ScreenshotGallery initialTab="mobile" />,
+};
+
+export const Desktop: Story = {
+    render: () => <ScreenshotGallery initialTab="desktop" />,
 };
