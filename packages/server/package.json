@@ -36,7 +36,7 @@
         "concurrently": "9.1.2",
         "mock-fs": "5.5.0",
         "husky": "9.1.7",
-        "lint-staged": "15.5.0",
+        "lint-staged": "16.1.2",
         "nodemon": "3.1.10"
     }
 }
