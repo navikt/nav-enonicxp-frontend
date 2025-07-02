@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from 'express';
-import { NextServer } from 'next/dist/server/next';
 import onHeaders from 'on-headers';
-import { getNextBuildId, getNextServer } from 'next-utils';
+import { getNextBuildId } from 'next-utils';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { setCacheKey } from 'req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
@@ -31,8 +30,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     const validateSecretMiddleware = buildValidateSecretMiddleware(nextApp);
 
     const nextRequestHandler = nextApp.getRequestHandler();
-    const nextServer = await getNextServer(nextApp);
-    const currentBuildId = getNextBuildId(nextServer);
+    const currentBuildId = await getNextBuildId();
 
     const decoratorVersionId = await getDecoratorVersionId(decoratorEnvProps);
     if (!decoratorVersionId) {

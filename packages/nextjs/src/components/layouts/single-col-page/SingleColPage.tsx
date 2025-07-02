@@ -40,7 +40,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     const showHeaderAndChangedate = hasGeneralComponents.has(pageProps.type);
 
-    const insertPageUpdatedInfo = (element: JSX.Element, key: string) => {
+    const insertPageUpdatedInfo = (element: React.ReactElement | null, key: string) => {
         const components = regions.pageContent.components;
         const currentIndex = components.findIndex((comp) => comp.path === key);
 

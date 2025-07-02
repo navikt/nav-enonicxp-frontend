@@ -1,20 +1,17 @@
-import NextNodeServer from 'next/dist/server/next-server';
-import { NextServer } from 'next/dist/server/next';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-import { InferredNextWrapperServer } from 'server';
+let cachedBuildId: string | null = null;
 
-// Functions for accessing private next.js internals
+export const getNextBuildId = async (): Promise<string> => {
+    if (cachedBuildId) return cachedBuildId;
 
-// Note: there are additional worker instances of the next server,
-// used for handling requests.
-// This function only returns the top level instance
-export const getNextServer = async (
-    nextApp: InferredNextWrapperServer
-): Promise<NextNodeServer> => {
-    return nextApp['init']['server'];
-};
-
-export const getNextBuildId = (nextServer: NextNodeServer) => {
-    const anyServer = nextServer as any;
-    return anyServer['server']['buildId'];
+    try {
+        const buildIdPath = path.join(process.cwd(), '.next', 'BUILD_ID');
+        cachedBuildId = await fs.readFile(buildIdPath, 'utf-8');
+        return cachedBuildId.trim();
+    } catch (error) {
+        console.error('Could not read build ID:', error);
+        return 'unknown-build-id';
+    }
 };

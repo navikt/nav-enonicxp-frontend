@@ -1,5 +1,4 @@
 import { Express } from 'express';
-import { NextServer } from 'next/dist/server/next';
 import { InferredNextWrapperServer } from 'server';
 
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';

@@ -7,8 +7,6 @@ import { logger } from '@/shared/logger';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
-import { getNextServer } from 'next-utils';
-import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
@@ -31,15 +29,6 @@ nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
 
-    const nextServer = await getNextServer(nextApp);
-    const test = nextServer as any;
-
-    if (process.env.IMAGE_CACHE_DIR) {
-        // await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
-    } else {
-        logger.error('IMAGE_CACHE_DIR is not defined!');
-    }
-
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     expressApp.use('*', promMiddleware);
@@ -58,8 +47,6 @@ nextApp.prepare().then(async () => {
         logger.error(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
-
-        return nextServer.renderError(msg, req, res, path);
     };
 
     expressApp.use(errorHandler);
