@@ -1,10 +1,11 @@
 name: Deploy Storybook to github pages
 
 on:
-    push:
-        branches:
-            - main
     workflow_dispatch:
+    workflow_run:
+        workflows: ['Visual changes bot']
+        types:
+            - completed
 
 permissions:
     contents: read
