@@ -1,11 +1,11 @@
-import { processOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/processOpeningHours';
-import { getCurrentOpeningHours } from 'components/_common/contact-option/openingInfo/helpers/openingInfoUtils';
-import { getOpeningInfoText } from 'components/_common/contact-option/openingInfo/helpers/openingInfoText';
 import { translator } from 'translations';
 import {
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
 } from 'components/parts/contact-option/ContactOptionPart';
+import { processOpeningHours } from './processOpeningHours';
+import { getCurrentOpeningHours } from './openingInfoUtils';
+import { getOpeningInfoText } from './openingInfoText';
 
 const regularOpeningHours: OpeningHourRegularRaw[] = [
     {
