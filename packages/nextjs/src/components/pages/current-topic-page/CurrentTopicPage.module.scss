@@ -1,17 +1,10 @@
 @use 'common' as common;
 
-$margin: 2rem;
-
 .currentTopicPage {
     display: flex;
     flex-direction: column;
     padding-top: 2rem;
     padding-bottom: 3rem;
-
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }
 
 .contentAligner {

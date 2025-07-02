@@ -3,8 +3,8 @@ import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { ProductPageFlexColsLayoutProps } from 'types/component-props/layouts/product-flex-cols';
-import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './FlexColsLayout.module.scss';
 
@@ -34,9 +34,9 @@ export const ProductPageFlexColsLayout = ({ pageProps, layoutProps }: Props) => 
             layoutProps={layoutProps}
         >
             {title && (
-                <Header level="2" size="large" anchorId={anchorId} className={style.header}>
+                <Heading level="2" size="large" anchorId={anchorId} className={style.header}>
                     {title}
-                </Header>
+                </Heading>
             )}
             <Region
                 pageProps={pageProps}

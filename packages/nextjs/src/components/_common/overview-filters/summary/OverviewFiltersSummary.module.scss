@@ -8,7 +8,7 @@
     gap: var(--a-spacing-4, 1rem);
     margin-top: var(--a-spacing-6, 1.5rem);
     margin-bottom: 0;
-    border-bottom: 1px solid var(--a-gray-300, common.$a-gray-300);
+    border-bottom: 1px solid var(--a-gray-300);
     width: 100%;
     min-height: 3.125rem;
 }
@@ -23,7 +23,7 @@
 }
 
 .nohits {
-    background-color: var(--a-gray-100, common.$a-gray-100);
+    background-color: var(--a-gray-100);
     padding: var(--a-spacing-6, 1.5rem);
     border-radius: var(--a-border-radius-large, common.$border-radius-large);
 }

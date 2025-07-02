@@ -1,8 +1,6 @@
-@use 'common' as common;
-
 .badLinkWarning {
-    color: common.$a-text-danger;
+    color: var(--a-text-danger);
     font-weight: bolder;
     padding: 0.25rem;
-    border: dashed 2px common.$a-text-danger;
+    border: dashed 2px var(--a-text-danger);
 }

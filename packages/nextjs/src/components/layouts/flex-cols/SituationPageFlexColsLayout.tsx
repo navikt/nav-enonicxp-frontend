@@ -4,7 +4,7 @@ import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
 import { classNames } from 'utils/classnames';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 
 import style from './FlexColsLayout.module.scss';
 
@@ -51,14 +51,14 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
         >
             <div className={style.contentWrapper}>
                 {title && (
-                    <Header
+                    <Heading
                         level="2"
                         size="large"
                         anchorId={anchorId}
                         className={classNames(style.header, isShelf && style.shelfHeader)}
                     >
                         {title}
-                    </Header>
+                    </Heading>
                 )}
                 <Region
                     pageProps={pageProps}

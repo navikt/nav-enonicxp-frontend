@@ -47,7 +47,7 @@
 
         .chapterHeader:focus {
             outline-offset: 0.2109rem;
-            outline: 0.2109rem solid common.$a-border-focus;
+            outline: 0.2109rem solid var(--a-border-focus);
         }
 
         figure {
@@ -94,15 +94,15 @@
         }
 
         h2 {
-            font-size: common.$a-font-size-heading-large;
+            font-size: var(--a-font-size-heading-large);
         }
 
         h3 {
-            font-size: common.$a-font-size-heading-medium;
+            font-size: var(--a-font-size-heading-medium);
         }
 
         h4 {
-            font-size: common.$a-font-size-heading-small;
+            font-size: var(--a-font-size-heading-small);
         }
 
         ul,

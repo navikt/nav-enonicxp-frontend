@@ -4,6 +4,7 @@ on:
         branches: [main]
     pull_request:
         branches: ['**']
+    workflow_dispatch:
 jobs:
     update-screenshots:
         name: Update screenshots if any changes
@@ -36,7 +37,17 @@ jobs:
               run: npm run build:storybook
 
             - name: Update Playwright screenshots
-              run: docker run --rm -v $(pwd):/workspace -w /workspace --ipc=host mcr.microsoft.com/playwright:v1.51.0-noble /bin/bash -c "CI=true npx playwright test --update-snapshots"
+              run: |
+                  docker run --rm \
+                    -v $(pwd):/workspace \
+                    -w /workspace \
+                    --ipc=host \
+                    mcr.microsoft.com/playwright:v1.51.0-noble \
+                    /bin/bash -c "
+                      CI=true npx playwright test --update-snapshots && \
+                      node packages/nextjs/playwright/prune-screenshots.js && \
+                      node packages/nextjs/playwright/copy-screenshots.js
+                    "
 
             - name: Commit and push updated screenshots if any changes
               if: always()
@@ -104,7 +115,7 @@ jobs:
                             owner,
                             repo,
                             pull_number: prNumber,
-                            body: `${REVIEW_MARKER}\n## 👀 Visual changes detected\n\nPlease [review the screenshot changes](${filesUrl}) before merging.`,
+                            body: `${REVIEW_MARKER}\n## 👀 Visual changes detected\n\nPlease review the [screenshot changes](${filesUrl}) before merging.`,
                             event: 'REQUEST_CHANGES'
                           });
                         } else if (!hasScreenshotChanges && botReview) {

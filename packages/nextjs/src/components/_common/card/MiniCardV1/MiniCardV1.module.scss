@@ -1,7 +1,7 @@
 @use 'common' as common;
 
-$illustrationSize: common.px-to-rem(64);
-$illustrationSizeSmall: common.px-to-rem(48);
+$illustrationSize: 4rem;
+$illustrationSizeSmall: 3rem;
 
 .illustration {
     width: $illustrationSize;
@@ -30,7 +30,7 @@ $illustrationSizeSmall: common.px-to-rem(48);
 }
 
 .header {
-    font-weight: common.$a-font-weight-bold;
+    font-weight: var(--a-font-weight-bold);
     margin-bottom: 0.5rem;
 }
 
@@ -39,12 +39,12 @@ $illustrationSizeSmall: common.px-to-rem(48);
     border-radius: 8px;
     border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
     display: inline-flex; // Ensures margins don't collapse
-    padding: common.px-to-rem(12);
+    padding: 0.75rem;
     text-decoration: none;
     width: 100%;
 
     &:after {
-        box-shadow: 0 0 0 2px white;
+        box-shadow: 0 0 0 2px var(--a-white);
         height: calc(100% - 2px);
         margin: 1px;
         width: calc(100% - 2px);

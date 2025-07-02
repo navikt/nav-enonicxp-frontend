@@ -4,10 +4,10 @@ import { SectionNavigation } from 'components/_common/pageNavigationMenu/Section
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';
@@ -98,14 +98,14 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 </div>
             )}
             {title && (
-                <Header
+                <Heading
                     size="large"
                     level="2"
                     anchorId={anchorId}
                     className={classNames(style.header, !!iconImgProps && style.headerWithIcon)}
                 >
                     {title}
-                </Header>
+                </Heading>
             )}
             {showSubsectionNavigation && (
                 <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />

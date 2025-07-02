@@ -5,7 +5,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/analytics';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -38,6 +38,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
+            aria-labelledby={headingId}
             className={classNames(
                 style.pageNavigationMenu,
                 isChapterNavigation && style.chapterNavigation
@@ -52,7 +53,7 @@ export const PageNavigationMenu = ({
             >
                 {title}
             </Heading>
-            <ul aria-labelledby={headingId} className={style.list}>
+            <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
                         <LenkeBase

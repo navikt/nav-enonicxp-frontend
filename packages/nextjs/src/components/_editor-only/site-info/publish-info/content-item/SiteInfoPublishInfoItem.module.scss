@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .wrapper {
     width: 100%;
 
@@ -27,6 +25,6 @@
     align-items: center;
     svg {
         margin-right: 0.25rem;
-        color: common.$a-orange-500;
+        color: var(--a-orange-500);
     }
 }

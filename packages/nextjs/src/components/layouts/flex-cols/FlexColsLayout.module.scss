@@ -69,7 +69,6 @@
 
     padding-top: 4rem;
     padding-bottom: 4rem;
-    margin-top: 4rem;
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
@@ -134,10 +133,9 @@
         @include common.header-before-rectangle();
     }
     :global(.navds-heading) {
-      margin-top: var(--a-spacing-2);
-  }
+        margin-top: var(--a-spacing-2);
+    }
 }
-
 
 .shelfLayout {
     display: flex;

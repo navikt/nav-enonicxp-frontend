@@ -2,10 +2,8 @@ import React, { useId } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { usePageContentProps } from 'store/pageContext';
-import { translator } from 'translations';
 
 import style from './Lenkeliste.module.scss';
 
@@ -25,8 +23,6 @@ type Props = {
 };
 
 export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
-    const { language } = usePageContentProps();
-    const getLabel = translator('linkList', language);
     const headingId = `heading-linklist-${useId()}`;
 
     if (!lenker || lenker.length === 0) {
@@ -34,11 +30,7 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
     }
 
     return (
-        <nav
-            className={classNames(className, style.lenker)}
-            aria-labelledby={tittel ? headingId : undefined}
-            aria-label={tittel ? undefined : getLabel('label')}
-        >
+        <section className={classNames(className, style.lenker)}>
             {tittel && (
                 <Heading className={style.tittel} id={headingId} size="small" level="2">
                     {tittel}
@@ -60,6 +52,6 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
                     </WrapLI>
                 ))}
             </WrapUL>
-        </nav>
+        </section>
     );
 };

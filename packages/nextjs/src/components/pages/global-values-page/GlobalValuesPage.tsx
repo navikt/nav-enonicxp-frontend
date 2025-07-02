@@ -12,7 +12,7 @@ import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { ContentType } from 'types/content-props/_content-common';
 import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
 import Config from 'config';
-import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
+import { LayersEditorWarning } from 'components/_editor-only/layersEditorWarning/LayersEditorWarning';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVAddItem } from './components/values/add-item/GVAddItem';

@@ -1,19 +1,13 @@
 @use 'common' as common;
 
-// Use global CSS rather than module to simplify overriding of styles
-// The component this styling applies to is intended for very flexible styling
-
-$padding: 1.5rem;
 $blueLinkColor: var(--default-action-color);
-$blackLinkColor: common.$a-text-default;
+$blackLinkColor: var(--a-text-default);
 
 .linkPanelNavno {
     position: relative;
-
     display: flex;
     align-items: flex-start;
-
-    padding: $padding;
+    padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
 
     &:hover {
@@ -27,6 +21,20 @@ $blackLinkColor: common.$a-text-default;
     &:focus-within {
         @include common.panel-focus-mixin(true);
     }
+
+    :global(.navds-label) {
+        font-size: var(--a-font-size-heading-medium);
+    }
+}
+
+// gjør hele komponenten klikkbar
+.clickArea::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .linkPanelNavnoLink {

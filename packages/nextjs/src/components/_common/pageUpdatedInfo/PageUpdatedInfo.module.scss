@@ -1,29 +1,7 @@
-@use 'common' as common;
-
-.contentWrapper {
-    @include common.full-width-mixin();
-
-    &.situationPage {
-        margin-top: 0;
-        padding-top: var(--a-spacing-6);
-        padding-bottom: var(--a-spacing-6);
-        background-color: var(--a-gray-50);
-        align-content: center;
-
-        .pageUpdatedInfo {
-            max-width: 1300px;
-            width: 100%;
-            margin: 0 auto;
-
-            border-top: 1px solid var(--a-gray-300);
-            padding: var(--a-spacing-5) var(--a-spacing-12) 0;
-        }
-    }
-}
-
 .pageUpdatedInfo {
     border-top: 1px solid var(--a-gray-200);
     font-style: italic;
     margin-top: var(--a-spacing-12);
     padding-top: var(--a-spacing-3);
+    margin-bottom: 4rem;
 }
