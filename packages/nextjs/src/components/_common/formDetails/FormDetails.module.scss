@@ -3,7 +3,7 @@
 .formDetails {
     ul {
         list-style: disc;
-        margin-bottom: 1.75rem;
+        margin-bottom: var(--a-spacing-7);
     }
 
     li {
@@ -45,7 +45,7 @@
         margin-bottom: 0;
     }
     &:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 
@@ -53,6 +53,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: var(--a-spacing-2);
+    margin-top: var(--a-spacing-4);
 }
