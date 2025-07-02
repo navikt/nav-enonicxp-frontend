@@ -64,13 +64,13 @@
         color: var(--a-surface-action);
         width: 24px;
         height: 24px;
-        margin-right: 10px;
+        margin-right: var(--a-spacing-2);
     }
 
     &:hover,
     &:focus {
         background-color: var(--a-deepblue-100);
-        border-radius: 0.5rem;
+        border-radius: var(--a-radius-8);
         color: var(--a-text-default);
         box-shadow: 0 0 0 0;
         outline: 5px solid var(--a-bg-default);

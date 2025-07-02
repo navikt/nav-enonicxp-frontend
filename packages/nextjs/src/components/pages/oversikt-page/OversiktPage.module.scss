@@ -5,7 +5,7 @@
     margin: 1.25rem auto var(--a-spacing-10);
     grid-template-columns: 1fr minmax(0, 45rem) 1fr;
     grid-template-areas: 'pictogram content .';
-    column-gap: 1.75rem;
+    column-gap: var(--a-spacing-7);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
@@ -28,7 +28,7 @@
     justify-self: end;
     position: relative;
     align-self: flex-start;
-    margin-bottom: 1.25rem;
+    margin-bottom: var(--a-spacing-5);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         width: 4rem;
