@@ -154,6 +154,14 @@ const config = {
         TELEMETRY_URL: process.env.TELEMETRY_URL,
         MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
     },
+    generateBuildId: async () => {
+        if (!process.env.GIT_HASH) {
+            console.error('GIT_HASH environment variable is not set.');
+            return 'unknown';
+        }
+        // Return the first 12 characters of the GIT_HASH as 40 characters is overkillingly long for buildId
+        return process.env.GIT_HASH?.slice(0, 12);
+    },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
@@ -186,6 +194,9 @@ const config = {
         );
 
         return config;
+    },
+    sassOptions: {
+        silenceDeprecations: ['legacy-js-api'],
     },
     redirects: async () => [
         {
@@ -271,6 +282,15 @@ const config = {
     ],
     headers: async () => [
         {
+            source: '/:path*',
+            headers: [
+                {
+                    key: 'app-name',
+                    value: 'nav-enonicxp-frontend',
+                },
+            ],
+        },
+        {
             source: '/_next/(.*)',
             headers: corsHeaders,
         },
@@ -284,6 +304,15 @@ const config = {
                 {
                     key: 'Content-Security-Policy',
                     value: await csp(),
+                },
+            ],
+        },
+        {
+            source: '/:all*\\.(svg|png|ico|webmanifest)',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'public, max-age=86400, immutable',
                 },
             ],
         },

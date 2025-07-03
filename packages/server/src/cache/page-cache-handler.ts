@@ -17,6 +17,7 @@ export default class PageCacheHandler {
 
         const fromLocalCache = localCache.get(key);
         if (fromLocalCache) {
+            logger.info(`Cache hit for key: ${key} in local cache`);
             return fromLocalCache;
         }
 
@@ -24,6 +25,7 @@ export default class PageCacheHandler {
         if (!fromRedisCache) {
             return null;
         }
+        logger.info(`Cache hit for key: ${key} in Redis cache`);
 
         localCache.set(key, fromRedisCache);
 

@@ -21,7 +21,8 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
     }
 
-    const elementWrapper = (element: JSX.Element, key: string) => {
+    const elementWrapper = (element: React.ReactElement | null, key: string): React.ReactNode => {
+        if (!element) return null;
         return <li key={key}>{element}</li>;
     };
 

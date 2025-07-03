@@ -11,7 +11,7 @@ type Props = {
     regionStyle?: React.CSSProperties;
     bemModifier?: string;
     as?: React.ElementType<any>;
-    wrapperFunction?: (element: JSX.Element, key: string) => React.ReactNode;
+    wrapperFunction?: (element: React.ReactElement | null, key: string) => React.ReactNode;
 };
 
 const bem = BEM('region');
