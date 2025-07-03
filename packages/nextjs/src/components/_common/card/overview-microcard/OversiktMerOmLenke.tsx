@@ -42,15 +42,20 @@ const splitByHeaderType = (
 const MerOmLenke = ({
     productLinks,
     text,
+    inNorwegianFlag,
 }: {
     productLinks: OverviewPageProductLink[];
     text: string;
+    inNorwegianFlag?: boolean;
 }) => {
-    return productLinks.map((productLink) => (
-        <LenkeStandalone href={productLink.url} withArrow key={productLink.url}>
-            {text + ' ' + LowercaseFirstLetter(productLink.title)}
-        </LenkeStandalone>
-    ));
+    return productLinks.map((productLink) => {
+        const inNorwegianText = inNorwegianFlag ? ' (in Norwegian)' : '';
+        return (
+            <LenkeStandalone href={productLink.url} withArrow key={productLink.url}>
+                {`${text} ${LowercaseFirstLetter(productLink.title)}${inNorwegianText}`}
+            </LenkeStandalone>
+        );
+    });
 };
 
 type Props = {
@@ -80,7 +85,8 @@ export const OversiktMerOmLenke = ({ productLinks, className }: Props) => {
             {withEnglishWarningReadMore.length > 0 && (
                 <MerOmLenke
                     productLinks={withEnglishWarningReadMore}
-                    text={`${headingText} (in Norwegian)`}
+                    text={headingText}
+                    inNorwegianFlag
                 />
             )}
         </div>
