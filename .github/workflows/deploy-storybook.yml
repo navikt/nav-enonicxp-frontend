@@ -32,6 +32,8 @@ jobs:
               run: npm ci
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Copy screenshots to public
+              run: node packages/nextjs/playwright/copy-screenshots.js
             - name: Build Storybook
               run: npm run build:storybook
             - name: Upload artifact
