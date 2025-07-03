@@ -16,16 +16,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     // These paths should never redirect, to ensure the site will load correctly
     // when accessed via other applications (Content Studio editor or external archive/version history frontend)
     expressApp.all(
-        [
-            '/render-from-props',
-            '/draft/*',
-            '/archive/*',
-            '/editor/*',
-            '/_next/*',
-            '/gfx/*',
-            '/api/*',
-            '/_/*',
-        ],
+        ['/render-from-props', '/draft/*', '/archive/*', '/editor/*', '/gfx/*', '/_/*'],
         (req, res) => {
             return nextRequestHandler(req, res);
         }
