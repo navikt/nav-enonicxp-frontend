@@ -5,7 +5,7 @@ import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
-import { AlertInContext } from 'components/_common/alertInContext/AlertInContext';
+import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
 import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
@@ -100,7 +100,7 @@ export const FormDetails = ({
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
-                alerts.map((alert, index) => <AlertInContext key={index} data={alert.data} />)}
+                alerts.map((alert, index) => <VarselIKontekst key={index} data={alert.data} />)}
 
             {variations.length > 0 && (
                 <div className={style.variation}>

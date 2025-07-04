@@ -61,7 +61,7 @@ const contentToReactComponent: {
     [ContentType.FormsOverview]: FormsOverviewPage,
     [ContentType.Calculator]: CalculatorPage,
     [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,
-    [ContentType.AlertInContext]: AlertInContextPage,
+    [ContentType.VarselIKontekst]: AlertInContextPage,
     [ContentType.ContactStepPage]: ContactStepPage,
 
     [ContentType.AreaPage]: DynamicPage,

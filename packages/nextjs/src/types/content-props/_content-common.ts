@@ -47,7 +47,7 @@ import { FormDetailsPageProps } from './form-details';
 import { FallbackPageProps } from './fallback-page-props';
 
 export enum ContentType {
-    AlertInContext = 'no.nav.navno:alert-in-context',
+    VarselIKontekst = 'no.nav.navno:alert-in-context',
     AreaPage = 'no.nav.navno:area-page',
     Calculator = 'no.nav.navno:calculator',
     ContactInformationPage = 'no.nav.navno:contact-information',
@@ -131,7 +131,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.ContentList]: 'Innholdsliste',
     [ContentType.UserTestsConfig]: 'Brukertester',
     [ContentType.Video]: 'Qbrick Video',
-    [ContentType.AlertInContext]: 'Varsel i kontekst',
+    [ContentType.VarselIKontekst]: 'Varsel i kontekst',
     [ContentType.PublishingCalendar]: 'Publiseringskalender',
     [ContentType.PublishingCalendarEntry]: 'Kalenderhendelse',
     [ContentType.SectionPage]: 'Oppslagstavle',
