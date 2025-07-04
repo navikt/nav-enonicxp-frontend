@@ -37,7 +37,9 @@ export const cardTypeMap = {
 };
 
 export const getCardProps = (
-    targetContent: CardTargetProps | undefined,
+    targetContent:
+        | Pick<CardTargetProps, 'data' | 'type' | '_path' | 'displayName' | 'language'>
+        | undefined,
     currentContent: ContentProps,
     ingressOverride?: string
 ): CardProps | null => {
