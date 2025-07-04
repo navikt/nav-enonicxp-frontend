@@ -74,6 +74,12 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
             : file.filename.includes('-mobile-')
     );
 
+    const base =
+        window.location.origin +
+        (window.location.pathname.includes('/nav-enonicxp-frontend/')
+            ? '/nav-enonicxp-frontend'
+            : '');
+
     return (
         <div
             style={{
@@ -91,7 +97,7 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                 return (
                     <a
                         key={file.url}
-                        href={`/?path=/story/${storyId}`}
+                        href={`${base}/?path=/story/${storyId}`}
                         target="_parent"
                         style={{
                             display: 'block',
