@@ -13,7 +13,7 @@ export const MacroPhoneLink = ({ config }: MacroPhoneLinkProps) => {
     const href = `tel:${phoneNumber}`;
 
     return chevron ? (
-        <LenkeStandalone withChevron={true} href={href}>
+        <LenkeStandalone withChevron href={href}>
             {text}
         </LenkeStandalone>
     ) : (

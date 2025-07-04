@@ -1,28 +1,21 @@
 import React from 'react';
 import { Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
-import { Taxonomy } from 'types/taxonomies';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
 import styles from './OverviewFilterBase.module.scss';
 
-type FilterOptions = Area | Taxonomy;
+type FilterType<Type extends Area> = Type extends Area ? 'areas' : never;
 
-type FilterType<Type extends FilterOptions> = Type extends Area
-    ? 'areas'
-    : Type extends Taxonomy
-      ? 'taxonomies'
-      : never;
-
-type Props<Type extends FilterOptions> = {
+type Props<Type extends Area> = {
     type: FilterType<Type>;
     selectionCallback: (filter: Type) => void;
     selected: Type;
     options: Type[];
 };
 
-export const OverviewFilterBase = <Type extends FilterOptions>({
+export const OverviewFilterBase = <Type extends Area>({
     type,
     selectionCallback,
     selected,

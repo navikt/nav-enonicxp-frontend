@@ -1,0 +1,15 @@
+@use 'common' as common;
+
+.list {
+    @include common.unstyled-list();
+    margin-top: var(--a-spacing-8);
+}
+
+.item {
+    padding: var(--a-spacing-6) 0;
+    border-top: 1px solid var(--a-border-divider);
+
+    &:last-child {
+        border-bottom: 1px solid var(--a-border-divider);
+    }
+}

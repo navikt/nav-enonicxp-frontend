@@ -1,11 +1,10 @@
 import React from 'react';
-import { BodyShort } from '@navikt/ds-react';
-import { MicroCard } from 'components/_common/card/MicroCard/MicroCard';
-import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { isNorwegianLanguage } from 'utils/languages';
 import { OverviewPageProductLink } from 'types/content-props/overview-props';
+import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
+import { LowercaseFirstLetter } from 'utils/lowercaseFirstLetter';
 
 type ProductLinksSplit = {
     withStandardReadMore: OverviewPageProductLink[];
@@ -40,25 +39,31 @@ const splitByHeaderType = (
     );
 };
 
-const CardsHeader = ({ text }: { text: string }) => (
-    <BodyShort weight={'semibold'}>{text}</BodyShort>
-);
-
-const CardsList = ({ productLinks }: { productLinks: OverviewPageProductLink[] }) =>
-    productLinks.map((productLink) => (
-        <MicroCard
-            type={cardTypeMap[productLink.type]}
-            link={{ url: productLink.url, text: productLink.title }}
-            key={productLink.url}
-        />
-    ));
+const MerOmLenke = ({
+    productLinks,
+    text,
+    inNorwegianFlag,
+}: {
+    productLinks: OverviewPageProductLink[];
+    text: string;
+    inNorwegianFlag?: boolean;
+}) => {
+    return productLinks.map((productLink) => {
+        const inNorwegianText = inNorwegianFlag ? ' (in Norwegian)' : '';
+        return (
+            <LenkeStandalone href={productLink.url} withArrow key={productLink.url}>
+                {`${text} ${LowercaseFirstLetter(productLink.title)}${inNorwegianText}`}
+            </LenkeStandalone>
+        );
+    });
+};
 
 type Props = {
     productLinks: OverviewPageProductLink[];
     className?: string;
 };
 
-export const OverviewMicroCards = ({ productLinks, className }: Props) => {
+export const OversiktMerOmLenke = ({ productLinks, className }: Props) => {
     const { language: pageLanguage } = usePageContentProps();
 
     if (productLinks.length === 0) {
@@ -75,16 +80,14 @@ export const OverviewMicroCards = ({ productLinks, className }: Props) => {
     return (
         <div className={className}>
             {withStandardReadMore.length > 0 && (
-                <>
-                    <CardsHeader text={headingText} />
-                    <CardsList productLinks={withStandardReadMore} />
-                </>
+                <MerOmLenke productLinks={withStandardReadMore} text={headingText} />
             )}
             {withEnglishWarningReadMore.length > 0 && (
-                <>
-                    <CardsHeader text={`${headingText} (in Norwegian)`} />
-                    <CardsList productLinks={withEnglishWarningReadMore} />
-                </>
+                <MerOmLenke
+                    productLinks={withEnglishWarningReadMore}
+                    text={headingText}
+                    inNorwegianFlag
+                />
             )}
         </div>
     );

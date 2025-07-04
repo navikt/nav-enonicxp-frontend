@@ -31,7 +31,7 @@ export const VersionStatus = ({ content, requestedDateTime, submitVersionUrl }: 
                     : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
                 {' - '}
                 <LenkeStandalone
-                    withChevron={false}
+                    withChevron
                     href={'#'}
                     onClick={(e) => {
                         e.stopPropagation();
