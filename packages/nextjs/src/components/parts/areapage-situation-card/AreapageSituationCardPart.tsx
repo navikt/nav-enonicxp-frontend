@@ -12,7 +12,10 @@ import style from './AreapageSituationCardPart.module.scss';
 
 export type PartConfigAreapageSituationCard = {
     disabled: boolean;
-    target: SituationPageProps;
+    target: Pick<
+        SituationPageProps,
+        '_id' | 'data' | 'displayName' | 'type' | 'language' | '_path'
+    >;
 };
 
 export const AreapageSituationCardPart = ({
