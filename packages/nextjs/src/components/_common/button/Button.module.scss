@@ -14,3 +14,38 @@
 .buttonFullWidth {
     width: 100%;
 }
+
+.lenkestyling {
+    color: var(--default-action-color);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1em;
+    text-decoration-line: underline;
+    margin-bottom: 0;
+    box-shadow: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+        text-decoration-line: none;
+    }
+
+    &:hover,
+    &:active {
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    &:active {
+        box-shadow: none;
+        background-color: transparent;
+        text-decoration-line: none;
+        text-decoration-color: var(--default-action-color);
+        color: var(--default-action-color);
+    }
+
+    :global(.navds-heading) {
+        color: var(--default-action-color);
+    }
+}

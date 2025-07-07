@@ -44,11 +44,11 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
 
     // Mellomsteg skal bruke simple decorator
     useEffect(() => {
-        setParams({simple: true});
+        setParams({ simple: true });
 
         return () => {
-            setParams({simple: false});
-        }
+            setParams({ simple: false });
+        };
     }, []);
 
     return (

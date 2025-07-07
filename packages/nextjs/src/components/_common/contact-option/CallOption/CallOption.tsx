@@ -1,19 +1,20 @@
 import React from 'react';
-import { Alert, BodyLong, BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
+import { ContactOptionLayout } from 'components/_common/contact-option/_shared-utils/ContactOptionLayout/ContactOptionLayout';
 import { translator } from 'translations';
+import { ContactOptionAlert } from 'components/_common/contact-option/_shared-utils/ContactOptionAlert/ContactOptionAlert';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { OpeningInfo } from 'components/_common/contact-option/openingInfo/OpeningInfo';
+import { OpeningInfo } from 'components/_common/contact-option/_shared-utils/openingInfo/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
 import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/icon/Icon';
+import { Icon } from 'components/_common/contact-option/_shared-utils/icon/Icon';
+import { ContactOptionIngress } from 'components/_common/contact-option/_shared-utils/ContactOptionIngress/ContactOptionIngress';
+import { ContactOptionLenkebase } from 'components/_common/contact-option/_shared-utils/ContactOptionLenkebase/ContactOptionLenkebase';
 
-import sharedStyle from 'components/_common/contact-option/ContactOption.module.scss';
-import alertStyle from 'components/_common/contact-option/Alert.module.scss';
 import style from './CallOption.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
@@ -68,46 +69,36 @@ export const CallOption = ({
     };
 
     return (
-        <div className={sharedStyle.contactOption}>
-            <Icon type="phone" />
-            <div className={sharedStyle.content}>
+        <ContactOptionLayout icon={<Icon type="phone" />}>
+            <ContactOptionLenkebase
+                href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
+                analyticsEvent={AnalyticsEvents.CALL}
+                analyticsLinkGroup={layoutConfig.title}
+                analyticsComponent={'Kontakt-oss kanal'}
+            >
+                <Heading level="3" size="small">
+                    {title || callTranslations.title}
+                </Heading>
+            </ContactOptionLenkebase>
+            {alertText && <ContactOptionAlert alertText={alertText} />}
+            <ContactOptionIngress
+                htmlProps={overrideText || ingress || text || callTranslations.ingress}
+            />
+            {!alertText && regularOpeningHours && specialOpeningHours && (
+                <OpeningInfo
+                    regularOpeningHours={regularOpeningHours}
+                    specialOpeningHours={specialOpeningHours}
+                />
+            )}
+            {!hideMoreLink && (
                 <LenkeBase
-                    href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
-                    className={sharedStyle.link}
-                    analyticsEvent={AnalyticsEvents.CALL}
                     analyticsLinkGroup={layoutConfig.title}
-                    analyticsComponent={'Kontakt-oss kanal'}
+                    className={style.moreLink}
+                    href={getContactUrl()}
                 >
-                    <Heading level="3" size="small">
-                        {title || callTranslations.title}
-                    </Heading>
+                    <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
                 </LenkeBase>
-                {alertText && (
-                    <Alert variant="warning" inline className={alertStyle.alert}>
-                        {alertText}
-                    </Alert>
-                )}
-                <BodyLong className={sharedStyle.text}>
-                    <ParsedHtml
-                        htmlProps={overrideText || ingress || text || callTranslations.ingress}
-                    />
-                </BodyLong>
-                {!alertText && regularOpeningHours && specialOpeningHours && (
-                    <OpeningInfo
-                        regularOpeningHours={regularOpeningHours}
-                        specialOpeningHours={specialOpeningHours}
-                    />
-                )}
-                {!hideMoreLink && (
-                    <LenkeBase
-                        analyticsLinkGroup={layoutConfig.title}
-                        className={style.moreLink}
-                        href={getContactUrl()}
-                    >
-                        <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
-                    </LenkeBase>
-                )}
-            </div>
-        </div>
+            )}
+        </ContactOptionLayout>
     );
 };
