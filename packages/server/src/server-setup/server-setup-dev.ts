@@ -4,7 +4,8 @@ import { InferredNextWrapperServer } from 'server';
 const DEV_NAIS_DOMAIN = 'ansatt.dev.nav.no';
 const APP_ORIGIN = process.env.APP_ORIGIN;
 
-// Redirects requests for other domains to the ansatt.dev.nav.no
+// Redirects requests for other domains to the ansatt.dev.nav.no.
+// For example, www.intern.dev.nav.no (legacy) will be redirected to www.ansatt.dev.nav.no
 export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
