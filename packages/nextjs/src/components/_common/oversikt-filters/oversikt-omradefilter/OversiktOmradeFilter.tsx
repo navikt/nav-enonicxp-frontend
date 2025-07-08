@@ -39,7 +39,7 @@ type Props = {
 };
 
 export const OversiktOmradeFilter = ({ items }: Props) => {
-    const { areaFilter, setAreaFilter } = useOversiktFilters();
+    const { omradeFilter, setOmradeFilter } = useOversiktFilters();
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const handleFilterUpdate = (area: Area) => {
@@ -51,7 +51,7 @@ export const OversiktOmradeFilter = ({ items }: Props) => {
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });
-        setAreaFilter(area);
+        setOmradeFilter(area);
     };
 
     const areasPresent = orderedAreas.filter((area) =>
@@ -62,7 +62,7 @@ export const OversiktOmradeFilter = ({ items }: Props) => {
         <OversiktFilterBase
             type={'areas'}
             selectionCallback={handleFilterUpdate}
-            selected={areaFilter}
+            selected={omradeFilter}
             options={[Area.ALL, ...areasPresent]}
         />
     );

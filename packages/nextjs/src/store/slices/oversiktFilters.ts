@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Area } from 'types/areas';
 
 export type OversiktFiltersState = {
-    areaFilter: Area;
+    omradeFilter: Area;
     textFilter: string;
 };
 
 export const oversiktFiltersInitialState: OversiktFiltersState = {
     textFilter: '',
-    areaFilter: Area.ALL,
+    omradeFilter: Area.ALL,
 };
 
 export type OversiktFiltersTextInputEventDetail = { value: string; id: string };
@@ -18,9 +18,9 @@ const oversiktFiltersSlice = createSlice({
     name: 'oversiktFilters',
     initialState: oversiktFiltersInitialState,
     reducers: {
-        setArea: (state, action: PayloadAction<{ area: Area }>) => {
-            const { area } = action.payload;
-            return { ...state, areaFilter: area };
+        setOmrade: (state, action: PayloadAction<{ omrade: Area }>) => {
+            const { omrade } = action.payload;
+            return { ...state, omradeFilter: omrade };
         },
         setTextFilter: (state, action: PayloadAction<{ text: string }>) => {
             const { text } = action.payload;
@@ -38,7 +38,7 @@ const oversiktFiltersSlice = createSlice({
 });
 
 export const {
-    setArea: setAreaFilterAction,
+    setOmrade: setOmradeFilterAction,
     setTextFilter: setTextFilterAction,
     resetFilters: resetOversiktFiltersAction,
 } = oversiktFiltersSlice.actions;

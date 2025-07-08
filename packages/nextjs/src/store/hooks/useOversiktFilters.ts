@@ -6,7 +6,7 @@ import {
     oversiktFiltersInitialState,
     OversiktFiltersState,
     resetOversiktFiltersAction,
-    setAreaFilterAction,
+    setOmradeFilterAction,
     setTextFilterAction,
 } from 'store/slices/oversiktFilters';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
@@ -29,12 +29,12 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
 }: FilteredListProps<ItemType> & {
     filters: OversiktFiltersState;
 }) => {
-    const { textFilter, areaFilter } = filters;
+    const { textFilter, omradeFilter } = filters;
     const textFilterActual = textFilterOverride || textFilter;
-    const isAreaMatching = (item: ItemType) =>
-        areaFilter === Area.ALL || item.area.includes(areaFilter);
+    const isOmradeMatching = (item: ItemType) =>
+        omradeFilter === Area.ALL || item.area.includes(omradeFilter);
     const itemsMatchingToggleFilters = filterableItems.filter((item: ItemType) =>
-        isAreaMatching(item)
+        isOmradeMatching(item)
     );
 
     if (!textFilterActual || !fuseOptions) {
@@ -49,11 +49,11 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
 export const useOversiktFilters = () => {
     const dispatch = useAppDispatch();
     const filtersState = useAppSelector((state) => state.oversiktFilters);
-    const { textFilter, areaFilter } = filtersState;
+    const { textFilter, omradeFilter: omradeFilter } = filtersState;
 
     const hasDefaultFilters =
         textFilter === oversiktFiltersInitialState.textFilter &&
-        areaFilter === oversiktFiltersInitialState.areaFilter;
+        omradeFilter === oversiktFiltersInitialState.omradeFilter;
 
     const getFilteredList = useCallback(
         <ItemType extends OversiktFilterableItem>(props: FilteredListProps<ItemType>) => {
@@ -61,8 +61,8 @@ export const useOversiktFilters = () => {
         },
         [filtersState]
     );
-    const setAreaFilter = useCallback(
-        (area: Area) => dispatch(setAreaFilterAction({ area })),
+    const setOmradeFilter = useCallback(
+        (omrade: Area) => dispatch(setOmradeFilterAction({ omrade })),
         [dispatch]
     );
     const setTextFilter = useCallback(
@@ -74,10 +74,10 @@ export const useOversiktFilters = () => {
 
     return {
         hasDefaultFilters,
-        areaFilter,
+        omradeFilter,
         textFilter,
         getFilteredList,
-        setAreaFilter,
+        setOmradeFilter,
         setTextFilter,
         resetFilters,
     };
