@@ -38,7 +38,7 @@ type Props = {
     items: OversiktFilterableItem[];
 };
 
-export const OversiktAreaFilter = ({ items }: Props) => {
+export const OversiktOmradeFilter = ({ items }: Props) => {
     const { areaFilter, setAreaFilter } = useOversiktFilters();
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);

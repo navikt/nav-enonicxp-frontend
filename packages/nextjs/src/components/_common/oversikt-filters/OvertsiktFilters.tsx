@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { OversiktAreaFilter } from 'components/_common/oversikt-filters/oversikt-areafilter/OversiktAreaFilter';
+import { OversiktOmradeFilter } from 'components/_common/oversikt-filters/oversikt-omradefilter/OversiktOmradeFilter';
 import { OversiktTextFilter } from 'components/_common/oversikt-filters/text-filter/OversiktTextFilter';
 import { OversiktFilterableItem, useOversiktFilters } from 'store/hooks/useOversiktFilters';
 import { usePageContentProps } from 'store/pageContext';
@@ -36,7 +36,7 @@ export const OversiktFilters = (props: Props) => {
             <Heading className="sr-only" level={'2'} size={'xsmall'}>
                 {searchLabel}
             </Heading>
-            {showAreaFilter && <OversiktAreaFilter items={filterableItems} />}
+            {showAreaFilter && <OversiktOmradeFilter items={filterableItems} />}
             {showTextInputFilter && <OversiktTextFilter hideLabel={false} />}
         </div>
     );
