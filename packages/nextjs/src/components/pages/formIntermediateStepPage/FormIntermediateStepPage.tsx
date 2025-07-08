@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getParams, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { setParams } from '@navikt/nav-dekoratoren-moduler';
 import { translator } from 'translations';
 import { SelectableStep, StepBase } from 'types/content-props/form-intermediate-step';
 import { useFormIntermediateStepPage } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
@@ -42,18 +42,13 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
     const { currentStepData, backUrl } = useFormIntermediateStepPage(props);
     const getTranslations = translator('form', language);
 
-    // Mellomsteg skal bruke simple decorator. Settes tilbake til det det var
+    // Mellomsteg skal bruke simple decorator
     useEffect(() => {
-        (async () => {
-            const decoratorParams = await getParams();
+        setParams({ simple: true });
 
-            //Bruker ikke await her, fordi vi ønsker at setParams skal kjøre umiddelbart
-            setParams({ simple: true });
-
-            return () => {
-                setParams(decoratorParams);
-            };
-        })();
+        return () => {
+            setParams({ simple: false });
+        };
     }, []);
 
     return (
