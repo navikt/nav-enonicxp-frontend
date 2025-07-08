@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { OversiktFilters } from 'components/_common/oversikt-filters/OvertsiktFilters';
+import { OversiktFilters } from 'components/_common/oversikt-filters/OversiktFilters';
 import { useOversiktFilters } from 'store/hooks/useOversiktFilters';
 import { OversiktFiltersSummary } from 'components/_common/oversikt-filters/summary/OversiktFiltersSummary';
 import { OversiktPageData, OversiktPageProps } from 'types/content-props/oversikt-props';
@@ -8,7 +8,7 @@ import { OversiktListPanel } from './panel/OversiktListPanel';
 import style from './OversiktList.module.scss';
 
 // Matches on form number-like queries and returns the full valid form number if match found
-// Form numbers are formatted like "NAV 01-23.45"
+// Form numbers are formatted like "NAV 01-23.45" or "NAV 01-23.45b"
 const getExactFormNumberIfFormSearch = (term: string) => {
     const match = /^(nav.?)?([0-9]{2}).?([0-9]{2}).?([0-9]{2})$/.exec(term);
     if (!match) {
@@ -18,7 +18,7 @@ const getExactFormNumberIfFormSearch = (term: string) => {
     return `nav ${match[2]}-${match[3]}.${match[4]}`;
 };
 
-// Weight lets ut adjst fuzzy search results when using Fuse.js
+// Weight lets ut adjust fuzzy search results when using Fuse.js
 const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
     // Produktdetaljer
     if (
@@ -34,7 +34,7 @@ const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
         ];
     }
 
-    // Sjemadetaljer or "tjeneste fra A til Å"
+    // Skjemadetaljer or "tjeneste fra A til Å"
     return [
         { name: 'sortTitle', weight: 10 },
         { name: 'title', weight: 10 },
