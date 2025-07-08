@@ -9,6 +9,8 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { translator } from 'translations';
+import { classNames } from 'utils/classnames';
+
 import style from './ProductPanelExpandable.module.scss';
 
 type Props = {
@@ -47,6 +49,9 @@ export const ProductPanelExpandable = ({
             setIsOpen(true);
         }
     };
+
+    // Need an override until we remove the old overview page
+    const noLeftPadding = contentProps.type === 'no.nav.navno:overview';
 
     useEffect(() => {
         checkHashAndExpandPanel();
@@ -94,7 +99,12 @@ export const ProductPanelExpandable = ({
                     {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
                 </div>
             </ExpansionCard.Header>
-            <ExpansionCard.Content className={style.expandableContent}>
+            <ExpansionCard.Content
+                className={classNames(
+                    style.expandableContent,
+                    noLeftPadding && style.noLeftPadding
+                )}
+            >
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                 {withCopyLink && (
                     <CopyLink

@@ -92,6 +92,14 @@ export const FormsOverviewListPanel = ({
             withCopyLink
         >
             <div className={style.formsOverviewListPanel}>
+                {formDetailsPages?.map((formDetail) => (
+                    <FormDetails
+                        formDetails={formDetail.data}
+                        displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                        formNumberSelected={formNumberSelected}
+                        key={formDetail._id}
+                    />
+                ))}
                 {!isAddendumPage && url && (
                     <OversiktMerOmLenke
                         productLinks={[
@@ -104,14 +112,6 @@ export const FormsOverviewListPanel = ({
                         ]}
                     />
                 )}
-                {formDetailsPages?.map((formDetail) => (
-                    <FormDetails
-                        formDetails={formDetail.data}
-                        displayConfig={getFormDetailsDisplayOptions(overviewType)}
-                        formNumberSelected={formNumberSelected}
-                        key={formDetail._id}
-                    />
-                ))}
             </div>
         </ProductPanelExpandable>
     );
