@@ -52,6 +52,7 @@ export const ProductPanelExpandable = ({
 
     // Need an override until we remove the old overview page
     const noLeftPadding = contentProps.type === 'no.nav.navno:overview';
+    const alignCenter = contentProps.type === 'no.nav.navno:overview';
 
     useEffect(() => {
         checkHashAndExpandPanel();
@@ -89,7 +90,7 @@ export const ProductPanelExpandable = ({
             aria-label={header}
         >
             <ExpansionCard.Header
-                className={style.expandableHeader}
+                className={classNames(style.expandableHeader, alignCenter && style.alignCenter)}
                 onMouseOver={contentLoaderCallback}
                 onFocus={contentLoaderCallback}
             >

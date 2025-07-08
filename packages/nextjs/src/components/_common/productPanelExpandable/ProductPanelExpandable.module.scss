@@ -43,6 +43,12 @@
         }
     }
 
+    &.alignCenter {
+        :global(.navds-expansioncard__header-content) {
+            align-items: center;
+        }
+    }
+
     :global(.navds-expansioncard__header-content) {
         display: flex;
         flex-direction: row;
