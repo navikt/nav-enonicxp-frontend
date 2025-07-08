@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const FormNumberTag = ({ formNumber, className }: Props) => {
-    return <div className={classNames(style.formNumberTag, className)}>{formNumber}</div>;
+    return <span className={classNames(style.formNumberTag, className)}>{formNumber}</span>;
 };
 
 export default FormNumberTag;
