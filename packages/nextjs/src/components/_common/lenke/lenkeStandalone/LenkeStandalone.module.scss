@@ -17,17 +17,13 @@
         .customChevronStyle {
             left: 0.325rem;
         }
-
-        .lenketekst {
-            text-decoration-line: underline;
-        }
     }
 }
 
 .lenketekst {
-    display: inline;
+    display: inline-flex;
     color: var(--default-action-color);
-    @include common.link-underline-mixin(false);
+    @include common.link-underline-mixin();
 }
 
 .label {
@@ -38,11 +34,17 @@
 
 .iconContainer {
     min-width: 1.8rem;
-}
 
-.customChevronStyle {
-    position: relative;
-    transition: left 250ms;
-    top: 0.0625rem;
-    left: 0;
+    .customChevronStyle {
+        position: relative;
+        transition: left 250ms;
+        top: 0.0625rem;
+        left: 0;
+    }
+
+    .arrowIcon {
+        margin-left: 10px;
+        position: relative;
+        top: 2px;
+    }
 }

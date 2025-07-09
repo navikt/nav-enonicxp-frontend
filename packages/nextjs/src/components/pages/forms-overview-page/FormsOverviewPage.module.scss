@@ -46,11 +46,3 @@
         display: block;
     }
 }
-
-/* Innrykk i ekspanderende paneler */
-
-.main :global(.navds-expansioncard__content) {
-    @media #{common.$mq-screen-desktop} {
-        padding-left: 82px;
-    }
-}

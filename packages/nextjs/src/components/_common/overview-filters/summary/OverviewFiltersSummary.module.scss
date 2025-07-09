@@ -13,15 +13,6 @@
     min-height: 3.125rem;
 }
 
-.chips {
-    display: inline-flex;
-
-    // The chips component seems to render empty list items for null-children
-    & > :empty {
-        display: none;
-    }
-}
-
 .nohits {
     background-color: var(--a-gray-100);
     padding: var(--a-spacing-6, 1.5rem);

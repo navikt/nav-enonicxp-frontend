@@ -1,11 +1,9 @@
 @use 'common' as common;
 
 .formDetails {
-    margin-bottom: var(--a-spacing-9);
-
     ul {
         list-style: disc;
-        margin-bottom: 1.75rem;
+        margin-bottom: var(--a-spacing-7);
     }
 
     li {
@@ -47,7 +45,7 @@
         margin-bottom: 0;
     }
     &:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 
@@ -55,10 +53,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 5px;
-}
-
-.highlight {
-    background-color: var(--a-lightblue-200);
-    color: var(--a-gray-800);
+    gap: var(--a-spacing-2);
+    margin-top: var(--a-spacing-4);
 }
