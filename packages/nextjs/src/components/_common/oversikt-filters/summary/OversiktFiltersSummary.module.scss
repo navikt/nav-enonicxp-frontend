@@ -1,0 +1,18 @@
+.summary {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap: var(--a-spacing-4, 1rem);
+    margin-top: var(--a-spacing-6, 1.5rem);
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--a-border-subtle);
+    width: 100%;
+    min-height: var(--a-spacing-12);
+}
+
+.nohits {
+    background-color: var(--a-gray-100);
+    padding: var(--a-spacing-6, 1.5rem);
+    border-radius: var(--a-border-radius-large);
+}

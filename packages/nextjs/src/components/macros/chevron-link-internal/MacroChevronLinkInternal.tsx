@@ -9,5 +9,9 @@ export const MacroChevronLinkInternal = ({ config }: MacroChevronLinkInternalPro
 
     const { target, text } = config.chevron_link_internal;
 
-    return <LenkeStandalone href={target?._path}>{text || target?.displayName}</LenkeStandalone>;
+    return (
+        <LenkeStandalone href={target?._path} withChevron>
+            {text || target?.displayName}
+        </LenkeStandalone>
+    );
 };

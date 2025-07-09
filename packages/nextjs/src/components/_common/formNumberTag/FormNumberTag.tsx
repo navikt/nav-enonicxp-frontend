@@ -1,13 +1,19 @@
-import { classNames } from 'utils/classnames';
-import style from './FormNumberTag.module.scss';
+import { Tag } from '@navikt/ds-react';
 
 interface Props {
     formNumber: string;
     className?: string;
+    selected?: boolean;
 }
 
-export const FormNumberTag = ({ formNumber, className }: Props) => {
-    return <div className={classNames(style.formNumberTag, className)}>{formNumber}</div>;
+export const FormNumberTag = ({ formNumber, className, selected }: Props) => {
+    return (
+        <Tag
+            size="small"
+            variant={selected ? 'info-moderate' : 'neutral-moderate'}
+            className={className}
+        >
+            {formNumber}
+        </Tag>
+    );
 };
-
-export default FormNumberTag;
