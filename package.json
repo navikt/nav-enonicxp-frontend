@@ -66,7 +66,7 @@
         ]
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.3.0",
+        "@navikt/nav-dekoratoren-moduler": "3.2.3-beta-forbedre-getcurrentconsent.0",
         "@next/bundle-analyzer": "14.2.4",
         "dotenv": "16.5.0",
         "lru-cache": "11.0.2",
