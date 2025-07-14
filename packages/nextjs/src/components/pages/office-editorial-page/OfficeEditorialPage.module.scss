@@ -4,12 +4,6 @@
     display: flex;
     flex-direction: column;
 
-    :global {
-        .layout__section-with-header {
-            margin-bottom: 2rem;
-        }
-    }
-
     .content {
         align-self: center;
         display: flex;

@@ -35,16 +35,4 @@
         padding-top: $bgPaddingDefault;
         padding-bottom: $bgPaddingDefault;
     }
-
-    // This checks if a layout-section or shelf is the last one in the region (ie not a contact-area)
-    // and sets the "Last updated" component to white.
-    &:global(.page__single-col-page) {
-        :global(.region:has(.layout__section-with-header:last-child)) ~ div {
-            background-color: var(--a-white);
-        }
-
-        :global(.region:has(.shelf-layout:last-child)) ~ div {
-            background-color: var(--a-white);
-        }
-    }
 }

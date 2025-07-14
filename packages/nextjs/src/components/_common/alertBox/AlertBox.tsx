@@ -19,9 +19,13 @@ const role = {
 };
 
 export const AlertBox = ({ variant, size, inline, className, children, ...rest }: Props) => {
+    // Alert støtter ikke 'data-color'
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { ['data-color']: dataColor, ...restWithoutDataColor } = rest;
+
     return (
         <Alert
-            {...rest}
+            {...restWithoutDataColor}
             role={role[variant]}
             variant={variant}
             size={size}

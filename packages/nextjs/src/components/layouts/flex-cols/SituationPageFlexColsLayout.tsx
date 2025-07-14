@@ -39,13 +39,14 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
             (component) => component.descriptor === 'no.nav.navno:provider-card'
         );
 
-    const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
+    const colCount = numCols ?? calculateColCount();
 
     return (
         <LayoutContainer
-            className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
+            className={classNames(
+                style.layoutSituationOrProduct,
                 isShelf && style.layoutSituationShelf
-            } ${isShelf && 'shelf-layout'}`}
+            )}
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
@@ -65,7 +66,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                     regionProps={regionProps}
                     regionStyle={regionStyle}
                     bemModifier={isShelf ? '' : `${colCount}-cols`}
-                    className={isShelf ? style.shelfLayout : ''}
+                    className={isShelf ? style.shelfLayout : undefined}
                 />
             </div>
         </LayoutContainer>
