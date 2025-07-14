@@ -4,7 +4,7 @@ import { smoothScrollToTarget } from 'utils/scroll-to';
 export const useCheckAndOpenPanel = (
     isOpen: boolean,
     setIsOpen: (isOpen: boolean) => void,
-    ref: React.RefObject<HTMLDivElement>,
+    ref: React.RefObject<HTMLDivElement | null>,
     anchorId?: string
 ) => {
     const checkAndOpenPanel = useCallback(() => {
