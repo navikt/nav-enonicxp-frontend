@@ -8,8 +8,9 @@ export const getNextBuildId = async (): Promise<string> => {
 
     let buildIdPath = path.join(process.cwd(), 'nextjs', '.next', 'BUILD_ID');
 
+    // The test (process.cwd) already runs in the nextjs directory, so make sure
+    // to fetch BUILD_ID file from the correct path.
     if (process.env.NODE_ENV === 'test' || process.env.JEST_WORKER_ID !== undefined) {
-        // The test (process.cwd) already runs in the nextjs directory.
         buildIdPath = path.join(process.cwd(), '.next', 'BUILD_ID');
     }
 
