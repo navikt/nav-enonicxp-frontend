@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -20,12 +20,16 @@ import { PageWarnings } from './_page-warnings/PageWarnings';
 
 import styles from './PageWrapper.module.scss';
 
-type Props = PropsWithChildren<{
+type Props = {
     content: ContentProps;
-}>;
+    children: React.ReactNode;
+};
 
-export const PageWrapper = ({ content, children }: Props) => {
+export const PageWrapper = (props: Props) => {
+    const { content, children } = props;
+
     const isEditorView = !!content.editorView;
+
     const router = useRouter();
 
     useEffect(() => {
@@ -44,7 +48,7 @@ export const PageWrapper = ({ content, children }: Props) => {
             });
         }
 
-        if (!router || isEditorView) {
+        if (!router) {
             return;
         }
 
@@ -54,6 +58,10 @@ export const PageWrapper = ({ content, children }: Props) => {
         onLanguageSelect((language) =>
             router.push(getInternalRelativePath(language.url as string, isEditorView))
         );
+
+        if (isEditorView) {
+            return;
+        }
 
         const linkInterceptor = hookAndInterceptInternalLink(router, isEditorView);
         const linkPrefetcher = prefetchOnMouseover(router);
