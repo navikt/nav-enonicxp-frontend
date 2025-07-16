@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { formatNumber } from 'utils/math';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { MacroTallProps } from 'types/macro-props/tall';
 
 export const MacroTall = ({ config }: MacroTallProps) => {

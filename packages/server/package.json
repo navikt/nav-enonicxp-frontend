@@ -9,7 +9,7 @@
         "nodemon-start": "nodemon -r dotenv/config -w .dist .dist/server.cjs dotenv_config_path=./.env",
         "dev": "npm run build && concurrently \"npm run build-watch\" \"npm run nodemon-start\"",
         "test": "next build __test-utils/next-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
-        "lint": "npm-run-all --parallel lint:*",
+        "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"npm run lint:tsc\" \"npm run lint:eslint\"",
         "lint:tsc": "tsc",
         "lint:eslint": "eslint src",
         "lint-staged": "lint-staged"
@@ -34,7 +34,7 @@
         "concurrently": "9.1.2",
         "mock-fs": "5.5.0",
         "husky": "9.1.7",
-        "lint-staged": "15.5.0",
-        "nodemon": "3.1.9"
+        "lint-staged": "16.1.2",
+        "nodemon": "3.1.10"
     }
 }

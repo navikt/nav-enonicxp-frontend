@@ -10,7 +10,7 @@ type Props = {
     analyticsGroup?: string;
 };
 
-export const MoreLink = ( props: Props) => {
+export const MoreLink = (props: Props) => {
     if (!props.link) {
         return null;
     }
@@ -18,12 +18,7 @@ export const MoreLink = ( props: Props) => {
     const { text, url } = getSelectableLinkProps(props.link);
 
     return (
-        <LenkeStandalone
-            href={url}
-            linkGroup={props.analyticsGroup}
-            className={styles.moreLink}
-            withChevron={false}
-        >
+        <LenkeStandalone href={url} linkGroup={props.analyticsGroup} className={styles.moreLink}>
             <ArrowRightIcon aria-hidden={true} className={styles.arrow} />
             {text}
         </LenkeStandalone>

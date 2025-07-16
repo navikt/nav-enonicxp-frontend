@@ -16,7 +16,8 @@ const TableComponent = ({ children }: Props) => {
     const { shadeOnHover } = useContext(TableContext);
 
     const elements = React.Children.map(children as React.ReactElement, (child: ReactElement) => {
-        const { type, props } = child;
+        const { type } = child;
+        const props = child.props as any;
 
         switch (type) {
             case 'thead':

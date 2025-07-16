@@ -1,7 +1,6 @@
 import React from 'react';
-import { translator } from 'translations';
-import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
@@ -44,13 +43,11 @@ export const FrontpageShortcutsPart = ({
         return <EditorHelp text={'Velg minst en snarvei'} />;
     }
 
-    const language = pageProps.language;
     const audience = getAudience(pageProps.data?.audience);
     const threeCols = shortcuts.length % 3 === 0;
-    const getLabel = translator('frontPage', language);
 
     return (
-        <nav
+        <section
             className={classNames(style.shortcuts, audience && style[audience])}
             style={
                 {
@@ -59,12 +56,11 @@ export const FrontpageShortcutsPart = ({
                     '--hover-color': hoverColor,
                 } as React.CSSProperties
             }
-            aria-label={getLabel('shortcuts')}
         >
             {sectionTitle && (
-                <Header size="large" level="2" className={style.header}>
+                <Heading size="large" level="2" className={style.header}>
                     {sectionTitle}
-                </Header>
+                </Heading>
             )}
             <ul className={classNames(style.list, threeCols && style.threeCols)}>
                 {shortcuts.map((item) => {
@@ -82,6 +78,7 @@ export const FrontpageShortcutsPart = ({
                             <LinkPanelNavnoSimple
                                 href={href}
                                 analyticsLinkGroup={sectionTitle}
+                                analyticsComponent="FrontpageShortcutsPart"
                                 icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(
                                     style.item,
@@ -94,6 +91,6 @@ export const FrontpageShortcutsPart = ({
                     );
                 })}
             </ul>
-        </nav>
+        </section>
     );
 };

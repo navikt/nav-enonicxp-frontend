@@ -217,8 +217,28 @@ export const translationsBundleNb = {
             ariaItemExplanation: 'Vis type',
         },
     },
+    oversikt: {
+        noHits: 'Ingen treff med de valgte filtrene.',
+        numHits: 'Viser $1 av $2',
+        search: 'Søk',
+        filterOrSearch: 'Bruk filter eller søk',
+        loading: 'Laster innhold...',
+        resetFilters: 'Nullstill filter',
+        any: 'Fra A til Å',
+        more: 'Mer om',
+        areas: {
+            choose: 'Velg område',
+            ariaExplanation: 'Filtrer listen etter område',
+            ariaItemExplanation: 'Vis område',
+        },
+        taxonomies: {
+            choose: 'Velg type',
+            ariaExplanation: 'Filtrer listen etter type',
+            ariaItemExplanation: 'Vis type',
+        },
+    },
     form: {
-        back: 'Tilbake',
+        back: 'Velg en annen måte å sende inn på',
     },
     contactPoint: {
         chat: {

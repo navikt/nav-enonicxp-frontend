@@ -28,6 +28,10 @@ spec:
     enabled: true
     path: /internal/metrics
   observability:
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
     autoInstrumentation:
       enabled: true
       runtime: nodejs
@@ -40,6 +44,10 @@ spec:
     {{/each}}
   envFrom:
     - secret: {{secret}}
+  filesFrom:
+    - emptyDir:
+        medium: Memory
+      mountPath: /app/nextjs/.next/cache
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache

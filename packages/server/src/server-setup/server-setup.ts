@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from 'express';
-import { NextServer } from 'next/dist/server/next';
 import onHeaders from 'on-headers';
-import { getNextBuildId, getNextServer } from 'next-utils';
+import { getNextBuildId } from 'next-utils';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { setCacheKey } from 'req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
@@ -14,6 +13,7 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
 import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
+import { InferredNextWrapperServer } from 'server';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -24,14 +24,13 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
     });
 };
 
-export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
+export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const jsonBodyParser = express.json();
 
     const validateSecretMiddleware = buildValidateSecretMiddleware(nextApp);
 
     const nextRequestHandler = nextApp.getRequestHandler();
-    const nextServer = await getNextServer(nextApp);
-    const currentBuildId = getNextBuildId(nextServer);
+    const currentBuildId = await getNextBuildId();
 
     const decoratorVersionId = await getDecoratorVersionId(decoratorEnvProps);
     if (!decoratorVersionId) {

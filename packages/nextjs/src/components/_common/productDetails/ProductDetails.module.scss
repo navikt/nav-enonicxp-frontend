@@ -1,0 +1,7 @@
+.microCard {
+    margin-top: var(--a-spacing-6);
+
+    a:not(:last-of-type) {
+        margin-right: var(--a-spacing-2);
+    }
+}

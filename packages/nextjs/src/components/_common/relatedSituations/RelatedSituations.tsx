@@ -34,17 +34,17 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const actualDescription = description || getStringPart('moreInformation');
 
     return (
-        <nav
+        <section
             className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
             id={getAnchorId(actualTitle)}
-            aria-label={actualTitle || actualDescription}
+            aria-describedby="related-situations-description"
         >
             {actualTitle && (
                 <Heading level="3" size="medium" spacing>
                     {actualTitle}
                 </Heading>
             )}
-            <BodyLong className={style.description}>
+            <BodyLong className={style.description} id="related-situations-description">
                 {actualDescription}
             </BodyLong>
             <ul className={style.situationsList}>
@@ -66,6 +66,6 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                     );
                 })}
             </ul>
-        </nav>
+        </section>
     );
 };

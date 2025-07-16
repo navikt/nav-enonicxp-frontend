@@ -3,7 +3,7 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
-        "build": "npm run build:server && npm run build:nextjs && npm run build:storybook",
+        "build": "npm run build:server && npm run build:nextjs",
         "build:nextjs": "npm run build --workspace packages/nextjs",
         "build:server": "npm run build --workspace packages/server",
         "build:storybook": "npm run build:storybook --workspace packages/nextjs",
@@ -17,10 +17,10 @@
         "start-local": "rm -fr packages/nextjs/.next && npm run build-test-production && npm run start-test-production",
         "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh $npm_config_app_env $npm_config_image_tag",
         "analyze-bundle": "npm run analyze-bundle --workspace packages/nextjs",
-        "lint": "npm-run-all --parallel lint:*",
+        "lint": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run lint:client\" \"npm run lint:server\"",
         "lint:client": "npm run lint --workspace packages/nextjs",
         "lint:server": "npm run lint --workspace packages/server",
-        "test": "npm-run-all --parallel test:*",
+        "test": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run test:client\" \"npm run test:server\"",
         "test:client": "npm run test --workspace packages/nextjs",
         "test:server": "npm run test --workspace packages/server",
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
@@ -38,6 +38,7 @@
         "@types/node": "20.14.10",
         "@typescript-eslint/eslint-plugin": "7.18.0",
         "@typescript-eslint/parser": "7.18.0",
+        "concurrently": "^9.1.2",
         "esbuild": "0.25.2",
         "eslint": "8.57.0",
         "@types/express": "5.0.1",
@@ -67,13 +68,14 @@
         ]
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@next/bundle-analyzer": "14.2.4",
-        "dotenv": "16.5.0",
-        "express": "5.1.0",
-        "lru-cache": "11.0.2",
-        "pino": "9.6.0",
+        "@navikt/nav-dekoratoren-moduler": "3.4.0",
+        "@next/bundle-analyzer": "15.3.4",
+        "dotenv": "17.0.1",
+        "lru-cache": "11.1.0",
+        "pino": "9.7.0",
         "pino-pretty": "12.1.0",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
         "redis": "4.7.0"
     }
 }

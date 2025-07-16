@@ -1,12 +1,11 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: common.px-to-rem(60px / 2);
+$iconContainerRadius: 1.875rem;
 $iconContainerSize: $iconContainerRadius * 2;
-$defaultBgColor: white;
 
 .container {
-    background-color: $defaultBgColor;
+    background-color: var(--a-white);
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -20,7 +19,7 @@ $defaultBgColor: white;
     :global(.icon-container) {
         align-items: center;
         align-self: flex-start;
-        background-color: $defaultBgColor;
+        background-color: var(--a-white);
         border-radius: 50%;
         display: flex;
         height: $iconContainerSize;
@@ -29,21 +28,21 @@ $defaultBgColor: white;
         width: $iconContainerSize;
 
         img {
-            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
-            height: common.round-rem($iconSize);
-            width: common.round-rem($iconSize);
+            $iconSize: 2.7386rem;
+            height: $iconSize;
+            width: $iconSize;
         }
     }
 }
 
 .topMarker .header {
-  position: relative;
-  margin-bottom: var(--a-spacing-4);
-  color: var(--brand-purple-deep);
+    position: relative;
+    margin-bottom: var(--a-spacing-4);
+    color: var(--brand-purple-deep);
 
-  &:before {
-      @include common.header-before-rectangle();
-  }
+    &:before {
+        @include common.header-before-rectangle();
+    }
 }
 
 .headerWithIcon {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 import { HeadingTag, headingToLevel, headingToSize } from 'types/typo-style';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
@@ -27,8 +27,8 @@ export const HeaderPart = ({ config }: PartComponentProps<PartType.Header>) => {
     const size = headingToSize[tag];
 
     return (
-        <Header level={level} size={size} anchorId={anchorId} className={style.headerPart}>
+        <Heading level={level} size={size} anchorId={anchorId} className={style.headerPart}>
             {title}
-        </Header>
+        </Heading>
     );
 };

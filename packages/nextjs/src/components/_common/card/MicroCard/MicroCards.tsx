@@ -1,11 +1,11 @@
 import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { CardProps, CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { usePageContentProps } from 'store/pageContext';
 
 import { MicroCard } from './MicroCard';
-import style from './MicroCard.module.scss';
+import style from './MicroCards.module.scss';
 
 type Props = {
     header?: string;

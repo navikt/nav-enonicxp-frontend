@@ -2,7 +2,7 @@ import React from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { CardTargetProps, getCardProps } from 'components/_common/card/card-utils';
 import { LargeCardV2 } from 'components/_common/card/LargeCardV2/LargeCardV2';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 
 export type PartConfigProductCard = {

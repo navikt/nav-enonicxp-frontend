@@ -1,30 +1,15 @@
-@use 'common' as common;
-
-.header {
-    font-weight: common.$a-font-weight-bold;
-}
-
-.wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    column-gap: 0.75rem;
-    margin-top: var(--a-spacing-1);
-    margin-bottom: var(--a-spacing-7);
-}
-
 .container {
     &:hover,
     &:focus {
         .micro {
-            background-color: #ecf3fe;
+            background-color: var(--a-blue-50);
         }
     }
 }
 
 .micro {
     border-radius: 16px;
-    border: 1px solid #b0b0b0;
+    border: 1px solid var(--a-border-default);
     box-shadow: 0 0 0 3px var(--default-action-color);
     color: var(--a-gray-900);
     display: inline-flex;
@@ -61,7 +46,7 @@
 
     &:after {
         border-radius: 16px;
-        box-shadow: 0 0 0 2px white;
+        box-shadow: 0 0 0 2px var(--a-white);
         height: calc(100% - 2px);
         margin: 1px;
         width: calc(100% - 2px);

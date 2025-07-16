@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .macroQuote {
     margin: 1.5rem 0;
     padding: 0 2.5rem;
@@ -8,7 +6,7 @@
     &:before {
         content: '\201C';
         font-size: 4rem;
-        color: common.$a-nav-red;
+        color: var(--a-nav-red);
         font-family: 'Times new roman', serif;
         position: absolute;
         left: 0;

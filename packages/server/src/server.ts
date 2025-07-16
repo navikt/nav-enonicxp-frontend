@@ -1,5 +1,5 @@
 import express, { ErrorRequestHandler } from 'express';
-import next from 'next';
+import createNextApp from 'next';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
 import path from 'path';
@@ -7,8 +7,8 @@ import { logger } from '@/shared/logger';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
-import { getNextServer } from 'next-utils';
-import { injectNextImageCacheDir } from 'cache/image-cache-handler';
+
+export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -19,7 +19,7 @@ const promMiddleware = promBundle({
     },
 });
 
-const nextApp = next({
+const nextApp = createNextApp({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
     dir: path.join(__dirname, '..', '..', 'nextjs'),
@@ -29,29 +29,9 @@ nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
 
-    const nextServer = await getNextServer(nextApp);
-
-    if (process.env.IMAGE_CACHE_DIR) {
-        await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
-    } else {
-        logger.error('IMAGE_CACHE_DIR is not defined!');
-    }
-
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     expressApp.use(promMiddleware);
-
-    expressApp.use((req, res, next) => {
-        if (/\.(svg|png|ico|webmanifest)$/.test(req.path)) {
-            res.setHeader('Cache-Control', 'public,max-age=86400');
-        }
-        next();
-    });
-
-    expressApp.use((req, res, next) => {
-        res.setHeader('app-name', 'nav-enonicxp-frontend');
-        next();
-    });
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
@@ -67,8 +47,6 @@ nextApp.prepare().then(async () => {
         logger.error(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
-
-        return nextServer.renderError(msg, req, res, path);
     };
 
     expressApp.use(errorHandler);

@@ -49,7 +49,7 @@ export const VersionHistory = ({ content }: Props) => {
                 />
             )}
             <LenkeStandalone
-                withChevron={false}
+                withChevron
                 href={'#'}
                 onClick={(e) => {
                     if (content.editorView) {

@@ -3,7 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { RegionProps } from 'types/component-props/layouts';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 type Props = {
     pageProps: ContentProps;
@@ -11,7 +11,7 @@ type Props = {
     regionStyle?: React.CSSProperties;
     bemModifier?: string;
     as?: React.ElementType<any>;
-    wrapperFunction?: (element: JSX.Element, key: string) => React.ReactNode;
+    wrapperFunction?: (element: React.ReactElement | null, key: string) => React.ReactNode;
 };
 
 const bem = BEM('region');

@@ -1,11 +1,10 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: common.px-to-rem(64px / 2);
+$iconContainerRadius: 2rem;
 
 .container {
     $iconContainerSize: $iconContainerRadius * 2;
-    $defaultBgColor: white;
 
     @mixin adjust-for-padding($sectionPadding) {
         $marginActual: 1rem;
@@ -15,7 +14,7 @@ $iconContainerRadius: common.px-to-rem(64px / 2);
 
     display: inline-flex;
     flex-direction: column;
-    background-color: $defaultBgColor;
+    background-color: var(--a-white);
     width: 100%;
 
     @include common.section-padding-mixin();
@@ -29,7 +28,7 @@ $iconContainerRadius: common.px-to-rem(64px / 2);
         height: $iconContainerSize;
         position: relative;
         border-radius: 50%;
-        background-color: $defaultBgColor;
+        background-color: var(--a-white);
         overflow: hidden;
 
         @include adjust-for-padding(common.$sectionPaddingDesktop);
@@ -43,9 +42,9 @@ $iconContainerRadius: common.px-to-rem(64px / 2);
         }
 
         img {
-            $iconSize: $iconContainerRadius / math.sqrt(common.stripUnit($iconContainerRadius)) * 2;
-            height: common.round-rem($iconSize);
-            width: common.round-rem($iconSize);
+            $iconSize: 2.8125rem;
+            height: $iconSize;
+            width: $iconSize;
         }
     }
 }

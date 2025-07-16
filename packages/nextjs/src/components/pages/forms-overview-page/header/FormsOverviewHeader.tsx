@@ -2,7 +2,7 @@ import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import Region from 'components/layouts/Region';
-import { Header } from 'components/_common/headers/Header';
+import { Heading } from 'components/_common/headers/Heading';
 
 import style from './FormsOverviewHeader.module.scss';
 
@@ -12,10 +12,10 @@ export const FormsOverviewHeader = (props: FormsOverviewProps) => {
 
     return (
         <div className={style.container}>
-            <Header level={'1'} size={'xlarge'} className={style.header}>
+            <Heading level={'1'} size={'xlarge'} className={style.header}>
                 {title}
-            </Header>
-            <BodyShort className={style.subHeader}>{underTitle}</BodyShort>
+            </Heading>
+            {underTitle && <BodyShort className={style.subHeader}>{underTitle}</BodyShort>}
             <Region pageProps={props} regionProps={page.regions.mainCol} />
         </div>
     );

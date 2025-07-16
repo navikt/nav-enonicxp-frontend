@@ -1,18 +1,19 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
+import { ContentTypeNotSupportedPage } from 'components/pages/contenttypeNotSupportedPage/ContentTypeNotSupportedPage';
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
+import { OversiktPage } from 'components/pages/oversikt-page/OversiktPage';
 import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
-import { ErrorPage } from './pages/error-page/ErrorPage';
+import { ErrorPage } from './pages/errorPage/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import { ContactInformationPage } from './pages/contact-information-page/ContactInformationPage';
 import { LargeTablePage } from './pages/large-table-page/LargeTablePage';
 import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
-import { SituationPage } from './pages/situation-page/SituationPage';
+import { SituationPage } from './pages/situationPage/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
@@ -26,11 +27,11 @@ import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
-import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
+import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
 import { OfficePage } from './pages/office-page/OfficePage';
-import { ContactStepPage } from './pages/contact-step-page/ContactStepPage';
+import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -51,6 +52,7 @@ const contentToReactComponent: {
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
+    [ContentType.Oversikt]: OversiktPage,
     [ContentType.GenericPage]: GenericPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.OfficePage]: OfficePage,

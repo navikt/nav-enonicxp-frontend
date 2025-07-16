@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import overviewFilters from 'store/slices/overviewFilters';
+import oversiktFilters from 'store/slices/oversiktFilters';
 import contentFilters from './slices/filteredContent';
 import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
@@ -11,6 +12,7 @@ const options = {
         gvEditorState,
         authState,
         overviewFilters,
+        oversiktFilters,
     },
 };
 

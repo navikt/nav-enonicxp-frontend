@@ -1,0 +1,13 @@
+.notSupported {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: var(--a-white);
+    border: 4px solid var(--a-green-200);
+}
+
+.type {
+    font-weight: normal;
+}

@@ -205,8 +205,28 @@ export const translationsBundleEn: PartialTranslations = {
             ariaItemExplanation: 'Show type',
         },
     },
+    oversikt: {
+        noHits: 'No hits with the selected filters.',
+        numHits: 'Showing $1 out of $2',
+        search: 'Search',
+        filterOrSearch: 'Use filters or search',
+        loading: 'Loading content...',
+        resetFilters: 'Reset filters',
+        any: 'From A to Z',
+        more: 'More about',
+        areas: {
+            choose: 'Choose area',
+            ariaExplanation: 'Filter list by area',
+            ariaItemExplanation: 'Show area',
+        },
+        taxonomies: {
+            choose: 'Choose type',
+            ariaExplanation: 'Filter list by type',
+            ariaItemExplanation: 'Show type',
+        },
+    },
     form: {
-        back: 'Back',
+        back: 'Choose a different way to submit the form',
     },
     contactPoint: {
         chat: {

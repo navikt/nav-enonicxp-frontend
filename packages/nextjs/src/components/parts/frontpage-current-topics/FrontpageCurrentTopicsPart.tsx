@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { Heading } from 'components/_common/headers/Heading';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno/LinkPanelNavno';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';
@@ -48,9 +48,9 @@ export const FrontpageCurrentTopicsPart = ({
                 } as React.CSSProperties
             }
         >
-            <Header size={'large'} level={'2'} className={style.header}>
+            <Heading size={'large'} level={'2'} className={style.header}>
                 {title}
-            </Header>
+            </Heading>
             <ul className={style.list}>
                 {contentList.data.sectionContents.map((item) => {
                     const url = getUrlFromContent(item);

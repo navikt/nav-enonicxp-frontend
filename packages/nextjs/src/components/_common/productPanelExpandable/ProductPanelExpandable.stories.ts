@@ -4,12 +4,6 @@ import { ProductPanelExpandable } from './ProductPanelExpandable';
 
 const meta = {
     component: ProductPanelExpandable,
-} satisfies Meta<typeof ProductPanelExpandable>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
     args: {
         header: 'Overskrift',
         illustration: {
@@ -20,5 +14,21 @@ export const Default: Story = {
         },
         anchorId: 'anchorid',
         children: 'Innhold',
+    },
+} satisfies Meta<typeof ProductPanelExpandable>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+export const WithIngress: Story = {
+    args: {
+        ingress: 'Dette er en kjempefin ingress',
+        illustration: {
+            type: ContentType.Pictograms,
+            data: {
+                icons: [],
+            },
+        },
     },
 };

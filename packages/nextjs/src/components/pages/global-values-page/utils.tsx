@@ -2,7 +2,7 @@ import React from 'react';
 import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
 import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
-import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
 import { GVMessageProps } from './components/messages/GVMessages';
 
@@ -22,7 +22,7 @@ const getUsageMessages = (usage: UsageContentInfo[]) => {
                         <LenkeStandalone
                             href={content.path.replace('/www.nav.no', xpDraftPathPrefix)}
                             target={'_blank'}
-                            withChevron={false}
+                            withChevron
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
@@ -35,7 +35,7 @@ const getUsageMessages = (usage: UsageContentInfo[]) => {
                         <LenkeStandalone
                             href={`${adminOrigin}${editorPathPrefix}/${content.id}`}
                             target={'_blank'}
-                            withChevron={false}
+                            withChevron
                             onClick={(e) => {
                                 e.stopPropagation();
                             }}
