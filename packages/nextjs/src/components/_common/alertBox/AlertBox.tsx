@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Alert, AlertProps } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import style from './AlertBox.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     variant: AlertProps['variant'];
     size?: AlertProps['size'];
     inline?: AlertProps['inline'];
     className?: string;
-    children: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+}> &
+    React.HTMLAttributes<HTMLDivElement>;
 
 const role = {
     success: 'status',
