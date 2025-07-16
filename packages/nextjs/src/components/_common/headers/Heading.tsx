@@ -2,8 +2,6 @@ import React, { PropsWithChildren } from 'react';
 import { Heading as DsHeading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
-
-// eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
 
 type Props = PropsWithChildren<{
