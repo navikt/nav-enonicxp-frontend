@@ -10,7 +10,7 @@ import { officeDetailsFormatAddress } from 'components/pages/office-page/officeD
 
 import styles from './OfficeInformation.module.scss';
 
-export interface OfficeInformationProps {
+interface OfficeInformationProps {
     officeData: OfficeDetailsData;
     initialOpen?: boolean;
 }
