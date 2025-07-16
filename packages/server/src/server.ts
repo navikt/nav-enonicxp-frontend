@@ -33,6 +33,15 @@ nextApp.prepare().then(async () => {
 
     expressApp.use(promMiddleware);
 
+    expressApp.use((req, res, next) => {
+        Object.defineProperty(req, 'query', {
+            ...Object.getOwnPropertyDescriptor(req, 'query'),
+            value: req.query,
+            writable: true,
+        });
+        next();
+    });
+
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {

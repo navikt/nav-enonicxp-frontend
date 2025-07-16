@@ -18,7 +18,11 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     // when accessed via other applications (Content Studio editor or external archive/version history frontend)
     expressApp.all(
         ['/render-from-props', '/draft/*', '/archive/*', '/editor/*', '/gfx/*', '/api/*', '/_/*'],
-        (req, res) => {
+        (req, res, next) => {
+            // We actually want to handle the liveness endpoints
+            if (req.path.startsWith('/api/internal/')) {
+                return next();
+            }
             return nextRequestHandler(req, res);
         }
     );
