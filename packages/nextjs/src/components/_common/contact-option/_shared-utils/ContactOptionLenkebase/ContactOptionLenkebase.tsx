@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import style from './ContactOptionLenkebase.module.scss';
 
-interface Props {
+type Props = PropsWithChildren<{
     href: string;
     analyticsLinkGroup?: string;
     analyticsComponent?: string;
     analyticsEvent?: AnalyticsEvents;
-    children: React.ReactNode;
-}
+}>;
 
 export const ContactOptionLenkebase = ({
     href,

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { PropsWithChildren, useRef, useState } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
@@ -12,16 +12,15 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
 import style from './Expandable.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     title: string;
     anchorId?: string;
     analyticsOriginTag?: string;
     className?: string;
-    children: React.ReactNode;
     expandableType?: ProductDetailType | 'documentation_requirements';
     ariaLabel?: string;
     isOpenDefault?: boolean;
-};
+}>;
 
 export const Expandable = ({
     title,

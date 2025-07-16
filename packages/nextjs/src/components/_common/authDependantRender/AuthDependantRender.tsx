@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { useAuthState } from 'store/hooks/useAuthState';
 import { AuthStateType } from 'store/slices/authState';
 import { usePageContentProps } from 'store/pageContext';
 import { useLayoutEffectClientSide } from 'utils/react';
 
-type Props = {
+type Props = PropsWithChildren<{
     renderOn: AuthStateType | 'always';
-    children: React.ReactNode;
-};
+}>;
 
 export const AuthDependantRender = ({ children, renderOn = 'always' }: Props) => {
     const { editorView } = usePageContentProps();

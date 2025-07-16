@@ -8,14 +8,9 @@ import { translator } from 'translations';
 import { Chevron } from 'components/_common/chevron/Chevron';
 import { VersionSelector } from './selector/VersionSelector';
 import { VersionStatus } from './status/VersionStatus';
-
 import style from './VersionHistory.module.scss';
 
-type Props = {
-    content: ContentProps;
-};
-
-export const VersionHistory = ({ content }: Props) => {
+export const VersionHistory = ({ content }: { content: ContentProps }) => {
     const { timeRequested, language } = content;
 
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);

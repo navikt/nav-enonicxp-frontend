@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import Head from 'next/head';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
 import { trimIfString } from 'utils/string';
 
-type Props = {
+type Props = PropsWithChildren<{
     content: ContentProps;
-    children?: React.ReactNode;
-};
+}>;
 
 const DESCRIPTION_MAX_LENGTH = 250;
 

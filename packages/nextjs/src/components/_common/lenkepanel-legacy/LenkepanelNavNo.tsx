@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './LenkepanelNavNo.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     href: string;
     tittel: string;
     ikon?: React.ReactNode;
@@ -13,8 +13,8 @@ type Props = {
     component?: string;
     linkGroup?: string;
     className?: string;
-    children?: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const LenkepanelNavNo = ({
     href,

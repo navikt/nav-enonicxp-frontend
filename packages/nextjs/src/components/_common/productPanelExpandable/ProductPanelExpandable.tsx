@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PropsWithChildren } from 'react';
 import { BodyLong, BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
@@ -13,7 +13,7 @@ import { classNames } from 'utils/classnames';
 
 import style from './ProductPanelExpandable.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     header: string;
     ingress?: string;
     illustration: PictogramsProps;
@@ -23,8 +23,7 @@ type Props = {
     isLoading?: boolean;
     error?: string | null;
     withCopyLink?: boolean;
-    children: React.ReactNode;
-};
+}>;
 
 export const ProductPanelExpandable = ({
     header,

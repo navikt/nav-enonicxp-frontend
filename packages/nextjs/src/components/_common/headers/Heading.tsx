@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Heading as DsHeading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { Level, levelToSize, Size } from 'types/typo-style';
@@ -6,13 +6,12 @@ import { Level, levelToSize, Size } from 'types/typo-style';
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
 
-type Props = {
-    children: React.ReactNode;
+type Props = PropsWithChildren<{
     level: Level;
     size?: Size;
     anchorId?: string;
     className?: string;
-};
+}>;
 
 export const Heading = ({ children, size, level, anchorId, className }: Props) => {
     const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
