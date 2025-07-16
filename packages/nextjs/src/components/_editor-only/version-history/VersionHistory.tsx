@@ -10,7 +10,11 @@ import { VersionSelector } from './selector/VersionSelector';
 import { VersionStatus } from './status/VersionStatus';
 import style from './VersionHistory.module.scss';
 
-export const VersionHistory = ({ content }: { content: ContentProps }) => {
+type Props = {
+    content: ContentProps;
+};
+
+export const VersionHistory = ({ content }: Props) => {
     const { timeRequested, language } = content;
 
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
