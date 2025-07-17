@@ -1,41 +1,39 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { isHtmlAreaOutsideContentSection } from './IsHtmlAreaOutsideContentSection';
+import { isHtmlAreaInPageContentButNotInContentSection } from './isHtmlAreaInPageContentButNotInContentSection';
 
 export const PartUtenforInnholdsseksjon = ({ content }: { content: ContentProps }) => {
     const warnings: React.ReactElement[] = [];
 
     const walk = (node: any): void => {
-        if (node && typeof node === 'object') {
-            if (isHtmlAreaOutsideContentSection(node)) {
-                const { path, config } = node;
-                console.log(config);
-                warnings.push(
-                    <li key={path}>
-                        Innhold utenfor innholdsseksjon:{' '}
-                        <ul>
-                            <li>{JSON.stringify(config.html.macros[0]?.name)}</li>
-                            <li>{JSON.stringify(config.html.processedHtml)}</li>
-                            {/*{JSON.stringify(config)}*/}
-                            <li>{JSON.stringify(path)}</li>
-                        </ul>
-                    </li>
-                );
-            }
+        if (!node || typeof node !== 'object') return;
 
-            if (Array.isArray(node)) {
-                node.forEach(walk);
-            } else {
-                Object.values(node).forEach(walk);
-            }
+        if (isHtmlAreaInPageContentButNotInContentSection(node)) {
+            const { path, config } = node;
+            const navn = config.html.macros[0]?.name;
+
+            warnings.push(
+                <li key={path}>
+                    Innhold utenfor innholdsseksjon:{' '}
+                    <ul>
+                        <li>Navn: {navn ? JSON.stringify(navn) : 'Mangler navn'}</li>
+                        <li>Path: {JSON.stringify(path)}</li>
+                    </ul>
+                </li>
+            );
+        }
+
+        if (Array.isArray(node)) {
+            node.forEach(walk);
+        } else {
+            Object.values(node).forEach(walk);
         }
     };
 
-    if (content.page?.regions && 'pageContent' in content.page.regions) {
-        walk(content.page.regions.pageContent);
+    const regions = content.page?.regions;
+    if (regions && 'pageContent' in regions) {
+        walk(regions['pageContent']);
     }
 
-    if (warnings.length == 0) return null;
-
-    return warnings;
+    return warnings.length > 0 ? <>{warnings}</> : null;
 };

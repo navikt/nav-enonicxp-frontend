@@ -8,7 +8,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { isHtmlAreaOutsideContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/IsHtmlAreaOutsideContentSection';
+import { isHtmlAreaInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/isHtmlAreaInPageContentButNotInContentSection';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -23,7 +23,7 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
 };
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
-    const shouldWarn = isHtmlAreaOutsideContentSection({ path, descriptor });
+    const shouldWarn = isHtmlAreaInPageContentButNotInContentSection({ path, descriptor });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
 
     useEffect(() => {
