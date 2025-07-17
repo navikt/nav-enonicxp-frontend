@@ -16,8 +16,9 @@ export const PartUtenforInnholdsseksjon = ({ content }: { content: ContentProps 
                 <li key={path}>
                     Innhold utenfor innholdsseksjon:{' '}
                     <ul>
-                        <li>Navn: {navn ? JSON.stringify(navn) : 'Mangler navn'}</li>
+                        {navn ? <li>Navn: {JSON.stringify(navn)}</li> : null}
                         <li>Path: {JSON.stringify(path)}</li>
+                        <li>Innhold: {JSON.stringify(config.html.processedHtml)}</li>
                     </ul>
                 </li>
             );
