@@ -1,5 +1,4 @@
 import express, { Express, Request, Response } from 'express';
-import onHeaders from 'on-headers';
 import { getNextBuildId } from 'next-utils';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { setCacheKey } from 'req-handlers/set-cache-key';
@@ -14,15 +13,6 @@ import {
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
 import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
 import { InferredNextWrapperServer } from 'server';
-
-// Set the no-cache header on json files from the incremental cache to ensure
-// data requested during client side navigation is always validated if cached
-// by browsers/proxies/CDNs etc
-const setJsonCacheHeaders = (req: Request, res: Response) => {
-    onHeaders(res, () => {
-        res.setHeader('Cache-Control', 'no-cache');
-    });
-};
 
 export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const jsonBodyParser = express.json();
@@ -47,6 +37,9 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
 
     logger.info(`Current build id: ${currentBuildId}`);
 
+    // Store build ID in environment for middleware access
+    process.env.NEXT_BUILD_ID = currentBuildId;
+
     expressApp.post(
         '/invalidate',
         validateSecretMiddleware,
@@ -63,29 +56,11 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     );
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
-        // serverSetupDev(expressApp, nextApp);
+        serverSetupDev(expressApp, nextApp);
     }
 
-    expressApp.use((req, res, next) => {
-        // Check if this is a /_next/data/ path ending with .json
-        if (req.path.startsWith('/_next/data/') && req.path.endsWith('.json')) {
-            const pathSegments = req.path.split('/');
-            const buildId = pathSegments[3]; // /_next/data/[buildId]/...
-
-            if (buildId !== currentBuildId) {
-                logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
-                req.url = req.url.replace(buildId, currentBuildId);
-            }
-
-            setJsonCacheHeaders(req, res);
-            return nextRequestHandler(req, res);
-        }
-
-        next();
-    });
-
+    // Handle all remaining requests with Next.js
     expressApp.use((req: Request, res: Response) => {
-        console.log('Request URL:', req.url);
         return nextRequestHandler(req, res);
     });
 };

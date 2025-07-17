@@ -291,6 +291,15 @@ const config = {
             ],
         },
         {
+            source: '/_next/data/:path*.json',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'no-cache',
+                },
+            ],
+        },
+        {
             source: '/_next/(.*)',
             headers: corsHeaders,
         },
