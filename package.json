@@ -41,7 +41,6 @@
         "concurrently": "^9.1.2",
         "esbuild": "0.25.2",
         "eslint": "8.57.0",
-        "@types/express": "5.0.1",
         "eslint-config-prettier": "9.1.0",
         "eslint-nibble": "8.1.0",
         "eslint-plugin-css-modules": "2.12.0",
