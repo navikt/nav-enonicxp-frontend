@@ -21,7 +21,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
         (req, res, next) => {
             // We actually want to handle the liveness endpoints
             if (req.path.startsWith('/api/internal/')) {
-                return next();
+                // return next();
             }
             return nextRequestHandler(req, res);
         }
