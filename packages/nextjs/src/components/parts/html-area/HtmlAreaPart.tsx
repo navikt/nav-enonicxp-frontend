@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
+import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
@@ -30,6 +31,10 @@ export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) =>
             setRedBorderStyling(true);
         }
     }, [shouldWarn, path, descriptor, config]);
+
+    if (!config?.html) {
+        return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
+    }
 
     return (
         <div className={classNames(style.htmlArea, redBorderStyling && style.redBorder)}>

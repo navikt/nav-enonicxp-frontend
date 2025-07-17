@@ -9,12 +9,16 @@ export const PartUtenforInnholdsseksjon = ({ content }: { content: ContentProps 
         if (node && typeof node === 'object') {
             if (isHtmlAreaOutsideContentSection(node)) {
                 const { path, config } = node;
+                console.log(config);
                 warnings.push(
                     <li key={path}>
                         Innhold utenfor innholdsseksjon:{' '}
-                        {JSON.stringify(config.html.macros[0]?.name)}
-                        {/*{JSON.stringify(config.html.processedHtml)}*/}
-                        {JSON.stringify(path)}
+                        <ul>
+                            <li>{JSON.stringify(config.html.macros[0]?.name)}</li>
+                            <li>{JSON.stringify(config.html.processedHtml)}</li>
+                            {/*{JSON.stringify(config)}*/}
+                            <li>{JSON.stringify(path)}</li>
+                        </ul>
                     </li>
                 );
             }
