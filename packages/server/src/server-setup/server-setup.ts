@@ -63,7 +63,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     );
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
-        serverSetupDev(expressApp, nextApp);
+        // serverSetupDev(expressApp, nextApp);
     }
 
     expressApp.use((req, res, next) => {
