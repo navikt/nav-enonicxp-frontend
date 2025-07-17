@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { AlertBox } from 'components/_common/alertBox/AlertBox';
 import { classNames } from 'utils/classnames';
 
 import style from './PageWarning.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     whiteBg?: boolean;
     size?: React.ComponentProps<typeof AlertBox>['size'];
-    children: React.ReactNode;
-};
+}>;
 
 export const PageWarning = ({ whiteBg, size = 'small', children }: Props) => {
     return (

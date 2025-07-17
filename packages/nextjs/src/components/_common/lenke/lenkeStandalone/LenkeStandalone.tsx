@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
@@ -7,7 +7,7 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import style from './LenkeStandalone.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     href: string;
     label?: string;
     className?: string;
@@ -17,8 +17,8 @@ type Props = {
     withChevron?: boolean;
     withArrow?: boolean;
     analyticsLabel?: string;
-    children: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeStandalone = ({
     href,
