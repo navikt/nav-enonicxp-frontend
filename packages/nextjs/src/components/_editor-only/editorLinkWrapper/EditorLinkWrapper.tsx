@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { usePageContentProps } from 'store/pageContext';
 import { getRelativePathIfInternal } from 'utils/urls';
 
@@ -8,11 +8,7 @@ import { getRelativePathIfInternal } from 'utils/urls';
 // passing the relevant props to a <span> element instead.
 //
 
-type Props = {
-    children: React.ReactNode;
-};
-
-export const EditorLinkWrapper = ({ children }: Props) => {
+export const EditorLinkWrapper = ({ children }: PropsWithChildren) => {
     const { editorView } = usePageContentProps();
 
     if (editorView !== 'edit') {

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
 import style from './LinkPanelNavnoSimple.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     href: string;
     analyticsLinkGroup?: string;
     icon?: React.ReactNode;
-    children: React.ReactNode;
-} & React.ComponentProps<typeof LenkeBase>;
+}> &
+    React.ComponentProps<typeof LenkeBase>;
 
 // This component is meant to be used with "simple" content, ie just a line of text
 // and an optional icon. Use <LinkPanelNavno>-component for panels with more complex

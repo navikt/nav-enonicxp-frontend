@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -13,7 +13,7 @@ import { getDecoratorParams } from 'utils/decorator-utils';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import style from './Button.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     href?: string;
     variant?: ButtonProps['variant'];
     size?: ButtonProps['size'];
@@ -25,13 +25,12 @@ type Props = {
     prefetch?: boolean;
     onClick?: (e: React.MouseEvent) => void;
     className?: string;
-    children: React.ReactNode;
     analyticsEvent?: AnalyticsEvents;
     analyticsComponent?: string;
     analyticsLabel?: string;
     lenkestyling?: boolean;
     typeButton?: boolean;
-};
+}>;
 
 export const Button = ({
     href,

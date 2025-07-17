@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import style from './ContactOptionLayout.module.scss';
 
-interface Props {
+type Props = PropsWithChildren<{
     icon: React.ReactNode;
-    children: React.ReactNode;
-}
+}>;
 
 export const ContactOptionLayout = ({ icon, children }: Props) => {
     return (
