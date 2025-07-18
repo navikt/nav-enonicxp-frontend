@@ -7,25 +7,24 @@ import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
-
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { useCheckAndOpenAccordionPanel } from 'store/hooks/useCheckAndOpenAccordionPanel';
-import styles from './Accordion.module.scss';
+import { useCheckAndOpenTrekkspillPanel } from 'store/hooks/useCheckAndOpenTrekkspillPanel';
+import styles from './Trekkspill.module.scss';
 
-type AccordionProps = PartConfigAccordion;
-type PanelItem = AccordionProps['accordion'][number];
+type TrekkspillProps = PartConfigTrekkspill;
+type PanelItem = TrekkspillProps['trekkspill'][number];
 
-export const Accordion = ({ accordion }: AccordionProps) => {
-    const itemRefs = useRef(accordion.map(() => React.createRef<HTMLDivElement>()));
+export const Trekkspill = ({ trekkspill }: TrekkspillProps) => {
+    const itemRefs = useRef(trekkspill.map(() => React.createRef<HTMLDivElement>()));
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
     const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
-    const expandAll = () => setOpenAccordions(accordion.map((_, index) => index));
+    const expandAll = () => setOpenAccordions(trekkspill.map((_, index) => index));
     const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
@@ -38,24 +37,24 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'trekkspill',
-            komponent: 'Accordion',
+            komponent: 'Trekkspill',
             målgruppe: context,
             innholdstype: innholdsTypeMap[type],
         });
     };
 
-    if (itemRefs.current.length !== accordion.length) {
-        itemRefs.current = accordion.map(() => React.createRef<HTMLDivElement>());
+    if (itemRefs.current.length !== trekkspill.length) {
+        itemRefs.current = trekkspill.map(() => React.createRef<HTMLDivElement>());
     }
 
-    useCheckAndOpenAccordionPanel(openAccordions, setOpenAccordions, itemRefs.current, expandAll);
+    useCheckAndOpenTrekkspillPanel(openAccordions, setOpenAccordions, itemRefs.current, expandAll);
 
     // Show all panels in edit mode, but only valid panels in view mode
-    const validAccordion = accordion.filter(validatePanel);
-    const relevantAccordion = editorView === 'edit' ? accordion : validAccordion;
+    const validAccordion = trekkspill.filter(validatePanel);
+    const relevantAccordion = editorView === 'edit' ? trekkspill : validAccordion;
 
     return (
-        <DSAccordion className={styles.accordion}>
+        <DSAccordion className={styles.trekkspill}>
             {relevantAccordion.map((item, index) => {
                 const isValid = validatePanel(item);
                 return (

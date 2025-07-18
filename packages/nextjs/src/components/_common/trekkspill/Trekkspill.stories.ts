@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MacroType } from 'types/macro-props/_macros-common';
-import { Accordion } from './Accordion';
+import { Trekkspill } from './Trekkspill';
 
-const meta = { component: Accordion } satisfies Meta<typeof Accordion>;
+const meta = { component: Trekkspill } satisfies Meta<typeof Trekkspill>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        accordion: [
+        trekkspill: [
             {
                 title: 'Section 1',
                 anchorId: 'section-1',

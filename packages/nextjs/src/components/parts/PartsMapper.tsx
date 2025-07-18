@@ -53,7 +53,7 @@ import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
-import { AccordionPart } from './accordion/AccordionPart';
+import { TrekkspillPart } from './trekkspill/TrekkspillPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
@@ -73,7 +73,7 @@ const PartComponentMapper = ({
 }) => {
     switch (partProps.descriptor) {
         case PartType.Accordion:
-            return <AccordionPart {...partProps} />;
+            return <TrekkspillPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;
         case PartType.AreaCard:

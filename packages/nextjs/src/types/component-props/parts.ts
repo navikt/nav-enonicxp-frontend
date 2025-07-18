@@ -1,6 +1,6 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
-import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
+import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
 import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
 import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
@@ -93,7 +93,7 @@ export enum PartLegacyType {
 }
 
 type PartConfigs = {
-    [PartType.Accordion]: PartConfigAccordion;
+    [PartType.Accordion]: PartConfigTrekkspill;
     [PartType.AlertBox]: PartConfigAlertBox;
     [PartType.AreaCard]: PartConfigAreaCard;
     [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
