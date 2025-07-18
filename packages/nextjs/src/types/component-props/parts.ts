@@ -3,7 +3,7 @@ import { EmptyObject } from 'types/util-types';
 import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
 import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
-import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
+import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
 import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
 import { PartConfigContactOption } from 'components/parts/contact-option/ContactOptionPart';
@@ -56,7 +56,7 @@ export enum PartType {
     FormDetails = 'no.nav.navno:form-details',
     ContactOption = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
-    AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
+    Situasjonskort = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
@@ -96,7 +96,7 @@ type PartConfigs = {
     [PartType.Trekkspill]: PartConfigTrekkspill;
     [PartType.AlertBox]: PartConfigAlertBox;
     [PartType.AreaCard]: PartConfigAreaCard;
-    [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
+    [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;
     [PartType.Calculator]: PartConfigCalculator;
     [PartType.ContactOption]: PartConfigContactOption;
