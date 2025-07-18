@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AlertInContext } from './AlertInContext';
+import { VarselIKontekst } from './VarselIKontekst';
 
 const meta = {
-    component: AlertInContext,
+    component: VarselIKontekst,
     args: {
         data: {
             type: 'information',
-            text: 'Dette er en AlertInContext',
+            text: 'Dette er en VarselIKontekst',
         },
     },
-} satisfies Meta<typeof AlertInContext>;
+} satisfies Meta<typeof VarselIKontekst>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
