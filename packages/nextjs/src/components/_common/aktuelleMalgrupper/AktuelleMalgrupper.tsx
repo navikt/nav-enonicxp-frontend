@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import {
-    AlternativeAudience as AlternativeAudienceType,
+    AlternativeAudience as AktuelleMalgrupperType,
     Audience,
 } from 'types/component-props/_mixins';
 import { usePageContentProps } from 'store/pageContext';
@@ -10,8 +10,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { stripXpPathPrefix } from 'utils/urls';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { getConjunction, joinWithConjunction } from 'utils/string';
-
-import style from './AlternativeAudience.module.scss';
+import style from './AktuelleMalgrupper.module.scss';
 
 type AudienceLink = {
     title: string;
@@ -19,10 +18,10 @@ type AudienceLink = {
 };
 
 const buildAudienceLinks = (
-    alternativeAudience: AlternativeAudienceType,
+    aktuelleMalgrupper: AktuelleMalgrupperType,
     language: Language
 ): AudienceLink[] => {
-    const { person, employer, provider } = alternativeAudience;
+    const { person, employer, provider } = aktuelleMalgrupper;
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
 
@@ -63,7 +62,7 @@ const buildAudienceLinks = (
     return links;
 };
 
-export const AlternativeAudience = () => {
+export const AktuelleMalgrupper = () => {
     const {
         data: { alternativeAudience },
         language,
@@ -88,7 +87,7 @@ export const AlternativeAudience = () => {
     const audienceLinks = buildAudienceLinks(alternativeAudience, language);
 
     return (
-        <div className={style.alternativeAudience}>
+        <div className={style.aktuelleMalgrupper}>
             <BodyLong size="small" className={style.text}>
                 {getRelatedString('relatedAudience').replace('{name}', productName)}{' '}
                 {audienceLinks.map((link, index) => (

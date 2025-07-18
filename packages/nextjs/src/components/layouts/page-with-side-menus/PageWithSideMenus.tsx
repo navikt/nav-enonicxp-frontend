@@ -4,13 +4,12 @@ import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-si
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
-import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
+import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-
 import styles from './PageWithSideMenus.module.scss';
 
 type Props = {
@@ -46,7 +45,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
-                {isNewLayoutPage && <AlternativeAudience />}
+                {isNewLayoutPage && <AktuelleMalgrupper />}
                 {showInternalNav && (
                     <PageNavigationMenu
                         anchorLinks={anchorLinks}

@@ -4,7 +4,7 @@ import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutType } from 'types/component-props/layouts';
-import { AlternativeAudience } from './AlternativeAudience';
+import { AktuelleMalgrupper } from './AktuelleMalgrupper';
 
 const targetPageMock: ContentProps = {
     _id: 'id',
@@ -63,9 +63,9 @@ const withMockedPageContent: Decorator = (Story) => (
 );
 
 const meta = {
-    component: AlternativeAudience,
+    component: AktuelleMalgrupper,
     decorators: [withMockedPageContent],
-} satisfies Meta<typeof AlternativeAudience>;
+} satisfies Meta<typeof AktuelleMalgrupper>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
