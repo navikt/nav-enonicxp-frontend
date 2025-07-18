@@ -72,7 +72,7 @@ const PartComponentMapper = ({
     pageProps: ContentProps;
 }) => {
     switch (partProps.descriptor) {
-        case PartType.Accordion:
+        case PartType.Trekkspill:
             return <TrekkspillPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;

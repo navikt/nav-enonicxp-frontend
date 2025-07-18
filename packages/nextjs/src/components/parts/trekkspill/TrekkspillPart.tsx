@@ -12,7 +12,7 @@ export type PartConfigTrekkspill = {
     }>;
 };
 
-export const TrekkspillPart = ({ config }: PartComponentProps<PartType.Accordion>) => {
+export const TrekkspillPart = ({ config }: PartComponentProps<PartType.Trekkspill>) => {
     if (!config?.trekkspill || config.trekkspill.length === 0) {
         return <EditorHelp text={'Kortet mangler innhold'} />;
     }

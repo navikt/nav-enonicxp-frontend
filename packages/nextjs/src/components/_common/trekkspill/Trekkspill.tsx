@@ -22,22 +22,22 @@ export const Trekkspill = ({ trekkspill }: TrekkspillProps) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
-    const [openAccordions, setOpenAccordions] = useState<number[]>([]);
+    const [openTrekkspill, setOpenTrekkspill] = useState<number[]>([]);
 
-    const expandAll = () => setOpenAccordions(trekkspill.map((_, index) => index));
+    const expandAll = () => setOpenTrekkspill(trekkspill.map((_, index) => index));
     const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
         handleStickyScrollOffset(isOpening, itemRefs.current[index].current);
-        setOpenAccordions((prev) =>
+        setOpenTrekkspill((prev) =>
             isOpening ? [...prev, index] : prev.filter((i) => i !== index)
         );
         logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
             tittel,
             opprinnelse: 'trekkspill',
-            komponent: 'Trekkspill',
+            komponent: 'Accordion',
             målgruppe: context,
             innholdstype: innholdsTypeMap[type],
         });
@@ -47,21 +47,21 @@ export const Trekkspill = ({ trekkspill }: TrekkspillProps) => {
         itemRefs.current = trekkspill.map(() => React.createRef<HTMLDivElement>());
     }
 
-    useCheckAndOpenTrekkspillPanel(openAccordions, setOpenAccordions, itemRefs.current, expandAll);
+    useCheckAndOpenTrekkspillPanel(openTrekkspill, setOpenTrekkspill, itemRefs.current, expandAll);
 
     // Show all panels in edit mode, but only valid panels in view mode
-    const validAccordion = trekkspill.filter(validatePanel);
-    const relevantAccordion = editorView === 'edit' ? trekkspill : validAccordion;
+    const validTrekkspill = trekkspill.filter(validatePanel);
+    const relevantTrekkspill = editorView === 'edit' ? trekkspill : validTrekkspill;
 
     return (
         <DSAccordion className={styles.trekkspill}>
-            {relevantAccordion.map((item, index) => {
+            {relevantTrekkspill.map((item, index) => {
                 const isValid = validatePanel(item);
                 return (
                     <DSAccordion.Item
                         key={index}
                         className={styles.item}
-                        open={openAccordions.includes(index)}
+                        open={openTrekkspill.includes(index)}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}
                         ref={itemRefs.current[index]}
                         tabIndex={-1}

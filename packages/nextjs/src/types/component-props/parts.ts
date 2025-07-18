@@ -65,7 +65,7 @@ export enum PartType {
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
-    Accordion = 'no.nav.navno:accordion',
+    Trekkspill = 'no.nav.navno:accordion',
     AlternativeAudience = 'no.nav.navno:alternative-audience',
     RelatedSituations = 'no.nav.navno:related-situations',
 }
@@ -93,7 +93,7 @@ export enum PartLegacyType {
 }
 
 type PartConfigs = {
-    [PartType.Accordion]: PartConfigTrekkspill;
+    [PartType.Trekkspill]: PartConfigTrekkspill;
     [PartType.AlertBox]: PartConfigAlertBox;
     [PartType.AreaCard]: PartConfigAreaCard;
     [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
