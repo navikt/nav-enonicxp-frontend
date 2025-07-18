@@ -8,7 +8,7 @@ import {
     OpeningHourRaw,
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
-} from 'components/parts/contact-option/ContactOptionPart';
+} from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { openingHourDateFormat } from './openingInfoUtils';
 import { OpeningHours } from './openingInfoTypes';
 

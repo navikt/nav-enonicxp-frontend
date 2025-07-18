@@ -1,10 +1,10 @@
 import React from 'react';
-import { DefaultOption } from 'components/_common/contact-option/DefaultOption/DefaultOption';
-import { CallOption } from 'components/_common/contact-option/CallOption/CallOption';
+import { StandardAlternativ } from 'components/_common/kontakt-oss-kanal/StandardAlternativ/StandardAlternativ';
+import { TelefonAlternativ } from 'components/_common/kontakt-oss-kanal/TelefonAlternativ/TelefonAlternativ';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { WriteOption } from 'components/_common/contact-option/WriteOption/WriteOption';
+import { SkriveAlternativ } from 'components/_common/kontakt-oss-kanal/SkriveAlternativ/SkriveAlternativ';
 import { usePageContentProps } from 'store/pageContext';
-import { ChatOption } from 'components/_common/contact-option/ChatOption/ChatOption';
+import { ChatAlternativ } from 'components/_common/kontakt-oss-kanal/ChatAlternativ/ChatAlternativ';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { DayName } from 'utils/datetime';
@@ -101,7 +101,7 @@ export type WriteData = {
     ingress?: ProcessedHtmlProps;
 };
 
-export type ChannelType = Exclude<keyof PartConfigContactOption['contactOptions'], '_selected'>;
+export type ChannelType = Exclude<keyof PartConfigKontaktOssKanal['contactOptions'], '_selected'>;
 
 const editorHelpText = {
     call: 'Velg telefonnummer før denne kontaktkanalen kan vises. Alternativt vises gammel hardkodet telefon-informasjon.',
@@ -111,7 +111,7 @@ const editorHelpText = {
 
 const isChannelWithSharedInfo = createTypeGuard(['call', 'write', 'chat'] as const);
 
-export type PartConfigContactOption = {
+export type PartConfigKontaktOssKanal = {
     contactOptions: OptionSetSingle<{
         chat: DefaultContactData;
         write: DefaultContactData & LegacyWrite;
@@ -122,7 +122,7 @@ export type PartConfigContactOption = {
     }>;
 };
 
-export const ContactOptionPart = ({ config }: PartComponentProps<PartType.ContactOption>) => {
+export const KontaktOssKanalPart = ({ config }: PartComponentProps<PartType.KontaktOssKanal>) => {
     const pageProps = usePageContentProps();
 
     const channel = config?.contactOptions?._selected;
@@ -135,7 +135,7 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
     const channelData = config.contactOptions[channel];
 
     if (!isChannelWithSharedInfo(channel)) {
-        return <DefaultOption {...channelData} channel={channel} />;
+        return <StandardAlternativ {...channelData} channel={channel} />;
     }
 
     const { sharedContactInformation, ingress } = channelData;
@@ -144,14 +144,14 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
         return pageProps.editorView === 'edit' ? (
             <EditorHelp text={editorHelpText[channel]} />
         ) : (
-            <DefaultOption {...channelData} channel={channel} />
+            <StandardAlternativ {...channelData} channel={channel} />
         );
     }
 
     switch (channel) {
         case 'write': {
             return (
-                <WriteOption
+                <SkriveAlternativ
                     {...sharedContactInformation.data.contactType.write}
                     ingress={ingress || sharedContactInformation.data.contactType.write?.ingress}
                 />
@@ -159,7 +159,7 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
         }
         case 'chat': {
             return (
-                <ChatOption
+                <ChatAlternativ
                     {...sharedContactInformation.data.contactType.chat}
                     ingress={ingress || sharedContactInformation.data.contactType.chat?.ingress}
                 />
@@ -167,7 +167,7 @@ export const ContactOptionPart = ({ config }: PartComponentProps<PartType.Contac
         }
         case 'call': {
             return (
-                <CallOption
+                <TelefonAlternativ
                     {...sharedContactInformation.data.contactType.telephone}
                     ingress={ingress}
                     audience={audience}

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DefaultOption } from './DefaultOption';
+import { StandardAlternativ } from './StandardAlternativ';
 
 const meta = {
-    component: DefaultOption,
+    component: StandardAlternativ,
     parameters: {
         backgrounds: {
             values: [{ name: 'ContactBackground', value: '#f2f3f5' }],
             default: 'ContactBackground',
         },
     },
-} satisfies Meta<typeof DefaultOption>;
+} satisfies Meta<typeof StandardAlternativ>;
 
 export default meta;
 

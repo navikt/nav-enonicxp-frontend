@@ -1,21 +1,21 @@
 import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { ContactOptionLayout } from 'components/_common/contact-option/_shared-utils/ContactOptionLayout/ContactOptionLayout';
+import { KontaktOssKanalLayout } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLayout/KontaktOssKanalLayout';
 import { translator } from 'translations';
-import { ContactOptionAlert } from 'components/_common/contact-option/_shared-utils/ContactOptionAlert/ContactOptionAlert';
+import { KontaktOssKanalAlert } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalAlert/KontaktOssKanalAlert';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { OpeningInfo } from 'components/_common/contact-option/_shared-utils/openingInfo/OpeningInfo';
+import { OpeningInfo } from 'components/_common/kontakt-oss-kanal/_shared-utils/openingInfo/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { usePageContentProps } from 'store/pageContext';
-import { TelephoneData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/_shared-utils/icon/Icon';
-import { ContactOptionIngress } from 'components/_common/contact-option/_shared-utils/ContactOptionIngress/ContactOptionIngress';
-import { ContactOptionLenkebase } from 'components/_common/contact-option/_shared-utils/ContactOptionLenkebase/ContactOptionLenkebase';
+import { TelephoneData } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
+import { Icon } from 'components/_common/kontakt-oss-kanal/_shared-utils/icon/Icon';
+import { KontaktOssKanalIngress } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalIngress/KontaktOssKanalIngress';
+import { KontaktOssKanalLenkebase } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLenkebase/KontaktOssKanalLenkebase';
 
-import style from './CallOption.module.scss';
+import style from './TelefonAlternativ.module.scss';
 
 const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
@@ -36,7 +36,7 @@ type Props = {
     ingress?: ProcessedHtmlProps;
 } & TelephoneData;
 
-export const CallOption = ({
+export const TelefonAlternativ = ({
     title,
     alertText,
     ingress,
@@ -69,8 +69,8 @@ export const CallOption = ({
     };
 
     return (
-        <ContactOptionLayout icon={<Icon type="phone" />}>
-            <ContactOptionLenkebase
+        <KontaktOssKanalLayout icon={<Icon type="phone" />}>
+            <KontaktOssKanalLenkebase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 analyticsEvent={AnalyticsEvents.CALL}
                 analyticsLinkGroup={layoutConfig.title}
@@ -79,9 +79,9 @@ export const CallOption = ({
                 <Heading level="3" size="small">
                     {title || callTranslations.title}
                 </Heading>
-            </ContactOptionLenkebase>
-            {alertText && <ContactOptionAlert alertText={alertText} />}
-            <ContactOptionIngress
+            </KontaktOssKanalLenkebase>
+            {alertText && <KontaktOssKanalAlert alertText={alertText} />}
+            <KontaktOssKanalIngress
                 htmlProps={overrideText || ingress || text || callTranslations.ingress}
             />
             {!alertText && regularOpeningHours && specialOpeningHours && (
@@ -99,6 +99,6 @@ export const CallOption = ({
                     <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>
                 </LenkeBase>
             )}
-        </ContactOptionLayout>
+        </KontaktOssKanalLayout>
     );
 };
