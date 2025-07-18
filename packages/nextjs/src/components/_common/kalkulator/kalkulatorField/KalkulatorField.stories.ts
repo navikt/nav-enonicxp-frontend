@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CalculatorField } from './CalculatorField';
+import { KalkulatorField } from './KalkulatorField';
 
 const meta = {
-    component: CalculatorField,
-} satisfies Meta<typeof CalculatorField>;
+    component: KalkulatorField,
+} satisfies Meta<typeof KalkulatorField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

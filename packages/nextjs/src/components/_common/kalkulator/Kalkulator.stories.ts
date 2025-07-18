@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Calculator } from './Calculator';
+import { Kalkulator } from './Kalkulator';
 
 const meta = {
-    component: Calculator,
-} satisfies Meta<typeof Calculator>;
+    component: Kalkulator,
+} satisfies Meta<typeof Kalkulator>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

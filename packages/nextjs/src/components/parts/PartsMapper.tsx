@@ -10,7 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
 import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
@@ -33,6 +32,7 @@ import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishin
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
@@ -82,8 +82,8 @@ const PartComponentMapper = ({
             return <SituasjonskortPart {...partProps} />;
         case PartType.Button:
             return <ButtonPart {...partProps} />;
-        case PartType.Calculator:
-            return <CalculatorPart {...partProps} />;
+        case PartType.Kalkulator:
+            return <KalkulatorPart {...partProps} />;
         case PartType.ContactOption:
             return <ContactOptionPart {...partProps} />;
         case PartType.FiltersMenu:
