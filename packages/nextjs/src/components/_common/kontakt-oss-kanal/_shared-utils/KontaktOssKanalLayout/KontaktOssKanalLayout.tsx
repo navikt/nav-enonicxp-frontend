@@ -1,13 +1,13 @@
 import React, { PropsWithChildren } from 'react';
-import style from './ContactOptionLayout.module.scss';
+import style from './KontaktOssKanalLayout.module.scss';
 
 type Props = PropsWithChildren<{
     icon: React.ReactNode;
 }>;
 
-export const ContactOptionLayout = ({ icon, children }: Props) => {
+export const KontaktOssKanalLayout = ({ icon, children }: Props) => {
     return (
-        <div className={style.contactOption}>
+        <div className={style.kontaktOssKanal}>
             {icon}
             <div className={style.content}>{children}</div>
         </div>

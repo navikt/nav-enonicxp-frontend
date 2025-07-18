@@ -2,7 +2,7 @@ import { translator } from 'translations';
 import {
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
-} from 'components/parts/contact-option/ContactOptionPart';
+} from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { processOpeningHours } from './processOpeningHours';
 import { getCurrentOpeningHours } from './openingInfoUtils';
 import { getOpeningInfoText } from './openingInfoText';

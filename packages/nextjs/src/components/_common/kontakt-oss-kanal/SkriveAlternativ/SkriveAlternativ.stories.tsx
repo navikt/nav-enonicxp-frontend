@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CallOption } from './CallOption';
+import { SkriveAlternativ } from './SkriveAlternativ';
 
 const meta = {
-    component: CallOption,
+    component: SkriveAlternativ,
     parameters: {
         backgrounds: {
             values: [{ name: 'ContactBackground', value: '#f2f3f5' }],
             default: 'ContactBackground',
         },
     },
-} satisfies Meta<typeof CallOption>;
+} satisfies Meta<typeof SkriveAlternativ>;
 
 export default meta;
 

@@ -3,7 +3,7 @@ import { Loader } from '@navikt/ds-react';
 import {
     RegularOpeningHours,
     SpecialOpeningHours,
-} from 'components/parts/contact-option/ContactOptionPart';
+} from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { usePageContentProps } from 'store/pageContext';
 import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
 import { getCurrentOpeningHours } from './helpers/openingInfoUtils';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
-import { CallOption } from 'components/_common/contact-option/CallOption/CallOption';
-import { WriteOption } from 'components/_common/contact-option/WriteOption/WriteOption';
-import { ChatOption } from 'components/_common/contact-option/ChatOption/ChatOption';
+import { TelefonAlternativ } from 'components/_common/kontakt-oss-kanal/TelefonAlternativ/TelefonAlternativ';
+import { SkriveAlternativ } from 'components/_common/kontakt-oss-kanal/SkriveAlternativ/SkriveAlternativ';
+import { ChatAlternativ } from 'components/_common/kontakt-oss-kanal/ChatAlternativ/ChatAlternativ';
 import { classNames } from 'utils/classnames';
 import style from './ContactInformationPage.module.scss';
 
@@ -37,7 +37,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         if (contactType.telephone) {
             const telephone = contactType?.telephone;
             return (
-                <CallOption
+                <TelefonAlternativ
                     title={telephone.title}
                     alertText={telephone.alertText}
                     text={telephone.text}
@@ -52,7 +52,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         if (contactType.write) {
             const data = contactType?.write;
             return (
-                <WriteOption
+                <SkriveAlternativ
                     ingress={data.ingress}
                     alertText={data.alertText}
                     title={data.title}
@@ -63,7 +63,11 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         if (contactType.chat) {
             const data = contactType?.chat;
             return (
-                <ChatOption ingress={data.ingress} alertText={data.alertText} title={data.title} />
+                <ChatAlternativ
+                    ingress={data.ingress}
+                    alertText={data.alertText}
+                    title={data.title}
+                />
             );
         }
 

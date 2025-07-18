@@ -45,7 +45,7 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
-import { ContactOptionPart } from './contact-option/ContactOptionPart';
+import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
@@ -84,8 +84,8 @@ const PartComponentMapper = ({
             return <ButtonPart {...partProps} />;
         case PartType.Kalkulator:
             return <KalkulatorPart {...partProps} />;
-        case PartType.ContactOption:
-            return <ContactOptionPart {...partProps} />;
+        case PartType.KontaktOssKanal:
+            return <KontaktOssKanalPart {...partProps} />;
         case PartType.FiltersMenu:
             return <FiltersMenuPart {...partProps} />;
         case PartType.FormDetails:

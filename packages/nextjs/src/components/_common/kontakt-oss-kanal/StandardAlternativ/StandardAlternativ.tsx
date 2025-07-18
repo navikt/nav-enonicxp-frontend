@@ -8,18 +8,21 @@ import { AnalyticsEvents } from 'utils/analytics';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { ChannelType, DefaultContactData } from 'components/parts/contact-option/ContactOptionPart';
-import { Icon } from 'components/_common/contact-option/_shared-utils/icon/Icon';
+import {
+    ChannelType,
+    DefaultContactData,
+} from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
+import { Icon } from 'components/_common/kontakt-oss-kanal/_shared-utils/icon/Icon';
 import { Button } from 'components/_common/button/Button';
-import { ContactOptionLayout } from 'components/_common/contact-option/_shared-utils/ContactOptionLayout/ContactOptionLayout';
-import { ContactOptionIngress } from 'components/_common/contact-option/_shared-utils/ContactOptionIngress/ContactOptionIngress';
-import { ContactOptionLenkebase } from 'components/_common/contact-option/_shared-utils/ContactOptionLenkebase/ContactOptionLenkebase';
+import { KontaktOssKanalLayout } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLayout/KontaktOssKanalLayout';
+import { KontaktOssKanalIngress } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalIngress/KontaktOssKanalIngress';
+import { KontaktOssKanalLenkebase } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLenkebase/KontaktOssKanalLenkebase';
 
 type Props = DefaultContactData & {
     channel: ChannelType;
 };
 
-export const DefaultOption = (props: Props) => {
+export const StandardAlternativ = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageContentProps();
     const { layoutConfig } = useLayoutConfig();
@@ -73,7 +76,7 @@ export const DefaultOption = (props: Props) => {
     const iconName = icon || 'place';
 
     return (
-        <ContactOptionLayout icon={<Icon type={iconName} />}>
+        <KontaktOssKanalLayout icon={<Icon type={iconName} />}>
             {channel === 'chat' ? (
                 <Button
                     variant="tertiary"
@@ -95,7 +98,7 @@ export const DefaultOption = (props: Props) => {
                     )}
                 </Button>
             ) : (
-                <ContactOptionLenkebase
+                <KontaktOssKanalLenkebase
                     {...getUrlOrClickHandler(channel)}
                     analyticsLinkGroup={layoutConfig.title}
                     analyticsComponent="Kontakt-oss kanal"
@@ -107,14 +110,14 @@ export const DefaultOption = (props: Props) => {
                     ) : (
                         <EditorHelp text="Tittel mangler!" type="error" />
                     )}
-                </ContactOptionLenkebase>
+                </KontaktOssKanalLenkebase>
             )}
 
             {ingressActual ? (
-                <ContactOptionIngress htmlProps={ingressActual} />
+                <KontaktOssKanalIngress htmlProps={ingressActual} />
             ) : (
                 <EditorHelp text="Ingress mangler!" type="error" />
             )}
-        </ContactOptionLayout>
+        </KontaktOssKanalLayout>
     );
 };
