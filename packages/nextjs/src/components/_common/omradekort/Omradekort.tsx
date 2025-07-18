@@ -4,10 +4,10 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { AreaCardGraphics } from './graphics/AreaCardGraphics';
+import { OmradekortGraphics } from './graphics/OmradekortGraphics';
 
-import style from './AreaCard.module.scss';
-import graphicsStyle from './graphics/AreaCardGraphicsCommon.module.scss';
+import style from './Omradekort.module.scss';
+import graphicsStyle from './graphics/OmradekortGraphicsCommon.module.scss';
 
 type Props = {
     path: string;
@@ -17,7 +17,7 @@ type Props = {
     className?: string;
 } & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
 
-export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
+export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     const { layoutConfig } = useLayoutConfig();
     const analyticsLinkGroup = linkGroup ?? layoutConfig.title;
 
@@ -43,7 +43,7 @@ export const AreaCard = ({ path, title, area, linkGroup, className, ...rest }: P
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
-            <AreaCardGraphics type={area} insideCard />
+            <OmradekortGraphics type={area} insideCard />
         </LinkPanel>
     );
 };

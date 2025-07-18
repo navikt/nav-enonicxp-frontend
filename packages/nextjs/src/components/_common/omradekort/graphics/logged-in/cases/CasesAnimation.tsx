@@ -1,7 +1,6 @@
 import React from 'react';
 import { StaticImage } from 'components/_common/image/StaticImage';
-
-import letterS from 'components/_common/areaCard/graphics/open-pages/social-counselling/gfx/letterS.svg';
+import letterS from 'components/_common/omradekort/graphics/open-pages/social-counselling/gfx/letterS.svg';
 import shapes from './gfx/shapes.svg';
 import document from './gfx/document.svg';
 

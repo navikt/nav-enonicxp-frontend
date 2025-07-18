@@ -1,8 +1,8 @@
-@use '../../AreaCardGraphicsCommon.module' as areaGraphics;
-@use '../../../AreaCard.module' as areaCard;
+@use '../../OmradekortGraphicsCommon.module' as areaGraphics;
+@use '../../../Omradekort.module' as omradekort;
 
 .shapes {
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     right: 16px;
     top: 126px;
@@ -15,7 +15,7 @@
 .letterPartOrange {
     background-color: var(--a-orange-200);
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 50.16px;
     height: 120px;
@@ -31,7 +31,7 @@
 .letterPartBlue {
     background-color: var(--a-deepblue-200);
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 48px;
     height: 160px;
@@ -46,7 +46,7 @@
 .letterPartBlueTwo {
     background-color: var(--a-deepblue-200);
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 50.16px;
     height: 120px;
@@ -62,7 +62,7 @@
 .mask {
     background-color: var(--a-deepblue-100);
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 193.56px;
     height: 499px;
@@ -81,7 +81,7 @@
 }
 
 .letter {
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     right: 57px;
     top: 44px;
