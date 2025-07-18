@@ -5,7 +5,7 @@ import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
-import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
+import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
 import { PartConfigContactOption } from 'components/parts/contact-option/ContactOptionPart';
 import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
 import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
@@ -42,7 +42,7 @@ export enum PartType {
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
-    Calculator = 'no.nav.navno:calculator',
+    Kalkulator = 'no.nav.navno:calculator',
     OfficeEditorialDetail = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
@@ -98,7 +98,7 @@ type PartConfigs = {
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;
-    [PartType.Calculator]: PartConfigCalculator;
+    [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.ContactOption]: PartConfigContactOption;
     [PartType.FiltersMenu]: PartConfigFilterMenu;
     [PartType.FormDetails]: PartConfigFormDetails;

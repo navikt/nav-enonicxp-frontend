@@ -1,8 +1,7 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-
-import { CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
-import style from './CalculatorField.module.scss';
+import { CalculatorFieldData } from 'components/parts/kalkulator/KalkulatorPart';
+import style from './KalkulatorField.module.scss';
 
 const isInputField = (
     field: CalculatorFieldData
@@ -23,11 +22,11 @@ type Props = {
     autoComplete: boolean;
 };
 
-export const CalculatorField = (props: Props) => {
+export const KalkulatorField = (props: Props) => {
     const { field, onChange, value, autoComplete } = props;
 
     return (
-        <div className={style.calculatorField}>
+        <div className={style.kalkulatoromrade}>
             {isInputField(field) && (
                 <TextField
                     name={field.inputField.variableName}

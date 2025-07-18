@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calculator } from 'components/_common/calculator/Calculator';
+import { Kalkulator } from 'components/_common/kalkulator/Kalkulator';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -37,7 +37,7 @@ export type CalculatorData = {
     summaryText: string;
 };
 
-export type PartConfigCalculator = {
+export type PartConfigKalkulator = {
     header?: string;
     targetCalculator?: {
         data: CalculatorData;
@@ -45,14 +45,14 @@ export type PartConfigCalculator = {
     filters?: string[];
 };
 
-export const CalculatorPart = ({ config }: PartComponentProps<PartType.Calculator>) => {
+export const KalkulatorPart = ({ config }: PartComponentProps<PartType.Kalkulator>) => {
     if (!config?.targetCalculator) {
         return <EditorHelp text={'Velg kalkulator fra listen'} />;
     }
 
     return (
         <FilteredContent filters={config.filters}>
-            <Calculator calculatorData={config.targetCalculator.data} header={config.header} />
+            <Kalkulator calculatorData={config.targetCalculator.data} header={config.header} />
         </FilteredContent>
     );
 };

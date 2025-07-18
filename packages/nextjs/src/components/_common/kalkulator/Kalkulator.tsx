@@ -3,12 +3,11 @@ import { Heading } from '@navikt/ds-react';
 import { CalculatorIcon } from '@navikt/aksel-icons';
 import { Button } from 'components/_common/button/Button';
 import { translator } from 'translations';
-import { CalculatorField } from 'components/_common/calculator/calculatorField/CalculatorField';
 import { usePageContentProps } from 'store/pageContext';
-import { CalculatorData, CalculatorFieldData } from 'components/parts/calculator/CalculatorPart';
-import { CalculatorResult } from './calculatorResult/CalculatorResult';
-
-import style from './Calculator.module.scss';
+import { CalculatorData, CalculatorFieldData } from 'components/parts/kalkulator/KalkulatorPart';
+import { KalkulatorField } from './kalkulatorField/KalkulatorField';
+import { KalkulatorResultat } from './kalkulatorResultat/KalkulatorResultat';
+import style from './Kalkulator.module.scss';
 
 // TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
@@ -68,7 +67,7 @@ type Props = {
     calculatorData: CalculatorData;
 };
 
-export const Calculator = ({ header, calculatorData }: Props) => {
+export const Kalkulator = ({ header, calculatorData }: Props) => {
     const { fields, useThousandSeparator } = calculatorData;
 
     const { language } = usePageContentProps();
@@ -81,7 +80,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
 
     /* For future reference: Discussed the use of new Function in team:
      * - Looking to get Content Studio validation to avoid use of global objects and methods.
-     * - Calculator not sending any information back to Enonic, and all is happening in client.
+     * - Kalkulator not sending any information back to Enonic, and all is happening in client.
      * - Doesn't do anything that can't already be done in Console by user.
      * - new Function give access to global scope, not local (unlike "eval")
      */
@@ -128,7 +127,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
     };
 
     return (
-        <div className={style.calculator}>
+        <div className={style.kalkulator}>
             {header && (
                 <Heading level="4" size="medium" className={style.title}>
                     {header}
@@ -143,7 +142,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                                 field.inputField?.variableName) as string;
 
                             return (
-                                <CalculatorField
+                                <KalkulatorField
                                     key={fieldKey}
                                     field={field}
                                     onChange={handleInputChange}
@@ -161,7 +160,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
                 >
                     <span>{getLabel('calculate')}</span>
                 </Button>
-                <CalculatorResult
+                <KalkulatorResultat
                     sum={calculatedValue}
                     summaryText={calculatorData.summaryText}
                     useThousandSeparator={useThousandSeparator}
