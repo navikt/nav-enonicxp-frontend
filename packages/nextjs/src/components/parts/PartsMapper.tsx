@@ -48,7 +48,7 @@ import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEdito
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { OmradekortPart } from './omradekort/OmradekortPart';
-import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
+import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
@@ -78,8 +78,8 @@ const PartComponentMapper = ({
             return <AlertBoxPart {...partProps} />;
         case PartType.Omradekort:
             return <OmradekortPart {...partProps} />;
-        case PartType.AreapageSituationCard:
-            return <AreapageSituationCardPart {...partProps} />;
+        case PartType.Situasjonskort:
+            return <SituasjonskortPart {...partProps} />;
         case PartType.Button:
             return <ButtonPart {...partProps} />;
         case PartType.Calculator:

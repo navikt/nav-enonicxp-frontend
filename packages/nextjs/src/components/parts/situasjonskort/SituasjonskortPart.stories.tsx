@@ -5,11 +5,11 @@ import { MediaType } from 'types/media';
 import { Area } from 'types/areas';
 import { ComponentType } from 'types/component-props/_component-common';
 import { PartType } from 'types/component-props/parts';
-import { AreapageSituationCardPart } from './AreapageSituationCardPart';
+import { SituasjonskortPart } from './SituasjonskortPart';
 
 const meta = {
-    component: AreapageSituationCardPart,
-} satisfies Meta<typeof AreapageSituationCardPart>;
+    component: SituasjonskortPart,
+} satisfies Meta<typeof SituasjonskortPart>;
 
 export default meta;
 
@@ -19,7 +19,7 @@ export const Default: Story = {
     args: {
         type: ComponentType.Part,
         path: '',
-        descriptor: PartType.AreapageSituationCard,
+        descriptor: PartType.Situasjonskort,
         config: {
             disabled: false,
             target: {

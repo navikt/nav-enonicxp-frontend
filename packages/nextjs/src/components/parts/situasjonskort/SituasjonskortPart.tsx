@@ -8,9 +8,9 @@ import { usePageContentProps } from 'store/pageContext';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
-import style from './AreapageSituationCardPart.module.scss';
+import style from './SituasjonskortPart.module.scss';
 
-export type PartConfigAreapageSituationCard = {
+export type PartConfigSituasjonskort = {
     disabled: boolean;
     target: Pick<
         SituationPageProps,
@@ -18,9 +18,7 @@ export type PartConfigAreapageSituationCard = {
     >;
 };
 
-export const AreapageSituationCardPart = ({
-    config,
-}: PartComponentProps<PartType.AreapageSituationCard>) => {
+export const SituasjonskortPart = ({ config }: PartComponentProps<PartType.Situasjonskort>) => {
     const pageProps = usePageContentProps();
     if (!config?.target?._id) {
         return <EditorHelp type={'error'} text={'Feil: komponenten har ingen gyldig referanse'} />;
@@ -36,7 +34,7 @@ export const AreapageSituationCardPart = ({
     const getSituationLabel = translator('situations', pageProps.language);
 
     return (
-        <div className={classNames(style.card, disabled && style.disabled)}>
+        <div className={classNames(style.kort, disabled && style.disabled)}>
             {disabled && (
                 <span className={style.disabledMsg}>
                     <strong>{`"${target.data.title || target.displayName}"`}</strong>
