@@ -66,7 +66,7 @@ export enum PartType {
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
     Trekkspill = 'no.nav.navno:accordion',
-    AlternativeAudience = 'no.nav.navno:alternative-audience',
+    AktuelleMalgrupper = 'no.nav.navno:alternative-audience',
     RelatedSituations = 'no.nav.navno:related-situations',
 }
 
