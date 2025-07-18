@@ -14,17 +14,17 @@ import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module
 import { useCheckAndOpenTrekkspillPanel } from 'store/hooks/useCheckAndOpenTrekkspillPanel';
 import styles from './Trekkspill.module.scss';
 
-type TrekkspillProps = PartConfigTrekkspill;
-type PanelItem = TrekkspillProps['trekkspill'][number];
+type TrekkspillRef = PartConfigTrekkspill;
+type PanelItem = TrekkspillRef['accordion'][number];
 
-export const Trekkspill = ({ trekkspill }: TrekkspillProps) => {
-    const itemRefs = useRef(trekkspill.map(() => React.createRef<HTMLDivElement>()));
+export const Trekkspill = ({ accordion }: TrekkspillRef) => {
+    const itemRefs = useRef(accordion.map(() => React.createRef<HTMLDivElement>()));
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
     const [openTrekkspill, setOpenTrekkspill] = useState<number[]>([]);
 
-    const expandAll = () => setOpenTrekkspill(trekkspill.map((_, index) => index));
+    const expandAll = () => setOpenTrekkspill(accordion.map((_, index) => index));
     const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
 
     useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
@@ -43,15 +43,15 @@ export const Trekkspill = ({ trekkspill }: TrekkspillProps) => {
         });
     };
 
-    if (itemRefs.current.length !== trekkspill.length) {
-        itemRefs.current = trekkspill.map(() => React.createRef<HTMLDivElement>());
+    if (itemRefs.current.length !== accordion.length) {
+        itemRefs.current = accordion.map(() => React.createRef<HTMLDivElement>());
     }
 
     useCheckAndOpenTrekkspillPanel(openTrekkspill, setOpenTrekkspill, itemRefs.current, expandAll);
 
     // Show all panels in edit mode, but only valid panels in view mode
-    const validTrekkspill = trekkspill.filter(validatePanel);
-    const relevantTrekkspill = editorView === 'edit' ? trekkspill : validTrekkspill;
+    const validTrekkspill = accordion.filter(validatePanel);
+    const relevantTrekkspill = editorView === 'edit' ? accordion : validTrekkspill;
 
     return (
         <DSAccordion className={styles.trekkspill}>

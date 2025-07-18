@@ -5,7 +5,7 @@ import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type PartConfigTrekkspill = {
-    trekkspill: Array<{
+    accordion: Array<{
         title: string;
         anchorId?: string;
         html: ProcessedHtmlProps;
@@ -13,11 +13,11 @@ export type PartConfigTrekkspill = {
 };
 
 export const TrekkspillPart = ({ config }: PartComponentProps<PartType.Trekkspill>) => {
-    if (!config?.trekkspill || config.trekkspill.length === 0) {
+    if (!config?.accordion || config.accordion.length === 0) {
         return <EditorHelp text={'Kortet mangler innhold'} />;
     }
 
-    const { trekkspill } = config;
+    const { accordion } = config;
 
-    return <Trekkspill trekkspill={trekkspill} />;
+    return <Trekkspill accordion={accordion} />;
 };
