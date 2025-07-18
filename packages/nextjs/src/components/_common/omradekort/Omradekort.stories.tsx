@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AreaCard } from './AreaCard';
+import { Omradekort } from './Omradekort';
 
 const meta = {
-    component: AreaCard,
+    component: Omradekort,
     args: { path: '' },
-} satisfies Meta<typeof AreaCard>;
+} satisfies Meta<typeof Omradekort>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

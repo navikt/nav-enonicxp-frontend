@@ -2,7 +2,7 @@ import React from 'react';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
 import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
-import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
+import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
 import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
@@ -35,7 +35,7 @@ import { PartConfigProductCardMicro } from 'components/parts/product-card-micro/
 import { ComponentBaseProps, ComponentType } from './_component-common';
 
 export enum PartType {
-    AreaCard = 'no.nav.navno:area-card',
+    Omradekort = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
@@ -95,7 +95,7 @@ export enum PartLegacyType {
 type PartConfigs = {
     [PartType.Trekkspill]: PartConfigTrekkspill;
     [PartType.AlertBox]: PartConfigAlertBox;
-    [PartType.AreaCard]: PartConfigAreaCard;
+    [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
     [PartType.Button]: PartConfigButton;
     [PartType.Calculator]: PartConfigCalculator;

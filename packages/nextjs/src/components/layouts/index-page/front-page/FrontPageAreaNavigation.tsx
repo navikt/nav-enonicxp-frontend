@@ -1,7 +1,7 @@
 import React from 'react';
 import { FrontPageProps } from 'types/content-props/index-pages-props';
 import { Heading } from 'components/_common/headers/Heading';
-import { AreaCard } from 'components/_common/areaCard/AreaCard';
+import { Omradekort } from 'components/_common/omradekort/Omradekort';
 import { FrontPageCard } from 'components/_common/frontpageCard/FrontPageCard';
 import { classNames } from 'utils/classnames';
 import { Audience, getAudience } from 'types/component-props/_mixins';
@@ -52,7 +52,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                     if (page.type === ContentType.AreaPage) {
                         return (
                             <li key={page._id}>
-                                <AreaCard
+                                <Omradekort
                                     path={page._path}
                                     title={page.data.header}
                                     area={page.data.area}

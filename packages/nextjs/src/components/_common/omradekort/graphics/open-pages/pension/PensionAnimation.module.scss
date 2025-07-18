@@ -1,8 +1,8 @@
-@use '../../AreaCardGraphicsCommon.module' as areaGraphics;
-@use '../../../AreaCard.module' as areaCard;
+@use '../../OmradekortGraphicsCommon.module' as areaGraphics;
+@use '../../../Omradekort.module' as omradekort;
 
 .shapes {
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     right: 25px;
     top: 108px;
@@ -13,7 +13,7 @@
 }
 
 .letterPartBlue {
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     right: -79px;
     top: 0;
@@ -26,7 +26,7 @@
 .mask {
     background-color: var(--a-deepblue-100);
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 193.56px;
     height: 499px;
@@ -45,7 +45,7 @@
 }
 
 .piggyBank {
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     right: 53px;
     top: 41px;
@@ -60,7 +60,7 @@
     background-color: var(--a-orange-200);
     border-radius: 50%;
 
-    @include areaCard.transitionMixin;
+    @include omradekort.transitionMixin;
     position: absolute;
     width: 28px;
     height: 28px;
