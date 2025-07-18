@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'store/hooks/useAuthState';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { AreaCard } from 'components/_common/areaCard/AreaCard';
+import { Omradekort } from 'components/_common/omradekort/Omradekort';
 import { usePageContentProps } from 'store/pageContext';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 
@@ -17,5 +17,5 @@ export const LoggedinCardMeldekort = ({ link }: Props) => {
 
     const { text, url } = getSelectableLinkProps(link);
 
-    return <AreaCard area={'employment-status-form'} path={url} title={text} />;
+    return <Omradekort area={'employment-status-form'} path={url} title={text} />;
 };

@@ -47,7 +47,7 @@ import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMen
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
-import { AreaCardPart } from './area-card/AreaCardPart';
+import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
@@ -76,8 +76,8 @@ const PartComponentMapper = ({
             return <TrekkspillPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;
-        case PartType.AreaCard:
-            return <AreaCardPart {...partProps} />;
+        case PartType.Omradekort:
+            return <OmradekortPart {...partProps} />;
         case PartType.Situasjonskort:
             return <SituasjonskortPart {...partProps} />;
         case PartType.Button:

@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { AreaCardGraphicsType } from 'components/parts/area-card/AreaCardPart';
+import { OmradekortGraphicsType } from 'components/parts/omradekort/OmradekortPart';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
@@ -12,7 +12,7 @@ import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 
-import style from './AreaCardGraphics.module.scss';
+import style from './OmradekortGraphics.module.scss';
 
 const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
     cases: CasesAnimation,
@@ -24,7 +24,7 @@ const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
     pension: PensionAnimation,
     social_counselling: SocialCounsellingAnimation,
     work: WorkAnimation,
-} as const satisfies Record<AreaCardGraphicsType, React.FunctionComponent>;
+} as const satisfies Record<OmradekortGraphicsType, React.FunctionComponent>;
 
 const DefaultComponent = ({ type }: { type: string }) => (
     <EditorHelp text={`Fant ingen grafikk for valgt område ${type}`} />
@@ -35,7 +35,7 @@ type Props = {
     insideCard: boolean;
 };
 
-export const AreaCardGraphics = ({ type, insideCard }: Props) => {
+export const OmradekortGraphics = ({ type, insideCard }: Props) => {
     const GraphicComponent = areaTypeComponentMap[type];
 
     return (

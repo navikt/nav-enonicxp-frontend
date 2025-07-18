@@ -1,11 +1,11 @@
 import React from 'react';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { AreaCard } from 'components/_common/areaCard/AreaCard';
+import { Omradekort } from 'components/_common/omradekort/Omradekort';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 
-export type AreaCardGraphicsType =
+export type OmradekortGraphicsType =
     | 'payments'
     | 'cases'
     | 'employment-status-form'
@@ -16,12 +16,12 @@ export type AreaCardGraphicsType =
     | 'pension'
     | 'social_counselling';
 
-export type PartConfigAreaCard = {
+export type PartConfigOmradekort = {
     link: LinkSelectable;
-    area: AreaCardGraphicsType;
+    area: OmradekortGraphicsType;
 };
 
-export const AreaCardPart = ({ config }: PartComponentProps<PartType.AreaCard>) => {
+export const OmradekortPart = ({ config }: PartComponentProps<PartType.Omradekort>) => {
     if (!config) {
         return <EditorHelp text={'Kortet mangler konfigurasjon'} />;
     }
@@ -29,5 +29,5 @@ export const AreaCardPart = ({ config }: PartComponentProps<PartType.AreaCard>) 
     const { link, area } = config;
     const linkProps = getSelectableLinkProps(link);
 
-    return <AreaCard path={linkProps.url} title={linkProps.text} area={area} />;
+    return <Omradekort path={linkProps.url} title={linkProps.text} area={area} />;
 };
