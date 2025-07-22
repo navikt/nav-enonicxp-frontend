@@ -51,6 +51,10 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+    - name: NODE_OPTIONS
+      value: "--trace-warnings"
+    - name: DEBUG
+      value: "next:*"
   strategy:
     rollingUpdate:
       maxSurge: 3
