@@ -100,6 +100,8 @@ jobs:
                   ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
                   IMAGE_CACHE_DIR=/tmp/images
                   NEXT_TELEMETRY_DISABLED=1
+                  NODE_OPTIONS='--trace-warnings'
+                  DEBUG='next:*'
                   EOF
             - name: Copy env to nextjs and server workspaces
               run: cp .env packages/nextjs/.env && cp .env packages/server/.env
