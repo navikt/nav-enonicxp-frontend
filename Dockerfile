@@ -19,5 +19,8 @@ COPY packages/server/.dist /app/server/.dist/
 
 USER nextjs
 
+ENV NODE_OPTIONS="--trace-warnings"
+ENV DEBUG="next:*"
+
 EXPOSE 3000
 CMD ["npm", "run", "start-in-docker"]
