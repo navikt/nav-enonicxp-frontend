@@ -40,28 +40,49 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     // Store build ID in environment for middleware access
     process.env.NEXT_BUILD_ID = currentBuildId;
 
-    expressApp.post(
-        '/invalidate',
-        validateSecretMiddleware,
-        jsonBodyParser,
-        setCacheKey,
-        handleInvalidatePathsReq
-    );
+    console.log('[SERVER SETUP] Setting up invalidate routes...');
+    try {
+        expressApp.post(
+            '/invalidate',
+            validateSecretMiddleware,
+            jsonBodyParser,
+            setCacheKey,
+            handleInvalidatePathsReq
+        );
 
-    expressApp.get(
-        '/invalidate/wipe-all',
-        validateSecretMiddleware,
-        setCacheKey,
-        handleInvalidateAllReq
-    );
+        expressApp.get(
+            '/invalidate/wipe-all',
+            validateSecretMiddleware,
+            setCacheKey,
+            handleInvalidateAllReq
+        );
+        console.log('[SERVER SETUP] Invalidate routes setup completed');
+    } catch (error) {
+        console.error('[SERVER SETUP] Error setting up invalidate routes:', error);
+        throw error;
+    }
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
-        serverSetupDev(expressApp, nextApp);
+        console.log('[SERVER SETUP] Setting up dev routes...');
+        try {
+            serverSetupDev(expressApp, nextApp);
+            console.log('[SERVER SETUP] Dev routes setup completed');
+        } catch (error) {
+            console.error('[SERVER SETUP] Error setting up dev routes:', error);
+            throw error;
+        }
     }
 
     // Handle all remaining requests with Next.js
-    expressApp.use((req: Request, res: Response) => {
-        console.log(`[SERVER SETUP] Final catch-all handler: ${req.method} ${req.url}`);
-        return nextRequestHandler(req, res);
-    });
+    console.log('[SERVER SETUP] Setting up final catch-all handler...');
+    try {
+        expressApp.use((req: Request, res: Response) => {
+            console.log(`[SERVER SETUP] Final catch-all handler: ${req.method} ${req.url}`);
+            return nextRequestHandler(req, res);
+        });
+        console.log('[SERVER SETUP] Final catch-all handler setup completed');
+    } catch (error) {
+        console.error('[SERVER SETUP] Error setting up final catch-all handler:', error);
+        throw error;
+    }
 };

@@ -12,21 +12,38 @@ export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
 // Enhanced global error handlers
 process.on('unhandledRejection', (reason, promise) => {
-    logger.error(`[UNHANDLED REJECTION] Promise: ${promise}`);
-    logger.error(`[UNHANDLED REJECTION] Reason: ${reason}`);
+    console.error(`[UNHANDLED REJECTION] Promise: ${promise}`);
+    console.error(`[UNHANDLED REJECTION] Reason: ${reason}`);
+    console.error(`[UNHANDLED REJECTION] Type of reason: ${typeof reason}`);
+    console.error(`[UNHANDLED REJECTION] Reason toString: ${String(reason)}`);
+
     if (reason instanceof Error) {
-        logger.error(`[UNHANDLED REJECTION] Stack: ${reason.stack}`);
+        console.error(`[UNHANDLED REJECTION] Error name: ${reason.name}`);
+        console.error(`[UNHANDLED REJECTION] Error message: ${reason.message}`);
+        console.error(`[UNHANDLED REJECTION] Stack: ${reason.stack}`);
+
         // Check if it's the path-to-regexp error
         if (
             reason.message?.includes('pathToRegexpError') ||
             reason.message?.includes('Missing parameter name')
         ) {
-            logger.error(`[UNHANDLED REJECTION] This appears to be the path-to-regexp error!`);
+            console.error(`[UNHANDLED REJECTION] *** THIS IS THE PATH-TO-REGEXP ERROR! ***`);
+            console.error(
+                `[UNHANDLED REJECTION] Error details: ${JSON.stringify(reason, Object.getOwnPropertyNames(reason))}`
+            );
         }
     }
+
+    // Also log with logger
+    logger.error(`[UNHANDLED REJECTION] ${String(reason)}`);
+
+    // Don't exit the process, just log
+    console.error('[UNHANDLED REJECTION] Continuing execution...');
 });
 
 process.on('uncaughtException', (error) => {
+    console.error(`[UNCAUGHT EXCEPTION] ${error.message}`);
+    console.error(`[UNCAUGHT EXCEPTION] Stack: ${error.stack}`);
     logger.error(`[UNCAUGHT EXCEPTION] ${error.message}`);
     logger.error(`[UNCAUGHT EXCEPTION] Stack: ${error.stack}`);
 });
@@ -83,9 +100,23 @@ nextApp.prepare().then(async () => {
     });
 
     if (isFailover) {
-        serverSetupFailover(expressApp, nextApp);
+        console.log('[SERVER] Setting up failover routes...');
+        try {
+            serverSetupFailover(expressApp, nextApp);
+            console.log('[SERVER] Failover routes setup completed');
+        } catch (error) {
+            console.error('[SERVER] Error setting up failover routes:', error);
+            throw error;
+        }
     } else {
-        await serverSetup(expressApp, nextApp);
+        console.log('[SERVER] Setting up normal routes...');
+        try {
+            await serverSetup(expressApp, nextApp);
+            console.log('[SERVER] Normal routes setup completed');
+        } catch (error) {
+            console.error('[SERVER] Error setting up normal routes:', error);
+            throw error;
+        }
     }
 
     const errorHandler: ErrorRequestHandler = (err, req, res, _) => {

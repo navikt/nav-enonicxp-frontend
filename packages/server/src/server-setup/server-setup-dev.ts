@@ -10,8 +10,16 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     // Most functionality has been moved to Next.js middleware
 
     // Keep API routes handling in Express for now if needed
-    expressApp.all('/api/internal/*', (req, res, next) => {
-        console.log(`[DEV SETUP] Handling ${req.method} ${req.url} in Express dev setup`);
-        return nextRequestHandler(req, res);
-    });
+    console.log('[DEV SETUP] Setting up /api/internal/* route...');
+    try {
+        // Use explicit parameter pattern instead of /*
+        expressApp.all('/api/internal/:path(*)', (req, res, next) => {
+            console.log(`[DEV SETUP] Handling ${req.method} ${req.url} in Express dev setup`);
+            return nextRequestHandler(req, res);
+        });
+        console.log('[DEV SETUP] /api/internal/* route setup completed');
+    } catch (error) {
+        console.error('[DEV SETUP] Error setting up /api/internal/* route:', error);
+        throw error;
+    }
 };
