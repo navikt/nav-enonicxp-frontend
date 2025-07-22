@@ -61,6 +61,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
 
     // Handle all remaining requests with Next.js
     expressApp.use((req: Request, res: Response) => {
+        console.log(`[SERVER SETUP] Final catch-all handler: ${req.method} ${req.url}`);
         return nextRequestHandler(req, res);
     });
 };

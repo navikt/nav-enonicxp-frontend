@@ -11,6 +11,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
 
     // Keep API routes handling in Express for now if needed
     expressApp.all('/api/internal/*', (req, res, next) => {
+        console.log(`[DEV SETUP] Handling ${req.method} ${req.url} in Express dev setup`);
         return nextRequestHandler(req, res);
     });
 };

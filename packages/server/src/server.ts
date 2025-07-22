@@ -10,6 +10,27 @@ import { serverSetup } from 'server-setup/server-setup';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
+// Enhanced global error handlers
+process.on('unhandledRejection', (reason, promise) => {
+    logger.error(`[UNHANDLED REJECTION] Promise: ${promise}`);
+    logger.error(`[UNHANDLED REJECTION] Reason: ${reason}`);
+    if (reason instanceof Error) {
+        logger.error(`[UNHANDLED REJECTION] Stack: ${reason.stack}`);
+        // Check if it's the path-to-regexp error
+        if (
+            reason.message?.includes('pathToRegexpError') ||
+            reason.message?.includes('Missing parameter name')
+        ) {
+            logger.error(`[UNHANDLED REJECTION] This appears to be the path-to-regexp error!`);
+        }
+    }
+});
+
+process.on('uncaughtException', (error) => {
+    logger.error(`[UNCAUGHT EXCEPTION] ${error.message}`);
+    logger.error(`[UNCAUGHT EXCEPTION] Stack: ${error.stack}`);
+});
+
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
     customLabels: { hpa: 'rate' },
@@ -21,7 +42,7 @@ const promMiddleware = promBundle({
 
 const nextApp = createNextApp({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
-    quiet: process.env.ENV === 'prod',
+    quiet: false, // Enable verbose Next.js logging
     dir: path.join(__dirname, '..', '..', 'nextjs'),
 });
 
@@ -30,6 +51,25 @@ nextApp.prepare().then(async () => {
     const port = process.env.PORT || 3000;
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    // Add comprehensive request logging BEFORE any other middleware
+    expressApp.use((req, res, next) => {
+        const startTime = Date.now();
+        logger.info(
+            `[REQUEST] ${req.method} ${req.url} - Headers: ${JSON.stringify({
+                'user-agent': req.headers['user-agent'],
+                host: req.headers.host,
+                'x-forwarded-for': req.headers['x-forwarded-for'],
+            })}`
+        );
+
+        res.on('finish', () => {
+            const duration = Date.now() - startTime;
+            logger.info(`[RESPONSE] ${req.method} ${req.url} - ${res.statusCode} (${duration}ms)`);
+        });
+
+        next();
+    });
 
     expressApp.use(promMiddleware);
 
@@ -49,13 +89,23 @@ nextApp.prepare().then(async () => {
     }
 
     const errorHandler: ErrorRequestHandler = (err, req, res, _) => {
-        const { path } = req;
-        const { status, stack } = err;
+        const { path, url, method } = req;
+        const { status, stack, message } = err;
         const msg = stack?.split('\n')[0];
 
-        logger.error(`Express error on path ${path}: ${status} ${msg}`);
+        // Enhanced logging for path-to-regexp errors
+        if (message?.includes('pathToRegexpError') || message?.includes('Missing parameter name')) {
+            logger.error(`[PATH-TO-REGEXP ERROR] ${method} ${url} - Path: ${path}`);
+            logger.error(`[PATH-TO-REGEXP ERROR] Full message: ${message}`);
+            logger.error(`[PATH-TO-REGEXP ERROR] Stack trace: ${stack}`);
+            logger.error(`[PATH-TO-REGEXP ERROR] Request headers: ${JSON.stringify(req.headers)}`);
+            logger.error(`[PATH-TO-REGEXP ERROR] Query params: ${JSON.stringify(req.query)}`);
+            logger.error(`[PATH-TO-REGEXP ERROR] Body: ${JSON.stringify(req.body)}`);
+        }
 
-        res.status(status || 500);
+        logger.error(`[EXPRESS ERROR] ${method} ${url} - Status: ${status} - Message: ${msg}`);
+
+        res.status(status || 500).json({ error: 'Internal server error' });
     };
 
     expressApp.use(errorHandler);
