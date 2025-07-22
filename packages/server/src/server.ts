@@ -88,7 +88,7 @@ nextApp.prepare().then(async () => {
         next();
     });
 
-    expressApp.use(promMiddleware);
+    // expressApp.use(promMiddleware);
 
     expressApp.use((req, res, next) => {
         Object.defineProperty(req, 'query', {
