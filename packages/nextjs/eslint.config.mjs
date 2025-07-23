@@ -7,7 +7,7 @@ import storybook from 'eslint-plugin-storybook';
 import nextPlugin from '@next/eslint-plugin-next';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import baseConfig from '../../eslint.config.js';
+import baseConfig from '../../eslint.config.mjs';
 
 export default [
     ...baseConfig,
