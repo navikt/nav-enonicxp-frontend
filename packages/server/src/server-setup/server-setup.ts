@@ -65,7 +65,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
         console.log('[SERVER SETUP] Setting up dev routes...');
         try {
-            serverSetupDev(expressApp, nextApp);
+            // serverSetupDev(expressApp, nextApp);
             console.log('[SERVER SETUP] Dev routes setup completed');
         } catch (error) {
             console.error('[SERVER SETUP] Error setting up dev routes:', error);
