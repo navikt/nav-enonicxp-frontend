@@ -1,5 +1,3 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import cssModules from 'eslint-plugin-css-modules';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import importPlugin from 'eslint-plugin-import';
