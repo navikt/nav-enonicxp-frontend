@@ -91,7 +91,9 @@ export const PageWrapper = ({ content, children }: Props) => {
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
-        focusedElement?.blur && focusedElement.blur();
+        if (typeof focusedElement?.blur === 'function') {
+            focusedElement.blur();
+        }
 
         // Updates decorator-parameters client-side when navigating to new content
         const decoratorParams = getDecoratorParams(content);

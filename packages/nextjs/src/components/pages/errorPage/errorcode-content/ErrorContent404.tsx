@@ -12,7 +12,9 @@ export const ErrorContent404 = () => {
 
     useEffect(() => {
         fetchUrlSuggestion(`${window.location.origin}${window.location.pathname}`).then((res) => {
-            res && setUrlSuggestion(res);
+            if (res) {
+                setUrlSuggestion(res);
+            }
         });
     }, []);
 

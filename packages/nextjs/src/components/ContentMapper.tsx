@@ -89,7 +89,7 @@ const contentToReactComponent: {
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
-    contentToReactComponent.hasOwnProperty(content.type);
+    Object.prototype.hasOwnProperty.call(contentToReactComponent, content.type);
 
 type Props = {
     content: ContentProps;
