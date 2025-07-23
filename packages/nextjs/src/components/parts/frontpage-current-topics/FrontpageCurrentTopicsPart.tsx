@@ -31,7 +31,7 @@ export const FrontpageCurrentTopicsPart = ({
         !contentList.data.sectionContents ||
         contentList.data.sectionContents.length === 0
     ) {
-        if (!!editorView) {
+        if (editorView) {
             return <EditorHelp text={'Velg en innholdsliste'} />;
         } else {
             return null;

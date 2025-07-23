@@ -11,7 +11,7 @@ export const CustomSelectorLinkTargetHack = () => {
             customSelectorLinkClassName
         ) as HTMLCollectionOf<HTMLAnchorElement>;
 
-        for (let element of selectorLinks) {
+        for (const element of selectorLinks) {
             element.target = '_blank';
         }
 

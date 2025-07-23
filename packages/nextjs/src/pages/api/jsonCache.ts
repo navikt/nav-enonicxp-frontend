@@ -38,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         // XP does not decode JSON file content
         try {
             return JSON.parse(response);
-        } catch (e) {
+        } catch (_e) {
             return response;
         }
     });

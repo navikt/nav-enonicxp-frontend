@@ -215,9 +215,11 @@ describe('Opening information text', () => {
 
         const text = getInfoText();
 
-        const expectedText1 = translator('contactPoint', 'no')('shared')['closedNow'];
-        const expectedText2 = translator('contactPoint', 'no')('shared')
-            ['opensAt'].replace('{$date}', '(.*)')
+        const sharedText = translator('contactPoint', 'no')('shared');
+
+        const expectedText1 = sharedText['closedNow'];
+        const expectedText2 = sharedText['opensAt']
+            .replace('{$date}', '(.*)')
             .replace('{$time}', '(.*)');
 
         const expectedTextPattern = new RegExp(`${expectedText1}(.*)${expectedText2}`, 'i');
