@@ -66,7 +66,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         serverSetupDev(expressApp, nextApp);
     }
 
-    expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
+    expressApp.get('/_next/data/:buildId{/*path}', (req, res) => {
         const { buildId } = req.params;
         if (buildId !== currentBuildId) {
             logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
@@ -77,7 +77,11 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         return nextRequestHandler(req, res);
     });
 
-    expressApp.all('*', (req, res) => {
+    expressApp.all('/*path', (req, res) => {
+        return nextRequestHandler(req, res);
+    });
+
+    expressApp.all('/', (req, res) => {
         return nextRequestHandler(req, res);
     });
 };
