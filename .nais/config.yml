@@ -44,6 +44,10 @@ spec:
     {{/each}}
   envFrom:
     - secret: {{secret}}
+  filesFrom:
+    - emptyDir:
+        medium: Memory
+      mountPath: /app/nextjs/.next/cache
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache

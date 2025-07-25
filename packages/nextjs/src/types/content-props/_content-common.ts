@@ -50,7 +50,7 @@ import { OversiktPageProps } from './oversikt-props';
 export enum ContentType {
     AlertInContext = 'no.nav.navno:alert-in-context',
     AreaPage = 'no.nav.navno:area-page',
-    Calculator = 'no.nav.navno:calculator',
+    Kalkulator = 'no.nav.navno:calculator',
     ContactInformationPage = 'no.nav.navno:contact-information',
     ContactStepPage = 'no.nav.navno:contact-step-page',
     ContentList = 'no.nav.navno:content-list',
@@ -118,7 +118,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
     [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
     [ContentType.ContactInformationPage]: 'Kontaktinformasjon',
-    [ContentType.Calculator]: 'Kalkulator',
+    [ContentType.Kalkulator]: 'Kalkulator',
     [ContentType.Pictograms]: 'Piktogram',
     [ContentType.PressLandingPage]: 'Landingsside for presse',
     [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',

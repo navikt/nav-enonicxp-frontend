@@ -57,11 +57,9 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                         {tagline}
                     </BodyShort>
                     {subTitle && (
-                        <>
-                            <BodyShort size="small" className={style.branchNamesLabel}>
-                                {subTitle}
-                            </BodyShort>
-                        </>
+                        <BodyShort size="small" className={style.branchNamesLabel}>
+                            {subTitle}
+                        </BodyShort>
                     )}
                 </div>
             </div>

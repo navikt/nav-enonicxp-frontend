@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { FilterSelection } from 'types/component-props/_mixins';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 
-type Props = {
+type Props = PropsWithChildren<{
     filters?: string[];
-    children: React.ReactNode;
-};
+}>;
 
 const checkForFilterMatch = (filters: string[], selectedFilters: FilterSelection) =>
     filters.some((filter) => selectedFilters.includes(filter));
 
-/** @deprecated */
 //Denne komponenten brukes ikke egentlig lenger, men beholdes foreløpig for å kunne vise sider riktig i versjonshistorikken
 export const FilteredContent = ({ filters, children }: Props) => {
     const { selectedFilters, availableFilters } = useFilterState();

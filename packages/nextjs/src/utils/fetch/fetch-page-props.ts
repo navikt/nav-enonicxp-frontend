@@ -31,7 +31,7 @@ type FetchPagePropsArgs = {
 const isValidIdOrPath = (idOrPath: string) => {
     try {
         return !!decodeURI(idOrPath);
-    } catch (e) {
+    } catch (_e) {
         logger.error(`Invalid id or path - ${idOrPath}`);
         return false;
     }

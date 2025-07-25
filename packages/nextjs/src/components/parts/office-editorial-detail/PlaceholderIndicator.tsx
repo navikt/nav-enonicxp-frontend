@@ -1,9 +1,6 @@
+import { PropsWithChildren } from 'react';
 import styles from './PlaceholderIndicator.module.scss';
 
-type PlaceholderIndicatorProps = {
-    children: React.ReactNode;
-};
-
-export const PlaceholderIndicator = ({ children }: PlaceholderIndicatorProps) => {
+export const PlaceholderIndicator = ({ children }: PropsWithChildren) => {
     return <div className={styles.placeholderIndicator}>{children}</div>;
 };

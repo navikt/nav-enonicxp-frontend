@@ -120,6 +120,7 @@ jobs:
               run: npm run build
               env:
                   SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+                  GIT_HASH: ${{ github.sha }}
             - name: Upload static files to Nav CDN
               uses: nais/deploy/actions/cdn-upload/v2@master
               with:

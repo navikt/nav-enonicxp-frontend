@@ -28,7 +28,7 @@ import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
-import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
+import { KalkulatorPage } from './pages/kalkulator-page/KalkulatorPage';
 import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
 import { OfficePage } from './pages/office-page/OfficePage';
 import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
@@ -61,7 +61,7 @@ const contentToReactComponent: {
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
     [ContentType.FormDetails]: FormDetailsPreviewPage,
     [ContentType.FormsOverview]: FormsOverviewPage,
-    [ContentType.Calculator]: CalculatorPage,
+    [ContentType.Kalkulator]: KalkulatorPage,
     [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,
     [ContentType.AlertInContext]: AlertInContextPage,
     [ContentType.ContactStepPage]: ContactStepPage,
@@ -89,7 +89,7 @@ const contentToReactComponent: {
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
-    contentToReactComponent.hasOwnProperty(content.type);
+    Object.hasOwn(contentToReactComponent, content.type);
 
 type Props = {
     content: ContentProps;
