@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Refactor the macro types before fixing the type errors in this file
 import React from 'react';
+import { logger } from '@/shared/logger';
 import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 import { MacroTall } from 'components/macros/tall/MacroTall';

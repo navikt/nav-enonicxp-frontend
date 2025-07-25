@@ -10,7 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
 import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
@@ -33,6 +32,7 @@ import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishin
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
@@ -45,15 +45,15 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
-import { ContactOptionPart } from './contact-option/ContactOptionPart';
+import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
-import { AreaCardPart } from './area-card/AreaCardPart';
-import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
+import { OmradekortPart } from './omradekort/OmradekortPart';
+import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
-import { AccordionPart } from './accordion/AccordionPart';
+import { TrekkspillPart } from './trekkspill/TrekkspillPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
@@ -72,20 +72,20 @@ const PartComponentMapper = ({
     pageProps: ContentProps;
 }) => {
     switch (partProps.descriptor) {
-        case PartType.Accordion:
-            return <AccordionPart {...partProps} />;
+        case PartType.Trekkspill:
+            return <TrekkspillPart {...partProps} />;
         case PartType.AlertBox:
             return <AlertBoxPart {...partProps} />;
-        case PartType.AreaCard:
-            return <AreaCardPart {...partProps} />;
-        case PartType.AreapageSituationCard:
-            return <AreapageSituationCardPart {...partProps} />;
+        case PartType.Omradekort:
+            return <OmradekortPart {...partProps} />;
+        case PartType.Situasjonskort:
+            return <SituasjonskortPart {...partProps} />;
         case PartType.Button:
             return <ButtonPart {...partProps} />;
-        case PartType.Calculator:
-            return <CalculatorPart {...partProps} />;
-        case PartType.ContactOption:
-            return <ContactOptionPart {...partProps} />;
+        case PartType.Kalkulator:
+            return <KalkulatorPart {...partProps} />;
+        case PartType.KontaktOssKanal:
+            return <KontaktOssKanalPart {...partProps} />;
         case PartType.FiltersMenu:
             return <FiltersMenuPart {...partProps} />;
         case PartType.FormDetails:

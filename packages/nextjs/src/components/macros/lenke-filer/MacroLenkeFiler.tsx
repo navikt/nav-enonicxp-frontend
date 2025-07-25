@@ -12,7 +12,7 @@ export const MacroLenkeFiler = ({ config }: MacroLenkeFilerProps) => {
     return (
         <>
             {text}
-            {files.map((file, index) => {
+            {files.map((file) => {
                 const filePath = file?._path;
                 if (!filePath) {
                     return null;
@@ -20,7 +20,7 @@ export const MacroLenkeFiler = ({ config }: MacroLenkeFilerProps) => {
 
                 const fileExt = filePath.split('.').slice(-1);
                 return (
-                    <Fragment key={index}>
+                    <Fragment key={filePath}>
                         {' '}
                         <LenkeInline
                             href={filePath}

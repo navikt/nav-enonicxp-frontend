@@ -1,10 +1,9 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { AreaCardGraphics } from 'components/_common/areaCard/graphics/AreaCardGraphics';
+import { OmradekortGraphics } from 'components/_common/omradekort/graphics/OmradekortGraphics';
 import { AreaPageProps } from 'types/content-props/index-pages-props';
-
-import graphicsStyle from 'components/_common/areaCard/graphics/AreaCardGraphicsCommon.module.scss';
+import graphicsStyle from 'components/_common/omradekort/graphics/OmradekortGraphicsCommon.module.scss';
 import { AreaPageHeaderBanner, Banner } from './banner/AreaPageHeaderBanner';
 import style from './AreaPageHeader.module.scss';
 
@@ -28,7 +27,7 @@ export const AreaPageHeader = ({ content }: Props) => {
                 {banner && <AreaPageHeaderBanner banner={banner} header={header} />}
             </div>
             <div className={classNames(style.gfxContainer, graphicsStyle.expandGraphics)}>
-                <AreaCardGraphics type={area} insideCard={false} />
+                <OmradekortGraphics type={area} insideCard={false} />
             </div>
         </div>
     );

@@ -45,19 +45,19 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
     const { url, canRouteClientSide } = usePublicUrl(link.url);
 
     const getComponentAnalyticsName = (type: CardType, size: CardSize) => {
-        switch (type) {
-            case CardType.Provider:
-                return 'Tilbyderkort';
-            default:
-                switch (size) {
-                    case CardSize.Mini:
-                        return 'Kort mini';
-                    case CardSize.Micro:
-                        return 'Kort mikro';
-                    default:
-                        return 'Kort';
-                }
+        if (type === CardType.Provider) {
+            return 'Tilbyderkort';
         }
+
+        if (size === CardSize.Mini) {
+            return 'Kort mini';
+        }
+
+        if (size === CardSize.Micro) {
+            return 'Kort mikro';
+        }
+
+        return 'Kort';
     };
 
     const analyticsPayload = {

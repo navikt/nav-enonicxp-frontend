@@ -17,6 +17,18 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
     const { type } = pageProps;
     const { regions } = layoutProps;
 
+    const renderPageSpecificContent = () => {
+        if (type === ContentType.FrontPage) {
+            return <FrontPageAreaNavigation content={pageProps} />;
+        }
+
+        if (type === ContentType.AreaPage) {
+            return <AreaPageHeader content={pageProps} />;
+        }
+
+        return null;
+    };
+
     return (
         <LayoutContainer
             pageProps={pageProps}
@@ -28,11 +40,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
                 {type !== ContentType.AreaPage && (
                     <Region pageProps={pageProps} regionProps={regions.contentTop} />
                 )}
-                {type === ContentType.FrontPage ? (
-                    <FrontPageAreaNavigation content={pageProps} />
-                ) : type === ContentType.AreaPage ? (
-                    <AreaPageHeader content={pageProps} />
-                ) : null}
+                {renderPageSpecificContent()}
                 <Region
                     className={style.contentBottom}
                     pageProps={pageProps}

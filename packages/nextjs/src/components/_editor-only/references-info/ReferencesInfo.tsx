@@ -23,23 +23,29 @@ export const ReferencesInfo = ({ content }: Props) => {
         return null;
     }
 
-    return (
-        <div className={style.container}>
-            {references.result === 'loading' ? (
+    const renderContent = () => {
+        if (references.result === 'loading') {
+            return (
                 <div className={style.loader}>
                     <Loader size={'xlarge'} />
                     <BodyShort>{'Laster avhengigheter...'}</BodyShort>
                 </div>
-            ) : references.result === 'error' ? (
+            );
+        }
+
+        if (references.result === 'error') {
+            return (
                 <AlertBox variant={'error'} inline={true}>
                     <Heading level={'3'} size={'small'}>
                         {`Feil: ${references.message}`}
                     </Heading>
                     <BodyLong>{'Forsøk å laste inn editoren på nytt.'}</BodyLong>
                 </AlertBox>
-            ) : (
-                <ReferencesInfoResult references={references.references} content={content} />
-            )}
-        </div>
-    );
+            );
+        }
+
+        return <ReferencesInfoResult references={references.references} content={content} />;
+    };
+
+    return <div className={style.container}>{renderContent()}</div>;
 };

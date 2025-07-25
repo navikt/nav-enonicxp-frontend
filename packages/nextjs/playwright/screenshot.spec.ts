@@ -26,7 +26,7 @@ for (const story of stories) {
                     animations: 'disabled',
                 }
             );
-        } catch (error) {
+        } catch (_error) {
             return;
         }
     });

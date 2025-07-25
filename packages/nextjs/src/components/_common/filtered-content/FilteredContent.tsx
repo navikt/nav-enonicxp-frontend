@@ -9,7 +9,6 @@ type Props = PropsWithChildren<{
 const checkForFilterMatch = (filters: string[], selectedFilters: FilterSelection) =>
     filters.some((filter) => selectedFilters.includes(filter));
 
-/** @deprecated */
 //Denne komponenten brukes ikke egentlig lenger, men beholdes foreløpig for å kunne vise sider riktig i versjonshistorikken
 export const FilteredContent = ({ filters, children }: Props) => {
     const { selectedFilters, availableFilters } = useFilterState();

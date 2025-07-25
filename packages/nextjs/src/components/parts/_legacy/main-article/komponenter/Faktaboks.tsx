@@ -1,8 +1,8 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { Heading } from '@navikt/ds-react';
 
 import style from './Faktaboks.module.scss';
 

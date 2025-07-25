@@ -100,7 +100,9 @@ export const FormDetails = ({
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
-                alerts.map((alert, index) => <AlertInContext key={index} data={alert.data} />)}
+                alerts.map((alert, index) => (
+                    <AlertInContext key={`${alert.data.text}-${index}`} data={alert.data} />
+                ))}
 
             {variations.length > 0 && (
                 <div className={style.variation}>
