@@ -67,7 +67,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     }
 
     expressApp.get('/_next/data/:buildId{/*path}', (req, res) => {
-        const { buildId } = req.params;
+        const buildId = (req.params as any)['buildId'];
         if (buildId !== currentBuildId) {
             logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
             req.url = req.url.replace(buildId, currentBuildId);
