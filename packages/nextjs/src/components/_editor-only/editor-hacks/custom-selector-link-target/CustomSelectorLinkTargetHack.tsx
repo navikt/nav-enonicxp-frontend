@@ -2,6 +2,21 @@ import { useEffect } from 'react';
 
 const customSelectorLinkClassName = 'custom-selector-link';
 
+const setTargetBlank = (element: HTMLAnchorElement) => {
+    element.target = '_blank';
+};
+
+const handleAddedNode = (node: Node) => {
+    const element = node as Element;
+    if (element.classList?.contains(customSelectorLinkClassName)) {
+        setTargetBlank(element as HTMLAnchorElement);
+    }
+};
+
+const handleMutation = (mutation: MutationRecord) => {
+    mutation.addedNodes.forEach(handleAddedNode);
+};
+
 // Inserts the target=_blank attribute on link-icons from custom-selector hits.
 // This attribute is removed by content studio before the icon is rendered, but
 // we want to sneak it back in :)
@@ -12,17 +27,11 @@ export const CustomSelectorLinkTargetHack = () => {
         ) as HTMLCollectionOf<HTMLAnchorElement>;
 
         for (const element of selectorLinks) {
-            element.target = '_blank';
+            setTargetBlank(element);
         }
 
         const callback: MutationCallback = (mutations) => {
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach((node) => {
-                    if ((node as Element).classList?.contains(customSelectorLinkClassName)) {
-                        (node as HTMLAnchorElement).target = '_blank';
-                    }
-                });
-            });
+            mutations.forEach(handleMutation);
         };
 
         const observer = new MutationObserver(callback);

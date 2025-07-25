@@ -39,8 +39,12 @@ export const VersionSelectorPublished = ({
                 }}
                 className={style.select}
             >
-                {versionTimestamps.map((timestamp, index) => (
-                    <option value={timestamp} selected={timestamp === selectedDateTime} key={index}>
+                {versionTimestamps.map((timestamp) => (
+                    <option
+                        value={timestamp}
+                        selected={timestamp === selectedDateTime}
+                        key={timestamp}
+                    >
                         {formatDateTime(timestamp, 'nb', true)}
                     </option>
                 ))}
