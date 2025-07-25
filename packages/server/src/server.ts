@@ -31,7 +31,20 @@ nextApp.prepare().then(async () => {
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
-    expressApp.use('*', promMiddleware);
+    // Express 5 compatibility: Make request properties writable for Next.js
+    expressApp.use((req, res, next) => {
+        // Make query writable
+        const query = req.query;
+        Object.defineProperty(req, 'query', {
+            get() { return query; },
+            set(value) { Object.assign(query, value); },
+            enumerable: true,
+            configurable: true
+        });
+        next();
+    });
+
+    expressApp.use(promMiddleware);
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
