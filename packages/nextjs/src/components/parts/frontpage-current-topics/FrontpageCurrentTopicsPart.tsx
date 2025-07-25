@@ -26,11 +26,7 @@ export const FrontpageCurrentTopicsPart = ({
     const { language, editorView } = usePageContentProps();
     const { contentList, title, link, bgColor, itemColor } = config;
 
-    if (
-        !contentList ||
-        !contentList.data.sectionContents ||
-        contentList.data.sectionContents.length === 0
-    ) {
+    if (!contentList?.data?.sectionContents?.length) {
         if (editorView) {
             return <EditorHelp text={'Velg en innholdsliste'} />;
         } else {

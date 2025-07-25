@@ -49,7 +49,7 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
 export const useOversiktFilters = () => {
     const dispatch = useAppDispatch();
     const filtersState = useAppSelector((state) => state.oversiktFilters);
-    const { textFilter, omradeFilter: omradeFilter } = filtersState;
+    const { textFilter, omradeFilter } = filtersState;
 
     const hasDefaultFilters =
         textFilter === oversiktFiltersInitialState.textFilter &&

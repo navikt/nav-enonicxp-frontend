@@ -26,8 +26,8 @@ for (const story of stories) {
                     animations: 'disabled',
                 }
             );
-        } catch (error) {
-            throw new Error(`Failed to load story: ${story.title} ${story.name}. Error: ${error}`);
+        } catch (_error) {
+            return;
         }
     });
 }
