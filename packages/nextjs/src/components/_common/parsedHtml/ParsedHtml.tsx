@@ -92,7 +92,6 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
         return null;
     }
 
-    // TODO: refactor this mess :D
     const parserOptions: HTMLReactParserOptions = {
         replace: (element: DOMNode) => {
             if (!isTag(element)) {

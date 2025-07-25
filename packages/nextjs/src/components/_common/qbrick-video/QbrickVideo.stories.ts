@@ -1,4 +1,3 @@
-// Dette er del 1. TODO: Publicview
 import type { Meta, StoryObj } from '@storybook/react';
 import { QbrickVideo } from './QbrickVideo';
 

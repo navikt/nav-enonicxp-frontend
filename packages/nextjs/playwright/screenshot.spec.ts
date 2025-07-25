@@ -27,7 +27,7 @@ for (const story of stories) {
                 }
             );
         } catch (error) {
-            return;
+            throw new Error(`Failed to load story: ${story.title} ${story.name}. Error: ${error}`);
         }
     });
 }
