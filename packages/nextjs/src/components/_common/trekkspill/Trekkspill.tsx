@@ -59,7 +59,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                 const isValid = validatePanel(item);
                 return (
                     <DSAccordion.Item
-                        key={index}
+                        key={item.anchorId || item.title}
                         className={styles.item}
                         open={openTrekkspill.includes(index)}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}

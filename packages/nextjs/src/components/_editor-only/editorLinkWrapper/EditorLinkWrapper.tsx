@@ -21,27 +21,49 @@ export const EditorLinkWrapper = ({ children }: PropsWithChildren) => {
         return <>{children}</>;
     }
 
-    const { className, href, onClick, target } =
-        child.props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+    const {
+        className,
+        href,
+        onClick,
+        target,
+        'aria-label': ariaLabel,
+    } = child.props as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
     const hrefFinal = href ? getRelativePathIfInternal(href, !!editorView) : undefined;
+
+    const handleInteraction = (
+        e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+    ) => {
+        e.stopPropagation();
+
+        if ('key' in e && e.key !== 'Enter' && e.key !== ' ') {
+            return;
+        }
+
+        if ('key' in e && e.key === ' ') {
+            e.preventDefault(); // Prevent page scroll on space
+        }
+
+        onClick?.(e as React.MouseEvent<HTMLAnchorElement>);
+
+        if (hrefFinal) {
+            if (target === '_blank') {
+                window.open(hrefFinal, target);
+            } else {
+                window.location.assign(hrefFinal);
+            }
+        }
+    };
 
     return (
         <span
             className={className}
             style={{ cursor: 'pointer' }}
-            onClick={(e) => {
-                e.stopPropagation();
-                onClick?.(e as React.MouseEvent<HTMLAnchorElement>);
-
-                if (hrefFinal) {
-                    if (target === '_blank') {
-                        window.open(hrefFinal, target);
-                    } else {
-                        window.location.assign(hrefFinal);
-                    }
-                }
-            }}
+            onClick={handleInteraction}
+            onKeyDown={handleInteraction}
+            role="link"
+            tabIndex={0}
+            aria-label={ariaLabel}
         >
             {children}
         </span>

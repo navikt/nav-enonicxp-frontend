@@ -36,11 +36,7 @@ export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }:
             className={classNames(style.linkPanel, graphicsStyle.expandOnHover, className)}
             as={LenkeBase}
         >
-            <div
-                className={
-                    title.length > 17 ? style.titleLong : style.titleShort //TODO Finne en bedre løsning? Width settes også i px
-                }
-            >
+            <div className={title.length > 17 ? style.titleLong : style.titleShort}>
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
             <OmradekortGraphics type={area} insideCard />

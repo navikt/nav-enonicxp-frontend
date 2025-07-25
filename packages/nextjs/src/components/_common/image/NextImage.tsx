@@ -34,7 +34,6 @@ const origin =
 // with some extra benefits for responsive design and optimalization. However this
 // requires refactoring most of our existing image code/CSS to render correctly
 //
-// TODO: refactor our existing image code/CSS :)
 export const buildImageCacheUrl = ({
     src,
     isEditorView,
