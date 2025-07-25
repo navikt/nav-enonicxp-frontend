@@ -79,7 +79,6 @@ export const IconVertical: Story = {
     },
 };
 
-// TODO: Denne brukes ikke på nav.no per 24.10.2024, men skulle vi hatt en story på denne trenger vi en metode for å vise media. Mocke respons eller overstyre origin til xp?
 // export const Background: Story = {
 //   args: {
 //     config: {

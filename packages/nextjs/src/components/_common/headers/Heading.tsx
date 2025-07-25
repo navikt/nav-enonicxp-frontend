@@ -12,7 +12,12 @@ type Props = PropsWithChildren<{
 }>;
 
 export const Heading = ({ children, size, level, anchorId, className }: Props) => {
-    const anchor = anchorId ? (anchorId.startsWith('#') ? anchorId : `#${anchorId}`) : undefined;
+    const getAnchor = () => {
+        if (!anchorId) return undefined;
+        return anchorId.startsWith('#') ? anchorId : `#${anchorId}`;
+    };
+
+    const anchor = getAnchor();
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (

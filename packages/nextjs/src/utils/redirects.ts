@@ -33,7 +33,7 @@ const getTargetPath = (content: ContentProps) => {
             // we want to redirect to the actual content page. This is provided as a way
             // to gradually migrate individual pages from the chapter structure
             const { article } = content.data;
-            return article && article.type !== ContentType.MainArticle ? article._path : null;
+            return article?.type !== ContentType.MainArticle ? article?._path : null;
         }
         default:
             return null;

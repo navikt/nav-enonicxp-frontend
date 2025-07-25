@@ -9,9 +9,6 @@ import { KalkulatorField } from './kalkulatorField/KalkulatorField';
 import { KalkulatorResultat } from './kalkulatorResultat/KalkulatorResultat';
 import style from './Kalkulator.module.scss';
 
-// TODO: Add better data validation and enforce input on the backend
-// for fields which should not be optional
-
 type FieldRecord = Record<string, number | null>;
 
 /** Fields with global values are not user accessible, but has to be

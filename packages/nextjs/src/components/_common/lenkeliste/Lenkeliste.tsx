@@ -37,8 +37,8 @@ export const Lenkeliste = ({ tittel, lenker, listType, className }: Props) => {
                 </Heading>
             )}
             <WrapUL showAsList={listType === 'bulletlist'}>
-                {lenker.map((lenke, index) => (
-                    <WrapLI showAsList={listType === 'bulletlist'} key={index}>
+                {lenker.map((lenke) => (
+                    <WrapLI showAsList={listType === 'bulletlist'} key={lenke.url}>
                         <LenkeStandalone
                             href={lenke.url}
                             label={lenke.label}

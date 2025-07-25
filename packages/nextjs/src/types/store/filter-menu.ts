@@ -1,9 +1,6 @@
-type FilterId = string;
-type PageId = string;
-
 export type Filter = {
     filterName: string;
-    id: FilterId;
+    id: string;
 };
 
 export type Category = {
@@ -19,11 +16,11 @@ export type FilteredContentState = {
 };
 
 type BasePayload = {
-    pageId: PageId;
+    pageId: string;
 };
 
 export type FilterSelectionPayload = BasePayload & {
-    filterId: FilterId;
+    filterId: string;
 };
 
 export type AvailableFiltersPayload = BasePayload & {
@@ -31,9 +28,9 @@ export type AvailableFiltersPayload = BasePayload & {
 };
 
 export type ClearFiltersPayload = BasePayload & {
-    filterIds?: FilterId[];
+    filterIds?: string[];
 };
 
 export type SelectFiltersPayload = BasePayload & {
-    filterIds: FilterId[];
+    filterIds: string[];
 };
