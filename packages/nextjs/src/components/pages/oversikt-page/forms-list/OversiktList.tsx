@@ -10,7 +10,7 @@ import style from './OversiktList.module.scss';
 // Matches on form number-like queries and returns the full valid form number if match found
 // Form numbers are formatted like "NAV 01-23.45" or "NAV 01-23.45b"
 const getExactFormNumberIfFormSearch = (term: string) => {
-    const match = /^(nav.?)?([0-9]{2}).?([0-9]{2}).?([0-9]{2})$/.exec(term);
+    const match = /^(nav.?)?(\d{2}).?(\d{2}).?(\d{2})$/.exec(term);
     if (!match) {
         return undefined;
     }
