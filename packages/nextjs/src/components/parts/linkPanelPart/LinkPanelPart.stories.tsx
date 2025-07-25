@@ -78,15 +78,3 @@ export const IconVertical: Story = {
         },
     },
 };
-
-// export const Background: Story = {
-//   args: {
-//     config: {
-//       ...meta.args.config,
-//       background: {
-//         type: MediaType.Vector,
-//         mediaUrl: 'http://localhost:6006/favicon.svg'
-//       }
-//     }
-//   }
-// };

@@ -27,11 +27,16 @@ const getRegionHelpTexts = (
 // we need to determine the detailType by checking both detailType and overviewType (for product overview)
 const getProductDetailType = (contentProps: ContentProps) => {
     const { type, data } = contentProps;
-    return type === ContentType.Overview
-        ? data.overviewType
-        : type === ContentType.ProductDetails
-          ? data.detailType
-          : null;
+
+    if (type === ContentType.Overview) {
+        return data.overviewType;
+    }
+
+    if (type === ContentType.ProductDetails) {
+        return data.detailType;
+    }
+
+    return null;
 };
 
 type Props = {
