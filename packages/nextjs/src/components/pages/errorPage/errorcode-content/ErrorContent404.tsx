@@ -21,7 +21,7 @@ export const ErrorContent404 = () => {
     return (
         <div className={style.error404}>
             <div>
-                {urlSuggestion && urlSuggestion.url && urlSuggestion.title && (
+                {urlSuggestion?.url && urlSuggestion?.title && (
                     <BodyLong>
                         {'Kanskje du mente denne siden: '}
                         <LenkeInline className={style.urlSuggestion} href={urlSuggestion.url}>

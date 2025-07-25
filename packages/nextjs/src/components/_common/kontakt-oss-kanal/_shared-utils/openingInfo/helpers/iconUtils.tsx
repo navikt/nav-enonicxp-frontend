@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-// TODO: skriv om til å importe image assets og bruk CSS for hover state etc
-
 const appOrigin = process.env.APP_ORIGIN;
 
 type UseHoverAndFocus = {

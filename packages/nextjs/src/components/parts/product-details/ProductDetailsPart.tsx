@@ -79,9 +79,9 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
                         ariaLabel={ariaLabel}
                         {...config}
                     >
-                        {components.map((component, index) => (
+                        {components.map((component) => (
                             <ComponentMapper
-                                key={index}
+                                key={component.path}
                                 componentProps={component}
                                 pageProps={pageProps}
                                 isCustomNestedComponent={true}

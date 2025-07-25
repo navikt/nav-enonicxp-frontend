@@ -36,8 +36,8 @@ export const MicroCards = ({ header, card_list }: Props) => {
                 </BodyShort>
             )}
             <div className={style.wrapper}>
-                {cardProps.map((card, index) => (
-                    <MicroCard {...card} key={index} />
+                {cardProps.map((card) => (
+                    <MicroCard {...card} key={card.link.url} />
                 ))}
             </div>
         </>

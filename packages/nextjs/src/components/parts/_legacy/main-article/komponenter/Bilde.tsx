@@ -16,8 +16,13 @@ export const Bilde = (props: Props) => {
 
     const { size, target } = picture;
 
-    const imgClass =
-        size === '40' ? style.figureSmall : size === '70' ? style.figureMedium : style.figureFull;
+    const sizeClassMap: Record<string, string> = {
+        '40': style.figureSmall,
+        '70': style.figureMedium,
+        '100': style.figureFull,
+    };
+
+    const imgClass = sizeClassMap[size || '100'] || style.figureFull;
 
     return (
         <div className={style.figureContainer}>

@@ -22,7 +22,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer className={style.layout} pageProps={pageProps} layoutProps={layoutProps}>
-            {Object.values(regions).map((regionProps, index) => {
+            {Object.entries(regions).map(([regionName, regionProps], index) => {
                 const regionStyle = distribution
                     ? {
                           flex: `${distribution.split('-')[index]}`,
@@ -35,7 +35,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
                         pageProps={pageProps}
                         regionProps={regionProps}
                         regionStyle={regionStyle}
-                        key={index}
+                        key={regionName}
                     />
                 );
             })}
