@@ -31,7 +31,7 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.ProductCardMini,
     MacroType.ProductCardMicro,
     MacroType.Quote,
-    MacroType.VarselBoks,
+    MacroType.VarselBoksDeprecated,
     MacroType.Video,
     MacroType.FormDetails,
 ]);
