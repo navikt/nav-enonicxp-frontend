@@ -29,7 +29,7 @@ import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { KalkulatorPage } from './pages/kalkulator-page/KalkulatorPage';
-import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
+import { VarselIKontekstPage } from './pages/varsel-i-kontekst-page/VarselIKontekstPage';
 import { OfficePage } from './pages/office-page/OfficePage';
 import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
@@ -63,7 +63,7 @@ const contentToReactComponent: {
     [ContentType.FormsOverview]: FormsOverviewPage,
     [ContentType.Kalkulator]: KalkulatorPage,
     [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,
-    [ContentType.AlertInContext]: AlertInContextPage,
+    [ContentType.VarselIKontekst]: VarselIKontekstPage,
     [ContentType.ContactStepPage]: ContactStepPage,
 
     [ContentType.AreaPage]: DynamicPage,
