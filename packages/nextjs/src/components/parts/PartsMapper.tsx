@@ -33,7 +33,7 @@ import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publ
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
-import { AlertBoxPart } from './alert-box/AlertBoxPart';
+import { VarselboksPart } from './varselboks/VarselboksPart';
 import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
@@ -74,8 +74,8 @@ const PartComponentMapper = ({
     switch (partProps.descriptor) {
         case PartType.Trekkspill:
             return <TrekkspillPart {...partProps} />;
-        case PartType.AlertBox:
-            return <AlertBoxPart {...partProps} />;
+        case PartType.Varselboks:
+            return <VarselboksPart {...partProps} />;
         case PartType.Omradekort:
             return <OmradekortPart {...partProps} />;
         case PartType.Situasjonskort:

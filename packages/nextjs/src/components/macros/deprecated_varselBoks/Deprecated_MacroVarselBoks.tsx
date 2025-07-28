@@ -1,11 +1,11 @@
 import React from 'react';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { MacroVarselBoksProps } from 'types/macro-props/varselBoks';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import style from './MacroVarselBoks.module.scss';
+import style from './Deprecated_MacroVarselBoks.module.scss';
 
 // This macro is deprecated
-export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
+export const Deprecated_MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     if (!config?.varselBoks) {
         return null;
     }
@@ -15,8 +15,8 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     const { varselBoks } = config.varselBoks;
 
     return (
-        <AlertBox variant={'warning'} className={style.macroVarselboks}>
+        <Varselboks variant={'warning'} className={style.macroVarselboks}>
             <ParsedHtml htmlProps={varselBoks} />
-        </AlertBox>
+        </Varselboks>
     );
 };
