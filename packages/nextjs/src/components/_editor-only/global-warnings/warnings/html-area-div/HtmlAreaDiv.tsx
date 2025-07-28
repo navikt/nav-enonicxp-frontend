@@ -1,20 +1,19 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { htmlAreaIsInPageContentButNotInContentSection } from './htmlAreaIsInPageContentButNotInContentSection';
+import { htmlAreaContainsDiv } from './htmlAreaContainsDiv';
 
 type Props = {
     content: ContentProps;
 };
 
-export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
+export const HtmlAreaDiv = ({ content }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const walk = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (htmlAreaIsInPageContentButNotInContentSection(node)) {
+        if (htmlAreaContainsDiv(node)) {
             const { path, config } = node;
-
             warnings.push(
                 <ul>
                     <li key={path}>Innhold: {JSON.stringify(config.html.processedHtml)}</li>
@@ -30,16 +29,16 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
     };
 
     const regions = content.page?.regions;
-    if (regions && 'pageContent' in regions) {
-        walk(regions['pageContent']);
+    if (regions) {
+        walk(regions);
     }
 
     return warnings.length > 0 ? (
         <>
             <li>
-                Innholdet ligger utenfor den angitte innholdsseksjonen og må flyttes inn for å sikre
-                korrekt struktur ved publisering (se rød markering under). Se mer informasjon under
-                om hvilket innhold det gjelder.
+                Det er en feil i Formatert inhold som må rettes for å sikre korrekt struktur ved
+                publisering (se rød markering under). Det inneholder en <code>&lt;div&gt;</code>
+                -tagg som ikke er tillatt. Se mer informasjon under om hvilket innhold det gjelder.
             </li>
             {warnings}
         </>

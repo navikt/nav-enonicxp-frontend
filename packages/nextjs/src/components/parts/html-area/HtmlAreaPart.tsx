@@ -8,7 +8,8 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { isHtmlAreaInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/isHtmlAreaInPageContentButNotInContentSection';
+import { htmlAreaIsInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/htmlAreaIsInPageContentButNotInContentSection';
+import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -23,7 +24,9 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
 };
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
-    const shouldWarn = isHtmlAreaInPageContentButNotInContentSection({ path, descriptor });
+    const shouldWarn =
+        htmlAreaIsInPageContentButNotInContentSection({ path, descriptor }) ||
+        htmlAreaContainsDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
 
     useEffect(() => {

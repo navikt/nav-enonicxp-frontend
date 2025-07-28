@@ -1,4 +1,4 @@
-export const isHtmlAreaInPageContentButNotInContentSection = (node: {
+export const htmlAreaIsInPageContentButNotInContentSection = (node: {
     path?: string;
     descriptor?: string;
 }): boolean => {

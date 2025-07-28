@@ -5,8 +5,7 @@ import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { RenderToEditorGlobalWarnings } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
-
+import { RenderToRedaktorvarsler } from 'components/_editor-only/global-warnings/Redaktorvarsler';
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
 import lightBulb from '/public/gfx/lightbulb.svg';
@@ -61,12 +60,12 @@ export const EditorHelp = ({ text, globalWarningText, type = 'help' }: Props) =>
                 {text}
             </BodyShort>
             {globalWarningText && (
-                <RenderToEditorGlobalWarnings>
+                <RenderToRedaktorvarsler>
                     <span>{globalWarningText}</span>
                     <EditorLinkWrapper>
                         <LenkeInline href={`#${id}`}>{'[Til feilen]'}</LenkeInline>
                     </EditorLinkWrapper>
-                </RenderToEditorGlobalWarnings>
+                </RenderToRedaktorvarsler>
             )}
         </div>
     );

@@ -7,10 +7,11 @@ import { DuplicateIds } from './warnings/duplicate-ids/DuplicateIds';
 import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
 import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
 import { PartUtenforInnholdsseksjon } from './warnings/part-utenfor-innholdsseksjon/PartUtenforInnholdsseksjon';
+import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
-export const RenderToEditorGlobalWarnings = ({ children }: { children: React.ReactNode }) => {
+export const RenderToRedaktorvarsler = ({ children }: { children: React.ReactNode }) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
@@ -29,14 +30,15 @@ export const RenderToEditorGlobalWarnings = ({ children }: { children: React.Rea
     return createPortal(children, element);
 };
 
-export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => {
+export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
     const hasErrors = (): boolean => {
         return (
             KortUrlWarning({ content }) !== null ||
             DuplicateIds() !== null ||
             FormNumbersWarning({ content }) !== null ||
             KontaktinformasjonWarning({ content }) !== null ||
-            PartUtenforInnholdsseksjon({ content }) !== null
+            PartUtenforInnholdsseksjon({ content }) !== null ||
+            HtmlAreaDiv({ content }) !== null
         );
     };
 
@@ -53,6 +55,7 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
                         <FormNumbersWarning content={content} />
                         <KontaktinformasjonWarning content={content} />
                         <PartUtenforInnholdsseksjon content={content} />
+                        <HtmlAreaDiv content={content} />
                     </ul>
                 </Alert>
             )}
