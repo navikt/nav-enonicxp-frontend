@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
-import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
+import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
@@ -37,7 +37,7 @@ import { ComponentBaseProps, ComponentType } from './_component-common';
 export enum PartType {
     Omradekort = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
-    AlertBox = 'no.nav.navno:dynamic-alert',
+    Varselboks = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
@@ -94,7 +94,7 @@ export enum PartLegacyType {
 
 type PartConfigs = {
     [PartType.Trekkspill]: PartConfigTrekkspill;
-    [PartType.AlertBox]: PartConfigAlertBox;
+    [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;

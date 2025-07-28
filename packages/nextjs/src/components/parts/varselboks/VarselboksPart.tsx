@@ -1,12 +1,11 @@
 import React from 'react';
 import { AlertProps } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-
-import style from './AlertBoxPart.module.scss';
+import style from './VarselboksPart.module.scss';
 
 // These types were used by a previous version of the design system component
 // and are still used for the type property on the backend
@@ -21,7 +20,7 @@ const legacyTypeToVariant: {
     suksess: 'success',
 };
 
-export type PartConfigAlertBox = {
+export type PartConfigVarselboks = {
     content: ProcessedHtmlProps;
     type: 'info' | 'advarsel' | 'feil' | 'suksess';
     size?: 'small' | 'medium';
@@ -29,7 +28,7 @@ export type PartConfigAlertBox = {
     margin: string;
 };
 
-export const AlertBoxPart = ({ config }: PartComponentProps<PartType.AlertBox>) => {
+export const VarselboksPart = ({ config }: PartComponentProps<PartType.Varselboks>) => {
     if (!config) {
         return <EditorHelp text={'Varselboksen er ikke konfigurert'} />;
     }
@@ -37,16 +36,16 @@ export const AlertBoxPart = ({ config }: PartComponentProps<PartType.AlertBox>) 
     const { content, type, size, inline, margin } = config;
 
     return (
-        <AlertBox
+        <Varselboks
             variant={legacyTypeToVariant[type] || 'info'}
             size={size}
             inline={inline}
-            className={style.alertBox}
+            className={style.varselboks}
             style={{
                 ...(margin && { margin }),
             }}
         >
             <ParsedHtml htmlProps={content} />
-        </AlertBox>
+        </Varselboks>
     );
 };

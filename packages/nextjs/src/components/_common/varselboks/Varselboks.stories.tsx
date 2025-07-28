@@ -1,19 +1,19 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { AlertBox } from './AlertBox';
+import { Varselboks } from './Varselboks';
 
 const meta = {
-    component: AlertBox,
+    component: Varselboks,
     args: { variant: 'info' },
-} satisfies Meta<typeof AlertBox>;
+} satisfies Meta<typeof Varselboks>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Short: Story = {
     args: {
-        children: 'AlertBox',
+        children: 'Varselboks',
     },
 };
 
