@@ -5,9 +5,9 @@ import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { ClusterState } from 'components/_editor-only/site-info/types';
 import style from './SiteInfoHeader.module.scss';
 
-type AlertboxVariant = React.ComponentProps<typeof Varselboks>['variant'];
+type VarselboksVariant = React.ComponentProps<typeof Varselboks>['variant'];
 
-const clusterStateToVariant: Record<ClusterState, AlertboxVariant> = {
+const clusterStateToVariant: Record<ClusterState, VarselboksVariant> = {
     GREEN: 'success',
     YELLOW: 'warning',
     RED: 'error',

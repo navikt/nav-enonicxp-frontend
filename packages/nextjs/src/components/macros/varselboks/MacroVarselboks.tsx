@@ -4,7 +4,7 @@ import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
 import { Varselboks } from 'components/_common/varselboks/Varselboks';
 
 export interface MacroVarselboksProps extends MacroPropsCommon {
-    name: MacroType.AlertBox;
+    name: MacroType.Varselboks;
     config: {
         alert_box: {
             body: string;

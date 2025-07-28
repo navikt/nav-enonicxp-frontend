@@ -1,5 +1,5 @@
 export enum MacroType {
-    AlertBox = 'alert-box',
+    Varselboks = 'alert-box',
     Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',

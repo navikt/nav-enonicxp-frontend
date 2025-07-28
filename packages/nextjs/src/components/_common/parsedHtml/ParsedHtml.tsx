@@ -23,7 +23,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
-    MacroType.AlertBox,
+    MacroType.Varselboks,
     MacroType.HeaderWithAnchor,
     MacroType.HtmlFragment,
     MacroType.InfoBoks,

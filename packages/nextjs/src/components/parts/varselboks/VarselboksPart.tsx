@@ -20,7 +20,7 @@ const legacyTypeToVariant: {
     suksess: 'success',
 };
 
-export type PartConfigAlertBox = {
+export type PartConfigVarselboks = {
     content: ProcessedHtmlProps;
     type: 'info' | 'advarsel' | 'feil' | 'suksess';
     size?: 'small' | 'medium';
@@ -40,7 +40,7 @@ export const VarselboksPart = ({ config }: PartComponentProps<PartType.Varselbok
             variant={legacyTypeToVariant[type] || 'info'}
             size={size}
             inline={inline}
-            className={style.alertBox}
+            className={style.varselboks}
             style={{
                 ...(margin && { margin }),
             }}

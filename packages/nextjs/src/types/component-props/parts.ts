@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
-import { PartConfigAlertBox } from 'components/parts/varselboks/VarselboksPart';
+import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
@@ -94,7 +94,7 @@ export enum PartLegacyType {
 
 type PartConfigs = {
     [PartType.Trekkspill]: PartConfigTrekkspill;
-    [PartType.Varselboks]: PartConfigAlertBox;
+    [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;

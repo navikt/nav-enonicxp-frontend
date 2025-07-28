@@ -30,7 +30,7 @@ export const Varselboks = ({ variant, size, inline, className, children, ...rest
             variant={variant}
             size={size}
             inline={inline}
-            className={classNames(style.alertBox, className)}
+            className={classNames(style.varselboks, className)}
         >
             {children}
         </Alert>

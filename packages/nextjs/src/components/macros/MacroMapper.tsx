@@ -34,7 +34,7 @@ import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBanner
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.AlertBox]: MacroVarselboks,
+    [MacroType.Varselboks]: MacroVarselboks,
     [MacroType.Button]: MacroButton,
     [MacroType.ButtonBlue]: MacroButton,
     [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,

@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Short: Story = {
     args: {
-        children: 'AlertBox',
+        children: 'Varselboks',
     },
 };
 
