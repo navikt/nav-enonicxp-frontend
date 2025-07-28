@@ -1,0 +1,52 @@
+@use '../../OmradekortGraphicsCommon.module' as areaGraphics;
+@use '../../../Omradekort.module' as omradekort;
+
+.shapes {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 0;
+    top: 122px;
+}
+
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 203px;
+}
+
+.letterS {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: -74px;
+    top: 0;
+}
+
+@include areaGraphics.onExpandMixin('.letterS') {
+    right: 1px;
+}
+
+.mask {
+    background-color: var(--a-deepblue-100);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 145px;
+    height: 245px;
+    right: -30px;
+    top: -45px;
+    transform: rotate(22.09deg);
+}
+
+@include areaGraphics.onExpandMixin('.mask') {
+    right: -184px;
+}
+
+.document {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 67px;
+    top: 42px;
+}
+
+@include areaGraphics.onExpandMixin('.document') {
+    right: 110px;
+    top: 85px;
+}

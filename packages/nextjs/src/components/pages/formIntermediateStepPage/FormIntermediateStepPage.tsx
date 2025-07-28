@@ -68,12 +68,16 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                     />
                 </li>
             ))}
-            backLink={{
-                target: {
-                    _path: backUrl ?? '',
-                    displayName: backUrl ? getTranslations('back') : '',
-                },
-            }}
+            backLink={
+                backUrl
+                    ? {
+                          target: {
+                              _path: backUrl,
+                              displayName: getTranslations('back'),
+                          },
+                      }
+                    : undefined
+            }
             analyticsComponent={'FormIntermediateStepPage'}
             editorView={props.editorView === 'edit' && <StepVisualization steps={data.steps} />}
         />

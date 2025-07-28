@@ -23,7 +23,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
-    MacroType.AlertBox,
+    MacroType.Varselboks,
     MacroType.HeaderWithAnchor,
     MacroType.HtmlFragment,
     MacroType.InfoBoks,
@@ -31,7 +31,7 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.ProductCardMini,
     MacroType.ProductCardMicro,
     MacroType.Quote,
-    MacroType.VarselBoks,
+    MacroType.VarselBoksDeprecated,
     MacroType.Video,
     MacroType.FormDetails,
 ]);
@@ -92,7 +92,6 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
         return null;
     }
 
-    // TODO: refactor this mess :D
     const parserOptions: HTMLReactParserOptions = {
         replace: (element: DOMNode) => {
             if (!isTag(element)) {

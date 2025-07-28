@@ -27,12 +27,12 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const { type, displayName, language, data } = pageProps;
     const { title, illustration, taxonomy, audience, customCategory, ingress, hideIngress } = data;
     const regionRef = useRef<HTMLDivElement>(null);
-    const [hasContactOptions, setHasContactOptions] = React.useState(false);
+    const [harKontaktOssKanal, setHarKontaktOssKanal] = React.useState(false);
     const { regions } = layoutProps;
 
     useEffect(() => {
         if (regionRef.current) {
-            setHasContactOptions(!!regionRef.current.querySelector('.part__contact-option'));
+            setHarKontaktOssKanal(!!regionRef.current.querySelector('.part__contact-option'));
         }
     }, []);
 
@@ -40,14 +40,14 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     const showHeaderAndChangedate = hasGeneralComponents.has(pageProps.type);
 
-    const insertPageUpdatedInfo = (element: JSX.Element, key: string) => {
+    const insertPageUpdatedInfo = (element: React.ReactElement | null, key: string) => {
         const components = regions.pageContent.components;
         const currentIndex = components.findIndex((comp) => comp.path === key);
 
         const isLastElement = currentIndex === components.length - 1;
         const isSecondLastElement = currentIndex === components.length - 2;
 
-        const shouldShowUpdatedInfo = hasContactOptions ? isSecondLastElement : isLastElement;
+        const shouldShowUpdatedInfo = harKontaktOssKanal ? isSecondLastElement : isLastElement;
 
         return (
             <React.Fragment key={key}>

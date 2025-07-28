@@ -22,15 +22,12 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
 
     const { config } = layoutProps;
     const { title, numCols, justifyContent, anchorId } = config;
-
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
-
     const calculateColCount = () => {
         return regionProps.components.length % 3 === 0 ? 3 : 2;
     };
-
     const isShelf =
         regionProps.components.some(
             (component) => component.descriptor === 'no.nav.navno:product-card'
@@ -38,14 +35,14 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
         regionProps.components.some(
             (component) => component.descriptor === 'no.nav.navno:provider-card'
         );
-
-    const colCount = isShelf ? 2 : typeof numCols === 'number' ? numCols : calculateColCount();
+    const colCount = numCols ?? calculateColCount();
 
     return (
         <LayoutContainer
-            className={`${style.layoutSituationOrProduct} ${style.layoutSituation} ${
+            className={classNames(
+                style.layoutSituationOrProduct,
                 isShelf && style.layoutSituationShelf
-            } ${isShelf && 'shelf-layout'}`}
+            )}
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
@@ -65,7 +62,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                     regionProps={regionProps}
                     regionStyle={regionStyle}
                     bemModifier={isShelf ? '' : `${colCount}-cols`}
-                    className={isShelf ? style.shelfLayout : ''}
+                    className={isShelf ? style.shelfLayout : undefined}
                 />
             </div>
         </LayoutContainer>

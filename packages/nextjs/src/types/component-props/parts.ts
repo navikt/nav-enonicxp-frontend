@@ -1,12 +1,12 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
-import { PartConfigAccordion } from 'components/parts/accordion/AccordionPart';
-import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
-import { PartConfigAreaCard } from 'components/parts/area-card/AreaCardPart';
-import { PartConfigAreapageSituationCard } from 'components/parts/areapage-situation-card/AreapageSituationCardPart';
+import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
+import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
+import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
+import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
-import { PartConfigCalculator } from 'components/parts/calculator/CalculatorPart';
-import { PartConfigContactOption } from 'components/parts/contact-option/ContactOptionPart';
+import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
+import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
 import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
 import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
@@ -35,14 +35,14 @@ import { PartConfigProductCardMicro } from 'components/parts/product-card-micro/
 import { ComponentBaseProps, ComponentType } from './_component-common';
 
 export enum PartType {
-    AreaCard = 'no.nav.navno:area-card',
+    Omradekort = 'no.nav.navno:area-card',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
-    AlertBox = 'no.nav.navno:dynamic-alert',
+    Varselboks = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
-    Calculator = 'no.nav.navno:calculator',
+    Kalkulator = 'no.nav.navno:calculator',
     OfficeEditorialDetail = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
@@ -54,9 +54,9 @@ export enum PartType {
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
     FormDetails = 'no.nav.navno:form-details',
-    ContactOption = 'no.nav.navno:contact-option',
+    KontaktOssKanal = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
-    AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
+    Situasjonskort = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
@@ -65,8 +65,8 @@ export enum PartType {
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
-    Accordion = 'no.nav.navno:accordion',
-    AlternativeAudience = 'no.nav.navno:alternative-audience',
+    Trekkspill = 'no.nav.navno:accordion',
+    AktuelleMalgrupper = 'no.nav.navno:alternative-audience',
     RelatedSituations = 'no.nav.navno:related-situations',
 }
 
@@ -93,13 +93,13 @@ export enum PartLegacyType {
 }
 
 type PartConfigs = {
-    [PartType.Accordion]: PartConfigAccordion;
-    [PartType.AlertBox]: PartConfigAlertBox;
-    [PartType.AreaCard]: PartConfigAreaCard;
-    [PartType.AreapageSituationCard]: PartConfigAreapageSituationCard;
+    [PartType.Trekkspill]: PartConfigTrekkspill;
+    [PartType.Varselboks]: PartConfigVarselboks;
+    [PartType.Omradekort]: PartConfigOmradekort;
+    [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;
-    [PartType.Calculator]: PartConfigCalculator;
-    [PartType.ContactOption]: PartConfigContactOption;
+    [PartType.Kalkulator]: PartConfigKalkulator;
+    [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
     [PartType.FiltersMenu]: PartConfigFilterMenu;
     [PartType.FormDetails]: PartConfigFormDetails;
     [PartType.FrontpageContact]: PartConfigFrontpageContact;

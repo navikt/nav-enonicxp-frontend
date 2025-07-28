@@ -1,0 +1,102 @@
+@use 'common' as common;
+
+.oversiktListPanel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-11);
+}
+
+.merOmLenke {
+    display: flex;
+}
+
+.tjenesterPanel {
+    border-bottom: 1px solid var(--a-gray-300);
+    padding: 20px 0 20px 16px;
+    padding: var(--a-spacing-5) 0 var(--a-spacing-5) var(--a-spacing-4);
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    grid-template-areas:
+        'icon . arrow'
+        'icon title arrow'
+        'icon tjenesterIngress arrow';
+    column-gap: 1rem;
+    position: relative;
+
+    .icon {
+        grid-area: icon;
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        align-self: center;
+
+        & > :first-child:not(:last-child) * {
+            fill: var(--a-deepblue-100);
+        }
+    }
+
+    .title {
+        grid-area: title;
+        display: flex;
+        flex-direction: column;
+        word-break: break-word;
+    }
+
+    .lenketekst {
+        font-size: 22px;
+        text-decoration: none;
+        font-weight: 600;
+
+        @media #{common.$mq-screen-mobile} {
+            font-size: 20px;
+        }
+    }
+
+    .tjenesterIngress {
+        grid-area: tjenesterIngress;
+        text-wrap: pretty;
+        text-decoration: none;
+    }
+
+    .arrow {
+        grid-area: arrow;
+        align-self: center;
+        color: var(--a-surface-action);
+        width: 24px;
+        height: 24px;
+        margin-right: var(--a-spacing-2);
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--a-deepblue-100);
+        border-radius: var(--a-radius-8);
+        color: var(--a-text-default);
+        box-shadow: 0 0 0 0;
+        outline: 5px solid var(--a-bg-default);
+
+        .lenketekst {
+            text-decoration: underline;
+            text-decoration-color: var(--a-border-action-hover);
+        }
+
+        & + :global(.navds-expansioncard__content) {
+            box-shadow: 0 0 0 0;
+        }
+
+        .icon {
+            & > :first-child:not(:last-child) * {
+                fill: var(--a-white);
+            }
+        }
+    }
+}
+
+.tjenesterPanel > a {
+    position: static;
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+}

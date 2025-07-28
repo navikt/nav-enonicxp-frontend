@@ -7,7 +7,7 @@ const editorUrlPrefix = `${adminOrigin}${editorPathPrefix}`;
 const liveUrlPrefix = appOrigin;
 
 type Props =
-    | { target: 'editor'; id: String }
+    | { target: 'editor'; id: string }
     | { target: 'live'; path: string; children: React.ReactNode };
 
 export const SiteInfoLink = (props: Props) => {

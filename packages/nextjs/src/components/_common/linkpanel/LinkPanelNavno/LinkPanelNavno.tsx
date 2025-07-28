@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { Button } from 'components/_common/button/Button';
 import styles from './LinkPanelNavno.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     href: string;
     linkText: string;
     linkColor?: 'blue' | 'black';
     analyticsLinkGroup?: string;
-    children?: React.ReactNode;
     onClickEvent?: (e: any) => void;
-} & React.HTMLAttributes<HTMLAnchorElement>;
+}> &
+    React.HTMLAttributes<HTMLAnchorElement>;
 
 export const LinkPanelNavno = ({
     href,

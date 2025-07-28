@@ -45,11 +45,12 @@ import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
 import { FormDetailsPageProps } from './form-details';
 import { FallbackPageProps } from './fallback-page-props';
+import { OversiktPageProps } from './oversikt-props';
 
 export enum ContentType {
     VarselIKontekst = 'no.nav.navno:alert-in-context',
     AreaPage = 'no.nav.navno:area-page',
-    Calculator = 'no.nav.navno:calculator',
+    Kalkulator = 'no.nav.navno:calculator',
     ContactInformationPage = 'no.nav.navno:contact-information',
     ContactStepPage = 'no.nav.navno:contact-step-page',
     ContentList = 'no.nav.navno:content-list',
@@ -60,7 +61,7 @@ export enum ContentType {
     FallbackPage = 'no.nav.navno:fallback-page',
     FormDetails = 'no.nav.navno:form-details',
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
-    FormsOverview = 'no.nav.navno:forms-overview',
+    FormsOverview = 'no.nav.navno:forms-overview', // Blir avviklet til fordel for Oversikt
     Fragment = 'portal:fragment',
     FrontPage = 'no.nav.navno:front-page',
     FrontPageNested = 'no.nav.navno:front-page-nested',
@@ -76,7 +77,8 @@ export enum ContentType {
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
     OfficeInformation = 'no.nav.navno:office-information',
     OfficePage = 'no.nav.navno:office-page',
-    Overview = 'no.nav.navno:overview',
+    Overview = 'no.nav.navno:overview', // Blir avviklet til fordel for Oversikt
+    Oversikt = 'no.nav.navno:oversikt',
     PageList = 'no.nav.navno:page-list',
     PayoutDates = 'no.nav.navno:payout-dates',
     Pictograms = 'no.nav.navno:animated-icons',
@@ -116,7 +118,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
     [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
     [ContentType.ContactInformationPage]: 'Kontaktinformasjon',
-    [ContentType.Calculator]: 'Kalkulator',
+    [ContentType.Kalkulator]: 'Kalkulator',
     [ContentType.Pictograms]: 'Piktogram',
     [ContentType.PressLandingPage]: 'Landingsside for presse',
     [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
@@ -127,6 +129,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.ProductDetails]: 'Produktdetaljer',
     [ContentType.ProductPage]: 'Produktside',
     [ContentType.Overview]: 'Oversiktsside',
+    [ContentType.Oversikt]: 'Oversiktside',
     [ContentType.PayoutDates]: 'Utbetalingsdatoer',
     [ContentType.ContentList]: 'Innholdsliste',
     [ContentType.UserTestsConfig]: 'Brukertester',
@@ -236,6 +239,7 @@ type SpecificContentProps =
     | OfficeInformationProps
     | OfficePageProps
     | OverviewPageProps
+    | OversiktPageProps
     | PageListProps
     | PayoutDatesProps
     | PictogramsProps

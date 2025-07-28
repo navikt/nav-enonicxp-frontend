@@ -4,10 +4,9 @@ import { fetchJson, objectToQueryString } from '@/shared/fetch-utils';
 import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
-
 import style from './VersionSelector.module.scss';
 
 const VERSION_SELECTOR_CONTAINER_ID = 'version-selector';
@@ -126,14 +125,14 @@ export const VersionSelector = ({ content, isOpen, setIsOpen, submitVersionUrl }
                 </div>
                 <div>
                     {versionsError && (
-                        <AlertBox
+                        <Varselboks
                             variant={'error'}
                             size={'small'}
                             inline={true}
                             className={style.error}
                         >
                             {versionsError}
-                        </AlertBox>
+                        </Varselboks>
                     )}
                     <hr />
                     <BodyLong size="small">

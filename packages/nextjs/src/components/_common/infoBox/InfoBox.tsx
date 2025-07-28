@@ -1,14 +1,11 @@
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { PropsWithChildren } from 'react';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import styles from './InfoBox.module.scss';
 
-type InfoBoxProps = {
-    children: React.ReactNode;
-};
-
-export const InfoBox = ({ children }: InfoBoxProps) => {
+export const InfoBox = ({ children }: PropsWithChildren) => {
     return (
-        <AlertBox variant="info" size="small" inline={true} className={styles.infoBox}>
+        <Varselboks variant="info" size="small" inline={true} className={styles.infoBox}>
             {children}
-        </AlertBox>
+        </Varselboks>
     );
 };

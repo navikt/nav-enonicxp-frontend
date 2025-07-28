@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 
 export const FormNumbersWarning = ({ content }: { content: ContentProps }) => {
-    const formNumberRegex: RegExp = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/ as RegExp;
+    const formNumberRegex = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/;
 
     const hasInvalidFormNumbers = (): boolean => {
         if (content.type === 'no.nav.navno:form-details') {

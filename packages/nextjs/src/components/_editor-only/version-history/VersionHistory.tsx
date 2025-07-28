@@ -8,7 +8,6 @@ import { translator } from 'translations';
 import { Chevron } from 'components/_common/chevron/Chevron';
 import { VersionSelector } from './selector/VersionSelector';
 import { VersionStatus } from './status/VersionStatus';
-
 import style from './VersionHistory.module.scss';
 
 type Props = {
@@ -49,7 +48,7 @@ export const VersionHistory = ({ content }: Props) => {
                 />
             )}
             <LenkeStandalone
-                withChevron={false}
+                withChevron
                 href={'#'}
                 onClick={(e) => {
                     if (content.editorView) {

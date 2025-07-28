@@ -1,5 +1,5 @@
 export enum MacroType {
-    AlertBox = 'alert-box',
+    Varselboks = 'alert-box',
     Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
@@ -25,7 +25,7 @@ export enum MacroType {
     Tall = 'tall',
     Tankestrek = 'tankestrek',
     UxSignalsWidget = 'uxsignals-widget',
-    VarselBoks = 'varselBoks',
+    VarselBoksDeprecated = 'varselBoks',
     Video = 'video',
 }
 

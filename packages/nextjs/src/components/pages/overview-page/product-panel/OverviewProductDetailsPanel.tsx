@@ -8,7 +8,7 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageContentProps } from 'store/pageContext';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { LayoutComponentProps } from 'types/component-props/layouts';
-import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
+import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import { OverviewPageProductItem } from 'types/content-props/overview-props';
 
 import style from './OverviewProductDetailsPanel.module.scss';
@@ -55,6 +55,18 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
             });
     };
 
+    const renderPanelContent = () => {
+        if (isSimpleOverview) {
+            return <BodyLong>{ingress}</BodyLong>;
+        }
+
+        if (productDetailsPage) {
+            return <ComponentMapper componentProps={productDetailsPage} pageProps={pageProps} />;
+        }
+
+        return null;
+    };
+
     return (
         <ProductPanelExpandable
             header={title}
@@ -68,12 +80,8 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
                 opprinnelse: 'oversiktsside accordion',
             }}
         >
-            {isSimpleOverview ? (
-                <BodyLong>{ingress}</BodyLong>
-            ) : productDetailsPage ? (
-                <ComponentMapper componentProps={productDetailsPage} pageProps={pageProps} />
-            ) : null}
-            <OverviewMicroCards productLinks={productLinks} className={style.microCard} />
+            {renderPanelContent()}
+            <OversiktMerOmLenke productLinks={productLinks} className={style.microCard} />
         </ProductPanelExpandable>
     );
 };

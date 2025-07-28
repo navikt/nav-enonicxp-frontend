@@ -8,7 +8,7 @@ import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
-import FormNumberTag from 'components/_common/formNumberTag/FormNumberTag';
+import { FormNumberTag } from 'components/_common/formNumberTag/FormNumberTag';
 import { FormDetailsButton } from './FormDetailsButton';
 
 import style from './FormDetails.module.scss';
@@ -100,7 +100,9 @@ export const FormDetails = ({
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
-                alerts.map((alert, index) => <VarselIKontekst key={index} data={alert.data} />)}
+                alerts.map((alert, index) => (
+                    <VarselIKontekst key={`${alert.data.text}-${index}`} data={alert.data} />
+                ))}
 
             {variations.length > 0 && (
                 <div className={style.variation}>
@@ -113,11 +115,9 @@ export const FormDetails = ({
                 <Detail className={style.formNumbers}>
                     {forceArray(formNumbers).map((formNumber) => (
                         <FormNumberTag
-                            className={
-                                formNumber === formNumberToHighlight ? style.highlight : undefined
-                            }
-                            key={formNumber}
                             formNumber={formNumber}
+                            selected={formNumber === formNumberToHighlight}
+                            key={formNumber}
                         />
                     ))}
                 </Detail>

@@ -2,6 +2,10 @@ import {
     OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
     OverviewFiltersTextInputEventDetail,
 } from './store/slices/overviewFilters';
+import {
+    OVERSIKT_FILTERS_TEXT_INPUT_EVENT,
+    OversiktFiltersTextInputEventDetail,
+} from './store/slices/oversiktFilters';
 
 declare global {
     interface Window {
@@ -15,6 +19,7 @@ declare global {
 
     interface WindowEventMap {
         [OVERVIEW_FILTERS_TEXT_INPUT_EVENT]: CustomEvent<OverviewFiltersTextInputEventDetail>;
+        [OVERSIKT_FILTERS_TEXT_INPUT_EVENT]: CustomEvent<OversiktFiltersTextInputEventDetail>;
     }
 }
 

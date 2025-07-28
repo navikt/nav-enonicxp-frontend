@@ -15,7 +15,7 @@ function isValidAudience(value: string): value is Audience {
     return (Object.values(Audience) as string[]).includes(value);
 }
 
-export const GeneralPageHeaderTagLine = (props: Props) => {
+export const GeneralPageHeaderTagLine = ({ tagLine }: Props) => {
     const { data, language } = usePageContentProps<ProductPageProps>();
 
     const getAudienceLabel = translator('audience', language);
@@ -57,11 +57,11 @@ export const GeneralPageHeaderTagLine = (props: Props) => {
     };
 
     const audienceAffirmation = buildAudienceAffirmation();
-    const showLine = props.tagLine && audienceAffirmation;
+    const showLine = tagLine && audienceAffirmation;
 
     return (
         <BodyShort className={style.tagline} size="small">
-            {props.tagLine}
+            {tagLine}
             {showLine && `  —  `}
             {audienceAffirmation}
         </BodyShort>

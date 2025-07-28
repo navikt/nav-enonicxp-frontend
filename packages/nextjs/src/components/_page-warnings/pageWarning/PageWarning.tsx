@@ -1,21 +1,19 @@
-import React from 'react';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import React, { PropsWithChildren } from 'react';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { classNames } from 'utils/classnames';
-
 import style from './PageWarning.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     whiteBg?: boolean;
-    size?: React.ComponentProps<typeof AlertBox>['size'];
-    children: React.ReactNode;
-};
+    size?: React.ComponentProps<typeof Varselboks>['size'];
+}>;
 
 export const PageWarning = ({ whiteBg, size = 'small', children }: Props) => {
     return (
         <section className={classNames(style.container, whiteBg && style.whiteBg)}>
-            <AlertBox variant={'warning'} size={size} className={style.warning}>
+            <Varselboks variant={'warning'} size={size} className={style.warning}>
                 {children}
-            </AlertBox>
+            </Varselboks>
         </section>
     );
 };

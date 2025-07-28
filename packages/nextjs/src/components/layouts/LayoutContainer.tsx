@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { BEM, classNames } from 'utils/classnames';
@@ -9,12 +9,12 @@ import { useLayoutConfig } from './useLayoutConfig';
 
 import style from './LayoutContainer.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     pageProps: ContentProps;
     layoutProps: LayoutComponentProps;
     layoutStyle?: React.CSSProperties;
-    children: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+}> &
+    React.HTMLAttributes<HTMLDivElement>;
 
 export const LayoutContainer = ({
     layoutProps,
