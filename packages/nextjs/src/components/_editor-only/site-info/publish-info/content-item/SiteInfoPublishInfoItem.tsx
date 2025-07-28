@@ -36,7 +36,8 @@ export const SiteInfoPublishInfoItem = ({
                 </BodyShort>
             </div>
             <BodyShort size={'small'}>
-                {`${stripXpPathPrefix(path)}${customPath ? ` (kort-url: ${customPath})` : ''} `}
+                {stripXpPathPrefix(path)}
+                {customPath && ` (kort-url: ${customPath})`}
             </BodyShort>
             <BodyShort className={style.publish}>
                 {`Type: ${type.replace('no.nav.navno:', '')} - ${

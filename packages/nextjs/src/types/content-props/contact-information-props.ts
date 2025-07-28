@@ -2,7 +2,7 @@ import {
     ChatData,
     TelephoneData,
     WriteData,
-} from 'components/parts/contact-option/ContactOptionPart';
+} from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export interface ContactInformationData {

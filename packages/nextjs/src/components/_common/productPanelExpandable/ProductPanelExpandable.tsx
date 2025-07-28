@@ -7,10 +7,9 @@ import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-
 import style from './ProductPanelExpandable.module.scss';
 
 type Props = PropsWithChildren<{
@@ -105,7 +104,7 @@ export const ProductPanelExpandable = ({
                     noLeftPadding && style.noLeftPadding
                 )}
             >
-                {error && <AlertBox variant={'error'}>{error}</AlertBox>}
+                {error && <Varselboks variant={'error'}>{error}</Varselboks>}
                 {withCopyLink && (
                     <CopyLink
                         anchor={anchorIdWithHash}

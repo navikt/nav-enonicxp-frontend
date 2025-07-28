@@ -42,7 +42,7 @@ jobs:
                     -v $(pwd):/workspace \
                     -w /workspace \
                     --ipc=host \
-                    mcr.microsoft.com/playwright:v1.51.0-noble \
+                    mcr.microsoft.com/playwright:v1.54.1-noble \
                     /bin/bash -c "
                       CI=true npx playwright test --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js

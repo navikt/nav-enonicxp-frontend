@@ -1,0 +1,7 @@
+@use 'common' as common;
+
+.varselKontekstPage {
+    display: flex;
+    flex-direction: column;
+    max-width: common.$sectionMaxWidth;
+}

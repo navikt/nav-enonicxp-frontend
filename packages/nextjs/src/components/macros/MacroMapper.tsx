@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Refactor the macro types before fixing the type errors in this file
 import React from 'react';
+import { logger } from '@/shared/logger';
 import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 import { MacroTall } from 'components/macros/tall/MacroTall';
@@ -17,7 +18,7 @@ import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
-import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
+import { MacroVarselBoksDeprecated } from './varsel-boks-deprecated/MacroVarselBoksDeprecated';
 import { MacroVideo } from './video/MacroVideo';
 import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
 import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
@@ -25,7 +26,7 @@ import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
-import { MacroAlertBox } from './alert-box/MacroAlertBox';
+import { MacroVarselboks } from './varselboks/MacroVarselboks';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBannerLink';
@@ -33,7 +34,7 @@ import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBanner
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.AlertBox]: MacroAlertBox,
+    [MacroType.Varselboks]: MacroVarselboks,
     [MacroType.Button]: MacroButton,
     [MacroType.ButtonBlue]: MacroButton,
     [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
@@ -59,7 +60,7 @@ const macroComponents: {
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
-    [MacroType.VarselBoks]: MacroVarselBoks,
+    [MacroType.VarselBoksDeprecated]: MacroVarselBoksDeprecated,
     [MacroType.Video]: MacroVideo,
 };
 

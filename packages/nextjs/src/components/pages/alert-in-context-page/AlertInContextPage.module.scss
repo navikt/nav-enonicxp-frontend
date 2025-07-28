@@ -1,7 +1,0 @@
-@use 'common' as common;
-
-.alertInContextPage {
-    display: flex;
-    flex-direction: column;
-    max-width: common.$sectionMaxWidth;
-}

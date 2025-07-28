@@ -1,0 +1,13 @@
+.varselboks {
+    &:not(:last-child) {
+        margin-bottom: var(--a-spacing-6);
+    }
+
+    * > :first-child {
+        margin-top: 0;
+    }
+
+    * > p:last-child {
+        margin-bottom: 0;
+    }
+}

@@ -59,18 +59,15 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
         const specialOpeningHours = sharedContact?.specialOpeningHours;
 
         const chatTitle = config.chatTitle || sharedContact?.title || '';
-        const chatIngress =
-            config.chatIngress ||
-            specialOpeningHours?.overrideText ||
-            sharedContact?.ingress?.processedHtml ||
-            '';
+        const chatHtml =
+            config.chatIngress || specialOpeningHours?.overrideText || sharedContact?.ingress || '';
 
         const chatAlertText = config.chatAlertText || sharedContact?.alertText || '';
 
-        return { chatTitle, chatIngress, chatAlertText };
+        return { chatTitle, chatHtml, chatAlertText };
     };
 
-    const { chatTitle, chatIngress, chatAlertText } = getChatIngress();
+    const { chatTitle, chatHtml, chatAlertText } = getChatIngress();
 
     return (
         <section className={style.container}>
@@ -82,7 +79,7 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
                     analyticsGroup={title}
                     linkText={chatTitle}
                     alertText={chatAlertText}
-                    ingress={chatIngress}
+                    ingress={chatHtml}
                 />
                 <LinkPanelNavno
                     href={contactUsUrl}

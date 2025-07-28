@@ -5,7 +5,7 @@ import { logger } from '@/shared/logger';
 import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { NextImage } from 'components/_common/image/NextImage';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
@@ -13,7 +13,6 @@ import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { QbrickVideoProps } from './utils/videoProps';
 import { getTimestampFromDuration } from './utils/videoHelpers';
 import { useQbrickPlayerState } from './useQbrickPlayerState';
-
 import style from './QbrickVideo.module.scss';
 
 export const QbrickVideo = (props: QbrickVideoProps) => {
@@ -94,7 +93,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 )}
             </Button>
             {playerState === 'error' && (
-                <AlertBox variant={'error'}>{translations('error')}</AlertBox>
+                <Varselboks variant={'error'}>{translations('error')}</Varselboks>
             )}
             <div
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}

@@ -26,7 +26,7 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
             listItems={linkPanels.map((linkPanel, index) => {
                 const linkPaneltitle = linkPanel.text ?? linkPanel.target.displayName;
                 return (
-                    <li key={index}>
+                    <li key={`${linkPanel.target._path}-${index}`}>
                         <FormIntermediateStepLink
                             label={linkPaneltitle}
                             explanation={linkPanel.ingress ?? ''}
