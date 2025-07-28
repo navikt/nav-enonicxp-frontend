@@ -18,7 +18,7 @@ import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
-import { Deprecated_MacroVarselBoks } from './varselBoks/Deprecated_MacroVarselBoks';
+import { DeprecatedMacroVarselBoks } from './varselBoks/DeprecatedMacroVarselBoks';
 import { MacroVideo } from './video/MacroVideo';
 import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
 import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
@@ -60,7 +60,7 @@ const macroComponents: {
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
-    [MacroType.VarselBoks]: Deprecated_MacroVarselBoks,
+    [MacroType.VarselBoks]: DeprecatedMacroVarselBoks,
     [MacroType.Video]: MacroVideo,
 };
 
