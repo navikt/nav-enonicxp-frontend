@@ -10,17 +10,11 @@ export const PartUtenforInnholdsseksjon = ({ content }: { content: ContentProps 
 
         if (isHtmlAreaInPageContentButNotInContentSection(node)) {
             const { path, config } = node;
-            const navn = config.html.macros[0]?.name;
 
             warnings.push(
-                <li key={path}>
-                    Innhold utenfor innholdsseksjon:{' '}
-                    <ul>
-                        {navn ? <li>Navn: {JSON.stringify(navn)}</li> : null}
-                        <li>Path: {JSON.stringify(path)}</li>
-                        <li>Innhold: {JSON.stringify(config.html.processedHtml)}</li>
-                    </ul>
-                </li>
+                <ul>
+                    <li key={path}>Innhold: {JSON.stringify(config.html.processedHtml)}</li>
+                </ul>
             );
         }
 
@@ -36,5 +30,14 @@ export const PartUtenforInnholdsseksjon = ({ content }: { content: ContentProps 
         walk(regions['pageContent']);
     }
 
-    return warnings.length > 0 ? <>{warnings}</> : null;
+    return warnings.length > 0 ? (
+        <>
+            <li>
+                Innholdet ligger utenfor den angitte innholdsseksjonen og må flyttes inn for å sikre
+                korrekt struktur ved publisering (se rød markering under). Se mer informasjon under
+                om hvilket innhold det gjelder.
+            </li>
+            {warnings}
+        </>
+    ) : null;
 };
