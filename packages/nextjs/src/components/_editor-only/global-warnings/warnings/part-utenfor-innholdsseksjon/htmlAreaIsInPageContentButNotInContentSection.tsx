@@ -6,10 +6,12 @@ export const htmlAreaIsInPageContentButNotInContentSection = (node: {
 
     const startsWithPageContent = /^\/pageContent\//;
     const isInContentSection = /^\/pageContent\/\d+\/content\/\d+$/;
+    const isInIntroSection = /^\/pageContent\/\d+\/intro\/\d+$/;
 
     return (
         node.descriptor === 'no.nav.navno:html-area' &&
         startsWithPageContent.test(node.path) &&
-        !isInContentSection.test(node.path)
+        !isInContentSection.test(node.path) &&
+        !isInIntroSection.test(node.path)
     );
 };
