@@ -1,20 +1,40 @@
-import React, { useId } from 'react';
+import React, { PropsWithChildren, useEffect, useId, useState } from 'react';
 import { BodyShort } from '@navikt/ds-react';
+import { createPortal } from 'react-dom';
 import { usePageContentProps } from 'store/pageContext';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { RenderToRedaktorvarsler } from 'components/_editor-only/global-warnings/Redaktorvarsler';
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
 import lightBulb from '/public/gfx/lightbulb.svg';
 import arrowUp from '/public/gfx/arrowUp.svg';
 import arrowDown from '/public/gfx/arrowDown.svg';
-
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './EditorHelp.module.scss';
+
+const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
+
+const RenderToRedaktorvarsler = ({ children }: PropsWithChildren) => {
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
+    useEffect(() => {
+        setIsFirstRender(false);
+    }, []);
+
+    if (isFirstRender) {
+        return null;
+    }
+
+    const element = document.getElementById(EDITOR_GLOBAL_WARNINGS_CONTAINER_ID);
+    if (!element) {
+        return null;
+    }
+
+    return createPortal(children, element);
+};
 
 const imagePath = {
     info: lightBulb,

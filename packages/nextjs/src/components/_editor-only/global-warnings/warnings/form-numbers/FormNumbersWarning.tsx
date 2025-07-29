@@ -13,7 +13,7 @@ export const FormNumbersWarning = ({ content }: { content: ContentProps }) => {
     };
 
     return hasInvalidFormNumbers() ? (
-        <li>
+        <li key="form-numbers-warning">
             Skjemanummer må være på formatet {'NAV XX-XX.XX'} eller {'NAV XX-XX.XXy'}
         </li>
     ) : null;

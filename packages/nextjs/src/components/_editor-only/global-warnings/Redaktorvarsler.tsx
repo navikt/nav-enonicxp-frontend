@@ -1,5 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { KortUrlWarning } from './warnings/kort-url/KortUrlWarning';
@@ -8,27 +7,6 @@ import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
 import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
 import { PartUtenforInnholdsseksjon } from './warnings/part-utenfor-innholdsseksjon/PartUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
-
-const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
-
-export const RenderToRedaktorvarsler = ({ children }: PropsWithChildren) => {
-    const [isFirstRender, setIsFirstRender] = useState(true);
-
-    useEffect(() => {
-        setIsFirstRender(false);
-    }, []);
-
-    if (isFirstRender) {
-        return null;
-    }
-
-    const element = document.getElementById(EDITOR_GLOBAL_WARNINGS_CONTAINER_ID);
-    if (!element) {
-        return null;
-    }
-
-    return createPortal(children, element);
-};
 
 export const isGodkjentSide = (contentType: string): boolean => {
     const godkjenteSider = [
@@ -66,7 +44,7 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                     <strong>Redaktørvarsel:</strong>
                     <br />
                     Disse problemene må rettes før publisering:
-                    <ul>
+                    <ul key="redaktorvarsler-list">
                         <KortUrlWarning content={content} />
                         <DuplicateIds />
                         <FormNumbersWarning content={content} />

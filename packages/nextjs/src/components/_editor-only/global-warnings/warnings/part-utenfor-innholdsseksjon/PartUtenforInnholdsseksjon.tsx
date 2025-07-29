@@ -16,8 +16,10 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
             const { path, config } = node;
 
             warnings.push(
-                <ul>
-                    <li key={path}>Innhold: {JSON.stringify(config.html.processedHtml)}</li>
+                <ul key={`${path}-list`}>
+                    <li key={`${path}-item`}>
+                        Innhold: {JSON.stringify(config.html.processedHtml)}
+                    </li>
                 </ul>
             );
         }
@@ -36,7 +38,7 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
 
     return warnings.length > 0 ? (
         <>
-            <li>
+            <li key="part-utenfor-innholdsseksjon-warning">
                 Innholdet ligger utenfor den angitte innholdsseksjonen og må flyttes inn for å sikre
                 korrekt struktur ved publisering (se rød markering på siden). Under finner du
                 detaljer om hvilket innhold dette gjelder.

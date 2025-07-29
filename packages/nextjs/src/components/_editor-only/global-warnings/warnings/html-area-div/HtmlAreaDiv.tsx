@@ -16,7 +16,7 @@ export const HtmlAreaDiv = ({ content }: Props) => {
         if (htmlAreaContainsDiv(node)) {
             const { path, config } = node;
             warnings.push(
-                <ul>
+                <ul key={`${path}-list`}>
                     <li key={`${path}-${config.html.name}`}>
                         Innhold: {JSON.stringify(config.html.processedHtml)}
                     </li>
@@ -46,10 +46,10 @@ export const HtmlAreaDiv = ({ content }: Props) => {
                 <strong>Slik retter du feilen:</strong>
             </div>
             <ul>
-                <li>
+                <li key="rette-feilen-1">
                     Fjern <code>&lt;div&gt;</code>-taggen fra HTML-koden.
                 </li>
-                <li>
+                <li key="rette-feilen-2">
                     Hvis innholdet er kopiert fra Word eller en nettside, lim det først inn i en ren
                     tekst-editor (f.eks. Notepad), og deretter inn i Enonic for å fjerne skjult
                     formatering.
