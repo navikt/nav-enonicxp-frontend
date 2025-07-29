@@ -10,6 +10,7 @@ import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { htmlAreaIsInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/htmlAreaIsInPageContentButNotInContentSection';
 import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
+import { useIsEditorView } from 'store/hooks/useIsEditorView';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -28,12 +29,13 @@ export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) =>
         htmlAreaIsInPageContentButNotInContentSection({ path, descriptor }) ||
         htmlAreaContainsDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
+    const isEditorView = useIsEditorView();
 
     useEffect(() => {
-        if (shouldWarn) {
+        if (shouldWarn && isEditorView) {
             setRedBorderStyling(true);
         }
-    }, [shouldWarn, path, descriptor, config]);
+    }, [shouldWarn, path, descriptor, config, isEditorView]);
 
     if (!config?.html) {
         return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
