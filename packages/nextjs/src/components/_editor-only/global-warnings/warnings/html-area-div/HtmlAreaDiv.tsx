@@ -37,26 +37,24 @@ export const HtmlAreaDiv = ({ content }: Props) => {
     }
 
     return warnings.length > 0 ? (
-        <>
-            <li key="html-area-div-warning">
-                Det er oppdaget en <code>&lt;div&gt;</code>-tagg i seksjonen Formatert innhold, noe
-                som ikke er tillatt og kan føre til visningsfeil på nav.no. Under finner du mer
-                informasjon om hvilket innhold det gjelder.
-                <div className={style.space}>{warnings}</div>
-                <div className={style.space}>
-                    <strong>Slik retter du feilen:</strong>
-                </div>
-                <ul>
-                    <li>
-                        Fjern <code>&lt;div&gt;</code>-taggen fra HTML-koden.
-                    </li>
-                    <li>
-                        Hvis innholdet er kopiert fra Word eller en nettside, lim det først inn i en
-                        ren tekst-editor (f.eks. Notepad), og deretter inn i Enonic for å fjerne
-                        skjult formatering.
-                    </li>
-                </ul>
-            </li>
-        </>
+        <li key="html-area-div-warning">
+            Det er oppdaget en <code>&lt;div&gt;</code>-tagg i seksjonen Formatert innhold, noe som
+            ikke er tillatt og kan føre til visningsfeil på nav.no. Under finner du mer informasjon
+            om hvilket innhold det gjelder.
+            <div className={style.space}>{warnings}</div>
+            <div className={style.space}>
+                <strong>Slik retter du feilen:</strong>
+            </div>
+            <ul>
+                <li>
+                    Fjern <code>&lt;div&gt;</code>-taggen fra HTML-koden.
+                </li>
+                <li>
+                    Hvis innholdet er kopiert fra Word eller en nettside, lim det først inn i en ren
+                    tekst-editor (f.eks. Notepad), og deretter inn i Enonic for å fjerne skjult
+                    formatering.
+                </li>
+            </ul>
+        </li>
     ) : null;
 };
