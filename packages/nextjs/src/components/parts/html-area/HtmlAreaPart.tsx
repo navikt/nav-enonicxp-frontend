@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
@@ -8,7 +8,6 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { isHtmlAreaInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/isHtmlAreaInPageContentButNotInContentSection';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -22,22 +21,13 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
     type: string;
 };
 
-export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
-    const shouldWarn = isHtmlAreaInPageContentButNotInContentSection({ path, descriptor });
-    const [redBorderStyling, setRedBorderStyling] = useState(false);
-
-    useEffect(() => {
-        if (shouldWarn) {
-            setRedBorderStyling(true);
-        }
-    }, [shouldWarn, path, descriptor, config]);
-
+export const HtmlAreaPart = ({ config }: HtmlAreaPartProps) => {
     if (!config?.html) {
         return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
     }
 
     return (
-        <div className={classNames(style.htmlArea, redBorderStyling && style.redBorder)}>
+        <div className={style.htmlArea}>
             <FilteredContent {...config}>
                 <ExpandableComponentWrapper {...config}>
                     <div className={classNames(defaultHtml.html, style.htmlArea, 'parsedHtml')}>
