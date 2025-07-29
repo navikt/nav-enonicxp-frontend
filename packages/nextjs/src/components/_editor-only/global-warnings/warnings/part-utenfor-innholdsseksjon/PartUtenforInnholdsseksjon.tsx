@@ -38,8 +38,8 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
         <>
             <li>
                 Innholdet ligger utenfor den angitte innholdsseksjonen og må flyttes inn for å sikre
-                korrekt struktur ved publisering (se rød markering under). Se mer informasjon under
-                om hvilket innhold det gjelder.
+                korrekt struktur ved publisering (se rød markering på siden). Under finner du
+                detaljer om hvilket innhold dette gjelder.
             </li>
             {warnings}
         </>
