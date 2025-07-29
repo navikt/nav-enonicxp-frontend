@@ -30,7 +30,7 @@ export const RenderToRedaktorvarsler = ({ children }: PropsWithChildren) => {
     return createPortal(children, element);
 };
 
-export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
+export const isGodkjentSide = (contentType: string): boolean => {
     const godkjenteSider = [
         'no.nav.navno:situation-page',
         'no.nav.navno:current-topic-page',
@@ -40,8 +40,11 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
         'no.nav.navno:tools-page',
         'no.nav.navno:generic-page',
     ];
+    return godkjenteSider.includes(contentType);
+};
 
-    if (!godkjenteSider.includes(content.type)) {
+export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
+    if (!isGodkjentSide(content.type)) {
         return;
     }
 

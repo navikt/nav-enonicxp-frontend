@@ -11,6 +11,8 @@ import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module
 import { htmlAreaIsInPageContentButNotInContentSection } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/htmlAreaIsInPageContentButNotInContentSection';
 import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
+import { isGodkjentSide } from 'components/_editor-only/global-warnings/Redaktorvarsler';
+import { usePageContentProps } from 'store/pageContext';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -21,7 +23,6 @@ export type PartConfigHtmlArea = {
 type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
     path: string;
     descriptor: string;
-    type: string;
 };
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
@@ -30,15 +31,16 @@ export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) =>
         htmlAreaContainsDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
     const isEditorView = useIsEditorView();
+    const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView) {
+        if (shouldWarn && isEditorView && isGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
-    }, [shouldWarn, path, descriptor, config, isEditorView]);
+    }, [shouldWarn, path, descriptor, config, isEditorView, type]);
 
     if (!config?.html) {
-        return <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />;
+        return <EditorHelp text="Tom innholdskomponent. Klikk for å redigere." />;
     }
 
     return (
