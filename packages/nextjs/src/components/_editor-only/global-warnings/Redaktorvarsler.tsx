@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -11,7 +11,7 @@ import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
-export const RenderToRedaktorvarsler = ({ children }: { children: React.ReactNode }) => {
+export const RenderToRedaktorvarsler = ({ children }: PropsWithChildren) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
