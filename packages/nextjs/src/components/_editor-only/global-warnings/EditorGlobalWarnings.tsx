@@ -30,6 +30,19 @@ export const RenderToEditorGlobalWarnings = ({ children }: { children: React.Rea
 };
 
 export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => {
+    const godkjenteSider = [
+        'no.nav.navno:situation-page',
+        'no.nav.navno:current-topic-page',
+        'no.nav.navno:guide-page',
+        'no.nav.navno:themed-article-page',
+        'no.nav.navno:content-page-with-sidemenus',
+        'no.nav.navno:tools-page',
+        'no.nav.navno:generic-page',
+    ];
+
+    if (!godkjenteSider.includes(content.type)) {
+        return;
+    }
     const hasErrors = (): boolean => {
         return (
             KortUrlWarning({ content }) !== null ||
@@ -44,7 +57,7 @@ export const EditorGlobalWarnings = ({ content }: { content: ContentProps }) => 
         <>
             {hasErrors() && (
                 <Alert variant="warning">
-                    Redaktørvarsel:
+                    <strong>Redaktørvarsel:</strong>
                     <br />
                     Disse problemene må rettes før publisering:
                     <ul>
