@@ -9,7 +9,7 @@ type Props = {
 export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
     const warnings: React.ReactElement[] = [];
 
-    const walk = (node: any): void => {
+    const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
         if (pageContentHtmlAreaIsOutsideSections(node)) {
@@ -25,15 +25,15 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
         }
 
         if (Array.isArray(node)) {
-            node.forEach(walk);
+            node.forEach(finnHtmlAreaUtenforInnholdsseksjon);
         } else {
-            Object.values(node).forEach(walk);
+            Object.values(node).forEach(finnHtmlAreaUtenforInnholdsseksjon);
         }
     };
 
     const regions = content.page?.regions;
     if (regions && 'pageContent' in regions) {
-        walk(regions['pageContent']);
+        finnHtmlAreaUtenforInnholdsseksjon(regions['pageContent']);
     }
 
     return warnings.length > 0 ? (

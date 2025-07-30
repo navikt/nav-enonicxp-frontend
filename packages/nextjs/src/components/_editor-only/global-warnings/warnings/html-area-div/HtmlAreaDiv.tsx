@@ -10,11 +10,12 @@ type Props = {
 export const HtmlAreaDiv = ({ content }: Props) => {
     const warnings: React.ReactElement[] = [];
 
-    const walk = (node: any): void => {
+    const finnDivTagsIFormatertInnhold = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
         if (htmlAreaContainsDiv(node)) {
             const { path, config } = node;
+
             warnings.push(
                 <ul key={`${path}-list`}>
                     <li key={`${path}-${config.html.name}`}>
@@ -25,15 +26,15 @@ export const HtmlAreaDiv = ({ content }: Props) => {
         }
 
         if (Array.isArray(node)) {
-            node.forEach(walk);
+            node.forEach(finnDivTagsIFormatertInnhold);
         } else {
-            Object.values(node).forEach(walk);
+            Object.values(node).forEach(finnDivTagsIFormatertInnhold);
         }
     };
 
     const regions = content.page?.regions;
     if (regions) {
-        walk(regions);
+        finnDivTagsIFormatertInnhold(regions);
     }
 
     return warnings.length > 0 ? (
