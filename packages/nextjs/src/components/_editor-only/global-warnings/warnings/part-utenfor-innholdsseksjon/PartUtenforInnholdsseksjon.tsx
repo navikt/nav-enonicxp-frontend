@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { htmlAreaIsInPageContentButNotInContentSection } from './htmlAreaIsInPageContentButNotInContentSection';
+import { pageContentHtmlAreaIsOutsideSections } from './pageContentHtmlAreaIsOutsideSections';
 
 type Props = {
     content: ContentProps;
@@ -12,7 +12,7 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
     const walk = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (htmlAreaIsInPageContentButNotInContentSection(node)) {
+        if (pageContentHtmlAreaIsOutsideSections(node)) {
             const { path, config } = node;
 
             warnings.push(
