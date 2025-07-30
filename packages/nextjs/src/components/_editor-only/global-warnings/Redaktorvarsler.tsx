@@ -11,7 +11,6 @@ import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
 export const isGodkjentSide = (contentType: string): boolean => {
     const godkjenteSider = [
         'no.nav.navno:situation-page',
-        'no.nav.navno:current-topic-page',
         'no.nav.navno:guide-page',
         'no.nav.navno:themed-article-page',
         'no.nav.navno:content-page-with-sidemenus',

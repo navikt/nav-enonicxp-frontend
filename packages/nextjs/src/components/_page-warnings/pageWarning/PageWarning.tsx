@@ -10,8 +10,12 @@ type Props = PropsWithChildren<{
 
 export const PageWarning = ({ whiteBg, size = 'small', children }: Props) => {
     return (
-        <section className={classNames(style.container, whiteBg && style.whiteBg)}>
-            <Varselboks variant={'warning'} size={size} className={style.warning}>
+        <section className={style.container}>
+            <Varselboks
+                variant={'warning'}
+                size={size}
+                className={classNames(style.warning, whiteBg && style.whiteBg)}
+            >
                 {children}
             </Varselboks>
         </section>
