@@ -10,7 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
 import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
@@ -32,6 +31,7 @@ import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishin
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { VarselboksPart } from './varselboks/VarselboksPart';
 import { LenkepanelPart } from './lenkepanelPart/LenkepanelPart';
@@ -86,8 +86,8 @@ const PartComponentMapper = ({
             return <KalkulatorPart {...partProps} />;
         case PartType.KontaktOssKanal:
             return <KontaktOssKanalPart {...partProps} />;
-        case PartType.FiltersMenu:
-            return <FiltersMenuPart {...partProps} />;
+        case PartType.Filtreringsmeny:
+            return <FiltreringsmenyPart {...partProps} />;
         case PartType.FormDetails:
             return <FormDetailsPart {...partProps} />;
         case PartType.FrontpageContact:

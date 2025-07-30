@@ -5,7 +5,7 @@ import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { ExpandableComponentWrapper } from 'components/_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from 'components/_common/filter-bar/FilterExplanation';
-import { Filter } from 'types/store/filter-menu';
+import { Filter } from 'types/store/filtreringsmeny';
 import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -16,25 +16,28 @@ import { ExpandableMixin } from 'types/component-props/_mixins';
 import { checkIfFilterFirstInPage } from './helpers';
 import { FilterCheckbox } from './FilterCheckbox';
 
-import style from './FiltersMenu.module.scss';
+import style from './Filtreringsmeny.module.scss';
 
-export type FilterMenuFilter = {
+export type FiltreringsmenyFilter = {
     filterName: string;
     id: string;
 };
 
-export type FilterMenuCategory = {
+export type FiltreringsmenyCategory = {
     categoryName: string;
-    filters: FilterMenuFilter[];
+    filters: FiltreringsmenyFilter[];
 };
 
-export type PartConfigFilterMenu = {
+export type PartConfigFiltreringsmeny = {
     title?: string;
     description: string;
-    categories: FilterMenuCategory[];
+    categories: FiltreringsmenyCategory[];
 } & ExpandableMixin;
 
-export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.FiltersMenu>) => {
+export const FiltreringsmenyPart = ({
+    config,
+    path,
+}: PartComponentProps<PartType.Filtreringsmeny>) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { language, editorView, page } = contentProps;
@@ -63,12 +66,12 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     }, []);
 
     const getLabel = translator('filteredContent', language);
-    const onToggleFilterHandler = (filter: Filter, category: FilterMenuCategory) => {
+    const onToggleFilterHandler = (filter: Filter, category: FiltreringsmenyCategory) => {
         logAnalyticsEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'filtermeny',
-            komponent: 'FiltersMenuPart',
+            komponent: 'FiltreringsmenyPart',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });
@@ -101,7 +104,7 @@ export const FiltersMenuPart = ({ config, path }: PartComponentProps<PartType.Fi
     const defaultExpandableTitle = getLabel('customizeContent');
 
     return (
-        <section className={style.filtersMenu} aria-describedby="filters-menu-description">
+        <section className={style.filtreringsmeny} aria-describedby="filters-menu-description">
             {title && (
                 <Heading level="2" size="large">
                     {title}

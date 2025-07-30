@@ -25,18 +25,19 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
         []
     );
 
-    const allFilterMenus = allComponents.filter(
+    const alleFiltreringsmenyer = allComponents.filter(
         (component) =>
-            component.type === ComponentType.Part && component.descriptor === PartType.FiltersMenu
+            component.type === ComponentType.Part &&
+            component.descriptor === PartType.Filtreringsmeny
     );
 
-    if (allFilterMenus.length === 0) {
+    if (alleFiltreringsmenyer.length === 0) {
         return false;
     }
 
     // Make a not of the very first FiltersMenu in order to
     // check for path later.
-    const firstFilterMenu = allFilterMenus[0];
+    const forsteFiltreringsmeny = alleFiltreringsmenyer[0];
 
-    return path === firstFilterMenu.path;
+    return path === forsteFiltreringsmeny.path;
 };
