@@ -13,7 +13,7 @@ const commonProps = {
     data: {},
 } as const satisfies Partial<ContentProps>;
 
-export const linkListDataMock: SectionPageData = {
+export const lenkelisteDataMock: SectionPageData = {
     ntkContents: {
         ...commonProps,
         type: ContentType.ContentList,
