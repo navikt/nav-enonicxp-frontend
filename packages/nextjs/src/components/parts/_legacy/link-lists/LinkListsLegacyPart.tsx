@@ -4,8 +4,7 @@ import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeS
 import { translator } from 'translations';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { appOrigin } from 'utils/urls';
-
-import style from './LinkLists.module.scss';
+import style from './LinkListsLegacyPart.module.scss';
 
 export const LinkListsLegacyPart = (props: ContentProps) => {
     if (props.type !== ContentType.SectionPage) {

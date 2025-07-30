@@ -37,7 +37,7 @@ import { VarselboksPart } from './varselboks/VarselboksPart';
 import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
-import { LinkListPart } from './link-list/LinkListPart';
+import { LenkelistePart } from './lenkeliste/LenkelistePart';
 import { NewsListPart } from './news-list/NewsListPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
@@ -102,8 +102,8 @@ const PartComponentMapper = ({
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
-        case PartType.LinkList:
-            return <LinkListPart {...partProps} />;
+        case PartType.Lenkeliste:
+            return <LenkelistePart {...partProps} />;
         case PartType.LinkPanel:
             return <LinkPanelPart {...partProps} />;
         case PartType.LoggedinCard:
@@ -137,7 +137,7 @@ const PartComponentMapper = ({
         case PartType.UxSignalsWidget:
             return <UxSignalsWidgetPart {...partProps} />;
 
-        case PartLegacyType.LinkLists:
+        case PartLegacyType.Lenkelister:
             return <LinkListsLegacyPart {...pageProps} />;
         case PartLegacyType.LinkPanels:
             return <LinkPanelsLegacyPart {...pageProps} />;

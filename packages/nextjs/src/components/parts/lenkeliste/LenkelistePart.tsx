@@ -7,10 +7,9 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { ContentListMixin, ExpandableMixin, LinkSelectable } from 'types/component-props/_mixins';
+import style from './Lenkeliste.module.scss';
 
-import style from './LinkList.module.scss';
-
-const getListComponent = (config: PartConfigLinkList) => {
+const getListekomponent = (config: PartConfigLenkeliste) => {
     const { title, list, listType, hideTitle } = config;
     const { _selected } = list;
 
@@ -37,7 +36,7 @@ const getListComponent = (config: PartConfigLinkList) => {
     return null;
 };
 
-export type PartConfigLinkList = {
+export type PartConfigLenkeliste = {
     title?: string;
     hideTitle?: boolean;
     listType: ListType;
@@ -49,15 +48,15 @@ export type PartConfigLinkList = {
     }>;
 } & ExpandableMixin;
 
-export const LinkListPart = ({ config }: PartComponentProps<PartType.LinkList>) => {
+export const LenkelistePart = ({ config }: PartComponentProps<PartType.Lenkeliste>) => {
     if (!config?.list?._selected) {
         return <EditorHelp text={'Klikk og velg lenker i panelet til høyre'} />;
     }
 
-    const ListComponent = getListComponent(config);
+    const ListComponent = getListekomponent(config);
 
     return ListComponent ? (
-        <div className={style.linkList}>
+        <div className={style.lenkeliste}>
             <ExpandableComponentWrapper {...config}>{ListComponent}</ExpandableComponentWrapper>
         </div>
     ) : null;

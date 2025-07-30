@@ -15,7 +15,7 @@ import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcu
 import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
-import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
+import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
 import { PartConfigLinkPanel } from 'components/parts/linkPanelPart/LinkPanelPart';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
@@ -39,7 +39,7 @@ export enum PartType {
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     Varselboks = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
-    LinkList = 'no.nav.navno:dynamic-link-list',
+    Lenkeliste = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
     Kalkulator = 'no.nav.navno:calculator',
@@ -80,7 +80,7 @@ export enum PartDeprecatedType {
 // Legacy, only used in templates for old content types
 export enum PartLegacyType {
     LinkPanels = 'no.nav.navno:link-panels',
-    LinkLists = 'no.nav.navno:link-lists',
+    Lenkelister = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
     MainArticle = 'no.nav.navno:main-article',
@@ -108,7 +108,7 @@ type PartConfigs = {
     [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
-    [PartType.LinkList]: PartConfigLinkList;
+    [PartType.Lenkeliste]: PartConfigLenkeliste;
     [PartType.LinkPanel]: PartConfigLinkPanel;
     [PartType.LoggedinCard]: PartConfigLoggedinCard;
     [PartType.NewsList]: PartConfigNewsList;
