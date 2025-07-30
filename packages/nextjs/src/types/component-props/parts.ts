@@ -7,7 +7,7 @@ import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/Situas
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
 import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
 import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
-import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
+import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
 import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
 import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
 import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
@@ -48,7 +48,7 @@ export enum PartType {
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
-    FiltersMenu = 'no.nav.navno:filters-menu',
+    Filtreringsmeny = 'no.nav.navno:filters-menu',
     ProductCard = 'no.nav.navno:product-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
@@ -100,7 +100,7 @@ type PartConfigs = {
     [PartType.Button]: PartConfigButton;
     [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
-    [PartType.FiltersMenu]: PartConfigFilterMenu;
+    [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
     [PartType.FormDetails]: PartConfigFormDetails;
     [PartType.FrontpageContact]: PartConfigFrontpageContact;
     [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;

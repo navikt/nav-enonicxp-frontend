@@ -8,7 +8,7 @@ import {
     toggleFilterSelectionAction,
     clearFiltersAction,
 } from 'store/slices/filteredContent';
-import { Category } from 'types/store/filter-menu';
+import { Category } from 'types/store/filtreringsmeny';
 import { FilterSelection } from 'types/component-props/_mixins';
 
 type UseFilterState = {

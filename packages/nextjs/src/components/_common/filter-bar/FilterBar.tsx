@@ -6,18 +6,18 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
-import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
+import { FilterCheckbox } from 'components/parts/filtreringsmeny/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { useScrollPosition } from 'utils/useStickyScroll';
 import {
-    FilterMenuCategory,
-    FilterMenuFilter,
-} from 'components/parts/filters-menu/FiltersMenuPart';
+    FiltreringsmenyCategory,
+    FiltreringsmenyFilter,
+} from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
 import { FilterExplanation } from './FilterExplanation';
 
 import style from './FilterBar.module.scss';
 
-type FilterWithCategory = FilterMenuFilter & Pick<FilterMenuCategory, 'categoryName'>;
+type FilterWithCategory = FiltreringsmenyFilter & Pick<FiltreringsmenyCategory, 'categoryName'>;
 
 type Props = {
     layoutProps: SectionWithHeaderProps;
