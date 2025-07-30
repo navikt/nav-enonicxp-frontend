@@ -1,9 +1,9 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno/LinkPanelNavno';
+import { LenkepanelNavno } from 'components/_common/lenkepanel/LenkepanelNavno/LenkepanelNavno';
 import { ContentType } from 'types/content-props/_content-common';
-import { ChatbotLinkPanel } from 'components/_common/chatbot/ChatbotLinkPanel';
+import { ChatbotLenkepanel } from 'components/_common/chatbot/ChatbotLenkepanel';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
 import { FrontpageContactAlert } from './FrontpageContactAlert';
@@ -75,13 +75,13 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
                 {title}
             </Heading>
             <div className={style.links}>
-                <ChatbotLinkPanel
+                <ChatbotLenkepanel
                     analyticsGroup={title}
                     linkText={chatTitle}
                     alertText={chatAlertText}
                     ingress={chatHtml}
                 />
-                <LinkPanelNavno
+                <LenkepanelNavno
                     href={contactUsUrl}
                     analyticsLinkGroup={title}
                     linkText={contactUsTitle}
@@ -90,7 +90,7 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
                         <FrontpageContactAlert alertText={contactUsAlertText} yellow />
                     )}
                     {contactUsIngress}
-                </LinkPanelNavno>
+                </LenkepanelNavno>
             </div>
         </section>
     );

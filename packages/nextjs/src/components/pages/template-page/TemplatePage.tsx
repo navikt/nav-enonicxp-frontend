@@ -4,13 +4,13 @@ import { ContentType } from 'types/content-props/_content-common';
 import { TemplateProps } from 'types/content-props/template-props';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { lenkelisteDataMock } from './mocks/lenkelisteDataMock';
-import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
+import { lenkepanelerDataMock } from './mocks/lenkepanelerDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 
 const legacyMockData = {
     ...lenkelisteDataMock,
-    ...linkPanelsDataMock,
+    ...lenkepanelerDataMock,
     ...mainArticleDataMock,
     ...mainPanelDataMock,
 };

@@ -11,7 +11,7 @@ $height-full-size: 160px;
 $size-medium: 0.85;
 $size-small: 0.5;
 
-.linkPanel {
+.lenkepanel {
     @include transitionMixin;
 
     background-color: var(--a-deepblue-50);

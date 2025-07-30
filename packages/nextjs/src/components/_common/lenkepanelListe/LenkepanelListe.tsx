@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { LinkPanel } from 'types/link-panel';
+import { Lenkepanel } from 'types/lenkepanel';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { getUrlFromContent } from 'utils/links-from-content';
 
@@ -9,7 +9,7 @@ import style from './LenkepanelListe.module.scss';
 type Props = {
     title?: string;
     ingress?: string;
-    items?: LinkPanel[];
+    items?: Lenkepanel[];
 };
 
 export const LenkepanelListe = ({ title, ingress, items }: Props) => {

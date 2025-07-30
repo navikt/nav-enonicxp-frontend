@@ -33,7 +33,7 @@ export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }:
             analyticsLabel={title}
             analyticsComponent={'Områdekort'}
             analyticsLinkGroup={analyticsLinkGroup}
-            className={classNames(style.linkPanel, graphicsStyle.expandOnHover, className)}
+            className={classNames(style.lenkepanel, graphicsStyle.expandOnHover, className)}
             as={LenkeBase}
         >
             <div className={title.length > 17 ? style.titleLong : style.titleShort}>

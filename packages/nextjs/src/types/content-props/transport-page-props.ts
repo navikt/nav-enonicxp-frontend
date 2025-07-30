@@ -1,9 +1,9 @@
-import { LinkPanel } from 'types/link-panel';
+import { Lenkepanel } from 'types/lenkepanel';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export type TransportPageData = Partial<{
     ingress: string;
-    items: LinkPanel[];
+    items: Lenkepanel[];
 }>;
 
 export type TransportPageProps = ContentCommonProps & {

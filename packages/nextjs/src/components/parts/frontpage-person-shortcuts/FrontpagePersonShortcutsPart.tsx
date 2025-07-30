@@ -59,7 +59,7 @@ export const FrontpagePersonShortcutsPart = ({
                         <li key={title} className={style.listItem}>
                             <LenkeBase
                                 href={href}
-                                className={style.linkPanel}
+                                className={style.lenkepanel}
                                 analyticsComponent="FrontpagePersonShortcutsPart"
                                 analyticsLinkGroup={sectionTitle}
                             >
