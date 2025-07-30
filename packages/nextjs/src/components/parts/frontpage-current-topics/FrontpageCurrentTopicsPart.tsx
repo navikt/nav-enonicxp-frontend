@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { LinkPanelNavno } from 'components/_common/linkpanel/LinkPanelNavno/LinkPanelNavno';
+import { LenkepanelNavno } from 'components/_common/lenkepanel/LenkepanelNavno/LenkepanelNavno';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { usePageContentProps } from 'store/pageContext';
 import { getUrlFromContent } from 'utils/links-from-content';
@@ -58,7 +58,7 @@ export const FrontpageCurrentTopicsPart = ({
 
                     return (
                         <li key={item._id}>
-                            <LinkPanelNavno
+                            <LenkepanelNavno
                                 analyticsLinkGroup={title}
                                 linkText={item.displayName}
                                 linkColor={'black'}
@@ -73,7 +73,7 @@ export const FrontpageCurrentTopicsPart = ({
                                         year: true,
                                     })}
                                 </span>
-                            </LinkPanelNavno>
+                            </LenkepanelNavno>
                         </li>
                     );
                 })}

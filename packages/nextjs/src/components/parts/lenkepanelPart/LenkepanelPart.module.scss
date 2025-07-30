@@ -2,7 +2,7 @@
 
 $iconSize: 2.1875rem;
 
-.linkPanel {
+.lenkepanel {
     &:global(.navds-panel) {
         width: 100%;
         display: flex;
@@ -53,7 +53,7 @@ $iconSize: 2.1875rem;
     }
 }
 
-:global(.vertical).linkPanel {
+:global(.vertical).lenkepanel {
     text-align: center;
 
     .icon {
@@ -89,7 +89,7 @@ $iconSize: 2.1875rem;
     }
 }
 
-:global(.horizontal).linkPanel {
+:global(.horizontal).lenkepanel {
     .icon {
         margin-right: 0.5rem;
 

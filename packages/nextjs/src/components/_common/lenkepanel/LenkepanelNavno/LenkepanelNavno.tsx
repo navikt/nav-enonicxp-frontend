@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { Button } from 'components/_common/button/Button';
-import styles from './LinkPanelNavno.module.scss';
+import styles from './LenkepanelNavno.module.scss';
 
 type Props = PropsWithChildren<{
     href: string;
@@ -13,7 +13,7 @@ type Props = PropsWithChildren<{
 }> &
     React.HTMLAttributes<HTMLAnchorElement>;
 
-export const LinkPanelNavno = ({
+export const LenkepanelNavno = ({
     href,
     linkText,
     linkColor = 'blue',
@@ -29,8 +29,8 @@ export const LinkPanelNavno = ({
     );
 
     return (
-        <div className={classNames(styles.linkPanelNavno, elementAttribs.className)}>
-            <div className="linkPanelNavnoTextContent">
+        <div className={classNames(styles.lenkepanelNavno, elementAttribs.className)}>
+            <div className="lenkepanelNavnoTextContent">
                 {onClickEvent ? (
                     <Button
                         {...elementAttribs}
@@ -46,7 +46,7 @@ export const LinkPanelNavno = ({
                     <LenkeBase
                         {...elementAttribs}
                         href={href}
-                        className={classNames(styles.linkPanelNavnoLink, textClassNames)}
+                        className={classNames(styles.lenkepanelNavnoLink, textClassNames)}
                         analyticsComponent="Lenkepanel navno"
                         analyticsLinkGroup={analyticsLinkGroup}
                         analyticsLabel={linkText}
@@ -54,7 +54,7 @@ export const LinkPanelNavno = ({
                         {linkText}
                     </LenkeBase>
                 )}
-                {children && <div className={styles.linkPanelNavnoIngress}>{children}</div>}
+                {children && <div className={styles.lenkepanelNavnoIngress}>{children}</div>}
             </div>
         </div>
     );

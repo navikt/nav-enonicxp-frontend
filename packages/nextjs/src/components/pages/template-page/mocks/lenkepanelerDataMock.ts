@@ -1,6 +1,6 @@
 import { SectionPageData } from 'types/content-props/section-page-props';
 
-export const linkPanelsDataMock: SectionPageData = {
+export const lenkepanelerDataMock: SectionPageData = {
     panelsHeading: 'Hva er din situasjon?',
     panelItems: [
         {

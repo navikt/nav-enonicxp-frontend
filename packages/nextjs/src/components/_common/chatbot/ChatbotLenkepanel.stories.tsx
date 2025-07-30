@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ChatbotLinkPanel } from './ChatbotLinkPanel';
+import { ChatbotLenkepanel } from './ChatbotLenkepanel';
 
 const meta = {
-    component: ChatbotLinkPanel,
+    component: ChatbotLenkepanel,
     args: {
         analyticsGroup: '',
         linkText: 'Tittel',
         ingress: 'Lorem ipsum dolor',
     },
-} satisfies Meta<typeof ChatbotLinkPanel>;
+} satisfies Meta<typeof ChatbotLenkepanel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

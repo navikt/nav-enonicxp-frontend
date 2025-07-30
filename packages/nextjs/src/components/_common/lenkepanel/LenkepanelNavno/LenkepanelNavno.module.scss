@@ -3,7 +3,7 @@
 $blueLinkColor: var(--default-action-color);
 $blackLinkColor: var(--a-text-default);
 
-.linkPanelNavno {
+.lenkepanelNavno {
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -11,7 +11,7 @@ $blackLinkColor: var(--a-text-default);
     border-radius: common.$border-radius-xlarge;
 
     &:hover {
-        .linkPanelNavnoLink {
+        .lenkepanelNavnoLink {
             text-decoration: none;
             color: $blueLinkColor;
         }
@@ -37,7 +37,7 @@ $blackLinkColor: var(--a-text-default);
     right: 0;
 }
 
-.linkPanelNavnoLink {
+.lenkepanelNavnoLink {
     color: $blueLinkColor;
     text-decoration-line: underline;
     text-decoration-thickness: 0.05em;
@@ -72,10 +72,10 @@ $blackLinkColor: var(--a-text-default);
     }
 }
 
-.linkPanelNavnoIngress {
+.lenkepanelNavnoIngress {
     margin-top: 1rem;
 }
 
-.linkPanelNavnoIcon {
+.lenkepanelNavnoIcon {
     margin-right: 1rem;
 }

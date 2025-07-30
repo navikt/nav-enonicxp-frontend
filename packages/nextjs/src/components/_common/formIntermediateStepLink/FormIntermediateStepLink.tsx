@@ -32,7 +32,7 @@ export const FormIntermediateStepLink = ({
     return (
         <LinkPanel
             as={LenkeBase}
-            className={style.linkPanel}
+            className={style.lenkepanel}
             href={href}
             analyticsComponent={analyticsComponent}
             analyticsLabel={analyticsLabel}

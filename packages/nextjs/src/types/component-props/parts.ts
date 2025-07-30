@@ -16,7 +16,7 @@ import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-p
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
-import { PartConfigLinkPanel } from 'components/parts/linkPanelPart/LinkPanelPart';
+import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
@@ -36,7 +36,7 @@ import { ComponentBaseProps, ComponentType } from './_component-common';
 
 export enum PartType {
     Omradekort = 'no.nav.navno:area-card',
-    LinkPanel = 'no.nav.navno:dynamic-link-panel',
+    Lenkepanel = 'no.nav.navno:dynamic-link-panel',
     Varselboks = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
     Lenkeliste = 'no.nav.navno:dynamic-link-list',
@@ -80,7 +80,7 @@ export enum PartDeprecatedType {
 // Legacy, only used in templates for old content types
 export enum PartLegacyType {
     LinkPanels = 'no.nav.navno:link-panels',
-    Lenkelister = 'no.nav.navno:link-lists',
+    LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
     MainArticle = 'no.nav.navno:main-article',
@@ -109,7 +109,7 @@ type PartConfigs = {
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.Lenkeliste]: PartConfigLenkeliste;
-    [PartType.LinkPanel]: PartConfigLinkPanel;
+    [PartType.Lenkepanel]: PartConfigLenkepanel;
     [PartType.LoggedinCard]: PartConfigLoggedinCard;
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;

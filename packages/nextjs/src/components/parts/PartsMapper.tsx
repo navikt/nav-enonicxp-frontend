@@ -34,7 +34,7 @@ import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { VarselboksPart } from './varselboks/VarselboksPart';
-import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
+import { LenkepanelPart } from './lenkepanelPart/LenkepanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
 import { LenkelistePart } from './lenkeliste/LenkelistePart';
@@ -104,8 +104,8 @@ const PartComponentMapper = ({
             return <HtmlAreaPart {...partProps} />;
         case PartType.Lenkeliste:
             return <LenkelistePart {...partProps} />;
-        case PartType.LinkPanel:
-            return <LinkPanelPart {...partProps} />;
+        case PartType.Lenkepanel:
+            return <LenkepanelPart {...partProps} />;
         case PartType.LoggedinCard:
             return <LoggedinCardPart {...partProps} />;
         case PartType.NewsList:
@@ -137,7 +137,7 @@ const PartComponentMapper = ({
         case PartType.UxSignalsWidget:
             return <UxSignalsWidgetPart {...partProps} />;
 
-        case PartLegacyType.Lenkelister:
+        case PartLegacyType.LinkLists:
             return <LinkListsLegacyPart {...pageProps} />;
         case PartLegacyType.LinkPanels:
             return <LinkPanelsLegacyPart {...pageProps} />;

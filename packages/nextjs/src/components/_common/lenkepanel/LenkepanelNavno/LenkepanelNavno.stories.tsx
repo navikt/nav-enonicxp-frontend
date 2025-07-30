@@ -1,11 +1,11 @@
 import { fn } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
-import { LinkPanelNavno } from './LinkPanelNavno';
+import { LenkepanelNavno } from './LenkepanelNavno';
 
 const meta = {
-    component: LinkPanelNavno,
+    component: LenkepanelNavno,
     args: { href: '/href', linkText: 'Tekst', children: 'Children' },
-} satisfies Meta<typeof LinkPanelNavno>;
+} satisfies Meta<typeof LenkepanelNavno>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

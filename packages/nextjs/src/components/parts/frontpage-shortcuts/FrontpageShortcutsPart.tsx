@@ -2,7 +2,7 @@ import React from 'react';
 import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { LinkPanelNavnoSimple } from 'components/_common/linkpanel/LinkPanelNavnoSimple/LinkPanelNavnoSimple';
+import { LenkepanelNavnoSimple } from 'components/_common/lenkepanel/LenkepanelNavnoSimple/LenkepanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -75,7 +75,7 @@ export const FrontpageShortcutsPart = ({
 
                     return (
                         <li key={title}>
-                            <LinkPanelNavnoSimple
+                            <LenkepanelNavnoSimple
                                 href={href}
                                 analyticsLinkGroup={sectionTitle}
                                 analyticsComponent="FrontpageShortcutsPart"
@@ -86,7 +86,7 @@ export const FrontpageShortcutsPart = ({
                                 )}
                             >
                                 {title}
-                            </LinkPanelNavnoSimple>
+                            </LenkepanelNavnoSimple>
                         </li>
                     );
                 })}

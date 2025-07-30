@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { LinkPanelNavnoSimple } from './LinkPanelNavnoSimple';
+import { LenkepanelNavnoSimple } from './LenkepanelNavnoSimple';
 
 const meta = {
-    component: LinkPanelNavnoSimple,
+    component: LenkepanelNavnoSimple,
     args: { href: '', children: 'Hei' },
-} satisfies Meta<typeof LinkPanelNavnoSimple>;
+} satisfies Meta<typeof LenkepanelNavnoSimple>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

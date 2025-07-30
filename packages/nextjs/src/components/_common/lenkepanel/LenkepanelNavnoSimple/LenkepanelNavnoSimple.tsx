@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
-import style from './LinkPanelNavnoSimple.module.scss';
+import style from './LenkepanelNavnoSimple.module.scss';
 
 type Props = PropsWithChildren<{
     href: string;
@@ -12,9 +12,9 @@ type Props = PropsWithChildren<{
     React.ComponentProps<typeof LenkeBase>;
 
 // This component is meant to be used with "simple" content, ie just a line of text
-// and an optional icon. Use <LinkPanelNavno>-component for panels with more complex
+// and an optional icon. Use <LenkepanelNavno>-component for panels with more complex
 // content
-export const LinkPanelNavnoSimple = ({
+export const LenkepanelNavnoSimple = ({
     href,
     analyticsLinkGroup,
     icon,
@@ -26,7 +26,7 @@ export const LinkPanelNavnoSimple = ({
         <LenkeBase
             {...rest}
             href={href}
-            className={classNames(style.linkPanel, icon && style.withIcon, className)}
+            className={classNames(style.lenkepanel, icon && style.withIcon, className)}
             analyticsComponent={'Lenkepanel navno enkel'}
             analyticsLinkGroup={analyticsLinkGroup}
         >

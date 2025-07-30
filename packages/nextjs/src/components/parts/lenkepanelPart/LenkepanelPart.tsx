@@ -13,9 +13,9 @@ import { XpImageProps } from 'types/media';
 import { EmptyObject, OptionSetSingle } from 'types/util-types';
 import { ColorMixin, LinkWithIngressMixin } from 'types/component-props/_mixins';
 
-import style from './LinkPanelPart.module.scss';
+import style from './LenkepanelPart.module.scss';
 
-export type PartConfigLinkPanel = {
+export type PartConfigLenkepanel = {
     background?: XpImageProps; // Brukes potensielt ikke?
     icon?: XpImageProps;
     variant?: OptionSetSingle<{
@@ -27,7 +27,7 @@ export type PartConfigLinkPanel = {
     }>;
 } & LinkWithIngressMixin;
 
-export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>) => {
+export const LenkepanelPart = ({ config }: PartComponentProps<PartType.Lenkepanel>) => {
     const { editorView, language } = usePageContentProps();
 
     if (!config) {
@@ -52,7 +52,7 @@ export const LinkPanelPart = ({ config }: PartComponentProps<PartType.LinkPanel>
     return (
         <LinkPanel
             href={linkProps.url}
-            className={classNames(style.linkPanel, isVerticalLayout ? `vertical` : 'horizontal')}
+            className={classNames(style.lenkepanel, isVerticalLayout ? `vertical` : 'horizontal')}
             border={true}
             style={
                 bgUrl

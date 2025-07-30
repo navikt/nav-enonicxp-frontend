@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
-import { ChatbotLinkPanel } from './ChatbotLinkPanel';
+import { ChatbotLenkepanel } from './ChatbotLenkepanel';
 
 import style from './LegacyPageChatbot.module.scss';
 
@@ -33,7 +33,7 @@ export const LegacyPageChatbot = ({ content }: Props) => {
 
     return (
         <div className={style.legacyChat}>
-            <ChatbotLinkPanel
+            <ChatbotLenkepanel
                 analyticsGroup={'Legacy chat panel'}
                 linkText={texts['title']}
                 ingress={texts['ingress']}

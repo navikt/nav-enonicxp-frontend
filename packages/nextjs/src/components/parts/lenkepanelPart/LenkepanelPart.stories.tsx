@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { PartType } from 'types/component-props/parts';
 import { ComponentType } from 'types/component-props/_component-common';
 import { MediaType } from 'types/media';
-import { LinkPanelPart } from './LinkPanelPart';
+import { LenkepanelPart } from './LenkepanelPart';
 
 const meta = {
-    component: LinkPanelPart,
+    component: LenkepanelPart,
     args: {
-        descriptor: PartType.LinkPanel,
+        descriptor: PartType.Lenkepanel,
         type: ComponentType.Part,
         path: 'path',
         config: {
@@ -23,7 +23,7 @@ const meta = {
             },
         },
     },
-} satisfies Meta<typeof LinkPanelPart>;
+} satisfies Meta<typeof LenkepanelPart>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -32,7 +32,7 @@ export const Default: Story = {
     parameters: {
         docs: {
             description: {
-                story: 'Descriptor og type må være henholdsvis LinkPanel og Part for denne komponenten.',
+                story: 'Descriptor og type må være henholdsvis Lenkepanel og Part for denne komponenten.',
             },
         },
     },
