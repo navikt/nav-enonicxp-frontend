@@ -16,7 +16,7 @@ export const KortUrlWarning = ({ content }: { content: ContentProps }) => {
         (maalgruppe === 'employer' && path && !path?.includes('/arbeidsgiver')) ||
         (maalgruppe === 'provider' && path && !path?.includes('/samarbeidspartner'))
     ) {
-        return <li>{getMelding(maalgruppe)}</li>;
+        return <li key="kort-url-warning">{getMelding(maalgruppe)}</li>;
     }
     return null;
 };

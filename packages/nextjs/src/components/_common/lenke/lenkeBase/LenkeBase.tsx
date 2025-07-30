@@ -8,12 +8,11 @@ import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
-
 import style from './LenkeBase.module.scss';
 
 export const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
 
-const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
+const BadLinkWarning = ({ children }: PropsWithChildren) => (
     <span className={style.badLinkWarning}>
         {'Obs! Lenke til portal-admin: '}
         {children}

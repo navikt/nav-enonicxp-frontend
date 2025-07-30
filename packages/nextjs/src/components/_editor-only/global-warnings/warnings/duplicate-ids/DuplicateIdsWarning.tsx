@@ -18,10 +18,10 @@ export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds }: Prop
 
     return (
         <>
-            <li>
+            <li key="duplicate-ids-warning">
                 Anker-ID-ene på siden må være unike for å fungere. Følgende anker-ID-er må derfor
                 justeres:
-                <ul>
+                <ul key={`duplicate-ids-list-${linkIdPrefix}`}>
                     {uniqueDupeIds.map((id) => (
                         <li key={id}>
                             <code>{`#${id}`}</code>
@@ -39,7 +39,6 @@ export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds }: Prop
                                             </EditorLinkWrapper>
                                         );
                                     }
-
                                     return acc;
                                 },
                                 []
