@@ -8,7 +8,7 @@ import { ProviderAudience } from 'types/component-props/_mixins';
 
 type ContentTypeInFormOverviewPages = ContentType.ProductPage | ContentType.GuidePage;
 
-export type FormDetailsListItemProps = {
+export type SkjemadetaljerListItemProps = {
     title: string;
     sortTitle: string;
     ingress: string;
@@ -59,7 +59,7 @@ export type FormsOverviewData = {
     areasFilterToggle: boolean;
     taxonomyFilterToggle: boolean;
     textFilterToggle: boolean;
-    formDetailsList: FormDetailsListItemProps[];
+    formDetailsList: SkjemadetaljerListItemProps[];
 };
 
 export type FormsOverviewProps = ContentCommonProps & {

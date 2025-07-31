@@ -3,11 +3,11 @@ import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
-import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
+import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { FiltersMixin } from 'types/component-props/_mixins';
 
-export type PartConfigFormDetails = {
-    targetFormDetails: FormDetailsPageProps;
+export type PartConfigSkjemadetaljer = {
+    targetFormDetails: SkjemadetaljerPageProps;
     showTitle: boolean;
     showIngress: boolean;
     showAddendums: boolean;
@@ -15,7 +15,7 @@ export type PartConfigFormDetails = {
     showApplications: boolean;
 } & FiltersMixin;
 
-export const SkjemadetaljerPart = ({ config }: PartComponentProps<PartType.FormDetails>) => {
+export const SkjemadetaljerPart = ({ config }: PartComponentProps<PartType.Skjemadetaljer>) => {
     const { targetFormDetails, ...displayConfig } = config;
 
     if (!targetFormDetails) {
@@ -25,7 +25,7 @@ export const SkjemadetaljerPart = ({ config }: PartComponentProps<PartType.FormD
 
     return (
         <FilteredContent {...config}>
-            <Skjemadetaljer formDetails={formDetails} displayConfig={displayConfig} />
+            <Skjemadetaljer skjemadetaljer={formDetails} displayConfig={displayConfig} />
         </FilteredContent>
     );
 };

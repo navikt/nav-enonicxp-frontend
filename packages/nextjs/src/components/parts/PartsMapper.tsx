@@ -88,7 +88,7 @@ const PartComponentMapper = ({
             return <KontaktOssKanalPart {...partProps} />;
         case PartType.Filtreringsmeny:
             return <FiltreringsmenyPart {...partProps} />;
-        case PartType.FormDetails:
+        case PartType.Skjemadetaljer:
             return <SkjemadetaljerPart {...partProps} />;
         case PartType.FrontpageContact:
             return <FrontpageContactPart {...partProps} />;

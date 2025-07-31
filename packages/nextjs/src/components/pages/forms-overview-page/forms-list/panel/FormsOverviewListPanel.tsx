@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
-import { FormDetailsListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
+import { SkjemadetaljerListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
 import {
     Skjemadetaljer,
-    FormDetailsComponentProps,
+    SkjemadetaljerComponentProps,
 } from 'components/_common/skjemadetaljer/Skjemadetaljer';
-import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
+import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import style from './FormsOverviewListPanel.module.scss';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
-const getFormDetailsDisplayOptions = (
+const getSkjemadetaljerDisplayOptions = (
     overviewType: OverviewType
-): FormDetailsComponentProps['displayConfig'] => {
+): SkjemadetaljerComponentProps['displayConfig'] => {
     return {
         showTitle: true,
         showIngress: true,
@@ -27,7 +27,7 @@ const getFormDetailsDisplayOptions = (
 };
 
 type Props = {
-    formDetails: FormDetailsListItemProps;
+    formDetails: SkjemadetaljerListItemProps;
     overviewType: OverviewType;
     formNumberSelected?: string;
 };
@@ -51,11 +51,13 @@ export const FormsOverviewListPanel = ({
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    const [formDetailsPages, setFormDetailsPages] = useState<null | FormDetailsPageProps[]>(null);
+    const [skjemadetaljerPages, setSkjemadetaljerPages] = useState<
+        null | SkjemadetaljerPageProps[]
+    >(null);
     const isAddendumPage = overviewType === 'addendum';
 
-    const handleFormDetailsFetch = () => {
-        if (isLoading || formDetailsPages) {
+    const handleSkjemadetaljerFetch = () => {
+        if (isLoading || skjemadetaljerPages) {
             return;
         }
 
@@ -64,16 +66,16 @@ export const FormsOverviewListPanel = ({
 
         Promise.all(formDetailsPaths.map(fetchPageCacheContent))
             .then((contentFromCache) => {
-                const validFormDetails = contentFromCache.filter((content) => {
+                const validSkjemadetaljer = contentFromCache.filter((content) => {
                     if (!content) {
                         setError('Teknisk feil: Noen av skjemainngangene kunne ikke lastes');
                         return false;
                     }
 
                     return content.type === ContentType.Skjemadetaljer;
-                }) as FormDetailsPageProps[];
+                }) as SkjemadetaljerPageProps[];
 
-                setFormDetailsPages(validFormDetails);
+                setSkjemadetaljerPages(validSkjemadetaljer);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -86,7 +88,7 @@ export const FormsOverviewListPanel = ({
             ingress={ingress}
             illustration={illustration}
             anchorId={anchorId}
-            contentLoaderCallback={handleFormDetailsFetch}
+            contentLoaderCallback={handleSkjemadetaljerFetch}
             isLoading={isLoading}
             error={error}
             analyticsData={{
@@ -95,10 +97,10 @@ export const FormsOverviewListPanel = ({
             withCopyLink
         >
             <div className={style.formsOverviewListPanel}>
-                {formDetailsPages?.map((formDetail) => (
+                {skjemadetaljerPages?.map((formDetail) => (
                     <Skjemadetaljer
-                        formDetails={formDetail.data}
-                        displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                        skjemadetaljer={formDetail.data}
+                        displayConfig={getSkjemadetaljerDisplayOptions(overviewType)}
                         formNumberSelected={formNumberSelected}
                         key={formDetail._id}
                     />

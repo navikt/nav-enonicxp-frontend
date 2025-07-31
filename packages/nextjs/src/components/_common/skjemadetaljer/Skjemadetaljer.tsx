@@ -3,7 +3,7 @@ import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { FormDetailsData, Variation } from 'types/content-props/skjemadetaljer';
+import { SkjemadetaljerData, Variation } from 'types/content-props/skjemadetaljer';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { usePageContentProps } from 'store/pageContext';
@@ -13,8 +13,8 @@ import { SkjemadetaljerButton } from './SkjemadetaljerButton';
 
 import style from './Skjemadetaljer.module.scss';
 
-export type FormDetailsComponentProps = {
-    formDetails: FormDetailsData;
+export type SkjemadetaljerComponentProps = {
+    skjemadetaljer: SkjemadetaljerData;
     displayConfig: {
         showTitle: boolean;
         showIngress: boolean;
@@ -28,11 +28,11 @@ export type FormDetailsComponentProps = {
 };
 
 export const Skjemadetaljer = ({
-    formDetails,
+    skjemadetaljer,
     displayConfig,
     className,
     formNumberSelected,
-}: FormDetailsComponentProps) => {
+}: SkjemadetaljerComponentProps) => {
     const {
         showTitle,
         showIngress,
@@ -45,7 +45,7 @@ export const Skjemadetaljer = ({
     const pageProps = usePageContentProps();
     const { editorView } = pageProps;
 
-    const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
+    const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = skjemadetaljer;
 
     const variations = formType.reduce<Variation[]>((acc, cur) => {
         const { _selected } = cur;
@@ -83,7 +83,7 @@ export const Skjemadetaljer = ({
         showFormNumbers && Array.isArray(formNumbers) && formNumbers.length > 0;
 
     return (
-        <div className={classNames(style.formDetails, className)}>
+        <div className={classNames(style.skjemadetaljer, className)}>
             {hasVisibleTitle && (
                 <Heading
                     size={showTitleAsLevel4 ? 'small' : 'medium'}

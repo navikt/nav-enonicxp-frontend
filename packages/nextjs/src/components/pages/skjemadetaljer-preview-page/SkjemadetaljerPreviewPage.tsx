@@ -1,6 +1,6 @@
 import React from 'react';
 import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
-import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
+import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
 import styles from './SkjemadetaljerPreviewPage.module.scss';
@@ -12,7 +12,7 @@ const displayConfig = {
     showApplications: true,
 };
 
-export const SkjemadetaljerPreviewPage = (props: FormDetailsPageProps) => {
+export const SkjemadetaljerPreviewPage = (props: SkjemadetaljerPageProps) => {
     const { data, editorView, noRedirect } = props;
 
     if (!editorView && !noRedirect) {
@@ -21,7 +21,7 @@ export const SkjemadetaljerPreviewPage = (props: FormDetailsPageProps) => {
 
     return (
         <div className={styles.formDetailsPreviewPage}>
-            <Skjemadetaljer formDetails={data} displayConfig={displayConfig} />
+            <Skjemadetaljer skjemadetaljer={data} displayConfig={displayConfig} />
         </div>
     );
 };

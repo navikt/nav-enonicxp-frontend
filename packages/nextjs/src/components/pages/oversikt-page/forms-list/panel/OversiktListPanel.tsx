@@ -5,9 +5,9 @@ import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import {
     Skjemadetaljer,
-    FormDetailsComponentProps,
+    SkjemadetaljerComponentProps,
 } from 'components/_common/skjemadetaljer/Skjemadetaljer';
-import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
+import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import { OversiktItemListItem, OversiktPageData } from 'types/content-props/oversikt-props';
@@ -22,7 +22,7 @@ type OversiktType = OversiktPageData['oversiktType'];
 
 const getFormDetailsDisplayOptions = (
     oversiktType: OversiktType
-): FormDetailsComponentProps['displayConfig'] => {
+): SkjemadetaljerComponentProps['displayConfig'] => {
     return {
         showTitle: true,
         showIngress: true,
@@ -55,7 +55,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [loadedPanelDetails, setLoadedPanelDetails] = useState<
-        null | FormDetailsPageProps[] | ProductDetailsProps[]
+        null | SkjemadetaljerPageProps[] | ProductDetailsProps[]
     >(null);
     const isAddendumPage = oversiktType === 'addendum';
     const isTjenesterOversikt = oversiktType === ProductDetailType.ALL_PRODUCTS;
@@ -82,7 +82,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                         content.type === ContentType.Skjemadetaljer ||
                         content.type === ContentType.ProductDetails
                     );
-                }) as FormDetailsPageProps[] | ProductDetailsProps[];
+                }) as SkjemadetaljerPageProps[] | ProductDetailsProps[];
 
                 setLoadedPanelDetails(validItemsContent);
             })
@@ -128,7 +128,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                     if (panelDetail.type === ContentType.Skjemadetaljer) {
                         return (
                             <Skjemadetaljer
-                                formDetails={panelDetail.data}
+                                skjemadetaljer={panelDetail.data}
                                 displayConfig={getFormDetailsDisplayOptions(oversiktType)}
                                 formNumberSelected={formNumberSelected}
                                 key={panelDetail._id}
