@@ -3,20 +3,20 @@
 .currentTopics {
     @include common.full-width-mixin();
     background-color: var(--bg-color, var(--a-bg-subtle));
-    padding-top: 2.75rem;
-    padding-bottom: 2.75rem;
+    padding-top: var(--a-spacing-11);
+    padding-bottom: var(--a-spacing-11);
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-top: var(--a-spacing-8);
+        padding-bottom: var(--a-spacing-8);
     }
 }
 
 .header {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 
@@ -27,8 +27,8 @@
 
     @include common.grid-layout-mixin(
         $numCols: 2,
-        $rowGapMobileSmall: 0.75rem,
-        $columnGapMobileSmall: 0.75rem
+        $rowGapMobileSmall: var(--a-spacing-3),
+        $columnGapMobileSmall: var(--a-spacing-3)
     );
 }
 
@@ -44,7 +44,7 @@
     }
 
     @media #{common.$mq-screen-mobile-small} {
-        padding: 0.5rem 0.75rem;
+        padding: var(--a-spacing-2) --a-spacing-3;
     }
 }
 
