@@ -9,10 +9,9 @@ import { MoreLink } from 'components/_common/moreLink/MoreLink';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ContentListData } from 'types/content-props/content-list-props';
 import { LinkSelectable } from 'types/component-props/_mixins';
+import style from './SeksjonForAktuelleTemaerPart.module.scss';
 
-import style from './FrontpageCurrentTopics.module.scss';
-
-export type PartConfigFrontpageCurrentTopics = {
+export type PartConfigSeksjonForAktuelleTemaer = {
     title: string;
     contentList?: { data: ContentListData };
     link: LinkSelectable;
@@ -20,9 +19,9 @@ export type PartConfigFrontpageCurrentTopics = {
     itemColor?: string;
 };
 
-export const FrontpageCurrentTopicsPart = ({
+export const SeksjonForAktuelleTemaerPart = ({
     config,
-}: PartComponentProps<PartType.FrontpageCurrentTopics>) => {
+}: PartComponentProps<PartType.SeksjonForAktuelleTemaer>) => {
     const { language, editorView } = usePageContentProps();
     const { contentList, title, link, bgColor, itemColor } = config;
 

@@ -10,7 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
@@ -31,6 +30,7 @@ import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishin
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
 import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { VarselboksPart } from './varselboks/VarselboksPart';
@@ -92,8 +92,8 @@ const PartComponentMapper = ({
             return <SkjemadetaljerPart {...partProps} />;
         case PartType.SeksjonForKontaktinformasjon:
             return <SeksjonForKontaktinformasjonPart {...partProps} />;
-        case PartType.FrontpageCurrentTopics:
-            return <FrontpageCurrentTopicsPart {...partProps} />;
+        case PartType.SeksjonForAktuelleTemaer:
+            return <SeksjonForAktuelleTemaerPart {...partProps} />;
         case PartType.FrontpageShortcuts:
             return <FrontpageShortcutsPart {...partProps} />;
         case PartType.FrontpagePersonShortcuts:
