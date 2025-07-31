@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormDetailsListItemProps, FormsOverviewData } from 'types/content-props/forms-overview';
-import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
-import { FormDetailsPageProps } from 'types/content-props/form-details';
+import {
+    Skjemadetaljer,
+    FormDetailsComponentProps,
+} from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import style from './FormsOverviewListPanel.module.scss';
@@ -93,7 +96,7 @@ export const FormsOverviewListPanel = ({
         >
             <div className={style.formsOverviewListPanel}>
                 {formDetailsPages?.map((formDetail) => (
-                    <FormDetails
+                    <Skjemadetaljer
                         formDetails={formDetail.data}
                         displayConfig={getFormDetailsDisplayOptions(overviewType)}
                         formNumberSelected={formNumberSelected}

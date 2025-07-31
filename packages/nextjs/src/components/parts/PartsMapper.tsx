@@ -51,7 +51,7 @@ import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
-import { FormDetailsPart } from './form-details/FormDetailsPart';
+import { SkjemadetaljerPart } from './skjemadetaljer/SkjemadetaljerPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
 import { TrekkspillPart } from './trekkspill/TrekkspillPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
@@ -89,7 +89,7 @@ const PartComponentMapper = ({
         case PartType.Filtreringsmeny:
             return <FiltreringsmenyPart {...partProps} />;
         case PartType.FormDetails:
-            return <FormDetailsPart {...partProps} />;
+            return <SkjemadetaljerPart {...partProps} />;
         case PartType.FrontpageContact:
             return <FrontpageContactPart {...partProps} />;
         case PartType.FrontpageCurrentTopics:

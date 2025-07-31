@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormDetails } from 'components/_common/formDetails/FormDetails';
-import { FormDetailsPageProps } from 'types/content-props/form-details';
+import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
-import styles from './FormDetailsPreviewPage.module.scss';
+import styles from './SkjemadetaljerPreviewPage.module.scss';
 
 const displayConfig = {
     showTitle: true,
@@ -12,7 +12,7 @@ const displayConfig = {
     showApplications: true,
 };
 
-export const FormDetailsPreviewPage = (props: FormDetailsPageProps) => {
+export const SkjemadetaljerPreviewPage = (props: FormDetailsPageProps) => {
     const { data, editorView, noRedirect } = props;
 
     if (!editorView && !noRedirect) {
@@ -21,7 +21,7 @@ export const FormDetailsPreviewPage = (props: FormDetailsPageProps) => {
 
     return (
         <div className={styles.formDetailsPreviewPage}>
-            <FormDetails formDetails={data} displayConfig={displayConfig} />
+            <Skjemadetaljer formDetails={data} displayConfig={displayConfig} />
         </div>
     );
 };

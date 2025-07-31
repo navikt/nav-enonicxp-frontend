@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FormDetailsData } from 'types/content-props/form-details';
-import { FormDetails } from './FormDetails';
+import { FormDetailsData } from 'types/content-props/skjemadetaljer';
+import { Skjemadetaljer } from './Skjemadetaljer';
 
 const baseFormDetails = {
     formType: [
@@ -35,12 +35,12 @@ const baseFormDetails = {
 } satisfies FormDetailsData;
 
 const meta = {
-    component: FormDetails,
+    component: Skjemadetaljer,
     args: {
         formDetails: baseFormDetails,
         displayConfig: { showTitle: true, showIngress: true },
     },
-} satisfies Meta<typeof FormDetails>;
+} satisfies Meta<typeof Skjemadetaljer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

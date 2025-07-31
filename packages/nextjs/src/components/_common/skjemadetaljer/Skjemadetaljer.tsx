@@ -3,15 +3,15 @@ import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { FormDetailsData, Variation } from 'types/content-props/form-details';
+import { FormDetailsData, Variation } from 'types/content-props/skjemadetaljer';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormNumberTag } from 'components/_common/formNumberTag/FormNumberTag';
-import { FormDetailsButton } from './FormDetailsButton';
+import { SkjemadetaljerButton } from './SkjemadetaljerButton';
 
-import style from './FormDetails.module.scss';
+import style from './Skjemadetaljer.module.scss';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
@@ -27,7 +27,7 @@ export type FormDetailsComponentProps = {
     formNumberSelected?: string;
 };
 
-export const FormDetails = ({
+export const Skjemadetaljer = ({
     formDetails,
     displayConfig,
     className,
@@ -107,7 +107,7 @@ export const FormDetails = ({
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation) => (
-                        <FormDetailsButton key={variation.label} variation={variation} />
+                        <SkjemadetaljerButton key={variation.label} variation={variation} />
                     ))}
                 </div>
             )}

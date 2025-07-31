@@ -1,8 +1,8 @@
-import { FormDetails } from 'components/_common/formDetails/FormDetails';
+import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { MacroFormDetailsProps } from 'types/macro-props/form-details';
+import { MacroFormDetailsProps } from 'types/macro-props/skjemadetaljer';
 
-export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
+export const MacroSkjemadetaljer = ({ config }: MacroFormDetailsProps) => {
     const macroConfig = config?.form_details;
     const formDetailsData = macroConfig?.targetFormDetails?.data;
 
@@ -23,5 +23,5 @@ export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
         showAddendums: macroConfig.showAddendums,
     };
 
-    return <FormDetails formDetails={formDetailsData} displayConfig={displayConfig} />;
+    return <Skjemadetaljer formDetails={formDetailsData} displayConfig={displayConfig} />;
 };

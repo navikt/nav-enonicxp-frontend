@@ -1,4 +1,4 @@
-import { FormDetailsData } from 'types/content-props/form-details';
+import { FormDetailsData } from 'types/content-props/skjemadetaljer';
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroFormDetailsProps extends MacroPropsCommon {

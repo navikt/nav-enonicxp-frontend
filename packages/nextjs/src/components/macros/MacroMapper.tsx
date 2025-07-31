@@ -12,7 +12,7 @@ import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLi
 import { MacroChevronLinkInternal } from './chevron-link-internal/MacroChevronLinkInternal';
 import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
 import { MacroFotnote } from './fotnote/MacroFotnote';
-import { MacroFormDetails } from './form-details/MacroFormDetails';
+import { MacroSkjemadetaljer } from './skjemadetaljer/MacroSkjemadetaljer';
 import { MacroInfoBoks } from './infoboks/MacroInfoBoks';
 import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
@@ -43,7 +43,7 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
-    [MacroType.FormDetails]: MacroFormDetails,
+    [MacroType.FormDetails]: MacroSkjemadetaljer,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,

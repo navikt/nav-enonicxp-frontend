@@ -43,7 +43,7 @@ import { ContactInformationProps } from './contact-information-props';
 import { PayoutDatesProps } from './payout-dates';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
-import { FormDetailsPageProps } from './form-details';
+import { FormDetailsPageProps } from './skjemadetaljer';
 import { FallbackPageProps } from './fallback-page-props';
 import { OversiktPageProps } from './oversikt-props';
 

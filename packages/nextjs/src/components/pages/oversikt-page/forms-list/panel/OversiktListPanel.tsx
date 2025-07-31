@@ -3,8 +3,11 @@ import { BodyLong } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
-import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
-import { FormDetailsPageProps } from 'types/content-props/form-details';
+import {
+    Skjemadetaljer,
+    FormDetailsComponentProps,
+} from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { FormDetailsPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import { OversiktItemListItem, OversiktPageData } from 'types/content-props/oversikt-props';
@@ -124,7 +127,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                 {loadedPanelDetails?.map((panelDetail) => {
                     if (panelDetail.type === ContentType.FormDetails) {
                         return (
-                            <FormDetails
+                            <Skjemadetaljer
                                 formDetails={panelDetail.data}
                                 displayConfig={getFormDetailsDisplayOptions(oversiktType)}
                                 formNumberSelected={formNumberSelected}
