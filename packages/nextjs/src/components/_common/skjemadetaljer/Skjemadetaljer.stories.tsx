@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FormDetailsData } from 'types/content-props/form-details';
-import { FormDetails } from './FormDetails';
+import { SkjemadetaljerData } from 'types/content-props/skjemadetaljer';
+import { Skjemadetaljer } from './Skjemadetaljer';
 
-const baseFormDetails = {
+const baseSkjemadetaljer = {
     formType: [
         {
             _selected: 'complaint',
@@ -32,15 +32,15 @@ const baseFormDetails = {
             'Søknaden skal brukes hvis du søker om tolk første gang. Hvis du tidligere har søkt og fått innvilget tolk, kan du bruke bestillingsløsningen neste gang du trenger tolk.',
         macros: [],
     },
-} satisfies FormDetailsData;
+} satisfies SkjemadetaljerData;
 
 const meta = {
-    component: FormDetails,
+    component: Skjemadetaljer,
     args: {
-        formDetails: baseFormDetails,
+        skjemadetaljer: baseSkjemadetaljer,
         displayConfig: { showTitle: true, showIngress: true },
     },
-} satisfies Meta<typeof FormDetails>;
+} satisfies Meta<typeof Skjemadetaljer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -49,8 +49,8 @@ export const Default: Story = {};
 
 export const LanguageDisclaimer: Story = {
     args: {
-        formDetails: {
-            ...baseFormDetails,
+        skjemadetaljer: {
+            ...baseSkjemadetaljer,
             languageDisclaimer: 'Språkdisclaimer',
         },
     },
@@ -58,8 +58,8 @@ export const LanguageDisclaimer: Story = {
 
 export const WithFormNumbers: Story = {
     args: {
-        formDetails: {
-            ...baseFormDetails,
+        skjemadetaljer: {
+            ...baseSkjemadetaljer,
             formNumbers: ['NAV 01-01.01', 'NAV 01-01.02', 'NAV 01-01.03a', 'NAV 01-01.03b'],
         },
         formNumberSelected: 'nav 01-01.03a',
@@ -69,8 +69,8 @@ export const WithFormNumbers: Story = {
 
 export const Alerts: Story = {
     args: {
-        formDetails: {
-            ...baseFormDetails,
+        skjemadetaljer: {
+            ...baseSkjemadetaljer,
             alerts: [
                 {
                     data: {

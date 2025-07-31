@@ -7,7 +7,7 @@ export enum MacroType {
     ChevronLinkInternal = 'chevron-link-internal',
     ChevronLinkExternal = 'chevron-link-external',
     Fotnote = 'fotnote',
-    FormDetails = 'form-details',
+    Skjemadetaljer = 'form-details',
     GlobalValue = 'global-value',
     GlobalValueWithMath = 'global-value-with-math',
     HeaderWithAnchor = 'header-with-anchor',

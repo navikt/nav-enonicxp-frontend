@@ -3,8 +3,11 @@ import { BodyLong } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
-import { FormDetails, FormDetailsComponentProps } from 'components/_common/formDetails/FormDetails';
-import { FormDetailsPageProps } from 'types/content-props/form-details';
+import {
+    Skjemadetaljer,
+    SkjemadetaljerComponentProps,
+} from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
 import { OversiktItemListItem, OversiktPageData } from 'types/content-props/oversikt-props';
@@ -17,9 +20,9 @@ import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
 
-const getFormDetailsDisplayOptions = (
+const getSkjemadetaljerDisplayOptions = (
     oversiktType: OversiktType
-): FormDetailsComponentProps['displayConfig'] => {
+): SkjemadetaljerComponentProps['displayConfig'] => {
     return {
         showTitle: true,
         showIngress: true,
@@ -52,7 +55,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [loadedPanelDetails, setLoadedPanelDetails] = useState<
-        null | FormDetailsPageProps[] | ProductDetailsProps[]
+        null | SkjemadetaljerPageProps[] | ProductDetailsProps[]
     >(null);
     const isAddendumPage = oversiktType === 'addendum';
     const isTjenesterOversikt = oversiktType === ProductDetailType.ALL_PRODUCTS;
@@ -76,10 +79,10 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                     }
 
                     return (
-                        content.type === ContentType.FormDetails ||
+                        content.type === ContentType.Skjemadetaljer ||
                         content.type === ContentType.ProductDetails
                     );
-                }) as FormDetailsPageProps[] | ProductDetailsProps[];
+                }) as SkjemadetaljerPageProps[] | ProductDetailsProps[];
 
                 setLoadedPanelDetails(validItemsContent);
             })
@@ -122,11 +125,11 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
         >
             <div className={style.oversiktListPanel}>
                 {loadedPanelDetails?.map((panelDetail) => {
-                    if (panelDetail.type === ContentType.FormDetails) {
+                    if (panelDetail.type === ContentType.Skjemadetaljer) {
                         return (
-                            <FormDetails
-                                formDetails={panelDetail.data}
-                                displayConfig={getFormDetailsDisplayOptions(oversiktType)}
+                            <Skjemadetaljer
+                                skjemadetaljer={panelDetail.data}
+                                displayConfig={getSkjemadetaljerDisplayOptions(oversiktType)}
                                 formNumberSelected={formNumberSelected}
                                 key={panelDetail._id}
                             />

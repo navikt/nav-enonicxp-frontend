@@ -1,14 +1,14 @@
-import { Variation } from 'types/content-props/form-details';
+import { Variation } from 'types/content-props/skjemadetaljer';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from 'components/_common/button/Button';
 
-import styles from './FormDetailsButton.module.scss';
+import styles from './SkjemadetaljerButton.module.scss';
 
 type FormsListItemProps = {
     variation: Variation;
 };
 
-export const FormDetailsButton = (props: FormsListItemProps) => {
+export const SkjemadetaljerButton = (props: FormsListItemProps) => {
     const { variation } = props;
     const { link, label } = variation;
 

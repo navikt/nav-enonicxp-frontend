@@ -3,18 +3,18 @@ import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-import { FormDetailsData, Variation } from 'types/content-props/form-details';
+import { SkjemadetaljerData, Variation } from 'types/content-props/skjemadetaljer';
 import { InfoBox } from 'components/_common/infoBox/InfoBox';
 import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKontekst';
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormNumberTag } from 'components/_common/formNumberTag/FormNumberTag';
-import { FormDetailsButton } from './FormDetailsButton';
+import { SkjemadetaljerButton } from './SkjemadetaljerButton';
 
-import style from './FormDetails.module.scss';
+import style from './Skjemadetaljer.module.scss';
 
-export type FormDetailsComponentProps = {
-    formDetails: FormDetailsData;
+export type SkjemadetaljerComponentProps = {
+    skjemadetaljer: SkjemadetaljerData;
     displayConfig: {
         showTitle: boolean;
         showIngress: boolean;
@@ -27,12 +27,12 @@ export type FormDetailsComponentProps = {
     formNumberSelected?: string;
 };
 
-export const FormDetails = ({
-    formDetails,
+export const Skjemadetaljer = ({
+    skjemadetaljer,
     displayConfig,
     className,
     formNumberSelected,
-}: FormDetailsComponentProps) => {
+}: SkjemadetaljerComponentProps) => {
     const {
         showTitle,
         showIngress,
@@ -45,7 +45,7 @@ export const FormDetails = ({
     const pageProps = usePageContentProps();
     const { editorView } = pageProps;
 
-    const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = formDetails;
+    const { formNumbers, formType, languageDisclaimer, ingress, title, alerts } = skjemadetaljer;
 
     const variations = formType.reduce<Variation[]>((acc, cur) => {
         const { _selected } = cur;
@@ -83,7 +83,7 @@ export const FormDetails = ({
         showFormNumbers && Array.isArray(formNumbers) && formNumbers.length > 0;
 
     return (
-        <div className={classNames(style.formDetails, className)}>
+        <div className={classNames(style.skjemadetaljer, className)}>
             {hasVisibleTitle && (
                 <Heading
                     size={showTitleAsLevel4 ? 'small' : 'medium'}
@@ -107,7 +107,7 @@ export const FormDetails = ({
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation) => (
-                        <FormDetailsButton key={variation.label} variation={variation} />
+                        <SkjemadetaljerButton key={variation.label} variation={variation} />
                     ))}
                 </div>
             )}

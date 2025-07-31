@@ -12,7 +12,7 @@ export interface Variation<T = string> {
     label?: string;
 }
 
-export interface FormDetailsData {
+export interface SkjemadetaljerData {
     formNumbers?: string[];
     title?: string;
     ingress?: ProcessedHtmlProps;
@@ -31,7 +31,7 @@ export interface FormDetailsData {
     }>[];
 }
 
-export type FormDetailsPageProps = {
-    type: ContentType.FormDetails;
-    data: FormDetailsData;
+export type SkjemadetaljerPageProps = {
+    type: ContentType.Skjemadetaljer;
+    data: SkjemadetaljerData;
 } & ContentCommonProps;
