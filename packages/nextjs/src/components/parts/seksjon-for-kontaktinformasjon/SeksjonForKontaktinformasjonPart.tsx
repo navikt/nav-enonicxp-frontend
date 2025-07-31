@@ -6,9 +6,9 @@ import { ContentType } from 'types/content-props/_content-common';
 import { ChatbotLenkepanel } from 'components/_common/chatbot/ChatbotLenkepanel';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ContactInformationProps } from 'types/content-props/contact-information-props';
-import { FrontpageContactAlert } from './FrontpageContactAlert';
+import { SeksjonForKontaktinformasjonAlert } from './SeksjonForKontaktinformasjonAlert';
 
-import style from './FrontpageContactPart.module.scss';
+import style from './SeksjonForKontaktinformasjonPart.module.scss';
 
 type InternalContactUs = {
     type: ContentType.GenericPage;
@@ -22,7 +22,7 @@ type ExternalContactUs = {
     };
 };
 
-export type PartConfigFrontpageContact = {
+export type PartConfigSeksjonForKontaktinformasjon = {
     title: string;
     chatTitle: string;
     chatAlertText?: string;
@@ -34,7 +34,9 @@ export type PartConfigFrontpageContact = {
     contactUsLink: InternalContactUs | ExternalContactUs;
 };
 
-export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.FrontpageContact>) => {
+export const SeksjonForKontaktinformasjonPart = ({
+    config,
+}: PartComponentProps<PartType.SeksjonForKontaktinformasjon>) => {
     if (!config) {
         return <EditorHelp text={'Komponenten er ikke konfigerert'} />;
     }
@@ -87,7 +89,7 @@ export const FrontpageContactPart = ({ config }: PartComponentProps<PartType.Fro
                     linkText={contactUsTitle}
                 >
                     {contactUsAlertText && (
-                        <FrontpageContactAlert alertText={contactUsAlertText} yellow />
+                        <SeksjonForKontaktinformasjonAlert alertText={contactUsAlertText} yellow />
                     )}
                     {contactUsIngress}
                 </LenkepanelNavno>
