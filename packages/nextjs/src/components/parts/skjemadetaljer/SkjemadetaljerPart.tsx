@@ -21,11 +21,11 @@ export const SkjemadetaljerPart = ({ config }: PartComponentProps<PartType.Skjem
     if (!targetFormDetails) {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
     }
-    const formDetails = targetFormDetails.data;
+    const skjemadetaljer = targetFormDetails.data;
 
     return (
         <FilteredContent {...config}>
-            <Skjemadetaljer skjemadetaljer={formDetails} displayConfig={displayConfig} />
+            <Skjemadetaljer skjemadetaljer={skjemadetaljer} displayConfig={displayConfig} />
         </FilteredContent>
     );
 };

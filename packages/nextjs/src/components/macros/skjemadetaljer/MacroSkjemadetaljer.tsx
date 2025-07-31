@@ -4,9 +4,9 @@ import { MacroSkjemadetaljerProps } from 'types/macro-props/skjemadetaljer';
 
 export const MacroSkjemadetaljer = ({ config }: MacroSkjemadetaljerProps) => {
     const macroConfig = config?.form_details;
-    const formDetailsData = macroConfig?.targetFormDetails?.data;
+    const skjemadetaljerData = macroConfig?.targetFormDetails?.data;
 
-    if (!macroConfig || !formDetailsData) {
+    if (!macroConfig || !skjemadetaljerData) {
         return (
             <EditorHelp
                 text="Mangler referanse til skjemadetalj, eller referansen er feil."
@@ -23,5 +23,5 @@ export const MacroSkjemadetaljer = ({ config }: MacroSkjemadetaljerProps) => {
         showAddendums: macroConfig.showAddendums,
     };
 
-    return <Skjemadetaljer skjemadetaljer={formDetailsData} displayConfig={displayConfig} />;
+    return <Skjemadetaljer skjemadetaljer={skjemadetaljerData} displayConfig={displayConfig} />;
 };

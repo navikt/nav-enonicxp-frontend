@@ -20,7 +20,7 @@ import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
 
-const getFormDetailsDisplayOptions = (
+const getSkjemadetaljerDisplayOptions = (
     oversiktType: OversiktType
 ): SkjemadetaljerComponentProps['displayConfig'] => {
     return {
@@ -129,7 +129,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                         return (
                             <Skjemadetaljer
                                 skjemadetaljer={panelDetail.data}
-                                displayConfig={getFormDetailsDisplayOptions(oversiktType)}
+                                displayConfig={getSkjemadetaljerDisplayOptions(oversiktType)}
                                 formNumberSelected={formNumberSelected}
                                 key={panelDetail._id}
                             />

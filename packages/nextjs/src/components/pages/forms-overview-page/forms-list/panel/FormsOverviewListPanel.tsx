@@ -27,13 +27,13 @@ const getSkjemadetaljerDisplayOptions = (
 };
 
 type Props = {
-    formDetails: SkjemadetaljerListItemProps;
+    skjemadetaljer: SkjemadetaljerListItemProps;
     overviewType: OverviewType;
     formNumberSelected?: string;
 };
 
 export const FormsOverviewListPanel = ({
-    formDetails,
+    skjemadetaljer,
     overviewType,
     formNumberSelected,
 }: Props) => {
@@ -47,7 +47,7 @@ export const FormsOverviewListPanel = ({
         ingress,
         type,
         targetLanguage,
-    } = formDetails;
+    } = skjemadetaljer;
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);

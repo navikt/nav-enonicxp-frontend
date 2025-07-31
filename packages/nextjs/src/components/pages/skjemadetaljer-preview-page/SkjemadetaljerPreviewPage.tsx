@@ -20,7 +20,7 @@ export const SkjemadetaljerPreviewPage = (props: SkjemadetaljerPageProps) => {
     }
 
     return (
-        <div className={styles.formDetailsPreviewPage}>
+        <div className={styles.skjemadetaljerPreviewPage}>
             <Skjemadetaljer skjemadetaljer={data} displayConfig={displayConfig} />
         </div>
     );

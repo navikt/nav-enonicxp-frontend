@@ -83,7 +83,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 {filteredList.map((formDetail) => (
                     <li key={`${formDetail.anchorId}-${props.language}`}>
                         <FormsOverviewListPanel
-                            formDetails={formDetail}
+                            skjemadetaljer={formDetail}
                             overviewType={overviewType}
                             formNumberSelected={formNumberFromSearch}
                         />
