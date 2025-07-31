@@ -32,6 +32,6 @@ export interface FormDetailsData {
 }
 
 export type FormDetailsPageProps = {
-    type: ContentType.FormDetails;
+    type: ContentType.Skjemadetaljer;
     data: FormDetailsData;
 } & ContentCommonProps;

@@ -43,7 +43,7 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
-    [MacroType.FormDetails]: MacroSkjemadetaljer,
+    [MacroType.Skjemadetaljer]: MacroSkjemadetaljer,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,

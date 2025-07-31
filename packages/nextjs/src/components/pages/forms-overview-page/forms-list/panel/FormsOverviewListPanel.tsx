@@ -70,7 +70,7 @@ export const FormsOverviewListPanel = ({
                         return false;
                     }
 
-                    return content.type === ContentType.FormDetails;
+                    return content.type === ContentType.Skjemadetaljer;
                 }) as FormDetailsPageProps[];
 
                 setFormDetailsPages(validFormDetails);

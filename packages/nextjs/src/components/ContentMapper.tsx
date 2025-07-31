@@ -59,7 +59,7 @@ const contentToReactComponent: {
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
-    [ContentType.FormDetails]: SkjemadetaljerPreviewPage,
+    [ContentType.Skjemadetaljer]: SkjemadetaljerPreviewPage,
     [ContentType.FormsOverview]: FormsOverviewPage,
     [ContentType.Kalkulator]: KalkulatorPage,
     [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,

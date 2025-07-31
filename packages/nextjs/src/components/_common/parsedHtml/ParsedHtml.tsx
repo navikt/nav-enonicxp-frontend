@@ -33,7 +33,7 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.Quote,
     MacroType.VarselBoksDeprecated,
     MacroType.Video,
-    MacroType.FormDetails,
+    MacroType.Skjemadetaljer,
 ]);
 
 const hasBlockLevelMacroChildren = (element: Element) => {

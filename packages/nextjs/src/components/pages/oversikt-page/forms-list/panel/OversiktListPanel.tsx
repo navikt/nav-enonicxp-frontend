@@ -79,7 +79,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                     }
 
                     return (
-                        content.type === ContentType.FormDetails ||
+                        content.type === ContentType.Skjemadetaljer ||
                         content.type === ContentType.ProductDetails
                     );
                 }) as FormDetailsPageProps[] | ProductDetailsProps[];
@@ -125,7 +125,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
         >
             <div className={style.oversiktListPanel}>
                 {loadedPanelDetails?.map((panelDetail) => {
-                    if (panelDetail.type === ContentType.FormDetails) {
+                    if (panelDetail.type === ContentType.Skjemadetaljer) {
                         return (
                             <Skjemadetaljer
                                 formDetails={panelDetail.data}

@@ -59,7 +59,7 @@ export enum ContentType {
     Error = 'error',
     ExternalLink = 'no.nav.navno:external-link',
     FallbackPage = 'no.nav.navno:fallback-page',
-    FormDetails = 'no.nav.navno:form-details',
+    Skjemadetaljer = 'no.nav.navno:form-details',
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormsOverview = 'no.nav.navno:forms-overview', // Blir avviklet til fordel for Oversikt
     Fragment = 'portal:fragment',
@@ -113,7 +113,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.FrontPage]: 'Forside',
     [ContentType.FrontPageNested]: 'Underforside',
     [ContentType.Melding]: 'Driftsmelding',
-    [ContentType.FormDetails]: 'Skjemadetaljer',
+    [ContentType.Skjemadetaljer]: 'Skjemadetaljer',
     [ContentType.FormsOverview]: 'Skjemaoversikt',
     [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
     [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
