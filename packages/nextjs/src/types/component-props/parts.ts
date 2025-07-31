@@ -9,7 +9,7 @@ import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart
 import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
 import { PartConfigSkjemadetaljer } from 'components/parts/skjemadetaljer/SkjemadetaljerPart';
-import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
+import { PartConfigSeksjonForKontaktinformasjon } from 'components/parts/seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
@@ -58,7 +58,7 @@ export enum PartType {
     PayoutDates = 'no.nav.navno:payout-dates',
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
-    FrontpageContact = 'no.nav.navno:frontpage-contact',
+    SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
@@ -102,7 +102,7 @@ type PartConfigs = {
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
     [PartType.Skjemadetaljer]: PartConfigSkjemadetaljer;
-    [PartType.FrontpageContact]: PartConfigFrontpageContact;
+    [PartType.SeksjonForKontaktinformasjon]: PartConfigSeksjonForKontaktinformasjon;
     [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
     [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
     [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;

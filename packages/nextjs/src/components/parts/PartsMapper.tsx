@@ -50,7 +50,7 @@ import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
-import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
+import { SeksjonForKontaktinformasjonPart } from './seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { SkjemadetaljerPart } from './skjemadetaljer/SkjemadetaljerPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
 import { TrekkspillPart } from './trekkspill/TrekkspillPart';
@@ -90,8 +90,8 @@ const PartComponentMapper = ({
             return <FiltreringsmenyPart {...partProps} />;
         case PartType.Skjemadetaljer:
             return <SkjemadetaljerPart {...partProps} />;
-        case PartType.FrontpageContact:
-            return <FrontpageContactPart {...partProps} />;
+        case PartType.SeksjonForKontaktinformasjon:
+            return <SeksjonForKontaktinformasjonPart {...partProps} />;
         case PartType.FrontpageCurrentTopics:
             return <FrontpageCurrentTopicsPart {...partProps} />;
         case PartType.FrontpageShortcuts:
