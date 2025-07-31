@@ -97,12 +97,12 @@ export const FormsOverviewListPanel = ({
             withCopyLink
         >
             <div className={style.formsOverviewListPanel}>
-                {skjemadetaljerPages?.map((formDetail) => (
+                {skjemadetaljerPages?.map((skjemadetaljer) => (
                     <Skjemadetaljer
-                        skjemadetaljer={formDetail.data}
+                        skjemadetaljer={skjemadetaljer.data}
                         displayConfig={getSkjemadetaljerDisplayOptions(overviewType)}
                         formNumberSelected={formNumberSelected}
-                        key={formDetail._id}
+                        key={skjemadetaljer._id}
                     />
                 ))}
                 {!isAddendumPage && url && (
