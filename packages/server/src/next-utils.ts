@@ -14,6 +14,10 @@ export const getNextBuildId = async (): Promise<string> => {
         buildIdPath = path.join(process.cwd(), '.next', 'BUILD_ID');
     }
 
+    if (process.env.ENV === 'localhost') {
+        buildIdPath = path.join(process.cwd(), '.next', 'BUILD_ID');
+    }
+
     try {
         cachedBuildId = await fs.readFile(buildIdPath, 'utf-8');
         return cachedBuildId.trim();
