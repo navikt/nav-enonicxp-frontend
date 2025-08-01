@@ -4,9 +4,10 @@ import { pageContentHtmlAreaIsOutsideSections } from './pageContentHtmlAreaIsOut
 
 type Props = {
     content: ContentProps;
+    className?: string;
 };
 
-export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
+export const PartUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
@@ -38,12 +39,18 @@ export const PartUtenforInnholdsseksjon = ({ content }: Props) => {
 
     return warnings.length > 0 ? (
         <>
-            <li key="part-utenfor-innholdsseksjon-warning">
-                Innholdet ligger utenfor den angitte innholdsseksjonen og må flyttes inn for å sikre
-                korrekt struktur ved publisering (se rød markering på siden). Under finner du
-                detaljer om hvilket innhold dette gjelder.
+            <li key="part-utenfor-innholdsseksjon-warning" className={className}>
+                Innholdet ligger utenfor den angitte innholdsseksjonen, noe som kan føre til
+                visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
+                {warnings}
+                <strong>Slik retter du feilen:</strong>
+                <ul>
+                    <li key="rette-feilen">
+                        Flytt innholdet innenfor de markerte eller stiplede strekene i Enonic, slik
+                        at det vises korrekt i innholdsseksjonen.
+                    </li>
+                </ul>
             </li>
-            {warnings}
         </>
     ) : null;
 };

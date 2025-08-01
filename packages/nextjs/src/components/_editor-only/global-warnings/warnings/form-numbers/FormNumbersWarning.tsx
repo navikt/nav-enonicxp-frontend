@@ -1,7 +1,12 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 
-export const FormNumbersWarning = ({ content }: { content: ContentProps }) => {
+type Props = {
+    content: ContentProps;
+    className?: string;
+};
+
+export const FormNumbersWarning = ({ content, className }: Props) => {
     const formNumberRegex = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/;
 
     const hasInvalidFormNumbers = (): boolean => {
@@ -13,7 +18,7 @@ export const FormNumbersWarning = ({ content }: { content: ContentProps }) => {
     };
 
     return hasInvalidFormNumbers() ? (
-        <li key="form-numbers-warning">
+        <li key="form-numbers-warning" className={className}>
             Skjemanummer må være på formatet {'NAV XX-XX.XX'} eller {'NAV XX-XX.XXy'}
         </li>
     ) : null;

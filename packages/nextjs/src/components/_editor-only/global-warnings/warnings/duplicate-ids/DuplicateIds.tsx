@@ -24,7 +24,11 @@ const findElementsWithDuplicateIds = (): HTMLElement[] => {
     });
 };
 
-export const DuplicateIds = () => {
+type Props = {
+    className?: string;
+};
+
+export const DuplicateIds = ({ className }: Props) => {
     const [elementsWithDupeIds, setElementsWithDupeIds] = useState<HTMLElement[]>([]);
     const uniqueDupeIds = removeDuplicates(elementsWithDupeIds, (a, b) => a.id === b.id).map(
         (element) => element.id
@@ -44,6 +48,7 @@ export const DuplicateIds = () => {
         <DuplicateIdsWarning
             uniqueDupeIds={uniqueDupeIds}
             elementsWithDupeIds={elementsWithDupeIds}
+            className={className}
         />
     ) : null;
 };

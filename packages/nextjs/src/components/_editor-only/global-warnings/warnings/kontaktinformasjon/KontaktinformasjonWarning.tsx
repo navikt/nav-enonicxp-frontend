@@ -3,6 +3,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 type Props = {
     content: ContentProps;
+    className?: string;
 };
 
 type OpeningHours = {
@@ -20,7 +21,8 @@ const validateOpeningHours = (
     specialHours: OpeningHours | undefined,
     regularHours: unknown,
     warnings: React.ReactNode[],
-    type: 'telephone' | 'chat'
+    type: 'telephone' | 'chat',
+    className?: string
 ) => {
     if (!specialHours?.validFrom || !specialHours?.validTo) return;
 
@@ -33,7 +35,7 @@ const validateOpeningHours = (
 
     if (validFrom > validTo) {
         warnings.push(
-            <li key={`${type}-range-error`}>
+            <li key={`${type}-range-error`} className={className}>
                 Synlig fra-dato ({fromStr}) må være <strong>før</strong> synlig til-dato ({toStr})
             </li>
         );
@@ -69,7 +71,7 @@ const validateOpeningHours = (
     }
 };
 
-export const KontaktinformasjonWarning = ({ content }: Props) => {
+export const KontaktinformasjonWarning = ({ content, className }: Props) => {
     if (content.type !== ContentType.ContactInformationPage) return null;
 
     const contactType = content.data?.contactType;
@@ -80,14 +82,16 @@ export const KontaktinformasjonWarning = ({ content }: Props) => {
             contactType.telephone.specialOpeningHours,
             contactType.telephone.regularOpeningHours,
             warnings,
-            'telephone'
+            'telephone',
+            className
         );
     } else if (contactType?.chat) {
         validateOpeningHours(
             contactType.chat.specialOpeningHours,
             contactType.chat.regularOpeningHours,
             warnings,
-            'chat'
+            'chat',
+            className
         );
     }
 

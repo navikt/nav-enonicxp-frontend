@@ -1,13 +1,13 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { htmlAreaContainsDiv } from './htmlAreaContainsDiv';
-import style from './HtmlAreaDiv.module.scss';
 
 type Props = {
     content: ContentProps;
+    className?: string;
 };
 
-export const HtmlAreaDiv = ({ content }: Props) => {
+export const HtmlAreaDiv = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnDivTagsIFormatertInnhold = (node: any): void => {
@@ -38,22 +38,19 @@ export const HtmlAreaDiv = ({ content }: Props) => {
     }
 
     return warnings.length > 0 ? (
-        <li key="html-area-div-warning">
-            Det er oppdaget en <code>&lt;div&gt;</code>-tagg i seksjonen Formatert innhold, noe som
-            ikke er tillatt og kan føre til visningsfeil på nav.no. Under finner du mer informasjon
-            om hvilket innhold det gjelder.
-            <div className={style.space}>{warnings}</div>
-            <div className={style.space}>
-                <strong>Slik retter du feilen:</strong>
-            </div>
+        <li key="html-area-div-warning" className={className}>
+            Det er brukt en <code>&lt;div&gt;</code>-tagg i seksjonen for formatert innhold, noe som
+            kan føre til visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
+            {warnings}
+            <strong>Slik retter du feilen:</strong>
             <ul>
                 <li key="rette-feilen-1">
-                    Fjern <code>&lt;div&gt;</code>-taggen fra HTML-koden.
+                    Lim innholdet i en ren tekst-editor (f.eks. Notepad). Kopier teksten derfra og
+                    lim den inn i Enonic. Dette fjerner skjult formatering og uønsket kode.
                 </li>
-                <li key="rette-feilen-2">
-                    Hvis innholdet er kopiert fra Word eller en nettside, lim det først inn i en ren
-                    tekst-editor (f.eks. Notepad), og deretter inn i Enonic for å fjerne skjult
-                    formatering.
+                <li>
+                    Hvis du kan HTML: Fjern <code>&lt;div&gt;</code>-taggen direkte i
+                    kildekodefeltet i Enonic.
                 </li>
             </ul>
         </li>
