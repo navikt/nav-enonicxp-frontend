@@ -1,0 +1,55 @@
+@use 'common' as common;
+
+.lenkepanel {
+    display: flex;
+    padding: 1.5rem;
+    border-radius: common.$border-radius-xlarge;
+    text-decoration-line: underline;
+    text-decoration-color: var(--a-text-default) !important;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.625rem;
+    }
+
+    &.withIcon {
+        align-items: center;
+    }
+
+    &:hover {
+        text-decoration-line: none;
+    }
+
+    &:focus {
+        @include common.panel-focus-mixin(true);
+    }
+}
+
+.icon {
+    margin-right: 1rem;
+    display: flex;
+    flex-shrink: 0;
+
+    width: 4rem;
+    height: 4rem;
+
+    @media #{common.$mq-screen-mobile-small} {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    & > * {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.text {
+    color: var(--a-text-default);
+
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}

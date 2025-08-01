@@ -80,10 +80,10 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 />
             )}
             <ul className={style.list}>
-                {filteredList.map((formDetail) => (
-                    <li key={`${formDetail.anchorId}-${props.language}`}>
+                {filteredList.map((skjemadetaljer) => (
+                    <li key={`${skjemadetaljer.anchorId}-${props.language}`}>
                         <FormsOverviewListPanel
-                            formDetails={formDetail}
+                            skjemadetaljer={skjemadetaljer}
                             overviewType={overviewType}
                             formNumberSelected={formNumberFromSearch}
                         />

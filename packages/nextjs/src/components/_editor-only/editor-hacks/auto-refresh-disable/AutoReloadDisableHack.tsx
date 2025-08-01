@@ -1,6 +1,6 @@
 import { BodyLong } from '@navikt/ds-react';
 import { useEffect, useState } from 'react';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -10,7 +10,6 @@ import {
     hookDispatchEventForBatchContentServerEvent,
     unhookDispatchEventForBatchContentServerEvent,
 } from './dispatch-event-hook';
-
 import style from './AutoRefreshDisableHack.module.scss';
 
 /*
@@ -51,7 +50,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
 
     return (
         <div className={style.warningWrapper}>
-            <AlertBox variant={'warning'} size={'small'}>
+            <Varselboks variant={'warning'} size={'small'}>
                 <BodyLong>
                     {`OBS! ${
                         externalUserName || 'Noen andre'
@@ -73,7 +72,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                     </EditorLinkWrapper>
                     {' for å se endringer.'}
                 </BodyLong>
-            </AlertBox>
+            </Varselboks>
         </div>
     );
 };

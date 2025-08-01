@@ -23,7 +23,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
-    MacroType.AlertBox,
+    MacroType.Varselboks,
     MacroType.HeaderWithAnchor,
     MacroType.HtmlFragment,
     MacroType.InfoBoks,
@@ -31,9 +31,9 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.ProductCardMini,
     MacroType.ProductCardMicro,
     MacroType.Quote,
-    MacroType.VarselBoks,
+    MacroType.VarselBoksDeprecated,
     MacroType.Video,
-    MacroType.FormDetails,
+    MacroType.Skjemadetaljer,
 ]);
 
 const hasBlockLevelMacroChildren = (element: Element) => {

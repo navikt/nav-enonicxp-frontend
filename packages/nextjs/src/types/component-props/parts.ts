@@ -1,22 +1,22 @@
 import React from 'react';
 import { EmptyObject } from 'types/util-types';
 import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart';
-import { PartConfigAlertBox } from 'components/parts/alert-box/AlertBoxPart';
+import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
 import { PartConfigButton } from 'components/parts/button/ButtonPart';
 import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
 import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
-import { PartConfigFilterMenu } from 'components/parts/filters-menu/FiltersMenuPart';
-import { PartConfigFormDetails } from 'components/parts/form-details/FormDetailsPart';
-import { PartConfigFrontpageContact } from 'components/parts/frontpage-contact/FrontpageContactPart';
+import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
+import { PartConfigSkjemadetaljer } from 'components/parts/skjemadetaljer/SkjemadetaljerPart';
+import { PartConfigSeksjonForKontaktinformasjon } from 'components/parts/seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
 import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
-import { PartConfigLinkList } from 'components/parts/link-list/LinkListPart';
-import { PartConfigLinkPanel } from 'components/parts/linkPanelPart/LinkPanelPart';
+import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
+import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
 import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
@@ -36,10 +36,10 @@ import { ComponentBaseProps, ComponentType } from './_component-common';
 
 export enum PartType {
     Omradekort = 'no.nav.navno:area-card',
-    LinkPanel = 'no.nav.navno:dynamic-link-panel',
-    AlertBox = 'no.nav.navno:dynamic-alert',
+    Lenkepanel = 'no.nav.navno:dynamic-link-panel',
+    Varselboks = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
-    LinkList = 'no.nav.navno:dynamic-link-list',
+    Lenkeliste = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
     Kalkulator = 'no.nav.navno:calculator',
@@ -48,17 +48,17 @@ export enum PartType {
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
-    FiltersMenu = 'no.nav.navno:filters-menu',
+    Filtreringsmeny = 'no.nav.navno:filters-menu',
     ProductCard = 'no.nav.navno:product-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
-    FormDetails = 'no.nav.navno:form-details',
+    Skjemadetaljer = 'no.nav.navno:form-details',
     KontaktOssKanal = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
-    FrontpageContact = 'no.nav.navno:frontpage-contact',
+    SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
@@ -94,22 +94,22 @@ export enum PartLegacyType {
 
 type PartConfigs = {
     [PartType.Trekkspill]: PartConfigTrekkspill;
-    [PartType.AlertBox]: PartConfigAlertBox;
+    [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
     [PartType.Button]: PartConfigButton;
     [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
-    [PartType.FiltersMenu]: PartConfigFilterMenu;
-    [PartType.FormDetails]: PartConfigFormDetails;
-    [PartType.FrontpageContact]: PartConfigFrontpageContact;
+    [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
+    [PartType.Skjemadetaljer]: PartConfigSkjemadetaljer;
+    [PartType.SeksjonForKontaktinformasjon]: PartConfigSeksjonForKontaktinformasjon;
     [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
     [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
     [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
-    [PartType.LinkList]: PartConfigLinkList;
-    [PartType.LinkPanel]: PartConfigLinkPanel;
+    [PartType.Lenkeliste]: PartConfigLenkeliste;
+    [PartType.Lenkepanel]: PartConfigLenkepanel;
     [PartType.LoggedinCard]: PartConfigLoggedinCard;
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;

@@ -7,7 +7,7 @@ import {
     AvailableFiltersPayload,
     ClearFiltersPayload,
     Category,
-} from 'types/store/filter-menu';
+} from 'types/store/filtreringsmeny';
 
 const initialState: FilteredContentState = {};
 

@@ -43,12 +43,12 @@ import { ContactInformationProps } from './contact-information-props';
 import { PayoutDatesProps } from './payout-dates';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageNestedProps, FrontPageProps } from './index-pages-props';
-import { FormDetailsPageProps } from './form-details';
+import { SkjemadetaljerPageProps } from './skjemadetaljer';
 import { FallbackPageProps } from './fallback-page-props';
 import { OversiktPageProps } from './oversikt-props';
 
 export enum ContentType {
-    AlertInContext = 'no.nav.navno:alert-in-context',
+    VarselIKontekst = 'no.nav.navno:alert-in-context',
     AreaPage = 'no.nav.navno:area-page',
     Kalkulator = 'no.nav.navno:calculator',
     ContactInformationPage = 'no.nav.navno:contact-information',
@@ -59,7 +59,7 @@ export enum ContentType {
     Error = 'error',
     ExternalLink = 'no.nav.navno:external-link',
     FallbackPage = 'no.nav.navno:fallback-page',
-    FormDetails = 'no.nav.navno:form-details',
+    Skjemadetaljer = 'no.nav.navno:form-details',
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormsOverview = 'no.nav.navno:forms-overview', // Blir avviklet til fordel for Oversikt
     Fragment = 'portal:fragment',
@@ -113,7 +113,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.FrontPage]: 'Forside',
     [ContentType.FrontPageNested]: 'Underforside',
     [ContentType.Melding]: 'Driftsmelding',
-    [ContentType.FormDetails]: 'Skjemadetaljer',
+    [ContentType.Skjemadetaljer]: 'Skjemadetaljer',
     [ContentType.FormsOverview]: 'Skjemaoversikt',
     [ContentType.FormIntermediateStepPage]: 'Mellomsteg for søknad, skjema, klage og ettersendelse',
     [ContentType.ContactStepPage]: 'Mellomsteg for kontaktside',
@@ -134,7 +134,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.ContentList]: 'Innholdsliste',
     [ContentType.UserTestsConfig]: 'Brukertester',
     [ContentType.Video]: 'Qbrick Video',
-    [ContentType.AlertInContext]: 'Varsel i kontekst',
+    [ContentType.VarselIKontekst]: 'Varsel i kontekst',
     [ContentType.PublishingCalendar]: 'Publiseringskalender',
     [ContentType.PublishingCalendarEntry]: 'Kalenderhendelse',
     [ContentType.SectionPage]: 'Oppslagstavle',
@@ -221,7 +221,7 @@ type SpecificContentProps =
     | ErrorProps
     | ExternalLinkProps
     | FallbackPageProps
-    | FormDetailsPageProps
+    | SkjemadetaljerPageProps
     | FormIntermediateStepPageProps
     | FormsOverviewProps
     | FragmentPageProps

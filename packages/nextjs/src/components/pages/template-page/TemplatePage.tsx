@@ -3,14 +3,14 @@ import { DynamicPage } from 'components/pages/dynamic-page/DynamicPage';
 import { ContentType } from 'types/content-props/_content-common';
 import { TemplateProps } from 'types/content-props/template-props';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
-import { linkListDataMock } from './mocks/linkListDataMock';
-import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
+import { lenkelisteDataMock } from './mocks/lenkelisteDataMock';
+import { lenkepanelerDataMock } from './mocks/lenkepanelerDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 
 const legacyMockData = {
-    ...linkListDataMock,
-    ...linkPanelsDataMock,
+    ...lenkelisteDataMock,
+    ...lenkepanelerDataMock,
     ...mainArticleDataMock,
     ...mainPanelDataMock,
 };

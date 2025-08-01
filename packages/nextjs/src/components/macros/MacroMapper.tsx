@@ -12,13 +12,13 @@ import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLi
 import { MacroChevronLinkInternal } from './chevron-link-internal/MacroChevronLinkInternal';
 import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
 import { MacroFotnote } from './fotnote/MacroFotnote';
-import { MacroFormDetails } from './form-details/MacroFormDetails';
+import { MacroSkjemadetaljer } from './skjemadetaljer/MacroSkjemadetaljer';
 import { MacroInfoBoks } from './infoboks/MacroInfoBoks';
 import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
-import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
+import { MacroVarselBoksDeprecated } from './varsel-boks-deprecated/MacroVarselBoksDeprecated';
 import { MacroVideo } from './video/MacroVideo';
 import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
 import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
@@ -26,7 +26,7 @@ import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
-import { MacroAlertBox } from './alert-box/MacroAlertBox';
+import { MacroVarselboks } from './varselboks/MacroVarselboks';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBannerLink';
@@ -34,7 +34,7 @@ import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBanner
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.AlertBox]: MacroAlertBox,
+    [MacroType.Varselboks]: MacroVarselboks,
     [MacroType.Button]: MacroButton,
     [MacroType.ButtonBlue]: MacroButton,
     [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
@@ -43,7 +43,7 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
-    [MacroType.FormDetails]: MacroFormDetails,
+    [MacroType.Skjemadetaljer]: MacroSkjemadetaljer,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
@@ -60,7 +60,7 @@ const macroComponents: {
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
-    [MacroType.VarselBoks]: MacroVarselBoks,
+    [MacroType.VarselBoksDeprecated]: MacroVarselBoksDeprecated,
     [MacroType.Video]: MacroVideo,
 };
 
