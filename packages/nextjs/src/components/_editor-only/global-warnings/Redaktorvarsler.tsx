@@ -7,6 +7,7 @@ import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
 import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
 import { PartUtenforInnholdsseksjon } from './warnings/part-utenfor-innholdsseksjon/PartUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
+import style from './Redaktorvarsler.module.scss';
 
 export const isGodkjentSide = (contentType: string): boolean => {
     const godkjenteSider = [
@@ -28,7 +29,7 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
     const hasErrors = (): boolean => {
         return (
             KortUrlWarning({ content }) !== null ||
-            DuplicateIds() !== null ||
+            DuplicateIds({}) !== null ||
             FormNumbersWarning({ content }) !== null ||
             KontaktinformasjonWarning({ content }) !== null ||
             PartUtenforInnholdsseksjon({ content }) !== null ||
@@ -43,13 +44,13 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                     <strong>Redaktørvarsel:</strong>
                     <br />
                     Disse problemene må rettes før publisering:
-                    <ul key="redaktorvarsler-list">
-                        <KortUrlWarning content={content} />
-                        <DuplicateIds />
-                        <FormNumbersWarning content={content} />
-                        <KontaktinformasjonWarning content={content} />
-                        <PartUtenforInnholdsseksjon content={content} />
-                        <HtmlAreaDiv content={content} />
+                    <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
+                        <KortUrlWarning content={content} className={style.liste} />
+                        <DuplicateIds className={style.liste} />
+                        <FormNumbersWarning content={content} className={style.liste} />
+                        <KontaktinformasjonWarning content={content} className={style.liste} />
+                        <PartUtenforInnholdsseksjon content={content} className={style.liste} />
+                        <HtmlAreaDiv content={content} className={style.liste} />
                     </ul>
                 </Alert>
             )}

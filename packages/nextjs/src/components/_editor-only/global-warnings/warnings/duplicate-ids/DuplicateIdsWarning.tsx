@@ -6,19 +6,20 @@ import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/Edi
 
 import style from './DuplicateIdsWarning.module.scss';
 
-interface Props {
+type Props = {
     uniqueDupeIds: string[];
     elementsWithDupeIds: HTMLElement[];
-}
+    className?: string;
+};
 
-export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds }: Props) => {
+export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds, className }: Props) => {
     const linkIdPrefix = useId();
 
     const getLinkId = (index: number) => `${linkIdPrefix}-${index}`;
 
     return (
         <>
-            <li key="duplicate-ids-warning">
+            <li key="duplicate-ids-warning" className={className}>
                 Anker-ID-ene på siden må være unike for å fungere. Følgende anker-ID-er må derfor
                 justeres:
                 <ul key={`duplicate-ids-list-${linkIdPrefix}`}>

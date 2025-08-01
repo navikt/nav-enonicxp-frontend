@@ -9,14 +9,23 @@ const getMelding = (maalgruppe: string) => {
     }
 };
 
-export const KortUrlWarning = ({ content }: { content: ContentProps }) => {
+type Props = {
+    content: ContentProps;
+    className?: string;
+};
+
+export const KortUrlWarning = ({ content, className }: Props) => {
     const maalgruppe = content.data?.audience?._selected;
     const path = content.data?.customPath;
     if (
         (maalgruppe === 'employer' && path && !path?.includes('/arbeidsgiver')) ||
         (maalgruppe === 'provider' && path && !path?.includes('/samarbeidspartner'))
     ) {
-        return <li key="kort-url-warning">{getMelding(maalgruppe)}</li>;
+        return (
+            <li key="kort-url-warning" className={className}>
+                {getMelding(maalgruppe)}
+            </li>
+        );
     }
     return null;
 };
