@@ -82,11 +82,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         return nextRequestHandler(req, res);
     });
 
-    expressApp.all('/*path', (req, res) => {
-        return nextRequestHandler(req, res);
-    });
-
-    expressApp.all('/', (req, res) => {
+    expressApp.all('/{*path}', (req, res) => {
         return nextRequestHandler(req, res);
     });
 };
