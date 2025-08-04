@@ -4,7 +4,7 @@
     background-color: var(--a-white);
     display: flex;
     justify-content: center;
-    margin-top: 1.5rem;
+    margin-top: var(--a-spacing-6);
 
     @include common.full-width-mixin;
 }

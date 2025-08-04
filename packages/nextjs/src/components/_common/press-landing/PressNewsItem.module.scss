@@ -1,5 +1,5 @@
 .newsItem {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
     list-style-type: none;
 
     a {
@@ -17,7 +17,7 @@
 .newsTagline {
     display: flex;
     flex-direction: row;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 }
 
 .newsType {

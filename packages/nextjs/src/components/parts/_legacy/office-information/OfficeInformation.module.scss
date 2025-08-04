@@ -14,7 +14,7 @@
         h2 {
             font-size: 1.2rem;
             font-weight: 600;
-            margin-top: 1.5rem;
+            margin-top: var(--a-spacing-6);
         }
     }
 
@@ -25,6 +25,6 @@
 
     p:last-child,
     p:last-of-type {
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--a-spacing-6);
     }
 }

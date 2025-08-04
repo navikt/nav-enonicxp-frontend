@@ -4,7 +4,7 @@
     max-width: 50rem;
     margin: 0 auto;
 
-    padding: 1.5rem;
+    padding: var(--a-spacing-6);
     background: var(--a-white);
     border-radius: var(--a-spacing-1);
 
@@ -14,12 +14,12 @@
     }
 
     .headerMsg {
-        margin-right: 1.5rem;
-        padding-right: 1.5rem;
+        margin-right: var(--a-spacing-6);
+        padding-right: var(--a-spacing-6);
         vertical-align: top;
     }
 
     .content {
-        margin-top: 1.5rem;
+        margin-top: var(--a-spacing-6);
     }
 }

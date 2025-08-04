@@ -61,7 +61,7 @@ $versionSelectorMinHeight: 3rem;
     }
 }
 
-@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
+@mixin flex-cols-mixin($numCols, $marginX: var(--a-spacing-6), $marginY: var(--a-spacing-6)) {
     & > * {
         $numColsPlus1: $numCols + 1;
         display: flex;
@@ -89,8 +89,8 @@ $versionSelectorMinHeight: 3rem;
 
 @mixin grid-layout-mixin(
     $numCols: 3,
-    $rowGap: 1.5rem,
-    $colGap: 1.5rem,
+    $rowGap: var(--a-spacing-6),
+    $colGap: var(--a-spacing-6),
     $rowGapMobileSmall: var(--a-spacing-2),
     $columnGapMobileSmall: var(--a-spacing-2)
 ) {

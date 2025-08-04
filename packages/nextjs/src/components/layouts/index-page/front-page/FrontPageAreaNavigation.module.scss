@@ -6,7 +6,7 @@
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {
-        padding-bottom: 1.5rem;
+        padding-bottom: var(--a-spacing-6);
     }
 }
 
@@ -39,7 +39,7 @@
 }
 
 .header {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 }
 
 .cards {

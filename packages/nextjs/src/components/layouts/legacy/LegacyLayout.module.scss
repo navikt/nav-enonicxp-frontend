@@ -22,7 +22,7 @@
 
         @media #{common.$mq-screen-tablet-and-desktop} {
             &:not(:only-child) {
-                margin-right: 1.5rem;
+                margin-right: var(--a-spacing-6);
             }
         }
 

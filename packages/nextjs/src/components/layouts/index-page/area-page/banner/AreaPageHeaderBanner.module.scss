@@ -24,7 +24,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 1.5rem var(--a-spacing-5);
+        padding: var(--a-spacing-6) var(--a-spacing-5);
         transform: none;
         width: 100%;
     }
@@ -40,7 +40,7 @@
     > * {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
-        font-size: 1.5rem;
+        font-size: var(--a-spacing-6);
         font-weight: var(--a-font-weight-bold);
     }
 }

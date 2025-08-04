@@ -6,7 +6,7 @@
 }
 
 .item {
-    padding: 1.5rem 0;
+    padding: var(--a-spacing-6) 0;
     border-top: 1px solid var(--a-gray-200);
 
     &:last-child {

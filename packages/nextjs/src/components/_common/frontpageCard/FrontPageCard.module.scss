@@ -7,7 +7,7 @@
     :global(.employer-frontpage),
     :global(.person-frontpage),
     :global(.provider-frontpage) {
-        padding: 1.5rem;
+        padding: var(--a-spacing-6);
 
         a {
             font-size: var(--a-font-size-heading-medium);

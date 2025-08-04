@@ -1,7 +1,7 @@
 .facts_v1 {
     background: #f1f1f1;
     border: 1px solid var(--a-gray-200);
-    padding: 1.5rem;
+    padding: var(--a-spacing-6);
     margin-top: 4.2rem;
 
     p {
@@ -34,7 +34,7 @@
 
 .facts_v2 {
     background: var(--a-purple-50);
-    padding: 1.5rem;
+    padding: var(--a-spacing-6);
     margin-top: 2.75rem;
     border-left: 8px solid var(--a-purple-300);
 

@@ -7,7 +7,7 @@ $blackLinkColor: var(--a-text-default);
     position: relative;
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem;
+    padding: var(--a-spacing-6);
     border-radius: common.$border-radius-xlarge;
 
     &:hover {

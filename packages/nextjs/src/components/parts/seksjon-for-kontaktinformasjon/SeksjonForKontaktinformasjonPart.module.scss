@@ -23,7 +23,7 @@
 }
 
 .header {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 
     @media #{common.$mq-screen-mobile} {
         margin-bottom: var(--a-spacing-4);

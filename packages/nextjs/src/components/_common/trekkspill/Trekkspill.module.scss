@@ -70,7 +70,7 @@
     border-radius: var(--a-border-radius-large);
     border-top: 1px solid transparent;
     margin: 0 calc(var(--a-spacing-3) * -1);
-    width: calc(100% + 1.5rem);
+    width: calc(100% + var(--a-spacing-6));
 
     :global(.navds-accordion__icon-wrapper) {
         background-color: var(--a-surface-action-subtle);

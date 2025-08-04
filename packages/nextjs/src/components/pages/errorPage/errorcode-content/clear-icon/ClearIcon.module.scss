@@ -2,7 +2,7 @@
 
 .crossIcon {
     $height: var(--a-spacing-05);
-    $width: 1.5rem;
+    $width: var(--a-spacing-6);
     transform: translateY(math.div(-$height, 2));
 
     & > * {

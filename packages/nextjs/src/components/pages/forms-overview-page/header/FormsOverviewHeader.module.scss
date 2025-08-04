@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 }
 
 .header {
@@ -9,6 +9,6 @@
 }
 
 .subHeader {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
     color: var(--a-gray-700);
 }

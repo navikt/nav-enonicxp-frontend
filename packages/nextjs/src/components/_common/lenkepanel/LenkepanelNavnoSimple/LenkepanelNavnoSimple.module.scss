@@ -2,7 +2,7 @@
 
 .lenkepanel {
     display: flex;
-    padding: 1.5rem;
+    padding: var(--a-spacing-6);
     border-radius: common.$border-radius-xlarge;
     text-decoration-line: underline;
     text-decoration-color: var(--a-text-default) !important;

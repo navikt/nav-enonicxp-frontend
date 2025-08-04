@@ -2,6 +2,6 @@
     margin: var(--a-spacing-2) 0;
 
     &:not(:last-of-type) {
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--a-spacing-6);
     }
 }

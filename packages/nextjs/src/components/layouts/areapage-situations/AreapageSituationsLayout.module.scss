@@ -26,10 +26,10 @@
         @include common.flex-cols-mixin(1, var(--a-spacing-4), var(--a-spacing-4));
     }
     @media #{common.$mq-screen-tablet} {
-        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
+        @include common.flex-cols-mixin(2, var(--a-spacing-6), var(--a-spacing-6));
     }
     @media #{common.$mq-screen-desktop} {
-        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
+        @include common.flex-cols-mixin(2, var(--a-spacing-6), var(--a-spacing-6));
     }
 }
 

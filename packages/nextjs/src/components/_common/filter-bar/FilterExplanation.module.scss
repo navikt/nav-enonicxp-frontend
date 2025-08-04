@@ -18,8 +18,8 @@
 
 .iconWrapper {
     display: block;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: var(--a-spacing-6);
+    width: var(--a-spacing-6);
     margin-right: var(--a-spacing-1);
     position: relative;
 
@@ -30,8 +30,8 @@
 
 .icon {
     display: block;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: var(--a-spacing-6);
+    width: var(--a-spacing-6);
     left: 0;
     position: absolute;
     top: 0;
