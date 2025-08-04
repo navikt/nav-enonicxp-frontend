@@ -1,19 +1,19 @@
 import { useCallback, useEffect } from 'react';
 
-export enum Shortcuts {
+export enum Snarveier {
     SEARCH = 'SEARCH',
 }
 
-type UseShortcutsProps = {
-    shortcut: Shortcuts;
+type UseSnarveierProps = {
+    shortcut: Snarveier;
     callback: () => void;
 };
 
-export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
+export const useSnarveier = ({ shortcut, callback }: UseSnarveierProps) => {
     const handleKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (
-                shortcut === Shortcuts.SEARCH &&
+                shortcut === Snarveier.SEARCH &&
                 (e.ctrlKey || e.metaKey) &&
                 e.key.toLowerCase() === 'f'
             ) {

@@ -9,7 +9,7 @@ import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { PictogramsProps } from 'types/content-props/pictograms';
 
-import style from './FrontpageShortcuts.module.scss';
+import style from './SeksjonForSnarveier.module.scss';
 
 type Shortcut = {
     target: {
@@ -25,7 +25,7 @@ type Shortcut = {
     customIllustration?: PictogramsProps;
 };
 
-export type PartConfigFrontpageShortcuts = {
+export type PartConfigSeksjonForSnarveier = {
     title?: string;
     bgColor?: string;
     itemColor?: string;
@@ -33,9 +33,9 @@ export type PartConfigFrontpageShortcuts = {
     shortcuts: Shortcut[];
 };
 
-export const FrontpageShortcutsPart = ({
+export const SeksjonForSnarveierPart = ({
     config,
-}: PartComponentProps<PartType.FrontpageShortcuts>) => {
+}: PartComponentProps<PartType.SeksjonForSnarveier>) => {
     const pageProps = usePageContentProps();
     const { shortcuts, title: sectionTitle, bgColor, itemColor, hoverColor } = config;
 
@@ -78,7 +78,7 @@ export const FrontpageShortcutsPart = ({
                             <LenkepanelNavnoSimple
                                 href={href}
                                 analyticsLinkGroup={sectionTitle}
-                                analyticsComponent="FrontpageShortcutsPart"
+                                analyticsComponent="SeksjonForSnarveierPart"
                                 icon={<IllustrationStatic illustration={illustration} />}
                                 className={classNames(
                                     style.item,
