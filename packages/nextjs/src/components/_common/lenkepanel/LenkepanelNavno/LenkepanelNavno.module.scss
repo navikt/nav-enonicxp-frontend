@@ -45,7 +45,7 @@ $blackLinkColor: var(--a-text-default);
 
     @media #{common.$mq-screen-mobile-small} {
         font-size: var(--a-spacing-5);
-        line-height: 1.75rem;
+        line-height: var(--a-spacing-7);
     }
 
     &.linkBlack {

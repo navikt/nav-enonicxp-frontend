@@ -2,7 +2,7 @@
 
 .panel {
     display: flex;
-    padding-bottom: 1.75rem;
+    padding-bottom: var(--a-spacing-7);
     background-color: var(--a-white);
     padding-top: 2rem;
     @include common.full-width-mixin();

@@ -9,7 +9,7 @@
     text-decoration: none;
     color: var(--a-text-default);
     margin-top: var(--a-spacing-4);
-    padding: 1.75rem;
+    padding: var(--a-spacing-7);
     background-color: var(--a-red-50);
     border-radius: var(--a-spacing-2);
 
@@ -33,7 +33,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    row-gap: 1.75rem;
+    row-gap: var(--a-spacing-7);
     justify-content: center;
     width: 100%;
 

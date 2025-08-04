@@ -81,7 +81,7 @@
         h4,
         .h4 {
             font-size: var(--a-font-size-heading-small);
-            margin: 1.75rem 0 0.6875rem;
+            margin: var(--a-spacing-7) 0 var(--a-spacing-2);
 
             &:first-child {
                 margin-top: 0;

@@ -2,7 +2,7 @@
 
 .mellomstegLayout {
     padding-bottom: var(--a-spacing-4);
-    column-gap: 1.75rem;
+    column-gap: var(--a-spacing-7);
     margin-bottom: 2.5rem;
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
