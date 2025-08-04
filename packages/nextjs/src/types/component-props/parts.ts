@@ -10,7 +10,7 @@ import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/Ko
 import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
 import { PartConfigSkjemadetaljer } from 'components/parts/skjemadetaljer/SkjemadetaljerPart';
 import { PartConfigSeksjonForKontaktinformasjon } from 'components/parts/seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
-import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
+import { PartConfigSeksjonForAktuelleTemaer } from 'components/parts/seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
 import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
@@ -59,7 +59,7 @@ export enum PartType {
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
     SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
-    FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
+    SeksjonForAktuelleTemaer = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
@@ -103,7 +103,7 @@ type PartConfigs = {
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
     [PartType.Skjemadetaljer]: PartConfigSkjemadetaljer;
     [PartType.SeksjonForKontaktinformasjon]: PartConfigSeksjonForKontaktinformasjon;
-    [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
+    [PartType.SeksjonForAktuelleTemaer]: PartConfigSeksjonForAktuelleTemaer;
     [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
     [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
