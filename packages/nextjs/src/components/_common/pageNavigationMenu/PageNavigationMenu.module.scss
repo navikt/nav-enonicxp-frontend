@@ -32,7 +32,7 @@
     .link {
         display: inline-flex;
         align-items: center;
-        gap: 0.375rem;
+        gap: var(--a-spacing-1-alt);
         text-underline-offset: 2.5px;
         text-decoration-line: none;
         text-decoration-thickness: 2px;
