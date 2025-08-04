@@ -6,7 +6,7 @@
     justify-content: center;
     margin-bottom: -2rem;
     margin-top: var(--a-spacing-10);
-    padding: 2.75rem 0;
+    padding: var(--a-spacing-11) 0;
     @include common.full-width-mixin;
 }
 

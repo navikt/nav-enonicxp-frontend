@@ -2,7 +2,7 @@
 
 .wrapper {
     @include common.full-width-mixin();
-    padding-top: 2.75rem;
+    padding-top: var(--a-spacing-11);
     margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
 }
 
