@@ -7,8 +7,8 @@
     max-width: 63.5rem;
 
     @media #{common.$mq-screen-desktop} {
-        padding-right: 2.8rem;
-        padding-left: 2.8rem;
+        padding-right: var(--a-spacing-11);
+        padding-left: var(--a-spacing-11);
     }
 
     @media #{common.$mq-screen-tablet} {

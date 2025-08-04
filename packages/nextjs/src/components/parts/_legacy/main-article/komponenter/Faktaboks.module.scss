@@ -2,7 +2,7 @@
     background: #f1f1f1;
     border: 1px solid var(--a-gray-200);
     padding: var(--a-spacing-6);
-    margin-top: 4.2rem;
+    margin-top: var(--a-spacing-16);
 
     p {
         margin-bottom: var(--a-spacing-4);
@@ -20,7 +20,7 @@
     }
 
     .decorated {
-        margin-bottom: 1.4rem;
+        margin-bottom: var(--a-spacing-6);
 
         &:after {
             border-top: 1px solid #808080;
@@ -50,6 +50,6 @@
     }
 
     .decorated {
-        margin-bottom: 1.4rem;
+        margin-bottom: var(--a-spacing-6);
     }
 }

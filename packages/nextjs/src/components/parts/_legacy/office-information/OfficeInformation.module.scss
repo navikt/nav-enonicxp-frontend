@@ -1,18 +1,18 @@
 .officeInformation {
     background-color: var(--a-surface-default);
-    padding: 1.68rem;
+    padding: var(--a-spacing-7);
 
     header {
         margin-bottom: var(--a-spacing-4);
 
         h1 {
-            font-size: 2.1rem;
+            font-size: var(--a-spacing-8);
             font-weight: 400;
             margin: var(--a-spacing-2) 0 0;
         }
 
         h2 {
-            font-size: 1.2rem;
+            font-size: var(--a-spacing-5);
             font-weight: 600;
             margin-top: var(--a-spacing-6);
         }

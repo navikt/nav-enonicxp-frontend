@@ -12,7 +12,7 @@
 
 .lenke {
     $horizontalPadding: var(--a-spacing-2);
-    $verticalPadding: 0.6875rem;
+    $verticalPadding: var(--a-spacing-3);
     padding: $verticalPadding $horizontalPadding;
     margin: 0 -($horizontalPadding);
 
@@ -26,10 +26,10 @@
 }
 
 .ulListe {
-    padding-left: 1.4rem;
+    padding-left: var(--a-spacing-6);
     margin-bottom: var(--a-spacing-7);
     margin-top: 0;
-    font-size: 1.125rem;
+    font-size: var(--a-spacing-4);
 
     li:not(:last-child) {
         margin-bottom: var(--a-spacing-1);

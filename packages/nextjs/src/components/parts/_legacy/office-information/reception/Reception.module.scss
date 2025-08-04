@@ -4,18 +4,18 @@
     }
 
     table {
-        margin-bottom: 1.6rem;
+        margin-bottom: var(--a-spacing-6);
         width: auto;
 
         th,
         td {
             vertical-align: top;
-            padding: 0.3rem var(--a-spacing-4) 0.3rem 0;
-            font-size: 1.125rem;
+            padding: var(--a-spacing-1) var(--a-spacing-4) var(--a-spacing-1) 0;
+            font-size: 18px;
         }
 
         :global(.dayInformation) {
-            min-width: 5.6rem;
+            min-width: var(--a-spacing-24);
         }
 
         :global(.openingInformation) {

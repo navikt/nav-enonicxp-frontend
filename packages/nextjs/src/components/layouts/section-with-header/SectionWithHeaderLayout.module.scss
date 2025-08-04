@@ -42,7 +42,7 @@ $iconContainerRadius: var(--a-spacing-8);
         }
 
         img {
-            $iconSize: 2.8125rem;
+            $iconSize: var(--a-spacing-11);
             height: $iconSize;
             width: $iconSize;
         }

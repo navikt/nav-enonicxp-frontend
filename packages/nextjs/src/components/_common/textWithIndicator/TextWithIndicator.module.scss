@@ -27,8 +27,8 @@
 .indicatorInner {
     border-radius: 50%;
     display: flex;
-    height: 0.6rem;
-    width: 0.6rem;
+    height: var(--a-spacing-2);
+    width: var(--a-spacing-2);
 }
 
 .active {

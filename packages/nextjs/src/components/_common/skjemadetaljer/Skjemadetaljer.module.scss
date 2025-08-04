@@ -24,7 +24,7 @@
     // pull lists upward to text above if any.
     :global(.navds-body-long + ul),
     :global(.navds-body-long + ol) {
-        margin-top: -1rem;
+        margin-top: -(var(--a-spacing-4));
     }
 }
 
@@ -33,7 +33,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--a-spacing-2);
-    margin-bottom: 1.125rem;
+    margin-bottom: var(--a-spacing-4);
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;

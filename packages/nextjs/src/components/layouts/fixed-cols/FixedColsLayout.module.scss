@@ -25,7 +25,7 @@
     }
 
     &:not(:first-child) {
-        margin-left: 2.2rem;
+        margin-left: var(--a-spacing-9);
 
         @media #{common.$mq-screen-tablet} {
             margin-left: var(--a-spacing-4);

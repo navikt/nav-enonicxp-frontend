@@ -1,7 +1,7 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: 1.875rem;
+$iconContainerRadius: 30px;
 $iconContainerSize: $iconContainerRadius * 2;
 
 .container {
@@ -28,7 +28,7 @@ $iconContainerSize: $iconContainerRadius * 2;
         width: $iconContainerSize;
 
         img {
-            $iconSize: 2.7386rem;
+            $iconSize: 44px;
             height: $iconSize;
             width: $iconSize;
         }

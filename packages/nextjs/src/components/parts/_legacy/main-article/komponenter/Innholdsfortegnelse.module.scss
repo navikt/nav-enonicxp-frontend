@@ -8,14 +8,14 @@
         border-top: 1px solid var(--a-gray-200);
     }
     li {
-        font-size: 1.2rem;
+        font-size: var(--a-spacing-5);
         border-bottom: 1px solid var(--a-gray-200);
     }
     a {
         color: var(--a-gray-800);
         font-weight: 600;
         display: block;
-        padding: 0.43rem 0;
+        padding: var(--a-spacing-2) 0;
         position: relative;
         text-decoration: none;
 
@@ -32,13 +32,13 @@
         &:hover:before,
         &:focus:before,
         &:active:before {
-            border: 0.1875rem solid var(--a-blue-600);
+            border: 3px solid var(--a-blue-600);
             background-color: var(--a-blue-600);
             border-radius: 50%;
             display: inline-block;
             content: ' ';
             position: absolute;
-            left: -1rem;
+            left: -(var(--a-spacing-4));
             top: var(--a-spacing-4);
         }
     }

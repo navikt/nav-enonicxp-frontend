@@ -21,7 +21,7 @@
 
 .employer {
     padding-top: var(--a-spacing-14);
-    padding-bottom: 4.25rem;
+    padding-bottom: var(--a-spacing-16);
 
     @media #{common.$mq-screen-mobile} {
         padding-top: var(--a-spacing-8);

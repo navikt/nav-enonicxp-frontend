@@ -47,7 +47,7 @@
 }
 
 .link {
-    text-underline-offset: 0.15625rem;
+    text-underline-offset: 2.5px;
     text-decoration-thickness: 1px;
 
     &:focus-visible {
@@ -64,6 +64,6 @@
 }
 
 .tagline {
-    letter-spacing: 0.025rem;
+    letter-spacing: 0.4px;
     font-variant-caps: all-small-caps;
 }

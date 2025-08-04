@@ -31,11 +31,11 @@
     align-self: flex-end;
     flex: 1;
     height: 10rem;
-    margin-bottom: -1.75rem;
+    margin-bottom: -(var(--a-spacing-7));
     pointer-events: none;
 
     > * {
-        width: 350px;
+        width: 21.875rem;
     }
 
     @media #{common.$mq-screen-mobile} {

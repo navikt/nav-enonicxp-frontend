@@ -10,7 +10,7 @@
     text-underline-offset: 0.1em;
 
     @media #{common.$mq-screen-mobile-small} {
-        padding: 0.625rem;
+        padding: var(--a-spacing-2);
     }
 
     &.withIcon {

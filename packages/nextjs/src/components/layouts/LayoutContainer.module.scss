@@ -31,7 +31,7 @@
     }
 
     .bg {
-        $bgPaddingDefault: 1.3rem;
+        $bgPaddingDefault: var(--a-spacing-6);
         padding-top: $bgPaddingDefault;
         padding-bottom: $bgPaddingDefault;
     }
