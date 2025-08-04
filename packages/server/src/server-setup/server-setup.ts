@@ -66,8 +66,8 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         serverSetupDev(expressApp, nextApp);
     }
 
-    expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
-        const { buildId } = req.params;
+    expressApp.get('/_next/data/:buildId{/*path}', (req, res) => {
+        const buildId = (req.params as any)['buildId'];
         if (buildId !== currentBuildId) {
             logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
             req.url = req.url.replace(buildId, currentBuildId);
@@ -77,7 +77,12 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         return nextRequestHandler(req, res);
     });
 
-    expressApp.all('*', (req, res) => {
+    // Handle internal API routes explicitly
+    expressApp.all('/api/internal{/*path}', (req, res) => {
+        return nextRequestHandler(req, res);
+    });
+
+    expressApp.all('/{*path}', (req, res) => {
         return nextRequestHandler(req, res);
     });
 };

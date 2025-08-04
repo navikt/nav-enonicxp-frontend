@@ -9,7 +9,7 @@ const APP_ORIGIN = process.env.APP_ORIGIN;
 export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
-    expressApp.all('*', (req, res, next) => {
+    expressApp.all('/*path', (req, res, next) => {
         res.setHeader('X-Robots-Tag', 'noindex');
         next();
     });
@@ -17,14 +17,22 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     // These paths should never redirect, to ensure the site will load correctly
     // when accessed via other applications (Content Studio editor or external archive/version history frontend)
     expressApp.all(
-        ['/render-from-props', '/draft/*', '/archive/*', '/editor/*', '/gfx/*', '/api/*', '/_/*'],
+        [
+            '/render-from-props',
+            '/draft{/*path}',
+            '/archive{/*path}',
+            '/editor{/*path}',
+            '/gfx{/*path}',
+            '/api{/*path}',
+            '/_/*path',
+        ],
         (req, res) => {
             return nextRequestHandler(req, res);
         }
     );
 
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
-        expressApp.all('*', (req, res, next) => {
+        expressApp.all('/*path', (req, res, next) => {
             if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
                 return res.redirect(302, `${APP_ORIGIN}${req.path}`);
             }
