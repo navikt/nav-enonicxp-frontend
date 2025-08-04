@@ -2,8 +2,8 @@
 
 .personShortcuts {
     @include common.full-width-mixin();
-    padding-top: 2.25rem;
-    padding-bottom: 2.25rem;
+    padding-top: var(--a-spacing-9);
+    padding-bottom: var(--a-spacing-9);
     background-color: var(--a-red-50);
 
     @media #{common.$mq-screen-mobile} {

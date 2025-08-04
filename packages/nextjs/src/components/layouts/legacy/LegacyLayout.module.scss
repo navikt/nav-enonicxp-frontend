@@ -9,7 +9,7 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        padding-top: 2.25rem;
+        padding-top: var(--a-spacing-9);
         padding-bottom: 3rem;
 
         @media #{common.$mq-screen-mobile} {
