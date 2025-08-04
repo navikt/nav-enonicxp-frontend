@@ -73,9 +73,9 @@ $blackLinkColor: var(--a-text-default);
 }
 
 .lenkepanelNavnoIngress {
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }
 
 .lenkepanelNavnoIcon {
-    margin-right: 1rem;
+    margin-right: var(--a-spacing-4);
 }

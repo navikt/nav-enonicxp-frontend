@@ -29,12 +29,12 @@ $contentMaxWidth: 56.25rem;
 $sectionMaxWidth: calc(#{$contentMaxWidth} * 2 / 3);
 
 $padding-sides-desktop: 3rem;
-$padding-sides-tablet: 1rem;
-$padding-sides-mobile: 1rem;
+$padding-sides-tablet: var(--a-spacing-4);
+$padding-sides-mobile: var(--a-spacing-4);
 
 $sectionPaddingDesktop: 2.5rem;
 $sectionPaddingTablet: 1.6rem;
-$sectionPaddingMobile: 1rem;
+$sectionPaddingMobile: var(--a-spacing-4);
 $border-radius-small: 2px;
 $border-radius-base: 4px;
 $border-radius-large: 6px;
@@ -127,7 +127,7 @@ $versionSelectorMinHeight: 3rem;
 }
 
 @mixin expandable-panel-mixin() {
-    $focusPadding: 1rem;
+    $focusPadding: var(--a-spacing-4);
     box-shadow: none;
     border-bottom: 0;
     padding-left: $focusPadding;

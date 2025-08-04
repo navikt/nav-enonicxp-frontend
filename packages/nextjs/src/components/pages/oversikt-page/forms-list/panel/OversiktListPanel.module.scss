@@ -20,7 +20,7 @@
         'icon . arrow'
         'icon title arrow'
         'icon tjenesterIngress arrow';
-    column-gap: 1rem;
+    column-gap: var(--a-spacing-4);
     position: relative;
 
     .icon {

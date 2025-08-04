@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-bottom: var(--a-spacing-4);
 
     @include common.full-width-mixin();
 

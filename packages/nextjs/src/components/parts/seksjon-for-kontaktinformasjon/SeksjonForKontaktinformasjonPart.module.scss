@@ -2,7 +2,7 @@
 
 .container {
     $padding-desktop: 2.75rem;
-    $padding-mobile-y: 1rem;
+    $padding-mobile-y: var(--a-spacing-4);
     $whiteGap: var(--a-spacing-2);
 
     @include common.full-width-mixin();
@@ -26,7 +26,7 @@
     margin-bottom: 1.5rem;
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 

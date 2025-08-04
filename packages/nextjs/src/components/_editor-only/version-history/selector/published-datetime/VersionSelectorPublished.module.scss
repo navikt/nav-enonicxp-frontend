@@ -9,7 +9,7 @@
     }
 
     :global(.version-selector-submit) {
-        margin-left: 1rem;
+        margin-left: var(--a-spacing-4);
         min-height: common.$versionSelectorMinHeight;
     }
 }

@@ -2,8 +2,8 @@
 
 .versionStatus {
     display: flex;
-    padding: 1rem 3rem;
-    margin-bottom: 1rem;
+    padding: var(--a-spacing-4) 3rem;
+    margin-bottom: var(--a-spacing-4);
     background-color: var(--a-white);
     border-radius: common.$border-radius-base;
     box-shadow: 0 0 0 2px var(--a-orange-500) inset;

@@ -4,7 +4,7 @@
     display: block;
     outline: solid 2px #ffbbbb;
     overflow: hidden;
-    padding: 2rem var(--a-spacing-2) 1rem var(--a-spacing-2);
+    padding: 2rem var(--a-spacing-2) var(--a-spacing-4) var(--a-spacing-2);
     position: relative;
 
     &::before {

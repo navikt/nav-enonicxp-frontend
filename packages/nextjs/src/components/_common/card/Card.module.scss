@@ -117,7 +117,7 @@
 
         &:global(.situation) {
             @media #{common.$mq-screen-mobile} {
-                padding: 1rem;
+                padding: var(--a-spacing-4);
             }
         }
     }

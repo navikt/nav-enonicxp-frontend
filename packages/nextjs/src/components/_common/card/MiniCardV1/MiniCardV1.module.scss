@@ -7,7 +7,7 @@ $illustrationSizeSmall: 3rem;
     width: $illustrationSize;
     min-width: $illustrationSize;
     height: $illustrationSize;
-    margin-right: 1rem;
+    margin-right: var(--a-spacing-4);
 
     @media #{common.$mq-screen-mobile-small} {
         width: $illustrationSizeSmall;

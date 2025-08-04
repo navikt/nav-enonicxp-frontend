@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .mellomstegLayout {
-    padding-bottom: 1rem;
+    padding-bottom: var(--a-spacing-4);
     column-gap: 1.75rem;
     margin-bottom: 2.5rem;
     display: grid;

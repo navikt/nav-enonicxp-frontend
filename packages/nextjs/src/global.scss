@@ -47,7 +47,7 @@ figure {
 
 table {
     .spacer-row {
-        height: 1rem;
+        height: var(--a-spacing-4);
         background-color: transparent;
     }
 }

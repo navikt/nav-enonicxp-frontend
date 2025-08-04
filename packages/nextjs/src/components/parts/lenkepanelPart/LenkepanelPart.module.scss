@@ -49,7 +49,7 @@ $iconSize: 2.1875rem;
     }
     .ingress {
         width: 100%;
-        margin: 1rem 0 var(--a-spacing-2) 0;
+        margin: var(--a-spacing-4) 0 var(--a-spacing-2) 0;
     }
 }
 
@@ -57,7 +57,7 @@ $iconSize: 2.1875rem;
     text-align: center;
 
     .icon {
-        $marginBottom: 1rem;
+        $marginBottom: var(--a-spacing-4);
         $padding: 1.5rem;
 
         display: flex;
@@ -71,7 +71,7 @@ $iconSize: 2.1875rem;
         }
         &.bg {
             margin: (-$padding) (-$padding) $marginBottom (-$padding);
-            padding: 0 1rem;
+            padding: 0 var(--a-spacing-4);
             width: calc(100% + #{$padding} * 2);
             height: 6rem;
 

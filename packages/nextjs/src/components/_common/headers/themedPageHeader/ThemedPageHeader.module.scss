@@ -36,8 +36,8 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: var(--a-spacing-4);
+        padding-right: var(--a-spacing-4);
 
         .illustration {
             display: none;
@@ -80,7 +80,7 @@
 }
 
 .divider {
-    padding: 0 1rem;
+    padding: 0 var(--a-spacing-4);
 
     @media #{common.$mq-screen-mobile} {
         display: none;

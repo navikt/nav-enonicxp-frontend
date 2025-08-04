@@ -26,7 +26,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem var(--a-spacing-4);
     }
 }
 
@@ -42,7 +42,7 @@
     align-items: center;
     justify-content: center;
 
-    padding: 0 1rem 0 var(--a-spacing-2);
+    padding: 0 var(--a-spacing-4) 0 var(--a-spacing-2);
 
     width: 3rem;
     height: 3rem;
@@ -58,7 +58,7 @@
     border: none;
     background-color: var(--a-gray-600);
     height: 1px;
-    margin: 1rem auto;
+    margin: var(--a-spacing-4) auto;
 }
 
 .vertikal {
@@ -73,7 +73,7 @@
 
     .ikon {
         width: 100%;
-        padding: 0 0 1rem 0;
+        padding: 0 0 var(--a-spacing-4) 0;
         & > img {
             max-width: 100%;
         }

@@ -24,8 +24,8 @@
         user-select: none;
 
         img {
-            height: 1rem;
-            width: 1rem;
+            height: var(--a-spacing-4);
+            width: var(--a-spacing-4);
             margin-right: 0.4rem;
         }
     }

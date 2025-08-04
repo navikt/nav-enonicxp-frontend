@@ -7,7 +7,7 @@ $iconContainerRadius: 2rem;
     $iconContainerSize: $iconContainerRadius * 2;
 
     @mixin adjust-for-padding($sectionPadding) {
-        $marginActual: 1rem;
+        $marginActual: var(--a-spacing-4);
         top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
         margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
@@ -54,9 +54,9 @@ $iconContainerRadius: 2rem;
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
 }
 
 .headerWithIcon {
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }

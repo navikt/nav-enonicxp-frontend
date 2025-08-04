@@ -22,18 +22,18 @@
 }
 
 .anchorIcon {
-    height: 1rem;
+    height: var(--a-spacing-4);
     margin-right: var(--a-spacing-2);
     transition-duration: 0.1s;
     transition-property: transform;
     transition-timing-function: ease-out;
-    width: 1rem;
+    width: var(--a-spacing-4);
 }
 
 .copyTooltip {
     display: flex;
     align-items: center;
-    margin-left: 1rem;
+    margin-left: var(--a-spacing-4);
     visibility: hidden;
     background-color: var(--a-green-100);
     color: black;

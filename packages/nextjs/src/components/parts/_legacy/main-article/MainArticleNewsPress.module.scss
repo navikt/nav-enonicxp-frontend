@@ -67,7 +67,7 @@
 
         table {
             float: none;
-            margin-bottom: 1rem;
+            margin-bottom: var(--a-spacing-4);
 
             th,
             td {
@@ -106,7 +106,7 @@
         ul,
         ol {
             padding-left: 1.4rem;
-            margin-bottom: 1rem;
+            margin-bottom: var(--a-spacing-4);
         }
     }
 }

@@ -19,7 +19,7 @@
     margin-bottom: 1.5rem;
 
     @media #{common.$mq-screen-mobile-small} {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 

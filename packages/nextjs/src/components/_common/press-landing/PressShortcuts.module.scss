@@ -11,7 +11,7 @@
 }
 
 .content {
-    width: calc(100% - 1rem);
+    width: calc(100% - var(--a-spacing-4));
     max-width: 37.5rem;
 }
 

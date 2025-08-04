@@ -3,12 +3,12 @@
 .banner {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--a-spacing-4);
     width: calc(100% - 0.75rem);
 
     text-decoration: none;
     color: var(--a-text-default);
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
     padding: 1.75rem;
     background-color: var(--a-red-50);
     border-radius: var(--a-spacing-2);

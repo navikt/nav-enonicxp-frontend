@@ -1,6 +1,6 @@
 .publikumsmottak {
     .header {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 
     table {
@@ -10,7 +10,7 @@
         th,
         td {
             vertical-align: top;
-            padding: 0.3rem 1rem 0.3rem 0;
+            padding: 0.3rem var(--a-spacing-4) 0.3rem 0;
             font-size: 1.125rem;
         }
 

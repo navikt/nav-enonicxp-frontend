@@ -2,7 +2,7 @@
 
 .layout {
     // The default top/bottom margins may be overridden by the content editor
-    $vertical-margin-default: 1rem;
+    $vertical-margin-default: var(--a-spacing-4);
 
     // Set negative horizontal margin and equivalent padding in order to
     // make the background of a layout cover the padding of the app-container

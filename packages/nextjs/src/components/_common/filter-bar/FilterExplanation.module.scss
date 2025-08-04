@@ -5,8 +5,8 @@
     align-items: center;
     transition: all 0.8s linear;
     border-radius: 3px;
-    width: calc(100% + 1rem);
-    font-size: 1rem;
+    width: calc(100% + var(--a-spacing-4));
+    font-size: var(--a-spacing-4);
     border: 1px solid transparent;
 }
 

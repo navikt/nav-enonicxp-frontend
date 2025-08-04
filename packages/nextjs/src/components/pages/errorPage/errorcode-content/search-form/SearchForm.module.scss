@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .search {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
 
     .form {
         display: flex;
