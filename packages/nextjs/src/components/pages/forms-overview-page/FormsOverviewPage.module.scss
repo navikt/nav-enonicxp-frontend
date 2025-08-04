@@ -10,7 +10,7 @@
         'side';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 6rem 2fr 6rem;
+        grid-template-columns: var(--a-spacing-24) 2fr var(--a-spacing-24);
         grid-template-areas:
             'pictogram main .'
             '. side .';
@@ -19,7 +19,7 @@
     &.withSideCol {
         @media #{common.$mq-screen-desktop-small-up} {
             grid-template-areas: 'pictogram main side';
-            grid-template-columns: 6rem 2fr 1fr;
+            grid-template-columns: var(--a-spacing-24) 2fr 1fr;
         }
     }
 }
@@ -41,8 +41,8 @@
     grid-area: pictogram;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        width: 6rem;
-        height: 6rem;
+        width: var(--a-spacing-24);
+        height: var(--a-spacing-24);
         display: block;
     }
 }

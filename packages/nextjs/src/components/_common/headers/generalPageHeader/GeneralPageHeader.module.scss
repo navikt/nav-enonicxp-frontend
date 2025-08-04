@@ -4,8 +4,8 @@
     display: block;
 
     .illustration {
-        width: 6rem;
-        height: 6rem;
+        width: var(--a-spacing-24);
+        height: var(--a-spacing-24);
         position: absolute;
         margin-left: -8rem;
 

@@ -17,7 +17,7 @@
     }
 
     &.withToggleFilters {
-        grid-template-columns: 6rem 1fr;
+        grid-template-columns: var(--a-spacing-24) 1fr;
     }
 }
 

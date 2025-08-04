@@ -73,7 +73,7 @@ $iconSize: 2.1875rem;
             margin: (-$padding) (-$padding) $marginBottom (-$padding);
             padding: 0 var(--a-spacing-4);
             width: calc(100% + #{$padding} * 2);
-            height: 6rem;
+            height: var(--a-spacing-24);
 
             img {
                 height: auto;

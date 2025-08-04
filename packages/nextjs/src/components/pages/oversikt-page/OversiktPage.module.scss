@@ -21,8 +21,8 @@
 
 .pictogram {
     grid-area: pictogram;
-    width: 6rem;
-    height: 6rem;
+    width: var(--a-spacing-24);
+    height: var(--a-spacing-24);
     display: block;
 
     justify-self: end;
