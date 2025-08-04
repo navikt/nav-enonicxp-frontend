@@ -3,20 +3,20 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { OptionSetSingle } from 'types/util-types';
 import { LinkSelectable } from 'types/component-props/_mixins';
-import { LoggedinCardMeldekort } from './cards/LoggedinCardMeldekort';
+import { KortForInnloggetBruker_Meldekort } from './kort/KortForInnloggetBruker_Meldekort';
 
-type LoggedInCardTypeProps = Omit<PartConfigLoggedinCard['card'], '_selected'>;
+type KortForInnloggetBrukerTypeProps = Omit<PartConfigKortForInnloggetBruker['card'], '_selected'>;
 
-type LoggedInCardTypes = keyof LoggedInCardTypeProps;
+type KortForInnloggetBrukerTypes = keyof KortForInnloggetBrukerTypeProps;
 
 const CardComponents: Record<
-    LoggedInCardTypes,
-    React.FunctionComponent<LoggedInCardTypeProps[LoggedInCardTypes]>
+    KortForInnloggetBrukerTypes,
+    React.FunctionComponent<KortForInnloggetBrukerTypeProps[KortForInnloggetBrukerTypes]>
 > = {
-    meldekort: LoggedinCardMeldekort,
+    meldekort: KortForInnloggetBruker_Meldekort,
 };
 
-export type PartConfigLoggedinCard = {
+export type PartConfigKortForInnloggetBruker = {
     card: OptionSetSingle<{
         meldekort: {
             link: LinkSelectable;
@@ -24,7 +24,9 @@ export type PartConfigLoggedinCard = {
     }>;
 };
 
-export const LoggedinCardPart = ({ config }: PartComponentProps<PartType.LoggedinCard>) => {
+export const KortForInnloggetBrukerPart = ({
+    config,
+}: PartComponentProps<PartType.KortForInnloggetBruker>) => {
     if (!config?.card?._selected) {
         return <EditorHelp text={'Velg en type for kortet'} />;
     }
