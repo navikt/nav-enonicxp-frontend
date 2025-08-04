@@ -2,7 +2,7 @@
 
 .socialMedia {
     text-align: center;
-    margin-top: 4rem;
+    margin-top: var(--a-spacing-16);
 
     ul {
         @include common.unstyled-list();

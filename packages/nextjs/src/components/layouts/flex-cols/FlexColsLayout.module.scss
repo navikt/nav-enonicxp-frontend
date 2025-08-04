@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 @mixin contactBackground() {
-    padding-bottom: 4rem;
+    padding-bottom: var(--a-spacing-16);
     background-color: var(
         --a-gray-50
     ) !important; // To override inline colors set in XP (to be changed in the future)
@@ -17,7 +17,7 @@
 
 .flexCols {
     &:last-child {
-        padding-bottom: 4rem;
+        padding-bottom: var(--a-spacing-16);
     }
 
     :global(.region__flexcols) {
@@ -67,8 +67,8 @@
 
     @include common.full-width-mixin();
 
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: var(--a-spacing-16);
+    padding-bottom: var(--a-spacing-16);
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();

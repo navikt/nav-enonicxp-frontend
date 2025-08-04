@@ -31,8 +31,8 @@
     display: flex;
     flex-shrink: 0;
 
-    width: 4rem;
-    height: 4rem;
+    width: var(--a-spacing-16);
+    height: var(--a-spacing-16);
 
     @media #{common.$mq-screen-mobile-small} {
         width: var(--a-spacing-12);

@@ -48,8 +48,8 @@
         margin-right: var(--a-spacing-5);
 
         @media #{common.$mq-screen-tablet-and-mobile} {
-            width: 4rem;
-            height: 4rem;
+            width: var(--a-spacing-16);
+            height: var(--a-spacing-16);
         }
     }
 

@@ -5,7 +5,7 @@
 
     &:before {
         content: '\201C';
-        font-size: 4rem;
+        font-size: var(--a-spacing-16);
         color: var(--a-nav-red);
         font-family: 'Times new roman', serif;
         position: absolute;

@@ -34,8 +34,8 @@
 }
 
 .illustration {
-    width: 4rem;
-    height: 4rem;
+    width: var(--a-spacing-16);
+    height: var(--a-spacing-16);
     flex-shrink: 0;
 
     :global(.back) {

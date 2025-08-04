@@ -9,7 +9,7 @@
     grid-template-areas:
         'pictogram header .'
         '. content .';
-    margin-top: 4rem;
+    margin-top: var(--a-spacing-16);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-columns: none;
@@ -25,8 +25,8 @@
         grid-area: pictogram;
         display: block;
         justify-self: end;
-        min-width: 4rem;
-        min-height: 4rem;
+        min-width: var(--a-spacing-16);
+        min-height: var(--a-spacing-16);
         width: 4.5rem;
         height: auto;
         position: relative;
@@ -34,7 +34,7 @@
         margin-bottom: var(--a-spacing-5);
 
         @media #{common.$mq-screen-tablet-and-mobile} {
-            width: 4rem;
+            width: var(--a-spacing-16);
             justify-self: start;
         }
     }

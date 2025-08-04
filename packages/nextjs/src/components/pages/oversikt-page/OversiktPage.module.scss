@@ -31,7 +31,7 @@
     margin-bottom: var(--a-spacing-5);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
-        width: 4rem;
+        width: var(--a-spacing-16);
         justify-self: start;
     }
 }
