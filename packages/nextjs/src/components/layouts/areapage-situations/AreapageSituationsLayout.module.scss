@@ -23,7 +23,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        @include common.flex-cols-mixin(1, 1rem, 1rem);
+        @include common.flex-cols-mixin(1, var(--a-spacing-4), var(--a-spacing-4));
     }
     @media #{common.$mq-screen-tablet} {
         @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
