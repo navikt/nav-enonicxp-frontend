@@ -73,8 +73,8 @@
         content: '';
         border-left: 1px solid black;
         display: flex;
-        padding: 0 0.75rem 0 0;
-        margin-left: 0.75rem;
+        padding: 0 var(--a-spacing-3) 0 0;
+        margin-left: var(--a-spacing-3);
 
         @media #{common.$mq-screen-mobile} {
             display: none;

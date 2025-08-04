@@ -39,7 +39,7 @@ $illustrationSizeSmall: 3rem;
     border-radius: 8px;
     border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
     display: inline-flex; // Ensures margins don't collapse
-    padding: 0.75rem;
+    padding: var(--a-spacing-3);
     text-decoration: none;
     width: 100%;
 

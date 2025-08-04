@@ -6,7 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    column-gap: 0.75rem;
+    column-gap: var(--a-spacing-3);
     margin-top: var(--a-spacing-1);
     margin-bottom: var(--a-spacing-7);
 }

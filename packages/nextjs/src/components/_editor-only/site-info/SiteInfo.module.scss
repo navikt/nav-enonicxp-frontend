@@ -10,7 +10,7 @@
         background-color: var(--a-white);
         padding: var(--a-spacing-5);
         &:not(:last-child) {
-            margin-bottom: 0.75rem;
+            margin-bottom: var(--a-spacing-3);
         }
     }
 }

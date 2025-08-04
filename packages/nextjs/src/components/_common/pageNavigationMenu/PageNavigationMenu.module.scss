@@ -21,7 +21,7 @@
         @include common.unstyled-list();
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: var(--a-spacing-3);
     }
 
     .icon {

@@ -25,7 +25,7 @@
         .listItem {
             width: 100%;
             display: flex;
-            padding: 0.75rem 0;
+            padding: var(--a-spacing-3) 0;
             border-top: 1px solid var(--Global-Gray-300, #cbcfd5);
 
             &:nth-child(1),
