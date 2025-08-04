@@ -44,8 +44,8 @@
 
     padding: 0 var(--a-spacing-4) 0 var(--a-spacing-2);
 
-    width: 3rem;
-    height: 3rem;
+    width: var(--a-spacing-12);
+    height: var(--a-spacing-12);
 
     & > img {
         max-width: var(--a-spacing-8);

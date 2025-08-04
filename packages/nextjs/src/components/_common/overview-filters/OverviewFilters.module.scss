@@ -9,7 +9,7 @@
 .mobileFilters {
     display: grid;
     column-gap: var(--a-spacing-3);
-    height: 3rem;
+    height: var(--a-spacing-12);
     margin-top: var(--a-spacing-2);
 
     & > * {

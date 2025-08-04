@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 $illustrationSize: 4rem;
-$illustrationSizeSmall: 3rem;
+$illustrationSizeSmall: var(--a-spacing-12);
 
 .illustration {
     width: $illustrationSize;

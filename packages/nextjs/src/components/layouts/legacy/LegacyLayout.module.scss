@@ -10,7 +10,7 @@
         margin-left: auto;
         margin-right: auto;
         padding-top: var(--a-spacing-9);
-        padding-bottom: 3rem;
+        padding-bottom: var(--a-spacing-12);
 
         @media #{common.$mq-screen-mobile} {
             flex-direction: column;
@@ -27,7 +27,7 @@
         }
 
         &:last-child {
-            padding-bottom: 3rem;
+            padding-bottom: var(--a-spacing-12);
         }
     }
 

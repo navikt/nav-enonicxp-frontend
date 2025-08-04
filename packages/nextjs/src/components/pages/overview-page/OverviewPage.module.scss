@@ -3,7 +3,7 @@
 .overviewPage {
     display: flex;
     flex-direction: column;
-    padding-bottom: 3rem;
+    padding-bottom: var(--a-spacing-12);
 }
 
 .content {

@@ -35,8 +35,8 @@
     height: 4rem;
 
     @media #{common.$mq-screen-mobile-small} {
-        width: 3rem;
-        height: 3rem;
+        width: var(--a-spacing-12);
+        height: var(--a-spacing-12);
     }
 
     & > * {
