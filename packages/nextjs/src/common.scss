@@ -41,9 +41,10 @@ $border-radius-large: 6px;
 $border-radius-xlarge: 8px;
 
 // Varaibles for CMS-editor
-$editorPaddingVertical: var(--a-spacing-8);
+// Kan ikke ha spacing tokens fra Aksel her, da brekker bygget
+$editorPaddingVertical: 2rem;
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
-$versionSelectorMinHeight: var(--a-spacing-12);
+$versionSelectorMinHeight: 3rem;
 
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin($left: true, $right: true) {
