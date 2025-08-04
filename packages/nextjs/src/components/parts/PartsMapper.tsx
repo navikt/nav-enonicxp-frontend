@@ -10,7 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
 import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
@@ -29,7 +28,8 @@ import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/Mai
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
-import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { SeksjonForSnarveierPaForsideForPrivatpersonPart } from './seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
+import { SeksjonForSnarveierPart } from './seksjon-for-snarveier/SeksjonForSnarveierPart';
 import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
 import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
@@ -94,10 +94,10 @@ const PartComponentMapper = ({
             return <SeksjonForKontaktinformasjonPart {...partProps} />;
         case PartType.SeksjonForAktuelleTemaer:
             return <SeksjonForAktuelleTemaerPart {...partProps} />;
-        case PartType.FrontpageShortcuts:
-            return <FrontpageShortcutsPart {...partProps} />;
-        case PartType.FrontpagePersonShortcuts:
-            return <FrontpagePersonShortcutsPart {...partProps} />;
+        case PartType.SeksjonForSnarveier:
+            return <SeksjonForSnarveierPart {...partProps} />;
+        case PartType.SeksjonForSnarveierPaForsideForPrivatperson:
+            return <SeksjonForSnarveierPaForsideForPrivatpersonPart {...partProps} />;
         case PartType.Header:
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:

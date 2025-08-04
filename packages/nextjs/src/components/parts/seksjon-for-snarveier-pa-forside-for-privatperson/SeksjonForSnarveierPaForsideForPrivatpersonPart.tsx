@@ -10,7 +10,7 @@ import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import style from './FrontpagePersonShortcutsPart.module.scss';
+import style from './SeksjonForSnarveierPaForsideForPrivatpersonPart.module.scss';
 
 type Shortcut = {
     target: {
@@ -29,9 +29,9 @@ export type PartConfigFrontpagePersonShortcuts = {
     shortcuts: Shortcut[];
 };
 
-export const FrontpagePersonShortcutsPart = ({
+export const SeksjonForSnarveierPaForsideForPrivatpersonPart = ({
     config,
-}: PartComponentProps<PartType.FrontpagePersonShortcuts>) => {
+}: PartComponentProps<PartType.SeksjonForSnarveierPaForsideForPrivatperson>) => {
     const { shortcuts, title: sectionTitle } = config;
 
     if (!shortcuts || shortcuts.length === 0) {
@@ -60,7 +60,7 @@ export const FrontpagePersonShortcutsPart = ({
                             <LenkeBase
                                 href={href}
                                 className={style.lenkepanel}
-                                analyticsComponent="FrontpagePersonShortcutsPart"
+                                analyticsComponent="SeksjonForSnarveierPaForsideForPrivatpersonPart"
                                 analyticsLinkGroup={sectionTitle}
                             >
                                 <div className={style.icon}>
