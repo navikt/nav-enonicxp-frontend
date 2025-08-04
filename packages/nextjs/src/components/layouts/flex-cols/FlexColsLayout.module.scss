@@ -35,7 +35,7 @@
     }
 
     :global(.region__flexcols--2-cols) {
-        @include common.flex-cols-mixin(2, var(--a-spacing-8));
+        @include common.flex-cols-mixin(2, 2rem);
 
         @media #{common.$mq-screen-mobile} {
             @include common.flex-cols-mixin(1);
@@ -44,7 +44,7 @@
 
     :global(.region__flexcols--3-cols) {
         @media #{common.$mq-screen-desktop} {
-            @include common.flex-cols-mixin(3, var(--a-spacing-8));
+            @include common.flex-cols-mixin(3, 2rem);
         }
 
         @media #{common.$mq-screen-tablet} {

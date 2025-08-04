@@ -1,13 +1,13 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: var(--a-spacing-8);
+$iconContainerRadius: 2rem;
 
 .container {
     $iconContainerSize: $iconContainerRadius * 2;
 
     @mixin adjust-for-padding($sectionPadding) {
-        $marginActual: var(--a-spacing-4);
+        $marginActual: 1rem;
         top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
         margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
@@ -42,7 +42,7 @@ $iconContainerRadius: var(--a-spacing-8);
         }
 
         img {
-            $iconSize: var(--a-spacing-11);
+            $iconSize: 2.8125rem;
             height: $iconSize;
             width: $iconSize;
         }
