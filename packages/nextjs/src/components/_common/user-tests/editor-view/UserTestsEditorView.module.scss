@@ -1,6 +1,6 @@
 .userTestsEditor {
     :not(:last-child) {
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--a-spacing-1);
     }
 }
 

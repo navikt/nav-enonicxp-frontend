@@ -1,6 +1,6 @@
 .filterCheckbox {
     background-color: transparent;
-    border-radius: 0.25rem;
+    border-radius: var(--a-spacing-1);
     box-shadow: var(--default-action-color) inset 0 0 0 1px;
     cursor: pointer;
     display: flex;

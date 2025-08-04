@@ -19,7 +19,7 @@
 .shortcutItem:hover {
     border: 0;
     border-bottom: 2px solid var(--a-gray-600);
-    margin: 0.25rem 0;
+    margin: var(--a-spacing-1) 0;
     font-weight: 600;
 
     &:hover {

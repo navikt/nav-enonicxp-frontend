@@ -20,7 +20,7 @@
     display: block;
     height: 1.5rem;
     width: 1.5rem;
-    margin-right: 0.25rem;
+    margin-right: var(--a-spacing-1);
     position: relative;
 
     .highlighted {

@@ -12,19 +12,19 @@
 }
 
 .name {
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--a-spacing-1);
     margin-right: var(--a-spacing-2);
 }
 
 .publish {
-    margin-top: 0.25rem;
+    margin-top: var(--a-spacing-1);
 }
 
 .warning {
     display: flex;
     align-items: center;
     svg {
-        margin-right: 0.25rem;
+        margin-right: var(--a-spacing-1);
         color: var(--a-orange-500);
     }
 }
