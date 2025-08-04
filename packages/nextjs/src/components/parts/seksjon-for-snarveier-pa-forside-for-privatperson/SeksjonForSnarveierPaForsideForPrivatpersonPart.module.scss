@@ -2,13 +2,13 @@
 
 .personShortcuts {
     @include common.full-width-mixin();
-    padding-top: 2.25rem;
-    padding-bottom: 2.25rem;
+    padding-top: var(--a-spacing-9);
+    padding-bottom: var(--a-spacing-9);
     background-color: var(--a-red-50);
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 2rem;
-        padding-bottom: 0.5rem;
+        padding-top: var(--a-spacing-8);
+        padding-bottom: var(--a-spacing-2);
     }
 
     .list {
@@ -16,7 +16,7 @@
         grid-template-columns: auto auto;
         list-style: none;
         padding: 0;
-        column-gap: 2rem;
+        column-gap: var(--a-spacing-8);
 
         @media #{common.$mq-screen-mobile} {
             grid-template-columns: auto;
@@ -25,7 +25,7 @@
         .listItem {
             width: 100%;
             display: flex;
-            padding: 0.75rem 0;
+            padding: var(--a-spacing-3) 0;
             border-top: 1px solid var(--Global-Gray-300, #cbcfd5);
 
             &:nth-child(1),
@@ -46,7 +46,7 @@
                 text-underline-offset: 0.1em;
                 align-items: center;
                 padding: 0;
-                gap: 0.5rem;
+                gap: var(--a-spacing-2);
                 width: 100%;
 
                 &:hover {
@@ -74,7 +74,7 @@
                 .icon {
                     display: flex;
                     flex-shrink: 0;
-                    width: 2rem;
+                    width: var(--a-spacing-8);
                     height: auto;
                     color: var(--a-icon-subtle);
 
