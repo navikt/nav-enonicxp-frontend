@@ -9,15 +9,15 @@
     width: 100%;
 
     @media #{common.$mq-screen-mobile} {
-        @include common.flex-cols-mixin(1, var(--a-spacing-4), var(--a-spacing-4));
+        @include common.flex-cols-mixin(1, 1rem, 1rem);
     }
 
     @media #{common.$mq-screen-tablet} {
-        @include common.flex-cols-mixin(2, var(--a-spacing-4), var(--a-spacing-4));
+        @include common.flex-cols-mixin(2, 1rem, 1rem);
     }
 
     @media #{common.$mq-screen-desktop} {
-        @include common.flex-cols-mixin(3, var(--a-spacing-4), var(--a-spacing-4));
+        @include common.flex-cols-mixin(3, 1rem, 1rem);
     }
 
     .item {
