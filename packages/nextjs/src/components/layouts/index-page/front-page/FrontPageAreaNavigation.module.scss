@@ -20,7 +20,7 @@
 }
 
 .employer {
-    padding-top: 3.5rem;
+    padding-top: var(--a-spacing-14);
     padding-bottom: 4.25rem;
 
     @media #{common.$mq-screen-mobile} {
@@ -34,7 +34,7 @@
 
     @media #{common.$mq-screen-mobile} {
         padding-top: var(--a-spacing-9);
-        padding-bottom: 3.25rem;
+        padding-bottom: var(--a-spacing-14);
     }
 }
 
