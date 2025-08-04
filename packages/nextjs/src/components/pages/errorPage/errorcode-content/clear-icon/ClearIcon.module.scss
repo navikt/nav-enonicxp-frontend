@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 .crossIcon {
-    $height: 0.125rem;
+    $height: var(--a-spacing-05);
     $width: 1.5rem;
     transform: translateY(math.div(-$height, 2));
 
