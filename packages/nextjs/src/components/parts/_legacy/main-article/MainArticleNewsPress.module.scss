@@ -17,7 +17,7 @@
     }
 
     .header {
-        margin-bottom: 2rem;
+        margin-bottom: var(--a-spacing-8);
     }
 
     .headerWithToc {
@@ -26,7 +26,7 @@
 
     .text {
         p {
-            margin-bottom: 2rem;
+            margin-bottom: var(--a-spacing-8);
         }
 
         li {

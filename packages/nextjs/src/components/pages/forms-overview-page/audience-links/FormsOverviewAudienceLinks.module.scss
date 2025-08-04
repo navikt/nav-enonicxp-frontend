@@ -2,7 +2,7 @@
 
 .list {
     @include common.unstyled-list();
-    margin-top: 2rem;
+    margin-top: var(--a-spacing-8);
 }
 
 .item {

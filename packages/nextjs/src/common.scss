@@ -41,7 +41,7 @@ $border-radius-large: 6px;
 $border-radius-xlarge: 8px;
 
 // Varaibles for CMS-editor
-$editorPaddingVertical: 2rem;
+$editorPaddingVertical: var(--a-spacing-8);
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
 $versionSelectorMinHeight: 3rem;
 

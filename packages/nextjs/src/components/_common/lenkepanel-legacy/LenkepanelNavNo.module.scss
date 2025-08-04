@@ -48,8 +48,8 @@
     height: 3rem;
 
     & > img {
-        max-width: 2rem;
-        max-height: 2rem;
+        max-width: var(--a-spacing-8);
+        max-height: var(--a-spacing-8);
     }
 }
 

@@ -3,7 +3,7 @@
 .currentTopicPage {
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
+    padding-top: var(--a-spacing-8);
     padding-bottom: 3rem;
 }
 

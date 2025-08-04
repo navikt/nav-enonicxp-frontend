@@ -9,7 +9,7 @@
         font-size: var(--a-font-size-heading-medium);
         margin-bottom: var(--a-spacing-4);
         &:not(:first-child) {
-            margin-top: 2rem;
+            margin-top: var(--a-spacing-8);
         }
     }
 

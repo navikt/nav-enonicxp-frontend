@@ -24,7 +24,7 @@
     padding-bottom: 4.25rem;
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 2rem;
+        padding-top: var(--a-spacing-8);
         padding-bottom: 2.25rem;
     }
 }

@@ -52,7 +52,7 @@
     }
 
     & > * {
-        margin-top: var(--a-spacing-8, 2rem);
+        margin-top: var(--a-spacing-8);
     }
 }
 
@@ -60,7 +60,7 @@
     display: none;
 
     & > :not(:last-child) {
-        margin-bottom: var(--a-spacing-8, 2rem);
+        margin-bottom: var(--a-spacing-8);
     }
 
     @media #{common.$mq-screen-desktop} {
