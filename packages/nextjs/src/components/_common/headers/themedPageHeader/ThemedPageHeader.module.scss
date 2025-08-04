@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
     background-color: var(--a-white);
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: var(--a-spacing-5);
+    padding-bottom: var(--a-spacing-5);
     border-bottom: 4px solid transparent;
 
     @include common.full-width-mixin;
@@ -46,7 +46,7 @@
 }
 
 .header {
-    padding: 0 0 1.25rem 0;
+    padding: 0 0 var(--a-spacing-5) 0;
     margin: 0 auto;
 }
 

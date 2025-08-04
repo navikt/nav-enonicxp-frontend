@@ -31,7 +31,7 @@
         height: auto;
         position: relative;
         align-self: flex-start;
-        margin-bottom: 1.25rem;
+        margin-bottom: var(--a-spacing-5);
 
         @media #{common.$mq-screen-tablet-and-mobile} {
             width: 4rem;

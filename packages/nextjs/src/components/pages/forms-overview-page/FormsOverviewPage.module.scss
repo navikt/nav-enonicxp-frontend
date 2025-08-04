@@ -4,7 +4,7 @@
     display: grid;
     gap: var(--a-spacing-10);
 
-    margin: 1.25rem auto var(--a-spacing-10);
+    margin: var(--a-spacing-5) auto var(--a-spacing-10);
     grid-template-areas:
         'main'
         'side';

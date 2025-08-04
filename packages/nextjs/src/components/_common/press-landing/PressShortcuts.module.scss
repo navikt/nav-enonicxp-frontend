@@ -27,7 +27,7 @@
     }
 
     :global(.navds-link-panel__content) {
-        font-size: 1.25rem;
+        font-size: var(--a-spacing-5);
     }
 }
 

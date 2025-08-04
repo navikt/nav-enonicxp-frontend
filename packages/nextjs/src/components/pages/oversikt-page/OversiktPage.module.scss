@@ -2,7 +2,7 @@
 
 .page {
     display: grid;
-    margin: 1.25rem auto var(--a-spacing-10);
+    margin: var(--a-spacing-5) auto var(--a-spacing-10);
     grid-template-columns: 1fr minmax(0, 45rem) 1fr;
     grid-template-areas: 'pictogram content .';
     column-gap: var(--a-spacing-7);

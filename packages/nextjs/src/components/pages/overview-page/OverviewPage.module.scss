@@ -30,7 +30,7 @@
 
 .productListWrapper,
 .filters {
-    padding: 1.25rem;
+    padding: var(--a-spacing-5);
     max-width: common.$sectionMaxWidth;
     background-color: var(--a-white);
 

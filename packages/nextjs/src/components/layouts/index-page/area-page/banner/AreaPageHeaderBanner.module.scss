@@ -24,7 +24,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 1.5rem 1.25rem;
+        padding: 1.5rem var(--a-spacing-5);
         transform: none;
         width: 100%;
     }

@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .newsPressHeader {
-    padding-top: 1.25rem;
+    padding-top: var(--a-spacing-5);
     padding-bottom: 0.75rem;
     margin: 0 auto -(var(--a-spacing-1)) auto;
     max-width: 63.5rem;

@@ -22,7 +22,7 @@
 
     & :global(.navds-link-panel__title) {
         color: var(--default-action-color);
-        font-size: 1.25rem;
+        font-size: var(--a-spacing-5);
     }
 
     & :global(.navds-link-panel__description) {

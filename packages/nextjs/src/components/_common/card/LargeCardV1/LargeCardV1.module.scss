@@ -45,7 +45,7 @@
 
     .illustration {
         margin-bottom: 0;
-        margin-right: 1.25rem;
+        margin-right: var(--a-spacing-5);
 
         @media #{common.$mq-screen-tablet-and-mobile} {
             width: 4rem;
@@ -66,7 +66,7 @@
         }
 
         @media #{common.$mq-screen-mobile} {
-            font-size: 1.25rem;
+            font-size: var(--a-spacing-5);
             line-height: 1.75rem;
         }
     }

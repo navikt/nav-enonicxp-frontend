@@ -3,7 +3,7 @@
 .layout {
     background-color: var(--a-white);
     @include common.full-width-mixin();
-    padding-top: 1.25rem;
+    padding-top: var(--a-spacing-5);
     padding-bottom: 0.75rem;
 }
 

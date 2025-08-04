@@ -8,7 +8,7 @@
 
 .pageHeader {
     align-items: flex-start;
-    padding-bottom: 1.25rem;
+    padding-bottom: var(--a-spacing-5);
 
     @media #{common.$mq-screen-mobile} {
         margin-bottom: 0;

@@ -44,7 +44,7 @@ $blackLinkColor: var(--a-text-default);
     text-underline-offset: 0.1em;
 
     @media #{common.$mq-screen-mobile-small} {
-        font-size: 1.25rem;
+        font-size: var(--a-spacing-5);
         line-height: 1.75rem;
     }
 
