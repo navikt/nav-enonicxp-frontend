@@ -24,10 +24,10 @@
 }
 
 .illustration {
-    height: 5rem;
+    height: var(--a-spacing-20);
     margin-right: var(--a-spacing-8);
     pointer-events: none;
-    width: 5rem;
+    width: var(--a-spacing-20);
 }
 
 .content {

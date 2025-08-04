@@ -51,8 +51,8 @@
 }
 
 .illustration {
-    width: 5rem;
-    height: 5rem;
+    width: var(--a-spacing-20);
+    height: var(--a-spacing-20);
     margin-right: var(--a-spacing-8);
     pointer-events: none;
 }

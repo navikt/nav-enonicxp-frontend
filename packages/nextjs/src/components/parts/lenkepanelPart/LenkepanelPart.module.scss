@@ -77,7 +77,7 @@ $iconSize: 2.1875rem;
 
             img {
                 height: auto;
-                max-height: 5rem;
+                max-height: var(--a-spacing-20);
             }
         }
     }

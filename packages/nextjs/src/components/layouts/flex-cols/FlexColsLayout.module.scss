@@ -72,7 +72,7 @@
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
-        padding-top: 5rem;
+        padding-top: var(--a-spacing-20);
 
         .contentWrapper {
             $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
