@@ -77,6 +77,11 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         return nextRequestHandler(req, res);
     });
 
+    // Handle internal API routes explicitly
+    expressApp.all('/api/internal{/*path}', (req, res) => {
+        return nextRequestHandler(req, res);
+    });
+
     expressApp.all('/*path', (req, res) => {
         return nextRequestHandler(req, res);
     });
