@@ -1,5 +1,5 @@
 .lenkepanel {
-    border-radius: 0.5rem;
+    border-radius: var(--a-spacing-2);
     border: 1px solid var(--a-border-subtle);
 
     & :global(.navds-link-panel__content) {

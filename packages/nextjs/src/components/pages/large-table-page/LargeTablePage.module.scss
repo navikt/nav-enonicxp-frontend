@@ -22,7 +22,7 @@
 
     th {
         font-weight: var(--a-font-weight-bold);
-        padding: 0.5rem 0.25rem;
+        padding: var(--a-spacing-2) 0.25rem;
         text-align: left;
     }
 
@@ -36,7 +36,7 @@
         tr:first-child {
             font-weight: var(--a-font-weight-bold);
             td {
-                padding-top: 0.5rem;
+                padding-top: var(--a-spacing-2);
             }
         }
 
@@ -59,7 +59,7 @@
     :global(.statHead),
     :global(.statGroupHead),
     :global(.statGroupRest) {
-        padding: 0.125rem 0.5rem;
+        padding: 0.125rem var(--a-spacing-2);
         &:not(th) {
             font-weight: var(--a-font-weight-bold);
         }
@@ -72,6 +72,6 @@
     }
 
     :global(.statFoot) {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
     }
 }

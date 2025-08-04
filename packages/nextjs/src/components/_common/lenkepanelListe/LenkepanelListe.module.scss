@@ -29,7 +29,7 @@
             width: 100%;
         }
         @media #{common.$mq-screen-tablet-and-desktop} {
-            width: calc(50% - 0.5rem);
+            width: calc(50% - (var(--a-spacing-2)));
         }
     }
 }

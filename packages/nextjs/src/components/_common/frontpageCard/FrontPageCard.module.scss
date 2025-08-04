@@ -17,7 +17,7 @@
         border: 0;
 
         @media #{common.$mq-screen-mobile} {
-            padding: 1rem 0.5rem;
+            padding: 1rem var(--a-spacing-2);
 
             a {
                 font-size: var(--a-font-size-heading-small);

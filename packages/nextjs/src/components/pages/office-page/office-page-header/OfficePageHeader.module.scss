@@ -57,7 +57,7 @@
     text-transform: uppercase;
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 }
 
@@ -66,7 +66,7 @@
     text-align: left;
     display: flex;
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 
     &::before {

@@ -4,7 +4,7 @@
     width: 100%;
 
     &:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 
     .value {

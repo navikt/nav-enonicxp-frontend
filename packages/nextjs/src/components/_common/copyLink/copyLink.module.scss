@@ -23,7 +23,7 @@
 
 .anchorIcon {
     height: 1rem;
-    margin-right: 0.5rem;
+    margin-right: var(--a-spacing-2);
     transition-duration: 0.1s;
     transition-property: transform;
     transition-timing-function: ease-out;
@@ -37,7 +37,7 @@
     visibility: hidden;
     background-color: var(--a-green-100);
     color: black;
-    padding: 0.5rem 0.75rem;
+    padding: var(--a-spacing-2) 0.75rem;
     border: 1px var(--a-green-500) solid;
     border-radius: common.$border-radius-small;
     pointer-events: none;

@@ -49,7 +49,7 @@
         .stepList {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: var(--a-spacing-2);
             list-style-type: none;
             padding: 0;
             margin-top: 0;

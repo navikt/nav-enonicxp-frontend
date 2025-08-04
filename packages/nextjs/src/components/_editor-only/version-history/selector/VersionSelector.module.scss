@@ -2,7 +2,7 @@
 
 .versionSelector {
     position: relative;
-    top: 0.5rem;
+    top: var(--a-spacing-2);
     z-index: 1;
     display: flex;
     justify-content: center;

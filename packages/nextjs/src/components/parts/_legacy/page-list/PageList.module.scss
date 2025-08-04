@@ -16,7 +16,7 @@
     }
 
     .ingress {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
     }
     .list {
         margin-top: 2.25rem;
@@ -26,6 +26,6 @@
         padding: 2rem 0;
     }
     .date {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
     }
 }

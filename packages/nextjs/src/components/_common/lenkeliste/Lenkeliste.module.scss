@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .tittel {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--a-spacing-2);
 }
 
 .lenker {
@@ -11,13 +11,10 @@
 }
 
 .lenke {
-    $horizontalPadding: 0.5rem;
+    $horizontalPadding: var(--a-spacing-2);
     $verticalPadding: 0.6875rem;
     padding: $verticalPadding $horizontalPadding;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: -($horizontalPadding);
-    margin-right: -($horizontalPadding);
+    margin: 0 -($horizontalPadding);
 
     &:focus,
     &:focus-visible,

@@ -1,5 +1,5 @@
 .kalkulatoromrade {
-    margin: 0.5rem 0;
+    margin: var(--a-spacing-2) 0;
 
     &:not(:last-of-type) {
         margin-bottom: 1.5rem;

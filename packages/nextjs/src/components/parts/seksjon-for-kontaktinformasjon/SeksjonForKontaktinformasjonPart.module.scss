@@ -3,7 +3,7 @@
 .container {
     $padding-desktop: 2.75rem;
     $padding-mobile-y: 1rem;
-    $whiteGap: 0.5rem;
+    $whiteGap: var(--a-spacing-2);
 
     @include common.full-width-mixin();
 

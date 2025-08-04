@@ -91,8 +91,8 @@ $versionSelectorMinHeight: 3rem;
     $numCols: 3,
     $rowGap: 1.5rem,
     $colGap: 1.5rem,
-    $rowGapMobileSmall: 0.5rem,
-    $columnGapMobileSmall: 0.5rem
+    $rowGapMobileSmall: var(--a-spacing-2),
+    $columnGapMobileSmall: var(--a-spacing-2)
 ) {
     display: grid;
     row-gap: $rowGap;

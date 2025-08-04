@@ -1,6 +1,6 @@
 .alert {
     margin-bottom: 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: var(--a-spacing-2);
     padding: var(--a-spacing-3);
     display: flex;
     gap: var(--a-spacing-3);

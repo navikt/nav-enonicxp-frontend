@@ -4,15 +4,15 @@
     display: block;
     outline: solid 2px #ffbbbb;
     overflow: hidden;
-    padding: 2rem 0.5rem 1rem 0.5rem;
+    padding: 2rem var(--a-spacing-2) 1rem var(--a-spacing-2);
     position: relative;
 
     &::before {
         content: 'Detaljinformasjon:';
         color: #666666;
         font-weight: bold;
-        left: 0.5rem;
+        left: var(--a-spacing-2);
         position: absolute;
-        top: 0.5rem;
+        top: var(--a-spacing-2);
     }
 }

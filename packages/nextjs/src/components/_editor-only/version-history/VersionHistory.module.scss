@@ -7,7 +7,7 @@
     margin-bottom: 1rem;
 
     :global(.chevron) {
-        margin-left: 0.5rem;
+        margin-left: var(--a-spacing-2);
     }
 
     .spinnerContainer {
