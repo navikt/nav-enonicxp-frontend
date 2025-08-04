@@ -8,7 +8,7 @@ import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
@@ -28,8 +28,8 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
 
-    useShortcuts({
-        shortcut: Shortcuts.SEARCH,
+    useSnarveier({
+        shortcut: Snarveier.SEARCH,
         callback: () => setIsOpen(true),
     });
 

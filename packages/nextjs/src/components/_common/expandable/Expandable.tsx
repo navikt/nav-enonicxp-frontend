@@ -7,7 +7,7 @@ import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
 import style from './Expandable.module.scss';
@@ -37,7 +37,7 @@ export const Expandable = ({
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
 
-    useShortcuts({ shortcut: Shortcuts.SEARCH, callback: () => setIsOpen(true) });
+    useSnarveier({ shortcut: Snarveier.SEARCH, callback: () => setIsOpen(true) });
     useCheckAndOpenPanel(isOpen, setIsOpen, trekkspillRef, anchorId);
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {

@@ -11,8 +11,8 @@ import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/Filt
 import { PartConfigSkjemadetaljer } from 'components/parts/skjemadetaljer/SkjemadetaljerPart';
 import { PartConfigSeksjonForKontaktinformasjon } from 'components/parts/seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { PartConfigSeksjonForAktuelleTemaer } from 'components/parts/seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
-import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
-import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { PartConfigSeksjonForSnarveier } from 'components/parts/seksjon-for-snarveier/SeksjonForSnarveierPart';
+import { PartConfigFrontpagePersonShortcuts } from 'components/parts/seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
@@ -60,8 +60,8 @@ export enum PartType {
     LoggedinCard = 'no.nav.navno:loggedin-card',
     SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
     SeksjonForAktuelleTemaer = 'no.nav.navno:frontpage-current-topics',
-    FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
-    FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
+    SeksjonForSnarveier = 'no.nav.navno:frontpage-shortcuts',
+    SeksjonForSnarveierPaForsideForPrivatperson = 'no.nav.navno:frontpage-person-shortcuts',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
@@ -104,8 +104,8 @@ type PartConfigs = {
     [PartType.Skjemadetaljer]: PartConfigSkjemadetaljer;
     [PartType.SeksjonForKontaktinformasjon]: PartConfigSeksjonForKontaktinformasjon;
     [PartType.SeksjonForAktuelleTemaer]: PartConfigSeksjonForAktuelleTemaer;
-    [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
-    [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
+    [PartType.SeksjonForSnarveier]: PartConfigSeksjonForSnarveier;
+    [PartType.SeksjonForSnarveierPaForsideForPrivatperson]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.Lenkeliste]: PartConfigLenkeliste;
