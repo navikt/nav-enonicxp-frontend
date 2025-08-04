@@ -16,7 +16,7 @@
 .pressCall {
     margin-top: var(--a-spacing-6);
     margin-bottom: 2.75rem;
-    padding: 2.5rem;
+    padding: var(--a-spacing-10);
     background-color: var(--a-purple-50);
 
     @media #{common.$mq-screen-mobile} {

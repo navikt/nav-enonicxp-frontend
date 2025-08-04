@@ -3,7 +3,7 @@
 .pressNews {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: var(--a-spacing-10);
     @include common.full-width-mixin;
 }
 

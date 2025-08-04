@@ -84,7 +84,7 @@
         .h3,
         h4,
         .h4 {
-            margin: 2.5rem 0 0.6875rem;
+            margin: var(--a-spacing-10) 0 var(--a-spacing-7);
 
             &:first-child {
                 margin-top: 0;

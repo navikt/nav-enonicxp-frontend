@@ -42,8 +42,8 @@
 .telephoneIcon {
     background-color: var(--a-white);
     border-radius: var(--a-spacing-8);
-    height: 2.5rem;
-    width: 2.5rem;
+    height: var(--a-spacing-10);
+    width: var(--a-spacing-10);
     margin-right: var(--a-spacing-1);
     padding: 0.6rem;
     transform: translateY(-1px) translateX(-6px);

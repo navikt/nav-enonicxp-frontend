@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: -2rem;
-    margin-top: 2.5rem;
+    margin-top: var(--a-spacing-10);
     padding: 2.75rem 0;
     @include common.full-width-mixin;
 }

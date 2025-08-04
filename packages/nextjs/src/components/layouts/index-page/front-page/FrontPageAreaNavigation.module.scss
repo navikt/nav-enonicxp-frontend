@@ -29,7 +29,7 @@
     }
 }
 .provider {
-    padding-top: 2.5rem;
+    padding-top: var(--a-spacing-10);
     padding-bottom: 4.5rem;
 
     @media #{common.$mq-screen-mobile} {
