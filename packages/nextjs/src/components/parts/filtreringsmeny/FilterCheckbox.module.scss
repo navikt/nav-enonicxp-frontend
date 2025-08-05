@@ -18,7 +18,7 @@
     .label {
         cursor: pointer;
         display: flex;
-        font-size: 14px;
+        font-size: var(--a-font-size-small);
         line-height: 1.3;
         position: relative;
         user-select: none;

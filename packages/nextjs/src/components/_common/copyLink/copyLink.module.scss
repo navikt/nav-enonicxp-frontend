@@ -8,7 +8,7 @@
 .copyLink {
     align-items: center;
     display: flex;
-    font-size: 14px;
+    font-size: var(--a-font-size-small);
     padding: var(--a-spacing-4) var(--a-spacing-4) var(--a-spacing-4) 0;
     text-decoration: none;
     white-space: nowrap;

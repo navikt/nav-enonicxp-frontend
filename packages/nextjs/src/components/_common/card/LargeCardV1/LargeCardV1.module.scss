@@ -66,7 +66,7 @@
         }
 
         @media #{common.$mq-screen-mobile} {
-            font-size: var(--a-spacing-5);
+            font-size: var(--a-font-size-heading-small);
             line-height: var(--a-spacing-7);
         }
     }

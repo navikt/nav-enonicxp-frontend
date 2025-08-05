@@ -11,7 +11,7 @@
         td {
             vertical-align: top;
             padding: var(--a-spacing-1) var(--a-spacing-4) var(--a-spacing-1) 0;
-            font-size: 18px;
+            font-size: var(--a-font-size-large);
         }
 
         :global(.dayInformation) {

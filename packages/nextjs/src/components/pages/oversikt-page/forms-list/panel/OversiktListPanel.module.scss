@@ -48,7 +48,7 @@
         font-weight: 600;
 
         @media #{common.$mq-screen-mobile} {
-            font-size: 20px;
+            font-size: var(--a-font-size-xlarge);
         }
     }
 
