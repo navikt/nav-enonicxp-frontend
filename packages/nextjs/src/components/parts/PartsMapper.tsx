@@ -49,7 +49,7 @@ import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
-import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
+import { KortForInnloggetBrukerPart } from './kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { SeksjonForKontaktinformasjonPart } from './seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { SkjemadetaljerPart } from './skjemadetaljer/SkjemadetaljerPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
@@ -106,8 +106,8 @@ const PartComponentMapper = ({
             return <LenkelistePart {...partProps} />;
         case PartType.Lenkepanel:
             return <LenkepanelPart {...partProps} />;
-        case PartType.LoggedinCard:
-            return <LoggedinCardPart {...partProps} />;
+        case PartType.KortForInnloggetBruker:
+            return <KortForInnloggetBrukerPart {...partProps} />;
         case PartType.NewsList:
             return <NewsListPart {...partProps} />;
         case PartType.OfficeEditorialDetail:

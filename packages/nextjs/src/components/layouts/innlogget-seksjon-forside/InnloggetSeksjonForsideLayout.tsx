@@ -1,5 +1,4 @@
 import React from 'react';
-import { FrontpageLoggedinSectionLayoutProps } from 'types/component-props/layouts/frontpage-loggedin-section';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
@@ -12,7 +11,8 @@ import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 
 import { MoreLink } from 'components/_common/moreLink/MoreLink';
-import style from './FrontpageLoggedinSectionLayout.module.scss';
+import { InnloggetSeksjonForsideLayoutProps } from 'types/component-props/layouts/innlogget-seksjon-forside';
+import style from './InnloggetSeksjonForsideLayout.module.scss';
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
     const { language } = usePageContentProps();
@@ -29,11 +29,11 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
 };
 
 type Props = {
-    layoutProps: FrontpageLoggedinSectionLayoutProps;
+    layoutProps: InnloggetSeksjonForsideLayoutProps;
     pageProps: ContentProps;
 };
 
-export const FrontpageLoggedinSectionLayout = ({ layoutProps, pageProps }: Props) => {
+export const InnloggetSeksjonForsideLayout = ({ layoutProps, pageProps }: Props) => {
     const { language } = usePageContentProps();
     const yourServicesText = translator('yourServicesText', language);
     const { config, regions } = layoutProps;

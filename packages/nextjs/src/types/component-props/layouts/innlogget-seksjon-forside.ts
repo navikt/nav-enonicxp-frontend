@@ -2,7 +2,7 @@ import { LayoutBaseProps, LayoutType, Regions } from 'types/component-props/layo
 import { ComponentType } from 'types/component-props/_component-common';
 import { LinkSelectable } from 'types/component-props/_mixins';
 
-export interface FrontpageLoggedinSectionLayoutProps extends LayoutBaseProps {
+export interface InnloggetSeksjonForsideLayoutProps extends LayoutBaseProps {
     type: ComponentType.Layout;
     descriptor: LayoutType.SituationPageFlexCols;
     regions: Regions<'cards'>;
