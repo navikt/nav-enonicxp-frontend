@@ -59,7 +59,7 @@
 
         .bed {
             position: relative;
-            box-shadow: 0 0 0 3px var(--a-blue-800) !important;
+            box-shadow: var(--a-shadow-focus) !important;
 
             &:after {
                 background-color: transparent;

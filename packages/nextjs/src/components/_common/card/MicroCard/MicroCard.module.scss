@@ -10,7 +10,7 @@
 .micro {
     border-radius: 16px;
     border: 1px solid var(--a-border-default);
-    box-shadow: 0 0 0 3px var(--default-action-color);
+    box-shadow: var(--a-shadow-focus);
     color: var(--a-gray-900);
     display: inline-flex;
     font-size: var(--a-font-size-medium);

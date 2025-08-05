@@ -31,7 +31,7 @@
     }
 
     &:focus-within {
-        box-shadow: var(--a-border-focus) inset 0 0 0 3px;
+        box-shadow: var(--a-shadow-focus);
     }
 
     &:hover {
