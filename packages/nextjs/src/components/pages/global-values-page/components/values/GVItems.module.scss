@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .gvItems {
     display: flex;
     flex-direction: column;
@@ -14,6 +12,6 @@
     padding: var(--a-spacing-2);
     margin: 0 -(var(--a-spacing-2));
     background-color: var(--a-white);
-    border-radius: common.$border-radius-base;
+    border-radius: var(--a-border-radius-medium);
     box-shadow: 1px 2px 3px 2px var(--a-gray-400);
 }

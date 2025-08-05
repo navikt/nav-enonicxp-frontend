@@ -7,7 +7,7 @@
 
     &:global(.navds-expansioncard--open) {
         :global(.navds-expansioncard__header) {
-            border-radius: common.$border-radius-xlarge;
+            border-radius: var(--a-border-radius-large);
         }
     }
 }
@@ -15,7 +15,7 @@
 .expandableHeader {
     padding: var(--a-spacing-5);
     gap: var(--a-spacing-4);
-    border-radius: common.$border-radius-xlarge;
+    border-radius: var(--a-border-radius-large);
 
     @media #{common.$mq-screen-mobile} {
         padding: var(--a-spacing-3) 0;

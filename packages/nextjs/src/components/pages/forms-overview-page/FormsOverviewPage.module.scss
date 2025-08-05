@@ -32,7 +32,7 @@
     grid-area: side;
 
     & > * {
-        border-radius: common.$border-radius-large;
+        border-radius: var(--a-border-radius-large);
     }
 }
 

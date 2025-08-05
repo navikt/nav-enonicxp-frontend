@@ -1,6 +1,6 @@
 .placeholderIndicator {
     background-color: #dddddd;
-    border-radius: 2px;
+    border-radius: var(--a-border-radius-small);
     display: block;
     outline: solid 2px #ffbbbb;
     overflow: hidden;

@@ -8,7 +8,7 @@ $blackLinkColor: var(--a-text-default);
     display: flex;
     align-items: flex-start;
     padding: var(--a-spacing-6);
-    border-radius: common.$border-radius-xlarge;
+    border-radius: var(--a-border-radius-large);
 
     &:hover {
         .lenkepanelNavnoLink {

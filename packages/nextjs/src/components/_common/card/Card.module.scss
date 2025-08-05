@@ -84,7 +84,7 @@
 
     :global(.large) {
         background-color: var(--a-white);
-        border-radius: 8px;
+        border-radius: var(--a-border-radius-large);
         display: block;
         padding: var(--a-spacing-6);
         text-decoration: none;

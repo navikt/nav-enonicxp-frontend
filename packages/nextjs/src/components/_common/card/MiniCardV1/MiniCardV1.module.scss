@@ -36,7 +36,7 @@ $illustrationSizeSmall: var(--a-spacing-12);
 
 .mini {
     align-items: center;
-    border-radius: 8px;
+    border-radius: var(--a-border-radius-large);
     border: 1px solid var(--a-gray-400);
     display: inline-flex; // Ensures margins don't collapse
     padding: var(--a-spacing-3);
