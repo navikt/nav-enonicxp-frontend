@@ -2,7 +2,7 @@
 
 .mainArticleChapterNavigation {
     background-color: var(--a-white);
-    border-radius: var(--a-spacing-1);
+    border-radius: var(--a-border-radius-medium);
     display: flex;
     flex-direction: column;
     margin: 0 0 var(--a-spacing-6) 0;
@@ -60,7 +60,7 @@
             }
             &:focus {
                 background: none;
-                box-shadow: 0 0 0 var(--a-spacing-1) var(--a-border-focus);
+                box-shadow: var(--a-shadow-focus);
                 color: var(--default-action-color);
                 cursor: pointer;
                 outline: none;

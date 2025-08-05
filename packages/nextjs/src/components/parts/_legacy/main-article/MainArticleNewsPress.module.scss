@@ -2,7 +2,7 @@
 
 .article {
     width: 100%;
-    border-radius: var(--a-spacing-1);
+    border-radius: var(--a-border-radius-medium);
 
     @media #{common.$mq-screen-desktop} {
         padding: 0 var(--a-spacing-11) var(--a-spacing-11);
@@ -44,8 +44,8 @@
         }
 
         .chapterHeader:focus {
-            outline-offset: 3.4px;
-            outline: 3.4px solid var(--a-border-focus);
+            outline-offset: 3px;
+            outline: 3px solid var(--a-border-focus);
         }
 
         figure {
@@ -84,7 +84,7 @@
         .h3,
         h4,
         .h4 {
-            margin: var(--a-spacing-10) 0 var(--a-spacing-7);
+            margin: var(--a-spacing-10) 0 var(--a-spacing-3);
 
             &:first-child {
                 margin-top: 0;

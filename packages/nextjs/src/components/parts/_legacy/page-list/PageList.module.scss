@@ -3,7 +3,7 @@
 .pageList {
     width: 100%;
     background: var(--a-white);
-    border-radius: var(--a-spacing-1);
+    border-radius: var(--a-border-radius-medium);
 
     @media #{common.$mq-screen-mobile} {
         padding: var(--a-spacing-6);
