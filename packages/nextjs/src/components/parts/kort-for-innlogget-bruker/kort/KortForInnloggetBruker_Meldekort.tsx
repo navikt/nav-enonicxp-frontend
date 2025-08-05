@@ -3,11 +3,11 @@ import { useAuthState } from 'store/hooks/useAuthState';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Omradekort } from 'components/_common/omradekort/Omradekort';
 import { usePageContentProps } from 'store/pageContext';
-import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
+import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 
-type Props = PartConfigLoggedinCard['card']['meldekort'];
+type Props = PartConfigKortForInnloggetBruker['card']['meldekort'];
 
-export const LoggedinCardMeldekort = ({ link }: Props) => {
+export const KortForInnloggetBruker_Meldekort = ({ link }: Props) => {
     const { meldekortStatus } = useAuthState();
     const { editorView } = usePageContentProps();
 
