@@ -19,7 +19,7 @@
 
 // Quick fix for margins when used on the old frontpage type
 :global(.page__main-page) .container {
-    margin-bottom: -2rem;
+    margin-bottom: calc(-1 * var(--a-spacing-8));
 }
 
 .header {

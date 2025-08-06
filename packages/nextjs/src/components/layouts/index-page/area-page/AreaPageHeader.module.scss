@@ -31,7 +31,7 @@
     align-self: flex-end;
     flex: 1;
     height: 10rem;
-    margin-bottom: -1.75rem;
+    margin-bottom: calc(-1 * var(--a-spacing-7));
     pointer-events: none;
 
     > * {

@@ -38,7 +38,7 @@
             display: inline-block;
             content: ' ';
             position: absolute;
-            left: -1rem;
+            left: calc(-1 * var(--a-spacing-4));
             top: var(--a-spacing-4);
         }
     }

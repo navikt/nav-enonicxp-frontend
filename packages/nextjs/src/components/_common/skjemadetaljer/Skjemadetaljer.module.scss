@@ -24,7 +24,7 @@
     // pull lists upward to text above if any.
     :global(.navds-body-long + ul),
     :global(.navds-body-long + ol) {
-        margin-top: -1rem;
+        margin-top: calc(-1 * var(--a-spacing-4));
     }
 }
 
