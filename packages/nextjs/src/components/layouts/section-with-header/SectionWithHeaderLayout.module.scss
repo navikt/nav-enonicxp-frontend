@@ -3,8 +3,10 @@
 
 .container {
     @mixin adjust-for-padding($sectionPadding) {
+        $iconContainerRadius: 2rem;
+        $marginActual: 1rem;
         top: calc(-#{$sectionPadding} - #{var(--a-spacing-8)});
-        margin-bottom: (calc(-1 * var(--a-spacing-8))) - ($sectionPadding - var(--a-spacing-4));
+        margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
     display: inline-flex;
