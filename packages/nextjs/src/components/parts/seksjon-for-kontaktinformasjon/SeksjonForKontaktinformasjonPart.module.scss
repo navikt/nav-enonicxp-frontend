@@ -1,9 +1,9 @@
 @use 'common' as common;
 
 .container {
-    $padding-desktop: var(--a-spacing-11);
-    $padding-mobile-y: var(--a-spacing-4);
-    $whiteGap: var(--a-spacing-2);
+    $padding-desktop: 2.75rem;
+    $padding-mobile-y: 1rem;
+    $whiteGap: 0.5rem;
 
     @include common.full-width-mixin();
 
@@ -19,7 +19,7 @@
 
 // Quick fix for margins when used on the old frontpage type
 :global(.page__main-page) .container {
-    margin-bottom: -(var(--a-spacing-8));
+    margin-bottom: -2rem;
 }
 
 .header {

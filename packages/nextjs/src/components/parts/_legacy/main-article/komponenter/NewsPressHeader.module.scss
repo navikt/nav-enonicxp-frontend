@@ -3,7 +3,7 @@
 .newsPressHeader {
     padding-top: var(--a-spacing-5);
     padding-bottom: var(--a-spacing-3);
-    margin: 0 auto -(var(--a-spacing-1)) auto;
+    margin: 0 auto -0.25rem auto;
     max-width: 63.5rem;
 
     @media #{common.$mq-screen-desktop} {
