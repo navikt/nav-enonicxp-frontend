@@ -16,6 +16,10 @@ export const PartUtenforInnholdsseksjon = ({ content, className }: Props) => {
         if (pageContentHtmlAreaIsOutsideSections(node)) {
             const { path, config } = node;
 
+            if (!config.html?.processedHtml) {
+                return;
+            }
+
             warnings.push(
                 <ul key={`${path}-list`}>
                     <li key={`${path}-item`}>
