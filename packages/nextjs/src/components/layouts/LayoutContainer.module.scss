@@ -1,15 +1,12 @@
 @use 'common' as common;
 
 .layout {
-    // The default top/bottom margins may be overridden by the content editor
-    $vertical-margin-default: var(--a-spacing-4);
-
     // Set negative horizontal margin and equivalent padding in order to
     // make the background of a layout cover the padding of the app-container
     .standard {
         padding-left: common.$padding-sides-mobile;
         padding-right: common.$padding-sides-mobile;
-        margin: $vertical-margin-default -#{common.$padding-sides-mobile};
+        margin: var(--a-spacing-4) -#{common.$padding-sides-mobile};
 
         @media #{common.$mq-screen-tablet} {
             padding-left: common.$padding-sides-tablet;
@@ -31,8 +28,7 @@
     }
 
     .bg {
-        $bgPaddingDefault: var(--a-spacing-6);
-        padding-top: $bgPaddingDefault;
-        padding-bottom: $bgPaddingDefault;
+        padding-top: var(--a-spacing-6);
+        padding-bottom: var(--a-spacing-6);
     }
 }

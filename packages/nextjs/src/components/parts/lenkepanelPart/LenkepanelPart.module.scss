@@ -1,7 +1,5 @@
 @use 'common' as common;
 
-$iconSize: 35px;
-
 .lenkepanel {
     &:global(.navds-panel) {
         width: 100%;
@@ -57,22 +55,20 @@ $iconSize: 35px;
     text-align: center;
 
     .icon {
-        $marginBottom: var(--a-spacing-4);
-        $padding: var(--a-spacing-6);
-
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
-        margin-bottom: $marginBottom;
+        margin-bottom: var(--a-spacing-4);
 
         img {
-            height: $iconSize;
+            height: var(--a-spacing-9);
         }
         &.bg {
-            margin: (-$padding) (-$padding) $marginBottom (-$padding);
+            margin: (calc(-1 * var(--a-spacing-6))) (calc(-1 * var(--a-spacing-6)))
+                var(--a-spacing-4) (calc(-1 * var(--a-spacing-6)));
             padding: 0 var(--a-spacing-4);
-            width: calc(100% + #{$padding} * 2);
+            width: calc(100% + #{var(--a-spacing-6)} * 2);
             height: var(--a-spacing-24);
 
             img {
@@ -94,8 +90,8 @@ $iconSize: 35px;
         margin-right: var(--a-spacing-2);
 
         img {
-            width: $iconSize;
-            height: $iconSize;
+            width: var(--a-spacing-9);
+            height: var(--a-spacing-9);
         }
     }
     .header {

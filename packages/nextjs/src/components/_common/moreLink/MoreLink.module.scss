@@ -14,6 +14,6 @@
 
 .arrow {
     transform: translateY(3px);
-    margin-left: -1.5rem;
+    margin-left: calc(-1 * var(--a-spacing-6));
     margin-right: var(--a-spacing-3);
 }

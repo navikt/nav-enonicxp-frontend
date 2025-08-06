@@ -1,19 +1,17 @@
 @use 'sass:math';
 
 .crossIcon {
-    $height: var(--a-spacing-05);
-    $width: var(--a-spacing-6);
-    transform: translateY(math.div(-$height, 2));
+    transform: translateY(math.div(calc(-1 * var(--a-spacing-05)), 2));
 
     & > * {
-        height: $height;
-        width: $width;
+        height: var(--a-spacing-05);
+        width: var(--a-spacing-6);
         background-color: var(--default-action-color);
         transform-origin: center;
     }
 
     &__1 {
-        transform: translateY($height) rotateZ(45deg);
+        transform: translateY(var(--a-spacing-05)) rotateZ(45deg);
     }
 
     &__2 {

@@ -3,7 +3,9 @@
 .wrapper {
     @include common.full-width-mixin();
     padding-top: var(--a-spacing-11);
-    margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
+    margin-bottom: calc(
+        -1 * var(--a-spacing-8)
+    ) !important; // Can't find a way to override the margin-bottom from the parent
 }
 
 .pageHeader {

@@ -79,8 +79,8 @@
 }
 
 .illustration {
-    width: 48px;
-    height: 48px;
+    width: var(--a-spacing-12);
+    height: var(--a-spacing-12);
     flex-shrink: 0;
 
     & > :first-child:not(:last-child) * {

@@ -1,19 +1,15 @@
 @use 'common' as common;
 
 .container {
-    $padding-desktop: 2.75rem;
-    $padding-mobile-y: 1rem;
-    $whiteGap: 0.5rem;
-
     @include common.full-width-mixin();
 
     background-color: var(--a-deepblue-50);
-    padding-top: $padding-desktop - $whiteGap;
-    padding-bottom: $padding-desktop;
+    padding-top: var(--a-spacing-11) - var(--a-spacing-2);
+    padding-bottom: var(--a-spacing-11);
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: $padding-mobile-y - $whiteGap;
-        padding-bottom: $padding-mobile-y;
+        padding-top: var(--a-spacing-4) - var(--a-spacing-2);
+        padding-bottom: var(--a-spacing-4);
     }
 }
 

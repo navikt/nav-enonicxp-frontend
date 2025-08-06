@@ -11,10 +11,8 @@
 }
 
 .lenke {
-    $horizontalPadding: var(--a-spacing-2);
-    $verticalPadding: var(--a-spacing-3);
-    padding: $verticalPadding $horizontalPadding;
-    margin: 0 -($horizontalPadding);
+    padding: var(--a-spacing-3) var(--a-spacing-2);
+    margin: 0 calc(-1 * var(--a-spacing-2));
 
     &:focus,
     &:focus-visible,

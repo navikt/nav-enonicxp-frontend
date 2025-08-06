@@ -1,5 +1,5 @@
 .tree {
-    --stroke-width: 2px;
+    --stroke-width: var(--a-spacing-05);
     --stroke-color: #777;
     font-family: system-ui, sans-serif;
     padding-inline-start: 0;
