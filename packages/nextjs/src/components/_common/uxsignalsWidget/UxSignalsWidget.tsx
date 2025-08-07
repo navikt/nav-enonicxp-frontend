@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
+import { ErrorBoundary } from 'react-error-boundary';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
@@ -19,7 +20,7 @@ type Consent = {
 const uxSignalsScriptUrl = 'https://widget.uxsignals.com/embed.js';
 let scriptAddTimeout: ReturnType<typeof setTimeout>;
 
-export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
+export const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) => {
     // If the cookie banner is visible, the user has not taken any action yet.
     // Wait and see if the user takes action before adding the script if consent is given..
     const checkConsentOrWait = (tries: number = 0) => {
@@ -73,3 +74,9 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => {
         </aside>
     );
 };
+
+export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => (
+    <ErrorBoundary fallback={null}>
+        <UxSignalsWidgetComponent embedCode={embedCode} />
+    </ErrorBoundary>
+);
