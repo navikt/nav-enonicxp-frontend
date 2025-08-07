@@ -5,9 +5,9 @@
 
 .content {
     background-color: var(--a-white);
-    padding: 2.5rem;
+    padding: var(--a-spacing-10);
     width: 37.5rem;
 }
 .editorAlert {
-    margin-bottom: 2rem;
+    margin-bottom: var(--a-spacing-8);
 }

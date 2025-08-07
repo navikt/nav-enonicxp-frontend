@@ -1,5 +1,5 @@
 .filters {
     & > :not(:last-child) {
-        margin-bottom: var(--a-spacing-8, 2rem);
+        margin-bottom: var(--a-spacing-8);
     }
 }

@@ -7,8 +7,8 @@ $blackLinkColor: var(--a-text-default);
     position: relative;
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem;
-    border-radius: common.$border-radius-xlarge;
+    padding: var(--a-spacing-6);
+    border-radius: var(--a-border-radius-large);
 
     &:hover {
         .lenkepanelNavnoLink {
@@ -44,8 +44,8 @@ $blackLinkColor: var(--a-text-default);
     text-underline-offset: 0.1em;
 
     @media #{common.$mq-screen-mobile-small} {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
+        font-size: var(--a-font-size-xlarge);
+        line-height: var(--a-font-line-height-xlarge);
     }
 
     &.linkBlack {
@@ -73,9 +73,9 @@ $blackLinkColor: var(--a-text-default);
 }
 
 .lenkepanelNavnoIngress {
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }
 
 .lenkepanelNavnoIcon {
-    margin-right: 1rem;
+    margin-right: var(--a-spacing-4);
 }

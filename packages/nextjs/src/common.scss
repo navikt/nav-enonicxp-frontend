@@ -1,5 +1,7 @@
 @use 'sass:math';
 
+// Kan ikke ha spacing tokens fra Aksel, da brekker bygget
+
 $pixel-size-rem: math.div(1, 16);
 
 // Screen size breakpoints

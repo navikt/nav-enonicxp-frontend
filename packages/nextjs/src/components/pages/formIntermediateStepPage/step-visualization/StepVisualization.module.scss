@@ -3,7 +3,7 @@
     --stroke-color: #777;
     font-family: system-ui, sans-serif;
     padding-inline-start: 0;
-    margin: 2rem;
+    margin: var(--a-spacing-8);
 
     li {
         padding-block: 0.5ch;

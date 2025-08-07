@@ -1,5 +1,5 @@
 .newsItem {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
     list-style-type: none;
 
     a {
@@ -10,22 +10,22 @@
 }
 
 .ingress {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--a-spacing-2);
+    margin-bottom: var(--a-spacing-2);
 }
 
 .newsTagline {
     display: flex;
     flex-direction: row;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--a-spacing-6);
 }
 
 .newsType {
-    margin-left: 0.25rem;
+    margin-left: var(--a-spacing-1);
     font-weight: 600;
 }
 
 .publishDate {
-    margin-left: 0.75rem;
+    margin-left: var(--a-spacing-3);
     color: var(--a-gray-800);
 }

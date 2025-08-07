@@ -3,16 +3,16 @@
 .left {
     display: flex;
     flex-direction: column;
-    margin-right: 1rem;
+    margin-right: var(--a-spacing-4);
     width: 50%;
 
     .time {
-        margin: 0.5rem 0;
+        margin: var(--a-spacing-2) 0;
     }
     .date,
     .time {
         min-height: common.$versionSelectorMinHeight;
-        padding: 0.5rem;
+        padding: var(--a-spacing-2);
     }
 }
 
@@ -21,7 +21,7 @@
     width: 50%;
 
     :global(.version-selector-submit) {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
         width: 100%;
         min-height: common.$versionSelectorMinHeight;
     }

@@ -2,7 +2,7 @@
 
 .page {
     display: grid;
-    margin: 1.25rem auto var(--a-spacing-10);
+    margin: var(--a-spacing-5) auto var(--a-spacing-10);
     grid-template-columns: 1fr minmax(0, 45rem) 1fr;
     grid-template-areas: 'pictogram content .';
     column-gap: var(--a-spacing-7);
@@ -21,8 +21,8 @@
 
 .pictogram {
     grid-area: pictogram;
-    width: 6rem;
-    height: 6rem;
+    width: var(--a-spacing-24);
+    height: var(--a-spacing-24);
     display: block;
 
     justify-self: end;
@@ -31,7 +31,7 @@
     margin-bottom: var(--a-spacing-5);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
-        width: 4rem;
+        width: var(--a-spacing-16);
         justify-self: start;
     }
 }

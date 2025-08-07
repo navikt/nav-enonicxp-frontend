@@ -22,12 +22,12 @@
 
 .disabledMsg {
     position: absolute;
-    width: calc(100% - 2rem);
+    width: calc(100% - var(--a-spacing-8));
     height: auto;
-    margin: 1rem;
-    padding: 1rem;
+    margin: var(--a-spacing-4);
+    padding: var(--a-spacing-4);
     text-align: center;
     z-index: 1;
-    border-radius: 4px;
+    border-radius: var(--a-border-radius-medium);
     background-color: var(--a-orange-100);
 }

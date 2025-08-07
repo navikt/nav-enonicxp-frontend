@@ -1,14 +1,11 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: 2rem;
-
 .container {
-    $iconContainerSize: $iconContainerRadius * 2;
-
     @mixin adjust-for-padding($sectionPadding) {
+        $iconContainerRadius: 2rem;
         $marginActual: 1rem;
-        top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
+        top: calc(-#{$sectionPadding} - #{var(--a-spacing-8)});
         margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
@@ -24,8 +21,8 @@ $iconContainerRadius: 2rem;
         justify-content: center;
         align-items: center;
         align-self: center;
-        width: $iconContainerSize;
-        height: $iconContainerSize;
+        width: var(--a-spacing-16);
+        height: var(--a-spacing-16);
         position: relative;
         border-radius: 50%;
         background-color: var(--a-white);
@@ -42,21 +39,20 @@ $iconContainerRadius: 2rem;
         }
 
         img {
-            $iconSize: 2.8125rem;
-            height: $iconSize;
-            width: $iconSize;
+            height: var(--a-spacing-11);
+            width: var(--a-spacing-11);
         }
     }
 }
 
 .withIcon {
-    margin-top: $iconContainerRadius;
+    margin-top: var(--a-spacing-8);
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
 }
 
 .headerWithIcon {
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }

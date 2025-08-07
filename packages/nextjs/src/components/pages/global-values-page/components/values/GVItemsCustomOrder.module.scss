@@ -1,9 +1,9 @@
 .itemDragHandle {
     position: relative;
     cursor: grab;
-    width: 2rem;
-    min-width: 2rem;
-    height: 2rem;
+    width: var(--a-spacing-8);
+    min-width: var(--a-spacing-8);
+    height: var(--a-spacing-8);
 
     & > :last-child {
         position: absolute;

@@ -1,18 +1,15 @@
 @use 'common' as common;
 
-$illustrationSize: 4rem;
-$illustrationSizeSmall: 3rem;
-
 .illustration {
-    width: $illustrationSize;
-    min-width: $illustrationSize;
-    height: $illustrationSize;
-    margin-right: 1rem;
+    width: var(--a-spacing-16);
+    min-width: var(--a-spacing-16);
+    height: var(--a-spacing-16);
+    margin-right: var(--a-spacing-4);
 
     @media #{common.$mq-screen-mobile-small} {
-        width: $illustrationSizeSmall;
-        min-width: $illustrationSizeSmall;
-        height: $illustrationSizeSmall;
+        width: var(--a-spacing-12);
+        min-width: var(--a-spacing-12);
+        height: var(--a-spacing-12);
     }
 }
 
@@ -31,23 +28,23 @@ $illustrationSizeSmall: 3rem;
 
 .header {
     font-weight: var(--a-font-weight-bold);
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--a-spacing-2);
 }
 
 .mini {
     align-items: center;
-    border-radius: 8px;
-    border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
+    border-radius: var(--a-border-radius-large);
+    border: 1px solid var(--a-gray-400);
     display: inline-flex; // Ensures margins don't collapse
-    padding: 0.75rem;
+    padding: var(--a-spacing-3);
     text-decoration: none;
     width: 100%;
 
     &:after {
         box-shadow: 0 0 0 2px var(--a-white);
-        height: calc(100% - 2px);
+        height: calc(100% - var(--a-spacing-05));
         margin: 1px;
-        width: calc(100% - 2px);
+        width: calc(100% - var(--a-spacing-05));
         border-radius: 6px;
     }
 

@@ -1,9 +1,9 @@
 .summaryError {
-    margin-top: 2rem;
+    margin-top: var(--a-spacing-8);
     background-color: var(--a-orange-200);
 }
 
 .summaryText {
-    margin-top: 2rem;
+    margin-top: var(--a-spacing-8);
     background-color: var(--a-lightblue-100);
 }

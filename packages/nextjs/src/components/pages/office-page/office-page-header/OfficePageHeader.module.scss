@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 2rem;
-    padding-bottom: 1rem;
+    padding-top: var(--a-spacing-8);
+    padding-bottom: var(--a-spacing-4);
 
     @include common.full-width-mixin();
 
@@ -24,10 +24,10 @@
 }
 
 .illustration {
-    height: 5rem;
-    margin-right: 2rem;
+    height: var(--a-spacing-20);
+    margin-right: var(--a-spacing-8);
     pointer-events: none;
-    width: 5rem;
+    width: var(--a-spacing-20);
 }
 
 .content {
@@ -57,7 +57,7 @@
     text-transform: uppercase;
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 }
 
@@ -66,15 +66,15 @@
     text-align: left;
     display: flex;
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 
     &::before {
         content: '';
         border-left: 1px solid black;
         display: flex;
-        padding: 0 0.75rem 0 0;
-        margin-left: 0.75rem;
+        padding: 0 var(--a-spacing-3) 0 0;
+        margin-left: var(--a-spacing-3);
 
         @media #{common.$mq-screen-mobile} {
             display: none;

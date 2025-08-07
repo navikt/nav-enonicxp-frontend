@@ -1,6 +1,6 @@
 .userTestsEditor {
     :not(:last-child) {
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--a-spacing-1);
     }
 }
 
@@ -9,11 +9,11 @@
     border: 2px black solid;
     border-left-width: 0;
     border-right-width: 0;
-    padding: 0.5rem 0;
+    padding: var(--a-spacing-2) 0;
 }
 
 .variant {
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }
 
 .disabled {

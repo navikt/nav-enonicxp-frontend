@@ -1,6 +1,6 @@
 .badLinkWarning {
     color: var(--a-text-danger);
     font-weight: bolder;
-    padding: 0.25rem;
+    padding: var(--a-spacing-1);
     border: dashed 2px var(--a-text-danger);
 }

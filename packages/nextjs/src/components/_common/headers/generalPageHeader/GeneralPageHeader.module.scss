@@ -4,10 +4,10 @@
     display: block;
 
     .illustration {
-        width: 6rem;
-        height: 6rem;
+        width: var(--a-spacing-24);
+        height: var(--a-spacing-24);
         position: absolute;
-        margin-left: -8rem;
+        margin-left: calc(-1 * var(--a-spacing-32));
 
         :global(.back) {
             @include common.brand-purple-filter-back();
@@ -18,8 +18,8 @@
 
         @media #{common.$mq-screen-tablet-and-mobile} {
             position: relative;
-            width: 4rem;
-            height: 4rem;
+            width: var(--a-spacing-16);
+            height: var(--a-spacing-16);
             margin-left: 0;
         }
     }
@@ -31,7 +31,7 @@
     }
 
     .reduceMarginBottom {
-        margin-bottom: -1.5rem;
+        margin-bottom: calc(-1 * var(--a-spacing-6));
     }
 
     .ingress:global(.navds-body-long) {

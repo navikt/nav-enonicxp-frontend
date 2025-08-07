@@ -1,5 +1,5 @@
 .lenkepanel {
-    border-radius: 0.5rem;
+    border-radius: var(--a-border-radius-large);
     border: 1px solid var(--a-border-subtle);
 
     & :global(.navds-link-panel__content) {
@@ -22,7 +22,7 @@
 
     & :global(.navds-link-panel__title) {
         color: var(--default-action-color);
-        font-size: 1.25rem;
+        font-size: var(--a-font-size-heading-small);
     }
 
     & :global(.navds-link-panel__description) {
@@ -35,7 +35,7 @@
 
     .arrowRightIcon {
         flex-shrink: 0;
-        margin-left: 1rem;
+        margin-left: var(--a-spacing-4);
         color: var(--a-text-action);
     }
 

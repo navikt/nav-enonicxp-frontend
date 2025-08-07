@@ -1,7 +1,7 @@
 .languageDisclaimer {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--a-spacing-2);
 
     svg {
         color: var(--a-icon-subtle);

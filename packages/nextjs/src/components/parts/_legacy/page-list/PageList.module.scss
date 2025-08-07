@@ -3,29 +3,29 @@
 .pageList {
     width: 100%;
     background: var(--a-white);
-    border-radius: 0.28rem;
+    border-radius: var(--a-border-radius-medium);
 
     @media #{common.$mq-screen-mobile} {
-        padding: 1.5rem;
+        padding: var(--a-spacing-6);
     }
     @media #{common.$mq-screen-tablet} {
-        padding: 1.5rem;
+        padding: var(--a-spacing-6);
     }
     @media #{common.$mq-screen-desktop} {
-        padding: 2.8rem;
+        padding: var(--a-spacing-11);
     }
 
     .ingress {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
     }
     .list {
-        margin-top: 2.25rem;
+        margin-top: var(--a-spacing-9);
     }
     .row {
         border-top: 1px solid var(--a-gray-200);
-        padding: 2rem 0;
+        padding: var(--a-spacing-8) 0;
     }
     .date {
-        margin-top: 0.5rem;
+        margin-top: var(--a-spacing-2);
     }
 }

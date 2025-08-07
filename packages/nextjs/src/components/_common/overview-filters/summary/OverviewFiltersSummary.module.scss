@@ -1,20 +1,18 @@
-@use 'common' as common;
-
 .summary {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-    gap: var(--a-spacing-4, 1rem);
-    margin-top: var(--a-spacing-6, 1.5rem);
+    gap: var(--a-spacing-4);
+    margin-top: var(--a-spacing-6);
     margin-bottom: 0;
     border-bottom: 1px solid var(--a-gray-300);
     width: 100%;
-    min-height: 3.125rem;
+    min-height: var(--a-spacing-12);
 }
 
 .nohits {
     background-color: var(--a-gray-100);
-    padding: var(--a-spacing-6, 1.5rem);
-    border-radius: var(--a-border-radius-large, common.$border-radius-large);
+    padding: var(--a-spacing-6);
+    border-radius: var(--a-border-radius-large);
 }

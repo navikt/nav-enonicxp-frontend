@@ -1,6 +1,6 @@
 .artikkelDato {
     &.small {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
         color: var(--a-text-subtle);
     }
 }
