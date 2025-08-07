@@ -57,8 +57,6 @@ export const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) =>
     };
 
     useEffect(() => {
-        // throw new Error('Test error for Error Boundary');
-
         checkConsentOrWait();
         return () => {
             if (scriptAddTimeout) {
