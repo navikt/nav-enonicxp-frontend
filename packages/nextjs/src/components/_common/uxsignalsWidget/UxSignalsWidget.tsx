@@ -78,7 +78,7 @@ export const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) =>
 };
 
 export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => (
-    <ErrorBoundary fallback={'test'}>
+    <ErrorBoundary fallback={null}>
         <UxSignalsWidgetComponent embedCode={embedCode} />
     </ErrorBoundary>
 );
