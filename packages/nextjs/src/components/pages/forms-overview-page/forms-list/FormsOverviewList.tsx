@@ -10,7 +10,7 @@ import style from './FormsOverviewList.module.scss';
 // Matches on form number-like queries and returns the full valid form number if match found
 // Form numbers are formatted like "NAV 01-23.45"
 const getExactFormNumberIfFormSearch = (term: string) => {
-    const match = /^(nav.?)?([0-9]{2}).?([0-9]{2}).?([0-9]{2})$/.exec(term);
+    const match = /^(nav.?)?(\d{2}).?(\d{2}).?(\d{2})$/.exec(term);
     if (!match) {
         return undefined;
     }
@@ -19,12 +19,23 @@ const getExactFormNumberIfFormSearch = (term: string) => {
 };
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
-    const { formDetailsList, areasFilterToggle, textFilterToggle, overviewType } = props.data;
+    const {
+        formDetailsList,
+        areasFilterToggle,
+        taxonomyFilterToggle,
+        textFilterToggle,
+        overviewType,
+    } = props.data;
 
     const [filteredList, setFilteredList] = useState(formDetailsList);
+
     const { textFilter, getFilteredList } = useOverviewFilters();
+
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
-    const numFilterTypes = [areasFilterToggle, textFilterToggle].filter(Boolean).length;
+
+    const numFilterTypes = [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
+        Boolean
+    ).length;
 
     useEffect(() => {
         getFilteredList({
@@ -40,11 +51,11 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 : {
                       keys: [
                           { name: 'sortTitle', weight: 10 },
-                          { name: 'title', weight: 10 },
-                          { name: 'ingress', weight: 8 },
                           { name: 'formDetailsTitles', weight: 2 },
                           { name: 'keywords', weight: 2 },
+                          { name: 'ingress', weight: 1 },
                           { name: 'formDetailsIngresses', weight: 1 },
+                          { name: 'title', weight: 1 },
                           { name: 'formNumbers', weight: 1 },
                       ],
                   },
@@ -57,6 +68,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         <>
             <OverviewFilters
                 filterableItems={formDetailsList}
+                showTaxonomyFilter={taxonomyFilterToggle}
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}
             />
@@ -64,13 +76,14 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 <OverviewFiltersSummary
                     numMatches={filteredList.length}
                     numTotal={formDetailsList.length}
+                    showResetChips={numFilterTypes > 1}
                 />
             )}
             <ul className={style.list}>
-                {filteredList.map((formDetail) => (
-                    <li key={`${formDetail.anchorId}-${props.language}`}>
+                {filteredList.map((skjemadetaljer) => (
+                    <li key={`${skjemadetaljer.anchorId}-${props.language}`}>
                         <FormsOverviewListPanel
-                            formDetails={formDetail}
+                            skjemadetaljer={skjemadetaljer}
                             overviewType={overviewType}
                             formNumberSelected={formNumberFromSearch}
                         />

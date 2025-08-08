@@ -1,5 +1,5 @@
 export enum MacroType {
-    AlertBox = 'alert-box',
+    Varselboks = 'alert-box',
     Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
@@ -7,7 +7,7 @@ export enum MacroType {
     ChevronLinkInternal = 'chevron-link-internal',
     ChevronLinkExternal = 'chevron-link-external',
     Fotnote = 'fotnote',
-    FormDetails = 'form-details',
+    Skjemadetaljer = 'form-details',
     GlobalValue = 'global-value',
     GlobalValueWithMath = 'global-value-with-math',
     HeaderWithAnchor = 'header-with-anchor',
@@ -25,7 +25,7 @@ export enum MacroType {
     Tall = 'tall',
     Tankestrek = 'tankestrek',
     UxSignalsWidget = 'uxsignals-widget',
-    VarselBoks = 'varselBoks',
+    VarselBoksDeprecated = 'varselBoks',
     Video = 'video',
 }
 

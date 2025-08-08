@@ -1,0 +1,107 @@
+@use 'common' as common;
+
+@mixin transitionMixin {
+    transition:
+        all 0.3s ease-out,
+        box-shadow 0s;
+}
+
+$border-radius: common.$border-radius-xlarge;
+$height-full-size: 160px;
+$size-medium: 0.85;
+$size-small: 0.5;
+
+.lenkepanel {
+    @include transitionMixin;
+
+    background-color: var(--a-deepblue-50);
+    min-height: $height-full-size;
+    height: auto;
+    width: 100%;
+    border-radius: $border-radius;
+    border-style: none;
+    padding: 0;
+    overflow: hidden;
+
+    :global(.navds-link-panel__content) {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        min-height: $height-full-size;
+        border-radius: $border-radius;
+
+        @media only screen and (max-width: common.$desktopMaxWidth) {
+            min-height: $height-full-size * $size-medium;
+            height: auto;
+        }
+
+        @media #{common.$mq-screen-mobile-small} {
+            min-height: $height-full-size * $size-small;
+        }
+    }
+
+    :global(.navds-link-panel__title) {
+        text-decoration-line: underline;
+        text-decoration-thickness: 0.05em;
+        text-underline-offset: 0.1em;
+    }
+
+    :global(.navds-link-panel__chevron) {
+        display: none;
+    }
+
+    &:hover {
+        &:not(:focus) {
+            box-shadow: none;
+        }
+
+        :global(.navds-link-panel__title) {
+            color: var(--default-action-color);
+            text-decoration-line: none;
+        }
+
+        @media (hover) {
+            background-color: var(--a-surface-subtle);
+        }
+    }
+
+    &:active {
+        background-color: var(--a-deepblue-50);
+
+        :global(.navds-link-panel__title) {
+            color: var(--a-gray-900);
+        }
+    }
+
+    @media only screen and (max-width: common.$desktopMaxWidth) {
+        min-height: $height-full-size * $size-medium;
+        height: auto;
+    }
+
+    @media #{common.$mq-screen-mobile-small} {
+        min-height: $height-full-size * $size-small;
+        height: auto;
+
+        .titleShort,
+        .titleLong {
+            margin-left: 1rem;
+            padding-right: 4rem;
+            width: 100%;
+        }
+
+        :global(.navds-link-panel__title) {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
+}
+
+.titleShort,
+.titleLong {
+    @include transitionMixin;
+
+    width: 15.25rem;
+    margin-left: 1.5rem;
+    padding-right: 0;
+}

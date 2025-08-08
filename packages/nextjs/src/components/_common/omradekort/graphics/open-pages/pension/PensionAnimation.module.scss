@@ -1,0 +1,73 @@
+@use '../../OmradekortGraphicsCommon.module' as areaGraphics;
+@use '../../../Omradekort.module' as omradekort;
+
+.shapes {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 25px;
+    top: 108px;
+}
+
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 201px;
+}
+
+.letterPartBlue {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: -79px;
+    top: 0;
+}
+
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
+}
+
+.mask {
+    background-color: var(--a-deepblue-100);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 193.56px;
+    height: 499px;
+    right: -42px;
+    top: -100px;
+    transform: skewX(-22.09deg);
+}
+
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
+}
+
+.piggyBank {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 53px;
+    top: 41px;
+}
+
+@include areaGraphics.onExpandMixin('.piggyBank') {
+    right: 101px;
+    top: 82px;
+}
+
+.coin {
+    background-color: var(--a-orange-200);
+    border-radius: 50%;
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 123px;
+    top: -32px;
+}
+
+@include areaGraphics.onExpandMixin('.coin') {
+    top: 80px;
+}

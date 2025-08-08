@@ -55,6 +55,18 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
             });
     };
 
+    const renderPanelContent = () => {
+        if (isSimpleOverview) {
+            return <BodyLong>{ingress}</BodyLong>;
+        }
+
+        if (productDetailsPage) {
+            return <ComponentMapper componentProps={productDetailsPage} pageProps={pageProps} />;
+        }
+
+        return null;
+    };
+
     return (
         <ProductPanelExpandable
             header={title}
@@ -68,11 +80,7 @@ export const OverviewProductDetailsPanel = ({ detailType, pageProps, productDeta
                 opprinnelse: 'oversiktsside accordion',
             }}
         >
-            {isSimpleOverview ? (
-                <BodyLong>{ingress}</BodyLong>
-            ) : productDetailsPage ? (
-                <ComponentMapper componentProps={productDetailsPage} pageProps={pageProps} />
-            ) : null}
+            {renderPanelContent()}
             <OversiktMerOmLenke productLinks={productLinks} className={style.microCard} />
         </ProductPanelExpandable>
     );

@@ -1,0 +1,21 @@
+.chat {
+    position: relative;
+    background-color: var(--a-surface-default);
+    border-radius: var(--a-spacing-6) var(--a-spacing-6) var(--a-spacing-6) 0;
+    margin-bottom: var(--a-spacing-6);
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: var(--a-spacing-6);
+        height: var(--a-spacing-6);
+        background-color: var(--a-surface-default);
+        clip-path: polygon(0 0, 0 100%, 100% 0);
+        display: block;
+    }
+    :global(.navds-body-long):last-of-type {
+        margin-bottom: 0;
+    }
+}

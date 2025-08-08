@@ -2,36 +2,47 @@
 
 .page {
     display: grid;
-    margin: 1.25rem auto var(--a-spacing-10);
-    grid-template-columns: 1fr minmax(0, 40rem) 1fr;
-    grid-template-areas: 'pictogram content .';
-    column-gap: var(--a-spacing-7);
+    gap: var(--a-spacing-10);
 
-    @media #{common.$mq-screen-tablet-and-mobile} {
+    margin: 1.25rem auto var(--a-spacing-10);
+    grid-template-areas:
+        'main'
+        'side';
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        grid-template-columns: 6rem 2fr 6rem;
         grid-template-areas:
-            '. pictogram .'
-            '. content .';
-        column-gap: 0;
+            'pictogram main .'
+            '. side .';
+    }
+
+    &.withSideCol {
+        @media #{common.$mq-screen-desktop-small-up} {
+            grid-template-areas: 'pictogram main side';
+            grid-template-columns: 6rem 2fr 1fr;
+        }
     }
 }
 
-.content {
-    grid-area: content;
+.main {
+    grid-area: main;
+}
+
+.aside {
+    grid-area: side;
+
+    & > * {
+        border-radius: common.$border-radius-large;
+    }
 }
 
 .pictogram {
+    display: none;
     grid-area: pictogram;
-    width: 6rem;
-    height: 6rem;
-    display: block;
 
-    justify-self: end;
-    position: relative;
-    align-self: flex-start;
-    margin-bottom: var(--a-spacing-5);
-
-    @media #{common.$mq-screen-tablet-and-mobile} {
-        width: 4rem;
-        justify-self: start;
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        width: 6rem;
+        height: 6rem;
+        display: block;
     }
 }

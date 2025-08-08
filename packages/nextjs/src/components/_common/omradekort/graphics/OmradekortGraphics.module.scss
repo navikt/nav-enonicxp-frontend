@@ -1,0 +1,29 @@
+@use 'sass:math';
+@use 'common' as common;
+@use '../Omradekort.module' as omradekort;
+
+.graphics {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+
+    & > * {
+        @include omradekort.transitionMixin;
+    }
+}
+
+.insideCard {
+    @media only screen and (max-width: common.$desktopMaxWidth) {
+        transform: scale(omradekort.$size-medium) translateX(-(omradekort.$size-medium) * 10%);
+        width: (math.div(1, omradekort.$size-medium) * 100%);
+        height: (math.div(1, omradekort.$size-medium) * 100%);
+    }
+
+    @media #{common.$mq-screen-mobile-small} {
+        transform: scale(omradekort.$size-small) translateX(-(omradekort.$size-small) * 100%);
+        width: (math.div(1, omradekort.$size-small) * 100%);
+        height: (math.div(1, omradekort.$size-small) * 100%);
+    }
+}

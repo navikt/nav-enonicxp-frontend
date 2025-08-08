@@ -11,7 +11,6 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';
-/* eslint-disable-next-line */
 import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
 
 type BorderProps = NonNullable<SectionWithHeaderProps['config']['border']>;

@@ -10,10 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
-import { FiltersMenuPart } from 'components/parts/filters-menu/FiltersMenuPart';
-import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
-import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
 import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
@@ -32,12 +28,16 @@ import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/Mai
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
-import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
-import { AlertBoxPart } from './alert-box/AlertBoxPart';
-import { LinkPanelPart } from './linkPanelPart/LinkPanelPart';
+import { SeksjonForSnarveierPaForsideForPrivatpersonPart } from './seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
+import { SeksjonForSnarveierPart } from './seksjon-for-snarveier/SeksjonForSnarveierPart';
+import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
+import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
+import { KalkulatorPart } from './kalkulator/KalkulatorPart';
+import { VarselboksPart } from './varselboks/VarselboksPart';
+import { LenkepanelPart } from './lenkepanelPart/LenkepanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
-import { LinkListPart } from './link-list/LinkListPart';
+import { LenkelistePart } from './lenkeliste/LenkelistePart';
 import { NewsListPart } from './news-list/NewsListPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
@@ -45,15 +45,15 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { OfficeEditorialDetailPart } from './office-editorial-detail/OfficeEditorialDetailPart';
-import { ContactOptionPart } from './contact-option/ContactOptionPart';
+import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
-import { AreaCardPart } from './area-card/AreaCardPart';
-import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
-import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
-import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
-import { FormDetailsPart } from './form-details/FormDetailsPart';
+import { OmradekortPart } from './omradekort/OmradekortPart';
+import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
+import { KortForInnloggetBrukerPart } from './kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
+import { SeksjonForKontaktinformasjonPart } from './seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
+import { SkjemadetaljerPart } from './skjemadetaljer/SkjemadetaljerPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
-import { AccordionPart } from './accordion/AccordionPart';
+import { TrekkspillPart } from './trekkspill/TrekkspillPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
@@ -72,42 +72,42 @@ const PartComponentMapper = ({
     pageProps: ContentProps;
 }) => {
     switch (partProps.descriptor) {
-        case PartType.Accordion:
-            return <AccordionPart {...partProps} />;
-        case PartType.AlertBox:
-            return <AlertBoxPart {...partProps} />;
-        case PartType.AreaCard:
-            return <AreaCardPart {...partProps} />;
-        case PartType.AreapageSituationCard:
-            return <AreapageSituationCardPart {...partProps} />;
+        case PartType.Trekkspill:
+            return <TrekkspillPart {...partProps} />;
+        case PartType.Varselboks:
+            return <VarselboksPart {...partProps} />;
+        case PartType.Omradekort:
+            return <OmradekortPart {...partProps} />;
+        case PartType.Situasjonskort:
+            return <SituasjonskortPart {...partProps} />;
         case PartType.Button:
             return <ButtonPart {...partProps} />;
-        case PartType.Calculator:
-            return <CalculatorPart {...partProps} />;
-        case PartType.ContactOption:
-            return <ContactOptionPart {...partProps} />;
-        case PartType.FiltersMenu:
-            return <FiltersMenuPart {...partProps} />;
-        case PartType.FormDetails:
-            return <FormDetailsPart {...partProps} />;
-        case PartType.FrontpageContact:
-            return <FrontpageContactPart {...partProps} />;
-        case PartType.FrontpageCurrentTopics:
-            return <FrontpageCurrentTopicsPart {...partProps} />;
-        case PartType.FrontpageShortcuts:
-            return <FrontpageShortcutsPart {...partProps} />;
-        case PartType.FrontpagePersonShortcuts:
-            return <FrontpagePersonShortcutsPart {...partProps} />;
+        case PartType.Kalkulator:
+            return <KalkulatorPart {...partProps} />;
+        case PartType.KontaktOssKanal:
+            return <KontaktOssKanalPart {...partProps} />;
+        case PartType.Filtreringsmeny:
+            return <FiltreringsmenyPart {...partProps} />;
+        case PartType.Skjemadetaljer:
+            return <SkjemadetaljerPart {...partProps} />;
+        case PartType.SeksjonForKontaktinformasjon:
+            return <SeksjonForKontaktinformasjonPart {...partProps} />;
+        case PartType.SeksjonForAktuelleTemaer:
+            return <SeksjonForAktuelleTemaerPart {...partProps} />;
+        case PartType.SeksjonForSnarveier:
+            return <SeksjonForSnarveierPart {...partProps} />;
+        case PartType.SeksjonForSnarveierPaForsideForPrivatperson:
+            return <SeksjonForSnarveierPaForsideForPrivatpersonPart {...partProps} />;
         case PartType.Header:
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:
             return <HtmlAreaPart {...partProps} />;
-        case PartType.LinkList:
-            return <LinkListPart {...partProps} />;
-        case PartType.LinkPanel:
-            return <LinkPanelPart {...partProps} />;
-        case PartType.LoggedinCard:
-            return <LoggedinCardPart {...partProps} />;
+        case PartType.Lenkeliste:
+            return <LenkelistePart {...partProps} />;
+        case PartType.Lenkepanel:
+            return <LenkepanelPart {...partProps} />;
+        case PartType.KortForInnloggetBruker:
+            return <KortForInnloggetBrukerPart {...partProps} />;
         case PartType.NewsList:
             return <NewsListPart {...partProps} />;
         case PartType.OfficeEditorialDetail:

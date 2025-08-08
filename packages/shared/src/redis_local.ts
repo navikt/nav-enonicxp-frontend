@@ -5,7 +5,6 @@ import { logger } from './logger';
 import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from './constants';
 import { pathToCacheKey } from './cache-key';
 
-// TODO: share XP response props with next-app for a proper type here
 type XpResponseProps = Record<string, any>;
 
 const clientOptions: RedisClientOptions = {

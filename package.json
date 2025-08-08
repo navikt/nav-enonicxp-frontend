@@ -17,10 +17,10 @@
         "start-local": "rm -fr packages/nextjs/.next && npm run build-test-production && npm run start-test-production",
         "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh $npm_config_app_env $npm_config_image_tag",
         "analyze-bundle": "npm run analyze-bundle --workspace packages/nextjs",
-        "lint": "npm-run-all --parallel lint:*",
+        "lint": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run lint:client\" \"npm run lint:server\"",
         "lint:client": "npm run lint --workspace packages/nextjs",
         "lint:server": "npm run lint --workspace packages/server",
-        "test": "npm-run-all --parallel test:*",
+        "test": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run test:client\" \"npm run test:server\"",
         "test:client": "npm run test --workspace packages/nextjs",
         "test:server": "npm run test --workspace packages/server",
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
@@ -31,24 +31,30 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@next/eslint-plugin-next": "14.2.4",
+        "@eslint/js": "9.31.0",
+        "@next/eslint-plugin-next": "15.4.3",
         "@types/escape-html": "1.0.4",
         "@types/lodash.debounce": "4.0.9",
         "@types/mock-fs": "4.13.4",
         "@types/node": "20.14.10",
-        "@typescript-eslint/eslint-plugin": "7.18.0",
-        "@typescript-eslint/parser": "7.18.0",
-        "esbuild": "0.25.2",
-        "eslint": "8.57.0",
-        "eslint-config-prettier": "9.1.0",
+        "@typescript-eslint/eslint-plugin": "8.38.0",
+        "@typescript-eslint/parser": "8.38.0",
+        "concurrently": "9.1.2",
+        "esbuild": "0.25.8",
+        "eslint": "9.31.0",
+        "eslint-config-prettier": "9.1.2",
         "eslint-nibble": "8.1.0",
         "eslint-plugin-css-modules": "2.12.0",
+        "eslint-plugin-import": "2.32.0",
         "eslint-plugin-no-relative-import-paths": "1.6.1",
-        "eslint-plugin-prettier": "5.2.3",
+        "eslint-plugin-prettier": "5.5.3",
+        "eslint-plugin-react": "7.37.5",
+        "eslint-plugin-react-hooks": "5.2.0",
+        "globals": "16.3.0",
         "husky": "9.1.7",
-        "prettier": "3.5.2",
+        "prettier": "3.6.2",
         "typescript": "5.8.3",
-        "typescript-plugin-css-modules": "5.1.0"
+        "typescript-eslint": "8.38.0"
     },
     "browserslist": {
         "production": [
@@ -66,12 +72,14 @@
         ]
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "3.2.2",
-        "@next/bundle-analyzer": "14.2.4",
-        "dotenv": "16.5.0",
-        "lru-cache": "11.0.2",
-        "pino": "9.6.0",
+        "@navikt/nav-dekoratoren-moduler": "3.4.0",
+        "@next/bundle-analyzer": "15.4.3",
+        "dotenv": "17.2.0",
+        "lru-cache": "11.1.0",
+        "pino": "9.7.0",
         "pino-pretty": "12.1.0",
+        "react": "19.1.0",
+        "react-dom": "19.1.0",
         "redis": "4.7.0"
     }
 }

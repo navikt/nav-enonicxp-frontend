@@ -1,8 +1,9 @@
 import { Express } from 'express';
-import { NextServer } from 'next/dist/server/next';
-import { validateSecretHeader } from '@/shared/auth';
 
-export const serverSetupFailover = (expressApp: Express, nextApp: NextServer) => {
+import { validateSecretHeader } from '@/shared/auth';
+import { InferredNextWrapperServer } from 'server';
+
+export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
     // Assets from /_next and internal apis should be served as normal

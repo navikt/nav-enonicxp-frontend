@@ -12,13 +12,13 @@ type PressNewsProps = {
 
 export const PressNews = (props: PressNewsProps) => {
     const { language } = props.page;
-    const { pressNews, moreNewsUrl } = props.page?.data;
-
-    const getTranslations = translator('pressLanding', language);
+    const { pressNews, moreNewsUrl } = props.page?.data ?? {};
 
     if (!pressNews?.data?.sectionContents || pressNews?.data?.sectionContents?.length === 0) {
         return null;
     }
+
+    const getTranslations = translator('pressLanding', language);
 
     return (
         <section className={styles.pressNews}>

@@ -1,0 +1,12 @@
+.kalkulatorPage {
+    display: flex;
+    flex-direction: column;
+    max-width: 31rem;
+
+    a {
+        // Buttons are disabled in editor mode, but we actually
+        // want the "calculate" button to be clickable in order
+        // to easily test the calculator when editing the variables.
+        pointer-events: unset;
+    }
+}

@@ -22,5 +22,7 @@ jobs:
               run: npm run lint
             - name: Build application
               run: npm run build-test-production
+              env:
+                  GIT_HASH: ${{ github.sha }}
             - name: Run tests
               run: npm run test

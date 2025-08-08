@@ -1,11 +1,11 @@
 import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { ContentTypeNotSupportedPage } from 'components/pages/contenttypeNotSupportedPage/ContentTypeNotSupportedPage';
-import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 import { OversiktPage } from 'components/pages/oversikt-page/OversiktPage';
 import { VideoPreviewPage } from 'components/pages/video-preview-page/VideoPreviewPage';
 import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
+import { SkjemadetaljerPreviewPage } from './pages/skjemadetaljer-preview-page/SkjemadetaljerPreviewPage';
 import { ErrorPage } from './pages/errorPage/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
@@ -28,8 +28,8 @@ import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
-import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
-import { AlertInContextPage } from './pages/alert-in-context-page/AlertInContextPage';
+import { KalkulatorPage } from './pages/kalkulator-page/KalkulatorPage';
+import { VarselIKontekstPage } from './pages/varsel-i-kontekst-page/VarselIKontekstPage';
 import { OfficePage } from './pages/office-page/OfficePage';
 import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
@@ -59,11 +59,11 @@ const contentToReactComponent: {
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
-    [ContentType.FormDetails]: FormDetailsPreviewPage,
+    [ContentType.Skjemadetaljer]: SkjemadetaljerPreviewPage,
     [ContentType.FormsOverview]: FormsOverviewPage,
-    [ContentType.Calculator]: CalculatorPage,
+    [ContentType.Kalkulator]: KalkulatorPage,
     [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,
-    [ContentType.AlertInContext]: AlertInContextPage,
+    [ContentType.VarselIKontekst]: VarselIKontekstPage,
     [ContentType.ContactStepPage]: ContactStepPage,
 
     [ContentType.AreaPage]: DynamicPage,
@@ -89,7 +89,7 @@ const contentToReactComponent: {
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
-    contentToReactComponent.hasOwnProperty(content.type);
+    Object.hasOwn(contentToReactComponent, content.type);
 
 type Props = {
     content: ContentProps;

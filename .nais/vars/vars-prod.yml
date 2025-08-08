@@ -10,7 +10,7 @@ ingresses:
 resources:
   requests:
     cpu: 600m
-    memory: 2048Mi
+    memory: 1536Mi
   limits:
     memory: 4096Mi
 valkey:

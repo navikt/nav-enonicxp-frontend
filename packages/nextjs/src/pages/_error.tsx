@@ -13,7 +13,7 @@ const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
 // Workaround for next.js bug which fail to propagate error props from the server for client-side rendering
 // See related issue: https://github.com/vercel/next.js/issues/39616
 const getClientsideProps = (path?: string) => {
-    if (typeof document === undefined) {
+    if (typeof document === 'undefined') {
         logger.error(
             `document was unexpectedly not defined in client-side error controller on ${path}`
         );
@@ -74,7 +74,7 @@ const parseErrorContent = (err?: Error | null, asPath?: string) => {
         return JSON.parse(err.toString().replace('Error: ', '')).content as
             | ContentProps
             | undefined;
-    } catch (e) {
+    } catch (_e) {
         logger.error(`Failed to parse error content on ${asPath}`);
         return null;
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, PropsWithChildren } from 'react';
 import { BodyLong, BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
@@ -7,11 +7,12 @@ import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
-import { AlertBox } from 'components/_common/alertBox/AlertBox';
+import { Varselboks } from 'components/_common/varselboks/Varselboks';
 import { translator } from 'translations';
+import { classNames } from 'utils/classnames';
 import style from './ProductPanelExpandable.module.scss';
 
-type Props = {
+type Props = PropsWithChildren<{
     header: string;
     ingress?: string;
     illustration: PictogramsProps;
@@ -21,8 +22,7 @@ type Props = {
     isLoading?: boolean;
     error?: string | null;
     withCopyLink?: boolean;
-    children: React.ReactNode;
-};
+}>;
 
 export const ProductPanelExpandable = ({
     header,
@@ -47,6 +47,10 @@ export const ProductPanelExpandable = ({
             setIsOpen(true);
         }
     };
+
+    // Need an override until we remove the old overview page
+    const noLeftPadding = contentProps.type === 'no.nav.navno:overview';
+    const alignCenter = contentProps.type === 'no.nav.navno:overview';
 
     useEffect(() => {
         checkHashAndExpandPanel();
@@ -84,7 +88,7 @@ export const ProductPanelExpandable = ({
             aria-label={header}
         >
             <ExpansionCard.Header
-                className={style.expandableHeader}
+                className={classNames(style.expandableHeader, alignCenter && style.alignCenter)}
                 onMouseOver={contentLoaderCallback}
                 onFocus={contentLoaderCallback}
             >
@@ -94,8 +98,13 @@ export const ProductPanelExpandable = ({
                     {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
                 </div>
             </ExpansionCard.Header>
-            <ExpansionCard.Content className={style.expandableContent}>
-                {error && <AlertBox variant={'error'}>{error}</AlertBox>}
+            <ExpansionCard.Content
+                className={classNames(
+                    style.expandableContent,
+                    noLeftPadding && style.noLeftPadding
+                )}
+            >
+                {error && <Varselboks variant={'error'}>{error}</Varselboks>}
                 {withCopyLink && (
                     <CopyLink
                         anchor={anchorIdWithHash}

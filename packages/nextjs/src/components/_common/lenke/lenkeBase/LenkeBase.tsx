@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, PropsWithChildren } from 'react';
 import Link from 'next/link';
 import { adminOrigin, isNofollowUrl, xpDraftPathPrefix } from 'utils/urls';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
@@ -8,12 +8,11 @@ import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
-
 import style from './LenkeBase.module.scss';
 
 export const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
 
-const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
+const BadLinkWarning = ({ children }: PropsWithChildren) => (
     <span className={style.badLinkWarning}>
         {'Obs! Lenke til portal-admin: '}
         {children}
@@ -25,7 +24,7 @@ const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
  * This is necessary as there are many other apps sharing the nav.no domain, and attempting async navigation to other
  * apps may result in errors
  **/
-type Props = {
+type Props = PropsWithChildren<{
     href: string;
     shallow?: boolean;
     prefetch?: boolean;
@@ -33,8 +32,8 @@ type Props = {
     analyticsComponent?: string;
     analyticsLinkGroup?: string;
     analyticsLabel?: string;
-    children: React.ReactNode;
-} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}> &
+    React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeBase = ({
     href,

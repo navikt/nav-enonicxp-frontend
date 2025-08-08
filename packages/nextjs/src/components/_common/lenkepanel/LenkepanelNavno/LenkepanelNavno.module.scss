@@ -1,0 +1,81 @@
+@use 'common' as common;
+
+$blueLinkColor: var(--default-action-color);
+$blackLinkColor: var(--a-text-default);
+
+.lenkepanelNavno {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: common.$border-radius-xlarge;
+
+    &:hover {
+        .lenkepanelNavnoLink {
+            text-decoration: none;
+            color: $blueLinkColor;
+        }
+    }
+
+    &:focus,
+    &:focus-within {
+        @include common.panel-focus-mixin(true);
+    }
+
+    :global(.navds-label) {
+        font-size: var(--a-font-size-heading-medium);
+    }
+}
+
+// gjør hele komponenten klikkbar
+.clickArea::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.lenkepanelNavnoLink {
+    color: $blueLinkColor;
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
+
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    &.linkBlack {
+        color: $blackLinkColor;
+        text-decoration-color: $blackLinkColor;
+    }
+
+    &.underline {
+        text-decoration-line: underline;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    // Stretches the link over the entire parent container
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+.lenkepanelNavnoIngress {
+    margin-top: 1rem;
+}
+
+.lenkepanelNavnoIcon {
+    margin-right: 1rem;
+}

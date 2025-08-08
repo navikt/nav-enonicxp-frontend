@@ -1,0 +1,76 @@
+@use '../../OmradekortGraphicsCommon.module' as areaGraphics;
+@use '../../../Omradekort.module' as omradekort;
+
+.house {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 6px;
+    top: 112px;
+}
+
+@include areaGraphics.onExpandMixin('.house') {
+    right: 206px;
+}
+
+.letterPartOrange {
+    background-color: var(--a-orange-200);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 72px;
+    height: 40px;
+    right: -20px;
+    top: 72px;
+}
+
+@include areaGraphics.onExpandMixin('.letterPartOrange') {
+    right: 32px;
+}
+
+.letterPartBlue {
+    background-color: var(--a-deepblue-200);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 104px;
+    height: 40px;
+    right: -52px;
+    top: 0;
+}
+
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
+}
+
+.mask {
+    background-color: var(--a-deepblue-100);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 193.56px;
+    height: 499px;
+    right: -42px;
+    top: -100px;
+    transform: skewX(-22.09deg);
+}
+
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
+}
+
+.stroller {
+    @include omradekort.transitionMixin;
+    position: absolute;
+    right: 52.23px;
+    top: 40px;
+}
+
+@include areaGraphics.onExpandMixin('.stroller') {
+    right: 105.23px;
+    top: 76px;
+}

@@ -1,0 +1,94 @@
+@use 'common' as common;
+
+.shortcuts {
+    @include common.full-width-mixin();
+    padding-top: var(--a-spacing-11);
+    padding-bottom: var(--a-spacing-11);
+
+    @media #{common.$mq-screen-mobile} {
+        padding-top: var(--a-spacing-7);
+        padding-bottom: var(--a-spacing-7);
+    }
+}
+
+.person {
+    background-color: var(--bg-color, var(--a-red-50));
+}
+.employer {
+    background-color: var(--bg-color, var(--a-deepblue-100));
+}
+.provider {
+    background-color: var(--bg-color, var(--a-white));
+}
+.other {
+    background-color: var(--bg-color, var(--a-gray-100));
+}
+
+.header {
+    margin-bottom: var(--a-spacing-6);
+
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: var(--a-spacing-4);
+    }
+}
+
+.list {
+    list-style: none;
+    position: relative;
+    padding: 0;
+
+    @include common.grid-layout-mixin(2);
+
+    &.threeCols {
+        @include common.grid-layout-mixin(3);
+    }
+
+    li {
+        display: flex;
+    }
+}
+
+.item {
+    transition: all 0.3s;
+    background-color: var(--item-color, var(--a-white));
+    width: 100%;
+}
+
+.item_person {
+    &:hover,
+    &:focus-within {
+        background-color: var(--hover-color, var(--a-red-100));
+    }
+}
+
+.item_employer {
+    &:hover,
+    &:focus-within {
+        background-color: var(--hover-color, var(--a-deepblue-50));
+    }
+}
+
+.item_provider {
+    :global(.back) {
+        svg {
+            path,
+            rect,
+            circle {
+                fill: var(--bg-color, var(--a-red-100));
+            }
+        }
+    }
+    &:hover,
+    &:focus-within {
+        background-color: var(--hover-color, var(--a-red-100));
+        :global(.back) {
+            svg {
+                path,
+                rect,
+                circle {
+                    fill: var(--bg-color, var(--a-white));
+                }
+            }
+        }
+    }
+}
