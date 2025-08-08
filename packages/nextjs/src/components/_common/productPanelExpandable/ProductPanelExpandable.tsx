@@ -94,7 +94,7 @@ export const ProductPanelExpandable = ({
             >
                 <IllustrationStatic className={style.illustration} illustration={illustration} />
                 <div className={style.panelHeader}>
-                    {header}
+                    <span className={style.title}>{header}</span>
                     {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
                 </div>
             </ExpansionCard.Header>
