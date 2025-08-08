@@ -13,13 +13,8 @@
 }
 
 .expandableHeader {
-    padding: var(--a-spacing-5);
     gap: var(--a-spacing-4, 1rem);
     border-radius: common.$border-radius-xlarge;
-
-    @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-3) 0;
-    }
 
     &:after {
         display: none;
