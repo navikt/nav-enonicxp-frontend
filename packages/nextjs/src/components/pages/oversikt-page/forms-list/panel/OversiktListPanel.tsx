@@ -15,7 +15,7 @@ import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetails } from 'components/_common/productDetails/ProductDetails';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
-import { LenkeStandalone } from 'components/_common/lenke/lenkeStandalone/LenkeStandalone';
+import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
@@ -95,15 +95,10 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
         return (
             <div className={style.tjenesterPanel}>
                 <IllustrationStatic illustration={illustration} className={style.icon} />
-                <LenkeStandalone
-                    href={url}
-                    title={title}
-                    className={style.title}
-                    tekstClassName={style.lenketekst}
-                >
+                <LenkeInline href={url} title={title} className={style.title}>
                     {title}
-                </LenkeStandalone>
-                <BodyLong className={style.tjenesterIngress}>{ingress}</BodyLong>
+                </LenkeInline>
+                <BodyLong className={style.ingress}>{ingress}</BodyLong>
                 <ArrowRightIcon title="Pil høyre" className={style.arrow} />
             </div>
         );
