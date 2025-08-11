@@ -15,7 +15,7 @@
 }
 
 .decorator-utils-container {
-    min-height: 4rem;
+    min-height: var(--a-spacing-16);
 }
 
 #decorator-header {
@@ -47,7 +47,7 @@ figure {
 
 table {
     .spacer-row {
-        height: 1rem;
+        height: var(--a-spacing-4);
         background-color: transparent;
     }
 }

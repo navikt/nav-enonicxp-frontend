@@ -10,13 +10,13 @@
 .micro {
     border-radius: 16px;
     border: 1px solid var(--a-border-default);
-    box-shadow: 0 0 0 3px var(--default-action-color);
+    box-shadow: var(--a-shadow-focus);
     color: var(--a-gray-900);
     display: inline-flex;
-    font-size: 1rem;
+    font-size: var(--a-font-size-medium);
     letter-spacing: 0.01em;
-    line-height: 1.25rem;
-    padding: 0.25rem 0.5rem;
+    line-height: var(--a-font-line-height-medium);
+    padding: var(--a-spacing-1) var(--a-spacing-2);
     position: relative;
 
     &:not(:hover):not(:active) {
@@ -36,10 +36,10 @@
         align-self: center;
         position: relative;
         display: flex;
-        width: 0.5rem;
-        height: 0.5rem;
-        border-radius: 0.5rem;
-        margin: 0 0.5rem 0 0;
+        width: var(--a-spacing-2);
+        height: var(--a-spacing-2);
+        border-radius: var(--a-border-radius-large);
+        margin: 0 var(--a-spacing-2) 0 0;
         flex: none;
         background-color: var(--brand-purple-deep);
     }
@@ -47,8 +47,8 @@
     &:after {
         border-radius: 16px;
         box-shadow: 0 0 0 2px var(--a-white);
-        height: calc(100% - 2px);
+        height: calc(100% - var(--a-spacing-05));
         margin: 1px;
-        width: calc(100% - 2px);
+        width: calc(100% - var(--a-spacing-05));
     }
 }

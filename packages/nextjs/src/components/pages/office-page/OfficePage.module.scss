@@ -11,13 +11,13 @@
     :global {
         .layout__section-with-header {
             max-width: common.$sectionMaxWidth;
-            margin-bottom: 2rem;
+            margin-bottom: var(--a-spacing-8);
         }
     }
 }
 
 .content {
-    margin-top: 2rem;
+    margin-top: var(--a-spacing-8);
     display: flex;
     justify-content: flex-start;
     align-self: center;

@@ -3,16 +3,16 @@
 .pressNews {
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: var(--a-spacing-10);
     @include common.full-width-mixin;
 }
 
 .content {
-    width: calc(100% - 1rem);
+    width: calc(100% - var(--a-spacing-4));
     max-width: 37.5rem;
 }
 
 .newsList {
-    margin: 1rem 0 2rem 0;
+    margin: var(--a-spacing-4) 0 var(--a-spacing-8) 0;
     padding: 0;
 }

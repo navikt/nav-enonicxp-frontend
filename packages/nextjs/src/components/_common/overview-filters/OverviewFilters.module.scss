@@ -8,16 +8,16 @@
 
 .mobileFilters {
     display: grid;
-    column-gap: 0.75rem;
-    height: 3rem;
-    margin-top: 0.5rem;
+    column-gap: var(--a-spacing-3);
+    height: var(--a-spacing-12);
+    margin-top: var(--a-spacing-2);
 
     & > * {
         height: 100%;
     }
 
     &.withToggleFilters {
-        grid-template-columns: 6rem 1fr;
+        grid-template-columns: var(--a-spacing-24) 1fr;
     }
 }
 
@@ -52,7 +52,7 @@
     }
 
     & > * {
-        margin-top: var(--a-spacing-8, 2rem);
+        margin-top: var(--a-spacing-8);
     }
 }
 
@@ -60,7 +60,7 @@
     display: none;
 
     & > :not(:last-child) {
-        margin-bottom: var(--a-spacing-8, 2rem);
+        margin-bottom: var(--a-spacing-8);
     }
 
     @media #{common.$mq-screen-desktop} {

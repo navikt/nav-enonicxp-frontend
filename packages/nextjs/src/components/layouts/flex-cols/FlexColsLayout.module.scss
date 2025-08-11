@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 @mixin contactBackground() {
-    padding-bottom: 4rem;
+    padding-bottom: var(--a-spacing-16);
     background-color: var(
         --a-gray-50
     ) !important; // To override inline colors set in XP (to be changed in the future)
@@ -17,7 +17,7 @@
 
 .flexCols {
     &:last-child {
-        padding-bottom: 4rem;
+        padding-bottom: var(--a-spacing-16);
     }
 
     :global(.region__flexcols) {
@@ -58,7 +58,7 @@
 }
 
 .header {
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--a-spacing-10);
 }
 
 .layoutSituationOrProduct {
@@ -67,12 +67,12 @@
 
     @include common.full-width-mixin();
 
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: var(--a-spacing-16);
+    padding-bottom: var(--a-spacing-16);
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
-        padding-top: 5rem;
+        padding-top: var(--a-spacing-20);
 
         .contentWrapper {
             $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
@@ -125,7 +125,7 @@
 
 .shelfHeader {
     color: var(--brand-purple-deep);
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
     text-wrap: balance;
     position: relative;
 
@@ -139,7 +139,7 @@
 
 .shelfLayout {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--a-spacing-3);
 
     > * {
         margin: 0 !important; //overstyr nth-child margin fra generell flexcols

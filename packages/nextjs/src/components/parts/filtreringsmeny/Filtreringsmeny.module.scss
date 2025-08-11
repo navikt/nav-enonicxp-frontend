@@ -2,7 +2,7 @@
 
 .filtreringsmeny {
     box-shadow: var(--a-blue-200) inset 0 0 0 8px;
-    border-radius: 0.2em;
+    border-radius: var(--a-border-radius-medium);
     background-color: var(--a-white);
 
     @include common.section-padding-mixin();

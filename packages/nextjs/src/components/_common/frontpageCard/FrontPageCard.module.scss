@@ -7,7 +7,7 @@
     :global(.employer-frontpage),
     :global(.person-frontpage),
     :global(.provider-frontpage) {
-        padding: 1.5rem;
+        padding: var(--a-spacing-6);
 
         a {
             font-size: var(--a-font-size-heading-medium);
@@ -17,7 +17,7 @@
         border: 0;
 
         @media #{common.$mq-screen-mobile} {
-            padding: 1rem 0.5rem;
+            padding: var(--a-spacing-4) var(--a-spacing-2);
 
             a {
                 font-size: var(--a-font-size-heading-small);

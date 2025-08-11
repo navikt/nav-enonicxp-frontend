@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1.25rem;
+    padding: var(--a-spacing-3) var(--a-spacing-5);
     border-width: 1px;
-    border-radius: 0.5rem;
+    border-radius: var(--a-border-radius-large);
     border-style: solid;
     border-color: var(--a-gray-300);
     text-decoration: none;
@@ -18,7 +18,7 @@
         .linkText {
             text-decoration: underline;
             text-decoration-thickness: 2px;
-            text-underline-offset: 0.15625rem;
+            text-underline-offset: 2.5px;
         }
     }
 }
@@ -37,7 +37,7 @@
 .tagline {
     color: var(--a-text-subtle);
     font-variant: all-small-caps;
-    letter-spacing: 0.075rem;
+    letter-spacing: 1.2px;
     margin-top: var(--a-spacing-05);
     text-transform: uppercase;
 }

@@ -4,8 +4,8 @@
     @include common.full-width-mixin();
     top: var(--decorator-sticky-offset);
     z-index: 2;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: var(--a-spacing-4);
+    padding-bottom: var(--a-spacing-4);
 }
 
 .warning > :global(.navds-alert__wrapper) {

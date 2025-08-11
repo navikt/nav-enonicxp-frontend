@@ -3,6 +3,6 @@
 .skjemadetaljerPreviewPage {
     background-color: var(--a-white);
     max-width: common.$sectionMaxWidth;
-    padding: 2rem;
+    padding: var(--a-spacing-8);
     width: 100%;
 }

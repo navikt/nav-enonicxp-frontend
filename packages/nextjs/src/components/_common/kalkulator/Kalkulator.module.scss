@@ -1,20 +1,20 @@
 .kalkulator {
-    margin-bottom: 1.75rem;
+    margin-bottom: var(--a-spacing-7);
 }
 
 .title {
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--a-spacing-3);
 }
 
 .calculateButton {
     color: var(--default-action-color);
     box-shadow: inset 0 0 0 2px var(--default-action-color);
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
 }
 
 .calculateIcon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: var(--a-spacing-6);
+    height: var(--a-spacing-6);
 
     path {
         fill: var(--default-action-color);

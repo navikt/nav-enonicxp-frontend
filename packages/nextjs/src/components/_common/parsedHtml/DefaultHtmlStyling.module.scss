@@ -14,8 +14,8 @@
 
         th,
         td {
-            font-size: 1.125rem;
-            line-height: 1.5;
+            font-size: var(--a-font-size-large);
+            line-height: var(--a-font-line-height-large);
             padding: var(--a-spacing-3);
             vertical-align: top;
         }

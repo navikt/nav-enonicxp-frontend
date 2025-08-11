@@ -62,12 +62,12 @@
                     font-feature-settings:
                         'liga' off,
                         'clig' off;
-                    font-size: 24px;
+                    font-size: var(--a-font-size-heading-medium);
                     font-style: normal;
                     font-weight: 400;
 
                     @media #{common.$mq-screen-mobile-small} {
-                        font-size: 20px;
+                        font-size: var(--a-font-size-xlarge);
                         letter-spacing: -0.02px;
                     }
                 }
