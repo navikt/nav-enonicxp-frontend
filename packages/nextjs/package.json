@@ -83,7 +83,8 @@
         "sass": "1.86.3",
         "storybook": "9.0.18",
         "storybook-addon-pseudo-states": "9.0.18",
-        "ts-jest": "29.4.0"
+        "ts-jest": "29.4.0",
+        "typescript-plugin-css-modules": "5.2.0"
     },
     "overrides": {
         "react": "19.1.0",
