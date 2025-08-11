@@ -80,7 +80,7 @@ export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => (
     <ErrorBoundary
         fallback={null}
         onError={(error) => {
-            logger.error(`Failed to load UX Signals script - ${error}`);
+            logger.info(`Failed to load UX Signals script - ${error}`);
         }}
     >
         <UxSignalsWidgetComponent embedCode={embedCode} />
