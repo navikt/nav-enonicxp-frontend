@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
 import { ErrorBoundary } from 'react-error-boundary';
+import { logger } from '@/shared/logger';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
 import style from './UxSignalsWidget.module.scss';
@@ -76,7 +77,12 @@ const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) => {
 };
 
 export const UxSignalsWidget = ({ embedCode }: UxSignalsWidgetProps) => (
-    <ErrorBoundary fallback={null}>
+    <ErrorBoundary
+        fallback={null}
+        onError={(error) => {
+            logger.error(`Failed to load UX Signals script - ${error}`);
+        }}
+    >
         <UxSignalsWidgetComponent embedCode={embedCode} />
     </ErrorBoundary>
 );
