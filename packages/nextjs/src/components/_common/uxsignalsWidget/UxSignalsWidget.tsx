@@ -20,7 +20,7 @@ type Consent = {
 const uxSignalsScriptUrl = 'https://widget.uxsignals.com/embed.js';
 let scriptAddTimeout: ReturnType<typeof setTimeout>;
 
-export const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) => {
+const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) => {
     // If the cookie banner is visible, the user has not taken any action yet.
     // Wait and see if the user takes action before adding the script if consent is given..
     const checkConsentOrWait = (tries: number = 0) => {
