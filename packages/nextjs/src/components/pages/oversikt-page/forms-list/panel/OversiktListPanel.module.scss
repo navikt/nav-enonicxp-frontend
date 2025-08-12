@@ -12,13 +12,12 @@
 
 .tjenesterPanel {
     border-bottom: 1px solid var(--a-gray-300);
-    padding: var(--a-spacing-5) 0 var(--a-spacing-5) var(--a-spacing-4);
+    padding: var(--a-spacing-5) var(--a-spacing-2) var(--a-spacing-5) var(--a-spacing-3);
     display: grid;
-    grid-template-columns: var(--a-spacing-16) 1fr auto;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas:
-        'icon . arrow'
         'icon title arrow'
-        'icon tjenesterIngress arrow';
+        'icon ingress arrow';
     column-gap: var(--a-spacing-4);
     position: relative;
 
@@ -27,7 +26,7 @@
         flex-shrink: 0;
         width: var(--a-spacing-12);
         height: var(--a-spacing-12);
-        align-self: center;
+        align-self: start;
 
         & > :first-child:not(:last-child) * {
             fill: var(--a-deepblue-100);
@@ -39,22 +38,16 @@
         display: flex;
         flex-direction: column;
         word-break: break-word;
-    }
-
-    .lenketekst {
-        font-size: 22px;
+        font-size: var(--text-fluid-20-22);
         text-decoration: none;
         font-weight: 600;
-
-        @media #{common.$mq-screen-mobile} {
-            font-size: var(--a-font-size-xlarge);
-        }
     }
 
-    .tjenesterIngress {
-        grid-area: tjenesterIngress;
+    .ingress {
+        grid-area: ingress;
         text-wrap: pretty;
         text-decoration: none;
+        color: var(--a-text-subtle);
     }
 
     .arrow {
@@ -74,7 +67,7 @@
         box-shadow: 0 0 0 0;
         outline: 5px solid var(--a-bg-default);
 
-        .lenketekst {
+        .title {
             text-decoration: underline;
             text-decoration-color: var(--a-border-action-hover);
         }
