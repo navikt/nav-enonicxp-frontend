@@ -2,37 +2,37 @@
 
 .article {
     width: 100%;
-    border-radius: 0.25rem;
+    border-radius: var(--a-border-radius-medium);
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 2.8rem 2.8rem 2.8rem;
+        padding: 0 var(--a-spacing-11) var(--a-spacing-11);
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 0.5rem 0.5rem 0.5rem;
+        padding: 0 var(--a-spacing-2) var(--a-spacing-2);
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 1.5rem 1.5rem 1.5rem;
+        padding: 0 var(--a-spacing-6) var(--a-spacing-6);
     }
 
     .header {
-        margin-bottom: 2rem;
+        margin-bottom: var(--a-spacing-8);
     }
 
     .headerWithToc {
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--a-spacing-6);
     }
 
     .text {
         p {
-            margin-bottom: 2rem;
+            margin-bottom: var(--a-spacing-8);
         }
 
         li {
-            padding-bottom: 0.5rem;
-            line-height: 1.8rem;
-            font-size: 1.125rem;
+            padding-bottom: var(--a-spacing-2);
+            font-size: var(--a-font-line-height-xlarge);
+            line-height: var(--a-font-size-large);
         }
 
         > :last-child {
@@ -44,19 +44,19 @@
         }
 
         .chapterHeader:focus {
-            outline-offset: 0.2109rem;
-            outline: 0.2109rem solid var(--a-border-focus);
+            outline-offset: 3px;
+            outline: 3px solid var(--a-border-focus);
         }
 
         figure {
-            margin: 0 0 1.75rem 0;
+            margin: 0 0 var(--a-spacing-7) 0;
         }
 
         figcaption {
             font-size: var(--a-font-size-small);
             letter-spacing: 0.004em;
             line-height: var(--a-font-line-height-medium);
-            margin: 0.5rem 0;
+            margin: var(--a-spacing-2) 0;
         }
 
         img {
@@ -67,14 +67,14 @@
 
         table {
             float: none;
-            margin-bottom: 1rem;
+            margin-bottom: var(--a-spacing-4);
 
             th,
             td {
                 vertical-align: top;
-                padding: 0.7rem;
+                padding: var(--a-spacing-3);
                 line-height: 1.5;
-                font-size: 1.125rem;
+                font-size: var(--a-font-size-large);
             }
         }
 
@@ -84,7 +84,7 @@
         .h3,
         h4,
         .h4 {
-            margin: 2.5rem 0 0.6875rem;
+            margin: var(--a-spacing-10) 0 var(--a-spacing-3);
 
             &:first-child {
                 margin-top: 0;
@@ -105,8 +105,8 @@
 
         ul,
         ol {
-            padding-left: 1.4rem;
-            margin-bottom: 1rem;
+            padding-left: var(--a-spacing-6);
+            margin-bottom: var(--a-spacing-4);
         }
     }
 }

@@ -3,15 +3,15 @@
 .banner {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    width: calc(100% - 0.75rem);
+    gap: var(--a-spacing-4);
+    width: calc(100% - var(--a-spacing-3));
 
     text-decoration: none;
     color: var(--a-text-default);
-    margin-top: 1rem;
-    padding: 1.75rem;
+    margin-top: var(--a-spacing-4);
+    padding: var(--a-spacing-7);
     background-color: var(--a-red-50);
-    border-radius: 0.5rem;
+    border-radius: var(--a-border-radius-large);
 
     transition: background-color 200ms ease-out;
 
@@ -24,7 +24,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 1.5rem 1.25rem;
+        padding: var(--a-spacing-6) var(--a-spacing-5);
         transform: none;
         width: 100%;
     }
@@ -33,14 +33,14 @@
 .content {
     display: flex;
     flex-direction: column;
-    row-gap: 1.75rem;
+    row-gap: var(--a-spacing-7);
     justify-content: center;
     width: 100%;
 
     > * {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
-        font-size: 1.5rem;
+        font-size: var(--a-font-size-heading-medium);
         font-weight: var(--a-font-weight-bold);
     }
 }

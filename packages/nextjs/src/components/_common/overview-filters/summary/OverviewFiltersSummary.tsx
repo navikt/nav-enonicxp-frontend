@@ -39,7 +39,7 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal, showResetChips }:
                         .replace('$2', numTotal.toString())}
                 </Heading>
                 {showResetChips && !hasDefaultFilters && (
-                    <Chips className={style.chips}>
+                    <Chips>
                         {areaFilter !== Area.ALL && (
                             <Chips.Removable onClick={() => setAreaFilter(Area.ALL)}>
                                 {areaTranslations(areaFilter)}

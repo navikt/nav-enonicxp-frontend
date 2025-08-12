@@ -1,15 +1,15 @@
 @use 'common' as common;
 
 .mellomstegLayout {
-    padding-bottom: 1rem;
-    column-gap: 1.75rem;
-    margin-bottom: 2.5rem;
+    padding-bottom: var(--a-spacing-4);
+    column-gap: var(--a-spacing-7);
+    margin-bottom: var(--a-spacing-10);
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-areas:
         'pictogram header .'
         '. content .';
-    margin-top: 4rem;
+    margin-top: var(--a-spacing-16);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-columns: none;
@@ -18,23 +18,23 @@
             'header'
             'content';
         padding: 0;
-        margin-top: 2rem;
+        margin-top: var(--a-spacing-8);
     }
 
     .pictogram {
         grid-area: pictogram;
         display: block;
         justify-self: end;
-        min-width: 4rem;
-        min-height: 4rem;
-        width: 4.5rem;
+        min-width: var(--a-spacing-16);
+        min-height: var(--a-spacing-16);
+        width: var(--a-spacing-18);
         height: auto;
         position: relative;
         align-self: flex-start;
-        margin-bottom: 1.25rem;
+        margin-bottom: var(--a-spacing-5);
 
         @media #{common.$mq-screen-tablet-and-mobile} {
-            width: 4rem;
+            width: var(--a-spacing-16);
             justify-self: start;
         }
     }
@@ -49,11 +49,11 @@
         .stepList {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: var(--a-spacing-2);
             list-style-type: none;
             padding: 0;
             margin-top: 0;
-            margin-bottom: 2rem;
+            margin-bottom: var(--a-spacing-8);
         }
     }
 }

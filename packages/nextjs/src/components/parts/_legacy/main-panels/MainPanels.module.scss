@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 2.25rem;
+    margin-bottom: var(--a-spacing-9);
     text-align: center;
     width: 100%;
 
@@ -21,6 +21,6 @@
     }
 
     .item {
-        padding: 1.5rem;
+        padding: var(--a-spacing-6);
     }
 }

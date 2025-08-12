@@ -1,6 +1,6 @@
 .macroQuote {
-    margin: 1.5rem 0;
-    padding: 0 2.5rem;
+    margin: var(--a-spacing-6) 0;
+    padding: 0 var(--a-spacing-10);
     position: relative;
 
     &:before {
@@ -10,6 +10,6 @@
         font-family: 'Times new roman', serif;
         position: absolute;
         left: 0;
-        top: 0.75rem;
+        top: var(--a-spacing-3);
     }
 }

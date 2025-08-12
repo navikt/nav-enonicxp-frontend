@@ -2,15 +2,15 @@
     background-color: var(--a-bg-subtle);
     width: 100%;
     min-height: 100vh;
-    padding: 1.25rem;
+    padding: var(--a-spacing-5);
 }
 
 .content {
     & > * {
         background-color: var(--a-white);
-        padding: 1.25rem;
+        padding: var(--a-spacing-5);
         &:not(:last-child) {
-            margin-bottom: 0.75rem;
+            margin-bottom: var(--a-spacing-3);
         }
     }
 }

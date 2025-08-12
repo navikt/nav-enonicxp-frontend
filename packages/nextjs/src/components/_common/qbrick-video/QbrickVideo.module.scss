@@ -1,5 +1,5 @@
 .wrapper {
-    margin-bottom: 2rem;
+    margin-bottom: var(--a-spacing-8);
 }
 
 .button {
@@ -103,7 +103,7 @@
 }
 
 .videoLength {
-    padding-top: 0.25rem;
+    padding-top: var(--a-spacing-1);
     font-weight: 400;
     color: var(--a-text-subtle);
     width: fit-content;

@@ -3,8 +3,8 @@
 .currentTopicPage {
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-top: var(--a-spacing-8);
+    padding-bottom: var(--a-spacing-12);
 }
 
 .contentAligner {

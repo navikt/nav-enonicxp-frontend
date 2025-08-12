@@ -7,7 +7,7 @@
 .contentBottom {
     display: flex;
     flex-direction: column;
-    row-gap: 0.5rem;
+    row-gap: var(--a-spacing-2);
     background-color: var(--a-white);
 
     @include common.full-width-mixin();

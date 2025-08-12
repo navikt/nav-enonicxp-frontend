@@ -1,9 +1,6 @@
 @use 'common' as common;
 @use 'sass:math';
 
-$iconContainerRadius: 1.875rem;
-$iconContainerSize: $iconContainerRadius * 2;
-
 .container {
     background-color: var(--a-white);
     position: relative;
@@ -22,15 +19,14 @@ $iconContainerSize: $iconContainerRadius * 2;
         background-color: var(--a-white);
         border-radius: 50%;
         display: flex;
-        height: $iconContainerSize;
+        height: var(--a-spacing-16);
         justify-content: center;
         position: relative;
-        width: $iconContainerSize;
+        width: var(--a-spacing-16);
 
         img {
-            $iconSize: 2.7386rem;
-            height: $iconSize;
-            width: $iconSize;
+            height: var(--a-spacing-11);
+            width: var(--a-spacing-11);
         }
     }
 }

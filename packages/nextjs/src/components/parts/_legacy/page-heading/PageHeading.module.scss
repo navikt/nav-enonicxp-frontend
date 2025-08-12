@@ -1,10 +1,10 @@
 .pageHeading {
     width: 100%;
     text-align: center;
-    padding-top: 1.25rem;
-    margin-bottom: 2.25rem;
+    padding-top: var(--a-spacing-5);
+    margin-bottom: var(--a-spacing-9);
 
     .ingress {
-        margin-top: 0.6rem;
+        margin-top: var(--a-spacing-2);
     }
 }

@@ -18,14 +18,14 @@
     grid-template-areas:
         'icon title arrow'
         'icon ingress arrow';
-    column-gap: 1rem;
+    column-gap: var(--a-spacing-4);
     position: relative;
 
     .icon {
         grid-area: icon;
         flex-shrink: 0;
-        width: 48px;
-        height: 48px;
+        width: var(--a-spacing-12);
+        height: var(--a-spacing-12);
         align-self: start;
 
         & > :first-child:not(:last-child) * {
@@ -62,7 +62,7 @@
     &:hover,
     &:focus {
         background-color: var(--a-deepblue-100);
-        border-radius: var(--a-radius-8);
+        border-radius: var(--a-border-radius-large);
         color: var(--a-text-default);
         box-shadow: 0 0 0 0;
         outline: 5px solid var(--a-bg-default);

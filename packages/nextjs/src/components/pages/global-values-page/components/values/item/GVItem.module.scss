@@ -4,11 +4,11 @@
     width: 100%;
 
     &:not(:last-child) {
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--a-spacing-2);
     }
 
     .value {
-        margin-left: 0.25rem;
+        margin-left: var(--a-spacing-1);
     }
 
     .rightButtons {
@@ -21,7 +21,7 @@
         }
 
         & > :not(:last-child) {
-            margin-bottom: 0.25rem;
+            margin-bottom: var(--a-spacing-1);
         }
     }
 }
