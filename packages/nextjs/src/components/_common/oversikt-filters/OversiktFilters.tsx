@@ -43,7 +43,7 @@ export const OversiktFilters = (props: Props) => {
             <Heading level="2" size="xsmall">
                 {searchLabel()}
             </Heading>
-            {showAreaFilter && <OversiktOmradeFilter items={filterableItems} hideLabel />}
+            {showAreaFilter && <OversiktOmradeFilter items={filterableItems} />}
             {showTextInputFilter && <OversiktTextFilter hideLabel />}
         </>
     );

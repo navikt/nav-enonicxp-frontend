@@ -13,7 +13,6 @@ type Props<Type extends Area> = {
     selectionCallback: (filter: Type) => void;
     selected: Type;
     options: Type[];
-    hideLabel?: boolean;
 };
 
 export const OversiktFilterBase = <Type extends Area>({
@@ -21,7 +20,6 @@ export const OversiktFilterBase = <Type extends Area>({
     selectionCallback,
     selected,
     options,
-    hideLabel = false,
 }: Props<Type>) => {
     const { language } = usePageContentProps();
     const translations = translator('oversikt', language)(type);
@@ -29,11 +27,9 @@ export const OversiktFilterBase = <Type extends Area>({
 
     return (
         <section className={styles.oversiktFilter}>
-            {!hideLabel && (
-                <Heading size="xsmall" level="3">
-                    {translations['choose']}
-                </Heading>
-            )}
+            <Heading className="sr-only" size="xsmall" level="3">
+                {translations['choose']}
+            </Heading>
             <Chips className={styles.filterWrapper}>
                 {options.map((option) => {
                     const optionLabel = optionsTranslations(option);

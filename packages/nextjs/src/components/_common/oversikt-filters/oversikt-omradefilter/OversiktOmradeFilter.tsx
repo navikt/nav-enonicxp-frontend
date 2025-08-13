@@ -36,10 +36,9 @@ const analyticsAreas = {
 
 type Props = {
     items: OversiktFilterableItem[];
-    hideLabel?: boolean;
 };
 
-export const OversiktOmradeFilter = ({ items, hideLabel }: Props) => {
+export const OversiktOmradeFilter = ({ items }: Props) => {
     const { omradeFilter, setOmradeFilter } = useOversiktFilters();
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -65,7 +64,6 @@ export const OversiktOmradeFilter = ({ items, hideLabel }: Props) => {
             selectionCallback={handleFilterUpdate}
             selected={omradeFilter}
             options={[Area.ALL, ...areasPresent]}
-            hideLabel={hideLabel}
         />
     );
 };
