@@ -79,7 +79,7 @@ export const useOverviewFilters = () => {
     );
 
     const setAreaFilter = useCallback(
-        (area: Area) => dispatch(setAreaFilterAction({ omrade: area })),
+        (area: Area) => dispatch(setAreaFilterAction({ area })),
         [dispatch]
     );
 
