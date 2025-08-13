@@ -2,28 +2,27 @@ import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-
 import style from './OversiktFiltersSummary.module.scss';
 
 type Props = {
-    numMatches: number;
-    numTotal: number;
+    antallTreff: number;
+    totaltAntall: number;
 };
 
-export const OversiktFiltersSummary = ({ numMatches, numTotal }: Props) => {
+export const OversiktFiltersSummary = ({ antallTreff, totaltAntall }: Props) => {
     const { language } = usePageContentProps();
     const oversiktTranslations = translator('oversikt', language);
 
     return (
         <>
             <div className={style.summary}>
-                <Heading level={'2'} size={'xsmall'} role="status">
+                <Heading level="2" size="xsmall" role="status">
                     {oversiktTranslations('numHits')
-                        .replace('$1', numMatches.toString())
-                        .replace('$2', numTotal.toString())}
+                        .replace('$1', antallTreff.toString())
+                        .replace('$2', totaltAntall.toString())}
                 </Heading>
             </div>
-            {numMatches === 0 && (
+            {antallTreff === 0 && (
                 <BodyLong className={style.nohits}>{oversiktTranslations('noHits')}</BodyLong>
             )}
         </>

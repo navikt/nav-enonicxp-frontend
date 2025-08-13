@@ -27,7 +27,7 @@ export const OversiktFilterBase = <Type extends Area>({
 
     return (
         <section className={styles.oversiktFilter}>
-            <Heading size={'xsmall'} level={'3'}>
+            <Heading className="sr-only" size="xsmall" level="3">
                 {translations['choose']}
             </Heading>
             <Chips className={styles.filterWrapper}>

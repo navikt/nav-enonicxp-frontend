@@ -60,7 +60,7 @@ export const OversiktOmradeFilter = ({ items }: Props) => {
 
     return (
         <OversiktFilterBase
-            type={'areas'}
+            type="areas"
             selectionCallback={handleFilterUpdate}
             selected={omradeFilter}
             options={[Area.ALL, ...areasPresent]}

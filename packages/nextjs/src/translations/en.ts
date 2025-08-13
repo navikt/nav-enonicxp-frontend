@@ -208,8 +208,9 @@ export const translationsBundleEn: PartialTranslations = {
     oversikt: {
         noHits: 'No hits with the selected filters.',
         numHits: 'Showing $1 out of $2',
-        search: 'Search',
-        filterOrSearch: 'Use filters or search',
+        sok: 'Search',
+        omradeEllerSok: 'Choose area or search',
+        omrade: 'Choose area',
         loading: 'Loading content...',
         resetFilters: 'Reset filters',
         any: 'From A to Z',

@@ -6,8 +6,6 @@ import { OversiktFilterableItem, useOversiktFilters } from 'store/hooks/useOvers
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 
-import style from './OversiktFilters.module.scss';
-
 type Props = {
     filterableItems: OversiktFilterableItem[];
     showTextInputFilter: boolean;
@@ -29,15 +27,24 @@ export const OversiktFilters = (props: Props) => {
     if (!showAreaFilter && !showTextInputFilter) {
         return null;
     }
-    const searchLabel = translator('oversikt', language)('filterOrSearch');
+
+    const searchLabel = () => {
+        if (showAreaFilter && showTextInputFilter) {
+            return translator('oversikt', language)('omradeEllerSok');
+        } else if (showAreaFilter && !showTextInputFilter) {
+            return translator('oversikt', language)('omrade');
+        } else if (showTextInputFilter && !showAreaFilter) {
+            return translator('oversikt', language)('sok');
+        }
+    };
 
     return (
-        <div className={style.filters}>
-            <Heading className="sr-only" level={'2'} size={'xsmall'}>
-                {searchLabel}
+        <>
+            <Heading level="2" size="xsmall">
+                {searchLabel()}
             </Heading>
             {showAreaFilter && <OversiktOmradeFilter items={filterableItems} />}
-            {showTextInputFilter && <OversiktTextFilter hideLabel={false} />}
-        </div>
+            {showTextInputFilter && <OversiktTextFilter hideLabel />}
+        </>
     );
 };
