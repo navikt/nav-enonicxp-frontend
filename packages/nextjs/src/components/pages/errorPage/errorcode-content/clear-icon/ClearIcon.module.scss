@@ -4,14 +4,14 @@
     transform: translateY(-1px);
 
     & > * {
-        height: var(--a-spacing-05);
+        height: 0.125rem;
         width: var(--a-spacing-6);
         background-color: var(--default-action-color);
         transform-origin: center;
     }
 
     &__1 {
-        transform: translateY(var(--a-spacing-05)) rotateZ(45deg);
+        transform: translateY(0.125rem) rotateZ(45deg);
     }
 
     &__2 {
