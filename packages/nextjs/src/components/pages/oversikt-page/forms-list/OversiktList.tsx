@@ -82,8 +82,8 @@ export const OversiktList = (props: OversiktPageProps) => {
             />
             {numFilterTypes > 0 && (
                 <OversiktFiltersSummary
-                    numMatches={filteredList.length}
-                    numTotal={itemList.length}
+                    antallTreff={filteredList.length}
+                    totaltAntall={itemList.length}
                 />
             )}
             <ul className={style.list}>
@@ -92,7 +92,7 @@ export const OversiktList = (props: OversiktPageProps) => {
                         <OversiktListPanel
                             panelDetails={listItem}
                             oversiktType={oversiktType}
-                            formNumberSelected={formNumberFromSearch}
+                            skjemanummerValgt={formNumberFromSearch}
                         />
                     </li>
                 ))}

@@ -24,11 +24,11 @@ const analyticsRedaction = (value: string) =>
         ? `tekst (${value.length})`
         : `nummer (${Math.round(Math.log10(Number(value))) + 1})`;
 
-export const OversiktTextFilter = ({ hideLabel }: Props) => {
+export const OversiktTextFilter = ({ hideLabel = false }: Props) => {
     const { setTextFilter } = useOversiktFilters();
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
-    const label = translator('oversikt', contentProps.language)('search');
+    const label = translator('oversikt', contentProps.language)('sok');
     const inputId = useId();
     const [textInput, setTextInput] = useState('');
 

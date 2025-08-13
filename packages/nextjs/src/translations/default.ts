@@ -220,8 +220,9 @@ export const translationsBundleNb = {
     oversikt: {
         noHits: 'Ingen treff med de valgte filtrene.',
         numHits: 'Viser $1 av $2',
-        search: 'Søk',
-        filterOrSearch: 'Bruk filter eller søk',
+        sok: 'Søk',
+        omradeEllerSok: 'Velg område eller søk',
+        omrade: 'Velg område',
         loading: 'Laster innhold...',
         resetFilters: 'Nullstill filter',
         any: 'Fra A til Å',

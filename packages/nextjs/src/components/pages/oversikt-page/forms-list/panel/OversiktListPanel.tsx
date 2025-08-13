@@ -36,10 +36,10 @@ const getSkjemadetaljerDisplayOptions = (
 type Props = {
     panelDetails: OversiktItemListItem;
     oversiktType: OversiktType;
-    formNumberSelected?: string;
+    skjemanummerValgt?: string;
 };
 
-export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelected }: Props) => {
+export const OversiktListPanel = ({ panelDetails, oversiktType, skjemanummerValgt }: Props) => {
     const {
         anchorId,
         illustration,
@@ -125,7 +125,7 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, formNumberSelect
                             <Skjemadetaljer
                                 skjemadetaljer={panelDetail.data}
                                 displayConfig={getSkjemadetaljerDisplayOptions(oversiktType)}
-                                formNumberSelected={formNumberSelected}
+                                formNumberSelected={skjemanummerValgt}
                                 key={panelDetail._id}
                             />
                         );

@@ -192,8 +192,9 @@ export const translationsBundleNn: PartialTranslations = {
     oversikt: {
         noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
-        search: 'Søk',
-        filterOrSearch: 'Bruk filter eller søk',
+        sok: 'Søk',
+        omradeEllerSok: 'Vel område eller søk',
+        omrade: 'Vel område',
         loading: 'Laster innhald...',
         resetFilters: 'Nullstill filter',
         any: 'Frå A til Å',
