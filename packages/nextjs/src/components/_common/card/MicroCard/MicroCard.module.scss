@@ -47,8 +47,8 @@
     &:after {
         border-radius: 16px;
         box-shadow: 0 0 0 2px var(--a-white);
-        height: calc(100% - var(--a-spacing-05));
+        height: calc(100% - 2px);
         margin: 1px;
-        width: calc(100% - var(--a-spacing-05));
+        width: calc(100% - 2px);
     }
 }
