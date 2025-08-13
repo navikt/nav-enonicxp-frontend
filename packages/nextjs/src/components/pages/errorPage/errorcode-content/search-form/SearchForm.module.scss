@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .search {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
 
     .form {
         display: flex;
@@ -15,7 +15,7 @@
             font-size: 150%;
             border-width: 2px;
             border-color: var(--default-action-color);
-            border-radius: common.$border-radius-base;
+            border-radius: var(--a-border-radius-medium);
             padding-right: 13rem;
             @media #{common.$mq-screen-mobile} {
                 padding-right: 10rem;
@@ -34,7 +34,7 @@
         text-transform: none;
         transform: none;
         box-shadow: none;
-        border-radius: 0 common.$border-radius-base common.$border-radius-base 0;
+        border-radius: 0 var(--a-border-radius-medium) var(--a-border-radius-medium) 0;
         height: 100%;
         font-size: 125%;
 

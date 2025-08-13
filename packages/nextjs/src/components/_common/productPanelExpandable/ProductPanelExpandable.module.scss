@@ -7,19 +7,15 @@
 
     &:global(.navds-expansioncard--open) {
         :global(.navds-expansioncard__header) {
-            border-radius: common.$border-radius-xlarge;
+            border-radius: var(--a-border-radius-large);
         }
     }
 }
 
 .expandableHeader {
-    padding: var(--a-spacing-5);
-    gap: var(--a-spacing-4, 1rem);
-    border-radius: common.$border-radius-xlarge;
-
-    @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-3) 0;
-    }
+    padding: var(--a-spacing-5) var(--a-spacing-1) var(--a-spacing-5) var(--a-spacing-3);
+    gap: var(--a-spacing-4);
+    border-radius: var(--a-border-radius-large);
 
     &:after {
         display: none;
@@ -29,18 +25,21 @@
     &:focus {
         background-color: var(--a-deepblue-100);
         color: var(--a-text-default);
-        box-shadow: 0 0 0 0;
+        box-shadow: none;
         outline: 5px solid var(--a-bg-default);
 
         & + :global(.navds-expansioncard__content) {
-            box-shadow: 0 0 0 0;
+            box-shadow: none;
         }
-
         .illustration {
             & > :first-child:not(:last-child) * {
                 fill: var(--a-white);
             }
         }
+    }
+
+    &:hover :global(.navds-expansioncard__header-button) {
+        background-color: transparent;
     }
 
     &.alignCenter {
@@ -59,12 +58,6 @@
     :global(.navds-expansioncard__header-button) {
         align-self: center;
     }
-
-    @media #{common.$mq-screen-mobile} {
-        :global(.navds-expansioncard__header-button) {
-            transform: translateX(10px);
-        }
-    }
 }
 
 .expandableContent {
@@ -73,14 +66,14 @@
     // Remove when we remove the old overview pages.
     &:not(.noLeftPadding) {
         @media #{common.$mq-screen-tablet-and-desktop} {
-            padding-left: 82px;
+            padding-left: 76px;
         }
     }
 }
 
 .illustration {
-    width: 48px;
-    height: 48px;
+    width: var(--a-spacing-12);
+    height: var(--a-spacing-12);
     flex-shrink: 0;
 
     & > :first-child:not(:last-child) * {
@@ -98,24 +91,19 @@
     align-items: center;
 
     :global(.navds-loader) {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 }
 
 .panelHeader {
-    font-size: 22px;
     display: flex;
     flex-direction: column;
+}
+
+.title {
+    font-size: var(--text-fluid-20-22);
     font-weight: var(--a-font-weight-bold);
     word-break: break-word;
-
-    > * {
-        line-height: 1.5;
-    }
-
-    @media #{common.$mq-screen-mobile} {
-        font-size: 20px;
-    }
 }
 
 .ingress {

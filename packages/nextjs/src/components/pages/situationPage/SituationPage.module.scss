@@ -8,7 +8,7 @@
     }
 
     .content {
-        margin-top: 4rem;
+        margin-top: var(--a-spacing-16);
         display: flex;
         justify-content: flex-start;
         align-self: center;

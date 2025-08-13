@@ -6,7 +6,7 @@
 
     display: flex;
     justify-content: center;
-    margin: 2rem 0 1rem 0;
+    margin: var(--a-spacing-8) 0 var(--a-spacing-4) 0;
 
     & > div {
         width: $width;

@@ -1,5 +1,3 @@
-@use 'common' as common;
-
 .copyLinkContainer {
     display: flex;
     align-self: flex-start;
@@ -8,8 +6,8 @@
 .copyLink {
     align-items: center;
     display: flex;
-    font-size: 0.875rem;
-    padding: 0.8rem 0.8rem 0.8rem 0;
+    font-size: var(--a-font-size-small);
+    padding: var(--a-spacing-4) var(--a-spacing-4) var(--a-spacing-4) 0;
     text-decoration: none;
     white-space: nowrap;
 
@@ -22,24 +20,24 @@
 }
 
 .anchorIcon {
-    height: 1rem;
-    margin-right: 0.5rem;
+    height: var(--a-spacing-4);
+    margin-right: var(--a-spacing-2);
     transition-duration: 0.1s;
     transition-property: transform;
     transition-timing-function: ease-out;
-    width: 1rem;
+    width: var(--a-spacing-4);
 }
 
 .copyTooltip {
     display: flex;
     align-items: center;
-    margin-left: 1rem;
+    margin-left: var(--a-spacing-4);
     visibility: hidden;
     background-color: var(--a-green-100);
     color: black;
-    padding: 0.5rem 0.75rem;
+    padding: var(--a-spacing-2) var(--a-spacing-3);
     border: 1px var(--a-green-500) solid;
-    border-radius: common.$border-radius-small;
+    border-radius: var(--a-border-radius-small);
     pointer-events: none;
     opacity: 0;
     transition-property: visibility, opacity;

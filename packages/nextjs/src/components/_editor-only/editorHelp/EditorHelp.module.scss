@@ -5,14 +5,14 @@ $redErrorFilter: invert(22%) sepia(84%) saturate(1767%) hue-rotate(346deg) brigh
 
 .editorHelp {
     display: flex;
-    margin: 1rem 0;
+    margin: var(--a-spacing-4) 0;
 
     .icon {
         // Ensure the icon size is not overridden by whichever component the helper
         // is inserted into
-        height: 1.5rem !important;
-        width: 1.5rem !important;
-        margin-right: 1rem !important;
+        height: var(--a-spacing-6) !important;
+        width: var(--a-spacing-6) !important;
+        margin-right: var(--a-spacing-4) !important;
 
         &.info,
         &.arrowDown,

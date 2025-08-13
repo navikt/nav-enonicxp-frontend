@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
+import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
@@ -27,7 +27,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     const expandAll = () => setOpenTrekkspill(accordion.map((_, index) => index));
     const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
 
-    useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
+    useSnarveier({ shortcut: Snarveier.SEARCH, callback: expandAll });
 
     const handleOpenChange = (isOpening: boolean, tittel: string, index: number) => {
         handleStickyScrollOffset(isOpening, itemRefs.current[index].current);

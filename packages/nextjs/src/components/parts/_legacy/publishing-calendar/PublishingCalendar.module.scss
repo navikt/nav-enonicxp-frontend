@@ -1,17 +1,17 @@
 .publishingCalendar {
-    padding: 2rem;
+    padding: var(--a-spacing-8);
     background: var(--a-white);
 
     h1 {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 
     .ingress {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 
     header {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-4);
     }
 
     table {
@@ -28,10 +28,10 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 4.5rem;
-                height: 4.5rem;
+                width: var(--a-spacing-18);
+                height: var(--a-spacing-18);
                 font-weight: 600;
-                padding: 1rem;
+                padding: var(--a-spacing-4);
                 border-radius: 50%;
                 background-color: var(--a-gray-200);
             }

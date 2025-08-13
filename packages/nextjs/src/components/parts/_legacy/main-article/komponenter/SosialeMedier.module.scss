@@ -2,13 +2,13 @@
 
 .socialMedia {
     text-align: center;
-    margin-top: 4rem;
+    margin-top: var(--a-spacing-16);
 
     ul {
         @include common.unstyled-list();
     }
     li {
-        margin: 0 2rem 0 0;
+        margin: 0 var(--a-spacing-8) 0 0;
         display: inline-block;
 
         &:last-child {
@@ -19,8 +19,8 @@
         align-items: center;
         display: flex;
         justify-content: center;
-        width: 2rem;
-        height: 2rem;
+        width: var(--a-spacing-8);
+        height: var(--a-spacing-8);
         border-radius: 50%;
         border: 1px solid var(--default-action-color);
 
@@ -30,6 +30,6 @@
         }
     }
     img {
-        height: 1rem;
+        height: var(--a-spacing-4);
     }
 }

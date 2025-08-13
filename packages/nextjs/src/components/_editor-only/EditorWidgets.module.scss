@@ -2,7 +2,7 @@
 
 .outer {
     display: flex;
-    padding-top: 1rem;
+    padding-top: var(--a-spacing-4);
     @include common.full-width-mixin();
 }
 

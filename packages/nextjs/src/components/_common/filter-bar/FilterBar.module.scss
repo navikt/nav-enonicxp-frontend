@@ -2,11 +2,11 @@
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1.75rem;
+    margin-bottom: var(--a-spacing-7);
 }
 
 .header {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--a-spacing-2);
 }
 
 .container {

@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .tittel {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--a-spacing-2);
 }
 
 .lenker {
@@ -11,13 +11,8 @@
 }
 
 .lenke {
-    $horizontalPadding: 0.5rem;
-    $verticalPadding: 0.6875rem;
-    padding: $verticalPadding $horizontalPadding;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: -($horizontalPadding);
-    margin-right: -($horizontalPadding);
+    padding: var(--a-spacing-3) var(--a-spacing-2);
+    margin: 0 calc(-1 * var(--a-spacing-2));
 
     &:focus,
     &:focus-visible,
@@ -29,13 +24,13 @@
 }
 
 .ulListe {
-    padding-left: 1.4rem;
-    margin-bottom: 1.75rem;
+    padding-left: var(--a-spacing-6);
+    margin-bottom: var(--a-spacing-7);
     margin-top: 0;
-    font-size: 1.125rem;
+    font-size: var(--a-font-size-large);
 
     li:not(:last-child) {
-        margin-bottom: 0.25rem;
+        margin-bottom: var(--a-spacing-1);
     }
 }
 

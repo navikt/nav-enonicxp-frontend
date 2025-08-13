@@ -2,8 +2,8 @@
 
 .container {
     @include common.full-width-mixin();
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: var(--a-spacing-8);
+    padding-bottom: var(--a-spacing-8);
     background-color: var(--a-deepblue-50);
 }
 
@@ -34,5 +34,5 @@
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: var(--a-spacing-4);
 }

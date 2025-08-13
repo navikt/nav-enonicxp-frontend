@@ -4,13 +4,13 @@
     display: grid;
     gap: var(--a-spacing-10);
 
-    margin: 1.25rem auto var(--a-spacing-10);
+    margin: var(--a-spacing-5) auto var(--a-spacing-10);
     grid-template-areas:
         'main'
         'side';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: 6rem 2fr 6rem;
+        grid-template-columns: var(--a-spacing-24) 2fr var(--a-spacing-24);
         grid-template-areas:
             'pictogram main .'
             '. side .';
@@ -19,7 +19,7 @@
     &.withSideCol {
         @media #{common.$mq-screen-desktop-small-up} {
             grid-template-areas: 'pictogram main side';
-            grid-template-columns: 6rem 2fr 1fr;
+            grid-template-columns: var(--a-spacing-24) 2fr 1fr;
         }
     }
 }
@@ -32,7 +32,7 @@
     grid-area: side;
 
     & > * {
-        border-radius: common.$border-radius-large;
+        border-radius: var(--a-border-radius-large);
     }
 }
 
@@ -41,8 +41,8 @@
     grid-area: pictogram;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        width: 6rem;
-        height: 6rem;
+        width: var(--a-spacing-24);
+        height: var(--a-spacing-24);
         display: block;
     }
 }

@@ -11,7 +11,7 @@ import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols'
 import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
 import { AreapageSituationsProps } from './layouts/areapage-situations';
-import { FrontpageLoggedinSectionLayoutProps } from './layouts/frontpage-loggedin-section';
+import { InnloggetSeksjonForsideLayoutProps } from './layouts/innlogget-seksjon-forside';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -29,7 +29,7 @@ export enum LayoutType {
     ProductDetailsPage = 'no.nav.navno:product-details-page',
     IndexPage = 'no.nav.navno:index-page',
     AreapageSituations = 'no.nav.navno:areapage-situations',
-    FrontpageLoggedinSection = 'no.nav.navno:frontpage-loggedin-section',
+    InnloggetSeksjonForside = 'no.nav.navno:frontpage-loggedin-section',
     TwoColsPage = 'no.nav.navno:two-cols-page',
 }
 
@@ -60,6 +60,6 @@ export type LayoutComponentProps =
     | ProductPageFlexColsLayoutProps
     | IndexPageProps
     | AreapageSituationsProps
-    | FrontpageLoggedinSectionLayoutProps
+    | InnloggetSeksjonForsideLayoutProps
     | TwoColsPageProps
     | ProductDetailsPageProps;

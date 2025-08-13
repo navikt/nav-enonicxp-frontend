@@ -10,14 +10,14 @@ import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/Ko
 import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
 import { PartConfigSkjemadetaljer } from 'components/parts/skjemadetaljer/SkjemadetaljerPart';
 import { PartConfigSeksjonForKontaktinformasjon } from 'components/parts/seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
-import { PartConfigFrontpageCurrentTopics } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
-import { PartConfigFrontpageShortcuts } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
-import { PartConfigFrontpagePersonShortcuts } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { PartConfigSeksjonForAktuelleTemaer } from 'components/parts/seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
+import { PartConfigSeksjonForSnarveier } from 'components/parts/seksjon-for-snarveier/SeksjonForSnarveierPart';
+import { PartConfigFrontpagePersonShortcuts } from 'components/parts/seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
 import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
 import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
-import { PartConfigLoggedinCard } from 'components/parts/loggedin-card/LoggedinCardPart';
+import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
@@ -57,11 +57,11 @@ export enum PartType {
     KontaktOssKanal = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
-    LoggedinCard = 'no.nav.navno:loggedin-card',
+    KortForInnloggetBruker = 'no.nav.navno:loggedin-card',
     SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
-    FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
-    FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
-    FrontpagePersonShortcuts = 'no.nav.navno:frontpage-person-shortcuts',
+    SeksjonForAktuelleTemaer = 'no.nav.navno:frontpage-current-topics',
+    SeksjonForSnarveier = 'no.nav.navno:frontpage-shortcuts',
+    SeksjonForSnarveierPaForsideForPrivatperson = 'no.nav.navno:frontpage-person-shortcuts',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
@@ -103,14 +103,14 @@ type PartConfigs = {
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
     [PartType.Skjemadetaljer]: PartConfigSkjemadetaljer;
     [PartType.SeksjonForKontaktinformasjon]: PartConfigSeksjonForKontaktinformasjon;
-    [PartType.FrontpageCurrentTopics]: PartConfigFrontpageCurrentTopics;
-    [PartType.FrontpageShortcuts]: PartConfigFrontpageShortcuts;
-    [PartType.FrontpagePersonShortcuts]: PartConfigFrontpagePersonShortcuts;
+    [PartType.SeksjonForAktuelleTemaer]: PartConfigSeksjonForAktuelleTemaer;
+    [PartType.SeksjonForSnarveier]: PartConfigSeksjonForSnarveier;
+    [PartType.SeksjonForSnarveierPaForsideForPrivatperson]: PartConfigFrontpagePersonShortcuts;
     [PartType.Header]: PartConfigHeader;
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.Lenkeliste]: PartConfigLenkeliste;
     [PartType.Lenkepanel]: PartConfigLenkepanel;
-    [PartType.LoggedinCard]: PartConfigLoggedinCard;
+    [PartType.KortForInnloggetBruker]: PartConfigKortForInnloggetBruker;
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;
     [PartType.PageHeader]: PartConfigPageHeader;

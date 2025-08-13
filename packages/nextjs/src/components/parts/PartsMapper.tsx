@@ -10,8 +10,6 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlAreaPart } from 'components/parts/html-area/HtmlAreaPart';
-import { FrontpageCurrentTopicsPart } from 'components/parts/frontpage-current-topics/FrontpageCurrentTopicsPart';
-import { FrontpageShortcutsPart } from 'components/parts/frontpage-shortcuts/FrontpageShortcutsPart';
 import { ProductCardPart } from 'components/parts/product-card/ProductCardPart';
 import { ProductCardMicroPart } from 'components/parts/product-card-micro/ProductCardMicroPart';
 import { editorAuthstateClassname } from 'components/_common/authDependantRender/editorAuthstateClassname/EditorAuthstateClassname';
@@ -30,7 +28,9 @@ import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/Mai
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
-import { FrontpagePersonShortcutsPart } from 'components/parts/frontpage-person-shortcuts/FrontpagePersonShortcutsPart';
+import { SeksjonForSnarveierPaForsideForPrivatpersonPart } from './seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
+import { SeksjonForSnarveierPart } from './seksjon-for-snarveier/SeksjonForSnarveierPart';
+import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
 import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
 import { VarselboksPart } from './varselboks/VarselboksPart';
@@ -49,7 +49,7 @@ import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { OmradekortPart } from './omradekort/OmradekortPart';
 import { SituasjonskortPart } from './situasjonskort/SituasjonskortPart';
-import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
+import { KortForInnloggetBrukerPart } from './kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { SeksjonForKontaktinformasjonPart } from './seksjon-for-kontaktinformasjon/SeksjonForKontaktinformasjonPart';
 import { SkjemadetaljerPart } from './skjemadetaljer/SkjemadetaljerPart';
 import { ReadMorePart } from './readMorePart/ReadMorePart';
@@ -92,12 +92,12 @@ const PartComponentMapper = ({
             return <SkjemadetaljerPart {...partProps} />;
         case PartType.SeksjonForKontaktinformasjon:
             return <SeksjonForKontaktinformasjonPart {...partProps} />;
-        case PartType.FrontpageCurrentTopics:
-            return <FrontpageCurrentTopicsPart {...partProps} />;
-        case PartType.FrontpageShortcuts:
-            return <FrontpageShortcutsPart {...partProps} />;
-        case PartType.FrontpagePersonShortcuts:
-            return <FrontpagePersonShortcutsPart {...partProps} />;
+        case PartType.SeksjonForAktuelleTemaer:
+            return <SeksjonForAktuelleTemaerPart {...partProps} />;
+        case PartType.SeksjonForSnarveier:
+            return <SeksjonForSnarveierPart {...partProps} />;
+        case PartType.SeksjonForSnarveierPaForsideForPrivatperson:
+            return <SeksjonForSnarveierPaForsideForPrivatpersonPart {...partProps} />;
         case PartType.Header:
             return <HeaderPart {...partProps} />;
         case PartType.HtmlArea:
@@ -106,8 +106,8 @@ const PartComponentMapper = ({
             return <LenkelistePart {...partProps} />;
         case PartType.Lenkepanel:
             return <LenkepanelPart {...partProps} />;
-        case PartType.LoggedinCard:
-            return <LoggedinCardPart {...partProps} />;
+        case PartType.KortForInnloggetBruker:
+            return <KortForInnloggetBrukerPart {...partProps} />;
         case PartType.NewsList:
             return <NewsListPart {...partProps} />;
         case PartType.OfficeEditorialDetail:

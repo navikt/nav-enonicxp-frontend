@@ -1,25 +1,25 @@
 @use 'common' as common;
 
 .newsPressHeader {
-    padding-top: 1.25rem;
-    padding-bottom: 0.75rem;
-    margin: 0 auto -0.25rem auto;
+    padding-top: var(--a-spacing-5);
+    padding-bottom: var(--a-spacing-3);
+    margin: 0 auto calc(-1 * var(--a-spacing-1)) auto;
     max-width: 63.5rem;
 
     @media #{common.$mq-screen-desktop} {
-        padding-right: 2.8rem;
-        padding-left: 2.8rem;
+        padding-right: var(--a-spacing-11);
+        padding-left: var(--a-spacing-11);
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding-right: 1.5rem;
-        padding-left: 1.5rem;
+        padding-right: var(--a-spacing-6);
+        padding-left: var(--a-spacing-6);
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding-bottom: 0.5rem;
-        padding-right: 0.5rem;
-        padding-left: 0.5rem;
+        padding-bottom: var(--a-spacing-2);
+        padding-right: var(--a-spacing-2);
+        padding-left: var(--a-spacing-2);
     }
 }
 
@@ -27,7 +27,7 @@
     border-bottom: 3px solid var(--a-gray-400);
     display: block;
     left: 0;
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-4);
     position: absolute;
     width: 100vw;
 }
@@ -36,17 +36,17 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--a-spacing-1);
 }
 
 .tagLabel {
     color: var(--a-purple-500);
     font-weight: var(--a-font-weight-bold);
-    padding-left: 0.5rem;
+    padding-left: var(--a-spacing-2);
     text-transform: uppercase;
 }
 
 .tagIcon {
-    height: 1rem;
-    width: 1rem;
+    height: var(--a-spacing-4);
+    width: var(--a-spacing-4);
 }
