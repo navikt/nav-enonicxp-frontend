@@ -84,7 +84,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const chatbotDisabled =
         data?.chatbotToggle === false || editorView === 'edit' || editorView === 'inline';
     const pageType = innholdsTypeMap[content.type];
-    const isFormIntermediateStepPage = content.type === ContentType.FormIntermediateStepPage;
+    const useSimpleDecorator = content.type === ContentType.FormIntermediateStepPage;
 
     return {
         ...defaultParams,
@@ -105,6 +105,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ...(feedbackEnabled && { feedback: true }),
         chatbot: !chatbotDisabled,
         utilsBackground: hasWhiteHeader(content) ? 'white' : 'gray',
-        ...(isFormIntermediateStepPage && { simple: true }),
+        simple: useSimpleDecorator,
     };
 };
