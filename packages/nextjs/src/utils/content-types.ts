@@ -2,8 +2,8 @@ import { ContentType } from 'types/content-props/_content-common';
 
 const legacyContentTypes: ReadonlySet<ContentType> = new Set([
     ContentType.LargeTable,
-    ContentType.MainArticle,
-    ContentType.MainArticleChapter,
+    ContentType.Artikkel,
+    ContentType.Kapittel,
     ContentType.Melding,
     ContentType.OfficeInformation,
     ContentType.PageList,

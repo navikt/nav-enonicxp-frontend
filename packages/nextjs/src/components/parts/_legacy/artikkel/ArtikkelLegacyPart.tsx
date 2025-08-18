@@ -1,41 +1,39 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
-import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
-import { MainArticleText } from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
-import { Faktaboks } from 'components/parts/_legacy/main-article/komponenter/Faktaboks';
-import { SosialeMedier } from 'components/parts/_legacy/main-article/komponenter/SosialeMedier';
-import { Bilde } from 'components/parts/_legacy/main-article/komponenter/Bilde';
 import { translator } from 'translations';
-import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/parseInnholdsfortegnelse';
-
 import { createTypeGuard } from 'types/_type-guards';
-import { MainArticleData } from 'types/content-props/main-article-props';
-import stylePermanent from './MainArticlePermanent.module.scss';
-import styleNews from './MainArticleNewsPress.module.scss';
+import { ArtikkelData } from 'types/content-props/artikkel-props';
+import ArtikkelDato from './komponenter/ArtikkelDato';
+import { Innholdsfortegnelse } from './komponenter/Innholdsfortegnelse';
+import { Artikkeltekst } from './komponenter/Artikkeltekst';
+import { Faktaboks } from './komponenter/Faktaboks';
+import { SosialeMedier } from './komponenter/SosialeMedier';
+import { Bilde } from './komponenter/Bilde';
+import { parseInnholdsfortegnelse } from './komponenter/parseInnholdsfortegnelse';
+
+import stylePermanent from './ArtikkelPermanent.module.scss';
+import styleNews from './ArtikkelNewsPress.module.scss';
 
 const isValidContentType = createTypeGuard([
-    ContentType.MainArticle,
-    ContentType.MainArticleChapter,
+    ContentType.Artikkel,
+    ContentType.Kapittel,
     ContentType.Melding,
 ] as const);
 
-export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
+export const ArtikkelLegacyPart = (propsInitial: ContentProps) => {
     if (!isValidContentType(propsInitial.type)) {
         return null;
     }
 
     const props =
-        propsInitial.type === ContentType.MainArticleChapter
-            ? propsInitial.data.article
-            : propsInitial;
+        propsInitial.type === ContentType.Kapittel ? propsInitial.data.article : propsInitial;
     if (!props) {
         return null;
     }
 
     const { language, displayName, _path } = props;
-    const data = props.data as MainArticleData;
+    const data = props.data as ArtikkelData;
 
     const isNewsArticle = data.contentType === 'news' || data.contentType === 'pressRelease';
 
@@ -53,7 +51,7 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
     const headerClassName = innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
-        <article className={style.article}>
+        <article className={style.artikkel}>
             <header className={headerClassName}>
                 <ArtikkelDato contentProps={props} type={isNewsArticle ? 'newsPress' : 'normal'} />
                 {!isNewsArticle && (
@@ -68,7 +66,7 @@ export const MainArticleLegacyPart = (propsInitial: ContentProps) => {
                 />
             </header>
             {data.text && (
-                <MainArticleText
+                <Artikkeltekst
                     htmlProps={data.text}
                     className={style.text}
                     hasTableOfContents={hasTableOfContents}

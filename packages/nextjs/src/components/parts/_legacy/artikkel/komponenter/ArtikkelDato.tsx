@@ -3,7 +3,6 @@ import { BodyLong, Detail } from '@navikt/ds-react';
 import { getPublishedAndModifiedString, getPublishedDateTime } from 'utils/datetime';
 import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
-
 import styles from './ArtikkelDato.module.scss';
 
 type Props = {

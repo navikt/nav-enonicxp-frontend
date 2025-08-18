@@ -1,5 +1,5 @@
 import React from 'react';
-import { Picture } from 'types/content-props/main-article-props';
+import { Picture } from 'types/content-props/artikkel-props';
 import { XpImage } from 'components/_common/image/XpImage';
 
 import style from './Bilde.module.scss';

@@ -14,7 +14,7 @@ type Props = {
     hasTableOfContents?: boolean;
 };
 
-export const MainArticleText = ({ htmlProps, className, hasTableOfContents }: Props) => {
+export const Artikkeltekst = ({ htmlProps, className, hasTableOfContents }: Props) => {
     const html = hasTableOfContents
         ? injectTableOfContentsIds(htmlProps.processedHtml)
         : htmlProps.processedHtml;

@@ -22,8 +22,8 @@ const isPreviewOnly: ReadonlySet<ContentType> = new Set([
 
 const isValidContent = (content: ContentProps) => {
     switch (content.type) {
-        case ContentType.MainArticleChapter: {
-            return content.data?.article?.type === ContentType.MainArticle;
+        case ContentType.Kapittel: {
+            return content.data?.article?.type === ContentType.Artikkel;
         }
         case ContentType.LargeTable: {
             return !!content.data?.text;

@@ -1,8 +1,8 @@
-import { MenuListItems } from 'types/menu-list-items';
 import { XpImageProps } from 'types/media';
+import { MenuListItems } from 'types/menu-list-items';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentType, ContentCommonProps } from './_content-common';
-import { MainArticleChapterNavigationData } from './main-article-chapter-props';
+import { KapittelNavigasjonData } from './kapittel-props';
 
 export type Picture = Partial<{
     target: XpImageProps;
@@ -15,7 +15,7 @@ export type SocialMedia = 'facebook' | 'twitter' | 'linkedin';
 export type ArticleContentType = 'news' | 'pressRelease' | 'lastingContent';
 export type ArticleSubContentType = 'statistics' | 'none';
 
-export type MainArticleData = Partial<{
+export type ArtikkelData = Partial<{
     ingress: string;
     text: ProcessedHtmlProps;
     hasTableOfContents: string;
@@ -25,10 +25,10 @@ export type MainArticleData = Partial<{
     subContentType: ArticleSubContentType;
     picture: Picture;
     menuListItems: MenuListItems;
-    chapters: MainArticleChapterNavigationData[];
+    chapters: KapittelNavigasjonData[];
 }>;
 
-export type MainArticleProps = ContentCommonProps & {
-    type: ContentType.MainArticle;
-    data: MainArticleData;
+export type ArtikkelProps = ContentCommonProps & {
+    type: ContentType.Artikkel;
+    data: ArtikkelData;
 };

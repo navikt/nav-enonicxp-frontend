@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
+import ArtikkelDato from 'components/parts/_legacy/artikkel/komponenter/ArtikkelDato';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 

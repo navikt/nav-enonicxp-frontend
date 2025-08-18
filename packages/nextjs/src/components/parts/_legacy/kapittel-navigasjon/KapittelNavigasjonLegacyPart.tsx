@@ -4,33 +4,33 @@ import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
-import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { usePageContentProps } from 'store/pageContext';
+import { KapittelNavigasjonData } from 'types/content-props/kapittel-props';
 
-import style from './MainArticleChapterNavigation.module.scss';
+import style from './KapittelNavigasjon.module.scss';
 
-// If the chapter points to any content other than a main-article, we want
+// If the chapter points to any content other than a artikkel, we want
 // to link directly to the content instead, rather than try to render it
 // as a chapter
-const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
-    !chapter.data?.article || chapter.data.article.type === ContentType.MainArticle
+const getChapterPath = (chapter: KapittelNavigasjonData) =>
+    !chapter.data?.article || chapter.data.article.type === ContentType.Artikkel
         ? chapter._path
         : chapter.data.article._path;
 
 const getChapters = (contentProps: ContentProps) => {
-    if (contentProps.type === ContentType.MainArticle) {
+    if (contentProps.type === ContentType.Artikkel) {
         return contentProps.data?.chapters;
     }
 
-    if (contentProps.type === ContentType.MainArticleChapter) {
+    if (contentProps.type === ContentType.Kapittel) {
         return contentProps.parent?.data?.chapters;
     }
 
     return null;
 };
 
-export const MainArticleChapterNavigationLegacyPart = (props: ContentProps) => {
+export const KapittelNavigasjonLegacyPart = (props: ContentProps) => {
     const { language } = usePageContentProps();
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {
@@ -44,7 +44,7 @@ export const MainArticleChapterNavigationLegacyPart = (props: ContentProps) => {
     const headingId = `heading-chapter-navigation`;
 
     return (
-        <nav className={style.mainArticleChapterNavigation} aria-labelledby={headingId}>
+        <nav className={style.kapittelNavigasjon} aria-labelledby={headingId}>
             <Heading id={headingId} level="2" size="medium" className={style.title}>
                 {getLabel('contents')}
             </Heading>

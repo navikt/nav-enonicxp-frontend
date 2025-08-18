@@ -6,8 +6,8 @@ import { ChatbotLenkepanel } from './ChatbotLenkepanel';
 import style from './LegacyPageChatbot.module.scss';
 
 const showOnContentTypes: { [Type in ContentType]?: true } = {
-    [ContentType.MainArticle]: true,
-    [ContentType.MainArticleChapter]: true,
+    [ContentType.Artikkel]: true,
+    [ContentType.Kapittel]: true,
     [ContentType.PageList]: true,
     [ContentType.SectionPage]: true,
 };

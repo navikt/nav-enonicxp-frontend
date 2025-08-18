@@ -5,19 +5,19 @@ import { TemplateProps } from 'types/content-props/template-props';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { lenkelisteDataMock } from './mocks/lenkelisteDataMock';
 import { lenkepanelerDataMock } from './mocks/lenkepanelerDataMock';
-import { mainArticleDataMock } from './mocks/mainArticleDataMock';
+import { artikkelDataMock } from './mocks/artikkelDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 
 const legacyMockData = {
     ...lenkelisteDataMock,
     ...lenkepanelerDataMock,
-    ...mainArticleDataMock,
+    ...artikkelDataMock,
     ...mainPanelDataMock,
 };
 
 const legacyTemplateTypes: ReadonlySet<ContentType> = new Set([
-    ContentType.MainArticle,
-    ContentType.MainArticleChapter,
+    ContentType.Artikkel,
+    ContentType.Kapittel,
     ContentType.OfficeInformation,
     ContentType.SectionPage,
     ContentType.PageList,

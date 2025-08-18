@@ -28,12 +28,12 @@ const getTargetPath = (content: ContentProps) => {
         case ContentType.ExternalLink:
         case ContentType.Url:
             return content.data?.url;
-        case ContentType.MainArticleChapter: {
+        case ContentType.Kapittel: {
             // If the main article chapter content is anything other than a main article
             // we want to redirect to the actual content page. This is provided as a way
             // to gradually migrate individual pages from the chapter structure
             const { article } = content.data;
-            return article?.type !== ContentType.MainArticle ? article?._path : null;
+            return article?.type !== ContentType.Artikkel ? article?._path : null;
         }
         default:
             return null;

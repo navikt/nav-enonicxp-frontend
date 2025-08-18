@@ -1,12 +1,12 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { MainArticleData } from 'types/content-props/main-article-props';
+import { ArtikkelData } from 'types/content-props/artikkel-props';
 
 const contentTypeWithWhiteBackground: ReadonlySet<ContentType> = new Set([
     ContentType.CurrentTopicPage,
     ContentType.FormIntermediateStepPage,
     ContentType.FormsOverview,
     ContentType.Oversikt,
-    ContentType.MainArticle,
+    ContentType.Artikkel,
     ContentType.ProductPage,
     ContentType.GuidePage,
     ContentType.ToolsPage,
@@ -37,8 +37,8 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
 export const hasWhitePage = (content: Pick<ContentProps, 'type' | 'data'>) => {
     const { type } = content;
 
-    if (type === ContentType.MainArticle) {
-        const contentType = (content.data as MainArticleData)?.contentType;
+    if (type === ContentType.Artikkel) {
+        const contentType = (content.data as ArtikkelData)?.contentType;
         return contentType === 'news' || contentType === 'pressRelease';
     }
 
