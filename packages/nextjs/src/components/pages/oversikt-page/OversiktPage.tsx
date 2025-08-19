@@ -10,12 +10,14 @@ import { OversiktList } from './forms-list/OversiktList';
 
 import style from './OversiktPage.module.scss';
 
-const getLinksIfTransportPage = (audience: OversiktAudienceOptions) => {
-    if (audience?._selected !== 'provider') {
+const getLinksIfTransportPage = (audience: OversiktAudienceOptions[]) => {
+    const providerAudience = audience.find((a) => a._selected === 'provider');
+
+    if (providerAudience?._selected !== 'provider') {
         return null;
     }
 
-    const { pageType } = audience.provider;
+    const { pageType } = providerAudience.provider;
     if (pageType?._selected !== 'links') {
         return null;
     }
@@ -30,7 +32,7 @@ export const OversiktPage = (props: OversiktPageProps) => {
     const { page, data } = props;
 
     const { audience, illustration } = data as {
-        audience: OversiktAudienceOptions;
+        audience: OversiktAudienceOptions[];
         illustration: PictogramsProps;
     };
 
@@ -44,7 +46,7 @@ export const OversiktPage = (props: OversiktPageProps) => {
         );
     }
 
-    if (!audience?._selected) {
+    if (!audience.some((a) => a._selected)) {
         return <EditorHelp text={'Ingen målgruppe valgt for skjemaoversikt'} />;
     }
 
