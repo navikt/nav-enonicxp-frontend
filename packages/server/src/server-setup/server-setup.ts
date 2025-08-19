@@ -67,10 +67,17 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     }
 
     expressApp.get('/_next/data/:buildId{/*path}', (req, res) => {
-        const buildId = (req.params as any)['buildId'];
-        if (buildId !== currentBuildId) {
-            logger.info(`Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`);
-            req.url = req.url.replace(buildId, currentBuildId);
+        const requestedBuildId = (req.params as any)['buildId'];
+
+        // When running locally, the currentBuildId may be 'test-build-id' (as a result of running a test) or falsy
+        // if the BUILD_ID file wasn't set in the first place.
+        const targetBuildId = process.env.ENV === 'localhost' ? 'unknown' : currentBuildId;
+
+        if (requestedBuildId !== targetBuildId) {
+            logger.info(
+                `Expected build-id ${targetBuildId}, got ${requestedBuildId} on ${req.path}`
+            );
+            req.url = req.url.replace(requestedBuildId, targetBuildId);
         }
 
         setJsonCacheHeaders(req, res);
