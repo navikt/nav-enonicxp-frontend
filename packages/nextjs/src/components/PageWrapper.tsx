@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react';
+import React, { PropsWithChildren, useEffect, useLayoutEffect } from 'react';
 import { useRouter } from 'next/compat/router';
 import { onBreadcrumbClick, onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -27,6 +27,9 @@ type Props = PropsWithChildren<{
 export const PageWrapper = ({ content, children }: Props) => {
     const isEditorView = !!content.editorView;
     const router = useRouter();
+
+    const isClient = typeof window !== 'undefined';
+    const useIsomorphicLayoutEffect = isClient ? useLayoutEffect : useEffect;
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio
@@ -84,20 +87,19 @@ export const PageWrapper = ({ content, children }: Props) => {
         };
     }, [isEditorView, router]);
 
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         if (!content) {
             return;
         }
 
-        // Prevents focus from "sticking" after async-navigation to a new page
-        const focusedElement = document.activeElement as HTMLElement;
-        if (typeof focusedElement?.blur === 'function') {
-            focusedElement.blur();
-        }
-
-        // Updates decorator-parameters client-side when navigating to new content
         const decoratorParams = getDecoratorParams(content);
         setParams(decoratorParams);
+
+        // Prevents focus from "sticking" after async-navigation to a new page
+        const focusedElement = document.activeElement as HTMLElement | null;
+        if (focusedElement?.blur) {
+            focusedElement.blur();
+        }
 
         if (decoratorParams.availableLanguages && router) {
             decoratorParams.availableLanguages.forEach((language) =>
