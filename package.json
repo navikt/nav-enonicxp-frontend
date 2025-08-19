@@ -11,7 +11,7 @@
         "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
         "storybook": "npm run storybook --workspace packages/nextjs",
         "dev": "npm run copy-env-development && rm -fr packages/nextjs/.next && npm run build:server && npm run start",
-        "dev-custom": "npm run copy-env-development-custom && npm run build && npm run start",
+        "dev-custom": "npm run copy-env-development-custom && npm run build:server && npm run start",
         "build-test-production": "npm run copy-env-prod-local && npm run build",
         "start-test-production": "npm run copy-env-prod-local && npm run start",
         "start-local": "rm -fr packages/nextjs/.next && npm run build-test-production && npm run start-test-production",

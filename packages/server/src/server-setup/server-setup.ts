@@ -73,12 +73,16 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         // if the BUILD_ID file wasn't set in the first place.
         const targetBuildId = process.env.ENV === 'localhost' ? 'unknown' : currentBuildId;
 
+        console.log('targetBuildId:', targetBuildId);
+
         if (requestedBuildId !== targetBuildId) {
             logger.info(
                 `Expected build-id ${targetBuildId}, got ${requestedBuildId} on ${req.path}`
             );
             req.url = req.url.replace(requestedBuildId, targetBuildId);
         }
+
+        console.log(req.url);
 
         setJsonCacheHeaders(req, res);
         return nextRequestHandler(req, res);
