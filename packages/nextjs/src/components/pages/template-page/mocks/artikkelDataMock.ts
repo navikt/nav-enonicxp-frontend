@@ -1,6 +1,6 @@
-import { MainArticleData } from 'types/content-props/main-article-props';
+import { ArtikkelData } from 'types/content-props/artikkel-props';
 
-export const mainArticleDataMock: MainArticleData = {
+export const artikkelDataMock: ArtikkelData = {
     ingress: '',
     text: { processedHtml: '', macros: [] },
     hasTableOfContents: 'none',

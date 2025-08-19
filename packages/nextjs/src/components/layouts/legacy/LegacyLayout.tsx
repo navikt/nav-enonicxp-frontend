@@ -3,9 +3,9 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { LegacyLayoutProps } from 'types/component-props/layouts/legacy-layout';
-import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
+import { NewsPressHeader } from 'components/parts/_legacy/artikkel/komponenter/NewsPressHeader';
 import { ComponentType } from 'types/component-props/_component-common';
-import { MainArticleProps } from 'types/content-props/main-article-props';
+import { ArtikkelProps } from 'types/content-props/artikkel-props';
 
 import style from './LegacyLayout.module.scss';
 
@@ -14,11 +14,10 @@ type Props = {
     layoutProps: LegacyLayoutProps;
 };
 
-const getNewsArticleProps = (pageProps: ContentProps): MainArticleProps | null => {
-    const props =
-        pageProps.type === ContentType.MainArticleChapter ? pageProps.data.article : pageProps;
+const getNewsArticleProps = (pageProps: ContentProps): ArtikkelProps | null => {
+    const props = pageProps.type === ContentType.Kapittel ? pageProps.data.article : pageProps;
 
-    return props?.type === ContentType.MainArticle &&
+    return props?.type === ContentType.Artikkel &&
         (props.data.contentType === 'news' || props.data.contentType === 'pressRelease')
         ? props
         : null;

@@ -21,7 +21,7 @@ import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage
 import { ProductPage } from './pages/product-page/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
-import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
+import { KapittelPage } from './pages/kapittel-page/KapittelPage';
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
@@ -72,8 +72,8 @@ const contentToReactComponent: {
 
     [ContentType.DynamicPage]: DynamicPage,
 
-    [ContentType.MainArticle]: DynamicPage,
-    [ContentType.MainArticleChapter]: MainArticleChapterPage,
+    [ContentType.Artikkel]: DynamicPage,
+    [ContentType.Kapittel]: KapittelPage,
     [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.PageList]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,

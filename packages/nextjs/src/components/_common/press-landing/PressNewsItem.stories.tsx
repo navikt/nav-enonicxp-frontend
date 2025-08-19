@@ -9,7 +9,7 @@ const meta = {
         newsItem: {
             _path: '',
             language: 'no',
-            type: ContentType.MainArticle,
+            type: ContentType.Artikkel,
             displayName: '1 av 5 står utenfor arbeidslivet',
             data: {
                 ingress:

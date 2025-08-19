@@ -9,13 +9,13 @@ import { createTypeGuard } from 'types/_type-guards';
 import style from './MenuList.module.scss';
 
 const isValidContentType = createTypeGuard([
-    ContentType.MainArticle,
-    ContentType.MainArticleChapter,
+    ContentType.Artikkel,
+    ContentType.Kapittel,
     ContentType.PageList,
 ] as const);
 
 export const MenuListLegacyPart = (props: ContentProps) => {
-    const propsActual = props.type === ContentType.MainArticleChapter ? props.data?.article : props;
+    const propsActual = props.type === ContentType.Kapittel ? props.data?.article : props;
 
     if (!isValidContentType(propsActual?.type)) {
         return null;

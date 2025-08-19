@@ -22,7 +22,7 @@ export const lenkelisteDataMock: SectionPageData = {
             sectionContents: [
                 {
                     ...commonProps,
-                    type: ContentType.MainArticle,
+                    type: ContentType.Artikkel,
                     displayName: 'Artikkel 1',
                 },
                 {
@@ -41,12 +41,12 @@ export const lenkelisteDataMock: SectionPageData = {
             sectionContents: [
                 {
                     ...commonProps,
-                    type: ContentType.MainArticle,
+                    type: ContentType.Artikkel,
                     displayName: 'Nyhet 1',
                 },
                 {
                     ...commonProps,
-                    type: ContentType.MainArticle,
+                    type: ContentType.Artikkel,
                     displayName: 'Nyhet 2',
                 },
             ],
@@ -60,7 +60,7 @@ export const lenkelisteDataMock: SectionPageData = {
             sectionContents: [
                 {
                     ...commonProps,
-                    type: ContentType.MainArticle,
+                    type: ContentType.Artikkel,
                     displayName: 'Snarvei 1',
                 },
                 {

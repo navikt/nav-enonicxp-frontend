@@ -1,7 +1,7 @@
 import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { SocialMedia } from 'types/content-props/main-article-props';
+import { SocialMedia } from 'types/content-props/artikkel-props';
 import { usePageContentProps } from 'store/pageContext';
 import {
     hoverFocusIcon,
@@ -85,7 +85,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     }, []);
 
     return (
-        <section className={style.socialMedia}>
+        <section className={style.sosialeMedier}>
             <ul>
                 {linkProps.map((item) => (
                     <SosialeMedierLink key={item.type} {...item} />

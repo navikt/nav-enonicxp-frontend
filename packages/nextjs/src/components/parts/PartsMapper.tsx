@@ -17,17 +17,17 @@ import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignals
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ProductCardMiniPart } from 'components/parts/product-card-mini/ProductCardMiniPart';
-import { MainArticleChapterNavigationLegacyPart } from 'components/parts/_legacy/main-article-chapter-navigation/MainArticleChapterNavigationLegacyPart';
 import { MainPanelsLegacyPart } from 'components/parts/_legacy/main-panels/MainPanelsLegacyPart';
 import { MenuListLegacyPart } from 'components/parts/_legacy/menu-list/MenuListLegacyPart';
 import { PageHeadingLegacyPart } from 'components/parts/_legacy/page-heading/PageHeadingLegacyPart';
 import { PageListLegacyPart } from 'components/parts/_legacy/page-list/PageListLegacyPart';
 import { OfficeInformationLegacyPart } from 'components/parts/_legacy/office-information/OfficeInformationLegacyPart';
 import { LinkListsLegacyPart } from 'components/parts/_legacy/link-lists/LinkListsLegacyPart';
-import { MainArticleLegacyPart } from 'components/parts/_legacy/main-article/MainArticleLegacyPart';
 import { PublishingCalendarLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarLegacyPart';
 import { PublishingCalendarEntryLegacyPart } from 'components/parts/_legacy/publishing-calendar/PublishingCalendarEntryLegacyPart';
 import { ComponentEditorProps } from 'components/ComponentMapper';
+import { KapittelNavigasjonLegacyPart } from './_legacy/kapittel-navigasjon/KapittelNavigasjonLegacyPart';
+import { ArtikkelLegacyPart } from './_legacy/artikkel/ArtikkelLegacyPart';
 import { SeksjonForSnarveierPaForsideForPrivatpersonPart } from './seksjon-for-snarveier-pa-forside-for-privatperson/SeksjonForSnarveierPaForsideForPrivatpersonPart';
 import { SeksjonForSnarveierPart } from './seksjon-for-snarveier/SeksjonForSnarveierPart';
 import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
@@ -141,10 +141,10 @@ const PartComponentMapper = ({
             return <LinkListsLegacyPart {...pageProps} />;
         case PartLegacyType.LinkPanels:
             return <LinkPanelsLegacyPart {...pageProps} />;
-        case PartLegacyType.MainArticle:
-            return <MainArticleLegacyPart {...pageProps} />;
-        case PartLegacyType.MainArticleLinkedList:
-            return <MainArticleChapterNavigationLegacyPart {...pageProps} />;
+        case PartLegacyType.Artikkel:
+            return <ArtikkelLegacyPart {...pageProps} />;
+        case PartLegacyType.ArtikkelLinkedList:
+            return <KapittelNavigasjonLegacyPart {...pageProps} />;
         case PartLegacyType.MainPanels:
             return <MainPanelsLegacyPart {...pageProps} />;
         case PartLegacyType.MenuList:

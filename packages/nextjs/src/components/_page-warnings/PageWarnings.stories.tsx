@@ -18,7 +18,7 @@ export const MultipleWarnings: Story = {
             type: ContentType.ContactInformationPage,
             isPagePreview: true,
             isFailover: true,
-            originalType: ContentType.MainArticle,
+            originalType: ContentType.Artikkel,
             redirectToLayer: 'en',
         },
     },
@@ -28,7 +28,7 @@ export const WhiteBackground: Story = {
     args: {
         content: {
             ...MultipleWarnings.args.content,
-            type: ContentType.MainArticle,
+            type: ContentType.Artikkel,
             data: {
                 contentType: 'news',
             },

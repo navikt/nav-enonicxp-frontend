@@ -15,12 +15,12 @@ import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
 import { PageListProps } from './page-list-props';
-import { MainArticleProps } from './main-article-props';
+import { ArtikkelProps } from './artikkel-props';
 import { ErrorProps } from './error-props';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
-import { MainArticleChapterProps } from './main-article-chapter-props';
+import { KapittelProps } from './kapittel-props';
 import { OfficeInformationProps } from './office-information-props';
 import { UrlProps } from './url-props';
 import {
@@ -71,8 +71,8 @@ export enum ContentType {
     GuidePage = 'no.nav.navno:guide-page',
     InternalLink = 'no.nav.navno:internal-link',
     LargeTable = 'no.nav.navno:large-table',
-    MainArticle = 'no.nav.navno:main-article',
-    MainArticleChapter = 'no.nav.navno:main-article-chapter',
+    Artikkel = 'no.nav.navno:main-article',
+    Kapittel = 'no.nav.navno:main-article-chapter',
     Melding = 'no.nav.navno:melding',
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
     OfficeInformation = 'no.nav.navno:office-information',
@@ -124,8 +124,8 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
     [ContentType.OfficePage]: 'Kontorside (gammel)',
     [ContentType.PageList]: 'Artikkelliste',
-    [ContentType.MainArticle]: 'Artikkel',
-    [ContentType.MainArticleChapter]: 'Kapittel',
+    [ContentType.Artikkel]: 'Artikkel',
+    [ContentType.Kapittel]: 'Kapittel',
     [ContentType.ProductDetails]: 'Produktdetaljer',
     [ContentType.ProductPage]: 'Produktside',
     [ContentType.Overview]: 'Oversiktsside',
@@ -233,8 +233,8 @@ type SpecificContentProps =
     | GuidePageProps
     | InternalLinkProps
     | LargeTableProps
-    | MainArticleChapterProps
-    | MainArticleProps
+    | KapittelProps
+    | ArtikkelProps
     | OfficeEditorialPageProps
     | OfficeInformationProps
     | OfficePageProps
