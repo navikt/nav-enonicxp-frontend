@@ -71,9 +71,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
 
         // When running locally, the currentBuildId may be 'test-build-id' (as a result of running a test) or falsy
         // if the BUILD_ID file wasn't set in the first place.
-        const targetBuildId = process.env.ENV === 'localhost' ? 'unknown' : currentBuildId;
-
-        console.log('targetBuildId:', targetBuildId);
+        const targetBuildId = process.env.ENV === 'localhost' ? 'development' : currentBuildId;
 
         if (requestedBuildId !== targetBuildId) {
             logger.info(
@@ -81,8 +79,6 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
             );
             req.url = req.url.replace(requestedBuildId, targetBuildId);
         }
-
-        console.log(req.url);
 
         setJsonCacheHeaders(req, res);
         return nextRequestHandler(req, res);
