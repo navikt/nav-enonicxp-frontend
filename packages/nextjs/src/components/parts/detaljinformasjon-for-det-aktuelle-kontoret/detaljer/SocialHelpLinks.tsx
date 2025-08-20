@@ -1,10 +1,10 @@
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { forceArray } from 'utils/arrays';
-import { OfficeEditorialDetailProps } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
+import { DetaljinformasjonForDetAktuelleKontoretProps } from 'components/parts/detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 
 import styles from './SocialHelpLinks.module.scss';
 
-export const SocialHelpLinks = ({ officeData }: OfficeEditorialDetailProps) => {
+export const SocialHelpLinks = ({ officeData }: DetaljinformasjonForDetAktuelleKontoretProps) => {
     const socialHelpLinks = forceArray(officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader);
 
     if (!socialHelpLinks || socialHelpLinks.length === 0) {
