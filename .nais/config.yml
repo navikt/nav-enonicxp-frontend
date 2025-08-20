@@ -51,6 +51,8 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+    - name: DECORATOR_NOCACHE
+      value: "true"
   strategy:
     rollingUpdate:
       maxSurge: 3
