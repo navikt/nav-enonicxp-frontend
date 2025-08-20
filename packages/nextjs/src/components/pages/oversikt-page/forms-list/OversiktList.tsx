@@ -36,8 +36,8 @@ const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
 
     // Skjemadetaljer or "tjeneste fra A til Å"
     return [
-        { name: 'sortTitle', weight: 10 },
         { name: 'title', weight: 10 },
+        { name: 'sortTitle', weight: 8 },
         { name: 'ingress', weight: 8 },
         { name: 'subItems.title', weight: 2 },
         { name: 'keywords', weight: 2 },
