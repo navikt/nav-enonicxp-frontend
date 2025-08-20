@@ -28,7 +28,7 @@ export const OversiktFilterBase = <Type extends Area>({
     return (
         <section className={styles.oversiktFilter}>
             <Heading className="sr-only" size="xsmall" level="3">
-                {translations['choose']}
+                {translations['select']}
             </Heading>
             <Chips className={styles.filterWrapper}>
                 {options.map((option) => {

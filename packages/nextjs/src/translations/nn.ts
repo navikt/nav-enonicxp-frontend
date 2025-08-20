@@ -179,12 +179,12 @@ export const translationsBundleNn: PartialTranslations = {
         any: 'Frå A til Å',
         more: 'Meir om',
         areas: {
-            choose: 'Vel område',
+            select: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
             ariaItemExplanation: 'Vis område',
         },
         taxonomies: {
-            choose: 'Vel type',
+            select: 'Vel type',
             ariaExplanation: 'Filtrer lista etter type',
             ariaItemExplanation: 'Vis type',
         },
@@ -200,12 +200,12 @@ export const translationsBundleNn: PartialTranslations = {
         any: 'Frå A til Å',
         more: 'Meir om',
         areas: {
-            choose: 'Vel område',
+            select: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
             ariaItemExplanation: 'Vis område',
         },
         taxonomies: {
-            choose: 'Vel type',
+            select: 'Vel type',
             ariaExplanation: 'Filtrer lista etter type',
             ariaItemExplanation: 'Vis type',
         },

@@ -35,7 +35,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
     return (
         <section className={styles.overviewFilter}>
             <Heading size={'xsmall'} level={'3'}>
-                {translations['choose']}
+                {translations['select']}
             </Heading>
             <Chips className={styles.filterWrapper}>
                 {options.map((option) => {

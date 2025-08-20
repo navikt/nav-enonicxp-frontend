@@ -207,12 +207,12 @@ export const translationsBundleNb = {
         any: 'Fra A til Å',
         more: 'Mer om',
         areas: {
-            choose: 'Velg område',
+            select: 'Velg område',
             ariaExplanation: 'Filtrer listen etter område',
             ariaItemExplanation: 'Vis område',
         },
         taxonomies: {
-            choose: 'Velg type',
+            select: 'Velg type',
             ariaExplanation: 'Filtrer listen etter type',
             ariaItemExplanation: 'Vis type',
         },
@@ -228,12 +228,12 @@ export const translationsBundleNb = {
         any: 'Fra A til Å',
         more: 'Mer om',
         areas: {
-            choose: 'Velg område',
+            select: 'Velg område',
             ariaExplanation: 'Filtrer listen etter område',
             ariaItemExplanation: 'Vis område',
         },
         taxonomies: {
-            choose: 'Velg type',
+            select: 'Velg type',
             ariaExplanation: 'Filtrer listen etter type',
             ariaItemExplanation: 'Vis type',
         },
