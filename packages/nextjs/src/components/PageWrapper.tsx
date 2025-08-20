@@ -97,7 +97,7 @@ export const PageWrapper = ({ content, children }: Props) => {
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement | null;
-        if (focusedElement?.blur) {
+        if (typeof focusedElement?.blur === 'function') {
             focusedElement.blur();
         }
 
