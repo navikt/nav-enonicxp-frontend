@@ -77,7 +77,7 @@ export type OversiktPageData = {
         | 'processing_times'
         | 'all_products';
     illustration: PictogramsProps;
-    audience: OversiktAudienceOptions;
+    audience: OversiktAudienceOptions[];
     areasFilterToggle: boolean;
     textFilterToggle: boolean;
     itemList: OversiktItemListItem[];

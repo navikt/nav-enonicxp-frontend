@@ -6,16 +6,19 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { OversiktAudienceOptions, OversiktPageProps } from 'types/content-props/oversikt-props';
 import { PictogramsProps } from 'types/content-props/pictograms';
+import { forceArray } from 'utils/arrays';
 import { OversiktList } from './forms-list/OversiktList';
 
 import style from './OversiktPage.module.scss';
 
-const getLinksIfTransportPage = (audience: OversiktAudienceOptions) => {
-    if (audience?._selected !== 'provider') {
+const getLinksIfTransportPage = (audience: OversiktAudienceOptions[]) => {
+    const providerAudience = audience.find((a) => a._selected === 'provider');
+
+    if (providerAudience?._selected !== 'provider') {
         return null;
     }
 
-    const { pageType } = audience.provider;
+    const { pageType } = providerAudience.provider;
     if (pageType?._selected !== 'links') {
         return null;
     }
@@ -30,9 +33,11 @@ export const OversiktPage = (props: OversiktPageProps) => {
     const { page, data } = props;
 
     const { audience, illustration } = data as {
-        audience: OversiktAudienceOptions;
+        audience: OversiktAudienceOptions[];
         illustration: PictogramsProps;
     };
+
+    const audienceAsArray = forceArray(audience);
 
     if (!page) {
         return <EditorHelp text={'Ingen page-komponent er valgt'} />;
@@ -44,11 +49,11 @@ export const OversiktPage = (props: OversiktPageProps) => {
         );
     }
 
-    if (!audience?._selected) {
+    if (!audienceAsArray.some((a) => a._selected)) {
         return <EditorHelp text={'Ingen målgruppe valgt for skjemaoversikt'} />;
     }
 
-    const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
+    const audienceSubCategoryLinks = getLinksIfTransportPage(audienceAsArray);
 
     return (
         <article className={style.page}>
