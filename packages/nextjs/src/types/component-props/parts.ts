@@ -19,7 +19,7 @@ import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart
 import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
 import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
-import { PartConfigOfficeEditorialDetail } from 'components/parts/office-editorial-detail/OfficeEditorialDetailPart';
+import { PartConfigDetaljinformasjonForDetAktuelleKontoret } from 'components/parts/detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
 import { PartConfigPageNavigationMenu } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDatesPart';
@@ -43,7 +43,7 @@ export enum PartType {
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
     Kalkulator = 'no.nav.navno:calculator',
-    OfficeEditorialDetail = 'no.nav.navno:office-editorial-detail',
+    DetaljinformasjonForDetAktuelleKontoret = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
@@ -112,7 +112,7 @@ type PartConfigs = {
     [PartType.Lenkepanel]: PartConfigLenkepanel;
     [PartType.KortForInnloggetBruker]: PartConfigKortForInnloggetBruker;
     [PartType.NewsList]: PartConfigNewsList;
-    [PartType.OfficeEditorialDetail]: PartConfigOfficeEditorialDetail;
+    [PartType.DetaljinformasjonForDetAktuelleKontoret]: PartConfigDetaljinformasjonForDetAktuelleKontoret;
     [PartType.PageHeader]: PartConfigPageHeader;
     [PartType.PageNavigationMenu]: PartConfigPageNavigationMenu;
     [PartType.PayoutDates]: PartConfigPayoutDates;

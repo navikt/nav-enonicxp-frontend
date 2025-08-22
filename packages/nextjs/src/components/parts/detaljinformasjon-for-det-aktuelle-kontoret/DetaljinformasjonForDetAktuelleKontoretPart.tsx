@@ -4,10 +4,10 @@ import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
-import { ServiceInformation } from './details/ServiceInformation';
-import { SocialHelpLinks } from './details/SocialHelpLinks';
-import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
-import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
+import { ServiceInformation } from './detaljer/ServiceInformation';
+import { SocialHelpLinks } from './detaljer/SocialHelpLinks';
+import { SocialHelpPayoutInformation } from './detaljer/SocialHelpPayoutInformation';
+import { SocialHelpPostalInformation } from './detaljer/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
 
 enum DetailType {
@@ -17,7 +17,10 @@ enum DetailType {
     SOCIAL_HELP_PAYOUT_INFORMATION = 'socialHelpPayoutInformation',
 }
 
-const detailComponents: Record<DetailType, React.FunctionComponent<OfficeEditorialDetailProps>> = {
+const detailComponents: Record<
+    DetailType,
+    React.FunctionComponent<DetaljinformasjonForDetAktuelleKontoretProps>
+> = {
     [DetailType.SERVICE_INFORMATION]: ServiceInformation,
     [DetailType.SOCIAL_HELP_LINKS]: SocialHelpLinks,
     [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: SocialHelpPayoutInformation,
@@ -34,17 +37,17 @@ const editorTranslation: Record<DetailType, string> = {
         'informasjon om postkasse/henting av søknad for sosialhjelp.',
 };
 
-export type OfficeEditorialDetailProps = {
+export type DetaljinformasjonForDetAktuelleKontoretProps = {
     officeData: OfficeDetailsData;
 };
 
-export type PartConfigOfficeEditorialDetail = {
+export type PartConfigDetaljinformasjonForDetAktuelleKontoret = {
     detailType?: DetailType;
 };
 
-export const OfficeEditorialDetailPart = ({
+export const DetaljinformasjonForDetAktuelleKontoretPart = ({
     config,
-}: PartComponentProps<PartType.OfficeEditorialDetail>) => {
+}: PartComponentProps<PartType.DetaljinformasjonForDetAktuelleKontoret>) => {
     const pageProps = usePageContentProps();
     const { detailType } = config;
 
