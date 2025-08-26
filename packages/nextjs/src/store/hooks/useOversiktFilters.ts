@@ -13,6 +13,8 @@ import { getFuseSearchFunc } from 'utils/text-search-utils';
 
 export type OversiktFilterableItem = {
     area: Area[];
+    sortTitle?: string;
+    title?: string;
 };
 
 type FilteredListProps<ItemType extends OversiktFilterableItem> = {
@@ -38,7 +40,12 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
     );
 
     if (!textFilterActual || !fuseOptions) {
-        return itemsMatchingToggleFilters;
+        // Sort using Norwegian locale to ensure Å comes last
+        return itemsMatchingToggleFilters.sort((a, b) => {
+            const titleA = a.sortTitle || a.title || '';
+            const titleB = b.sortTitle || b.title || '';
+            return titleA.localeCompare(titleB, 'no-NO');
+        });
     }
 
     return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then((fuseSearchFunc) => {
