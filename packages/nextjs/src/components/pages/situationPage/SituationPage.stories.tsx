@@ -9,7 +9,7 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
-import * as PageNavigationMenu from 'components/_common/pageNavigationMenu/PageNavigationMenu.stories';
+import * as MenyForInternnavigasjon from 'components/_common/menyForInternnavigasjon/MenyForInternnavigasjon.stories';
 import { SituationPage } from './SituationPage';
 
 const withStore: Decorator = (Story) => (
@@ -101,9 +101,9 @@ const meta = {
                         {
                             path: '/pageContent/1',
                             type: ComponentType.Part,
-                            descriptor: PartType.PageNavigationMenu,
+                            descriptor: PartType.MenyForInternnavigasjon,
                             config: {
-                                anchorLinks: PageNavigationMenu.default.args.anchorLinks,
+                                anchorLinks: MenyForInternnavigasjon.default.args.anchorLinks,
                             },
                         },
                     ],
