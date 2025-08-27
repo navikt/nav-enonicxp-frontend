@@ -3,7 +3,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
+import { MenyForInternnavigasjon } from 'components/_common/menyForInternnavigasjon/MenyForInternnavigasjon';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
@@ -20,7 +20,7 @@ type Props = {
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const { language, languages } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
+    const getLabel = translator('internnavigasjon', language);
 
     if (!regions || !config) {
         return null;
@@ -47,9 +47,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AktuelleMalgrupper />}
                 {showInternalNav && (
-                    <PageNavigationMenu
+                    <MenyForInternnavigasjon
                         anchorLinks={anchorLinks}
-                        title={getLabel('pageNavigationMenu')}
+                        title={getLabel('menyForInternnavigasjon')}
                         isChapterNavigation={true}
                     />
                 )}

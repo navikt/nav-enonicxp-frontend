@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
+import { MenyForInternnavigasjon } from 'components/_common/menyForInternnavigasjon/MenyForInternnavigasjon';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
@@ -11,24 +11,24 @@ export type AnchorLink = {
     isPartRelatedSituations?: boolean;
 };
 
-export type PartConfigPageNavigationMenu = {
+export type PartConfigMenyForInternnavigasjon = {
     anchorLinks: AnchorLink[];
 };
 
-export const PageNavigationMenuPart = ({
+export const MenyForInternnavigasjonPart = ({
     config,
-}: PartComponentProps<PartType.PageNavigationMenu>) => {
+}: PartComponentProps<PartType.MenyForInternnavigasjon>) => {
     const { language } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
+    const getLabel = translator('internnavigasjon', language);
 
     if (!config) {
         return null;
     }
 
     return (
-        <PageNavigationMenu
+        <MenyForInternnavigasjon
             anchorLinks={config.anchorLinks}
-            title={getLabel('pageNavigationMenu')}
+            title={getLabel('menyForInternnavigasjon')}
             isChapterNavigation
         />
     );

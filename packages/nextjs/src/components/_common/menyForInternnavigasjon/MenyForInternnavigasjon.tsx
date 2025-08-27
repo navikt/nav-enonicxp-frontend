@@ -1,13 +1,13 @@
 import React, { useId } from 'react';
 import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { AnchorLink } from 'components/parts/meny-for-internnavigasjon/MenyForInternnavigasjonPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 
-import style from './PageNavigationMenu.module.scss';
+import style from './MenyForInternnavigasjon.module.scss';
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
     anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
@@ -19,7 +19,7 @@ type Props = {
     isChapterNavigation?: boolean;
 };
 
-export const PageNavigationMenu = ({
+export const MenyForInternnavigasjon = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
     title,
@@ -40,7 +40,7 @@ export const PageNavigationMenu = ({
         <nav
             aria-labelledby={headingId}
             className={classNames(
-                style.pageNavigationMenu,
+                style.menyForInternnavigasjon,
                 isChapterNavigation && style.chapterNavigation
             )}
         >

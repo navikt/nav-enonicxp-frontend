@@ -373,8 +373,8 @@ export const translationsBundleNb = {
         otherOffers: 'Andre tilbud',
         moreInformation: 'Mer informasjon til deg som',
     },
-    internalNavigation: {
-        pageNavigationMenu: 'Innhold på siden',
+    internnavigasjon: {
+        menyForInternnavigasjon: 'Innhold på siden',
         sectionNavigation: 'I dette kapittelet',
     },
 };

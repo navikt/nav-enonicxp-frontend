@@ -21,7 +21,7 @@ import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innl
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigDetaljinformasjonForDetAktuelleKontoret } from 'components/parts/detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
-import { PartConfigPageNavigationMenu } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { PartConfigMenyForInternnavigasjon } from 'components/parts/meny-for-internnavigasjon/MenyForInternnavigasjonPart';
 import { PartConfigPayoutDates } from 'components/parts/payout-dates/PayoutDatesPart';
 import { PartConfigProductCard } from 'components/parts/product-card/ProductCardPart';
 import { PartConfigProductDetails } from 'components/parts/product-details/ProductDetailsPart';
@@ -47,7 +47,7 @@ export enum PartType {
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
-    PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
+    MenyForInternnavigasjon = 'no.nav.navno:page-navigation-menu',
     Filtreringsmeny = 'no.nav.navno:filters-menu',
     ProductCard = 'no.nav.navno:product-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
@@ -114,7 +114,7 @@ type PartConfigs = {
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.DetaljinformasjonForDetAktuelleKontoret]: PartConfigDetaljinformasjonForDetAktuelleKontoret;
     [PartType.PageHeader]: PartConfigPageHeader;
-    [PartType.PageNavigationMenu]: PartConfigPageNavigationMenu;
+    [PartType.MenyForInternnavigasjon]: PartConfigMenyForInternnavigasjon;
     [PartType.PayoutDates]: PartConfigPayoutDates;
     [PartType.ProductCard]: PartConfigProductCard;
     [PartType.ProductCardMicro]: PartConfigProductCardMicro;

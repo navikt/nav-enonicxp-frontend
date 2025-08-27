@@ -353,8 +353,8 @@ export const translationsBundleEn: PartialTranslations = {
         otherOffers: 'Other options',
         moreInformation: 'More information for you who',
     },
-    internalNavigation: {
-        pageNavigationMenu: 'Contents',
+    internnavigasjon: {
+        menyForInternnavigasjon: 'Contents',
         sectionNavigation: 'In this chapter',
     },
 };

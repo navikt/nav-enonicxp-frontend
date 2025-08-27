@@ -334,8 +334,8 @@ export const translationsBundleNn: PartialTranslations = {
         otherOffers: 'Andre tilbod',
         moreInformation: 'Meir informasjon til deg som',
     },
-    internalNavigation: {
-        pageNavigationMenu: 'Innhald på sida',
+    internnavigasjon: {
+        menyForInternnavigasjon: 'Innhald på sida',
         sectionNavigation: 'I dette kapittelet',
     },
 };
