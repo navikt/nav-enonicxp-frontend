@@ -3,7 +3,8 @@
 @mixin transitionMixin {
     transition:
         all 0.3s ease-out,
-        box-shadow 0s;
+        outline 0s,
+        outline-offset 0s;
 }
 
 $height-full-size: 160px;
@@ -22,40 +23,12 @@ $size-small: 0.5;
     padding: 0;
     overflow: hidden;
 
-    :global(.navds-link-panel__content) {
-        display: flex;
-        align-items: center;
-        position: relative;
-        width: 100%;
-        min-height: $height-full-size;
-        border-radius: var(--a-border-radius-large);
-
-        @media only screen and (max-width: common.$desktopMaxWidth) {
-            min-height: $height-full-size * $size-medium;
-            height: auto;
-        }
-
-        @media #{common.$mq-screen-mobile-small} {
-            min-height: $height-full-size * $size-small;
-        }
-    }
-
-    :global(.navds-link-panel__title) {
-        text-decoration-line: underline;
-        text-decoration-thickness: 0.05em;
-        text-underline-offset: 0.1em;
-    }
-
-    :global(.navds-link-panel__chevron) {
-        display: none;
-    }
-
     &:hover {
         &:not(:focus) {
             box-shadow: none;
         }
 
-        :global(.navds-link-panel__title) {
+        :global(.navds-link-card__title) {
             color: var(--default-action-color);
             text-decoration-line: none;
         }
@@ -68,9 +41,22 @@ $size-small: 0.5;
     &:active {
         background-color: var(--a-deepblue-50);
 
-        :global(.navds-link-panel__title) {
+        :global(.navds-link-card__title) {
             color: var(--a-gray-900);
         }
+    }
+
+    .lenkebase {
+        text-decoration: none;
+    }
+
+    :global(.navds-link-card__title) {
+        font-size: var(--a-font-size-heading-medium);
+        letter-spacing: -0.002em;
+        line-height: var(--a-font-line-height-heading-medium);
+        text-decoration-line: underline;
+        text-decoration-thickness: 0.05em;
+        text-underline-offset: 0.1em;
     }
 
     @media only screen and (max-width: common.$desktopMaxWidth) {
@@ -89,7 +75,7 @@ $size-small: 0.5;
             width: 100%;
         }
 
-        :global(.navds-link-panel__title) {
+        :global(.navds-link-card__title) {
             font-size: var(--a-font-size-heading-small);
             line-height: var(--a-font-line-height-heading-small);
         }
@@ -100,6 +86,7 @@ $size-small: 0.5;
 .titleLong {
     @include transitionMixin;
 
+    display: block;
     width: 15.25rem;
     margin-left: var(--a-spacing-6);
     padding-right: 0;

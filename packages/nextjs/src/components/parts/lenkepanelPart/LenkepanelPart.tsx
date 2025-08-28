@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, LinkPanel } from '@navikt/ds-react';
+import { Heading, LinkCard } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -49,52 +49,77 @@ export const LenkepanelPart = ({ config }: PartComponentProps<PartType.Lenkepane
         selectedVariant === 'vertical' || selectedVariant === 'verticalWithBgColor';
     const legacyAnalyticsComponentLabel = isVerticalLayout ? 'main-panels' : 'link-panel';
 
+    function LenkePanelIkon(props: { icon: XpImageProps, selectedVariant: string | undefined }) {
+        const { icon, selectedVariant } = props;
+
+        return (
+            <div
+                aria-hidden={'true'}
+                className={classNames(
+                    style.icon,
+                    selectedVariant === 'verticalWithBgColor' && style.bg
+                )}
+                style={{
+                    ...(selectedVariant === 'verticalWithBgColor' && {
+                        backgroundColor: variantConfig?.iconBg?.color,
+                        alignItems: variantConfig?.iconJustify,
+                    }),
+                }}
+            >
+                <XpImage imageProps={icon} maxWidth={isVerticalLayout ? 384 : 64} />
+            </div>
+        );
+    }
+
     return (
-        <LinkPanel
-            href={linkProps.url}
-            className={classNames(style.lenkepanel, isVerticalLayout ? `vertical` : 'horizontal')}
-            border={true}
+        <LinkCard
+            className={classNames(style.lenkepanel, isVerticalLayout ? `vertical` : 'horizontal' )}
+            arrow={!isVerticalLayout}
+            arrowPosition='center'
             style={
                 bgUrl
                     ? {
-                          backgroundImage: `url(${buildImageCacheUrl({
-                              src: bgUrl,
-                              isEditorView,
-                              maxWidth: 480,
-                              quality: 90,
-                          })})`,
-                      }
+                        backgroundImage: `url(${buildImageCacheUrl({
+                            src: bgUrl,
+                            isEditorView,
+                            maxWidth: 480,
+                            quality: 90,
+                        })})`,
+                    }
                     : undefined
             }
-            analyticsLabel={linkProps.text}
-            analyticsComponent={legacyAnalyticsComponentLabel}
-            as={LenkeBase}
         >
-            <div className={style.innhold}>
-                <div className={style.header}>
-                    {icon && (
-                        <div
-                            aria-hidden={'true'}
-                            className={classNames(
-                                style.icon,
-                                selectedVariant === 'verticalWithBgColor' && style.bg
-                            )}
-                            style={{
-                                ...(selectedVariant === 'verticalWithBgColor' && {
-                                    backgroundColor: variantConfig?.iconBg?.color,
-                                    alignItems: variantConfig?.iconJustify,
-                                }),
-                            }}
-                        >
-                            <XpImage imageProps={icon} maxWidth={isVerticalLayout ? 384 : 64} />
+            {icon && selectedVariant === 'verticalWithBgColor' && (
+                <LinkCard.Image>
+                    <LenkePanelIkon icon={icon} selectedVariant={selectedVariant} />
+                </LinkCard.Image>
+            )}
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase
+                        className={style.lenkebase}
+                        href={linkProps.url}
+                        analyticsLabel={linkProps.text}
+                        analyticsComponent={legacyAnalyticsComponentLabel}
+                    >
+                        <div className={style.innhold}>
+                            <div className={style.header}>
+                                {icon && selectedVariant !== 'verticalWithBgColor' && (
+                                    <LenkePanelIkon icon={icon} selectedVariant={selectedVariant} />
+                                )}
+                                <Heading level="2" size="medium" className={style.title}>
+                                    {linkProps.text}
+                                </Heading>
+                            </div>
                         </div>
-                    )}
-                    <Heading level="2" size="medium" className={style.title}>
-                        {linkProps.text}
-                    </Heading>
-                </div>
-                <div className={style.ingress}>{ingress}</div>
-            </div>
-        </LinkPanel>
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            {ingress && (
+                <LinkCard.Description>
+                    <div className={style.ingress}>{ingress}</div>
+                </LinkCard.Description>
+            )}
+        </LinkCard>
     );
 };
