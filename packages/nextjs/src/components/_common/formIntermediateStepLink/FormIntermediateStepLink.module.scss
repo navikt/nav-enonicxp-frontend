@@ -1,34 +1,13 @@
 .lenkepanel {
     border-radius: var(--a-border-radius-large);
 
-    :global(.navds-link-panel__content) {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     :global(.navds-link-card__title),
     :global(.navds-link-anchor__arrow) {
         color: var(--default-action-color);
     }
 
-    :global(.navds-link-panel__title) {
-        color: var(--default-action-color);
-        font-size: var(--a-font-size-heading-small);
-    }
-
-    :global(.navds-link-panel__description) {
-        margin-top: 0;
-    }
-
     :global(.navds-link-card__footer) {
         display: block;
-    }
-
-    :global(.navds-link-panel__chevron) {
-        display: none;
     }
 
     &:hover {
