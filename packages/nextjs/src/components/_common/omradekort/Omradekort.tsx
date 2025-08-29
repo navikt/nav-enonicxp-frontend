@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkPanel } from '@navikt/ds-react';
+import { LinkCard } from '@navikt/ds-react';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
@@ -15,7 +15,7 @@ type Props = {
     area: string;
     linkGroup?: string;
     className?: string;
-} & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
+} & React.ComponentProps<typeof LinkCard>;
 
 export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
     const { layoutConfig } = useLayoutConfig();
@@ -26,20 +26,25 @@ export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }:
     }
 
     return (
-        <LinkPanel
+        <LinkCard
             {...rest}
-            border={false}
-            href={path}
-            analyticsLabel={title}
-            analyticsComponent={'Områdekort'}
-            analyticsLinkGroup={analyticsLinkGroup}
+            arrow={false}
             className={classNames(style.lenkepanel, graphicsStyle.expandOnHover, className)}
-            as={LenkeBase}
         >
-            <div className={title.length > 17 ? style.titleLong : style.titleShort}>
-                <LinkPanel.Title>{title}</LinkPanel.Title>
-            </div>
+            <LinkCard.Title className={title.length > 17 ? style.titleLong : style.titleShort}>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase
+                        href={path}
+                        analyticsLabel={title}
+                        analyticsComponent={'Områdekort'}
+                        analyticsLinkGroup={analyticsLinkGroup}
+                        className={style.lenkebase}
+                    >
+                        {title}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
             <OmradekortGraphics type={area} insideCard />
-        </LinkPanel>
+        </LinkCard>
     );
 };

@@ -1,23 +1,32 @@
 @use 'common' as common;
 
-.lenkepanelNavno {
-    &:global(.navds-link-panel) {
-        border: 1px solid var(--default-action-color);
+// Trengs på grunn av global-override-styles.scss
+// Slettes som en del av #2454
+:global(.part__dynamic-link-panel) > .lenkepanelNavno {
+    font-size: var(--a-font-size-body-medium);
+    line-height: var(--a-line-height-body-medium);
+    margin-bottom: 0;
+
+    :global(.navds-link-card__title) {
+        margin-bottom: 0;
     }
+}
+
+.lenkepanelNavno {
+    border-color: var(--default-action-color);
+    border-radius: var(--a-border-radius-small);
 
     :global {
-        .navds-link-panel__content {
-            display: flex;
-        }
-
-        .navds-link-panel__title,
-        .navds-link-panel__chevron {
+        .navds-link-card__title,
+        .navds-link-anchor__arrow {
             color: var(--default-action-color);
         }
     }
 
     &:hover {
-        :global(.navds-link-panel__title) {
+        box-shadow: var(--a-shadow-small);
+
+        :global(.navds-link-card__title) {
             color: var(--default-action-color);
             text-decoration-line: underline;
             text-decoration-thickness: 0.05em;
@@ -28,6 +37,11 @@
     @media #{common.$mq-screen-mobile} {
         padding: var(--a-spacing-3) var(--a-spacing-4);
     }
+}
+
+.lenkebase {
+    text-decoration: none;
+    outline: 0;
 }
 
 .innhold {
@@ -58,7 +72,7 @@
     border: none;
     background-color: var(--a-gray-600);
     height: 1px;
-    margin: var(--a-spacing-4) auto;
+    margin: var(--a-spacing-4) 0;
 }
 
 .vertikal {
@@ -66,9 +80,13 @@
     text-align: center;
 
     :global {
-        .navds-link-panel__chevron {
-            display: none;
+        .navds-link-card__title {
+            justify-content: center;
         }
+    }
+
+    .separator {
+        margin-inline: auto;
     }
 
     .ikon {

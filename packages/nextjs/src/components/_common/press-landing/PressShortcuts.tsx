@@ -1,4 +1,5 @@
-import { Heading, LinkPanel } from '@navikt/ds-react';
+import { Heading, LinkCard } from '@navikt/ds-react';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
 import { translator } from 'translations';
 import { getPublicPathname } from 'utils/urls';
@@ -29,12 +30,15 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                     {shortcuts.data.sectionContents.map((shortcut) => {
                         return (
                             <li key={shortcut._path}>
-                                <LinkPanel
-                                    href={getPublicPathname({ _path: shortcut._path })}
-                                    className={styles.shortcutItem}
-                                >
-                                    {shortcut.displayName}
-                                </LinkPanel>
+                                <LinkCard arrowPosition='center' className={styles.shortcutItem}>
+                                    <LinkCard.Title>
+                                        <LinkCard.Anchor asChild>
+                                            <LenkeBase href={getPublicPathname({ _path: shortcut._path })}>
+                                                {shortcut.displayName}
+                                            </LenkeBase>
+                                        </LinkCard.Anchor>
+                                    </LinkCard.Title>
+                                </LinkCard>
                             </li>
                         );
                     })}
