@@ -18,6 +18,11 @@ const closeDecoratorMenus = () => window.dispatchEvent(new CustomEvent('closemen
 
 export const hookAndInterceptInternalLink =
     (router: NextRouter, isEditorView: boolean) => (e: MouseEvent) => {
+        // Tillat åpning i ny fane / vindu
+        if (e.shiftKey || e.ctrlKey || e.metaKey) {
+            return;
+        }
+
         const href = getLinkHref(e.target as HTMLElement);
         if (href && isAppUrl(href)) {
             e.preventDefault();
