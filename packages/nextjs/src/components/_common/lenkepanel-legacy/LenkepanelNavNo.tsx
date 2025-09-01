@@ -13,8 +13,7 @@ type Props = PropsWithChildren<{
     component?: string;
     linkGroup?: string;
     className?: string;
-}> &
-    React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}>;
 
 const LenkepanelNavNo = ({
     href,
@@ -26,7 +25,6 @@ const LenkepanelNavNo = ({
     component,
     linkGroup,
     children,
-    ...rest
 }: Props) => {
     return (
         <LinkCard
@@ -38,7 +36,6 @@ const LenkepanelNavNo = ({
             <LinkCard.Title as='h2'>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
-                        {...rest}
                         href={href}
                         analyticsComponent={component}
                         analyticsLinkGroup={linkGroup}

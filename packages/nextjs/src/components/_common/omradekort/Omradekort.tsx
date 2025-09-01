@@ -15,9 +15,9 @@ type Props = {
     area: string;
     linkGroup?: string;
     className?: string;
-} & React.ComponentProps<typeof LinkCard>;
+};
 
-export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }: Props) => {
+export const Omradekort = ({ path, title, area, linkGroup, className }: Props) => {
     const { layoutConfig } = useLayoutConfig();
     const analyticsLinkGroup = linkGroup ?? layoutConfig.title;
 
@@ -27,7 +27,6 @@ export const Omradekort = ({ path, title, area, linkGroup, className, ...rest }:
 
     return (
         <LinkCard
-            {...rest}
             arrow={false}
             className={classNames(style.lenkepanel, graphicsStyle.expandOnHover, className)}
         >
