@@ -40,11 +40,16 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
     );
 
     if (!textFilterActual || !fuseOptions) {
-        // Sort using Norwegian locale to ensure Å comes last
+        // Sort using Norwegian locale to ensure Å comes last, but treat "Aa" as starting with "A" (special case)
+        // Trims the title because editors sometimes slips in spaces (copy paste error) in the title
         return itemsMatchingToggleFilters.sort((a, b) => {
             const titleA = a.sortTitle || a.title || '';
             const titleB = b.sortTitle || b.title || '';
-            return titleA.localeCompare(titleB, 'no-NO');
+
+            const normalizedA = titleA.replace(/^Aa\b/, 'A').trim();
+            const normalizedB = titleB.replace(/^Aa\b/, 'A').trim();
+
+            return normalizedA.localeCompare(normalizedB, 'no-NO');
         });
     }
 
