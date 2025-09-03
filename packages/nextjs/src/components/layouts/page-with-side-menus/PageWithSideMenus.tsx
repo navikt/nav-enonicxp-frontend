@@ -46,11 +46,13 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AktuelleMalgrupper />}
+
                 {showInternalNav && (
                     <PageNavigationMenu
                         anchorLinks={anchorLinks}
                         title={getLabel('pageNavigationMenu')}
                         isChapterNavigation={true}
+                        className={styles.pageNavigationMenu}
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
