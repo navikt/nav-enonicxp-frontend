@@ -62,7 +62,7 @@ export const OversiktList = (props: OversiktPageProps) => {
             textFilterOverride: formNumberFromSearch,
             fuseOptions: formNumberFromSearch
                 ? {
-                      keys: ['formNumbers'],
+                      keys: ['subItems.formNumbers'],
                       threshold: 0,
                   }
                 : {
