@@ -45,10 +45,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             <div className={styles.mainContent}>
                 {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
-                {/* TODO fjern wrapper div under */}
-                <div className={styles.firstColumn}>
-                    {isNewLayoutPage && <AktuelleMalgrupper />}
-                </div>
+                {isNewLayoutPage && <AktuelleMalgrupper />}
 
                 {showInternalNav && (
                     <PageNavigationMenu
@@ -58,16 +55,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         className={styles.pageNavigationMenu}
                     />
                 )}
-                <Region
-                    pageProps={pageProps}
-                    regionProps={pageContent}
-                    className={styles.firstColumn}
-                />
-                <PageUpdatedInfo
-                    datetime={pageProps.modifiedTime}
-                    language={pageProps.language}
-                    className={styles.firstColumn}
-                />
+                <Region pageProps={pageProps} regionProps={pageContent} />
+                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
             </div>
             <div className={styles.bottomContent}>
                 <Region pageProps={pageProps} regionProps={bottomRow} />
