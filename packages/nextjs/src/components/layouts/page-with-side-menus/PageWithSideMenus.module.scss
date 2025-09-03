@@ -29,11 +29,12 @@
     }
 }
 
-@media (min-width: 960px) {
+@media #{common.$mq-screen-desktop} {
     .pageWithSideMenus {
         display: grid;
         grid-template-columns: minmax(0, min(42.5rem, 100%)) minmax(0, min(22.5rem, 30%));
         column-gap: 3rem;
+        padding-left: 8rem;
     }
 
     .mainContent {
