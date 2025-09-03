@@ -44,11 +44,9 @@
 
     .pageNavigationMenu {
         grid-column: 2;
-
-        grid-row: 1;
-        align-self: start;
-        height: max-content; /* don't influence row sizing */
-        position: sticky; /* optional */
-        top: 1rem; /* optional */
+        grid-row: 1 / 5;
+        height: max-content;
+        position: sticky;
+        top: 6rem;
     }
 }
