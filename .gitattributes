@@ -1,1 +1,2 @@
-packages/nextjs/playwright/screenshot.spec.ts-snapshots/*.png linguist-generated=true
+# Visual regression artifacts
+packages/nextjs/playwright/screenshot.spec.ts-snapshots/** linguist-generated=true -diff
