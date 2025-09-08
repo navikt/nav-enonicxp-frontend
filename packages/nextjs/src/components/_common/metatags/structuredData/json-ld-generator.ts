@@ -1,6 +1,10 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
-import { getPageTitle, getSocialShareImageUrl } from 'components/_common/metatags/helpers';
+import {
+    getDescription,
+    getPageTitle,
+    getSocialShareImageUrl,
+} from 'components/_common/metatags/helpers';
 import { JsonLdData, PageType } from './types';
 
 const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
@@ -8,18 +12,6 @@ const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
 };
 
 const DEFAULT_PAGE_TYPE: PageType = 'WebPage';
-
-const getDescription = (content: ContentProps): string => {
-    const data = content.data;
-
-    return (
-        data?.metaDescription ||
-        data?.ingress ||
-        data?.description ||
-        content.displayName ||
-        'Nav - Informasjon og tjenester fra Arbeids- og velferdsetaten' // Fallback hvis ingen andre et tilgjengelig
-    );
-};
 
 const generateBaseJsonLd = (content: ContentProps, type: PageType): JsonLdData => {
     const url = `${appOrigin}${getPublicPathname(content)}`;
@@ -34,7 +26,7 @@ const generateBaseJsonLd = (content: ContentProps, type: PageType): JsonLdData =
         datePublished: content.publish?.first || content.createdTime,
         dateModified: content.modifiedTime,
         author: {
-            '@type': 'Organization',
+            '@type': 'GovernmentOrganization',
             name: 'Nav - Arbeids- og velferdsetaten',
             url,
             logo: {
@@ -43,7 +35,7 @@ const generateBaseJsonLd = (content: ContentProps, type: PageType): JsonLdData =
             },
         },
         publisher: {
-            '@type': 'Organization',
+            '@type': 'GovernmentOrganization',
             name: 'Nav - Arbeids- og velferdsetaten',
             url,
             logo: {
