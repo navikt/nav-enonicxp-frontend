@@ -34,7 +34,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
         expressApp.all('/*path', (req, res, next) => {
             if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
-                return res.redirect(302, `${APP_ORIGIN}${req.path}`);
+                // return res.redirect(302, `${APP_ORIGIN}${req.path}`);
             }
 
             next();
