@@ -15,7 +15,7 @@ export const StructuredData: React.FC<JsonLdScriptProps> = ({ content }) => {
 
     const jsonLdData = generateJsonLd(content);
 
-    const shouldPrettyJson = process.env.NODE_ENV !== 'production';
+    const shouldPrettyJson = process.env.ENV !== 'prod';
 
     return (
         <Head>
