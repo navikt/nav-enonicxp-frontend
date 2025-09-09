@@ -1,8 +1,8 @@
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 import { Language } from 'translations';
 import { ContentProps, ContentType, innholdsTypeMap } from 'types/content-props/_content-common';
 import { LanguageProps } from 'types/language';
-import { Audience, getAudience } from 'types/component-props/_mixins';
 import { stripXpPathPrefix } from './urls';
 import { getContentLanguages } from './languages';
 import { hasWhiteHeader } from './appearance';
@@ -77,9 +77,11 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { _path, breadcrumbs, language, data, editorView } = content;
     const audience = data?.audience ? getAudience(data.audience) : undefined;
-    const rolePathSegment = _path.split('/')[2];
     const audienceContext = audience ? audienceToRoleContext[audience] : undefined;
-    const pathContext = pathToRoleContext[rolePathSegment] ?? 'privatperson';
+    const segments = _path.split('/').filter(Boolean);
+    const roleSegment = segments.find((s) => s in pathToRoleContext);
+    const pathContext = roleSegment ? pathToRoleContext[roleSegment] : 'privatperson';
+
     const context: DecoratorParams['context'] =
         audienceContext && audienceContext !== pathContext
             ? pathContext
