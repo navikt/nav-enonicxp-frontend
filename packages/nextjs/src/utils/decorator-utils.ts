@@ -78,7 +78,13 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const { _path, breadcrumbs, language, data, editorView } = content;
     const audience = data?.audience ? getAudience(data.audience) : undefined;
     const rolePathSegment = _path.split('/')[2];
-    const context = audience ? audienceToRoleContext[audience] : pathToRoleContext[rolePathSegment];
+    const audienceContext = audience ? audienceToRoleContext[audience] : undefined;
+    const pathContext = pathToRoleContext[rolePathSegment] ?? 'privatperson';
+    const context: DecoratorParams['context'] =
+        audienceContext && audienceContext !== pathContext
+            ? pathContext
+            : (audienceContext ?? pathContext);
+
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
     const chatbotDisabled =
