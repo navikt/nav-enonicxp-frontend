@@ -1,8 +1,17 @@
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { trimIfString } from 'utils/string';
 import { getPublicPathname } from 'utils/urls';
 
 import { appOrigin } from 'utils/urls';
+import { PageType } from './structuredData/types';
+
+export const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
+    [ContentType.ProductPage]: 'ItemPage',
+};
+
+export const getContentTypeToStructure = (content: ContentProps): PageType | undefined => {
+    return pageTypeLibrary[content.type];
+};
 
 export const getPageTitle = (content: ContentProps) =>
     `${content.data?.title || content.displayName} - nav.no`;
