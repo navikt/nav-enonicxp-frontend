@@ -49,6 +49,6 @@
         grid-row: 1 / 5;
         height: max-content;
         position: sticky;
-        top: 6rem;
+        top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
     }
 }
