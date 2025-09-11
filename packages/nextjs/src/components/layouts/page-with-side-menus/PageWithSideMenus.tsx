@@ -49,10 +49,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
                 {showInternalNav && (
                     <PageNavigationMenu
+                        className={styles.pageNavigationMenu}
                         anchorLinks={anchorLinks}
                         title={getLabel('pageNavigationMenu')}
                         isChapterNavigation={true}
-                        className={styles.pageNavigationMenu}
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
