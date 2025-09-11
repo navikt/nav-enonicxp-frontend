@@ -32,8 +32,10 @@
 @media #{common.$mq-screen-desktop} {
     .pageWithSideMenus {
         display: grid;
-        grid-template-columns: minmax(0, min(42.5rem, 100%)) minmax(0, min(22.5rem, 30%));
-        column-gap: 8.5rem;
+        grid-template-columns:
+            minmax(0, min(42.5rem, 100%))
+            clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
+            minmax(0, min(22.5rem, 30%));
         padding-left: 8rem;
     }
 
@@ -45,7 +47,7 @@
     }
 
     .pageNavigationMenu {
-        grid-column: 2;
+        grid-column: 3;
         grid-row: 1 / 5;
         height: max-content;
         position: sticky;
