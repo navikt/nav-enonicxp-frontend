@@ -93,6 +93,8 @@ export const PageWrapper = ({ content, children }: Props) => {
         }
 
         const decoratorParams = getDecoratorParams(content);
+
+        console.log(decoratorParams.context);
         setParams(decoratorParams);
 
         // Prevents focus from "sticking" after async-navigation to a new page

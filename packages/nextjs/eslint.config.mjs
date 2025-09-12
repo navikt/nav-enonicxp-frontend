@@ -55,7 +55,7 @@ export default [
                     ],
                 },
             ],
-            'no-console': 'warn',
+            'no-console': 'off',
             'no-alert': 'error',
             'no-relative-import-paths/no-relative-import-paths': [
                 'warn',
