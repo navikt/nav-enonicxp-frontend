@@ -93,7 +93,7 @@ export const PageWrapper = ({ content, children }: Props) => {
         }
 
         const decoratorParams = getDecoratorParams(content);
-
+        // eslint-disable-next-line no-console
         console.log(decoratorParams.context);
         setParams(decoratorParams);
 
