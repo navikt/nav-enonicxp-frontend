@@ -2,14 +2,7 @@
 @use 'common' as common;
 
 .pageWithSideMenus {
-    display: grid;
-    grid-template-columns: 1fr 40rem 1fr;
-    grid-template-rows: auto 1fr;
     padding-top: var(--a-spacing-16);
-
-    @media #{common.$mq-screen-mobile} {
-        display: block;
-    }
 
     :global(.region__intro) {
         margin-bottom: var(--a-spacing-9);
@@ -26,16 +19,37 @@
     padding-top: 0;
 }
 
-.mainContent {
-    grid-column: 2;
-    grid-row: 1;
-}
-
 .bottomContent {
     position: relative;
     grid-column: 1 / -1;
 
     :global(.region) {
         position: relative;
+    }
+}
+
+@media #{common.$mq-screen-desktop} {
+    .pageWithSideMenus {
+        display: grid;
+        grid-template-columns:
+            minmax(0, min(42.5rem, 100%))
+            clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
+            minmax(0, min(22.5rem, 30%));
+        padding-left: 8rem;
+    }
+
+    .mainContent {
+        display: contents;
+        > * {
+            grid-column: 1;
+        }
+    }
+
+    .pageNavigationMenu {
+        grid-column: 3;
+        grid-row: 1 / 3;
+        height: max-content;
+        position: sticky;
+        top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
     }
 }
