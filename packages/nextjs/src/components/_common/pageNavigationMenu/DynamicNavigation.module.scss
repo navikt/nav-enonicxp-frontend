@@ -1,0 +1,90 @@
+@use 'common' as common;
+
+.pageNavigationMenu {
+    @media #{common.$mq-screen-desktop} {
+        margin: var(--a-spacing-6) 0;
+        max-height: calc(100vh - (var(--a-spacing-6) * 2) - var(--decorator-sticky-offset));
+        overflow: auto;
+    }
+}
+
+.heading {
+    padding: var(--a-spacing-2) 0 var(--a-spacing-3);
+    margin-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: var(--a-spacing-2);
+
+    @media #{common.$mq-screen-desktop} {
+        background-image: linear-gradient(to bottom, white 65%, rgba(255, 255, 255, 0.75) 75%, transparent);
+        position: sticky;
+        top: -1px;
+        z-index: 10;
+    }
+}
+
+.headingIcon {
+    font-size: var(--a-font-size-heading-medium);
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-left: var(--a-spacing-5);
+
+    ul {
+        margin-top: var(--a-spacing-2);
+        margin-left: var(--a-spacing-3);
+        padding-left: 0;
+        border-left: 1px solid var(--a-border-subtle);
+
+        // Do not show expanded submenus on mobile (TODO: screen reader support?)
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            display: none !important;
+        }
+    }
+
+     li + li {
+        margin-top: var(--a-spacing-2);
+    }
+}
+
+.link {
+    color: inherit;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--a-border-subtle);
+    display: block;
+    position: relative;
+    padding-block: var(--a-spacing-1);
+    padding-inline-start: var(--a-spacing-3);
+    margin-inline-start: -2px;
+
+    &:hover {
+        text-decoration-color: inherit;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        &::before {
+            content: '';
+            position: absolute;
+            inset-block: 0;
+            inset-inline-start: 0;
+            inline-size: 4px;
+            background: transparent;
+            height: 0;
+            top: 50%;
+
+            @media (prefers-reduced-motion: no-preference) {
+                transition: all 0.25s;
+                animation-timing-function: cubic-bezier(0.8, 0.27, 0.11, 0.68);
+            }
+        }
+
+        &[aria-current="true"]::before {
+            background: var(--a-border-action);
+            height: 100%;
+            top: 0;
+        }
+    }
+}

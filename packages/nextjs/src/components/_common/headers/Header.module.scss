@@ -1,5 +1,10 @@
 .header {
     scroll-margin-top: 2.5lh;
+
+    :global(.page__page-with-side-menus) & {
+        // Matcher nedre rootMargin (HEADING_TARGET_RATIO minus en liten buffer) i DynamicNavigation
+        scroll-margin-top: 19.99995vh;
+    }
 }
 
 .anchorLink {
