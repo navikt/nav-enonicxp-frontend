@@ -4,12 +4,14 @@ import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-si
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
+import { DynamicNavigation } from 'components/_common/pageNavigationMenu/DynamicNavigation';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
+import { useLegacyNav } from 'utils/useLegacyNav';
 import styles from './PageWithSideMenus.module.scss';
 
 type Props = {
@@ -21,6 +23,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
+    const legacyNav = useLegacyNav();
 
     if (!regions || !config) {
         return null;
@@ -47,12 +50,19 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
                 {isNewLayoutPage && <AktuelleMalgrupper />}
 
-                {showInternalNav && (
+                {showInternalNav && legacyNav && (
                     <PageNavigationMenu
-                        className={styles.pageNavigationMenu}
                         anchorLinks={anchorLinks}
                         title={getLabel('pageNavigationMenu')}
                         isChapterNavigation={true}
+                    />
+                )}
+                {showInternalNav && !legacyNav && (
+                    <DynamicNavigation
+                        className={styles.pageNavigationMenu}
+                        anchorLinks={anchorLinks}
+                        pageProps={pageProps}
+                        title={getLabel('pageNavigationMenu')}
                     />
                 )}
                 <Region pageProps={pageProps} regionProps={pageContent} />
