@@ -3,6 +3,7 @@
 
 .pageWithSideMenus {
     padding-top: var(--a-spacing-16);
+    padding-bottom: var(--a-spacing-16);
 
     :global(.region__intro) {
         margin-bottom: var(--a-spacing-9);
@@ -17,15 +18,6 @@
 
 .pullUp {
     padding-top: 0;
-}
-
-.bottomContent {
-    position: relative;
-    grid-column: 1 / -1;
-
-    :global(.region) {
-        position: relative;
-    }
 }
 
 @media #{common.$mq-screen-desktop} {

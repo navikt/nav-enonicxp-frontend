@@ -40,37 +40,45 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         pageProps.type === ContentType.GenericPage;
 
     return (
-        <LayoutContainer
-            className={classNames(styles.pageWithSideMenus, hasMultipleLanguages && styles.pullUp)}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-        >
-            <div className={styles.mainContent}>
-                {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
-                {!isNewLayoutPage && <Region pageProps={pageProps} regionProps={topPageContent} />}
-                {isNewLayoutPage && <AktuelleMalgrupper />}
+        <>
+            <LayoutContainer
+                className={classNames(
+                    styles.pageWithSideMenus,
+                    hasMultipleLanguages && styles.pullUp
+                )}
+                pageProps={pageProps}
+                layoutProps={layoutProps}
+            >
+                <div className={styles.mainContent}>
+                    {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                    {!isNewLayoutPage && (
+                        <Region pageProps={pageProps} regionProps={topPageContent} />
+                    )}
+                    {isNewLayoutPage && <AktuelleMalgrupper />}
 
-                {showInternalNav && legacyNav && (
-                    <PageNavigationMenu
-                        anchorLinks={anchorLinks}
-                        title={getLabel('pageNavigationMenu')}
-                        isChapterNavigation={true}
+                    {showInternalNav && legacyNav && (
+                        <PageNavigationMenu
+                            anchorLinks={anchorLinks}
+                            title={getLabel('pageNavigationMenu')}
+                            isChapterNavigation={true}
+                        />
+                    )}
+                    {showInternalNav && !legacyNav && (
+                        <DynamicNavigation
+                            className={styles.pageNavigationMenu}
+                            anchorLinks={anchorLinks}
+                            pageProps={pageProps}
+                            title={getLabel('pageNavigationMenu')}
+                        />
+                    )}
+                    <Region pageProps={pageProps} regionProps={pageContent} />
+                    <PageUpdatedInfo
+                        datetime={pageProps.modifiedTime}
+                        language={pageProps.language}
                     />
-                )}
-                {showInternalNav && !legacyNav && (
-                    <DynamicNavigation
-                        className={styles.pageNavigationMenu}
-                        anchorLinks={anchorLinks}
-                        pageProps={pageProps}
-                        title={getLabel('pageNavigationMenu')}
-                    />
-                )}
-                <Region pageProps={pageProps} regionProps={pageContent} />
-                <PageUpdatedInfo datetime={pageProps.modifiedTime} language={pageProps.language} />
-            </div>
-            <div className={styles.bottomContent}>
-                <Region pageProps={pageProps} regionProps={bottomRow} />
-            </div>
-        </LayoutContainer>
+                </div>
+            </LayoutContainer>
+            <Region pageProps={pageProps} regionProps={bottomRow} />
+        </>
     );
 };
