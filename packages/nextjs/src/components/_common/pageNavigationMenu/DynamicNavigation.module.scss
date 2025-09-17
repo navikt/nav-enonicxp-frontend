@@ -1,11 +1,11 @@
 @use 'common' as common;
 
 .pageNavigationMenu {
-    height: max-content;
-    position: sticky;
-    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
-
     @media #{common.$mq-screen-desktop} {
+        height: max-content;
+        position: sticky;
+        top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
+
         max-height: calc(100vh - (var(--a-spacing-6) * 2) - var(--decorator-sticky-offset));
         overflow: auto;
     }
