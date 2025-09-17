@@ -41,8 +41,5 @@
     .pageNavigationMenu {
         grid-column: space-end;
         grid-row: 2 / 6;
-        height: max-content;
-        position: sticky;
-        top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
     }
 }
