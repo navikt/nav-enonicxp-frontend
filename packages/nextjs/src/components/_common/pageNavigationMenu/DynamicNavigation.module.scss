@@ -2,7 +2,6 @@
 
 .pageNavigationMenu {
     @media #{common.$mq-screen-desktop} {
-        margin: var(--a-spacing-6) 0;
         max-height: calc(100vh - (var(--a-spacing-6) * 2) - var(--decorator-sticky-offset));
         overflow: auto;
     }
@@ -16,7 +15,12 @@
     gap: var(--a-spacing-2);
 
     @media #{common.$mq-screen-desktop} {
-        background-image: linear-gradient(to bottom, white 65%, rgba(255, 255, 255, 0.75) 75%, transparent);
+        background-image: linear-gradient(
+            to bottom,
+            white 65%,
+            rgba(255, 255, 255, 0.75) 75%,
+            transparent
+        );
         position: sticky;
         top: -1px;
         z-index: 10;
@@ -45,7 +49,7 @@
         }
     }
 
-     li + li {
+    li + li {
         margin-top: var(--a-spacing-2);
     }
 }
@@ -81,7 +85,7 @@
             }
         }
 
-        &[aria-current="true"]::before {
+        &[aria-current='true']::before {
             background: var(--a-border-action);
             height: 100%;
             top: 0;
