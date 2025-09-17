@@ -24,21 +24,22 @@
     .pageWithSideMenus {
         display: grid;
         grid-template-columns:
-            minmax(0, min(42.5rem, 100%))
-            clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
-            minmax(0, min(22.5rem, 30%));
+            [content-start] minmax(0, min(42.5rem, 100%))
+            [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
+            [space-end] minmax(0, min(22.5rem, 30%))
+            [content-end];
         padding-left: 8rem;
     }
 
     .mainContent {
         display: contents;
         > * {
-            grid-column: 1;
+            grid-column: content-start;
         }
     }
 
     .pageNavigationMenu {
-        grid-column: 3;
+        grid-column: space-end;
         grid-row: 2 / 6;
         height: max-content;
         position: sticky;
