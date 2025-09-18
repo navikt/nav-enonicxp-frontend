@@ -2,10 +2,7 @@
 
 .pageNavigationMenu {
     height: max-content;
-    position: sticky;
-    top: var(--decorator-sticky-offset);
 
-    z-index: 100;
     background-color: var(--a-white);
 
     @media #{common.$mq-screen-desktop} {
