@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ExpansionCard } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
@@ -25,6 +25,27 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
     const legacyNav = useLegacyNav();
+    const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
+    const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            const dynamicNavigationMenu = entries[0];
+
+            // if (!entries[0].isIntersecting) {
+            mobileExpandableMenuRef.current?.classList.toggle(
+                styles.hide,
+                dynamicNavigationMenu.isIntersecting
+            );
+            // }
+        });
+
+        const dynamicNavigationMenu = dynamicNavigationRef.current;
+        if (dynamicNavigationMenu) observer.observe(dynamicNavigationMenu);
+
+        // const mobileExpandableMenu = mobileExpandableMenuRef.current;
+        // if (mobileExpandableMenu) observer.observe(mobileExpandableMenu);
+    }, []);
 
     if (!regions || !config) {
         return null;
@@ -72,10 +93,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 anchorLinks={anchorLinks}
                                 pageProps={pageProps}
                                 title={getLabel('pageNavigationMenu')}
+                                ref={dynamicNavigationRef}
                             />
                             <ExpansionCard
                                 aria-label="Demo med bare tittel"
-                                className={styles.mobileStickyMenu}
+                                className={styles.mobileExpandableMenu}
+                                ref={mobileExpandableMenuRef}
                             >
                                 <ExpansionCard.Header>
                                     <ExpansionCard.Title>Innhold på siden</ExpansionCard.Title>

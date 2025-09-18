@@ -20,12 +20,14 @@
     padding-top: 0;
 }
 
-.mobileStickyMenu {
+.mobileExpandableMenu {
     position: fixed;
     top: var(--decorator-sticky-offset);
     z-index: 100;
+}
 
-    // display: none;
+.hide {
+    display: none;
 }
 
 @media #{common.$mq-screen-desktop} {
