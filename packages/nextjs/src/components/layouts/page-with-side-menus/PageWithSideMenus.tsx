@@ -1,4 +1,5 @@
 import React from 'react';
+import { ExpansionCard } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -63,14 +64,33 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             isChapterNavigation={true}
                         />
                     )}
+
                     {showInternalNav && !legacyNav && (
-                        <DynamicNavigation
-                            className={styles.pageNavigationMenu}
-                            anchorLinks={anchorLinks}
-                            pageProps={pageProps}
-                            title={getLabel('pageNavigationMenu')}
-                        />
+                        <>
+                            <DynamicNavigation
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={getLabel('pageNavigationMenu')}
+                            />
+                            <ExpansionCard
+                                aria-label="Demo med bare tittel"
+                                className={styles.mobileStickyMenu}
+                            >
+                                <ExpansionCard.Header>
+                                    <ExpansionCard.Title>Innhold på siden</ExpansionCard.Title>
+                                </ExpansionCard.Header>
+                                <ExpansionCard.Content>
+                                    <DynamicNavigation
+                                        anchorLinks={anchorLinks}
+                                        pageProps={pageProps}
+                                        title={getLabel('pageNavigationMenu')}
+                                    />
+                                </ExpansionCard.Content>
+                            </ExpansionCard>
+                        </>
                     )}
+
                     <Region pageProps={pageProps} regionProps={pageContent} />
                     <PageUpdatedInfo
                         datetime={pageProps.modifiedTime}
