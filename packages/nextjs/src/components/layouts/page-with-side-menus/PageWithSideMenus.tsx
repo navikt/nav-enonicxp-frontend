@@ -94,6 +94,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 pageProps={pageProps}
                                 title={getLabel('pageNavigationMenu')}
                                 ref={dynamicNavigationRef}
+                                withHeading
                             />
                             <ExpansionCard
                                 aria-label="Demo med bare tittel"

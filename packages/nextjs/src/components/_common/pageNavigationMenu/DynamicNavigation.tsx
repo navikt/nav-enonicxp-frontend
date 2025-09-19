@@ -25,10 +25,11 @@ type Props = {
     pageProps: ContentProps;
     title?: string;
     className?: string;
+    withHeading?: boolean;
 };
 
 export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
-    { anchorLinks = [], pageProps, title, className }: Props,
+    { anchorLinks = [], pageProps, title, className, withHeading }: Props,
     ref: ForwardedRef<HTMLDivElement>
 ) {
     const { language } = usePageContentProps();
@@ -219,10 +220,12 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             aria-labelledby={headingId}
             className={classNames(style.pageNavigationMenu, className)}
         >
-            <Heading size="xsmall" id={headingId} className={style.heading}>
-                <FileTextIcon aria-hidden={true} className={style.headingIcon} />
-                {title}
-            </Heading>
+            {withHeading && (
+                <Heading size="xsmall" id={headingId} className={style.heading}>
+                    <FileTextIcon aria-hidden={true} className={style.headingIcon} />
+                    {title}
+                </Heading>
+            )}
             <ul className={style.list}>
                 {groupedLinks.map(({ h2, h3 }) => {
                     const isH2Active = activeAnchor === h2.anchorId;
