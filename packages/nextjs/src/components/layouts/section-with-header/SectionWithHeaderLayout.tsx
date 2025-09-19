@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { SectionNavigation } from 'components/_common/pageNavigationMenu/SectionNavigation/SectionNavigation';
+import { SectionNavigation } from 'components/_common/menyForInternnavigasjon/SectionNavigation/SectionNavigation';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';

@@ -4,9 +4,9 @@ import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { Language, translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
+import { MenyForInternnavigasjon } from 'components/_common/menyForInternnavigasjon/MenyForInternnavigasjon';
 import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
-import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { AnchorLink } from 'components/parts/meny-for-internnavigasjon/MenyForInternnavigasjonPart';
 
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
@@ -49,7 +49,7 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
 
 export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
     const { language } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
+    const getLabel = translator('internnavigasjon', language);
     const introAnchors = getAnchorsFromComponents(language, introRegion);
     const contentAnchors = getAnchorsFromComponents(language, contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
@@ -63,7 +63,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
     }
 
     return (
-        <PageNavigationMenu
+        <MenyForInternnavigasjon
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
             title={getLabel('sectionNavigation')}

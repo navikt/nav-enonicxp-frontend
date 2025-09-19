@@ -43,7 +43,7 @@ import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
-import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
+import { MenyForInternnavigasjonPart } from './meny-for-internnavigasjon/MenyForInternnavigasjonPart';
 import { DetaljinformasjonForDetAktuelleKontoretPart } from './detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 import { KontaktOssKanalPart } from './kontakt-oss-kanal/KontaktOssKanalPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
@@ -114,8 +114,8 @@ const PartComponentMapper = ({
             return <DetaljinformasjonForDetAktuelleKontoretPart {...partProps} />;
         case PartType.PageHeader:
             return <PageHeaderPart {...partProps} />;
-        case PartType.PageNavigationMenu:
-            return <PageNavigationMenuPart {...partProps} />;
+        case PartType.MenyForInternnavigasjon:
+            return <MenyForInternnavigasjonPart {...partProps} />;
         case PartType.PayoutDates:
             return <PayoutDatesPart {...partProps} />;
         case PartType.ProductCard:
