@@ -18,7 +18,7 @@ import style from './DynamicNavigation.module.scss';
 const HEADING_TARGET_RATIO = 0.2; // Prosentandel av viewport-høyden for å markere overskrift som aktiv
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
-    anchorLinks.filter(link => link.anchorId && link.linkText && !link.isDupe);
+    anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
 
 type Props = {
     anchorLinks?: AnchorLink[];
@@ -38,51 +38,64 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
     const clickedAnchorResetTimerRef = useRef<number | undefined>(undefined);
 
     const links = useMemo(() => getValidLinks(anchorLinks), [anchorLinks]);
-    const pageContentComponents = useMemo(() => (pageProps as any)?.page?.regions?.pageContent?.components as any[] | undefined, [pageProps]);
+    const pageContentComponents = useMemo(
+        () => (pageProps as any)?.page?.regions?.pageContent?.components as any[] | undefined,
+        [pageProps]
+    );
 
     // Grupper H2- og H3-overskrifter basert på sideinnholdet for å bygge hierarkisk meny
-    const groupedLinks = useMemo(() => links.map((h2) => {
-        const section = pageContentComponents?.find(component => component?.config?.anchorId === h2.anchorId);
+    const groupedLinks = useMemo(
+        () =>
+            links.map((h2) => {
+                const section = pageContentComponents?.find(
+                    (component) => component?.config?.anchorId === h2.anchorId
+                );
 
-        const introComponents: any[] = section?.regions?.intro?.components ?? [];
-        const contentComponents: any[] = section?.regions?.content?.components ?? [];
-        const sectionComponents: any[] = [...introComponents, ...contentComponents];
+                const introComponents: any[] = section?.regions?.intro?.components ?? [];
+                const contentComponents: any[] = section?.regions?.content?.components ?? [];
+                const sectionComponents: any[] = [...introComponents, ...contentComponents];
 
-        const headerH3: AnchorLink[] = sectionComponents
-            .filter(component =>
-                component?.descriptor === PartType.Header &&
-                component?.config?.titleTag === 'h3' &&
-                component?.config?.anchorId &&
-                component?.config?.title
-            )
-            .map(component => ({
-                anchorId: component.config.anchorId as string,
-                linkText: component.config.title as string,
-            }));
+                const headerH3: AnchorLink[] = sectionComponents
+                    .filter(
+                        (component) =>
+                            component?.descriptor === PartType.Header &&
+                            component?.config?.titleTag === 'h3' &&
+                            component?.config?.anchorId &&
+                            component?.config?.title
+                    )
+                    .map((component) => ({
+                        anchorId: component.config.anchorId as string,
+                        linkText: component.config.title as string,
+                    }));
 
-        const relatedSituationsH3: AnchorLink[] = sectionComponents
-            .filter(component => component?.descriptor === PartType.RelatedSituations)
-            .map(component => {
-                const linkText = ((component?.config?.title as string) || translator('related', language)('otherOffers')).trim();
-                return {
-                    anchorId: getAnchorId(linkText),
-                    linkText,
-                } as AnchorLink;
-            });
+                const relatedSituationsH3: AnchorLink[] = sectionComponents
+                    .filter((component) => component?.descriptor === PartType.RelatedSituations)
+                    .map((component) => {
+                        const linkText = (
+                            (component?.config?.title as string) ||
+                            translator('related', language)('otherOffers')
+                        ).trim();
+                        return {
+                            anchorId: getAnchorId(linkText),
+                            linkText,
+                        } as AnchorLink;
+                    });
 
-        const h3: AnchorLink[] = [...headerH3, ...relatedSituationsH3];
+                const h3: AnchorLink[] = [...headerH3, ...relatedSituationsH3];
 
-        return { h2, h3 };
-    }), [links, pageContentComponents, language]);
+                return { h2, h3 };
+            }),
+        [links, pageContentComponents, language]
+    );
 
     useEffect(() => {
         if (typeof window === 'undefined') return;
 
         // Flat liste over overskrifter: H2 etterfulgt av sine H3-er, hver med eksisterende DOM-element
         const headingItems = groupedLinks
-            .flatMap(group => [group.h2.anchorId, ...group.h3.map(link => link.anchorId)])
-            .map(id => ({ id, el: document.getElementById(id) as HTMLElement }))
-            .filter(item => !!item.el);
+            .flatMap((group) => [group.h2.anchorId, ...group.h3.map((link) => link.anchorId)])
+            .map((id) => ({ id, el: document.getElementById(id) as HTMLElement }))
+            .filter((item) => !!item.el);
         if (headingItems.length === 0) return;
 
         const visibleHeadings: Set<string> = new Set();
@@ -91,8 +104,8 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
         // Observer H2- og H3-elementer på siden og marker den nærmeste synlige som aktiv
         const createObserver = (documentHeight: number) =>
             new IntersectionObserver(
-                entries => {
-                    entries.forEach(entry => {
+                (entries) => {
+                    entries.forEach((entry) => {
                         const target = entry.target as HTMLElement;
                         const id = target.id;
                         if (!id) return;
@@ -114,10 +127,10 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                     if (clicked) {
                         if (nextActive === clicked) {
                             clickedAnchorRef.current = null;
-                            setActiveAnchor(prev => (prev !== nextActive ? nextActive : prev));
+                            setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
                         }
                     } else {
-                        setActiveAnchor(prev => (prev !== nextActive ? nextActive : prev));
+                        setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
                     }
                 },
                 {
@@ -129,7 +142,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
             );
 
         let observer = createObserver(currentDocHeight);
-        headingItems.forEach(item => observer.observe(item.el));
+        headingItems.forEach((item) => observer.observe(item.el));
 
         // Erstatter gjeldende IntersectionObserver ved endret dokumenthøyde for å sette korrekt rootMargin
         const onResize = debounce(() => {
@@ -139,7 +152,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
             currentDocHeight = newHeight;
             observer.disconnect();
             observer = createObserver(newHeight);
-            headingItems.forEach(item => observer.observe(item.el));
+            headingItems.forEach((item) => observer.observe(item.el));
         }, 150);
 
         window.addEventListener('resize', onResize);
@@ -159,7 +172,9 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
             const hash = window.location.hash.slice(1);
             if (!hash) return;
 
-            const isValidHeading = groupedLinks.some(g => g.h2.anchorId === hash || g.h3.some(s => s.anchorId === hash));
+            const isValidHeading = groupedLinks.some(
+                (g) => g.h2.anchorId === hash || g.h3.some((s) => s.anchorId === hash)
+            );
             if (!isValidHeading) return;
 
             window.clearTimeout(clickedAnchorResetTimerRef.current);
@@ -196,7 +211,10 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
     }
 
     return (
-        <nav aria-labelledby={headingId} className={classNames(style.pageNavigationMenu, className)}>
+        <nav
+            aria-labelledby={headingId}
+            className={classNames(style.pageNavigationMenu, className)}
+        >
             <Heading size="xsmall" id={headingId} className={style.heading}>
                 <FileTextIcon aria-hidden={true} className={style.headingIcon} />
                 {title}
@@ -204,52 +222,62 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
             <ul className={style.list}>
                 {groupedLinks.map(({ h2, h3 }) => {
                     const isH2Active = activeAnchor === h2.anchorId;
-                    const isChildActive = h3.some(s => s.anchorId === activeAnchor);
+                    const isChildActive = h3.some((s) => s.anchorId === activeAnchor);
                     const isExpanded = isH2Active || isChildActive;
                     const submenuId = `${h2.anchorId}-submenu`;
                     return (
-                    <li key={h2.anchorId}>
-                        <LenkeBase
-                            href={`#${h2.anchorId}`}
-                            analyticsEvent={AnalyticsEvents.NAVIGATION}
-                            analyticsLinkGroup={'Innhold'}
-                            analyticsComponent={analyticsComponent}
-                            analyticsLabel={h2.linkText}
-                            className={style.link}
-                            aria-current={isH2Active ? 'true' : undefined}
-                            aria-expanded={h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined}
-                            aria-controls={h3.length > 0 ? submenuId : undefined}
-                        >
-                            <BodyLong as="span" size="small" className={style.linkText}>
-                                {h2.linkText}
-                            </BodyLong>
-                        </LenkeBase>
-
-                        {h3.length > 0 && (
-                            <ul
-                                className={classNames(style.list, !isExpanded && 'sr-only')}
-                                id={submenuId}
+                        <li key={h2.anchorId}>
+                            <LenkeBase
+                                href={`#${h2.anchorId}`}
+                                analyticsEvent={AnalyticsEvents.NAVIGATION}
+                                analyticsLinkGroup={'Innhold'}
+                                analyticsComponent={analyticsComponent}
+                                analyticsLabel={h2.linkText}
+                                className={style.link}
+                                aria-current={isH2Active ? 'true' : undefined}
+                                aria-expanded={
+                                    h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
+                                }
+                                aria-controls={h3.length > 0 ? submenuId : undefined}
                             >
-                                {h3.map(sub => (
-                                    <li key={sub.anchorId}>
-                                        <LenkeBase
-                                            href={`#${sub.anchorId}`}
-                                            analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                            analyticsLinkGroup={'Innhold'}
-                                            analyticsComponent={analyticsComponent}
-                                            analyticsLabel={sub.linkText}
-                                            className={style.link}
-                                            aria-current={activeAnchor === sub.anchorId ? 'true' : undefined}
-                                        >
-                                            <BodyLong as="span" size="small" className={style.linkText}>
-                                                {sub.linkText}
-                                            </BodyLong>
-                                        </LenkeBase>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
+                                <BodyLong as="span" size="small" className={style.linkText}>
+                                    {h2.linkText}
+                                </BodyLong>
+                            </LenkeBase>
+
+                            {h3.length > 0 && (
+                                <ul
+                                    className={classNames(style.list, !isExpanded && 'sr-only')}
+                                    id={submenuId}
+                                >
+                                    {h3.map((sub) => (
+                                        <li key={sub.anchorId}>
+                                            <LenkeBase
+                                                href={`#${sub.anchorId}`}
+                                                analyticsEvent={AnalyticsEvents.NAVIGATION}
+                                                analyticsLinkGroup={'Innhold'}
+                                                analyticsComponent={analyticsComponent}
+                                                analyticsLabel={sub.linkText}
+                                                className={style.link}
+                                                aria-current={
+                                                    activeAnchor === sub.anchorId
+                                                        ? 'true'
+                                                        : undefined
+                                                }
+                                            >
+                                                <BodyLong
+                                                    as="span"
+                                                    size="small"
+                                                    className={style.linkText}
+                                                >
+                                                    {sub.linkText}
+                                                </BodyLong>
+                                            </LenkeBase>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
                     );
                 })}
             </ul>
