@@ -94,7 +94,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 pageProps={pageProps}
                                 title={getLabel('pageNavigationMenu')}
                                 ref={dynamicNavigationRef}
-                                withHeading
                             />
                             <ExpansionCard
                                 aria-label="Demo med bare tittel"
@@ -102,13 +101,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 ref={mobileExpandableMenuRef}
                             >
                                 <ExpansionCard.Header>
-                                    <ExpansionCard.Title>Innhold på siden</ExpansionCard.Title>
+                                    <ExpansionCard.Title>
+                                        {getLabel('pageNavigationMenu')}
+                                    </ExpansionCard.Title>
                                 </ExpansionCard.Header>
                                 <ExpansionCard.Content>
                                     <DynamicNavigation
                                         anchorLinks={anchorLinks}
                                         pageProps={pageProps}
-                                        title={getLabel('pageNavigationMenu')}
                                     />
                                 </ExpansionCard.Content>
                             </ExpansionCard>

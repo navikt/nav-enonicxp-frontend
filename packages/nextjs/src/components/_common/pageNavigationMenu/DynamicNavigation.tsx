@@ -25,11 +25,10 @@ type Props = {
     pageProps: ContentProps;
     title?: string;
     className?: string;
-    withHeading?: boolean;
 };
 
 export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
-    { anchorLinks = [], pageProps, title, className, withHeading }: Props,
+    { anchorLinks = [], pageProps, title, className }: Props,
     ref: ForwardedRef<HTMLDivElement>
 ) {
     const { language } = usePageContentProps();
@@ -220,7 +219,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             aria-labelledby={headingId}
             className={classNames(style.pageNavigationMenu, className)}
         >
-            {withHeading && (
+            {title && (
                 <Heading size="xsmall" id={headingId} className={style.heading}>
                     <FileTextIcon aria-hidden={true} className={style.headingIcon} />
                     {title}
