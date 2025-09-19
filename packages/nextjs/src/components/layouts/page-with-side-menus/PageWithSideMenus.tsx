@@ -25,6 +25,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
+    const menuTitle = getLabel('pageNavigationMenu');
     const legacyNav = useLegacyNav();
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
@@ -77,7 +78,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     {showInternalNav && legacyNav && (
                         <PageNavigationMenu
                             anchorLinks={anchorLinks}
-                            title={getLabel('pageNavigationMenu')}
+                            title={menuTitle}
                             isChapterNavigation={true}
                         />
                     )}
@@ -88,11 +89,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 className={styles.pageNavigationMenu}
                                 anchorLinks={anchorLinks}
                                 pageProps={pageProps}
-                                title={getLabel('pageNavigationMenu')}
+                                title={menuTitle}
                                 ref={dynamicNavigationRef}
                             />
                             <ExpansionCard
-                                aria-label="Demo med bare tittel"
+                                aria-label={menuTitle}
                                 className={styles.mobileExpandableMenu}
                                 ref={mobileExpandableMenuRef}
                                 size="small"
@@ -100,9 +101,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 <ExpansionCard.Header>
                                     <HStack wrap={false} gap="space-8" align="center">
                                         <FileTextIcon aria-hidden fontSize="1.5rem" />
-                                        <ExpansionCard.Title>
-                                            {getLabel('pageNavigationMenu')}
-                                        </ExpansionCard.Title>
+                                        <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
                                     </HStack>
                                 </ExpansionCard.Header>
                                 <ExpansionCard.Content>
