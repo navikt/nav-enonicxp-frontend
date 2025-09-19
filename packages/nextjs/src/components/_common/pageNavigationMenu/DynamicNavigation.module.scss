@@ -3,8 +3,6 @@
 .pageNavigationMenu {
     height: max-content;
 
-    background-color: var(--a-white);
-
     @media #{common.$mq-screen-desktop} {
         top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
 
