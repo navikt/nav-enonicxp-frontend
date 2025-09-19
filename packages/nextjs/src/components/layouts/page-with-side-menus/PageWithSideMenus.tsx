@@ -33,19 +33,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         const observer = new IntersectionObserver((entries) => {
             const dynamicNavigationMenu = entries[0];
 
-            // if (!entries[0].isIntersecting) {
             mobileExpandableMenuRef.current?.classList.toggle(
                 styles.hide,
                 dynamicNavigationMenu.isIntersecting
             );
-            // }
         });
 
         const dynamicNavigationMenu = dynamicNavigationRef.current;
         if (dynamicNavigationMenu) observer.observe(dynamicNavigationMenu);
-
-        // const mobileExpandableMenu = mobileExpandableMenuRef.current;
-        // if (mobileExpandableMenu) observer.observe(mobileExpandableMenu);
     }, []);
 
     if (!regions || !config) {
