@@ -26,7 +26,8 @@
     z-index: 100;
     width: calc(100% - var(--a-spacing-8));
 
-    :global(.navds-expansioncard__title) {
+    :global(.navds-expansioncard__title),
+    :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
     }
 }
