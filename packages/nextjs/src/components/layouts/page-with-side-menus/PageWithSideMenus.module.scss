@@ -25,6 +25,10 @@
     top: var(--decorator-sticky-offset);
     z-index: 100;
     width: calc(100% - var(--a-spacing-8));
+
+    :global(.navds-expansioncard__title) {
+        margin-bottom: 0; //overstyr global-override-styles.scss
+    }
 }
 
 .hide {

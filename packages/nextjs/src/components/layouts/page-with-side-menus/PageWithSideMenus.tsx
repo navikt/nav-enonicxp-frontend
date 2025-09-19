@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { ExpansionCard } from '@navikt/ds-react';
+import { FileTextIcon } from '@navikt/aksel-icons';
+import { ExpansionCard, HStack } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -99,11 +100,15 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 aria-label="Demo med bare tittel"
                                 className={styles.mobileExpandableMenu}
                                 ref={mobileExpandableMenuRef}
+                                size="small"
                             >
                                 <ExpansionCard.Header>
-                                    <ExpansionCard.Title>
-                                        {getLabel('pageNavigationMenu')}
-                                    </ExpansionCard.Title>
+                                    <HStack wrap={false} gap="space-8" align="center">
+                                        <FileTextIcon aria-hidden fontSize="1.5rem" />
+                                        <ExpansionCard.Title>
+                                            {getLabel('pageNavigationMenu')}
+                                        </ExpansionCard.Title>
+                                    </HStack>
                                 </ExpansionCard.Header>
                                 <ExpansionCard.Content>
                                     <DynamicNavigation
