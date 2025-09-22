@@ -33,7 +33,7 @@
 }
 
 .placeholder {
-    height: 206.5px;
+    height: 206.5px; //TODO: fjern hardkoding høyde
 }
 
 @media #{common.$mq-screen-desktop} {
