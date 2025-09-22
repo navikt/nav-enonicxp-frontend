@@ -29,19 +29,18 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const legacyNav = useLegacyNav();
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
-
-    const testRef = useRef<HTMLDivElement | null>(null);
+    const stickyExpandableToggleRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            const isAboveCurrentView = entry.boundingClientRect.bottom < 0;
+        const observer = new IntersectionObserver(([toggleElement]) => {
+            const isAboveCurrentBrowserView = toggleElement.boundingClientRect.bottom < 0;
 
-            if (entry.isIntersecting) {
+            if (toggleElement.isIntersecting) {
                 setHasScrolledPastContentMenu(false);
             } else {
-                if (isAboveCurrentView) {
+                if (isAboveCurrentBrowserView) {
                     setHasScrolledPastContentMenu(true);
                 } else {
                     setHasScrolledPastContentMenu(false);
@@ -49,8 +48,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             }
         });
 
-        const test = testRef.current;
-        if (test) observer.observe(test);
+        const stickyExpandableToggleElement = stickyExpandableToggleRef.current;
+        if (stickyExpandableToggleElement) observer.observe(stickyExpandableToggleElement);
     }, []);
 
     if (!regions || !config) {
@@ -127,7 +126,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         />
                     )}
 
-                    <div ref={testRef} />
+                    <div ref={stickyExpandableToggleRef} />
 
                     {/* )} */}
 
