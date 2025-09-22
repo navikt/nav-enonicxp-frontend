@@ -1,8 +1,7 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { trimIfString } from 'utils/string';
-import { getPublicPathname } from 'utils/urls';
+import { getPublicPathname, appOrigin } from 'utils/urls';
 
-import { appOrigin } from 'utils/urls';
 import { PageType } from './structuredData/types';
 
 export const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
