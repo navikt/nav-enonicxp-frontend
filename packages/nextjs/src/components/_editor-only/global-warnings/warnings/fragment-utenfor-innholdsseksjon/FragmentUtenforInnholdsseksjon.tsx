@@ -24,7 +24,9 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
 
             warnings.push(
                 <ul key={`${path}-list`}>
-                    <li key={`${path}-item`}>Fragment ligger utenfor innholdsseksjonen</li>
+                    <li key={`${path}-item`}>
+                        Innhold: {node.fragment.config.html?.processedHtml}
+                    </li>
                 </ul>
             );
         }
@@ -49,7 +51,7 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
             <strong>Slik retter du feilen:</strong>
             <ul>
                 <li key="fragment-rette-feilen">
-                    Flytt innholdet innenfor de markerte eller stiplede strekene i Enonic, slik at
+                    Flytt fragmentet innenfor de markerte eller stiplede strekene i Enonic, slik at
                     det vises korrekt i innholdsseksjonen.
                 </li>
             </ul>
