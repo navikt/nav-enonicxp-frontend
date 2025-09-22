@@ -34,9 +34,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
 
+    const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
+
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        const update = () => setIsDesktop(window.innerWidth >= 1024); //Hold i sync med mq-screen-desktop
+        const update = () => setIsDesktop(window.innerWidth >= desktopBreakPoint);
         update();
         window.addEventListener('resize', update);
         return () => window.removeEventListener('resize', update);
