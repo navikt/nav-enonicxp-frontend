@@ -32,9 +32,24 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const stickyExpandableToggleRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const update = () => setIsDesktop(window.innerWidth >= 1024); //Hold i sync med mq-screen-desktop
+        update();
+        window.addEventListener('resize', update);
+        return () => window.removeEventListener('resize', update);
+    }, []);
+
+    useEffect(() => {
+        if (isDesktop) return;
+
+        const stickyExpandableToggleElement = stickyExpandableToggleRef.current;
+        if (!stickyExpandableToggleElement) return;
+
         const observer = new IntersectionObserver(([toggleElement]) => {
+            if (!toggleElement) return;
             const isAboveCurrentBrowserView = toggleElement.boundingClientRect.bottom < 0;
 
             if (toggleElement.isIntersecting) {
@@ -48,9 +63,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             }
         });
 
-        const stickyExpandableToggleElement = stickyExpandableToggleRef.current;
-        if (stickyExpandableToggleElement) observer.observe(stickyExpandableToggleElement);
-    }, []);
+        observer.observe(stickyExpandableToggleElement);
+
+        return () => observer.disconnect();
+    }, [isDesktop]);
 
     if (!regions || !config) {
         return null;
@@ -91,44 +107,50 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         />
                     )}
 
-                    {/* {showInternalNav && !legacyNav && ( */}
-
-                    {hasScrolledPastContentMenu ? (
-                        <>
-                            <div className={styles.placeholder} />
-                            <ExpansionCard
-                                aria-label={menuTitle}
-                                className={styles.mobileExpandableMenu}
-                                ref={mobileExpandableMenuRef}
-                                size="small"
-                            >
-                                <ExpansionCard.Header>
-                                    <HStack wrap={false} gap="space-8" align="center">
-                                        <FileTextIcon aria-hidden fontSize="1.5rem" />
-                                        <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
-                                    </HStack>
-                                </ExpansionCard.Header>
-                                <ExpansionCard.Content>
-                                    <DynamicNavigation
-                                        anchorLinks={anchorLinks}
-                                        pageProps={pageProps}
-                                    />
-                                </ExpansionCard.Content>
-                            </ExpansionCard>
-                        </>
-                    ) : (
-                        <DynamicNavigation
-                            className={styles.pageNavigationMenu}
-                            anchorLinks={anchorLinks}
-                            pageProps={pageProps}
-                            title={menuTitle}
-                            ref={dynamicNavigationRef}
-                        />
-                    )}
+                    {showInternalNav &&
+                        !legacyNav &&
+                        (isDesktop ? (
+                            <DynamicNavigation
+                                ref={dynamicNavigationRef}
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={menuTitle}
+                            />
+                        ) : hasScrolledPastContentMenu ? (
+                            <>
+                                <div className={styles.placeholder} />
+                                <ExpansionCard
+                                    ref={mobileExpandableMenuRef}
+                                    size="small"
+                                    className={styles.mobileExpandableMenu}
+                                    aria-label={menuTitle}
+                                >
+                                    <ExpansionCard.Header>
+                                        <HStack wrap={false} gap="space-8" align="center">
+                                            <FileTextIcon aria-hidden fontSize="1.5rem" />
+                                            <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
+                                        </HStack>
+                                    </ExpansionCard.Header>
+                                    <ExpansionCard.Content>
+                                        <DynamicNavigation
+                                            anchorLinks={anchorLinks}
+                                            pageProps={pageProps}
+                                        />
+                                    </ExpansionCard.Content>
+                                </ExpansionCard>
+                            </>
+                        ) : (
+                            <DynamicNavigation
+                                ref={dynamicNavigationRef}
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={menuTitle}
+                            />
+                        ))}
 
                     <div ref={stickyExpandableToggleRef} />
-
-                    {/* )} */}
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
                     <PageUpdatedInfo
