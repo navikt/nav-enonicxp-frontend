@@ -111,7 +111,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
                     {showInternalNav &&
                         !legacyNav &&
-                        (isDesktop ? (
+                        (isDesktop || !hasScrolledPastContentMenu ? (
                             <DynamicNavigation
                                 ref={dynamicNavigationRef}
                                 className={styles.pageNavigationMenu}
@@ -119,7 +119,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 pageProps={pageProps}
                                 title={menuTitle}
                             />
-                        ) : hasScrolledPastContentMenu ? (
+                        ) : (
                             <>
                                 <div className={styles.placeholder} />
                                 <ExpansionCard
@@ -142,14 +142,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                     </ExpansionCard.Content>
                                 </ExpansionCard>
                             </>
-                        ) : (
-                            <DynamicNavigation
-                                ref={dynamicNavigationRef}
-                                className={styles.pageNavigationMenu}
-                                anchorLinks={anchorLinks}
-                                pageProps={pageProps}
-                                title={menuTitle}
-                            />
                         ))}
 
                     <div ref={stickyExpandableToggleRef} />
