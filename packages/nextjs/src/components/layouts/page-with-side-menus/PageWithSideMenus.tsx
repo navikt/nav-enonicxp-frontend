@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FileTextIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, HStack } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
@@ -30,18 +30,27 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            const dynamicNavigationMenu = entries[0];
+    const testRef = useRef<HTMLDivElement | null>(null);
 
-            mobileExpandableMenuRef.current?.classList.toggle(
-                styles.hide,
-                dynamicNavigationMenu.isIntersecting
-            );
+    const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            const isAboveCurrentView = entry.boundingClientRect.bottom < 0;
+
+            if (entry.isIntersecting) {
+                setHasScrolledPastContentMenu(false);
+            } else {
+                if (isAboveCurrentView) {
+                    setHasScrolledPastContentMenu(true);
+                } else {
+                    setHasScrolledPastContentMenu(false);
+                }
+            }
         });
 
-        const dynamicNavigationMenu = dynamicNavigationRef.current;
-        if (dynamicNavigationMenu) observer.observe(dynamicNavigationMenu);
+        const test = testRef.current;
+        if (test) observer.observe(test);
     }, []);
 
     if (!regions || !config) {
@@ -83,15 +92,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         />
                     )}
 
-                    {showInternalNav && !legacyNav && (
+                    {/* {showInternalNav && !legacyNav && ( */}
+
+                    {hasScrolledPastContentMenu ? (
                         <>
-                            <DynamicNavigation
-                                className={styles.pageNavigationMenu}
-                                anchorLinks={anchorLinks}
-                                pageProps={pageProps}
-                                title={menuTitle}
-                                ref={dynamicNavigationRef}
-                            />
+                            <div className={styles.placeholder} />
                             <ExpansionCard
                                 aria-label={menuTitle}
                                 className={styles.mobileExpandableMenu}
@@ -112,7 +117,19 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 </ExpansionCard.Content>
                             </ExpansionCard>
                         </>
+                    ) : (
+                        <DynamicNavigation
+                            className={styles.pageNavigationMenu}
+                            anchorLinks={anchorLinks}
+                            pageProps={pageProps}
+                            title={menuTitle}
+                            ref={dynamicNavigationRef}
+                        />
                     )}
+
+                    <div ref={testRef} />
+
+                    {/* )} */}
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
                     <PageUpdatedInfo
