@@ -1,14 +1,14 @@
-@use 'sass:math';
 @use 'common' as common;
 
 .pageWithSideMenus {
     display: grid;
     grid-template-columns: 1fr 40rem 1fr;
     grid-template-rows: auto 1fr;
-    padding-top: var(--a-spacing-16);
+    padding-top: var(--a-spacing-20);
 
     @media #{common.$mq-screen-mobile} {
         display: block;
+        padding-top: var(--a-spacing-9);
     }
 
     :global(.region__intro) {
@@ -23,7 +23,7 @@
 }
 
 .pullUp {
-    padding-top: 0;
+    padding-top: var(--a-spacing-3);
 }
 
 .mainContent {

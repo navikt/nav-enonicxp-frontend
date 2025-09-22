@@ -61,7 +61,7 @@ export const generateGvUsageMessages = (
                 level: 'error',
             },
             {
-                message: 'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
+                message: 'Prøv igjen, eller kontakt #team-navno dersom problemet vedvarer',
                 level: 'info',
             },
         ];

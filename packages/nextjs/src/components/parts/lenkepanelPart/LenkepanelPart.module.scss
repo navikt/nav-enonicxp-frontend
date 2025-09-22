@@ -1,20 +1,29 @@
 @use 'common' as common;
 
-.lenkepanel {
-    &:global(.navds-panel) {
-        width: 100%;
-        display: flex;
-        padding: var(--a-spacing-6);
-        margin: 0;
-        background-repeat: no-repeat;
-        background-position: bottom right;
-        background-size: contain;
-        background-color: var(--a-white);
-        border: 1px solid var(--default-action-color);
-        box-sizing: border-box;
-        text-decoration-line: none;
-        color: black;
+// Trengs på grunn av global-override-styles.scss
+// Slettes som en del av #2454
+:global(.part__dynamic-link-panel) > .lenkepanel {
+    font-size: var(--a-font-size-body-medium);
+    line-height: var(--a-line-height-body-medium);
+    margin-bottom: 0;
+
+    :global(.navds-heading--small),
+    :global(.navds-heading--medium) {
+        margin-bottom: 0;
     }
+}
+
+.lenkepanel {
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+    background-color: var(--a-white);
+    border: 1px solid var(--default-action-color);
+    border-radius: var(--a-border-radius-small);
+    padding: var(--a-spacing-6);
+    text-decoration-line: none;
+    color: black;
+    transition: none;
     &:hover {
         box-shadow: 0 2px 1px 0 #a0a0a0;
 
@@ -30,8 +39,6 @@
         @include common.panel-focus-mixin(false);
     }
     .innhold {
-        height: 100%;
-        width: 100%;
         display: flex;
         justify-items: flex-start;
         align-items: flex-start;
@@ -42,18 +49,23 @@
         width: 100%;
     }
     .title {
-        width: 100%;
         color: var(--default-action-color);
     }
     .ingress {
-        width: 100%;
-        margin: var(--a-spacing-4) 0 var(--a-spacing-2) 0;
+        margin-top: var(--a-spacing-4);
+    }
+    .lenkebase {
+        text-decoration: none;
+    }
+    :global(.navds-link-card__arrow) {
+        margin-inline-start: var(--a-spacing-6);
+    }
+    :global(.navds-link-card__image-container) {
+        border-radius: var(--a-border-radius-small);
     }
 }
 
 :global(.vertical).lenkepanel {
-    text-align: center;
-
     .icon {
         display: flex;
         width: 100%;
@@ -65,10 +77,8 @@
             height: var(--a-spacing-9);
         }
         &.bg {
-            margin: (calc(-1 * var(--a-spacing-6))) (calc(-1 * var(--a-spacing-6)))
-                var(--a-spacing-4) (calc(-1 * var(--a-spacing-6)));
+            margin: 0;
             padding: 0 var(--a-spacing-4);
-            width: calc(100% + #{var(--a-spacing-6)} * 2);
             height: var(--a-spacing-24);
 
             img {
@@ -95,13 +105,7 @@
         }
     }
     .header {
-        width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-direction: row;
-    }
-    .innhold {
-        padding-right: var(--a-spacing-2);
     }
 }
