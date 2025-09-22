@@ -15,19 +15,23 @@
     max-width: 37.5rem;
 }
 
-.shortcutItem,
-.shortcutItem:hover {
+.shortcutItem {
     border: 0;
+    border-radius: var(--a-border-radius-small);
     border-bottom: 2px solid var(--a-gray-600);
     margin: var(--a-spacing-1) 0;
     font-weight: 600;
+
+    &:has(:focus-visible) {
+        outline-offset: 0;
+    }
 
     &:hover {
         box-shadow: none;
     }
 
-    :global(.navds-link-panel__content) {
-        font-size: var(--a-font-size-heading-small);
+    :global(.navds-link-anchor) {
+        text-decoration: none;
     }
 }
 

@@ -11,6 +11,7 @@ const meta = {
         type: ComponentType.Part,
         path: 'path',
         config: {
+            ingress: 'Dette er et lenkepanel',
             link: {
                 _selected: 'external',
                 internal: {
@@ -19,7 +20,7 @@ const meta = {
                         displayName: 'displayName',
                     },
                 },
-                external: { url: 'url', text: 'text' },
+                external: { url: 'url', text: 'Lenkepanel' },
             },
         },
     },
@@ -45,6 +46,24 @@ export const Icon: Story = {
             icon: {
                 type: MediaType.Vector,
                 mediaUrl: 'placeholder',
+            },
+        },
+    },
+};
+
+export const Vertical: Story = {
+    args: {
+        config: {
+            ...meta.args.config,
+            variant: {
+                _selected: 'vertical',
+                vertical: {},
+                verticalWithBgColor: {
+                    iconBg: {
+                        color: 'orange',
+                    },
+                    iconJustify: 'center',
+                },
             },
         },
     },
