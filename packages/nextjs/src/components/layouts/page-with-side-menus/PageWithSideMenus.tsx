@@ -28,6 +28,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
     const legacyNav = useLegacyNav();
+    const isDesktop = useIsDesktop();
 
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
@@ -35,7 +36,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const stickyExpandableDetectionRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
-    const isDesktop = useIsDesktop();
     const [placeholderHeight, setPlaceholderHeight] = useState(0);
     const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
 
