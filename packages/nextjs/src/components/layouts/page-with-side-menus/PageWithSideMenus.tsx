@@ -35,6 +35,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
     const [placeholderHeight, setPlaceholderHeight] = useState(0);
+    const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
 
     const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
 
@@ -75,6 +76,16 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
         return () => observer.disconnect();
     }, [isDesktop]);
+
+    // Trigger CSS transition one frame after it mounts
+    useEffect(() => {
+        if (hasScrolledPastContentMenu) {
+            setMobileMenuAnimatedIn(false);
+            requestAnimationFrame(() => setMobileMenuAnimatedIn(true));
+        } else {
+            setMobileMenuAnimatedIn(false);
+        }
+    }, [hasScrolledPastContentMenu]);
 
     if (!regions || !config) {
         return null;
@@ -134,7 +145,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 <ExpansionCard
                                     ref={mobileExpandableMenuRef}
                                     size="small"
-                                    className={styles.mobileExpandableMenu}
+                                    className={classNames(
+                                        styles.mobileExpandableMenu,
+                                        mobileMenuAnimatedIn && styles.show
+                                    )}
                                     aria-label={menuTitle}
                                 >
                                     <ExpansionCard.Header>

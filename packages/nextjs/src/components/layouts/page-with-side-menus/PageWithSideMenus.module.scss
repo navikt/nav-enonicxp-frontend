@@ -25,6 +25,16 @@
     top: var(--decorator-sticky-offset);
     z-index: 100;
     width: calc(100% - var(--a-spacing-8));
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    transition:
+        opacity 200ms ease-out,
+        transform 200ms ease-out;
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
