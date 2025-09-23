@@ -61,6 +61,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: {{dekoratorenApp}}
+          namespace: personbruker
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}
@@ -69,6 +70,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: navno-xp-archive
+          namespace: personbruker
   resources:
   {{#with resources}}
     requests:
