@@ -44,6 +44,9 @@
 }
 
 .mobileExpandableMenuHeader {
+    display: flex;
+    align-items: center;
+
     background-color: var(--a-blue-50) !important;
     color: var(--a-blue-600);
     border: none !important;
