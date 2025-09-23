@@ -25,6 +25,7 @@
     top: var(--decorator-sticky-offset);
     z-index: 100;
     width: calc(100% - var(--a-spacing-8));
+
     opacity: 0;
     transform: translateY(-1.5rem);
     transition:
@@ -40,6 +41,15 @@
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
     }
+}
+
+.mobileExpandableMenuHeader {
+    background-color: var(--a-blue-50) !important;
+    color: var(--a-blue-600);
+    border: none !important;
+    outline: 2px solid white;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 @media #{common.$mq-screen-desktop} {

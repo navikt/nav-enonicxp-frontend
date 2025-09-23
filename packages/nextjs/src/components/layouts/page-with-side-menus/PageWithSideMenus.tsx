@@ -150,8 +150,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                         mobileMenuAnimatedIn && styles.show
                                     )}
                                     aria-label={menuTitle}
+                                    // data-color="brand-magenta" TODO data-color funker ikke, eller?
                                 >
-                                    <ExpansionCard.Header>
+                                    <ExpansionCard.Header
+                                        className={styles.mobileExpandableMenuHeader}
+                                    >
                                         <HStack wrap={false} gap="space-8" align="center">
                                             <FileTextIcon aria-hidden fontSize="1.5rem" />
                                             <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
