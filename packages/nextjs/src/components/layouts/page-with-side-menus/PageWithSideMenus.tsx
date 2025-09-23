@@ -32,7 +32,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
     const placeholderRef = useRef<HTMLDivElement | null>(null);
-    const stickyExpandableToggleRef = useRef<HTMLDivElement | null>(null);
+    const stickyExpandableDetectionRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
     const isDesktop = useIsDesktop();
@@ -42,14 +42,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     useEffect(() => {
         if (isDesktop) return;
 
-        const stickyExpandableToggleElement = stickyExpandableToggleRef.current;
-        if (!stickyExpandableToggleElement) return;
+        const stickyExpandableDetectionElement = stickyExpandableDetectionRef.current;
+        if (!stickyExpandableDetectionElement) return;
 
-        const observer = new IntersectionObserver(([toggleElement]) => {
-            if (!toggleElement) return;
-            const isAboveCurrentBrowserView = toggleElement.boundingClientRect.bottom < 0;
+        const observer = new IntersectionObserver(([detectionElement]) => {
+            if (!detectionElement) return;
+            const isAboveCurrentBrowserView = detectionElement.boundingClientRect.bottom < 0;
 
-            if (toggleElement.isIntersecting) {
+            if (detectionElement.isIntersecting) {
                 setPlaceholderHeight(0);
                 setHasScrolledPastContentMenu(false);
             } else {
@@ -64,7 +64,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             }
         });
 
-        observer.observe(stickyExpandableToggleElement);
+        observer.observe(stickyExpandableDetectionElement);
 
         return () => observer.disconnect();
     }, [isDesktop]);
@@ -161,7 +161,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             </>
                         ))}
 
-                    <div ref={stickyExpandableToggleRef} />
+                    <div ref={stickyExpandableDetectionRef} />
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
                     <PageUpdatedInfo
