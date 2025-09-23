@@ -60,9 +60,7 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
-          namespace: personbruker
-        - application: {{revalidatorApp}}
-          namespace: navno
+          namespace: *
         - application: {{dekoratorenApp}}
       external:
         {{#each externalHosts as |host|}}
@@ -71,9 +69,7 @@ spec:
     inbound:
       rules:
         - application: {{revalidatorApp}}
-          namespace: personbruker
-        - application: {{revalidatorApp}}
-          namespace: navno
+          namespace: *
         - application: navno-xp-archive
   resources:
   {{#with resources}}
