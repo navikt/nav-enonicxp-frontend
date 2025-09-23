@@ -13,6 +13,7 @@ import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedI
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
+import { useIsDesktop } from 'utils/useIsDesktop';
 import { useLegacyNav } from 'utils/useLegacyNav';
 import styles from './PageWithSideMenus.module.scss';
 
@@ -27,25 +28,16 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
     const legacyNav = useLegacyNav();
+
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
     const placeholderRef = useRef<HTMLDivElement | null>(null);
     const stickyExpandableToggleRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(false);
+    const isDesktop = useIsDesktop();
     const [placeholderHeight, setPlaceholderHeight] = useState(0);
     const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
-
-    const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
-
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const update = () => setIsDesktop(window.innerWidth >= desktopBreakPoint);
-        update();
-        window.addEventListener('resize', update);
-        return () => window.removeEventListener('resize', update);
-    }, []);
 
     useEffect(() => {
         if (isDesktop) return;
