@@ -40,7 +40,11 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+          namespace: personbruker
+        - application: {{revalidatorApp}}
+          namespace: navno
         - application: {{dekoratorenApp}}
+          
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}
