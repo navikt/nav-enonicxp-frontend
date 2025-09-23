@@ -38,6 +38,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
     const [placeholderHeight, setPlaceholderHeight] = useState(0);
     const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
+    const [expandableMenuOpen, setExpandableMenuOpen] = useState(false);
 
     useEffect(() => {
         if (isDesktop) return;
@@ -137,6 +138,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 <ExpansionCard
                                     ref={mobileExpandableMenuRef}
                                     size="small"
+                                    open={expandableMenuOpen}
+                                    onToggle={() => setExpandableMenuOpen((prev) => !prev)}
                                     className={classNames(
                                         styles.mobileExpandableMenu,
                                         mobileMenuAnimatedIn && styles.show
@@ -158,6 +161,13 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                         />
                                     </ExpansionCard.Content>
                                 </ExpansionCard>
+
+                                {expandableMenuOpen && (
+                                    <button
+                                        onClick={() => setExpandableMenuOpen(false)}
+                                        className={classNames(styles.mobileOverlay, styles.visible)}
+                                    />
+                                )}
                             </>
                         ))}
 

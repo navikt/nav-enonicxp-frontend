@@ -23,7 +23,7 @@
 .mobileExpandableMenu {
     position: fixed;
     top: var(--decorator-sticky-offset);
-    z-index: 100;
+    z-index: 10;
     width: calc(100% - var(--a-spacing-8));
 
     opacity: 0;
@@ -40,6 +40,19 @@
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
+    }
+}
+
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    opacity: 0;
+    background: #aab0ba40;
+    transition: opacity 120ms ease;
+
+    &.visible {
+        opacity: 1;
     }
 }
 
@@ -81,6 +94,10 @@
     }
 
     .mobileExpandableMenu {
+        display: none;
+    }
+
+    .mobileOverlay {
         display: none;
     }
 }
