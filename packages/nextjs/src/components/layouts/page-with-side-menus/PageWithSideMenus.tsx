@@ -29,10 +29,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const legacyNav = useLegacyNav();
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
     const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
+    const placeholderRef = useRef<HTMLDivElement | null>(null);
     const stickyExpandableToggleRef = useRef<HTMLDivElement | null>(null);
 
     const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
+    const [placeholderHeight, setPlaceholderHeight] = useState(0);
 
     const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
 
@@ -55,11 +57,15 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             const isAboveCurrentBrowserView = toggleElement.boundingClientRect.bottom < 0;
 
             if (toggleElement.isIntersecting) {
+                setPlaceholderHeight(0);
                 setHasScrolledPastContentMenu(false);
             } else {
                 if (isAboveCurrentBrowserView) {
+                    const staticMobileMenuHeight = dynamicNavigationRef.current?.offsetHeight;
+                    setPlaceholderHeight(staticMobileMenuHeight ?? 0);
                     setHasScrolledPastContentMenu(true);
                 } else {
+                    setPlaceholderHeight(0);
                     setHasScrolledPastContentMenu(false);
                 }
             }
@@ -121,7 +127,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             />
                         ) : (
                             <>
-                                <div className={styles.placeholder} />
+                                <div
+                                    ref={placeholderRef}
+                                    style={{ height: `${placeholderHeight}px` }}
+                                />
                                 <ExpansionCard
                                     ref={mobileExpandableMenuRef}
                                     size="small"
