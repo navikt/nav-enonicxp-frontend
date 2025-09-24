@@ -15,19 +15,31 @@ export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        const fromLocalCache = localCache.get(key);
-        if (fromLocalCache) {
-            return fromLocalCache;
-        }
+        try {
+            const cacheStartTime = Date.now();
+            const fromLocalCache = localCache.get(key);
+            const cacheLoadDuration = Date.now() - cacheStartTime;
 
-        const fromRedisCache = await redisCache.getRender(key);
-        if (!fromRedisCache) {
+            if (cacheLoadDuration > 1000) {
+                logger.warn(`Local cache: json load takes more than 1 second for ${key}`);
+            }
+
+            if (fromLocalCache) {
+                return fromLocalCache;
+            }
+
+            const fromRedisCache = await redisCache.getRender(key);
+            if (!fromRedisCache) {
+                return null;
+            }
+
+            localCache.set(key, fromRedisCache);
+
+            return fromRedisCache;
+        } catch (error) {
+            logger.error(`Error getting cache for key ${key}:`, error);
             return null;
         }
-
-        localCache.set(key, fromRedisCache);
-
-        return fromRedisCache;
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
