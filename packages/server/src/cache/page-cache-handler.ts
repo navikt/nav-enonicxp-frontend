@@ -30,10 +30,8 @@ export default class PageCacheHandler {
             const fromLocalCache = localCache.get(key);
             const cacheLoadDuration = performance.now() - cacheStartTime;
 
-            logger.info(`Cache load duration for ${key}: ${cacheLoadDuration} ms`);
-
-            if (cacheLoadDuration > 1000) {
-                logger.warn(`Local cache: json load takes more than 1 second for ${key}`);
+            if (cacheLoadDuration > 50) {
+                logger.warn(`Local cache: json load takes more than 50 ms for ${key}`);
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
