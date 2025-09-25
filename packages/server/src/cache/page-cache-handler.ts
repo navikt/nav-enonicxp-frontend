@@ -1,5 +1,6 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
+import { performance } from 'node:perf_hooks';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
@@ -11,21 +12,37 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
 });
 
+function isCacheEntryValid(v: unknown): v is CacheHandlerValue {
+    return (
+        typeof v === 'object' &&
+        v !== null &&
+        'value' in (v as Record<string, unknown>) &&
+        'lastModified' in (v as Record<string, unknown>)
+    );
+}
+
 export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
         try {
-            const cacheStartTime = Date.now();
+            const cacheStartTime = performance.now();
             const fromLocalCache = localCache.get(key);
-            const cacheLoadDuration = Date.now() - cacheStartTime;
+            const cacheLoadDuration = performance.now() - cacheStartTime;
+
+            logger.info(`Cache load duration for ${key}: ${cacheLoadDuration} ms`);
 
             if (cacheLoadDuration > 1000) {
                 logger.warn(`Local cache: json load takes more than 1 second for ${key}`);
             }
 
-            if (fromLocalCache) {
+            if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
                 return fromLocalCache;
+            }
+
+            if (!isCacheEntryValid(fromLocalCache)) {
+                localCache.delete(key);
+                logger.warn(`Local cache: invalid cache entry. Entry deleted for ${key}.`);
             }
 
             const fromRedisCache = await redisCache.getRender(key);
