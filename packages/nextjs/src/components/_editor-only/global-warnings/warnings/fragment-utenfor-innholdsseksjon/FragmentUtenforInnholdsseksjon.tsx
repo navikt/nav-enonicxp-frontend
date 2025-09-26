@@ -25,7 +25,7 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
             warnings.push(
                 <ul key={`${path}-list`}>
                     <li key={`${path}-item`}>
-                        Innhold: {node.fragment.config.html?.processedHtml}
+                        Innhold: {JSON.stringify(node.fragment.config.html?.processedHtml)}
                     </li>
                 </ul>
             );

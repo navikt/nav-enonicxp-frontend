@@ -49,8 +49,6 @@ export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Pr
     useEffect(() => {
         if (shouldWarn && isEditorView && isGodkjentSide(type)) {
             setRedBorderStyling(true);
-        } else {
-            setRedBorderStyling(false);
         }
     }, [shouldWarn, isEditorView, type]);
 
