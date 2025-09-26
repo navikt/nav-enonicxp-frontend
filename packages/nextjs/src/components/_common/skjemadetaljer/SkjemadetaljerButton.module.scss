@@ -3,6 +3,8 @@
 .button {
     display: flex;
 
+    background-color: var(--a-green-300);
+
     @media #{common.$mq-screen-mobile-small} {
         width: 100%;
     }
