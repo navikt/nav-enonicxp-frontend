@@ -45,6 +45,11 @@
         margin-left: var(--a-spacing-3);
         padding-left: 0;
         border-left: 1px solid var(--a-border-subtle);
+
+        // Do not show expanded submenus on mobile (TODO: screen reader support?)
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            display: none !important;
+        }
     }
 
     li + li {
@@ -66,25 +71,27 @@
         text-decoration-color: inherit;
     }
 
-    &::before {
-        content: '';
-        position: absolute;
-        inset-block: 0;
-        inset-inline-start: 0;
-        inline-size: 4px;
-        background: transparent;
-        height: 0;
-        top: 50%;
+    @media #{common.$mq-screen-desktop} {
+        &::before {
+            content: '';
+            position: absolute;
+            inset-block: 0;
+            inset-inline-start: 0;
+            inline-size: 4px;
+            background: transparent;
+            height: 0;
+            top: 50%;
 
-        @media (prefers-reduced-motion: no-preference) {
-            transition: all 0.25s;
-            animation-timing-function: cubic-bezier(0.8, 0.27, 0.11, 0.68);
+            @media (prefers-reduced-motion: no-preference) {
+                transition: all 0.25s;
+                animation-timing-function: cubic-bezier(0.8, 0.27, 0.11, 0.68);
+            }
         }
-    }
 
-    &[aria-current='true']::before {
-        background: var(--a-border-action);
-        height: 100%;
-        top: 0;
+        &[aria-current='true']::before {
+            background: var(--a-border-action);
+            height: 100%;
+            top: 0;
+        }
     }
 }
