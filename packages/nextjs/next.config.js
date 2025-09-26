@@ -42,7 +42,6 @@ const csp = async () => {
     const prodWithSubdomains = `*.${prodHost}`;
 
     const appHost = new URL(process.env.APP_ORIGIN).host;
-    const failoverHost = new URL(process.env.FAILOVER_ORIGIN).host;
     const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
@@ -68,7 +67,7 @@ const csp = async () => {
     // deployment environment
     const internalHosts = [
         prodWithSubdomains,
-        ...[appHost, failoverHost, adminHost, xpHost].filter(
+        ...[appHost, adminHost, xpHost].filter(
             (origin, index, array) => !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
     ];
