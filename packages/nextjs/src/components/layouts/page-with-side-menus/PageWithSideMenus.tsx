@@ -53,15 +53,13 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             if (detectionElement.isIntersecting) {
                 setPlaceholderHeight(0);
                 setHasScrolledPastContentMenu(false);
+            } else if (isAboveCurrentBrowserView) {
+                const staticMobileMenuHeight = dynamicNavigationRef.current?.offsetHeight;
+                setPlaceholderHeight(staticMobileMenuHeight ?? 0);
+                setHasScrolledPastContentMenu(true);
             } else {
-                if (isAboveCurrentBrowserView) {
-                    const staticMobileMenuHeight = dynamicNavigationRef.current?.offsetHeight;
-                    setPlaceholderHeight(staticMobileMenuHeight ?? 0);
-                    setHasScrolledPastContentMenu(true);
-                } else {
-                    setPlaceholderHeight(0);
-                    setHasScrolledPastContentMenu(false);
-                }
+                setPlaceholderHeight(0);
+                setHasScrolledPastContentMenu(false);
             }
         });
 
