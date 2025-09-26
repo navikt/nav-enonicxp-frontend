@@ -30,6 +30,7 @@ export default [
                     caughtErrorsIgnorePattern: '^_',
                 },
             ],
+            '@typescript-eslint/triple-slash-reference': 'off',
         },
     },
     {
