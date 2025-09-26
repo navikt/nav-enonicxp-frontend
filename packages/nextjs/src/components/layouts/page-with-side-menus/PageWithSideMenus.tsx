@@ -70,7 +70,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         return () => observer.disconnect();
     }, [isDesktop]);
 
-    // Trigger CSS transition one frame after it mounts
     useEffect(() => {
         if (hasScrolledPastContentMenu) {
             setMobileMenuAnimatedIn(false);
