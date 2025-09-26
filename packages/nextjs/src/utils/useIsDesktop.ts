@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
+const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
+
 export const useIsDesktop = (): boolean => {
-    const desktopBreakPoint = 1024; //Hold i sync med common.mq-screen-desktop
     const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
