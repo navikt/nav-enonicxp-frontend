@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useMemo, useState, useRef } from 'react';
+import React, { useEffect, useId, useMemo, useState, useRef, ForwardedRef } from 'react';
 import debounce from 'lodash.debounce';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { FileTextIcon } from '@navikt/aksel-icons';
@@ -27,7 +27,10 @@ type Props = {
     className?: string;
 };
 
-export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, className }: Props) => {
+export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
+    { anchorLinks = [], pageProps, title, className }: Props,
+    ref: ForwardedRef<HTMLDivElement>
+) {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
@@ -212,13 +215,16 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
 
     return (
         <nav
+            ref={ref}
             aria-labelledby={headingId}
             className={classNames(style.pageNavigationMenu, className)}
         >
-            <Heading size="xsmall" id={headingId} className={style.heading}>
-                <FileTextIcon aria-hidden={true} className={style.headingIcon} />
-                {title}
-            </Heading>
+            {title && (
+                <Heading size="xsmall" id={headingId} className={style.heading}>
+                    <FileTextIcon aria-hidden={true} className={style.headingIcon} />
+                    {title}
+                </Heading>
+            )}
             <ul className={style.list}>
                 {groupedLinks.map(({ h2, h3 }) => {
                     const isH2Active = activeAnchor === h2.anchorId;
@@ -283,4 +289,4 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
             </ul>
         </nav>
     );
-};
+});

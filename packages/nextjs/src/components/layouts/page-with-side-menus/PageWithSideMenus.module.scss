@@ -20,6 +20,63 @@
     padding-top: 0;
 }
 
+.mobileExpandableMenu {
+    position: fixed;
+    top: var(--decorator-sticky-offset);
+    z-index: 10;
+    width: calc(100% - var(--a-spacing-8));
+
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    transition:
+        opacity 200ms ease-out,
+        transform 200ms ease-out;
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    :global(.navds-expansioncard__title),
+    :global(.navds-expansioncard__content) {
+        margin-bottom: 0; //overstyr global-override-styles.scss
+    }
+
+    :global(.navds-expansioncard__content) {
+        height: calc(50vh - var(--a-spacing-14));
+        overflow: scroll;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.mobileExpandableMenuHeader {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--a-blue-50) !important;
+    color: var(--a-blue-600);
+    border: none !important;
+    outline: 2px solid white;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    opacity: 0;
+    background: #aab0ba40;
+    transition: opacity 120ms ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
 @media #{common.$mq-screen-desktop} {
     .pageWithSideMenus {
         display: grid;
@@ -41,8 +98,13 @@
     .pageNavigationMenu {
         grid-column: space-end;
         grid-row: 2 / 6;
-        height: max-content;
-        position: sticky;
-        top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
+    }
+
+    .mobileExpandableMenu {
+        display: none;
+    }
+
+    .mobileOverlay {
+        display: none;
     }
 }
