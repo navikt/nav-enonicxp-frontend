@@ -21,7 +21,7 @@ jobs:
         permissions:
             id-token: write
         with:
-            image: europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-enonicxp-frontend@sha256:${{ github.event.inputs.digest }}
+            image: europe-north1-docker.pkg.dev/nais-management-233d/navno/nav-enonicxp-frontend@sha256:${{ github.event.inputs.digest }}
             cluster: dev-gcp
             vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
             config_file: config-failover.yml

@@ -97,7 +97,7 @@ jobs:
                   INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
                   NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
                   MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
-                  ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
+                  ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend
                   IMAGE_CACHE_DIR=/tmp/images
                   NEXT_TELEMETRY_DISABLED=1
                   EOF
@@ -124,7 +124,7 @@ jobs:
             - name: Upload static files to Nav CDN
               uses: nais/deploy/actions/cdn-upload/v2@master
               with:
-                  team: personbruker
+                  team: navno
                   source: ./packages/nextjs/.next/static
                   destination: nav-enonicxp-frontend/_next
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
@@ -136,7 +136,7 @@ jobs:
               uses: nais/docker-build-push@v0
               id: docker-push
               with:
-                  team: personbruker
+                  team: navno
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
                   image_suffix: ${{ inputs.imagename }}

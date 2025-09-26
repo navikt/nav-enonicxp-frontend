@@ -3,9 +3,9 @@ apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
   name: {{appName}}
-  namespace: personbruker
+  namespace: navno
   labels:
-    team: personbruker
+    team: navno
   annotations:
     config.linkerd.io/proxy-cpu-limit: '2'
     config.linkerd.io/proxy-cpu-request: 500m
@@ -60,7 +60,9 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+        - application: {{failoverApp}}
         - application: {{dekoratorenApp}}
+          namespace: personbruker
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}
@@ -69,6 +71,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: navno-xp-archive
+          namespace: personbruker
   resources:
   {{#with resources}}
     requests:
