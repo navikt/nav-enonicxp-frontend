@@ -41,7 +41,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: {{dekoratorenApp}}
-          namespace: navno
+          namespace: personbruker
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}

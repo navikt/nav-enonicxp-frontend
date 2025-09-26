@@ -60,6 +60,7 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+        - appliccation: {{failoverApp}}
         - application: {{dekoratorenApp}}
           namespace: personbruker
       external:
