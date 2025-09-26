@@ -57,9 +57,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 const staticMobileMenuHeight = dynamicNavigationRef.current?.offsetHeight;
                 setPlaceholderHeight(staticMobileMenuHeight ?? 0);
                 setHasScrolledPastContentMenu(true);
-            } else {
-                setPlaceholderHeight(0);
-                setHasScrolledPastContentMenu(false);
             }
         });
 
