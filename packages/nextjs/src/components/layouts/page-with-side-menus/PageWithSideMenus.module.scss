@@ -1,9 +1,12 @@
-@use 'sass:math';
 @use 'common' as common;
 
 .pageWithSideMenus {
-    padding-top: var(--a-spacing-16);
+    padding-top: var(--a-spacing-20);
     padding-bottom: var(--a-spacing-16);
+
+    @media #{common.$mq-screen-mobile} {
+        padding-top: var(--a-spacing-9);
+    }
 
     :global(.region__intro) {
         margin-bottom: var(--a-spacing-9);
@@ -17,7 +20,7 @@
 }
 
 .pullUp {
-    padding-top: 0;
+    padding-top: var(--a-spacing-3);
 }
 
 .mobileExpandableMenu {

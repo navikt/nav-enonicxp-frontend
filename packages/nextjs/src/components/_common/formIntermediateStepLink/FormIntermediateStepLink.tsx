@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { LinkPanel } from '@navikt/ds-react';
+import { LinkCard } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { FormIntermediateStep_StepLinkData } from 'components/pages/formIntermediateStepPage/useFormIntermediateStepPage';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
@@ -30,25 +29,33 @@ export const FormIntermediateStepLink = ({
     }
 
     return (
-        <LinkPanel
-            as={LenkeBase}
-            className={style.lenkepanel}
-            href={href}
-            analyticsComponent={analyticsComponent}
-            analyticsLabel={analyticsLabel}
-            shallow={isStepNavigation}
-        >
-            <div className={style.content}>
-                <LinkPanel.Title>{label}</LinkPanel.Title>
-                {explanation && <LinkPanel.Description>{explanation}</LinkPanel.Description>}
-                {formNumber && <FormNumberTag className={style.metadata} formNumber={formNumber} />}
-                {languageDisclaimer && (
-                    <LanguageDisclaimer className={style.metadata}>
-                        {languageDisclaimer}
-                    </LanguageDisclaimer>
-                )}
-            </div>
-            <ArrowRightIcon aria-hidden fontSize="1.25rem" className={style.arrowRightIcon} />
-        </LinkPanel>
+        <LinkCard arrowPosition="center" className={style.lenkepanel}>
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase
+                        className={style.lenkebase}
+                        href={href}
+                        analyticsComponent={analyticsComponent}
+                        analyticsLabel={analyticsLabel}
+                        shallow={isStepNavigation}
+                    >
+                        {label}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            {explanation && <LinkCard.Description>{explanation}</LinkCard.Description>}
+            {(formNumber || languageDisclaimer) && (
+                <LinkCard.Footer>
+                    {formNumber && (
+                        <FormNumberTag className={style.metadata} formNumber={formNumber} />
+                    )}
+                    {languageDisclaimer && (
+                        <LanguageDisclaimer className={style.metadata}>
+                            {languageDisclaimer}
+                        </LanguageDisclaimer>
+                    )}
+                </LinkCard.Footer>
+            )}
+        </LinkCard>
     );
 };

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Heading, LinkPanel } from '@navikt/ds-react';
+import { LinkCard } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import style from './LenkepanelNavNo.module.scss';
@@ -13,8 +13,7 @@ type Props = PropsWithChildren<{
     component?: string;
     linkGroup?: string;
     className?: string;
-}> &
-    React.AnchorHTMLAttributes<HTMLAnchorElement>;
+}>;
 
 const LenkepanelNavNo = ({
     href,
@@ -26,27 +25,32 @@ const LenkepanelNavNo = ({
     component,
     linkGroup,
     children,
-    ...rest
 }: Props) => {
     return (
-        <LinkPanel
-            {...rest}
-            href={href}
-            analyticsComponent={component}
-            analyticsLinkGroup={linkGroup}
-            analyticsLabel={tittel}
+        <LinkCard
+            arrow={!vertikal}
+            arrowPosition="center"
             className={classNames(style.lenkepanelNavno, vertikal && style.vertikal, className)}
-            as={LenkeBase}
         >
-            {ikon && <div className={style.ikon}>{ikon}</div>}
-            <div className={style.innhold}>
-                <Heading level="2" size="small" className={'navds-link-panel__title'}>
-                    {tittel}
-                </Heading>
+            {ikon && <LinkCard.Icon className={style.ikon}>{ikon}</LinkCard.Icon>}
+            <LinkCard.Title as="h2">
+                <LinkCard.Anchor asChild>
+                    <LenkeBase
+                        href={href}
+                        analyticsComponent={component}
+                        analyticsLinkGroup={linkGroup}
+                        analyticsLabel={tittel}
+                        className={style.lenkebase}
+                    >
+                        {tittel}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            <LinkCard.Description className={style.innhold}>
                 {separator && <hr className={style.separator} />}
                 {children && <div>{children}</div>}
-            </div>
-        </LinkPanel>
+            </LinkCard.Description>
+        </LinkCard>
     );
 };
 
