@@ -38,7 +38,8 @@ export default class PageCacheHandler {
                 return fromLocalCache;
             }
 
-            if (!isCacheEntryValid(fromLocalCache)) {
+            // There was something in the cache, but it's not valid
+            if (fromLocalCache && !isCacheEntryValid(fromLocalCache)) {
                 localCache.delete(key);
                 logger.warn(
                     `Local cache: invalid cache entry: ${JSON.stringify(fromLocalCache)}. Entry deleted for ${key}.`
