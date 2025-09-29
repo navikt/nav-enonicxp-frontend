@@ -61,6 +61,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: {{failoverApp}}
+          namespace: navno
         - application: {{dekoratorenApp}}
           namespace: personbruker
       external:
@@ -71,7 +72,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: navno-xp-archive
-          namespace: personbruker
+          namespace: navno
   resources:
   {{#with resources}}
     requests:

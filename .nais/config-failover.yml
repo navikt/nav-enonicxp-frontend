@@ -40,6 +40,7 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+          namespace: navno
         - application: {{dekoratorenApp}}
           namespace: personbruker
       external:
