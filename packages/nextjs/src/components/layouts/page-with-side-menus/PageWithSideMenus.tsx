@@ -152,6 +152,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                         <DynamicNavigation
                                             anchorLinks={anchorLinks}
                                             pageProps={pageProps}
+                                            onLinkClick={() => setExpandableMenuOpen(false)}
                                         />
                                     </ExpansionCard.Content>
                                 </ExpansionCard>

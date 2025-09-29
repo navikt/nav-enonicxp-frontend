@@ -25,10 +25,11 @@ type Props = {
     pageProps: ContentProps;
     title?: string;
     className?: string;
+    onLinkClick?: () => void;
 };
 
 export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
-    { anchorLinks = [], pageProps, title, className }: Props,
+    { anchorLinks = [], pageProps, title, className, onLinkClick }: Props,
     ref: ForwardedRef<HTMLDivElement>
 ) {
     const { language } = usePageContentProps();
@@ -245,6 +246,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
+                                onClick={() => onLinkClick?.()}
                             >
                                 <BodyLong as="span" size="small" className={style.linkText}>
                                     {h2.linkText}
@@ -270,6 +272,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                                         ? 'true'
                                                         : undefined
                                                 }
+                                                onClick={() => onLinkClick?.()}
                                             >
                                                 <BodyLong
                                                     as="span"
