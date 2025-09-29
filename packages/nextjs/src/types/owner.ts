@@ -11,7 +11,7 @@ export enum Owner {
     STATISTIKK = 'statistikk',
     HJELPEMIDDEL_OG_TILRETTELEGGING = 'hjelpemiddel_og_tilrettelegging',
     KONTAKTSENTERET = 'kontaktsenteret',
-    NAVNO = 'navno',
+    TEAM_PERSONBRUKER = 'team_personbruker',
     IT_AVDELINGEN = 'it_avdelingen',
     FYLKE = 'fylke',
     HJELPEMIDDELSENTRALEN = 'hjelpemiddelsentralen',
