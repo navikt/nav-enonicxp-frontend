@@ -248,41 +248,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                     {h2.linkText}
                                 </BodyShort>
                             </LenkeBase>
-
-                            {h3.length > 0 && (
-                                <ul
-                                    className={classNames(style.list, !isExpanded && 'sr-only')}
-                                    id={submenuId}
-                                >
-                                    {h3.map((sub) => (
-                                        <li key={sub.anchorId}>
-                                            <LenkeBase
-                                                href={`#${sub.anchorId}`}
-                                                analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                                analyticsLinkGroup={'Innhold'}
-                                                analyticsComponent={analyticsComponent}
-                                                analyticsLabel={sub.linkText}
-                                                className={style.link}
-                                                aria-current={
-                                                    activeAnchors.includes(sub.anchorId)
-                                                        ? 'true'
-                                                        : undefined
-                                                }
-                                                tabIndex={isExpanded ? 0 : -1}
-                                                onClick={() => onLinkClick?.()}
-                                            >
-                                                <BodyShort
-                                                    as="span"
-                                                    size="small"
-                                                    className={style.linkText}
-                                                >
-                                                    {sub.linkText}
-                                                </BodyShort>
-                                            </LenkeBase>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
                         </li>
                     );
                 })}
