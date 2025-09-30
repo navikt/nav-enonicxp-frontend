@@ -22,11 +22,17 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
                 return;
             }
 
+            const innhold = () => {
+                if (node.fragment.config.html?.processedHtml !== undefined) {
+                    return JSON.stringify(node.fragment.config.html.processedHtml);
+                } else if (node.fragment.config.content?.processedHtml !== undefined) {
+                    return JSON.stringify(node.fragment.config.content.processedHtml);
+                }
+            };
+
             warnings.push(
                 <ul key={`${path}-list`}>
-                    <li key={`${path}-item`}>
-                        Innhold: {JSON.stringify(node.fragment.config.html?.processedHtml)}
-                    </li>
+                    <li key={`${path}-item`}>Innhold: {innhold()}</li>
                 </ul>
             );
         }
@@ -45,8 +51,9 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
 
     return warnings.length > 0 ? (
         <li key="fragment-utenfor-innholdsseksjon-warning" className={className}>
-            Fragmentet ligger utenfor den angitte innholdsseksjonen, noe som kan føre til
-            visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
+            {warnings.length === 1 ? 'Fragmentet' : 'Fragmentene'} ligger utenfor den angitte
+            innholdsseksjonen, noe som kan føre til visningsfeil på nav.no. Under ser du hvilket
+            innhold det gjelder.
             {warnings}
             <strong>Slik retter du feilen:</strong>
             <ul>
