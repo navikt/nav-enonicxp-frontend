@@ -1,19 +1,19 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { htmlAreaUtenforInnholdsseksjon } from './htmlAreaUtenforInnholdsseksjon';
+import { pageContentHtmlAreaUtenforInnholdsseksjon } from './pageContentHtmlAreaUtenforInnholdsseksjon';
 
 type Props = {
     content: ContentProps;
     className?: string;
 };
 
-export const PartUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (htmlAreaUtenforInnholdsseksjon(node)) {
+        if (pageContentHtmlAreaUtenforInnholdsseksjon(node)) {
             const { path, config } = node;
 
             if (!config.html?.processedHtml) {
