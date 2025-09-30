@@ -58,8 +58,9 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
             <strong>Slik retter du feilen:</strong>
             <ul>
                 <li key="fragment-rette-feilen">
-                    Flytt fragmentet innenfor de markerte eller stiplede strekene i Enonic, slik at
-                    det vises korrekt i innholdsseksjonen.
+                    Flytt {warnings.length === 1 ? 'fragmentet' : 'fragmentene'} innenfor de
+                    markerte eller stiplede strekene i Enonic, slik at det vises korrekt i
+                    innholdsseksjonen.
                 </li>
             </ul>
         </li>
