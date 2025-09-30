@@ -116,7 +116,10 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             // Toleransen for å aktivere overskrifter når den er innenfor angitt verdi fra toppen eller bunnen
             const DEFAULT_SCROLL_TOLERANCE_PX = 75;
             const MAX_SCREEN_RATIO = 0.1;
-            const SCROLL_TOLERANCE_PX = Math.min(DEFAULT_SCROLL_TOLERANCE_PX, Math.round(window.innerHeight * MAX_SCREEN_RATIO));
+            const SCROLL_TOLERANCE_PX = Math.min(
+                DEFAULT_SCROLL_TOLERANCE_PX,
+                Math.round(window.innerHeight * MAX_SCREEN_RATIO)
+            );
 
             const activeIds: string[] = [];
             let closestAbove: { id: string; rect: DOMRect } | undefined;
@@ -130,7 +133,10 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
 
                 // Hvis det ikke finnes noen overskrift over, befinner vi oss på toppen av siden og skal ikke ha noen aktive overskrifter
                 if (closestAbove) {
-                    if (rect.bottom > SCROLL_TOLERANCE_PX && rect.top < window.innerHeight - SCROLL_TOLERANCE_PX) {
+                    if (
+                        rect.bottom > SCROLL_TOLERANCE_PX &&
+                        rect.top < window.innerHeight - SCROLL_TOLERANCE_PX
+                    ) {
                         activeIds.push(h.id);
                     }
                 }
@@ -166,13 +172,18 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
         const container = containerRef.current || (ref && 'current' in ref ? ref.current : null);
         if (!container) return;
 
-        const link: HTMLElement | null = container.querySelector(`a[href="#${CSS.escape(targetId)}"]`);
+        const link: HTMLElement | null = container.querySelector(
+            `a[href="#${CSS.escape(targetId)}"]`
+        );
         if (!link) return;
 
         // Toleransen for å avgjøre om aktiv overskrift er innenfor innholdsfortegnelsen synlige område
         const DEFAULT_SCROLL_TOLERANCE_PX = 250;
         const MAX_SCREEN_RATIO = 0.2;
-        const SCROLL_TOLERANCE_PX = Math.min(DEFAULT_SCROLL_TOLERANCE_PX, Math.round(window.innerHeight * MAX_SCREEN_RATIO));
+        const SCROLL_TOLERANCE_PX = Math.min(
+            DEFAULT_SCROLL_TOLERANCE_PX,
+            Math.round(window.innerHeight * MAX_SCREEN_RATIO)
+        );
 
         const cRect = container.getBoundingClientRect();
         const lRect = link.getBoundingClientRect();
@@ -186,7 +197,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             });
             lastScrolledToRef.current = targetId;
         }
-    }, [activeAnchors]);
+    }, [activeAnchors, ref]);
 
     // If no links found, show editor help
     if (links.length === 0) {
@@ -221,7 +232,10 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                 analyticsLinkGroup={'Innhold'}
                                 analyticsComponent={analyticsComponent}
                                 analyticsLabel={h2.linkText}
-                                className={classNames(style.link, isChildActive && style.childActive)}
+                                className={classNames(
+                                    style.link,
+                                    isChildActive && style.childActive
+                                )}
                                 aria-current={isH2Active ? 'true' : undefined}
                                 aria-expanded={
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
@@ -273,11 +287,19 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             {canExpandAll && (
                 <Button
                     className={style.button}
-                    icon={forceExpandAll ? <ChevronDownUpIcon aria-hidden={true} /> : <ChevronUpDownIcon aria-hidden={true} />}
+                    icon={
+                        forceExpandAll ? (
+                            <ChevronDownUpIcon aria-hidden={true} />
+                        ) : (
+                            <ChevronUpDownIcon aria-hidden={true} />
+                        )
+                    }
                     onClick={() => setForceExpandAll((val) => !val)}
                     size="small"
                 >
-                    {forceExpandAll ? 'Vis fokusert innholdsfortegnelse' : 'Vis detaljert innholdsfortegnelse'}
+                    {forceExpandAll
+                        ? 'Vis fokusert innholdsfortegnelse'
+                        : 'Vis detaljert innholdsfortegnelse'}
                 </Button>
             )}
         </nav>
