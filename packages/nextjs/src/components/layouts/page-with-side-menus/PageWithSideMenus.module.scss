@@ -46,10 +46,9 @@
     }
 
     :global(.navds-expansioncard__content) {
-        height: calc(50vh - var(--a-spacing-14));
-        overflow: scroll;
         border: none;
         box-shadow: none;
+        padding-block: 0;
     }
 }
 

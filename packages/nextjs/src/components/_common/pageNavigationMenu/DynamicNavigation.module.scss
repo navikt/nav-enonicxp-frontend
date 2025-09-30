@@ -1,12 +1,15 @@
 @use 'common' as common;
 
 .pageNavigationMenu {
+    height: calc(50vh - var(--a-spacing-14));
+    overflow: auto;
+
     @media #{common.$mq-screen-desktop} {
         position: sticky;
         top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
         height: max-content;
-        max-height: calc(100vh - (var(--a-spacing-6) * 2) - var(--decorator-sticky-offset));
-        overflow: auto;
+        max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
+        padding-bottom: var(--a-spacing-6);
     }
 }
 
@@ -17,16 +20,18 @@
     align-items: center;
     gap: var(--a-spacing-2);
 
-    @media #{common.$mq-screen-desktop} {
-        background-image: linear-gradient(
-            to bottom,
-            white 65%,
-            rgba(255, 255, 255, 0.75) 75%,
-            transparent
-        );
-        position: sticky;
-        top: -1px;
-        z-index: 10;
+    background-image: linear-gradient(
+        to bottom,
+        white 65%,
+        rgba(255, 255, 255, 0.75) 75%,
+        transparent
+    );
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        margin-top: var(--a-spacing-8);
     }
 }
 
@@ -38,22 +43,14 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-left: var(--a-spacing-5);
+    padding-left: var(--a-spacing-3);
 
     ul {
-        margin-top: var(--a-spacing-2);
-        margin-left: var(--a-spacing-3);
         padding-left: 0;
-        border-left: 1px solid var(--a-border-subtle);
 
-        // Do not show expanded submenus on mobile (TODO: screen reader support?)
-        @media #{common.$mq-screen-tablet-and-mobile} {
-            display: none !important;
+        .link {
+            padding-left: var(--a-spacing-9);
         }
-    }
-
-    li + li {
-        margin-top: var(--a-spacing-2);
     }
 }
 
@@ -61,37 +58,47 @@
     color: inherit;
     text-underline-offset: 3px;
     text-decoration-color: var(--a-border-subtle);
+    padding-block: var(--a-spacing-2);
     display: block;
-    position: relative;
-    padding-block: var(--a-spacing-1);
-    padding-inline-start: var(--a-spacing-3);
-    margin-inline-start: -2px;
+    width: fit-content;
 
     &:hover {
         text-decoration-color: inherit;
     }
 
-    @media #{common.$mq-screen-desktop} {
-        &::before {
-            content: '';
-            position: absolute;
-            inset-block: 0;
-            inset-inline-start: 0;
-            inline-size: 4px;
-            background: transparent;
-            height: 0;
-            top: 50%;
+    box-shadow: -2px 0 0 var(--a-border-subtle);
+    padding-inline: var(--a-spacing-5) var(--a-spacing-8);
 
-            @media (prefers-reduced-motion: no-preference) {
-                transition: all 0.25s;
-                animation-timing-function: cubic-bezier(0.8, 0.27, 0.11, 0.68);
-            }
-        }
+    &.childActive,
+    &[aria-current='true'] {
+        box-shadow: -2px 0 0 var(--a-border-info);
+    }
 
-        &[aria-current='true']::before {
-            background: var(--a-border-action);
-            height: 100%;
-            top: 0;
-        }
+    &[aria-current='true'] {
+        background-color: var(--a-deepblue-50);
+    }
+}
+
+.button {
+    margin-top: var(--a-spacing-6);
+    padding-block: var(--a-spacing-4);
+    background-color: var(--a-surface-subtle);
+    color: var(--a-text-default);
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        margin-bottom: var(--a-spacing-6);
+    }
+
+    &:hover {
+        background-color: var(--a-bg-subtle);
+    }
+
+    :global(.navds-label) {
+        font-weight: normal;
+        font-size: var(--a-font-size-medium);
+    }
+
+    :global(.navds-button__icon) {
+        font-size: var(--a-font-size-medium);
     }
 }
