@@ -5,7 +5,7 @@ import { KortUrlWarning } from './warnings/kort-url/KortUrlWarning';
 import { DuplicateIds } from './warnings/duplicate-ids/DuplicateIds';
 import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
 import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
-import { HtmlAreaUtenforInnholdsseksjon } from './warnings/part-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
+import { HtmlAreaUtenforInnholdsseksjon } from './warnings/html-area-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
 import { FragmentUtenforInnholdsseksjon } from './warnings/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
 import style from './Redaktorvarsler.module.scss';
