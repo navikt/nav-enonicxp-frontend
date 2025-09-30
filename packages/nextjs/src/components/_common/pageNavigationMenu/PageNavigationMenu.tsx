@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { ArrowDownRightIcon } from '@navikt/aksel-icons';
+import { FileTextIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
@@ -47,15 +47,19 @@ export const PageNavigationMenu = ({
                 className
             )}
         >
-            <Heading
-                level={headingLevel}
-                size="xsmall"
-                spacing
-                id={headingId}
-                className={style.heading}
-            >
-                {title}
-            </Heading>
+            <div className={style.headerWrapper}>
+                <FileTextIcon aria-hidden={true} fontSize="1.5rem" />
+
+                <Heading
+                    level={headingLevel}
+                    size="xsmall"
+                    spacing
+                    id={headingId}
+                    className={style.heading}
+                >
+                    {title}
+                </Heading>
+            </div>
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
@@ -67,7 +71,6 @@ export const PageNavigationMenu = ({
                             analyticsLabel={anchorLink.linkText}
                             className={style.link}
                         >
-                            <ArrowDownRightIcon aria-hidden className={style.icon} />
                             <BodyLong as="span" className={style.linkText}>
                                 {anchorLink.linkText}
                             </BodyLong>
