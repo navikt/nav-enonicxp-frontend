@@ -1,16 +1,16 @@
-export const pageContentHtmlAreaIsOutsideSections = (node: {
+export const pageContentHtmlAreaUtenforInnholdsseksjon = (node: {
     path?: string;
     descriptor?: string;
 }): boolean => {
     if (!node?.path) return false;
 
-    const startsWithPageContent = /^\/pageContent\//;
+    const isInPageContent = /^\/pageContent\//;
     const isInContentSection = /^\/pageContent\/\d+\/content\/\d+$/;
     const isInIntroSection = /^\/pageContent\/\d+\/intro\/\d+$/;
 
     return (
         node.descriptor === 'no.nav.navno:html-area' &&
-        startsWithPageContent.test(node.path) &&
+        isInPageContent.test(node.path) &&
         !isInContentSection.test(node.path) &&
         !isInIntroSection.test(node.path)
     );

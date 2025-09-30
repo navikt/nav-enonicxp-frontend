@@ -1,19 +1,19 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { pageContentHtmlAreaIsOutsideSections } from './pageContentHtmlAreaIsOutsideSections';
+import { pageContentHtmlAreaUtenforInnholdsseksjon } from './pageContentHtmlAreaUtenforInnholdsseksjon';
 
 type Props = {
     content: ContentProps;
     className?: string;
 };
 
-export const PartUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (pageContentHtmlAreaIsOutsideSections(node)) {
+        if (pageContentHtmlAreaUtenforInnholdsseksjon(node)) {
             const { path, config } = node;
 
             if (!config.html?.processedHtml) {
@@ -42,19 +42,17 @@ export const PartUtenforInnholdsseksjon = ({ content, className }: Props) => {
     }
 
     return warnings.length > 0 ? (
-        <>
-            <li key="part-utenfor-innholdsseksjon-warning" className={className}>
-                Innholdet ligger utenfor den angitte innholdsseksjonen, noe som kan føre til
-                visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
-                {warnings}
-                <strong>Slik retter du feilen:</strong>
-                <ul>
-                    <li key="rette-feilen">
-                        Flytt innholdet innenfor de markerte eller stiplede strekene i Enonic, slik
-                        at det vises korrekt i innholdsseksjonen.
-                    </li>
-                </ul>
-            </li>
-        </>
+        <li key="part-utenfor-innholdsseksjon-warning" className={className}>
+            Innholdet ligger utenfor den angitte innholdsseksjonen, noe som kan føre til
+            visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
+            {warnings}
+            <strong>Slik retter du feilen:</strong>
+            <ul>
+                <li key="rette-feilen">
+                    Flytt innholdet innenfor de markerte eller stiplede strekene i Enonic, slik at
+                    det vises korrekt i innholdsseksjonen.
+                </li>
+            </ul>
+        </li>
     ) : null;
 };
