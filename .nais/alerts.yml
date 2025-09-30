@@ -1,80 +1,80 @@
-apiVersion: "monitoring.coreos.com/v1"
+apiVersion: 'monitoring.coreos.com/v1'
 kind: PrometheusRule
 metadata:
-  name: nav-enonicxp-frontend-alerts
-  namespace: personbruker
-  labels:
-    team: personbruker
+    name: nav-enonicxp-frontend-alerts
+    namespace: navno
+    labels:
+        team: navno
 spec:
-  groups:
-    - name: nav-enonicxp-frontend-alerts
-      rules:
-        - alert: "Appen er nede!"
-          expr: kube_deployment_status_replicas_available{deployment="nav-enonicxp-frontend"} == 0
-          for: 2m
-          annotations:
-            summary: "[nav-enonicxp-frontend] Appen er ikke tilgjengelig! (0 replicas)"
-            action: "[<!here>] Sjekk logger eller kubectl hvorfor appen ikke har noen tilgjengelige pods"
-          labels:
-            severity: "danger"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Høyt antall reqs/sec"
-          expr: round(sum(rate(http_request_duration_seconds_count{app=~"nav-enonicxp-frontend"}[2m]))) > 1000
-          for: 2m
-          annotations:
-            summary: "[nav-enonicxp-frontend] Uvanlig mange requests ({{ $value }} reqs/sec)"
-          labels:
-            severity: "info"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Høy andel 4xx-feil"
-          expr: round((sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))) > 15 AND (100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))))) > 10
-          for: 3m
-          annotations:
-            summary: "[nav-enonicxp-frontend] >10% 4xx-feil i over 3 minutter ({{ $value }} feil/sec)"
-            action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
-          labels:
-            severity: "warning"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Høy andel 5xx-feil"
-          expr: round((100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^5\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m])))), 0.1) > 1
-          for: 3m
-          annotations:
-            summary: "[nav-enonicxp-frontend] >1% 5xx-feil i over 3 minutter ({{ $value }} feil/sec)"
-            action: "[<!here>] Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
-          labels:
-            severity: "danger"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Treg 99.9th percentile responsetid"
-          expr: round(histogram_quantile(0.999, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 4
-          for: 10m
-          annotations:
-            summary: "[nav-enonicxp-frontend] >4 sec 99.9th percentile responsetid i over 5 min ({{ $value }} sec)"
-            action: "[<!here>] Undersøk hvorfor en andel av requestene er veldig trege"
-          labels:
-            severity: "danger"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Treg 99th percentile responsetid"
-          expr: round(histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 2
-          for: 5m
-          annotations:
-            summary: "[nav-enonicxp-frontend] >2 sec 99th percentile responsetid i over 5 min ({{ $value }} sec)"
-            action: "[<!here>] Undersøk hvorfor en andel av requestene er trege"
-          labels:
-            severity: "danger"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
-        - alert: "Treg median responsetid"
-          expr: round(histogram_quantile(0.5, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)) * 1000, 0.1) > 25
-          for: 15m
-          annotations:
-            summary: "[nav-enonicxp-frontend] >25 ms median responsetid i over 15 min ({{ $value }} ms)"
-            action: "Undersøk hvorfor appen svarer tregere enn normalt"
-          labels:
-            severity: "warning"
-            receiver_reference: team-navno-frontend-alerts
-            alert_type: custom
+    groups:
+        - name: nav-enonicxp-frontend-alerts
+          rules:
+              - alert: 'Appen er nede!'
+                expr: kube_deployment_status_replicas_available{deployment="nav-enonicxp-frontend"} == 0
+                for: 2m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] Appen er ikke tilgjengelig! (0 replicas)'
+                    action: '[<!here>] Sjekk logger eller kubectl hvorfor appen ikke har noen tilgjengelige pods'
+                labels:
+                    severity: 'danger'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Høyt antall reqs/sec'
+                expr: round(sum(rate(http_request_duration_seconds_count{app=~"nav-enonicxp-frontend"}[2m]))) > 1000
+                for: 2m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] Uvanlig mange requests ({{ $value }} reqs/sec)'
+                labels:
+                    severity: 'info'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Høy andel 4xx-feil'
+                expr: round((sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="navno", app="nav-enonicxp-frontend"}[3m]))) > 15 AND (100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="navno", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="navno", app="nav-enonicxp-frontend"}[3m]))))) > 10
+                for: 3m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] >10% 4xx-feil i over 3 minutter ({{ $value }} feil/sec)'
+                    action: 'Sjekk loggene for å se hvorfor appen returnerer 4xx-feil'
+                labels:
+                    severity: 'warning'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Høy andel 5xx-feil'
+                expr: round((100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^5\\d\\d", namespace="navno", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="navno", app="nav-enonicxp-frontend"}[3m])))), 0.1) > 1
+                for: 3m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] >1% 5xx-feil i over 3 minutter ({{ $value }} feil/sec)'
+                    action: '[<!here>] Sjekk loggene for å se hvorfor appen returnerer 5xx-feil'
+                labels:
+                    severity: 'danger'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Treg 99.9th percentile responsetid'
+                expr: round(histogram_quantile(0.999, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 4
+                for: 10m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] >4 sec 99.9th percentile responsetid i over 5 min ({{ $value }} sec)'
+                    action: '[<!here>] Undersøk hvorfor en andel av requestene er veldig trege'
+                labels:
+                    severity: 'danger'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Treg 99th percentile responsetid'
+                expr: round(histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 2
+                for: 5m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] >2 sec 99th percentile responsetid i over 5 min ({{ $value }} sec)'
+                    action: '[<!here>] Undersøk hvorfor en andel av requestene er trege'
+                labels:
+                    severity: 'danger'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom
+              - alert: 'Treg median responsetid'
+                expr: round(histogram_quantile(0.5, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)) * 1000, 0.1) > 25
+                for: 15m
+                annotations:
+                    summary: '[nav-enonicxp-frontend] >25 ms median responsetid i over 15 min ({{ $value }} ms)'
+                    action: 'Undersøk hvorfor appen svarer tregere enn normalt'
+                labels:
+                    severity: 'warning'
+                    receiver_reference: team-navno-frontend-alerts
+                    alert_type: custom

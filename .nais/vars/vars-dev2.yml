@@ -1,5 +1,6 @@
 appName: nav-enonicxp-frontend-dev2
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
+failoverApp: nav-enonicxp-frontend-dev2-failover
 dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
   - www-q6.nav.no

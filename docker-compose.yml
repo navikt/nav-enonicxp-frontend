@@ -1,43 +1,43 @@
 version: '3.7'
 services:
-  revalidator-proxy:
-    container_name: revalidator-proxy-xpfrontend
-    image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-enonicxp-frontend-revalidator-proxy-prod:latest'
-    ports:
-      - '3002:3002'
-    environment:
-      SERVICE_SECRET: 'dummyToken'
-      NO_REDIS: true
+    revalidator-proxy:
+        container_name: revalidator-proxy-xpfrontend
+        image: 'europe-north1-docker.pkg.dev/nais-management-233d/navno/nav-enonicxp-frontend-revalidator-proxy-prod:latest'
+        ports:
+            - '3002:3002'
+        environment:
+            SERVICE_SECRET: 'dummyToken'
+            NO_REDIS: true
 
-  dekoratoren:
-    container_name: dekoratoren-xpfrontend
-    image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/decorator-next-prod:latest'
-    ports:
-      - '8100:8089'
-    environment:
-      XP_BASE_URL: 'http://localhost:3000'
-      MIN_SIDE_URL: 'https://www.nav.no/minside'
-      MIN_SIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver'
-      ENONICXP_SERVICES: 'http://localhost:8080/_/service/'
-      SEARCH_API_URL: 'https://navno-search-api.ekstern.dev.nav.no/content/decorator-search'
-      PORT: '8089'
-      NODE_ENV: 'production'
-      CDN_URL: 'http://localhost:8100/public'
-      APP_URL: 'http://localhost:8100'
-      LOGIN_URL: 'http://localhost:8100/oauth2/login'
-      LOGOUT_URL: 'http://localhost:8100/oauth2/logout'
-      PERSONOPPLYSNINGER_URL: 'https://www.nav.no/person/personopplysninger'
-      VARSEL_API_URL: 'http://localhost:8100/api'
-      LOGIN_SESSION_API_URL: 'http://localhost:8100/api/oauth2/session'
-      DEKORATOREN_API_URL: 'http://localhost:8100/api'
-      UNLEASH_SERVER_API_URL: 'http://localhost:8095/unleash'
-      UNLEASH_SERVER_API_TOKEN: 'dummy_token'
-      BOOST_ENV: 'navtest'
-      PUZZEL_CUSTOMER_ID: 'C1302192-8BEC-4EA2-84AB-F4EDE8AC6230'
-      VERSION_ID: 'asdf'
-      APP_NAME: 'nav-dekoratoren'
-#     Set this to '3' or '4' to mock logged in state
-      MOCK_AUTH_LEVEL:
+    dekoratoren:
+        container_name: dekoratoren-xpfrontend
+        image: 'europe-north1-docker.pkg.dev/nais-management-233d/navno/decorator-next-prod:latest'
+        ports:
+            - '8100:8089'
+        environment:
+            XP_BASE_URL: 'http://localhost:3000'
+            MIN_SIDE_URL: 'https://www.nav.no/minside'
+            MIN_SIDE_ARBEIDSGIVER_URL: 'https://arbeidsgiver.nav.no/min-side-arbeidsgiver'
+            ENONICXP_SERVICES: 'http://localhost:8080/_/service/'
+            SEARCH_API_URL: 'https://navno-search-api.ekstern.dev.nav.no/content/decorator-search'
+            PORT: '8089'
+            NODE_ENV: 'production'
+            CDN_URL: 'http://localhost:8100/public'
+            APP_URL: 'http://localhost:8100'
+            LOGIN_URL: 'http://localhost:8100/oauth2/login'
+            LOGOUT_URL: 'http://localhost:8100/oauth2/logout'
+            PERSONOPPLYSNINGER_URL: 'https://www.nav.no/person/personopplysninger'
+            VARSEL_API_URL: 'http://localhost:8100/api'
+            LOGIN_SESSION_API_URL: 'http://localhost:8100/api/oauth2/session'
+            DEKORATOREN_API_URL: 'http://localhost:8100/api'
+            UNLEASH_SERVER_API_URL: 'http://localhost:8095/unleash'
+            UNLEASH_SERVER_API_TOKEN: 'dummy_token'
+            BOOST_ENV: 'navtest'
+            PUZZEL_CUSTOMER_ID: 'C1302192-8BEC-4EA2-84AB-F4EDE8AC6230'
+            VERSION_ID: 'asdf'
+            APP_NAME: 'nav-dekoratoren'
+            #     Set this to '3' or '4' to mock logged in state
+            MOCK_AUTH_LEVEL:
 
 volumes:
-  event-cache-data:
+    event-cache-data:
