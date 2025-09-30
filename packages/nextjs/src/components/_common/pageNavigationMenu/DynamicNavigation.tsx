@@ -181,7 +181,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
         if (isAbove || isBelow) {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
             container.scrollTo({
-                top: link.offsetTop - window.innerHeight / 2,
+                top: link.offsetTop - container.clientHeight / 2,
                 behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
             });
             lastScrolledToRef.current = targetId;

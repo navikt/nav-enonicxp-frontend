@@ -1,12 +1,14 @@
 @use 'common' as common;
 
 .pageNavigationMenu {
+    height: calc(50vh - var(--a-spacing-14));
+    overflow: auto;
+
     @media #{common.$mq-screen-desktop} {
         position: sticky;
         top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
         height: max-content;
         max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
-        overflow: auto;
         padding-bottom: var(--a-spacing-6);
     }
 }
@@ -18,17 +20,15 @@
     align-items: center;
     gap: var(--a-spacing-2);
 
-    @media #{common.$mq-screen-desktop} {
-        background-image: linear-gradient(
-            to bottom,
-            white 65%,
-            rgba(255, 255, 255, 0.75) 75%,
-            transparent
-        );
-        position: sticky;
-        top: -1px;
-        z-index: 10;
-    }
+    background-image: linear-gradient(
+        to bottom,
+        white 65%,
+        rgba(255, 255, 255, 0.75) 75%,
+        transparent
+    );
+    position: sticky;
+    top: -1px;
+    z-index: 10;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         margin-top: var(--a-spacing-8);
@@ -48,11 +48,6 @@
     ul {
         padding-left: 0;
 
-        // Do not show expanded submenus on mobile (TODO: screen reader support?)
-        @media #{common.$mq-screen-tablet-and-mobile} {
-            display: none !important;
-        }
-
         .link {
             padding-left: var(--a-spacing-9);
         }
@@ -71,18 +66,16 @@
         text-decoration-color: inherit;
     }
 
-    @media #{common.$mq-screen-desktop} {
-        box-shadow: -2px 0 0 var(--a-border-subtle);
-        padding-inline: var(--a-spacing-5) var(--a-spacing-8);
+    box-shadow: -2px 0 0 var(--a-border-subtle);
+    padding-inline: var(--a-spacing-5) var(--a-spacing-8);
 
-        &.childActive,
-        &[aria-current='true'] {
-            box-shadow: -2px 0 0 var(--a-border-info);
-        }
+    &.childActive,
+    &[aria-current='true'] {
+        box-shadow: -2px 0 0 var(--a-border-info);
+    }
 
-        &[aria-current='true'] {
-            background-color: var(--a-deepblue-50);
-        }
+    &[aria-current='true'] {
+        background-color: var(--a-deepblue-50);
     }
 }
 
@@ -92,12 +85,12 @@
     background-color: var(--a-surface-subtle);
     color: var(--a-text-default);
 
-    &:hover {
-        background-color: var(--a-bg-subtle);
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        margin-bottom: var(--a-spacing-6);
     }
 
-    @media #{common.$mq-screen-tablet-and-mobile} {
-        display: none !important;
+    &:hover {
+        background-color: var(--a-bg-subtle);
     }
 
     :global(.navds-label) {
