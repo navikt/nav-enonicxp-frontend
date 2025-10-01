@@ -1,7 +1,6 @@
 @use 'common' as common;
 
 .pageNavigationMenu {
-    height: calc(50vh - var(--a-spacing-14));
     overflow: auto;
 
     @media #{common.$mq-screen-desktop} {
@@ -11,6 +10,10 @@
         max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
         padding-bottom: var(--a-spacing-6);
     }
+}
+
+:global(.navds-expansioncard__content) .pageNavigationMenu {
+    height: calc(50vh - var(--a-spacing-14));
 }
 
 .heading {
