@@ -40,7 +40,7 @@ else
   exit
 fi
 
-IMAGE_NAME_FULL="europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-enonicxp-frontend:$IMAGE_TAG"
+IMAGE_NAME_FULL="europe-north1-docker.pkg.dev/nais-management-233d/navno/nav-enonicxp-frontend:$IMAGE_TAG"
 
 docker buildx build --platform linux/amd64 -f .failover/Dockerfile.failover -t "$IMAGE_NAME_FULL" --no-cache --build-arg ENV_FILE="$ENV_FILE" --build-arg SERVICE_SECRET="$SERVICE_SECRET" --build-arg GITHUB_PAT="$GITHUB_PAT" .
 docker push $IMAGE_NAME_FULL
