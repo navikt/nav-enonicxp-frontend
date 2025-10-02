@@ -24,10 +24,22 @@ type Props = {
     title?: string;
     className?: string;
     onLinkClick?: () => void;
+    canExpandAll?: boolean;
+    forceExpandAll?: boolean;
+    onToggleExpandAll?: () => void;
 };
 
 export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
-    { anchorLinks = [], pageProps, title, className, onLinkClick }: Props,
+    {
+        anchorLinks = [],
+        pageProps,
+        title,
+        className,
+        onLinkClick,
+        canExpandAll = false,
+        forceExpandAll = false,
+        onToggleExpandAll,
+    }: Props,
     ref: ForwardedRef<HTMLDivElement>
 ) {
     const { language } = usePageContentProps();
@@ -36,8 +48,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
     const analyticsComponent = 'Dynamisk meny for intern-navigasjon';
 
     const [activeAnchors, setActiveAnchors] = useState<string[]>([]);
-    const [canExpandAll, setCanExpandAll] = useState<boolean>(false);
-    const [forceExpandAll, setForceExpandAll] = useState<boolean>(false);
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const lastScrolledToRef = useRef<string | null>(null);
@@ -92,15 +102,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             }),
         [links, pageContentComponents, language]
     );
-
-    // Sjekk URL-parameter for å vise/skjule knapp for detaljert innholdsfortegnelse
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('expandAllNav') === 'true') {
-            setCanExpandAll(true);
-        }
-    }, []);
 
     // Overvåk scroll-posisjon for å aktivere/deaktivere overskrifter i menyen
     useEffect(() => {
@@ -297,7 +298,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                             <ChevronUpDownIcon aria-hidden={true} />
                         )
                     }
-                    onClick={() => setForceExpandAll((val) => !val)}
+                    onClick={onToggleExpandAll}
                     size="small"
                 >
                     {forceExpandAll

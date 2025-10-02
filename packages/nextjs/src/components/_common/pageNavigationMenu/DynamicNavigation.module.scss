@@ -90,7 +90,7 @@
     background-color: var(--a-surface-subtle);
     color: var(--a-text-default);
 
-    @media #{common.$mq-screen-tablet-and-mobile} {
+    :global(.navds-expansioncard__content) .pageNavigationMenu & {
         margin-bottom: var(--a-spacing-6);
     }
 

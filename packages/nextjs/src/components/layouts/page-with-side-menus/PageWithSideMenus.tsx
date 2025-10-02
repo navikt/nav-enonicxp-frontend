@@ -40,6 +40,19 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
     const [expandableMenuOpen, setExpandableMenuOpen] = useState(false);
 
+    const [canExpandAll, setCanExpandAll] = useState(false);
+    const [forceExpandAll, setForceExpandAll] = useState(false);
+    const handleToggleExpandAll = () => setForceExpandAll((prev) => !prev);
+
+    // Sjekk URL-parameter for å vise/skjule knapp for detaljert innholdsfortegnelse
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('expandAllNav') === 'true') {
+            setCanExpandAll(true);
+        }
+    }, []);
+
     useEffect(() => {
         if (isDesktop) return;
 
@@ -122,6 +135,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 anchorLinks={anchorLinks}
                                 pageProps={pageProps}
                                 title={menuTitle}
+                                canExpandAll={canExpandAll}
+                                forceExpandAll={forceExpandAll}
+                                onToggleExpandAll={handleToggleExpandAll}
                             />
                         ) : (
                             <>
@@ -153,6 +169,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                             anchorLinks={anchorLinks}
                                             pageProps={pageProps}
                                             onLinkClick={() => setExpandableMenuOpen(false)}
+                                            canExpandAll={canExpandAll}
+                                            forceExpandAll={forceExpandAll}
+                                            onToggleExpandAll={handleToggleExpandAll}
                                         />
                                     </ExpansionCard.Content>
                                 </ExpansionCard>
