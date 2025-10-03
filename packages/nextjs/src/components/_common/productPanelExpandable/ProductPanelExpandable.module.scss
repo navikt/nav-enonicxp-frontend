@@ -1,9 +1,10 @@
 @use 'common' as common;
 
 .expandable {
-    border-bottom: 1px var(--a-deepblue-100) solid;
+    border-bottom: 1px solid var(--a-deepblue-100);
     border-radius: 0;
     --__ac-expansioncard-border-width: 0;
+    position: relative;
 
     &:global(.navds-expansioncard--open) {
         :global(.navds-expansioncard__header) {
@@ -13,9 +14,10 @@
 }
 
 .expandableHeader {
-    padding: var(--a-spacing-5) var(--a-spacing-1) var(--a-spacing-5) var(--a-spacing-3);
-    gap: var(--a-spacing-4);
+    padding: var(--a-spacing-5) var(--a-spacing-5) var(--a-spacing-5) var(--a-spacing-3);
+    gap: var(--a-spacing-3);
     border-radius: var(--a-border-radius-large);
+    z-index: 1;
 
     &:after {
         display: none;
@@ -23,7 +25,7 @@
 
     &:hover,
     &:focus {
-        background-color: var(--a-deepblue-100);
+        background-color: var(--a-surface-action-subtle);
         color: var(--a-text-default);
         box-shadow: none;
         outline: 5px solid var(--a-bg-default);
@@ -32,6 +34,8 @@
             box-shadow: none;
         }
         .illustration {
+            order: 3;
+
             & > :first-child:not(:last-child) * {
                 fill: var(--a-white);
             }
@@ -39,7 +43,8 @@
     }
 
     &:hover :global(.navds-expansioncard__header-button) {
-        background-color: transparent;
+        background-color: var(--a-surface-action-hover);
+        color: var(--a-text-on-action);
     }
 
     &.alignCenter {
@@ -52,22 +57,35 @@
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        gap: var(--a-spacing-4);
+        gap: var(--a-spacing-6);
+        flex: 1;
     }
 
     :global(.navds-expansioncard__header-button) {
-        align-self: center;
+        background-color: var(--a-surface-action-subtle);
+        color: var(--a-icon-action-on-action-subtle);
+        order: -1;
+
+        // Litt større enn trekkspill på grunn av tittelstørrelsen
+        min-width: 1.625rem;
+        min-height: 1.625rem;
+
+        // Squircle: verdien finnes ikke i Aksel
+        border-radius: 10px;
     }
 }
 
 .expandableContent {
-    padding: var(--a-spacing-1) var(--a-spacing-3) var(--a-spacing-7);
+    padding: var(--a-spacing-1) var(--a-spacing-3) var(--a-spacing-7) 50px;
+    // 50px er samme som tittelens avstand til kanten av boksen
 
-    // Remove when we remove the old overview pages.
-    &:not(.noLeftPadding) {
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            padding-left: 76px;
-        }
+    &:before {
+        content: '';
+        position: absolute;
+        left: var(--a-spacing-6);
+        width: var(--a-spacing-05);
+        background: var(--a-border-divider);
+        inset-block: 2lh 1lh;
     }
 }
 
@@ -75,6 +93,8 @@
     width: var(--a-spacing-12);
     height: var(--a-spacing-12);
     flex-shrink: 0;
+    align-self: center;
+    order: 2;
 
     & > :first-child:not(:last-child) * {
         fill: var(--a-deepblue-100);
@@ -98,6 +118,7 @@
 .panelHeader {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .title {
