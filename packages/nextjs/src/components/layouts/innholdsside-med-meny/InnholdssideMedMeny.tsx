@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FileTextIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, HStack } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
@@ -15,14 +14,15 @@ import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { useIsDesktop } from 'utils/useIsDesktop';
 import { useLegacyNav } from 'utils/useLegacyNav';
-import styles from './PageWithSideMenus.module.scss';
+import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
+import styles from './InnholdssideMedMeny.module.scss';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps: PageWithSideMenusProps;
+    layoutProps: InnholdssideMedMenyProps;
 };
 
-export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
+export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
@@ -105,7 +105,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         <>
             <LayoutContainer
                 className={classNames(
-                    styles.pageWithSideMenus,
+                    styles.innholdssideMedMeny,
                     hasMultipleLanguages && styles.pullUp
                 )}
                 pageProps={pageProps}
