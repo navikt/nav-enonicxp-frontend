@@ -84,5 +84,8 @@
         "react-dom": "19.2.0",
         "react-error-boundary": "6.0.0",
         "redis": "5.8.2"
+    },
+    "optionalDependencies": {
+        "@esbuild/linux-x64": "0.24.0"
     }
 }
