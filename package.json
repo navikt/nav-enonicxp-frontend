@@ -38,8 +38,8 @@
         "@types/lodash.debounce": "4.0.9",
         "@types/mock-fs": "4.13.4",
         "@types/node": "20.14.10",
-        "@typescript-eslint/eslint-plugin": "8.45.0",
-        "@typescript-eslint/parser": "8.45.0",
+        "@typescript-eslint/eslint-plugin": "8.46.0",
+        "@typescript-eslint/parser": "8.46.0",
         "concurrently": "9.2.1",
         "esbuild": "0.25.10",
         "eslint": "9.36.0",
@@ -54,7 +54,7 @@
         "husky": "9.1.7",
         "prettier": "3.6.2",
         "typescript": "5.9.3",
-        "typescript-eslint": "8.45.0"
+        "typescript-eslint": "8.46.0"
     },
     "browserslist": {
         "production": [
@@ -81,7 +81,7 @@
         "pino": "9.13.0",
         "pino-pretty": "13.1.1",
         "react": "19.2.0",
-        "react-dom": "19.1.1",
+        "react-dom": "19.2.0",
         "react-error-boundary": "6.0.0",
         "redis": "5.8.2"
     }
