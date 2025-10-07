@@ -32,6 +32,8 @@ jobs:
               run: npm ci
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps chromium
 
             - name: Build static storybook
               run: npm run build:storybook
