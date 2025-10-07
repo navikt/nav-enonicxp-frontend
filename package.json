@@ -87,5 +87,19 @@
     },
     "optionalDependencies": {
         "@esbuild/linux-x64": "0.24.0"
+    },
+    "lint-staged": {
+        "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
+            "cd packages/nextjs && npm run lint:fix"
+        ],
+        "packages/server/**/*.{js,ts}": [
+            "cd packages/server && npm run lint:fix"
+        ],
+        "packages/shared/**/*.{js,ts}": [
+            "cd packages/shared && npm run lint:fix"
+        ],
+        "**/*.{json,md,yml,yaml}": [
+            "prettier --write"
+        ]
     }
 }
