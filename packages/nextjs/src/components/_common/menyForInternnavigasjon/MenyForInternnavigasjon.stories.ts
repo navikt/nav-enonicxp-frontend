@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PageNavigationMenu } from './PageNavigationMenu';
+import { MenyForInternnavigasjon } from './MenyForInternnavigasjon';
 
 const meta = {
-    component: PageNavigationMenu,
+    component: MenyForInternnavigasjon,
     args: {
         anchorLinks: [
             { anchorId: 'anchorId', linkText: 'Hvem kan få?', isDupe: false },
             { anchorId: 'anchorId', linkText: 'Hva kan du få?', isDupe: false },
         ],
     },
-} satisfies Meta<typeof PageNavigationMenu>;
+} satisfies Meta<typeof MenyForInternnavigasjon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
