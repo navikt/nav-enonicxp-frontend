@@ -15,7 +15,7 @@
 
 :global(.navds-expansioncard__content) .pageNavigationMenu {
     height: calc(
-        100vh - var(--decorator-sticky-offset) - 105px
+        90dvh - var(--decorator-sticky-offset) - 16px - 48px
     ); //TODO: unngå hardkoding av høyden med pikselverdier, fiks senere
 
     .list ul {
