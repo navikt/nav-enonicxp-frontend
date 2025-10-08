@@ -1,4 +1,4 @@
-export const ErGodkjentSide = (contentType: string): boolean => {
+export const erGodkjentSide = (contentType: string): boolean => {
     //Redaktørvarslene gjelder kun på følgende sider
     const godkjenteSider = [
         'no.nav.navno:situation-page',
