@@ -55,8 +55,8 @@ export const DuplikateIderVarsel = ({ uniqueDupeIds, elementsWithDupeIds, classN
                 return createPortal(
                     <span className={style.warning} id={linkId}>
                         <EditorHelp
-                            text={`Elementet nedenfor har en duplikat anker-id: "${element.id}"`}
-                            type={'error'}
+                            text={`Elementet har en duplikat anker-id: "${element.id}"`}
+                            type="error"
                         />
                     </span>,
                     element,
