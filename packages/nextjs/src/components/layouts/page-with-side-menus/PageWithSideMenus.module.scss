@@ -73,7 +73,7 @@
     display: flex;
     align-items: center;
 
-    background-color: #025981 !important; //TODO eventuelt bruk Aksel-farge senere, sjekk med Martin
+    background-color: var(--a-deepblue-800) !important;
     color: var(--a-white);
     border: none !important;
     border-top-left-radius: 100px;
