@@ -56,7 +56,10 @@
     padding-left: var(--a-spacing-3);
 
     ul {
-        display: none;
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            display: none;
+        }
+
         padding-left: 0;
 
         .link {
