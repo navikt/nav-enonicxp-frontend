@@ -8,15 +8,15 @@ import { KontaktinformasjonVarsel } from './varsler/kontaktinformasjon/Kontaktin
 import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
 import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
-import { HarRedaktorfeil } from './HarRedaktorfeil';
-import { ErGodkjentSide } from './ErGodkjentSide';
+import { harRedaktorfeil } from './harRedaktorfeil';
+import { erGodkjentSide } from './erGodkjentSide';
 import style from './Redaktorvarsler.module.scss';
 
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
-    if (ErGodkjentSide(content.type)) {
+    if (erGodkjentSide(content.type)) {
         return (
             <>
-                {HarRedaktorfeil(content) && (
+                {harRedaktorfeil(content) && (
                     <Alert variant="warning">
                         <strong>Redaktørvarsel:</strong>
                         <br />

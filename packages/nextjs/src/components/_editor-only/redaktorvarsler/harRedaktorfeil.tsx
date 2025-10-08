@@ -7,7 +7,7 @@ import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innh
 import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
 
-export const HarRedaktorfeil = (content: ContentProps): boolean => {
+export const harRedaktorfeil = (content: ContentProps): boolean => {
     return (
         KortUrlVarsel({ content }) !== null ||
         DuplikateIder({}) !== null ||
