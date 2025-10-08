@@ -55,6 +55,8 @@
     padding: 0;
     padding-left: var(--a-spacing-3);
 
+    color: rgb(0 36 58); //farge fra protoypen
+
     ul {
         @media #{common.$mq-screen-tablet-and-mobile} {
             display: none;
