@@ -74,13 +74,15 @@
     box-shadow: -2px 0 0 var(--a-border-subtle);
     padding-inline: var(--a-spacing-5) var(--a-spacing-8);
 
-    &.childActive,
-    &[aria-current='true'] {
-        box-shadow: -2px 0 0 var(--a-border-info);
-    }
+    @media #{common.$mq-screen-desktop} {
+        &.childActive,
+        &[aria-current='true'] {
+            box-shadow: -2px 0 0 var(--a-border-info);
+        }
 
-    &[aria-current='true'] {
-        background-color: var(--a-deepblue-50);
+        &[aria-current='true'] {
+            background-color: var(--a-deepblue-50);
+        }
     }
 }
 
