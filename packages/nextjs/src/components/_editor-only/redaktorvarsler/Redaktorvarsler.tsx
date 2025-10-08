@@ -22,8 +22,8 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                         <br />
                         Disse problemene må rettes før publisering:
                         <br />
-                        Hvis lenkene i redaktørvarslet ikke fungerer, åpne forhåndsvisningen og
-                        ekspander alle paneler. Rød markering viser hvor feilen ligger.
+                        Hvis lenkene i redaktørvarslet ikke fungerer, åpne forhåndsvisningen i
+                        toppmenyen. Rød markering viser hvor feilen ligger.
                         <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
                             <KortUrlVarsel content={content} className={style.liste} />
                             <DuplikateIder className={style.liste} />
