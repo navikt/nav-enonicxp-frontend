@@ -65,6 +65,11 @@
             270deg
         ); //TODO senere: løs på en bedre måte, uansett skal kanskje chevronen forsvinne til fordel for en X for å lukke
     }
+
+    .mobileExpandableMenuHeader {
+        background-color: var(--a-white) !important;
+        color: var(--a-text-default);
+    }
 }
 
 .mobileExpandableMenuHeader {
