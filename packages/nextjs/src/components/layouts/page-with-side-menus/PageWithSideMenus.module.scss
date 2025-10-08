@@ -31,6 +31,7 @@
 
     border-top-left-radius: 28px; //TODO: fiks senere: ikke hardkod disse basert på høyden til knappen
     border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 0;
 
     opacity: 0;
     transition:
@@ -51,20 +52,10 @@
         border: none;
         box-shadow: none;
     }
-
-    :global(.navds-expansioncard__header-button) svg {
-        transform: rotate(90deg);
-    }
 }
 
 :global(.navds-expansioncard--open).mobileExpandableMenu {
     width: 70vw;
-
-    :global(.navds-expansioncard__header-button) svg {
-        transform: rotate(
-            270deg
-        ); //TODO senere: løs på en bedre måte, uansett skal kanskje chevronen forsvinne til fordel for en X for å lukke
-    }
 
     .mobileExpandableMenuHeader {
         background-color: var(--a-white) !important;
