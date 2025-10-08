@@ -10,7 +10,7 @@ import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { htmlAreaInneholderDiv } from 'components/_editor-only/redaktorvarsler/varsler/html-area-div/htmlAreaInneholderDiv';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
-import { isGodkjentSide } from 'components/_editor-only/redaktorvarsler/Redaktorvarsler';
+import { ErGodkjentSide } from 'components/_editor-only/redaktorvarsler/ErGodkjentSide';
 import { usePageContentProps } from 'store/pageContext';
 import { pageContentFormatertInnholdUtenforInnholdsseksjon } from 'components/_editor-only/redaktorvarsler/varsler/formatert-innhold-utenfor-innholdsseksjon/pageContentFormatertInnholdUtenforInnholdsseksjon';
 import style from './HtmlAreaPart.module.scss';
@@ -34,7 +34,7 @@ export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) =>
     const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView && isGodkjentSide(type)) {
+        if (shouldWarn && isEditorView && ErGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
     }, [shouldWarn, path, descriptor, config, isEditorView, type]);
