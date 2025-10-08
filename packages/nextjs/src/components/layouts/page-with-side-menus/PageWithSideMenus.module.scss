@@ -33,14 +33,12 @@
     border-bottom-left-radius: 28px;
 
     opacity: 0;
-    transform: translateY(-1.5rem);
     transition:
         opacity 200ms ease-out,
         transform 200ms ease-out;
 
     &.show {
         opacity: 1;
-        transform: translateY(0);
     }
 
     :global(.navds-expansioncard__title),
