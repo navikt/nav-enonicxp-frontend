@@ -6,8 +6,8 @@ import { classNames } from 'utils/classnames';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
 import { usePageContentProps } from 'store/pageContext';
 import { ComponentEditorProps, ComponentMapper } from './ComponentMapper';
-import { isGodkjentSide } from './_editor-only/global-warnings/Redaktorvarsler';
-import { pageContentFragmentUtenforInnholdsseksjon } from './_editor-only/global-warnings/warnings/fragment-utenfor-innholdsseksjon/pageContentFragmentUtenforInnholdsseksjon';
+import { isGodkjentSide } from './_editor-only/redaktorvarsler/Redaktorvarsler';
+import { pageContentFragmentUtenforInnholdsseksjon } from './_editor-only/redaktorvarsler/varsler/fragment-utenfor-innholdsseksjon/pageContentFragmentUtenforInnholdsseksjon';
 import style from './FragmentComponent.module.scss';
 
 type Props = {

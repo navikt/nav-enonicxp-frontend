@@ -1,13 +1,13 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { KortUrlWarning } from './warnings/kort-url/KortUrlWarning';
-import { DuplicateIds } from './warnings/duplicate-ids/DuplicateIds';
-import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
-import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
-import { HtmlAreaUtenforInnholdsseksjon } from './warnings/html-area-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
-import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
-import { FragmentUtenforInnholdsseksjon } from './warnings/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
+import { KortUrlVarsel } from './varsler/kort-url/KortUrlVarsel';
+import { DuplikateIder } from './varsler/duplikate-ider/DuplikateIder';
+import { SkjemanummerVarsel } from './varsler/skjemanummer/SkjemanummerVarsel';
+import { KontaktinformasjonVarsel } from './varsler/kontaktinformasjon/KontaktinformasjonVarsel';
+import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjon';
+import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
+import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
 import style from './Redaktorvarsler.module.scss';
 
 export const isGodkjentSide = (contentType: string): boolean => {
@@ -30,11 +30,11 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
 
     const hasErrors = (): boolean => {
         return (
-            KortUrlWarning({ content }) !== null ||
-            DuplicateIds({}) !== null ||
-            FormNumbersWarning({ content }) !== null ||
-            KontaktinformasjonWarning({ content }) !== null ||
-            HtmlAreaUtenforInnholdsseksjon({ content }) !== null ||
+            KortUrlVarsel({ content }) !== null ||
+            DuplikateIder({}) !== null ||
+            SkjemanummerVarsel({ content }) !== null ||
+            KontaktinformasjonVarsel({ content }) !== null ||
+            FormatertInnholdUtenforInnholdsseksjon({ content }) !== null ||
             FragmentUtenforInnholdsseksjon({ content }) !== null ||
             HtmlAreaDiv({ content }) !== null
         );
@@ -48,11 +48,14 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                     <br />
                     Disse problemene må rettes før publisering:
                     <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
-                        <KortUrlWarning content={content} className={style.liste} />
-                        <DuplicateIds className={style.liste} />
-                        <FormNumbersWarning content={content} className={style.liste} />
-                        <KontaktinformasjonWarning content={content} className={style.liste} />
-                        <HtmlAreaUtenforInnholdsseksjon content={content} className={style.liste} />
+                        <KortUrlVarsel content={content} className={style.liste} />
+                        <DuplikateIder className={style.liste} />
+                        <SkjemanummerVarsel content={content} className={style.liste} />
+                        <KontaktinformasjonVarsel content={content} className={style.liste} />
+                        <FormatertInnholdUtenforInnholdsseksjon
+                            content={content}
+                            className={style.liste}
+                        />
                         <FragmentUtenforInnholdsseksjon content={content} className={style.liste} />
                         <HtmlAreaDiv content={content} className={style.liste} />
                     </ul>
