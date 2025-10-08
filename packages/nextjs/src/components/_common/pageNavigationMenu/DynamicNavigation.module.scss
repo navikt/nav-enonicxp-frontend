@@ -80,7 +80,7 @@
         text-decoration-color: inherit;
     }
 
-    box-shadow: -2px 0 0 var(--a-border-subtle);
+    box-shadow: -2px 0 0 #cad5e2; //TODO spør om bruke farge fra designsysemetet, eller beholde denne fra prototypen
     padding-inline: var(--a-spacing-5) var(--a-spacing-8);
 
     @media #{common.$mq-screen-desktop} {
