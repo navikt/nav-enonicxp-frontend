@@ -25,7 +25,7 @@
 
 .mobileExpandableMenu {
     position: fixed;
-    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-2));
+    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-4));
     right: 0;
     z-index: 10;
     width: 80vw;
