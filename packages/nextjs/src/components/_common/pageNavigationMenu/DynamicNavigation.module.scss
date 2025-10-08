@@ -2,6 +2,7 @@
 
 .pageNavigationMenu {
     overflow: auto;
+    overscroll-behavior: contain;
 
     @media #{common.$mq-screen-desktop} {
         position: sticky;
