@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NewspaperIcon } from '@navikt/aksel-icons';
+import { FileTextIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, HStack } from '@navikt/ds-react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
@@ -164,7 +164,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                         className={styles.mobileExpandableMenuHeader}
                                     >
                                         <HStack wrap={false} gap="space-8" align="center">
-                                            <NewspaperIcon aria-hidden fontSize="1.5rem" />
+                                            <FileTextIcon aria-hidden fontSize="1.5rem" />
                                             <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
                                         </HStack>
                                     </ExpansionCard.Header>
