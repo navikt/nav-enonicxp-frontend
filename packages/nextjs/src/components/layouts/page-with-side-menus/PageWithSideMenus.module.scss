@@ -25,9 +25,10 @@
 
 .mobileExpandableMenu {
     position: fixed;
-    top: var(--decorator-sticky-offset);
+    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-2));
+    right: 0;
     z-index: 10;
-    width: calc(100% - var(--a-spacing-8));
+    width: 80vw;
 
     opacity: 0;
     transform: translateY(-1.5rem);
@@ -43,6 +44,7 @@
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
+        // transform: translateY(-50px);
     }
 
     :global(.navds-expansioncard__content) {
@@ -56,14 +58,13 @@
     display: flex;
     align-items: center;
 
-    background-color: var(--a-blue-50) !important;
-    color: var(--a-blue-600);
+    background-color: #025981 !important; //TODO eventuelt bruk Aksel-farge senere, sjekk med Martin
+    color: var(--a-white);
     border: none !important;
-    outline: 2px solid white;
-    border-top-left-radius: 0;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
     border-top-right-radius: 0;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-right-radius: 0;
 }
 
 .mobileOverlay {
