@@ -76,10 +76,15 @@
     background-color: var(--a-deepblue-800) !important;
     color: var(--a-white);
     border: none !important;
+    padding: 8px 14px;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 100px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+
+    h3 {
+        font-size: 1.125rem;
+    }
 }
 
 .mobileOverlay {
