@@ -4,7 +4,7 @@ import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 
-import style from './DuplicateIdsWarning.module.scss';
+import style from './DuplicateIdsVarsel.module.scss';
 
 type Props = {
     uniqueDupeIds: string[];
@@ -12,7 +12,7 @@ type Props = {
     className?: string;
 };
 
-export const DuplicateIdsWarning = ({ uniqueDupeIds, elementsWithDupeIds, className }: Props) => {
+export const DuplikateIderVarsel = ({ uniqueDupeIds, elementsWithDupeIds, className }: Props) => {
     const linkIdPrefix = useId();
 
     const getLinkId = (index: number) => `${linkIdPrefix}-${index}`;
