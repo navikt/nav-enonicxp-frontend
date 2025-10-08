@@ -2,6 +2,7 @@
 
 .pageNavigationMenu {
     overflow: auto;
+    overscroll-behavior: contain;
 
     @media #{common.$mq-screen-desktop} {
         position: sticky;
@@ -14,8 +15,12 @@
 
 :global(.navds-expansioncard__content) .pageNavigationMenu {
     height: calc(
-        50vh - var(--a-spacing-14)
-    ); //TODO: trekk fra --decorator-sticky-offset dersom vi vil beholde den totale høyden?
+        90dvh - var(--decorator-sticky-offset) - 16px - 48px
+    ); //TODO: unngå hardkoding av høyden med pikselverdier, fiks senere
+
+    .list ul {
+        display: block;
+    }
 }
 
 .heading {
@@ -50,7 +55,13 @@
     padding: 0;
     padding-left: var(--a-spacing-3);
 
+    color: rgb(0 36 58); //farge fra protoypen
+
     ul {
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            display: none;
+        }
+
         padding-left: 0;
 
         .link {
@@ -71,16 +82,18 @@
         text-decoration-color: inherit;
     }
 
-    box-shadow: -2px 0 0 var(--a-border-subtle);
+    box-shadow: -2px 0 0 #cad5e2; //TODO spør om bruke farge fra designsysemetet, eller beholde denne fra prototypen
     padding-inline: var(--a-spacing-5) var(--a-spacing-8);
 
-    &.childActive,
-    &[aria-current='true'] {
-        box-shadow: -2px 0 0 var(--a-border-info);
-    }
+    @media #{common.$mq-screen-desktop} {
+        &.childActive,
+        &[aria-current='true'] {
+            box-shadow: -2px 0 0 var(--a-border-info);
+        }
 
-    &[aria-current='true'] {
-        background-color: var(--a-deepblue-50);
+        &[aria-current='true'] {
+            background-color: var(--a-deepblue-50);
+        }
     }
 }
 

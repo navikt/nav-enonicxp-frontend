@@ -54,6 +54,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     }, []);
 
     useEffect(() => {
+        setForceExpandAll(!isDesktop);
+    }, [isDesktop]);
+
+    useEffect(() => {
         if (isDesktop) return;
 
         const stickyExpandableDetectionElement = stickyExpandableDetectionRef.current;

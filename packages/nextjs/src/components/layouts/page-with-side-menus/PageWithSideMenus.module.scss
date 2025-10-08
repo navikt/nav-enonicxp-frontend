@@ -25,30 +25,41 @@
 
 .mobileExpandableMenu {
     position: fixed;
-    top: var(--decorator-sticky-offset);
+    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-4));
+    right: 0;
     z-index: 10;
-    width: calc(100% - var(--a-spacing-8));
+
+    border-top-left-radius: 28px; //TODO: fiks senere: ikke hardkod disse basert på høyden til knappen
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 0;
 
     opacity: 0;
-    transform: translateY(-1.5rem);
     transition:
         opacity 200ms ease-out,
         transform 200ms ease-out;
 
     &.show {
         opacity: 1;
-        transform: translateY(0);
     }
 
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
+        // transform: translateY(-50px);
     }
 
     :global(.navds-expansioncard__content) {
         border: none;
         box-shadow: none;
-        padding-block: 0;
+    }
+}
+
+:global(.navds-expansioncard--open).mobileExpandableMenu {
+    width: 70vw;
+
+    .mobileExpandableMenuHeader {
+        background-color: var(--a-white) !important;
+        color: var(--a-text-default);
     }
 }
 
@@ -56,22 +67,27 @@
     display: flex;
     align-items: center;
 
-    background-color: var(--a-blue-50) !important;
-    color: var(--a-blue-600);
+    background-color: var(--a-deepblue-800) !important;
+    color: var(--a-white);
     border: none !important;
-    outline: 2px solid white;
-    border-top-left-radius: 0;
+    padding: 8px 14px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
     border-top-right-radius: 0;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-bottom-right-radius: 0;
+
+    h3 {
+        font-size: 1.125rem !important;
+    }
 }
 
 .mobileOverlay {
     position: fixed;
+    height: 200dvh;
     inset: 0;
     z-index: 9;
     opacity: 0;
-    background: #aab0ba40;
+    background-color: oklab(0.39631 -0.00264324 -0.0147871 / 0.5);
     transition: opacity 120ms ease;
 
     &.visible {
