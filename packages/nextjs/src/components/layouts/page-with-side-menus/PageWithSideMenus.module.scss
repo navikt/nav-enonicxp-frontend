@@ -28,7 +28,9 @@
     top: calc(var(--decorator-sticky-offset) + var(--a-spacing-4));
     right: 0;
     z-index: 10;
-    border-top-left-radius: 28px; //TODO: fiks senere: ikke hardkod denne basert på høyden til knappen
+
+    border-top-left-radius: 28px; //TODO: fiks senere: ikke hardkod disse basert på høyden til knappen
+    border-bottom-left-radius: 28px;
 
     opacity: 0;
     transform: translateY(-1.5rem);
