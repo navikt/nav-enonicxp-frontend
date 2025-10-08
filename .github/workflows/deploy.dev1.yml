@@ -31,6 +31,7 @@ jobs:
             RELEASE_TAG: dev1-${{ github.sha }}
             NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
             MELDEKORT_API_URL: https://meldekort-api-q1.intern.dev.nav.no/meldekort/meldekort-api/api/person
+            DP_MELDEKORT_URL: https://dp-meldekortregister.intern.dev.nav.no/meldekortstatus
             FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
             NODE_ENV: ${{ inputs.NODE_ENV }}
         secrets:
