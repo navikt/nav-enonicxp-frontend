@@ -41,6 +41,10 @@
         transform: translateY(0);
     }
 
+    :global(.navds-expansioncard__header-button) svg {
+        transform: rotate(90deg);
+    }
+
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
