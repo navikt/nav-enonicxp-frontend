@@ -43,10 +43,6 @@
         transform: translateY(0);
     }
 
-    :global(.navds-expansioncard__header-button) svg {
-        transform: rotate(90deg);
-    }
-
     :global(.navds-expansioncard__title),
     :global(.navds-expansioncard__content) {
         margin-bottom: 0; //overstyr global-override-styles.scss
@@ -57,10 +53,20 @@
         border: none;
         box-shadow: none;
     }
+
+    :global(.navds-expansioncard__header-button) svg {
+        transform: rotate(90deg);
+    }
 }
 
 :global(.navds-expansioncard--open).mobileExpandableMenu {
     width: 80vw;
+
+    :global(.navds-expansioncard__header-button) svg {
+        transform: rotate(
+            270deg
+        ); //TODO senere: løs på en bedre måte, uansett skal kanskje chevronen forsvinne til fordel for en X for å lukke
+    }
 }
 
 .mobileExpandableMenuHeader {
