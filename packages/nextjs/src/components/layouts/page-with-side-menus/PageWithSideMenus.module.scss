@@ -28,7 +28,6 @@
     top: calc(var(--decorator-sticky-offset) + var(--a-spacing-4));
     right: 0;
     z-index: 10;
-    width: 80vw;
 
     opacity: 0;
     transform: translateY(-1.5rem);
@@ -55,6 +54,10 @@
         border: none;
         box-shadow: none;
     }
+}
+
+:global(.navds-expansioncard--open).mobileExpandableMenu {
+    width: 80vw;
 }
 
 .mobileExpandableMenuHeader {
