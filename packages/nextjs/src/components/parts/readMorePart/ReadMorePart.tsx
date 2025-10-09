@@ -11,10 +11,8 @@ import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
-import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorfeil';
 import styles from './ReadMorePart.module.scss';
 
 export type PartConfigReadMore = {
@@ -58,7 +56,7 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
         <div tabIndex={-1} ref={divRef}>
             <ReadMore
                 header={title}
-                open={isOpen || harRedaktorfeil(contentProps)}
+                open={isOpen}
                 onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
                 className={styles.readMore}
             >
