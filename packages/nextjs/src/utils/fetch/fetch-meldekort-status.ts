@@ -69,7 +69,7 @@ export const fetchAndSetMeldekortStatus = async () => {
         }
 
         return response;
-    } catch (error) {
+    } catch (error: any) {
         logger.error('Error fetching meldekort status:', error);
         return null;
     }
