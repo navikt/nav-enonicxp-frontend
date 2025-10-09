@@ -5,7 +5,15 @@ import { getPublicPathname, appOrigin } from 'utils/urls';
 import { PageType } from './structuredData/types';
 
 export const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
+    [ContentType.FrontPage]: 'WebPage',
+    [ContentType.FrontPageNested]: 'WebPage',
     [ContentType.ProductPage]: 'ItemPage',
+    [ContentType.SectionPage]: 'CollectionPage',
+    [ContentType.AreaPage]: 'CollectionPage',
+    [ContentType.SituationPage]: 'CollectionPage',
+    [ContentType.GuidePage]: 'FAQPage',
+    [ContentType.Oversikt]: 'CollectionPage',
+    [ContentType.OfficePage]: 'WebPage',
 };
 
 export const getContentTypeToStructure = (content: ContentProps): PageType | undefined => {

@@ -4,52 +4,81 @@ import {
     getDescription,
     getPageTitle,
     getSocialShareImageUrl,
+    pageTypeLibrary,
 } from 'components/_common/metatags/helpers';
-import { JsonLdData, PageType } from './types';
+import { GraphEntity, JsonLdData, PageType } from './types';
 
-const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
-    [ContentType.ProductPage]: 'ItemPage',
+type ReferenceConfig = {
+    content: ContentProps;
+    mainEntityOfPage?: string;
+    mainEntity?: string;
 };
 
 const DEFAULT_PAGE_TYPE: PageType = 'WebPage';
 
-const generateBaseJsonLd = (content: ContentProps, type: PageType): JsonLdData => {
+const generateOfficeBranchEntity = ({ content }: ReferenceConfig): GraphEntity => {
     const url = `${appOrigin}${getPublicPathname(content)}`;
+
+    const organizationId = `${appOrigin}#organization`;
+    const officeId = `${url}#office`;
+
+    return {
+        '@type': 'GovernmentOffice',
+        '@id': officeId,
+        name: getPageTitle(content),
+        parentOrganization: { '@id': organizationId },
+    };
+};
+
+const generateImageObjectEntity = () => {
+    const logoId = `${appOrigin}#logo`;
     const socialShareImageUrl = getSocialShareImageUrl();
 
     return {
-        '@context': 'https://schema.org',
-        '@type': type,
+        '@type': 'ImageObject',
+        '@id': logoId,
+        url: socialShareImageUrl,
+    };
+};
+
+const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity => {
+    const pageType = pageTypeLibrary[content.type] ?? DEFAULT_PAGE_TYPE;
+    const url = `${appOrigin}${getPublicPathname(content)}`;
+    const organizationId = `${appOrigin}#organization`;
+    const pageId = `${url}#page`;
+
+    return {
+        '@type': pageType,
+        '@id': pageId,
         name: getPageTitle(content),
         description: getDescription(content),
         url,
         datePublished: content.publish?.first || content.createdTime,
         dateModified: content.modifiedTime,
-        author: {
-            '@type': 'GovernmentOrganization',
-            name: 'Nav - Arbeids- og velferdsetaten',
-            url,
-            logo: {
-                '@type': 'ImageObject',
-                url: socialShareImageUrl,
-            },
-        },
-        publisher: {
-            '@type': 'GovernmentOrganization',
-            name: 'Nav - Arbeids- og velferdsetaten',
-            url,
-            logo: {
-                '@type': 'ImageObject',
-                url: socialShareImageUrl,
-            },
-        },
+        author: { '@id': organizationId },
+        publisher: { '@id': organizationId },
+    };
+};
+
+const generateGraph = (graphEntities: GraphEntity[]): JsonLdData => {
+    return {
+        '@context': 'https://schema.org',
+        '@graph': graphEntities,
     };
 };
 
 export const generateJsonLd = (content: ContentProps): JsonLdData | null => {
-    const pageType = pageTypeLibrary[content.type] ?? DEFAULT_PAGE_TYPE;
+    const pageEntity = generatePageEntity({
+        content,
+    });
+    const imageEntity = generateImageObjectEntity();
 
-    const jsonLdData = generateBaseJsonLd(content, pageType);
+    const officeBranchEntity =
+        content.type === ContentType.OfficePage ? generateOfficeBranchEntity({ content }) : null;
 
-    return jsonLdData;
+    const baseGraph = generateGraph(
+        [pageEntity, imageEntity, officeBranchEntity].filter(Boolean) as GraphEntity[]
+    );
+
+    return baseGraph;
 };
