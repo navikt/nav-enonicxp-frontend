@@ -10,7 +10,7 @@ const harDuplikateIder = (element1: HTMLElement, index1: number, array: HTMLElem
     return array.some((element2, index2) => element1.id === element2.id && index1 !== index2);
 };
 
-const finnElementerMedDuplikateIder = (): HTMLElement[] => {
+const finnElementerMedDuplikateIder = () => {
     const elementsWithIds = [...document.querySelectorAll<HTMLElement>('#maincontent [id]')];
 
     return elementsWithIds.filter((element, index) => {
@@ -19,7 +19,6 @@ const finnElementerMedDuplikateIder = (): HTMLElement[] => {
         if (erElementISvg(element)) {
             return false;
         }
-
         return harDuplikateIder(element, index, elementsWithIds);
     });
 };
@@ -30,25 +29,29 @@ type Props = {
 
 export const DuplikateIder = ({ className }: Props) => {
     const [elementerMedDuplikateIder, setElementerMedDuplikateIder] = useState<HTMLElement[]>([]);
-    const uniqueDupeIds = removeDuplicates(elementerMedDuplikateIder, (a, b) => a.id === b.id).map(
-        (element) => element.id
-    );
 
+    const unikeDuplikatIder = removeDuplicates(
+        elementerMedDuplikateIder,
+        (a, b) => a.id === b.id
+    ).map((element) => element.id);
+
+    // Delay the check slightly to avoid certain false positives.
+    // Typically mobile/desktop exclusive elements which may have duplicate
+    // ids in the server html, which are pruned with client-side javascript
     useEffect(() => {
-        // Delay the check slightly to avoid certain false positives.
-        // Typically mobile/desktop exclusive elements which may have duplicate
-        // ids in the server html, which are pruned with client-side javascript
-        setTimeout(() => {
-            const elementsWithDuplicateIds = finnElementerMedDuplikateIder();
-            setElementerMedDuplikateIder(elementsWithDuplicateIds);
+        const timer = setTimeout(() => {
+            setElementerMedDuplikateIder(finnElementerMedDuplikateIder());
         }, 1000);
+        return () => clearTimeout(timer);
     }, []);
 
-    return uniqueDupeIds.length > 0 ? (
+    if (unikeDuplikatIder.length === 0) return null;
+
+    return (
         <DuplikateIderVarsel
-            uniqueDupeIds={uniqueDupeIds}
-            elementsWithDupeIds={elementerMedDuplikateIder}
+            unikeDuplikatIder={unikeDuplikatIder}
+            elementerMedDuplikateIder={elementerMedDuplikateIder}
             className={className}
         />
-    ) : null;
+    );
 };
