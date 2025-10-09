@@ -41,6 +41,19 @@ const generateImageObjectEntity = () => {
     };
 };
 
+const generateOrganizationEntity = (): GraphEntity => {
+    const organizationId = `${appOrigin}#organization`;
+    const logoId = `${appOrigin}#logo`;
+
+    return {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'Nav - Arbeids- og velferdsetaten',
+        url: appOrigin,
+        logo: { '@id': logoId },
+    };
+};
+
 const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity => {
     const pageType = pageTypeLibrary[content.type] ?? DEFAULT_PAGE_TYPE;
     const url = `${appOrigin}${getPublicPathname(content)}`;
@@ -57,7 +70,7 @@ const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity => {
         dateModified: content.modifiedTime,
         author: { '@id': organizationId },
         publisher: { '@id': organizationId },
-    };
+    } as GraphEntity;
 };
 
 const generateGraph = (graphEntities: GraphEntity[]): JsonLdData => {
@@ -67,18 +80,75 @@ const generateGraph = (graphEntities: GraphEntity[]): JsonLdData => {
     };
 };
 
+const createReferencesBetweenEntities = (entities: GraphEntity[]): GraphEntity[] => {
+    // Create lookup maps for efficient access
+    const entityById = new Map<string, GraphEntity>();
+    const entitiesByType = new Map<string, GraphEntity[]>();
+
+    entities.forEach((entity) => {
+        entityById.set(entity['@id'], entity);
+
+        const type = entity['@type'];
+
+        // Multiple entities can share the same type, so need
+        // to store them in an array
+        const entityByTypeArray = entitiesByType.get(type) ?? [];
+        entitiesByType.set(type, [...entityByTypeArray, entity]);
+    });
+
+    // Helper to find first entity of a specific type
+    const findEntityByType = (type: string): GraphEntity | undefined => {
+        return entitiesByType.get(type)?.[0];
+    };
+
+    // Apply reference rules
+    return entities.map((entity) => {
+        if (!entity || typeof entity !== 'object' || Array.isArray(entity)) {
+            return entity;
+        }
+
+        const updatedEntity = { ...entity };
+
+        // Rule: WebPage should reference GovernmentOffice as mainEntity
+        if (entity['@type'] === 'WebPage') {
+            const officeEntity = findEntityByType('GovernmentOffice');
+            if (officeEntity?.['@id']) {
+                updatedEntity.mainEntity = { '@id': officeEntity['@id'] };
+            }
+        }
+
+        // Rule: GovernmentOffice should reference WebPage as mainEntityOfPage
+        if (entity['@type'] === 'GovernmentOffice') {
+            const pageEntity = findEntityByType('WebPage');
+            if (pageEntity?.['@id']) {
+                updatedEntity.mainEntityOfPage = { '@id': pageEntity['@id'] };
+            }
+        }
+
+        return updatedEntity;
+    });
+};
+
 export const generateJsonLd = (content: ContentProps): JsonLdData | null => {
     const pageEntity = generatePageEntity({
         content,
     });
     const imageEntity = generateImageObjectEntity();
+    const organizationEntity = generateOrganizationEntity();
 
     const officeBranchEntity =
         content.type === ContentType.OfficePage ? generateOfficeBranchEntity({ content }) : null;
 
-    const baseGraph = generateGraph(
-        [pageEntity, imageEntity, officeBranchEntity].filter(Boolean) as GraphEntity[]
-    );
+    const entitiesWithoutReferences = [
+        pageEntity,
+        imageEntity,
+        organizationEntity,
+        officeBranchEntity,
+    ].filter(Boolean) as GraphEntity[];
+
+    const entitiesWithReferences = createReferencesBetweenEntities(entitiesWithoutReferences);
+
+    const baseGraph = generateGraph(entitiesWithReferences);
 
     return baseGraph;
 };

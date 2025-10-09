@@ -1,14 +1,21 @@
-import { WithContext, WebPage, Organization, ImageObject } from 'schema-dts';
+import { WebPage, Organization, ImageObject } from 'schema-dts';
+
 export type PageType = WebPage['@type'];
 
-export type BaseJsonLd<T extends WebPage> = {
-    '@context': string | string[];
-    '@graph': Array<any>;
+export type WithId<T extends { '@type': unknown }> = T & { '@id': string };
+
+// Allow Organization.logo to be an @id reference
+export type OrgWithLogoRef = Organization & {
+    '@type': string;
+    logo?: { '@id': string };
+    mainEntity?: string;
 };
 
-export type GraphEntity =
-    | (WebPage & { '@id': string })
-    | (Organization & { '@id': string; logo?: { '@id': string } })
-    | (ImageObject & { '@id': string });
+export type GraphEntity = WithId<WebPage | ImageObject | OrgWithLogoRef>;
 
-export type JsonLdData = BaseJsonLd<WebPage>;
+export type BaseJsonLd = {
+    '@context': string | string[];
+    '@graph': GraphEntity[];
+};
+
+export type JsonLdData = BaseJsonLd;
