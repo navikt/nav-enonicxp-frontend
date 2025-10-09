@@ -7,12 +7,16 @@ import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/Edi
 import style from './DuplicateIdsVarsel.module.scss';
 
 type Props = {
-    uniqueDupeIds: string[];
-    elementsWithDupeIds: HTMLElement[];
+    unikeDuplikatIder: string[];
+    elementerMedDuplikateIder: HTMLElement[];
     className?: string;
 };
 
-export const DuplikateIderVarsel = ({ uniqueDupeIds, elementsWithDupeIds, className }: Props) => {
+export const DuplikateIderVarsel = ({
+    unikeDuplikatIder,
+    elementerMedDuplikateIder,
+    className,
+}: Props) => {
     const linkIdPrefix = useId();
 
     const getLinkId = (index: number) => `${linkIdPrefix}-${index}`;
@@ -23,10 +27,10 @@ export const DuplikateIderVarsel = ({ uniqueDupeIds, elementsWithDupeIds, classN
                 Anker-ID-ene på siden må være unike for å fungere. Følgende anker-ID-er må derfor
                 justeres:
                 <ul key={`duplicate-ids-list-${linkIdPrefix}`}>
-                    {uniqueDupeIds.map((id) => (
+                    {unikeDuplikatIder.map((id) => (
                         <li key={id}>
                             <code>{`#${id}`}</code>
-                            {elementsWithDupeIds.reduce<React.ReactNode[]>(
+                            {elementerMedDuplikateIder.reduce<React.ReactNode[]>(
                                 (acc, element, index) => {
                                     if (element.id === id) {
                                         acc.push(
@@ -48,7 +52,7 @@ export const DuplikateIderVarsel = ({ uniqueDupeIds, elementsWithDupeIds, classN
                     ))}
                 </ul>
             </li>
-            {elementsWithDupeIds.map((element, index) => {
+            {elementerMedDuplikateIder.map((element, index) => {
                 const linkId = getLinkId(index);
                 element.style.overflow = 'visible';
 
