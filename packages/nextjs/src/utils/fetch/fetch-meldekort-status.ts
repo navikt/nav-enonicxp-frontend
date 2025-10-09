@@ -20,7 +20,7 @@ const meldekortStatusMock: MeldekortStatusResponse = {
 };
 
 const meldekortApiStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
-const dpMeldekortStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
+const dpMeldekortStatusUrl = `${process.env.DP_MELDEKORT_URL}/meldekortstatus`;
 
 const arbitrateMeldekortResponse = (
     response1: MeldekortStatusResponse | null,
