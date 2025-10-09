@@ -1,77 +1,9 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { appOrigin, getPublicPathname } from 'utils/urls';
-import {
-    getDescription,
-    getPageTitle,
-    getSocialShareImageUrl,
-    pageTypeLibrary,
-} from 'components/_common/metatags/helpers';
-import { GraphEntity, JsonLdData, PageType } from './types';
-
-type ReferenceConfig = {
-    content: ContentProps;
-    mainEntityOfPage?: string;
-    mainEntity?: string;
-};
-
-const DEFAULT_PAGE_TYPE: PageType = 'WebPage';
-
-const generateOfficeBranchEntity = ({ content }: ReferenceConfig): GraphEntity => {
-    const url = `${appOrigin}${getPublicPathname(content)}`;
-
-    const organizationId = `${appOrigin}#organization`;
-    const officeId = `${url}#office`;
-
-    return {
-        '@type': 'GovernmentOffice',
-        '@id': officeId,
-        name: getPageTitle(content),
-        parentOrganization: { '@id': organizationId },
-    };
-};
-
-const generateImageObjectEntity = () => {
-    const logoId = `${appOrigin}#logo`;
-    const socialShareImageUrl = getSocialShareImageUrl();
-
-    return {
-        '@type': 'ImageObject',
-        '@id': logoId,
-        url: socialShareImageUrl,
-    };
-};
-
-const generateOrganizationEntity = (): GraphEntity => {
-    const organizationId = `${appOrigin}#organization`;
-    const logoId = `${appOrigin}#logo`;
-
-    return {
-        '@type': 'Organization',
-        '@id': organizationId,
-        name: 'Nav - Arbeids- og velferdsetaten',
-        url: appOrigin,
-        logo: { '@id': logoId },
-    };
-};
-
-const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity => {
-    const pageType = pageTypeLibrary[content.type] ?? DEFAULT_PAGE_TYPE;
-    const url = `${appOrigin}${getPublicPathname(content)}`;
-    const organizationId = `${appOrigin}#organization`;
-    const pageId = `${url}#page`;
-
-    return {
-        '@type': pageType,
-        '@id': pageId,
-        name: getPageTitle(content),
-        description: getDescription(content),
-        url,
-        datePublished: content.publish?.first || content.createdTime,
-        dateModified: content.modifiedTime,
-        author: { '@id': organizationId },
-        publisher: { '@id': organizationId },
-    } as GraphEntity;
-};
+import { GraphEntity, JsonLdData } from './types';
+import { generateOfficeBranchEntity } from './entities/generateOfficeBranchEntity';
+import { generateImageObjectEntity } from './entities/generateImageObjectEntity';
+import { generateOrganizationEntity } from './entities/generateOrganizationEntity';
+import { generatePageEntity } from './entities/generatePageEntity';
 
 const generateGraph = (graphEntities: GraphEntity[]): JsonLdData => {
     return {
@@ -109,7 +41,7 @@ const createReferencesBetweenEntities = (entities: GraphEntity[]): GraphEntity[]
 
         const updatedEntity = { ...entity };
 
-        // Rule: WebPage should reference GovernmentOffice as mainEntity
+        // Rule: WebPage should reference GovernmentOffice as the mainEntity
         if (entity['@type'] === 'WebPage') {
             const officeEntity = findEntityByType('GovernmentOffice');
             if (officeEntity?.['@id']) {
