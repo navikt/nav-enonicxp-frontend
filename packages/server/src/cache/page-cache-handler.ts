@@ -54,7 +54,7 @@ export default class PageCacheHandler {
             localCache.set(key, fromRedisCache);
 
             return fromRedisCache;
-        } catch (error) {
+        } catch (error: any) {
             logger.error(`Error getting cache for key ${key}:`, error);
             return null;
         }
