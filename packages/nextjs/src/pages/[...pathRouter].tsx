@@ -24,7 +24,7 @@ const getStaticPropsFailover: GetStaticProps = async (context) => {
 
         return pageProps;
     } catch (error) {
-        logger.error('Error fetching page props in failover mode:', error);
+        logger.error(`Error fetching page props in failover mode: ${error}`);
         return {
             notFound: true,
         };

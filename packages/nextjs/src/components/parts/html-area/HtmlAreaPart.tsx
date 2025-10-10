@@ -8,11 +8,11 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { pageContentHtmlAreaIsOutsideSections } from 'components/_editor-only/global-warnings/warnings/part-utenfor-innholdsseksjon/pageContentHtmlAreaIsOutsideSections';
 import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
 import { isGodkjentSide } from 'components/_editor-only/global-warnings/Redaktorvarsler';
 import { usePageContentProps } from 'store/pageContext';
+import { pageContentHtmlAreaUtenforInnholdsseksjon } from 'components/_editor-only/global-warnings/warnings/html-area-utenfor-innholdsseksjon/pageContentHtmlAreaUtenforInnholdsseksjon';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -27,7 +27,7 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
     const shouldWarn =
-        pageContentHtmlAreaIsOutsideSections({ path, descriptor }) ||
+        pageContentHtmlAreaUtenforInnholdsseksjon({ path }) ||
         htmlAreaContainsDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
     const isEditorView = useIsEditorView();
