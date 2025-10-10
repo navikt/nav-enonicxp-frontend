@@ -1,0 +1,15 @@
+{
+    "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
+        "cd packages/nextjs && npm run lint:fix",
+        "cd packages/nextjs && npm run prettier:fix"
+    ],
+    "packages/server/**/*.{js,ts}": [
+        "cd packages/server && npm run lint:fix",
+        "cd packages/server && npm run prettier:fix"
+    ],
+    "packages/shared/**/*.{js,ts}": [
+        "cd packages/shared && npm run lint:fix",
+        "cd packages/shared && npm run prettier:fix"
+    ],
+    "**/*.{json,md,yml,yaml}": ["prettier --write"]
+}
