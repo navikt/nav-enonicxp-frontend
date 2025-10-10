@@ -21,7 +21,9 @@ jobs:
             XP_ORIGIN: https://www.nav.no
             TELEMETRY_URL: https://telemetry.nav.no/collect
             MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
+            MELDEKORT_API_AUDIENCE: prod-gcp:meldekort:meldekort-api
             DP_MELDEKORT_URL: https://dp-meldekortregister.intern.nav.no/meldekortstatus
+            DP_MELDEKORT_AUDIENCE: prod-gcp:teamdagpenger:dp-meldekortregister
             INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
             NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
             FAILOVER_ORIGIN: https://www-failover.nav.no

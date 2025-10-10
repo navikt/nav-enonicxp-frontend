@@ -153,7 +153,9 @@ const config = {
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
         MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
+        MELDEKORT_API_AUDIENCE: process.env.MELDEKORT_API_AUDIENCE,
         DP_MELDEKORT_URL: process.env.DP_MELDEKORT_URL,
+        DP_MELDEKORT_AUDIENCE: process.env.DP_MELDEKORT_AUDIENCE,
     },
     generateBuildId: async () => {
         if (!process.env.GIT_HASH) {

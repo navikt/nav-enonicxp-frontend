@@ -74,6 +74,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@next/bundle-analyzer": "15.5.4",
+        "@navikt/oasis": "3.8.0",
         "dotenv": "17.2.3",
         "express": "5.1.0",
         "express-prom-bundle": "8.0.0",

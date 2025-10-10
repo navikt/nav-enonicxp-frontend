@@ -1,14 +1,20 @@
-import { fetchJson } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
 import { setMeldekortStatusAction } from 'store/slices/authState';
 import { store } from 'store/store';
+
+export type NesteMeldekort = {
+    fra: string;
+    kanSendesFra: string;
+    til: string;
+    uke: string;
+};
 
 export type MeldekortStatusResponse = {
     meldekort: number;
     etterregistrerteMeldekort: number;
     antallGjenstaaendeFeriedager: number;
-    nesteMeldekort?: null | string;
-    nesteInnsendingAvMeldekort?: null | string;
+    nesteMeldekort?: NesteMeldekort | null;
+    nesteInnsendingAvMeldekort?: string | null;
 };
 
 const meldekortStatusMock: MeldekortStatusResponse = {
@@ -19,56 +25,32 @@ const meldekortStatusMock: MeldekortStatusResponse = {
     nesteInnsendingAvMeldekort: '2022-07-23',
 };
 
-const meldekortApiStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
-const dpMeldekortStatusUrl = `${process.env.DP_MELDEKORT_URL}`;
-
-const arbitrateMeldekortResponse = (
-    response1: MeldekortStatusResponse | null,
-    response2: MeldekortStatusResponse | null
-): MeldekortStatusResponse => {
-    if (response1?.nesteInnsendingAvMeldekort) {
-        return response1;
-    }
-
-    if (response2?.nesteInnsendingAvMeldekort) {
-        return response2;
-    }
-
-    return {
-        meldekort: 0,
-        etterregistrerteMeldekort: 0,
-        antallGjenstaaendeFeriedager: 0,
-    };
-};
-
 export const fetchAndSetMeldekortStatus = async () => {
     if (process.env.ENV === 'localhost') {
         store.dispatch(setMeldekortStatusAction(meldekortStatusMock));
-        return;
+        // return;
     }
 
     try {
-        const [meldekortApiResponse, dpMeldekortResponse] = await Promise.all([
-            fetchJson<MeldekortStatusResponse>(meldekortApiStatusUrl, 5000, {
-                credentials: 'include',
-            }),
-            fetchJson<MeldekortStatusResponse>(dpMeldekortStatusUrl, 5000, {
-                credentials: 'include',
-            }),
-        ]);
+        const response = await fetch('/api/meldekortstatus', {
+            method: 'GET',
+            credentials: 'include',
+        });
 
-        if (!meldekortApiResponse && !dpMeldekortResponse) {
-            logger.error('Failed to fetch meldekort status from both endpoints');
+        if (!response?.ok) {
+            logger.error(
+                `Failed to fetch meldekort status: ${response.status} ${response.statusText}`
+            );
             return null;
         }
 
-        const response = arbitrateMeldekortResponse(meldekortApiResponse, dpMeldekortResponse);
+        const data = (await response.json()) as MeldekortStatusResponse;
 
-        if (response) {
-            store.dispatch(setMeldekortStatusAction(response));
+        if (data) {
+            store.dispatch(setMeldekortStatusAction(data));
         }
 
-        return response;
+        return data;
     } catch (error: any) {
         logger.error('Error fetching meldekort status:', error);
         return null;
