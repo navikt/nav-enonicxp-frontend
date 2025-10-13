@@ -1,43 +1,20 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--a-spacing-3) var(--a-spacing-5);
-    border-width: 1px;
-    border-radius: var(--a-border-radius-large);
-    border-style: solid;
-    border-color: var(--a-gray-300);
-    text-decoration: none;
-    margin-bottom: var(--a-spacing-9);
+.miniCardV2 {
+    :global(.navds-link-card__title),
+    :global(.navds-link-anchor__arrow) {
+        color: var(--default-action-color);
+    }
+
+    :global(.navds-link-anchor) {
+        text-decoration: none;
+    }
 
     &:hover {
         background-color: #ecf3fe;
         border-color: #cbd4e1;
+        box-shadow: none;
 
-        .linkText {
+        :global(.navds-link-anchor) {
             text-decoration: underline;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 2.5px;
         }
     }
-}
-
-.textContainer {
-    display: flex;
-    flex-direction: column;
-    color: var(--default-action-color);
-}
-
-.linkText.linkText {
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.tagline {
-    color: var(--a-text-subtle);
-    font-variant: all-small-caps;
-    letter-spacing: 1.2px;
-    margin-top: 0.125rem;
-    text-transform: uppercase;
 }
