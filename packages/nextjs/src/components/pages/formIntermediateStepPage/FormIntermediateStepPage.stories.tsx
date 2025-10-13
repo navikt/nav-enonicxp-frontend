@@ -110,27 +110,3 @@ export const Step: Story = {
         },
     },
 };
-
-export const EditorView: Story = {
-    args: {
-        ...LandingPage.args,
-        editorView: 'edit',
-    },
-};
-
-export const English: Story = {
-    args: {
-        ...Step.args,
-        language: 'en',
-    },
-    parameters: {
-        ...Step.parameters,
-    },
-};
-
-export const NoIngress: Story = {
-    args: {
-        ...LandingPage.args,
-        data: { ...LandingPage.args.data, editorial: undefined },
-    },
-};

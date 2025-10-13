@@ -33,18 +33,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Person: Story = {
-    decorators: [withMockedPageContent(Audience.PERSON)],
-};
-
 export const Employer: Story = {
     decorators: [withMockedPageContent(Audience.EMPLOYER)],
-};
-
-export const Provider: Story = {
-    decorators: [withMockedPageContent(Audience.PROVIDER)],
-};
-
-export const UndefinedAudience: Story = {
-    decorators: [withMockedPageContent('Something' as Audience)],
 };
