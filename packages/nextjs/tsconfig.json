@@ -1,45 +1,31 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "target": "es2022",
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "baseUrl": "src",
-    "jsx": "preserve",
-    "incremental": true,
-    "downlevelIteration": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "skipLibCheck": true,
-    "paths": {
-      "@/shared/*": [
-        "../../shared/src/*"
-      ]
+    "compilerOptions": {
+        "strict": true,
+        "target": "es2022",
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "baseUrl": "src",
+        "jsx": "preserve",
+        "incremental": true,
+        "downlevelIteration": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "skipLibCheck": true,
+        "paths": {
+            "@/shared/*": ["../../shared/src/*"]
+        }
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "../shared/**/*.ts",
-    "next-env.d.ts",
-    "nodeenv.d.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": [
+        "next-env.d.ts",
+        "nodeenv.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "../shared/**/*.ts"
+    ],
+    "exclude": ["node_modules"]
 }

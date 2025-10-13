@@ -65,7 +65,7 @@ export default async function handler(
     logger.info(`Meldekortstatus: Handling /api/meldekortstatus request`);
 
     const isLocal = process.env.ENV === 'localhost';
-    const oboToken = isLocal ? 'foobartoken' : getToken(JSON.stringify(req.headers));
+    const oboToken = isLocal ? 'foobartoken' : getToken(req);
 
     // This endpoint should only be called when the user is
     // authenticated, so it's safe to return 401 if no token is found.
