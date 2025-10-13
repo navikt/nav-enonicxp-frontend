@@ -33,21 +33,26 @@ export const GeneralPageHeader = (props: Props) => {
     const isSituationPage = pageProps.type === ContentType.SituationPage;
 
     return (
-        <header className={style.generalPageHeader}>
-            <Illustration illustration={illustration} className={style.illustration} />
-            <GeneralPageHeaderTagLine tagLine={tagLine} />
-            <Heading
-                level="1"
-                size="xlarge"
-                className={classNames(style.header, isSituationPage && style.reduceMarginBottom)}
-            >
-                {title}
-            </Heading>
+        <>
+            <header className={style.generalPageHeader}>
+                <Illustration illustration={illustration} className={style.illustration} />
+                <GeneralPageHeaderTagLine tagLine={tagLine} />
+                <Heading
+                    level="1"
+                    size="xlarge"
+                    className={classNames(
+                        style.header,
+                        isSituationPage && style.reduceMarginBottom
+                    )}
+                >
+                    {title}
+                </Heading>
+            </header>
             {ingress && !hideIngress && !props.hideIngressOverride && (
                 <BodyLong className={style.ingress} size="large">
                     {ingress}
                 </BodyLong>
             )}
-        </header>
+        </>
     );
 };

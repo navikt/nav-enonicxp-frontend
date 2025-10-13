@@ -29,11 +29,11 @@ const LenkepanelNavNo = ({
     return (
         <LinkCard
             arrow={!vertikal}
-            arrowPosition='center'
+            arrowPosition="center"
             className={classNames(style.lenkepanelNavno, vertikal && style.vertikal, className)}
         >
             {ikon && <LinkCard.Icon className={style.ikon}>{ikon}</LinkCard.Icon>}
-            <LinkCard.Title as='h2'>
+            <LinkCard.Title as="h2">
                 <LinkCard.Anchor asChild>
                     <LenkeBase
                         href={href}

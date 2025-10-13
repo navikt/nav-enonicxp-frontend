@@ -17,6 +17,7 @@ type Props = {
     analyticsComponent?: string;
     title: string;
     isChapterNavigation?: boolean;
+    className?: string;
 };
 
 export const PageNavigationMenu = ({
@@ -24,6 +25,7 @@ export const PageNavigationMenu = ({
     analyticsComponent = 'Meny for intern-navigasjon',
     title,
     isChapterNavigation,
+    className,
 }: Props) => {
     const links = getValidLinks(anchorLinks);
 
@@ -41,7 +43,8 @@ export const PageNavigationMenu = ({
             aria-labelledby={headingId}
             className={classNames(
                 style.pageNavigationMenu,
-                isChapterNavigation && style.chapterNavigation
+                isChapterNavigation && style.chapterNavigation,
+                className
             )}
         >
             <Heading

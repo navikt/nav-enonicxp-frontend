@@ -1,0 +1,200 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { FileTextIcon } from '@navikt/aksel-icons';
+import { ExpansionCard, HStack } from '@navikt/ds-react';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import Region from 'components/layouts/Region';
+import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
+import { DynamicNavigation } from 'components/_common/pageNavigationMenu/DynamicNavigation';
+import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
+import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
+import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
+import { classNames } from 'utils/classnames';
+import { useIsDesktop } from 'utils/useIsDesktop';
+import { useLegacyNav } from 'utils/useLegacyNav';
+import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
+import styles from './InnholdssideMedMeny.module.scss';
+
+type Props = {
+    pageProps: ContentProps;
+    layoutProps: InnholdssideMedMenyProps;
+};
+
+export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
+    const { regions, config } = layoutProps;
+    const { language, languages } = usePageContentProps();
+    const getLabel = translator('internalNavigation', language);
+    const menuTitle = getLabel('pageNavigationMenu');
+    const legacyNav = useLegacyNav();
+    const isDesktop = useIsDesktop();
+
+    const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
+    const mobileExpandableMenuRef = useRef<HTMLDivElement | null>(null);
+    const placeholderRef = useRef<HTMLDivElement | null>(null);
+    const stickyExpandableDetectionRef = useRef<HTMLDivElement | null>(null);
+
+    const [hasScrolledPastContentMenu, setHasScrolledPastContentMenu] = useState(false);
+    const [placeholderHeight, setPlaceholderHeight] = useState(0);
+    const [mobileMenuAnimatedIn, setMobileMenuAnimatedIn] = useState(false);
+    const [expandableMenuOpen, setExpandableMenuOpen] = useState(false);
+
+    const [canExpandAll, setCanExpandAll] = useState(false);
+    const [forceExpandAll, setForceExpandAll] = useState(false);
+    const handleToggleExpandAll = () => setForceExpandAll((prev) => !prev);
+
+    // Sjekk URL-parameter for å vise/skjule knapp for detaljert innholdsfortegnelse
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('expandAllNav') === 'true') {
+            setCanExpandAll(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (isDesktop) return;
+
+        const stickyExpandableDetectionElement = stickyExpandableDetectionRef.current;
+        if (!stickyExpandableDetectionElement) return;
+
+        const observer = new IntersectionObserver(([detectionElement]) => {
+            if (!detectionElement) return;
+            const isAboveCurrentBrowserView = detectionElement.boundingClientRect.bottom < 0;
+
+            if (detectionElement.isIntersecting) {
+                setPlaceholderHeight(0);
+                setHasScrolledPastContentMenu(false);
+            } else if (isAboveCurrentBrowserView) {
+                const staticMobileMenuHeight = dynamicNavigationRef.current?.offsetHeight;
+                setPlaceholderHeight(staticMobileMenuHeight ?? 0);
+                setHasScrolledPastContentMenu(true);
+            }
+        });
+
+        observer.observe(stickyExpandableDetectionElement);
+
+        return () => observer.disconnect();
+    }, [isDesktop]);
+
+    useEffect(() => {
+        if (hasScrolledPastContentMenu) {
+            setMobileMenuAnimatedIn(false);
+            requestAnimationFrame(() => setMobileMenuAnimatedIn(true));
+        } else {
+            setMobileMenuAnimatedIn(false);
+        }
+    }, [hasScrolledPastContentMenu]);
+
+    if (!regions || !config) {
+        return null;
+    }
+
+    const { showInternalNav, anchorLinks } = config;
+    const { pageContent, topPageContent, bottomRow } = regions;
+    const hasMultipleLanguages = languages && languages?.length > 0;
+
+    const isNewLayoutPage =
+        pageProps.type === ContentType.ProductPage ||
+        pageProps.type === ContentType.GuidePage ||
+        pageProps.type === ContentType.ThemedArticlePage ||
+        pageProps.type === ContentType.GenericPage;
+
+    return (
+        <>
+            <LayoutContainer
+                className={classNames(
+                    styles.innholdssideMedMeny,
+                    hasMultipleLanguages && styles.pullUp
+                )}
+                pageProps={pageProps}
+                layoutProps={layoutProps}
+            >
+                <div className={styles.mainContent}>
+                    {isNewLayoutPage && <GeneralPageHeader pageProps={pageProps} />}
+                    {!isNewLayoutPage && (
+                        <Region pageProps={pageProps} regionProps={topPageContent} />
+                    )}
+                    {isNewLayoutPage && <AktuelleMalgrupper />}
+
+                    {showInternalNav && legacyNav && (
+                        <PageNavigationMenu
+                            anchorLinks={anchorLinks}
+                            title={menuTitle}
+                            isChapterNavigation={true}
+                        />
+                    )}
+
+                    {showInternalNav &&
+                        !legacyNav &&
+                        (isDesktop || !hasScrolledPastContentMenu ? (
+                            <DynamicNavigation
+                                ref={dynamicNavigationRef}
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={menuTitle}
+                                canExpandAll={canExpandAll}
+                                forceExpandAll={forceExpandAll}
+                                onToggleExpandAll={handleToggleExpandAll}
+                            />
+                        ) : (
+                            <>
+                                <div
+                                    ref={placeholderRef}
+                                    style={{ height: `${placeholderHeight}px` }}
+                                />
+                                <ExpansionCard
+                                    ref={mobileExpandableMenuRef}
+                                    size="small"
+                                    open={expandableMenuOpen}
+                                    onToggle={() => setExpandableMenuOpen((prev) => !prev)}
+                                    className={classNames(
+                                        styles.mobileExpandableMenu,
+                                        mobileMenuAnimatedIn && styles.show
+                                    )}
+                                    aria-label={menuTitle}
+                                >
+                                    <ExpansionCard.Header
+                                        className={styles.mobileExpandableMenuHeader}
+                                    >
+                                        <HStack wrap={false} gap="space-8" align="center">
+                                            <FileTextIcon aria-hidden fontSize="1.5rem" />
+                                            <ExpansionCard.Title>{menuTitle}</ExpansionCard.Title>
+                                        </HStack>
+                                    </ExpansionCard.Header>
+                                    <ExpansionCard.Content>
+                                        <DynamicNavigation
+                                            anchorLinks={anchorLinks}
+                                            pageProps={pageProps}
+                                            onLinkClick={() => setExpandableMenuOpen(false)}
+                                            canExpandAll={canExpandAll}
+                                            forceExpandAll={forceExpandAll}
+                                            onToggleExpandAll={handleToggleExpandAll}
+                                        />
+                                    </ExpansionCard.Content>
+                                </ExpansionCard>
+
+                                {expandableMenuOpen && (
+                                    <button
+                                        onClick={() => setExpandableMenuOpen(false)}
+                                        className={classNames(styles.mobileOverlay, styles.visible)}
+                                    />
+                                )}
+                            </>
+                        ))}
+
+                    <div ref={stickyExpandableDetectionRef} />
+
+                    <Region pageProps={pageProps} regionProps={pageContent} />
+                    <PageUpdatedInfo
+                        datetime={pageProps.modifiedTime}
+                        language={pageProps.language}
+                    />
+                </div>
+            </LayoutContainer>
+            <Region pageProps={pageProps} regionProps={bottomRow} />
+        </>
+    );
+};

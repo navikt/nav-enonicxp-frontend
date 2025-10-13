@@ -1,0 +1,112 @@
+@use 'common' as common;
+
+.innholdssideMedMeny {
+    padding-top: var(--a-spacing-20);
+    padding-bottom: var(--a-spacing-16);
+
+    @media #{common.$mq-screen-mobile} {
+        padding-top: var(--a-spacing-9);
+    }
+
+    :global(.region__intro) {
+        margin-bottom: var(--a-spacing-9);
+    }
+
+    :global(.region__pageContent),
+    :global(.region__topPageContent) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.pullUp {
+    padding-top: var(--a-spacing-3);
+}
+
+.mobileExpandableMenu {
+    position: fixed;
+    top: var(--decorator-sticky-offset);
+    z-index: 10;
+    width: calc(100% - var(--a-spacing-8));
+
+    opacity: 0;
+    transform: translateY(-1.5rem);
+    transition:
+        opacity 200ms ease-out,
+        transform 200ms ease-out;
+
+    &.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    :global(.navds-expansioncard__title),
+    :global(.navds-expansioncard__content) {
+        margin-bottom: 0; //overstyr global-override-styles.scss
+    }
+
+    :global(.navds-expansioncard__content) {
+        border: none;
+        box-shadow: none;
+        padding-block: 0;
+    }
+}
+
+.mobileExpandableMenuHeader {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--a-blue-50) !important;
+    color: var(--a-blue-600);
+    border: none !important;
+    outline: 2px solid white;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.mobileOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    opacity: 0;
+    background: #aab0ba40;
+    transition: opacity 120ms ease;
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+@media #{common.$mq-screen-desktop} {
+    .innholdssideMedMeny {
+        display: grid;
+        grid-template-columns:
+            [content-start] minmax(0, min(42.5rem, 100%))
+            [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
+            [space-end] minmax(0, min(22.5rem, 30%))
+            [content-end];
+        padding-left: 8rem;
+    }
+
+    .mainContent {
+        display: contents;
+        > * {
+            grid-column: content-start;
+        }
+    }
+
+    .pageNavigationMenu {
+        grid-column: space-end;
+        grid-row: 2 / 6;
+    }
+
+    .mobileExpandableMenu {
+        display: none;
+    }
+
+    .mobileOverlay {
+        display: none;
+    }
+}

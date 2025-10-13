@@ -1,7 +1,7 @@
 import { AlternativeAudience, ProductDataMixin } from 'types/component-props/_mixins';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from 'types/taxonomies';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
+import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutComponentProps } from 'types/component-props/layouts';
 import { OptionSetSingle } from 'types/util-types';
@@ -20,7 +20,7 @@ export type ProductPageProps = ContentCommonProps & {
         alternativeAudience?: AlternativeAudience;
         relatedSituations?: SituationPageProps[];
     };
-    page: PageWithSideMenusProps;
+    page: InnholdssideMedMenyProps;
 };
 
 export type ProductDetailsProps = ContentCommonProps & {
@@ -38,7 +38,7 @@ export type ThemedArticlePageProps = ContentCommonProps & {
         alternativeAudience?: AlternativeAudience;
         relatedSituations?: SituationPageProps[];
     };
-    page: PageWithSideMenusProps;
+    page: InnholdssideMedMenyProps;
 };
 
 export type GuidePageProps = ContentCommonProps & {
@@ -47,7 +47,7 @@ export type GuidePageProps = ContentCommonProps & {
         alternativeAudience?: AlternativeAudience;
         relatedSituations?: SituationPageProps[];
     };
-    page: PageWithSideMenusProps;
+    page: InnholdssideMedMenyProps;
 };
 
 export type SituationPageProps = ContentCommonProps & {
@@ -82,7 +82,7 @@ export type ToolsPageProps = ContentCommonProps & {
 export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
     data: ProductDataMixin;
-    page: PageWithSideMenusProps;
+    page: InnholdssideMedMenyProps;
 };
 
 export type PressLandingPageProps = ContentCommonProps & {

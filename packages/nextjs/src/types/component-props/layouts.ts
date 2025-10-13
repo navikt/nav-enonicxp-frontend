@@ -4,7 +4,7 @@ import { ComponentBaseProps, ComponentProps, ComponentType } from './_component-
 import { FlexColsLayoutProps } from './layouts/flex-cols';
 import { FixedColsLayoutProps } from './layouts/fixed-cols';
 import { LegacyLayoutProps } from './layouts/legacy-layout';
-import { PageWithSideMenusProps } from './pages/page-with-side-menus';
+import { InnholdssideMedMenyProps } from './pages/innholdsside-med-meny';
 import { SectionWithHeaderProps } from './layouts/section-with-header';
 import { SingleColPageProps } from './pages/single-col-page';
 import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols';
@@ -21,7 +21,7 @@ export enum LayoutType {
     LegacyMain = 'no.nav.navno:main',
     LegacyMain1Col = 'no.nav.navno:main-1-col',
     MainPage = 'no.nav.navno:main-page',
-    PageWithSideMenus = 'no.nav.navno:page-with-side-menus',
+    InnholdssideMedMeny = 'no.nav.navno:page-with-side-menus',
     SectionWithHeader = 'no.nav.navno:section-with-header',
     SingleColPage = 'no.nav.navno:single-col-page',
     SituationPageFlexCols = 'no.nav.navno:situation-flex-cols',
@@ -53,7 +53,7 @@ export type LayoutComponentProps =
     | LegacyLayoutProps
     | FlexColsLayoutProps
     | FixedColsLayoutProps
-    | PageWithSideMenusProps
+    | InnholdssideMedMenyProps
     | SectionWithHeaderProps
     | SingleColPageProps
     | SituationPageFlexColsLayoutProps

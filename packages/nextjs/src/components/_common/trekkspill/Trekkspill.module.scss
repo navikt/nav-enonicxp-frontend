@@ -1,3 +1,5 @@
+@use 'common' as common;
+
 .trekkspill {
     margin-bottom: var(--a-spacing-9);
 
@@ -41,7 +43,12 @@
     &:global(.navds-accordion__item--open) {
         .header {
             position: sticky;
-            top: var(--decorator-sticky-offset, 0px);
+
+            //TODO: Potensielt se på en mer robust måte å gjøre dette på. Bruk høyden til innholdsmenyen istedenfor hardkodet 56px
+            top: calc(var(--decorator-sticky-offset, 0px) + 56px);
+            @media #{common.$mq-screen-desktop} {
+                top: var(--decorator-sticky-offset, 0px);
+            }
         }
         .header:not(:focus-visible) {
             box-shadow: 0 0 0 0;
