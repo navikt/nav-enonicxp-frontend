@@ -44,6 +44,7 @@ spec:
     {{/each}}
   envFrom:
     - secret: {{secret}}
+    - secret: nav-enonicxp-frontend-unleash-api-token
   filesFrom:
     - emptyDir:
         medium: Memory
@@ -51,6 +52,8 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+    - name: UNLEASH_SERVER_API_URL
+      value: 'https://navno-unleash-api.nav.cloud.nais.io/api'
   strategy:
     rollingUpdate:
       maxSurge: 3

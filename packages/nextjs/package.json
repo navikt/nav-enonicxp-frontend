@@ -3,6 +3,7 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
+        "prebuild": "node scripts/prepare-failover-router.js",
         "build": "next build",
         "build:storybook": "storybook build",
         "prestorybook": "node playwright/copy-screenshots.js",
@@ -34,6 +35,7 @@
         "@navikt/ds-tokens": "^7.29.0",
         "@navikt/nav-office-reception-info": "1.4.0",
         "@reduxjs/toolkit": "2.6.1",
+        "@unleash/nextjs": "^1.6.2",
         "csp-header": "5.2.1",
         "dayjs": "1.11.13",
         "fuse.js": "7.1.0",

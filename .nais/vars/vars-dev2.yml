@@ -6,6 +6,7 @@ externalHosts:
   - www-q6.nav.no
   - www-2-failover.intern.dev.nav.no
   - dekoratoren-beta.intern.dev.nav.no
+  - navno-unleash-api.nav.cloud.nais.io
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-2.ansatt.dev.nav.no

@@ -32,6 +32,7 @@ type Props = PropsWithChildren<{
     analyticsComponent?: string;
     analyticsLinkGroup?: string;
     analyticsLabel?: string;
+    analyticsVariation?: string;
 }> &
     React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -43,6 +44,7 @@ export const LenkeBase = ({
     analyticsComponent,
     analyticsLinkGroup,
     analyticsLabel,
+    analyticsVariation,
     prefetch,
     children,
     ...rest
@@ -60,6 +62,7 @@ export const LenkeBase = ({
         lenketekst: analyticsLabel || onlyText(children),
         målgruppe: context,
         innholdstype: innholdsTypeMap[contentProps.type],
+        variasjon: analyticsVariation,
     };
 
     const WrapperComponent =

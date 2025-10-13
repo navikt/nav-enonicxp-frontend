@@ -24,6 +24,8 @@ declare global {
             VALKEY_USERNAME_PAGECACHE: string;
             VALKEY_PASSWORD_PAGECACHE: string;
             DECORATOR_NOCACHE?: 'true' | 'false';
+            UNLEASH_SERVER_API_URL?: string;
+            UNLEASH_SERVER_API_TOKEN?: string;
         }
     }
 

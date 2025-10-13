@@ -65,6 +65,7 @@ export const PageNavigationMenu = ({
                             analyticsLinkGroup={'Innhold'}
                             analyticsComponent={analyticsComponent}
                             analyticsLabel={anchorLink.linkText}
+                            analyticsVariation={'Standard'}
                             className={style.link}
                         >
                             <ArrowDownRightIcon aria-hidden className={style.icon} />

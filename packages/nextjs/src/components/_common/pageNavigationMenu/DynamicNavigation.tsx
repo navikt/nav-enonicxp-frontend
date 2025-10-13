@@ -45,7 +45,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
-    const analyticsComponent = 'Dynamisk meny for intern-navigasjon';
 
     const [activeAnchors, setActiveAnchors] = useState<string[]>([]);
 
@@ -232,8 +231,9 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                 href={`#${h2.anchorId}`}
                                 analyticsEvent={AnalyticsEvents.NAVIGATION}
                                 analyticsLinkGroup={'Innhold'}
-                                analyticsComponent={analyticsComponent}
+                                analyticsComponent={'Meny for intern-navigasjon'}
                                 analyticsLabel={h2.linkText}
+                                analyticsVariation={'Dynamisk'}
                                 className={classNames(
                                     style.link,
                                     isChildActive && style.childActive
@@ -261,8 +261,9 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                                 href={`#${sub.anchorId}`}
                                                 analyticsEvent={AnalyticsEvents.NAVIGATION}
                                                 analyticsLinkGroup={'Innhold'}
-                                                analyticsComponent={analyticsComponent}
+                                                analyticsComponent={'Hopp til underkapittel'}
                                                 analyticsLabel={sub.linkText}
+                                                analyticsVariation={'Dynamisk'}
                                                 className={style.link}
                                                 aria-current={
                                                     activeAnchors.includes(sub.anchorId)

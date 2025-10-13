@@ -10,11 +10,10 @@ import { DynamicNavigation } from 'components/_common/pageNavigationMenu/Dynamic
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
-import { usePageContentProps } from 'store/pageContext';
+import { usePageContentProps, useFeatureFlags } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { useIsDesktop } from 'utils/useIsDesktop';
-import { useLegacyNav } from 'utils/useLegacyNav';
 import styles from './PageWithSideMenus.module.scss';
 
 type Props = {
@@ -25,9 +24,9 @@ type Props = {
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const { language, languages } = usePageContentProps();
+    const { useLegacyNav } = useFeatureFlags();
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
-    const legacyNav = useLegacyNav();
     const isDesktop = useIsDesktop();
 
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
@@ -118,7 +117,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     )}
                     {isNewLayoutPage && <AktuelleMalgrupper />}
 
-                    {showInternalNav && legacyNav && (
+                    {showInternalNav && useLegacyNav && (
                         <PageNavigationMenu
                             anchorLinks={anchorLinks}
                             title={menuTitle}
@@ -127,7 +126,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     )}
 
                     {showInternalNav &&
-                        !legacyNav &&
+                        !useLegacyNav &&
                         (isDesktop || !hasScrolledPastContentMenu ? (
                             <DynamicNavigation
                                 ref={dynamicNavigationRef}

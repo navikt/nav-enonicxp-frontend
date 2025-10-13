@@ -9,6 +9,12 @@ import {
 
 declare global {
     interface Window {
+        __DECORATOR_DATA__?: {
+            extraParams?: {
+                [key: string]: any;
+            };
+            [key: string]: any;
+        };
         GoBrain?: {
             create: (element: HTMLElement, config: Record<string, any>) => any;
             destroy: (widgetId: string, deleteElement?: boolean) => any;

@@ -41,6 +41,17 @@ Kjør `npm run start-local-clean`
 
 Kjør Storybook lokalt med `npm run storybook` eller besøk den deploya versjonen [https://navikt.github.io/nav-enonicxp-frontend/](https://navikt.github.io/nav-enonicxp-frontend/)
 
+### Unleash
+
+Appen bruker [Unleash](https://www.getunleash.io/) for feature toggles og A/B-tester. I prod og dev er dette konfigurert automatisk. For lokal utvikling kan du kjøre uten Unleash (default verdier vil bli brukt), eller du kan sette opp Unleash lokalt og sette variablene i `.env`:
+
+```
+UNLEASH_SERVER_API_URL=<unleash-api-url>
+UNLEASH_SERVER_API_TOKEN=<unleash-api-token>
+```
+
+Se [Unleash Open Source dokumentasjonen](https://github.com/Unleash/unleash?tab=readme-ov-file#unleash-open-source) for å sette opp Unleash lokalt.
+
 ### Andre lokale avhengigheter
 
 [Dekoratøren](https://github.com/navikt/nav-dekoratoren) og [revalidator-proxy](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) kan kjøres lokalt med `docker compose up`. Du må først autentisere til GAR image registry'et:

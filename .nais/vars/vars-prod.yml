@@ -5,6 +5,7 @@ dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www.nav.no
   - www-failover.nav.no
+  - navno-unleash-api.nav.cloud.nais.io
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no

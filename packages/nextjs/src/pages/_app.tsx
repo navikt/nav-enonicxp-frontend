@@ -26,7 +26,15 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
         if (!isEditorView) {
             initFaro();
         }
-    }, [isEditorView]);
+
+        // Avhengig av https://github.com/navikt/nav-dekoratoren/pull/684
+        if (window.__DECORATOR_DATA__ && pageProps?.flags) {
+            if (!window.__DECORATOR_DATA__.extraParams) {
+                window.__DECORATOR_DATA__.extraParams = {};
+            }
+            window.__DECORATOR_DATA__.extraParams.useLegacyNav = pageProps.flags.useLegacyNav;
+        }
+    }, [isEditorView, pageProps?.flags]);
 
     return (
         <Provider store={store}>
