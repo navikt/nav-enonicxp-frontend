@@ -31,7 +31,7 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            {tagline && <LinkCard.Footer>{tagline}</LinkCard.Footer>}
+            {tagline && <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>}
         </LinkCard>
     );
 };
