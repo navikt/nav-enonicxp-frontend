@@ -60,7 +60,7 @@ export const GeneralPageHeaderTagLine = ({ tagLine }: Props) => {
     const showLine = tagLine && audienceAffirmation;
 
     return (
-        <BodyShort className={style.tagline} size="small">
+        <BodyShort className={style.tagline} size="large">
             {tagLine}
             {showLine && `  —  `}
             {audienceAffirmation}
