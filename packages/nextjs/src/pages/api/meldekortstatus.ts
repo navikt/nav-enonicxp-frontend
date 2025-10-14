@@ -42,6 +42,10 @@ const fetchSingleMeldekortStatus = async ({
             headers,
         });
 
+        logger.info(
+            `Meldekortstatus: Fetched meldekort status from ${url}: ${JSON.stringify(response)}`
+        );
+
         if (!response) {
             logger.error(`Meldekortstatus: Failed to fetch meldekort status from ${url}`);
             return null;
