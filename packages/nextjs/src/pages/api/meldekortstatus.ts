@@ -7,13 +7,12 @@ import { slaSammenMeldekort } from 'utils/fetch/helper/meldekortstatus-merger';
 
 const meldekortApiStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
 const dpMeldekortStatusUrl = `${process.env.DP_MELDEKORT_URL}`;
-const meldekortApiAudience = process.env.MELDEKORT_API_AUDIENCE || '';
 const dpMeldekortAudience = process.env.DP_MELDEKORT_AUDIENCE || '';
 
 type fetchSingleMeldekortStatusParams = {
     url: string;
-    audience: string;
-    oboToken: string;
+    audience?: string;
+    oboToken?: string;
 };
 
 const fetchSingleMeldekortStatus = async ({
@@ -22,20 +21,25 @@ const fetchSingleMeldekortStatus = async ({
     oboToken,
 }: fetchSingleMeldekortStatusParams): Promise<MeldekortStatusResponse | null> => {
     logger.info(`Meldekortstatus: Fetch meldekort status from ${url} with audience ${audience}`);
-    const tokenResult = await requestTokenxOboToken(oboToken, audience);
-    let token = '';
+    let token = null;
 
-    if (tokenResult.ok) {
-        token = tokenResult.token;
-    } else {
-        logger.error(`Meldekortstatus: Token request failed: ${tokenResult.error}`);
-        return null;
+    if (audience && oboToken) {
+        const tokenResult = await requestTokenxOboToken(oboToken, audience);
+
+        if (tokenResult.ok) {
+            token = tokenResult.token;
+        } else {
+            logger.error(`Meldekortstatus: Token request failed: ${tokenResult.error}`);
+            return null;
+        }
     }
 
     try {
-        const headers: HeadersInit = {
-            Authorization: `Bearer ${token}`,
-        };
+        const headers: HeadersInit = token
+            ? {
+                  Authorization: `Bearer ${token}`,
+              }
+            : {};
 
         const response = await fetchJson<MeldekortStatusResponse>(url, 5000, {
             credentials: 'include',
@@ -45,11 +49,6 @@ const fetchSingleMeldekortStatus = async ({
         logger.info(
             `Meldekortstatus: Fetched meldekort status from ${url}: ${JSON.stringify(response)}`
         );
-
-        if (!response) {
-            logger.error(`Meldekortstatus: Failed to fetch meldekort status from ${url}`);
-            return null;
-        }
 
         return response;
     } catch (error: any) {
@@ -83,8 +82,6 @@ export default async function handler(
         const [meldekortApiResponse, dpMeldekortResponse] = await Promise.all([
             fetchSingleMeldekortStatus({
                 url: meldekortApiStatusUrl,
-                audience: meldekortApiAudience,
-                oboToken,
             }),
             fetchSingleMeldekortStatus({
                 url: dpMeldekortStatusUrl,

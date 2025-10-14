@@ -35,9 +35,6 @@ on:
             MELDEKORT_API_URL:
                 required: true
                 type: string
-            MELDEKORT_API_AUDIENCE:
-                required: true
-                type: string
             DP_MELDEKORT_URL:
                 required: false
                 type: string
@@ -106,7 +103,6 @@ jobs:
                   INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
                   NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
                   MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
-                  MELDEKORT_API_AUDIENCE=${{ inputs.MELDEKORT_API_AUDIENCE }}
                   DP_MELDEKORT_URL=${{ inputs.DP_MELDEKORT_URL }}
                   DP_MELDEKORT_AUDIENCE=${{ inputs.DP_MELDEKORT_AUDIENCE }}
                   ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend

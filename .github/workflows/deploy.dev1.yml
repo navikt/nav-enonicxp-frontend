@@ -31,7 +31,6 @@ jobs:
             RELEASE_TAG: dev1-${{ github.sha }}
             NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
             MELDEKORT_API_URL: https://meldekort-api-q1.intern.dev.nav.no/meldekort/meldekort-api/api/person
-            MELDEKORT_API_AUDIENCE: dev-gcp:meldekort:meldekort-api
             DP_MELDEKORT_URL: https://dp-meldekortregister.intern.dev.nav.no/meldekortstatus
             DP_MELDEKORT_AUDIENCE: dev-gcp:teamdagpenger:dp-meldekortregister
             FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
