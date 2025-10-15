@@ -1,4 +1,6 @@
 import { Thing } from 'components/_common/metatags/structuredData/types';
+import { PageType } from 'components/_common/metatags/structuredData/types';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 export type ThingLibrary<T> = Map<string, T>;
 
@@ -30,4 +32,20 @@ export const createThingLibraries = (things: Thing[]): CreateThingLibrariesRetur
     });
 
     return { thingsById, thingsByType };
+};
+
+export const pageTypeLibrary: Partial<Record<ContentType, PageType>> = {
+    [ContentType.FrontPage]: 'WebPage',
+    [ContentType.FrontPageNested]: 'WebPage',
+    [ContentType.ProductPage]: 'WebPage',
+    [ContentType.SectionPage]: 'WebPage',
+    [ContentType.AreaPage]: 'WebPage',
+    [ContentType.SituationPage]: 'WebPage',
+    [ContentType.GuidePage]: 'WebPage',
+    [ContentType.Oversikt]: 'WebPage',
+    [ContentType.OfficePage]: 'WebPage',
+};
+
+export const getContentTypeToStructure = (content: ContentProps): PageType | undefined => {
+    return pageTypeLibrary[content.type];
 };

@@ -1,8 +1,11 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
-import { getDescription, getPageTitle, pageTypeLibrary } from 'components/_common/metatags/helpers';
+import { getDescription, getPageTitle } from 'components/_common/metatags/helpers';
 import { Thing, PageType } from 'components/_common/metatags/structuredData/types';
-import { findThingByType } from 'components/_common/metatags/structuredData/helpers/thingHelpers';
+import {
+    findThingByType,
+    pageTypeLibrary,
+} from 'components/_common/metatags/structuredData/helpers/thingHelpers';
 
 type ReferenceConfig = {
     content: ContentProps;
