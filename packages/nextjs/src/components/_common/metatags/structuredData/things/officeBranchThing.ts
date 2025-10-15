@@ -1,7 +1,8 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
 import { getPageTitle } from 'components/_common/metatags/helpers';
-import { GraphEntity } from 'components/_common/metatags/structuredData/types';
+import { Thing } from 'components/_common/metatags/structuredData/types';
+import { findThingByType } from 'components/_common/metatags/structuredData/helpers/thingHelpers';
 
 type ReferenceConfig = {
     content: ContentProps;
@@ -9,7 +10,7 @@ type ReferenceConfig = {
     mainEntity?: string;
 };
 
-export const generateOfficeBranchEntity = ({ content }: ReferenceConfig): GraphEntity => {
+export const generateOfficeBranchThing = ({ content }: ReferenceConfig): Thing => {
     const url = `${appOrigin}${getPublicPathname(content)}`;
 
     const organizationId = `${appOrigin}#organization`;
@@ -21,4 +22,18 @@ export const generateOfficeBranchEntity = ({ content }: ReferenceConfig): GraphE
         name: getPageTitle(content),
         parentOrganization: { '@id': organizationId },
     };
+};
+
+export const applyOfficeBranchReferences = (
+    thing: Thing,
+    thingsByType: Map<string, Thing[]>
+): Thing => {
+    const updatetThing = Object.assign({}, thing) as Thing;
+    const pageThing = findThingByType('WebPage', thingsByType);
+
+    if (pageThing?.['@id']) {
+        updatetThing.mainEntityOfPage = { '@id': pageThing['@id'] };
+    }
+
+    return updatetThing;
 };

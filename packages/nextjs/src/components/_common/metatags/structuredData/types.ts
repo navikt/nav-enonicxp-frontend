@@ -4,18 +4,19 @@ export type PageType = WebPage['@type'];
 
 export type WithId<T extends { '@type': unknown }> = T & { '@id': string };
 
-// Allow Organization.logo to be an @id reference
+// Note: needs better typing from schema-dts
 export type OrgWithLogoRef = Organization & {
     '@type': string;
     logo?: { '@id': string };
     mainEntity?: string;
+    mainEntityOfPage?: string;
 };
 
-export type GraphEntity = WithId<WebPage | ImageObject | OrgWithLogoRef>;
+export type Thing = WithId<WebPage | ImageObject | OrgWithLogoRef>;
 
 export type BaseJsonLd = {
     '@context': string | string[];
-    '@graph': GraphEntity[];
+    '@graph': Thing[];
 };
 
 export type JsonLdData = BaseJsonLd;

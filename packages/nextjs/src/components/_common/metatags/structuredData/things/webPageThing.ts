@@ -1,7 +1,8 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
 import { getDescription, getPageTitle, pageTypeLibrary } from 'components/_common/metatags/helpers';
-import { GraphEntity, PageType } from 'components/_common/metatags/structuredData/types';
+import { Thing, PageType } from 'components/_common/metatags/structuredData/types';
+import { findThingByType } from 'components/_common/metatags/structuredData/helpers/thingHelpers';
 
 type ReferenceConfig = {
     content: ContentProps;
@@ -11,7 +12,7 @@ type ReferenceConfig = {
 
 const DEFAULT_PAGE_TYPE: PageType = 'WebPage';
 
-export const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity => {
+export const generateWebPageThing = ({ content }: ReferenceConfig): Thing => {
     const pageType = pageTypeLibrary[content.type] ?? DEFAULT_PAGE_TYPE;
     const url = `${appOrigin}${getPublicPathname(content)}`;
     const organizationId = `${appOrigin}#organization`;
@@ -27,5 +28,16 @@ export const generatePageEntity = ({ content }: ReferenceConfig): GraphEntity =>
         dateModified: content.modifiedTime,
         author: { '@id': organizationId },
         publisher: { '@id': organizationId },
-    } as GraphEntity;
+    } as Thing;
+};
+
+export const applyWebPageReferences = (thing: Thing, thingsByType: Map<string, Thing[]>): Thing => {
+    const updatedThing = Object.assign({}, thing) as Thing;
+    const officeThing = findThingByType('GovernmentOffice', thingsByType);
+
+    if (officeThing?.['@id']) {
+        updatedThing.mainEntity = { '@id': officeThing['@id'] };
+    }
+
+    return updatedThing;
 };

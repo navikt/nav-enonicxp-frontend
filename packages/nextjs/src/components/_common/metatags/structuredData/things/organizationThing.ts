@@ -1,7 +1,7 @@
 import { appOrigin } from 'utils/urls';
-import { GraphEntity } from 'components/_common/metatags/structuredData/types';
+import { Thing } from 'components/_common/metatags/structuredData/types';
 
-export const generateOrganizationEntity = (): GraphEntity => {
+export const generateOrganizationThing = (): Thing => {
     const organizationId = `${appOrigin}#organization`;
     const logoId = `${appOrigin}#logo`;
 

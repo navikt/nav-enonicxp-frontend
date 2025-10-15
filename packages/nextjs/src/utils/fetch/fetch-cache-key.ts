@@ -32,6 +32,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
                 logger.info(
                     `Setting cache key to ${response.key}, timestamp: ${response.timestamp}`
                 );
+                // @ts-ignore - Adding cacheKey to global namespace
                 global.cacheKey = response.key;
                 return;
             } else {

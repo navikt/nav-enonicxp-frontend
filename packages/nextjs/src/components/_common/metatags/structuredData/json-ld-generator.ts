@@ -1,86 +1,70 @@
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { GraphEntity, JsonLdData } from './types';
-import { generateOfficeBranchEntity } from './entities/generateOfficeBranchEntity';
-import { generateImageObjectEntity } from './entities/generateImageObjectEntity';
-import { generateOrganizationEntity } from './entities/generateOrganizationEntity';
-import { generatePageEntity } from './entities/generatePageEntity';
+import { Thing, JsonLdData } from './types';
+import { applyOfficeBranchReferences } from './things/officeBranchThing';
+import { generateImageObjectThing } from './things/imageObjectThing';
+import { generateOrganizationThing } from './things/organizationThing';
+import { applyWebPageReferences, generateWebPageThing } from './things/webPageThing';
+import { createThingLibraries } from './helpers/thingHelpers';
 
-const generateGraph = (graphEntities: GraphEntity[]): JsonLdData => {
+const createReferencesBetweenEntities = (entities: Thing[]): Thing[] => {
+    const { thingsByType } = createThingLibraries(entities);
+
+    return entities.map((entity) => {
+        if (!entity || typeof entity !== 'object' || Array.isArray(entity)) {
+            return entity;
+        }
+
+        // Apply reference rules based on entity type
+        if (entity['@type'] === 'WebPage') {
+            return applyWebPageReferences(entity, thingsByType);
+        }
+
+        if (entity['@type'] === 'GovernmentOffice') {
+            return applyOfficeBranchReferences(entity, thingsByType);
+        }
+
+        return entity;
+    });
+};
+
+const buildCommonEntities = (content: ContentProps): Thing[] => {
+    return [
+        generateImageObjectThing(),
+        generateOrganizationThing(),
+        generateWebPageThing({ content }),
+    ];
+};
+
+const buildPageSpecificEntities = (content: ContentProps): Thing[] => {
+    const entities: Thing[] = [];
+
+    // Add office branch entity for office pages
+    if (content.type === ContentType.OfficePage) {
+        // For now, do not augment with office branch data. We need a baseline before moving on to
+        // more complex structures.
+        // entities.push(generateOfficeBranchThing({ content }));
+    }
+
+    return entities;
+};
+
+const buildAllEntities = (content: ContentProps): Thing[] => {
+    const commonEntities = buildCommonEntities(content);
+    const pageSpecificEntities = buildPageSpecificEntities(content);
+
+    return [...commonEntities, ...pageSpecificEntities];
+};
+
+const generateGraph = (graphEntities: Thing[]): JsonLdData => {
     return {
         '@context': 'https://schema.org',
         '@graph': graphEntities,
     };
 };
 
-const createReferencesBetweenEntities = (entities: GraphEntity[]): GraphEntity[] => {
-    // Create lookup maps for efficient access
-    const entityById = new Map<string, GraphEntity>();
-    const entitiesByType = new Map<string, GraphEntity[]>();
-
-    entities.forEach((entity) => {
-        entityById.set(entity['@id'], entity);
-
-        const type = entity['@type'];
-
-        // Multiple entities can share the same type, so need
-        // to store them in an array
-        const entityByTypeArray = entitiesByType.get(type) ?? [];
-        entitiesByType.set(type, [...entityByTypeArray, entity]);
-    });
-
-    // Helper to find first entity of a specific type
-    const findEntityByType = (type: string): GraphEntity | undefined => {
-        return entitiesByType.get(type)?.[0];
-    };
-
-    // Apply reference rules
-    return entities.map((entity) => {
-        if (!entity || typeof entity !== 'object' || Array.isArray(entity)) {
-            return entity;
-        }
-
-        const updatedEntity = { ...entity };
-
-        // Rule: WebPage should reference GovernmentOffice as the mainEntity
-        if (entity['@type'] === 'WebPage') {
-            const officeEntity = findEntityByType('GovernmentOffice');
-            if (officeEntity?.['@id']) {
-                updatedEntity.mainEntity = { '@id': officeEntity['@id'] };
-            }
-        }
-
-        // Rule: GovernmentOffice should reference WebPage as mainEntityOfPage
-        if (entity['@type'] === 'GovernmentOffice') {
-            const pageEntity = findEntityByType('WebPage');
-            if (pageEntity?.['@id']) {
-                updatedEntity.mainEntityOfPage = { '@id': pageEntity['@id'] };
-            }
-        }
-
-        return updatedEntity;
-    });
-};
-
 export const generateJsonLd = (content: ContentProps): JsonLdData | null => {
-    const pageEntity = generatePageEntity({
-        content,
-    });
-    const imageEntity = generateImageObjectEntity();
-    const organizationEntity = generateOrganizationEntity();
+    const unreferencedEntities = buildAllEntities(content);
+    const referencedEntities = createReferencesBetweenEntities(unreferencedEntities);
 
-    const officeBranchEntity =
-        content.type === ContentType.OfficePage ? generateOfficeBranchEntity({ content }) : null;
-
-    const entitiesWithoutReferences = [
-        pageEntity,
-        imageEntity,
-        organizationEntity,
-        officeBranchEntity,
-    ].filter(Boolean) as GraphEntity[];
-
-    const entitiesWithReferences = createReferencesBetweenEntities(entitiesWithoutReferences);
-
-    const baseGraph = generateGraph(entitiesWithReferences);
-
-    return baseGraph;
+    return generateGraph(referencedEntities);
 };
