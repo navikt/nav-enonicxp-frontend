@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { ContentProps } from 'types/content-props/_content-common';
-import { getContentTypeToStructure } from 'components/_common/metatags/helpers';
 import { generateJsonLd } from './json-ld-generator';
+import { getContentTypeToStructure } from './helpers/thingHelpers';
 
 interface JsonLdScriptProps {
     content: ContentProps;
