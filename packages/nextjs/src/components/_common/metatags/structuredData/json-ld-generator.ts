@@ -6,6 +6,12 @@ import { generateOrganizationThing } from './things/organizationThing';
 import { applyWebPageReferences, generateWebPageThing } from './things/webPageThing';
 import { createThingLibraries } from './helpers/thingHelpers';
 
+/**
+ Developers note: The use of the word "Thing" here is intentional and based on the schema.org definition.
+ A "Thing" is the most generic type of item in schema.org. All entities described in schema.org are considered "Things".
+ By using "Thing" as part of naming rather than "Item", "Entity", or "Object", we maintain consistency with schema.org terminology.
+ */
+
 const createReferencesBetweenThings = (things: Thing[]): Thing[] => {
     const { thingsByType } = createThingLibraries(things);
 
