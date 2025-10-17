@@ -1,5 +1,4 @@
-import { Thing } from 'components/_common/metatags/structuredData/types';
-import { PageType } from 'components/_common/metatags/structuredData/types';
+import { Thing, PageType } from 'components/_common/metatags/structuredData/types';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 export type ThingLibrary<T> = Map<string, T>;

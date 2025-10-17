@@ -14,9 +14,7 @@ export type OrgWithLogoRef = Organization & {
 
 export type Thing = WithId<WebPage | ImageObject | OrgWithLogoRef>;
 
-export type BaseJsonLd = {
+export type JsonLdData = {
     '@context': string | string[];
     '@graph': Thing[];
 };
-
-export type JsonLdData = BaseJsonLd;
