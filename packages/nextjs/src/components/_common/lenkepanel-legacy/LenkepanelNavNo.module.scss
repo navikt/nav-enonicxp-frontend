@@ -1,17 +1,5 @@
 @use 'common' as common;
 
-// Trengs på grunn av global-override-styles.scss
-// Slettes som en del av #2454
-:global(.part__dynamic-link-panel) > .lenkepanelNavno {
-    font-size: var(--a-font-size-body-medium);
-    line-height: var(--a-line-height-body-medium);
-    margin-bottom: 0;
-
-    :global(.navds-link-card__title) {
-        margin-bottom: 0;
-    }
-}
-
 .lenkepanelNavno {
     border-color: var(--default-action-color);
     border-radius: var(--a-border-radius-small);
