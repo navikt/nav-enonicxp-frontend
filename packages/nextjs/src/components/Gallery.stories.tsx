@@ -141,7 +141,3 @@ type Story = StoryObj<typeof Gallery>;
 export const Mobile: Story = {
     render: () => <Gallery deviceType="mobile" />,
 };
-
-export const Desktop: Story = {
-    render: () => <Gallery deviceType="desktop" />,
-};
