@@ -132,6 +132,6 @@ const meta: Meta<typeof Gallery> = {
 export default meta;
 type Story = StoryObj<typeof Gallery>;
 
-export const Mobile: Story = {
+export const Default: Story = {
     render: () => <Gallery />,
 };
