@@ -39,3 +39,5 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
         </LinkCard>
     );
 };
+
+//TODO større tittel
