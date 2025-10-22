@@ -1,4 +1,6 @@
 .miniCardV2 {
+    margin-bottom: var(--a-spacing-9);
+
     :global(.navds-link-card__title),
     :global(.navds-link-anchor__arrow) {
         color: var(--default-action-color);
