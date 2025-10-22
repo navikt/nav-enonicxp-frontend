@@ -8,7 +8,8 @@
         text-decoration: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus-within {
         background-color: #ecf3fe;
         border-color: #cbd4e1;
         box-shadow: none;
