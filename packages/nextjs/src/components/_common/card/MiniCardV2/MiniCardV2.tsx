@@ -23,11 +23,7 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
     });
 
     return (
-        <LinkCard
-            size="small"
-            arrowPosition="center"
-            className={classNames(style.miniCardV2, className)}
-        >
+        <LinkCard arrowPosition="center" className={classNames(style.miniCardV2, className)}>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase href={link.url} {...analyticsProps}>
@@ -39,5 +35,3 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
         </LinkCard>
     );
 };
-
-//TODO større tittel
