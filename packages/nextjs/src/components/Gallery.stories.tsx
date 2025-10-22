@@ -12,7 +12,7 @@ declare const require: {
     };
 };
 
-const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile' }) => {
+const Gallery = () => {
     const [screenshotFiles, setScreenshotFiles] = useState<
         Array<{ path: string; url: string; filename: string }>
     >([]);
@@ -68,12 +68,6 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
         );
     }
 
-    const filteredFiles = screenshotFiles.filter((file) =>
-        deviceType === 'desktop'
-            ? file.filename.includes('-desktop-')
-            : file.filename.includes('-mobile-')
-    );
-
     const base =
         window.location.origin +
         (window.location.pathname.includes('/nav-enonicxp-frontend/')
@@ -89,7 +83,7 @@ const Gallery = ({ deviceType = 'desktop' }: { deviceType?: 'desktop' | 'mobile'
                 padding: '20px',
             }}
         >
-            {filteredFiles.map((file) => {
+            {screenshotFiles.map((file) => {
                 const filename = file.filename;
                 if (!filename) return null;
                 const storyId = filename.split(/-(mobile|desktop|darwin)/)[0];
@@ -139,5 +133,5 @@ export default meta;
 type Story = StoryObj<typeof Gallery>;
 
 export const Mobile: Story = {
-    render: () => <Gallery deviceType="mobile" />,
+    render: () => <Gallery />,
 };
