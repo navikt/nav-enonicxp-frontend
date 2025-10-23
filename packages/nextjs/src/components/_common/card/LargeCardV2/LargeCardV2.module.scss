@@ -13,6 +13,10 @@
         box-shadow: none;
     }
 
+    :global(.navds-link-card__arrow) {
+        display: none;
+    }
+
     @media #{common.$mq-screen-mobile} {
         :global(.navds-link-card__icon) {
             grid-column: 2;
