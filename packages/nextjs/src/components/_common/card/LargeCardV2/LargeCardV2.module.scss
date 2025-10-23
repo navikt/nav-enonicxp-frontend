@@ -21,7 +21,7 @@
         :global(.navds-link-card__icon) {
             grid-column: 2;
             grid-row: 1;
-            margin-bottom: var(--a-spacing-3);
+            margin-block-end: var(--a-spacing-3);
         }
     }
 }
