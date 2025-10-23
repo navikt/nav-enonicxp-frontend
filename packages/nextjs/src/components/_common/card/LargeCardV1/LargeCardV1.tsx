@@ -11,11 +11,6 @@ import { useCard } from 'components/_common/card/useCard';
 import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './LargeCardV1.module.scss';
 
-// enum LayoutVariation {
-//     DEFAULT = 'Default',
-//     SITUATION = 'Situation',
-// }
-
 const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
     CardType.Product,
     CardType.Situation,
@@ -43,19 +38,8 @@ export const LargeCardV1 = (props: Props) => {
         link,
     });
 
-    // const layoutVariation =
-    //     type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
-
     return (
-        // <div {...userEventProps} className={classNames(sharedStyle.card)}>
         <LinkCard {...userEventProps}>
-            {/* <div className={classNames(sharedStyle.bed, type, CardSize.Large)}>
-                <div
-                    className={classNames(
-                        style.cardWrapper,
-                        style[`cardWrapper${layoutVariation}`]
-                    )}
-                > */}
             {hasIllustration && (
                 <VStack justify="center" height="100%" asChild>
                     <LinkCard.Icon>
@@ -74,7 +58,6 @@ export const LargeCardV1 = (props: Props) => {
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-
             <LinkCard.Description>{description}</LinkCard.Description>
             <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>
         </LinkCard>
