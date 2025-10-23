@@ -30,7 +30,7 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
             {...analyticsProps}
         >
             <div className={style.textContainer}>
-                <BodyLong as="span" className={style.linkText}>
+                <BodyLong as="span" className={style.linkText} size="large">
                     {link.text}
                 </BodyLong>
                 {tagline && (
