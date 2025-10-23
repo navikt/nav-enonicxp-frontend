@@ -1,5 +1,19 @@
 @use 'common' as common;
 
+.largeCardV2 {
+    :global(.navds-link-card__title),
+    :global(.navds-link-anchor__arrow) {
+        color: var(--default-action-color);
+    }
+
+    &:hover,
+    &:focus-within {
+        background-color: #ecf3fe;
+        border-color: #cbd4e1;
+        box-shadow: none;
+    }
+}
+
 .illustration {
     width: var(--a-spacing-16);
     height: var(--a-spacing-16);

@@ -36,7 +36,7 @@ export const LargeCardV2 = (props: Props) => {
     });
 
     return (
-        <LinkCard {...userEventProps} arrowPosition="center">
+        <LinkCard className={style.largeCardV2} {...userEventProps} arrowPosition="center">
             {hasIllustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic
