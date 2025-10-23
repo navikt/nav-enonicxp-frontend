@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
+import { LinkCard, VStack } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
@@ -11,10 +11,10 @@ import { useCard } from 'components/_common/card/useCard';
 import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './LargeCardV1.module.scss';
 
-enum LayoutVariation {
-    DEFAULT = 'Default',
-    SITUATION = 'Situation',
-}
+// enum LayoutVariation {
+//     DEFAULT = 'Default',
+//     SITUATION = 'Situation',
+// }
 
 const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
     CardType.Product,
@@ -43,21 +43,28 @@ export const LargeCardV1 = (props: Props) => {
         link,
     });
 
-    const layoutVariation =
-        type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
+    // const layoutVariation =
+    //     type === CardType.Situation ? LayoutVariation.SITUATION : LayoutVariation.DEFAULT;
 
     return (
-        <div {...userEventProps} className={classNames(sharedStyle.card)}>
-            <div className={classNames(sharedStyle.bed, type, CardSize.Large)}>
+        // <div {...userEventProps} className={classNames(sharedStyle.card)}>
+        <LinkCard {...userEventProps}>
+            {/* <div className={classNames(sharedStyle.bed, type, CardSize.Large)}>
                 <div
                     className={classNames(
                         style.cardWrapper,
                         style[`cardWrapper${layoutVariation}`]
                     )}
-                >
-                    {hasIllustration && (
+                > */}
+            {hasIllustration && (
+                <VStack justify="center" height="100%" asChild>
+                    <LinkCard.Icon>
                         <Illustration illustration={illustration} className={style.illustration} />
-                    )}
+                    </LinkCard.Icon>
+                </VStack>
+            )}
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
                     <LenkeBase
                         href={link.url}
                         {...analyticsProps}
@@ -65,12 +72,11 @@ export const LargeCardV1 = (props: Props) => {
                     >
                         {text}
                     </LenkeBase>
-                    <div className={style.textContainer}>
-                        <BodyLong className={style.description}>{description}</BodyLong>
-                        <BodyShort className={style.tagline}>{tagline}</BodyShort>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+
+            <LinkCard.Description>{description}</LinkCard.Description>
+            <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>
+        </LinkCard>
     );
 };

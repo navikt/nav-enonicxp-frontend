@@ -73,21 +73,8 @@
 }
 
 .illustration {
-    align-self: center;
-    display: flex;
-    flex-shrink: 0;
-    grid-area: Illustration;
-    justify-self: center;
-    margin-bottom: var(--a-spacing-9);
-    margin-top: 0;
     width: var(--a-spacing-24);
     height: var(--a-spacing-24);
-}
-
-.textContainer {
-    grid-area: Text;
-    display: flex;
-    flex-direction: column;
 }
 
 .title {
