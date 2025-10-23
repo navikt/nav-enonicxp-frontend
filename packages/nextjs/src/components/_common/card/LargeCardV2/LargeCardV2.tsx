@@ -36,7 +36,7 @@ export const LargeCardV2 = (props: Props) => {
     });
 
     return (
-        <LinkCard className={style.largeCardV2} {...userEventProps} arrowPosition="center">
+        <LinkCard className={style.largeCardV2} {...userEventProps}>
             {hasIllustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic
@@ -45,7 +45,6 @@ export const LargeCardV2 = (props: Props) => {
                     />
                 </LinkCard.Icon>
             )}
-
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase href={link.url} {...analyticsProps}>
@@ -53,7 +52,6 @@ export const LargeCardV2 = (props: Props) => {
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-
             <LinkCard.Description>{description}</LinkCard.Description>
             <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>
         </LinkCard>
