@@ -11,13 +11,6 @@ import { useCard } from 'components/_common/card/useCard';
 import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './LargeCardV1.module.scss';
 
-const cardTypesWithIllustration: ReadonlySet<CardType> = new Set<CardType>([
-    CardType.Product,
-    CardType.Situation,
-    CardType.ThemedArticle,
-    CardType.Guide,
-]);
-
 type Props = {
     tagline?: string;
     description?: string;
@@ -30,7 +23,7 @@ export const LargeCardV1 = (props: Props) => {
     const { link, description, type, tagline, illustration } = props;
     const { text } = link;
 
-    const hasIllustration = illustration && cardTypesWithIllustration.has(type);
+    const hasIllustration = illustration;
 
     const { userEventProps, analyticsProps } = useCard({
         type,
