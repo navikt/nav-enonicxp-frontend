@@ -2,6 +2,7 @@
 
 .largeCardV1 {
     width: 100%;
+    padding: var(--a-spacing-6);
 
     :global(.navds-link-card__arrow) {
         display: none;
