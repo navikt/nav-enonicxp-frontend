@@ -1,6 +1,5 @@
 import React from 'react';
 import { LinkCard, VStack } from '@navikt/ds-react';
-import { classNames } from 'utils/classnames';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -8,7 +7,6 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 
-import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './LargeCardV1.module.scss';
 
 type Props = {
@@ -38,11 +36,7 @@ export const LargeCardV1 = (props: Props) => {
             </VStack>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
-                    <LenkeBase
-                        href={link.url}
-                        {...analyticsProps}
-                        className={classNames(style.title, sharedStyle.lenkeBaseOverride)}
-                    >
+                    <LenkeBase href={link.url} {...analyticsProps} className={style.title}>
                         {text}
                     </LenkeBase>
                 </LinkCard.Anchor>
