@@ -30,6 +30,12 @@
 .illustration {
     width: var(--a-spacing-16);
     height: var(--a-spacing-16);
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        width: var(--a-spacing-24);
+        height: var(--a-spacing-24);
+        margin-right: var(--a-spacing-2);
+    }
 }
 
 .title {
