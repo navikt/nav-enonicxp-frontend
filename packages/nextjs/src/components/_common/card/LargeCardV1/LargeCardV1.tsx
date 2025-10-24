@@ -23,8 +23,6 @@ export const LargeCardV1 = (props: Props) => {
     const { link, description, type, tagline, illustration } = props;
     const { text } = link;
 
-    const hasIllustration = illustration;
-
     const { userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Large,
@@ -33,7 +31,7 @@ export const LargeCardV1 = (props: Props) => {
 
     return (
         <LinkCard className={style.largeCardV1} {...userEventProps}>
-            {hasIllustration && (
+            {illustration && (
                 <VStack justify="center" height="100%" asChild>
                     <LinkCard.Icon>
                         <Illustration illustration={illustration} className={style.illustration} />
