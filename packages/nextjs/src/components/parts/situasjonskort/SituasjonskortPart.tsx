@@ -1,4 +1,5 @@
 import React from 'react';
+import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { getCardProps } from 'components/_common/card/card-utils';
@@ -33,7 +34,7 @@ export const SituasjonskortPart = ({ config }: PartComponentProps<PartType.Situa
     const getSituationLabel = translator('situations', pageProps.language);
 
     return (
-        <div className={disabled ? style.disabled : ''}>
+        <div className={classNames(style.kort, disabled && style.disabled)}>
             {disabled && (
                 <span className={style.disabledMsg}>
                     <strong>{`"${target.data.title || target.displayName}"`}</strong>
