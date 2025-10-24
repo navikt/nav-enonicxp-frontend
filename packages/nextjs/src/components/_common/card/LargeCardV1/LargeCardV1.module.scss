@@ -5,6 +5,17 @@
     height: 100%;
     padding: var(--a-spacing-6);
 
+    @media #{common.$mq-screen-mobile} {
+        grid-template-areas:
+            'icon title'
+            'description description'
+            'footer footer' !important;
+
+        :global(.navds-link-card__description) {
+            margin-block-start: var(--a-spacing-4);
+        }
+    }
+
     :global(.navds-link-card__arrow) {
         display: none;
     }
@@ -17,13 +28,16 @@
 }
 
 .illustration {
-    width: var(--a-spacing-24);
-    height: var(--a-spacing-24);
+    width: var(--a-spacing-16);
+    height: var(--a-spacing-16);
 }
 
 .title {
-    font-size: var(--a-font-size-heading-medium);
-    word-break: break-word;
+    word-break: auto-phrase;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        font-size: var(--a-font-size-heading-medium);
+    }
 }
 
 .tagline {
