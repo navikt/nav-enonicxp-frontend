@@ -31,13 +31,11 @@ export const LargeCardV1 = (props: Props) => {
 
     return (
         <LinkCard className={style.largeCardV1} {...userEventProps}>
-            {illustration && (
-                <VStack justify="center" height="100%" asChild>
-                    <LinkCard.Icon>
-                        <Illustration illustration={illustration} className={style.illustration} />
-                    </LinkCard.Icon>
-                </VStack>
-            )}
+            <VStack justify="center" height="100%" asChild>
+                <LinkCard.Icon>
+                    <Illustration illustration={illustration} className={style.illustration} />
+                </LinkCard.Icon>
+            </VStack>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
