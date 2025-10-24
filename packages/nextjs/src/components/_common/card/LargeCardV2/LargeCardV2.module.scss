@@ -6,13 +6,6 @@
         color: var(--default-action-color);
     }
 
-    &:hover,
-    &:focus-within {
-        background-color: #ecf3fe;
-        border-color: #cbd4e1;
-        box-shadow: none;
-    }
-
     :global(.navds-link-card__arrow) {
         display: none;
     }
