@@ -1,42 +1,27 @@
 @use 'common' as common;
 
-.container {
-    display: flex;
-    flex-direction: row;
-    gap: var(--a-spacing-6);
-    padding: var(--a-spacing-4) var(--a-spacing-5);
-    width: 100%;
-    height: 100%;
-    position: relative;
-    cursor: pointer;
-
-    border-width: 1px;
-    border-radius: var(--a-border-radius-large);
-    border-style: solid;
-    border-color: var(--a-gray-300);
-
-    @media #{common.$mq-screen-mobile-small} {
-        flex-direction: column;
-        gap: var(--a-spacing-3);
+.largeCardV2 {
+    :global(.navds-link-card__title),
+    :global(.navds-link-anchor__arrow) {
+        color: var(--default-action-color);
     }
 
-    &:hover {
-        background-color: #ecf3fe;
+    :global(.navds-link-card__arrow) {
+        display: none;
+    }
 
-        .link {
-            text-decoration-thickness: 2px;
+    @media #{common.$mq-screen-mobile} {
+        :global(.navds-link-card__icon) {
+            grid-column: 2;
+            grid-row: 1;
+            margin-block-end: var(--a-spacing-3);
         }
-    }
-
-    &:focus-within {
-        box-shadow: var(--a-shadow-focus);
     }
 }
 
 .illustration {
     width: var(--a-spacing-16);
     height: var(--a-spacing-16);
-    flex-shrink: 0;
 
     :global(.back) {
         @include common.brand-purple-filter-back();
@@ -44,23 +29,6 @@
     :global(.front) {
         @include common.brand-purple-filter-front();
     }
-}
-
-.link {
-    text-underline-offset: 2.5px;
-    text-decoration-thickness: 1px;
-
-    &:focus-visible {
-        outline: none;
-    }
-}
-
-.linkText {
-    margin-bottom: var(--a-spacing-2);
-}
-
-.description {
-    margin-bottom: var(--a-spacing-6) !important;
 }
 
 .tagline {

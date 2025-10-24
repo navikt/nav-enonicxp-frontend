@@ -11,6 +11,10 @@ const meta = {
         description: 'Description',
         tagline: 'Tagline',
         type: CardType.Product,
+        illustration: {
+            type: ContentType.Pictograms,
+            data: { icons: [{ icon: { type: MediaType.Vector, mediaUrl: 'placeholder' } }] },
+        },
     },
 } satisfies Meta<typeof LargeCardV1>;
 
@@ -20,37 +24,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-export const Illustration: Story = {
-    args: {
-        illustration: {
-            type: ContentType.Pictograms,
-            data: { icons: [{ icon: { type: MediaType.Vector, mediaUrl: 'placeholder' } }] },
-        },
-    },
-};
-
-export const ProductHover: Story = {
-    parameters: {
-        pseudo: { hover: true },
-    },
-};
-
-export const SituationHover: Story = {
-    args: { type: CardType.Situation },
-    parameters: {
-        pseudo: { hover: true },
-    },
-};
-
-export const ThemedArticleHover: Story = {
-    args: { type: CardType.ThemedArticle },
-    parameters: {
-        pseudo: { hover: true },
-    },
-};
-
-export const GuideHover: Story = {
-    args: { type: CardType.Guide },
+export const Hover: Story = {
     parameters: {
         pseudo: { hover: true },
     },

@@ -114,12 +114,6 @@
                 0 1px 6px rgba(0, 0, 0, 0.14),
                 0 2px 8px rgba(38, 38, 38, 0.12);
         }
-
-        &:global(.situation) {
-            @media #{common.$mq-screen-mobile} {
-                padding: var(--a-spacing-4);
-            }
-        }
     }
 }
 

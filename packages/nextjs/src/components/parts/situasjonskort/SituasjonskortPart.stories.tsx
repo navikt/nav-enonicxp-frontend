@@ -15,13 +15,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Disabled: Story = {
     args: {
         type: ComponentType.Part,
         path: '',
         descriptor: PartType.Situasjonskort,
         config: {
-            disabled: false,
+            disabled: true,
             target: {
                 _id: '12345',
                 data: {
@@ -40,27 +40,6 @@ export const Default: Story = {
                 language: 'no',
                 _path: '',
             },
-        },
-    },
-};
-
-export const Hover: Story = {
-    args: {
-        ...Default.args,
-    },
-    parameters: {
-        pseudo: {
-            hover: true,
-        },
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        ...Default.args,
-        config: {
-            ...Default.args?.config,
-            disabled: true,
         },
     },
 };
