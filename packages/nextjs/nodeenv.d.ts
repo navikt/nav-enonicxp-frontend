@@ -16,6 +16,8 @@ declare global {
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
             MELDEKORT_API_URL: string;
+            DP_MELDEKORT_URL: string;
+            DP_MELDEKORT_AUDIENCE: string;
             NAVNO_SEARCH_API_URL: string;
             ASSET_PREFIX: string;
             TELEMETRY_URL: string;
