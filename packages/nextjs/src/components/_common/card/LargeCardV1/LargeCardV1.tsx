@@ -6,6 +6,7 @@ import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
+import { classNames } from 'utils/classnames';
 
 import style from './LargeCardV1.module.scss';
 
@@ -15,10 +16,11 @@ type Props = {
     illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
+    className?: string;
 };
 
 export const LargeCardV1 = (props: Props) => {
-    const { link, description, type, tagline, illustration } = props;
+    const { link, description, type, tagline, illustration, className } = props;
     const { text } = link;
 
     const { userEventProps, analyticsProps } = useCard({
@@ -28,7 +30,7 @@ export const LargeCardV1 = (props: Props) => {
     });
 
     return (
-        <LinkCard className={style.largeCardV1} {...userEventProps}>
+        <LinkCard className={classNames(style.largeCardV1, className)} {...userEventProps}>
             <VStack justify="center" height="100%" asChild>
                 <LinkCard.Icon>
                     <Illustration illustration={illustration} className={style.illustration} />
