@@ -33,7 +33,7 @@ export const SituasjonskortPart = ({ config }: PartComponentProps<PartType.Situa
     const getSituationLabel = translator('situations', pageProps.language);
 
     return (
-        <div className={style.kort}>
+        <>
             {disabled && (
                 <span className={style.disabledMsg}>
                     <strong>{`"${target.data.title || target.displayName}"`}</strong>
@@ -46,6 +46,6 @@ export const SituasjonskortPart = ({ config }: PartComponentProps<PartType.Situa
                 tagline={getSituationLabel('person')}
                 className={disabled ? style.disabled : ''}
             />
-        </div>
+        </>
     );
 };
