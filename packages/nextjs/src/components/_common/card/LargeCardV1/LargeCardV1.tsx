@@ -32,7 +32,7 @@ export const LargeCardV1 = (props: Props) => {
     });
 
     return (
-        <LinkCard {...userEventProps}>
+        <LinkCard className={style.largeCardV1} {...userEventProps}>
             {hasIllustration && (
                 <VStack justify="center" height="100%" asChild>
                     <LinkCard.Icon>

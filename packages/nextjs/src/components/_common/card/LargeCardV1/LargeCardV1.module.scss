@@ -1,5 +1,19 @@
 @use 'common' as common;
 
+.largeCardV1 {
+    width: 100%;
+
+    :global(.navds-link-card__arrow) {
+        display: none;
+    }
+
+    &:hover,
+    &:focus-within {
+        background-color: var(--a-orange-200);
+        box-shadow: none;
+    }
+}
+
 .illustration {
     width: var(--a-spacing-24);
     height: var(--a-spacing-24);
