@@ -6,13 +6,9 @@
     padding: var(--a-spacing-6);
 
     @media #{common.$mq-screen-mobile} {
-        grid-template-areas:
-            'icon title'
-            'description description'
-            'footer footer' !important;
-
-        :global(.navds-link-card__description) {
-            margin-block-start: var(--a-spacing-4);
+        :global(.navds-link-card__icon) {
+            grid-column: 2;
+            grid-row: 1;
         }
     }
 
@@ -30,6 +26,7 @@
 .illustration {
     width: var(--a-spacing-16);
     height: var(--a-spacing-16);
+    margin-bottom: var(--a-spacing-4);
 
     @media #{common.$mq-screen-tablet-and-desktop} {
         width: var(--a-spacing-24);
