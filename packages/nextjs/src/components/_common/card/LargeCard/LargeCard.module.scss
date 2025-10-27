@@ -12,7 +12,7 @@
         display: none;
     }
 
-    @media #{common.$mq-screen-mobile} {
+    @media #{common.$mq-screen-mobile-small} {
         :global(.navds-link-card__icon) {
             grid-column: 2;
             grid-row: 1;
