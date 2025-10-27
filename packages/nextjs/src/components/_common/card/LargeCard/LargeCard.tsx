@@ -8,7 +8,7 @@ import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { classNames } from 'utils/classnames';
 
-import style from './LargeCardV2.module.scss';
+import style from './LargeCard.module.scss';
 
 type Props = {
     tagline?: string;
@@ -19,7 +19,7 @@ type Props = {
     className?: string;
 };
 
-export const LargeCardV2 = (props: Props) => {
+export const LargeCard = (props: Props) => {
     const { link, description, type, tagline, illustration, className } = props;
 
     const { userEventProps, analyticsProps } = useCard({
@@ -29,7 +29,7 @@ export const LargeCardV2 = (props: Props) => {
     });
 
     return (
-        <LinkCard className={classNames(style.largeCardV2, className)} {...userEventProps}>
+        <LinkCard className={classNames(style.LargeCard, className)} {...userEventProps}>
             {illustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic

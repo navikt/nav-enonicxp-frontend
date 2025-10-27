@@ -2,7 +2,7 @@ import React from 'react';
 import { translator } from 'translations';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { getCardProps } from 'components/_common/card/card-utils';
-import { LargeCardV2 } from 'components/_common/card/LargeCardV2/LargeCardV2';
+import { LargeCard } from 'components/_common/card/LargeCard/LargeCard';
 import { usePageContentProps } from 'store/pageContext';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
@@ -41,7 +41,7 @@ export const SituasjonskortPart = ({ config }: PartComponentProps<PartType.Situa
                 </span>
             )}
 
-            <LargeCardV2
+            <LargeCard
                 {...cardProps}
                 tagline={getSituationLabel('person')}
                 className={disabled ? style.disabled : ''}
