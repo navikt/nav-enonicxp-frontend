@@ -9,6 +9,8 @@ export const useCheckAndOpenTrekkspillPanel = (
 ) => {
     const checkAndOpenPanels = useCallback(() => {
         const targetId = window.location.hash.slice(1);
+        const toOpen = new Set(openPanels);
+
         if (!targetId) return;
 
         if (window.location.search.includes('expandall=true')) {
@@ -16,11 +18,23 @@ export const useCheckAndOpenTrekkspillPanel = (
             return;
         }
 
-        const targetElement = document.getElementById(targetId);
-        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+        if (targetId) {
+            const el = document.getElementById(targetId);
+            const idx = refs.findIndex((r) => r.current?.contains(el));
+            if (idx !== -1) toOpen.add(idx);
+        }
 
-        if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
-            setOpenPanels([...openPanels, panelIndex]);
+        refs.forEach((r, i) => {
+            if (r.current?.querySelector('.DuplicateIdsVarsel_warning')) {
+                toOpen.add(i);
+            }
+        });
+
+        if (toOpen.size !== openPanels.length) {
+            setOpenPanels([...toOpen]);
+        }
+
+        if (targetId) {
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
     }, [openPanels, refs, setOpenPanels, expandAll]);

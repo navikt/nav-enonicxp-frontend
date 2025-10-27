@@ -1,4 +1,4 @@
-export const htmlAreaContainsDiv = (node: { descriptor?: string; config?: any }): boolean => {
+export const htmlAreaInneholderDiv = (node: { descriptor?: string; config?: any }): boolean => {
     if (
         node.descriptor === 'no.nav.navno:html-area' &&
         node.config &&
