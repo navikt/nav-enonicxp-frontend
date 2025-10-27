@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CardType } from 'types/card';
 import { ContentType } from 'types/content-props/_content-common';
 import { MediaType } from 'types/media';
-import { LargeCardV2 } from './LargeCardV2';
+import { LargeCard } from './LargeCard';
 
 const meta = {
-    component: LargeCardV2,
-} satisfies Meta<typeof LargeCardV2>;
+    component: LargeCard,
+} satisfies Meta<typeof LargeCard>;
 
 export default meta;
 
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        link: { url: '', text: 'LargeCardV2' },
+        link: { url: '', text: 'LargeCard' },
         type: CardType.Product,
         description: 'Description',
         tagline: 'Tagline',

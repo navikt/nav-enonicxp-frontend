@@ -34,7 +34,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.container}
         >
-            <Heading level={'2'} size={'large'} className={style.header}>
+            <Heading level="2" size="large">
                 {title}
             </Heading>
             <EditorHelp
