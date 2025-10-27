@@ -30,10 +30,3 @@ export const Illustration: Story = {
         },
     },
 };
-
-export const Hover: Story = {
-    args: {
-        ...Default.args,
-    },
-    parameters: { pseudo: { hover: true } },
-};
