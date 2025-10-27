@@ -13,13 +13,8 @@
     list-style: none;
     padding: 0;
 
-    li {
-        display: flex;
-
-        :global(.part__areapage-situation-card) {
-            display: flex;
-            width: 100%;
-        }
+    :global(.part__areapage-situation-card) {
+        width: 100%;
     }
 
     @media #{common.$mq-screen-mobile} {

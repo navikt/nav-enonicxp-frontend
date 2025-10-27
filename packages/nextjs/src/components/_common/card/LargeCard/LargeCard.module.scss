@@ -1,6 +1,9 @@
 @use 'common' as common;
 
 .LargeCard {
+    width: 100%;
+    height: 100%;
+
     :global(.navds-link-card__title),
     :global(.navds-link-anchor__arrow) {
         color: var(--default-action-color);
