@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import { LinkCard } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
@@ -23,17 +24,28 @@ export const LenkepanelNavnoSimple = ({
     ...rest
 }: Props) => {
     return (
-        <LenkeBase
-            {...rest}
-            href={href}
-            className={classNames(style.lenkepanel, icon && style.withIcon, className)}
-            analyticsComponent={'Lenkepanel navno enkel'}
-            analyticsLinkGroup={analyticsLinkGroup}
-        >
-            {icon && <div className={style.icon}>{icon}</div>}
-            <div className={classNames('navds-heading', 'navds-heading--medium')}>
+        <LinkCard>
+            {icon && (
+                <LinkCard.Icon>
+                    <div className={style.icon}>{icon}</div>
+                </LinkCard.Icon>
+            )}
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase
+                        {...rest}
+                        href={href}
+                        className={classNames(style.lenkepanel, icon && style.withIcon, className)}
+                        analyticsComponent={'Lenkepanel navno enkel'}
+                        analyticsLinkGroup={analyticsLinkGroup}
+                    >
+                        {children}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            {/* <div className={classNames('navds-heading', 'navds-heading--medium')}>
                 <span className={style.text}>{children}</span>
-            </div>
-        </LenkeBase>
+            </div> */}
+        </LinkCard>
     );
 };
