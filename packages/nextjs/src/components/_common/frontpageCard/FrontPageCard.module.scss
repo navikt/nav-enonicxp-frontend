@@ -1,5 +1,21 @@
 @use 'common' as common;
 
+.miniCardV1 {
+    :global(.navds-link-anchor__arrow) {
+        display: none;
+    }
+}
+
+.illustration {
+    width: var(--a-spacing-16);
+    height: var(--a-spacing-16);
+
+    @media #{common.$mq-screen-mobile-small} {
+        width: var(--a-spacing-12);
+        height: var(--a-spacing-12);
+    }
+}
+
 .frontpageCard {
     margin-bottom: 0;
     height: 100%;
@@ -17,7 +33,7 @@
         background-color: var(--a-deepblue-50);
     }
 
-    :global([class*='MiniCard'].provider-frontpage) {
+    :global(.provider-frontpage) {
         background-color: var(--a-red-50);
 
         :global(.back) {
@@ -43,7 +59,7 @@
             }
         }
     }
-    :global([class*='MiniCard'].person-frontpage) {
+    :global(.person-frontpage) {
         background-color: var(--a-deepblue-50);
 
         :global(.back) {

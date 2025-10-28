@@ -1,7 +1,11 @@
+import { LinkCard } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { MiniCardV1 } from 'components/_common/card/MiniCardV1/MiniCardV1';
 import { LinkProps } from 'types/link-props';
-import { CardType } from 'types/card';
+import { CardSize, CardType } from 'types/card';
+import { classNames } from 'utils/classnames';
+import { Illustration } from 'components/_common/illustration/Illustration';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
+import { useCard } from 'components/_common/card/useCard';
 
 import styles from './FrontPageCard.module.scss';
 
@@ -25,13 +29,32 @@ export const FrontPageCard = ({
         text: title,
     };
 
+    const { userEventProps, analyticsProps } = useCard({
+        type,
+        size: CardSize.Mini,
+        link,
+    });
+
     return (
-        <MiniCardV1
-            illustration={illustration}
-            link={link}
-            type={type}
-            className={styles.frontpageCard}
-            tryFallbackIllustration={tryFallbackIllustration}
-        />
+        <div className={styles.frontpageCard}>
+            <LinkCard className={classNames(styles.miniCardV1, type)} {...userEventProps}>
+                {illustration && (
+                    <LinkCard.Icon>
+                        <Illustration
+                            className={styles.illustration}
+                            illustration={illustration}
+                            tryFallbackIllustration={tryFallbackIllustration}
+                        />
+                    </LinkCard.Icon>
+                )}
+                <LinkCard.Title>
+                    <LinkCard.Anchor asChild>
+                        <LenkeBase href={link.url} {...analyticsProps}>
+                            {link.text}
+                        </LenkeBase>
+                    </LinkCard.Anchor>
+                </LinkCard.Title>
+            </LinkCard>
+        </div>
     );
 };
