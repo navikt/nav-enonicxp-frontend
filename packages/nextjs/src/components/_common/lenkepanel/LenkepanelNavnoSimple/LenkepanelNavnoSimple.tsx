@@ -24,18 +24,13 @@ export const LenkepanelNavnoSimple = ({
     ...rest
 }: Props) => {
     return (
-        <LinkCard>
-            {icon && (
-                <LinkCard.Icon>
-                    <div className={style.icon}>{icon}</div>
-                </LinkCard.Icon>
-            )}
+        <LinkCard className={classNames(style.lenkepanel, className)}>
+            {icon && <LinkCard.Icon className={style.icon}>{icon}</LinkCard.Icon>}
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
                         {...rest}
                         href={href}
-                        className={classNames(style.lenkepanel, icon && style.withIcon, className)}
                         analyticsComponent={'Lenkepanel navno enkel'}
                         analyticsLinkGroup={analyticsLinkGroup}
                     >
@@ -43,9 +38,6 @@ export const LenkepanelNavnoSimple = ({
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            {/* <div className={classNames('navds-heading', 'navds-heading--medium')}>
-                <span className={style.text}>{children}</span>
-            </div> */}
         </LinkCard>
     );
 };
