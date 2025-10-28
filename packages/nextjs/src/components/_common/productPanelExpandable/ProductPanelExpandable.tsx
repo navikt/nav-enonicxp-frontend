@@ -49,7 +49,6 @@ export const ProductPanelExpandable = ({
     };
 
     // Need an override until we remove the old overview page
-    const noLeftPadding = contentProps.type === 'no.nav.navno:overview';
     const alignCenter = contentProps.type === 'no.nav.navno:overview';
 
     useEffect(() => {
@@ -98,12 +97,7 @@ export const ProductPanelExpandable = ({
                     {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
                 </div>
             </ExpansionCard.Header>
-            <ExpansionCard.Content
-                className={classNames(
-                    style.expandableContent,
-                    noLeftPadding && style.noLeftPadding
-                )}
-            >
+            <ExpansionCard.Content className={style.expandableContent}>
                 {error && <Varselboks variant={'error'}>{error}</Varselboks>}
                 {withCopyLink && (
                     <CopyLink
