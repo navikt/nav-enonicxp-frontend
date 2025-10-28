@@ -1,8 +1,6 @@
 @use 'common' as common;
 
 .miniCardV1 {
-    // background-color: var(--a-orange-200);
-
     :global(.navds-link-anchor__arrow) {
         display: none;
     }
