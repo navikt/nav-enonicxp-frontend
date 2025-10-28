@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         pageProps: {
-            type: ContentType.ProductPage,
+            type: ContentType.GuidePage,
             displayName: 'displayName',
             language: 'no',
             data: {
@@ -37,48 +37,6 @@ export const Default: Story = {
                 ingress:
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 hideIngress: false,
-            },
-        },
-    },
-};
-
-export const HideIngress: Story = {
-    args: {
-        pageProps: {
-            ...Default.args.pageProps,
-            data: {
-                ...Default.args.pageProps.data,
-                hideIngress: true,
-            },
-        },
-    },
-};
-
-export const GuidePage: Story = {
-    args: {
-        pageProps: {
-            ...Default.args.pageProps,
-            type: ContentType.GuidePage,
-        },
-    },
-};
-
-export const SituationPage: Story = {
-    args: {
-        pageProps: {
-            ...Default.args.pageProps,
-            type: ContentType.SituationPage, //En hack med negativ margin gjør at ingressen krasjer med overskriften i Storybook (.reduceMarginBottom)
-        },
-    },
-};
-
-export const CustomCategory: Story = {
-    args: {
-        pageProps: {
-            ...Default.args.pageProps,
-            data: {
-                ...Default.args.pageProps.data,
-                customCategory: 'Egendefinert kategori',
             },
         },
     },

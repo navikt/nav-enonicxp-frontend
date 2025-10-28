@@ -8,31 +8,19 @@
 }
 
 .situations {
-    display: flex;
-    flex-wrap: wrap;
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--a-spacing-4);
 
-    li {
-        display: flex;
-
-        :global(.part__areapage-situation-card) {
-            display: flex;
-            width: 100%;
-        }
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: var(--a-spacing-6);
     }
 
-    @media #{common.$mq-screen-mobile} {
-        @include common.flex-cols-mixin(1, 1rem, 1rem);
+    :global(.part__areapage-situation-card) {
+        height: 100%;
     }
-    @media #{common.$mq-screen-tablet} {
-        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
-    }
-    @media #{common.$mq-screen-desktop} {
-        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
-    }
-}
-
-.header {
-    margin-bottom: var(--a-spacing-4);
 }

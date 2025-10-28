@@ -1,16 +1,20 @@
-import { WithContext, WebPage, Organization } from 'schema-dts';
+import { WebPage, Organization, ImageObject } from 'schema-dts';
+
 export type PageType = WebPage['@type'];
 
-export type BaseJsonLd<T extends WebPage> = WithContext<T> & {
-    '@context': string | string[];
-    '@type': PageType;
-    name: string;
-    description: string;
-    url: string;
-    datePublished?: string;
-    dateModified?: string;
-    author: Organization;
-    publisher: Organization;
+export type WithId<T extends { '@type': unknown }> = T & { '@id': string };
+
+// Note: needs better typing from schema-dts
+export type OrgWithLogoRef = Organization & {
+    '@type': string;
+    logo?: { '@id': string };
+    mainEntity?: string;
+    mainEntityOfPage?: string;
 };
 
-export type JsonLdData = BaseJsonLd<WebPage>;
+export type Thing = WithId<WebPage | ImageObject | OrgWithLogoRef>;
+
+export type JsonLdData = {
+    '@context': string | string[];
+    '@graph': Thing[];
+};
