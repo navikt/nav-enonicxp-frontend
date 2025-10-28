@@ -76,18 +76,6 @@ export const SeksjonForSnarveierPart = ({
 
                     return (
                         <li key={title}>
-                            {/* <LenkepanelNavnoSimple
-                                href={href}
-                                analyticsLinkGroup={sectionTitle}
-                                analyticsComponent="SeksjonForSnarveierPart"
-                                icon={<IllustrationStatic illustration={illustration} />}
-                                className={classNames(
-                                    style.item,
-                                    audience && style[`item_${audience}`]
-                                )}
-                            >
-                                {title}
-                            </LenkepanelNavnoSimple> */}
                             <LinkCard
                                 className={classNames(
                                     style.lenkepanel,
@@ -101,10 +89,9 @@ export const SeksjonForSnarveierPart = ({
                                 <LinkCard.Title>
                                     <LinkCard.Anchor asChild>
                                         <LenkeBase
-                                            // {...rest} ?
                                             href={href}
-                                            analyticsComponent={'Lenkepanel navno enkel'} //?
-                                            analyticsLinkGroup={sectionTitle} //?
+                                            analyticsComponent="SeksjonForSnarveierPart"
+                                            analyticsLinkGroup={sectionTitle}
                                         >
                                             {title}
                                         </LenkeBase>
