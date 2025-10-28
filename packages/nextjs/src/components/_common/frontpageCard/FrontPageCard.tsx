@@ -37,15 +37,13 @@ export const FrontPageCard = ({
 
     return (
         <LinkCard className={classNames(styles.frontPageCard, type)} {...userEventProps}>
-            {illustration && (
-                <LinkCard.Icon>
-                    <Illustration
-                        className={styles.illustration}
-                        illustration={illustration}
-                        tryFallbackIllustration={tryFallbackIllustration}
-                    />
-                </LinkCard.Icon>
-            )}
+            <LinkCard.Icon>
+                <Illustration
+                    className={styles.illustration}
+                    illustration={illustration}
+                    tryFallbackIllustration={tryFallbackIllustration}
+                />
+            </LinkCard.Icon>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase href={link.url} {...analyticsProps}>
