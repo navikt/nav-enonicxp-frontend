@@ -30,8 +30,6 @@ export const MiniCardV1 = (props: MiniKortProps) => {
     return (
         <div className={className}>
             <LinkCard className={classNames(style.miniCardV1, type)} {...userEventProps}>
-                {/* <div {...userEventProps} className={classNames(sharedStyle.card, className)}> */}
-                {/* <div className={classNames(sharedStyle.bed, style.mini, type)}> */}
                 {illustration && (
                     <LinkCard.Icon>
                         <Illustration
@@ -43,17 +41,11 @@ export const MiniCardV1 = (props: MiniKortProps) => {
                 )}
                 <LinkCard.Title>
                     <LinkCard.Anchor asChild>
-                        <LenkeBase
-                            // className={classNames(style.title)}
-                            href={link.url}
-                            {...analyticsProps}
-                        >
+                        <LenkeBase href={link.url} {...analyticsProps}>
                             {text}
                         </LenkeBase>
                     </LinkCard.Anchor>
                 </LinkCard.Title>
-                {/* </div> */}
-                {/* </div> */}
             </LinkCard>
         </div>
     );
