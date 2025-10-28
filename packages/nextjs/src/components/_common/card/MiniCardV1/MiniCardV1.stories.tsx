@@ -23,9 +23,3 @@ export const SituationHover: Story = {
         type: CardType.Situation,
     },
 };
-
-export const WithHeader: Story = {
-    args: {
-        header: 'Header',
-    },
-};
