@@ -44,7 +44,7 @@ export const MiniCardV1 = (props: MiniKortProps) => {
                         tryFallbackIllustration={tryFallbackIllustration}
                     />
                     <LenkeBase
-                        className={classNames(sharedStyle.lenkeBaseOverride, style.title)}
+                        className={classNames(style.title)}
                         href={link.url}
                         {...analyticsProps}
                     >
