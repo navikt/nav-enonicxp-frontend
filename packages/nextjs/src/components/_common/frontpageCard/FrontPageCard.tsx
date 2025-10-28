@@ -36,25 +36,26 @@ export const FrontPageCard = ({
     });
 
     return (
-        <div className={styles.frontpageCard}>
-            <LinkCard className={classNames(styles.miniCardV1, type)} {...userEventProps}>
-                {illustration && (
-                    <LinkCard.Icon>
-                        <Illustration
-                            className={styles.illustration}
-                            illustration={illustration}
-                            tryFallbackIllustration={tryFallbackIllustration}
-                        />
-                    </LinkCard.Icon>
-                )}
-                <LinkCard.Title>
-                    <LinkCard.Anchor asChild>
-                        <LenkeBase href={link.url} {...analyticsProps}>
-                            {link.text}
-                        </LenkeBase>
-                    </LinkCard.Anchor>
-                </LinkCard.Title>
-            </LinkCard>
-        </div>
+        <LinkCard
+            className={classNames(styles.frontpageCard, styles.miniCardV1, type)}
+            {...userEventProps}
+        >
+            {illustration && (
+                <LinkCard.Icon>
+                    <Illustration
+                        className={styles.illustration}
+                        illustration={illustration}
+                        tryFallbackIllustration={tryFallbackIllustration}
+                    />
+                </LinkCard.Icon>
+            )}
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase href={link.url} {...analyticsProps}>
+                        {link.text}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+        </LinkCard>
     );
 };

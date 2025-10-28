@@ -20,20 +20,20 @@
     margin-bottom: 0;
     height: 100%;
 
-    :global(.employer-frontpage),
-    :global(.person-frontpage),
-    :global(.provider-frontpage) {
+    &:global(.employer-frontpage),
+    &:global(.person-frontpage),
+    &:global(.provider-frontpage) {
         border: 0;
     }
 
-    :global(.employer-frontpage) {
+    &:global(.employer-frontpage) {
         background-color: var(--a-orange-200);
     }
-    :global(.person-frontpage) {
+    &:global(.person-frontpage) {
         background-color: var(--a-deepblue-50);
     }
 
-    :global(.provider-frontpage) {
+    &:global(.provider-frontpage) {
         background-color: var(--a-red-50);
 
         :global(.back) {
@@ -59,7 +59,7 @@
             }
         }
     }
-    :global(.person-frontpage) {
+    &:global(.person-frontpage) {
         background-color: var(--a-deepblue-50);
 
         :global(.back) {
