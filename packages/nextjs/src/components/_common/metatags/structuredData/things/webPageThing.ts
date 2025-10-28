@@ -1,17 +1,7 @@
-import { ContentProps } from 'types/content-props/_content-common';
 import { appOrigin, getPublicPathname } from 'utils/urls';
 import { getDescription, getPageTitle } from 'components/_common/metatags/helpers';
-import { Thing, PageType } from 'components/_common/metatags/structuredData/types';
-import {
-    findThingByType,
-    pageTypeLibrary,
-} from 'components/_common/metatags/structuredData/helpers/thingHelpers';
-
-type ReferenceConfig = {
-    content: ContentProps;
-    mainEntityOfPage?: string;
-    mainEntity?: string;
-};
+import { Thing, PageType, ReferenceConfig } from 'components/_common/metatags/structuredData/types';
+import { pageTypeLibrary } from 'components/_common/metatags/structuredData/helpers/thingHelpers';
 
 const DEFAULT_PAGE_TYPE: PageType = 'WebPage';
 
@@ -35,12 +25,14 @@ export const generateWebPageThing = ({ content }: ReferenceConfig): Thing => {
 };
 
 export const applyWebPageReferences = (thing: Thing, thingsByType: Map<string, Thing[]>): Thing => {
-    const updatedThing = Object.assign({}, thing) as Thing;
-    const officeThing = findThingByType('GovernmentOffice', thingsByType);
+    const governmentServiceThings = thingsByType.get('GovernmentService')?.[0] as Thing;
 
-    if (officeThing?.['@id']) {
-        updatedThing.mainEntity = { '@id': officeThing['@id'] };
-    }
+    const updatedThing = Object.assign(
+        {
+            about: governmentServiceThings ? { '@id': governmentServiceThings['@id'] } : undefined,
+        },
+        thing
+    ) as Thing;
 
     return updatedThing;
 };

@@ -3,8 +3,14 @@ import { Thing, JsonLdData } from './types';
 import { applyOfficeBranchReferences } from './things/officeBranchThing';
 import { generateImageObjectThing } from './things/imageObjectThing';
 import { generateOrganizationThing } from './things/organizationThing';
+
+import { generateAudienceThings } from './things/audienceThing';
 import { applyWebPageReferences, generateWebPageThing } from './things/webPageThing';
 import { createThingLibraries } from './helpers/thingHelpers';
+import {
+    applyGovernmentServiceReferences,
+    generateGovernmentServiceThings,
+} from './things/governmentServiceThing';
 
 /**
  Developers note: The use of the word "Thing" here is intentional and based on the schema.org definition.
@@ -15,7 +21,7 @@ import { createThingLibraries } from './helpers/thingHelpers';
 const createReferencesBetweenThings = (things: Thing[]): Thing[] => {
     const { thingsByType } = createThingLibraries(things);
 
-    return things.map((thing) => {
+    return things.map((thing): Thing => {
         if (!thing || typeof thing !== 'object' || Array.isArray(thing)) {
             return thing;
         }
@@ -29,6 +35,10 @@ const createReferencesBetweenThings = (things: Thing[]): Thing[] => {
             return applyOfficeBranchReferences(thing, thingsByType);
         }
 
+        if (thing['@type'] === 'GovernmentService') {
+            return applyGovernmentServiceReferences(thing, thingsByType);
+        }
+
         return thing;
     });
 };
@@ -38,7 +48,8 @@ const buildCommonThings = (content: ContentProps): Thing[] => {
         generateImageObjectThing(),
         generateOrganizationThing(),
         generateWebPageThing({ content }),
-    ];
+        generateAudienceThings({ content }),
+    ].filter(Boolean) as Thing[];
 };
 
 const buildPageSpecificThings = (content: ContentProps): Thing[] => {
@@ -49,6 +60,11 @@ const buildPageSpecificThings = (content: ContentProps): Thing[] => {
         // For now, do not augment with office branch data. We need a baseline before moving on to
         // more complex structures.
         // things.push(generateOfficeBranchThing({ content }));
+    }
+
+    if (content.type === ContentType.ProductPage) {
+        const aboutThings = generateGovernmentServiceThings(content) ?? [];
+        things.push(...aboutThings);
     }
 
     return things;
