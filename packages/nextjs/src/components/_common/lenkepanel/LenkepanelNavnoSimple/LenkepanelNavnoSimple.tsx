@@ -12,9 +12,6 @@ type Props = PropsWithChildren<{
 }> &
     React.ComponentProps<typeof LenkeBase>;
 
-// This component is meant to be used with "simple" content, ie just a line of text
-// and an optional icon. Use <LenkepanelNavno>-component for panels with more complex
-// content
 export const LenkepanelNavnoSimple = ({
     href,
     analyticsLinkGroup,
