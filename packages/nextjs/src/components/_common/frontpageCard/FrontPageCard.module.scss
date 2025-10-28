@@ -1,11 +1,5 @@
 @use 'common' as common;
 
-.miniCardV1 {
-    :global(.navds-link-anchor__arrow) {
-        display: none;
-    }
-}
-
 .illustration {
     width: var(--a-spacing-16);
     height: var(--a-spacing-16);
@@ -16,9 +10,13 @@
     }
 }
 
-.frontpageCard {
+.frontPageCard {
     margin-bottom: 0;
     height: 100%;
+
+    :global(.navds-link-anchor__arrow) {
+        display: none;
+    }
 
     &:global(.employer-frontpage),
     &:global(.person-frontpage),

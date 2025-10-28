@@ -36,10 +36,7 @@ export const FrontPageCard = ({
     });
 
     return (
-        <LinkCard
-            className={classNames(styles.frontpageCard, styles.miniCardV1, type)}
-            {...userEventProps}
-        >
+        <LinkCard className={classNames(styles.frontPageCard, type)} {...userEventProps}>
             {illustration && (
                 <LinkCard.Icon>
                     <Illustration
