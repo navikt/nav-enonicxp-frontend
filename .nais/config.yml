@@ -38,6 +38,13 @@ spec:
   valkey:
     - instance: {{ valkey.instance }}
       access: readwrite
+  tokenx:
+    enabled: true
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      level: Level3
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}

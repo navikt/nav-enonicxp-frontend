@@ -1,14 +1,20 @@
-import { fetchJson } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
 import { setMeldekortStatusAction } from 'store/slices/authState';
 import { store } from 'store/store';
+
+export type NesteMeldekort = {
+    fra: string;
+    kanSendesFra: string;
+    til: string;
+    uke: string;
+};
 
 export type MeldekortStatusResponse = {
     meldekort: number;
     etterregistrerteMeldekort: number;
     antallGjenstaaendeFeriedager: number;
-    nesteMeldekort: null | string;
-    nesteInnsendingAvMeldekort: null | string;
+    nesteMeldekort?: NesteMeldekort | null;
+    nesteInnsendingAvMeldekort?: string | null;
 };
 
 const meldekortStatusMock: MeldekortStatusResponse = {
@@ -19,24 +25,34 @@ const meldekortStatusMock: MeldekortStatusResponse = {
     nesteInnsendingAvMeldekort: '2022-07-23',
 };
 
-const meldekortStatusUrl = `${process.env.MELDEKORT_API_URL}/meldekortstatus`;
-
-export const fetchAndSetMeldekortStatus = () => {
+export const fetchAndSetMeldekortStatus = async () => {
     if (process.env.ENV === 'localhost') {
         store.dispatch(setMeldekortStatusAction(meldekortStatusMock));
-        return;
+        // return;
     }
 
-    return fetchJson<MeldekortStatusResponse>(meldekortStatusUrl, 5000, {
-        credentials: 'include',
-    }).then((response) => {
-        if (!response) {
-            logger.error('Failed to fetch meldekort status');
+    try {
+        const response = await fetch('/api/meldekortstatus', {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response?.ok) {
+            logger.error(
+                `Failed to fetch meldekort status: ${response.status} ${response.statusText}`
+            );
             return null;
         }
 
-        store.dispatch(setMeldekortStatusAction(response));
+        const data = (await response.json()) as MeldekortStatusResponse;
 
-        return response;
-    });
+        if (data) {
+            store.dispatch(setMeldekortStatusAction(data));
+        }
+
+        return data;
+    } catch (error: any) {
+        logger.error('Error fetching meldekort status:', error);
+        return null;
+    }
 };
