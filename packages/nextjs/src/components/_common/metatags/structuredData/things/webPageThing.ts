@@ -25,14 +25,14 @@ export const generateWebPageThing = ({ content }: ReferenceConfig): Thing => {
 };
 
 export const applyWebPageReferences = (thing: Thing, thingsByType: Map<string, Thing[]>): Thing => {
-    const governmentServiceThings = thingsByType.get('GovernmentService')?.[0] as Thing;
+    const governmentServiceThings = thingsByType.get('GovernmentService')?.[0];
 
     const updatedThing = Object.assign(
         {
             about: governmentServiceThings ? { '@id': governmentServiceThings['@id'] } : undefined,
         },
         thing
-    ) as Thing;
+    );
 
     return updatedThing;
 };

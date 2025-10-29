@@ -38,7 +38,7 @@ export const applyGovernmentServiceReferences = (
             provider: { '@id': organizationThing['@id'] },
         },
         thing
-    ) as Thing;
+    );
 
     return updatedThing;
 };

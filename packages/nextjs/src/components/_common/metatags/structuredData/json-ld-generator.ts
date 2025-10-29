@@ -49,7 +49,7 @@ const buildCommonThings = (content: ContentProps): Thing[] => {
         generateOrganizationThing(),
         generateWebPageThing({ content }),
         generateAudienceThings({ content }),
-    ].filter(Boolean) as Thing[];
+    ].filter((thing) => thing !== null);
 };
 
 const buildPageSpecificThings = (content: ContentProps): Thing[] => {
