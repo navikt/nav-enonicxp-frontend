@@ -1,4 +1,5 @@
 import { Language, translator } from 'translations';
+import { AudienceOptions } from 'types/component-props/_mixins';
 import { Taxonomy } from 'types/taxonomies';
 
 export const joinWithConjunction = (joinableArray: string[], language: Language): string => {
@@ -32,6 +33,19 @@ export const getConjunction = ({
     if (index === length - 2) {
         return ` ${getStringPart('conjunction')} `;
     }
+};
+
+export const getTranslatedAudience = (
+    audience: AudienceOptions['_selected'],
+    language: Language
+): string => {
+    const getAudienceLabel = translator('audience', language);
+    return getAudienceLabel(audience) || '';
+};
+
+export const getTranslatedTaxonomy = (taxonomy: Taxonomy, language: Language): string => {
+    const getTaxonomyLabel = translator('taxonomies', language);
+    return getTaxonomyLabel(taxonomy) || '';
 };
 
 export const getTranslatedTaxonomies = (taxonomies: Taxonomy[], language: Language): string[] => {

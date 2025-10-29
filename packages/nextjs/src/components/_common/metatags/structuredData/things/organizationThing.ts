@@ -6,7 +6,7 @@ export const generateOrganizationThing = (): Thing => {
     const logoId = `${appOrigin}#logo`;
 
     return {
-        '@type': 'Organization',
+        '@type': 'GovernmentOrganization',
         '@id': organizationId,
         name: 'Nav - Arbeids- og velferdsetaten',
         url: appOrigin,
