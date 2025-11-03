@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
 import { logger } from '@/shared/logger';
+import { XP_PATHS } from '@/shared/constants';
 
 // Common injection patterns to block
 const MALICIOUS_PATTERNS = [
@@ -37,15 +38,11 @@ const BLOCKED_EXTENSIONS = [
     '.exe', '.dll', '.bat', '.cmd', '.vbs', '.ps1'
 ];
 
-// Block direct access to Enonic XP root paths (must have actual file path)
-const BLOCKED_ROOT_PATHS = [
-    '/_/image',
-    '/_/image/',
-    '/_/attachment',
-    '/_/attachment/',
-    '/_/component',
-    '/_/component/',
-];
+// Generate blocked root paths from XP_PATHS (without trailing slash and with trailing slash)
+const BLOCKED_ROOT_PATHS = XP_PATHS.flatMap(path => [
+    path.slice(0, -1), // Remove trailing slash: /_/image/ -> /_/image
+    path,              // Keep with trailing slash: /_/image/
+]);
 
 export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     const fullPath = req.path;

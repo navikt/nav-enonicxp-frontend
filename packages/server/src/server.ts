@@ -4,6 +4,7 @@ import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
 import path from 'path';
 import { logger } from '@/shared/logger';
+import { XP_PATHS } from '@/shared/constants';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
@@ -54,15 +55,25 @@ nextApp.prepare().then(async () => {
 
     expressApp.use(promMiddleware);
 
-    // Handle /_/* redirects BEFORE Next.js processes them
+    // Handle known /_/* redirects BEFORE Next.js processes them
     // This ensures our security validation runs before the redirect
     if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
         expressApp.use((req, res, next) => {
+            // Check if path starts with /_/
             if (req.path.startsWith('/_/')) {
-                // Security validation already ran in middleware above
-                // Now redirect to XP origin
-                const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
-                return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
+                // Only redirect known XP paths
+                const isKnownXpPath = XP_PATHS.some(xpPath => req.path.startsWith(xpPath));
+
+                if (isKnownXpPath) {
+                    // Security validation already ran in middleware above
+                    // Now redirect to XP origin
+                    const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
+                    return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
+                } else {
+                    // Unknown /_/ path - block it
+                    logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
+                    return res.status(403).send('Forbidden');
+                }
             }
             next();
         });

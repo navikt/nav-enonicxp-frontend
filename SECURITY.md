@@ -106,7 +106,9 @@ The security middleware is applied in this order (important for effectiveness):
 3. **Path Validation** - Validates request patterns (including `/_/*` paths)
 4. Express compatibility layer
 5. Prometheus metrics
-6. **Enonic XP Redirect Handler** - Redirects `/_/*` to XP backend (AFTER validation)
+6. **Enonic XP Redirect Handler** - Redirects known `/_/*` paths to XP backend (AFTER validation)
+   - Only redirects known XP paths: `/_/image/`, `/_/attachment/`, `/_/component/`, `/_/service/`, `/_/asset/`, `/_/idprovider/`, `/_/error/`
+   - Unknown `/_/*` paths are NOT redirected and will be handled by Next.js (likely 404)
 7. Next.js application logic
 
 **Important**: The `/_/*` redirect is handled in Express (in `server.ts`), NOT in Next.js config. This ensures security validation happens before the redirect. The redirect in `next.config.js` is kept as a fallback but will never be reached since Express handles it first.
