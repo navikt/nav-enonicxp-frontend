@@ -10,7 +10,6 @@ import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedI
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { useIsDesktop } from 'utils/useIsDesktop';
 import { useLegacyNav } from 'utils/useLegacyNav';
 import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
 import styles from './InnholdssideMedMeny.module.scss';
@@ -26,7 +25,6 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
     const legacyNav = useLegacyNav();
-    const isDesktop = useIsDesktop();
 
     const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
 
@@ -82,7 +80,7 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                         />
                     )}
 
-                    {showInternalNav && !legacyNav && isDesktop && (
+                    {showInternalNav && !legacyNav && (
                         <DynamicNavigation
                             ref={dynamicNavigationRef}
                             className={styles.pageNavigationMenu}
