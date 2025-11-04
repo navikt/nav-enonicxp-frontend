@@ -21,7 +21,7 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks?: AnchorLink[];
     pageProps: ContentProps;
-    title?: string;
+    title: string;
     className?: string;
     onLinkClick?: () => void;
     canExpandAll?: boolean;
@@ -214,12 +214,10 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
             aria-labelledby={headingId}
             className={classNames(style.pageNavigationMenu, className)}
         >
-            {title && (
-                <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
-                    <FileTextIcon aria-hidden={true} className={style.headingIcon} />
-                    {title}
-                </Heading>
-            )}
+            <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
+                <FileTextIcon aria-hidden={true} className={style.headingIcon} />
+                {title}
+            </Heading>
             <ul className={style.list}>
                 {groupedLinks.map(({ h2, h3 }) => {
                     const isH2Active = activeAnchors.includes(h2.anchorId);
