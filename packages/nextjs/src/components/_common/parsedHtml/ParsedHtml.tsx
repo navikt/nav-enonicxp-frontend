@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import ReactDOMServer from 'react-dom/server';
 import { isTag, isText } from 'domhandler';
 import htmlReactParser, {
-    Element,
-    domToReact,
     attributesToProps,
     DOMNode,
+    domToReact,
+    Element,
     HTMLReactParserOptions,
 } from 'html-react-parser';
 import { BodyLong, Heading } from '@navikt/ds-react';
@@ -183,6 +183,11 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
             if (tag === 'a') {
                 if (tagIsEmpty || typeof props.href !== 'string') {
                     return <Fragment />;
+                }
+
+                // Remove id to avoid duplicate ids in the DOM
+                if (props.id) {
+                    delete props.id;
                 }
 
                 return (

@@ -10,6 +10,7 @@ import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
+import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorfeil';
 import style from './Expandable.module.scss';
 
 type Props = PropsWithChildren<{
@@ -78,7 +79,7 @@ export const Expandable = ({
             className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
             ref={trekkspillRef}
             onToggle={(isOpen) => toggleExpandCollapse(isOpen, title)}
-            open={isOpen}
+            open={isOpen || harRedaktorfeil(contentProps)}
             aria-label={ariaLabel || title}
             tabIndex={-1}
         >

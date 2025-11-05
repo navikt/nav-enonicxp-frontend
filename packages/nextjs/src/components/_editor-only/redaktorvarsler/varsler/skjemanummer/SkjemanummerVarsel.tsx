@@ -6,7 +6,7 @@ type Props = {
     className?: string;
 };
 
-export const FormNumbersWarning = ({ content, className }: Props) => {
+export const SkjemanummerVarsel = ({ content, className }: Props) => {
     const formNumberRegex = /^NAV \d{2}-\d{2}\.\d{2}([A-Za-z])?$/;
 
     const hasInvalidFormNumbers = (): boolean => {
