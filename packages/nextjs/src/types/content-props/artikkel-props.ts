@@ -11,7 +11,6 @@ export type Picture = Partial<{
     altText: string;
 }>;
 
-export type SocialMedia = 'facebook' | 'twitter' | 'linkedin';
 export type ArticleContentType = 'news' | 'pressRelease' | 'lastingContent';
 export type ArticleSubContentType = 'statistics' | 'none';
 
@@ -20,7 +19,6 @@ export type ArtikkelData = Partial<{
     text: ProcessedHtmlProps;
     hasTableOfContents: string;
     fact: ProcessedHtmlProps;
-    social: SocialMedia[];
     contentType: ArticleContentType;
     subContentType: ArticleSubContentType;
     picture: Picture;
