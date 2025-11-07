@@ -1,5 +1,5 @@
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
-import { ProductDataMixin, ProviderAudience } from 'types/component-props/_mixins';
+import { Audience, ProductDataMixin, ProviderAudience } from 'types/component-props/_mixins';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
@@ -19,9 +19,9 @@ export type OversiktPageProductLink = {
 };
 
 export type OversiktAudienceOptions = OptionSetSingle<{
-    person: EmptyObject;
-    employer: EmptyObject;
-    provider: {
+    [Audience.PERSON]: EmptyObject;
+    [Audience.EMPLOYER]: EmptyObject;
+    [Audience.PROVIDER]: {
         pageType: OptionSetSingle<{
             overview: {
                 provider_audience: ProviderAudience[];

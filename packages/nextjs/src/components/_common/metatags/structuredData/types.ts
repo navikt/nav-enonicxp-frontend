@@ -7,6 +7,7 @@ import {
     GovernmentOffice,
 } from 'schema-dts';
 import { ContentProps } from 'types/content-props/_content-common';
+import { OversiktPageProps } from 'types/content-props/oversikt-props';
 
 export type PageType = WebPage['@type'];
 
@@ -30,7 +31,7 @@ export type JsonLdData = {
 };
 
 export type ReferenceConfig = {
-    content: ContentProps;
+    content: ContentProps | OversiktPageProps;
     mainEntityOfPage?: string;
     mainEntity?: string;
 };
