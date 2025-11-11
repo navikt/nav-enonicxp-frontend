@@ -49,7 +49,7 @@ export const GeneralPageHeader = (props: Props) => {
                 </Heading>
             </header>
             {ingress && !hideIngress && !props.hideIngressOverride && (
-                <BodyLong className={style.ingress} size="large">
+                <BodyLong className={style.ingress} size="medium">
                     {ingress}
                 </BodyLong>
             )}

@@ -11,7 +11,7 @@ services:
 
     dekoratoren:
         container_name: dekoratoren-xpfrontend
-        image: 'europe-north1-docker.pkg.dev/nais-management-233d/navno/decorator-next-prod:latest'
+        image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/decorator-next-prod:latest'
         ports:
             - '8100:8089'
         environment:

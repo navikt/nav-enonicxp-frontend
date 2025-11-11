@@ -22,6 +22,7 @@ const FETCH_TIMEOUT_MS = 60000;
 const getXpCacheKey =
     process.env.NODE_ENV !== 'development'
         ? () => ({
+              // @ts-ignore - Adding cacheKey to global namespace
               cacheKey: global.cacheKey,
           })
         : () => ({});

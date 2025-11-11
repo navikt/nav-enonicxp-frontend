@@ -1,5 +1,6 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
+import { performance } from 'node:perf_hooks';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
@@ -11,23 +12,52 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
 });
 
+function isCacheEntryValid(v: unknown): v is CacheHandlerValue {
+    return (
+        typeof v === 'object' &&
+        v !== null &&
+        'value' in (v as Record<string, unknown>) &&
+        'lastModified' in (v as Record<string, unknown>)
+    );
+}
+
 export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        const fromLocalCache = localCache.get(key);
-        if (fromLocalCache) {
-            return fromLocalCache;
-        }
+        try {
+            const cacheStartTime = performance.now();
+            const fromLocalCache = localCache.get(key);
+            const cacheLoadDuration = performance.now() - cacheStartTime;
 
-        const fromRedisCache = await redisCache.getRender(key);
-        if (!fromRedisCache) {
+            if (cacheLoadDuration > 50) {
+                logger.warn(`Local cache: json load takes more than 50 ms for ${key}`);
+            }
+
+            if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
+                return fromLocalCache;
+            }
+
+            // There was something in the cache, but it's not valid
+            if (fromLocalCache && !isCacheEntryValid(fromLocalCache)) {
+                localCache.delete(key);
+                logger.warn(
+                    `Local cache: invalid cache entry: ${JSON.stringify(fromLocalCache)}. Entry deleted for ${key}.`
+                );
+            }
+
+            const fromRedisCache = await redisCache.getRender(key);
+            if (!fromRedisCache) {
+                return null;
+            }
+
+            localCache.set(key, fromRedisCache);
+
+            return fromRedisCache;
+        } catch (error: any) {
+            logger.error(`Error getting cache for key ${key}:`, error);
             return null;
         }
-
-        localCache.set(key, fromRedisCache);
-
-        return fromRedisCache;
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {

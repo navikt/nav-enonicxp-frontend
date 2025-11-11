@@ -1,18 +1,5 @@
 @use 'common' as common;
 
-// Trengs på grunn av global-override-styles.scss
-// Slettes som en del av #2454
-:global(.part__dynamic-link-panel) > .lenkepanel {
-    font-size: var(--a-font-size-body-medium);
-    line-height: var(--a-line-height-body-medium);
-    margin-bottom: 0;
-
-    :global(.navds-heading--small),
-    :global(.navds-heading--medium) {
-        margin-bottom: 0;
-    }
-}
-
 .lenkepanel {
     background-repeat: no-repeat;
     background-position: bottom right;

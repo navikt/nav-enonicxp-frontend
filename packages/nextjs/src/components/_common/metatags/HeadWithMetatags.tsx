@@ -19,6 +19,19 @@ const contentTypesWithNoIndex = new Set([
 const isNoIndex = (content: ContentProps) =>
     content.isPagePreview || contentTypesWithNoIndex.has(content.type) || content.data?.noindex;
 
+const isNoSnippet = (content: ContentProps) => content.data?.nosnippet;
+
+const createRobotsDirectives = (content: ContentProps) => {
+    const directives = [];
+    if (isNoIndex(content)) {
+        directives.push('noindex');
+    }
+    if (isNoSnippet(content)) {
+        directives.push('nosnippet');
+    }
+    return directives.length > 0 ? directives.join(', ') : '';
+};
+
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = getPageTitle(content);
     const description = getDescription(content, DESCRIPTION_MAX_LENGTH);
@@ -29,11 +42,8 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
         <>
             <Head>
                 <title>{title}</title>
-                {isNoIndex(content) ? (
-                    <meta name={'robots'} content={'noindex, nofollow'} />
-                ) : (
-                    <link rel={'canonical'} href={url} />
-                )}
+                {!isNoIndex(content) && <link rel={'canonical'} href={url} />}
+                <meta name={'robots'} content={createRobotsDirectives(content)} />
                 <meta property={'og:title'} content={title} />
                 <meta property={'og:site_name'} content={'nav.no'} />
                 <meta property={'og:url'} content={url} />

@@ -1,11 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { CardType } from 'types/card';
+import { ContentType } from 'types/content-props/_content-common';
+import { MediaType } from 'types/media';
 import { FrontPageCard } from './FrontPageCard';
 
 const meta = {
     component: FrontPageCard,
-    args: { path: '', title: 'Title' },
+    args: {
+        path: '',
+        title: 'Title',
+        illustration: {
+            type: ContentType.Pictograms,
+            data: { icons: [{ icon: { type: MediaType.Vector, mediaUrl: 'placeholder' } }] },
+        },
+    },
 } satisfies Meta<typeof FrontPageCard>;
 
 export default meta;
@@ -17,31 +26,10 @@ export const Person: Story = {
     args: { type: CardType.PersonFrontPage },
 };
 
-export const PersonHover: Story = {
-    args: { type: CardType.PersonFrontPage },
-    parameters: {
-        pseudo: { hover: true },
-    },
-};
-
 export const Employer: Story = {
     args: { type: CardType.EmployerFrontpage },
 };
 
-export const EmployerHover: Story = {
-    args: { type: CardType.EmployerFrontpage },
-    parameters: {
-        pseudo: { hover: true },
-    },
-};
-
 export const Provider: Story = {
     args: { type: CardType.ProviderFrontpage },
-};
-
-export const ProviderHover: Story = {
-    args: { type: CardType.ProviderFrontpage },
-    parameters: {
-        pseudo: { hover: true },
-    },
 };

@@ -1,32 +1,13 @@
-.kort {
-    width: 100%;
-    position: relative;
-    display: flex;
-
-    & > * {
-        margin-bottom: 0;
-        height: 100%;
-    }
-
-    :global(.situation) {
-        min-height: 0 !important;
-    }
-}
-
 .disabled {
     pointer-events: none;
-    :global(.situation) {
-        filter: grayscale(100%) blur(3px);
-    }
+    filter: grayscale(100%) blur(3px);
 }
 
 .disabledMsg {
     position: absolute;
-    width: calc(100% - var(--a-spacing-8));
-    height: auto;
+    max-width: 300px;
     margin: var(--a-spacing-4);
     padding: var(--a-spacing-4);
-    text-align: center;
     z-index: 1;
     border-radius: var(--a-border-radius-medium);
     background-color: var(--a-orange-100);

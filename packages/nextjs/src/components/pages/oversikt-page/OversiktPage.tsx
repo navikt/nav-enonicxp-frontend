@@ -56,7 +56,7 @@ export const OversiktPage = (props: OversiktPageProps) => {
     const audienceSubCategoryLinks = getLinksIfTransportPage(audienceAsArray);
 
     return (
-        <article className={style.page}>
+        <article className={style.page} data-nosnippet>
             <IllustrationStatic illustration={illustration} className={style.pictogram} />
             <div className={style.content}>
                 <OversiktHeader {...props} />

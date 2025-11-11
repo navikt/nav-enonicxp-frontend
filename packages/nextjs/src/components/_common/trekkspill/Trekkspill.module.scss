@@ -115,6 +115,9 @@
 
 .headerTitle {
     font-weight: var(--a-font-weight-regular);
+    font-size: var(
+        --a-font-size-heading-xsmall
+    ); // TODO snart: Kan antagelig fjerne denne overstyringen når https://github.com/navikt/aksel/pull/4209 er merget
     color: var(--default-action-color);
 }
 

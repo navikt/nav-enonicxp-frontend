@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
+import { LinkCard } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
@@ -24,22 +23,15 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
     });
 
     return (
-        <LenkeBase
-            className={classNames(style.container, className)}
-            href={link.url}
-            {...analyticsProps}
-        >
-            <div className={style.textContainer}>
-                <BodyLong as="span" className={style.linkText}>
-                    {link.text}
-                </BodyLong>
-                {tagline && (
-                    <BodyShort as="span" className={style.tagline}>
-                        {tagline}
-                    </BodyShort>
-                )}
-            </div>
-            <ArrowRightIcon aria-hidden fontSize="1.25rem" />
-        </LenkeBase>
+        <LinkCard arrowPosition="center" className={classNames(style.miniCardV2, className)}>
+            <LinkCard.Title>
+                <LinkCard.Anchor asChild>
+                    <LenkeBase href={link.url} {...analyticsProps}>
+                        {link.text}
+                    </LenkeBase>
+                </LinkCard.Anchor>
+            </LinkCard.Title>
+            {tagline && <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>}
+        </LinkCard>
     );
 };

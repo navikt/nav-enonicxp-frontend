@@ -1,8 +1,9 @@
 import React from 'react';
+import { LinkCard } from '@navikt/ds-react';
 import { Heading } from 'components/_common/headers/Heading';
+import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { LenkepanelNavnoSimple } from 'components/_common/lenkepanel/LenkepanelNavnoSimple/LenkepanelNavnoSimple';
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
@@ -75,18 +76,28 @@ export const SeksjonForSnarveierPart = ({
 
                     return (
                         <li key={title}>
-                            <LenkepanelNavnoSimple
-                                href={href}
-                                analyticsLinkGroup={sectionTitle}
-                                analyticsComponent="SeksjonForSnarveierPart"
-                                icon={<IllustrationStatic illustration={illustration} />}
+                            <LinkCard
                                 className={classNames(
+                                    style.lenkepanel,
                                     style.item,
                                     audience && style[`item_${audience}`]
                                 )}
                             >
-                                {title}
-                            </LenkepanelNavnoSimple>
+                                <LinkCard.Icon className={style.icon}>
+                                    <IllustrationStatic illustration={illustration} />
+                                </LinkCard.Icon>
+                                <LinkCard.Title>
+                                    <LinkCard.Anchor asChild>
+                                        <LenkeBase
+                                            href={href}
+                                            analyticsComponent="SeksjonForSnarveierPart"
+                                            analyticsLinkGroup={sectionTitle}
+                                        >
+                                            {title}
+                                        </LenkeBase>
+                                    </LinkCard.Anchor>
+                                </LinkCard.Title>
+                            </LinkCard>
                         </li>
                     );
                 })}
