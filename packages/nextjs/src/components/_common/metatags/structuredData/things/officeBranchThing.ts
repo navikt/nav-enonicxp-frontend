@@ -33,6 +33,6 @@ export const applyOfficeBranchReferences = (
     if (!pageThing) {
         return thing;
     }
-    const updatedThing = Object.assign({ '@id': pageThing['@id'] }, thing);
+    const updatedThing = Object.assign({ mainEntityOfPage: { '@id': pageThing['@id'] } }, thing);
     return updatedThing;
 };
