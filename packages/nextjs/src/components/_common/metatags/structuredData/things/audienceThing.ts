@@ -21,7 +21,7 @@ const getProviderAudience = (content: ReferenceConfig['content']) => {
 
     const audience = content.data?.audience as unknown as AudienceOptions;
     return audience?._selected === Audience.PROVIDER
-        ? (audience?.provider?.provider_audience ?? [])
+        ? forceArray(audience?.provider?.provider_audience)
         : [];
 };
 
