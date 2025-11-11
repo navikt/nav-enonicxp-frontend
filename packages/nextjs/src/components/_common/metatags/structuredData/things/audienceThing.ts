@@ -1,5 +1,5 @@
-import { getTranslatedAudience } from 'utils/string';
-import { appOrigin, getPublicPathname } from 'utils/urls';
+import { getTranslatedAudience, normalizeToAscii } from 'utils/string';
+import { appOrigin } from 'utils/urls';
 import { ReferenceConfig, Thing } from 'components/_common/metatags/structuredData/types';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, AudienceOptions } from 'types/component-props/_mixins';
@@ -25,8 +25,7 @@ const getProviderAudience = (content: ReferenceConfig['content']) => {
         : [];
 };
 
-export const generateAudienceThings = ({ content }: ReferenceConfig): Thing | null => {
-    const url = `${appOrigin}${getPublicPathname(content)}`;
+export const generateAudienceThings = ({ content }: ReferenceConfig): Thing[] => {
     const getProviderAudienceLabel = translator('providerAudience', content.language);
 
     const audience = content?.data?.audience as AudienceOptions | OversiktAudienceOptions;
@@ -39,11 +38,7 @@ export const generateAudienceThings = ({ content }: ReferenceConfig): Thing | nu
                 .map((sub) => getProviderAudienceLabel(sub))
                 .filter(Boolean);
 
-            if (subAudienceLabels.length > 0) {
-                const subAudienceLabelString = subAudienceLabels.join(', ');
-                return [...accumulator, subAudienceLabelString];
-            }
-            return accumulator;
+            return [...accumulator, ...subAudienceLabels];
         }
 
         if (
@@ -57,16 +52,17 @@ export const generateAudienceThings = ({ content }: ReferenceConfig): Thing | nu
     }, [] as string[]);
 
     if (!audience) {
-        return null;
+        return [];
     }
 
-    const audienceLabelString = audienceLabels.join(', ');
+    const audienceThings = audienceLabels.map(
+        (label) =>
+            ({
+                '@id': `${appOrigin}/id/audience/${normalizeToAscii(label)}`,
+                '@type': 'Audience',
+                audienceType: label,
+            }) as Thing
+    );
 
-    const audienceThing = {
-        '@id': `${url}#audience`,
-        '@type': 'Audience',
-        name: audienceLabelString,
-    } as Thing;
-
-    return audienceThing;
+    return audienceThings;
 };

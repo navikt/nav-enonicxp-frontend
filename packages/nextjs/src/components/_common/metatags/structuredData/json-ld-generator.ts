@@ -48,19 +48,12 @@ const buildCommonThings = (content: ContentProps): Thing[] => {
         generateImageObjectThing(),
         generateOrganizationThing(),
         generateWebPageThing({ content }),
-        generateAudienceThings({ content }),
+        ...generateAudienceThings({ content }),
     ].filter((thing) => thing !== null);
 };
 
 const buildPageSpecificThings = (content: ContentProps): Thing[] => {
     const things: Thing[] = [];
-
-    // Add office branch thing for office pages
-    if (content.type === ContentType.OfficePage) {
-        // For now, do not augment with office branch data. We need a baseline before moving on to
-        // more complex structures.
-        // things.push(generateOfficeBranchThing({ content }));
-    }
 
     if (content.type === ContentType.ProductPage) {
         const aboutThings = generateGovernmentServiceThings(content) ?? [];

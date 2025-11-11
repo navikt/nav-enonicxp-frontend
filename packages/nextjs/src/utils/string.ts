@@ -105,3 +105,37 @@ export const shortenText = (text: string, maxLength: number, maxOverflowLength: 
 };
 
 export const trimIfString = (value: unknown) => typeof value === 'string' && value.trim();
+
+// Common transliterations you likely care about in NO + neighbours
+const SPECIALS: Record<string, string> = {
+    æ: 'ae',
+    ø: 'o',
+    å: 'a',
+    ß: 'ss',
+    œ: 'oe',
+    ñ: 'n',
+    ç: 'c',
+    ð: 'd',
+    þ: 'th',
+    ł: 'l',
+};
+
+export const normalizeToAscii = (input: string): string => {
+    if (!input) return '';
+
+    // Quick trim + lowercase (lets us drop /i flags later)
+    let s = input.trim().toLowerCase();
+
+    // Map special latin chars (nordic and others)
+    s = s.replace(/[\u0080-\u024F]/g, (ch) => SPECIALS[ch] ?? ch);
+
+    // Strip diacritics (NFKD is a bit more aggressive than NFD)
+    s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+
+    // Keep [a-z0-9], replace any special non-alphanumeric chars (ie !, ?, etc) with hyphen
+    // Finally, collapse consecutive hyphens into a single one
+    s = s.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+    // If emoji-only strings or everything ended up being stripped, return empty string
+    return s || '';
+};
