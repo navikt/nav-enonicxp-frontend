@@ -123,8 +123,9 @@ const SPECIALS: Record<string, string> = {
 export const normalizeToAscii = (input: string): string => {
     if (!input) return '';
 
-    // Quick trim + lowercase (lets us drop /i flags later)
-    let s = input.trim().toLowerCase();
+    // Quick slice + trim + lowercase. Slicing to avoid catastrophic backtracking on very long strings
+    // if this function should be used on user controlled input in the future.
+    let s = input.slice(0, 1000).trim().toLowerCase();
 
     // Map special latin chars (nordic and others)
     s = s.replace(/[\u0080-\u024F]/g, (ch) => SPECIALS[ch] ?? ch);
