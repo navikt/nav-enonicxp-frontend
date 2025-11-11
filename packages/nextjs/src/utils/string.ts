@@ -133,8 +133,10 @@ export const normalizeToAscii = (input: string): string => {
     s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
 
     // Keep [a-z0-9], replace any special non-alphanumeric chars (ie !, ?, etc) with hyphen
-    // Finally, collapse consecutive hyphens into a single one
-    s = s.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    // Finally, collapse consecutive hyphens into a single one. Do this in two passes to avoid use of
+    // regex backtracking, which causes SonarCloud to yell.
+    s = s.replace(/[^a-z0-9]+/g, '-');
+    s = s.replace(/^-+/, '').replace(/-+$/, '');
 
     // If emoji-only strings or everything ended up being stripped, return empty string
     return s || '';
