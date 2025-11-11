@@ -8,7 +8,7 @@ import { ComponentEditorProps } from 'components/ComponentMapper';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
-import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
+import { InnholdssideMedMeny } from './innholdsside-med-meny/InnholdssideMedMeny';
 import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
 import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
@@ -36,7 +36,7 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
-    [LayoutType.PageWithSideMenus]: PageWithSideMenus,
+    [LayoutType.InnholdssideMedMeny]: InnholdssideMedMeny,
     [LayoutType.SingleColPage]: SingleColPage,
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,

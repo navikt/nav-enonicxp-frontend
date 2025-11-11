@@ -29,7 +29,7 @@ export const FormIntermediateStepLink = ({
     }
 
     return (
-        <LinkCard arrowPosition='center' className={style.lenkepanel}>
+        <LinkCard arrowPosition="center" className={style.lenkepanel}>
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
@@ -46,7 +46,9 @@ export const FormIntermediateStepLink = ({
             {explanation && <LinkCard.Description>{explanation}</LinkCard.Description>}
             {(formNumber || languageDisclaimer) && (
                 <LinkCard.Footer>
-                    {formNumber && <FormNumberTag className={style.metadata} formNumber={formNumber} />}
+                    {formNumber && (
+                        <FormNumberTag className={style.metadata} formNumber={formNumber} />
+                    )}
                     {languageDisclaimer && (
                         <LanguageDisclaimer className={style.metadata}>
                             {languageDisclaimer}
