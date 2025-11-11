@@ -51,10 +51,6 @@ export const generateAudienceThings = ({ content }: ReferenceConfig): Thing[] =>
         return accumulator;
     }, [] as string[]);
 
-    if (!audience) {
-        return [];
-    }
-
     const audienceThings = audienceLabels.map(
         (label) =>
             ({
