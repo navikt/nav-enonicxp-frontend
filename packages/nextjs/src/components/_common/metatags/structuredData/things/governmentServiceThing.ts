@@ -28,17 +28,19 @@ export const applyGovernmentServiceReferences = (
     const audienceThing = thingsByType.get('Audience')?.[0];
     const organizationThing = thingsByType.get('GovernmentOrganization')?.[0];
 
-    if (!webPageThing || !audienceThing || !organizationThing) {
+    const relationships: Record<string, any> = {};
+    if (webPageThing) {
+        relationships.subjectOf = { '@id': webPageThing['@id'] };
+    }
+    if (audienceThing) {
+        relationships.audience = { '@id': audienceThing['@id'] };
+    }
+    if (organizationThing) {
+        relationships.provider = { '@id': organizationThing['@id'] };
+    }
+    if (Object.keys(relationships).length === 0) {
         return thing;
     }
-    const updatedThing = Object.assign(
-        {
-            subjectOf: { '@id': webPageThing['@id'] },
-            audience: { '@id': audienceThing['@id'] },
-            provider: { '@id': organizationThing['@id'] },
-        },
-        thing
-    );
-
+    const updatedThing = Object.assign({}, thing, relationships);
     return updatedThing;
 };
