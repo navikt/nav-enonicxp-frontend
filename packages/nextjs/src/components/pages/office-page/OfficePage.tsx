@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { logger } from '@/shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
@@ -33,6 +34,13 @@ export const OfficePage = (props: OfficePageProps) => {
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
+            {props.data.linkedin && (
+                <div>
+                    <Heading level="2" size="medium">
+                        {'Følg oss på LinkedIn'}
+                    </Heading>
+                </div>
+            )}
         </article>
     );
 };

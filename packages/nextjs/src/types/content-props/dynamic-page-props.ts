@@ -66,6 +66,7 @@ export type OfficePageProps = ContentCommonProps & {
     type: ContentType.OfficePage;
     data: {
         title: string;
+        linkedin?: string;
         officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
     };
     page: LayoutComponentProps;
