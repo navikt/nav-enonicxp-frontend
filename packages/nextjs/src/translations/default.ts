@@ -293,6 +293,7 @@ export const translationsBundleNb = {
         alternativeContacts: 'Andre kontaktopplysninger:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        taglineALS: 'Arbeidslivssenter',
     },
     dateTime: {
         weekDayNames: {
