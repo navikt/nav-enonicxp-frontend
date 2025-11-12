@@ -41,10 +41,12 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
-    const tagline =
-        officeDetails.type === 'HMS'
-            ? officeTranslations('taglineHMS')
-            : officeTranslations('taglineOffice');
+    let tagline = '';
+    if (officeDetails.type === 'HMS') {
+        tagline = officeTranslations('taglineHMS');
+    } else if (officeDetails.type === 'ALS') {
+        tagline = officeTranslations('taglineALS');
+    }
 
     return (
         <div className={classNames(style.officePageHeader)}>
