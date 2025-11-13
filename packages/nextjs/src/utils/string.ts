@@ -121,7 +121,7 @@ const SPECIALS: Record<string, string> = {
 };
 
 export const normalizeToAscii = (input: string): string => {
-    if (!input) return '';
+    if (!input || typeof input !== 'string') return '';
 
     // Quick slice + trim + lowercase. Slicing to avoid catastrophic backtracking on very long strings
     // if this function should be used on user controlled input in the future.

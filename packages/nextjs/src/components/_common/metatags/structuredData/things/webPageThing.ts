@@ -30,7 +30,9 @@ export const applyWebPageReferences = (thing: Thing, thingsByType: Map<string, T
 
     const updatedThing = Object.assign(
         {
-            about: governmentServiceThings ? { '@id': governmentServiceThings['@id'] } : undefined,
+            about: governmentServiceThings?.['@id']
+                ? { '@id': governmentServiceThings['@id'] }
+                : undefined,
             audience: audienceThings.length
                 ? audienceThings.map((audience) => ({ '@id': audience['@id'] }))
                 : undefined,
