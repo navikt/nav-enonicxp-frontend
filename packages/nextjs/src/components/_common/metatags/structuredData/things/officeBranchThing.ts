@@ -28,12 +28,11 @@ export const applyOfficeBranchReferences = (
     thing: Thing,
     thingsByType: Map<string, Thing[]>
 ): Thing => {
-    const updatedThing = Object.assign({}, thing) as Thing;
     const pageThing = findThingByType('WebPage', thingsByType);
 
-    if (pageThing?.['@id']) {
-        updatedThing.mainEntityOfPage = { '@id': pageThing['@id'] };
+    if (!pageThing) {
+        return thing;
     }
-
+    const updatedThing = Object.assign({ mainEntityOfPage: { '@id': pageThing['@id'] } }, thing);
     return updatedThing;
 };

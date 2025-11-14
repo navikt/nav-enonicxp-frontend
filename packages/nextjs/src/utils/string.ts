@@ -1,4 +1,5 @@
 import { Language, translator } from 'translations';
+import { AudienceOptions } from 'types/component-props/_mixins';
 import { Taxonomy } from 'types/taxonomies';
 
 export const joinWithConjunction = (joinableArray: string[], language: Language): string => {
@@ -32,6 +33,19 @@ export const getConjunction = ({
     if (index === length - 2) {
         return ` ${getStringPart('conjunction')} `;
     }
+};
+
+export const getTranslatedAudience = (
+    audience: AudienceOptions['_selected'],
+    language: Language
+): string => {
+    const getAudienceLabel = translator('audience', language);
+    return getAudienceLabel(audience) || '';
+};
+
+export const getTranslatedTaxonomy = (taxonomy: Taxonomy, language: Language): string => {
+    const getTaxonomyLabel = translator('taxonomies', language);
+    return getTaxonomyLabel(taxonomy) || '';
 };
 
 export const getTranslatedTaxonomies = (taxonomies: Taxonomy[], language: Language): string[] => {
@@ -91,3 +105,40 @@ export const shortenText = (text: string, maxLength: number, maxOverflowLength: 
 };
 
 export const trimIfString = (value: unknown) => typeof value === 'string' && value.trim();
+
+// Common transliterations you likely care about in NO + neighbours
+const SPECIALS: Record<string, string> = {
+    æ: 'ae',
+    ø: 'o',
+    å: 'a',
+    ß: 'ss',
+    œ: 'oe',
+    ñ: 'n',
+    ç: 'c',
+    ð: 'd',
+    þ: 'th',
+    ł: 'l',
+};
+
+export const normalizeToAscii = (input: string): string => {
+    if (!input || typeof input !== 'string') return '';
+
+    // Quick slice + trim + lowercase. Slicing to avoid catastrophic backtracking on very long strings
+    // if this function should be used on user controlled input in the future.
+    let s = input.slice(0, 1000).trim().toLowerCase();
+
+    // Map special latin chars (nordic and others)
+    s = s.replace(/[\u0080-\u024F]/g, (ch) => SPECIALS[ch] ?? ch);
+
+    // Strip diacritics (NFKD is a bit more aggressive than NFD)
+    s = s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+
+    // Keep [a-z0-9], replace any special non-alphanumeric chars (ie !, ?, etc) with hyphen
+    // Finally, collapse consecutive hyphens into a single one. Do this in two passes to avoid use of
+    // regex backtracking, which causes SonarCloud to yell.
+    s = s.replace(/[^a-z0-9]+/g, '-');
+    s = s.replace(/^-+/, '').replace(/-+$/, '');
+
+    // If emoji-only strings or everything ended up being stripped, return empty string
+    return s || '';
+};

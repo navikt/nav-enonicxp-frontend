@@ -1,8 +1,17 @@
-import { WebPage, Organization, ImageObject } from 'schema-dts';
+import {
+    WebPage,
+    Organization,
+    ImageObject,
+    Audience,
+    Service,
+    GovernmentOffice,
+} from 'schema-dts';
+import { ContentProps } from 'types/content-props/_content-common';
+import { OversiktPageProps } from 'types/content-props/oversikt-props';
 
 export type PageType = WebPage['@type'];
 
-export type WithId<T extends { '@type': unknown }> = T & { '@id': string };
+export type WithId<T> = T & { '@id': string; '@type': string };
 
 // Note: needs better typing from schema-dts
 export type OrgWithLogoRef = Organization & {
@@ -12,9 +21,17 @@ export type OrgWithLogoRef = Organization & {
     mainEntityOfPage?: string;
 };
 
-export type Thing = WithId<WebPage | ImageObject | OrgWithLogoRef>;
+export type Thing = WithId<
+    WebPage | ImageObject | OrgWithLogoRef | Service | Audience | GovernmentOffice
+>;
 
 export type JsonLdData = {
     '@context': string | string[];
     '@graph': Thing[];
+};
+
+export type ReferenceConfig = {
+    content: ContentProps | OversiktPageProps;
+    mainEntityOfPage?: string;
+    mainEntity?: string;
 };
