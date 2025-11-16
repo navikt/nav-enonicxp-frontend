@@ -30,6 +30,6 @@ export const Ikon: Story = {
             Q 10,60 10,30 z"
                 />
             </svg>
-        )
-    }
+        ),
+    },
 };

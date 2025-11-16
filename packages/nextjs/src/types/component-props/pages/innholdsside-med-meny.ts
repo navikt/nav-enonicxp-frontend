@@ -5,9 +5,9 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 
 type Regions = 'pageContent' | 'topPageContent' | 'bottomRow';
 
-export interface PageWithSideMenusProps extends LayoutBaseProps {
+export interface InnholdssideMedMenyProps extends LayoutBaseProps {
     type: ComponentType.Page;
-    descriptor: LayoutType.PageWithSideMenus;
+    descriptor: LayoutType.InnholdssideMedMeny;
     regions: {
         [key in Regions]: {
             components: ComponentProps[];
