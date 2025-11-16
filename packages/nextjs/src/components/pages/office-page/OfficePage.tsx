@@ -31,10 +31,11 @@ export const OfficePage = (props: OfficePageProps) => {
         <article className={styles.officePage}>
             {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
+
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
-            {props.data.linkedin && (
+            {props.data.linkedin && ( //Sjekk også på om type HMS eventuelt?
                 <div>
                     <Heading level="2" size="medium">
                         {'Følg oss på LinkedIn'}
