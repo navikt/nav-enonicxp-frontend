@@ -38,3 +38,18 @@
 .addressPoster {
     background-color: var(--a-orange-50);
 }
+
+.kontaktskjema {
+    background-color: var(--a-deepblue-50);
+
+    margin-top: var(--a-spacing-4);
+    padding: common.$sectionPaddingMobile;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$sectionPaddingTablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$sectionPaddingDesktop;
+    }
+}
