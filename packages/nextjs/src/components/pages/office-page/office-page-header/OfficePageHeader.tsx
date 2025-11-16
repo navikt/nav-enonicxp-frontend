@@ -41,7 +41,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
-    let tagline = '';
+    let tagline = officeTranslations('taglineOffice');
     if (officeDetails.type === 'HMS') {
         tagline = officeTranslations('taglineHMS');
     } else if (officeDetails.type === 'ALS') {
