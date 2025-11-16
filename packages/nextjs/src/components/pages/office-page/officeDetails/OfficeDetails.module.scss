@@ -7,19 +7,12 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-top: var(--a-spacing-8);
+    row-gap: var(--a-spacing-5);
     max-width: common.$contentMaxWidth;
     width: 100%;
 
     & > * {
         width: 100%;
-    }
-}
-
-.pageContent {
-    display: flex;
-    flex-direction: column;
-
-    & > * {
         max-width: common.$sectionMaxWidth;
     }
 }
@@ -31,10 +24,6 @@
     @include common.full-width-mixin();
 }
 
-.header {
-    margin-bottom: var(--a-spacing-6);
-}
-
 .addressPoster {
     background-color: var(--a-orange-50);
 }
@@ -42,7 +31,6 @@
 .kontaktskjema {
     background-color: var(--a-deepblue-50);
 
-    margin-top: var(--a-spacing-4);
     padding: common.$sectionPaddingMobile;
 
     @media #{common.$mq-screen-tablet} {
