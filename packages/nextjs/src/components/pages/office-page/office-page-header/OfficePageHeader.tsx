@@ -41,11 +41,13 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
-    let tagline = officeTranslations('taglineOffice');
+    let tagline = '';
     if (officeDetails.type === 'HMS') {
         tagline = officeTranslations('taglineHMS');
     } else if (officeDetails.type === 'ALS') {
         tagline = officeTranslations('taglineALS');
+    } else {
+        tagline = officeTranslations('taglineOffice');
     }
 
     return (
