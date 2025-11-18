@@ -80,10 +80,11 @@
 .item_provider {
     :global(.back) {
         svg {
-            path,
-            rect,
-            circle {
+            [fill] {
                 fill: var(--bg-color, var(--a-red-100));
+            }
+            [stroke] {
+                stroke: var(--bg-color, var(--a-red-100));
             }
         }
     }
