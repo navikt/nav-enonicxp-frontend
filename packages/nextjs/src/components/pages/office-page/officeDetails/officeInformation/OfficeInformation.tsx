@@ -64,9 +64,7 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('postalAddress')}
                         </Heading>
-                        <BodyShort>
-                            <span>{postalAddress}</span>
-                        </BodyShort>
+                        <BodyShort>{postalAddress}</BodyShort>
                     </section>
                     {organisasjonsnummer && (
                         <section>
