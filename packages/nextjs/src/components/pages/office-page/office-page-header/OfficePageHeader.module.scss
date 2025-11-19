@@ -21,6 +21,7 @@
 
 .heading {
     text-align: left;
+    margin-bottom: var(--a-spacing-2);
 }
 
 .illustration {
@@ -55,10 +56,6 @@
     white-space: nowrap;
     display: flex;
     text-transform: uppercase;
-
-    @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-2);
-    }
 }
 
 .branchNamesLabel {
