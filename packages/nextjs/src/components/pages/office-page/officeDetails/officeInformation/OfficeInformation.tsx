@@ -68,21 +68,20 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
                             <span>{postalAddress}</span>
                         </BodyShort>
                     </section>
-                    {(organisasjonsnummer || enhetNr) && (
+                    {organisasjonsnummer && (
                         <section>
                             <Heading level="3" size="small" spacing>
-                                {getOfficeTranslations('officeInformation')}
+                                {getOfficeTranslations('orgNumber')}
                             </Heading>
-                            {organisasjonsnummer && (
-                                <BodyShort>
-                                    {getOfficeTranslations('orgNumber')}: {organisasjonsnummer}
-                                </BodyShort>
-                            )}
-                            {enhetNr && (
-                                <BodyShort>
-                                    {getOfficeTranslations('officeNumber')}: {enhetNr}
-                                </BodyShort>
-                            )}
+                            <BodyShort>{organisasjonsnummer}</BodyShort>
+                        </section>
+                    )}
+                    {enhetNr && (
+                        <section>
+                            <Heading level="3" size="small" spacing>
+                                {getOfficeTranslations('officeNumber')}
+                            </Heading>
+                            <BodyShort>{enhetNr}</BodyShort>
                         </section>
                     )}
                 </div>
