@@ -26,7 +26,9 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
         <div className={styles.wide}>
             <div className={classNames(styles.officeDetails, styles.pageContent)}>
                 <Heading level="2" size="large">
-                    {getOfficeTranslations('youFindUsHere')}
+                    {officeData.type == 'ALS'
+                        ? getOfficeTranslations('contactUs')
+                        : getOfficeTranslations('youFindUsHere')}
                 </Heading>
                 {publikumsmottak.length > 0 && (
                     <Reception
