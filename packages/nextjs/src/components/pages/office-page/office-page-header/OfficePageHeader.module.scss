@@ -20,7 +20,7 @@
 
 .content {
     background-color: var(--a-white);
-    max-width: 56.25rem;
+    max-width: common.$sectionMaxWidth;
     text-align: center;
     width: 100%;
 }
