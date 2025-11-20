@@ -22,8 +22,16 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
         ''
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
-    const phoneInformation =
-        officeData.telefonnummerKommentar || getOfficeTranslations('phoneInformation');
+
+    let phoneInformation = '';
+    if (officeData.type === 'ALS') {
+        phoneInformation = getOfficeTranslations('phoneTime');
+    } else if (officeData.telefonnummerKommentar) {
+        phoneInformation = officeData.telefonnummerKommentar;
+    } else {
+        phoneInformation =
+            getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
+    }
 
     const phoneHeader =
         officeData.type === 'HMS'
