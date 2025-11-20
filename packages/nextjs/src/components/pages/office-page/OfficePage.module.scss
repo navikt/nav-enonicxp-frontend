@@ -34,6 +34,8 @@
     display: flex;
     justify-content: center;
     background-color: var(--a-deepblue-100);
+    border-top: var(--a-spacing-1) solid var(--a-white);
+
     @include common.full-width-mixin;
 }
 
