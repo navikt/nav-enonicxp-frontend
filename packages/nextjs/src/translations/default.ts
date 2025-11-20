@@ -288,8 +288,9 @@ export const translationsBundleNb = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
+        phoneTime: 'Telefontid hverdager kl. 9–15.',
         phoneInformation:
-            'Telefontid hverdager kl. 9–15. Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
+            'Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysninger:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
