@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { logger } from '@/shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
@@ -7,6 +7,7 @@ import { classNames } from 'utils/classnames';
 
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import styles from './OfficePage.module.scss';
 
@@ -35,17 +36,12 @@ export const OfficePage = (props: OfficePageProps) => {
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
-            {props.data.linkedin && ( //Sjekk også på om type HMS eventuelt?
+            {props.data.linkedin && (
                 <div className={styles.linkedIn}>
                     <Heading level="2" size="large" spacing>
                         Følg oss på LinkedIn
                     </Heading>
-                    <BodyLong>
-                        Følg oss på Nav Oslo på LinkedIn, for å holde deg oppdatert på inkludering i
-                        arbeidslivet og gode grep for å forebygge og redusere sykefravær. Her kan du
-                        også få vite mer om hvordan du som arbeidsgiver kan bidra til å inkludere de
-                        som står uten jobb.
-                    </BodyLong>
+                    <ParsedHtml htmlProps={props.data.linkedin} />
                 </div>
             )}
         </article>
