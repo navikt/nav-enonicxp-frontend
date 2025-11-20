@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .pageContent {
     display: flex;
     flex-direction: column;
@@ -29,11 +30,16 @@
     }
 }
 
-.linkedIn {
+.linkedinWrapper {
+    display: flex;
+    justify-content: center;
     background-color: var(--a-deepblue-100);
-    padding: var(--a-spacing-8) var(--a-spacing-4);
-
     @include common.full-width-mixin;
+}
+
+.linkedIn {
+    padding: var(--a-spacing-8) 0;
+    max-width: common.$sectionMaxWidth;
 
     :global(.navds-body-long) {
         margin-bottom: 0;

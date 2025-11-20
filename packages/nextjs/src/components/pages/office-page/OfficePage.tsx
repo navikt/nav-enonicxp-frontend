@@ -37,11 +37,13 @@ export const OfficePage = (props: OfficePageProps) => {
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
             {props.data.linkedin && (
-                <div className={styles.linkedIn}>
-                    <Heading level="2" size="large" spacing>
-                        Følg oss på LinkedIn
-                    </Heading>
-                    <ParsedHtml htmlProps={props.data.linkedin} />
+                <div className={styles.linkedinWrapper}>
+                    <div className={styles.linkedIn}>
+                        <Heading level="2" size="large" spacing>
+                            Følg oss på LinkedIn
+                        </Heading>
+                        <ParsedHtml htmlProps={props.data.linkedin} />
+                    </div>
                 </div>
             )}
         </article>
