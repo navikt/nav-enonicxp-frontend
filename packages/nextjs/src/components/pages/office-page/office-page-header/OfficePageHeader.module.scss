@@ -11,24 +11,11 @@
     padding-bottom: var(--a-spacing-4);
 
     @include common.full-width-mixin();
-
-    @media #{common.$mq-screen-mobile} {
-        .illustration {
-            display: none;
-        }
-    }
 }
 
 .heading {
     text-align: left;
     margin-bottom: var(--a-spacing-2);
-}
-
-.illustration {
-    height: var(--a-spacing-20);
-    margin-right: var(--a-spacing-8);
-    pointer-events: none;
-    width: var(--a-spacing-20);
 }
 
 .content {
@@ -77,9 +64,4 @@
             display: none;
         }
     }
-}
-
-.divider,
-.modifiedLabel {
-    color: var(--a-gray-800);
 }
