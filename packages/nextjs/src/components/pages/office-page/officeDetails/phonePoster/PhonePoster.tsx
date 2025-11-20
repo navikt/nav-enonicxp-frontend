@@ -23,16 +23,17 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
-    let phoneInformation = '';
-    if (officeData.type === 'ALS') {
-        phoneInformation = getOfficeTranslations('phoneTime');
-    } else if (officeData.telefonnummerKommentar) {
-        phoneInformation = officeData.telefonnummerKommentar;
-    } else {
-        phoneInformation =
-            getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
-    }
+    const getPhoneInformation = () => {
+        if (officeData.type === 'ALS') {
+            return getOfficeTranslations('phoneTime');
+        }
+        if (officeData.telefonnummerKommentar) {
+            return officeData.telefonnummerKommentar;
+        }
+        return getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
+    };
 
+    const phoneInformation = getPhoneInformation();
     const phoneHeader =
         officeData.type === 'HMS'
             ? getOfficeTranslations('phoneToHMS')
