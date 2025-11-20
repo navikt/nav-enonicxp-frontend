@@ -10,7 +10,7 @@ import style from './PublishingCalendar.module.scss';
 interface PublishingCalendarEntryData {
     displayName: string;
     period: string;
-    publDate: Date;
+    publDate: Date | null;
     day: string;
     month: string;
     link?: string;
@@ -42,14 +42,17 @@ export const sortEntries = (
 };
 
 const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
-    const publDate = new Date(item.data.date);
-    publDate.setHours(8); //Statistikk publiseres kl 08.00
+    const publDate = isNaN(new Date(item.data.date).getTime()) ? null : new Date(item.data.date);
+
+    if (publDate) {
+        publDate.setHours(8); //Statistikk publiseres kl 08.00
+    }
     return {
         displayName: item.displayName,
         period: item.data.period,
         publDate,
-        day: publDate.getDate().toString() + '.',
-        month: monthShortName[publDate.getMonth()],
+        day: publDate ? publDate.getDate().toString() + '.' : '',
+        month: publDate ? monthShortName[publDate.getMonth()] : '',
         link: item.data.link?._path,
     };
 };
@@ -64,10 +67,12 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
     return (
         <Table.Row>
             <Table.DataCell>
-                <time dateTime={entry.publDate.toISOString()} className={style.dateCell}>
-                    <span>{entry.day}</span>
-                    <span>{entry.month}</span>
-                </time>
+                {entry.publDate && (
+                    <time dateTime={entry.publDate.toISOString()}>
+                        <span>{entry.day}</span>
+                        <span>{entry.month}</span>
+                    </time>
+                )}
             </Table.DataCell>
             <Table.DataCell>
                 <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>
