@@ -57,3 +57,12 @@ export const WithoutReception: Story = {
         },
     },
 };
+
+export const Arbeidslivssenter: Story = {
+    args: {
+        officeData: {
+            ...mockOfficeData,
+            type: 'ALS',
+        },
+    },
+};
