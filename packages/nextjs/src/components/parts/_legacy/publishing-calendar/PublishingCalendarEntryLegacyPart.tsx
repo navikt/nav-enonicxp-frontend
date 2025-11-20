@@ -68,7 +68,7 @@ export const PublishingCalendarEntryLegacyPart = (props: ContentProps) => {
         <Table.Row>
             <Table.DataCell>
                 {entry.publDate && (
-                    <time dateTime={entry.publDate.toISOString()}>
+                    <time dateTime={entry.publDate.toISOString()} className={style.dateCell}>
                         <span>{entry.day}</span>
                         <span>{entry.month}</span>
                     </time>
