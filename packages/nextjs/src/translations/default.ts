@@ -281,6 +281,7 @@ export const translationsBundleNb = {
     },
     office: {
         youFindUsHere: 'Du finner oss her',
+        contactUs: 'Kontakt oss',
         officeInformation: 'Kontorinformasjon',
         location: 'Beliggenhet',
         postalAddress: 'Postadresse',
