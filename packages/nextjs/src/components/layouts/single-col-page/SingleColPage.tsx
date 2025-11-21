@@ -3,9 +3,12 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
+import { InnholdssideMedMeny } from 'components/layouts/innholdsside-med-meny/InnholdssideMedMeny';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { ProductDataMixin } from 'types/component-props/_mixins';
+import { LayoutType } from 'types/component-props/layouts';
+import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
 
 type Props = {
     pageProps: ContentProps & {
@@ -61,6 +64,17 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
             </React.Fragment>
         );
     };
+
+    if (pageProps.type === ContentType.SituationPage) {
+        const layoutPropsWithDescriptor = {
+            ...layoutProps,
+            descriptor: LayoutType.InnholdssideMedMeny,
+        } as InnholdssideMedMenyProps;
+
+        return (
+            <InnholdssideMedMeny pageProps={pageProps} layoutProps={layoutPropsWithDescriptor} />
+        );
+    }
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
