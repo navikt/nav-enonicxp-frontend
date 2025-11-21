@@ -42,9 +42,8 @@ export const sortEntries = (
 };
 
 const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
-    const publDate = Number.isNaN(new Date(item.data.date).getTime())
-        ? null
-        : new Date(item.data.date);
+    const dateObj = new Date(item.data.date);
+    const publDate = Number.isNaN(dateObj.getTime()) ? null : dateObj;
 
     if (publDate) {
         publDate.setHours(8); //Statistikk publiseres kl 08.00
