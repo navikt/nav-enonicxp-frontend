@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { logger } from '@/shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
@@ -6,6 +7,7 @@ import { classNames } from 'utils/classnames';
 
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import styles from './OfficePage.module.scss';
 
@@ -30,9 +32,20 @@ export const OfficePage = (props: OfficePageProps) => {
         <article className={styles.officePage}>
             {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
+
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
+            {props.data.linkedin && (
+                <div className={styles.linkedinWrapper}>
+                    <div className={styles.linkedIn}>
+                        <Heading level="2" size="large" spacing>
+                            Følg oss på LinkedIn
+                        </Heading>
+                        <ParsedHtml htmlProps={props.data.linkedin} />
+                    </div>
+                </div>
+            )}
         </article>
     );
 };
