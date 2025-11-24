@@ -13,7 +13,8 @@ import styles from './OfficePage.module.scss';
 
 export const OfficePage = (props: OfficePageProps) => {
     const officeNorgData = props.data.officeNorgData.data;
-    const isOfficeBranch = officeNorgData.type === 'LOKAL';
+    const erLokalkontorEllerArbeidslivssenter =
+        officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
     const editorialPage = props.editorial;
 
     if (!officeNorgData) {
@@ -21,12 +22,13 @@ export const OfficePage = (props: OfficePageProps) => {
         return null;
     }
 
-    if (isOfficeBranch && !editorialPage) {
+    if (erLokalkontorEllerArbeidslivssenter && !editorialPage) {
         logger.error(`No editorial page found for office branch ${props.displayName}`);
         return null;
     }
 
-    const page = isOfficeBranch && editorialPage ? editorialPage.page : props.page;
+    const page =
+        erLokalkontorEllerArbeidslivssenter && editorialPage ? editorialPage.page : props.page;
 
     return (
         <article className={styles.officePage}>
