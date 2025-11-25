@@ -41,6 +41,7 @@
 
 .linkedIn {
     padding: var(--a-spacing-8) 0;
+    width: 100%;
     max-width: common.$sectionMaxWidth;
 
     :global(.navds-body-long) {
