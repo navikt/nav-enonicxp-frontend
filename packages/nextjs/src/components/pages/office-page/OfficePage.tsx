@@ -38,7 +38,7 @@ export const OfficePage = (props: OfficePageProps) => {
             <div className={classNames(styles.content, styles.pageContent)}>
                 <ComponentMapper componentProps={page} pageProps={props} />
             </div>
-            {props.data.linkedin && (
+            {props.data.linkedin && officeNorgData.type === 'ALS' && (
                 <div className={styles.linkedinWrapper}>
                     <div className={styles.linkedIn}>
                         <Heading level="2" size="large" spacing>
