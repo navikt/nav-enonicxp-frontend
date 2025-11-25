@@ -24,6 +24,7 @@
     align-self: center;
     width: 100%;
     max-width: common.$sectionMaxWidth;
+    padding-bottom: var(--a-spacing-8);
 
     & > * {
         width: 100%;
