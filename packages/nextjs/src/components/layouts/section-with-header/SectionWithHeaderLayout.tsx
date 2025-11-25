@@ -9,7 +9,6 @@ import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
-import { useLegacyNav } from 'utils/useLegacyNav';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';
 import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
@@ -38,7 +37,6 @@ const templateV2 = new Set([
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
-    const legacyNav = useLegacyNav();
 
     if (!config) {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
@@ -108,7 +106,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     {title}
                 </Heading>
             )}
-            {showSubsectionNavigation && legacyNav && (
+            {showSubsectionNavigation && (
                 <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
             )}
             {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}

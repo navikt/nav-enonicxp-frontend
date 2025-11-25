@@ -10,7 +10,6 @@ import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedI
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { useLegacyNav } from 'utils/useLegacyNav';
 import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
 import styles from './InnholdssideMedMeny.module.scss';
 
@@ -72,25 +71,24 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                     )}
                     {isNewLayoutPage && <AktuelleMalgrupper />}
 
-                    {showInternalNav && legacyNav && (
-                        <PageNavigationMenu
-                            anchorLinks={anchorLinks}
-                            title={menuTitle}
-                            isChapterNavigation={true}
-                        />
-                    )}
-
-                    {showInternalNav && !legacyNav && (
-                        <DynamicNavigation
-                            ref={dynamicNavigationRef}
-                            className={styles.pageNavigationMenu}
-                            anchorLinks={anchorLinks}
-                            pageProps={pageProps}
-                            title={menuTitle}
-                            canExpandAll={canExpandAll}
-                            forceExpandAll={forceExpandAll}
-                            onToggleExpandAll={handleToggleExpandAll}
-                        />
+                    {showInternalNav && (
+                        <>
+                            <PageNavigationMenu
+                                anchorLinks={anchorLinks}
+                                title={menuTitle}
+                                isChapterNavigation={true}
+                            />
+                            <DynamicNavigation
+                                ref={dynamicNavigationRef}
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={menuTitle}
+                                canExpandAll={canExpandAll}
+                                forceExpandAll={forceExpandAll}
+                                onToggleExpandAll={handleToggleExpandAll}
+                            />
+                        </>
                     )}
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
