@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useMemo, useState, useRef, ForwardedRef } from 'react';
+import React, { useEffect, useId, useMemo, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
 import { BodyShort, Heading, Button } from '@navikt/ds-react';
 import { ChevronDownUpIcon, ChevronUpDownIcon, FileTextIcon } from '@navikt/aksel-icons';
@@ -24,24 +24,15 @@ type Props = {
     title: string;
     className?: string;
     onLinkClick?: () => void;
-    canExpandAll?: boolean;
-    forceExpandAll?: boolean;
-    onToggleExpandAll?: () => void;
 };
 
-export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(function DynamicNavigation(
-    {
-        anchorLinks = [],
-        pageProps,
-        title,
-        className,
-        onLinkClick,
-        canExpandAll = false,
-        forceExpandAll = false,
-        onToggleExpandAll,
-    }: Props,
-    ref: ForwardedRef<HTMLDivElement>
-) {
+export const DynamicNavigation = ({
+    anchorLinks = [],
+    pageProps,
+    title,
+    className,
+    onLinkClick,
+}: Props) => {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
@@ -171,7 +162,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
         const targetId = activeAnchors[0];
         if (!targetId || lastScrolledToRef.current === targetId) return;
 
-        const container = containerRef.current || (ref && 'current' in ref ? ref.current : null);
+        const container = containerRef.current;
         if (!container) return;
 
         const link: HTMLElement | null = container.querySelector(
@@ -210,7 +201,7 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
 
     return (
         <nav
-            ref={ref || containerRef}
+            ref={containerRef}
             aria-labelledby={headingId}
             className={classNames(style.pageNavigationMenu, className)}
         >
@@ -241,7 +232,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
-                                onClick={() => onLinkClick?.()}
                             >
                                 <BodyShort as="span" size="small" className={style.linkText}>
                                     {h2.linkText}
@@ -268,7 +258,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                                                         : undefined
                                                 }
                                                 tabIndex={isExpanded ? 0 : -1}
-                                                onClick={() => onLinkClick?.()}
                                             >
                                                 <BodyShort
                                                     as="span"
@@ -286,24 +275,6 @@ export const DynamicNavigation = React.forwardRef<HTMLDivElement, Props>(functio
                     );
                 })}
             </ul>
-            {canExpandAll && (
-                <Button
-                    className={style.button}
-                    icon={
-                        forceExpandAll ? (
-                            <ChevronDownUpIcon aria-hidden={true} />
-                        ) : (
-                            <ChevronUpDownIcon aria-hidden={true} />
-                        )
-                    }
-                    onClick={onToggleExpandAll}
-                    size="small"
-                >
-                    {forceExpandAll
-                        ? 'Vis fokusert innholdsfortegnelse'
-                        : 'Vis detaljert innholdsfortegnelse'}
-                </Button>
-            )}
         </nav>
     );
-});
+};

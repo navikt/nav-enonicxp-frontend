@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
@@ -23,22 +23,6 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
-    const legacyNav = useLegacyNav();
-
-    const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
-
-    const [canExpandAll, setCanExpandAll] = useState(false);
-    const [forceExpandAll, setForceExpandAll] = useState(false);
-    const handleToggleExpandAll = () => setForceExpandAll((prev) => !prev);
-
-    // Sjekk URL-parameter for å vise/skjule knapp for detaljert innholdsfortegnelse
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('expandAllNav') === 'true') {
-            setCanExpandAll(true);
-        }
-    }, []);
 
     if (!regions || !config) {
         return null;
@@ -79,14 +63,10 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                                 isChapterNavigation={true}
                             />
                             <DynamicNavigation
-                                ref={dynamicNavigationRef}
                                 className={styles.pageNavigationMenu}
                                 anchorLinks={anchorLinks}
                                 pageProps={pageProps}
                                 title={menuTitle}
-                                canExpandAll={canExpandAll}
-                                forceExpandAll={forceExpandAll}
-                                onToggleExpandAll={handleToggleExpandAll}
                             />
                         </>
                     )}
