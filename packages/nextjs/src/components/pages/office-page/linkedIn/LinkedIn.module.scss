@@ -1,0 +1,20 @@
+@use 'common' as common;
+
+.linkedinWrapper {
+    display: flex;
+    justify-content: center;
+    background-color: var(--a-deepblue-100);
+    border-top: var(--a-spacing-1) solid var(--a-white);
+
+    @include common.full-width-mixin;
+}
+
+.linkedIn {
+    padding: var(--a-spacing-8) 0;
+    width: 100%;
+    max-width: common.$sectionMaxWidth;
+
+    :global(.navds-body-long) {
+        margin-bottom: 0;
+    }
+}
