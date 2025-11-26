@@ -1,12 +1,12 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { Reception } from '@navikt/nav-office-reception-info';
-import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
 import { PhonePoster } from './phonePoster/PhonePoster';
+import { Kontaktskjema } from './kontaktskjema/Kontaktskjema';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
 
 import styles from './OfficeDetails.module.scss';
@@ -38,21 +38,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     />
                 )}
                 <PhonePoster officeData={officeData} />
-                {officeData.type == 'ALS' && (
-                    <div className={styles.kontaktskjema}>
-                        <Heading level="3" size="small" spacing>
-                            Kontaktskjema
-                        </Heading>
-                        <BodyLong>
-                            Du kan også{' '}
-                            <LenkeInline href="https://www.nav.no/skriv-til-oss">
-                                skrive til oss{' '}
-                            </LenkeInline>
-                            hvis du ønsker hjelp til å rekruttere eller inkludere arbeidstakere og
-                            forebygge sykefravær.
-                        </BodyLong>
-                    </div>
-                )}
+                {officeData.type == 'ALS' && <Kontaktskjema />}
                 <OfficeInformation officeData={officeData} />
             </div>
         </div>
