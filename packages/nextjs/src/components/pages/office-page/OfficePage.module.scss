@@ -14,6 +14,11 @@
             max-width: common.$sectionMaxWidth;
             margin-bottom: var(--a-spacing-8);
         }
+
+        .icon-container {
+            //Hardkoder ikonfargen. Vi vil i utgangspunktet ikke at det skal være noen variasjon i fargen på kontorsidene. Og det var en del jobb å skulle oppdatere alle hjelpemiddelsentral-sidene manuell.
+            background-color: var(--a-deepblue-100) !important;
+        }
     }
 }
 
