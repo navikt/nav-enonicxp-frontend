@@ -1,8 +1,8 @@
 import { Heading } from '@navikt/ds-react';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
-
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import styles from './linkedIn.module.scss';
+
+import styles from './LinkedIn.module.scss';
 
 type Props = {
     text: ProcessedHtmlProps | string;
