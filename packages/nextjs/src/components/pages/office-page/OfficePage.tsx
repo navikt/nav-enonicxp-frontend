@@ -5,7 +5,7 @@ import { OfficePageProps } from 'types/content-props/dynamic-page-props';
 import { classNames } from 'utils/classnames';
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
-import { LinkedIn } from './linkedIn/linkedIn';
+import { LinkedIn } from './linkedIn/LinkedIn';
 
 import styles from './OfficePage.module.scss';
 
