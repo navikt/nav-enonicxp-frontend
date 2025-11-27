@@ -15,16 +15,12 @@ import {
 
 import style from './OversiktTextFilter.module.scss';
 
-type Props = {
-    hideLabel?: boolean;
-};
-
 const analyticsRedaction = (value: string) =>
     isNaN(Number(value))
         ? `tekst (${value.length})`
         : `nummer (${Math.round(Math.log10(Number(value))) + 1})`;
 
-export const OversiktTextFilter = ({ hideLabel = false }: Props) => {
+export const OversiktTextFilter = () => {
     const { setTextFilter } = useOversiktFilters();
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -101,7 +97,7 @@ export const OversiktTextFilter = ({ hideLabel = false }: Props) => {
                 onChange={handleUserInput}
                 value={textInput}
                 label={label}
-                hideLabel={hideLabel}
+                hideLabel
                 variant={'simple'}
                 autoComplete={'off'}
             />

@@ -7,14 +7,4 @@
         outline: none;
         box-shadow: none;
     }
-
-    :global(.navds-label) {
-        font-size: var(--a-font-size-heading-xsmall);
-    }
-    :global(.navds-button) {
-        color: var(--a-deepblue-700);
-        &:hover {
-            background-color: var(--a-deepblue-50);
-        }
-    }
 }
