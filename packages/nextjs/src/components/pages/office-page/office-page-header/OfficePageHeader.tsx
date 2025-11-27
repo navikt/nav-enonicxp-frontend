@@ -9,21 +9,31 @@ import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
 
+type AudienceReceptionDescription = Pick<AudienceReception, 'stedsbeskrivelse'>;
+
 type Props = {
-    officeDetails: OfficeDetailsData;
+    officeDetails: Pick<OfficeDetailsData, 'navn' | 'type'> & {
+        brukerkontakt?: {
+            publikumsmottak?: Array<AudienceReceptionDescription>;
+        };
+    };
 };
 
 export const OfficePageHeader = ({ officeDetails }: Props) => {
-    const { navn, brukerkontakt } = officeDetails;
+    const { navn, brukerkontakt, type } = officeDetails;
     const { language } = usePageContentProps();
     const officeTranslations = translator('office', language);
 
-    const getSubtitle = (publikumsmottak: AudienceReception[]) => {
+    const getSubtitle = (publikumsmottak?: Array<AudienceReceptionDescription>) => {
         if (!Array.isArray(publikumsmottak) || publikumsmottak.length < 2) {
             return '';
         }
 
-        if (officeDetails.type === 'HMS') {
+        if (type === 'HMS') {
+            return '';
+        }
+
+        if (type === 'ALS') {
             return '';
         }
 
@@ -42,9 +52,9 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
     let tagline = '';
-    if (officeDetails.type === 'HMS') {
+    if (type === 'HMS') {
         tagline = officeTranslations('taglineHMS');
-    } else if (officeDetails.type === 'ALS') {
+    } else if (type === 'ALS') {
         tagline = officeTranslations('taglineALS');
     } else {
         tagline = officeTranslations('taglineOffice');
