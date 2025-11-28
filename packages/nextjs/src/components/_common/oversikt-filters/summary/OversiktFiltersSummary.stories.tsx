@@ -11,4 +11,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = { args: { antallTreff: 1, totaltAntall: 2 } };
-export const Nohits: Story = { args: { antallTreff: 0, totaltAntall: 2 } };
+export const NoHits: Story = { args: { antallTreff: 0, totaltAntall: 2 } };
