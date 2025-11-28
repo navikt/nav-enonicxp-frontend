@@ -31,14 +31,16 @@ export const DynamicNavigation = ({
     pageProps,
     title,
     className,
-    onLinkClick,
 }: Props) => {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
     const analyticsComponent = 'Dynamisk meny for intern-navigasjon';
 
-    const [activeAnchors, setActiveAnchors] = useState<string[]>([]);
+    const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
+    const clickedAnchorRef = useRef<string | null>(null);
+    const clickedAnchorResetTimerRef = useRef<number | undefined>(undefined);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     const containerRef = useRef<HTMLDivElement | null>(null);
     const lastScrolledToRef = useRef<string | null>(null);
@@ -94,9 +96,25 @@ export const DynamicNavigation = ({
         [links, pageContentComponents, language]
     );
 
-    // Overvåk scroll-posisjon for å aktivere/deaktivere overskrifter i menyen
+    // Sjekk om vi er på desktop for å aktivere scroll-overvåkning
     useEffect(() => {
         if (typeof window === 'undefined') return;
+
+        const mediaQuery = window.matchMedia('(min-width: 64rem)');
+        const handleChange = (e: MediaQueryListEvent | MediaQueryList) => {
+            setIsDesktop(e.matches);
+        };
+
+        handleChange(mediaQuery);
+        mediaQuery.addEventListener('change', handleChange);
+
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
+
+
+    // Overvåk scroll-posisjon for å aktivere/deaktivere overskrifter i menyen
+    useEffect(() => {
+        if (!isDesktop || typeof window === 'undefined') return;
 
         // Flat liste over overskrifter: H2 etterfulgt av sine H3-er, hver med eksisterende DOM-element
         const headingItems = groupedLinks
@@ -114,7 +132,6 @@ export const DynamicNavigation = ({
                 Math.round(window.innerHeight * MAX_SCREEN_RATIO)
             );
 
-            const activeIds: string[] = [];
             let closestAbove: { id: string; rect: DOMRect } | undefined;
             for (const h of headingItems) {
                 const rect = h.el.getBoundingClientRect();
@@ -123,24 +140,16 @@ export const DynamicNavigation = ({
                         closestAbove = { id: h.id, rect };
                     }
                 }
+            }
 
-                // Hvis det ikke finnes noen overskrift over, befinner vi oss på toppen av siden og skal ikke ha noen aktive overskrifter
-                if (closestAbove) {
-                    if (
-                        rect.bottom > SCROLL_TOLERANCE_PX &&
-                        rect.top < window.innerHeight - SCROLL_TOLERANCE_PX
-                    ) {
-                        activeIds.push(h.id);
-                    }
+            const clicked = clickedAnchorRef.current;
+            if (clicked) {
+                if (closestAbove?.id === clicked) {
+                    clickedAnchorRef.current = null;
                 }
+            } else {
+                setActiveAnchor(closestAbove ? closestAbove.id : null);
             }
-
-            // Legg til den endelige closestAbove i listen over aktive overskrifter
-            if (closestAbove) {
-                activeIds.push(closestAbove.id);
-            }
-
-            setActiveAnchors(() => activeIds);
         };
 
         window.addEventListener('scroll', checkActiveAnchors, { passive: true });
@@ -153,13 +162,13 @@ export const DynamicNavigation = ({
             window.removeEventListener('resize', handleResize);
             handleResize.cancel();
         };
-    }, [groupedLinks]);
+    }, [groupedLinks, isDesktop]);
 
     // Scroll til aktive overskrifter i innholdsfortegnelsen hvis de ikke er synlige
     useEffect(() => {
-        if (typeof window === 'undefined') return;
+        if (!isDesktop || typeof window === 'undefined') return;
 
-        const targetId = activeAnchors[0];
+        const targetId = activeAnchor;
         if (!targetId || lastScrolledToRef.current === targetId) return;
 
         const container = containerRef.current;
@@ -190,7 +199,44 @@ export const DynamicNavigation = ({
             });
             lastScrolledToRef.current = targetId;
         }
-    }, [activeAnchors, ref]);
+    }, [activeAnchor, isDesktop]);
+
+    // Sikre at vi ikke hopper mellom aktive overskrifter ved automatisk scroll til hash i URL
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const applyHashScroll = () => {
+            const hash = window.location.hash.slice(1);
+            if (!hash) return;
+
+            const isValidHeading = groupedLinks.some(g => g.h2.anchorId === hash || g.h3.some(s => s.anchorId === hash));
+            if (!isValidHeading) return;
+
+            window.clearTimeout(clickedAnchorResetTimerRef.current);
+            clickedAnchorRef.current = hash;
+            setActiveAnchor(hash);
+
+            // Fallback dersom IntersectionObserver ikke trigger slipper vi låsen etter en kort periode slik at aktiv overskrift kan endres igjen
+            clickedAnchorResetTimerRef.current = window.setTimeout(() => {
+                clickedAnchorRef.current = null;
+                clickedAnchorResetTimerRef.current = undefined;
+            }, 1500);
+        };
+
+        // Kjør ved første innlasting for å håndtere eksisterende hash i URL
+        if (window.location.hash) {
+            applyHashScroll();
+        }
+
+        window.addEventListener('popstate', applyHashScroll);
+        window.addEventListener('hashchange', applyHashScroll);
+
+        return () => {
+            window.removeEventListener('popstate', applyHashScroll);
+            window.removeEventListener('hashchange', applyHashScroll);
+            window.clearTimeout(clickedAnchorResetTimerRef.current);
+        };
+    }, [groupedLinks]);
 
     // If no links found, show editor help
     if (links.length === 0) {
@@ -211,9 +257,9 @@ export const DynamicNavigation = ({
             </Heading>
             <ul className={style.list}>
                 {groupedLinks.map(({ h2, h3 }) => {
-                    const isH2Active = activeAnchors.includes(h2.anchorId);
-                    const isChildActive = h3.some((s) => activeAnchors.includes(s.anchorId));
-                    const isExpanded = forceExpandAll || isH2Active || isChildActive;
+                    const isH2Active = activeAnchor === h2.anchorId;
+                    const isChildActive = h3.some((s) => activeAnchor === s.anchorId);
+                    const isExpanded = isH2Active || isChildActive;
                     const submenuId = `${h2.anchorId}-submenu`;
                     return (
                         <li key={h2.anchorId}>
@@ -223,10 +269,7 @@ export const DynamicNavigation = ({
                                 analyticsLinkGroup={'Innhold'}
                                 analyticsComponent={analyticsComponent}
                                 analyticsLabel={h2.linkText}
-                                className={classNames(
-                                    style.link,
-                                    isChildActive && style.childActive
-                                )}
+                                className={style.link}
                                 aria-current={isH2Active ? 'true' : undefined}
                                 aria-expanded={
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
@@ -253,7 +296,7 @@ export const DynamicNavigation = ({
                                                 analyticsLabel={sub.linkText}
                                                 className={style.link}
                                                 aria-current={
-                                                    activeAnchors.includes(sub.anchorId)
+                                                    activeAnchor === sub.anchorId
                                                         ? 'true'
                                                         : undefined
                                                 }
