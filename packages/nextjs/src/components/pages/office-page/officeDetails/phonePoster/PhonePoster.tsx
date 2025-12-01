@@ -39,6 +39,8 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
             ? getOfficeTranslations('phoneToHMS')
             : getOfficeTranslations('phoneToNav');
 
+    const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
+
     return (
         <div className={styles.phonePoster}>
             <Heading level="2" size="small" className={styles.heading}>
@@ -50,8 +52,8 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={publikumskanaler.length > 0}>{phoneInformation}</BodyLong>
-            {officeData.type !== 'ALS' && publikumskanaler.length > 0 && (
+            <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            {visPublikumskanaler && (
                 <>
                     <Heading size="small" level="3">
                         {getOfficeTranslations('alternativeContacts')}
