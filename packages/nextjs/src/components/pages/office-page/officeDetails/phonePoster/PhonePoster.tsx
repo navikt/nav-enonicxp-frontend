@@ -51,7 +51,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                 </LenkeBase>
             </BodyShort>
             <BodyLong spacing={publikumskanaler.length > 0}>{phoneInformation}</BodyLong>
-            {publikumskanaler.length > 0 && (
+            {officeData.type !== 'ALS' && publikumskanaler.length > 0 && (
                 <>
                     <Heading size="small" level="3">
                         {getOfficeTranslations('alternativeContacts')}
