@@ -20,7 +20,7 @@ jobs:
               id: comment-branch
 
             - name: Checkout PR branch
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
             - uses: actions/setup-node@v4
