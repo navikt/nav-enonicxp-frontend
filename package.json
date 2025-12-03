@@ -75,7 +75,7 @@
         "@navikt/nav-dekoratoren-moduler": "3.4.0",
         "@next/bundle-analyzer": "15.5.4",
         "dotenv": "17.2.3",
-        "express": "5.1.0",
+        "express": "5.2.0",
         "express-prom-bundle": "8.0.0",
         "lru-cache": "11.2.2",
         "pino": "9.13.0",
