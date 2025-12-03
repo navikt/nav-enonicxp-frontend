@@ -106,5 +106,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         chatbot: !chatbotDisabled,
         utilsBackground: hasWhiteHeader(content) ? 'white' : 'gray',
         simple: useSimpleDecorator,
+        redactPaths: ['/testsider/:redact:', '/testsider/minoversikt/:redact:/liste'],
     };
 };
