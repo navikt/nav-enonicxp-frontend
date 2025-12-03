@@ -3,6 +3,7 @@ import { SectionWithHeaderProps } from 'types/component-props/layouts/section-wi
 import { SectionNavigation } from 'components/_common/pageNavigationMenu/SectionNavigation/SectionNavigation';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { LayoutType } from 'types/component-props/layouts';
 import Region from 'components/layouts/Region';
 import { Heading } from 'components/_common/headers/Heading';
 import { XpImage } from 'components/_common/image/XpImage';
@@ -46,6 +47,10 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const isTemplateV2 = templateV2.has(pageProps.type);
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
+
+    // Skjul SectionNavigation når siden har DynamicNavigation
+    const pageLayout = (pageProps as any)?.page?.descriptor;
+    const isInnholdssideMedMeny = pageLayout === LayoutType.InnholdssideMedMeny;
 
     const iconImgProps = icon?.icon;
 
@@ -107,7 +112,11 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 </Heading>
             )}
             {showSubsectionNavigation && (
-                <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
+                <SectionNavigation
+                    introRegion={regions.intro}
+                    contentRegion={regions.content}
+                    className={isInnholdssideMedMeny ? style.hideOnDesktop : undefined}
+                />
             )}
             {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}

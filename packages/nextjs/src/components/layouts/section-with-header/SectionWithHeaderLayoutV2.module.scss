@@ -49,3 +49,9 @@
     outline: 1px gray dashed;
     outline-offset: 15px;
 }
+
+.hideOnDesktop {
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
+}

@@ -60,7 +60,8 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                             <PageNavigationMenu
                                 anchorLinks={anchorLinks}
                                 title={menuTitle}
-                                isChapterNavigation={true}
+                                isChapterNavigation
+                                className={styles.mobileOnly}
                             />
                             <DynamicNavigation
                                 className={styles.pageNavigationMenu}
