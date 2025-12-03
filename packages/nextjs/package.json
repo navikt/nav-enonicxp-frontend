@@ -35,7 +35,7 @@
         "@navikt/nav-office-reception-info": "1.4.0",
         "@reduxjs/toolkit": "2.9.0",
         "csp-header": "6.1.0",
-        "dayjs": "1.11.18",
+        "dayjs": "1.11.19",
         "fuse.js": "7.1.0",
         "html-react-parser": "5.2.6",
         "js-cookie": "3.0.5",
