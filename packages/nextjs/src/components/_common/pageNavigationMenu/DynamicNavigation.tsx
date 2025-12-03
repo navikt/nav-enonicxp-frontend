@@ -14,6 +14,8 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 
 import style from './DynamicNavigation.module.scss';
 
+const SCROLL_TOLERANCE_PX = 75;
+
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
     anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
 
@@ -25,12 +27,7 @@ type Props = {
     onLinkClick?: () => void;
 };
 
-export const DynamicNavigation = ({
-    anchorLinks = [],
-    pageProps,
-    title,
-    className,
-}: Props) => {
+export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, className }: Props) => {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
@@ -110,7 +107,6 @@ export const DynamicNavigation = ({
         return () => mediaQuery.removeEventListener('change', handleChange);
     }, []);
 
-
     // Overvåk scroll-posisjon for å aktivere/deaktivere overskrifter i menyen
     useEffect(() => {
         if (!isDesktop || typeof window === 'undefined') return;
@@ -122,44 +118,72 @@ export const DynamicNavigation = ({
             .filter((item) => !!item.el);
         if (headingItems.length === 0) return;
 
-        const checkActiveAnchors = () => {
-            // Toleransen for å aktivere overskrifter når den er innenfor angitt verdi fra toppen eller bunnen
-            const DEFAULT_SCROLL_TOLERANCE_PX = 75;
-            const MAX_SCREEN_RATIO = 0.1;
-            const SCROLL_TOLERANCE_PX = Math.min(
-                DEFAULT_SCROLL_TOLERANCE_PX,
-                Math.round(window.innerHeight * MAX_SCREEN_RATIO)
+        const visibleHeadings: Set<string> = new Set();
+        let currentDocHeight = Math.floor(document.body.clientHeight);
+        let currentViewportHeight = window.innerHeight;
+
+        // Observer H2- og H3-elementer på siden og marker den nærmeste synlige som aktiv
+        const createObserver = (documentHeight: number, viewportHeight: number) =>
+            new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        const target = entry.target as HTMLElement;
+                        const id = target.id;
+                        if (!id) return;
+                        if (entry.isIntersecting) {
+                            visibleHeadings.add(id);
+                        } else {
+                            visibleHeadings.delete(id);
+                        }
+                    });
+
+                    // Finn aktiv overskrift: iterer i hierarkisk rekkefølge og ta den siste som er synlig
+                    let nextActive: string | null = null;
+                    for (const item of headingItems) {
+                        if (visibleHeadings.has(item.id)) nextActive = item.id;
+                    }
+
+                    // Lås aktiv overskrift frem til den er synlig dersom vi scroller mot et klikket mål - hvis ikke, oppdater aktiv overskrift ved scroll
+                    const clicked = clickedAnchorRef.current;
+                    if (clicked) {
+                        if (nextActive === clicked) {
+                            clickedAnchorRef.current = null;
+                            setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
+                        }
+                    } else {
+                        setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
+                    }
+                },
+                {
+                    // Bruk documentHeight som øvre rootMargin slik at overskrifter over viewport fortsatt regnes som "synlige"
+                    // og en negativ nedre rootMargin for å foretrekke den nærmeste overskriften mot toppen (75px fra toppen)
+                    rootMargin: `${documentHeight}px 0px -${viewportHeight - SCROLL_TOLERANCE_PX}px 0px`,
+                    threshold: 0,
+                }
             );
 
-            let closestAbove: { id: string; rect: DOMRect } | undefined;
-            for (const h of headingItems) {
-                const rect = h.el.getBoundingClientRect();
-                if (rect.top < SCROLL_TOLERANCE_PX) {
-                    if (!closestAbove || rect.top > closestAbove.rect.top) {
-                        closestAbove = { id: h.id, rect };
-                    }
-                }
-            }
+        let observer = createObserver(currentDocHeight, currentViewportHeight);
+        headingItems.forEach((item) => observer.observe(item.el));
 
-            const clicked = clickedAnchorRef.current;
-            if (clicked) {
-                if (closestAbove?.id === clicked) {
-                    clickedAnchorRef.current = null;
-                }
-            } else {
-                setActiveAnchor(closestAbove ? closestAbove.id : null);
-            }
-        };
+        // Erstatter gjeldende IntersectionObserver ved endret dokumenthøyde eller viewport for å sette korrekt rootMargin
+        const onResize = debounce(() => {
+            const newDocHeight = Math.floor(document.body.clientHeight);
+            const newViewportHeight = Math.floor(window.innerHeight);
+            if (newDocHeight === currentDocHeight && newViewportHeight === currentViewportHeight) return;
 
-        window.addEventListener('scroll', checkActiveAnchors, { passive: true });
+            currentDocHeight = newDocHeight;
+            currentViewportHeight = newViewportHeight;
+            observer.disconnect();
+            observer = createObserver(newDocHeight, newViewportHeight);
+            headingItems.forEach((item) => observer.observe(item.el));
+        }, 150);
 
-        const handleResize = debounce(() => checkActiveAnchors(), 120);
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', onResize);
 
         return () => {
-            window.removeEventListener('scroll', checkActiveAnchors);
-            window.removeEventListener('resize', handleResize);
-            handleResize.cancel();
+            window.removeEventListener('resize', onResize);
+            onResize.cancel();
+            observer.disconnect();
         };
     }, [groupedLinks, isDesktop]);
 
@@ -208,7 +232,9 @@ export const DynamicNavigation = ({
             const hash = window.location.hash.slice(1);
             if (!hash) return;
 
-            const isValidHeading = groupedLinks.some(g => g.h2.anchorId === hash || g.h3.some(s => s.anchorId === hash));
+            const isValidHeading = groupedLinks.some(
+                (g) => g.h2.anchorId === hash || g.h3.some((s) => s.anchorId === hash)
+            );
             if (!isValidHeading) return;
 
             window.clearTimeout(clickedAnchorResetTimerRef.current);
@@ -309,7 +335,10 @@ export const DynamicNavigation = ({
                                                     aria-hidden
                                                     className={style.icon}
                                                 >
-                                                    <path stroke="currentColor" d="M17 15h-6l-1-1V8" />
+                                                    <path
+                                                        stroke="currentColor"
+                                                        d="M17 15h-6l-1-1V8"
+                                                    />
                                                 </svg>
                                                 <BodyShort
                                                     as="span"

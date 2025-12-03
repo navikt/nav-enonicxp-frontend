@@ -3,7 +3,7 @@
 
     :global(.page__page-with-side-menus) & {
         // Matcher SCROLL_TOLERANCE_PX (minus 1px) i DynamicNavigation
-        scroll-margin-top: calc(min(75px, 10vh) - 1px);
+        scroll-margin-top: 74px;
     }
 }
 
