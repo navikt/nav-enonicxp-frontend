@@ -1,20 +1,11 @@
 @use 'common' as common;
 
 .pageNavigationMenu {
-    margin: var(--a-spacing-6) 0 var(--a-spacing-14);
-    padding: var(--a-spacing-4) var(--a-spacing-5);
-    border-radius: var(--a-border-radius-large);
-    background-color: var(--brand-beige);
+    margin-bottom: var(--a-spacing-7);
 
     &.chapterNavigation {
-        border-top: 5px solid var(--brand-purple-deep);
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-        margin: var(--a-spacing-6) 0 0 0;
-    }
-
-    .heading {
-        margin-bottom: var(--a-spacing-4);
+        margin-top: var(--a-spacing-7);
+        margin-bottom: 0;
     }
 
     .list {
@@ -25,8 +16,11 @@
     }
 
     .icon {
-        width: 16px;
-        height: 16px;
+        color: var(--a-border-default);
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        margin-left: calc(var(--a-spacing-2) * -1);
     }
 
     .link {
@@ -34,12 +28,12 @@
         align-items: center;
         gap: var(--a-spacing-1-alt);
         text-underline-offset: 2.5px;
-        text-decoration-line: none;
-        text-decoration-thickness: 2px;
-        color: var(--default-action-color);
+        text-decoration-thickness: 1px;
+        text-decoration-color: var(--a-border-subtle);
+        color: var(--a-text-action);
 
         &:hover {
-            text-decoration-line: underline;
+            text-decoration-color: currentColor;
         }
     }
 

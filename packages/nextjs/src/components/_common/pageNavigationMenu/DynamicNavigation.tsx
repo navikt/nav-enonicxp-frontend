@@ -1,7 +1,6 @@
 import React, { useEffect, useId, useMemo, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
-import { BodyShort, Heading, Button } from '@navikt/ds-react';
-import { ChevronDownUpIcon, ChevronUpDownIcon, FileTextIcon } from '@navikt/aksel-icons';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
@@ -252,7 +251,6 @@ export const DynamicNavigation = ({
             className={classNames(style.pageNavigationMenu, className)}
         >
             <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
-                <FileTextIcon aria-hidden={true} className={style.headingIcon} />
                 {title}
             </Heading>
             <ul className={style.list}>
@@ -276,7 +274,7 @@ export const DynamicNavigation = ({
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
                             >
-                                <BodyShort as="span" size="small" className={style.linkText}>
+                                <BodyShort as="span" size="large" className={style.linkText}>
                                     {h2.linkText}
                                 </BodyShort>
                             </LenkeBase>
@@ -302,9 +300,20 @@ export const DynamicNavigation = ({
                                                 }
                                                 tabIndex={isExpanded ? 0 : -1}
                                             >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    aria-hidden
+                                                    className={style.icon}
+                                                >
+                                                    <path stroke="currentColor" d="M17 15h-6l-1-1V8" />
+                                                </svg>
                                                 <BodyShort
                                                     as="span"
-                                                    size="small"
+                                                    size="large"
                                                     className={style.linkText}
                                                 >
                                                     {sub.linkText}
