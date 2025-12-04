@@ -24,7 +24,6 @@ type Props = {
     pageProps: ContentProps;
     title: string;
     className?: string;
-    onLinkClick?: () => void;
 };
 
 export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, className }: Props) => {
