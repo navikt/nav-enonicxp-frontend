@@ -44,7 +44,7 @@ export const OversiktFilters = (props: Props) => {
                 {searchLabel()}
             </Heading>
             {showAreaFilter && <OversiktOmradeFilter items={filterableItems} />}
-            {showTextInputFilter && <OversiktTextFilter hideLabel />}
+            {showTextInputFilter && <OversiktTextFilter />}
         </>
     );
 };
