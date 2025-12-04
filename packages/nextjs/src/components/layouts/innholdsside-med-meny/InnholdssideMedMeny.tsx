@@ -53,7 +53,8 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
         pageProps.type === ContentType.ProductPage ||
         pageProps.type === ContentType.GuidePage ||
         pageProps.type === ContentType.ThemedArticlePage ||
-        pageProps.type === ContentType.GenericPage;
+        pageProps.type === ContentType.GenericPage ||
+        pageProps.type === ContentType.SituationPage;
 
     return (
         <>
@@ -79,20 +80,22 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                             isChapterNavigation={true}
                         />
                     )}
-
-                    {showInternalNav && !legacyNav && (
-                        <DynamicNavigation
-                            ref={dynamicNavigationRef}
-                            className={styles.pageNavigationMenu}
-                            anchorLinks={anchorLinks}
-                            pageProps={pageProps}
-                            title={menuTitle}
-                            canExpandAll={canExpandAll}
-                            forceExpandAll={forceExpandAll}
-                            onToggleExpandAll={handleToggleExpandAll}
-                        />
-                    )}
-
+                    {/* {showInternalNav && !legacyNav && ( */}
+                    <DynamicNavigation
+                        ref={dynamicNavigationRef}
+                        className={styles.pageNavigationMenu}
+                        // anchorLinks={anchorLinks}
+                        anchorLinks={[
+                            { anchorId: 'test', linkText: 'test' },
+                            { anchorId: 'test2', linkText: 'test2' },
+                        ]}
+                        pageProps={pageProps}
+                        title={menuTitle}
+                        canExpandAll={canExpandAll}
+                        forceExpandAll={forceExpandAll}
+                        onToggleExpandAll={handleToggleExpandAll}
+                    />
+                    {/* )} */}
                     <Region pageProps={pageProps} regionProps={pageContent} />
                     <PageUpdatedInfo
                         datetime={pageProps.modifiedTime}
