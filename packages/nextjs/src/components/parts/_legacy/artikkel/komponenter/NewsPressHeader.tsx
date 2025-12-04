@@ -29,7 +29,6 @@ export const NewsPressHeader = ({ language, title, type }: NewsPressHeaderProps)
             <Heading level={'1'} size={'xlarge'}>
                 {title}
             </Heading>
-            <div className={styles.newsPressLine} />
         </section>
     );
 };
