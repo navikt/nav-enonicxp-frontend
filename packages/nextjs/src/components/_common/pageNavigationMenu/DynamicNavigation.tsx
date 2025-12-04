@@ -147,10 +147,10 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                     if (clicked) {
                         if (nextActive === clicked) {
                             clickedAnchorRef.current = null;
-                            setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
+                            setActiveAnchor(nextActive);
                         }
                     } else {
-                        setActiveAnchor((prev) => (prev !== nextActive ? nextActive : prev));
+                        setActiveAnchor(nextActive);
                     }
                 },
                 {
