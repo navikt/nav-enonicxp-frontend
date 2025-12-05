@@ -40,10 +40,13 @@
 }
 
 .icon {
+    align-self: baseline;
     color: var(--a-border-default);
     width: 24px;
     height: 24px;
     flex-shrink: 0;
+    position: relative;
+    top: 1px;
     margin-left: calc(var(--a-spacing-2) * -1);
 }
 
@@ -65,7 +68,7 @@
     &[aria-current='true'] {
         color: inherit;
         text-decoration: none;
-        padding-right: calc(var(--a-spacing-3) - 0.6ch);
+        padding-right: calc(var(--a-spacing-3) - 0.9ch);
 
         .linkText {
             font-weight: var(--a-font-weight-bold);

@@ -299,7 +299,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
                             >
-                                <BodyShort as="span" size="large" className={style.linkText}>
+                                <BodyShort as="span" className={style.linkText}>
                                     {h2.linkText}
                                 </BodyShort>
                             </LenkeBase>
@@ -339,11 +339,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                                         d="M17 15h-6l-1-1V8"
                                                     />
                                                 </svg>
-                                                <BodyShort
-                                                    as="span"
-                                                    size="large"
-                                                    className={style.linkText}
-                                                >
+                                                <BodyShort as="span" className={style.linkText}>
                                                     {sub.linkText}
                                                 </BodyShort>
                                             </LenkeBase>
