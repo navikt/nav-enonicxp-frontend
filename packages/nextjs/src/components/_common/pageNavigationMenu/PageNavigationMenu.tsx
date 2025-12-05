@@ -60,7 +60,7 @@ export const PageNavigationMenu = ({
                                 height="24"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                aria-hidden
+                                aria-hidden="true"
                                 className={style.icon}
                             >
                                 <path stroke="currentColor" d="M17 15h-6l-1-1V8" />

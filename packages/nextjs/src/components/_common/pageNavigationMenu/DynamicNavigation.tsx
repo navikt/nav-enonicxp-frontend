@@ -331,7 +331,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                                     height="24"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
-                                                    aria-hidden
+                                                    aria-hidden="true"
                                                     className={style.icon}
                                                 >
                                                     <path
