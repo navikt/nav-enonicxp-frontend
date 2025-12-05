@@ -14,6 +14,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 
 import style from './DynamicNavigation.module.scss';
 
+// Scroll-toleranse i piksler for å bestemme når en overskrift anses som "øverst" i visningsområdet
 const SCROLL_TOLERANCE_PX = 75;
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
