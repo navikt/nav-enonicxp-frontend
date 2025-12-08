@@ -15,6 +15,8 @@ Follow existing patterns, keep changes minimal, and verify before claiming somet
 - **Verify fixes**: After fixing errors, use get_errors tool to confirm they're resolved before claiming success.
 - **Iterate until valid**: Keep fixing and verifying until all errors are resolved, tests pass, and TypeScript compiles. Don't stop at the first attempt.
 - **Documentation**: Never create new documentation files. Keep inline comments minimal - well-named variables and clear logic are preferred over comments.
+- **Dependencies**: Don't introduce new dependencies without justification.
+- **Code style**: Write self-documenting code with descriptive names and small, focused functions.
 - When performing a code review, respond in Norwegian.
 
 ## Repository Overview
@@ -53,7 +55,7 @@ This is a **Next.js frontend** for nav.no's public pages, serving as a headless 
 
 Both use `[...pathRouter].tsx` - the `IS_FAILOVER_INSTANCE` env var (set at build time) determines the rendering strategy.
 
-**Three-Tier Cache Strategy**:
+**Cache Strategy**:
 
 1. Local LRU cache - fastest
 2. Redis/Valkey cache - shared across instances
@@ -129,33 +131,3 @@ if (!isValidType(content.type)) return null;
 ```
 
 - **Content types**: Always use `ContentProps` union type - it provides type narrowing based on `type` field
-
-
-
-
-
-----
-
-
-
-
-Clean Code Standards
-No Comments: Write self-documenting code instead of adding comments
-Descriptive Names: Use clear, specific names for variables, functions, and components
-Extract Functions: Break complex logic into well-named functions
-Small Functions: Keep functions focused and easy to understand at a glance
-
---
-
-# Copilot Behavior
-
-Do:
-- Be direct and concise in your response
-- Write code for clarity, not cleverness
-- Follow existing code patterns in the project
-
-Don't:
-- Add code comments unless explicitly asked
-- Create documentation files unless explicitly asked
-- Use verbose or overly polite language
-- Introduce new dependencies without justification
