@@ -8,13 +8,13 @@ export const useCheckAndOpenTrekkspillPanel = (
     expandAll: () => void
 ) => {
     const checkAndOpenPanels = useCallback(() => {
-        const targetId = window.location.hash.slice(1);
-        if (!targetId) return;
-
         if (window.location.search.includes('expandall=true')) {
             expandAll();
             return;
         }
+
+        const targetId = window.location.hash.slice(1);
+        if (!targetId) return;
 
         const targetElement = document.getElementById(targetId);
         const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
