@@ -26,7 +26,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
         <div className={styles.wide}>
             <div className={classNames(styles.officeDetails, styles.pageContent)}>
                 <Heading level="2" size="large">
-                    {officeData.type == 'ALS'
+                    {officeData.type === 'ALS'
                         ? getOfficeTranslations('contactUs')
                         : getOfficeTranslations('youFindUsHere')}
                 </Heading>
@@ -38,7 +38,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     />
                 )}
                 <PhonePoster officeData={officeData} />
-                {officeData.type == 'ALS' && <Kontaktskjema />}
+                {officeData.type === 'ALS' && <Kontaktskjema />}
                 <OfficeInformation officeData={officeData} />
             </div>
         </div>
