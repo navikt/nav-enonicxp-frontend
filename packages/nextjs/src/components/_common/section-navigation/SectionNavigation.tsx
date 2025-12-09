@@ -66,7 +66,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         <PageNavigationMenu
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
-            title={getLabel('sectionNavigation')}
+            ariaLabel={getLabel('sectionNavigation')}
         />
     );
 };

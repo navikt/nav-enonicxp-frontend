@@ -14,7 +14,7 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks?: AnchorLink[];
     analyticsComponent?: string;
-    title: string;
+    ariaLabel: string;
     isChapterNavigation?: boolean;
     className?: string;
 };
@@ -22,7 +22,7 @@ type Props = {
 export const PageNavigationMenu = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
-    title,
+    ariaLabel,
     isChapterNavigation,
     className,
 }: Props) => {
@@ -36,7 +36,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
-            aria-label={title}
+            aria-label={ariaLabel}
             className={classNames(
                 style.pageNavigationMenu,
                 isChapterNavigation && style.chapterNavigation,

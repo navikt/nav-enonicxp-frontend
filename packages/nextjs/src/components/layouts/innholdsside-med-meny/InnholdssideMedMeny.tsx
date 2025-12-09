@@ -59,7 +59,7 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                         <>
                             <PageNavigationMenu
                                 anchorLinks={anchorLinks}
-                                title={menuTitle}
+                                ariaLabel={menuTitle}
                                 isChapterNavigation
                                 className={styles.mobileOnly}
                             />
