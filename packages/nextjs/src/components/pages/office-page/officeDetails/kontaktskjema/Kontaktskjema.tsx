@@ -10,7 +10,7 @@ export const Kontaktskjema = () => {
     const getOfficeTranslations = translator('office', language);
 
     const skrivTilOssLenke = (
-        <LenkeInline href="https://www.nav.no/skriv-til-oss">
+        <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/">
             {getOfficeTranslations('skriveTilOss')}
         </LenkeInline>
     );
