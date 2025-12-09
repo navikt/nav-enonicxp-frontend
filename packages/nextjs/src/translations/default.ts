@@ -281,6 +281,7 @@ export const translationsBundleNb = {
     },
     office: {
         youFindUsHere: 'Du finner oss her',
+        contactUs: 'Kontakt oss',
         officeInformation: 'Kontorinformasjon',
         location: 'Beliggenhet',
         postalAddress: 'Postadresse',
@@ -288,11 +289,16 @@ export const translationsBundleNb = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
+        phoneTime: 'Telefontid hverdager kl. 9–15.',
         phoneInformation:
-            'Telefontid hverdager kl. 9–15. Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
+            'Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysninger:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        taglineALS: 'Arbeidslivssenter',
+        skriveTilOss: 'skrive til oss',
+        kontaktskjemaALSTekst:
+            'hvis du ønsker hjelp til å rekruttere eller inkludere arbeidstakere og forebygge sykefravær.',
     },
     dateTime: {
         weekDayNames: {

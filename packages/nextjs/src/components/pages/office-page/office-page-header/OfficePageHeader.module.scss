@@ -11,28 +11,16 @@
     padding-bottom: var(--a-spacing-4);
 
     @include common.full-width-mixin();
-
-    @media #{common.$mq-screen-mobile} {
-        .illustration {
-            display: none;
-        }
-    }
 }
 
 .heading {
     text-align: left;
-}
-
-.illustration {
-    height: var(--a-spacing-20);
-    margin-right: var(--a-spacing-8);
-    pointer-events: none;
-    width: var(--a-spacing-20);
+    margin-bottom: var(--a-spacing-2);
 }
 
 .content {
     background-color: var(--a-white);
-    max-width: 56.25rem;
+    max-width: common.$sectionMaxWidth;
     text-align: center;
     width: 100%;
 }
@@ -55,10 +43,6 @@
     white-space: nowrap;
     display: flex;
     text-transform: uppercase;
-
-    @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-2);
-    }
 }
 
 .branchNamesLabel {
@@ -80,9 +64,4 @@
             display: none;
         }
     }
-}
-
-.divider,
-.modifiedLabel {
-    color: var(--a-gray-800);
 }

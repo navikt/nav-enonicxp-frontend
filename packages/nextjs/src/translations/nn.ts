@@ -260,11 +260,15 @@ export const translationsBundleNn: PartialTranslations = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
+        phoneTime: 'Telefontid kvardagar kl 9–15.',
         phoneInformation:
-            'Telefontid kvardagar kl 9–15. Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
+            'Nav kontaktsenter kan hjelpe deg, eller sette deg i kontakt med Nav-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        skriveTilOss: 'skriva til oss',
+        kontaktskjemaALSTekst:
+            'om du ønskjer hjelp til å rekruttera eller inkludera arbeidstakarar og førebyggja sjukefråvær.',
     },
     dateTime: {
         weekDayNames: {

@@ -277,8 +277,8 @@ export const translationsBundleEn: PartialTranslations = {
         officeNumber: 'Office number',
         phoneToNav: 'Nav phone number is',
         phoneToHMS: 'Phone number to hjelpemiddelsentralen is',
-        phoneInformation:
-            'Phone hours, weekdays at 9-15. Nav call center will assist you or connect you with your Nav office.',
+        phoneTime: 'Phone hours, weekdays at 9-15.',
+        phoneInformation: 'Nav call center will assist you or connect you with your Nav office.',
         alternativeContacts: 'Other contact options:',
         taglineOffice: 'Nav office',
         taglineHMS: 'Assistive technology centre',
