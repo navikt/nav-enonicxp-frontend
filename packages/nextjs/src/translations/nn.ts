@@ -266,9 +266,9 @@ export const translationsBundleNn: PartialTranslations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
-        skriveTilOss: 'skriva til oss',
+        skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
-            'om du ønskjer hjelp til å rekruttera eller inkludera arbeidstakarar og førebyggja sjukefråvær.',
+            'om du ønskjer hjelp til å rekruttere eller inkludere arbeidstakarar og førebyggje sjukefråvær.',
     },
     dateTime: {
         weekDayNames: {
