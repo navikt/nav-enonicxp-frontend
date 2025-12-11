@@ -40,6 +40,7 @@ export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Pr
     const shouldWarn = pageContentFragmentUtenforInnholdsseksjon({
         path: componentProps.path,
         type: 'fragment',
+        fragment: componentProps.fragment,
     });
 
     const [redBorderStyling, setRedBorderStyling] = useState(false);
