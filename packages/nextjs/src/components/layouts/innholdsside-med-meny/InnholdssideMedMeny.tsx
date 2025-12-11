@@ -4,7 +4,6 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { DynamicNavigation } from 'components/_common/pageNavigationMenu/DynamicNavigation';
-import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
@@ -53,14 +52,11 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                     {!isNewLayoutPage && (
                         <Region pageProps={pageProps} regionProps={topPageContent} />
                     )}
-                    {isNewLayoutPage && <AktuelleMalgrupper />}
-
                     {showInternalNav && (
                         <>
                             <PageNavigationMenu
                                 anchorLinks={anchorLinks}
                                 ariaLabel={menuTitle}
-                                isChapterNavigation
                                 className={styles.mobileOnly}
                             />
                             <DynamicNavigation

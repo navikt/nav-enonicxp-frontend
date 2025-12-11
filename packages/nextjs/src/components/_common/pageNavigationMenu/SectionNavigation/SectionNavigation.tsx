@@ -74,6 +74,7 @@ export const SectionNavigation = ({
             analyticsComponent="Hopp til underkapittel"
             ariaLabel={ariaLabel}
             className={className}
+            isChapterNavigation={true}
         />
     );
 };
