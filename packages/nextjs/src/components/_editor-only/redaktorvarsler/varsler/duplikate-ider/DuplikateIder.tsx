@@ -6,17 +6,6 @@ const erElementISvg = (element: HTMLElement): boolean => {
     return Boolean(element.closest('svg'));
 };
 
-const erElementIFragment = (element: HTMLElement): boolean => {
-    let currentElement: HTMLElement | null = element;
-    while (currentElement) {
-        if (currentElement.getAttribute('data-portal-component-type') === 'fragment') {
-            return true;
-        }
-        currentElement = currentElement.parentElement;
-    }
-    return false;
-};
-
 const harDuplikateIder = (element1: HTMLElement, index1: number, array: HTMLElement[]): boolean => {
     return array.some((element2, index2) => element1.id === element2.id && index1 !== index2);
 };
@@ -26,10 +15,7 @@ const finnElementerMedDuplikateIder = () => {
 
     return elementsWithIds.filter((element, index) => {
         // Ikke inkluder svg-elementer i denne advarselen, da dette er noe redaktørene vanligvis ikke håndterer.
-        // Fragmenter er også eksludert fordi det kan forekomme to fragmenter på samme side.
-        if (erElementISvg(element) || erElementIFragment(element)) {
-            return false;
-        }
+        if (erElementISvg(element)) return false;
 
         return harDuplikateIder(element, index, elementsWithIds);
     });
