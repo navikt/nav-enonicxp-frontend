@@ -14,7 +14,7 @@ type Props = {
     className?: string;
 };
 
-export const KortUrlWarning = ({ content, className }: Props) => {
+export const KortUrlVarsel = ({ content, className }: Props) => {
     const maalgruppe = content.data?.audience?._selected;
     const path = content.data?.customPath;
     if (

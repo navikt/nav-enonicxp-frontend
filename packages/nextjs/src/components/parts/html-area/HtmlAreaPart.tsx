@@ -8,11 +8,11 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
+import { htmlAreaInneholderDiv } from 'components/_editor-only/redaktorvarsler/varsler/html-area-div/htmlAreaInneholderDiv';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
-import { isGodkjentSide } from 'components/_editor-only/global-warnings/Redaktorvarsler';
+import { erGodkjentSide } from 'components/_editor-only/redaktorvarsler/erGodkjentSide';
 import { usePageContentProps } from 'store/pageContext';
-import { pageContentHtmlAreaUtenforInnholdsseksjon } from 'components/_editor-only/global-warnings/warnings/html-area-utenfor-innholdsseksjon/pageContentHtmlAreaUtenforInnholdsseksjon';
+import { pageContentFormatertInnholdUtenforInnholdsseksjon } from 'components/_editor-only/redaktorvarsler/varsler/formatert-innhold-utenfor-innholdsseksjon/pageContentFormatertInnholdUtenforInnholdsseksjon';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {
@@ -27,14 +27,14 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
     const shouldWarn =
-        pageContentHtmlAreaUtenforInnholdsseksjon({ path }) ||
-        htmlAreaContainsDiv({ descriptor, config });
+        pageContentFormatertInnholdUtenforInnholdsseksjon({ path }) ||
+        htmlAreaInneholderDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
     const isEditorView = useIsEditorView();
     const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView && isGodkjentSide(type)) {
+        if (shouldWarn && isEditorView && erGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
     }, [shouldWarn, path, descriptor, config, isEditorView, type]);
