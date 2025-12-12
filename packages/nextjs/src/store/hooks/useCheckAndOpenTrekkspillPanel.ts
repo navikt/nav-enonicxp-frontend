@@ -20,21 +20,18 @@ export const useCheckAndOpenTrekkspillPanel = (
             return;
         }
 
-        if (targetId) {
-            const el = document.getElementById(targetId);
-            const idx = refs.findIndex((r) => r.current?.contains(el));
-            if (idx !== -1) toOpen.add(idx);
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
-        }
-
         refs.forEach((r, i) => {
             if (r.current?.querySelector('.DuplicateIdsVarsel_warning')) {
                 toOpen.add(i);
             }
         });
 
-        if (toOpen.size !== openPanels.length) {
-            setOpenPanels([...toOpen]);
+        const toOpenArray = Array.from(toOpen);
+        const setsAreEqual =
+            toOpenArray.length === openPanels.length &&
+            toOpenArray.every((value) => openPanels.includes(value));
+        if (!setsAreEqual) {
+            setOpenPanels(toOpenArray);
         }
 
         if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
