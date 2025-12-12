@@ -8,6 +8,11 @@ import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innho
 import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
 
 export const harRedaktorfeil = (content: ContentProps): boolean => {
+    const isEditorView = content.editorView === 'edit' || content.editorView === 'preview';
+
+    if (!isEditorView) {
+        return false;
+    }
     return (
         KortUrlVarsel({ content }) !== null ||
         DuplikateIder({}) !== null ||
