@@ -10,6 +10,8 @@ export const useCheckAndOpenTrekkspillPanel = (
     const checkAndOpenTrekkspillPanels = useCallback(() => {
         const targetId = window.location.hash.slice(1);
         const toOpen = new Set(openPanels);
+        const targetElement = document.getElementById(targetId);
+        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
 
         if (!targetId) return;
 
@@ -22,6 +24,7 @@ export const useCheckAndOpenTrekkspillPanel = (
             const el = document.getElementById(targetId);
             const idx = refs.findIndex((r) => r.current?.contains(el));
             if (idx !== -1) toOpen.add(idx);
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
 
         refs.forEach((r, i) => {
@@ -34,7 +37,8 @@ export const useCheckAndOpenTrekkspillPanel = (
             setOpenPanels([...toOpen]);
         }
 
-        if (targetId) {
+        if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
+            setOpenPanels([...openPanels, panelIndex]);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
     }, [openPanels, refs, setOpenPanels, expandAll]);
