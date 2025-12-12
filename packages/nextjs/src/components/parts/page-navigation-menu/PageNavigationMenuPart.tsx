@@ -28,8 +28,7 @@ export const PageNavigationMenuPart = ({
     return (
         <PageNavigationMenu
             anchorLinks={config.anchorLinks}
-            title={getLabel('pageNavigationMenu')}
-            isChapterNavigation
+            ariaLabel={getLabel('pageNavigationMenu')}
         />
     );
 };

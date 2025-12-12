@@ -355,6 +355,6 @@ export const translationsBundleEn: PartialTranslations = {
     },
     internalNavigation: {
         pageNavigationMenu: 'Contents on this page',
-        sectionNavigation: 'In this chapter',
+        sectionNavigation: 'In chapter',
     },
 };

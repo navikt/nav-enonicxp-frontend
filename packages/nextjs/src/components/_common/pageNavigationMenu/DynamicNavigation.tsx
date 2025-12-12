@@ -11,6 +11,7 @@ import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituati
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 
 import style from './DynamicNavigation.module.scss';
 
@@ -168,7 +169,8 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
         const onResize = debounce(() => {
             const newDocHeight = Math.floor(document.body.clientHeight);
             const newViewportHeight = Math.floor(window.innerHeight);
-            if (newDocHeight === currentDocHeight && newViewportHeight === currentViewportHeight) return;
+            if (newDocHeight === currentDocHeight && newViewportHeight === currentViewportHeight)
+                return;
 
             currentDocHeight = newDocHeight;
             currentViewportHeight = newViewportHeight;
@@ -351,6 +353,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                     );
                 })}
             </ul>
+            <AktuelleMalgrupper />
         </nav>
     );
 };

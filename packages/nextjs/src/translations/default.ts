@@ -375,7 +375,7 @@ export const translationsBundleNb = {
     },
     internalNavigation: {
         pageNavigationMenu: 'Innhold på denne siden',
-        sectionNavigation: 'I dette kapittelet',
+        sectionNavigation: 'I kapittel',
     },
 };
 

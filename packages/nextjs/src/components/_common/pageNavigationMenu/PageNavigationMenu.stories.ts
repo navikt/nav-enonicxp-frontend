@@ -16,14 +16,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
     args: {
-        title: 'Innhold på siden',
+        ariaLabel: 'Innhold på siden',
         isChapterNavigation: true,
     },
 };
 
 export const Secondary: Story = {
     args: {
-        title: 'I dette kapittelet',
+        ariaLabel: 'I kapittel',
         isChapterNavigation: false,
     },
 };
