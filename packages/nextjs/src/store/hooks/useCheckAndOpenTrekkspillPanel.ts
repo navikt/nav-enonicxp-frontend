@@ -12,8 +12,6 @@ export const useCheckAndOpenTrekkspillPanel = (
         const toOpen = new Set(openPanels);
         const targetElement = document.getElementById(targetId);
         const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
-        const el = document.getElementById(targetId);
-        const idx = refs.findIndex((r) => r.current?.contains(el));
 
         if (!targetId) return;
 
@@ -22,8 +20,8 @@ export const useCheckAndOpenTrekkspillPanel = (
             return;
         }
 
-        if (idx !== -1) {
-            toOpen.add(idx);
+        if (panelIndex !== -1) {
+            toOpen.add(panelIndex);
         }
 
         setTimeout(() => smoothScrollToTarget(targetId), 500);
