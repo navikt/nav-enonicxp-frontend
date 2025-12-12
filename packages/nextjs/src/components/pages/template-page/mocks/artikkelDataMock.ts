@@ -5,5 +5,4 @@ export const artikkelDataMock: ArtikkelData = {
     text: { processedHtml: '', macros: [] },
     hasTableOfContents: 'none',
     fact: { processedHtml: '', macros: [] },
-    social: [],
 };

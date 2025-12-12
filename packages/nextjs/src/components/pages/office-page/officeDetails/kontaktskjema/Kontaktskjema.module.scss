@@ -1,0 +1,15 @@
+@use 'common' as common;
+
+.kontaktskjema {
+    background-color: var(--a-deepblue-50);
+
+    padding: common.$sectionPaddingMobile;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$sectionPaddingTablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$sectionPaddingDesktop;
+    }
+}

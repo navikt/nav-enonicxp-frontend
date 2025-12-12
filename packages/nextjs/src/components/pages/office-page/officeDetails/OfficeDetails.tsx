@@ -6,6 +6,7 @@ import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
 import { PhonePoster } from './phonePoster/PhonePoster';
+import { Kontaktskjema } from './kontaktskjema/Kontaktskjema';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
 
 import styles from './OfficeDetails.module.scss';
@@ -24,8 +25,10 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     return (
         <div className={styles.wide}>
             <div className={classNames(styles.officeDetails, styles.pageContent)}>
-                <Heading level="2" size="large" className={styles.header}>
-                    {getOfficeTranslations('youFindUsHere')}
+                <Heading level="2" size="large">
+                    {officeData.type === 'ALS'
+                        ? getOfficeTranslations('contactUs')
+                        : getOfficeTranslations('youFindUsHere')}
                 </Heading>
                 {publikumsmottak.length > 0 && (
                     <Reception
@@ -35,6 +38,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     />
                 )}
                 <PhonePoster officeData={officeData} />
+                {officeData.type === 'ALS' && <Kontaktskjema />}
                 <OfficeInformation officeData={officeData} />
             </div>
         </div>

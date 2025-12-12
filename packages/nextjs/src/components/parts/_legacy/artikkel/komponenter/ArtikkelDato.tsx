@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BodyLong, Detail } from '@navikt/ds-react';
 import { getPublishedAndModifiedString, getPublishedDateTime } from 'utils/datetime';
-import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 import styles from './ArtikkelDato.module.scss';
 
@@ -24,7 +23,7 @@ const ArtikkelDato = ({ contentProps, type = 'normal' }: Props) => {
             <Detail
                 as={'time'}
                 dateTime={getPublishedDateTime(contentProps)}
-                className={classNames(styles.artikkelDato, styles.small)}
+                className={styles.artikkelDato}
             >
                 {dateString}
             </Detail>

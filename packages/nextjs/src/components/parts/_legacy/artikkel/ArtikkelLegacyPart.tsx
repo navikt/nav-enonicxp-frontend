@@ -8,7 +8,6 @@ import ArtikkelDato from './komponenter/ArtikkelDato';
 import { Innholdsfortegnelse } from './komponenter/Innholdsfortegnelse';
 import { Artikkeltekst } from './komponenter/Artikkeltekst';
 import { Faktaboks } from './komponenter/Faktaboks';
-import { SosialeMedier } from './komponenter/SosialeMedier';
 import { Bilde } from './komponenter/Bilde';
 import { parseInnholdsfortegnelse } from './komponenter/parseInnholdsfortegnelse';
 
@@ -78,9 +77,6 @@ export const ArtikkelLegacyPart = (propsInitial: ContentProps) => {
                     label={getLabel('facts')}
                     version={isNewsArticle ? '2' : '1'}
                 />
-            )}
-            {data.social && (
-                <SosialeMedier social={data.social} displayName={displayName} contentPath={_path} />
             )}
             <Bilde picture={data.picture} />
         </article>

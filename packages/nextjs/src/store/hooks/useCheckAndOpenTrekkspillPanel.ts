@@ -8,14 +8,29 @@ export const useCheckAndOpenTrekkspillPanel = (
     expandAll: () => void
 ) => {
     const checkAndOpenPanels = useCallback(() => {
-        const targetId = window.location.hash.slice(1);
         const toOpen = new Set(openPanels);
+        const targetId = window.location.hash.slice(1);
+        const targetElement = document.getElementById(targetId);
+        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
 
         if (!targetId) return;
 
         if (window.location.search.includes('expandall=true')) {
             expandAll();
             return;
+        }
+
+        if (toOpen.size !== openPanels.length) {
+            setOpenPanels([...toOpen]);
+        }
+
+        if (targetId) {
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
+        }
+
+        if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
+            setOpenPanels([...openPanels, panelIndex]);
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
 
         if (targetId) {
@@ -29,14 +44,6 @@ export const useCheckAndOpenTrekkspillPanel = (
                 toOpen.add(i);
             }
         });
-
-        if (toOpen.size !== openPanels.length) {
-            setOpenPanels([...toOpen]);
-        }
-
-        if (targetId) {
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
-        }
     }, [openPanels, refs, setOpenPanels, expandAll]);
 
     useEffect(() => {
