@@ -5,8 +5,8 @@ import { isTag, isText } from 'domhandler';
 import htmlReactParser, {
     attributesToProps,
     DOMNode,
-    domToReact,
     Element,
+    domToReact,
     HTMLReactParserOptions,
 } from 'html-react-parser';
 import { BodyLong, Heading } from '@navikt/ds-react';
