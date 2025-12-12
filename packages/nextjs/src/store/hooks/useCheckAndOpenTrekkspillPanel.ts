@@ -26,6 +26,10 @@ export const useCheckAndOpenTrekkspillPanel = (
             }
         });
 
+        if (panelIndex !== -1) {
+            toOpen.add(panelIndex);
+        }
+
         const toOpenArray = Array.from(toOpen);
         const setsAreEqual =
             toOpenArray.length === openPanels.length &&
@@ -35,7 +39,6 @@ export const useCheckAndOpenTrekkspillPanel = (
         }
 
         if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
-            setOpenPanels([...openPanels, panelIndex]);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
     }, [openPanels, refs, setOpenPanels, expandAll]);
