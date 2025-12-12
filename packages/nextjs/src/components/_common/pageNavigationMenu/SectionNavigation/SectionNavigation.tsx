@@ -11,6 +11,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 type SectionNavigationProps = {
     introRegion?: RegionProps<'intro'>;
     contentRegion?: RegionProps<'content'>;
+    className?: string;
 };
 
 const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
@@ -47,7 +48,11 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     }, []);
 };
 
-export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
+export const SectionNavigation = ({
+    introRegion,
+    contentRegion,
+    className,
+}: SectionNavigationProps) => {
     const { language } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
     const introAnchors = getAnchorsFromComponents(language, introRegion);
@@ -67,6 +72,7 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
             title={getLabel('sectionNavigation')}
+            className={className}
         />
     );
 };

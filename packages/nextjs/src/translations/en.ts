@@ -354,7 +354,7 @@ export const translationsBundleEn: PartialTranslations = {
         moreInformation: 'More information for you who',
     },
     internalNavigation: {
-        pageNavigationMenu: 'Contents',
+        pageNavigationMenu: 'Contents on this page',
         sectionNavigation: 'In this chapter',
     },
 };

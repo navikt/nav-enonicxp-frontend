@@ -1,6 +1,5 @@
-import React, { useId } from 'react';
-import { ArrowDownRightIcon } from '@navikt/aksel-icons';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import React from 'react';
+import { BodyLong } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
@@ -17,6 +16,7 @@ type Props = {
     analyticsComponent?: string;
     title: string;
     isChapterNavigation?: boolean;
+    className?: string;
 };
 
 export const PageNavigationMenu = ({
@@ -24,11 +24,9 @@ export const PageNavigationMenu = ({
     analyticsComponent = 'Meny for intern-navigasjon',
     title,
     isChapterNavigation,
+    className,
 }: Props) => {
     const links = getValidLinks(anchorLinks);
-
-    const headingId = `heading-page-navigation-menu-${useId()}`;
-    const headingLevel = isChapterNavigation ? '2' : '3';
 
     if (links.length === 0) {
         return (
@@ -38,21 +36,13 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
-            aria-labelledby={headingId}
+            aria-label={title}
             className={classNames(
                 style.pageNavigationMenu,
-                isChapterNavigation && style.chapterNavigation
+                isChapterNavigation && style.chapterNavigation,
+                className
             )}
         >
-            <Heading
-                level={headingLevel}
-                size="xsmall"
-                spacing
-                id={headingId}
-                className={style.heading}
-            >
-                {title}
-            </Heading>
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
@@ -64,7 +54,17 @@ export const PageNavigationMenu = ({
                             analyticsLabel={anchorLink.linkText}
                             className={style.link}
                         >
-                            <ArrowDownRightIcon aria-hidden className={style.icon} />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                                className={style.icon}
+                            >
+                                <path stroke="currentColor" d="M17 15h-6l-1-1V8" />
+                            </svg>
                             <BodyLong as="span" className={style.linkText}>
                                 {anchorLink.linkText}
                             </BodyLong>
