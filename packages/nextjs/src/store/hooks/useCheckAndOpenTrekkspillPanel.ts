@@ -12,8 +12,6 @@ export const useCheckAndOpenTrekkspillPanel = (
         const toOpen = new Set(openPanels);
         const targetElement = document.getElementById(targetId);
         const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
-        const el = document.getElementById(targetId);
-        const idx = refs.findIndex((r) => r.current?.contains(el));
 
         if (!targetId) return;
 
@@ -22,20 +20,18 @@ export const useCheckAndOpenTrekkspillPanel = (
             return;
         }
 
-        if (idx !== -1) {
-            toOpen.add(idx);
-        }
-
-        setTimeout(() => smoothScrollToTarget(targetId), 500);
-
         refs.forEach((r, i) => {
             if (r.current?.querySelector('.DuplicateIdsVarsel_warning')) {
                 toOpen.add(i);
             }
         });
 
-        if (toOpen.size !== openPanels.length) {
-            setOpenPanels([...toOpen]);
+        const toOpenArray = Array.from(toOpen);
+        const setsAreEqual =
+            toOpenArray.length === openPanels.length &&
+            toOpenArray.every((value) => openPanels.includes(value));
+        if (!setsAreEqual) {
+            setOpenPanels(toOpenArray);
         }
 
         if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {

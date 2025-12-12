@@ -8,9 +8,9 @@ import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innho
 import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
 
 export const harRedaktorfeil = (content: ContentProps): boolean => {
-    const editorView = content.editorView === 'edit' || content.editorView === 'preview';
+    const isEditorView = content.editorView === 'edit' || content.editorView === 'preview';
 
-    if (!editorView) {
+    if (!isEditorView) {
         return false;
     }
 
