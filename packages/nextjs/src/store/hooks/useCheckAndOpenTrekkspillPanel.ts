@@ -7,17 +7,35 @@ export const useCheckAndOpenTrekkspillPanel = (
     refs: React.RefObject<HTMLDivElement | null>[],
     expandAll: () => void
 ) => {
-    const checkAndOpenPanels = useCallback(() => {
+    const checkAndOpenTrekkspillPanels = useCallback(() => {
+        const targetId = window.location.hash.slice(1);
+        const toOpen = new Set(openPanels);
+        const targetElement = document.getElementById(targetId);
+        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+
+        if (!targetId) return;
+
         if (window.location.search.includes('expandall=true')) {
             expandAll();
             return;
         }
 
-        const targetId = window.location.hash.slice(1);
-        if (!targetId) return;
+        if (targetId) {
+            const el = document.getElementById(targetId);
+            const idx = refs.findIndex((r) => r.current?.contains(el));
+            if (idx !== -1) toOpen.add(idx);
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
+        }
 
-        const targetElement = document.getElementById(targetId);
-        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+        refs.forEach((r, i) => {
+            if (r.current?.querySelector('.DuplicateIdsVarsel_warning')) {
+                toOpen.add(i);
+            }
+        });
+
+        if (toOpen.size !== openPanels.length) {
+            setOpenPanels([...toOpen]);
+        }
 
         if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
             setOpenPanels([...openPanels, panelIndex]);
@@ -26,9 +44,9 @@ export const useCheckAndOpenTrekkspillPanel = (
     }, [openPanels, refs, setOpenPanels, expandAll]);
 
     useEffect(() => {
-        window.addEventListener('hashchange', checkAndOpenPanels);
-        return () => window.removeEventListener('hashchange', checkAndOpenPanels);
-    }, [checkAndOpenPanels]);
+        window.addEventListener('hashchange', checkAndOpenTrekkspillPanels);
+        return () => window.removeEventListener('hashchange', checkAndOpenTrekkspillPanels);
+    }, [checkAndOpenTrekkspillPanels]);
 
-    useEffect(checkAndOpenPanels, [checkAndOpenPanels]);
+    useEffect(checkAndOpenTrekkspillPanels, [checkAndOpenTrekkspillPanels]);
 };

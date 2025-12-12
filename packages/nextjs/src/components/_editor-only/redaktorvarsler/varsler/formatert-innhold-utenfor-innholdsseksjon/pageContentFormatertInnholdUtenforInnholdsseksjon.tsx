@@ -1,4 +1,4 @@
-export const pageContentHtmlAreaUtenforInnholdsseksjon = (node: {
+export const pageContentFormatertInnholdUtenforInnholdsseksjon = (node: {
     path?: string;
     descriptor?: string;
 }): boolean => {
