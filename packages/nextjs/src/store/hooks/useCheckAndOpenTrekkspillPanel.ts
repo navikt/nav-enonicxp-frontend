@@ -7,30 +7,15 @@ export const useCheckAndOpenTrekkspillPanel = (
     refs: React.RefObject<HTMLDivElement | null>[],
     expandAll: () => void
 ) => {
-    const checkAndOpenPanels = useCallback(() => {
-        const toOpen = new Set(openPanels);
+    const checkAndOpenTrekkspillPanels = useCallback(() => {
         const targetId = window.location.hash.slice(1);
-        const targetElement = document.getElementById(targetId);
-        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+        const toOpen = new Set(openPanels);
 
         if (!targetId) return;
 
         if (window.location.search.includes('expandall=true')) {
             expandAll();
             return;
-        }
-
-        if (toOpen.size !== openPanels.length) {
-            setOpenPanels([...toOpen]);
-        }
-
-        if (targetId) {
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
-        }
-
-        if (panelIndex !== -1 && !openPanels.includes(panelIndex)) {
-            setOpenPanels([...openPanels, panelIndex]);
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
 
         if (targetId) {
@@ -44,12 +29,20 @@ export const useCheckAndOpenTrekkspillPanel = (
                 toOpen.add(i);
             }
         });
+
+        if (toOpen.size !== openPanels.length) {
+            setOpenPanels([...toOpen]);
+        }
+
+        if (targetId) {
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
+        }
     }, [openPanels, refs, setOpenPanels, expandAll]);
 
     useEffect(() => {
-        window.addEventListener('hashchange', checkAndOpenPanels);
-        return () => window.removeEventListener('hashchange', checkAndOpenPanels);
-    }, [checkAndOpenPanels]);
+        window.addEventListener('hashchange', checkAndOpenTrekkspillPanels);
+        return () => window.removeEventListener('hashchange', checkAndOpenTrekkspillPanels);
+    }, [checkAndOpenTrekkspillPanels]);
 
-    useEffect(checkAndOpenPanels, [checkAndOpenPanels]);
+    useEffect(checkAndOpenTrekkspillPanels, [checkAndOpenTrekkspillPanels]);
 };
