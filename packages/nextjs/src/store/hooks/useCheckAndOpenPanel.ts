@@ -8,9 +8,11 @@ export const useCheckAndOpenPanel = (
     anchorId?: string
 ) => {
     const checkAndOpenPanel = useCallback(() => {
+        const targetId = window.location.hash.slice(1);
+        const targetElement = document.getElementById(targetId);
+
         if (isOpen) return;
 
-        const targetId = window.location.hash.slice(1);
         if (!targetId) return;
 
         if (window.location.search.includes('expandall=true') || targetId === anchorId) {
@@ -18,7 +20,6 @@ export const useCheckAndOpenPanel = (
             return;
         }
 
-        const targetElement = document.getElementById(targetId);
         if (ref.current?.contains(targetElement)) {
             setIsOpen(true);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
