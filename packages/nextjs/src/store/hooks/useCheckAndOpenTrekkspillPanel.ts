@@ -12,10 +12,11 @@ export const useCheckAndOpenTrekkspillPanel = (
         const toOpen = new Set(openPanels);
         const targetElement = document.getElementById(targetId);
         const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+        const params = new URLSearchParams(window.location.search);
 
         if (!targetId) return;
 
-        if (window.location.search.includes('expandall=true')) {
+        if (params.get('expandall') === 'true') {
             expandAll();
             return;
         }
