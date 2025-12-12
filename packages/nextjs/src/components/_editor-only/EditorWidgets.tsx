@@ -5,7 +5,7 @@ import { ReferencesInfo } from 'components/_editor-only/references-info/Referenc
 import { VersionHistory } from 'components/_editor-only/version-history/VersionHistory';
 import { hasWhiteHeader } from 'utils/appearance';
 import { classNames } from 'utils/classnames';
-import { Redaktorvarsler } from './redaktorvarsler/Redaktorvarsler';
+import { Redaktorvarsler } from './global-warnings/Redaktorvarsler';
 import style from './EditorWidgets.module.scss';
 
 type Props = {

@@ -12,7 +12,6 @@ import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { useCheckAndOpenTrekkspillPanel } from 'store/hooks/useCheckAndOpenTrekkspillPanel';
-import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorfeil';
 import styles from './Trekkspill.module.scss';
 
 type TrekkspillRef = PartConfigTrekkspill;
@@ -62,7 +61,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                     <DSAccordion.Item
                         key={item.anchorId || item.title}
                         className={styles.item}
-                        open={openTrekkspill.includes(index) || harRedaktorfeil(contentProps)}
+                        open={openTrekkspill.includes(index)}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}
                         ref={itemRefs.current[index]}
                         tabIndex={-1}
