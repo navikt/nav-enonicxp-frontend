@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { htmlAreaContainsDiv } from './htmlAreaContainsDiv';
+import { htmlAreaInneholderDiv } from './htmlAreaInneholderDiv';
 
 type Props = {
     content: ContentProps;
@@ -13,7 +13,7 @@ export const HtmlAreaDiv = ({ content, className }: Props) => {
     const finnDivTagsIFormatertInnhold = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (htmlAreaContainsDiv(node)) {
+        if (htmlAreaInneholderDiv(node)) {
             const { path, config } = node;
 
             warnings.push(
