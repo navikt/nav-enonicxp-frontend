@@ -33,7 +33,7 @@
 
 .topMarker .header {
     position: relative;
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--a-spacing-7);
     color: var(--brand-purple-deep);
 
     &:before {
@@ -48,4 +48,10 @@
 .editorViewBorder {
     outline: 1px gray dashed;
     outline-offset: 15px;
+}
+
+.hideOnDesktop {
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
 }

@@ -56,3 +56,9 @@
 .headerWithIcon {
     margin-top: var(--a-spacing-4);
 }
+
+.hideOnDesktop {
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
+}

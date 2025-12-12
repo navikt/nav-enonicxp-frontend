@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
@@ -10,7 +10,6 @@ import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedI
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
-import { useLegacyNav } from 'utils/useLegacyNav';
 import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
 import styles from './InnholdssideMedMeny.module.scss';
 
@@ -24,22 +23,6 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
     const { language, languages } = usePageContentProps();
     const getLabel = translator('internalNavigation', language);
     const menuTitle = getLabel('pageNavigationMenu');
-    const legacyNav = useLegacyNav();
-
-    const dynamicNavigationRef = useRef<HTMLDivElement | null>(null);
-
-    const [canExpandAll, setCanExpandAll] = useState(false);
-    const [forceExpandAll, setForceExpandAll] = useState(false);
-    const handleToggleExpandAll = () => setForceExpandAll((prev) => !prev);
-
-    // Sjekk URL-parameter for å vise/skjule knapp for detaljert innholdsfortegnelse
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('expandAllNav') === 'true') {
-            setCanExpandAll(true);
-        }
-    }, []);
 
     if (!regions || !config) {
         return null;
@@ -72,25 +55,21 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                     )}
                     {isNewLayoutPage && <AktuelleMalgrupper />}
 
-                    {showInternalNav && legacyNav && (
-                        <PageNavigationMenu
-                            anchorLinks={anchorLinks}
-                            title={menuTitle}
-                            isChapterNavigation={true}
-                        />
-                    )}
-
-                    {showInternalNav && !legacyNav && (
-                        <DynamicNavigation
-                            ref={dynamicNavigationRef}
-                            className={styles.pageNavigationMenu}
-                            anchorLinks={anchorLinks}
-                            pageProps={pageProps}
-                            title={menuTitle}
-                            canExpandAll={canExpandAll}
-                            forceExpandAll={forceExpandAll}
-                            onToggleExpandAll={handleToggleExpandAll}
-                        />
+                    {showInternalNav && (
+                        <>
+                            <PageNavigationMenu
+                                anchorLinks={anchorLinks}
+                                title={menuTitle}
+                                isChapterNavigation
+                                className={styles.mobileOnly}
+                            />
+                            <DynamicNavigation
+                                className={styles.pageNavigationMenu}
+                                anchorLinks={anchorLinks}
+                                pageProps={pageProps}
+                                title={menuTitle}
+                            />
+                        </>
                     )}
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
