@@ -111,6 +111,7 @@ MyComponent/
 ├── MyComponent.tsx           # Main component
 ├── MyComponent.module.scss   # Styles (always colocate)
 ├── MyComponent.test.tsx      # Tests (if needed)
+├── MyComponent.stories.tsx   # Storybook story (if needed)
 ├── components/               # Sub-components (if complex)
 │   └── MySubComponent.tsx
 └── utils.ts                  # Component-specific utilities
