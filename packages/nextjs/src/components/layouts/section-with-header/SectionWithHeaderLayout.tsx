@@ -10,6 +10,8 @@ import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';
 import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
@@ -38,6 +40,7 @@ const templateV2 = new Set([
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+    const { language } = usePageContentProps();
 
     if (!config) {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
@@ -53,7 +56,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const isInnholdssideMedMeny = pageLayout === LayoutType.InnholdssideMedMeny;
 
     const iconImgProps = icon?.icon;
-
     const shouldShowFilterBar = regions.content?.components?.some(
         (component) => component.config?.filters && component.config.filters.length > 0
     );
@@ -64,8 +66,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const style = isTemplateV2 ? styleV2 : styleV1;
     const showTopMarker = !!(isTemplateV2 && title);
-
     const showIcon = !!(iconImgProps && !isTemplateV2);
+    const getLabel = translator('internalNavigation', language);
 
     return (
         <LayoutContainer
@@ -113,6 +115,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {showSubsectionNavigation && (
                 <SectionNavigation
+                    ariaLabel={`${getLabel('sectionNavigation')} ${title}`}
                     introRegion={regions.intro}
                     contentRegion={regions.content}
                     className={isInnholdssideMedMeny ? style.hideOnDesktop : undefined}

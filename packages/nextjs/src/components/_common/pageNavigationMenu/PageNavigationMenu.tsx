@@ -5,6 +5,7 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
+import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -14,7 +15,7 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks?: AnchorLink[];
     analyticsComponent?: string;
-    title: string;
+    ariaLabel: string;
     isChapterNavigation?: boolean;
     className?: string;
 };
@@ -22,8 +23,8 @@ type Props = {
 export const PageNavigationMenu = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
-    title,
-    isChapterNavigation,
+    ariaLabel,
+    isChapterNavigation = false,
     className,
 }: Props) => {
     const links = getValidLinks(anchorLinks);
@@ -36,7 +37,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
-            aria-label={title}
+            aria-label={ariaLabel}
             className={classNames(
                 style.pageNavigationMenu,
                 isChapterNavigation && style.chapterNavigation,
@@ -72,6 +73,7 @@ export const PageNavigationMenu = ({
                     </li>
                 ))}
             </ul>
+            {!isChapterNavigation && <AktuelleMalgrupper />}
         </nav>
     );
 };
