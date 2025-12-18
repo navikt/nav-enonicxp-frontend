@@ -2,14 +2,12 @@ import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import Region from 'components/layouts/Region';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
-import { DynamicNavigation } from 'components/_common/pageNavigationMenu/DynamicNavigation';
 import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/GeneralPageHeader';
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { usePageContentProps } from 'store/pageContext';
-import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
+import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu';
 import styles from './InnholdssideMedMeny.module.scss';
 
 type Props = {
@@ -19,9 +17,7 @@ type Props = {
 
 export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
-    const { language, languages } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
-    const menuTitle = getLabel('pageNavigationMenu');
+    const { languages } = usePageContentProps();
 
     if (!regions || !config) {
         return null;
@@ -53,19 +49,7 @@ export const InnholdssideMedMeny = ({ pageProps, layoutProps }: Props) => {
                         <Region pageProps={pageProps} regionProps={topPageContent} />
                     )}
                     {showInternalNav && (
-                        <>
-                            <PageNavigationMenu
-                                anchorLinks={anchorLinks}
-                                ariaLabel={menuTitle}
-                                className={styles.mobileOnly}
-                            />
-                            <DynamicNavigation
-                                className={styles.pageNavigationMenu}
-                                anchorLinks={anchorLinks}
-                                pageProps={pageProps}
-                                title={menuTitle}
-                            />
-                        </>
+                        <CombinedMenu anchorLinks={anchorLinks} pageProps={pageProps} />
                     )}
 
                     <Region pageProps={pageProps} regionProps={pageContent} />
