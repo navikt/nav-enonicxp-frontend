@@ -11,7 +11,7 @@
 
     .pageNavigationMenu {
         display: block;
-        grid-column: space-end;
+        grid-column: space-end !important;
         grid-row: 2 / 6;
     }
 }
