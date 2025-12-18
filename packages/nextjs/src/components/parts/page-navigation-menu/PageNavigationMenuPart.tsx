@@ -1,8 +1,7 @@
 import React from 'react';
-import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
-import { translator } from 'translations';
+import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu';
 
 export type AnchorLink = {
     anchorId: string;
@@ -18,17 +17,11 @@ export type PartConfigPageNavigationMenu = {
 export const PageNavigationMenuPart = ({
     config,
 }: PartComponentProps<PartType.PageNavigationMenu>) => {
-    const { language } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
+    const pageProps = usePageContentProps();
 
     if (!config) {
         return null;
     }
 
-    return (
-        <PageNavigationMenu
-            anchorLinks={config.anchorLinks}
-            ariaLabel={getLabel('pageNavigationMenu')}
-        />
-    );
+    return <CombinedMenu anchorLinks={config.anchorLinks} pageProps={pageProps} />;
 };
