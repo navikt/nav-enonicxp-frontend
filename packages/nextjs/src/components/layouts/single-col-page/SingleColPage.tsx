@@ -7,6 +7,8 @@ import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 
+import styles from './SingleColPage.module.scss';
+
 type Props = {
     pageProps: ContentProps & {
         data: Pick<ProductDataMixin, 'illustration' | 'customCategory' | 'taxonomy'>;
@@ -63,7 +65,11 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     };
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            className={styles.singleColPage}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
             {showHeaderAndChangedate && (
                 <GeneralPageHeader
                     pageProps={{
@@ -83,8 +89,9 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                     hideIngressOverride
                 />
             )}
-            <div ref={regionRef}>
+            <div className={styles.displayContents} ref={regionRef}>
                 <Region
+                    className={styles.displayContents}
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
                     wrapperFunction={insertPageUpdatedInfo}
