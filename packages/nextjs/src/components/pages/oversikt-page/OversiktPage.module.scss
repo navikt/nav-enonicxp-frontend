@@ -5,7 +5,7 @@
     margin: var(--a-spacing-5) auto var(--a-spacing-10);
     grid-template-columns: 1fr minmax(0, 45rem) 1fr;
     grid-template-areas: 'pictogram content .';
-    column-gap: var(--a-spacing-7);
+    column-gap: var(--a-spacing-10);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
@@ -21,8 +21,8 @@
 
 .pictogram {
     grid-area: pictogram;
-    width: var(--a-spacing-24);
-    height: var(--a-spacing-24);
+    width: var(--a-spacing-20);
+    height: var(--a-spacing-20);
     display: block;
 
     justify-self: end;
