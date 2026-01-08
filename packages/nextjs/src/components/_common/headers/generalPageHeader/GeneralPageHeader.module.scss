@@ -10,10 +10,20 @@
         margin-left: calc(-1 * var(--a-spacing-32));
 
         :global(.back) {
-            @include common.brand-purple-filter-back();
+            [fill]:not([fill='none']) {
+                fill: var(--brand-purple-light);
+            }
+            [stroke] {
+                stroke: var(--brand-purple-light);
+            }
         }
         :global(.front) {
-            @include common.brand-purple-filter-front();
+            [fill]:not([fill='none']) {
+                fill: var(--brand-purple-deep);
+            }
+            [stroke] {
+                stroke: var(--brand-purple-deep);
+            }
         }
 
         @media #{common.$mq-screen-tablet-and-mobile} {
