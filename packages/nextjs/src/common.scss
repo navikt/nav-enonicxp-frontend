@@ -204,16 +204,6 @@ $versionSelectorMinHeight: 3rem;
     padding: 0;
 }
 
-@mixin brand-purple-filter-back() {
-    filter: brightness(0) saturate(100%) invert(92%) sepia(8%) saturate(1029%) hue-rotate(286deg)
-        brightness(92%) contrast(95%);
-}
-
-@mixin brand-purple-filter-front() {
-    filter: brightness(0) saturate(100%) invert(14%) sepia(81%) saturate(3224%) hue-rotate(311deg)
-        brightness(88%) contrast(94%);
-}
-
 @mixin header-before-rectangle() {
     background-color: var(--brand-purple-light);
     content: '';
