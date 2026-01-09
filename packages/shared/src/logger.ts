@@ -31,7 +31,7 @@ type LogContext = {
     metaData?: any;
 };
 
-type LogLevel = 'info' | 'warn' | 'error' | 'debug' | 'trace' | 'fatal';
+type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
 const isClient = typeof window !== 'undefined';
 
@@ -40,14 +40,8 @@ const createLogMethod = (level: LogLevel) => {
         if (isClient) {
             // Client-side: log as "[level] message" followed by the raw object for expandability
             // Map pino levels to console methods
-            let consoleLevel: string = level;
-            if (level === 'fatal') {
-                consoleLevel = 'error';
-            } else if (level === 'trace') {
-                consoleLevel = 'debug';
-            }
 
-            const consoleMethod = (console[consoleLevel as keyof Console] as any) || console.log;
+            const consoleMethod = (console[level as keyof Console] as any) || console.log;
             const prefixedMessage = `[${level}] ${message}`;
 
             if (context?.error || context?.metaData) {
@@ -80,6 +74,4 @@ export const logger = {
     warn: createLogMethod('warn'),
     error: createLogMethod('error'),
     debug: createLogMethod('debug'),
-    trace: createLogMethod('trace'),
-    fatal: createLogMethod('fatal'),
 };
