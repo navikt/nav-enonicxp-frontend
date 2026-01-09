@@ -1,4 +1,5 @@
+@use '../_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu.module.scss' as combinedMenu;
+
 .pageNavigationMenuPart {
-    grid-column: space-end !important;
-    grid-row: 2 / 6;
+    @include combinedMenu.page-navigation-menu-placement();
 }

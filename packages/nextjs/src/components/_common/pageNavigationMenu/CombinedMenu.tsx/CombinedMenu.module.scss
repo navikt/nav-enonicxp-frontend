@@ -1,5 +1,11 @@
 @use 'common' as common;
 
+@mixin page-navigation-menu-placement() {
+    display: block;
+    grid-column: space-end !important;
+    grid-row: 2 / 6;
+}
+
 .pageNavigationMenu {
     display: none;
 }
@@ -10,8 +16,6 @@
     }
 
     .pageNavigationMenu {
-        display: block;
-        grid-column: space-end !important;
-        grid-row: 2 / 6;
+        @include page-navigation-menu-placement();
     }
 }
