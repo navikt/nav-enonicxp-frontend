@@ -89,9 +89,9 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                     hideIngressOverride
                 />
             )}
-            <div className={styles.displayContents} ref={regionRef}>
+            <div className={styles.wrapperDiv} ref={regionRef}>
                 <Region
-                    className={styles.displayContents}
+                    className={styles.region}
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
                     wrapperFunction={insertPageUpdatedInfo}

@@ -10,7 +10,7 @@
         justify-content: flex-start;
         align-self: center;
         width: 100%;
-        max-width: 40rem;
+        // max-width: 40rem;
 
         @media #{common.$mq-screen-mobile} {
             margin-top: var(--a-spacing-9);
