@@ -19,7 +19,7 @@ export const setCacheKey: RequestHandler = (req, res, next) => {
                 metaData: {
                     rejectedCacheKey: cache_key,
                     rejectedTimestamp: newCacheTimestamp,
-                    currentCacheKey: global.cacheKey,
+                    currentCacheKey: globalThis.cacheKey,
                     currentTimestamp: currentCacheTimestamp,
                 },
             });
