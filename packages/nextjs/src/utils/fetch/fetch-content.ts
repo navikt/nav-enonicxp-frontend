@@ -76,7 +76,7 @@ const fetchSiteContentStandard = async ({
     logger.info(`Fetching content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent fetch error for ${url}: ${e}`);
+        logger.info(`Sitecontent fetch error for ${url}`, { error: e });
         return null;
     });
 };
@@ -99,7 +99,7 @@ const fetchSiteContentVersion = async ({
     logger.info(`Fetching version history content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent version fetch error: ${e}`);
+        logger.info(`Sitecontent version fetch error for ${url}`, { error: e });
         return null;
     });
 };
@@ -115,7 +115,7 @@ const fetchSiteContentArchive = async ({ idOrPath, locale, time }: FetchSiteCont
     logger.info(`Fetching archived content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent archive fetch error: ${e}`);
+        logger.info(`Sitecontent archive fetch error for ${url}`, { error: e });
         return null;
     });
 };
@@ -158,7 +158,7 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            logger.info(`Response cache hit for ${idOrPath}`);
+            logger.info('Response cache hit', { metaData: { idOrPath } });
             return cachedResponse;
         }
     }
@@ -203,7 +203,7 @@ const fetchAndHandleErrorsRuntime = async (
         }
 
         // Regular 404 should not be logged as errors
-        logger.info(`Content not found ${stripLineBreaks(idOrPath)}`);
+        logger.info('Content not found', { metaData: { idOrPath: stripLineBreaks(idOrPath) } });
         return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 

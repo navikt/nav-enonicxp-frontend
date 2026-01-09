@@ -32,7 +32,7 @@ export const VersionHistory = ({ content }: Props) => {
         setSelectorIsOpen(false);
         if (versionUrlRequested) {
             router?.push(versionUrlRequested).catch((err) => {
-                logger.info(`Error during version history navigation: ${err}`);
+                logger.info('Error during version history navigation', { error: err });
                 setVersionUrlRequested(null);
             });
         }

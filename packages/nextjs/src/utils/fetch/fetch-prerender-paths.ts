@@ -25,7 +25,9 @@ export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null>
             }
 
             if (retries > 0) {
-                logger.warn(`Failed to fetch paths to prerender, ${retries} retries left`);
+                logger.warn('Failed to fetch paths to prerender', {
+                    metaData: { retriesLeft: retries },
+                });
                 return fetchPrerenderPaths(retries - 1);
             }
 

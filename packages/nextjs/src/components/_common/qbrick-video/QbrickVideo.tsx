@@ -46,7 +46,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
                 src={'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'}
                 async={true}
                 onError={(error) => {
-                    logger.error(`Failed to load QBrick player script - ${error}`);
+                    logger.error('Failed to load QBrick player script', { error });
                     setPlayerState('error');
                 }}
             />

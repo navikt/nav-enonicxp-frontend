@@ -79,7 +79,7 @@ export const evaluateExpression = (
         if (isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
-        logger.error(`Global values calculation error: ${e}`);
+        logger.error('Global values calculation error', { error: e });
         return '[teknisk feil: verdi ikke tilgjengelig]';
     }
 };

@@ -36,10 +36,14 @@ nextApp.prepare().then(async () => {
         // Make query writable
         const query = req.query;
         Object.defineProperty(req, 'query', {
-            get() { return query; },
-            set(value) { Object.assign(query, value); },
+            get() {
+                return query;
+            },
+            set(value) {
+                Object.assign(query, value);
+            },
             enumerable: true,
-            configurable: true
+            configurable: true,
         });
         next();
     });
@@ -57,7 +61,10 @@ nextApp.prepare().then(async () => {
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
 
-        logger.error(`Express error on path ${path}: ${status} ${msg}`);
+        logger.error('Express error', {
+            error: err,
+            metaData: { path, status, msg },
+        });
 
         res.status(status || 500);
     };
@@ -78,7 +85,7 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
-        logger.info(`Server started on port ${port}`);
+        logger.info('Server started', { metaData: { port } });
     });
 
     const httpTerminator = createHttpTerminator({ server: expressServer });

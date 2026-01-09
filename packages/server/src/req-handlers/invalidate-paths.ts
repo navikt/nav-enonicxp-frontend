@@ -7,8 +7,8 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const paths = req.body.paths as string[];
 
     if (!Array.isArray(paths)) {
-        const msg = `Invalid path array for event ${eventid}`;
-        logger.error(msg);
+        const msg = 'Invalid path array for event';
+        logger.error(msg, { metaData: { eventid } });
         res.status(400).send(msg);
         return;
     }
@@ -17,8 +17,8 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
 
     paths.forEach((path) => cacheHandler.delete(path));
 
-    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
-    logger.info(msg);
+    const msg = 'Received cache invalidation event';
+    logger.info(msg, { metaData: { pathCount: paths.length, eventid } });
 
     res.status(200).send(msg);
 };

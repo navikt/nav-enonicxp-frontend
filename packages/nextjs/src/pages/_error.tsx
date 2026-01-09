@@ -29,15 +29,15 @@ const getClientsideProps = (path?: string) => {
     try {
         const contentProps = JSON.parse(nextData)?.props?.pageProps as ContentProps;
         if (contentProps.type !== ContentType.Error) {
-            logger.error(
-                `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.type}`
-            );
+            logger.error('Unexpected __NEXT_DATA__ contentProps', {
+                metaData: { path, id: contentProps._id, type: contentProps.type },
+            });
             return null;
         }
 
         return contentProps;
     } catch (e) {
-        logger.error(`Failed to parse __NEXT_DATA__ on ${path} - ${e}`);
+        logger.error(`Failed to parse __NEXT_DATA__ on ${path}`, { error: e });
         return null;
     }
 };
@@ -56,11 +56,17 @@ const fetchFailoverHtml = async (path: string): Promise<string | null> => {
                 return res.text();
             }
 
-            logger.error(`Error response from failover: ${res.status}`);
+            const error = {
+                status: res.status,
+                statusText: res.statusText,
+                url: res.url,
+            };
+
+            logger.error('Error response from failover', { error });
             return null;
         })
         .catch((e) => {
-            logger.error(`Exception from failover fetch: ${e}`);
+            logger.error('Exception from failover fetch', { error: e });
             return null;
         });
 };
@@ -75,7 +81,7 @@ const parseErrorContent = (err?: Error | null, asPath?: string) => {
             | ContentProps
             | undefined;
     } catch (_e) {
-        logger.error(`Failed to parse error content on ${asPath}`);
+        logger.error('Failed to parse error content', { metaData: { asPath } });
         return null;
     }
 };

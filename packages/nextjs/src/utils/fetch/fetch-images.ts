@@ -21,7 +21,7 @@ export const updateImageManifest = (src: string) => {
 
     fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
         if (e) {
-            logger.error(`Error while appending to image manifest - ${e}`);
+            logger.error('Error while appending to image manifest', { error: e });
         } else {
             logger.info(`Appended ${src} to image manifest`);
         }
@@ -53,11 +53,13 @@ export const processImageManifest = async () => {
                     if (res.ok) {
                         return true;
                     }
-                    logger.error(`Bad response for image ${url} - ${res.status} ${res.statusText}`);
+                    logger.error(`Bad response for image ${url}`, {
+                        metaData: { url, status: res.status, statusText: res.statusText },
+                    });
                     return false;
                 })
                 .catch((e) => {
-                    logger.error(`Fetch error for image ${url} - ${e}`);
+                    logger.error(`Fetch error for image ${url}`, { error: e });
                     return false;
                 })
         )

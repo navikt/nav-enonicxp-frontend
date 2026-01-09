@@ -31,7 +31,9 @@ export default class PageCacheHandler {
             const cacheLoadDuration = performance.now() - cacheStartTime;
 
             if (cacheLoadDuration > 50) {
-                logger.warn(`Local cache: json load takes more than 50 ms for ${key}`);
+                logger.warn(`Local cache: json load takes more than 50 ms for key ${key}`, {
+                    metaData: { cacheLoadDuration },
+                });
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
@@ -41,9 +43,9 @@ export default class PageCacheHandler {
             // There was something in the cache, but it's not valid
             if (fromLocalCache && !isCacheEntryValid(fromLocalCache)) {
                 localCache.delete(key);
-                logger.warn(
-                    `Local cache: invalid cache entry: ${JSON.stringify(fromLocalCache)}. Entry deleted for ${key}.`
-                );
+                logger.warn(`Local cache: invalid cache entry deleted for key ${key}`, {
+                    metaData: { kcacheEntry: fromLocalCache },
+                });
             }
 
             const fromRedisCache = await redisCache.getRender(key);
@@ -55,7 +57,7 @@ export default class PageCacheHandler {
 
             return fromRedisCache;
         } catch (error: any) {
-            logger.error(`Error getting cache for key ${key}:`, error);
+            logger.error(`Error getting cache for key ${key}`, { error });
             return null;
         }
     }
@@ -79,7 +81,7 @@ export default class PageCacheHandler {
 
     public async delete(path: string) {
         const key = pathToCacheKey(path);
-        logger.info(`Deleting local cache entry for ${key}`);
+        logger.info(`Deleting local cache entry for key ${key}`);
         localCache.delete(key);
     }
 }
