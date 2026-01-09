@@ -27,7 +27,7 @@ export const GVItemsCustomOrder = () => {
                 const msg = res?.message?.toString() || 'Ukjent feil';
 
                 logger.error('Error from reorder request', {
-                    metaData: { contentId, message: msg },
+                    error: { contentId, message: msg },
                 });
                 setMessages([
                     {

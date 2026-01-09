@@ -29,7 +29,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     )
         .then((response) => {
             if (response?.key) {
-                logger.info('Setting cache key', {
+                logger.info(`Setting cache key ${response.key}`, {
                     metaData: { cacheKey: response.key, timestamp: response.timestamp },
                 });
                 // @ts-ignore - Adding cacheKey to global namespace

@@ -17,8 +17,8 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
 
     paths.forEach((path) => cacheHandler.delete(path));
 
-    const msg = 'Received cache invalidation event';
-    logger.info(msg, { metaData: { pathCount: paths.length, eventid } });
+    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
+    logger.info(msg);
 
     res.status(200).send(msg);
 };

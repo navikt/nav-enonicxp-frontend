@@ -43,9 +43,9 @@ export default class PageCacheHandler {
             // There was something in the cache, but it's not valid
             if (fromLocalCache && !isCacheEntryValid(fromLocalCache)) {
                 localCache.delete(key);
-                logger.warn(`Local cache: invalid cache entry deleted for key ${key}`, {
-                    metaData: { kcacheEntry: fromLocalCache },
-                });
+                logger.warn(
+                    `Local cache: invalid cache entry: ${JSON.stringify(fromLocalCache)}. Entry deleted for ${key}.`
+                );
             }
 
             const fromRedisCache = await redisCache.getRender(key);

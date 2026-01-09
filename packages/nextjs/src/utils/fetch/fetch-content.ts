@@ -158,7 +158,7 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            logger.info('Response cache hit', { metaData: { idOrPath } });
+            logger.info(`Response cache hit ${idOrPath}`);
             return cachedResponse;
         }
     }
@@ -203,7 +203,7 @@ const fetchAndHandleErrorsRuntime = async (
         }
 
         // Regular 404 should not be logged as errors
-        logger.info('Content not found', { metaData: { idOrPath: stripLineBreaks(idOrPath) } });
+        logger.info(`Content not found ${stripLineBreaks(idOrPath)}`);
         return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 
