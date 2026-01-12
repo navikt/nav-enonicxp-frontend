@@ -29,7 +29,7 @@
         "@grafana/faro-web-sdk": "1.19.0",
         "@grafana/faro-web-tracing": "1.19.0",
         "@navikt/aksel-icons": "7.31.0",
-        "@navikt/ds-css": "7.31.0",
+        "@navikt/ds-css": "7.37.0",
         "@navikt/ds-react": "7.31.0",
         "@navikt/ds-tokens": "7.31.0",
         "@navikt/nav-office-reception-info": "1.4.4",
