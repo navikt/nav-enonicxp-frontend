@@ -22,7 +22,9 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { editorView, type } = contentProps;
-    const [openTrekkspill, setOpenTrekkspill] = useState<number[]>([]);
+    const [openTrekkspill, setOpenTrekkspill] = useState<number[]>(() =>
+        contentProps.expandAll ? accordion.map((_, index) => index) : []
+    );
 
     const expandAll = () => setOpenTrekkspill(accordion.map((_, index) => index));
     const validatePanel = (item: PanelItem) => Boolean(item.title && item.html);
