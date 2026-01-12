@@ -81,7 +81,7 @@
         "schema-dts": "1.1.5",
         "storybook": "9.1.10",
         "storybook-addon-pseudo-states": "9.1.10",
-        "ts-jest": "29.4.4"
+        "ts-jest": "29.4.6"
     },
     "browserslist": {
         "production": [
