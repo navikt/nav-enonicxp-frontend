@@ -1,7 +1,7 @@
 import React from 'react';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { usePageContentProps } from 'store/pageContext';
-import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu';
+import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu/CombinedMenu';
 
 export type AnchorLink = {
     anchorId: string;

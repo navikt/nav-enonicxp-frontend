@@ -7,7 +7,7 @@ import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedI
 import { usePageContentProps } from 'store/pageContext';
 import { classNames } from 'utils/classnames';
 import { InnholdssideMedMenyProps } from 'types/component-props/pages/innholdsside-med-meny';
-import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu';
+import { CombinedMenu } from 'components/_common/pageNavigationMenu/CombinedMenu/CombinedMenu';
 import styles from './InnholdssideMedMeny.module.scss';
 
 type Props = {
