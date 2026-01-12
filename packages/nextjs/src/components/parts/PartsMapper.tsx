@@ -198,8 +198,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
                 bem(),
                 bem(partName),
                 isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState),
-                partName === PartType.PageNavigationMenu.split(':')[1] &&
-                    styles.pageNavigationMenuPart
+                descriptor === PartType.PageNavigationMenu && styles.pageNavigationMenuPart
             )}
             {...editorProps}
         >
