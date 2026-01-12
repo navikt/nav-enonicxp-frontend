@@ -1,5 +1,5 @@
-@use '../_common/pageNavigationMenu/CombinedMenu.tsx/CombinedMenu.module.scss' as combinedMenu;
+@use 'common' as common;
 
 .pageNavigationMenuPart {
-    @include combinedMenu.page-navigation-menu-placement();
+    @include common.page-navigation-menu-placement();
 }

@@ -234,3 +234,9 @@ $versionSelectorMinHeight: 3rem;
     padding-left: 8rem;
     max-width: none;
 }
+
+@mixin page-navigation-menu-placement() {
+    display: block;
+    grid-column: space-end !important;
+    grid-row: 2 / 999;
+}
