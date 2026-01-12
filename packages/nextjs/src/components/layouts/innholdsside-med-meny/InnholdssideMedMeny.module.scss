@@ -28,14 +28,7 @@
 
 @media #{common.$mq-screen-desktop} {
     .innholdssideMedMeny {
-        display: grid;
-        grid-template-columns:
-            [content-start] minmax(0, min(42.5rem, 100%))
-            [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
-            [space-end] minmax(0, min(22.5rem, 30%))
-            [content-end];
-        padding-left: 8rem;
-        max-width: none;
+        @include common.grid-dynamisk-meny-mixin();
     }
 
     .mainContent {
