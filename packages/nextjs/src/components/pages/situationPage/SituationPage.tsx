@@ -13,25 +13,19 @@ export const SituationPage = (props: SituationPageProps) => {
     const pageRegions = props.page.regions;
     const pageContentRegion = pageRegions?.pageContent;
     const pageContentComponents = pageContentRegion?.components ?? [];
-    const hasTailComponent = pageContentComponents.length > 0;
 
-    const lastComponent = hasTailComponent
-        ? pageContentComponents[pageContentComponents.length - 1]
-        : undefined;
+    const componentPropsWithoutLast = {
+        ...props.page,
+        regions: {
+            ...pageRegions,
+            pageContent: {
+                ...pageContentRegion,
+                components: pageContentComponents.slice(0, -1),
+            },
+        },
+    };
 
-    const componentPropsWithoutLast =
-        hasTailComponent && pageRegions && pageContentRegion
-            ? {
-                  ...props.page,
-                  regions: {
-                      ...pageRegions,
-                      pageContent: {
-                          ...pageContentRegion,
-                          components: pageContentComponents.slice(0, -1),
-                      },
-                  },
-              }
-            : props.page;
+    const lastComponent = pageContentComponents.at(-1);
 
     return (
         <article className={styles.situationPage}>
