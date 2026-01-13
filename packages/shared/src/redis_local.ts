@@ -18,7 +18,7 @@ const validateClientOptions = () => {
     const isValid = !!(clientOptions.url && clientOptions.username && clientOptions.password);
 
     if (!isValid) {
-        logger.error(`Client options for Valkey has missing parameters!`);
+        logger.error('Client options for Valkey has missing parameters!');
     }
 
     return isValid;
@@ -36,8 +36,8 @@ class RedisCacheImpl {
     private renderCacheKeyPrefix = '';
 
     constructor() {
-        logger.info(clientOptions.url);
-        logger.info(clientOptions.username);
+        logger.info(`Valkey client URL ${clientOptions.url}`);
+        logger.info(`Valkey client username ${clientOptions.username}`);
         this.client = createClient(clientOptions)
             .on('connect', () => {
                 logger.info('Valkey client connected');
@@ -51,8 +51,8 @@ class RedisCacheImpl {
             .on('reconnecting', () => {
                 logger.info('Valkey client reconnecting');
             })
-            .on('error', (err) => {
-                logger.error(`Valkey client error: ${err}`);
+            .on('error', (error) => {
+                logger.error('Valkey client error', { error });
             });
     }
 
@@ -61,9 +61,13 @@ class RedisCacheImpl {
         this.updateRenderCacheKeyPrefix(decoratorVersionId);
 
         return this.client.connect().then(() => {
-            logger.info(
-                `Initialized valkey client with url ${clientOptions.url} - Render key prefix: ${this.renderCacheKeyPrefix} - Response key prefix: ${this.responseCacheKeyPrefix}`
-            );
+            logger.info('Initialized valkey client', {
+                metaData: {
+                    url: clientOptions.url,
+                    renderKeyPrefix: this.renderCacheKeyPrefix,
+                    responseKeyPrefix: this.responseCacheKeyPrefix,
+                },
+            });
             return this;
         });
     }
@@ -83,8 +87,11 @@ class RedisCacheImpl {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
-            .catch((e) => {
-                logger.error(`Error getting render cache value for key ${fullKey} - ${e}`);
+            .catch((error) => {
+                logger.error('Error getting render cache value', {
+                    error,
+                    metaData: { fullKey },
+                });
                 return Promise.resolve(null);
             });
     }
@@ -94,8 +101,8 @@ class RedisCacheImpl {
         return this.client
             .get(fullKey)
             .then((result) => (result ? JSON.parse(result) : result))
-            .catch((e) => {
-                logger.error(`Error getting value for key ${fullKey} - ${e}`);
+            .catch((error) => {
+                logger.error('Error getting value', { error, metaData: { fullKey } });
                 return Promise.resolve(null);
             });
     }
@@ -106,11 +113,11 @@ class RedisCacheImpl {
                 PX: ttl,
             })
             .then((result) => {
-                logger.info(`Redis set result for ${key}: ${result}`);
+                logger.info('Redis set result', { metaData: { key, result } });
                 return result;
             })
-            .catch((e) => {
-                logger.error(`Error setting value for key ${key} - ${e}`);
+            .catch((error) => {
+                logger.error('Error setting value', { error, metaData: { key } });
                 return Promise.resolve(null);
             });
     }
