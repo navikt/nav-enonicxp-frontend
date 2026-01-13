@@ -57,7 +57,7 @@
     },
     "devDependencies": {
         "@chromatic-com/storybook": "2.0.2",
-        "@next/eslint-plugin-next": "15.5.4",
+        "@next/eslint-plugin-next": "16.1.1",
         "@playwright/test": "1.55.1",
         "@storybook/addon-docs": "9.1.10",
         "@storybook/nextjs": "9.1.10",
