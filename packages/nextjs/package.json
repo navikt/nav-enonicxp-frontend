@@ -45,7 +45,7 @@
         "next": "15.5.9",
         "node-cache": "5.1.2",
         "p-limit": "7.1.1",
-        "pino": "9.13.0",
+        "pino": "10.1.0",
         "react-collapse": "5.1.1",
         "react-movable": "3.4.1",
         "react-redux": "9.2.0",
