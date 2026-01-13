@@ -29,9 +29,9 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     )
         .then((response) => {
             if (response?.key) {
-                logger.info(
-                    `Setting cache key to ${response.key}, timestamp: ${response.timestamp}`
-                );
+                logger.info(`Setting cache key ${response.key}`, {
+                    metaData: { cacheKey: response.key, timestamp: response.timestamp },
+                });
                 // @ts-ignore - Adding cacheKey to global namespace
                 global.cacheKey = response.key;
                 return;
@@ -39,8 +39,11 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
                 throw new Error('Invalid response from revalidator proxy!');
             }
         })
-        .catch((e) => {
-            logger.error(`Error while fetching cache key, ${retries} retries remaining - ${e}`);
+        .catch((error) => {
+            logger.error('Error while fetching cache key', {
+                error,
+                metaData: { retriesRemaining: retries },
+            });
             return fetchAndSetCacheKey(retries - 1);
         });
 };
