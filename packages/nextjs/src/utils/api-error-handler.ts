@@ -8,8 +8,8 @@ export const apiErrorHandler = async (
 ) => {
     try {
         return await handler();
-    } catch (e) {
-        logger.error('Api error', { error: e });
+    } catch (error) {
+        logger.error('Api error', { error });
         // If we rewrite an url to an api page, the res object will be empty if the page is prefetched by the
         // client. We just return null in such cases. React will throw errors, but at least the server won't crash :)
         // This should not happen as long as any rewritten urls are not considered internal paths by our routing logic

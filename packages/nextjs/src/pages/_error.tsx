@@ -36,8 +36,8 @@ const getClientsideProps = (path?: string) => {
         }
 
         return contentProps;
-    } catch (e) {
-        logger.error(`Failed to parse __NEXT_DATA__ on ${path}`, { error: e });
+    } catch (error) {
+        logger.error(`Failed to parse __NEXT_DATA__ on ${path}`, { error });
         return null;
     }
 };
@@ -65,8 +65,8 @@ const fetchFailoverHtml = async (path: string): Promise<string | null> => {
             logger.error('Error response from failover', { error });
             return null;
         })
-        .catch((e) => {
-            logger.error('Exception from failover fetch', { error: e });
+        .catch((error) => {
+            logger.error('Exception from failover fetch', { error });
             return null;
         });
 };

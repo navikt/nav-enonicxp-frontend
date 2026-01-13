@@ -19,9 +19,9 @@ export const updateImageManifest = (src: string) => {
         fs.mkdirSync(manifestDir, { recursive: true });
     }
 
-    fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
-        if (e) {
-            logger.error('Error while appending to image manifest', { error: e });
+    fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (error) => {
+        if (error) {
+            logger.error('Error while appending to image manifest', { error });
         } else {
             logger.info(`Appended ${src} to image manifest`);
         }
@@ -58,8 +58,8 @@ export const processImageManifest = async () => {
                     });
                     return false;
                 })
-                .catch((e) => {
-                    logger.error(`Fetch error for image ${url}`, { error: e });
+                .catch((error) => {
+                    logger.error(`Fetch error for image ${url}`, { error });
                     return false;
                 })
         )

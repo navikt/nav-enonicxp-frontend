@@ -51,8 +51,8 @@ class RedisCacheImpl {
             .on('reconnecting', () => {
                 logger.info('Valkey client reconnecting');
             })
-            .on('error', (err) => {
-                logger.error('Valkey client error', { error: err });
+            .on('error', (error) => {
+                logger.error('Valkey client error', { error });
             });
     }
 
@@ -87,9 +87,9 @@ class RedisCacheImpl {
                 PX: this.renderCacheTTL,
             })
             .then((result) => (result ? JSON.parse(result) : result))
-            .catch((e) => {
+            .catch((error) => {
                 logger.error('Error getting render cache value', {
-                    error: e,
+                    error,
                     metaData: { fullKey },
                 });
                 return Promise.resolve(null);
@@ -101,8 +101,8 @@ class RedisCacheImpl {
         return this.client
             .get(fullKey)
             .then((result) => (result ? JSON.parse(result) : result))
-            .catch((e) => {
-                logger.error('Error getting value', { error: e, metaData: { fullKey } });
+            .catch((error) => {
+                logger.error('Error getting value', { error, metaData: { fullKey } });
                 return Promise.resolve(null);
             });
     }
@@ -116,8 +116,8 @@ class RedisCacheImpl {
                 logger.info('Redis set result', { metaData: { key, result } });
                 return result;
             })
-            .catch((e) => {
-                logger.error('Error setting value', { error: e, metaData: { key } });
+            .catch((error) => {
+                logger.error('Error setting value', { error, metaData: { key } });
                 return Promise.resolve(null);
             });
     }

@@ -39,9 +39,9 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
                 throw new Error('Invalid response from revalidator proxy!');
             }
         })
-        .catch((e) => {
+        .catch((error) => {
             logger.error('Error while fetching cache key', {
-                error: e,
+                error,
                 metaData: { retriesRemaining: retries },
             });
             return fetchAndSetCacheKey(retries - 1);

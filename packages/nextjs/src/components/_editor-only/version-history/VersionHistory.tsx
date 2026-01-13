@@ -31,8 +31,8 @@ export const VersionHistory = ({ content }: Props) => {
     useEffect(() => {
         setSelectorIsOpen(false);
         if (versionUrlRequested) {
-            router?.push(versionUrlRequested).catch((err) => {
-                logger.info('Error during version history navigation', { error: err });
+            router?.push(versionUrlRequested).catch((error) => {
+                logger.info('Error during version history navigation', { error });
                 setVersionUrlRequested(null);
             });
         }

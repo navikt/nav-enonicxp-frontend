@@ -75,11 +75,11 @@ export const evaluateExpression = (
             maxDecimals: decimals,
             language,
         });
-    } catch (e) {
+    } catch (error) {
         if (isEditorView) {
-            return `[feil ved evaluering av uttrykk: ${e}]`;
+            return `[feil ved evaluering av uttrykk: ${error}]`;
         }
-        logger.error('Global values calculation error', { error: e });
+        logger.error('Global values calculation error', { error });
         return '[teknisk feil: verdi ikke tilgjengelig]';
     }
 };
