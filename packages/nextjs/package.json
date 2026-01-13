@@ -37,7 +37,7 @@
         "csp-header": "6.1.0",
         "dayjs": "1.11.18",
         "fuse.js": "7.1.0",
-        "html-react-parser": "5.2.6",
+        "html-react-parser": "5.2.11",
         "js-cookie": "3.0.5",
         "jsep": "1.4.0",
         "lodash.debounce": "4.0.8",
