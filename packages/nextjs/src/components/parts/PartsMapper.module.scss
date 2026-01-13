@@ -1,5 +1,0 @@
-@use 'common' as common;
-
-.pageNavigationMenuPart {
-    @include common.page-navigation-menu-placement();
-}

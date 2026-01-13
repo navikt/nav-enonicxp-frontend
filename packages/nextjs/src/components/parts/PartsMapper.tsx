@@ -56,8 +56,6 @@ import { ReadMorePart } from './readMorePart/ReadMorePart';
 import { TrekkspillPart } from './trekkspill/TrekkspillPart';
 import { RelatedSituationsPart } from './related-situations/RelatedSituationsPart';
 
-import styles from './PartsMapper.module.scss';
-
 const partsDeprecated: ReadonlySet<PartTypeAll> = new Set([
     PartDeprecatedType.Notifications,
     PartDeprecatedType.BreakingNews,
@@ -197,8 +195,7 @@ export const PartsMapper = ({ pageProps, partProps, editorProps }: Props) => {
             className={classNames(
                 bem(),
                 bem(partName),
-                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState),
-                descriptor === PartType.PageNavigationMenu && styles.pageNavigationMenuPart
+                isEditView && renderOnAuthState && editorAuthstateClassname(renderOnAuthState)
             )}
             {...editorProps}
         >
