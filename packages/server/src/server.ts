@@ -67,7 +67,11 @@ nextApp.prepare().then(async () => {
                 error,
                 metaData: { path, status: 400, msg },
             });
-            res.status(400).send('Bad Request: Invalid URL encoding');
+            // Add 15 second delay to deter bulk fuzz testing attempts
+            res.status(400);
+            setTimeout(() => {
+                res.send('Bad Request');
+            }, 15000);
             return;
         }
 
