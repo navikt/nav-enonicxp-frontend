@@ -56,13 +56,23 @@ nextApp.prepare().then(async () => {
         await serverSetup(expressApp, nextApp);
     }
 
-    const errorHandler: ErrorRequestHandler = (err, req, res, _) => {
+    const errorHandler: ErrorRequestHandler = (error, req, res, _) => {
         const { path } = req;
-        const { status, stack } = err;
+        const { status, stack, message } = error;
         const msg = stack?.split('\n')[0];
 
+        // Handle URIErrors from malformed URL encoding (likely fuzzy testing)
+        if (error instanceof URIError || (message && message.includes('Failed to decode param'))) {
+            logger.warn('Malformed URL encoding detected', {
+                error,
+                metaData: { path, status: 400, msg },
+            });
+            res.status(400).send('Bad Request: Invalid URL encoding');
+            return;
+        }
+
         logger.error('Express error', {
-            error: err,
+            error,
             metaData: { path, status, msg },
         });
 
