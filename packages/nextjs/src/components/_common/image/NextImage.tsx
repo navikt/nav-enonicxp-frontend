@@ -1,6 +1,7 @@
 import React from 'react';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import dynamic from 'next/dynamic';
+import { logger } from '@/shared/logger';
 import { usePageContentProps } from 'store/pageContext';
 import { isValidImageUrl } from 'utils/urls';
 
@@ -45,9 +46,14 @@ export const buildImageCacheUrl = ({
     }
 
     // Decode then encode to ensure nothing gets double-encoded
-    return `${origin}/_next/image?url=${encodeURIComponent(
-        decodeURIComponent(src)
-    )}&w=${maxWidth}&q=${quality}`;
+    try {
+        const decodedSrc = decodeURIComponent(src);
+        return `${origin}/_next/image?url=${encodeURIComponent(decodedSrc)}&w=${maxWidth}&q=${quality}`;
+    } catch (error) {
+        // If decoding fails (malformed URL), use the src as-is
+        logger.warn(`Failed to decode image src, using as-is: ${src}`, { error });
+        return `${origin}/_next/image?url=${encodeURIComponent(src)}&w=${maxWidth}&q=${quality}`;
+    }
 };
 
 const NextImageRunTime = (props: ImageProps) => {
