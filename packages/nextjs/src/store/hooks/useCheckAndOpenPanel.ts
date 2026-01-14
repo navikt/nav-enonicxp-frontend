@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useRef } from 'react';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 export const useCheckAndOpenPanel = (
@@ -7,13 +7,28 @@ export const useCheckAndOpenPanel = (
     ref: React.RefObject<HTMLDivElement | null>,
     anchorId?: string
 ) => {
+    const hasHandledExpandAll = useRef(false);
+    const isOpenRef = useRef(isOpen);
+
+    useEffect(() => {
+        isOpenRef.current = isOpen;
+    }, [isOpen]);
+
     const checkAndOpenPanel = useCallback(() => {
-        if (isOpen) return;
+        if (isOpenRef.current) return;
+
+        if (!hasHandledExpandAll.current) {
+            hasHandledExpandAll.current = true;
+            if (window.location.search.includes('expandall=true')) {
+                setIsOpen(true);
+                return;
+            }
+        }
 
         const targetId = window.location.hash.slice(1);
         if (!targetId) return;
 
-        if (window.location.search.includes('expandall=true') || targetId === anchorId) {
+        if (targetId === anchorId) {
             setIsOpen(true);
             return;
         }
@@ -23,7 +38,7 @@ export const useCheckAndOpenPanel = (
             setIsOpen(true);
             setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
-    }, [isOpen, setIsOpen, ref, anchorId]);
+    }, [anchorId, ref, setIsOpen]);
 
     useEffect(() => {
         window.addEventListener('hashchange', checkAndOpenPanel);

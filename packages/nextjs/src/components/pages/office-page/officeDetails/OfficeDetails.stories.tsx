@@ -10,50 +10,23 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const WithReception: Story = {
+export const Default: Story = {
     args: {
         officeData: {
             ...mockOfficeData,
             brukerkontakt: {
                 ...mockOfficeData.brukerkontakt,
-                publikumsmottak: [mockReception1],
+                publikumsmottak: [mockReception2, mockReception1],
             },
         },
     },
 };
 
-export const WithSpecialOpeningHours: Story = {
+export const Arbeidslivssenter: Story = {
     args: {
         officeData: {
             ...mockOfficeData,
-            brukerkontakt: {
-                ...mockOfficeData.brukerkontakt,
-                publikumsmottak: [mockReception2],
-            },
-        },
-    },
-};
-
-export const WithMultipleReceptions: Story = {
-    args: {
-        officeData: {
-            ...mockOfficeData,
-            brukerkontakt: {
-                ...mockOfficeData.brukerkontakt,
-                publikumsmottak: [mockReception1, mockReception2],
-            },
-        },
-    },
-};
-
-export const WithoutReception: Story = {
-    args: {
-        officeData: {
-            ...mockOfficeData,
-            brukerkontakt: {
-                ...mockOfficeData.brukerkontakt,
-                publikumsmottak: [],
-            },
+            type: 'ALS',
         },
     },
 };

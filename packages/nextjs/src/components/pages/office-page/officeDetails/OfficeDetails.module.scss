@@ -1,27 +1,12 @@
 @use 'common' as common;
 
 .officeDetails {
-    align-self: center;
-    border: none;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     margin-top: var(--a-spacing-8);
-    max-width: common.$contentMaxWidth;
+    row-gap: var(--a-spacing-5);
+    max-width: common.$sectionMaxWidth;
     width: 100%;
-
-    & > * {
-        width: 100%;
-    }
-}
-
-.pageContent {
-    display: flex;
-    flex-direction: column;
-
-    & > * {
-        max-width: common.$sectionMaxWidth;
-    }
 }
 
 .wide {
@@ -29,10 +14,6 @@
     display: flex;
     justify-content: center;
     @include common.full-width-mixin();
-}
-
-.header {
-    margin-bottom: var(--a-spacing-6);
 }
 
 .addressPoster {

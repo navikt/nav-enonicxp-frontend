@@ -23,9 +23,9 @@ export type PartConfigReadMore = {
 };
 
 export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) => {
-    const [isOpen, setIsOpen] = useState(config?.isOpen ?? false);
-    const divRef = useRef<HTMLDivElement | null>(null);
     const contentProps = usePageContentProps();
+    const [isOpen, setIsOpen] = useState(config?.isOpen ?? contentProps.expandAll ?? false);
+    const divRef = useRef<HTMLDivElement | null>(null);
     const { context } = getDecoratorParams(contentProps);
 
     useSnarveier({

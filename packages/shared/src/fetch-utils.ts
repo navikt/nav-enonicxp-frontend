@@ -49,12 +49,12 @@ export const fetchJson = <ResponseType = any>(
 
             throw new Error(`${res.status} - ${res.statusText}`);
         })
-        .catch((e) => {
+        .catch((error) => {
             if (retries > 0) {
                 logger.info(`Failed to fetch from ${url}, retrying`);
                 return fetchJson(url, timeout, config, retries - 1);
             }
 
-            logger.error(`Failed to fetch json from ${url} - ${e}`);
+            logger.error(`Failed to fetch json on ${url}`, { error });
             return null;
         });

@@ -208,6 +208,7 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     languages?: LanguageProps[];
     contentLayer?: string;
     redirectToLayer?: LayerLocale;
+    expandAll?: boolean;
 } & ContentAndMediaCommonProps &
     VersionSelectorProps;
 

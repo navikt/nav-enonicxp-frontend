@@ -31,10 +31,8 @@
         & + :global(.navds-expansioncard__content) {
             box-shadow: none;
         }
-        .illustration {
-            & > :first-child:not(:last-child) * {
-                fill: var(--a-white);
-            }
+        .illustration :global(.back) [fill]:not([fill='none']) {
+            fill: var(--a-white);
         }
     }
 
@@ -76,7 +74,7 @@
     height: var(--a-spacing-12);
     flex-shrink: 0;
 
-    & > :first-child:not(:last-child) * {
+    :global(.back) [fill]:not([fill='none']) {
         fill: var(--a-deepblue-100);
     }
 }

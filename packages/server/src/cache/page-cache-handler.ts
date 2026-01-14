@@ -31,7 +31,9 @@ export default class PageCacheHandler {
             const cacheLoadDuration = performance.now() - cacheStartTime;
 
             if (cacheLoadDuration > 50) {
-                logger.warn(`Local cache: json load takes more than 50 ms for ${key}`);
+                logger.warn(`Local cache: json load takes more than 50 ms for key ${key}`, {
+                    metaData: { cacheLoadDuration },
+                });
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
@@ -55,7 +57,7 @@ export default class PageCacheHandler {
 
             return fromRedisCache;
         } catch (error: any) {
-            logger.error(`Error getting cache for key ${key}:`, error);
+            logger.error(`Error getting cache for key ${key}`, { error });
             return null;
         }
     }
@@ -79,7 +81,7 @@ export default class PageCacheHandler {
 
     public async delete(path: string) {
         const key = pathToCacheKey(path);
-        logger.info(`Deleting local cache entry for ${key}`);
+        logger.info(`Deleting local cache entry for key ${key}`);
         localCache.delete(key);
     }
 }

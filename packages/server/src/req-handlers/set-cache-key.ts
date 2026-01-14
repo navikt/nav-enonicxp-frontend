@@ -9,13 +9,20 @@ export const setCacheKey: RequestHandler = (req, res, next) => {
     if (typeof cache_key === 'string') {
         const newCacheTimestamp = Number(cache_ts);
         if (newCacheTimestamp > currentCacheTimestamp) {
-            logger.info(`Setting new cache key ${cache_key} with timestamp ${cache_ts}`);
+            logger.info(`Setting new cache key - ${cache_key}`, {
+                metaData: { cache_key, cache_ts },
+            });
             global.cacheKey = cache_key;
             currentCacheTimestamp = newCacheTimestamp;
         } else {
-            logger.info(
-                `Rejecting cache key ${cache_key} with timestamp ${newCacheTimestamp} - current cache key ${global.cacheKey} is same or newer (${currentCacheTimestamp})`
-            );
+            logger.info('Rejecting cache key - current cache key is same or newer', {
+                metaData: {
+                    rejectedCacheKey: cache_key,
+                    rejectedTimestamp: newCacheTimestamp,
+                    currentCacheKey: globalThis.cacheKey,
+                    currentTimestamp: currentCacheTimestamp,
+                },
+            });
         }
     } else {
         logger.error(`No valid cache key provided - ${cache_key}`);

@@ -7,8 +7,8 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const paths = req.body.paths as string[];
 
     if (!Array.isArray(paths)) {
-        const msg = `Invalid path array for event ${eventid}`;
-        logger.error(msg);
+        const msg = 'Invalid path array for event';
+        logger.error(msg, { metaData: { eventid } });
         res.status(400).send(msg);
         return;
     }

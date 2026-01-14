@@ -32,9 +32,9 @@ export const Expandable = ({
     ariaLabel,
     isOpenDefault,
 }: Props) => {
-    const [isOpen, setIsOpen] = useState(isOpenDefault ?? false);
-    const trekkspillRef = useRef<HTMLDivElement | null>(null);
     const contentProps = usePageContentProps();
+    const [isOpen, setIsOpen] = useState(isOpenDefault ?? contentProps.expandAll ?? false);
+    const trekkspillRef = useRef<HTMLDivElement | null>(null);
     const { context } = getDecoratorParams(contentProps);
 
     useSnarveier({ shortcut: Snarveier.SEARCH, callback: () => setIsOpen(true) });

@@ -36,10 +36,14 @@ nextApp.prepare().then(async () => {
         // Make query writable
         const query = req.query;
         Object.defineProperty(req, 'query', {
-            get() { return query; },
-            set(value) { Object.assign(query, value); },
+            get() {
+                return query;
+            },
+            set(value) {
+                Object.assign(query, value);
+            },
             enumerable: true,
-            configurable: true
+            configurable: true,
         });
         next();
     });
@@ -52,12 +56,29 @@ nextApp.prepare().then(async () => {
         await serverSetup(expressApp, nextApp);
     }
 
-    const errorHandler: ErrorRequestHandler = (err, req, res, _) => {
+    const errorHandler: ErrorRequestHandler = (error, req, res, _) => {
         const { path } = req;
-        const { status, stack } = err;
+        const { status, stack, message } = error;
         const msg = stack?.split('\n')[0];
 
-        logger.error(`Express error on path ${path}: ${status} ${msg}`);
+        // Handle URIErrors from malformed URL encoding (likely fuzzy testing)
+        if (error instanceof URIError || message?.includes('Failed to decode param')) {
+            logger.warn('Malformed URL encoding detected', {
+                error,
+                metaData: { path, status: 400, msg },
+            });
+            // Add 15 second delay to deter bulk fuzz testing attempts
+            res.status(400);
+            setTimeout(() => {
+                res.send('Bad Request');
+            }, 15000);
+            return;
+        }
+
+        logger.error('Express error', {
+            error,
+            metaData: { path, status, msg },
+        });
 
         res.status(status || 500);
     };
@@ -78,7 +99,7 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
-        logger.info(`Server started on port ${port}`);
+        logger.info('Server started', { metaData: { port } });
     });
 
     const httpTerminator = createHttpTerminator({ server: expressServer });

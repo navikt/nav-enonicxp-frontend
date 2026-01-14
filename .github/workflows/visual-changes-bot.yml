@@ -29,7 +29,7 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
 
             - name: Install dependencies
-              run: npm ci
+              run: npm ci --ignore-scripts
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
@@ -42,7 +42,7 @@ jobs:
                     -v $(pwd):/workspace \
                     -w /workspace \
                     --ipc=host \
-                    mcr.microsoft.com/playwright:v1.55.1-noble \
+                    mcr.microsoft.com/playwright:v1.57.0-noble \
                     /bin/bash -c "
                       CI=true npx playwright test --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js
@@ -61,7 +61,7 @@ jobs:
                   script: |
                       try {
                         const { repo, owner } = context.repo;
-                        
+
                         // Get PR number from event context
                         let prNumber;
                         if (context.payload.pull_request) {
@@ -69,45 +69,45 @@ jobs:
                         } else {
                           return;
                         }
-                        
+
                         // Add a small delay to ensure files are available
                         await new Promise(resolve => setTimeout(resolve, 1000));
-                        
+
                         const changedFiles = await github.rest.pulls.listFiles({
                           owner,
                           repo,
                           pull_number: prNumber
                         });
-                        
+
                         if (changedFiles.data.length === 0) {
                           console.log('Warning: No files detected in PR. This might be a timing issue.');
                           return;
                         }
-                        
+
                         // Separate files by status
                         // Only consider files as "changed" if they are modified or added
-                        const modifiedOrAddedPngs = changedFiles.data.filter(file => 
-                          file.filename.endsWith('.png') && 
+                        const modifiedOrAddedPngs = changedFiles.data.filter(file =>
+                          file.filename.endsWith('.png') &&
                           (file.status === 'modified' || file.status === 'added')
                         );
-                        
+
                         const hasScreenshotChanges = modifiedOrAddedPngs.length > 0;
-                        
+
                         // Find all reviews
                         const reviews = await github.rest.pulls.listReviews({
                           owner,
                           repo,
                           pull_number: prNumber
                         });
-                        
+
                         const REVIEW_MARKER = '<!-- playwright-screenshot-bot -->';
-                        
-                        const botReview = reviews.data.find(review => 
-                          review.user.login === 'github-actions[bot]' && 
+
+                        const botReview = reviews.data.find(review =>
+                          review.user.login === 'github-actions[bot]' &&
                           review.state === 'CHANGES_REQUESTED' &&
                           review.body.includes(REVIEW_MARKER)
                         );
-                        
+
                         if (hasScreenshotChanges && !botReview) {
                           const filesUrl = `https://github.com/${owner}/${repo}/pull/${prNumber}/files?file-filters[]=.png&file-filters[]=^playwright/`;
                           await github.rest.pulls.createReview({
