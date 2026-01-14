@@ -65,7 +65,7 @@ export const initRevalidatorProxyHeartbeat = () => {
 
         fetch(url, {
             headers: { secret: SERVICE_SECRET },
-        }).catch((e) => logger.error(`Failed to send heartbeat signal - ${e}`));
+        }).catch((error) => logger.error('Failed to send heartbeat signal', { error }));
     };
 
     heartbeatFunc();

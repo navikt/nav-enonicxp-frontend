@@ -22,13 +22,24 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
         ''
     );
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
-    const phoneInformation =
-        officeData.telefonnummerKommentar || getOfficeTranslations('phoneInformation');
 
+    const getPhoneInformation = () => {
+        if (officeData.type === 'ALS') {
+            return getOfficeTranslations('phoneTime');
+        }
+        if (officeData.telefonnummerKommentar) {
+            return officeData.telefonnummerKommentar;
+        }
+        return getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
+    };
+
+    const phoneInformation = getPhoneInformation();
     const phoneHeader =
         officeData.type === 'HMS'
             ? getOfficeTranslations('phoneToHMS')
             : getOfficeTranslations('phoneToNav');
+
+    const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
 
     return (
         <div className={styles.phonePoster}>
@@ -41,8 +52,8 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={publikumskanaler.length > 0}>{phoneInformation}</BodyLong>
-            {publikumskanaler.length > 0 && (
+            <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            {visPublikumskanaler && (
                 <>
                     <Heading size="small" level="3">
                         {getOfficeTranslations('alternativeContacts')}

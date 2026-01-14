@@ -74,9 +74,13 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         const targetBuildId = process.env.ENV === 'localhost' ? 'development' : currentBuildId;
 
         if (requestedBuildId !== targetBuildId) {
-            logger.info(
-                `Expected build-id ${targetBuildId}, got ${requestedBuildId} on ${req.path}`
-            );
+            logger.info('Build ID mismatch', {
+                metaData: {
+                    expectedBuildId: targetBuildId,
+                    receivedBuildId: requestedBuildId,
+                    path: req.path,
+                },
+            });
             req.url = req.url.replace(requestedBuildId, targetBuildId);
         }
 

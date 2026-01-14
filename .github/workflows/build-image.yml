@@ -82,21 +82,35 @@ jobs:
                   registry-url: 'https://npm.pkg.github.com'
                   cache: 'npm'
             - name: Set app environmment
+              env:
+                  ENV: ${{ inputs.ENV }}
+                  NODE_ENV: ${{ inputs.NODE_ENV }}
+                  ADMIN_ORIGIN: ${{ inputs.ADMIN_ORIGIN }}
+                  APP_ORIGIN: ${{ inputs.APP_ORIGIN }}
+                  DECORATOR_URL: ${{ inputs.DECORATOR_URL }}
+                  XP_ORIGIN: ${{ inputs.XP_ORIGIN }}
+                  TELEMETRY_URL: ${{ inputs.TELEMETRY_URL }}
+                  REVALIDATOR_PROXY_ORIGIN: ${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
+                  FAILOVER_ORIGIN: ${{ inputs.FAILOVER_ORIGIN }}
+                  IS_FAILOVER_INSTANCE: ${{ inputs.IS_FAILOVER_INSTANCE }}
+                  INNLOGGINGSSTATUS_URL: ${{ inputs.INNLOGGINGSSTATUS_URL }}
+                  NAVNO_SEARCH_API_URL: ${{ inputs.NAVNO_SEARCH_API_URL }}
+                  MELDEKORT_API_URL: ${{ inputs.MELDEKORT_API_URL }}
               run: |
                   cat > .env <<EOF
-                  ENV=${{ inputs.ENV }}
-                  NODE_ENV=${{ inputs.NODE_ENV }}
-                  ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
-                  APP_ORIGIN=${{ inputs.APP_ORIGIN }}
-                  DECORATOR_URL=${{ inputs.DECORATOR_URL }}
-                  XP_ORIGIN=${{ inputs.XP_ORIGIN }}
-                  TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
-                  REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
-                  FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
-                  IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
-                  INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
-                  NAVNO_SEARCH_API_URL=${{ inputs.NAVNO_SEARCH_API_URL }}
-                  MELDEKORT_API_URL=${{ inputs.MELDEKORT_API_URL }}
+                  ENV=$ENV
+                  NODE_ENV=$NODE_ENV
+                  ADMIN_ORIGIN=$ADMIN_ORIGIN
+                  APP_ORIGIN=$APP_ORIGIN
+                  DECORATOR_URL=$DECORATOR_URL
+                  XP_ORIGIN=$XP_ORIGIN
+                  TELEMETRY_URL=$TELEMETRY_URL
+                  REVALIDATOR_PROXY_ORIGIN=$REVALIDATOR_PROXY_ORIGIN
+                  FAILOVER_ORIGIN=$FAILOVER_ORIGIN
+                  IS_FAILOVER_INSTANCE=$IS_FAILOVER_INSTANCE
+                  INNLOGGINGSSTATUS_URL=$INNLOGGINGSSTATUS_URL
+                  NAVNO_SEARCH_API_URL=$NAVNO_SEARCH_API_URL
+                  MELDEKORT_API_URL=$MELDEKORT_API_URL
                   ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend
                   IMAGE_CACHE_DIR=/tmp/images
                   NEXT_TELEMETRY_DISABLED=1
@@ -109,7 +123,7 @@ jobs:
                   path: ${{ github.workspace }}/packages/nextjs/.next/cache
                   key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
             - name: Install dependencies
-              run: npm ci
+              run: npm ci --ignore-scripts
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
             - name: Run linting

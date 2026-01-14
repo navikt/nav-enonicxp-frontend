@@ -30,7 +30,7 @@ const formatAudienceReception = (
     language: string = 'no'
 ): FormattedAudienceReception => {
     // filter regular and exceptions for opening hour then introduce formatting for display
-    const aapningstider = audienceReception.aapningstider.reduce<{
+    const aapningstider = forceArray(audienceReception.aapningstider).reduce<{
         regular: LegacyOfficeOpeningHoursProps[];
         exceptions: LegacyOfficeOpeningHoursProps[];
     }>(

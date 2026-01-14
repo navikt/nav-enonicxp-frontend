@@ -75,8 +75,8 @@ const fetchSiteContentStandard = async ({
     const url = `${xpServiceUrl}/sitecontent${params}`;
     logger.info(`Fetching content from ${url}`);
 
-    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent fetch error for ${url}: ${e}`);
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((error) => {
+        logger.info(`Sitecontent fetch error for ${url}`, { error });
         return null;
     });
 };
@@ -98,8 +98,8 @@ const fetchSiteContentVersion = async ({
 
     logger.info(`Fetching version history content from ${url}`);
 
-    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent version fetch error: ${e}`);
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((error) => {
+        logger.info(`Sitecontent version fetch error for ${url}`, { error });
         return null;
     });
 };
@@ -114,8 +114,8 @@ const fetchSiteContentArchive = async ({ idOrPath, locale, time }: FetchSiteCont
     const url = `${xpServiceUrl}/sitecontentArchive${params}`;
     logger.info(`Fetching archived content from ${url}`);
 
-    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        logger.info(`Sitecontent archive fetch error: ${e}`);
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((error) => {
+        logger.info(`Sitecontent archive fetch error for ${url}`, { error });
         return null;
     });
 };
@@ -158,7 +158,7 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            logger.info(`Response cache hit for ${idOrPath}`);
+            logger.info(`Response cache hit ${idOrPath}`);
             return cachedResponse;
         }
     }
