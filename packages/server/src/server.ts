@@ -62,7 +62,7 @@ nextApp.prepare().then(async () => {
         const msg = stack?.split('\n')[0];
 
         // Handle URIErrors from malformed URL encoding (likely fuzzy testing)
-        if (error instanceof URIError || (message && message.includes('Failed to decode param'))) {
+        if (error instanceof URIError || message?.includes('Failed to decode param')) {
             logger.warn('Malformed URL encoding detected', {
                 error,
                 metaData: { path, status: 400, msg },
