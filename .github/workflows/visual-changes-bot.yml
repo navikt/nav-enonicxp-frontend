@@ -20,10 +20,10 @@ jobs:
               id: comment-branch
 
             - name: Checkout PR branch
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
                   node-version: '24'
                   registry-url: 'https://npm.pkg.github.com'
@@ -56,7 +56,7 @@ jobs:
                   commit_message: 'Update screenshots'
 
             - name: Review PR
-              uses: actions/github-script@v7
+              uses: actions/github-script@v8
               with:
                   script: |
                       try {
