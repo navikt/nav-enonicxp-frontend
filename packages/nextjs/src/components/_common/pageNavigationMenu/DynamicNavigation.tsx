@@ -15,7 +15,7 @@ import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/Aktuel
 
 import style from './DynamicNavigation.module.scss';
 
-const SCROLL_TOLERANCE_PX = 75;
+const SCROLL_TOLERANCE_PX = 100;
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
     anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
