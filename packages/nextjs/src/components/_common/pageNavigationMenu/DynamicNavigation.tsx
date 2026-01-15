@@ -12,6 +12,7 @@ import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
+import { AngleIcon } from './AngleIcon/AngleIcon';
 
 import style from './DynamicNavigation.module.scss';
 
@@ -26,20 +27,6 @@ type Props = {
     title: string;
     className?: string;
 };
-
-const NavigationArrowIcon = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        className={style.icon}
-    >
-        <path stroke="currentColor" d="M17 15h-6l-1-1V8" />
-    </svg>
-);
 
 export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, className }: Props) => {
     const { language } = usePageContentProps();
@@ -315,7 +302,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
                             >
-                                <NavigationArrowIcon />
+                                <AngleIcon />
                                 <BodyShort as="span" className={style.linkText}>
                                     {h2.linkText}
                                 </BodyShort>
@@ -342,7 +329,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                                 }
                                                 tabIndex={isExpanded ? 0 : -1}
                                             >
-                                                <NavigationArrowIcon />
+                                                <AngleIcon />
                                                 <BodyShort as="span" className={style.linkText}>
                                                     {sub.linkText}
                                                 </BodyShort>

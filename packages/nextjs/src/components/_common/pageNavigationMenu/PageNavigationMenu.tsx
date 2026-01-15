@@ -6,6 +6,7 @@ import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
+import { AngleIcon } from './AngleIcon/AngleIcon';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -55,17 +56,7 @@ export const PageNavigationMenu = ({
                             analyticsLabel={anchorLink.linkText}
                             className={style.link}
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                                className={style.icon}
-                            >
-                                <path stroke="currentColor" d="M17 15h-6l-1-1V8" />
-                            </svg>
+                            <AngleIcon />
                             <BodyLong as="span" className={style.linkText}>
                                 {anchorLink.linkText}
                             </BodyLong>
