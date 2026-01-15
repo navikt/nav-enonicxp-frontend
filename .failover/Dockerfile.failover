@@ -1,4 +1,4 @@
-FROM node:22-alpine AS build
+FROM node:24-alpine AS build
 
 # No need to add user or group here.
 RUN apk add --no-cache ca-certificates libc6-compat && update-ca-certificates
@@ -24,7 +24,7 @@ COPY ".failover/${ENV_FILE}" /app/packages/server/.env
 RUN npm run build
 
 # --------- Final stage ---------
-FROM node:22-alpine
+FROM node:24-alpine
 
 # Only now create the non-root user for runtime!
 RUN addgroup --system --gid 1001 nodejs \
