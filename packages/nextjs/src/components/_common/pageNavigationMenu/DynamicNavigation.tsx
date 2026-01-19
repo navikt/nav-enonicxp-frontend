@@ -16,7 +16,8 @@ import { AngleIcon } from './AngleIcon/AngleIcon';
 
 import style from './DynamicNavigation.module.scss';
 
-const SCROLL_TOLERANCE_PX = 100;
+// Henger sammen med scroll-margin-top i Header.module.scss
+const SCROLL_TOLERANCE_PX = 75;
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
     anchorLinks.filter((link) => link.anchorId && link.linkText && !link.isDupe);
