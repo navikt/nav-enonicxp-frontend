@@ -1,9 +1,6 @@
 @use 'common' as common;
 
 .situationPage {
-    display: flex;
-    flex-direction: column;
-
     .content {
         & > * {
             margin-top: var(--a-spacing-20);
