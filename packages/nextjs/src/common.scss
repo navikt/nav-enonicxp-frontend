@@ -222,7 +222,7 @@ $versionSelectorMinHeight: 3rem;
         [space-end] minmax(0, min(22.5rem, 30%))
         [content-end];
     padding-left: 8rem;
-    max-width: none;
+    max-width: none !important;
 }
 
 @mixin page-navigation-menu-placement() {
