@@ -15,13 +15,13 @@ jobs:
             contents: read
             packages: read
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             - name: Setup Pages
-              uses: actions/configure-pages@v4
+              uses: actions/configure-pages@v5
             - name: Setup Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v6
               with:
-                  node-version: 22
+                  node-version: '24'
                   registry-url: 'https://npm.pkg.github.com'
                   cache: 'npm'
             - name: Install dependencies
@@ -33,7 +33,7 @@ jobs:
             - name: Build Storybook
               run: npm run build:storybook
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-pages-artifact@v4
               with:
                   path: ./packages/nextjs/storybook-static
 

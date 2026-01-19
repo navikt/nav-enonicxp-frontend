@@ -74,11 +74,11 @@ jobs:
             image: ${{ steps.docker-push.outputs.image }}
         steps:
             - name: Checkout repo
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
             - name: Setup node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
-                  node-version: '22'
+                  node-version: '24'
                   registry-url: 'https://npm.pkg.github.com'
                   cache: 'npm'
             - name: Set app environmment
@@ -118,7 +118,7 @@ jobs:
             - name: Copy env to nextjs and server workspaces
               run: cp .env packages/nextjs/.env && cp .env packages/server/.env
             - name: Nextjs cache
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: ${{ github.workspace }}/packages/nextjs/.next/cache
                   key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
