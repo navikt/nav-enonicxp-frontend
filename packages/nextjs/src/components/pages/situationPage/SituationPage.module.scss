@@ -3,19 +3,19 @@
 .situationPage {
     .content {
         & > * {
-            margin-top: var(--a-spacing-20);
+            padding-top: var(--a-spacing-20);
             padding-bottom: var(--a-spacing-16);
             max-width: 40rem;
             margin-left: auto;
             margin-right: auto;
 
             @media #{common.$mq-screen-mobile} {
-                margin-top: var(--a-spacing-9);
+                padding-top: var(--a-spacing-9);
             }
         }
     }
 
     .pullUp {
-        margin-top: var(--a-spacing-3);
+        padding-top: var(--a-spacing-3);
     }
 }
