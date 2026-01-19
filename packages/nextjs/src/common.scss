@@ -230,3 +230,15 @@ $versionSelectorMinHeight: 3rem;
     grid-column: space-end !important;
     grid-row: 2 / 999;
 }
+
+@mixin centered-content-spacing() {
+    padding-top: var(--a-spacing-20);
+    padding-bottom: var(--a-spacing-16);
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media #{$mq-screen-mobile} {
+        padding-top: var(--a-spacing-9);
+    }
+}
