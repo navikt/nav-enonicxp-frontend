@@ -133,7 +133,7 @@ describe('Path Validation Middleware', () => {
         });
 
         test('should block img tag with onerror', () => {
-            const mockReq = createMockReq('/<img src=x onerror=alert(1)>');
+            const mockReq = createMockReq('/<img alt src="" onerror=alert(1)>');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
             expect(statusSpy).toHaveBeenCalledWith(400);
         });

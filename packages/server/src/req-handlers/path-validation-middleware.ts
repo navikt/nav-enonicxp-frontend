@@ -35,7 +35,7 @@ const MALICIOUS_PATTERNS = [
 // Common malicious file extensions to block
 const BLOCKED_EXTENSIONS = [
     '.php', '.asp', '.aspx', '.jsp', '.cgi', '.pl', '.py', '.rb', '.sh',
-    '.exe', '.dll', '.bat', '.cmd', '.vbs', '.ps1'
+    '.exe', '.dll', '.bat', '.cmd', '.vbs', '.ps1', '.ini'
 ];
 
 // Generate blocked root paths from XP_PATHS (without trailing slash and with trailing slash)
@@ -63,6 +63,7 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     }
 
     // Check for blocked file extensions
+    logger.info(fullPath.toLowerCase());
     const hasBlockedExtension = BLOCKED_EXTENSIONS.some(ext =>
         fullPath.toLowerCase().endsWith(ext) || decodedPath.toLowerCase().endsWith(ext)
     );

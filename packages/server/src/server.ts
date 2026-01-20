@@ -9,8 +9,6 @@ import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { pathValidationMiddleware } from 'req-handlers/path-validation-middleware';
-import { rateLimitMiddleware, cleanupRateLimiters } from 'req-handlers/rate-limit-middleware';
-import { securityLoggingMiddleware } from 'req-handlers/security-logging-middleware';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
@@ -36,8 +34,6 @@ nextApp.prepare().then(async () => {
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     // Security middleware - apply early in the chain
-    expressApp.use(securityLoggingMiddleware);
-    expressApp.use(rateLimitMiddleware);
     expressApp.use(pathValidationMiddleware);
 
     // Express 5 compatibility: Make request properties writable for Next.js
@@ -60,7 +56,6 @@ nextApp.prepare().then(async () => {
     expressApp.use(promMiddleware);
 
     // Handle known /_/* redirects BEFORE Next.js processes them
-    // This ensures our security validation runs before the redirect
     if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
         expressApp.use((req, res, next) => {
             // Check if path starts with /_/
@@ -69,12 +64,9 @@ nextApp.prepare().then(async () => {
                 const isKnownXpPath = XP_PATHS.some(xpPath => req.path.startsWith(xpPath));
 
                 if (isKnownXpPath) {
-                    // Security validation already ran in middleware above
-                    // Now redirect to XP origin
                     const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
                     return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
                 } else {
-                    // Unknown /_/ path - block it
                     logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
                     return res.status(403).send('Forbidden');
                 }
@@ -139,8 +131,7 @@ nextApp.prepare().then(async () => {
 
     const shutdown = () => {
         logger.info('Server shutting down');
-        cleanupRateLimiters();
-        httpTerminator.terminate().then(() => {
+            httpTerminator.terminate().then(() => {
             expressServer.close(() => {
                 logger.info('Shutdown complete!');
                 process.exit(0);
