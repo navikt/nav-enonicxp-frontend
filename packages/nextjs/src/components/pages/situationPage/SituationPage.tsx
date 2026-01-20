@@ -12,9 +12,10 @@ type ComponentNode = {
     regions?: Record<string, { components: ComponentNode[] }>;
 };
 
-const komponentErKontaktModul = (component: ComponentNode): boolean => {
+const componentIsContactModule = (component: ComponentNode): boolean => {
     if (!component) return false;
 
+    // Dersom komponenten inneholder en KontaktOssKanalPart er det kontaktmodulen på siden
     if (component.descriptor.includes(PartType.KontaktOssKanal)) {
         return true;
     }
@@ -22,7 +23,7 @@ const komponentErKontaktModul = (component: ComponentNode): boolean => {
     const regions = Object.values(component.regions ?? {});
 
     for (const region of regions) {
-        if (region?.components?.some(komponentErKontaktModul)) {
+        if (region?.components?.some(componentIsContactModule)) {
             return true;
         }
     }
@@ -37,11 +38,12 @@ export const SituationPage = (props: SituationPageProps) => {
     const components = props.page.regions?.pageContent?.components ?? [];
 
     const lastComponent = components.length > 0 ? components.at(-1) : undefined;
-    const shouldRenderLastOutside = lastComponent && komponentErKontaktModul(lastComponent);
+    const shouldRenderLastComponentOutsideMainDiv =
+        lastComponent && componentIsContactModule(lastComponent);
 
     let componentPropsInsideContent = props.page;
 
-    if (shouldRenderLastOutside) {
+    if (shouldRenderLastComponentOutsideMainDiv) {
         const componentsWithoutContactModule = components.slice(0, -1);
 
         componentPropsInsideContent = {
@@ -61,7 +63,7 @@ export const SituationPage = (props: SituationPageProps) => {
             <div className={classNames(styles.content, hasMultipleLanguages && styles.pullUp)}>
                 <ComponentMapper componentProps={componentPropsInsideContent} pageProps={props} />
             </div>
-            {shouldRenderLastOutside && (
+            {shouldRenderLastComponentOutsideMainDiv && (
                 <ComponentMapper componentProps={lastComponent} pageProps={props} />
             )}
         </article>
