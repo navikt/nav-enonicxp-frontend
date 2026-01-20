@@ -28,16 +28,15 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    const pageContentComponents = props.page.regions?.pageContent?.components ?? [];
+    const components = props.page.regions?.pageContent?.components ?? [];
 
-    const lastComponent =
-        pageContentComponents.length > 0 ? pageContentComponents.at(-1) : undefined;
+    const lastComponent = components.length > 0 ? components.at(-1) : undefined;
     const shouldRenderLastOutside = komponentErKontaktModul(lastComponent);
 
     let componentPropsInsideContent = props.page;
 
     if (shouldRenderLastOutside) {
-        const componentsWithoutContactModule = pageContentComponents.slice(0, -1);
+        const componentsWithoutContactModule = components.slice(0, -1);
 
         componentPropsInsideContent = {
             ...props.page,
