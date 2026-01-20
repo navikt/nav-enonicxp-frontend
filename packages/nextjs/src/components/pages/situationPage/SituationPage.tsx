@@ -39,13 +39,13 @@ const extractLastComponentIfContactModule = (page: SituationPageProps['page']) =
 
     if (!lastComponent || !componentIsContactModule(lastComponent)) {
         return {
-            componentPropsInsideMainContent: page,
+            componentsWithoutContactModule: page,
             contactModuleComponent: undefined,
         } as const;
     }
 
     return {
-        componentPropsInsideMainContent: {
+        componentsWithoutContactModule: {
             ...page,
             regions: {
                 ...page.regions,
@@ -63,14 +63,14 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    const { componentPropsInsideMainContent, contactModuleComponent } =
+    const { componentsWithoutContactModule, contactModuleComponent } =
         extractLastComponentIfContactModule(props.page);
 
     return (
         <article className={styles.situationPage}>
             <div className={classNames(styles.content, hasMultipleLanguages && styles.pullUp)}>
                 <ComponentMapper
-                    componentProps={componentPropsInsideMainContent}
+                    componentProps={componentsWithoutContactModule}
                     pageProps={props}
                 />
             </div>
