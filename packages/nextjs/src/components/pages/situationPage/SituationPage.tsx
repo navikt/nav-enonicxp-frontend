@@ -35,15 +35,15 @@ const componentIsContactModule = (component: ComponentNode): boolean => {
 const extractLastComponentIfContactModule = (page: SituationPageProps['page']) => {
     const components = page.regions?.pageContent?.components ?? [];
     const lastComponent = components.at(-1);
-    const shouldRenderLastComponentOutsideMainDiv = lastComponent
+    const shouldRenderContactModuleOutside = lastComponent
         ? componentIsContactModule(lastComponent)
         : false;
 
-    if (!shouldRenderLastComponentOutsideMainDiv) {
+    if (!shouldRenderContactModuleOutside) {
         return {
             componentPropsInsideContent: page,
             lastComponent: undefined,
-            shouldRenderLastComponentOutsideMainDiv: false,
+            shouldRenderContactModuleOutside: false,
         } as const;
     }
 
@@ -59,7 +59,7 @@ const extractLastComponentIfContactModule = (page: SituationPageProps['page']) =
             },
         },
         lastComponent,
-        shouldRenderLastComponentOutsideMainDiv: true,
+        shouldRenderContactModuleOutside: true,
     } as const;
 };
 
@@ -67,7 +67,7 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    const { componentPropsInsideContent, lastComponent, shouldRenderLastComponentOutsideMainDiv } =
+    const { componentPropsInsideContent, lastComponent, shouldRenderContactModuleOutside } =
         extractLastComponentIfContactModule(props.page);
 
     return (
@@ -75,7 +75,7 @@ export const SituationPage = (props: SituationPageProps) => {
             <div className={classNames(styles.content, hasMultipleLanguages && styles.pullUp)}>
                 <ComponentMapper componentProps={componentPropsInsideContent} pageProps={props} />
             </div>
-            {shouldRenderLastComponentOutsideMainDiv && (
+            {shouldRenderContactModuleOutside && (
                 <ComponentMapper componentProps={lastComponent} pageProps={props} />
             )}
         </article>
