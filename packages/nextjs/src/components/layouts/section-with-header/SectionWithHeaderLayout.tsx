@@ -54,6 +54,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     // Skjul SectionNavigation når siden har DynamicNavigation
     const pageLayout = (pageProps as any)?.page?.descriptor;
     const isInnholdssideMedMeny = pageLayout === LayoutType.InnholdssideMedMeny;
+    const isSituasjonsSide = pageProps.type === ContentType.SituationPage;
+    const hideSectionNavigation = isInnholdssideMedMeny || isSituasjonsSide;
 
     const iconImgProps = icon?.icon;
     const shouldShowFilterBar = regions.content?.components?.some(
@@ -118,7 +120,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     ariaLabel={`${getLabel('sectionNavigation')} ${title}`}
                     introRegion={regions.intro}
                     contentRegion={regions.content}
-                    className={isInnholdssideMedMeny ? style.hideOnDesktop : undefined}
+                    className={hideSectionNavigation ? style.hideOnDesktop : undefined}
                 />
             )}
             {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}
