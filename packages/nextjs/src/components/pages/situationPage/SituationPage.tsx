@@ -9,19 +9,25 @@ import styles from './SituationPage.module.scss';
 
 type ComponentNode = {
     descriptor: string;
-    regions?: Record<string, { components?: ComponentNode[] }>;
+    regions?: Record<string, { components: ComponentNode[] }>;
 };
 
-const komponentErKontaktModul = (component?: ComponentNode): boolean => {
+const komponentErKontaktModul = (component: ComponentNode): boolean => {
     if (!component) return false;
 
     if (component.descriptor.includes(PartType.KontaktOssKanal)) {
         return true;
     }
 
-    return Object.values(component.regions ?? {}).some((region) =>
-        (region?.components ?? []).some(komponentErKontaktModul)
-    );
+    const regions = Object.values(component.regions ?? {});
+
+    for (const region of regions) {
+        if (region?.components?.some(komponentErKontaktModul)) {
+            return true;
+        }
+    }
+
+    return false;
 };
 
 export const SituationPage = (props: SituationPageProps) => {
@@ -31,7 +37,7 @@ export const SituationPage = (props: SituationPageProps) => {
     const components = props.page.regions?.pageContent?.components ?? [];
 
     const lastComponent = components.length > 0 ? components.at(-1) : undefined;
-    const shouldRenderLastOutside = komponentErKontaktModul(lastComponent);
+    const shouldRenderLastOutside = lastComponent && komponentErKontaktModul(lastComponent);
 
     let componentPropsInsideContent = props.page;
 
