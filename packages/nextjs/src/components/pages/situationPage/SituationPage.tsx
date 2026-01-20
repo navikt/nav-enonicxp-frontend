@@ -15,7 +15,7 @@ type ComponentNode = {
 const componentIsContactModule = (component: ComponentNode): boolean => {
     if (!component) return false;
 
-    // Dersom komponenten inneholder en KontaktOssKanalPart er det kontaktmodulen på siden
+    // Dersom komponenten inneholder en KontaktOssKanalPart er vi inni kontaktmodulen på siden, antar vi. Det er samme logikk som vi bruker for å sjekke om en layout er en kontaktmodul i FlexColsLayout.module.scss ( &:has(:global(.part__contact-option)) )
     if (component.descriptor.includes(PartType.KontaktOssKanal)) {
         return true;
     }
