@@ -31,32 +31,43 @@ const componentIsContactModule = (component: ComponentNode): boolean => {
     return false;
 };
 
+const extractLastComponentIfContactModule = (page: SituationPageProps['page']) => {
+    const components = page.regions?.pageContent?.components ?? [];
+    const lastComponent = components.at(-1);
+    const shouldRenderLastComponentOutsideMainDiv = lastComponent
+        ? componentIsContactModule(lastComponent)
+        : false;
+
+    if (!shouldRenderLastComponentOutsideMainDiv) {
+        return {
+            componentPropsInsideContent: page,
+            lastComponent: undefined,
+            shouldRenderLastComponentOutsideMainDiv: false,
+        } as const;
+    }
+
+    return {
+        componentPropsInsideContent: {
+            ...page,
+            regions: {
+                ...page.regions,
+                pageContent: {
+                    ...page.regions?.pageContent,
+                    components: components.slice(0, -1),
+                },
+            },
+        },
+        lastComponent,
+        shouldRenderLastComponentOutsideMainDiv: true,
+    } as const;
+};
+
 export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    const components = props.page.regions?.pageContent?.components ?? [];
-
-    const lastComponent = components.length > 0 ? components.at(-1) : undefined;
-    const shouldRenderLastComponentOutsideMainDiv =
-        lastComponent && componentIsContactModule(lastComponent);
-
-    let componentPropsInsideContent = props.page;
-
-    if (shouldRenderLastComponentOutsideMainDiv) {
-        const componentsWithoutContactModule = components.slice(0, -1);
-
-        componentPropsInsideContent = {
-            ...props.page,
-            regions: {
-                ...props.page.regions,
-                pageContent: {
-                    ...props.page.regions?.pageContent,
-                    components: componentsWithoutContactModule,
-                },
-            },
-        };
-    }
+    const { componentPropsInsideContent, lastComponent, shouldRenderLastComponentOutsideMainDiv } =
+        extractLastComponentIfContactModule(props.page);
 
     return (
         <article className={styles.situationPage}>
