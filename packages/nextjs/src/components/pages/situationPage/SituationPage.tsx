@@ -8,22 +8,19 @@ import { PartType } from 'types/component-props/parts';
 import styles from './SituationPage.module.scss';
 
 type ComponentNode = {
-    descriptor?: string;
+    descriptor: string;
     regions?: Record<string, { components?: ComponentNode[] }>;
 };
 
-const componentContainsContactOption = (component?: ComponentNode): boolean => {
+const komponentErKontaktModul = (component?: ComponentNode): boolean => {
     if (!component) return false;
 
-    if (
-        typeof component.descriptor === 'string' &&
-        component.descriptor.includes(PartType.KontaktOssKanal)
-    ) {
+    if (component.descriptor.includes(PartType.KontaktOssKanal)) {
         return true;
     }
 
     return Object.values(component.regions ?? {}).some((region) =>
-        (region?.components ?? []).some(componentContainsContactOption)
+        (region?.components ?? []).some(komponentErKontaktModul)
     );
 };
 
@@ -37,28 +34,29 @@ export const SituationPage = (props: SituationPageProps) => {
     const hasPageContentComponents = pageContentComponents.length > 0;
 
     const lastComponent = hasPageContentComponents ? pageContentComponents.at(-1) : undefined;
-    const shouldRenderLastOutside = componentContainsContactOption(lastComponent);
+    const shouldRenderLastOutside = komponentErKontaktModul(lastComponent);
 
-    const componentPropsInsideContent =
-        hasPageContentComponents && shouldRenderLastOutside
-            ? {
-                  ...props.page,
-                  regions: {
-                      ...pageRegions,
-                      pageContent: {
-                          ...pageContentRegion,
-                          components: pageContentComponents.slice(0, -1),
-                      },
-                  },
-              }
-            : props.page;
+    let componentPropsInsideContent = props.page;
+
+    if (shouldRenderLastOutside) {
+        componentPropsInsideContent = {
+            ...props.page,
+            regions: {
+                ...pageRegions,
+                pageContent: {
+                    ...pageContentRegion,
+                    components: pageContentComponents.slice(0, -1),
+                },
+            },
+        };
+    }
 
     return (
         <article className={styles.situationPage}>
             <div className={classNames(styles.content, hasMultipleLanguages && styles.pullUp)}>
                 <ComponentMapper componentProps={componentPropsInsideContent} pageProps={props} />
             </div>
-            {shouldRenderLastOutside && lastComponent && (
+            {shouldRenderLastOutside && (
                 <ComponentMapper componentProps={lastComponent} pageProps={props} />
             )}
         </article>
