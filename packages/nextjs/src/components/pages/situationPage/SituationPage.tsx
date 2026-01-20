@@ -23,6 +23,7 @@ const componentIsContactModule = (component?: ComponentNode): boolean => {
     const regions = Object.values(component.regions ?? {});
 
     for (const region of regions) {
+        // Kontaktmodulen kan ligge i en nested region – gå rekursivt innover og avbryt ved første treff
         if (region?.components?.some(componentIsContactModule)) {
             return true;
         }
