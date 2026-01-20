@@ -15,7 +15,7 @@ type ComponentNode = {
 const componentIsContactModule = (component: ComponentNode): boolean => {
     if (!component) return false;
 
-    // Dersom komponenten inneholder en KontaktOssKanalPart er vi inni kontaktmodulen på siden, antar vi. Det er samme logikk som vi bruker for å sjekke om en layout er en kontaktmodul i FlexColsLayout.module.scss ( &:has(:global(.part__contact-option)) )
+    // Dersom komponenten inneholder en KontaktOssKanalPart er vi inni kontaktmodulen på siden, antar vi. Samme logikk brukes for å sjekke om en layout er en kontaktmodul i FlexColsLayout.module.scss ( &:has(:global(.part__contact-option)) )
     if (component.descriptor.includes(PartType.KontaktOssKanal)) {
         return true;
     }
@@ -31,6 +31,7 @@ const componentIsContactModule = (component: ComponentNode): boolean => {
     return false;
 };
 
+// Kontaktmodulen skal ligge utenfor hovedkolonnen slik at den kan bryte gridet og strekke seg over hele bredden. Splitt ut siste komponent dersom den er kontaktmodul. Noen situasjonssider kan mangle kontaktmodulen (f.eks. https://www.nav.no/psykiske-helseproblemer)
 const extractLastComponentIfContactModule = (page: SituationPageProps['page']) => {
     const components = page.regions?.pageContent?.components ?? [];
     const lastComponent = components.at(-1);
