@@ -28,24 +28,24 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    const pageRegions = props.page.regions;
-    const pageContentRegion = pageRegions?.pageContent;
-    const pageContentComponents = pageContentRegion?.components ?? [];
-    const hasPageContentComponents = pageContentComponents.length > 0;
+    const pageContentComponents = props.page.regions?.pageContent?.components ?? [];
 
-    const lastComponent = hasPageContentComponents ? pageContentComponents.at(-1) : undefined;
+    const lastComponent =
+        pageContentComponents.length > 0 ? pageContentComponents.at(-1) : undefined;
     const shouldRenderLastOutside = komponentErKontaktModul(lastComponent);
 
     let componentPropsInsideContent = props.page;
 
     if (shouldRenderLastOutside) {
+        const componentsWithoutContactModule = pageContentComponents.slice(0, -1);
+
         componentPropsInsideContent = {
             ...props.page,
             regions: {
-                ...pageRegions,
+                ...props.page.regions,
                 pageContent: {
-                    ...pageContentRegion,
-                    components: pageContentComponents.slice(0, -1),
+                    ...props.page.regions?.pageContent,
+                    components: componentsWithoutContactModule,
                 },
             },
         };
