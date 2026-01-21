@@ -1,0 +1,18 @@
+@use 'common' as common;
+
+@media #{common.$mq-screen-desktop} {
+    .singleColPage {
+        @include common.grid-dynamisk-meny-mixin();
+    }
+
+    .wrapperDiv {
+        display: contents;
+    }
+
+    .region {
+        display: contents;
+        > * {
+            grid-column: content-start;
+        }
+    }
+}

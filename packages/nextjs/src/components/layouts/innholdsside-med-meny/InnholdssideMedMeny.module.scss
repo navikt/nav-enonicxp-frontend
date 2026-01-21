@@ -2,14 +2,11 @@
 
 .innholdssideMedMeny {
     padding-top: var(--a-spacing-20);
-    padding-bottom: var(--a-spacing-16);
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-
     @media #{common.$mq-screen-mobile} {
         padding-top: var(--a-spacing-9);
     }
+
+    @include common.centered-content-spacing();
 
     :global(.region__intro) {
         margin-bottom: var(--a-spacing-9);
@@ -26,20 +23,9 @@
     padding-top: var(--a-spacing-3);
 }
 
-.pageNavigationMenu {
-    display: none;
-}
-
 @media #{common.$mq-screen-desktop} {
     .innholdssideMedMeny {
-        display: grid;
-        grid-template-columns:
-            [content-start] minmax(0, min(42.5rem, 100%))
-            [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
-            [space-end] minmax(0, min(22.5rem, 30%))
-            [content-end];
-        padding-left: 8rem;
-        max-width: none;
+        @include common.grid-dynamisk-meny-mixin();
     }
 
     .mainContent {
@@ -47,15 +33,5 @@
         > * {
             grid-column: content-start;
         }
-    }
-
-    .pageNavigationMenu {
-        display: block;
-        grid-column: space-end;
-        grid-row: 2 / 6;
-    }
-
-    .mobileOnly {
-        display: none;
     }
 }

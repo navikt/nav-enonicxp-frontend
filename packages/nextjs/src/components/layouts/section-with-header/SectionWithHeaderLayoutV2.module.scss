@@ -10,7 +10,7 @@
     margin-top: var(--a-spacing-24); // Take topMarker negative pos into account
 
     &.pullUp {
-        margin-top: var(--a-spacing-12);
+        margin-top: 0;
     }
 
     :global(.icon-container) {
