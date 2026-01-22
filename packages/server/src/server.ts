@@ -30,7 +30,6 @@ const nextApp = createNextApp({
 nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
-
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     // Security middleware - apply early in the chain

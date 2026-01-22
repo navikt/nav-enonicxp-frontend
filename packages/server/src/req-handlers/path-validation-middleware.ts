@@ -63,11 +63,9 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     }
 
     // Check for blocked file extensions
-    logger.info(fullPath.toLowerCase());
     const hasBlockedExtension = BLOCKED_EXTENSIONS.some(ext =>
         fullPath.toLowerCase().endsWith(ext) || decodedPath.toLowerCase().endsWith(ext)
     );
-
     if (hasBlockedExtension) {
         logger.warn(`Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.ip}`);
         return res.status(400).send('Bad Request');
