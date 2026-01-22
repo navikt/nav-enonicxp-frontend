@@ -59,35 +59,35 @@ describe('Path Validation Middleware', () => {
         test('should block /_/image root path', () => {
             const mockReq = createMockReq('/_/image');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(403);
+            expect(statusSpy).toHaveBeenCalledWith(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
 
         test('should block /_/image/ root path with trailing slash', () => {
             const mockReq = createMockReq('/_/image/');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(403);
+            expect(statusSpy).toHaveBeenCalledWith(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
 
         test('should block /_/attachment root path', () => {
             const mockReq = createMockReq('/_/attachment');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(403);
+            expect(statusSpy).toHaveBeenCalledWith(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
 
         test('should block /_/attachment/ root path with trailing slash', () => {
             const mockReq = createMockReq('/_/attachment/');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(403);
+            expect(statusSpy).toHaveBeenCalledWith(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
 
         test('should block /_/component root path', () => {
             const mockReq = createMockReq('/_/component');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(403);
+            expect(statusSpy).toHaveBeenCalledWith(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
     });
