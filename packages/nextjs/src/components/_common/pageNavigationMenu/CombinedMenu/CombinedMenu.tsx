@@ -20,7 +20,7 @@ export const CombinedMenu = ({ anchorLinks, pageProps }: Props) => {
         <>
             <PageNavigationMenu
                 anchorLinks={anchorLinks}
-                ariaLabel={menuTitle}
+                title={menuTitle}
                 className={styles.mobileOnly}
             />
             <DynamicNavigation

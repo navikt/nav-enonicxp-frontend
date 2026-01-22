@@ -1,5 +1,5 @@
-import React from 'react';
-import { BodyLong } from '@navikt/ds-react';
+import React, { useId } from 'react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
@@ -16,7 +16,8 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks?: AnchorLink[];
     analyticsComponent?: string;
-    ariaLabel: string;
+    ariaLabel?: string;
+    title?: string;
     isChapterNavigation?: boolean;
     className?: string;
 };
@@ -25,9 +26,11 @@ export const PageNavigationMenu = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
     ariaLabel,
+    title,
     isChapterNavigation = false,
     className,
 }: Props) => {
+    const headingId = `heading-page-navigation-menu-${useId()}`;
     const links = getValidLinks(anchorLinks);
 
     if (links.length === 0) {
@@ -38,6 +41,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
+            aria-labelledby={headingId}
             aria-label={ariaLabel}
             className={classNames(
                 style.pageNavigationMenu,
@@ -45,6 +49,11 @@ export const PageNavigationMenu = ({
                 className
             )}
         >
+            {title && (
+                <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
+                    {title}
+                </Heading>
+            )}
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
