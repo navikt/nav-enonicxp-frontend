@@ -51,7 +51,7 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     // Block direct access to Enonic XP root paths
     if (BLOCKED_ROOT_PATHS.includes(fullPath) || BLOCKED_ROOT_PATHS.includes(decodedPath)) {
         logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
-        return res.status(403).send('Forbidden');
+        return res.status(400).send('Bad Request');
     }
 
     // Check for malicious patterns in the path
@@ -72,7 +72,7 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     }
 
     // Check for excessively long paths (potential DoS)
-    if (fullPath.length > 2000) {
+    if (fullPath.length > 1000) {
         logger.warn(`Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
         return res.status(414).send('URI Too Long');
     }
