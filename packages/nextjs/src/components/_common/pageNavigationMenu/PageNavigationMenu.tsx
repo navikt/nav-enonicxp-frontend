@@ -49,9 +49,11 @@ export const PageNavigationMenu = ({
                 className
             )}
         >
-            <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
-                {title}
-            </Heading>
+            {title && (
+                <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
+                    {title}
+                </Heading>
+            )}
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
