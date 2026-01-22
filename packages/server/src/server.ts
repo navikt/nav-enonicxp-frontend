@@ -57,8 +57,9 @@ nextApp.prepare().then(async () => {
     // Handle known /_/* redirects BEFORE Next.js processes them
     if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
         expressApp.use((req, res, next) => {
-            // Check if path starts with /_/
-            if (req.path.startsWith('/_/')) {
+            // Check for /_/ - Only valid at the beginning
+            const posXPprefix = req.path.search('/_/');
+            if (posXPprefix === 0) {
                 // Only redirect known XP paths
                 const isKnownXpPath = XP_PATHS.some(xpPath => req.path.startsWith(xpPath));
 
@@ -69,6 +70,9 @@ nextApp.prepare().then(async () => {
                     logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
                     return res.status(403).send('Forbidden');
                 }
+            } else if (posXPprefix > 0) {
+                logger.warn(`Blocked invalid XP path: ${req.method} ${req.path} from ${req.ip}`);
+                return res.status(403).send('Forbidden');
             }
             next();
         });
