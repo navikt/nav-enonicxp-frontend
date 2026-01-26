@@ -24,17 +24,6 @@
         gap: var(--a-spacing-3);
     }
 
-    .icon {
-        align-self: baseline;
-        color: var(--a-border-default);
-        width: 24px;
-        height: 24px;
-        flex-shrink: 0;
-        position: relative;
-        top: 2px;
-        margin-left: calc(var(--a-spacing-2) * -1);
-    }
-
     .link {
         display: inline-flex;
         align-items: center;
