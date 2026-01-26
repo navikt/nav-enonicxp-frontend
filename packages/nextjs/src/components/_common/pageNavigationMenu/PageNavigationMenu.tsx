@@ -41,7 +41,7 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
-            aria-labelledby={headingId}
+            aria-labelledby={title ? headingId : undefined}
             aria-label={ariaLabel}
             className={classNames(
                 style.pageNavigationMenu,
