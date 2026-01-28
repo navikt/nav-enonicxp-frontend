@@ -1,0 +1,15 @@
+@use 'common' as common;
+
+.pageNavigationMenu {
+    display: none;
+}
+
+@media #{common.$mq-screen-desktop} {
+    .mobileOnly {
+        display: none;
+    }
+
+    .pageNavigationMenu {
+        @include common.page-navigation-menu-placement();
+    }
+}

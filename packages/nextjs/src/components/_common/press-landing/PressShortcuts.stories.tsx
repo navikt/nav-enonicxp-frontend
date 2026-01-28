@@ -28,23 +28,23 @@ const meta = {
                             {
                                 ...pageMock,
                                 _path: 'statistikk-analyse-og-fou',
-                                displayName: 'Statistikk, analyse og FoU'
+                                displayName: 'Statistikk, analyse og FoU',
                             },
                             {
                                 ...pageMock,
                                 _path: 'innsyn',
-                                displayName: 'Innsyn i offentlige dokumenter og opplysninger'
+                                displayName: 'Innsyn i offentlige dokumenter og opplysninger',
                             },
                             {
                                 ...pageMock,
                                 _path: 'kontakt-direktoratet',
                                 displayName: 'Pressebilder og logopakke',
-                            }
-                        ]
-                    }
-                }
+                            },
+                        ],
+                    },
+                },
             },
-        }
+        },
     },
 } satisfies Meta<typeof PressShortcuts>;
 

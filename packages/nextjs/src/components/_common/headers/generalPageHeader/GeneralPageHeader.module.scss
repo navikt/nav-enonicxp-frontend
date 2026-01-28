@@ -39,12 +39,8 @@
         color: var(--brand-purple-deep);
         margin-bottom: var(--a-spacing-6);
     }
+}
 
-    .reduceMarginBottom {
-        margin-bottom: calc(-1 * var(--a-spacing-6));
-    }
-
-    .ingress:global(.navds-body-long) {
-        margin-bottom: 0;
-    }
+.ingress:global(.navds-body-long) {
+    margin-bottom: 0;
 }

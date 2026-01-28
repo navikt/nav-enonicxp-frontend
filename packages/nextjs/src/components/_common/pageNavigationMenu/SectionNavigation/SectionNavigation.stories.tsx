@@ -14,6 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
+        ariaLabel: 'I kapittel Hvem kan få?',
         introRegion: {
             name: 'intro',
             components: [
@@ -52,6 +53,7 @@ export const Default: Story = {
 
 export const WithContentRegion: Story = {
     args: {
+        ariaLabel: 'I kapittel Hvem kan få?',
         introRegion: {
             name: 'intro',
             components: Default.args?.introRegion?.components ?? [],

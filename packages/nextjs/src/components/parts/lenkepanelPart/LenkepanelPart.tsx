@@ -49,7 +49,7 @@ export const LenkepanelPart = ({ config }: PartComponentProps<PartType.Lenkepane
         selectedVariant === 'vertical' || selectedVariant === 'verticalWithBgColor';
     const legacyAnalyticsComponentLabel = isVerticalLayout ? 'main-panels' : 'link-panel';
 
-    function LenkePanelIkon(props: { icon: XpImageProps, selectedVariant: string | undefined }) {
+    function LenkePanelIkon(props: { icon: XpImageProps; selectedVariant: string | undefined }) {
         const { icon, selectedVariant } = props;
 
         return (
@@ -73,19 +73,19 @@ export const LenkepanelPart = ({ config }: PartComponentProps<PartType.Lenkepane
 
     return (
         <LinkCard
-            className={classNames(style.lenkepanel, isVerticalLayout ? `vertical` : 'horizontal' )}
+            className={classNames(style.lenkepanel, isVerticalLayout ? `vertical` : 'horizontal')}
             arrow={!isVerticalLayout}
-            arrowPosition='center'
+            arrowPosition="center"
             style={
                 bgUrl
                     ? {
-                        backgroundImage: `url(${buildImageCacheUrl({
-                            src: bgUrl,
-                            isEditorView,
-                            maxWidth: 480,
-                            quality: 90,
-                        })})`,
-                    }
+                          backgroundImage: `url(${buildImageCacheUrl({
+                              src: bgUrl,
+                              isEditorView,
+                              maxWidth: 480,
+                              quality: 90,
+                          })})`,
+                      }
                     : undefined
             }
         >

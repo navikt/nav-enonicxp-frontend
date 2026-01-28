@@ -1,5 +1,11 @@
 .header {
     scroll-margin-top: 2.5lh;
+
+    :global(.page__page-with-side-menus) &,
+    :global(.page__single-col-page) & {
+        // Matcher SCROLL_TOLERANCE_PX (minus 1px) i DynamicNavigation.tsx
+        scroll-margin-top: 74px;
+    }
 }
 
 .anchorLink {

@@ -9,8 +9,10 @@ import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNa
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 
 type SectionNavigationProps = {
+    ariaLabel: string;
     introRegion?: RegionProps<'intro'>;
     contentRegion?: RegionProps<'content'>;
+    className?: string;
 };
 
 const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
@@ -47,9 +49,13 @@ const getAnchorsFromComponents = (language: Language, region?: RegionProps) => {
     }, []);
 };
 
-export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigationProps) => {
+export const SectionNavigation = ({
+    ariaLabel,
+    introRegion,
+    contentRegion,
+    className,
+}: SectionNavigationProps) => {
     const { language } = usePageContentProps();
-    const getLabel = translator('internalNavigation', language);
     const introAnchors = getAnchorsFromComponents(language, introRegion);
     const contentAnchors = getAnchorsFromComponents(language, contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
@@ -66,7 +72,9 @@ export const SectionNavigation = ({ introRegion, contentRegion }: SectionNavigat
         <PageNavigationMenu
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
-            title={getLabel('sectionNavigation')}
+            ariaLabel={ariaLabel}
+            className={className}
+            isChapterNavigation={true}
         />
     );
 };
