@@ -42,7 +42,7 @@
         "jsep": "1.4.0",
         "lodash.debounce": "4.0.8",
         "lru-cache": "11.2.4",
-        "next": "15.5.10",
+        "next": "16.1.1",
         "node-cache": "5.1.2",
         "p-limit": "7.2.0",
         "react-collapse": "5.1.1",
