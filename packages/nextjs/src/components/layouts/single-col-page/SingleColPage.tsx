@@ -32,7 +32,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const [harKontaktOssKanal, setHarKontaktOssKanal] = React.useState(false);
     const { regions } = layoutProps;
 
-    const isNotOfficePage = type !== ContentType.OfficePage;
+    const isSituationPage = type === ContentType.SituationPage;
 
     useEffect(() => {
         if (regionRef.current) {
@@ -68,7 +68,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
-            className={isNotOfficePage ? styles.singleColPage : ''}
+            className={isSituationPage ? styles.singleColPage : ''}
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
@@ -91,9 +91,9 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                     hideIngressOverride
                 />
             )}
-            <div className={styles.wrapperDiv} ref={regionRef}>
+            <div className={isSituationPage ? styles.wrapperDiv : ''} ref={regionRef}>
                 <Region
-                    className={styles.region}
+                    className={isSituationPage ? styles.region : ''}
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
                     wrapperFunction={insertPageUpdatedInfo}
