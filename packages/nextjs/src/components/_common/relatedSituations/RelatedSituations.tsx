@@ -37,7 +37,11 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
 
     return (
         <section
-            className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin, headerStyle.header)}
+            className={classNames(
+                style.relatedSituations,
+                editorView === 'edit' && style.noMargin,
+                headerStyle.header
+            )}
             id={anchor}
             aria-describedby="related-situations-description"
         >
