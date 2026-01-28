@@ -1,11 +1,12 @@
 import React, { useId } from 'react';
-import { ArrowDownRightIcon } from '@navikt/aksel-icons';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
+import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
+import { AngleIcon } from './AngleIcon/AngleIcon';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -15,20 +16,22 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks?: AnchorLink[];
     analyticsComponent?: string;
-    title: string;
+    ariaLabel?: string;
+    title?: string;
     isChapterNavigation?: boolean;
+    className?: string;
 };
 
 export const PageNavigationMenu = ({
     anchorLinks = [],
     analyticsComponent = 'Meny for intern-navigasjon',
+    ariaLabel,
     title,
-    isChapterNavigation,
+    isChapterNavigation = false,
+    className,
 }: Props) => {
-    const links = getValidLinks(anchorLinks);
-
     const headingId = `heading-page-navigation-menu-${useId()}`;
-    const headingLevel = isChapterNavigation ? '2' : '3';
+    const links = getValidLinks(anchorLinks);
 
     if (links.length === 0) {
         return (
@@ -38,21 +41,19 @@ export const PageNavigationMenu = ({
 
     return (
         <nav
-            aria-labelledby={headingId}
+            aria-labelledby={title ? headingId : undefined}
+            aria-label={ariaLabel}
             className={classNames(
                 style.pageNavigationMenu,
-                isChapterNavigation && style.chapterNavigation
+                isChapterNavigation && style.chapterNavigation,
+                className
             )}
         >
-            <Heading
-                level={headingLevel}
-                size="xsmall"
-                spacing
-                id={headingId}
-                className={style.heading}
-            >
-                {title}
-            </Heading>
+            {title && (
+                <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
+                    {title}
+                </Heading>
+            )}
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
@@ -64,7 +65,7 @@ export const PageNavigationMenu = ({
                             analyticsLabel={anchorLink.linkText}
                             className={style.link}
                         >
-                            <ArrowDownRightIcon aria-hidden className={style.icon} />
+                            <AngleIcon />
                             <BodyLong as="span" className={style.linkText}>
                                 {anchorLink.linkText}
                             </BodyLong>
@@ -72,6 +73,7 @@ export const PageNavigationMenu = ({
                     </li>
                 ))}
             </ul>
+            {!isChapterNavigation && <AktuelleMalgrupper />}
         </nav>
     );
 };

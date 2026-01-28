@@ -1,0 +1,10 @@
+.icon {
+    align-self: baseline;
+    color: var(--a-border-default);
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    position: relative;
+    top: 1px;
+    margin-left: calc(var(--a-spacing-2) * -1);
+}
