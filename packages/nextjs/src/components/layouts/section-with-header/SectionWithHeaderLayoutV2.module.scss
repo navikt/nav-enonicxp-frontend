@@ -11,6 +11,14 @@
 
     &.pullUp {
         margin-top: var(--a-spacing-12);
+
+        &:has(:global(.part__html-area)) {
+            margin-top: 0;
+        }
+
+        &:has(:global(.part__dynamic-alert)) {
+            margin-top: var(--a-spacing-7);
+        }
     }
 
     :global(.icon-container) {
@@ -33,7 +41,7 @@
 
 .topMarker .header {
     position: relative;
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--a-spacing-7);
     color: var(--brand-purple-deep);
 
     &:before {
@@ -48,4 +56,10 @@
 .editorViewBorder {
     outline: 1px gray dashed;
     outline-offset: 15px;
+}
+
+.hideOnDesktop {
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
 }

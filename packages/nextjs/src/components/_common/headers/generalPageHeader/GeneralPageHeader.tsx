@@ -2,8 +2,7 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import { getContentTagline } from 'components/_common/headers/sharedHeaderUtils';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { ProductDataMixin } from 'types/component-props/_mixins';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { classNames } from 'utils/classnames';
+import { ContentProps } from 'types/content-props/_content-common';
 import { GeneralPageHeaderTagLine } from './GeneralPageHeaderTagLine';
 
 import style from './GeneralPageHeader.module.scss';
@@ -30,24 +29,21 @@ export const GeneralPageHeader = (props: Props) => {
     const title = pageProps.data.title || pageProps.displayName;
 
     const tagLine = getContentTagline(pageProps);
-    const isSituationPage = pageProps.type === ContentType.SituationPage;
 
     return (
-        <header className={style.generalPageHeader}>
-            <Illustration illustration={illustration} className={style.illustration} />
-            <GeneralPageHeaderTagLine tagLine={tagLine} />
-            <Heading
-                level="1"
-                size="xlarge"
-                className={classNames(style.header, isSituationPage && style.reduceMarginBottom)}
-            >
-                {title}
-            </Heading>
+        <>
+            <header className={style.generalPageHeader}>
+                <Illustration illustration={illustration} className={style.illustration} />
+                <GeneralPageHeaderTagLine tagLine={tagLine} />
+                <Heading level="1" size="xlarge" className={style.header}>
+                    {title}
+                </Heading>
+            </header>
             {ingress && !hideIngress && !props.hideIngressOverride && (
                 <BodyLong className={style.ingress} size="medium">
                     {ingress}
                 </BodyLong>
             )}
-        </header>
+        </>
     );
 };

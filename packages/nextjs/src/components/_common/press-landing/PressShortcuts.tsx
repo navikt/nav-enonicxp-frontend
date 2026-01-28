@@ -30,10 +30,12 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                     {shortcuts.data.sectionContents.map((shortcut) => {
                         return (
                             <li key={shortcut._path}>
-                                <LinkCard arrowPosition='center' className={styles.shortcutItem}>
+                                <LinkCard arrowPosition="center" className={styles.shortcutItem}>
                                     <LinkCard.Title>
                                         <LinkCard.Anchor asChild>
-                                            <LenkeBase href={getPublicPathname({ _path: shortcut._path })}>
+                                            <LenkeBase
+                                                href={getPublicPathname({ _path: shortcut._path })}
+                                            >
                                                 {shortcut.displayName}
                                             </LenkeBase>
                                         </LinkCard.Anchor>
