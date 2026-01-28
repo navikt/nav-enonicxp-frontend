@@ -32,6 +32,8 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const [harKontaktOssKanal, setHarKontaktOssKanal] = React.useState(false);
     const { regions } = layoutProps;
 
+    const isNotOfficePage = type !== ContentType.OfficePage;
+
     useEffect(() => {
         if (regionRef.current) {
             setHarKontaktOssKanal(!!regionRef.current.querySelector('.part__contact-option'));
@@ -66,7 +68,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer
-            className={styles.singleColPage}
+            className={isNotOfficePage ? styles.singleColPage : ''}
             pageProps={pageProps}
             layoutProps={layoutProps}
         >
