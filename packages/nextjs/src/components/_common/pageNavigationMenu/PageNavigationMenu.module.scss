@@ -23,22 +23,4 @@
         flex-direction: column;
         gap: var(--a-spacing-3);
     }
-
-    .link {
-        display: inline-flex;
-        align-items: center;
-        gap: var(--a-spacing-1-alt);
-        text-underline-offset: 2.5px;
-        text-decoration-thickness: 1px;
-        text-decoration-color: var(--a-border-subtle);
-        color: var(--a-text-action);
-
-        &:hover {
-            text-decoration-color: currentColor;
-        }
-    }
-
-    .linkText {
-        margin-bottom: 0;
-    }
 }

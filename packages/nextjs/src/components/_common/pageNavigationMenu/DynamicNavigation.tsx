@@ -1,18 +1,16 @@
 import React, { useEffect, useId, useMemo, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
-import { AnalyticsEvents } from 'utils/analytics';
 import { classNames } from 'utils/classnames';
 import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
-import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
-import { AngleIcon } from './AngleIcon/AngleIcon';
+import { NavigationLink } from './NavigationLink';
 
 import style from './DynamicNavigation.module.scss';
 
@@ -290,24 +288,18 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                     const submenuId = `${h2.anchorId}-submenu`;
                     return (
                         <li key={h2.anchorId}>
-                            <LenkeBase
-                                href={`#${h2.anchorId}`}
-                                analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                analyticsLinkGroup={'Innhold'}
+                            <NavigationLink
+                                anchorId={h2.anchorId}
+                                linkText={h2.linkText}
                                 analyticsComponent={analyticsComponent}
-                                analyticsLabel={h2.linkText}
+                                variant="short"
                                 className={style.link}
                                 aria-current={isH2Active ? 'true' : undefined}
                                 aria-expanded={
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
                                 }
                                 aria-controls={h3.length > 0 ? submenuId : undefined}
-                            >
-                                <AngleIcon />
-                                <BodyShort as="span" className={style.linkText}>
-                                    {h2.linkText}
-                                </BodyShort>
-                            </LenkeBase>
+                            />
 
                             {h3.length > 0 && (
                                 <ul
@@ -316,12 +308,11 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                 >
                                     {h3.map((sub) => (
                                         <li key={sub.anchorId}>
-                                            <LenkeBase
-                                                href={`#${sub.anchorId}`}
-                                                analyticsEvent={AnalyticsEvents.NAVIGATION}
-                                                analyticsLinkGroup={'Innhold'}
+                                            <NavigationLink
+                                                anchorId={sub.anchorId}
+                                                linkText={sub.linkText}
                                                 analyticsComponent={analyticsComponent}
-                                                analyticsLabel={sub.linkText}
+                                                variant="short"
                                                 className={classNames(style.link, style.h3Link)}
                                                 aria-current={
                                                     activeAnchor === sub.anchorId
@@ -329,12 +320,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                                         : undefined
                                                 }
                                                 tabIndex={isExpanded ? 0 : -1}
-                                            >
-                                                <AngleIcon />
-                                                <BodyShort as="span" className={style.linkText}>
-                                                    {sub.linkText}
-                                                </BodyShort>
-                                            </LenkeBase>
+                                            />
                                         </li>
                                     ))}
                                 </ul>

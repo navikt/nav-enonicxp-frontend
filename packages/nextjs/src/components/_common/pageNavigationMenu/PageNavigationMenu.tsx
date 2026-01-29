@@ -1,12 +1,10 @@
 import React, { useId } from 'react';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
-import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
-import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
-import { AngleIcon } from './AngleIcon/AngleIcon';
+import { NavigationLink } from './NavigationLink';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -57,19 +55,11 @@ export const PageNavigationMenu = ({
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
-                        <LenkeBase
-                            href={`#${anchorLink.anchorId}`}
-                            analyticsEvent={AnalyticsEvents.NAVIGATION}
-                            analyticsLinkGroup={'Innhold'}
+                        <NavigationLink
+                            anchorId={anchorLink.anchorId}
+                            linkText={anchorLink.linkText}
                             analyticsComponent={analyticsComponent}
-                            analyticsLabel={anchorLink.linkText}
-                            className={style.link}
-                        >
-                            <AngleIcon />
-                            <BodyLong as="span" className={style.linkText}>
-                                {anchorLink.linkText}
-                            </BodyLong>
-                        </LenkeBase>
+                        />
                     </li>
                 ))}
             </ul>
