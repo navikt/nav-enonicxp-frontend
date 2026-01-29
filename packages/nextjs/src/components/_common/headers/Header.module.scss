@@ -1,5 +1,6 @@
 .header {
     scroll-margin-top: 2.5lh;
+    outline: none;
 
     :global(.page__page-with-side-menus) &,
     :global(.page__single-col-page) & {
