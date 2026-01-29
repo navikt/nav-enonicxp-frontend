@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import { classNames } from 'utils/classnames';
@@ -11,7 +11,6 @@ type Props = {
     anchorId: string;
     linkText: string;
     analyticsComponent: string;
-    variant?: 'long' | 'short';
     className?: string;
     'aria-current'?: 'true';
     'aria-expanded'?: 'true' | 'false';
@@ -23,15 +22,12 @@ export const NavigationLink = ({
     anchorId,
     linkText,
     analyticsComponent,
-    variant = 'long',
     className,
     'aria-current': ariaCurrent,
     'aria-expanded': ariaExpanded,
     'aria-controls': ariaControls,
     tabIndex,
 }: Props) => {
-    const TextComponent = variant === 'short' ? BodyShort : BodyLong;
-
     return (
         <LenkeBase
             href={`#${anchorId}`}
@@ -46,9 +42,9 @@ export const NavigationLink = ({
             tabIndex={tabIndex}
         >
             <AngleIcon />
-            <TextComponent as="span" className={style.linkText}>
+            <BodyShort as="span" className={style.linkText}>
                 {linkText}
-            </TextComponent>
+            </BodyShort>
         </LenkeBase>
     );
 };

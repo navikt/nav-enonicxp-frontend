@@ -292,7 +292,6 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                 anchorId={h2.anchorId}
                                 linkText={h2.linkText}
                                 analyticsComponent={analyticsComponent}
-                                variant="short"
                                 className={style.link}
                                 aria-current={isH2Active ? 'true' : undefined}
                                 aria-expanded={
@@ -312,7 +311,6 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
                                                 anchorId={sub.anchorId}
                                                 linkText={sub.linkText}
                                                 analyticsComponent={analyticsComponent}
-                                                variant="short"
                                                 className={classNames(style.link, style.h3Link)}
                                                 aria-current={
                                                     activeAnchor === sub.anchorId
