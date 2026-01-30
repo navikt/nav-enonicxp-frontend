@@ -24,8 +24,10 @@ const meta = {
     args: {
         title: 'Innhold på siden',
         anchorLinks: [
-            { anchorId: 'anchorId', linkText: 'Hvem kan få?', isDupe: false },
-            { anchorId: 'anchorId', linkText: 'Hva kan du få?', isDupe: false },
+            { anchorId: 'hvem-kan-fa', linkText: 'Hvem kan få?', isDupe: false },
+            { anchorId: 'hva-kan-du-fa', linkText: 'Hva kan du få?', isDupe: false },
+            { anchorId: 'hvordan-soknad', linkText: 'Hvordan søke?', isDupe: false },
+            { anchorId: 'utbetaling', linkText: 'Utbetaling', isDupe: false },
         ],
     },
 } satisfies Meta<typeof PageNavigationMenu>;
