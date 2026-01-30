@@ -2,12 +2,12 @@
 
 .pageNavigationMenu {
     margin-top: var(--a-spacing-7);
+}
 
-    .heading {
-        @include shared.navigation-heading();
-    }
+.heading {
+    @include shared.navigation-heading();
+}
 
-    .list {
-        @include shared.navigation-list();
-    }
+.list {
+    @include shared.navigation-list();
 }
