@@ -1,3 +1,4 @@
+@use 'common' as common;
 @use '../shared' as shared;
 
 .dynamicDesktopNavigation {
@@ -26,7 +27,7 @@
 }
 
 .list {
-    @include shared.navigation-list();
+    @include common.unstyled-list();
 }
 
 .link {

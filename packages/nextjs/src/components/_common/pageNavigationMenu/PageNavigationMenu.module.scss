@@ -1,3 +1,4 @@
+@use 'common' as common;
 @use 'shared' as shared;
 
 .pageNavigationMenu {
@@ -9,5 +10,5 @@
 }
 
 .list {
-    @include shared.navigation-list();
+    @include common.unstyled-list();
 }

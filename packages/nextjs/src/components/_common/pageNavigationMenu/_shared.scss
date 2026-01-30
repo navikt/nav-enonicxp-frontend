@@ -9,7 +9,3 @@
     text-transform: uppercase;
     line-height: 1;
 }
-
-@mixin navigation-list() {
-    @include common.unstyled-list();
-}
