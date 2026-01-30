@@ -1,8 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
+import type { Decorator, Meta, StoryObj } from '@storybook/react';
+import { PageContextProvider } from 'store/pageContext';
 import { PartType } from 'types/component-props/parts';
 import { ComponentType, ComponentProps } from 'types/component-props/_component-common';
+import { contentMockBase } from 'components/_common/pageNavigationMenu/_storyMocks';
 import { SectionNavigation } from './SectionNavigation';
+
+const withPageContext: Decorator = (Story) => (
+    <PageContextProvider content={contentMockBase}>
+        <Story />
+    </PageContextProvider>
+);
 
 const headerComponents: ComponentProps[] = [
     {
@@ -27,6 +34,7 @@ const headerComponents: ComponentProps[] = [
 
 const meta = {
     component: SectionNavigation,
+    decorators: [withPageContext],
 } satisfies Meta<typeof SectionNavigation>;
 
 export default meta;
