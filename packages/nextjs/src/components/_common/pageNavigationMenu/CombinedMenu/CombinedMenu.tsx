@@ -24,7 +24,7 @@ export const CombinedMenu = ({ anchorLinks, pageProps }: Props) => {
                 className={styles.mobileOnly}
             />
             <DynamicDesktopNavigation
-                className={styles.pageNavigationMenu}
+                className={styles.desktopOnly}
                 anchorLinks={anchorLinks}
                 pageProps={pageProps}
                 title={menuTitle}
