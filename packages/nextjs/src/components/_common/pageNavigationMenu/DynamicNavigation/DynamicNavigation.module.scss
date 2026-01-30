@@ -10,10 +10,6 @@
     padding-bottom: var(--a-spacing-6);
 }
 
-:global(.navds-expansioncard__content) .pageNavigationMenu {
-    height: calc(50vh - var(--a-spacing-14));
-}
-
 .heading {
     @include shared.navigation-heading();
 
