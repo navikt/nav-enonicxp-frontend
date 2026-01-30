@@ -23,13 +23,6 @@ const headerComponents: ComponentProps[] = [
         type: ComponentType.Part,
         config: { title: '', description: '' },
     },
-    {
-        type: ComponentType.Text,
-        text: 'Text',
-        path: '',
-        descriptor: 'no.nav.navno:text',
-        config: {},
-    },
 ];
 
 const meta = {
