@@ -25,6 +25,8 @@ type Props = {
     pageProps: ContentProps;
     title: string;
     className?: string;
+    /** Kun for Storybook - sett aktiv anchor for å vise ekspanderte undermenyer */
+    initialActiveAnchor?: string;
 };
 
 export const DynamicDesktopNavigation = ({
@@ -32,13 +34,14 @@ export const DynamicDesktopNavigation = ({
     pageProps,
     title,
     className,
+    initialActiveAnchor,
 }: Props) => {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
     const analyticsComponent = 'Dynamisk meny for intern-navigasjon';
 
-    const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
+    const [activeAnchor, setActiveAnchor] = useState<string | null>(initialActiveAnchor ?? null);
     const clickedAnchorRef = useRef<string | null>(null);
     const clickedAnchorResetTimerRef = useRef<number | undefined>(undefined);
     const [isDesktop, setIsDesktop] = useState(false);
