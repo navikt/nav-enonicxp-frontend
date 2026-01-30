@@ -20,10 +20,10 @@ export const PageHeaderPart = ({ config }: PartComponentProps<PartType.PageHeade
         type === ContentType.FrontPageNested && getAudience(audience) === Audience.PROVIDER;
 
     return (
-        <header className={classNames(style.wrapper, isProviderSubPage && style.providerSubPage)}>
+        <section className={classNames(style.wrapper, isProviderSubPage && style.providerSubPage)}>
             <Heading className={classNames(style.pageHeader)} level="1" size="xlarge">
                 {config.title}
             </Heading>
-        </header>
+        </section>
     );
 };
