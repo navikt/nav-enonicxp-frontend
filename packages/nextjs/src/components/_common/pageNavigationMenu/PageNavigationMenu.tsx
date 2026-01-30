@@ -4,7 +4,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 import { classNames } from 'utils/classnames';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
-import { NavigationLink } from './NavigationLink';
+import { NavigationLink } from './NavigationLink/NavigationLink';
 
 import style from './PageNavigationMenu.module.scss';
 

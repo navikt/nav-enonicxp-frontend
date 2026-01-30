@@ -1,5 +1,5 @@
 @use 'common' as common;
-@use 'shared' as shared;
+@use '../shared' as shared;
 
 .pageNavigationMenu {
     overflow: auto;

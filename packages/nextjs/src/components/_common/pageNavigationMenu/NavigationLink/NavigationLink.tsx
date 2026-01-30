@@ -3,7 +3,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEvents } from 'utils/analytics';
 import { classNames } from 'utils/classnames';
-import { AngleIcon } from './AngleIcon/AngleIcon';
+import { AngleIcon } from 'components/_common/pageNavigationMenu/AngleIcon/AngleIcon';
 
 import style from './NavigationLink.module.scss';
 

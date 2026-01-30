@@ -10,7 +10,7 @@ import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituati
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
-import { NavigationLink } from './NavigationLink';
+import { NavigationLink } from 'components/_common/pageNavigationMenu/NavigationLink/NavigationLink';
 
 import style from './DynamicNavigation.module.scss';
 
