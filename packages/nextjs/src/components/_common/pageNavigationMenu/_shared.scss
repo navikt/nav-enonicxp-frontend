@@ -12,6 +12,4 @@
 
 @mixin navigation-list() {
     @include common.unstyled-list();
-    display: flex;
-    flex-direction: column;
 }
