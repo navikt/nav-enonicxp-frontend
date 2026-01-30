@@ -2,10 +2,21 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { PageContextProvider } from 'store/pageContext';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { ComponentType } from 'types/component-props/_component-common';
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { DynamicDesktopNavigation } from './DynamicDesktopNavigation';
+
+const targetPageMock: ContentProps = {
+    _id: 'id',
+    _path: '/no/person/dagpenger',
+    createdTime: '',
+    displayName: 'Dagpenger for privatperson',
+    language: 'no',
+    modifiedTime: '',
+    type: ContentType.TemplatePage,
+    data: {},
+} as ContentProps;
 
 const contentMock: ProductPageProps = {
     _id: '',
@@ -22,6 +33,14 @@ const contentMock: ProductPageProps = {
         illustration: {
             type: ContentType.Pictograms,
             data: { icons: [] },
+        },
+        alternativeAudience: {
+            _selected: ['person', 'employer'],
+            person: { targetPage: targetPageMock },
+            employer: {
+                targetPage: { ...targetPageMock, displayName: 'Dagpenger for arbeidsgiver' },
+            },
+            provider: { providerList: [] },
         },
     },
     page: {
