@@ -1,8 +1,36 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PartType } from 'types/component-props/parts';
-import { ComponentType } from 'types/component-props/_component-common';
+import { ComponentType, ComponentProps } from 'types/component-props/_component-common';
 import { SectionNavigation } from './SectionNavigation';
+
+const headerComponents: ComponentProps[] = [
+    {
+        descriptor: PartType.Header,
+        path: '',
+        type: ComponentType.Part,
+        config: { title: 'Header H3', anchorId: 'headerh3', titleTag: 'h3' },
+    },
+    {
+        descriptor: PartType.Header,
+        path: '',
+        type: ComponentType.Part,
+        config: { title: 'Header H4', anchorId: 'headerh4', titleTag: 'h4' },
+    },
+    {
+        descriptor: PartType.RelatedSituations,
+        path: '',
+        type: ComponentType.Part,
+        config: { title: '', description: '' },
+    },
+    {
+        type: ComponentType.Text,
+        text: 'Text',
+        path: '',
+        descriptor: 'no.nav.navno:text',
+        config: {},
+    },
+];
 
 const meta = {
     component: SectionNavigation,
@@ -15,52 +43,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         ariaLabel: 'I kapittel Hvem kan få?',
-        introRegion: {
-            name: 'intro',
-            components: [
-                {
-                    descriptor: PartType.Header,
-                    path: '',
-                    type: ComponentType.Part,
-                    config: { title: 'Header H3', anchorId: 'headerh3', titleTag: 'h3' },
-                },
-                {
-                    descriptor: PartType.Header,
-                    path: '',
-                    type: ComponentType.Part,
-                    config: { title: 'Header H4', anchorId: 'headerh4', titleTag: 'h4' },
-                },
-                {
-                    descriptor: PartType.RelatedSituations,
-                    path: '',
-                    type: ComponentType.Part,
-                    config: {
-                        title: '',
-                        description: '',
-                    },
-                },
-                {
-                    type: ComponentType.Text,
-                    text: 'Text',
-                    path: '',
-                    descriptor: 'no.nav.navno:text',
-                    config: {},
-                },
-            ],
-        },
-    },
-};
-
-export const WithContentRegion: Story = {
-    args: {
-        ariaLabel: 'I kapittel Hvem kan få?',
-        introRegion: {
-            name: 'intro',
-            components: Default.args?.introRegion?.components ?? [],
-        },
-        contentRegion: {
-            name: 'content',
-            components: Default.args?.introRegion?.components ?? [],
-        },
+        introRegion: { name: 'intro', components: headerComponents },
+        contentRegion: { name: 'content', components: headerComponents },
     },
 };
