@@ -25,7 +25,7 @@ type Props = {
     pageProps: ContentProps;
     title: string;
     className?: string;
-    /** Kun for Storybook - sett aktiv anchor for å vise ekspanderte undermenyer */
+    // Kun for Storybook - sett aktiv anchor for å vise ekspanderte undermenyer
     initialActiveAnchor?: string;
 };
 
