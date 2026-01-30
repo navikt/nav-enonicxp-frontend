@@ -7,6 +7,9 @@ import { usePageContentProps } from 'store/pageContext';
 import { getAnchorId } from 'components/_common/relatedSituations/RelatedSituations';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
+import { classNames } from 'utils/classnames';
+
+import style from './SectionNavigation.module.scss';
 
 type SectionNavigationProps = {
     ariaLabel: string;
@@ -73,8 +76,8 @@ export const SectionNavigation = ({
             anchorLinks={allAnchors}
             analyticsComponent="Hopp til underkapittel"
             ariaLabel={ariaLabel}
-            className={className}
-            isChapterNavigation={true}
+            className={classNames(style.sectionNavigation, className)}
+            hideAktuelleMalgrupper
         />
     );
 };

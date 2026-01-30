@@ -7,11 +7,6 @@
         @include shared.navigation-heading();
     }
 
-    &.chapterNavigation {
-        margin-top: 0;
-        margin-bottom: var(--a-spacing-7);
-    }
-
     .list {
         @include shared.navigation-list();
     }

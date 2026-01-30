@@ -16,7 +16,7 @@ type Props = {
     analyticsComponent?: string;
     ariaLabel?: string;
     title?: string;
-    isChapterNavigation?: boolean;
+    hideAktuelleMalgrupper?: boolean;
     className?: string;
 };
 
@@ -25,7 +25,7 @@ export const PageNavigationMenu = ({
     analyticsComponent = 'Meny for intern-navigasjon',
     ariaLabel,
     title,
-    isChapterNavigation = false,
+    hideAktuelleMalgrupper = false,
     className,
 }: Props) => {
     const headingId = `heading-page-navigation-menu-${useId()}`;
@@ -41,11 +41,7 @@ export const PageNavigationMenu = ({
         <nav
             aria-labelledby={title ? headingId : undefined}
             aria-label={ariaLabel}
-            className={classNames(
-                style.pageNavigationMenu,
-                isChapterNavigation && style.chapterNavigation,
-                className
-            )}
+            className={classNames(style.pageNavigationMenu, className)}
         >
             {title && (
                 <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
@@ -63,7 +59,7 @@ export const PageNavigationMenu = ({
                     </li>
                 ))}
             </ul>
-            {!isChapterNavigation && <AktuelleMalgrupper />}
+            {!hideAktuelleMalgrupper && <AktuelleMalgrupper />}
         </nav>
     );
 };
