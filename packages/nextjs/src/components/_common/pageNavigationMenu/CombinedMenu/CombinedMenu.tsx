@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageNavigationMenu } from 'components/_common/pageNavigationMenu/PageNavigationMenu';
-import { DynamicNavigation } from 'components/_common/pageNavigationMenu/DynamicNavigation/DynamicNavigation';
+import { DynamicDesktopNavigation } from 'components/_common/pageNavigationMenu/DynamicDesktopNavigation/DynamicDesktopNavigation';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
 import { ContentProps } from 'types/content-props/_content-common';
 import { translator } from 'translations';
@@ -23,7 +23,7 @@ export const CombinedMenu = ({ anchorLinks, pageProps }: Props) => {
                 title={menuTitle}
                 className={styles.mobileOnly}
             />
-            <DynamicNavigation
+            <DynamicDesktopNavigation
                 className={styles.pageNavigationMenu}
                 anchorLinks={anchorLinks}
                 pageProps={pageProps}

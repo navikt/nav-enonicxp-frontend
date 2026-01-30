@@ -1,7 +1,7 @@
 @use 'common' as common;
 @use '../shared' as shared;
 
-.pageNavigationMenu {
+.dynamicDesktopNavigation {
     overflow: auto;
     position: sticky;
     top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));

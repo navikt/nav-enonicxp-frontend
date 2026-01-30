@@ -12,7 +12,7 @@ import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigation
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
 import { NavigationLink } from 'components/_common/pageNavigationMenu/NavigationLink/NavigationLink';
 
-import style from './DynamicNavigation.module.scss';
+import style from './DynamicDesktopNavigation.module.scss';
 
 // Henger sammen med scroll-margin-top i Header.module.scss
 const SCROLL_TOLERANCE_PX = 75;
@@ -27,7 +27,12 @@ type Props = {
     className?: string;
 };
 
-export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, className }: Props) => {
+export const DynamicDesktopNavigation = ({
+    anchorLinks = [],
+    pageProps,
+    title,
+    className,
+}: Props) => {
     const { language } = usePageContentProps();
 
     const headingId = `heading-dynamic-navigation-menu-${useId()}`;
@@ -275,7 +280,7 @@ export const DynamicNavigation = ({ anchorLinks = [], pageProps, title, classNam
         <nav
             ref={containerRef}
             aria-labelledby={headingId}
-            className={classNames(style.pageNavigationMenu, className)}
+            className={classNames(style.dynamicDesktopNavigation, className)}
         >
             <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
                 {title}
