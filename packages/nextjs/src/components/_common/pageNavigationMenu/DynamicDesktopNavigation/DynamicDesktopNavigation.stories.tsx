@@ -2,21 +2,11 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { PageContextProvider } from 'store/pageContext';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { ComponentType } from 'types/component-props/_component-common';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
+import { anchorLinksMock, targetPageMock } from 'components/_common/pageNavigationMenu/_storyMocks';
 import { DynamicDesktopNavigation } from './DynamicDesktopNavigation';
-
-const targetPageMock: ContentProps = {
-    _id: 'id',
-    _path: '/no/person/dagpenger',
-    createdTime: '',
-    displayName: 'Dagpenger for privatperson',
-    language: 'no',
-    modifiedTime: '',
-    type: ContentType.TemplatePage,
-    data: {},
-} as ContentProps;
 
 const contentMock: ProductPageProps = {
     _id: '',
@@ -150,12 +140,7 @@ const meta = {
     args: {
         title: 'Innhold på siden',
         pageProps: contentMock,
-        anchorLinks: [
-            { anchorId: 'hvem-kan-fa', linkText: 'Hvem kan få?' },
-            { anchorId: 'hva-kan-du-fa', linkText: 'Hva kan du få?' },
-            { anchorId: 'hvordan-soknad', linkText: 'Hvordan søke?' },
-            { anchorId: 'utbetaling', linkText: 'Utbetaling' },
-        ],
+        anchorLinks: anchorLinksMock,
         initialActiveAnchor: 'krav-til-arbeidstid',
     },
 } satisfies Meta<typeof DynamicDesktopNavigation>;
