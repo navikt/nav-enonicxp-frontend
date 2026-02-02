@@ -208,8 +208,8 @@ $versionSelectorMinHeight: 3rem;
     display: grid;
     grid-template-columns:
         [content-start] minmax(0, min(42.5rem, 100%))
-        [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
-        [space-end] minmax(0, min(22.5rem, 30%))
+        [space-start] clamp(1.875rem, -7.125rem + 15vw, 7.875rem)
+        [space-end] minmax(0, min(22.5rem, 31%))
         [content-end];
     padding-left: 8rem;
     max-width: none !important;

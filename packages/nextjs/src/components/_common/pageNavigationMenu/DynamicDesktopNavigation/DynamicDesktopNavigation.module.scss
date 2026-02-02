@@ -8,6 +8,8 @@
     height: max-content;
     max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
     padding-bottom: var(--a-spacing-6);
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .heading {
@@ -30,10 +32,6 @@
     @include common.unstyled-list();
 }
 
-.link {
-    padding-left: 0;
-}
-
 .h3Link {
-    padding-left: var(--a-spacing-5);
+    margin-left: var(--a-spacing-5);
 }

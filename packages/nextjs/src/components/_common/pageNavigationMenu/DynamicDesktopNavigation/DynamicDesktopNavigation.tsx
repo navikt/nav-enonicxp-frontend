@@ -300,7 +300,6 @@ export const DynamicDesktopNavigation = ({
                                 anchorId={h2.anchorId}
                                 linkText={h2.linkText}
                                 analyticsComponent={analyticsComponent}
-                                className={style.link}
                                 aria-current={isH2Active ? 'true' : undefined}
                                 aria-expanded={
                                     h3.length > 0 ? (isExpanded ? 'true' : 'false') : undefined
@@ -319,7 +318,7 @@ export const DynamicDesktopNavigation = ({
                                                 anchorId={sub.anchorId}
                                                 linkText={sub.linkText}
                                                 analyticsComponent={analyticsComponent}
-                                                className={classNames(style.link, style.h3Link)}
+                                                className={style.h3Link}
                                                 aria-current={
                                                     activeAnchor === sub.anchorId
                                                         ? 'true'
