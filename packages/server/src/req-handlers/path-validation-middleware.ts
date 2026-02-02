@@ -6,10 +6,10 @@ import { XP_PATHS } from '@/shared/constants';
 const MALICIOUS_PATTERNS = [
     // SQL Injection patterns
     /(%27)|'|(--)|(%23)|#/i,
-    /((%3D)|(=))[^\n]*((%27)|'|(--)|(%3B)|;)/i,
-    /\w*((%27)|')((%6F)|o|(%4F))((%72)|r|(%52))/i,
+    /((%3D)|(=))(?=([^\n]*))\4((%27)|'|(--)|(%3B)|;)/i,
+    /(?=(\w*))\1((%27)|')((%6F)|o|(%4F))((%72)|r|(%52))/i,
     // XSS patterns
-    /((%3C)|<)((%2F)|\/)*[a-z0-9%]+((%3E)|>)/i,
+    /((%3C)|<)(?:((%2F)|\/)*[a-z0-9%]+)((%3E)|>)/i,
     /((%3C)|<)((%69)|i|(%49))((%6D)|m|(%4D))((%67)|g|(%47))[^\n]+((%3E)|>)/i,
     /((%3C)|<)[^\n]+((%3E)|>)/i,
     // Command injection patterns
@@ -20,7 +20,7 @@ const MALICIOUS_PATTERNS = [
     // Null bytes
     /\0|%00/,
     // Common attack vectors
-    /union.*select/i,
+    /union(?=(.))\1*select/i,
     /base64_decode/i,
     /eval\(/i,
     /exec\(/i,
@@ -81,13 +81,6 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     const segments = fullPath.split('/').filter(s => s.length > 0);
     if (segments.length > 50) {
         logger.warn(`Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`);
-        return res.status(400).send('Bad Request');
-    }
-
-    // Check for repeated patterns (potential attack)
-    const repeatedPattern = /(.{10,})\1{3,}/;
-    if (repeatedPattern.test(fullPath)) {
-        logger.warn(`Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
         return res.status(400).send('Bad Request');
     }
 

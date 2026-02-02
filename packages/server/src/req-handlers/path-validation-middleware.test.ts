@@ -212,9 +212,58 @@ describe('Path Validation Middleware', () => {
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
 
-        test('should block repeated pattern attacks', () => {
-            const mockReq = createMockReq('/aaaaaaaaaaaaaaaaaaaaaaaaa'.repeat(10));
+        test('should handle ReDoS exploit attempts efficiently', () => {
+            // This path would cause exponential backtracking with vulnerable regex like /(.{10,})\1{3,}/
+            // Pattern: equals sign followed by many characters without the expected closing delimiter
+            const redosPayload = '/test=' + 'a'.repeat(500) + '!';
+            
+            const mockReq = createMockReq(redosPayload);
+            const startTime = Date.now();
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            const duration = Date.now() - startTime;
+
+            // Should complete in reasonable time (< 100ms) even with potentially malicious input
+            expect(duration).toBeLessThan(100);
+            // Should allow this path through (it's not malicious, just testing performance)
+            expect(nextFunction).toHaveBeenCalled();
+        });
+
+        test('should handle ReDoS in union/select pattern efficiently', () => {
+            // This would cause backtracking in /union.*select/i with many non-matching chars
+            const redosPayload = '/union' + 'x'.repeat(500) + 'y';
+            
+            const mockReq = createMockReq(redosPayload);
+            const startTime = Date.now();
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            const duration = Date.now() - startTime;
+
+            expect(duration).toBeLessThan(100);
+            expect(nextFunction).toHaveBeenCalled();
+        });
+
+        test('should handle ReDoS in XSS pattern with unclosed tag efficiently', () => {
+            // Tests [^\n]+ patterns - opening tag without closing bracket
+            const redosPayload = '/<img ' + 'x'.repeat(500);
+            
+            const mockReq = createMockReq(redosPayload);
+            const startTime = Date.now();
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            const duration = Date.now() - startTime;
+
+            expect(duration).toBeLessThan(100);
+        });
+
+        test('should handle ReDoS in SQL pattern with many word chars efficiently', () => {
+            // Tests \w* possessive quantifier pattern
+            const redosPayload = '/' + 'a'.repeat(500) + "'or";
+            
+            const mockReq = createMockReq(redosPayload);
+            const startTime = Date.now();
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            const duration = Date.now() - startTime;
+
+            expect(duration).toBeLessThan(100);
+            // Should be blocked by SQL injection pattern
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
     });
