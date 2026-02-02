@@ -39,17 +39,17 @@ const BLOCKED_EXTENSIONS = [
 ];
 
 // Generate blocked root paths from XP_PATHS (without trailing slash and with trailing slash)
-const BLOCKED_ROOT_PATHS = XP_PATHS.flatMap(path => [
+const BLOCKED_ROOT_PATHS = new Set(XP_PATHS.flatMap(path => [
     path.slice(0, -1), // Remove trailing slash: /_/image/ -> /_/image
     path,              // Keep with trailing slash: /_/image/
-]);
+]));
 
 export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     const fullPath = req.path;
     const decodedPath = decodeURIComponent(fullPath);
 
     // Block direct access to Enonic XP root paths
-    if (BLOCKED_ROOT_PATHS.includes(fullPath) || BLOCKED_ROOT_PATHS.includes(decodedPath)) {
+    if (BLOCKED_ROOT_PATHS.has(fullPath) || BLOCKED_ROOT_PATHS.has(decodedPath)) {
         logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
         return res.status(400).send('Bad Request');
     }
