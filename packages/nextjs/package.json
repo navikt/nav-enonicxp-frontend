@@ -30,7 +30,7 @@
         "@grafana/faro-web-tracing": "2.2.0",
         "@navikt/aksel-icons": "7.40.0",
         "@navikt/ds-css": "7.40.0",
-        "@navikt/ds-react": "7.40.0",
+        "@navikt/ds-react": "8.0.0",
         "@navikt/ds-tokens": "7.40.0",
         "@navikt/nav-office-reception-info": "1.4.5",
         "@reduxjs/toolkit": "2.11.2",
