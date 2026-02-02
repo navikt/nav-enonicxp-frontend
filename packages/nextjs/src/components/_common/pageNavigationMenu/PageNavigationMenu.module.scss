@@ -4,8 +4,8 @@
 .pageNavigationMenu {
     margin-top: var(--a-spacing-9);
     @include common.full-width-mixin();
-    padding-left: var(--a-spacing-3);
-    padding-right: var(--a-spacing-3);
+    padding-left: var(--a-spacing-2);
+    padding-right: var(--a-spacing-2);
 }
 
 .heading {
