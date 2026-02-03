@@ -15,7 +15,6 @@ const MALICIOUS_PATTERNS = [
     // Command injection patterns
     /;|\||`|\$\(|&&/,
     // Path traversal
-    /\.\.[/\\]/,
     /\.\.+[/\\]/,
     // Null bytes
     /\0|%00/,
@@ -28,8 +27,8 @@ const MALICIOUS_PATTERNS = [
     /phpinfo/i,
     /\/etc\/passwd/i,
     /\/proc\/self/i,
-    // Shell commands
-    /\b(wget|curl|nc|netcat|bash|sh|cmd|powershell)\b/i,
+    // Shell command injection (command at path start followed by space/colon)
+    /^\/(wget|curl|bash|sh|cmd|powershell)(\s|:)/i,
 ];
 
 // Common malicious file extensions to block

