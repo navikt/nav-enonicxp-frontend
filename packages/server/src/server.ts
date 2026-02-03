@@ -134,7 +134,7 @@ nextApp.prepare().then(async () => {
 
     const shutdown = () => {
         logger.info('Server shutting down');
-            httpTerminator.terminate().then(() => {
+        httpTerminator.terminate().then(() => {
             expressServer.close(() => {
                 logger.info('Shutdown complete!');
                 process.exit(0);

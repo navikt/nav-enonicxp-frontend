@@ -206,6 +206,12 @@ describe('Path Validation Middleware', () => {
             expect(statusSpy).toHaveBeenCalledWith(414);
         });
 
+        test('should block repeated pattern attacks', () => {
+            const mockReq = createMockReq('/aaaaaaaaaaaaaaaaaaaaaaaaa'.repeat(10));
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
         test('should block excessive path segments', () => {
             const mockReq = createMockReq('/' + Array(51).fill('segment').join('/'));
             pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
