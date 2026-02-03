@@ -296,4 +296,20 @@ describe('Path Validation Middleware', () => {
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
     });
+
+    describe('Double encoding attacks', () => {
+        test('should block double-encoded single quote', () => {
+            // %2527 decodes to %27, which matches our pattern /%27/
+            const mockReq = createMockReq('/test%2527malicious');
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
+        test('should block double-encoded script tag', () => {
+            // %253C decodes to %3C, which matches our pattern /%3C/
+            const mockReq = createMockReq('/%253Cscript%253E');
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+    });
 });

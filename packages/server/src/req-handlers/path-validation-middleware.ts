@@ -45,12 +45,40 @@ const BLOCKED_ROOT_PATHS = new Set(XP_PATHS.flatMap(path => [
 
 export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     const fullPath = req.path;
-    const decodedPath = decodeURIComponent(fullPath);
     const badRequest = () => res.status(400).send('Bad Request');
+
+    // Check for excessively long paths early (prevents wasting CPU on regex for huge strings)
+    if (fullPath.length > 1000) {
+        logger.warn(`Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
+        return badRequest();
+    }
+
+    let decodedPath: string;
+    try {
+        decodedPath = decodeURIComponent(fullPath);
+    } catch {
+        // Malformed URI - treat as suspicious
+        logger.warn(`Blocked malformed URI: ${req.method} ${fullPath} from ${req.ip}`);
+        return badRequest();
+    }
 
     // Block direct access to Enonic XP root paths
     if (BLOCKED_ROOT_PATHS.has(fullPath) || BLOCKED_ROOT_PATHS.has(decodedPath)) {
         logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
+        return badRequest();
+    }
+
+    // Check for repeated patterns (potential attack)
+    const repeatedPattern = /(.{10,})\1{3,}/;
+    if (repeatedPattern.test(fullPath)) {
+        logger.warn(`Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
+        return badRequest();
+    }
+
+    // Check for excessive path segments (potential DoS)
+    const segments = fullPath.split('/').filter(s => s.length > 0);
+    if (segments.length > 50) {
+        logger.warn(`Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`);
         return badRequest();
     }
 
@@ -68,26 +96,6 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     );
     if (hasBlockedExtension) {
         logger.warn(`Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.ip}`);
-        return badRequest();
-    }
-
-    // Check for excessively long paths (potential DoS)
-    if (fullPath.length > 1000) {
-        logger.warn(`Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
-        return badRequest();
-    }
-
-    // Check for repeated patterns (potential attack)
-    const repeatedPattern = /(.{10,})\1{3,}/;
-    if (repeatedPattern.test(fullPath)) {
-        logger.warn(`Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
-        return badRequest();
-    }
-
-    // Check for excessive path segments (potential DoS)
-    const segments = fullPath.split('/').filter(s => s.length > 0);
-    if (segments.length > 50) {
-        logger.warn(`Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`);
         return badRequest();
     }
 
