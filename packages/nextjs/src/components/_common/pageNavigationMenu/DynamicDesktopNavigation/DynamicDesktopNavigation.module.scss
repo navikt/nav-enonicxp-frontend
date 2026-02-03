@@ -8,6 +8,12 @@
     height: max-content;
     max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
     padding-bottom: var(--a-spacing-6);
+
+    // Gir plass til focus outline som ellers blir kuttet av overflow: auto
+    padding-left: var(--a-spacing-3);
+    padding-right: var(--a-spacing-3);
+    margin-left: calc(-1 * var(--a-spacing-3));
+    margin-right: calc(-1 * var(--a-spacing-3));
 }
 
 .heading {
