@@ -340,6 +340,6 @@ export const translationsBundleNn: PartialTranslations = {
     },
     internalNavigation: {
         pageNavigationMenu: 'Innhald på sida',
-        sectionNavigation: 'I dette kapittelet',
+        sectionNavigation: 'I kapittel',
     },
 };

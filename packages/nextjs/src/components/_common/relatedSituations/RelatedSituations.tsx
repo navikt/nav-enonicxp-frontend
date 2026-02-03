@@ -11,6 +11,7 @@ import { CardType } from 'types/card';
 import { classNames } from 'utils/classnames';
 import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
+import headerStyle from 'components/_common/headers/Header.module.scss';
 import style from './RelatedSituations.module.scss';
 
 type Props = {
@@ -32,16 +33,23 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
     const defaultTitle = getStringPart('otherOffers');
     const actualTitle = (title || defaultTitle).trim(); //Redaktører legger inn et mellomrom hvis de ikke vil ha tittel
     const actualDescription = description || getStringPart('moreInformation');
+    const anchor = getAnchorId(actualTitle);
 
     return (
         <section
-            className={classNames(style.relatedSituations, editorView === 'edit' && style.noMargin)}
-            id={getAnchorId(actualTitle)}
+            className={classNames(
+                style.relatedSituations,
+                editorView === 'edit' && style.noMargin,
+                headerStyle.header
+            )}
+            id={anchor}
             aria-describedby="related-situations-description"
         >
             {actualTitle && (
                 <Heading level="3" size="medium" spacing>
-                    {actualTitle}
+                    <a href={`#${anchor}`} className={headerStyle.anchorLink}>
+                        {actualTitle}
+                    </a>
                 </Heading>
             )}
             <BodyLong className={style.description} id="related-situations-description">

@@ -128,16 +128,6 @@ $versionSelectorMinHeight: 3rem;
     }
 }
 
-@mixin expandable-panel-mixin() {
-    $focusPadding: 1rem;
-    box-shadow: none;
-    border-bottom: 0;
-    padding-left: $focusPadding;
-    padding-right: $focusPadding;
-    margin: 0 (-$focusPadding);
-    width: calc(100% + #{$focusPadding} * 2);
-}
-
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) var(--a-border-focus);
@@ -212,4 +202,28 @@ $versionSelectorMinHeight: 3rem;
     position: absolute;
     top: calc(var(--a-spacing-5) * -1);
     width: 40px;
+}
+
+@mixin grid-dynamisk-meny-mixin() {
+    display: grid;
+    grid-template-columns:
+        [content-start] minmax(0, min(42.5rem, 100%))
+        [space-start] clamp(2.5rem, -6.5rem + 15vw, 8.5rem)
+        [space-end] minmax(0, min(22.5rem, 30%))
+        [content-end];
+    padding-left: 8rem;
+    max-width: none !important;
+}
+
+@mixin page-navigation-menu-placement() {
+    display: block;
+    grid-column: space-end !important;
+    grid-row: 2 / 999;
+}
+
+@mixin centered-content-spacing() {
+    padding-bottom: var(--a-spacing-16);
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
 }

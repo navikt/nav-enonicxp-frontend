@@ -1,16 +1,16 @@
-import path, { dirname, join } from 'path';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import type { StorybookConfig } from '@storybook/nextjs';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
-    addons: [
-        getAbsolutePath('@storybook/addon-docs'),
-        getAbsolutePath('storybook-addon-pseudo-states'),
-    ],
+    addons: ['@storybook/addon-docs', 'storybook-addon-pseudo-states'],
 
     framework: {
-        name: getAbsolutePath('@storybook/nextjs'),
+        name: '@storybook/nextjs',
         options: {},
     },
 
@@ -40,7 +40,3 @@ const config: StorybookConfig = {
     },
 };
 export default config;
-
-function getAbsolutePath(value: string): any {
-    return dirname(require.resolve(join(value, 'package.json')));
-}

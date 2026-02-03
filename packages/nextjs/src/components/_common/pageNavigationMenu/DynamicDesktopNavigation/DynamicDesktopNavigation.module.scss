@@ -1,0 +1,39 @@
+@use 'common' as common;
+@use '../shared' as shared;
+
+.dynamicDesktopNavigation {
+    overflow: auto;
+    position: sticky;
+    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
+    height: max-content;
+    max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
+    padding-bottom: var(--a-spacing-6);
+}
+
+.heading {
+    @include shared.navigation-heading();
+
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+
+    // For intern scroll i lang meny
+    background-image: linear-gradient(
+        to bottom,
+        white 65%,
+        rgba(255, 255, 255, 0.75) 75%,
+        transparent
+    );
+}
+
+.list {
+    @include common.unstyled-list();
+}
+
+.link {
+    padding-left: 0;
+}
+
+.h3Link {
+    padding-left: var(--a-spacing-5);
+}
