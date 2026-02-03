@@ -9,12 +9,15 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
+import { PageContextProvider } from 'store/pageContext';
 import * as PageNavigationMenu from 'components/_common/pageNavigationMenu/PageNavigationMenu.stories';
 import { SituationPage } from './SituationPage';
 
-const withStore: Decorator = (Story) => (
+const withStore: Decorator = (Story, context) => (
     <Provider store={mockStore}>
-        <Story />
+        <PageContextProvider content={context.args as any}>
+            <Story />
+        </PageContextProvider>
     </Provider>
 );
 
@@ -103,7 +106,7 @@ const meta = {
                             type: ComponentType.Part,
                             descriptor: PartType.PageNavigationMenu,
                             config: {
-                                anchorLinks: PageNavigationMenu.default.args.anchorLinks,
+                                anchorLinks: PageNavigationMenu.default.args?.anchorLinks,
                             },
                         },
                     ],

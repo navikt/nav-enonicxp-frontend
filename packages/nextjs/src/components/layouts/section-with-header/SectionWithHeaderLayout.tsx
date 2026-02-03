@@ -51,7 +51,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
-    // Skjul SectionNavigation når siden har DynamicNavigation
+    // Skjul SectionNavigation når siden har DynamicDesktopNavigation
     const pageLayout = (pageProps as any)?.page?.descriptor;
     const isInnholdssideMedMeny = pageLayout === LayoutType.InnholdssideMedMeny;
     const isSituasjonsSide = pageProps.type === ContentType.SituationPage;

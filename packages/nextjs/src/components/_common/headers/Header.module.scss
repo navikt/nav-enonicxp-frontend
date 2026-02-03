@@ -4,7 +4,7 @@
 
     :global(.page__page-with-side-menus) &,
     :global(.page__single-col-page) & {
-        // Matcher SCROLL_TOLERANCE_PX (minus 1px) i DynamicNavigation.tsx
+        // Matcher SCROLL_TOLERANCE_PX (minus 1px) i DynamicDesktopNavigation.tsx
         scroll-margin-top: 74px;
     }
 }

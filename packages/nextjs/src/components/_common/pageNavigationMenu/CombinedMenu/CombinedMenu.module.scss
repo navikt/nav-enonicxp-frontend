@@ -1,6 +1,6 @@
 @use 'common' as common;
 
-.pageNavigationMenu {
+.desktopOnly {
     display: none;
 }
 
@@ -9,7 +9,7 @@
         display: none;
     }
 
-    .pageNavigationMenu {
+    .desktopOnly {
         @include common.page-navigation-menu-placement();
     }
 }

@@ -128,16 +128,6 @@ $versionSelectorMinHeight: 3rem;
     }
 }
 
-@mixin expandable-panel-mixin() {
-    $focusPadding: 1rem;
-    box-shadow: none;
-    border-bottom: 0;
-    padding-left: $focusPadding;
-    padding-right: $focusPadding;
-    margin: 0 (-$focusPadding);
-    width: calc(100% + #{$focusPadding} * 2);
-}
-
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) var(--a-border-focus);

@@ -1,12 +1,10 @@
 import React, { useId } from 'react';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { AnchorLink } from 'components/parts/page-navigation-menu/PageNavigationMenuPart';
-import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
-import { AnalyticsEvents } from 'utils/analytics';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { AktuelleMalgrupper } from 'components/_common/aktuelleMalgrupper/AktuelleMalgrupper';
-import { AngleIcon } from './AngleIcon/AngleIcon';
+import { NavigationLink } from './NavigationLink/NavigationLink';
 
 import style from './PageNavigationMenu.module.scss';
 
@@ -18,7 +16,7 @@ type Props = {
     analyticsComponent?: string;
     ariaLabel?: string;
     title?: string;
-    isChapterNavigation?: boolean;
+    hideAktuelleMalgrupper?: boolean;
     className?: string;
 };
 
@@ -27,7 +25,7 @@ export const PageNavigationMenu = ({
     analyticsComponent = 'Meny for intern-navigasjon',
     ariaLabel,
     title,
-    isChapterNavigation = false,
+    hideAktuelleMalgrupper = false,
     className,
 }: Props) => {
     const headingId = `heading-page-navigation-menu-${useId()}`;
@@ -43,11 +41,7 @@ export const PageNavigationMenu = ({
         <nav
             aria-labelledby={title ? headingId : undefined}
             aria-label={ariaLabel}
-            className={classNames(
-                style.pageNavigationMenu,
-                isChapterNavigation && style.chapterNavigation,
-                className
-            )}
+            className={classNames(style.pageNavigationMenu, className)}
         >
             {title && (
                 <Heading level="2" size="xsmall" id={headingId} className={style.heading}>
@@ -57,23 +51,15 @@ export const PageNavigationMenu = ({
             <ul className={style.list}>
                 {links.map((anchorLink) => (
                     <li key={anchorLink.anchorId}>
-                        <LenkeBase
-                            href={`#${anchorLink.anchorId}`}
-                            analyticsEvent={AnalyticsEvents.NAVIGATION}
-                            analyticsLinkGroup={'Innhold'}
+                        <NavigationLink
+                            anchorId={anchorLink.anchorId}
+                            linkText={anchorLink.linkText}
                             analyticsComponent={analyticsComponent}
-                            analyticsLabel={anchorLink.linkText}
-                            className={style.link}
-                        >
-                            <AngleIcon />
-                            <BodyLong as="span" className={style.linkText}>
-                                {anchorLink.linkText}
-                            </BodyLong>
-                        </LenkeBase>
+                        />
                     </li>
                 ))}
             </ul>
-            {!isChapterNavigation && <AktuelleMalgrupper />}
+            {!hideAktuelleMalgrupper && <AktuelleMalgrupper />}
         </nav>
     );
 };
