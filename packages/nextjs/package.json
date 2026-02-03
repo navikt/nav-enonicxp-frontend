@@ -31,7 +31,7 @@
         "@navikt/aksel-icons": "7.40.0",
         "@navikt/ds-css": "7.40.0",
         "@navikt/ds-react": "7.40.0",
-        "@navikt/ds-tokens": "7.40.0",
+        "@navikt/ds-tokens": "8.0.1",
         "@navikt/nav-office-reception-info": "1.4.7",
         "@reduxjs/toolkit": "2.11.2",
         "csp-header": "6.3.0",
