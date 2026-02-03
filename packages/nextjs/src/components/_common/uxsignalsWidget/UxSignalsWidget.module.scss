@@ -23,3 +23,8 @@
         margin: 0;
     }
 }
+
+/*Fjerner unødvendig luft under widget, dersom den ligger over første kapittel */
+:global(.part:first-of-type) .uxSignalsWidget {
+    margin-bottom: 0;
+}
