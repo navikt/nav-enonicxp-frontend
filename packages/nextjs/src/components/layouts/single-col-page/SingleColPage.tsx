@@ -7,6 +7,8 @@ import { GeneralPageHeader } from 'components/_common/headers/generalPageHeader/
 import { PageUpdatedInfo } from 'components/_common/pageUpdatedInfo/PageUpdatedInfo';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 
+import styles from './SingleColPage.module.scss';
+
 type Props = {
     pageProps: ContentProps & {
         data: Pick<ProductDataMixin, 'illustration' | 'customCategory' | 'taxonomy'>;
@@ -29,6 +31,8 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     const regionRef = useRef<HTMLDivElement>(null);
     const [harKontaktOssKanal, setHarKontaktOssKanal] = React.useState(false);
     const { regions } = layoutProps;
+
+    const isSituationPage = type === ContentType.SituationPage;
 
     useEffect(() => {
         if (regionRef.current) {
@@ -63,7 +67,11 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
     };
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            className={isSituationPage ? styles.singleColPage : ''}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+        >
             {showHeaderAndChangedate && (
                 <GeneralPageHeader
                     pageProps={{
@@ -83,8 +91,9 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
                     hideIngressOverride
                 />
             )}
-            <div ref={regionRef}>
+            <div className={isSituationPage ? styles.wrapperDiv : ''} ref={regionRef}>
                 <Region
+                    className={isSituationPage ? styles.region : ''}
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
                     wrapperFunction={insertPageUpdatedInfo}

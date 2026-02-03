@@ -380,8 +380,8 @@ export const translationsBundleNb = {
         moreInformation: 'Mer informasjon til deg som',
     },
     internalNavigation: {
-        pageNavigationMenu: 'Innhold på siden',
-        sectionNavigation: 'I dette kapittelet',
+        pageNavigationMenu: 'Innhold på denne siden',
+        sectionNavigation: 'I kapittel',
     },
 };
 

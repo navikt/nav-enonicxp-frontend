@@ -75,8 +75,8 @@
         padding-top: var(--a-spacing-20);
 
         .contentWrapper {
-            $margin: clamp(-300px, calc((800px - 100vw) / 2), 0px);
-            margin: 0 $margin;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         :global(.region__flexcols--2-cols) {

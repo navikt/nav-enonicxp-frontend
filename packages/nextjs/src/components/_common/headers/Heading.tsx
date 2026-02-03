@@ -23,6 +23,7 @@ export const Heading = ({ children, size, level, anchorId, className }: Props) =
     return (
         <DsHeading
             id={anchorId}
+            tabIndex={-1}
             size={size || fallbackSizeByLevel}
             level={level}
             className={classNames(style.header, className)}

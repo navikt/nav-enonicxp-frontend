@@ -46,7 +46,7 @@ const contentMock: ProductPageProps = {
     page: {
         type: ComponentType.Page,
         config: { anchorLinks: [], leftMenuHeader: '', showInternalNav: false },
-        descriptor: LayoutType.PageWithSideMenus,
+        descriptor: LayoutType.InnholdssideMedMeny,
         path: '',
         regions: {
             bottomRow: { components: [], name: 'bottomRow' },

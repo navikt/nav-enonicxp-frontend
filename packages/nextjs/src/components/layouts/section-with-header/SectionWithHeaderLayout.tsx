@@ -3,12 +3,15 @@ import { SectionWithHeaderProps } from 'types/component-props/layouts/section-wi
 import { SectionNavigation } from 'components/_common/pageNavigationMenu/SectionNavigation/SectionNavigation';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
+import { LayoutType } from 'types/component-props/layouts';
 import Region from 'components/layouts/Region';
 import { Heading } from 'components/_common/headers/Heading';
 import { XpImage } from 'components/_common/image/XpImage';
 import { FilterBar } from 'components/_common/filter-bar/FilterBar';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { classNames } from 'utils/classnames';
+import { usePageContentProps } from 'store/pageContext';
+import { translator } from 'translations';
 
 import styleV1 from './SectionWithHeaderLayout.module.scss';
 import styleV2 from './SectionWithHeaderLayoutV2.module.scss';
@@ -37,6 +40,7 @@ const templateV2 = new Set([
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+    const { language } = usePageContentProps();
 
     if (!config) {
         return <EditorHelp type={'error'} text={'Feil: Komponenten mangler data'} />;
@@ -47,8 +51,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
-    const iconImgProps = icon?.icon;
+    // Skjul SectionNavigation når siden har DynamicDesktopNavigation
+    const pageLayout = (pageProps as any)?.page?.descriptor;
+    const isInnholdssideMedMeny = pageLayout === LayoutType.InnholdssideMedMeny;
+    const isSituasjonsSide = pageProps.type === ContentType.SituationPage;
+    const hideSectionNavigation = isInnholdssideMedMeny || isSituasjonsSide;
 
+    const iconImgProps = icon?.icon;
     const shouldShowFilterBar = regions.content?.components?.some(
         (component) => component.config?.filters && component.config.filters.length > 0
     );
@@ -59,8 +68,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const style = isTemplateV2 ? styleV2 : styleV1;
     const showTopMarker = !!(isTemplateV2 && title);
-
     const showIcon = !!(iconImgProps && !isTemplateV2);
+    const getLabel = translator('internalNavigation', language);
 
     return (
         <LayoutContainer
@@ -107,7 +116,12 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 </Heading>
             )}
             {showSubsectionNavigation && (
-                <SectionNavigation introRegion={regions.intro} contentRegion={regions.content} />
+                <SectionNavigation
+                    ariaLabel={`${getLabel('sectionNavigation')} ${title}`}
+                    introRegion={regions.intro}
+                    contentRegion={regions.content}
+                    className={hideSectionNavigation ? style.hideOnDesktop : undefined}
+                />
             )}
             {shouldShowIntroRegion && <Region pageProps={pageProps} regionProps={regions.intro} />}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
