@@ -200,24 +200,6 @@ describe('Path Validation Middleware', () => {
     });
 
     describe('DoS protection', () => {
-        test('should block excessively long paths', () => {
-            const mockReq = createMockReq('/' + 'a'.repeat(2001));
-            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(414);
-        });
-
-        test('should block repeated pattern attacks', () => {
-            const mockReq = createMockReq('/aaaaaaaaaaaaaaaaaaaaaaaaa'.repeat(10));
-            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(400);
-        });
-
-        test('should block excessive path segments', () => {
-            const mockReq = createMockReq('/' + Array(51).fill('segment').join('/'));
-            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
-            expect(statusSpy).toHaveBeenCalledWith(400);
-        });
-
         test('should handle ReDoS exploit attempts efficiently', () => {
             // This path would cause exponential backtracking with vulnerable regex like /(.{10,})\1{3,}/
             // Pattern: equals sign followed by many characters without the expected closing delimiter
@@ -270,6 +252,24 @@ describe('Path Validation Middleware', () => {
 
             expect(duration).toBeLessThan(100);
             // Should be blocked by SQL injection pattern
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
+        test('should block excessively long paths', () => {
+            const mockReq = createMockReq('/' + 'a'.repeat(2001));
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
+        test('should block repeated pattern attacks', () => {
+            const mockReq = createMockReq('/aaaaaaaaaaaaaaaaaaaaaaaaa'.repeat(10));
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
+            expect(statusSpy).toHaveBeenCalledWith(400);
+        });
+
+        test('should block excessive path segments', () => {
+            const mockReq = createMockReq('/' + Array(51).fill('segment').join('/'));
+            pathValidationMiddleware(mockReq as Request, mockRes as Response, nextFunction);
             expect(statusSpy).toHaveBeenCalledWith(400);
         });
     });

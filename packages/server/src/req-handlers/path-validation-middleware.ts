@@ -47,18 +47,19 @@ const BLOCKED_ROOT_PATHS = new Set(XP_PATHS.flatMap(path => [
 export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     const fullPath = req.path;
     const decodedPath = decodeURIComponent(fullPath);
+    const badRequest = () => res.status(400).send('Bad Request');
 
     // Block direct access to Enonic XP root paths
     if (BLOCKED_ROOT_PATHS.has(fullPath) || BLOCKED_ROOT_PATHS.has(decodedPath)) {
         logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
-        return res.status(400).send('Bad Request');
+        return badRequest;
     }
 
     // Check for malicious patterns in the path
     for (const pattern of MALICIOUS_PATTERNS) {
         if (pattern.test(fullPath) || pattern.test(decodedPath)) {
             logger.warn(`Blocked suspicious request pattern: ${req.method} ${fullPath} from ${req.ip}`);
-            return res.status(400).send('Bad Request');
+            return badRequest;
         }
     }
 
@@ -68,27 +69,27 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
     );
     if (hasBlockedExtension) {
         logger.warn(`Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.ip}`);
-        return res.status(400).send('Bad Request');
+        return badRequest;
     }
 
     // Check for excessively long paths (potential DoS)
     if (fullPath.length > 1000) {
         logger.warn(`Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
-        return res.status(414).send('URI Too Long');
+        return badRequest;
     }
 
     // Check for repeated patterns (potential attack)
     const repeatedPattern = /(.{10,})\1{3,}/;
     if (repeatedPattern.test(fullPath)) {
         logger.warn(`Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`);
-        return res.status(400).send('Bad Request');
+        return badRequest;
     }
 
     // Check for excessive path segments (potential DoS)
     const segments = fullPath.split('/').filter(s => s.length > 0);
     if (segments.length > 50) {
         logger.warn(`Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`);
-        return res.status(400).send('Bad Request');
+        return badRequest;
     }
 
     next();
