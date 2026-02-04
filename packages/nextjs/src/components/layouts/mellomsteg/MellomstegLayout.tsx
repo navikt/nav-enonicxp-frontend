@@ -43,7 +43,7 @@ export const MellomstegLayout = ({
                 formNumbers={formNumbers}
             />
             <div className={style.content}>
-                {editorial && <ParsedHtml htmlProps={editorial} pSize="large" />}
+                {editorial && <ParsedHtml htmlProps={editorial} />}
                 <ul className={style.stepList}>{listItems}</ul>
                 {backLink ? (
                     <LenkeInline
