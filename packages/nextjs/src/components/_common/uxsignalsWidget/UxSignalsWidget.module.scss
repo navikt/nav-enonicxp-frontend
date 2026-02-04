@@ -1,7 +1,7 @@
 .uxSignalsWidget {
     display: flex;
     flex-direction: column;
-    margin: var(--a-spacing-4) 0;
+    margin: var(--a-spacing-7) 0;
 
     :global(.uxsignals-embed) {
         h2 {
@@ -22,4 +22,9 @@
     & > div {
         margin: 0;
     }
+}
+
+/*Fjerner unødvendig luft under widget, dersom den ligger over første kapittel */
+:global(.part:first-of-type) .uxSignalsWidget {
+    margin-bottom: 0;
 }
