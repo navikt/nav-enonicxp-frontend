@@ -91,7 +91,8 @@ export const DynamicDesktopNavigation = ({
                             anchorId: getAnchorId(linkText),
                             linkText,
                         } as AnchorLink;
-                    });
+                    })
+                    .filter((link) => link.anchorId && link.linkText);
 
                 const h3: AnchorLink[] = [...headerH3, ...relatedSituationsH3];
 
