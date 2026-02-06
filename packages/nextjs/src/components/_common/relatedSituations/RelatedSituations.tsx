@@ -16,7 +16,7 @@ import style from './RelatedSituations.module.scss';
 
 type Props = {
     relatedSituations: (GetContentTaglineProps &
-        Pick<SituationPageProps, '_path' | '_id' | 'displayName'> & {
+        Pick<SituationPageProps, '_path' | '_id' | 'displayName' | 'language'> & {
             data: Pick<SituationPageProps['data'], 'title'>;
         })[];
     title: string;
@@ -69,6 +69,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                                 type={CardType.Situation}
                                 tagline={tagline}
                                 className={style.card}
+                                language={situation.language}
                             />
                         </li>
                     );

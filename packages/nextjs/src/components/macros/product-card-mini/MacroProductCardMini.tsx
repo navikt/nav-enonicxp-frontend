@@ -20,7 +20,7 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    const { link, type, tagline } = cardProps;
+    const { link, type, tagline, language } = cardProps;
 
-    return <MiniCardV2 link={link} type={type} tagline={tagline} />;
+    return <MiniCardV2 link={link} type={type} tagline={tagline} language={language} />;
 };
