@@ -45,7 +45,7 @@ export const MiniCardV2 = ({
                 </LinkCard.Anchor>
             </LinkCard.Title>
             {tagline && (
-                <LinkCard.Footer className={style.tagline} lang={taglineLanguage}>
+                <LinkCard.Footer className={style.tagline}>
                     <span lang={taglineLanguage}>{tagline}</span>
                 </LinkCard.Footer>
             )}
