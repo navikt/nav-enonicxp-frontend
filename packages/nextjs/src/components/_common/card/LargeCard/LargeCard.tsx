@@ -54,8 +54,8 @@ export const LargeCard = (props: Props) => {
                 </LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>{description}</LinkCard.Description>
-            <LinkCard.Footer className={style.tagline}>
-                <span lang={taglineLanguage}>{tagline}</span>
+            <LinkCard.Footer className={style.tagline} lang={taglineLanguage}>
+                {tagline}
             </LinkCard.Footer>
         </LinkCard>
     );
