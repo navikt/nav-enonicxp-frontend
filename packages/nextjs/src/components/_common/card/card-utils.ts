@@ -62,7 +62,7 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const tagline = getContentTagline(targetContent, language);
+    const { tagline } = getContentTagline(targetContent, language);
     const description = ingressOverride || ingress;
 
     return {

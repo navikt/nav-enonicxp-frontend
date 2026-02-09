@@ -57,7 +57,10 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
             </BodyLong>
             <ul className={style.situationsList}>
                 {relatedSituations.map((situation) => {
-                    const tagline = getContentTagline(situation, page?.config.language);
+                    const { tagline, language: taglineLanguage } = getContentTagline(
+                        situation,
+                        page?.config.language
+                    );
 
                     return (
                         <li key={situation._id}>
@@ -68,6 +71,7 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                                 }}
                                 type={CardType.Situation}
                                 tagline={tagline}
+                                taglineLanguage={taglineLanguage}
                                 className={style.card}
                                 language={situation.language}
                             />

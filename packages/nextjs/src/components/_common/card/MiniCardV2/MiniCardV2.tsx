@@ -12,11 +12,19 @@ export type MiniCardProps = {
     link: LinkProps;
     type: CardType;
     tagline?: string;
+    taglineLanguage?: string;
     className?: string;
     language?: string;
 };
 
-export const MiniCardV2 = ({ link, type, tagline, className, language }: MiniCardProps) => {
+export const MiniCardV2 = ({
+    link,
+    type,
+    tagline,
+    taglineLanguage,
+    className,
+    language,
+}: MiniCardProps) => {
     const { analyticsProps } = useCard({
         type,
         size: CardSize.Mini,
@@ -36,7 +44,11 @@ export const MiniCardV2 = ({ link, type, tagline, className, language }: MiniCar
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            {tagline && <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>}
+            {tagline && (
+                <LinkCard.Footer className={style.tagline} lang={taglineLanguage}>
+                    <span lang={taglineLanguage}>{tagline}</span>
+                </LinkCard.Footer>
+            )}
         </LinkCard>
     );
 };
