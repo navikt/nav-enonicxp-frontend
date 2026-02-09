@@ -12,6 +12,7 @@ import style from './LargeCard.module.scss';
 
 type Props = {
     tagline?: string;
+    taglineLanguage?: string;
     description?: string;
     illustration?: PictogramsProps;
     link: LinkProps;
@@ -21,7 +22,8 @@ type Props = {
 };
 
 export const LargeCard = (props: Props) => {
-    const { link, description, type, tagline, illustration, className, language } = props;
+    const { link, description, type, tagline, taglineLanguage, illustration, className, language } =
+        props;
 
     const { userEventProps, analyticsProps } = useCard({
         type,
@@ -47,7 +49,9 @@ export const LargeCard = (props: Props) => {
                 </LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description lang={language}>{description}</LinkCard.Description>
-            <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>
+            <LinkCard.Footer className={style.tagline}>
+                <span lang={taglineLanguage}>{tagline}</span>
+            </LinkCard.Footer>
         </LinkCard>
     );
 };

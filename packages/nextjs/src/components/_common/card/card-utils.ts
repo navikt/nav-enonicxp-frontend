@@ -23,6 +23,7 @@ export type CardProps = {
     link: LinkProps;
     description?: string;
     tagline?: string;
+    taglineLanguage?: string;
     illustration?: PictogramsProps;
     language?: string;
 };
@@ -62,7 +63,7 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const { tagline } = getContentTagline(targetContent, language);
+    const { tagline, language: taglineLanguage } = getContentTagline(targetContent, language);
     const description = ingressOverride || ingress;
 
     return {
@@ -71,6 +72,7 @@ export const getCardProps = (
         description,
         illustration,
         tagline,
+        taglineLanguage,
         language: targetContent.language,
     };
 };
