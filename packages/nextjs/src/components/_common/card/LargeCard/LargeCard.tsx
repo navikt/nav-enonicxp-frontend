@@ -33,7 +33,11 @@ export const LargeCard = (props: Props) => {
     });
 
     return (
-        <LinkCard className={classNames(style.LargeCard, className)} {...userEventProps}>
+        <LinkCard
+            className={classNames(style.LargeCard, className)}
+            lang={language}
+            {...userEventProps}
+        >
             {illustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic
@@ -42,14 +46,14 @@ export const LargeCard = (props: Props) => {
                     />
                 </LinkCard.Icon>
             )}
-            <LinkCard.Title lang={language}>
+            <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase href={link.url} {...analyticsProps}>
                         {link.text}
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            <LinkCard.Description lang={language}>{description}</LinkCard.Description>
+            <LinkCard.Description>{description}</LinkCard.Description>
             <LinkCard.Footer className={style.tagline}>
                 <span lang={taglineLanguage}>{tagline}</span>
             </LinkCard.Footer>
