@@ -28,7 +28,15 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
-    const { link, type, tagline, language } = cardProps;
+    const { link, type, tagline, taglineLanguage, language } = cardProps;
 
-    return <MiniCardV2 link={link} type={type} tagline={tagline} language={language} />;
+    return (
+        <MiniCardV2
+            link={link}
+            type={type}
+            tagline={tagline}
+            taglineLanguage={taglineLanguage}
+            language={language}
+        />
+    );
 };
