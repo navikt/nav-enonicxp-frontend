@@ -13,17 +13,17 @@ import style from './LargeCard.module.scss';
 
 type Props = {
     tagline?: string;
-    taglineLanguage?: Language;
     description?: string;
     illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
     className?: string;
     language?: Language;
+    taglineLanguage?: Language;
 };
 
 export const LargeCard = (props: Props) => {
-    const { link, description, type, tagline, taglineLanguage, illustration, className, language } =
+    const { link, description, type, tagline, illustration, className, language, taglineLanguage } =
         props;
 
     const { userEventProps, analyticsProps } = useCard({

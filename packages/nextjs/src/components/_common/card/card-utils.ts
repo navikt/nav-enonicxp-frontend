@@ -24,9 +24,9 @@ export type CardProps = {
     link: LinkProps;
     description?: string;
     tagline?: string;
-    taglineLanguage?: Language;
     illustration?: PictogramsProps;
     language?: Language;
+    taglineLanguage?: Language;
 };
 
 export const cardTypeMap = {
@@ -73,7 +73,7 @@ export const getCardProps = (
         description,
         illustration,
         tagline,
-        taglineLanguage,
         language: targetContent.language,
+        taglineLanguage,
     };
 };

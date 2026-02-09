@@ -27,8 +27,8 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
             link={link}
             type={type}
             tagline={tagline}
-            taglineLanguage={taglineLanguage}
             language={language}
+            taglineLanguage={taglineLanguage}
         />
     );
 };

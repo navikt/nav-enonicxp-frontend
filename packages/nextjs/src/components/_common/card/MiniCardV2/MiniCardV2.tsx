@@ -13,18 +13,18 @@ export type MiniCardProps = {
     link: LinkProps;
     type: CardType;
     tagline?: string;
-    taglineLanguage?: Language;
     className?: string;
     language?: Language;
+    taglineLanguage?: Language;
 };
 
 export const MiniCardV2 = ({
     link,
     type,
     tagline,
-    taglineLanguage,
     className,
     language,
+    taglineLanguage,
 }: MiniCardProps) => {
     const { analyticsProps } = useCard({
         type,

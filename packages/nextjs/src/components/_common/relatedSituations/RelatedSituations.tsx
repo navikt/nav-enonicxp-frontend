@@ -71,9 +71,9 @@ export const RelatedSituations = ({ relatedSituations, title, description }: Pro
                                 }}
                                 type={CardType.Situation}
                                 tagline={tagline}
-                                taglineLanguage={taglineLanguage}
                                 className={style.card}
                                 language={situation.language}
+                                taglineLanguage={taglineLanguage}
                             />
                         </li>
                     );

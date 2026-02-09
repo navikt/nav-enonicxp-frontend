@@ -35,8 +35,8 @@ export const ProductCardMiniPart = ({ config }: PartComponentProps<PartType.Prod
             link={link}
             type={type}
             tagline={tagline}
-            taglineLanguage={taglineLanguage}
             language={language}
+            taglineLanguage={taglineLanguage}
         />
     );
 };
