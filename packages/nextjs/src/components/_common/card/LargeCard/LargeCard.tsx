@@ -17,10 +17,11 @@ type Props = {
     link: LinkProps;
     type: CardType;
     className?: string;
+    language?: string;
 };
 
 export const LargeCard = (props: Props) => {
-    const { link, description, type, tagline, illustration, className } = props;
+    const { link, description, type, tagline, illustration, className, language } = props;
 
     const { userEventProps, analyticsProps } = useCard({
         type,
@@ -29,7 +30,11 @@ export const LargeCard = (props: Props) => {
     });
 
     return (
-        <LinkCard className={classNames(style.LargeCard, className)} {...userEventProps}>
+        <LinkCard
+            className={classNames(style.LargeCard, className)}
+            lang={language}
+            {...userEventProps}
+        >
             {illustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic
