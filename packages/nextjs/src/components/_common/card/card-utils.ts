@@ -10,6 +10,7 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
 } from 'types/content-props/dynamic-page-props';
+import { Language } from 'translations';
 
 export type CardTargetProps =
     | ProductPageProps
@@ -23,9 +24,9 @@ export type CardProps = {
     link: LinkProps;
     description?: string;
     tagline?: string;
-    taglineLanguage?: string;
+    taglineLanguage?: Language;
     illustration?: PictogramsProps;
-    language?: string;
+    language?: Language;
 };
 
 export const cardTypeMap = {

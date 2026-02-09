@@ -5,6 +5,7 @@ import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { CardSize, CardType } from 'types/card';
 import { classNames } from 'utils/classnames';
+import { Language } from 'translations';
 
 import style from './MiniCardV2.module.scss';
 
@@ -12,9 +13,9 @@ export type MiniCardProps = {
     link: LinkProps;
     type: CardType;
     tagline?: string;
-    taglineLanguage?: string;
+    taglineLanguage?: Language;
     className?: string;
-    language?: string;
+    language?: Language;
 };
 
 export const MiniCardV2 = ({

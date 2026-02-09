@@ -4,6 +4,7 @@ import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { useCard } from 'components/_common/card/useCard';
+import { Language } from 'translations';
 
 import sharedStyle from 'components/_common/card//Card.module.scss';
 import style from './MicroCard.module.scss';
@@ -15,7 +16,7 @@ export const MicroCard = ({
 }: {
     link: LinkProps;
     type: CardType;
-    language?: string;
+    language?: Language;
 }) => {
     const { analyticsProps } = useCard({ type, size: CardSize.Micro, link });
     return (

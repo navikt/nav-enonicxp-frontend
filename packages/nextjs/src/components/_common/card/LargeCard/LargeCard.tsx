@@ -7,18 +7,19 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { classNames } from 'utils/classnames';
+import { Language } from 'translations';
 
 import style from './LargeCard.module.scss';
 
 type Props = {
     tagline?: string;
-    taglineLanguage?: string;
+    taglineLanguage?: Language;
     description?: string;
     illustration?: PictogramsProps;
     link: LinkProps;
     type: CardType;
     className?: string;
-    language?: string;
+    language?: Language;
 };
 
 export const LargeCard = (props: Props) => {
