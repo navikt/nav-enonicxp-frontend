@@ -17,11 +17,14 @@ export const getContentTagline = (content: GetContentTaglineProps, currentLangua
     const situationTaglines = translator('situations', language);
 
     if (content.type === ContentType.GuidePage) {
-        return (selectedAudience && guideTaglines(selectedAudience)) ?? '';
+        return { tagline: (selectedAudience && guideTaglines(selectedAudience)) ?? '', language };
     }
 
     if (content.type === ContentType.SituationPage) {
-        return (selectedAudience && situationTaglines(selectedAudience)) ?? '';
+        return {
+            tagline: (selectedAudience && situationTaglines(selectedAudience)) ?? '',
+            language,
+        };
     }
 
     if ((taxonomy && taxonomy.length > 0) || customCategory) {
@@ -31,8 +34,8 @@ export const getContentTagline = (content: GetContentTaglineProps, currentLangua
             taxonomyStrings.push(customCategory);
         }
 
-        return joinWithConjunction(taxonomyStrings, language);
+        return { tagline: joinWithConjunction(taxonomyStrings, language), language };
     }
 
-    return '';
+    return { tagline: '', language };
 };
