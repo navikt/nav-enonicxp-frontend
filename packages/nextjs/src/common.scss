@@ -130,7 +130,11 @@ $versionSelectorMinHeight: 3rem;
 
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
-    box-shadow: 0 0 0 3px if($inset, inset, null) var(--a-border-focus);
+    @if $inset {
+        box-shadow: 0 0 0 3px inset var(--a-border-focus);
+    } @else {
+        box-shadow: 0 0 0 3px var(--a-border-focus);
+    }
 }
 
 @mixin link-underline-mixin($underlineDefault: true) {

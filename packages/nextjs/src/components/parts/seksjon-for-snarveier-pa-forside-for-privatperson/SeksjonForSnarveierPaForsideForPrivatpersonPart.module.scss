@@ -54,7 +54,7 @@
                 }
 
                 &:focus {
-                    @include common.panel-focus-mixin(true);
+                    @include common.panel-focus-mixin();
                 }
 
                 .text {
