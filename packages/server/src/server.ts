@@ -4,9 +4,11 @@ import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
 import path from 'path';
 import { logger } from '@/shared/logger';
+import { XP_PATHS } from '@/shared/constants';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
+import { pathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
@@ -28,8 +30,10 @@ const nextApp = createNextApp({
 nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
-
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    // Security middleware - apply early in the chain
+    expressApp.use(pathValidationMiddleware);
 
     // Express 5 compatibility: Make request properties writable for Next.js
     expressApp.use((req, res, next) => {
@@ -49,6 +53,30 @@ nextApp.prepare().then(async () => {
     });
 
     expressApp.use(promMiddleware);
+
+    // Handle known /_/* redirects BEFORE Next.js processes them
+    if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
+        expressApp.use((req, res, next) => {
+            // Check for /_/ - Only valid at the beginning
+            const posXPprefix = req.path.search('/_/');
+            if (posXPprefix === 0) {
+                // Only redirect known XP paths
+                const isKnownXpPath = XP_PATHS.some(xpPath => req.path.startsWith(xpPath));
+
+                if (isKnownXpPath) {
+                    const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
+                    return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
+                } else {
+                    logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
+                    return res.status(403).send('Forbidden');
+                }
+            } else if (posXPprefix > 0) {
+                logger.warn(`Blocked invalid XP path: ${req.method} ${req.path} from ${req.ip}`);
+                return res.status(403).send('Forbidden');
+            }
+            next();
+        });
+    }
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);

@@ -10,6 +10,7 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
 } from 'types/content-props/dynamic-page-props';
+import { Language } from 'translations';
 
 export type CardTargetProps =
     | ProductPageProps
@@ -24,6 +25,8 @@ export type CardProps = {
     description?: string;
     tagline?: string;
     illustration?: PictogramsProps;
+    language?: Language;
+    taglineLanguage?: Language;
 };
 
 export const cardTypeMap = {
@@ -61,7 +64,7 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const tagline = getContentTagline(targetContent, language);
+    const { tagline, language: taglineLanguage } = getContentTagline(targetContent, language);
     const description = ingressOverride || ingress;
 
     return {
@@ -70,5 +73,7 @@ export const getCardProps = (
         description,
         illustration,
         tagline,
+        language: targetContent.language,
+        taglineLanguage,
     };
 };

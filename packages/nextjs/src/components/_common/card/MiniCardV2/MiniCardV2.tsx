@@ -5,6 +5,7 @@ import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { CardSize, CardType } from 'types/card';
 import { classNames } from 'utils/classnames';
+import { Language } from 'translations';
 
 import style from './MiniCardV2.module.scss';
 
@@ -13,9 +14,18 @@ export type MiniCardProps = {
     type: CardType;
     tagline?: string;
     className?: string;
+    language?: Language;
+    taglineLanguage?: Language;
 };
 
-export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) => {
+export const MiniCardV2 = ({
+    link,
+    type,
+    tagline,
+    className,
+    language,
+    taglineLanguage,
+}: MiniCardProps) => {
     const { analyticsProps } = useCard({
         type,
         size: CardSize.Mini,
@@ -23,7 +33,11 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
     });
 
     return (
-        <LinkCard arrowPosition="center" className={classNames(style.miniCardV2, className)}>
+        <LinkCard
+            arrowPosition="center"
+            className={classNames(style.miniCardV2, className)}
+            lang={language}
+        >
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase href={link.url} {...analyticsProps}>
@@ -31,7 +45,11 @@ export const MiniCardV2 = ({ link, type, tagline, className }: MiniCardProps) =>
                     </LenkeBase>
                 </LinkCard.Anchor>
             </LinkCard.Title>
-            {tagline && <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>}
+            {tagline && (
+                <LinkCard.Footer className={style.tagline} lang={taglineLanguage}>
+                    {tagline}
+                </LinkCard.Footer>
+            )}
         </LinkCard>
     );
 };

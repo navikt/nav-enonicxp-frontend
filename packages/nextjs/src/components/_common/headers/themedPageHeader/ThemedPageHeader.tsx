@@ -32,7 +32,7 @@ export const ThemedPageHeader = ({ contentProps, showTimeStamp = true }: Props) 
     const getDatesLabel = translator('dates', language);
 
     const typeSpecificClassName = themedPageHeaderGetTypeClassName(type);
-    const subTitle = getContentTagline(contentProps);
+    const { tagline: subTitle } = getContentTagline(contentProps);
 
     const modified =
         showTimeStamp &&

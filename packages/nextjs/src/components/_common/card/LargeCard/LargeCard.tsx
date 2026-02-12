@@ -7,6 +7,7 @@ import { IllustrationStatic } from 'components/_common/illustration/static/Illus
 import { LinkProps } from 'types/link-props';
 import { useCard } from 'components/_common/card/useCard';
 import { classNames } from 'utils/classnames';
+import { Language } from 'translations';
 
 import style from './LargeCard.module.scss';
 
@@ -17,10 +18,13 @@ type Props = {
     link: LinkProps;
     type: CardType;
     className?: string;
+    language?: Language;
+    taglineLanguage?: Language;
 };
 
 export const LargeCard = (props: Props) => {
-    const { link, description, type, tagline, illustration, className } = props;
+    const { link, description, type, tagline, illustration, className, language, taglineLanguage } =
+        props;
 
     const { userEventProps, analyticsProps } = useCard({
         type,
@@ -29,7 +33,11 @@ export const LargeCard = (props: Props) => {
     });
 
     return (
-        <LinkCard className={classNames(style.LargeCard, className)} {...userEventProps}>
+        <LinkCard
+            className={classNames(style.LargeCard, className)}
+            lang={language}
+            {...userEventProps}
+        >
             {illustration && (
                 <LinkCard.Icon>
                     <IllustrationStatic
@@ -46,7 +54,9 @@ export const LargeCard = (props: Props) => {
                 </LinkCard.Anchor>
             </LinkCard.Title>
             <LinkCard.Description>{description}</LinkCard.Description>
-            <LinkCard.Footer className={style.tagline}>{tagline}</LinkCard.Footer>
+            <LinkCard.Footer className={style.tagline} lang={taglineLanguage}>
+                {tagline}
+            </LinkCard.Footer>
         </LinkCard>
     );
 };
