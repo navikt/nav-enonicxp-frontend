@@ -78,6 +78,7 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
 
         if (isKnownXpPath) {
             if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
+                // Non-production environments only
                 const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
                 return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
             }
