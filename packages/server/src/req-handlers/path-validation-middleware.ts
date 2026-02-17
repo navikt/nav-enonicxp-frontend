@@ -70,6 +70,28 @@ export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
         return badRequest();
     }
 
+    // Check for /_/ - Only valid at the beginning
+    const posXPprefix = req.path.search('/_/');
+    if (posXPprefix === 0) {
+        // Only redirect known XP paths
+        const isKnownXpPath = XP_PATHS.some(xpPath => req.path.startsWith(xpPath));
+
+        if (isKnownXpPath) {
+            if (process.env.XP_ORIGIN !== process.env.APP_ORIGIN) {
+                // Non-production environments only
+                const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
+                return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
+            }
+            next();
+        } else {
+            logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
+            return badRequest();
+        }
+    } else if (posXPprefix > 0) {
+        logger.warn(`Blocked invalid XP path: ${req.method} ${req.path} from ${req.ip}`);
+        return badRequest();
+    }
+
     // Check for repeated patterns (potential attack)
     const repeatedPattern = /(.{10,})\1{3,}/;
     if (repeatedPattern.test(fullPath)) {
