@@ -24,7 +24,7 @@ export const isGodkjentSide = (contentType: string): boolean => {
     return godkjenteSider.includes(contentType);
 };
 
-const harInnholdsseksjon = (contentType: string) =>
+const kreverInnholdsseksjon = (contentType: string) =>
     contentType !== 'no.nav.navno:current-topic-page';
 
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
@@ -32,7 +32,7 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
         return;
     }
 
-    const sjekkInnholdsseksjon = harInnholdsseksjon(content.type);
+    const skalSjekkeInnholdsseksjon = kreverInnholdsseksjon(content.type);
 
     const hasErrors = (): boolean => {
         return (
@@ -40,8 +40,8 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
             DuplicateIds({}) !== null ||
             FormNumbersWarning({ content }) !== null ||
             KontaktinformasjonWarning({ content }) !== null ||
-            (sjekkInnholdsseksjon && HtmlAreaUtenforInnholdsseksjon({ content }) !== null) ||
-            (sjekkInnholdsseksjon && FragmentUtenforInnholdsseksjon({ content }) !== null) ||
+            (skalSjekkeInnholdsseksjon && HtmlAreaUtenforInnholdsseksjon({ content }) !== null) ||
+            (skalSjekkeInnholdsseksjon && FragmentUtenforInnholdsseksjon({ content }) !== null) ||
             HtmlAreaDiv({ content }) !== null
         );
     };
@@ -58,13 +58,13 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                         <DuplicateIds className={style.liste} />
                         <FormNumbersWarning content={content} className={style.liste} />
                         <KontaktinformasjonWarning content={content} className={style.liste} />
-                        {sjekkInnholdsseksjon && (
+                        {skalSjekkeInnholdsseksjon && (
                             <HtmlAreaUtenforInnholdsseksjon
                                 content={content}
                                 className={style.liste}
                             />
                         )}
-                        {sjekkInnholdsseksjon && (
+                        {skalSjekkeInnholdsseksjon && (
                             <FragmentUtenforInnholdsseksjon
                                 content={content}
                                 className={style.liste}
