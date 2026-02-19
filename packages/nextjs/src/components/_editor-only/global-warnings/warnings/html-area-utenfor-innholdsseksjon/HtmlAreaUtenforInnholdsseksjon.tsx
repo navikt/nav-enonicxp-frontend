@@ -10,6 +10,11 @@ type Props = {
 export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
+    // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
+    if (content.type === 'no.nav.navno:current-topic-page') {
+        return null;
+    }
+
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 

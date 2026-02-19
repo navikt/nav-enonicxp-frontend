@@ -19,6 +19,7 @@ export const isGodkjentSide = (contentType: string): boolean => {
         'no.nav.navno:tools-page',
         'no.nav.navno:generic-page',
         'no.nav.navno:product-details',
+        'no.nav.navno:current-topic-page',
     ];
     return godkjenteSider.includes(contentType);
 };
