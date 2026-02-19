@@ -24,15 +24,10 @@ export const isGodkjentSide = (contentType: string): boolean => {
     return godkjenteSider.includes(contentType);
 };
 
-const kreverInnholdsseksjon = (contentType: string) =>
-    contentType !== 'no.nav.navno:current-topic-page';
-
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
     if (!isGodkjentSide(content.type)) {
         return;
     }
-
-    const skalSjekkeInnholdsseksjon = kreverInnholdsseksjon(content.type);
 
     const hasErrors = (): boolean => {
         return (
@@ -40,8 +35,8 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
             DuplicateIds({}) !== null ||
             FormNumbersWarning({ content }) !== null ||
             KontaktinformasjonWarning({ content }) !== null ||
-            (skalSjekkeInnholdsseksjon && HtmlAreaUtenforInnholdsseksjon({ content }) !== null) ||
-            (skalSjekkeInnholdsseksjon && FragmentUtenforInnholdsseksjon({ content }) !== null) ||
+            HtmlAreaUtenforInnholdsseksjon({ content }) !== null ||
+            FragmentUtenforInnholdsseksjon({ content }) !== null ||
             HtmlAreaDiv({ content }) !== null
         );
     };
@@ -58,18 +53,8 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                         <DuplicateIds className={style.liste} />
                         <FormNumbersWarning content={content} className={style.liste} />
                         <KontaktinformasjonWarning content={content} className={style.liste} />
-                        {skalSjekkeInnholdsseksjon && (
-                            <HtmlAreaUtenforInnholdsseksjon
-                                content={content}
-                                className={style.liste}
-                            />
-                        )}
-                        {skalSjekkeInnholdsseksjon && (
-                            <FragmentUtenforInnholdsseksjon
-                                content={content}
-                                className={style.liste}
-                            />
-                        )}
+                        <HtmlAreaUtenforInnholdsseksjon content={content} className={style.liste} />
+                        <FragmentUtenforInnholdsseksjon content={content} className={style.liste} />
                         <HtmlAreaDiv content={content} className={style.liste} />
                     </ul>
                 </Alert>
