@@ -109,7 +109,10 @@ ErrorComponent.getInitialProps = async ({
         return pageProps || makeErrorProps(asPath, 'Unknown client-side error');
     }
 
-    if (asPath && shouldFetchFromFailoverApp(asPath)) {
+    // 400 errors handled in path-validation-middleware.ts
+    const handledBadReq = req.headers['x-nav-blocked-path'];
+
+    if (!handledBadReq && asPath && shouldFetchFromFailoverApp(asPath)) {
         const failoverHtml = await fetchFailoverHtml(asPath);
         if (failoverHtml) {
             return res.status(200).send(failoverHtml);
@@ -129,11 +132,12 @@ ErrorComponent.getInitialProps = async ({
     }
 
     const errorMsg = err?.toString() || 'Empty error message';
-
-    logPageLoadError(
-        errorId,
-        `Unhandled error on path ${asPath} - ${res.statusCode} [${req.method}] ${errorMsg}`
-    );
+    if (!handledBadReq) {
+        logPageLoadError(
+            errorId,
+            `Unhandled error on path ${asPath} - ${res.statusCode} [${req.method}] ${errorMsg}`
+        );
+    }
 
     return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
 };

@@ -50,9 +50,10 @@ export const buildPathValidationMiddleware = (nextApp: InferredNextWrapperServer
     const fullPath = req.path;
     const badRequest = () => {
         res.statusCode = 400;
+        req.headers['x-nav-blocked-path'] = "true";
         return new Promise<void>((resolve) => {
             setTimeout(() => {
-                nextApp.renderError(null, req, res, req.path, {}).then(resolve);
+                nextApp.renderError(null, req, res, fullPath).then(resolve);
             }, 1000 + Math.random() * 2000);
         });
     };
