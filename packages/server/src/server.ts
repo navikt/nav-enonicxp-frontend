@@ -7,7 +7,7 @@ import { logger } from '@/shared/logger';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
-import { pathValidationMiddleware } from 'req-handlers/path-validation-middleware';
+import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
@@ -32,7 +32,7 @@ nextApp.prepare().then(async () => {
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     // Check path for attack patterns and redirect to XP if valid request to backend
-    expressApp.use(pathValidationMiddleware);
+    expressApp.use(buildPathValidationMiddleware(nextApp));
 
     // Express 5 compatibility: Make request properties writable for Next.js
     expressApp.use((req, res, next) => {
