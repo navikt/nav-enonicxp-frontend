@@ -11,7 +11,7 @@ export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) =>
     const warnings: React.ReactElement[] = [];
 
     // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
-    if (content.type == 'no.nav.navno:current-topic-page') {
+    if (content.type === 'no.nav.navno:current-topic-page') {
         return null;
     }
 
