@@ -63,8 +63,11 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
+    // I edit-visning må alle komponenter rendres innenfor sin region for at Content Studio skal kunne finne parent-regionen. Uten dette fungerer ikke f.eks. "Fjern"-knappen.
     const { componentsWithoutContactModule, contactModuleComponent } =
-        extractLastComponentIfContactModule(props.page);
+        props.editorView === 'edit'
+            ? { componentsWithoutContactModule: props.page, contactModuleComponent: undefined }
+            : extractLastComponentIfContactModule(props.page);
 
     return (
         <article className={styles.situationPage}>
