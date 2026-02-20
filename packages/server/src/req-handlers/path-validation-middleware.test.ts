@@ -257,7 +257,7 @@ describe('Path Validation Middleware', () => {
         });
 
         test('should block excessive path segments', () => {
-            runMiddleware('/' + Array(51).fill('segment').join('/'));
+            runMiddleware('/' + new Array(51).fill('segment').join('/'));
             expect(mockRes.statusCode).toBe(400);
         });
     });
