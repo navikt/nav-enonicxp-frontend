@@ -1,6 +1,7 @@
 import { RequestHandler } from 'express';
 import { logger } from '@/shared/logger';
 import { XP_PATHS } from '@/shared/constants';
+import { InferredNextWrapperServer } from 'server';
 
 // Common injection patterns to block
 const MALICIOUS_PATTERNS = [
@@ -45,9 +46,20 @@ const BLOCKED_ROOT_PATHS = new Set(XP_PATHS.flatMap(path => [
     path,              // Keep with trailing slash: /_/image/
 ]));
 
-export const pathValidationMiddleware: RequestHandler = (req, res, next) => {
+export const buildPathValidationMiddleware = (nextApp: InferredNextWrapperServer, testing = false): RequestHandler => (req, res, next) => {
     const fullPath = req.path;
-    const badRequest = () => res.status(400).send('Bad Request');
+    const badRequest = () => {
+        res.statusCode = 400;
+        if (!testing) {
+            // Flagg for at Bad request er håndtert kan ikke settes under testing
+            req.headers['x-nav-blocked-path'] = "true";
+        }
+        return new Promise<void>((resolve) => {
+            setTimeout(() => {
+                nextApp.renderError(null, req, res, fullPath).then(resolve);
+            }, 1000 + Math.random() * 2000);
+        });
+    };
 
     // Check for excessively long paths early (prevents wasting CPU on regex for huge strings)
     if (fullPath.length > 1000) {
