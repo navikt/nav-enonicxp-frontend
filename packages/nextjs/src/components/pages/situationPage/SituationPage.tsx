@@ -63,8 +63,7 @@ export const SituationPage = (props: SituationPageProps) => {
     const { languages } = usePageContentProps();
     const hasMultipleLanguages = languages && languages?.length > 0;
 
-    // I editorvisning må alle komponenter rendres innenfor sin region for at XP-editoren
-    // skal kunne finne parent-regionen. Uten dette fungerer ikke f.eks. "Fjern"-knappen.
+    // I edit-visning må alle komponenter rendres innenfor sin region for at Content Studio skal kunne finne parent-regionen. Uten dette fungerer ikke f.eks. "Fjern"-knappen.
     const { componentsWithoutContactModule, contactModuleComponent } =
         props.editorView === 'edit'
             ? { componentsWithoutContactModule: props.page, contactModuleComponent: undefined }
