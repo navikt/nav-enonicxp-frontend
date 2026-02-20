@@ -27,7 +27,7 @@ describe('Path Validation Middleware', () => {
     });
 
     const runMiddleware = (path: string) => {
-        const middleware = buildPathValidationMiddleware(mockNextApp as InferredNextWrapperServer);
+        const middleware = buildPathValidationMiddleware(mockNextApp as InferredNextWrapperServer, true);
         return middleware(createMockReq(path) as Request, mockRes as Response, nextFunction);
     };
 

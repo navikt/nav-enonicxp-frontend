@@ -46,11 +46,14 @@ const BLOCKED_ROOT_PATHS = new Set(XP_PATHS.flatMap(path => [
     path,              // Keep with trailing slash: /_/image/
 ]));
 
-export const buildPathValidationMiddleware = (nextApp: InferredNextWrapperServer): RequestHandler => (req, res, next) => {
+export const buildPathValidationMiddleware = (nextApp: InferredNextWrapperServer, testing = false): RequestHandler => (req, res, next) => {
     const fullPath = req.path;
     const badRequest = () => {
         res.statusCode = 400;
-        req.headers['x-nav-blocked-path'] = "true";
+        if (!testing) {
+            // Flagg for at Bad request er håndtert kan ikke settes under testing
+            req.headers['x-nav-blocked-path'] = "true";
+        }
         return new Promise<void>((resolve) => {
             setTimeout(() => {
                 nextApp.renderError(null, req, res, fullPath).then(resolve);
