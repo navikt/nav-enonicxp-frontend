@@ -10,7 +10,7 @@
         & > * {
             @include common.centered-content-spacing();
 
-            //Margin over kontaktmodul i editor-mode
+            //Margin over kontaktmodul i edit mode
             & :global(.layout__situation-flex-cols) {
                 margin-top: var(--a-spacing-16);
             }
