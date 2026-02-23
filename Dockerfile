@@ -1,23 +1,24 @@
-FROM node:24-alpine
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+ENV NODE_ENV=production
+ENV NPM_CONFIG_CACHE=/tmp/npm-cache
 
 WORKDIR /app
 
-COPY package*.json .env /app/
+COPY package*.json .env ./
 
-COPY packages/nextjs/package*.json packages/nextjs/next.config.js .env /app/nextjs/
-COPY packages/nextjs/.next /app/nextjs/.next/
-COPY packages/nextjs/public /app/nextjs/public/
+COPY packages/nextjs/package*.json packages/nextjs/next.config.js .env ./nextjs/
+COPY packages/nextjs/.next ./nextjs/.next/
+COPY packages/nextjs/public ./nextjs/public/
 
-COPY node_modules /app/node_modules/
+COPY node_modules ./node_modules/
 
-COPY .env /app/server/
-COPY packages/server/package*.json /app/server/
-COPY packages/server/.dist /app/server/.dist/
+COPY .env ./server/
+COPY packages/server/package*.json ./server/
+COPY packages/server/.dist ./server/.dist/
 
 USER nextjs
 
 EXPOSE 3000
-CMD ["npm", "run", "start-in-docker"]
+ENTRYPOINT ["node"]
+CMD ["server/.dist/server.cjs"]
