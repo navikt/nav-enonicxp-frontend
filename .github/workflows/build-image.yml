@@ -147,8 +147,9 @@ jobs:
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
             - name: Delete node_modules to avoid copying them into the docker image
               run: rm -rf node_modules packages/nextjs/node_modules packages/server/node_modules packages/shared/node_modules
-            - name: Install production dependencies
-              run: pnpm install --frozen-lockfile --prod
+            - name: Install dependencies without dev dependencies
+              run: |
+                  pnpm install --frozen-lockfile --prod
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
             - name: Build and push docker image

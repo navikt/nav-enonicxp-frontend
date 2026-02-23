@@ -19,5 +19,6 @@ COPY packages/server/.dist /app/server/.dist/
 
 USER nextjs
 
+ENV NODE_PATH=/app/server/node_modules
 EXPOSE 3000
 CMD ["node", "-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]

@@ -25,9 +25,13 @@
     },
     "devDependencies": {
         "@types/cookie-parser": "1.4.10",
+        "@types/jest": "catalog:",
         "@types/on-headers": "1.0.4",
-        "@types/mock-fs": "4.13.4",
-        "concurrently": "9.2.1",
+        "@types/mock-fs": "catalog:",
+        "concurrently": "catalog:",
+        "jest": "catalog:",
+        "jest-fetch-mock": "3.0.3",
+        "ts-jest": "catalog:",
         "mock-fs": "5.5.0",
         "nodemon": "3.1.11"
     }
