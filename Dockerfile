@@ -18,4 +18,5 @@ COPY packages/server/package*.json ./server/
 COPY packages/server/.dist ./server/.dist/
 
 EXPOSE 3000
-CMD ["node", "./server/.dist/server.cjs"]
+ENTRYPOINT ["node"]
+CMD ["server/.dist/server.cjs"]
