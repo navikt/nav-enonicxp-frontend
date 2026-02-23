@@ -1,4 +1,4 @@
-FROM node:24-alpine AS build
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim AS build
 
 # No need to add user or group here.
 RUN apk add --no-cache ca-certificates libc6-compat && update-ca-certificates
@@ -9,22 +9,22 @@ ARG GITHUB_PAT
 ARG SERVICE_SECRET
 ARG ENV_FILE
 
-COPY package*.json .failover/.npmrc /app/
-COPY packages/server /app/packages/server/
-COPY packages/nextjs /app/packages/nextjs/
-COPY packages/shared /app/packages/shared/
+COPY package*.json .failover/.npmrc ./
+COPY packages/server ./packages/server/
+COPY packages/nextjs ./packages/nextjs/
+COPY packages/shared ./packages/shared/
 
 RUN npm ci --ignore-scripts
 RUN rm -f .npmrc
 
-COPY ".failover/${ENV_FILE}" /app/.env
-COPY ".failover/${ENV_FILE}" /app/packages/nextjs/.env
-COPY ".failover/${ENV_FILE}" /app/packages/server/.env
+COPY ".failover/${ENV_FILE}" ./.env
+COPY ".failover/${ENV_FILE}" ./packages/nextjs/.env
+COPY ".failover/${ENV_FILE}" ./packages/server/.env
 
 RUN npm run build
 
 # --------- Final stage ---------
-FROM node:24-alpine
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
 # Only now create the non-root user for runtime!
 RUN addgroup --system --gid 1001 nodejs \
