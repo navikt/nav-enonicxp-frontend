@@ -9,4 +9,4 @@ if [ "$current_branch" = "main" ]; then
   exit 1
 fi
 
-npm run lint
+pnpm run lint

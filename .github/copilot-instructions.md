@@ -25,11 +25,11 @@ This is a **Next.js frontend** for nav.no's public pages, serving as a headless 
 
 - **Languages**: TypeScript, React, Next.js, SCSS
 - **Code language**: Mix of English and Norwegian - file names, component names, variables can be in either language
-- **Package manager**: npm (workspaces)
+- **Package manager**: pnpm (workspaces)
 - **Testing**: Jest
 - **Design System**: @navikt/aksel (see NAV Design System section below for conventions)
 - **Target**: Modern browsers (ES2022+) - use modern JavaScript features freely
-- **Local dev**: `npm run dev`
+- **Local dev**: `pnpm run dev`
 
 ### Architecture
 

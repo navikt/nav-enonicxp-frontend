@@ -1,0 +1,13 @@
+packages:
+  - packages/*
+
+catalog:
+  next: 15.5.10
+
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - core-js-pure
+  - esbuild
+  - protobufjs
+  - sharp
+  - unrs-resolver

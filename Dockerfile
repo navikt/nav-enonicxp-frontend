@@ -20,4 +20,4 @@ COPY packages/server/.dist /app/server/.dist/
 USER nextjs
 
 EXPOSE 3000
-CMD ["npm", "run", "start-in-docker"]
+CMD ["node", "-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]
