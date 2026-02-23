@@ -30,6 +30,7 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v6
+
             - name: Deploy Valkey
               if: ${{ inputs.deploy_valkey == true }}
               uses: nais/deploy/actions/deploy@v2
@@ -39,6 +40,7 @@ jobs:
                   CLUSTER: ${{ inputs.cluster }}
                   RESOURCE: .nais/valkey.yml
                   VARS: .nais/vars/${{ inputs.vars_file }}
+
             - name: Deploy HPA
               if: ${{ inputs.hpa_file }}
               uses: nais/deploy/actions/deploy@v2
@@ -47,6 +49,7 @@ jobs:
               env:
                   CLUSTER: ${{ inputs.cluster }}
                   RESOURCE: .nais/hpa/${{inputs.hpa_file}}
+
             - name: Deploy application
               uses: nais/deploy/actions/deploy@v2
               env:
