@@ -4,7 +4,7 @@ metadata:
   name: nav-enonicxp-frontend-dev1
   namespace: navno
   labels:
-    team:   namespace: navno
+    team: navno
 
 spec:
   scaleTargetRef:
