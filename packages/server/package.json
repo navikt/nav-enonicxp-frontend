@@ -20,6 +20,7 @@
         "cookie-parser": "catalog:",
         "http-terminator": "catalog:",
         "next": "catalog:",
+        "dotenv": "catalog:",
         "on-headers": "catalog:",
         "prom-client": "catalog:"
     },

@@ -152,6 +152,11 @@ jobs:
                   pnpm install --frozen-lockfile --prod
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Deploy dependencies to avoid symlinks
+              run: |
+                  pnpm --filter ./packages/server deploy --prod nonsymlink/server --legacy
+                  pnpm --filter ./packages/shared deploy --prod nonsymlink/shared --legacy
+                  pnpm --filter ./packages/nextjs deploy --prod nonsymlink/nextjs --legacy
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
               id: docker-push

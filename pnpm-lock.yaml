@@ -587,6 +587,9 @@ importers:
       cookie-parser:
         specifier: 'catalog:'
         version: 1.4.7
+      dotenv:
+        specifier: 'catalog:'
+        version: 17.2.3
       http-terminator:
         specifier: 'catalog:'
         version: 3.2.0
@@ -1875,6 +1878,9 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@navikt/ds-tokens@7.40.0':
     resolution: {integrity: sha512-zBaBKLS5R2OZyXI4UUPOmiB15L/u/aJPHiyoccJDtmqrv5wRkc1oM6UCjzKK0D4gLZHBoxp7YBT0sR9Mp4DXFQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.40.0/36f981e12d4d90f18155615b7666b737039a3ff0}
@@ -1887,6 +1893,9 @@ packages:
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@navikt/nav-office-reception-info@1.4.7':
     resolution: {integrity: sha512-72v5kpLSFtlMBt2yfV/zZZfdm/rvzOCtyhB0IL7N/6H653WKoOMms85tNpr6GpATuKpYMMBPzCBJ7kVdFAqS2g==, tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/1.4.7/373643047ab391b69ee33b6fbb5df59f312e882d}
@@ -8175,12 +8184,13 @@ snapshots:
       '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@navikt/aksel-icons': 7.40.0
       '@navikt/ds-tokens': 7.40.0
-      '@types/react': 19.2.10
       clsx: 2.1.1
       date-fns: 4.1.0
       react: 19.2.4
       react-day-picker: 9.7.0(react@19.2.4)
       react-dom: 19.2.4(react@19.2.4)
+    optionalDependencies:
+      '@types/react': 19.2.10
 
   '@navikt/ds-tokens@7.40.0': {}
 
@@ -8190,6 +8200,7 @@ snapshots:
       html-react-parser: 5.2.15(@types/react@19.2.10)(react@19.2.4)
       js-cookie: 3.0.5
       jsdom: 26.1.0
+    optionalDependencies:
       react: 19.2.4
 
   '@navikt/nav-office-reception-info@1.4.7(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
