@@ -1,7 +1,6 @@
-FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim AS build
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24 AS build
 
-# No need to add user or group here.
-RUN apk add --no-cache ca-certificates libc6-compat && update-ca-certificates
+USER root
 
 WORKDIR /app
 
@@ -26,16 +25,10 @@ RUN npm run build
 # --------- Final stage ---------
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
-# Only now create the non-root user for runtime!
-RUN addgroup --system --gid 1001 nodejs \
- && adduser --system --uid 1001 --ingroup nodejs nextjs
-
 WORKDIR /app
 
 COPY --from=build /app /app/
 COPY --from=build /tmp/images/image-manifest /tmp/images/image-manifest
 
-USER nextjs
-
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["node", "-r", "dotenv/config", "packages/server/.dist/server.cjs"]
