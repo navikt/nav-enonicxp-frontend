@@ -5,6 +5,8 @@ RUN adduser --system --uid 1001 nextjs
 
 WORKDIR /app
 
+COPY package*.json .env /app/
+
 COPY packages/nextjs/package*.json packages/nextjs/next.config.js .env /app/nextjs/
 COPY packages/nextjs/.next /app/nextjs/.next/
 COPY packages/nextjs/public /app/nextjs/public/
