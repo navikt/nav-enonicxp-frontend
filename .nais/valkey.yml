@@ -7,10 +7,10 @@ metadata:
     name: valkey-navno-{{ valkey.instance }}
     namespace: navno
 spec:
-    plan: { { valkey.plan } }
-    project: { { valkey.project } }
+    plan: "{{ valkey.plan }}"
+    project: "{{ valkey.project }}"
     maintenanceWindowDow: saturday
-    maintenanceWindowTime: 20:00:00
+    maintenanceWindowTime: "20:00:00"
     userConfig:
         valkey_maxmemory_policy: allkeys-lru
 
@@ -23,7 +23,7 @@ metadata:
     name: valkey-navno-{{ valkey.instance }}
     namespace: navno
 spec:
-    project: { { valkey.project } }
+    project: "{{ valkey.project }}"
     integrationType: prometheus
-    destinationEndpointId: { { valkey.endpointId } }
+    destinationEndpointId: "{{ valkey.endpointId }}"
     sourceServiceName: valkey-navno-{{ valkey.instance }}
