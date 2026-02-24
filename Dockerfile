@@ -18,5 +18,5 @@ COPY packages/server/package*.json ./server/
 COPY packages/server/.dist ./server/.dist/
 
 EXPOSE 3000
-ENTRYPOINT ["node"]
+ENTRYPOINT ["node", "-r", "dotenv/config"]
 CMD ["server/.dist/server.cjs"]
