@@ -30,6 +30,7 @@
     "devDependencies": {
         "@eslint/js": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
+        "@playwright/test": "catalog:",
         "@types/escape-html": "catalog:",
         "@types/express": "catalog:",
         "@types/lodash.debounce": "catalog:",

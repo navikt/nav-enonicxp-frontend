@@ -21,7 +21,7 @@ catalog:
   "@navikt/nav-office-reception-info": 1.4.7
   "@next/bundle-analyzer": 15.5.4
   "@next/eslint-plugin-next": 15.5.4
-  "@playwright/test": 1.58.1
+  "@playwright/test": 1.58.2
   "@reduxjs/toolkit": 2.11.2
   "@storybook/addon-docs": 10.2.3
   "@storybook/nextjs": 10.2.3
