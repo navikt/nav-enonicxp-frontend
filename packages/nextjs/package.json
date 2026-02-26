@@ -78,7 +78,7 @@
         "jest-fetch-mock": "3.0.3",
         "sass": "1.97.3",
         "schema-dts": "1.1.5",
-        "storybook": "10.2.3",
+        "storybook": "10.2.10",
         "storybook-addon-pseudo-states": "10.2.3",
         "ts-jest": "29.4.6"
     },
