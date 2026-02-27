@@ -100,13 +100,16 @@
     },
     "lint-staged": {
         "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
-            "cd packages/nextjs && pnpm run lint:fix"
+            "cd packages/nextjs && pnpm run lint:fix",
+            "cd packages/nextjs && pnpm run prettier:fix"
         ],
         "packages/server/**/*.{js,ts}": [
-            "cd packages/server && pnpm run lint:fix"
+            "cd packages/server && pnpm run lint:fix",
+            "cd packages/server && pnpm run prettier:fix"
         ],
         "packages/shared/**/*.{js,ts}": [
-            "cd packages/shared && pnpm run lint:fix"
+            "cd packages/shared && pnpm run lint:fix",
+            "cd packages/shared && pnpm run prettier:fix"
         ],
         "**/*.{json,md,yml,yaml}": [
             "prettier --write"
