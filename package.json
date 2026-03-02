@@ -25,7 +25,8 @@
         "test": "pnpm -r --parallel run test",
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
         "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
-        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env"
+        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
+        "prepare": "husky"
     },
     "devDependencies": {
         "@eslint/js": "catalog:",
@@ -100,16 +101,16 @@
     },
     "lint-staged": {
         "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
-            "cd packages/nextjs && pnpm run lint:fix",
-            "cd packages/nextjs && pnpm run prettier:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "packages/server/**/*.{js,ts}": [
-            "cd packages/server && pnpm run lint:fix",
-            "cd packages/server && pnpm run prettier:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "packages/shared/**/*.{js,ts}": [
-            "cd packages/shared && pnpm run lint:fix",
-            "cd packages/shared && pnpm run prettier:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "**/*.{json,md,yml,yaml}": [
             "prettier --write"
