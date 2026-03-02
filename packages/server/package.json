@@ -31,6 +31,6 @@
         "mock-fs": "5.5.0",
         "husky": "9.1.7",
         "lint-staged": "16.2.7",
-        "nodemon": "3.1.11"
+        "nodemon": "3.1.14"
     }
 }
