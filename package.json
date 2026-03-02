@@ -26,7 +26,7 @@
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
         "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
         "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
-        "prepare": "husky"
+        "prepare": "husky || true"
     },
     "devDependencies": {
         "@eslint/js": "catalog:",
