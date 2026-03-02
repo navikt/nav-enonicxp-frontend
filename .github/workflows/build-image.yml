@@ -155,7 +155,6 @@ jobs:
             - name: Deploy dependencies to avoid symlinks
               run: |
                   pnpm --filter ./packages/server deploy --prod nonsymlink/server --legacy
-                  pnpm --filter ./packages/shared deploy --prod nonsymlink/shared --legacy
                   pnpm --filter ./packages/nextjs deploy --prod nonsymlink/nextjs --legacy
             - name: Build and push docker image
               uses: nais/docker-build-push@v0

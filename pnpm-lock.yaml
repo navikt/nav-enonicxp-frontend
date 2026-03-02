@@ -127,7 +127,7 @@ catalogs:
       specifier: 1.11.19
       version: 1.11.19
     domhandler:
-      specifier: ^5.0.3
+      specifier: 5.0.3
       version: 5.0.3
     dotenv:
       specifier: 17.2.3
@@ -442,6 +442,9 @@ importers:
       '@navikt/ds-tokens':
         specifier: 'catalog:'
         version: 7.40.0
+      '@navikt/nav-dekoratoren-moduler':
+        specifier: 'catalog:'
+        version: 3.6.1(csp-header@6.3.0)(html-react-parser@5.2.15(@types/react@19.2.10)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
       '@navikt/nav-office-reception-info':
         specifier: 'catalog:'
         version: 1.4.7(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -454,6 +457,12 @@ importers:
       dayjs:
         specifier: 'catalog:'
         version: 1.11.19
+      domhandler:
+        specifier: 'catalog:'
+        version: 5.0.3
+      express:
+        specifier: 'catalog:'
+        version: 5.2.1
       fuse.js:
         specifier: 'catalog:'
         version: 7.1.0
@@ -481,9 +490,18 @@ importers:
       p-limit:
         specifier: 'catalog:'
         version: 7.2.0
+      react:
+        specifier: 'catalog:'
+        version: 19.2.4
       react-collapse:
         specifier: 'catalog:'
         version: 5.1.1(react@19.2.4)
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.4(react@19.2.4)
+      react-error-boundary:
+        specifier: 'catalog:'
+        version: 6.1.0(react@19.2.4)
       react-movable:
         specifier: 'catalog:'
         version: 3.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -587,15 +605,27 @@ importers:
 
   packages/server:
     dependencies:
+      '@navikt/nav-dekoratoren-moduler':
+        specifier: 'catalog:'
+        version: 3.6.1(csp-header@6.3.0)(html-react-parser@5.2.15(@types/react@19.2.10)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
       cookie-parser:
         specifier: 'catalog:'
         version: 1.4.7
       dotenv:
         specifier: 'catalog:'
         version: 17.2.3
+      express:
+        specifier: 'catalog:'
+        version: 5.2.1
+      express-prom-bundle:
+        specifier: 'catalog:'
+        version: 8.0.0(prom-client@15.1.3)
       http-terminator:
         specifier: 'catalog:'
         version: 3.2.0
+      lru-cache:
+        specifier: 'catalog:'
+        version: 11.2.5
       next:
         specifier: 'catalog:'
         version: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3)
@@ -642,6 +672,16 @@ importers:
       next:
         specifier: 'catalog:'
         version: 15.5.10(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.58.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.97.3)
+      pino:
+        specifier: 'catalog:'
+        version: 10.3.0
+      redis:
+        specifier: 'catalog:'
+        version: 5.10.0
+    devDependencies:
+      pino-pretty:
+        specifier: 'catalog:'
+        version: 13.1.3
 
 packages:
 
@@ -1896,9 +1936,6 @@ packages:
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/nav-office-reception-info@1.4.7':
     resolution: {integrity: sha512-72v5kpLSFtlMBt2yfV/zZZfdm/rvzOCtyhB0IL7N/6H653WKoOMms85tNpr6GpATuKpYMMBPzCBJ7kVdFAqS2g==, tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/1.4.7/373643047ab391b69ee33b6fbb5df59f312e882d}
@@ -8203,7 +8240,6 @@ snapshots:
       html-react-parser: 5.2.15(@types/react@19.2.10)(react@19.2.4)
       js-cookie: 3.0.5
       jsdom: 26.1.0
-    optionalDependencies:
       react: 19.2.4
 
   '@navikt/nav-office-reception-info@1.4.7(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
