@@ -41,7 +41,7 @@ export const CopyLink = ({ anchor, heading, className, showLabel = true }: CopyL
                 setShowCopyTooltip(true);
                 setTimeout(() => setShowCopyTooltip(false), linkCopiedDisplayTimeMs);
             }
-            logAnalyticsEvent(AnalyticsEvents.COPY_LINK, {
+            logAnalyticsEvent(AnalyticsEvents.KOPIER_LENKE, {
                 målgruppe: context,
                 seksjon: layoutConfig.title,
                 innholdstype: innholdsTypeMap[type],

@@ -43,11 +43,11 @@ export const OversiktOmradeFilter = ({ items }: Props) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const handleFilterUpdate = (area: Area) => {
-        logAnalyticsEvent(AnalyticsEvents.FILTER, {
+        logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
             kategori: 'område',
             filternavn: analyticsAreas[area],
             opprinnelse: 'oversiktsside områder',
-            komponent: 'OverviewAreaFilter',
+            komponentId: 'OverviewAreaFilter',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });

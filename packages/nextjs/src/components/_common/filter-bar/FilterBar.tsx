@@ -84,11 +84,11 @@ export const FilterBar = ({ layoutProps }: Props) => {
                             key={filter.id}
                             isSelected={isSelected}
                             onToggleFilterHandler={() => {
-                                logAnalyticsEvent(AnalyticsEvents.FILTER, {
+                                logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
                                     kategori: filter.categoryName,
                                     filternavn: filter.filterName,
                                     opprinnelse: 'innholdtekst',
-                                    komponent: 'FilterBar',
+                                    komponentId: 'FilterBar',
                                     målgruppe: context,
                                     innholdstype: innholdsTypeMap[contentProps.type],
                                 });

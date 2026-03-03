@@ -42,13 +42,16 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
     const openChangeHandler = (isOpening: boolean, tittel: string) => {
         handleStickyScrollOffset(isOpening, divRef.current);
         setIsOpen(isOpening);
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'lesmer',
-            komponent: 'ReadMore',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[contentProps.type],
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'lesmer',
+                komponentId: 'ReadMore',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[contentProps.type],
+            }
+        );
     };
 
     const { title, html } = config;

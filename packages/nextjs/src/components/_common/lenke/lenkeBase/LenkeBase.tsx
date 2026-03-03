@@ -1,7 +1,7 @@
 import React, { Fragment, PropsWithChildren } from 'react';
 import Link from 'next/link';
 import { adminOrigin, isNofollowUrl, xpDraftPathPrefix } from 'utils/urls';
-import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
+import { AnalyticsEvents, AnalyticsEventName, logAnalyticsEvent } from 'utils/analytics';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from 'utils/usePublicUrl';
@@ -28,7 +28,7 @@ type Props = PropsWithChildren<{
     href: string;
     shallow?: boolean;
     prefetch?: boolean;
-    analyticsEvent?: AnalyticsEvents;
+    analyticsEvent?: AnalyticsEventName;
     analyticsComponent?: string;
     analyticsLinkGroup?: string;
     analyticsLabel?: string;
@@ -53,7 +53,7 @@ export const LenkeBase = ({
     const { layoutConfig } = useLayoutConfig();
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
-        komponent: analyticsComponent,
+        komponentId: analyticsComponent,
         lenkegruppe: analyticsLinkGroup,
         seksjon: analyticsLinkGroup || layoutConfig.title,
         destinasjon: url,
@@ -79,7 +79,7 @@ export const LenkeBase = ({
                 {...rest}
                 href={url}
                 onClick={(e) => {
-                    logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
+                    logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGERE, analyticsData);
                     onClick?.(e);
                 }}
                 shallow={shallow}

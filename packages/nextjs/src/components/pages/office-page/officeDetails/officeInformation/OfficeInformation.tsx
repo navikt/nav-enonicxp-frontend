@@ -27,13 +27,16 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'kontorinformasjon',
-            komponent: 'OfficeInformation',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[contentProps.type],
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'kontorinformasjon',
+                komponentId: 'OfficeInformation',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[contentProps.type],
+            }
+        );
     };
 
     return (
