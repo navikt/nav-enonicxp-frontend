@@ -71,7 +71,12 @@ const UxSignalsWidgetComponent = ({ embedCode }: UxSignalsWidgetProps) => {
     return (
         <aside>
             <div data-uxsignals-embed={embedCode} className={style.uxSignalsWidget} />
-            <EditorHelp text={'UX Signals rekrutterings-widget'} type={'info'} />
+            <EditorHelp
+                text={
+                    'UX Signals rekrutterings-widget: Husk at du må ha gitt samtykke til informasjonskapsler (cookies) for at denne widgeten skal synes i forhåndsvisningen. Du kan endre samtykket i footeren.'
+                }
+                type={'info'}
+            />
         </aside>
     );
 };
