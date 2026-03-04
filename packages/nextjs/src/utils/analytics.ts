@@ -1,8 +1,8 @@
 import {
     logAnalyticsEvent as logAnalyticsEventDecorator,
-    EventName,
-    PropertiesFor,
     Events,
+    type EventName,
+    type PropertiesFor,
 } from '@navikt/nav-dekoratoren-moduler';
 
 export { Events as AnalyticsEvents };
