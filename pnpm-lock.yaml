@@ -37,8 +37,8 @@ catalogs:
       specifier: 3.6.1
       version: 3.6.1
     '@navikt/nav-office-reception-info':
-      specifier: 1.4.7
-      version: 1.4.7
+      specifier: v1.4.7-beta.3
+      version: 1.4.7-beta.3
     '@next/bundle-analyzer':
       specifier: 15.5.4
       version: 15.5.4
@@ -447,7 +447,7 @@ importers:
         version: 3.6.1(csp-header@6.3.0)(html-react-parser@5.2.15(@types/react@19.2.10)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
       '@navikt/nav-office-reception-info':
         specifier: 'catalog:'
-        version: 1.4.7(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: 1.4.7-beta.3(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@reduxjs/toolkit':
         specifier: 'catalog:'
         version: 2.11.2(react-redux@9.2.0(@types/react@19.2.10)(react@19.2.4)(redux@5.0.1))(react@19.2.4)
@@ -1936,9 +1936,12 @@ packages:
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
-  '@navikt/nav-office-reception-info@1.4.7':
-    resolution: {integrity: sha512-72v5kpLSFtlMBt2yfV/zZZfdm/rvzOCtyhB0IL7N/6H653WKoOMms85tNpr6GpATuKpYMMBPzCBJ7kVdFAqS2g==, tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/1.4.7/373643047ab391b69ee33b6fbb5df59f312e882d}
+  '@navikt/nav-office-reception-info@1.4.7-beta.3':
+    resolution: {integrity: sha512-i6EBVrl8ZvrVSGac3FC3RYZSQDPs3CJnwqNQqXyGExjyv+k5chDocqp7ACxPQmg4tgivotufgNaO8tW5XAUKlw==, tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/1.4.7-beta.3/0385e5cd5ca3211f70e2f20828657e0ccfe67892}
     peerDependencies:
       '@navikt/aksel-icons': ^7.1.0
       '@navikt/ds-css': ^7.1.0
@@ -8240,9 +8243,10 @@ snapshots:
       html-react-parser: 5.2.15(@types/react@19.2.10)(react@19.2.4)
       js-cookie: 3.0.5
       jsdom: 26.1.0
+    optionalDependencies:
       react: 19.2.4
 
-  '@navikt/nav-office-reception-info@1.4.7(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@navikt/nav-office-reception-info@1.4.7-beta.3(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@navikt/aksel-icons': 7.40.0
       '@navikt/ds-css': 7.40.0
