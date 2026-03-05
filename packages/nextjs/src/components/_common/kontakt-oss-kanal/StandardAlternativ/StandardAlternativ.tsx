@@ -40,7 +40,7 @@ export const StandardAlternativ = (props: Props) => {
             case 'call':
                 return {
                     href: Config.urls.hovedNummerTlf,
-                    analyticsEvent: AnalyticsEvents.CALL,
+                    analyticsEvent: AnalyticsEvents.RING_OSS,
                 };
 
             case 'navoffice':
@@ -61,7 +61,7 @@ export const StandardAlternativ = (props: Props) => {
                 return {
                     href: url || '#',
                     target: '_blank',
-                    analyticsEvent: AnalyticsEvents.NAVIGATION,
+                    analyticsEvent: AnalyticsEvents.NAVIGERE,
                 };
 
             default:
@@ -84,7 +84,7 @@ export const StandardAlternativ = (props: Props) => {
                         e.preventDefault();
                         openChatbot();
                     }}
-                    analyticsEvent={AnalyticsEvents.CHAT_OPEN}
+                    analyticsEvent={AnalyticsEvents.CHAT_APNET}
                     analyticsComponent="Kontakt-oss kanal"
                     lenkestyling
                     typeButton
