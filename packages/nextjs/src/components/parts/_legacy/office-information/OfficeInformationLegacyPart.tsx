@@ -84,10 +84,10 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                 {isUnitRegisterforvaltning &&
                     (
                         <BodyLong>
-                            For å søke eller sende inn et skjema, må du bruke Navs skjemaoversikt. Velg skjemaoversikten som passer for deg:
+                            For å søke eller sende inn et skjema, må du bruke Navs skjemaoversikt. Velg oversikten som passer for deg:
                             <ul>
                                 <li>
-                                    <LenkeInline href="https://www.nav.no/soknader/nb/person">
+                                    <LenkeInline href="https://www.nav.no/soknader/">
                                         Privatperson
                                     </LenkeInline>
                                 </li>
