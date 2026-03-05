@@ -7,30 +7,37 @@
         "build-watch": "WATCH=true node build.mjs",
         "start": "node -r dotenv/config .dist/server.cjs dotenv_config_path=./.env",
         "nodemon-start": "nodemon -r dotenv/config -w .dist .dist/server.cjs dotenv_config_path=./.env",
-        "dev": "npm run build && concurrently \"npm run build-watch\" \"npm run nodemon-start\"",
+        "dev": "pnpm run build && concurrently \"pnpm run build-watch\" \"pnpm run nodemon-start\"",
         "test": "next build __test-utils/next-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
-        "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"npm run lint:tsc\" \"npm run lint:eslint\"",
+        "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"pnpm run lint:tsc\" \"pnpm run lint:eslint\"",
         "lint:tsc": "tsc",
-        "lint:eslint": "eslint src",
-        "lint-staged": "lint-staged"
+        "lint:eslint": "eslint src"
     },
     "nodemonConfig": {
         "delay": 500
     },
     "dependencies": {
-        "cookie-parser": "1.4.7",
-        "http-terminator": "3.2.0",
-        "on-headers": "1.1.0",
-        "prom-client": "15.1.3"
+        "@navikt/nav-dekoratoren-moduler": "catalog:",
+        "cookie-parser": "catalog:",
+        "http-terminator": "catalog:",
+        "express": "catalog:",
+        "express-prom-bundle": "catalog:",
+        "lru-cache": "catalog:",
+        "next": "catalog:",
+        "dotenv": "catalog:",
+        "on-headers": "catalog:",
+        "prom-client": "catalog:"
     },
     "devDependencies": {
-        "@types/cookie-parser": "1.4.10",
-        "@types/on-headers": "1.0.4",
-        "@types/mock-fs": "4.13.4",
-        "concurrently": "9.2.1",
-        "mock-fs": "5.5.0",
-        "husky": "9.1.7",
-        "lint-staged": "16.2.7",
-        "nodemon": "3.1.14"
+        "@types/cookie-parser": "catalog:",
+        "@types/jest": "catalog:",
+        "@types/on-headers": "catalog:",
+        "@types/mock-fs": "catalog:",
+        "concurrently": "catalog:",
+        "jest": "catalog:",
+        "jest-fetch-mock": "catalog:",
+        "ts-jest": "catalog:",
+        "mock-fs": "catalog:",
+        "nodemon": "catalog:"
     }
 }

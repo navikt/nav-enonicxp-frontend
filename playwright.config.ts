@@ -17,7 +17,7 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: `npx http-server ./packages/nextjs/storybook-static -p ${port}`,
+        command: `pnpm dlx http-server ./packages/nextjs/storybook-static -p ${port}`,
         port,
         timeout: 120 * 1000,
         reuseExistingServer: !process.env.CI,
