@@ -61,8 +61,9 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                 </div>
             )}
             <div>
+
                 <Heading level="2" size="small">
-                    Innsending av skjemaer
+                    {isUnitRegisterforvaltning ? 'Skal du søke eller sende inn et skjema til Nav?' : 'Innsending av skjemaer'}
                 </Heading>
                 {isUnitALS &&
                     (
@@ -83,7 +84,6 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                 {isUnitRegisterforvaltning &&
                     (
                         <BodyLong>
-                            Skal du søke eller sende inn et skjema til Nav?
                             For å søke eller sende inn et skjema, må du bruke Navs skjemaoversikt. Velg skjemaoversikten som passer for deg:
                             <ul>
                                 <li>
