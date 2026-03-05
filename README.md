@@ -33,10 +33,6 @@ Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følg
 - Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
 - Kjør `pnpm run dev-custom`
 
-### Production mode:
-
-Kjør `pnpm run start-local-clean`
-
 ### Storybook
 
 Kjør Storybook lokalt med `pnpm run storybook` eller besøk den deploya versjonen [https://navikt.github.io/nav-enonicxp-frontend/](https://navikt.github.io/nav-enonicxp-frontend/)
