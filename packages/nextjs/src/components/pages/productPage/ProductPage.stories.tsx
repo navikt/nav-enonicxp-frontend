@@ -58,9 +58,8 @@ const meta = {
             regions: {
                 topPageContent: {
                     components: [
-                        sectionWithHeader('/topPageContent/0', { anchorId: 'kort-om' }, [
+                        sectionWithHeader({ anchorId: 'kort-om' }, [
                             htmlAreaPart(
-                                '/topPageContent/0/content/0',
                                 '<p>Friske kvinner som ikke kan fortsette å jobbe under svangerskapet fordi det kan medføre risiko for barnet, kan få svangerskapspenger.</p>\n'
                             ),
                         ]),
@@ -69,21 +68,16 @@ const meta = {
                 },
                 pageContent: {
                     components: [
-                        sectionWithHeader(
-                            '/pageContent/0',
-                            { title: 'Hvem kan få?', anchorId: 'hvem' },
-                            [
-                                htmlAreaPart(
-                                    '/pageContent/0/content/0',
-                                    '<p>For å få svangerskapspenger skal den ansatte ha en jobb der arbeidssituasjoner kan utgjøre en risiko for det ufødte barnet.</p>\n\n<ul>\n<li>arbeid med kjemiske stoffer</li>\n<li>fysisk tungt arbeid</li>\n<li>stressende arbeid</li>\n</ul>\n'
-                                ),
-                            ]
-                        ),
+                        sectionWithHeader({ title: 'Hvem kan få?', anchorId: 'hvem' }, [
+                            htmlAreaPart(
+                                '<p>For å få svangerskapspenger skal den ansatte ha en jobb der arbeidssituasjoner kan utgjøre en risiko for det ufødte barnet.</p>\n\n<ul>\n<li>arbeid med kjemiske stoffer</li>\n<li>fysisk tungt arbeid</li>\n<li>stressende arbeid</li>\n</ul>\n'
+                            ),
+                        ]),
                     ],
                     name: 'pageContent',
                 },
                 bottomRow: {
-                    components: [productContactModuleLayout('/bottomRow/0')],
+                    components: [productContactModuleLayout()],
                     name: 'bottomRow',
                 },
             },
