@@ -1,28 +1,17 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import type { Decorator, Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
-import { mockStore } from 'store/store';
-import { PageContextProvider } from 'store/pageContext';
 import {
     htmlAreaPart,
     productContactModuleLayout,
     sectionWithHeader,
 } from 'components/pages/_storyMocks';
+import { withStore } from 'components/pages/_storyDecorators';
 import { ProductPage } from './ProductPage';
-
-const withStore: Decorator = (Story, context) => (
-    <Provider store={mockStore}>
-        <PageContextProvider content={context.args}>
-            <Story />
-        </PageContextProvider>
-    </Provider>
-);
 
 const meta = {
     component: ProductPage,

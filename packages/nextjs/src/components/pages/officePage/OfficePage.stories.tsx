@@ -1,24 +1,17 @@
-import React from 'react';
-import { Provider } from 'react-redux';
 import type { Decorator, Meta, StoryObj } from '@storybook/react';
 import { ContentType } from 'types/content-props/_content-common';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
-import { mockStore } from 'store/store';
-import { PageContextProvider } from 'store/pageContext';
 import { htmlAreaPart, sectionWithHeader } from 'components/pages/_storyMocks';
 import { MediaType } from 'types/media';
+import { withStore } from 'components/pages/_storyDecorators';
 import { mockOfficeData, mockReception1 } from './officeDetails/mockData';
 import { OfficePage } from './OfficePage';
 
-const withStore: Decorator = (Story, context) => (
-    <Provider store={mockStore}>
-        <PageContextProvider content={context.args}>
-            <div style={{ backgroundColor: 'var(--a-bg-subtle)' }}>
-                <Story />
-            </div>
-        </PageContextProvider>
-    </Provider>
+const withBackground: Decorator = (Story) => (
+    <div style={{ backgroundColor: 'var(--a-bg-subtle)' }}>
+        <Story />
+    </div>
 );
 
 const officeNorgData = {
@@ -68,7 +61,7 @@ const editorialPage = {
 
 const meta = {
     component: OfficePage,
-    decorators: [withStore],
+    decorators: [withStore, withBackground],
     args: {
         _id: 'story-office-page-id',
         _path: '/www.nav.no/kontor/nav-st.hanshaugen',

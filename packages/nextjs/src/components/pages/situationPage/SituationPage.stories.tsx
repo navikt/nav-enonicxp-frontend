@@ -1,25 +1,14 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import type { Decorator, Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
 import { Area } from 'types/areas';
 import { Taxonomy } from 'types/taxonomies';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
-import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
-import { PageContextProvider } from 'store/pageContext';
 import { contactModuleLayout, htmlAreaPart, sectionWithHeader } from 'components/pages/_storyMocks';
+import { withStore } from 'components/pages/_storyDecorators';
 import { SituationPage } from './SituationPage';
-
-const withStore: Decorator = (Story, context) => (
-    <Provider store={mockStore}>
-        <PageContextProvider content={context.args as any}>
-            <Story />
-        </PageContextProvider>
-    </Provider>
-);
 
 const anchorLinks = [
     { anchorId: 'trygderegler', linkText: 'Trygderegler i andre land', isDupe: false },
