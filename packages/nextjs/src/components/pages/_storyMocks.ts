@@ -1,6 +1,7 @@
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
+import { XpImageProps } from 'types/media';
 
 const emptyContactOptions = {
     chat: {},
@@ -103,6 +104,7 @@ export const sectionWithHeader = (
     config: {
         title?: string;
         anchorId?: string;
+        icon?: { icon: XpImageProps; color?: string; size?: number };
     },
     contentComponents: (ReturnType<typeof htmlAreaPart> | ReturnType<typeof dynamicHeader>)[]
 ) => ({
