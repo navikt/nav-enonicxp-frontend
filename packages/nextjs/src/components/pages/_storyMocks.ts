@@ -46,6 +46,27 @@ export const contactModuleLayout = (basePath: string) => ({
     },
 });
 
+export const productContactModuleLayout = (basePath: string) => ({
+    path: basePath,
+    type: ComponentType.Layout as const,
+    descriptor: LayoutType.ProductPageFlexCols as const,
+    config: {
+        usageContext: 'contact-channels',
+        title: 'Finner du ikke svaret her? Ta kontakt med oss',
+        anchorId: 'kontakt',
+    },
+    regions: {
+        flexcols: {
+            components: [
+                contactOptionPart(`${basePath}/flexcols/0`, 'chat'),
+                contactOptionPart(`${basePath}/flexcols/1`, 'write'),
+                contactOptionPart(`${basePath}/flexcols/2`, 'call'),
+            ],
+            name: 'flexcols' as const,
+        },
+    },
+});
+
 export const htmlAreaPart = (
     path: string,
     html: string,
@@ -66,13 +87,24 @@ export const htmlAreaPart = (
     },
 });
 
+export const dynamicHeader = (path: string, title: string, anchorId: string) => ({
+    path,
+    type: ComponentType.Part as const,
+    descriptor: PartType.Header as const,
+    config: {
+        title,
+        anchorId,
+        titleTag: 'h3' as const,
+    },
+});
+
 export const sectionWithHeader = (
     path: string,
     config: {
         title?: string;
         anchorId?: string;
     },
-    contentComponents: ReturnType<typeof htmlAreaPart>[]
+    contentComponents: (ReturnType<typeof htmlAreaPart> | ReturnType<typeof dynamicHeader>)[]
 ) => ({
     path,
     type: ComponentType.Layout as const,
