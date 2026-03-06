@@ -2,6 +2,8 @@ import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { XpImageProps } from 'types/media';
+import { ContentType } from 'types/content-props/_content-common';
+import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 
 const emptyContactOptions = {
     chat: {},
@@ -88,6 +90,36 @@ export const dynamicHeader = (path: string, title: string, anchorId: string) => 
         title,
         anchorId,
         titleTag: 'h3' as const,
+    },
+});
+
+export const productCardPart = (
+    path: string,
+    title: string,
+    ingress: string,
+    taxonomy: Taxonomy[] = [ProductTaxonomy.BENEFITS]
+) => ({
+    path,
+    type: ComponentType.Part as const,
+    descriptor: PartType.ProductCard as const,
+    config: {
+        targetPage: {
+            _id: '',
+            _path: '',
+            createdTime: '2022-01-01T00:00:00Z',
+            modifiedTime: '2025-01-01T00:00:00Z',
+            type: ContentType.ProductPage as const,
+            displayName: title,
+            language: 'no' as const,
+            data: {
+                taxonomy,
+                title,
+                ingress,
+                illustration: { type: ContentType.Pictograms as const, data: { icons: [] } },
+                area: [],
+            },
+            page: {},
+        } as any,
     },
 });
 

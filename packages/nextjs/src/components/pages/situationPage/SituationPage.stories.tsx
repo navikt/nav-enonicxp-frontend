@@ -6,7 +6,12 @@ import { Taxonomy } from 'types/taxonomies';
 import { ComponentType } from 'types/component-props/_component-common';
 import { LayoutType } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
-import { contactModuleLayout, htmlAreaPart, sectionWithHeader } from 'components/pages/_storyMocks';
+import {
+    contactModuleLayout,
+    htmlAreaPart,
+    productCardPart,
+    sectionWithHeader,
+} from 'components/pages/_storyMocks';
 import { withStore } from 'components/pages/_storyDecorators';
 import { SituationPage } from './SituationPage';
 
@@ -133,7 +138,34 @@ const meta = {
                                 } as any,
                             ]
                         ),
-                        contactModuleLayout('/pageContent/4'),
+                        {
+                            path: '/pageContent/4',
+                            type: ComponentType.Layout as const,
+                            descriptor: LayoutType.SituationPageFlexCols as const,
+                            config: {
+                                title: 'Varehylle',
+                                anchorId: 'varehylle',
+                                justifyContent: 'flex-start' as const,
+                            },
+                            regions: {
+                                flexcols: {
+                                    components: [
+                                        productCardPart(
+                                            '/pageContent/4/flexcols/0',
+                                            'Utvidet barnetrygd',
+                                            'Et tillegg til ordinær barnetrygd når du bor alene med barn under 18 år.'
+                                        ),
+                                        productCardPart(
+                                            '/pageContent/4/flexcols/1',
+                                            'Overgangsstønad til enslig mor eller far',
+                                            'Sikrer deg inntekt i inntil 3 år når du har minst 60 prosent av den daglige omsorgen for barn under 8 år.'
+                                        ),
+                                    ],
+                                    name: 'flexcols' as const,
+                                },
+                            },
+                        },
+                        contactModuleLayout('/pageContent/5'),
                     ],
                     name: 'pageContent',
                 },
