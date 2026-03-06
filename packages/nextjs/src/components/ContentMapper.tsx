@@ -18,7 +18,7 @@ import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
-import { ProductPage } from './pages/product-page/ProductPage';
+import { ProductPage } from './pages/productPage/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { KapittelPage } from './pages/kapittel-page/KapittelPage';
