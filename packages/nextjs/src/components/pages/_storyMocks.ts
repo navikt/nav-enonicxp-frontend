@@ -37,11 +37,7 @@ export const contactModuleLayout = (basePath: string) => ({
     },
     regions: {
         flexcols: {
-            components: [
-                contactOptionPart(`${basePath}/flexcols/0`, 'chat'),
-                contactOptionPart(`${basePath}/flexcols/1`, 'write'),
-                contactOptionPart(`${basePath}/flexcols/2`, 'call'),
-            ],
+            components: [contactOptionPart(`${basePath}/flexcols/0`, 'call')],
             name: 'flexcols' as const,
         },
     },
@@ -58,11 +54,7 @@ export const productContactModuleLayout = (basePath: string) => ({
     },
     regions: {
         flexcols: {
-            components: [
-                contactOptionPart(`${basePath}/flexcols/0`, 'chat'),
-                contactOptionPart(`${basePath}/flexcols/1`, 'write'),
-                contactOptionPart(`${basePath}/flexcols/2`, 'call'),
-            ],
+            components: [contactOptionPart(`${basePath}/flexcols/0`, 'call')],
             name: 'flexcols' as const,
         },
     },
