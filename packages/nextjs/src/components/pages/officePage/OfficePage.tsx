@@ -3,8 +3,8 @@ import { logger } from '@/shared/logger';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OfficePageProps } from 'types/content-props/dynamic-page-props';
 import { classNames } from 'utils/classnames';
-import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
-import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
+import { OfficePageHeader } from 'components/pages/officePage/office-page-header/OfficePageHeader';
+import { OfficeDetails } from 'components/pages/officePage/officeDetails/OfficeDetails';
 import { LinkedIn } from './linkedIn/LinkedIn';
 
 import styles from './OfficePage.module.scss';

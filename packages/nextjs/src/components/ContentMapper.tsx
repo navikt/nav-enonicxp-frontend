@@ -30,7 +30,7 @@ import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { KalkulatorPage } from './pages/kalkulator-page/KalkulatorPage';
 import { VarselIKontekstPage } from './pages/varsel-i-kontekst-page/VarselIKontekstPage';
-import { OfficePage } from './pages/office-page/OfficePage';
+import { OfficePage } from './pages/officePage/OfficePage';
 import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
 const contentToReactComponent: {
