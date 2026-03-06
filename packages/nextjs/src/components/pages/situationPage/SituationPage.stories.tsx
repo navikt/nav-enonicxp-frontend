@@ -10,6 +10,7 @@ import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
 import { PageContextProvider } from 'store/pageContext';
+import { contactModuleLayout, htmlAreaPart, sectionWithHeader } from 'components/pages/_storyMocks';
 import { SituationPage } from './SituationPage';
 
 const withStore: Decorator = (Story, context) => (
@@ -19,47 +20,6 @@ const withStore: Decorator = (Story, context) => (
         </PageContextProvider>
     </Provider>
 );
-
-const htmlAreaPart = (
-    path: string,
-    html: string,
-    expandable?: { title: string; anchorId?: string }
-) => ({
-    path,
-    type: ComponentType.Part as const,
-    descriptor: PartType.HtmlArea as const,
-    config: {
-        html: {
-            processedHtml: html,
-            macros: [],
-        },
-        expandable: !!expandable,
-        expandableTitle: expandable?.title ?? '',
-        expandableAnchorId: expandable?.anchorId,
-        filters: [],
-    },
-});
-
-const sectionWithHeader = (
-    path: string,
-    config: {
-        title?: string;
-        anchorId?: string;
-    },
-    contentComponents: ReturnType<typeof htmlAreaPart>[]
-) => ({
-    path,
-    type: ComponentType.Layout as const,
-    descriptor: LayoutType.SectionWithHeader as const,
-    config: {
-        ...config,
-        border: { width: 3, rounded: false, color: '#ffffff' },
-    },
-    regions: {
-        intro: { components: [] as never[], name: 'intro' as const },
-        content: { components: contentComponents, name: 'content' as const },
-    },
-});
 
 const anchorLinks = [
     { anchorId: 'trygderegler', linkText: 'Trygderegler i andre land', isDupe: false },
@@ -184,73 +144,7 @@ const meta = {
                                 } as any,
                             ]
                         ),
-                        {
-                            path: '/pageContent/4',
-                            type: ComponentType.Layout,
-                            descriptor: LayoutType.SituationPageFlexCols,
-                            config: {
-                                title: 'Finner du ikke svaret her? Ta kontakt med oss',
-                                anchorId: 'kontakt',
-                                numCols: 3,
-                                justifyContent: 'flex-start' as const,
-                                bgColor: { color: '#f1f1f1' },
-                            },
-                            regions: {
-                                flexcols: {
-                                    components: [
-                                        {
-                                            path: '/pageContent/4/flexcols/0',
-                                            type: ComponentType.Part,
-                                            descriptor: PartType.KontaktOssKanal,
-                                            config: {
-                                                contactOptions: {
-                                                    _selected: 'chat' as const,
-                                                    chat: {},
-                                                    write: {},
-                                                    call: { phoneNumber: '55 55 33 33' },
-                                                    navoffice: {},
-                                                    aidcentral: {},
-                                                    custom: {},
-                                                },
-                                            },
-                                        },
-                                        {
-                                            path: '/pageContent/4/flexcols/1',
-                                            type: ComponentType.Part,
-                                            descriptor: PartType.KontaktOssKanal,
-                                            config: {
-                                                contactOptions: {
-                                                    _selected: 'write' as const,
-                                                    chat: {},
-                                                    write: {},
-                                                    call: { phoneNumber: '55 55 33 33' },
-                                                    navoffice: {},
-                                                    aidcentral: {},
-                                                    custom: {},
-                                                },
-                                            },
-                                        },
-                                        {
-                                            path: '/pageContent/4/flexcols/2',
-                                            type: ComponentType.Part,
-                                            descriptor: PartType.KontaktOssKanal,
-                                            config: {
-                                                contactOptions: {
-                                                    _selected: 'call' as const,
-                                                    chat: {},
-                                                    write: {},
-                                                    call: { phoneNumber: '55 55 33 33' },
-                                                    navoffice: {},
-                                                    aidcentral: {},
-                                                    custom: {},
-                                                },
-                                            },
-                                        },
-                                    ],
-                                    name: 'flexcols' as const,
-                                },
-                            },
-                        },
+                        contactModuleLayout('/pageContent/4'),
                     ],
                     name: 'pageContent',
                 },
