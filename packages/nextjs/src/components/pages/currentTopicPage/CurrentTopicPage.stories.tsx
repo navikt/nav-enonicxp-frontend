@@ -29,11 +29,9 @@ const meta = {
                 pageContent: {
                     components: [
                         htmlAreaPart(
-                            '/pageContent/0',
-                            '<p>I perioden mai-juni 2025 gjennomfører Nav personbrukerundersøkelsen.</p>\n'
+                            '<p>I perioden mai-juni 2025 gjennomører Nav personbrukerunderskøkelsen.</p>\n'
                         ),
                         htmlAreaPart(
-                            '/pageContent/1',
                             '<p>Personbrukere av Nav er tilfeldig trukket ut fra Navs registre til å delta. Spørreundersøkelsen gjennomføres av Lysio Research (tidligere Enkätfabriken).</p>\n\n<p>Har du mottatt invitasjonsbrev i Digipost eller i postkassen, eller en påminnelse på e-post om deltakelse i personbrukerundersøkelsen, kan du svare digitalt ved å bruke lenken som står i brevet.'
                         ),
                     ],

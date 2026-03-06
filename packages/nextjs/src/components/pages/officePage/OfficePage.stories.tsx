@@ -35,7 +35,6 @@ const editorialPage = {
         pageContent: {
             components: [
                 sectionWithHeader(
-                    '/pageContent/0',
                     {
                         title: 'Dette kan vi hjelpe deg med',
                         anchorId: 'dette-kan-vi-hjelpe-deg-med',
@@ -48,7 +47,6 @@ const editorialPage = {
                     },
                     [
                         htmlAreaPart(
-                            '/pageContent/0/content/0',
                             '<ul>\n<li>Hjelp til å komme i jobb</li>\n<li>Hjelp i nødssituasjoner</li>\n<li>Økonomi- og gjeldsrådgivning</li>\n<li>Tilgang til PC</li>\n</ul>\n'
                         ),
                     ]
