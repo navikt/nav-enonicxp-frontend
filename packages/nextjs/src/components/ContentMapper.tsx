@@ -24,7 +24,7 @@ import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { KapittelPage } from './pages/kapittel-page/KapittelPage';
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
-import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
+import { CurrentTopicPage } from './pages/currentTopicPage/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
