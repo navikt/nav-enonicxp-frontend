@@ -15,6 +15,11 @@ export default defineConfig({
             name: 'mobile',
             use: { ...devices['Pixel 5'] },
         },
+        {
+            name: 'desktop',
+            use: { ...devices['Desktop Chrome'] },
+            grep: /SituationPage/,
+        },
     ],
     webServer: {
         command: `npx http-server ./packages/nextjs/storybook-static -p ${port}`,
