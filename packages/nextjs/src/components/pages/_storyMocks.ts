@@ -14,8 +14,8 @@ const emptyContactOptions = {
     custom: {},
 };
 
-const contactOptionPart = (path: string, selected: 'chat' | 'write' | 'call') => ({
-    path,
+const contactOptionPart = (selected: 'chat' | 'write' | 'call') => ({
+    path: '',
     type: ComponentType.Part as const,
     descriptor: PartType.KontaktOssKanal as const,
     config: {
@@ -26,8 +26,8 @@ const contactOptionPart = (path: string, selected: 'chat' | 'write' | 'call') =>
     },
 });
 
-export const contactModuleLayout = (basePath: string) => ({
-    path: basePath,
+export const contactModuleLayout = () => ({
+    path: '',
     type: ComponentType.Layout as const,
     descriptor: LayoutType.SituationPageFlexCols as const,
     config: {
@@ -39,14 +39,14 @@ export const contactModuleLayout = (basePath: string) => ({
     },
     regions: {
         flexcols: {
-            components: [contactOptionPart(`${basePath}/flexcols/0`, 'call')],
+            components: [contactOptionPart('call')],
             name: 'flexcols' as const,
         },
     },
 });
 
-export const productContactModuleLayout = (basePath: string) => ({
-    path: basePath,
+export const productContactModuleLayout = () => ({
+    path: '',
     type: ComponentType.Layout as const,
     descriptor: LayoutType.ProductPageFlexCols as const,
     config: {
@@ -56,18 +56,14 @@ export const productContactModuleLayout = (basePath: string) => ({
     },
     regions: {
         flexcols: {
-            components: [contactOptionPart(`${basePath}/flexcols/0`, 'call')],
+            components: [contactOptionPart('call')],
             name: 'flexcols' as const,
         },
     },
 });
 
-export const htmlAreaPart = (
-    path: string,
-    html: string,
-    expandable?: { title: string; anchorId?: string }
-) => ({
-    path,
+export const htmlAreaPart = (html: string, expandable?: { title: string; anchorId?: string }) => ({
+    path: '',
     type: ComponentType.Part as const,
     descriptor: PartType.HtmlArea as const,
     config: {
@@ -82,8 +78,8 @@ export const htmlAreaPart = (
     },
 });
 
-export const dynamicHeader = (path: string, title: string, anchorId: string) => ({
-    path,
+export const dynamicHeader = (title: string, anchorId: string) => ({
+    path: '',
     type: ComponentType.Part as const,
     descriptor: PartType.Header as const,
     config: {
@@ -94,12 +90,11 @@ export const dynamicHeader = (path: string, title: string, anchorId: string) => 
 });
 
 export const productCardPart = (
-    path: string,
     title: string,
     ingress: string,
     taxonomy: Taxonomy[] = [ProductTaxonomy.BENEFITS]
 ) => ({
-    path,
+    path: '',
     type: ComponentType.Part as const,
     descriptor: PartType.ProductCard as const,
     config: {
@@ -124,7 +119,6 @@ export const productCardPart = (
 });
 
 export const sectionWithHeader = (
-    path: string,
     config: {
         title?: string;
         anchorId?: string;
@@ -132,7 +126,7 @@ export const sectionWithHeader = (
     },
     contentComponents: (ReturnType<typeof htmlAreaPart> | ReturnType<typeof dynamicHeader>)[]
 ) => ({
-    path,
+    path: '',
     type: ComponentType.Layout as const,
     descriptor: LayoutType.SectionWithHeader as const,
     config: {

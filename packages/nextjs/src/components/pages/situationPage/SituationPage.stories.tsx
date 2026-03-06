@@ -85,42 +85,36 @@ const meta = {
             regions: {
                 pageContent: {
                     components: [
-                        sectionWithHeader('/pageContent/0', {}, [
+                        sectionWithHeader({}, [
                             htmlAreaPart(
-                                '/pageContent/0/content/0',
                                 '<p>Informasjon om hvilke regler som gjelder i din situasjon, og hva du kan ha rett til av ytelser og tjenester fra NAV.</p>\n'
                             ),
                         ]),
                         {
-                            path: '/pageContent/1',
+                            path: '',
                             type: ComponentType.Part,
                             descriptor: PartType.PageNavigationMenu,
                             config: { anchorLinks },
                         },
                         sectionWithHeader(
-                            '/pageContent/2',
                             {
                                 title: 'Trygderegler i andre land',
                                 anchorId: 'trygderegler',
                             },
                             [
                                 htmlAreaPart(
-                                    '/pageContent/2/content/0',
                                     '<p>Når du jobber i et annet land, er det viktig å kjenne til hvilke trygderegler som gjelder. Det kan ha betydning for om du er medlem i folketrygden eller ikke.</p>\n'
                                 ),
                                 htmlAreaPart(
-                                    '/pageContent/2/content/1',
                                     '<ul><li>Reglene avhenger av hvilket land du skal til</li><li>Det har betydning om Norge har trygdeavtale med landet</li><li>EØS-avtalen har egne regler</li></ul>\n',
                                     { title: 'Les mer om trygderegler' }
                                 ),
                                 htmlAreaPart(
-                                    '/pageContent/2/content/2',
                                     '<p>Det er ulike regler avhengig av om du skal jobbe i ett eller flere land, og hvem du skal jobbe for.</p>\n'
                                 ),
                             ]
                         ),
                         sectionWithHeader(
-                            '/pageContent/3',
                             {
                                 title: 'I en annen situasjon?',
                                 anchorId: 'relaterte-situasjoner',
@@ -139,24 +133,23 @@ const meta = {
                             ]
                         ),
                         {
-                            path: '/pageContent/4',
+                            path: '',
                             type: ComponentType.Layout as const,
                             descriptor: LayoutType.SituationPageFlexCols as const,
                             config: {
                                 title: 'Varehylle',
                                 anchorId: 'varehylle',
+                                numCols: 3,
                                 justifyContent: 'flex-start' as const,
                             },
                             regions: {
                                 flexcols: {
                                     components: [
                                         productCardPart(
-                                            '/pageContent/4/flexcols/0',
                                             'Utvidet barnetrygd',
                                             'Et tillegg til ordinær barnetrygd når du bor alene med barn under 18 år.'
                                         ),
                                         productCardPart(
-                                            '/pageContent/4/flexcols/1',
                                             'Overgangsstønad til enslig mor eller far',
                                             'Sikrer deg inntekt i inntil 3 år når du har minst 60 prosent av den daglige omsorgen for barn under 8 år.'
                                         ),
@@ -165,7 +158,7 @@ const meta = {
                                 },
                             },
                         },
-                        contactModuleLayout('/pageContent/5'),
+                        contactModuleLayout(),
                     ],
                     name: 'pageContent',
                 },
