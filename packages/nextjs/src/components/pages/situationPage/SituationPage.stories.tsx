@@ -10,7 +10,6 @@ import { LayoutType } from 'types/component-props/layouts';
 import { mockStore } from 'store/store';
 import { PartType } from 'types/component-props/parts';
 import { PageContextProvider } from 'store/pageContext';
-import * as PageNavigationMenu from 'components/_common/pageNavigationMenu/PageNavigationMenu.stories';
 import { SituationPage } from './SituationPage';
 
 const withStore: Decorator = (Story, context) => (
@@ -21,31 +20,72 @@ const withStore: Decorator = (Story, context) => (
     </Provider>
 );
 
+const htmlAreaPart = (
+    path: string,
+    html: string,
+    expandable?: { title: string; anchorId?: string }
+) => ({
+    path,
+    type: ComponentType.Part as const,
+    descriptor: PartType.HtmlArea as const,
+    config: {
+        html: {
+            processedHtml: html,
+            macros: [],
+        },
+        expandable: !!expandable,
+        expandableTitle: expandable?.title ?? '',
+        expandableAnchorId: expandable?.anchorId,
+        filters: [],
+    },
+});
+
+const sectionWithHeader = (
+    path: string,
+    config: {
+        title?: string;
+        anchorId?: string;
+    },
+    contentComponents: ReturnType<typeof htmlAreaPart>[]
+) => ({
+    path,
+    type: ComponentType.Layout as const,
+    descriptor: LayoutType.SectionWithHeader as const,
+    config: {
+        ...config,
+        border: { width: 3, rounded: false, color: '#ffffff' },
+    },
+    regions: {
+        intro: { components: [] as never[], name: 'intro' as const },
+        content: { components: contentComponents, name: 'content' as const },
+    },
+});
+
+const anchorLinks = [
+    { anchorId: 'trygderegler', linkText: 'Trygderegler i andre land', isDupe: false },
+    { anchorId: 'relaterte-situasjoner', linkText: 'I en annen situasjon?', isDupe: false },
+];
+
 const meta = {
     component: SituationPage,
     decorators: [withStore],
-    //Ikke en komplett side. Ikke sikkert vi skal sette opp hele sider i storybook.
-    //Bør kanskje finne en bedre måte å gjøre dette på om vi skal prøve å ha hele sider i storybook.
-    //Sjekk ut: https://storybook.js.org/docs/writing-stories/build-pages-with-storybook
     args: {
-        _id: '23a43b41-ac9f-4270-9397-30400aad1940',
-        _path: '/www.nav.no/no/person/hjelpemidler/livssituasjoner/trenger-tilrettelegging-pa-jobb-eller-i-utdanning',
-        createdTime: '2021-10-22T07:14:43.875405Z',
-        modifiedTime: '2024-04-17T07:43:40.976132Z',
+        _id: 'story-situation-page-id',
+        _path: '/www.nav.no/no/person/arbeid/livssituasjoner/eksempel-situasjonsside',
+        createdTime: '2022-06-20T10:14:50.671Z',
+        modifiedTime: '2026-02-06T08:16:19.467Z',
         type: ContentType.SituationPage,
-        displayName: 'Trenger tilrettelegging på jobb eller i utdanning',
+        displayName: 'Eksempel situasjonsside',
         language: 'no',
         data: {
             taxonomy: [] as Taxonomy[],
             chatbotToggle: true,
-            title: 'Trenger tilrettelegging på jobb eller i utdanning',
+            title: 'Eksempel situasjonsside',
             feedbackToggle: false,
             noindex: false,
             illustration: {
                 type: ContentType.Pictograms,
-                data: {
-                    icons: [],
-                },
+                data: { icons: [] },
             },
             audience: {
                 _selected: Audience.PERSON,
@@ -54,9 +94,34 @@ const meta = {
                 [Audience.PROVIDER]: {},
             },
             ingress:
-                'Hjelpemidler og tilrettelegging på arbeidsplassen eller skolen for å kunne jobbe eller gjennomføre utdanning.',
-            area: [Area.ACCESSIBILITY, Area.WORK],
+                'Informasjon om hvilke regler som gjelder i din situasjon, og hva du kan ha rett til av ytelser og tjenester fra NAV.',
+            area: [Area.WORK],
             nosnippet: false,
+            relatedSituations: [
+                {
+                    _id: 'related-1',
+                    _path: '/www.nav.no/opphold-i-utlandet',
+                    createdTime: '2022-01-01T00:00:00Z',
+                    modifiedTime: '2025-01-01T00:00:00Z',
+                    type: ContentType.SituationPage,
+                    displayName: 'Skal oppholde deg i utlandet uten å jobbe',
+                    language: 'no',
+                    data: {
+                        taxonomy: [] as Taxonomy[],
+                        title: 'Skal oppholde deg i utlandet uten å jobbe',
+                        illustration: { type: ContentType.Pictograms, data: { icons: [] } },
+                        audience: {
+                            _selected: Audience.PERSON,
+                            [Audience.PERSON]: {},
+                            [Audience.EMPLOYER]: {},
+                            [Audience.PROVIDER]: {},
+                        },
+                        area: [Area.WORK],
+                        customPath: '/opphold-i-utlandet',
+                    },
+                    page: {} as any,
+                },
+            ],
         },
         page: {
             type: ComponentType.Page,
@@ -66,47 +131,124 @@ const meta = {
             regions: {
                 pageContent: {
                     components: [
-                        {
-                            path: '/pageContent/0',
-                            type: ComponentType.Layout,
-                            descriptor: LayoutType.SectionWithHeader,
-                            config: {
-                                anchorId: 'kort-om',
-                            },
-                            regions: {
-                                intro: {
-                                    components: [],
-                                    name: 'intro',
-                                },
-                                content: {
-                                    components: [
-                                        {
-                                            path: '/pageContent/0/content/0',
-                                            type: ComponentType.Part,
-                                            descriptor: PartType.HtmlArea,
-                                            config: {
-                                                html: {
-                                                    processedHtml:
-                                                        '<p>Hvis du har nedsatt funksjonsevne, kan det hende du trenger tilrettelegging på arbeidsplassen eller på utdanningsinstitusjonen.</p>\n',
-                                                    macros: [],
-                                                },
-                                                expandableTitle: 'Les mer',
-                                                expandable: false,
-                                                renderOnAuthState: undefined,
-                                                filters: [],
-                                            },
-                                        },
-                                    ],
-                                    name: 'content',
-                                },
-                            },
-                        },
+                        sectionWithHeader('/pageContent/0', {}, [
+                            htmlAreaPart(
+                                '/pageContent/0/content/0',
+                                '<p>Informasjon om hvilke regler som gjelder i din situasjon, og hva du kan ha rett til av ytelser og tjenester fra NAV.</p>\n'
+                            ),
+                        ]),
                         {
                             path: '/pageContent/1',
                             type: ComponentType.Part,
                             descriptor: PartType.PageNavigationMenu,
+                            config: { anchorLinks },
+                        },
+                        sectionWithHeader(
+                            '/pageContent/2',
+                            {
+                                title: 'Trygderegler i andre land',
+                                anchorId: 'trygderegler',
+                            },
+                            [
+                                htmlAreaPart(
+                                    '/pageContent/2/content/0',
+                                    '<p>Når du jobber i et annet land, er det viktig å kjenne til hvilke trygderegler som gjelder. Det kan ha betydning for om du er medlem i folketrygden eller ikke.</p>\n'
+                                ),
+                                htmlAreaPart(
+                                    '/pageContent/2/content/1',
+                                    '<ul><li>Reglene avhenger av hvilket land du skal til</li><li>Det har betydning om Norge har trygdeavtale med landet</li><li>EØS-avtalen har egne regler</li></ul>\n',
+                                    { title: 'Les mer om trygderegler' }
+                                ),
+                                htmlAreaPart(
+                                    '/pageContent/2/content/2',
+                                    '<p>Det er ulike regler avhengig av om du skal jobbe i ett eller flere land, og hvem du skal jobbe for.</p>\n'
+                                ),
+                            ]
+                        ),
+                        sectionWithHeader(
+                            '/pageContent/3',
+                            {
+                                title: 'I en annen situasjon?',
+                                anchorId: 'relaterte-situasjoner',
+                            },
+                            [
+                                {
+                                    path: '/pageContent/3/content/0',
+                                    type: ComponentType.Part as const,
+                                    descriptor: PartType.RelatedSituations as const,
+                                    config: {
+                                        title: ' ',
+                                        description:
+                                            'Se hva som gjelder hvis du er i en annen situasjon:',
+                                    },
+                                } as any,
+                            ]
+                        ),
+                        {
+                            path: '/pageContent/4',
+                            type: ComponentType.Layout,
+                            descriptor: LayoutType.SituationPageFlexCols,
                             config: {
-                                anchorLinks: PageNavigationMenu.default.args?.anchorLinks,
+                                title: 'Finner du ikke svaret her? Ta kontakt med oss',
+                                anchorId: 'kontakt',
+                                numCols: 3,
+                                justifyContent: 'flex-start' as const,
+                                bgColor: { color: '#f1f1f1' },
+                            },
+                            regions: {
+                                flexcols: {
+                                    components: [
+                                        {
+                                            path: '/pageContent/4/flexcols/0',
+                                            type: ComponentType.Part,
+                                            descriptor: PartType.KontaktOssKanal,
+                                            config: {
+                                                contactOptions: {
+                                                    _selected: 'chat' as const,
+                                                    chat: {},
+                                                    write: {},
+                                                    call: { phoneNumber: '55 55 33 33' },
+                                                    navoffice: {},
+                                                    aidcentral: {},
+                                                    custom: {},
+                                                },
+                                            },
+                                        },
+                                        {
+                                            path: '/pageContent/4/flexcols/1',
+                                            type: ComponentType.Part,
+                                            descriptor: PartType.KontaktOssKanal,
+                                            config: {
+                                                contactOptions: {
+                                                    _selected: 'write' as const,
+                                                    chat: {},
+                                                    write: {},
+                                                    call: { phoneNumber: '55 55 33 33' },
+                                                    navoffice: {},
+                                                    aidcentral: {},
+                                                    custom: {},
+                                                },
+                                            },
+                                        },
+                                        {
+                                            path: '/pageContent/4/flexcols/2',
+                                            type: ComponentType.Part,
+                                            descriptor: PartType.KontaktOssKanal,
+                                            config: {
+                                                contactOptions: {
+                                                    _selected: 'call' as const,
+                                                    chat: {},
+                                                    write: {},
+                                                    call: { phoneNumber: '55 55 33 33' },
+                                                    navoffice: {},
+                                                    aidcentral: {},
+                                                    custom: {},
+                                                },
+                                            },
+                                        },
+                                    ],
+                                    name: 'flexcols' as const,
+                                },
                             },
                         },
                     ],
@@ -115,8 +257,8 @@ const meta = {
             },
         },
         publish: {
-            from: '2021-10-22T07:21:39.794Z',
-            first: '2021-10-22T07:21:39.794Z',
+            from: '2022-06-20T10:18:47.074Z',
+            first: '2022-06-20T10:18:47.074Z',
         },
     },
 } satisfies Meta<typeof SituationPage>;
