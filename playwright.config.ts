@@ -18,7 +18,7 @@ export default defineConfig({
         {
             name: 'desktop',
             use: { ...devices['Desktop Chrome'] },
-            grep: /SituationPage/,
+            grep: /ProductPage|SituationPage/,
         },
     ],
     webServer: {
