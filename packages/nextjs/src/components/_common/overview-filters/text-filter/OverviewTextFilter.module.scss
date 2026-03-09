@@ -7,10 +7,10 @@
         box-shadow: none;
     }
 
-    :global(.navds-label) {
+    :global(.aksel-label) {
         font-size: var(--ax-font-size-heading-xsmall);
     }
-    :global(.navds-button) {
+    :global(.aksel-button) {
         color: var(--ax-brand-blue-800);
         &:hover {
             background-color: var(--ax-brand-blue-100);

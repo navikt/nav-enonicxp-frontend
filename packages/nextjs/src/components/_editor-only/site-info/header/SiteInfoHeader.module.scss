@@ -9,7 +9,7 @@
 }
 
 .serverInfo {
-    :global(.navds-alert__wrapper) > :not(:last-child) {
+    :global(.aksel-alert__wrapper) > :not(:last-child) {
         margin-bottom: var(--ax-space-4);
     }
 }

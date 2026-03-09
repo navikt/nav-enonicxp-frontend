@@ -5,8 +5,8 @@
     border-radius: var(--ax-radius-2);
 
     :global {
-        .navds-link-card__title,
-        .navds-link-anchor__arrow {
+        .aksel-link-card__title,
+        .aksel-link-anchor__arrow {
             color: var(--default-action-color);
         }
     }
@@ -14,7 +14,7 @@
     &:hover {
         box-shadow: var(--a-shadow-small);
 
-        :global(.navds-link-card__title) {
+        :global(.aksel-link-card__title) {
             color: var(--default-action-color);
             text-decoration-line: underline;
             text-decoration-thickness: 0.05em;
@@ -68,7 +68,7 @@
     text-align: center;
 
     :global {
-        .navds-link-card__title {
+        .aksel-link-card__title {
             justify-content: center;
         }
     }

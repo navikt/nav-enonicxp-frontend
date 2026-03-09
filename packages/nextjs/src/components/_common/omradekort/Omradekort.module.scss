@@ -28,7 +28,7 @@ $size-small: 0.5;
             box-shadow: none;
         }
 
-        :global(.navds-link-card__title) {
+        :global(.aksel-link-card__title) {
             color: var(--default-action-color);
             text-decoration-line: none;
         }
@@ -41,7 +41,7 @@ $size-small: 0.5;
     &:active {
         background-color: var(--ax-brand-blue-100);
 
-        :global(.navds-link-card__title) {
+        :global(.aksel-link-card__title) {
             color: var(--ax-neutral-1000);
         }
     }
@@ -50,7 +50,7 @@ $size-small: 0.5;
         text-decoration: none;
     }
 
-    :global(.navds-link-card__title) {
+    :global(.aksel-link-card__title) {
         font-size: var(--ax-font-size-heading-medium);
         letter-spacing: -0.002em;
         line-height: var(--ax-font-line-height-heading-medium);
@@ -75,7 +75,7 @@ $size-small: 0.5;
             width: 100%;
         }
 
-        :global(.navds-link-card__title) {
+        :global(.aksel-link-card__title) {
             font-size: var(--ax-font-size-heading-small);
             line-height: var(--ax-font-line-height-heading-small);
         }

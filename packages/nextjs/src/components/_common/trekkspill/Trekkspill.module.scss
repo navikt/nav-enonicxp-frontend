@@ -26,19 +26,19 @@
     // to disappear when hovering the header. However, we don't want the lower border
     // (again, actually the border top of the next item) to disappear when the panel
     // is actually expanded.
-    &:has(:global(.navds-accordion__header):hover) {
+    &:has(:global(.aksel-accordion__header):hover) {
         border-top: 1px solid transparent;
     }
 
-    :global(.navds-accordion__header-chevron) {
+    :global(.aksel-accordion__header-chevron) {
         transform: rotate(0) !important;
     }
 
-    :global(.navds-accordion__header-content) {
+    :global(.aksel-accordion__header-content) {
         margin-bottom: 0;
     }
 
-    &:global(.navds-accordion__item--open) {
+    &:global(.aksel-accordion__item--open) {
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
@@ -46,13 +46,13 @@
         .header:not(:focus-visible) {
             box-shadow: 0 0 0 0;
         }
-        :global(.navds-accordion__header-chevron) {
+        :global(.aksel-accordion__header-chevron) {
             transform: rotate(-180deg) !important;
         }
     }
 
-    &:has(:global(.navds-accordion__header):hover) {
-        &:not(:global(.navds-accordion__item--open)) {
+    &:has(:global(.aksel-accordion__header):hover) {
+        &:not(:global(.aksel-accordion__item--open)) {
             & + .item {
                 border-top: 1px solid transparent;
             }
@@ -72,7 +72,7 @@
     margin: 0 -0.75rem;
     width: calc(100% + var(--ax-space-24));
 
-    :global(.navds-accordion__icon-wrapper) {
+    :global(.aksel-accordion__icon-wrapper) {
         background-color: var(--ax-bg-accent-soft);
         border-radius: 9px;
         height: 22px;
@@ -89,10 +89,10 @@
         background-color: var(--ax-bg-accent-soft);
         text-decoration: none;
 
-        :global(.navds-accordion__icon-wrapper) {
+        :global(.aksel-accordion__icon-wrapper) {
             background-color: var(--default-action-color);
         }
-        :global(.navds-accordion__header-chevron) {
+        :global(.aksel-accordion__header-chevron) {
             transform: translateY(0);
         }
         // Chevron icon

@@ -22,7 +22,7 @@ $blackLinkColor: var(--ax-text-neutral);
         @include common.panel-focus-mixin();
     }
 
-    :global(.navds-label) {
+    :global(.aksel-label) {
         font-size: var(--ax-font-size-heading-medium);
     }
 }

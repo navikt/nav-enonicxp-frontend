@@ -1,10 +1,10 @@
 .button {
-    &:global(.navds-button--primary),
-    &:global(.navds-button--danger) {
+    &:global(.aksel-button--primary),
+    &:global(.aksel-button--danger) {
         color: var(--a-white);
     }
 
-    &:global(.navds-button--danger) {
+    &:global(.aksel-button--danger) {
         box-shadow: 0 0 0;
 
         &:focus-visible {
