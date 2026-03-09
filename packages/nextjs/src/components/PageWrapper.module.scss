@@ -19,7 +19,7 @@
 }
 
 .defaultBackground {
-    background-color: var(--a-bg-subtle);
+    background-color: var(--ax-bg-neutral-soft);
 }
 
 .whiteBackground {
@@ -36,7 +36,7 @@
     // Variations, depending on the spacing need set for this
     // particular page.
     &.whiteBackground:before {
-        background-color: var(--a-bg-default);
+        background-color: var(--ax-bg-default);
     }
 }
 

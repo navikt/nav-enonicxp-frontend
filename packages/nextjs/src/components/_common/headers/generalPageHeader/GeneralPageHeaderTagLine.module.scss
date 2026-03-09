@@ -4,10 +4,10 @@
     text-transform: uppercase;
     letter-spacing: 0.075em;
     font-variant: all-small-caps;
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
     white-space: pre-wrap;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
-        margin-top: var(--a-spacing-3);
+        margin-top: var(--ax-space-12);
     }
 }

@@ -3,43 +3,43 @@
 .artikkel {
     width: 100%;
     background: var(--a-white);
-    border-radius: var(--a-border-radius-medium);
+    border-radius: var(--ax-radius-4);
 
     @media #{common.$mq-screen-desktop} {
-        padding: var(--a-spacing-11);
+        padding: var(--ax-space-44);
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-6);
+        padding: var(--ax-space-24);
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: var(--a-spacing-6);
+        padding: var(--ax-space-24);
     }
 
     .header {
-        margin-bottom: var(--a-spacing-6);
-        padding-bottom: var(--a-spacing-6);
-        border-bottom: 1px solid var(--a-gray-200);
+        margin-bottom: var(--ax-space-24);
+        padding-bottom: var(--ax-space-24);
+        border-bottom: 1px solid var(--ax-neutral-300);
     }
 
     .headerWithToc {
-        margin-bottom: var(--a-spacing-6);
+        margin-bottom: var(--ax-space-24);
     }
 
     .title {
-        margin: var(--a-spacing-2) 0 var(--a-spacing-4);
+        margin: var(--ax-space-8) 0 var(--ax-space-16);
     }
 
     .text {
         p {
-            margin-bottom: var(--a-spacing-4);
+            margin-bottom: var(--ax-space-16);
         }
 
         li {
-            padding-bottom: var(--a-spacing-2);
-            font-size: var(--a-font-size-large);
-            line-height: var(--a-font-line-height-xlarge);
+            padding-bottom: var(--ax-space-8);
+            font-size: var(--ax-font-size-large);
+            line-height: var(--ax-font-line-height-xlarge);
         }
 
         > :last-child {
@@ -52,7 +52,7 @@
 
         .kapittelHeader:focus {
             outline-offset: 3px;
-            outline: 3px solid var(--a-border-focus);
+            outline: 3px solid var(--ax-border-focus);
         }
 
         img {
@@ -63,14 +63,14 @@
 
         table {
             float: none;
-            margin-bottom: var(--a-spacing-4);
+            margin-bottom: var(--ax-space-16);
 
             th,
             td {
                 vertical-align: top;
-                padding: var(--a-spacing-3);
+                padding: var(--ax-space-12);
                 line-height: 1.5;
-                font-size: var(--a-font-size-large);
+                font-size: var(--ax-font-size-large);
             }
         }
 
@@ -80,8 +80,8 @@
         .h3,
         h4,
         .h4 {
-            font-size: var(--a-font-size-heading-small);
-            margin: var(--a-spacing-7) 0 var(--a-spacing-2);
+            font-size: var(--ax-font-size-heading-small);
+            margin: var(--ax-space-28) 0 var(--ax-space-8);
 
             &:first-child {
                 margin-top: 0;
@@ -90,8 +90,8 @@
 
         ul,
         ol {
-            padding-left: var(--a-spacing-6);
-            margin-bottom: var(--a-spacing-4);
+            padding-left: var(--ax-space-24);
+            margin-bottom: var(--ax-space-16);
         }
     }
 }

@@ -7,11 +7,11 @@
 
     @include common.full-width-mixin;
 
-    box-shadow: 0 -4px 0 var(--a-gray-400) inset;
+    box-shadow: 0 -4px 0 var(--ax-neutral-500) inset;
 }
 
 .header {
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--ax-space-16);
     max-width: 63.5rem;
     width: 100%;
 }

@@ -1,12 +1,12 @@
 @use 'common' as common;
 
 .illustration {
-    width: var(--a-spacing-16);
-    height: var(--a-spacing-16);
+    width: var(--ax-space-64);
+    height: var(--ax-space-64);
 
     @media #{common.$mq-screen-mobile-small} {
-        width: var(--a-spacing-12);
-        height: var(--a-spacing-12);
+        width: var(--ax-space-48);
+        height: var(--ax-space-48);
     }
 }
 
@@ -16,31 +16,31 @@
     }
 
     &:global(.employer-frontpage) {
-        background-color: var(--a-orange-200);
+        background-color: var(--ax-warning-300);
     }
 
     &:global(.provider-frontpage) {
-        background-color: var(--a-red-50);
+        background-color: var(--ax-danger-100);
 
         :global(.back) {
             svg {
                 path,
                 rect,
                 circle {
-                    fill: var(--a-red-100);
+                    fill: var(--ax-danger-200);
                 }
             }
         }
     }
     &:global(.person-frontpage) {
-        background-color: var(--a-deepblue-50);
+        background-color: var(--ax-brand-blue-100);
 
         :global(.back) {
             svg {
                 path,
                 rect,
                 circle {
-                    fill: var(--a-deepblue-100);
+                    fill: var(--ax-brand-blue-200);
                 }
             }
         }

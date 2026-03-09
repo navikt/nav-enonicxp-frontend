@@ -13,7 +13,7 @@
 }
 
 .letterPartOrange {
-    background-color: var(--a-orange-200);
+    background-color: var(--ax-warning-300);
 
     @include omradekort.transitionMixin;
     position: absolute;
@@ -28,7 +28,7 @@
 }
 
 .letterPartBlue {
-    background-color: var(--a-deepblue-200);
+    background-color: var(--ax-brand-blue-300);
 
     @include omradekort.transitionMixin;
     position: absolute;
@@ -43,7 +43,7 @@
 }
 
 .mask {
-    background-color: var(--a-deepblue-100);
+    background-color: var(--ax-brand-blue-200);
 
     @include omradekort.transitionMixin;
     position: absolute;

@@ -4,14 +4,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--ax-space-16);
 
     :global(.chevron) {
-        margin-left: var(--a-spacing-2);
+        margin-left: var(--ax-space-8);
     }
 
     .spinnerContainer {
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
         display: flex;
         flex-direction: column;
         align-items: center;

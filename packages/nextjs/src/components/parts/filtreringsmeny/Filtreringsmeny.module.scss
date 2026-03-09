@@ -1,8 +1,8 @@
 @use 'common' as common;
 
 .filtreringsmeny {
-    box-shadow: var(--a-blue-200) inset 0 0 0 8px;
-    border-radius: var(--a-border-radius-medium);
+    box-shadow: var(--ax-accent-300) inset 0 0 0 8px;
+    border-radius: var(--ax-radius-4);
     background-color: var(--a-white);
 
     @include common.section-padding-mixin();
@@ -19,7 +19,7 @@
         margin-top: 1.5em;
 
         :global(.navds-fieldset__legend) {
-            font-size: var(--a-font-size-large);
+            font-size: var(--ax-font-size-large);
         }
         :global(.navds-checkboxes) {
             display: flex;

@@ -1,18 +1,18 @@
 .placeholderIndicator {
     background-color: #dddddd;
-    border-radius: var(--a-border-radius-small);
+    border-radius: var(--ax-radius-2);
     display: block;
     outline: solid 2px #ffbbbb;
     overflow: hidden;
-    padding: var(--a-spacing-8) var(--a-spacing-2) var(--a-spacing-4);
+    padding: var(--ax-space-32) var(--ax-space-8) var(--ax-space-16);
     position: relative;
 
     &::before {
         content: 'Detaljinformasjon:';
         color: #666666;
         font-weight: bold;
-        left: var(--a-spacing-2);
+        left: var(--ax-space-8);
         position: absolute;
-        top: var(--a-spacing-2);
+        top: var(--ax-space-8);
     }
 }

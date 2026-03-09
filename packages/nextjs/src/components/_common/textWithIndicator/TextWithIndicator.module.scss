@@ -1,7 +1,7 @@
 .textWithIndicator {
     display: flex;
     flex-direction: column;
-    margin-top: var(--a-spacing-4);
+    margin-top: var(--ax-space-16);
 }
 
 .prefix {
@@ -12,7 +12,7 @@
 .text {
     display: inline-flex;
     align-items: center;
-    gap: var(--a-spacing-2);
+    gap: var(--ax-space-8);
 }
 
 .indicator {
@@ -20,8 +20,8 @@
     justify-content: center;
     border-radius: 50%;
     display: flex;
-    height: var(--a-spacing-4);
-    width: var(--a-spacing-4);
+    height: var(--ax-space-16);
+    width: var(--ax-space-16);
 }
 
 .indicatorInner {
@@ -32,19 +32,19 @@
 }
 
 .active {
-    background-color: var(--a-surface-success-subtle);
+    background-color: var(--ax-bg-success-soft);
 
     .indicatorInner {
-        background-color: var(--a-surface-success);
+        background-color: var(--ax-bg-success-strong);
         opacity: 0.7;
     }
 }
 
 .inactive {
-    background-color: var(--a-surface-neutral-subtle);
+    background-color: var(--ax-bg-neutral-soft);
 
     .indicatorInner {
-        background-color: var(--a-surface-neutral);
+        background-color: var(--ax-bg-neutral-strong);
         opacity: 0.7;
     }
 }

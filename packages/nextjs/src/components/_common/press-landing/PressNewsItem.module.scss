@@ -1,5 +1,5 @@
 .newsItem {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
     list-style-type: none;
 
     a {
@@ -10,22 +10,22 @@
 }
 
 .ingress {
-    margin-top: var(--a-spacing-2);
-    margin-bottom: var(--a-spacing-2);
+    margin-top: var(--ax-space-8);
+    margin-bottom: var(--ax-space-8);
 }
 
 .newsTagline {
     display: flex;
     flex-direction: row;
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 }
 
 .newsType {
-    margin-left: var(--a-spacing-1);
+    margin-left: var(--ax-space-4);
     font-weight: 600;
 }
 
 .publishDate {
-    margin-left: var(--a-spacing-3);
-    color: var(--a-gray-800);
+    margin-left: var(--ax-space-12);
+    color: var(--ax-neutral-900);
 }

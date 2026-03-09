@@ -3,15 +3,15 @@
     flex-direction: column;
 
     p:not(:last-child) {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 
     .enContent {
-        margin-top: var(--a-spacing-12);
+        margin-top: var(--ax-space-48);
     }
 
     .enHeader {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 
     .urlSuggestion {

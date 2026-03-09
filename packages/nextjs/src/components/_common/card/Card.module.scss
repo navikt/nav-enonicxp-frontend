@@ -2,16 +2,16 @@
 
 @mixin highlight {
     > :global(.situation) {
-        background-color: var(--a-orange-200);
+        background-color: var(--ax-warning-300);
     }
     > :global(.product) {
-        background-color: var(--a-green-200);
+        background-color: var(--ax-success-300);
     }
     > :global(.tool) {
-        background-color: var(--a-deepblue-200);
+        background-color: var(--ax-brand-blue-300);
     }
     > :global(.themed-article) {
-        background-color: var(--a-limegreen-300);
+        background-color: var(--ax-meta-lime-400);
     }
     > :global(.guide) {
         background-color: var(--a-lightblue-200);
@@ -19,13 +19,13 @@
     //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
     * {
         text-decoration-line: none;
-        color: var(--a-gray-900) !important;
+        color: var(--ax-neutral-1000) !important;
     }
 }
 
 .card {
     display: block;
-    margin-bottom: var(--a-spacing-7);
+    margin-bottom: var(--ax-space-28);
     outline: 0;
     text-decoration-line: none;
     width: 100%;
@@ -76,9 +76,9 @@
 
     :global(.large) {
         background-color: var(--a-white);
-        border-radius: var(--a-border-radius-large);
+        border-radius: var(--ax-radius-8);
         display: block;
-        padding: var(--a-spacing-6);
+        padding: var(--ax-space-24);
         text-decoration: none;
         width: 100%;
 

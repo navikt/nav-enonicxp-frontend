@@ -3,16 +3,16 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap-reverse;
-    gap: var(--a-spacing-4);
-    margin-top: var(--a-spacing-6);
+    gap: var(--ax-space-16);
+    margin-top: var(--ax-space-24);
     margin-bottom: 0;
-    border-bottom: 1px solid var(--a-gray-300);
+    border-bottom: 1px solid var(--ax-neutral-400);
     width: 100%;
-    min-height: var(--a-spacing-12);
+    min-height: var(--ax-space-48);
 }
 
 .nohits {
-    background-color: var(--a-gray-100);
-    padding: var(--a-spacing-6);
-    border-radius: var(--a-border-radius-large);
+    background-color: var(--ax-neutral-200);
+    padding: var(--ax-space-24);
+    border-radius: var(--ax-radius-8);
 }

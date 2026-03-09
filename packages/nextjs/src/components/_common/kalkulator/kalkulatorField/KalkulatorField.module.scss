@@ -1,7 +1,7 @@
 .kalkulatoromrade {
-    margin: var(--a-spacing-2) 0;
+    margin: var(--ax-space-8) 0;
 
     &:not(:last-of-type) {
-        margin-bottom: var(--a-spacing-6);
+        margin-bottom: var(--ax-space-24);
     }
 }

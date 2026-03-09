@@ -3,12 +3,12 @@
 .link {
     display: inline-flex;
     align-items: center;
-    gap: var(--a-spacing-1-alt);
-    padding: var(--a-spacing-2) 0;
+    gap: var(--ax-space-6);
+    padding: var(--ax-space-8) 0;
     text-underline-offset: 2.5px;
     text-decoration-thickness: 1px;
-    text-decoration-color: var(--a-border-subtle);
-    color: var(--a-text-action);
+    text-decoration-color: var(--ax-border-neutral-subtle);
+    color: var(--ax-text-accent-subtle);
 
     &:hover {
         text-decoration-color: currentColor;
@@ -17,10 +17,10 @@
     &[aria-current='true'] {
         color: inherit;
         text-decoration: none;
-        padding-right: calc(var(--a-spacing-3) - 0.9ch);
+        padding-right: calc(var(--ax-space-12) - 0.9ch);
 
         .linkText {
-            font-weight: var(--a-font-weight-bold);
+            font-weight: var(--ax-font-weight-bold);
         }
     }
 }
