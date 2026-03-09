@@ -7,15 +7,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: var(--a-spacing-8);
-    padding-bottom: var(--a-spacing-4);
+    padding-top: var(--ax-space-32);
+    padding-bottom: var(--ax-space-16);
 
     @include common.full-width-mixin();
 }
 
 .heading {
     text-align: left;
-    margin-bottom: var(--a-spacing-2);
+    margin-bottom: var(--ax-space-8);
 }
 
 .content {
@@ -38,7 +38,7 @@
 }
 
 .taglineLabel {
-    color: var(--a-gray-800);
+    color: var(--ax-neutral-900);
     text-align: left;
     white-space: nowrap;
     display: flex;
@@ -46,19 +46,19 @@
 }
 
 .branchNamesLabel {
-    color: var(--a-gray-800);
+    color: var(--ax-neutral-900);
     text-align: left;
     display: flex;
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 
     &::before {
         content: '';
         border-left: 1px solid black;
         display: flex;
-        padding: 0 var(--a-spacing-3) 0 0;
-        margin-left: var(--a-spacing-3);
+        padding: 0 var(--ax-space-12) 0 0;
+        margin-left: var(--ax-space-12);
 
         @media #{common.$mq-screen-mobile} {
             display: none;

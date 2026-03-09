@@ -1,15 +1,15 @@
 .macroQuote {
-    margin: var(--a-spacing-6) 0;
-    padding: 0 var(--a-spacing-10);
+    margin: var(--ax-space-24) 0;
+    padding: 0 var(--ax-space-40);
     position: relative;
 
     &:before {
         content: '\201C';
         font-size: 4rem;
-        color: var(--a-nav-red);
+        color: var(--ax-text-logo);
         font-family: 'Times new roman', serif;
         position: absolute;
         left: 0;
-        top: var(--a-spacing-3);
+        top: var(--ax-space-12);
     }
 }

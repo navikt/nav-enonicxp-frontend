@@ -1,9 +1,9 @@
 .itemDragHandle {
     position: relative;
     cursor: grab;
-    width: var(--a-spacing-8);
-    min-width: var(--a-spacing-8);
-    height: var(--a-spacing-8);
+    width: var(--ax-space-32);
+    min-width: var(--ax-space-32);
+    height: var(--ax-space-32);
 
     & > :last-child {
         position: absolute;
@@ -13,7 +13,7 @@
 }
 
 .itemDragged {
-    box-shadow: 0 0 3px 3px var(--a-green-300);
+    box-shadow: 0 0 3px 3px var(--ax-success-400);
     cursor: grabbing;
 }
 

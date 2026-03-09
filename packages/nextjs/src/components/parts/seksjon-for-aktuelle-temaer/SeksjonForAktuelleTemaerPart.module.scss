@@ -2,21 +2,21 @@
 
 .currentTopics {
     @include common.full-width-mixin();
-    background-color: var(--bg-color, var(--a-bg-subtle));
-    padding-top: var(--a-spacing-11);
-    padding-bottom: var(--a-spacing-11);
+    background-color: var(--bg-color, var(--ax-bg-neutral-soft));
+    padding-top: var(--ax-space-44);
+    padding-bottom: var(--ax-space-44);
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: var(--a-spacing-8);
-        padding-bottom: var(--a-spacing-8);
+        padding-top: var(--ax-space-32);
+        padding-bottom: var(--ax-space-32);
     }
 }
 
 .header {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 }
 
@@ -27,8 +27,8 @@
 
     @include common.grid-layout-mixin(
         $numCols: 2,
-        $rowGapMobileSmall: var(--a-spacing-3),
-        $columnGapMobileSmall: var(--a-spacing-3)
+        $rowGapMobileSmall: var(--ax-space-12),
+        $columnGapMobileSmall: var(--ax-space-12)
     );
 }
 
@@ -44,10 +44,10 @@
     }
 
     @media #{common.$mq-screen-mobile-small} {
-        padding: var(--a-spacing-2) var(--a-spacing-3);
+        padding: var(--ax-space-8) var(--ax-space-12);
     }
 }
 
 .date {
-    color: var(--a-gray-700);
+    color: var(--ax-neutral-800);
 }

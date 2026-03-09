@@ -14,11 +14,11 @@ $size-small: 0.5;
 .lenkepanel {
     @include transitionMixin;
 
-    background-color: var(--a-deepblue-50);
+    background-color: var(--ax-brand-blue-100);
     min-height: $height-full-size;
     height: auto;
     width: 100%;
-    border-radius: var(--a-border-radius-large);
+    border-radius: var(--ax-radius-8);
     border-style: none;
     padding: 0;
     overflow: hidden;
@@ -34,15 +34,15 @@ $size-small: 0.5;
         }
 
         @media (hover) {
-            background-color: var(--a-surface-subtle);
+            background-color: var(--ax-bg-neutral-soft);
         }
     }
 
     &:active {
-        background-color: var(--a-deepblue-50);
+        background-color: var(--ax-brand-blue-100);
 
         :global(.navds-link-card__title) {
-            color: var(--a-gray-900);
+            color: var(--ax-neutral-1000);
         }
     }
 
@@ -51,9 +51,9 @@ $size-small: 0.5;
     }
 
     :global(.navds-link-card__title) {
-        font-size: var(--a-font-size-heading-medium);
+        font-size: var(--ax-font-size-heading-medium);
         letter-spacing: -0.002em;
-        line-height: var(--a-font-line-height-heading-medium);
+        line-height: var(--ax-font-line-height-heading-medium);
         text-decoration-line: underline;
         text-decoration-thickness: 0.05em;
         text-underline-offset: 0.1em;
@@ -70,14 +70,14 @@ $size-small: 0.5;
 
         .titleShort,
         .titleLong {
-            margin-left: var(--a-spacing-4);
-            padding-right: var(--a-spacing-16);
+            margin-left: var(--ax-space-16);
+            padding-right: var(--ax-space-64);
             width: 100%;
         }
 
         :global(.navds-link-card__title) {
-            font-size: var(--a-font-size-heading-small);
-            line-height: var(--a-font-line-height-heading-small);
+            font-size: var(--ax-font-size-heading-small);
+            line-height: var(--ax-font-line-height-heading-small);
         }
     }
 }
@@ -88,6 +88,6 @@ $size-small: 0.5;
 
     display: block;
     width: 15.25rem;
-    margin-left: var(--a-spacing-6);
+    margin-left: var(--ax-space-24);
     padding-right: 0;
 }

@@ -8,12 +8,12 @@
     }
 
     :global(.navds-label) {
-        font-size: var(--a-font-size-heading-xsmall);
+        font-size: var(--ax-font-size-heading-xsmall);
     }
     :global(.navds-button) {
-        color: var(--a-deepblue-700);
+        color: var(--ax-brand-blue-800);
         &:hover {
-            background-color: var(--a-deepblue-50);
+            background-color: var(--ax-brand-blue-100);
         }
     }
 }

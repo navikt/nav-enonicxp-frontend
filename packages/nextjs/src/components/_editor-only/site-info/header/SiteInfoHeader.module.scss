@@ -3,13 +3,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--a-green-100);
-    padding: var(--a-spacing-5);
-    margin-bottom: var(--a-spacing-5);
+    background-color: var(--ax-success-200);
+    padding: var(--ax-space-20);
+    margin-bottom: var(--ax-space-20);
 }
 
 .serverInfo {
     :global(.navds-alert__wrapper) > :not(:last-child) {
-        margin-bottom: var(--a-spacing-1);
+        margin-bottom: var(--ax-space-4);
     }
 }

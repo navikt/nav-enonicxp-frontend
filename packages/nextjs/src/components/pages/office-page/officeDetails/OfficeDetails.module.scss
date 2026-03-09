@@ -3,8 +3,8 @@
 .officeDetails {
     display: flex;
     flex-direction: column;
-    margin-top: var(--a-spacing-8);
-    row-gap: var(--a-spacing-5);
+    margin-top: var(--ax-space-32);
+    row-gap: var(--ax-space-20);
     max-width: common.$sectionMaxWidth;
     width: 100%;
 }
@@ -17,5 +17,5 @@
 }
 
 .addressPoster {
-    background-color: var(--a-orange-50);
+    background-color: var(--ax-warning-100);
 }

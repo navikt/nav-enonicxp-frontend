@@ -1,5 +1,5 @@
 .officeInformation {
-    margin: var(--a-spacing-3) 0 var(--a-spacing-12);
+    margin: var(--ax-space-12) 0 var(--ax-space-48);
 }
 
 .expansionCardHeader {
@@ -9,5 +9,5 @@
 .expansionCardContent {
     display: flex;
     flex-direction: column;
-    gap: var(--a-spacing-6);
+    gap: var(--ax-space-24);
 }

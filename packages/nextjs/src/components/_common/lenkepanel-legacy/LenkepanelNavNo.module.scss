@@ -2,7 +2,7 @@
 
 .lenkepanelNavno {
     border-color: var(--default-action-color);
-    border-radius: var(--a-border-radius-small);
+    border-radius: var(--ax-radius-2);
 
     :global {
         .navds-link-card__title,
@@ -23,7 +23,7 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-3) var(--a-spacing-4);
+        padding: var(--ax-space-12) var(--ax-space-16);
     }
 }
 
@@ -44,23 +44,23 @@
     align-items: center;
     justify-content: center;
 
-    padding: 0 var(--a-spacing-4) 0 var(--a-spacing-2);
+    padding: 0 var(--ax-space-16) 0 var(--ax-space-8);
 
-    width: var(--a-spacing-12);
-    height: var(--a-spacing-12);
+    width: var(--ax-space-48);
+    height: var(--ax-space-48);
 
     & > img {
-        max-width: var(--a-spacing-8);
-        max-height: var(--a-spacing-8);
+        max-width: var(--ax-space-32);
+        max-height: var(--ax-space-32);
     }
 }
 
 .separator {
-    width: var(--a-spacing-24);
+    width: var(--ax-space-96);
     border: none;
-    background-color: var(--a-gray-600);
+    background-color: var(--ax-neutral-700);
     height: 1px;
-    margin: var(--a-spacing-4) 0;
+    margin: var(--ax-space-16) 0;
 }
 
 .vertikal {
@@ -79,7 +79,7 @@
 
     .ikon {
         width: 100%;
-        padding: 0 0 var(--a-spacing-4) 0;
+        padding: 0 0 var(--ax-space-16) 0;
         & > img {
             max-width: 100%;
         }

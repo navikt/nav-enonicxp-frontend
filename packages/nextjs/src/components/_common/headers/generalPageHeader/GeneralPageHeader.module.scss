@@ -4,8 +4,8 @@
     display: block;
 
     .illustration {
-        width: var(--a-spacing-20);
-        height: var(--a-spacing-20);
+        width: var(--ax-space-80);
+        height: var(--ax-space-80);
         position: absolute;
         margin-left: -120px;
 
@@ -28,16 +28,16 @@
 
         @media #{common.$mq-screen-tablet-and-mobile} {
             position: relative;
-            width: var(--a-spacing-16);
-            height: var(--a-spacing-16);
+            width: var(--ax-space-64);
+            height: var(--ax-space-64);
             margin-left: 0;
         }
     }
 
     .header {
-        margin-top: var(--a-spacing-3);
+        margin-top: var(--ax-space-12);
         color: var(--brand-purple-deep);
-        margin-bottom: var(--a-spacing-6);
+        margin-bottom: var(--ax-space-24);
     }
 }
 

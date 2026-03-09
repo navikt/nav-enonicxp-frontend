@@ -1,15 +1,15 @@
 @use 'common' as common;
 
 .innholdssideMedMeny {
-    padding-top: var(--a-spacing-20);
+    padding-top: var(--ax-space-80);
     @media #{common.$mq-screen-mobile} {
-        padding-top: var(--a-spacing-9);
+        padding-top: var(--ax-space-36);
     }
 
     @include common.centered-content-spacing();
 
     :global(.region__intro) {
-        margin-bottom: var(--a-spacing-9);
+        margin-bottom: var(--ax-space-36);
     }
 
     :global(.region__pageContent),
@@ -20,7 +20,7 @@
 }
 
 .pullUp {
-    padding-top: var(--a-spacing-3);
+    padding-top: var(--ax-space-12);
 }
 
 @media #{common.$mq-screen-desktop} {

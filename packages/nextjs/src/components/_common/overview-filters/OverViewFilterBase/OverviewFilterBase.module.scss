@@ -8,16 +8,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     list-style-type: none;
-    margin-top: var(--a-spacing-2);
+    margin-top: var(--ax-space-8);
     padding: 0;
 }
 
 .filterButton {
-    background-color: var(--a-deepblue-50);
+    background-color: var(--ax-brand-blue-100);
     box-shadow: none;
 
     &:hover {
-        background-color: var(--a-deepblue-100);
+        background-color: var(--ax-brand-blue-200);
     }
 
     &:hover:not(:focus) {
