@@ -40,7 +40,7 @@
         "@types/express": "5.0.6",
         "@types/lodash.debounce": "4.0.9",
         "@types/mock-fs": "4.13.4",
-        "@types/node": "20.14.10",
+        "@types/node": "25.3.0",
         "@typescript-eslint/eslint-plugin": "8.56.0",
         "@typescript-eslint/parser": "8.56.0",
         "concurrently": "9.2.1",
