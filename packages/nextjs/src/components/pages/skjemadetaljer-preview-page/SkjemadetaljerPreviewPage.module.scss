@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .skjemadetaljerPreviewPage {
-    background-color: var(--a-white);
+    background-color: white;
     max-width: common.$sectionMaxWidth;
     padding: var(--ax-space-32);
     width: 100%;

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     background-color: var(--ax-brand-blue-200);
-    border-top: var(--ax-space-4) solid var(--a-white);
+    border-top: var(--ax-space-4) solid white;
 
     @include common.full-width-mixin;
 }

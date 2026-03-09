@@ -65,7 +65,7 @@
         }
         .bed:global(.large) {
             &:after {
-                box-shadow: 0 0 0 4px var(--a-white);
+                box-shadow: 0 0 0 4px white;
                 border-radius: 6px;
                 height: calc(100% - 8px);
                 width: calc(100% - 8px);
@@ -75,7 +75,7 @@
     }
 
     :global(.large) {
-        background-color: var(--a-white);
+        background-color: white;
         border-radius: var(--ax-radius-8);
         display: block;
         padding: var(--ax-space-24);

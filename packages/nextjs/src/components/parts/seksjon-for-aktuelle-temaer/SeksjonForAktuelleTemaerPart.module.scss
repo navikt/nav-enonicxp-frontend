@@ -33,7 +33,7 @@
 }
 
 .item {
-    background-color: var(--item-color, var(--a-white));
+    background-color: var(--item-color, white);
     height: 100%;
 
     :global(.lenkepanelNavnoTextContent) {
