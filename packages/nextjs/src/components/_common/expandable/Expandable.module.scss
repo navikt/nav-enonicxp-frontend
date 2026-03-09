@@ -1,12 +1,12 @@
 .expandable {
     display: block;
 
-    :global(.navds-expansioncard__header-chevron) {
+    :global(.aksel-expansioncard__header-chevron) {
         transform: rotate(0) !important;
     }
 
-    &:global(.navds-expansioncard--open) {
-        :global(.navds-expansioncard__header-chevron) {
+    &:global(.aksel-expansioncard--open) {
+        :global(.aksel-expansioncard__header-chevron) {
             transform: rotate(180deg) !important;
         }
 
@@ -24,14 +24,14 @@
         padding: var(--ax-space-8) var(--ax-space-8) var(--ax-space-8) var(--ax-space-12);
         width: fit-content;
 
-        :global(.navds-expansioncard__header-content) {
+        :global(.aksel-expansioncard__header-content) {
             align-items: center;
             color: var(--default-action-color);
             display: flex;
             gap: var(--ax-space-8);
         }
 
-        :global(.navds-expansioncard__header-button) {
+        :global(.aksel-expansioncard__header-button) {
             min-height: 20px;
             svg {
                 path {
@@ -48,11 +48,11 @@
                 box-shadow: 0 0 0;
             }
 
-            :global(.navds-expansioncard__header-button) {
+            :global(.aksel-expansioncard__header-button) {
                 background-color: transparent;
             }
 
-            :global(.navds-expansioncard__header-chevron) {
+            :global(.aksel-expansioncard__header-chevron) {
                 transform: translateY(0);
             }
         }

@@ -1,10 +1,10 @@
 .lenkepanel {
-    :global(.navds-link-card__title),
-    :global(.navds-link-anchor__arrow) {
+    :global(.aksel-link-card__title),
+    :global(.aksel-link-anchor__arrow) {
         color: var(--default-action-color);
     }
 
-    :global(.navds-link-card__footer) {
+    :global(.aksel-link-card__footer) {
         display: block;
     }
 
@@ -13,7 +13,7 @@
         border-color: #cbd4e1;
         box-shadow: none;
 
-        :global(.navds-link-card__title) {
+        :global(.aksel-link-card__title) {
             text-decoration: underline;
         }
     }

@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
 
-    :global(.navds-accordion) {
+    :global(.aksel-accordion) {
         --__ac-accordion-header-shadow-color: none;
     }
 
@@ -12,7 +12,7 @@
         background-color: var(--a-white);
         border-radius: var(--ax-radius-4);
 
-        :global(.navds-accordion__header) {
+        :global(.aksel-accordion__header) {
             border-radius: var(--ax-radius-4);
 
             &:not(:focus-visible) {
@@ -24,8 +24,8 @@
             }
         }
 
-        &:global(.navds-accordion__item--open) {
-            :global(.navds-accordion__header) {
+        &:global(.aksel-accordion__item--open) {
+            :global(.aksel-accordion__header) {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }

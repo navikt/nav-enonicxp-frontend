@@ -9,7 +9,7 @@
     gap: var(--ax-space-12);
     padding: var(--ax-space-4);
 
-    :global(.navds-button__icon) {
+    :global(.aksel-button__icon) {
         margin: 0;
     }
 }
@@ -46,7 +46,7 @@
     bottom: 0;
     margin: auto;
 
-    :global(.navds-loader__background) {
+    :global(.aksel-loader__background) {
         stroke: white !important;
     }
 }

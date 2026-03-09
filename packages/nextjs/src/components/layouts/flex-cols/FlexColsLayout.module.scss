@@ -132,7 +132,7 @@
     &:before {
         @include common.header-before-rectangle();
     }
-    :global(.navds-heading) {
+    :global(.aksel-heading) {
         margin-top: var(--ax-space-8);
     }
 }

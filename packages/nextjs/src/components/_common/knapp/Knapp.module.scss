@@ -6,7 +6,7 @@
     &__icon {
         height: var(--ax-space-24);
     }
-    :global(.navds-label) {
+    :global(.aksel-label) {
         text-align: center;
     }
 }
@@ -45,7 +45,7 @@
         color: var(--default-action-color);
     }
 
-    :global(.navds-heading) {
+    :global(.aksel-heading) {
         color: var(--default-action-color);
     }
 }

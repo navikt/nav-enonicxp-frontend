@@ -24,8 +24,8 @@ export const LenkepanelNavno = ({
     ...elementAttribs
 }: Props) => {
     const textClassNames = classNames(
-        'navds-heading',
-        'navds-heading--medium',
+        'aksel-heading',
+        'aksel-heading--medium',
         linkColor === 'black' && styles.linkBlack
     );
 

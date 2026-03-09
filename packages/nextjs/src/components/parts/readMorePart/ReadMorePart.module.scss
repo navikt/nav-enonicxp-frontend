@@ -1,7 +1,7 @@
 .readMore {
     margin-bottom: var(--ax-space-36);
 
-    :global(.navds-read-more__button) {
+    :global(.aksel-read-more__button) {
         z-index: 1;
         margin-bottom: var(--ax-space-12);
         background-color: var(--ax-accent-100);
@@ -24,7 +24,7 @@
         &:hover {
             background-color: var(--ax-accent-200);
 
-            :global(.navds-read-more__expand-icon) {
+            :global(.aksel-read-more__expand-icon) {
                 transform: translateY(0);
             }
         }
@@ -34,19 +34,19 @@
         }
     }
 
-    :global(.navds-read-more__content) {
+    :global(.aksel-read-more__content) {
         border-left: 1px solid var(--ax-neutral-500);
         margin-left: var(--ax-space-24);
         padding: 0 0 0 var(--ax-space-20);
     }
 
-    &:global(.navds-read-more--open) {
-        :global(.navds-read-more__button) {
+    &:global(.aksel-read-more--open) {
+        :global(.aksel-read-more__button) {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
         }
 
-        :global(.navds-read-more__expand-icon) {
+        :global(.aksel-read-more__expand-icon) {
             transform: rotate(-180deg) !important;
         }
     }
