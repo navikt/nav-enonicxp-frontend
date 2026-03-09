@@ -32,7 +32,7 @@
             box-shadow: none;
         }
         .illustration :global(.back) [fill]:not([fill='none']) {
-            fill: var(--a-white);
+            fill: white;
         }
     }
 

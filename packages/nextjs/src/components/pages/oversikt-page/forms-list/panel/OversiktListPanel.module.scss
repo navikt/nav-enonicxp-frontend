@@ -78,7 +78,7 @@
 
         .icon {
             & > :first-child:not(:last-child) * {
-                fill: var(--a-white);
+                fill: white;
             }
         }
     }

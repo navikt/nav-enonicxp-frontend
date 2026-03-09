@@ -2,7 +2,7 @@
 
 .pressTopSection {
     display: flex;
-    background-color: var(--a-white);
+    background-color: white;
     justify-content: center;
     margin-top: var(--ax-space-32);
     @include common.full-width-mixin;

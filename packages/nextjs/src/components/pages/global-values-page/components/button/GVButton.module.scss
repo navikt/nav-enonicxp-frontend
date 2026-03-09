@@ -1,7 +1,7 @@
 .button {
     &:global(.aksel-button--primary),
     &:global(.aksel-button--danger) {
-        color: var(--a-white);
+        color: white;
     }
 
     &:global(.aksel-button--danger) {

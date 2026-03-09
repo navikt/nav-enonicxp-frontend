@@ -11,9 +11,9 @@
     & > div {
         width: $width;
         max-width: 100%;
-        background-color: var(--a-white);
+        background-color: white;
         &::after {
-            border-top-color: var(--a-white);
+            border-top-color: white;
         }
     }
 }

@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     row-gap: var(--ax-space-8);
-    background-color: var(--a-white);
+    background-color: white;
 
     @include common.full-width-mixin();
 }
