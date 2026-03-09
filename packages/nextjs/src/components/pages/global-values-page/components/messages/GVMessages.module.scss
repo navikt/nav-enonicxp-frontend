@@ -4,18 +4,18 @@
     display: flex;
     flex-direction: column;
     width: 40%;
-    border-left: 2px dotted var(--a-gray-600);
-    padding-left: var(--a-spacing-4);
-    margin-left: var(--a-spacing-4);
+    border-left: 2px dotted var(--ax-neutral-700);
+    padding-left: var(--ax-space-16);
+    margin-left: var(--ax-space-16);
 
     @media #{common.$mq-screen-mobile} {
         width: 100%;
         margin-left: 0;
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
         padding-left: 0;
-        padding-top: var(--a-spacing-4);
+        padding-top: var(--ax-space-16);
         border-left: none;
-        border-top: 2px dotted var(--a-gray-600);
+        border-top: 2px dotted var(--ax-neutral-700);
     }
 
     .warning {
@@ -23,10 +23,10 @@
     }
     .error {
         font-weight: bold;
-        color: var(--a-red-500);
+        color: var(--ax-danger-600);
     }
     .close {
         align-self: center;
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
     }
 }

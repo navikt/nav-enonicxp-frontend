@@ -4,11 +4,11 @@
     @include common.full-width-mixin();
     top: var(--decorator-sticky-offset);
     z-index: 2;
-    padding-top: var(--a-spacing-4);
-    padding-bottom: var(--a-spacing-4);
+    padding-top: var(--ax-space-16);
+    padding-bottom: var(--ax-space-16);
 }
 
-.warning > :global(.navds-alert__wrapper) {
+.warning > :global(.aksel-alert__wrapper) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,5 +20,5 @@
 }
 
 .whiteBg {
-    background-color: var(--a-white);
+    background-color: white;
 }

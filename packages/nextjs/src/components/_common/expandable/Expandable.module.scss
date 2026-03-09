@@ -1,12 +1,12 @@
 .expandable {
     display: block;
 
-    :global(.navds-expansioncard__header-chevron) {
+    :global(.aksel-expansioncard__header-chevron) {
         transform: rotate(0) !important;
     }
 
-    &:global(.navds-expansioncard--open) {
-        :global(.navds-expansioncard__header-chevron) {
+    &:global(.aksel-expansioncard--open) {
+        :global(.aksel-expansioncard__header-chevron) {
             transform: rotate(180deg) !important;
         }
 
@@ -21,17 +21,17 @@
         border-radius: 22px;
         border: 0px;
         box-shadow: 0 0 0;
-        padding: var(--a-spacing-2) var(--a-spacing-2) var(--a-spacing-2) var(--a-spacing-3);
+        padding: var(--ax-space-8) var(--ax-space-8) var(--ax-space-8) var(--ax-space-12);
         width: fit-content;
 
-        :global(.navds-expansioncard__header-content) {
+        :global(.aksel-expansioncard__header-content) {
             align-items: center;
             color: var(--default-action-color);
             display: flex;
-            gap: var(--a-spacing-2);
+            gap: var(--ax-space-8);
         }
 
-        :global(.navds-expansioncard__header-button) {
+        :global(.aksel-expansioncard__header-button) {
             min-height: 20px;
             svg {
                 path {
@@ -48,11 +48,11 @@
                 box-shadow: 0 0 0;
             }
 
-            :global(.navds-expansioncard__header-button) {
+            :global(.aksel-expansioncard__header-button) {
                 background-color: transparent;
             }
 
-            :global(.navds-expansioncard__header-chevron) {
+            :global(.aksel-expansioncard__header-chevron) {
                 transform: translateY(0);
             }
         }
@@ -64,7 +64,7 @@
     &.legacy {
         .header {
             width: 100%;
-            padding-left: var(--a-spacing-4);
+            padding-left: var(--ax-space-16);
         }
     }
 
@@ -79,10 +79,10 @@
     }
     .content {
         border: 0;
-        border-left: 1px solid var(--a-gray-400);
-        margin: var(--a-spacing-2) 0 0 var(--a-spacing-6);
+        border-left: 1px solid var(--ax-neutral-500);
+        margin: var(--ax-space-8) 0 0 var(--ax-space-24);
         border-radius: 0;
-        padding-left: var(--a-spacing-5);
+        padding-left: var(--ax-space-20);
         box-shadow: 0 0 0;
     }
     :global(.parsedHtml:last-child) {
@@ -96,12 +96,12 @@
     }
 
     :global(.part__html-area):has(.expandable) + :global(.part__html-area):has(.expandable) {
-        margin-top: calc(var(--a-spacing-6) * -1);
+        margin-top: calc(var(--ax-space-24) * -1);
     }
 
     :global(:not(:last-child)) {
         & > .expandable {
-            margin-bottom: var(--a-spacing-7);
+            margin-bottom: var(--ax-space-28);
         }
     }
 

@@ -1,30 +1,30 @@
 .readMore {
-    margin-bottom: var(--a-spacing-9);
+    margin-bottom: var(--ax-space-36);
 
-    :global(.navds-read-more__button) {
+    :global(.aksel-read-more__button) {
         z-index: 1;
-        margin-bottom: var(--a-spacing-3);
-        background-color: var(--a-blue-50);
-        padding: var(--a-spacing-2) var(--a-spacing-6) var(--a-spacing-2) 13px;
-        outline: 4px solid var(--a-white);
+        margin-bottom: var(--ax-space-12);
+        background-color: var(--ax-accent-100);
+        padding: var(--ax-space-8) var(--ax-space-24) var(--ax-space-8) 13px;
+        outline: 4px solid white;
         border-radius: 22px; // Atm. not in Aksel
         align-items: center;
-        gap: var(--a-spacing-2);
+        gap: var(--ax-space-8);
 
         color: var(--default-action-color);
 
         svg {
-            width: var(--a-spacing-6);
-            height: var(--a-spacing-7); // Needed to visually vertical align
+            width: var(--ax-space-24);
+            height: var(--ax-space-28); // Needed to visually vertical align
             path {
                 fill: var(--default-action-color);
             }
         }
 
         &:hover {
-            background-color: var(--a-blue-100);
+            background-color: var(--ax-accent-200);
 
-            :global(.navds-read-more__expand-icon) {
+            :global(.aksel-read-more__expand-icon) {
                 transform: translateY(0);
             }
         }
@@ -34,19 +34,19 @@
         }
     }
 
-    :global(.navds-read-more__content) {
-        border-left: 1px solid var(--a-gray-400);
-        margin-left: var(--a-spacing-6);
-        padding: 0 0 0 var(--a-spacing-5);
+    :global(.aksel-read-more__content) {
+        border-left: 1px solid var(--ax-neutral-500);
+        margin-left: var(--ax-space-24);
+        padding: 0 0 0 var(--ax-space-20);
     }
 
-    &:global(.navds-read-more--open) {
-        :global(.navds-read-more__button) {
+    &:global(.aksel-read-more--open) {
+        :global(.aksel-read-more__button) {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
         }
 
-        :global(.navds-read-more__expand-icon) {
+        :global(.aksel-read-more__expand-icon) {
             transform: rotate(-180deg) !important;
         }
     }

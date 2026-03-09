@@ -1,9 +1,9 @@
 @use 'common' as common;
 
 .filtreringsmeny {
-    box-shadow: var(--a-blue-200) inset 0 0 0 8px;
-    border-radius: var(--a-border-radius-medium);
-    background-color: var(--a-white);
+    box-shadow: var(--ax-accent-300) inset 0 0 0 8px;
+    border-radius: var(--ax-radius-4);
+    background-color: white;
 
     @include common.section-padding-mixin();
 
@@ -15,13 +15,13 @@
         }
     }
 
-    .category:global(.navds-fieldset) {
+    .category:global(.aksel-fieldset) {
         margin-top: 1.5em;
 
-        :global(.navds-fieldset__legend) {
-            font-size: var(--a-font-size-large);
+        :global(.aksel-fieldset__legend) {
+            font-size: var(--ax-font-size-large);
         }
-        :global(.navds-checkboxes) {
+        :global(.aksel-checkboxes) {
             display: flex;
             align-items: flex-start;
             flex-direction: column;

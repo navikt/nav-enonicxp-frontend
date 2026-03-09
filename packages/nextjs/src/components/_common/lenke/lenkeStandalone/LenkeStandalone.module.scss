@@ -15,7 +15,7 @@
 
     &:hover {
         .customChevronStyle {
-            left: var(--a-spacing-1-alt);
+            left: var(--ax-space-6);
         }
     }
 }
@@ -27,13 +27,13 @@
 }
 
 .label {
-    padding-top: var(--a-spacing-1);
-    padding-left: var(--a-spacing-7);
+    padding-top: var(--ax-space-4);
+    padding-left: var(--ax-space-28);
     color: black;
 }
 
 .iconContainer {
-    min-width: var(--a-spacing-7);
+    min-width: var(--ax-space-28);
 
     .customChevronStyle {
         position: relative;

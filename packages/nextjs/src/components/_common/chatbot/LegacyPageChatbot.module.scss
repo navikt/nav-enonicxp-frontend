@@ -6,14 +6,14 @@
 
     display: flex;
     justify-content: center;
-    margin: var(--a-spacing-8) 0 var(--a-spacing-4) 0;
+    margin: var(--ax-space-32) 0 var(--ax-space-16) 0;
 
     & > div {
         width: $width;
         max-width: 100%;
-        background-color: var(--a-white);
+        background-color: white;
         &::after {
-            border-top-color: var(--a-white);
+            border-top-color: white;
         }
     }
 }

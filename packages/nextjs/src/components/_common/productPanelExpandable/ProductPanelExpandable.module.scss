@@ -1,21 +1,21 @@
 @use 'common' as common;
 
 .expandable {
-    border-bottom: 1px var(--a-deepblue-100) solid;
+    border-bottom: 1px var(--ax-brand-blue-200) solid;
     border-radius: 0;
     --__ac-expansioncard-border-width: 0;
 
-    &:global(.navds-expansioncard--open) {
-        :global(.navds-expansioncard__header) {
-            border-radius: var(--a-border-radius-large);
+    &:global(.aksel-expansioncard--open) {
+        :global(.aksel-expansioncard__header) {
+            border-radius: var(--ax-radius-8);
         }
     }
 }
 
 .expandableHeader {
-    padding: var(--a-spacing-5) var(--a-spacing-1) var(--a-spacing-5) var(--a-spacing-3);
-    gap: var(--a-spacing-4);
-    border-radius: var(--a-border-radius-large);
+    padding: var(--ax-space-20) var(--ax-space-4) var(--ax-space-20) var(--ax-space-12);
+    gap: var(--ax-space-16);
+    border-radius: var(--ax-radius-8);
 
     &:after {
         display: none;
@@ -23,43 +23,43 @@
 
     &:hover,
     &:focus {
-        background-color: var(--a-deepblue-100);
-        color: var(--a-text-default);
+        background-color: var(--ax-brand-blue-200);
+        color: var(--ax-text-neutral);
         box-shadow: none;
-        outline: 5px solid var(--a-bg-default);
+        outline: 5px solid var(--ax-bg-default);
 
-        & + :global(.navds-expansioncard__content) {
+        & + :global(.aksel-expansioncard__content) {
             box-shadow: none;
         }
         .illustration :global(.back) [fill]:not([fill='none']) {
-            fill: var(--a-white);
+            fill: white;
         }
     }
 
-    &:hover :global(.navds-expansioncard__header-button) {
+    &:hover :global(.aksel-expansioncard__header-button) {
         background-color: transparent;
     }
 
     &.alignCenter {
-        :global(.navds-expansioncard__header-content) {
+        :global(.aksel-expansioncard__header-content) {
             align-items: center;
         }
     }
 
-    :global(.navds-expansioncard__header-content) {
+    :global(.aksel-expansioncard__header-content) {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        gap: var(--a-spacing-4);
+        gap: var(--ax-space-16);
     }
 
-    :global(.navds-expansioncard__header-button) {
+    :global(.aksel-expansioncard__header-button) {
         align-self: center;
     }
 }
 
 .expandableContent {
-    padding: var(--a-spacing-1) var(--a-spacing-3) var(--a-spacing-7);
+    padding: var(--ax-space-4) var(--ax-space-12) var(--ax-space-28);
 
     // Remove when we remove the old overview pages.
     &:not(.noLeftPadding) {
@@ -70,20 +70,20 @@
 }
 
 .illustration {
-    width: var(--a-spacing-12);
-    height: var(--a-spacing-12);
+    width: var(--ax-space-48);
+    height: var(--ax-space-48);
     flex-shrink: 0;
 
     :global(.back) [fill]:not([fill='none']) {
-        fill: var(--a-deepblue-100);
+        fill: var(--ax-brand-blue-200);
     }
     :global(.back) [stroke] {
-        stroke: var(--a-deepblue-100);
+        stroke: var(--ax-brand-blue-200);
     }
 }
 
 .copyLink {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 }
 
 .loader {
@@ -91,8 +91,8 @@
     flex-direction: column;
     align-items: center;
 
-    :global(.navds-loader) {
-        margin-bottom: var(--a-spacing-4);
+    :global(.aksel-loader) {
+        margin-bottom: var(--ax-space-16);
     }
 }
 
@@ -102,12 +102,12 @@
 }
 
 .title {
-    font-size: var(--a-font-size-xlarge);
-    font-weight: var(--a-font-weight-bold);
+    font-size: var(--ax-font-size-xlarge);
+    font-weight: var(--ax-font-weight-bold);
     word-break: break-word;
 }
 
 .ingress {
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
     text-wrap: pretty;
 }

@@ -1,6 +1,6 @@
 .moreLink {
-    margin-top: var(--a-spacing-4);
-    margin-left: var(--a-spacing-6);
+    margin-top: var(--ax-space-16);
+    margin-left: var(--ax-space-24);
     display: inline-block;
 
     & > * {
@@ -14,6 +14,6 @@
 
 .arrow {
     transform: translateY(3px);
-    margin-left: calc(-1 * var(--a-spacing-6));
-    margin-right: var(--a-spacing-3);
+    margin-left: calc(-1 * var(--ax-space-24));
+    margin-right: var(--ax-space-12);
 }

@@ -1,25 +1,25 @@
 @use 'common' as common;
 
 .layout {
-    background-color: var(--a-white);
+    background-color: white;
     @include common.full-width-mixin();
-    padding-top: var(--a-spacing-5);
-    padding-bottom: var(--a-spacing-3);
+    padding-top: var(--ax-space-20);
+    padding-bottom: var(--ax-space-12);
 }
 
 .header {
-    padding-bottom: var(--a-spacing-3);
+    padding-bottom: var(--ax-space-12);
 
     @media #{common.$mq-screen-mobile-small} {
-        padding-bottom: var(--a-spacing-2);
+        padding-bottom: var(--ax-space-8);
     }
 }
 
 .services {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 
     @media #{common.$mq-screen-mobile-small} {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 }
 

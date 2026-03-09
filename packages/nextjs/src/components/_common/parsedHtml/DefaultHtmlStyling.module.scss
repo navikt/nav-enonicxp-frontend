@@ -1,6 +1,6 @@
 .html {
     word-break: break-word;
-    margin-bottom: var(--a-spacing-9);
+    margin-bottom: var(--ax-space-36);
 
     img {
         display: block;
@@ -10,13 +10,13 @@
 
     table {
         float: none;
-        margin-bottom: var(--a-spacing-7);
+        margin-bottom: var(--ax-space-28);
 
         th,
         td {
-            font-size: var(--a-font-size-large);
-            line-height: var(--a-font-line-height-large);
-            padding: var(--a-spacing-3);
+            font-size: var(--ax-font-size-large);
+            line-height: var(--ax-font-line-height-large);
+            padding: var(--ax-space-12);
             vertical-align: top;
         }
     }
@@ -25,14 +25,14 @@
         color: rgb(64, 64, 64);
         text-transform: uppercase;
         font-variant-caps: all-small-caps;
-        margin-top: var(--a-spacing-9);
+        margin-top: var(--ax-space-36);
     }
 
     ul,
     ol {
-        padding-left: var(--a-spacing-6);
-        margin-bottom: var(--a-spacing-9);
-        margin-left: var(--a-spacing-1);
+        padding-left: var(--ax-space-24);
+        margin-bottom: var(--ax-space-36);
+        margin-left: var(--ax-space-4);
 
         li::marker {
             color: var(--brand-purple-deep);
@@ -42,7 +42,7 @@
 
         li:not(:last-child) {
             // last-child-selector needed for specificity
-            margin-bottom: var(--a-spacing-3);
+            margin-bottom: var(--ax-space-12);
         }
 
         li:last-child {
@@ -51,12 +51,12 @@
 
         ul,
         ol {
-            margin: var(--a-spacing-3) var(--a-spacing-1);
+            margin: var(--ax-space-12) var(--ax-space-4);
         }
     }
 
     ol li {
-        padding-left: var(--a-spacing-1);
+        padding-left: var(--ax-space-4);
     }
 
     > :last-child {

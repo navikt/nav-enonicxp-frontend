@@ -4,9 +4,9 @@
     max-width: 50rem;
     margin: 0 auto;
 
-    padding: var(--a-spacing-6);
-    background: var(--a-white);
-    border-radius: var(--a-border-radius-medium);
+    padding: var(--ax-space-24);
+    background: white;
+    border-radius: var(--ax-radius-4);
 
     .header {
         display: flex;
@@ -14,12 +14,12 @@
     }
 
     .headerMsg {
-        margin-right: var(--a-spacing-6);
-        padding-right: var(--a-spacing-6);
+        margin-right: var(--ax-space-24);
+        padding-right: var(--ax-space-24);
         vertical-align: top;
     }
 
     .content {
-        margin-top: var(--a-spacing-6);
+        margin-top: var(--ax-space-24);
     }
 }

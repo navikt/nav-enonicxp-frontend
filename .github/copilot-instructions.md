@@ -75,7 +75,7 @@ This project uses **@navikt/aksel** as its design system:
 
 **Important conventions**:
 
-- **Tokens over hardcoded values**: Use `var(--a-spacing-*)`, `var(--a-font-*)`, `var(--a-color-*)` tokens in CSS - never hardcode spacing, colors, or typography
+- **Tokens over hardcoded values**: Use `var(--ax-space--*)`, `var(--ax-font-*)`, `var(--ax-color-*)` tokens in CSS - never hardcode spacing, colors, or typography
 - **Semantic typography**: Use `<Heading>` for headings and `<BodyLong>` for paragraphs instead of raw HTML tags (`<h1>`, `<p>`)
 - **Import pattern**: `import { Heading, BodyLong } from '@navikt/ds-react'`
 - **Heading props**: Always specify `level` (semantic HTML) and `size` (visual size) separately - they don't have to match

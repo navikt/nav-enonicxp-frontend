@@ -4,10 +4,10 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
-    background-color: var(--a-white);
+    background-color: white;
     border: 1px solid var(--default-action-color);
-    border-radius: var(--a-border-radius-small);
-    padding: var(--a-spacing-6);
+    border-radius: var(--ax-radius-2);
+    padding: var(--ax-space-24);
     text-decoration-line: none;
     color: black;
     transition: none;
@@ -39,16 +39,16 @@
         color: var(--default-action-color);
     }
     .ingress {
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
     }
     .lenkebase {
         text-decoration: none;
     }
-    :global(.navds-link-card__arrow) {
-        margin-inline-start: var(--a-spacing-6);
+    :global(.aksel-link-card__arrow) {
+        margin-inline-start: var(--ax-space-24);
     }
-    :global(.navds-link-card__image-container) {
-        border-radius: var(--a-border-radius-small);
+    :global(.aksel-link-card__image-container) {
+        border-radius: var(--ax-radius-2);
     }
 }
 
@@ -58,19 +58,19 @@
         width: 100%;
         justify-content: center;
         align-items: center;
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
 
         img {
-            height: var(--a-spacing-9);
+            height: var(--ax-space-36);
         }
         &.bg {
             margin: 0;
-            padding: 0 var(--a-spacing-4);
-            height: var(--a-spacing-24);
+            padding: 0 var(--ax-space-16);
+            height: var(--ax-space-96);
 
             img {
                 height: auto;
-                max-height: var(--a-spacing-20);
+                max-height: var(--ax-space-80);
             }
         }
     }
@@ -84,11 +84,11 @@
 
 :global(.horizontal).lenkepanel {
     .icon {
-        margin-right: var(--a-spacing-2);
+        margin-right: var(--ax-space-8);
 
         img {
-            width: var(--a-spacing-9);
-            height: var(--a-spacing-9);
+            width: var(--ax-space-36);
+            height: var(--ax-space-36);
         }
     }
     .header {

@@ -3,7 +3,7 @@
 @import '@navikt/nav-office-reception-info/dist/style.css';
 
 :root {
-    --default-action-color: var(--a-blue-600);
+    --default-action-color: var(--ax-accent-700);
     --brand-purple-deep: #99185e;
     --brand-purple-light: #e6c7d8;
     --brand-beige: #fef5ef;
@@ -17,11 +17,11 @@
 
 #__next,
 .decorator-utils-container {
-    background-color: var(--a-bg-subtle);
+    background-color: var(--ax-bg-neutral-soft);
 }
 
 .decorator-utils-container {
-    min-height: var(--a-spacing-16);
+    min-height: var(--ax-space-64);
 }
 
 #decorator-header {
@@ -39,10 +39,10 @@
 }
 
 // Override aksel styling
-.navds-heading {
+.aksel-heading {
     word-break: break-word;
 }
-.navds-ingress {
+.aksel-ingress {
     line-height: 1.5;
 }
 
@@ -53,7 +53,7 @@ figure {
 
 table {
     .spacer-row {
-        height: var(--a-spacing-4);
+        height: var(--ax-space-16);
         background-color: transparent;
     }
 }

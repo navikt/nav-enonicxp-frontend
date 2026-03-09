@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: var(--a-spacing-1);
+    margin-bottom: var(--ax-space-4);
 
     @include common.full-width-mixin;
 }
@@ -17,12 +17,12 @@
 
 .tagLabel {
     color: var(--a-lightblue-800);
-    font-weight: var(--a-font-weight-bold);
-    padding-left: var(--a-spacing-2);
+    font-weight: var(--ax-font-weight-bold);
+    padding-left: var(--ax-space-8);
     text-transform: uppercase;
 }
 
 .tagIcon {
-    height: var(--a-spacing-5);
-    width: var(--a-spacing-5);
+    height: var(--ax-space-20);
+    width: var(--ax-space-20);
 }

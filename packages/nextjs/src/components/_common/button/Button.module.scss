@@ -4,9 +4,9 @@
     box-shadow: inset 0 0 0 2px var(--default-action-color);
 
     &__icon {
-        height: var(--a-spacing-6);
+        height: var(--ax-space-24);
     }
-    :global(.navds-label) {
+    :global(.aksel-label) {
         text-align: center;
     }
 }
@@ -45,7 +45,7 @@
         color: var(--default-action-color);
     }
 
-    :global(.navds-heading) {
+    :global(.aksel-heading) {
         color: var(--default-action-color);
     }
 }

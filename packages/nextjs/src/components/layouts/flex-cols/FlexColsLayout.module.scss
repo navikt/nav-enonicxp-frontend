@@ -1,9 +1,9 @@
 @use 'common' as common;
 
 @mixin contactBackground() {
-    padding-bottom: var(--a-spacing-16);
+    padding-bottom: var(--ax-space-64);
     background-color: var(
-        --a-gray-50
+        --ax-neutral-100
     ) !important; // To override inline colors set in XP (to be changed in the future)
     --size: 6px;
     --p: 3px;
@@ -17,7 +17,7 @@
 
 .flexCols {
     &:last-child {
-        padding-bottom: var(--a-spacing-16);
+        padding-bottom: var(--ax-space-64);
     }
 
     :global(.region__flexcols) {
@@ -58,7 +58,7 @@
 }
 
 .header {
-    margin-bottom: var(--a-spacing-10);
+    margin-bottom: var(--ax-space-40);
 }
 
 .layoutSituationOrProduct {
@@ -67,12 +67,12 @@
 
     @include common.full-width-mixin();
 
-    padding-top: var(--a-spacing-16);
-    padding-bottom: var(--a-spacing-16);
+    padding-top: var(--ax-space-64);
+    padding-bottom: var(--ax-space-64);
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
-        padding-top: var(--a-spacing-20);
+        padding-top: var(--ax-space-80);
 
         .contentWrapper {
             margin-left: auto;
@@ -81,7 +81,7 @@
 
         :global(.region__flexcols--2-cols) {
             :global(.part__contact-option) {
-                margin-bottom: var(--a-spacing-8);
+                margin-bottom: var(--ax-space-32);
             }
         }
     }
@@ -119,27 +119,27 @@
 }
 
 .layoutSituationShelf {
-    padding-top: var(--a-spacing-24);
+    padding-top: var(--ax-space-96);
     padding-bottom: 0;
 }
 
 .shelfHeader {
     color: var(--brand-purple-deep);
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--ax-space-16);
     text-wrap: balance;
     position: relative;
 
     &:before {
         @include common.header-before-rectangle();
     }
-    :global(.navds-heading) {
-        margin-top: var(--a-spacing-2);
+    :global(.aksel-heading) {
+        margin-top: var(--ax-space-8);
     }
 }
 
 .shelfLayout {
     display: flex;
-    gap: var(--a-spacing-3);
+    gap: var(--ax-space-12);
 
     > * {
         margin: 0 !important; //overstyr nth-child margin fra generell flexcols
