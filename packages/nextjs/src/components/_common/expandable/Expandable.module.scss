@@ -1,15 +1,9 @@
 .expandable {
     display: block;
-
-    :global(.aksel-expansioncard__header-chevron) {
-        transform: rotate(0) !important;
-    }
+    border: none;
+    box-shadow: none;
 
     &:global(.aksel-expansioncard--open) {
-        :global(.aksel-expansioncard__header-chevron) {
-            transform: rotate(180deg) !important;
-        }
-
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
@@ -19,16 +13,14 @@
     .header {
         background-color: #e6f0ff;
         border-radius: 22px;
-        border: 0px;
-        box-shadow: 0 0 0;
         padding: var(--ax-space-8) var(--ax-space-8) var(--ax-space-8) var(--ax-space-12);
         width: fit-content;
 
-        :global(.aksel-expansioncard__header-content) {
-            align-items: center;
-            color: var(--default-action-color);
+        div {
             display: flex;
+            align-items: center;
             gap: var(--ax-space-8);
+            color: var(--default-action-color);
         }
 
         :global(.aksel-expansioncard__header-button) {
@@ -51,10 +43,6 @@
             :global(.aksel-expansioncard__header-button) {
                 background-color: transparent;
             }
-
-            :global(.aksel-expansioncard__header-chevron) {
-                transform: translateY(0);
-            }
         }
         &:after {
             display: none;
@@ -66,10 +54,6 @@
             width: 100%;
             padding-left: var(--ax-space-16);
         }
-    }
-
-    .headerTitle {
-        display: flex;
     }
 
     .headerIcon {
