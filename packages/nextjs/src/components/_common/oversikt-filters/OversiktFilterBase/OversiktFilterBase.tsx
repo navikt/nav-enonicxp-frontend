@@ -30,7 +30,7 @@ export const OversiktFilterBase = <Type extends Area>({
             <Heading className="sr-only" size="xsmall" level="3">
                 {translations['select']}
             </Heading>
-            <Chips className={styles.filterWrapper}>
+            <Chips className={styles.filterWrapper} data-color="brand-blue">
                 {options.map((option) => {
                     const optionLabel = optionsTranslations(option);
 
