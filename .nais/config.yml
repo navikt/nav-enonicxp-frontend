@@ -20,10 +20,16 @@ spec:
     path: /api/internal/isAlive
     initialDelay: 20
     timeout: 10
+    port: 3000
+    periodSeconds: 10
+    failureThreshold: 6
   readiness:
     path: /api/internal/isReady
     initialDelay: 20
     timeout: 10
+    port: 3000
+    periodSeconds: 5
+    failureThreshold: 12
   prometheus:
     enabled: true
     path: /internal/metrics

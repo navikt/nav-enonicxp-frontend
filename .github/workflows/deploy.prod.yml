@@ -53,6 +53,7 @@ jobs:
         steps:
             - name: Generate unique tag name
               run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
+
             - name: Create GitHub Release
               uses: softprops/action-gh-release@v2
               with:
