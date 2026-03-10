@@ -23,6 +23,7 @@
 
         :global(.aksel-expansioncard__header-button) {
             min-height: 20px;
+
             svg {
                 path {
                     fill: var(--default-action-color);
@@ -32,16 +33,12 @@
 
         &:hover {
             background-color: #cce1ff;
-            box-shadow: 0 0 0;
-
-            & + .content {
-                box-shadow: 0 0 0;
-            }
 
             :global(.aksel-expansioncard__header-button) {
                 background-color: transparent;
             }
         }
+
         &:after {
             display: none;
         }
@@ -59,14 +56,15 @@
         width: 28px;
         height: 28px;
     }
+
     .content {
         border: 0;
         border-left: 1px solid var(--ax-neutral-500);
         margin: var(--ax-space-8) 0 0 var(--ax-space-24);
         border-radius: 0;
         padding-left: var(--ax-space-20);
-        box-shadow: 0 0 0;
     }
+
     :global(.parsedHtml:last-child) {
         margin-bottom: 0;
         > *:last-child {
