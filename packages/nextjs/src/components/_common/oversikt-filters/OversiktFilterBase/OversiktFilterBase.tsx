@@ -39,7 +39,6 @@ export const OversiktFilterBase = <Type extends Area>({
                             type={'button'}
                             onClick={() => selectionCallback(option)}
                             aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
-                            className={styles.filterButton}
                             checkmark={false}
                             selected={selected === option}
                             key={option}
