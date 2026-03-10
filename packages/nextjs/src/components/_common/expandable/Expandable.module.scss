@@ -3,11 +3,9 @@
     border: none;
     box-shadow: none;
 
-    &:global(.aksel-expansioncard--open) {
-        .header {
-            position: sticky;
-            top: var(--decorator-sticky-offset, 0px);
-        }
+    .header[data-open='true'] {
+        position: sticky;
+        top: var(--decorator-sticky-offset, 0px);
     }
 
     .header {
