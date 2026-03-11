@@ -2,6 +2,7 @@ FROM node:24-alpine AS build
 
 # No need to add user or group here.
 RUN apk add --no-cache ca-certificates libc6-compat && update-ca-certificates
+RUN corepack enable
 
 WORKDIR /app
 
@@ -9,19 +10,19 @@ ARG GITHUB_PAT
 ARG SERVICE_SECRET
 ARG ENV_FILE
 
-COPY package*.json .failover/.npmrc /app/
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .failover/.npmrc /app/
 COPY packages/server /app/packages/server/
 COPY packages/nextjs /app/packages/nextjs/
 COPY packages/shared /app/packages/shared/
 
-RUN npm ci --ignore-scripts
+RUN pnpm install --frozen-lockfile
 RUN rm -f .npmrc
 
 COPY ".failover/${ENV_FILE}" /app/.env
 COPY ".failover/${ENV_FILE}" /app/packages/nextjs/.env
 COPY ".failover/${ENV_FILE}" /app/packages/server/.env
 
-RUN npm run build
+RUN pnpm run build
 
 # --------- Final stage ---------
 FROM node:24-alpine
@@ -38,4 +39,4 @@ COPY --from=build /tmp/images/image-manifest /tmp/images/image-manifest
 USER nextjs
 
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["node", "-r", "dotenv/config", "packages/server/.dist/server.cjs", "dotenv_config_path=./.env"]

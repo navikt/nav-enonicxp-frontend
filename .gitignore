@@ -60,3 +60,6 @@
 **/blob-report
 **/playwright/.cache
 **/public/screenshot.spec.ts-snapshots/
+
+# pnpm deploy folder (used to avoid symlinks in docker image
+**/nonsymlink

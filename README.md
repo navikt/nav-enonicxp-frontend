@@ -25,21 +25,17 @@ Hvis lintingreglene i pakkene ikke plukkes opp av VS Code, sørg for å ha følg
 #### Med lokal XP:
 
 - Start en XP sandbox (se nav-enonicxp readme for fremgangsmåte)
-- Kjør `npm run dev`
+- Kjør `pnpm run dev`
 
 #### Via dev-proxy:
 
 - Kopier .env.development til .env.development.local.
 - Sett f.eks. `XP_ORIGIN=https://nav-enonicxp-proxy.intern.dev.nav.no/dev1` (se dev-proxy readme for andre alternativer)
-- Kjør `npm run dev-custom`
-
-### Production mode:
-
-Kjør `npm run start-local-clean`
+- Kjør `pnpm run dev-custom`
 
 ### Storybook
 
-Kjør Storybook lokalt med `npm run storybook` eller besøk den deploya versjonen [https://navikt.github.io/nav-enonicxp-frontend/](https://navikt.github.io/nav-enonicxp-frontend/)
+Kjør Storybook lokalt med `pnpm run storybook` eller besøk den deploya versjonen [https://navikt.github.io/nav-enonicxp-frontend/](https://navikt.github.io/nav-enonicxp-frontend/)
 
 ### Andre lokale avhengigheter
 
@@ -78,7 +74,7 @@ Github workflows har ikke tilgang til q-miljøer i Nav (feks dev), så imaget m�
 
 - Legg inn relevante secrets lokalt som spesifisert i kommentarene øverst i `.failover/build-dev-failover-image.sh`
 - Husk at du i tillegg må være på naisdevice!
-- Kjør `npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_name=ditt-valgte-image-navn`
+- Kjør `pnpm run build-and-push-dev-failover dev1|dev2 ditt-valgte-image-navn`
 - Vent på at imaget bygges (det tar normalt 15-20 min)
 - I rapporten vil du få en Digest ("sha256:ab372a...."). Kopier selve sha'en (dvs ikke 'sha256:') til bruk i neste steg.
 - Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og sha'en som du fikk etter push.

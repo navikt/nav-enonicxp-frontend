@@ -2,5 +2,12 @@
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
     "private": true,
-    "dependencies": {}
+    "dependencies": {
+        "next": "catalog:",
+        "pino": "catalog:",
+        "redis": "catalog:"
+    },
+    "devDependencies": {
+        "pino-pretty": "catalog:"
+    }
 }
