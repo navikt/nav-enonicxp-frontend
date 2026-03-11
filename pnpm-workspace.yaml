@@ -15,7 +15,7 @@ catalog:
   "@grafana/faro-web-tracing": 2.2.2
   "@navikt/aksel-icons": 7.40.0
   "@navikt/ds-css": 7.40.0
-  "@navikt/ds-react": 7.40.0
+  "@navikt/ds-react": 8.6.0
   "@navikt/ds-tokens": 7.40.0
   "@navikt/nav-dekoratoren-moduler": 3.6.1
   "@navikt/nav-office-reception-info": v1.4.7-beta.3
