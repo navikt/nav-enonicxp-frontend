@@ -5,59 +5,56 @@
     "engines": {
         "node": "24.x"
     },
+    "packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a",
     "scripts": {
-        "build": "npm run build:server && npm run build:nextjs",
-        "build:nextjs": "npm run build --workspace packages/nextjs",
-        "build:server": "npm run build --workspace packages/server",
-        "build:storybook": "npm run build:storybook --workspace packages/nextjs",
-        "start": "npm run start --workspace packages/server",
+        "build": "pnpm run build:server && pnpm run build:nextjs",
+        "build:nextjs": "pnpm --filter ./packages/nextjs run build",
+        "build:server": "pnpm --filter ./packages/server run build",
+        "build:storybook": "pnpm --filter ./packages/nextjs run build:storybook",
+        "start": "pnpm --filter ./packages/server run start",
         "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
-        "storybook": "npm run storybook --workspace packages/nextjs",
-        "dev": "npm run copy-env-development && rm -fr packages/nextjs/.next && npm run build:server && npm run start",
-        "dev-custom": "npm run copy-env-development-custom && npm run build:server && npm run start",
-        "build-test-production": "npm run copy-env-prod-local && npm run build",
-        "start-test-production": "npm run copy-env-prod-local && npm run start",
-        "start-local": "rm -fr packages/nextjs/.next && npm run build-test-production && npm run start-test-production",
-        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh $npm_config_app_env $npm_config_image_tag",
-        "analyze-bundle": "npm run analyze-bundle --workspace packages/nextjs",
-        "lint": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run lint:client\" \"npm run lint:server\"",
-        "lint:client": "npm run lint --workspace packages/nextjs",
-        "lint:server": "npm run lint --workspace packages/server",
-        "test": "concurrently --raw --names \"client,server\" --prefix-colors \"blue,green\" \"npm run test:client\" \"npm run test:server\"",
-        "test:client": "npm run test --workspace packages/nextjs",
-        "test:server": "npm run test --workspace packages/server",
+        "storybook": "pnpm --filter ./packages/nextjs run storybook",
+        "dev": "pnpm run copy-env-development && rm -fr packages/nextjs/.next && pnpm run build:server && pnpm run start",
+        "dev-custom": "pnpm run copy-env-development-custom && pnpm run build:server && pnpm run start",
+        "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
+        "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
+        "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
+        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh",
+        "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
+        "lint": "pnpm -r --parallel run lint",
+        "test": "pnpm -r --parallel run test",
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
         "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
-        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env"
+        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
+        "prepare": "husky || true"
     },
-    "workspaces": [
-        "packages/*"
-    ],
     "devDependencies": {
-        "@eslint/js": "9.39.2",
-        "@next/eslint-plugin-next": "15.5.4",
-        "@types/escape-html": "1.0.4",
-        "@types/express": "5.0.6",
-        "@types/lodash.debounce": "4.0.9",
-        "@types/mock-fs": "4.13.4",
-        "@types/node": "20.14.10",
-        "@typescript-eslint/eslint-plugin": "8.56.0",
-        "@typescript-eslint/parser": "8.56.0",
-        "concurrently": "9.2.1",
-        "esbuild": "0.27.3",
-        "eslint": "9.39.2",
-        "eslint-config-prettier": "10.1.8",
-        "eslint-plugin-css-modules": "2.12.0",
-        "eslint-plugin-import": "2.32.0",
-        "eslint-plugin-no-relative-import-paths": "1.6.1",
-        "eslint-plugin-prettier": "5.5.5",
-        "eslint-plugin-react": "7.37.5",
-        "eslint-plugin-react-hooks": "6.1.0",
-        "globals": "17.3.0",
-        "husky": "9.1.7",
-        "prettier": "3.8.1",
-        "typescript": "5.9.3",
-        "typescript-eslint": "8.56.0"
+        "@eslint/js": "catalog:",
+        "@next/eslint-plugin-next": "catalog:",
+        "@playwright/test": "catalog:",
+        "@types/escape-html": "catalog:",
+        "@types/express": "catalog:",
+        "@types/lodash.debounce": "catalog:",
+        "@types/mock-fs": "catalog:",
+        "@types/node": "catalog:",
+        "@typescript-eslint/eslint-plugin": "catalog:",
+        "@typescript-eslint/parser": "catalog:",
+        "concurrently": "catalog:",
+        "esbuild": "catalog:",
+        "eslint": "catalog:",
+        "eslint-config-prettier": "catalog:",
+        "eslint-plugin-css-modules": "catalog:",
+        "eslint-plugin-import": "catalog:",
+        "eslint-plugin-no-relative-import-paths": "catalog:",
+        "eslint-plugin-prettier": "catalog:",
+        "eslint-plugin-react": "catalog:",
+        "eslint-plugin-react-hooks": "catalog:",
+        "globals": "catalog:",
+        "husky": "catalog:",
+        "lint-staged": "catalog:",
+        "prettier": "catalog:",
+        "typescript": "catalog:",
+        "typescript-eslint": "catalog:"
     },
     "browserslist": {
         "production": [
@@ -75,31 +72,45 @@
         ]
     },
     "dependencies": {
-        "@navikt/nav-dekoratoren-moduler": "4.0.0-beta-analytics-types.2",
-        "@next/bundle-analyzer": "15.5.4",
-        "dotenv": "17.3.1",
-        "express": "5.2.1",
-        "express-prom-bundle": "8.0.0",
-        "lru-cache": "11.2.6",
-        "pino": "10.3.1",
-        "pino-pretty": "13.1.3",
-        "react": "19.2.4",
-        "react-dom": "19.2.4",
-        "react-error-boundary": "6.1.1",
-        "redis": "5.11.0"
+        "@navikt/nav-dekoratoren-moduler": "catalog:",
+        "@next/bundle-analyzer": "catalog:",
+        "domhandler": "catalog:",
+        "dotenv": "catalog:",
+        "express": "catalog:",
+        "express-prom-bundle": "catalog:",
+        "lru-cache": "catalog:",
+        "pino": "catalog:",
+        "pino-pretty": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:",
+        "react-error-boundary": "catalog:",
+        "redis": "catalog:"
     },
     "optionalDependencies": {
-        "@esbuild/linux-x64": "0.27.3"
+        "@esbuild/linux-x64": "catalog:"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "@parcel/watcher",
+            "core-js-pure",
+            "esbuild",
+            "protobufjs",
+            "sharp",
+            "unrs-resolver"
+        ]
     },
     "lint-staged": {
         "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
-            "cd packages/nextjs && npm run lint:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "packages/server/**/*.{js,ts}": [
-            "cd packages/server && npm run lint:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "packages/shared/**/*.{js,ts}": [
-            "cd packages/shared && npm run lint:fix"
+            "eslint --fix",
+            "prettier --write"
         ],
         "**/*.{json,md,yml,yaml}": [
             "prettier --write"
