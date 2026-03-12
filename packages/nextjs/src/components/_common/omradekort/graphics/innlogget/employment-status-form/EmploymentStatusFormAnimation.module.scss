@@ -29,7 +29,7 @@
 }
 
 .letterPartBlue {
-    background-color: var(--ax-brand-blue-300);
+    background-color: #99c4dd;
 
     @include omradekort.transitionMixin;
     position: absolute;
@@ -44,7 +44,7 @@
 }
 
 .letterPartBlueTwo {
-    background-color: var(--ax-brand-blue-300);
+    background-color: #99c4dd;
 
     @include omradekort.transitionMixin;
     position: absolute;
