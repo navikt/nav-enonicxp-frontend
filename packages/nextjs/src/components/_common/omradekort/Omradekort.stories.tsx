@@ -23,16 +23,51 @@ export const Family: Story = {
     },
 };
 
-export const Employment: Story = {
-    args: {
-        title: 'Test',
-        area: 'employment-status-form',
-    },
-};
-
 export const Health: Story = {
     args: {
         title: 'Helse og sykdom',
         area: 'health',
+    },
+};
+
+export const Accessibility: Story = {
+    args: {
+        title: 'Hjelpemidler og tilrettelegging',
+        area: 'accessibility',
+    },
+};
+
+export const Pension: Story = {
+    args: {
+        title: 'Pensjon',
+        area: 'pension',
+    },
+};
+
+export const SocialCounselling: Story = {
+    args: {
+        title: 'Økonomisk sosialhjelp',
+        area: 'social_counselling',
+    },
+};
+
+export const Payments: Story = {
+    args: {
+        title: 'Utbetalinger',
+        area: 'payments',
+    },
+};
+
+export const Cases: Story = {
+    args: {
+        title: 'Dine saker',
+        area: 'cases',
+    },
+};
+
+export const EmploymentStatusForm: Story = {
+    args: {
+        title: 'Meldekort',
+        area: 'employment-status-form',
     },
 };
