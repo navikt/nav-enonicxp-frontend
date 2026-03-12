@@ -37,7 +37,7 @@ catalogs:
             specifier: 4.0.0-beta-analytics-types.2
             version: 4.0.0-beta-analytics-types.2
         '@navikt/nav-office-reception-info':
-            specifier: v1.4.9
+            specifier: 1.4.9
             version: 1.4.9
         '@next/bundle-analyzer':
             specifier: 15.5.4
@@ -2658,6 +2658,9 @@ packages:
             html-react-parser: '>=5.x'
             jsdom: '>=16.x'
             react: '>=17.x'
+        peerDependenciesMeta:
+            react:
+                optional: true
 
     '@navikt/nav-office-reception-info@1.4.9':
         resolution:
@@ -12342,6 +12345,7 @@ snapshots:
             html-react-parser: 5.2.17(@types/react@19.2.14)(react@19.2.4)
             js-cookie: 3.0.5
             jsdom: 26.1.0
+        optionalDependencies:
             react: 19.2.4
 
     '@navikt/nav-office-reception-info@1.4.9(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
