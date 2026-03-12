@@ -5,9 +5,9 @@ import { Knapp } from 'components/_common/knapp/Knapp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 
-import style from './ButtonPart.module.scss';
+import style from './KnappPart.module.scss';
 
-export type PartConfigButton = {
+export type PartConfigKnapp = {
     link: LinkSelectable;
     icon?: XpImageProps;
     fullwidth: boolean;
@@ -19,7 +19,7 @@ export const KnappPart = ({ config }: PartComponentProps<PartType.Button>) => {
     const linkProps = getSelectableLinkProps(link);
 
     return (
-        <Knapp className={style.button} href={linkProps.url} xpIcon={icon} fullWidth={fullwidth}>
+        <Knapp className={style.knapp} href={linkProps.url} xpIcon={icon} fullWidth={fullwidth}>
             {linkProps.text}
         </Knapp>
     );

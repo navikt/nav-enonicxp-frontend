@@ -41,7 +41,7 @@ import { LenkelistePart } from './lenkeliste/LenkelistePart';
 import { NewsListPart } from './news-list/NewsListPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
-import { KnappPart } from './button/KnappPart';
+import { KnappPart } from './knapp/KnappPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { DetaljinformasjonForDetAktuelleKontoretPart } from './detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';

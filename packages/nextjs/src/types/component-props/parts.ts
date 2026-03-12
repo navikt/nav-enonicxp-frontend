@@ -4,7 +4,7 @@ import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart
 import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
-import { PartConfigButton } from 'components/parts/button/KnappPart';
+import { PartConfigKnapp } from 'components/parts/knapp/KnappPart';
 import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
 import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
@@ -97,7 +97,7 @@ type PartConfigs = {
     [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
-    [PartType.Button]: PartConfigButton;
+    [PartType.Button]: PartConfigKnapp;
     [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
