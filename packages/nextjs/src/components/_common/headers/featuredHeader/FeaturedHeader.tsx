@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { usePageContentProps } from 'store/pageContext';
 import { translator } from 'translations';
-import { CurrentTopicPageProps } from 'components/pages/current-topic-page/CurrentTopicPage';
+import { CurrentTopicPageProps } from 'components/pages/currentTopicPage/CurrentTopicPage';
 import { ContentProps } from 'types/content-props/_content-common';
 import { DateLine } from './DateLine/DateLine';
 import { TagLine } from './TagLine/TagLine';

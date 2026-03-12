@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { mockOfficeData } from 'components/pages/office-page/officeDetails/mockData';
+import { mockOfficeData } from 'components/pages/officePage/officeDetails/mockData';
 import { OfficeInformation } from './OfficeInformation';
 
 const meta = {
