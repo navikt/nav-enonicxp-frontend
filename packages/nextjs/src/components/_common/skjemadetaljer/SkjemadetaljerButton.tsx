@@ -1,6 +1,6 @@
 import { Variation } from 'types/content-props/skjemadetaljer';
 import { getSelectableLinkProps } from 'utils/links-from-content';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 
 import styles from './SkjemadetaljerButton.module.scss';
 
@@ -21,8 +21,8 @@ export const SkjemadetaljerButton = (props: FormsListItemProps) => {
     const { url } = getSelectableLinkProps(link);
 
     return (
-        <Button className={styles.button} href={url}>
+        <Knapp className={styles.button} href={url}>
             {label}
-        </Button>
+        </Knapp>
     );
 };

@@ -13,7 +13,7 @@ import {
     DefaultContactData,
 } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { Icon } from 'components/_common/kontakt-oss-kanal/_shared-utils/icon/Icon';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 import { KontaktOssKanalLayout } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLayout/KontaktOssKanalLayout';
 import { KontaktOssKanalIngress } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalIngress/KontaktOssKanalIngress';
 import { KontaktOssKanalLenkebase } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLenkebase/KontaktOssKanalLenkebase';
@@ -78,7 +78,7 @@ export const StandardAlternativ = (props: Props) => {
     return (
         <KontaktOssKanalLayout icon={<Icon type={iconName} />}>
             {channel === 'chat' ? (
-                <Button
+                <Knapp
                     variant="tertiary"
                     onClick={(e) => {
                         e.preventDefault();
@@ -96,7 +96,7 @@ export const StandardAlternativ = (props: Props) => {
                     ) : (
                         <EditorHelp text="Tittel mangler!" type="error" />
                     )}
-                </Button>
+                </Knapp>
             ) : (
                 <KontaktOssKanalLenkebase
                     {...getUrlOrClickHandler(channel)}

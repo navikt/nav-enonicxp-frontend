@@ -4,14 +4,14 @@ import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { XpImageProps } from 'types/media';
 import { XpImage } from 'components/_common/image/XpImage';
-
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { onlyText } from 'utils/react-children';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import style from './Button.module.scss';
+
+import style from './Knapp.module.scss';
 
 type Props = PropsWithChildren<{
     href?: string;
@@ -32,7 +32,7 @@ type Props = PropsWithChildren<{
     typeButton?: boolean;
 }>;
 
-export const Button = ({
+export const Knapp = ({
     href,
     variant = 'secondary',
     size = 'medium',
@@ -46,7 +46,7 @@ export const Button = ({
     className,
     children,
     analyticsEvent,
-    analyticsComponent,
+    analyticsComponent = 'Knapp',
     analyticsLabel,
     lenkestyling = false,
     typeButton = false,
@@ -67,8 +67,8 @@ export const Button = ({
             as={LenkeBase}
             href={href || '#'}
             className={classNames(
-                style.button,
-                fullWidth && style.buttonFullWidth,
+                style.knapp,
+                fullWidth && style.knappFullWidth,
                 className,
                 lenkestyling && style.lenkestyling
             )}
@@ -86,7 +86,7 @@ export const Button = ({
             type={typeButton ? 'button' : 'submit'}
             icon={
                 xpIcon ? (
-                    <XpImage imageProps={xpIcon} className={style.button__icon} maxWidth={64} />
+                    <XpImage imageProps={xpIcon} className={style.knapp__icon} maxWidth={64} />
                 ) : (
                     dsIcon
                 )

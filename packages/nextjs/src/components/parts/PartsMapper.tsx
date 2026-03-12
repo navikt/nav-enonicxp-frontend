@@ -41,7 +41,7 @@ import { LenkelistePart } from './lenkeliste/LenkelistePart';
 import { NewsListPart } from './news-list/NewsListPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
-import { ButtonPart } from './button/ButtonPart';
+import { KnappPart } from './button/KnappPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { DetaljinformasjonForDetAktuelleKontoretPart } from './detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
@@ -81,7 +81,7 @@ const PartComponentMapper = ({
         case PartType.Situasjonskort:
             return <SituasjonskortPart {...partProps} />;
         case PartType.Button:
-            return <ButtonPart {...partProps} />;
+            return <KnappPart {...partProps} />;
         case PartType.Kalkulator:
             return <KalkulatorPart {...partProps} />;
         case PartType.KontaktOssKanal:
