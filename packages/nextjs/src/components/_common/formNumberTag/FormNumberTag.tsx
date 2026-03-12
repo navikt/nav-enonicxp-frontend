@@ -10,7 +10,8 @@ export const FormNumberTag = ({ formNumber, className, selected }: Props) => {
     return (
         <Tag
             size="small"
-            variant={selected ? 'info-moderate' : 'neutral-moderate'}
+            variant={selected ? 'strong' : 'moderate'}
+            data-color={selected ? 'info' : 'neutral'}
             className={className}
         >
             {formNumber}
