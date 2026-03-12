@@ -34,8 +34,8 @@ catalogs:
             specifier: 7.40.0
             version: 7.40.0
         '@navikt/nav-dekoratoren-moduler':
-            specifier: 3.6.2
-            version: 3.6.2
+            specifier: 4.0.0-beta-analytics-types.2
+            version: 4.0.0-beta-analytics-types.2
         '@navikt/nav-office-reception-info':
             specifier: v1.4.9
             version: 1.4.9
@@ -300,7 +300,7 @@ importers:
         dependencies:
             '@navikt/nav-dekoratoren-moduler':
                 specifier: 'catalog:'
-                version: 3.6.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
+                version: 4.0.0-beta-analytics-types.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
             '@next/bundle-analyzer':
                 specifier: 'catalog:'
                 version: 15.5.4
@@ -443,7 +443,7 @@ importers:
                 version: 7.40.0
             '@navikt/nav-dekoratoren-moduler':
                 specifier: 'catalog:'
-                version: 3.6.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
+                version: 4.0.0-beta-analytics-types.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
             '@navikt/nav-office-reception-info':
                 specifier: 'catalog:'
                 version: 1.4.9(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -606,7 +606,7 @@ importers:
         dependencies:
             '@navikt/nav-dekoratoren-moduler':
                 specifier: 'catalog:'
-                version: 3.6.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
+                version: 4.0.0-beta-analytics-types.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
             cookie-parser:
                 specifier: 'catalog:'
                 version: 1.4.7
@@ -2610,6 +2610,14 @@ packages:
                 tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.40.0/16d67c0742bcf2a2c38ad37be6c287765640fd7f,
             }
 
+    '@navikt/analytics-types@0.0.7':
+        resolution:
+            {
+                integrity: sha512-rwSKrTd+cN8j9JoSs7FZhAqsyluPIvw8YI+lvDxAEwFVM0M/p7lW9N625Fz0AIMxgASQ5e+sM+ixGkBclpPdpg==,
+                tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.7/5fc7a2c116b8ce4cd8ae8e9cea57788399824c25,
+            }
+        engines: { node: '>=20.0.0', npm: '>=9.0.0' }
+
     '@navikt/ds-css@7.40.0':
         resolution:
             {
@@ -2638,11 +2646,11 @@ packages:
                 tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/7.40.0/36f981e12d4d90f18155615b7666b737039a3ff0,
             }
 
-    '@navikt/nav-dekoratoren-moduler@3.6.2':
+    '@navikt/nav-dekoratoren-moduler@4.0.0-beta-analytics-types.2':
         resolution:
             {
-                integrity: sha512-863vAyH9VjmRi8q4Aci4RQ3MaOG5faupzOD77IyhhTUmlyIxRw62jngX2j8c7wjavwwalhNnmie226NjYoNxjQ==,
-                tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/3.6.2/70dac085c605d0299f03a122646aecefea764d30,
+                integrity: sha512-xfRyRiYX5uwX1ye9gRgDDdbnc7oWzYzzAJEr0RHGoLPcjzZqElm5ECx+ewezaxlKyavWd0aeLHPVZQYhiFOjog==,
+                tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.0.0-beta-analytics-types.2/2212beaa123a2f00807270fe5355a5a7a40bdd24,
             }
         engines: { node: 24.x }
         peerDependencies:
@@ -2650,9 +2658,6 @@ packages:
             html-react-parser: '>=5.x'
             jsdom: '>=16.x'
             react: '>=17.x'
-        peerDependenciesMeta:
-            react:
-                optional: true
 
     '@navikt/nav-office-reception-info@1.4.9':
         resolution:
@@ -12310,6 +12315,8 @@ snapshots:
 
     '@navikt/aksel-icons@7.40.0': {}
 
+    '@navikt/analytics-types@0.0.7': {}
+
     '@navikt/ds-css@7.40.0': {}
 
     '@navikt/ds-react@7.40.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
@@ -12328,13 +12335,13 @@ snapshots:
 
     '@navikt/ds-tokens@7.40.0': {}
 
-    '@navikt/nav-dekoratoren-moduler@3.6.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)':
+    '@navikt/nav-dekoratoren-moduler@4.0.0-beta-analytics-types.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)':
         dependencies:
+            '@navikt/analytics-types': 0.0.7
             csp-header: 6.3.0
             html-react-parser: 5.2.17(@types/react@19.2.14)(react@19.2.4)
             js-cookie: 3.0.5
             jsdom: 26.1.0
-        optionalDependencies:
             react: 19.2.4
 
     '@navikt/nav-office-reception-info@1.4.9(@navikt/aksel-icons@7.40.0)(@navikt/ds-css@7.40.0)(@navikt/ds-react@7.40.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(dayjs@1.11.19)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':

@@ -19,7 +19,7 @@ catalog:
     '@navikt/ds-css': 7.40.0
     '@navikt/ds-react': 7.40.0
     '@navikt/ds-tokens': 7.40.0
-    '@navikt/nav-dekoratoren-moduler': 3.6.2
+    '@navikt/nav-dekoratoren-moduler': 4.0.0-beta-analytics-types.2
     '@navikt/nav-office-reception-info': v1.4.9
     '@next/bundle-analyzer': 15.5.4
     '@next/eslint-plugin-next': 15.5.4

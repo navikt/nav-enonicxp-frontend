@@ -36,13 +36,16 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
         setOpenTrekkspill((prev) =>
             isOpening ? [...prev, index] : prev.filter((i) => i !== index)
         );
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'trekkspill',
-            komponent: 'Accordion',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[type],
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'trekkspill',
+                komponentId: 'Accordion',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[type],
+            }
+        );
     };
 
     if (itemRefs.current.length !== accordion.length) {

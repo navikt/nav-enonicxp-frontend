@@ -1,26 +1,20 @@
-import { logAnalyticsEvent as logAnalyticsEventDecorator } from '@navikt/nav-dekoratoren-moduler';
+import {
+    logAnalyticsEvent as logAnalyticsEventDecorator,
+    Events,
+    type EventName,
+    type PropertiesFor,
+} from '@navikt/nav-dekoratoren-moduler';
 
-export enum AnalyticsEvents {
-    NAVIGATION = 'navigere',
-    FILTER = 'filtervalg',
-    ACC_EXPAND = 'accordion åpnet',
-    ACC_COLLAPSE = 'accordion lukket',
-    MODAL_OPEN = 'modal åpnet',
-    MODAL_CLOSE = 'modal lukket',
-    COPY_LINK = 'kopier-lenke',
-    CHAT_OPEN = 'chat-åpnet',
-    CALL = 'ring-oss',
-    VIDEO_START = 'video start',
-    VIDEO_STOP = 'video stopp',
-}
+export { Events as AnalyticsEvents };
+export type { EventName as AnalyticsEventName };
 
-export function logAnalyticsEvent(
-    eventName: AnalyticsEvents,
-    data?: Record<string, any>
+export function logAnalyticsEvent<TName extends EventName>(
+    eventName: TName,
+    eventData?: PropertiesFor<TName>
 ): Promise<any> {
     return logAnalyticsEventDecorator({
         eventName,
+        eventData,
         origin: 'navno-frontend',
-        eventData: data,
     });
 }

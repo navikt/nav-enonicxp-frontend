@@ -69,14 +69,17 @@ export const ProductPanelExpandable = ({
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         contentLoaderCallback?.();
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'produktdetalj',
-            komponent: 'ProductPanelExpandable',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[contentProps.type],
-            ...analyticsData,
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'produktdetalj',
+                komponentId: 'ProductPanelExpandable',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[contentProps.type],
+                ...analyticsData,
+            }
+        );
     };
 
     return (

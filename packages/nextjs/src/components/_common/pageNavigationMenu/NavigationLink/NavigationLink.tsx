@@ -31,7 +31,7 @@ export const NavigationLink = ({
     return (
         <LenkeBase
             href={`#${anchorId}`}
-            analyticsEvent={AnalyticsEvents.NAVIGATION}
+            analyticsEvent={AnalyticsEvents.NAVIGERE}
             analyticsLinkGroup={'Innhold'}
             analyticsComponent={analyticsComponent}
             analyticsLabel={linkText}

@@ -72,7 +72,7 @@ export const TelefonAlternativ = ({
         <KontaktOssKanalLayout icon={<Icon type="phone" />}>
             <KontaktOssKanalLenkebase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
-                analyticsEvent={AnalyticsEvents.CALL}
+                analyticsEvent={AnalyticsEvents.RING_OSS}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
             >
