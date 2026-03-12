@@ -76,27 +76,30 @@ export const initRevalidatorProxyHeartbeat = () => {
             if (res.ok) {
                 consecutiveFailures = 0;
                 return;
-            } else {
-                consecutiveFailures++;
-                logger.warn(
-                    `Revalidator proxy heartbeat returned status ${res.status}. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
-                );
             }
+
+            // At this point, the conditional above did not return, so we handle failures from here on.
+            consecutiveFailures++;
 
             if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
                 logger.error(
                     `Heartbeat failed ${consecutiveFailures} consecutive times (last status: ${res.status})`
                 );
+            } else {
+                logger.warn(
+                    `Revalidator proxy heartbeat returned status ${res.status}. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
+                );
             }
         } catch (error) {
             consecutiveFailures++;
-            logger.warn(
-                `Revalidator proxy heartbeat failed. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
-            );
             if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
                 logger.error(`Heartbeat failed ${consecutiveFailures} consecutive times`, {
                     error,
                 });
+            } else {
+                logger.warn(
+                    `Revalidator proxy heartbeat failed. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
+                );
             }
         }
     };
