@@ -45,7 +45,7 @@ export enum PartType {
     Kalkulator = 'no.nav.navno:calculator',
     DetaljinformasjonForDetAktuelleKontoret = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
-    Button = 'no.nav.navno:button',
+    Knapp = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     Filtreringsmeny = 'no.nav.navno:filters-menu',
@@ -97,7 +97,7 @@ type PartConfigs = {
     [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
-    [PartType.Button]: PartConfigKnapp;
+    [PartType.Knapp]: PartConfigKnapp;
     [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;
