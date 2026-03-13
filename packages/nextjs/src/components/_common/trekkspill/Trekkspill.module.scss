@@ -26,6 +26,7 @@
     background-color: white;
 
     &:hover {
-        background-color: var(--ax-bg-moderate-hover);
+        // Hardkod fargen fordi --ax-bg-moderate-hoverA er gjennomsiktig, og --ax-bg-moderate-hover gir ikke tilsvarende farge
+        background-color: #d8e5fe;
     }
 }
