@@ -10,7 +10,7 @@
     &:hover,
     &:focus {
         .micro {
-            background-color: var(--ax-accent-100);
+            background-color: var(--ax-accent-200);
         }
     }
 }
@@ -18,7 +18,6 @@
 .micro {
     border-radius: 16px;
     border: 1px solid var(--ax-border-neutral);
-    box-shadow: var(--a-shadow-focus);
     color: var(--ax-neutral-1000);
     display: inline-flex;
     font-size: var(--ax-font-size-medium);
@@ -27,12 +26,10 @@
     padding: var(--ax-space-4) var(--ax-space-8);
     position: relative;
 
-    &:not(:hover):not(:active) {
-        box-shadow:
-            0 1px 3px rgba(38, 38, 38, 0.2),
-            0 1px 6px rgba(0, 0, 0, 0.14),
-            0 2px 8px rgba(38, 38, 38, 0.12);
-    }
+    box-shadow:
+        0 1px 3px rgba(38, 38, 38, 0.2),
+        0 1px 6px rgba(0, 0, 0, 0.14),
+        0 2px 8px rgba(38, 38, 38, 0.12);
 
     &:hover,
     &:focus {
