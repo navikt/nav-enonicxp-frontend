@@ -29,7 +29,6 @@ type Props = PropsWithChildren<{
     analyticsComponent?: string;
     analyticsLabel?: string;
     lenkestyling?: boolean;
-    typeButton?: boolean;
 }>;
 
 export const Knapp = ({
@@ -49,7 +48,6 @@ export const Knapp = ({
     analyticsComponent = 'Knapp',
     analyticsLabel,
     lenkestyling = false,
-    typeButton = false,
 }: Props) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -83,7 +81,6 @@ export const Knapp = ({
             variant={variant}
             size={size}
             disabled={disabled}
-            type={typeButton ? 'button' : 'submit'}
             icon={
                 xpIcon ? (
                     <XpImage imageProps={xpIcon} className={style.knapp__icon} maxWidth={64} />

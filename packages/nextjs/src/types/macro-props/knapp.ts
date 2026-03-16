@@ -1,6 +1,6 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
-type Button = {
+type Knapp = {
     url: string;
     text: string;
     content: {
@@ -8,8 +8,8 @@ type Button = {
     };
 };
 
-export interface MacroButtonProps extends MacroPropsCommon {
-    name: MacroType.Button;
+export interface MacroKnappProps extends MacroPropsCommon {
+    name: MacroType.Knapp;
     // Can only contain one of the two, but need to preserve button_blue for legacy reasons
-    config: { button: Button; button_blue?: never } | { button?: never; button_blue: Button };
+    config: { button: Knapp; button_blue?: never } | { button?: never; button_blue: Knapp };
 }

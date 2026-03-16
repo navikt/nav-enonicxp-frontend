@@ -13,7 +13,7 @@ export type PartConfigKnapp = {
     fullwidth: boolean;
 };
 
-export const KnappPart = ({ config }: PartComponentProps<PartType.Button>) => {
+export const KnappPart = ({ config }: PartComponentProps<PartType.Knapp>) => {
     const { icon, link, fullwidth } = config;
 
     const linkProps = getSelectableLinkProps(link);

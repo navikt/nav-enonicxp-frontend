@@ -28,7 +28,6 @@ export const ChatAlternativ = (props: ChatData) => {
                 analyticsEvent={AnalyticsEvents.CHAT_OPEN}
                 analyticsComponent={'Kontakt-oss kanal'}
                 lenkestyling
-                typeButton
             >
                 <Heading level="3" size="small">
                     {title || translations.title}

@@ -1,6 +1,4 @@
 export enum MacroType {
-    Varselboks = 'alert-box',
-    Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
     ConsentBannerLink = 'consent-banner-link',
@@ -14,6 +12,7 @@ export enum MacroType {
     HtmlFragment = 'html-fragment',
     InfoBoks = 'infoBoks',
     Ingress = 'ingress',
+    Knapp = 'button',
     LenkeFiler = 'lenkeFiler',
     LinkToLayer = 'link-to-layer',
     PayoutDates = 'payout-dates',
@@ -25,6 +24,7 @@ export enum MacroType {
     Tall = 'tall',
     Tankestrek = 'tankestrek',
     UxSignalsWidget = 'uxsignals-widget',
+    Varselboks = 'alert-box',
     VarselBoksDeprecated = 'varselBoks',
     Video = 'video',
 }
