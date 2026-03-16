@@ -1,5 +1,4 @@
 export enum MacroType {
-    ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
     ConsentBannerLink = 'consent-banner-link',
     ChevronLinkInternal = 'chevron-link-internal',
@@ -13,6 +12,7 @@ export enum MacroType {
     InfoBoks = 'infoBoks',
     Ingress = 'ingress',
     Knapp = 'button',
+    KnappBlaa = 'button-blue',
     LenkeFiler = 'lenkeFiler',
     LinkToLayer = 'link-to-layer',
     PayoutDates = 'payout-dates',

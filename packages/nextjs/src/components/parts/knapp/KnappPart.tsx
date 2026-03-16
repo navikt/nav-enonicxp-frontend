@@ -15,7 +15,6 @@ export type PartConfigKnapp = {
 
 export const KnappPart = ({ config }: PartComponentProps<PartType.Knapp>) => {
     const { icon, link, fullwidth } = config;
-
     const linkProps = getSelectableLinkProps(link);
 
     return (

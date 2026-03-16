@@ -34,8 +34,6 @@ import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBanner
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.ButtonBlue]: MacroButton,
-    [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.ChatbotLink]: MacroChatbotLink,
     [MacroType.ConsentBannerLink]: MacroConsentBannerLink,
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
@@ -48,6 +46,7 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
     [MacroType.Knapp]: MacroKnapp,
+    [MacroType.KnappBlaa]: MacroKnapp,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.LinkToLayer]: MacroLinkToLayer,
     [MacroType.PayoutDates]: MacroPayoutDates,
@@ -55,6 +54,7 @@ const macroComponents: {
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
     [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,
+    [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.Skjemadetaljer]: MacroSkjemadetaljer,
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
