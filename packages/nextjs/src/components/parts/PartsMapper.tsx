@@ -80,7 +80,7 @@ const PartComponentMapper = ({
             return <OmradekortPart {...partProps} />;
         case PartType.Situasjonskort:
             return <SituasjonskortPart {...partProps} />;
-        case PartType.Button:
+        case PartType.Knapp:
             return <KnappPart {...partProps} />;
         case PartType.Kalkulator:
             return <KalkulatorPart {...partProps} />;
