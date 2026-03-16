@@ -68,7 +68,7 @@ See `packages/server/src/cache/page-cache-handler.ts` for implementation.
 
 This project uses **@navikt/aksel** as its design system:
 
-- `@navikt/ds-react` – React components (Knapp, Alert, Accordion, etc.)
+- `@navikt/ds-react` – React components (Button, Alert, Accordion, etc.)
 - `@navikt/ds-css` – Base CSS and component styles
 - `@navikt/aksel-icons` – Icon library
 - `@navikt/ds-tokens` – Design tokens (colors, spacing, typography)
