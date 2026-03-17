@@ -33,7 +33,7 @@ type LogContext = {
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
-const isClient = typeof window !== 'undefined';
+const isClient = 'window' in globalThis;
 
 const createLogMethod = (level: LogLevel) => {
     return (message: string, context?: LogContext) => {

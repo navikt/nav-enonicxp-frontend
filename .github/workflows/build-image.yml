@@ -75,12 +75,14 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v6
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
             - name: Setup node.js
               uses: actions/setup-node@v6
               with:
                   node-version: '24'
                   registry-url: 'https://npm.pkg.github.com'
-                  cache: 'npm'
+                  cache: 'pnpm'
             - name: Set app environmment
               env:
                   ENV: ${{ inputs.ENV }}
@@ -121,17 +123,17 @@ jobs:
               uses: actions/cache@v5
               with:
                   path: ${{ github.workspace }}/packages/nextjs/.next/cache
-                  key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}
             - name: Install dependencies
-              run: npm ci --ignore-scripts
+              run: pnpm install --frozen-lockfile
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
             - name: Run linting
-              run: npm run lint
+              run: pnpm run lint
             - name: Run tests
-              run: npm run test
+              run: pnpm run test
             - name: Build application
-              run: npm run build
+              run: pnpm run build
               env:
                   SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
                   GIT_HASH: ${{ github.sha }}
@@ -143,9 +145,17 @@ jobs:
                   destination: nav-enonicxp-frontend/_next
                   project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
                   identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-            - name: Prune dependencies
-              run: npm prune --omit=dev --workspaces
-              working-directory: packages/server
+            - name: Delete node_modules to avoid copying them into the docker image
+              run: rm -rf node_modules packages/nextjs/node_modules packages/server/node_modules packages/shared/node_modules
+            - name: Install dependencies without dev dependencies
+              run: |
+                  pnpm install --frozen-lockfile --prod
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+            - name: Deploy dependencies to avoid symlinks
+              run: |
+                  pnpm --filter ./packages/server deploy --prod nonsymlink/server --legacy
+                  pnpm --filter ./packages/nextjs deploy --prod nonsymlink/nextjs --legacy
             - name: Build and push docker image
               uses: nais/docker-build-push@v0
               id: docker-push

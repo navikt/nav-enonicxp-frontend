@@ -52,7 +52,10 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                     <BodyShort>{officeDetailsFormatPhoneNumber(contact.telefonnummer)}</BodyShort>
 
                     {isUnitRegisterforvaltning ? (
-                        <BodyShort>Åpningstiden er hverdager kl. 9–15. Hvis åpningstiden endrer seg, får du beskjed via talemelding når du ringer oss.</BodyShort>
+                        <BodyShort>
+                            Åpningstiden er hverdager kl. 9–15. Hvis åpningstiden endrer seg, får du
+                            beskjed via talemelding når du ringer oss.
+                        </BodyShort>
                     ) : (
                         contact.telefonnummerKommentar && (
                             <BodyShort>{contact.telefonnummerKommentar}</BodyShort>
@@ -61,62 +64,58 @@ export const OfficeInformationLegacyPart = (props: ContentProps) => {
                 </div>
             )}
             <div>
-
                 <Heading level="2" size="small">
-                    {isUnitRegisterforvaltning ? 'Skal du søke eller sende inn et skjema til Nav?' : 'Innsending av skjemaer'}
+                    {isUnitRegisterforvaltning
+                        ? 'Skal du søke eller sende inn et skjema til Nav?'
+                        : 'Innsending av skjemaer'}
                 </Heading>
-                {isUnitALS &&
-                    (
-                        <BodyLong>
-                            Du kan skrive til oss hvis du ønsker hjelp til å rekruttere, inkludere
-                            arbeidstakere og forebygge sykefravær, se{' '}
-                            <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/s/">
-                                kontaktskjema for arbeidsgivere
-                            </LenkeInline>
-                            . Skal du sende søknader eller skjemaer, må du bruke{' '}
-                            <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
-                                skjemaoversikten for arbeidsgivere
-                            </LenkeInline>
-                            .
-                        </BodyLong>
-                    )
-                }
-                {isUnitRegisterforvaltning &&
-                    (
-                        <BodyLong>
-                            For å søke eller sende inn et skjema, må du bruke Navs skjemaoversikt. Velg oversikten som passer for deg:
-                            <ul>
-                                <li>
-                                    <LenkeInline href="https://www.nav.no/soknader/">
-                                        Privatperson
-                                    </LenkeInline>
-                                </li>
-                                <li>
-                                    <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
-                                        Arbeidsgiver
-                                    </LenkeInline>
-                                </li>
-                                <li>
-                                    <LenkeInline href="https://www.nav.no/samarbeidspartner/soknader">
-                                        Samarbeidspartner
-                                    </LenkeInline>
-                                </li>
-                            </ul>
-                        </BodyLong>
-                    )
-                }
-                {!isUnitALS && !isUnitRegisterforvaltning &&
-                    (
-                        <BodyLong>
-                            Skal du sende søknader og skjemaer, må du bruke{' '}
-                            <LenkeInline href="https://www.nav.no/soknader/nb/person">
-                                Navs skjemaveileder.
-                            </LenkeInline>{' '}
-                            Skjemaveilederen gir deg hjelp til å velge rett skjema og rett adresse det
-                            skal sendes til.
-                        </BodyLong>
-                    )
-                }
+                {isUnitALS && (
+                    <BodyLong>
+                        Du kan skrive til oss hvis du ønsker hjelp til å rekruttere, inkludere
+                        arbeidstakere og forebygge sykefravær, se{' '}
+                        <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/s/">
+                            kontaktskjema for arbeidsgivere
+                        </LenkeInline>
+                        . Skal du sende søknader eller skjemaer, må du bruke{' '}
+                        <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
+                            skjemaoversikten for arbeidsgivere
+                        </LenkeInline>
+                        .
+                    </BodyLong>
+                )}
+                {isUnitRegisterforvaltning && (
+                    <BodyLong>
+                        For å søke eller sende inn et skjema, må du bruke Navs skjemaoversikt. Velg
+                        oversikten som passer for deg:
+                        <ul>
+                            <li>
+                                <LenkeInline href="https://www.nav.no/soknader/">
+                                    Privatperson
+                                </LenkeInline>
+                            </li>
+                            <li>
+                                <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
+                                    Arbeidsgiver
+                                </LenkeInline>
+                            </li>
+                            <li>
+                                <LenkeInline href="https://www.nav.no/samarbeidspartner/soknader">
+                                    Samarbeidspartner
+                                </LenkeInline>
+                            </li>
+                        </ul>
+                    </BodyLong>
+                )}
+                {!isUnitALS && !isUnitRegisterforvaltning && (
+                    <BodyLong>
+                        Skal du sende søknader og skjemaer, må du bruke{' '}
+                        <LenkeInline href="https://www.nav.no/soknader/nb/person">
+                            Navs skjemaveileder.
+                        </LenkeInline>{' '}
+                        Skjemaveilederen gir deg hjelp til å velge rett skjema og rett adresse det
+                        skal sendes til.
+                    </BodyLong>
+                )}
             </div>
             <SpecialInformation info={contact.spesielleOpplysninger} />
             <div>

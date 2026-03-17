@@ -3,7 +3,7 @@ export default {
     preset: 'ts-jest',
     testEnvironment: 'node',
     resetMocks: false,
-    moduleDirectories: ['../node_modules'],
+    moduleDirectories: ['node_modules'],
     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
