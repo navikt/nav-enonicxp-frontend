@@ -17,17 +17,27 @@
 
     &:global(.employer-frontpage) {
         background-color: var(--ax-warning-300);
-    }
-
-    &:global(.provider-frontpage) {
-        background-color: var(--ax-danger-100);
 
         :global(.back) {
             svg {
                 path,
                 rect,
                 circle {
-                    fill: var(--ax-danger-200);
+                    fill: var(--ax-warning-200);
+                }
+            }
+        }
+    }
+
+    &:global(.provider-frontpage) {
+        background-color: var(--ax-brand-magenta-200);
+
+        :global(.back) {
+            svg {
+                path,
+                rect,
+                circle {
+                    fill: var(--ax-brand-magenta-400);
                 }
             }
         }
@@ -40,7 +50,7 @@
                 path,
                 rect,
                 circle {
-                    fill: var(--ax-brand-blue-200);
+                    fill: var(--ax-brand-blue-300);
                 }
             }
         }
