@@ -12,7 +12,10 @@
     }
 
     &:hover {
-        box-shadow: var(--a-shadow-small);
+        box-shadow:
+            0px 3px 8px 0px rgba(0, 0, 0, 0.1),
+            0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+            0px 0px 1px 0px rgba(0, 0, 0, 0.18); //--a-shadow-small fra gammel versjon av Aksel
 
         :global(.aksel-link-card__title) {
             color: var(--default-action-color);
