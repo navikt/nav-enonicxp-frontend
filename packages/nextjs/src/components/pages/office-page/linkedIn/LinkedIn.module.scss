@@ -3,7 +3,7 @@
 .linkedinWrapper {
     display: flex;
     justify-content: center;
-    background-color: var(--ax-brand-blue-200);
+    background-color: var(--ax-brand-blue-300);
     border-top: var(--ax-space-4) solid white;
 
     @include common.full-width-mixin;
