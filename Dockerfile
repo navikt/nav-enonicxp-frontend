@@ -1,4 +1,4 @@
-FROM node:24-alpine
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -23,4 +23,4 @@ COPY packages/server/.dist /app/server/.dist/
 USER nextjs
 
 EXPOSE 3000
-CMD ["node", "-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]
+CMD ["-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]
