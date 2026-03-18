@@ -47,6 +47,11 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 ...data,
                 textAboveTitle: currentStepData.textAboveTitle,
                 title: currentStepData.title ?? displayName,
+                editorial:
+                    (currentStepData.editorial as string | undefined) ??
+                    (currentStepData.previousStepExplanation
+                        ? `<p>${currentStepData.previousStepExplanation}</p>`
+                        : undefined),
             }}
             listItems={currentStepData.steps.map((step) => (
                 <li key={step.label}>
