@@ -98,7 +98,10 @@
             min-height: 25rem;
         }
         &:not(:hover):not(:active) {
-            box-shadow: var(--a-shadow-medium);
+            box-shadow:
+                0px 5px 12px 0px rgba(0, 0, 0, 0.13),
+                0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+                0px 0px 1px 0px rgba(0, 0, 0, 0.15); // --a-shadow-medium fra gammel versjon av Aksel
         }
         &:hover {
             box-shadow:
