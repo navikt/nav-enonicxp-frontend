@@ -60,7 +60,7 @@
             }
             &:focus {
                 background: none;
-                box-shadow: var(--a-shadow-focus);
+                box-shadow: 0 0 0 3px rgba(0, 52, 125, 1); // --a-shadow-focus fra gammel versjon av Aksel
                 color: var(--default-action-color);
                 cursor: pointer;
                 outline: none;

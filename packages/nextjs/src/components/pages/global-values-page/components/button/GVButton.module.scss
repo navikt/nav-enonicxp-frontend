@@ -14,7 +14,7 @@
                         --ac-button-primary-focus-border,
                         var(--__ac-button-primary-focus-border, var(--ax-bg-default))
                     ),
-                var(--a-shadow-focus);
+                0 0 0 3px rgba(0, 52, 125, 1); // --a-shadow-focus fra gammel versjon av Aksel
         }
     }
 }

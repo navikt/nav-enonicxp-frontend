@@ -51,7 +51,7 @@
 
         .bed {
             position: relative;
-            box-shadow: var(--a-shadow-focus) !important;
+            box-shadow: 0 0 0 3px rgba(0, 52, 125, 1) !important; // --a-shadow-focus fra gammel versjon av Aksel
 
             &:after {
                 background-color: transparent;
