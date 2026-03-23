@@ -28,16 +28,12 @@ RUN pnpm run build
 # --------- Final stage --------
 FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
-# Only now create the non-root user for runtime!
-RUN addgroup --system --gid 1001 nodejs \
- && adduser --system --uid 1001 --ingroup nodejs nextjs
-
 WORKDIR /app
 
 COPY --from=build /app /app/
 COPY --from=build /tmp/images/image-manifest /tmp/images/image-manifest
 
-USER nextjs
+USER nonroot
 
 EXPOSE 3000
 CMD ["-r", "dotenv/config", "packages/server/.dist/server.cjs", "dotenv_config_path=./.env"]
