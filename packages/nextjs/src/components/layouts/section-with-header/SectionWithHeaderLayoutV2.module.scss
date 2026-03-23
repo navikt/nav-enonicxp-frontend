@@ -2,7 +2,7 @@
 @use 'sass:math';
 
 .container {
-    background-color: white;
+    background-color: var(--ax-bg-default);
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -42,7 +42,7 @@
 .topMarker .header {
     position: relative;
     margin-bottom: var(--ax-space-28);
-    color: var(--brand-purple-deep);
+    color: var(--ax-text-brand-magenta-subtle);
 
     &:before {
         @include common.header-before-rectangle();
