@@ -1,53 +1,10 @@
 .readMore {
     margin-bottom: var(--ax-space-36);
 
-    :global(.aksel-read-more__button) {
-        z-index: 1;
-        margin-bottom: var(--ax-space-12);
-        background-color: var(--ax-accent-100);
-        padding: var(--ax-space-8) var(--ax-space-24) var(--ax-space-8) 13px;
-        outline: 4px solid white;
-        border-radius: 22px; // Atm. not in Aksel
-        align-items: center;
-        gap: var(--ax-space-8);
-
-        color: var(--default-action-color);
-
-        svg {
-            width: var(--ax-space-24);
-            height: var(--ax-space-28); // Needed to visually vertical align
-            path {
-                fill: var(--default-action-color);
-            }
-        }
-
-        &:hover {
-            background-color: var(--ax-accent-200);
-
-            :global(.aksel-read-more__expand-icon) {
-                transform: translateY(0);
-            }
-        }
-
-        &:focus-visible {
-            outline: none;
-        }
-    }
-
-    :global(.aksel-read-more__content) {
-        border-left: 1px solid var(--ax-neutral-500);
-        margin-left: var(--ax-space-24);
-        padding: 0 0 0 var(--ax-space-20);
-    }
-
-    &:global(.aksel-read-more--open) {
+    &[data-state='open'] {
         :global(.aksel-read-more__button) {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
-        }
-
-        :global(.aksel-read-more__expand-icon) {
-            transform: rotate(-180deg) !important;
         }
     }
 }
