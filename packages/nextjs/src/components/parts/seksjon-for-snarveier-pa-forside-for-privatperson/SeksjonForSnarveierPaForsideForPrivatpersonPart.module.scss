@@ -4,7 +4,7 @@
     @include common.full-width-mixin();
     padding-top: var(--ax-space-36);
     padding-bottom: var(--ax-space-36);
-    background-color: var(--ax-brand-magenta-200);
+    background-color: var(--ax-bg-danger-moderate);
 
     @media #{common.$mq-screen-mobile} {
         padding-top: var(--ax-space-32);

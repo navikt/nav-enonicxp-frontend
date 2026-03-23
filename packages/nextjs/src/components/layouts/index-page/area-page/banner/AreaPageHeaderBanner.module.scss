@@ -10,13 +10,13 @@
     color: var(--ax-text-neutral);
     margin-top: var(--ax-space-16);
     padding: var(--ax-space-28);
-    background-color: var(--ax-danger-200);
+    background-color: var(--ax-bg-danger-moderate);
     border-radius: var(--ax-radius-8);
 
     transition: background-color 200ms ease-out;
 
     &:hover {
-        background-color: var(--hover-color);
+        background-color: var(--ax-bg-danger-moderate-hover);
     }
 
     &:focus {
