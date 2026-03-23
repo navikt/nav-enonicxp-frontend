@@ -13,7 +13,7 @@
 }
 
 .item {
-    &:global(.aksel-accordion__item--open) {
+    &[data-expanded='true'] {
         .header {
             position: sticky;
             top: var(--decorator-sticky-offset, 0px);
