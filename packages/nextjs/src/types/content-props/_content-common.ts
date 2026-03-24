@@ -122,7 +122,7 @@ export const innholdsTypeMap: Record<ContentType, string> = {
     [ContentType.Pictograms]: 'Piktogram',
     [ContentType.PressLandingPage]: 'Landingsside for presse',
     [ContentType.OfficeEditorialPage]: 'Kontorside for redaktørinnhold',
-    [ContentType.OfficePage]: 'Kontorside (gammel)',
+    [ContentType.OfficePage]: 'Kontorside',
     [ContentType.PageList]: 'Artikkelliste',
     [ContentType.Artikkel]: 'Artikkel',
     [ContentType.Kapittel]: 'Kapittel',
