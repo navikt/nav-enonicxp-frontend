@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script for building failover-images for dev-environments
-# Usage: In root, run "pnpm run build-and-push-dev-failover dev1|dev2 din-valgte-image-tag-123"
+# Usage: In root, run "npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_tag=din-valgte-image-tag-123"
 #
 # (GAR uses DIGEST instead of TAG, so the image tag you use is not important.)
 #
@@ -23,6 +23,13 @@ if [[ -z $IMAGE_TAG ]]
 then
   echo "Image tag must be specified"
   exit
+fi
+
+if [[ -z $GITHUB_PAT ]]
+then
+  echo "GITHUB_PAT is not set. Export a GitHub PAT with read:packages scope:"
+  echo "  export GITHUB_PAT=ghp_your_token"
+  exit 1
 fi
 
 if [[ "$APP_ENV" == "dev1" ]]

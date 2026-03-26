@@ -1,7 +1,4 @@
-FROM node:24-alpine
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+FROM europe-north1-docker.pkg.dev/cgr-nav/pull-through/nav.no/node:24-slim
 
 WORKDIR /app
 
@@ -20,7 +17,7 @@ COPY nonsymlink/nextjs/node_modules /app/node_modules/
 COPY .env /app/server/
 COPY packages/server/.dist /app/server/.dist/
 
-USER nextjs
+USER nonroot
 
 EXPOSE 3000
-CMD ["node", "-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]
+CMD ["-r", "dotenv/config", "server/.dist/server.cjs", "dotenv_config_path=./.env"]
