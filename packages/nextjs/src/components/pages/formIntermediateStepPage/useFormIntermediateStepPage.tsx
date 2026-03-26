@@ -66,13 +66,13 @@ const getStepData = (
 
     let tmp: any = data;
     let lastStepLabel: string | undefined;
-    let lastStepExplanation: string | undefined;
+    let previousStepExplanation: string | undefined;
 
     stepPath.forEach((index) => {
         const foundStep = tmp.steps[index];
         if (foundStep) {
             lastStepLabel = foundStep.label;
-            lastStepExplanation = foundStep.explanation;
+            previousStepExplanation = foundStep.explanation;
             tmp = foundStep.nextStep?.next;
         }
     });
@@ -86,7 +86,8 @@ const getStepData = (
         textAboveTitle: displayName,
         title: lastStepLabel,
         editorial:
-            tmp.editorial ?? (lastStepExplanation ? `<p>${lastStepExplanation}</p>` : undefined),
+            tmp.editorial ??
+            (previousStepExplanation ? `<p>${previousStepExplanation}</p>` : undefined),
         steps: tmp.steps,
     };
 };
