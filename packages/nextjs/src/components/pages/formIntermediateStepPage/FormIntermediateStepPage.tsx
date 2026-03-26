@@ -5,7 +5,6 @@ import { useFormIntermediateStepPage } from 'components/pages/formIntermediateSt
 import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
-import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { MellomstegLayout } from 'components/layouts/mellomsteg/MellomstegLayout';
 import { StepVisualization } from './step-visualization/StepVisualization';
 
@@ -18,7 +17,7 @@ export type FormIntermediateStepPageProps = Pick<
         title: string;
         illustration: PictogramsProps;
         formNumbers?: string[];
-        editorial?: ProcessedHtmlProps;
+        editorial?: string;
         textAboveTitle?: string;
     } & StepBase;
 };
