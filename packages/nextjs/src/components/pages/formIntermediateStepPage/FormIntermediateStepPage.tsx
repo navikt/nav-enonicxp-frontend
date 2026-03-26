@@ -5,6 +5,7 @@ import { useFormIntermediateStepPage } from 'components/pages/formIntermediateSt
 import { FormIntermediateStepLink } from 'components/_common/formIntermediateStepLink/FormIntermediateStepLink';
 import { ContentCommonProps, ContentType } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { MellomstegLayout } from 'components/layouts/mellomsteg/MellomstegLayout';
 import { StepVisualization } from './step-visualization/StepVisualization';
 
@@ -17,7 +18,7 @@ export type FormIntermediateStepPageProps = Pick<
         title: string;
         illustration: PictogramsProps;
         formNumbers?: string[];
-        editorial?: string;
+        editorial?: ProcessedHtmlProps;
         textAboveTitle?: string;
     } & StepBase;
 };
@@ -47,11 +48,7 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 ...data,
                 textAboveTitle: currentStepData.textAboveTitle,
                 title: currentStepData.title ?? displayName,
-                editorial:
-                    (currentStepData.editorial as string | undefined) ??
-                    (currentStepData.previousStepExplanation
-                        ? `<p>${currentStepData.previousStepExplanation}</p>`
-                        : undefined),
+                editorial: currentStepData.editorial,
             }}
             listItems={currentStepData.steps.map((step) => (
                 <li key={step.label}>

@@ -5,6 +5,7 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { InternalLinkMixin } from 'types/component-props/_mixins';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 import style from './MellomstegLayout.module.scss';
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
         textAboveTitle?: string;
         formNumbers?: string[];
         displayName?: string;
-        editorial?: string;
+        editorial?: ProcessedHtmlProps | string;
     };
 }
 
