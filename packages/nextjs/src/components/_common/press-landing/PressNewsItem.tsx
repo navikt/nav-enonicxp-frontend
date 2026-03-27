@@ -42,7 +42,7 @@ export const PressNewsItem = ({ newsItem }: Props) => {
     return (
         <li key={newsItem._path} className={style.newsItem}>
             <article>
-                <Heading level={'3'} size={'medium'}>
+                <Heading className={style.heading} level={'3'} size={'medium'}>
                     <LenkeBase href={getPublicPathname({ _path: newsItem._path })}>
                         {newsItem.displayName}
                     </LenkeBase>
