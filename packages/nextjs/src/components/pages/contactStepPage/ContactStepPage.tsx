@@ -12,7 +12,7 @@ export type ContactStepPageProps = Pick<ContentCommonProps, '_path'> & {
         textAboveTitle?: string;
         editorial?: string;
         linkPanels: (InternalLinkMixin & { ingress?: string })[];
-        backLink: InternalLinkMixin;
+        backLink?: InternalLinkMixin;
         formNumbers?: string[];
     };
 };
@@ -38,12 +38,16 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
                 );
             })}
             analyticsComponent={'ContactStepPage'}
-            backLink={{
-                target: {
-                    _path: backLink.target._path,
-                    displayName: backLink.text ?? backLink.target.displayName,
-                },
-            }}
+            backLink={
+                backLink?.target
+                    ? {
+                          target: {
+                              _path: backLink.target._path,
+                              displayName: backLink.text ?? backLink.target.displayName,
+                          },
+                      }
+                    : undefined
+            }
         />
     );
 };
