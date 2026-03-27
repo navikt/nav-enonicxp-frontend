@@ -199,7 +199,7 @@ $versionSelectorMinHeight: 3rem;
 }
 
 @mixin header-before-rectangle() {
-    background-color: var(--brand-purple-light);
+    background-color: var(--ax-border-brand-magenta-subtle);
     content: '';
     height: 7px;
     left: 0;
