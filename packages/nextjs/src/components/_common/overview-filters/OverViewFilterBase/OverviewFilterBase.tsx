@@ -46,7 +46,6 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
                             type={'button'}
                             onClick={() => selectionCallback(option)}
                             aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
-                            className={styles.filterButton}
                             checkmark={false}
                             selected={selected === option}
                             key={option}

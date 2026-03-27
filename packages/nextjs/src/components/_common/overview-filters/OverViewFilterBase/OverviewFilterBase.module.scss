@@ -11,16 +11,3 @@
     margin-top: var(--ax-space-8);
     padding: 0;
 }
-
-.filterButton {
-    background-color: var(--ax-brand-blue-100);
-    box-shadow: none;
-
-    &:hover {
-        background-color: var(--ax-brand-blue-200);
-    }
-
-    &:hover:not(:focus) {
-        box-shadow: none;
-    }
-}
