@@ -18,7 +18,6 @@ catalog:
     '@navikt/aksel-icons': 8.8.0
     '@navikt/ds-css': 8.8.0
     '@navikt/ds-react': 8.8.0
-    '@navikt/ds-tokens': 8.8.0
     '@navikt/nav-dekoratoren-moduler': 3.7.1
     '@navikt/nav-office-reception-info': 1.4.9-beta.5
     '@next/bundle-analyzer': 15.5.4
