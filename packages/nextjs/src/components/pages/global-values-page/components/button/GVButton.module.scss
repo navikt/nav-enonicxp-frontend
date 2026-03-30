@@ -1,20 +1,10 @@
 .button {
-    &:global(.aksel-button--primary),
-    &:global(.aksel-button--danger) {
+    &:global([data-variant='primary']),
+    &:global([data-color='danger']) {
         color: white;
     }
 
-    &:global(.aksel-button--danger) {
+    &:global([data-color='danger']) {
         box-shadow: 0 0 0;
-
-        &:focus-visible {
-            box-shadow:
-                inset 0 0 0 1px
-                    var(
-                        --ac-button-primary-focus-border,
-                        var(--__ac-button-primary-focus-border, var(--ax-bg-default))
-                    ),
-                0 0 0 3px rgba(0, 52, 125, 1); // --a-shadow-focus fra gammel versjon av Aksel
-        }
     }
 }
