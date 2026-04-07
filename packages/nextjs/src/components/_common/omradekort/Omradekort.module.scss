@@ -57,6 +57,7 @@ $size-small: 0.5;
         text-decoration-line: underline;
         text-decoration-thickness: 0.05em;
         text-underline-offset: 0.1em;
+        text-wrap: balance;
     }
 
     @media only screen and (max-width: common.$desktopMaxWidth) {
@@ -71,8 +72,7 @@ $size-small: 0.5;
         .titleShort,
         .titleLong {
             margin-left: var(--a-spacing-4);
-            padding-right: var(--a-spacing-16);
-            width: 100%;
+            width: 70%;
         }
 
         :global(.navds-link-card__title) {
