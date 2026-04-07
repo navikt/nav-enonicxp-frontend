@@ -5,7 +5,7 @@ import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { AnalyticsEvents } from 'utils/analytics';
 import TextWithIndicator from 'components/_common/textWithIndicator/TextWithIndicator';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 import { ChatData } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { Icon } from 'components/_common/kontakt-oss-kanal/_shared-utils/icon/Icon';
 import { OpeningInfo } from 'components/_common/kontakt-oss-kanal/_shared-utils/openingInfo/OpeningInfo';
@@ -23,17 +23,16 @@ export const ChatAlternativ = (props: ChatData) => {
 
     return (
         <KontaktOssKanalLayout icon={<Icon type="chat" />}>
-            <Button
+            <Knapp
                 onClick={openChatbot}
                 analyticsEvent={AnalyticsEvents.CHAT_OPEN}
                 analyticsComponent={'Kontakt-oss kanal'}
                 lenkestyling
-                typeButton
             >
                 <Heading level="3" size="small">
                     {title || translations.title}
                 </Heading>
-            </Button>
+            </Knapp>
             {alertText && <KontaktOssKanalAlert alertText={alertText} />}
             <KontaktOssKanalIngress htmlProps={overrideText || ingress || translations.ingress} />
             {!alertText && (

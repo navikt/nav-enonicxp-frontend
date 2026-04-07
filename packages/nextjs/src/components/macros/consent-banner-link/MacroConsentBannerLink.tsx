@@ -1,6 +1,6 @@
 import React from 'react';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 import { MacroConsentBannerLinkProps } from 'types/macro-props/consent-banner-link';
 
 type ExtraProps = {
@@ -14,7 +14,7 @@ export const MacroConsentBannerLink = ({ config }: MacroConsentBannerLinkProps) 
 
     const { text, presentation = 'link' } = config.consent_banner_link;
 
-    const Element = presentation === 'link' ? LenkeInline : Button;
+    const Element = presentation === 'link' ? LenkeInline : Knapp;
     const extraProps: ExtraProps = presentation === 'link' ? {} : { variant: 'secondary' };
 
     return (

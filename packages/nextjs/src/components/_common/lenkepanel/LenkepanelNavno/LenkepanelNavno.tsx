@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
+
 import styles from './LenkepanelNavno.module.scss';
 
 type Props = PropsWithChildren<{
@@ -32,7 +33,7 @@ export const LenkepanelNavno = ({
         <div className={classNames(styles.lenkepanelNavno, elementAttribs.className)}>
             <div className="lenkepanelNavnoTextContent">
                 {onClickEvent ? (
-                    <Button
+                    <Knapp
                         {...elementAttribs}
                         href={href}
                         className={classNames(styles.clickArea, textClassNames)}
@@ -41,7 +42,7 @@ export const LenkepanelNavno = ({
                         lenkestyling
                     >
                         {linkText}
-                    </Button>
+                    </Knapp>
                 ) : (
                     <LenkeBase
                         {...elementAttribs}

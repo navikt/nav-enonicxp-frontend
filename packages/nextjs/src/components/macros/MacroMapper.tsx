@@ -7,7 +7,7 @@ import { MacroProductCardMicro } from 'components/macros/product-card-micro/Macr
 import { MacroTall } from 'components/macros/tall/MacroTall';
 import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
 import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
-import { MacroButton } from './button/MacroButton';
+import { MacroKnapp } from './knapp/MacroKnapp';
 import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLinkExternal';
 import { MacroChevronLinkInternal } from './chevron-link-internal/MacroChevronLinkInternal';
 import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
@@ -34,22 +34,19 @@ import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBanner
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.Varselboks]: MacroVarselboks,
-    [MacroType.Button]: MacroButton,
-    [MacroType.ButtonBlue]: MacroButton,
-    [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.ChatbotLink]: MacroChatbotLink,
     [MacroType.ConsentBannerLink]: MacroConsentBannerLink,
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
-    [MacroType.Skjemadetaljer]: MacroSkjemadetaljer,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
     [MacroType.HtmlFragment]: MacroHtmlFragment,
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
+    [MacroType.Knapp]: MacroKnapp,
+    [MacroType.KnappBlaa]: MacroKnapp,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.LinkToLayer]: MacroLinkToLayer,
     [MacroType.PayoutDates]: MacroPayoutDates,
@@ -57,9 +54,12 @@ const macroComponents: {
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
     [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,
+    [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
+    [MacroType.Skjemadetaljer]: MacroSkjemadetaljer,
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
+    [MacroType.Varselboks]: MacroVarselboks,
     [MacroType.VarselBoksDeprecated]: MacroVarselBoksDeprecated,
     [MacroType.Video]: MacroVideo,
 };

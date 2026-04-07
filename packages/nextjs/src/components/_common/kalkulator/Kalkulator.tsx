@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { CalculatorIcon } from '@navikt/aksel-icons';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
 import { CalculatorData, CalculatorFieldData } from 'components/parts/kalkulator/KalkulatorPart';
@@ -149,14 +149,14 @@ export const Kalkulator = ({ header, calculatorData }: Props) => {
                             );
                         })}
                 </div>
-                <Button
+                <Knapp
                     size={'small'}
                     onClick={handleCalculateButtonClick}
                     className={style.calculateButton}
                     dsIcon={<CalculatorIcon aria-hidden className={style.calculateIcon} />}
                 >
                     <span>{getLabel('calculate')}</span>
-                </Button>
+                </Knapp>
                 <KalkulatorResultat
                     sum={calculatedValue}
                     summaryText={calculatorData.summaryText}

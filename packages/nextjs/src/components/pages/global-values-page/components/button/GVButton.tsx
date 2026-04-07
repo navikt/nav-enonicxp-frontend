@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import style from './GVButton.module.scss';
 
-export const GVButton = (props: React.ComponentProps<typeof Button>) => (
+export const GVButton = (props: React.ComponentProps<typeof Knapp>) => (
     <EditorLinkWrapper>
-        <Button {...props} size={'small'} className={style.button}>
+        <Knapp {...props} size={'small'} className={style.button}>
             {props.children}
-        </Button>
+        </Knapp>
     </EditorLinkWrapper>
 );
