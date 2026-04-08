@@ -10,24 +10,24 @@ ignoredBuiltDependencies:
     - unrs-resolver
 
 catalog:
-    '@chromatic-com/storybook': 5.0.1
-    '@esbuild/linux-x64': 0.27.3
+    '@chromatic-com/storybook': 5.1.1
+    '@esbuild/linux-x64': 0.27.4
     '@eslint/js': 9.39.2
-    '@grafana/faro-web-sdk': 2.2.4
-    '@grafana/faro-web-tracing': 2.2.4
+    '@grafana/faro-web-sdk': 2.3.1
+    '@grafana/faro-web-tracing': 2.3.1
     '@navikt/aksel-icons': 7.40.0
     '@navikt/ds-css': 7.40.0
     '@navikt/ds-react': 7.40.0
     '@navikt/ds-tokens': 7.40.0
-    '@navikt/nav-dekoratoren-moduler': 3.6.2
-    '@navikt/nav-office-reception-info': v1.4.9
+    '@navikt/nav-dekoratoren-moduler': 3.7.1
+    '@navikt/nav-office-reception-info': v1.4.10
     '@next/bundle-analyzer': 15.5.4
     '@next/eslint-plugin-next': 15.5.4
     '@playwright/test': 1.58.2
     '@reduxjs/toolkit': 2.11.2
-    '@storybook/addon-docs': 10.2.15
-    '@storybook/nextjs': 10.2.15
-    '@storybook/react': 10.2.15
+    '@storybook/addon-docs': 10.3.3
+    '@storybook/nextjs': 10.3.3
+    '@storybook/react': 10.3.3
     '@testing-library/jest-dom': 6.9.1
     '@testing-library/react': 16.3.2
     '@types/cookie-parser': 1.4.10
@@ -44,15 +44,15 @@ catalog:
     '@types/react-dom': 19.2.3
     '@types/react-redux': 7.1.34
     '@types/rss': 0.0.32
-    '@typescript-eslint/eslint-plugin': 8.56.1
-    '@typescript-eslint/parser': 8.56.1
+    '@typescript-eslint/eslint-plugin': 8.58.0
+    '@typescript-eslint/parser': 8.58.0
     concurrently: 9.2.1
     cookie-parser: 1.4.7
-    csp-header: 6.3.0
-    dayjs: 1.11.19
+    csp-header: 6.3.1
+    dayjs: 1.11.20
     domhandler: 5.0.3
     dotenv: 17.3.1
-    esbuild: 0.27.3
+    esbuild: 0.27.4
     eslint: 9.39.2
     eslint-config-next: 15.5.4
     eslint-config-prettier: 10.1.8
@@ -62,22 +62,22 @@ catalog:
     eslint-plugin-prettier: 5.5.5
     eslint-plugin-react: 7.37.5
     eslint-plugin-react-hooks: 6.1.0
-    eslint-plugin-storybook: 10.2.15
+    eslint-plugin-storybook: 10.3.3
     express: 5.2.1
     express-prom-bundle: 8.0.0
     fuse.js: 7.1.0
-    globals: 17.3.0
+    globals: 17.4.0
     html-react-parser: 5.2.17
     http-terminator: 3.2.0
     husky: 9.1.7
-    jest: 30.2.0
-    jest-environment-jsdom: 30.2.0
+    jest: 30.3.0
+    jest-environment-jsdom: 30.3.0
     jest-fetch-mock: 3.0.3
     js-cookie: 3.0.5
     jsep: 1.4.0
-    lint-staged: 16.3.2
+    lint-staged: 16.4.0
     lodash.debounce: 4.0.8
-    lru-cache: 11.2.6
+    lru-cache: 11.2.7
     mock-fs: 5.5.0
     next: 15.5.14
     node-cache: 5.1.2
@@ -96,15 +96,15 @@ catalog:
     react-redux: 9.2.0
     redis: 5.11.0
     rss: 1.2.2
-    sass: 1.97.3
+    sass: 1.98.0
     schema-dts: 1.1.5
     sharp: 0.34.5
-    storybook: 10.2.15
-    storybook-addon-pseudo-states: 10.2.15
+    storybook: 10.3.3
+    storybook-addon-pseudo-states: 10.3.3
     swr: 2.4.1
     ts-jest: 29.4.6
     typescript: 5.9.3
-    typescript-eslint: 8.56.1
+    typescript-eslint: 8.58.0
     uuid: 13.0.0
 
 minimumReleaseAge: 4320

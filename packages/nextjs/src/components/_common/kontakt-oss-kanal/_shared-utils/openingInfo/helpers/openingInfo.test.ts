@@ -93,41 +93,41 @@ afterEach(() => {
 
 describe('Regular opening hours', () => {
     test('Should be open at a regular opening minute', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T09:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T09:00') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN');
     });
 
     test('Should be open the minute before regular closing', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T14:59'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T14:59') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN');
     });
 
     test('Should be closed at a regular closing minute', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T15:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T15:00') });
         const openingInfo = getOpeningInfo();
         expect(openingInfo.status).toBe('CLOSED');
     });
 
     test('Should be open later before regular opening', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T08:59'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T08:59') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN_LATER');
     });
 
     test('Should be closed after regular closing', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T15:01'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T15:01') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('CLOSED');
     });
 
     test('Should be closed if regular closed status is set', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-15T12:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-15T12:00') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('CLOSED');
@@ -136,41 +136,41 @@ describe('Regular opening hours', () => {
 
 describe('Special opening hours', () => {
     test('Should be open at a special opening minute', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-13T09:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-13T09:00') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN');
     });
 
     test('Should be open the minute before special closing', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-13T11:59'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-13T11:59') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN');
     });
 
     test('Should be closed at a special closing minute', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-13T12:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-13T12:00') });
         const openingInfo = getOpeningInfo();
         expect(openingInfo.status).toBe('CLOSED');
     });
 
     test('Should be open later before special opening', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-13T08:59'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-13T08:59') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('OPEN_LATER');
     });
 
     test('Should be closed after special closing', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-13T12:01'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-13T12:01') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('CLOSED');
     });
 
     test('Should be closed if special closed status is set', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-14T12:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-14T12:00') });
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('CLOSED');
@@ -179,7 +179,7 @@ describe('Special opening hours', () => {
 
 describe('Opening information text', () => {
     test('Should show open text when open', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T09:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T09:00') });
 
         const text = getInfoText();
 
@@ -189,7 +189,7 @@ describe('Opening information text', () => {
     });
 
     test('Should include closed text when closed for today', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T15:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-12T15:00') });
 
         const text = getInfoText();
 
@@ -199,7 +199,7 @@ describe('Opening information text', () => {
     });
 
     test('Should include opening tomorrow texts when opening tomorrow', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-18T08:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-18T08:00') });
 
         const text = getInfoText();
 
@@ -211,7 +211,7 @@ describe('Opening information text', () => {
     });
 
     test('Should include opening at datetime text when opening several days in the future', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-14T08:00'));
+        jest.useFakeTimers({ now: Date.parse('2022-04-14T08:00') });
 
         const text = getInfoText();
 
