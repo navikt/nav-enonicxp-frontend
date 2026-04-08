@@ -97,7 +97,7 @@ catalog:
     redis: 5.11.0
     rss: 1.2.2
     sass: 1.98.0
-    schema-dts: 1.1.5
+    schema-dts: 2.0.0
     sharp: 0.34.5
     storybook: 10.3.3
     storybook-addon-pseudo-states: 10.3.3
