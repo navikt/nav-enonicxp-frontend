@@ -54,7 +54,6 @@ export type OversiktItemListItem = {
     title: string;
     sortTitle: string;
     ingress: string;
-    keywords: string[];
     url: string;
     type: ContentTypeInOversiktPages;
     targetLanguage: string;
