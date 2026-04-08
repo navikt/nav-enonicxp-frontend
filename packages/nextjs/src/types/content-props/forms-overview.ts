@@ -12,7 +12,6 @@ export type SkjemadetaljerListItemProps = {
     title: string;
     sortTitle: string;
     ingress: string;
-    keywords: string[];
     url?: string;
     type: ContentTypeInFormOverviewPages;
     targetLanguage: string;

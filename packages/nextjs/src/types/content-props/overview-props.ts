@@ -28,7 +28,6 @@ export type OverviewPageProductItem = {
     productLinks: OverviewPageProductLink[];
     taxonomy: ProductTaxonomy[];
     title: string;
-    keywords?: string[];
 };
 
 export type OverviewPageData = {

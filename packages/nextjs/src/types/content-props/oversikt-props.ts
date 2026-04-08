@@ -44,6 +44,7 @@ export type OversiktAudienceOptions = OptionSetSingle<{
 export type OversiktSubItem = {
     path: string;
     title: string;
+    longTitle: string;
     ingress: string;
     type: ContentTypeInOversiktPages;
     formNumbers: string[];
@@ -53,7 +54,6 @@ export type OversiktItemListItem = {
     title: string;
     sortTitle: string;
     ingress: string;
-    keywords: string[];
     url: string;
     type: ContentTypeInOversiktPages;
     targetLanguage: string;
