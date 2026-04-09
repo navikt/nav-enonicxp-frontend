@@ -31,14 +31,14 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Deploy Valkey
-      if: ${{ inputs.deploy_valkey == 'true' }}
-      uses: nais/deploy/actions/deploy@v2
-      continue-on-error: true
-      env:
-        CLUSTER: ${{ inputs.cluster }}
-        RESOURCE: .nais/valkey.yml
-        VARS: .nais/vars/${{ inputs.vars_file }}
+#    - name: Deploy Valkey
+#      if: ${{ inputs.deploy_valkey == 'true' }}
+#      uses: nais/deploy/actions/deploy@v2
+#      continue-on-error: true
+#      env:
+#        CLUSTER: ${{ inputs.cluster }}
+#        RESOURCE: .nais/valkey.yml
+#        VARS: .nais/vars/${{ inputs.vars_file }}
 
     - name: Deploy HPA
       if: ${{ inputs.hpa_file != '' }}
