@@ -11,10 +11,13 @@ jobs:
     permissions:
       contents: read
       id-token: write
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
       - name: Build prod image
+        id: build-image
         uses: ./.github/actions/build-image
         with:
           imagename: release-${{ github.ref_name }}
@@ -56,7 +59,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: deploy-valkey
+    needs: [build, deploy-valkey]
     permissions:
       id-token: write
     steps:
