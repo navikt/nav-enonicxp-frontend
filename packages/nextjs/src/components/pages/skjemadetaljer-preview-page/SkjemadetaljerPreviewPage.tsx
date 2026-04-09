@@ -15,7 +15,7 @@ const displayConfig = {
 
 const errorTexts = {
     addendum:
-        'Det er valgt skjemadetaljer av typen «Ettersendelse», men det mangler knappetekst og lenke til skjema. Legg inn knappetekst og skjemalenke, eller velg slett',
+        'Det er valgt skjemadetaljer av typen «Ettersendelse», men det mangler knappetekst og lenke til skjema. Legg inn knappetekst og skjemalenke, eller velg slett.',
     complaint:
         'Det er valgt skjemadetaljer av typen «Klage», men det mangler knappetekst og lenke til skjema. Legg inn knappetekst og skjemalenke, eller velg slett.',
 };
