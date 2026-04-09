@@ -24,7 +24,7 @@ const createEditorialErrors = (data: SkjemadetaljerPageProps['data']) => {
     const errors: string[] = [];
     if (
         data.formType.some(
-            (type) => type._selected === 'addendum' && type.addendum?.variations.length === 0
+            (type) => type._selected === 'addendum' && type.addendum?.variations?.length === 0
         )
     ) {
         errors.push(errorTexts.addendum);
@@ -32,7 +32,7 @@ const createEditorialErrors = (data: SkjemadetaljerPageProps['data']) => {
 
     if (
         data.formType.some(
-            (type) => type._selected === 'complaint' && type.complaint?.variations.length === 0
+            (type) => type._selected === 'complaint' && type.complaint?.variations?.length === 0
         )
     ) {
         errors.push(errorTexts.complaint);
