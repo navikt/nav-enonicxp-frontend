@@ -1,43 +1,77 @@
 name: Deploy to prod-failover
 on:
-    schedule:
-        - cron: '0 20 * * *'
-    workflow_dispatch:
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
 
 jobs:
-    build:
-        uses: ./.github/workflows/build-image.yml
-        permissions:
-            contents: read
-            id-token: write
+  build:
+    runs-on: ubuntu-latest
+    environment: prod-gcp:failover
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Build failover image
+        id: build-image
+        uses: ./.github/actions/build-image
         with:
-            environment: prod-gcp:failover
-            imagename: failover-prod
-            ENV: prod
-            ADMIN_ORIGIN: https://portal-admin.oera.no
-            APP_ORIGIN: https://www.nav.no
-            REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
-            DECORATOR_URL: https://www.nav.no/dekoratoren
-            XP_ORIGIN: https://www.nav.no
-            TELEMETRY_URL: https://telemetry.nav.no/collect
-            MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
-            INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
-            NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
-            FAILOVER_ORIGIN: https://www-failover.nav.no
-            IS_FAILOVER_INSTANCE: true
-            NODE_ENV: production
-        secrets:
-            READER_TOKEN: ${{ secrets.READER_TOKEN }}
-            SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-            NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-    deploy:
-        uses: ./.github/workflows/deploy-to-nais.yml
-        needs: build
-        permissions:
-            id-token: write
+          imagename: failover-prod
+          ENV: prod
+          ADMIN_ORIGIN: https://portal-admin.oera.no
+          APP_ORIGIN: https://www.nav.no
+          REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
+          DECORATOR_URL: https://www.nav.no/dekoratoren
+          XP_ORIGIN: https://www.nav.no
+          TELEMETRY_URL: https://telemetry.nav.no/collect
+          MELDEKORT_API_URL: https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
+          INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
+          NAVNO_SEARCH_API_URL: https://navno-search-api.nav.no/content/search-url
+          FAILOVER_ORIGIN: https://www-failover.nav.no
+          IS_FAILOVER_INSTANCE: true
+          NODE_ENV: production
+          READER_TOKEN: ${{ secrets.READER_TOKEN }}
+          SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          nais_management_project_id: ''
+
+  deploy-valkey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    needs: build
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy Valkey
+        uses: ./.github/actions/nais-deploy
+        continue-on-error: true
         with:
-            image: ${{ needs.build.outputs.image }}
-            cluster: prod-gcp
-            vars_file: vars-prod-failover.yml
-            config_file: config-failover.yml
-            hpa_file: hpa-prod-failover.yml
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/valkey.yml
+          VARS: .nais/vars/dev.yml
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [ build, deploy-valkey ]
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Build and deploy prod failover>
+        uses: ./.github/actions/deploy
+        with:
+          image: ${{ needs.build.outputs.image }}
+          cluster: prod-gcp
+          vars_file: vars-prod-failover.yml
+          config_file: config-failover.yml
+          hpa_file: hpa-prod-failover.yml
