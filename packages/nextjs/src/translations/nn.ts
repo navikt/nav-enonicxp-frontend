@@ -331,6 +331,7 @@ export const translationsBundleNn: PartialTranslations = {
         optician: 'optikarar eller øyelegar',
         measures_organizer: 'tiltaksarrangørar',
         aid_supplier: 'hjelpemiddelformidlarar',
+        trekkmottaker: 'trekkmottakar',
         other: 'andre samarbeidspartnarar',
     },
     related: {

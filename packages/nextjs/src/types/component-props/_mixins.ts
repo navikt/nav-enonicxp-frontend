@@ -26,6 +26,7 @@ export enum ProviderAudience {
     ADMINISTRATOR = 'administrator',
     MEASURES_ORGANIZER = 'measures_organizer',
     AID_SUPPLIER = 'aid_supplier',
+    TREKKMOTTAKAR = 'trekkmottaker',
     OTHER = 'other',
 }
 
