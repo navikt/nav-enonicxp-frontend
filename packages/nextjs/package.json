@@ -7,7 +7,7 @@
         "build:storybook": "storybook build",
         "prestorybook": "node playwright/copy-screenshots.js",
         "storybook": "storybook dev -p 6006",
-        "analyze-bundle": "ANALYZE_BUNDLE=true pnpm run build",
+        "analyze-bundle": "ANALYZE_BUNDLE=true pnpm run build -- --webpack",
         "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"pnpm run lint:tsc\" \"pnpm run lint:eslint\"",
         "lint:tsc": "tsc",
         "lint:eslint": "eslint src",

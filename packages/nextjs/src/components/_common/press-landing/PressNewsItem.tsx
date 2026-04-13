@@ -8,8 +8,8 @@ import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 
-import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
-import newsIcon from '/public/gfx/news-paper-icon-black.svg';
+import pressIcon from '../../../../public/gfx/press-speaker-icon-black.svg';
+import newsIcon from '../../../../public/gfx/news-paper-icon-black.svg';
 
 import style from './PressNewsItem.module.scss';
 

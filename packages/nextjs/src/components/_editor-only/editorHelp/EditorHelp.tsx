@@ -6,11 +6,11 @@ import { StaticImage } from 'components/_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
-import helpIcon from '/public/gfx/help.svg';
-import errorIcon from '/public/gfx/error.svg';
-import lightBulb from '/public/gfx/lightbulb.svg';
-import arrowUp from '/public/gfx/arrowUp.svg';
-import arrowDown from '/public/gfx/arrowDown.svg';
+import helpIcon from '../../../../public/gfx/help.svg';
+import errorIcon from '../../../../public/gfx/error.svg';
+import lightBulb from '../../../../public/gfx/lightbulb.svg';
+import arrowUp from '../../../../public/gfx/arrowUp.svg';
+import arrowDown from '../../../../public/gfx/arrowDown.svg';
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './EditorHelp.module.scss';

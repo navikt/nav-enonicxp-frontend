@@ -4,11 +4,9 @@
     border-color: var(--default-action-color);
     border-radius: var(--a-border-radius-small);
 
-    :global {
-        .navds-link-card__title,
-        .navds-link-anchor__arrow {
-            color: var(--default-action-color);
-        }
+    :global(.navds-link-card__title),
+    :global(.navds-link-anchor__arrow) {
+        color: var(--default-action-color);
     }
 
     &:hover {
@@ -67,10 +65,8 @@
     flex-direction: column;
     text-align: center;
 
-    :global {
-        .navds-link-card__title {
-            justify-content: center;
-        }
+    :global(.navds-link-card__title) {
+        justify-content: center;
     }
 
     .separator {
