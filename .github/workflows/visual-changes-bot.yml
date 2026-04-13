@@ -24,7 +24,7 @@ jobs:
               with:
                   ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
             - name: Setup pnpm
-              uses: pnpm/action-setup@v5
+              uses: pnpm/action-setup@v6
             - uses: actions/setup-node@v6
               with:
                   node-version: '24'
@@ -59,7 +59,7 @@ jobs:
                   commit_message: 'Update screenshots'
 
             - name: Review PR
-              uses: actions/github-script@v8
+              uses: actions/github-script@v9
               with:
                   script: |
                       try {
