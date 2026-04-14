@@ -2,6 +2,10 @@
     list-style: none;
     padding: 0;
     margin: var(--ax-space-16) 0 0 0;
+
+    a {
+        color: var(--default-action-color);
+    }
 }
 
 .channelItem {
