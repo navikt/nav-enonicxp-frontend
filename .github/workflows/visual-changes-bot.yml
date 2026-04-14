@@ -46,7 +46,7 @@ jobs:
                     --ipc=host \
                     mcr.microsoft.com/playwright:v1.59.1 \
                     /bin/bash -c "
-                      corepack enable pnpm && \
+                      npm install -g pnpm && \
                       CI=true pnpm --filter ./packages/nextjs exec playwright test --config=/workspace/playwright.config.ts --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js
                     "
