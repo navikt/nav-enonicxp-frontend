@@ -25,9 +25,9 @@ catalog:
     '@next/eslint-plugin-next': 15.5.4
     '@playwright/test': 1.59.1
     '@reduxjs/toolkit': 2.11.2
-    '@storybook/addon-docs': 10.3.4
-    '@storybook/nextjs': 10.3.4
-    '@storybook/react': 10.3.4
+    '@storybook/addon-docs': 10.3.5
+    '@storybook/nextjs': 10.3.5
+    '@storybook/react': 10.3.5
     '@testing-library/jest-dom': 6.9.1
     '@testing-library/react': 16.3.2
     '@types/cookie-parser': 1.4.10
@@ -44,8 +44,8 @@ catalog:
     '@types/react-dom': 19.2.3
     '@types/react-redux': 7.1.34
     '@types/rss': 0.0.32
-    '@typescript-eslint/eslint-plugin': 8.58.0
-    '@typescript-eslint/parser': 8.58.0
+    '@typescript-eslint/eslint-plugin': 8.58.1
+    '@typescript-eslint/parser': 8.58.1
     concurrently: 9.2.1
     cookie-parser: 1.4.7
     csp-header: 6.3.1
@@ -62,7 +62,7 @@ catalog:
     eslint-plugin-prettier: 5.5.5
     eslint-plugin-react: 7.37.5
     eslint-plugin-react-hooks: 6.1.0
-    eslint-plugin-storybook: 10.3.4
+    eslint-plugin-storybook: 10.3.5
     express: 5.2.1
     express-prom-bundle: 8.0.0
     fuse.js: 7.3.0
@@ -99,12 +99,12 @@ catalog:
     sass: 1.99.0
     schema-dts: 1.1.5
     sharp: 0.34.5
-    storybook: 10.3.4
-    storybook-addon-pseudo-states: 10.3.4
+    storybook: 10.3.5
+    storybook-addon-pseudo-states: 10.3.5
     swr: 2.4.1
     ts-jest: 29.4.9
     typescript: 5.9.3
-    typescript-eslint: 8.58.0
+    typescript-eslint: 8.58.1
     uuid: 13.0.0
 
 minimumReleaseAge: 4320
