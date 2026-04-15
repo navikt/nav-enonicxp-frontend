@@ -24,7 +24,7 @@ jobs:
               with:
                   ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
             - name: Setup pnpm
-              uses: pnpm/action-setup@v6
+              uses: pnpm/action-setup@v5
             - uses: actions/setup-node@v6
               with:
                   node-version: '24'
