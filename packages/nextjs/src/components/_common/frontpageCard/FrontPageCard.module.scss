@@ -30,14 +30,14 @@
     }
 
     &:global(.provider-frontpage) {
-        background-color: var(--ax-brand-magenta-200);
+        background-color: var(--ax-danger-100);
 
         :global(.back) {
             svg {
                 path,
                 rect,
                 circle {
-                    fill: var(--ax-brand-magenta-400);
+                    fill: var(--ax-danger-300);
                 }
             }
         }

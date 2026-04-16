@@ -81,10 +81,10 @@
     :global(.back) {
         svg {
             [fill] {
-                fill: var(--bg-color, white);
+                fill: var(--bg-color, var(--ax-danger-300));
             }
             [stroke] {
-                stroke: var(--bg-color, white);
+                stroke: var(--bg-color, var(--ax-danger-300));
             }
         }
     }
