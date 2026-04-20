@@ -22,7 +22,7 @@ export const Default: Story = {
                         },
                         {
                             ref: 'macro-2',
-                            name: MacroType.Button,
+                            name: MacroType.Knapp,
                         },
                     ],
                 },

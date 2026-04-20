@@ -28,7 +28,6 @@ const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
     ) {
         return [
             { name: 'title', weight: 10 },
-            { name: 'keywords', weight: 2 },
             { name: 'ingress', weight: 1 },
             { name: 'itemList.title', weight: 1 },
         ];
@@ -40,7 +39,7 @@ const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
         { name: 'title', weight: 10 },
         { name: 'ingress', weight: 8 },
         { name: 'subItems.title', weight: 2 },
-        { name: 'keywords', weight: 2 },
+        { name: 'subItems.longTitle', weight: 2 },
         { name: 'subItems.ingress', weight: 1 },
         { name: 'subItems.formNumbers', weight: 1 },
     ];

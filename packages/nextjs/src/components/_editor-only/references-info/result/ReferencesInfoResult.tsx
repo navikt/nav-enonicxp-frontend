@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
-import { Button } from 'components/_common/button/Button';
-import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
-import { removeDuplicates } from 'utils/arrays';
-import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
+import { EditorLinkWrapper } from 'components/_editor-only/editorLinkWrapper/EditorLinkWrapper';
+import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
+import { Knapp } from 'components/_common/knapp/Knapp';
+import { removeDuplicates } from 'utils/arrays';
 
 import style from './ReferencesInfoResult.module.scss';
 
@@ -48,14 +48,14 @@ export const ReferencesInfoResult = ({ references, content }: Props) => {
                             } side${numUniqueRefs === 1 ? '' : 'r'}`}
                         </Heading>
                         <EditorLinkWrapper>
-                            <Button
+                            <Knapp
                                 variant={'tertiary'}
                                 size={'small'}
                                 className={style.button}
                                 onClick={() => setIsOpen(!isOpen)}
                             >
                                 {isOpen ? 'Skjul' : 'Vis'}
-                            </Button>
+                            </Knapp>
                         </EditorLinkWrapper>
                     </>
                 ) : (

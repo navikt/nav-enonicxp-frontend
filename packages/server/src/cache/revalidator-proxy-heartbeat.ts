@@ -11,6 +11,10 @@ const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SE
 
 const HEARTBEAT_PERIOD_MS = 5000;
 
+const MAX_CONSECUTIVE_FAILURES = 10;
+
+let didStart = false;
+
 const getPodAddress = () => {
     if (ENV === 'localhost') {
         // If the revalidator-proxy app is running in a docker container, you need to
@@ -39,8 +43,6 @@ const getProxyLivenessUrl = () => {
         : null;
 };
 
-let didStart = false;
-
 export const initRevalidatorProxyHeartbeat = () => {
     if (NODE_ENV === 'development') {
         return;
@@ -55,17 +57,51 @@ export const initRevalidatorProxyHeartbeat = () => {
 
     logger.info('Starting heartbeat loop');
 
-    const heartbeatFunc = () => {
+    let consecutiveFailures = 0;
+
+    const heartbeatFunc = async () => {
         const url = getProxyLivenessUrl();
-        logger.info(`Revalidtor: heartbeat url: ${url}`);
         if (!url) {
             logger.error('Failed to determine revalidator heartbeat url!');
             return;
         }
 
-        fetch(url, {
-            headers: { secret: SERVICE_SECRET },
-        }).catch((error) => logger.error('Failed to send heartbeat signal', { error }));
+        logger.info(`Revalidtor: heartbeat url: ${url}`);
+
+        try {
+            const res = await fetch(url, {
+                headers: { secret: SERVICE_SECRET },
+            });
+
+            if (res.ok) {
+                consecutiveFailures = 0;
+                return;
+            }
+
+            // At this point, the conditional above did not return, so we handle failures from here on.
+            consecutiveFailures++;
+
+            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+                logger.error(
+                    `Heartbeat failed ${consecutiveFailures} consecutive times (last status: ${res.status})`
+                );
+            } else {
+                logger.warn(
+                    `Revalidator proxy heartbeat returned status ${res.status}. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
+                );
+            }
+        } catch (error) {
+            consecutiveFailures++;
+            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+                logger.error(`Heartbeat failed ${consecutiveFailures} consecutive times`, {
+                    error,
+                });
+            } else {
+                logger.warn(
+                    `Revalidator proxy heartbeat failed. Trying again ${MAX_CONSECUTIVE_FAILURES - consecutiveFailures} more times before logging an error.`
+                );
+            }
+        }
     };
 
     heartbeatFunc();

@@ -61,7 +61,6 @@ const getStepData = (
             title: displayName,
             editorial: data.editorial,
             steps: data.steps,
-            previousStepExplanation: '',
         };
     }
 
@@ -86,9 +85,10 @@ const getStepData = (
     return {
         textAboveTitle: displayName,
         title: lastStepLabel,
-        editorial: tmp.editorial,
+        editorial:
+            tmp.editorial ??
+            (previousStepExplanation ? `<p>${previousStepExplanation}</p>` : undefined),
         steps: tmp.steps,
-        previousStepExplanation,
     };
 };
 

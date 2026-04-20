@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'components/_common/button/Button';
+import { Knapp } from 'components/_common/knapp/Knapp';
 
 type Props = {
     url: string;
@@ -8,7 +8,7 @@ type Props = {
 
 export const VersionSelectorSubmitButton = ({ url, submitVersionUrl }: Props) => {
     return (
-        <Button
+        <Knapp
             href={url}
             size={'small'}
             className={'version-selector-submit'}
@@ -21,6 +21,6 @@ export const VersionSelectorSubmitButton = ({ url, submitVersionUrl }: Props) =>
             disabled={!url}
         >
             {'Hent innhold'}
-        </Button>
+        </Knapp>
     );
 };

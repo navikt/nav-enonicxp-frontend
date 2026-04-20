@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Knapp } from './Knapp';
 
 const meta = {
-    component: Button,
+    component: Knapp,
     args: { children: 'Trykk her' },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Knapp>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

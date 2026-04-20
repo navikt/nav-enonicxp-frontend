@@ -4,7 +4,7 @@ import { PartConfigTrekkspill } from 'components/parts/trekkspill/TrekkspillPart
 import { PartConfigVarselboks } from 'components/parts/varselboks/VarselboksPart';
 import { PartConfigOmradekort } from 'components/parts/omradekort/OmradekortPart';
 import { PartConfigSituasjonskort } from 'components/parts/situasjonskort/SituasjonskortPart';
-import { PartConfigButton } from 'components/parts/button/ButtonPart';
+import { PartConfigKnapp } from 'components/parts/knapp/KnappPart';
 import { PartConfigKalkulator } from 'components/parts/kalkulator/KalkulatorPart';
 import { PartConfigKontaktOssKanal } from 'components/parts/kontakt-oss-kanal/KontaktOssKanalPart';
 import { PartConfigFiltreringsmeny } from 'components/parts/filtreringsmeny/FiltreringsmenyPart';
@@ -45,7 +45,7 @@ export enum PartType {
     Kalkulator = 'no.nav.navno:calculator',
     DetaljinformasjonForDetAktuelleKontoret = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
-    Button = 'no.nav.navno:button',
+    Knapp = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     Filtreringsmeny = 'no.nav.navno:filters-menu',
@@ -97,7 +97,7 @@ type PartConfigs = {
     [PartType.Varselboks]: PartConfigVarselboks;
     [PartType.Omradekort]: PartConfigOmradekort;
     [PartType.Situasjonskort]: PartConfigSituasjonskort;
-    [PartType.Button]: PartConfigButton;
+    [PartType.Knapp]: PartConfigKnapp;
     [PartType.Kalkulator]: PartConfigKalkulator;
     [PartType.KontaktOssKanal]: PartConfigKontaktOssKanal;
     [PartType.Filtreringsmeny]: PartConfigFiltreringsmeny;

@@ -38,5 +38,4 @@ export type StepBase = {
     title?: string;
     editorial?: ProcessedHtmlProps;
     steps: SelectableStep[];
-    previousStepExplanation?: string;
 };

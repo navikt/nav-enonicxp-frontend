@@ -1,0 +1,48 @@
+name: Deploy to nais
+description: Deploy Valkey, HPA and application to NAIS
+
+inputs:
+  image:
+    required: true
+    description: Docker image to deploy
+
+  cluster:
+    required: true
+    description: NAIS cluster
+
+  config_file:
+    required: true
+    description: Application config file in .nais/
+
+  vars_file:
+    required: true
+    description: Vars file in .nais/vars/
+
+  hpa_file:
+    required: false
+    description: HPA file in .nais/hpa/
+    default: ""
+
+  deploy_valkey:
+    required: false
+    description: Whether to deploy Valkey
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - name: Deploy HPA
+      if: ${{ inputs.hpa_file != '' }}
+      uses: ./.github/actions/nais-deploy
+      continue-on-error: true
+      with:
+        CLUSTER: ${{ inputs.cluster }}
+        RESOURCE: .nais/hpa/${{ inputs.hpa_file }}
+
+    - name: Deploy application
+      uses: ./.github/actions/nais-deploy
+      with:
+        CLUSTER: ${{ inputs.cluster }}
+        RESOURCE: .nais/${{ inputs.config_file }}
+        VAR: image=${{ inputs.image }}
+        VARS: .nais/vars/${{ inputs.vars_file }}

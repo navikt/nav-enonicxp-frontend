@@ -24,7 +24,7 @@ jobs:
               with:
                   ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
             - name: Setup pnpm
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@v5
             - uses: actions/setup-node@v6
               with:
                   node-version: '24'
@@ -44,9 +44,9 @@ jobs:
                     -v $(pwd):/workspace \
                     -w /workspace \
                     --ipc=host \
-                    mcr.microsoft.com/playwright:v1.58.2 \
+                    mcr.microsoft.com/playwright:v1.59.1 \
                     /bin/bash -c "
-                      corepack enable pnpm && \
+                      npm install -g pnpm && \
                       CI=true pnpm --filter ./packages/nextjs exec playwright test --config=/workspace/playwright.config.ts --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js
                     "
@@ -59,7 +59,7 @@ jobs:
                   commit_message: 'Update screenshots'
 
             - name: Review PR
-              uses: actions/github-script@v8
+              uses: actions/github-script@v9
               with:
                   script: |
                       try {
