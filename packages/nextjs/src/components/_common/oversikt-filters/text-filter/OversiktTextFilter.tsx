@@ -43,7 +43,7 @@ export const OversiktTextFilter = () => {
             logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
                 kategori: 'fritekst',
                 filternavn: analyticsRedaction(value),
-                komponentId: 'OverviewTextFilter',
+                komponentId: 'OversiktTextFilter',
                 målgruppe: context,
                 innholdstype: innholdsTypeMap[contentProps.type],
             });

@@ -41,7 +41,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
             {
                 tittel,
                 opprinnelse: 'trekkspill',
-                komponentId: 'Accordion',
+                komponentId: 'Trekkspill',
                 målgruppe: context,
                 innholdstype: innholdsTypeMap[type],
             }

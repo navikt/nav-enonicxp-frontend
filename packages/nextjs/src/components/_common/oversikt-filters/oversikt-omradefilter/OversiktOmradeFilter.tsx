@@ -47,7 +47,7 @@ export const OversiktOmradeFilter = ({ items }: Props) => {
             kategori: 'område',
             filternavn: analyticsAreas[area],
             opprinnelse: 'oversiktsside områder',
-            komponentId: 'OverviewAreaFilter',
+            komponentId: 'OversiktOmradeFilter',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });
