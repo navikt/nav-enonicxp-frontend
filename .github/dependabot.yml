@@ -36,6 +36,9 @@ updates:
       pull-request-branch-name:
           separator: '-'
       open-pull-requests-limit: 10
+      ignore:
+          - dependency-name: 'pnpm/action-setup'
+            versions: ['6']
       groups:
           actions:
               patterns: ['*']
