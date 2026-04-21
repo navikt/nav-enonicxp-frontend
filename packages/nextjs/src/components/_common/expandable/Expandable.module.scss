@@ -2,6 +2,7 @@
     display: block;
     border: none;
     box-shadow: none;
+    margin-bottom: calc(var(--ax-space-8) * -1);
 
     .header[data-open='true'] {
         position: sticky;
