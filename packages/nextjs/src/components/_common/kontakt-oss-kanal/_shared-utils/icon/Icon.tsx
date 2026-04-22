@@ -1,7 +1,7 @@
-const appOrigin = process.env.APP_ORIGIN;
-
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import style from './Icon.module.scss';
+
+const appOrigin = process.env.APP_ORIGIN;
 
 type IconProps = {
     type: string;
