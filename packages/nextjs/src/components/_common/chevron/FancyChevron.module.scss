@@ -33,7 +33,7 @@
 .circle {
     position: absolute;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--ax-bg-default);
     width: var(--ax-space-96);
     height: var(--ax-space-96);
 }
@@ -58,7 +58,7 @@
 }
 
 .colorLine {
-    background-color: white;
+    background-color: var(--ax-bg-default);
     height: var(--ax-space-6);
 }
 

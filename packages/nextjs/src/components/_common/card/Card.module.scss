@@ -75,7 +75,7 @@
     }
 
     :global(.large) {
-        background-color: white;
+        background-color: var(--ax-bg-default);
         border-radius: var(--ax-radius-8);
         display: block;
         padding: var(--ax-space-24);

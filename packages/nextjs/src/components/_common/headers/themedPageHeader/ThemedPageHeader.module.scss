@@ -3,7 +3,7 @@
 .themedPageHeader {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: var(--ax-bg-default);
     padding-top: var(--ax-space-20);
     padding-bottom: var(--ax-space-20);
     border-bottom: 4px solid transparent;
