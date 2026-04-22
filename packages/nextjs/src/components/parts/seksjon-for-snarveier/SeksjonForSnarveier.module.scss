@@ -42,7 +42,7 @@
     background-color: var(--bg-color, var(--ax-brand-blue-200));
 }
 .provider {
-    background-color: var(--bg-color, white);
+    background-color: var(--bg-color, var(--ax-bg-default));
 }
 .other {
     background-color: var(--bg-color, var(--ax-neutral-200));
