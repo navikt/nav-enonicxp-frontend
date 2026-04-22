@@ -64,7 +64,7 @@ export type DefaultContactData = {
     title?: string;
     url?: string;
     hideMoreLink?: boolean;
-    icon?: 'facebook' | 'linkedin';
+    icon?: 'facebook' | 'linkedin' | 'nyhetsbrev' | 'generisk';
     sharedContactInformation?: {
         _path: string;
         data: {
