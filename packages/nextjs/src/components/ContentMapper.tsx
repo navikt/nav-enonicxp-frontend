@@ -18,19 +18,19 @@ import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
-import { ProductPage } from './pages/product-page/ProductPage';
+import { ProductPage } from './pages/productPage/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { KapittelPage } from './pages/kapittel-page/KapittelPage';
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
-import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
+import { CurrentTopicPage } from './pages/currentTopicPage/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { FormIntermediateStepPage } from './pages/formIntermediateStepPage/FormIntermediateStepPage';
 import { KalkulatorPage } from './pages/kalkulator-page/KalkulatorPage';
 import { VarselIKontekstPage } from './pages/varsel-i-kontekst-page/VarselIKontekstPage';
-import { OfficePage } from './pages/office-page/OfficePage';
+import { OfficePage } from './pages/officePage/OfficePage';
 import { ContactStepPage } from './pages/contactStepPage/ContactStepPage';
 
 const contentToReactComponent: {
