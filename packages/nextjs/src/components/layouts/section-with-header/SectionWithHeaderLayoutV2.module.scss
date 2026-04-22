@@ -24,7 +24,7 @@
     :global(.icon-container) {
         align-items: center;
         align-self: flex-start;
-        background-color: white;
+        background-color: var(--ax-bg-default);
         border-radius: 50%;
         display: flex;
         height: var(--ax-space-64);

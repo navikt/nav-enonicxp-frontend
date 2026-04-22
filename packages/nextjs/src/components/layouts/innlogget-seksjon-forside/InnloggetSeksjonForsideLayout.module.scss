@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .layout {
-    background-color: white;
+    background-color: var(--ax-bg-default);
     @include common.full-width-mixin();
     padding-top: var(--ax-space-20);
     padding-bottom: var(--ax-space-12);

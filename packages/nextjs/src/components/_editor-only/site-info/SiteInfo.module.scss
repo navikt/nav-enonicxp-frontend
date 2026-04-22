@@ -7,7 +7,7 @@
 
 .content {
     & > * {
-        background-color: white;
+        background-color: var(--ax-bg-default);
         padding: var(--ax-space-20);
         &:not(:last-child) {
             margin-bottom: var(--ax-space-12);

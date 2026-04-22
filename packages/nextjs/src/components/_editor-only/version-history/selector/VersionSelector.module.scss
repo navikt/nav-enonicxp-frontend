@@ -21,7 +21,7 @@
         transition-property: visibility, transform;
         transition-duration: 0.25s;
         transition-timing-function: ease-out;
-        background-color: white;
+        background-color: var(--ax-bg-default);
         border-radius: var(--ax-radius-4);
         box-shadow: 0 0 0 2px var(--ax-success-300) inset;
         padding: var(--ax-space-16) var(--ax-space-32);

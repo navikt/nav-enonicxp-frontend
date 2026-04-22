@@ -9,7 +9,7 @@
 
     .panel {
         margin-bottom: var(--ax-space-8);
-        background-color: white;
+        background-color: var(--ax-bg-default);
         border-radius: var(--ax-radius-4);
 
         :global(.aksel-accordion__header) {
@@ -20,7 +20,7 @@
             }
 
             &:hover {
-                background-color: white;
+                background-color: var(--ax-bg-default);
             }
         }
 

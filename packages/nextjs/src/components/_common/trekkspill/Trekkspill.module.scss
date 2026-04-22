@@ -23,7 +23,7 @@
 
 .header {
     // Setter bakgrunnsfarge pga. sticky trekkspill
-    background-color: white;
+    background-color: var(--ax-bg-default);
 
     &:hover {
         // Hardkod fargen fordi --ax-bg-moderate-hoverA er gjennomsiktig, og --ax-bg-moderate-hover gir ikke tilsvarende farge

@@ -10,7 +10,7 @@
 }
 
 .wide {
-    background-color: white;
+    background-color: var(--ax-bg-default);
     display: flex;
     justify-content: center;
     @include common.full-width-mixin();

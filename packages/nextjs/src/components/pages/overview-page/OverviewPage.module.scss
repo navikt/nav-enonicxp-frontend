@@ -32,7 +32,7 @@
 .filters {
     padding: var(--ax-space-20);
     max-width: common.$sectionMaxWidth;
-    background-color: white;
+    background-color: var(--ax-bg-default);
 
     @media #{common.$mq-screen-mobile} {
         padding: var(--ax-space-16);

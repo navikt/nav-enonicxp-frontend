@@ -1,6 +1,6 @@
 .warning {
     min-width: 400px;
-    background-color: white;
+    background-color: var(--ax-bg-default);
 
     &::before {
         content: '';

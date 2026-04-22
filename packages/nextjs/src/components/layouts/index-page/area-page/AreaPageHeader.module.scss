@@ -3,7 +3,7 @@
 .panel {
     display: flex;
     padding-bottom: var(--ax-space-28);
-    background-color: white;
+    background-color: var(--ax-bg-default);
     padding-top: var(--ax-space-32);
     @include common.full-width-mixin();
 

@@ -3,7 +3,7 @@
 .filtreringsmeny {
     box-shadow: var(--ax-accent-300) inset 0 0 0 8px;
     border-radius: var(--ax-radius-4);
-    background-color: white;
+    background-color: var(--ax-bg-default);
 
     @include common.section-padding-mixin();
 

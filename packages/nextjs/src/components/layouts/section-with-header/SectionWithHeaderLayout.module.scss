@@ -11,7 +11,7 @@
 
     display: inline-flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--ax-bg-default);
     width: 100%;
 
     @include common.section-padding-mixin();
@@ -25,7 +25,7 @@
         height: var(--ax-space-64);
         position: relative;
         border-radius: 50%;
-        background-color: white;
+        background-color: var(--ax-bg-default);
         overflow: hidden;
 
         @include adjust-for-padding(common.$sectionPaddingDesktop);

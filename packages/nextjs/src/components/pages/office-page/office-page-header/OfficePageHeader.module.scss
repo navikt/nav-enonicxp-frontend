@@ -2,7 +2,7 @@
 
 .officePageHeader {
     align-items: center;
-    background-color: white;
+    background-color: var(--ax-bg-default);
     border: none;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 .content {
-    background-color: white;
+    background-color: var(--ax-bg-default);
     max-width: common.$sectionMaxWidth;
     text-align: center;
     width: 100%;
