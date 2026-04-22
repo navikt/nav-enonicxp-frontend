@@ -103,7 +103,7 @@ export const ProductPanelExpandable = ({
                         </ExpansionCard.Title>
                         {ingress && (
                             <ExpansionCard.Description className={style.ingress}>
-                                {ingress}{' '}
+                                {ingress}
                             </ExpansionCard.Description>
                         )}
                     </div>
