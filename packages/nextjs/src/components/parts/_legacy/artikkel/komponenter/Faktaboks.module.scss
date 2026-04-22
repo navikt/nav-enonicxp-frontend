@@ -23,7 +23,7 @@
         margin-bottom: var(--ax-space-24);
 
         &:after {
-            border-top: 1px solid #808080;
+            border-top: 1px solid var(--ax-neutral-600);
             content: ' ';
             display: block;
             margin: var(--ax-space-20) auto 0;
