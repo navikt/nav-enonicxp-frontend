@@ -30,12 +30,13 @@ export const OversiktFilterBase = <Type extends Area>({
             <Heading className="sr-only" size="xsmall" level="3">
                 {translations['select']}
             </Heading>
-            <Chips className={styles.filterWrapper} data-color="brand-blue">
+            <Chips className={styles.filterWrapper}>
                 {options.map((option) => {
                     const optionLabel = optionsTranslations(option);
 
                     return (
                         <Chips.Toggle
+                            data-color="brand-blue"
                             type={'button'}
                             onClick={() => selectionCallback(option)}
                             aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
