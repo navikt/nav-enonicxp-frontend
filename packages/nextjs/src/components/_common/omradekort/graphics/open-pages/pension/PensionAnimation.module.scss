@@ -24,7 +24,7 @@
 }
 
 .mask {
-    background-color: var(--a-deepblue-100);
+    background-color: var(--ax-brand-blue-300);
 
     @include omradekort.transitionMixin;
     position: absolute;
@@ -57,7 +57,7 @@
 }
 
 .coin {
-    background-color: var(--a-orange-200);
+    background-color: var(--ax-warning-300);
     border-radius: 50%;
 
     @include omradekort.transitionMixin;

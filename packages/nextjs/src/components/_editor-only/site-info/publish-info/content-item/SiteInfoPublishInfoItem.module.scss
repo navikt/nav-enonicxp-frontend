@@ -2,7 +2,7 @@
     width: 100%;
 
     &:not(:last-child) {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 }
 
@@ -12,19 +12,19 @@
 }
 
 .name {
-    margin-bottom: var(--a-spacing-1);
-    margin-right: var(--a-spacing-2);
+    margin-bottom: var(--ax-space-4);
+    margin-right: var(--ax-space-8);
 }
 
 .publish {
-    margin-top: var(--a-spacing-1);
+    margin-top: var(--ax-space-4);
 }
 
 .warning {
     display: flex;
     align-items: center;
     svg {
-        margin-right: var(--a-spacing-1);
-        color: var(--a-orange-500);
+        margin-right: var(--ax-space-4);
+        color: var(--ax-warning-600);
     }
 }

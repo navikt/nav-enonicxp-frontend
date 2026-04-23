@@ -1,17 +1,17 @@
 .publishingCalendar {
-    padding: var(--a-spacing-8);
-    background: var(--a-white);
+    padding: var(--ax-space-32);
+    background: var(--ax-bg-default);
 
     h1 {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 
     .ingress {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 
     header {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 
     table {
@@ -28,12 +28,12 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: var(--a-spacing-18);
-                height: var(--a-spacing-18);
+                width: var(--ax-space-72);
+                height: var(--ax-space-72);
                 font-weight: 600;
-                padding: var(--a-spacing-4);
+                padding: var(--ax-space-16);
                 border-radius: 50%;
-                background-color: var(--a-gray-200);
+                background-color: var(--ax-neutral-300);
             }
 
             .dateInfo {

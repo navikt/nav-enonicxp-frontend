@@ -1,29 +1,27 @@
 .miniCardV2 {
-    margin-bottom: var(--a-spacing-9);
+    margin-bottom: var(--ax-space-36);
 
-    :global(.navds-link-card__title),
-    :global(.navds-link-anchor__arrow) {
+    :global(.aksel-link-card__title),
+    :global(.aksel-link-anchor__arrow) {
         color: var(--default-action-color);
     }
 
-    :global(.navds-link-anchor) {
+    :global(.aksel-link-anchor) {
         text-decoration: none;
     }
 
     &:hover,
     &:focus-within {
         background-color: #ecf3fe;
-        border-color: #cbd4e1;
-        box-shadow: none;
 
-        :global(.navds-link-anchor) {
+        :global(.aksel-link-anchor) {
             text-decoration: underline;
         }
     }
 }
 
 .tagline {
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
     font-variant: all-small-caps;
     letter-spacing: 1.2px;
     margin-top: 0.125rem;

@@ -84,7 +84,7 @@ export const Expandable = ({
         >
             <ExpansionCard.Header className={style.header}>
                 {getHeaderIcon()}
-                <div className={style.headerTitle}>{title}</div>
+                {title}
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.content}>{children}</ExpansionCard.Content>
         </ExpansionCard>

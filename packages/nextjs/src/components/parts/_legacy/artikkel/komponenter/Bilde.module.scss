@@ -3,7 +3,7 @@
 
     figure {
         width: 100%;
-        margin-top: var(--a-spacing-16);
+        margin-top: var(--ax-space-64);
         display: inline-block;
 
         img {
@@ -22,10 +22,10 @@
         }
 
         figcaption {
-            font-size: var(--a-font-size-small);
+            font-size: var(--ax-font-size-small);
             letter-spacing: 0.004em;
-            line-height: var(--a-font-line-height-medium);
-            margin: var(--a-spacing-2) 0;
+            line-height: var(--ax-font-line-height-medium);
+            margin: var(--ax-space-8) 0;
             text-align: left;
         }
     }

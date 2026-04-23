@@ -9,8 +9,8 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
-        padding-top: var(--a-spacing-3);
-        padding-bottom: var(--a-spacing-12);
+        padding-top: var(--ax-space-12);
+        padding-bottom: var(--ax-space-48);
 
         @media #{common.$mq-screen-mobile} {
             flex-direction: column;
@@ -22,12 +22,12 @@
 
         @media #{common.$mq-screen-tablet-and-desktop} {
             &:not(:only-child) {
-                margin-right: var(--a-spacing-6);
+                margin-right: var(--ax-space-24);
             }
         }
 
         &:last-child {
-            padding-bottom: var(--a-spacing-12);
+            padding-bottom: var(--ax-space-48);
         }
     }
 
@@ -35,7 +35,7 @@
         flex: 1;
 
         @media #{common.$mq-screen-mobile} {
-            margin-top: var(--a-spacing-8);
+            margin-top: var(--ax-space-32);
         }
     }
 }

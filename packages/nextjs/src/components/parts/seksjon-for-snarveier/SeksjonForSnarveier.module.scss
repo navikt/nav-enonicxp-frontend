@@ -1,7 +1,7 @@
 @use 'common' as common;
 
 .lenkepanel {
-    :global(.navds-link-card__arrow) {
+    :global(.aksel-link-card__arrow) {
         display: none;
     }
 }
@@ -10,12 +10,12 @@
     display: flex;
     flex-shrink: 0;
 
-    width: var(--a-spacing-16);
-    height: var(--a-spacing-16);
+    width: var(--ax-space-64);
+    height: var(--ax-space-64);
 
     @media #{common.$mq-screen-mobile-small} {
-        width: var(--a-spacing-12);
-        height: var(--a-spacing-12);
+        width: var(--ax-space-48);
+        height: var(--ax-space-48);
     }
 
     & > * {
@@ -26,33 +26,33 @@
 
 .shortcuts {
     @include common.full-width-mixin();
-    padding-top: var(--a-spacing-11);
-    padding-bottom: var(--a-spacing-11);
+    padding-top: var(--ax-space-44);
+    padding-bottom: var(--ax-space-44);
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: var(--a-spacing-7);
-        padding-bottom: var(--a-spacing-7);
+        padding-top: var(--ax-space-28);
+        padding-bottom: var(--ax-space-28);
     }
 }
 
 .person {
-    background-color: var(--bg-color, var(--a-red-50));
+    background-color: var(--bg-color, var(--ax-danger-100));
 }
 .employer {
-    background-color: var(--bg-color, var(--a-deepblue-100));
+    background-color: var(--bg-color, var(--ax-brand-blue-200));
 }
 .provider {
-    background-color: var(--bg-color, var(--a-white));
+    background-color: var(--bg-color, var(--ax-bg-default));
 }
 .other {
-    background-color: var(--bg-color, var(--a-gray-100));
+    background-color: var(--bg-color, var(--ax-neutral-200));
 }
 
 .header {
-    margin-bottom: var(--a-spacing-6);
+    margin-bottom: var(--ax-space-24);
 
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 }
 
@@ -73,7 +73,7 @@
 }
 
 .item {
-    background-color: var(--item-color, var(--a-white));
+    background-color: var(--item-color, white);
     width: 100%;
 }
 
@@ -81,10 +81,10 @@
     :global(.back) {
         svg {
             [fill] {
-                fill: var(--bg-color, var(--a-red-100));
+                fill: var(--bg-color, var(--ax-danger-300));
             }
             [stroke] {
-                stroke: var(--bg-color, var(--a-red-100));
+                stroke: var(--bg-color, var(--ax-danger-300));
             }
         }
     }

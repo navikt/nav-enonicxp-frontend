@@ -2,30 +2,30 @@
 
 .pageList {
     width: 100%;
-    background: var(--a-white);
-    border-radius: var(--a-border-radius-medium);
+    background: var(--ax-bg-default);
+    border-radius: var(--ax-radius-4);
 
     @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-6);
+        padding: var(--ax-space-24);
     }
     @media #{common.$mq-screen-tablet} {
-        padding: var(--a-spacing-6);
+        padding: var(--ax-space-24);
     }
     @media #{common.$mq-screen-desktop} {
-        padding: var(--a-spacing-11);
+        padding: var(--ax-space-44);
     }
 
     .ingress {
-        margin-top: var(--a-spacing-2);
+        margin-top: var(--ax-space-8);
     }
     .list {
-        margin-top: var(--a-spacing-9);
+        margin-top: var(--ax-space-36);
     }
     .row {
-        border-top: 1px solid var(--a-gray-200);
-        padding: var(--a-spacing-8) 0;
+        border-top: 1px solid var(--ax-neutral-300);
+        padding: var(--ax-space-32) 0;
     }
     .date {
-        margin-top: var(--a-spacing-2);
+        margin-top: var(--ax-space-8);
     }
 }

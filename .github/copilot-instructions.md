@@ -69,13 +69,12 @@ See `packages/server/src/cache/page-cache-handler.ts` for implementation.
 This project uses **@navikt/aksel** as its design system:
 
 - `@navikt/ds-react` – React components (Button, Alert, Accordion, etc.)
-- `@navikt/ds-css` – Base CSS and component styles
+- `@navikt/ds-css` – Base CSS, component styles, and design tokens (colors, spacing, typography) via bundled `@navikt/ds-tokens`
 - `@navikt/aksel-icons` – Icon library
-- `@navikt/ds-tokens` – Design tokens (colors, spacing, typography)
 
 **Important conventions**:
 
-- **Tokens over hardcoded values**: Use `var(--a-spacing-*)`, `var(--a-font-*)`, `var(--a-color-*)` tokens in CSS - never hardcode spacing, colors, or typography
+- **Tokens over hardcoded values**: Use `var(--ax-space--*)`, `var(--ax-font-*)`, `var(--ax-color-*)` tokens in CSS - never hardcode spacing, colors, or typography
 - **Semantic typography**: Use `<Heading>` for headings and `<BodyLong>` for paragraphs instead of raw HTML tags (`<h1>`, `<p>`)
 - **Import pattern**: `import { Heading, BodyLong } from '@navikt/ds-react'`
 - **Heading props**: Always specify `level` (semantic HTML) and `size` (visual size) separately - they don't have to match

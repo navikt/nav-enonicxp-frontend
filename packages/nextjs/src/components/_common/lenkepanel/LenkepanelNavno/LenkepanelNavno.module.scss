@@ -1,14 +1,14 @@
 @use 'common' as common;
 
 $blueLinkColor: var(--default-action-color);
-$blackLinkColor: var(--a-text-default);
+$blackLinkColor: var(--ax-text-neutral);
 
 .lenkepanelNavno {
     position: relative;
     display: flex;
     align-items: flex-start;
-    padding: var(--a-spacing-6);
-    border-radius: var(--a-border-radius-large);
+    padding: var(--ax-space-24);
+    border-radius: var(--ax-radius-8);
 
     &:hover {
         .lenkepanelNavnoLink {
@@ -22,8 +22,8 @@ $blackLinkColor: var(--a-text-default);
         @include common.panel-focus-mixin();
     }
 
-    :global(.navds-label) {
-        font-size: var(--a-font-size-heading-medium);
+    :global(.aksel-label) {
+        font-size: var(--ax-font-size-heading-medium);
     }
 }
 
@@ -44,8 +44,8 @@ $blackLinkColor: var(--a-text-default);
     text-underline-offset: 0.1em;
 
     @media #{common.$mq-screen-mobile-small} {
-        font-size: var(--a-font-size-xlarge);
-        line-height: var(--a-font-line-height-xlarge);
+        font-size: var(--ax-font-size-xlarge);
+        line-height: var(--ax-font-line-height-xlarge);
     }
 
     &.linkBlack {
@@ -73,9 +73,9 @@ $blackLinkColor: var(--a-text-default);
 }
 
 .lenkepanelNavnoIngress {
-    margin-top: var(--a-spacing-4);
+    margin-top: var(--ax-space-16);
 }
 
 .lenkepanelNavnoIcon {
-    margin-right: var(--a-spacing-4);
+    margin-right: var(--ax-space-16);
 }
