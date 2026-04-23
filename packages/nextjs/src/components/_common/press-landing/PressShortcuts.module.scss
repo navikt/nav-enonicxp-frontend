@@ -1,25 +1,25 @@
 @use 'common' as common;
 
 .pressShortcuts {
-    background-color: var(--a-white);
+    background-color: var(--ax-bg-default);
     display: flex;
     justify-content: center;
-    margin-bottom: calc(-1 * var(--a-spacing-8));
-    margin-top: var(--a-spacing-10);
-    padding: var(--a-spacing-11) 0;
+    margin-bottom: calc(-1 * var(--ax-space-32));
+    margin-top: var(--ax-space-40);
+    padding: var(--ax-space-44) 0;
     @include common.full-width-mixin;
 }
 
 .content {
-    width: calc(100% - var(--a-spacing-4));
+    width: calc(100% - var(--ax-space-16));
     max-width: 37.5rem;
 }
 
 .shortcutItem {
     border: 0;
-    border-radius: var(--a-border-radius-small);
-    border-bottom: 2px solid var(--a-gray-600);
-    margin: var(--a-spacing-1) 0;
+    border-radius: var(--ax-radius-2);
+    border-bottom: 2px solid var(--ax-neutral-700);
+    margin: var(--ax-space-4) 0;
     font-weight: 600;
 
     &:has(:focus-visible) {
@@ -30,13 +30,13 @@
         box-shadow: none;
     }
 
-    :global(.navds-link-anchor) {
+    :global(.aksel-link-anchor) {
         text-decoration: none;
     }
 }
 
 .shortcutList {
     list-style: none;
-    margin: var(--a-spacing-6) 0;
+    margin: var(--ax-space-24) 0;
     padding: 0;
 }

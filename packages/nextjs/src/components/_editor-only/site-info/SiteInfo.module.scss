@@ -1,16 +1,16 @@
 .container {
-    background-color: var(--a-bg-subtle);
+    background-color: var(--ax-bg-neutral-soft);
     width: 100%;
     min-height: 100vh;
-    padding: var(--a-spacing-5);
+    padding: var(--ax-space-20);
 }
 
 .content {
     & > * {
-        background-color: var(--a-white);
-        padding: var(--a-spacing-5);
+        background-color: var(--ax-bg-default);
+        padding: var(--ax-space-20);
         &:not(:last-child) {
-            margin-bottom: var(--a-spacing-3);
+            margin-bottom: var(--ax-space-12);
         }
     }
 }

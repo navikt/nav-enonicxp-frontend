@@ -3,7 +3,7 @@
 .overviewPage {
     display: flex;
     flex-direction: column;
-    padding-bottom: var(--a-spacing-12);
+    padding-bottom: var(--ax-space-48);
 }
 
 .content {
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: var(--a-spacing-8);
+    margin-top: var(--ax-space-32);
     max-width: common.$contentMaxWidth;
     width: 100%;
 
@@ -20,7 +20,7 @@
     }
 
     :global(.icon-container) {
-        background-color: var(--a-green-200);
+        background-color: var(--ax-success-300);
         img {
             height: 50%;
             width: 50%;
@@ -30,12 +30,12 @@
 
 .productListWrapper,
 .filters {
-    padding: var(--a-spacing-5);
+    padding: var(--ax-space-20);
     max-width: common.$sectionMaxWidth;
-    background-color: var(--a-white);
+    background-color: var(--ax-bg-default);
 
     @media #{common.$mq-screen-mobile} {
-        padding: var(--a-spacing-4);
+        padding: var(--ax-space-16);
     }
 }
 
@@ -50,10 +50,10 @@
 }
 
 .allProducts {
-    padding-top: var(--a-spacing-4);
+    padding-top: var(--ax-space-16);
 
     & > li {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
 
         &:last-child {
             margin-bottom: 0;

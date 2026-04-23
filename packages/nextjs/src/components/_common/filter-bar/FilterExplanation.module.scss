@@ -1,37 +1,37 @@
 .filterExplanation {
-    margin-left: calc(-1 * var(--a-spacing-2));
-    padding: var(--a-spacing-2) var(--a-spacing-1-alt) var(--a-spacing-2) var(--a-spacing-2);
+    margin-left: calc(-1 * var(--ax-space-8));
+    padding: var(--ax-space-8) var(--ax-space-6) var(--ax-space-8) var(--ax-space-8);
     display: flex;
     align-items: center;
     transition: all 0.8s linear;
-    border-radius: var(--a-border-radius-medium);
-    width: calc(100% + var(--a-spacing-4));
-    font-size: var(--a-font-size-medium);
+    border-radius: var(--ax-radius-4);
+    width: calc(100% + var(--ax-space-16));
+    font-size: var(--ax-font-size-medium);
     border: 1px solid transparent;
 }
 
 .filterExplanationHighlight {
-    background-color: var(--a-green-100);
-    border: 1px solid var(--a-green-500);
+    background-color: var(--ax-success-200);
+    border: 1px solid var(--ax-success-600);
     transition: all 0.4s linear;
 }
 
 .iconWrapper {
     display: block;
-    height: var(--a-spacing-6);
-    width: var(--a-spacing-6);
-    margin-right: var(--a-spacing-1);
+    height: var(--ax-space-24);
+    width: var(--ax-space-24);
+    margin-right: var(--ax-space-4);
     position: relative;
 
     .highlighted {
-        color: var(--a-surface-success);
+        color: var(--ax-bg-success-strong);
     }
 }
 
 .icon {
     display: block;
-    height: var(--a-spacing-6);
-    width: var(--a-spacing-6);
+    height: var(--ax-space-24);
+    width: var(--ax-space-24);
     left: 0;
     position: absolute;
     top: 0;

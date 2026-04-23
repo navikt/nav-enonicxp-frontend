@@ -6,7 +6,7 @@
 
     :global {
         .layout__section-with-header {
-            margin-bottom: var(--a-spacing-8);
+            margin-bottom: var(--ax-space-32);
         }
     }
 
@@ -14,7 +14,7 @@
         align-self: center;
         display: flex;
         justify-content: flex-start;
-        margin-top: var(--a-spacing-8);
+        margin-top: var(--ax-space-32);
         max-width: common.$contentMaxWidth;
         width: 100%;
 

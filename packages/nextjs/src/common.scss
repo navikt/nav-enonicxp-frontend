@@ -131,9 +131,9 @@ $versionSelectorMinHeight: 3rem;
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     @if $inset {
-        box-shadow: 0 0 0 3px inset var(--a-border-focus);
+        box-shadow: 0 0 0 3px inset var(--ax-border-focus);
     } @else {
-        box-shadow: 0 0 0 3px var(--a-border-focus);
+        box-shadow: 0 0 0 3px var(--ax-border-focus);
     }
 }
 
@@ -199,12 +199,12 @@ $versionSelectorMinHeight: 3rem;
 }
 
 @mixin header-before-rectangle() {
-    background-color: var(--brand-purple-light);
+    background-color: var(--ax-border-brand-magenta-subtle);
     content: '';
     height: 7px;
     left: 0;
     position: absolute;
-    top: calc(var(--a-spacing-5) * -1);
+    top: calc(var(--ax-space-20) * -1);
     width: 40px;
 }
 
@@ -226,7 +226,7 @@ $versionSelectorMinHeight: 3rem;
 }
 
 @mixin centered-content-spacing() {
-    padding-bottom: var(--a-spacing-16);
+    padding-bottom: var(--ax-space-64);
     max-width: 40rem;
     margin-left: auto;
     margin-right: auto;

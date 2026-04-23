@@ -59,7 +59,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     const relevantTrekkspill = editorView === 'edit' ? accordion : validTrekkspill;
 
     return (
-        <DSAccordion className={styles.trekkspill}>
+        <DSAccordion className={styles.trekkspill} size="large">
             {relevantTrekkspill.map((item, index) => {
                 const isValid = validatePanel(item);
                 return (
@@ -75,10 +75,10 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                             {!isValid ? (
                                 <EditorHelp text="Panelet mangler tittel eller innhold. Klikk for å redigere" />
                             ) : (
-                                <div className={styles.headerTitle}>{item.title}</div>
+                                <>{item.title}</>
                             )}
                         </DSAccordion.Header>
-                        <DSAccordion.Content className={styles.content}>
+                        <DSAccordion.Content>
                             <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                                 <ParsedHtml htmlProps={item.html} />
                             </div>

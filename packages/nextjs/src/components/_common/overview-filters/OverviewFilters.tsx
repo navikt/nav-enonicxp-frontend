@@ -45,6 +45,7 @@ const MobileView = ({
                     >
                         {hasToggleFilters && (
                             <Button
+                                data-color="neutral"
                                 icon={<FunnelIcon aria-hidden={true} />}
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -58,7 +59,7 @@ const MobileView = ({
                                     });
                                 }}
                                 className={style.mobileFilterButton}
-                                variant="primary-neutral"
+                                variant="primary"
                             >
                                 {'Filter'}
                             </Button>

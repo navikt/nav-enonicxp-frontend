@@ -81,7 +81,7 @@ export const buildPathValidationMiddleware =
         };
 
         // Check for excessively long paths early (prevents wasting CPU on regex for huge strings)
-        if (fullPath.length > 1000) {
+        if (fullPath.length > 500) {
             logger.warn(
                 `Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`
             );

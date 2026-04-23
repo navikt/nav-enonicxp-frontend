@@ -1,27 +1,7 @@
 .oversiktFilter {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: var(--a-spacing-8);
+    margin-bottom: var(--ax-space-32);
 }
 
 .filterWrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    list-style-type: none;
-    margin-top: var(--a-spacing-2);
-    padding: 0;
-}
-
-.filterButton {
-    background-color: var(--a-deepblue-50);
-    box-shadow: none;
-
-    &:hover {
-        background-color: var(--a-deepblue-100);
-    }
-
-    &:hover:not(:focus) {
-        box-shadow: none;
-    }
+    margin-top: var(--ax-space-8);
 }

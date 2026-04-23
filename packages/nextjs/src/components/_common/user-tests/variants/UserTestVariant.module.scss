@@ -1,10 +1,10 @@
 .testVariant {
-    margin-top: var(--a-spacing-10);
-    padding: var(--a-spacing-6);
-    background-color: var(--a-orange-100);
-    border-radius: var(--a-border-radius-large);
+    margin-top: var(--ax-space-40);
+    padding: var(--ax-space-24);
+    background-color: var(--ax-warning-200);
+    border-radius: var(--ax-radius-8);
 
     & > :not(:last-child) {
-        margin-bottom: var(--a-spacing-3);
+        margin-bottom: var(--ax-space-12);
     }
 }

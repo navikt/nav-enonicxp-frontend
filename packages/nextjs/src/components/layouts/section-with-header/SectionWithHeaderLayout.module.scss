@@ -5,13 +5,13 @@
     @mixin adjust-for-padding($sectionPadding) {
         $iconContainerRadius: 2rem;
         $marginActual: 1rem;
-        top: calc(-#{$sectionPadding} - #{var(--a-spacing-8)});
+        top: calc(-#{$sectionPadding} - #{var(--ax-space-32)});
         margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
     display: inline-flex;
     flex-direction: column;
-    background-color: var(--a-white);
+    background-color: var(--ax-bg-default);
     width: 100%;
 
     @include common.section-padding-mixin();
@@ -21,11 +21,11 @@
         justify-content: center;
         align-items: center;
         align-self: center;
-        width: var(--a-spacing-16);
-        height: var(--a-spacing-16);
+        width: var(--ax-space-64);
+        height: var(--ax-space-64);
         position: relative;
         border-radius: 50%;
-        background-color: var(--a-white);
+        background-color: var(--ax-bg-default);
         overflow: hidden;
 
         @include adjust-for-padding(common.$sectionPaddingDesktop);
@@ -39,22 +39,22 @@
         }
 
         img {
-            height: var(--a-spacing-11);
-            width: var(--a-spacing-11);
+            height: var(--ax-space-44);
+            width: var(--ax-space-44);
         }
     }
 }
 
 .withIcon {
-    margin-top: var(--a-spacing-8);
+    margin-top: var(--ax-space-32);
 }
 
 .header {
-    margin-bottom: var(--a-spacing-4);
+    margin-bottom: var(--ax-space-16);
 }
 
 .headerWithIcon {
-    margin-top: var(--a-spacing-4);
+    margin-top: var(--ax-space-16);
 }
 
 .hideOnDesktop {

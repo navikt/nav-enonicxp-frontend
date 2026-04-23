@@ -2,47 +2,47 @@
 @use 'sass:math';
 
 .container {
-    background-color: var(--a-white);
+    background-color: var(--ax-bg-default);
     position: relative;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
-    margin-top: var(--a-spacing-24); // Take topMarker negative pos into account
+    margin-top: var(--ax-space-96); // Take topMarker negative pos into account
 
     &.pullUp {
-        margin-top: var(--a-spacing-12);
+        margin-top: var(--ax-space-48);
 
         &:has(:global(.part__html-area)) {
             margin-top: 0;
         }
 
         &:has(:global(.part__dynamic-alert)) {
-            margin-top: var(--a-spacing-7);
+            margin-top: var(--ax-space-28);
         }
     }
 
     :global(.icon-container) {
         align-items: center;
         align-self: flex-start;
-        background-color: var(--a-white);
+        background-color: var(--ax-bg-default);
         border-radius: 50%;
         display: flex;
-        height: var(--a-spacing-16);
+        height: var(--ax-space-64);
         justify-content: center;
         position: relative;
-        width: var(--a-spacing-16);
+        width: var(--ax-space-64);
 
         img {
-            height: var(--a-spacing-11);
-            width: var(--a-spacing-11);
+            height: var(--ax-space-44);
+            width: var(--ax-space-44);
         }
     }
 }
 
 .topMarker .header {
     position: relative;
-    margin-bottom: var(--a-spacing-7);
-    color: var(--brand-purple-deep);
+    margin-bottom: var(--ax-space-28);
+    color: var(--ax-text-brand-magenta-subtle);
 
     &:before {
         @include common.header-before-rectangle();
@@ -50,7 +50,7 @@
 }
 
 .headerWithIcon {
-    margin-top: var(--a-spacing-2);
+    margin-top: var(--ax-space-8);
 }
 
 .editorViewBorder {

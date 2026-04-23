@@ -1,47 +1,47 @@
 .largeTablePage {
-    font-size: var(--a-font-size-medium);
+    font-size: var(--ax-font-size-medium);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow-x: auto;
 
     h1 {
-        font-size: var(--a-font-size-heading-medium);
-        margin-bottom: var(--a-spacing-4);
+        font-size: var(--ax-font-size-heading-medium);
+        margin-bottom: var(--ax-space-16);
         &:not(:first-child) {
-            margin-top: var(--a-spacing-8);
+            margin-top: var(--ax-space-32);
         }
     }
 
     table {
         border-collapse: collapse;
         &:not(:last-child) {
-            margin-bottom: var(--a-spacing-4);
+            margin-bottom: var(--ax-space-16);
         }
     }
 
     th {
-        font-weight: var(--a-font-weight-bold);
-        padding: var(--a-spacing-2) var(--a-spacing-1);
+        font-weight: var(--ax-font-weight-bold);
+        padding: var(--ax-space-8) var(--ax-space-4);
         text-align: left;
     }
 
     thead {
         tr {
-            border-bottom: 1px var(--a-gray-200) solid;
+            border-bottom: 1px var(--ax-neutral-300) solid;
         }
     }
 
     tbody {
         tr:first-child {
-            font-weight: var(--a-font-weight-bold);
+            font-weight: var(--ax-font-weight-bold);
             td {
-                padding-top: var(--a-spacing-2);
+                padding-top: var(--ax-space-8);
             }
         }
 
         tr:nth-of-type(even) {
-            background-color: var(--a-blue-100);
+            background-color: var(--ax-accent-200);
         }
 
         td {
@@ -52,26 +52,26 @@
     :global(.statPage) {
         display: flex;
         flex-direction: column;
-        background-color: var(--a-white);
-        padding: var(--a-spacing-4);
+        background-color: var(--ax-bg-default);
+        padding: var(--ax-space-16);
     }
 
     :global(.statHead),
     :global(.statGroupHead),
     :global(.statGroupRest) {
-        padding: 0.125rem var(--a-spacing-2);
+        padding: 0.125rem var(--ax-space-8);
         &:not(th) {
-            font-weight: var(--a-font-weight-bold);
+            font-weight: var(--ax-font-weight-bold);
         }
     }
 
     :global(.statRest),
     :global(.statGroupRest) {
         text-align: right;
-        padding: 0.125rem 0.125rem 0.125rem var(--a-spacing-4);
+        padding: 0.125rem 0.125rem 0.125rem var(--ax-space-16);
     }
 
     :global(.statFoot) {
-        margin-top: var(--a-spacing-2);
+        margin-top: var(--ax-space-8);
     }
 }

@@ -63,6 +63,8 @@ export const ReadMorePart = ({ config }: PartComponentProps<PartType.ReadMore>) 
                 open={isOpen}
                 onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
                 className={styles.readMore}
+                size="large"
+                variant="moderate"
             >
                 <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                     <ParsedHtml htmlProps={html} />

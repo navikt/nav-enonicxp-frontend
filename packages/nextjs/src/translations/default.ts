@@ -372,6 +372,7 @@ export const translationsBundleNb = {
         optician: 'optikere eller øyeleger',
         measures_organizer: 'tiltaksarrangører',
         aid_supplier: 'hjelpemiddelformidlere',
+        trekkmottaker: 'trekkmottaker',
         other: 'andre samarbeidspartnere',
     },
     related: {

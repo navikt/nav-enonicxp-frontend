@@ -1,10 +1,10 @@
 @use 'common' as common;
 
 .dateLine {
-    background-color: var(--a-white);
+    background-color: var(--ax-bg-default);
     display: flex;
     justify-content: center;
-    margin-top: var(--a-spacing-6);
+    margin-top: var(--ax-space-24);
 
     @include common.full-width-mixin;
 }
@@ -15,6 +15,6 @@
 }
 
 .dateLabel {
-    color: var(--a-text-subtle);
-    margin-bottom: var(--a-spacing-3);
+    color: var(--ax-text-neutral-subtle);
+    margin-bottom: var(--ax-space-12);
 }

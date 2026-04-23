@@ -4,17 +4,17 @@
 
     .form {
         & > :not(:last-child) {
-            margin-bottom: var(--a-spacing-2);
+            margin-bottom: var(--ax-space-8);
         }
     }
 
     .formButtons {
         & > *:not(:last-child) {
-            margin-right: var(--a-spacing-2);
+            margin-right: var(--ax-space-8);
         }
     }
 
     .deleteConfirmMsg {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 }
