@@ -20,12 +20,6 @@ for (const story of stories) {
             await page.waitForSelector('#storybook-root', { state: 'visible', timeout: 2000 });
             await page.waitForLoadState('networkidle');
 
-            if (story.name.toLowerCase().includes('hover')) {
-                await page
-                    .waitForSelector('#storybook-root.pseudo-hover', { timeout: 2000 })
-                    .catch(() => {});
-            }
-
             await expect(page.locator('#storybook-root')).toHaveScreenshot(
                 `${story.id}-${testInfo.project.name}-${process.platform}.png`,
                 {
