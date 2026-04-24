@@ -78,7 +78,7 @@ catalog:
     lodash.debounce: 4.0.8
     lru-cache: 11.3.5
     mock-fs: 5.5.0
-    next: 15.5.14
+    next: 16.2.3
     node-cache: 5.1.2
     nodemon: 3.1.14
     on-headers: 1.1.0
