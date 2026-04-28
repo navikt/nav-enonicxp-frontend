@@ -21,7 +21,7 @@ catalog:
     '@navikt/nav-dekoratoren-moduler': 4.0.0
     '@navikt/nav-office-reception-info': 2.0.0
     '@next/bundle-analyzer': 15.5.4
-    '@next/eslint-plugin-next': 15.5.4
+    '@next/eslint-plugin-next': 16.2.3
     '@playwright/test': 1.59.1
     '@reduxjs/toolkit': 2.11.2
     '@storybook/addon-docs': 10.3.5
