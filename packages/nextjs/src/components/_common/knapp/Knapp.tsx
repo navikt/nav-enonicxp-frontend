@@ -4,7 +4,7 @@ import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { XpImageProps } from 'types/media';
 import { XpImage } from 'components/_common/image/XpImage';
-import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
+import { AnalyticsEvents, AnalyticsEventName, logAnalyticsEvent } from 'utils/analytics';
 import { onlyText } from 'utils/react-children';
 import { innholdsTypeMap } from 'types/content-props/_content-common';
 import { usePageContentProps } from 'store/pageContext';
@@ -25,7 +25,7 @@ type Props = PropsWithChildren<{
     prefetch?: boolean;
     onClick?: (e: React.MouseEvent) => void;
     className?: string;
-    analyticsEvent?: AnalyticsEvents;
+    analyticsEvent?: AnalyticsEventName;
     analyticsComponent?: string;
     analyticsLabel?: string;
     lenkestyling?: boolean;
@@ -52,9 +52,11 @@ export const Knapp = ({
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { layoutConfig } = useLayoutConfig();
+    const link = href || '#';
     const analyticsData = {
-        komponent: analyticsComponent,
+        komponentId: analyticsComponent,
         seksjon: layoutConfig.title,
+        destinasjon: link,
         lenketekst: analyticsLabel || onlyText(children),
         målgruppe: context,
         innholdstype: innholdsTypeMap[contentProps.type],
@@ -63,7 +65,7 @@ export const Knapp = ({
     return (
         <DsButton
             as={LenkeBase}
-            href={href || '#'}
+            href={link}
             className={classNames(
                 style.knapp,
                 fullWidth && style.knappFullWidth,
@@ -71,7 +73,7 @@ export const Knapp = ({
                 lenkestyling && style.lenkestyling
             )}
             onClick={(e) => {
-                logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGATION, analyticsData);
+                logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGERE, analyticsData);
                 if (!href) {
                     e.preventDefault();
                 }

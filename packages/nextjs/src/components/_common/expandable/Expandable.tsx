@@ -43,13 +43,16 @@ export const Expandable = ({
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         handleStickyScrollOffset(isOpening, trekkspillRef.current);
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: analyticsOriginTag || 'utvidbar tekst',
-            komponent: 'Expandable',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[contentProps.type],
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: analyticsOriginTag || 'utvidbar tekst',
+                komponentId: 'Expandable',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[contentProps.type],
+            }
+        );
     };
 
     const getHeaderIcon = () => {

@@ -25,7 +25,7 @@ export const ChatAlternativ = (props: ChatData) => {
         <KontaktOssKanalLayout icon={<Icon type="chat" />}>
             <Knapp
                 onClick={openChatbot}
-                analyticsEvent={AnalyticsEvents.CHAT_OPEN}
+                analyticsEvent={AnalyticsEvents.CHAT_APNET}
                 analyticsComponent={'Kontakt-oss kanal'}
                 lenkestyling
             >

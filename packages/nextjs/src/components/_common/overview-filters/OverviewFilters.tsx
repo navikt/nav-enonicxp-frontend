@@ -50,10 +50,10 @@ const MobileView = ({
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
-                                    logAnalyticsEvent(AnalyticsEvents.FILTER, {
+                                    logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
                                         kategori: 'mobile-toggle',
                                         opprinnelse: 'oversiktsside filter mobil',
-                                        komponent: 'MobileView',
+                                        komponentId: 'MobileView',
                                         målgruppe: context,
                                         innholdstype: innholdsTypeMap[contentProps.type],
                                     });
