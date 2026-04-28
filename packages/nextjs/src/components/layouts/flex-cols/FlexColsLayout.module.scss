@@ -72,6 +72,7 @@
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
+        --kontakt-icon-bg: var(--ax-bg-default);
         padding-top: var(--ax-space-80);
 
         .contentWrapper {

@@ -1,19 +1,19 @@
 .icon {
     align-items: center;
     align-self: flex-start;
-    background-color: var(--ax-bg-accent-soft);
+    background-color: var(--kontakt-icon-bg, var(--ax-neutral-100));
     border-radius: var(--ax-radius-full);
     display: flex;
     flex: 1;
     justify-content: center;
-    min-height: var(--ax-space-40);
-    min-width: var(--ax-space-40);
-    max-height: var(--ax-space-40);
-    max-width: var(--ax-space-40);
-    margin-top: calc(-1 * var(--ax-space-6));
+    min-height: var(--ax-space-44);
+    min-width: var(--ax-space-44);
+    max-height: var(--ax-space-44);
+    max-width: var(--ax-space-44);
+    margin-top: -0.5rem;
 
     img {
-        width: var(--ax-space-20);
+        width: 25px;
         height: auto;
     }
 }
