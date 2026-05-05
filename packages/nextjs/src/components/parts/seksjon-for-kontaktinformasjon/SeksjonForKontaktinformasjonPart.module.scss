@@ -3,7 +3,6 @@
 .container {
     @include common.full-width-mixin();
 
-    --kontakt-icon-bg: var(--ax-bg-default);
     background-color: var(--ax-brand-blue-100);
     padding-top: var(--ax-space-36);
     padding-bottom: var(--ax-space-44);
