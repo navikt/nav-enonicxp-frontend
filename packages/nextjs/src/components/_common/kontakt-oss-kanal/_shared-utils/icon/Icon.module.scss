@@ -1,7 +1,7 @@
 .icon {
     align-items: center;
     align-self: flex-start;
-    background-color: var(--ax-bg-default);
+    background-color: var(--kontakt-icon-bg, var(--ax-neutral-100));
     border-radius: var(--ax-radius-full);
     display: flex;
     flex: 1;
