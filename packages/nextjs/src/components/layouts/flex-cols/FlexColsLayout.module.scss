@@ -5,6 +5,7 @@
     background-color: var(
         --ax-neutral-100
     ) !important; // To override inline colors set in XP (to be changed in the future)
+    --kontakt-icon-bg: var(--ax-bg-default);
     --size: 6px;
     --p: 3px;
     --R: 6px;
@@ -72,7 +73,6 @@
 
     &:has(:global(.part__contact-option)) {
         @include contactBackground();
-        --kontakt-icon-bg: var(--ax-bg-default);
         padding-top: var(--ax-space-80);
 
         .contentWrapper {
