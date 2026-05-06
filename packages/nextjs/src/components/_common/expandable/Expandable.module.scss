@@ -1,15 +1,4 @@
 .expandable {
-    :global(.aksel-read-more__button) {
-        align-items: center;
-        gap: var(--ax-space-24);
-        padding-inline-end: var(--ax-space-12);
-    }
-
-    :global(.aksel-read-more__expand-icon) {
-        margin-left: auto;
-        order: 2;
-    }
-
     &[data-state='open'] {
         :global(.aksel-read-more__button) {
             position: sticky;
@@ -47,17 +36,4 @@
     table {
         table-layout: fixed;
     }
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    gap: var(--ax-space-8);
-}
-
-.headerIcon {
-    display: flex;
-    flex-shrink: 0;
-    width: 28px;
-    height: 28px;
 }

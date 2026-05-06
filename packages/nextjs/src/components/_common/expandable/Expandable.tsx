@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useRef, useState } from 'react';
 import { ReadMore } from '@navikt/ds-react';
-import { BarChartIcon, BriefcaseClockIcon, CalendarIcon, TasklistIcon } from '@navikt/aksel-icons';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
 import { getDecoratorParams } from 'utils/decorator-utils';
@@ -55,32 +54,6 @@ export const Expandable = ({
         );
     };
 
-    const getHeaderIcon = () => {
-        switch (expandableType) {
-            case ProductDetailType.PROCESSING_TIMES:
-                return <BriefcaseClockIcon aria-hidden className={style.headerIcon} />;
-            case ProductDetailType.PAYOUT_DATES:
-                return <CalendarIcon aria-hidden className={style.headerIcon} />;
-            case ProductDetailType.RATES:
-                return <BarChartIcon aria-hidden className={style.headerIcon} />;
-            case 'documentation_requirements':
-                return <TasklistIcon aria-hidden className={style.headerIcon} />;
-            default:
-                return null;
-        }
-    };
-
-    const headerIcon = getHeaderIcon();
-
-    const header = headerIcon ? (
-        <span className={style.header}>
-            {headerIcon}
-            {title}
-        </span>
-    ) : (
-        title
-    );
-
     // Adjust appearance in styling if type was not set for this content. This is the wrong use of this component, but some legacy pages have yet to be upgraded editorially.
     const isLegacyUsage = !expandableType;
 
@@ -88,7 +61,7 @@ export const Expandable = ({
         <div id={anchorId} ref={wrapperRef} tabIndex={-1}>
             <ReadMore
                 className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
-                header={header}
+                header={title}
                 open={isOpen}
                 onOpenChange={(isOpen) => toggleExpandCollapse(isOpen, title)}
                 aria-label={ariaLabel || title}
