@@ -1,69 +1,27 @@
 .expandable {
-    display: block;
-    border: none;
-    box-shadow: none;
     margin-bottom: calc(var(--ax-space-8) * -1);
 
-    .header[data-open='true'] {
-        position: sticky;
-        top: var(--decorator-sticky-offset, 0px);
+    :global(.aksel-read-more__button) {
+        align-items: center;
+        gap: var(--ax-space-24);
+        padding-inline-end: var(--ax-space-12);
     }
 
-    .header {
-        background-color: #e6f0ff;
-        border-radius: 22px;
-        padding: var(--ax-space-8) var(--ax-space-8) var(--ax-space-8) var(--ax-space-12);
-        width: fit-content;
+    :global(.aksel-read-more__expand-icon) {
+        order: 2;
+    }
 
-        div {
-            display: flex;
-            align-items: center;
-            gap: var(--ax-space-8);
-            color: var(--default-action-color);
-        }
-
-        :global(.aksel-expansioncard__header-button) {
-            min-height: 20px;
-
-            svg {
-                path {
-                    fill: var(--default-action-color);
-                }
-            }
-        }
-
-        &:hover {
-            background-color: #cce1ff;
-
-            :global(.aksel-expansioncard__header-button) {
-                background-color: transparent;
-            }
-        }
-
-        &:after {
-            display: none;
+    &[data-state='open'] {
+        :global(.aksel-read-more__button) {
+            position: sticky;
+            top: var(--decorator-sticky-offset, 0px);
         }
     }
 
     &.legacy {
-        .header {
+        :global(.aksel-read-more__button) {
             width: 100%;
-            padding-left: var(--ax-space-16);
         }
-    }
-
-    .headerIcon {
-        display: flex;
-        width: 28px;
-        height: 28px;
-    }
-
-    .content {
-        border: 0;
-        border-left: 1px solid var(--ax-neutral-400);
-        margin: var(--ax-space-8) 0 0 var(--ax-space-24);
-        border-radius: 0;
-        padding-left: var(--ax-space-20);
     }
 
     :global(.parsedHtml:last-child) {
@@ -86,9 +44,20 @@
         }
     }
 
-    // Only applicable when a table is inside an expandable. This is
-    // why this rule is not inside the DefaultHtmlStyling.module.scss.
     table {
         table-layout: fixed;
     }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--ax-space-8);
+}
+
+.headerIcon {
+    display: flex;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
 }
