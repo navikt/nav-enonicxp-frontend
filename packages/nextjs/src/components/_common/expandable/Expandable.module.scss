@@ -1,6 +1,4 @@
 .expandable {
-    margin-bottom: calc(var(--ax-space-8) * -1);
-
     :global(.aksel-read-more__button) {
         align-items: center;
         gap: var(--ax-space-24);
