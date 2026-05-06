@@ -8,7 +8,7 @@ const meta = {
     args: {
         title: 'Expandable',
         children:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
 } satisfies Meta<typeof Expandable>;
 
@@ -16,34 +16,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
-export const ProcessingTimes: Story = {
+export const Default: Story = {
     args: {
         expandableType: ProductDetailType.PROCESSING_TIMES,
     },
 };
 
-export const PayoutDates: Story = {
-    args: {
-        expandableType: ProductDetailType.PAYOUT_DATES,
-    },
-};
-
-export const Rates: Story = {
-    args: {
-        expandableType: ProductDetailType.RATES,
-    },
-};
-
-export const DocumentationRequirements: Story = {
-    args: {
-        expandableType: 'documentation_requirements',
-    },
-};
-
 export const IsOpen: Story = {
     args: {
+        ...Default.args,
         isOpenDefault: true,
     },
 };
+
+export const LegacyUsage: Story = {};
