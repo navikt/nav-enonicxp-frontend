@@ -22,10 +22,10 @@ export const Default: Story = {
     },
 };
 
-export const LegacyUsage: Story = {};
-
 export const IsOpen: Story = {
     args: {
         isOpenDefault: true,
     },
 };
+
+export const LegacyUsage: Story = {};
