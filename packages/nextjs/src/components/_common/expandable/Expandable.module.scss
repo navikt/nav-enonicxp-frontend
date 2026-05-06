@@ -20,6 +20,7 @@
     &.legacy {
         :global(.aksel-read-more__button) {
             width: 100%;
+            padding-left: var(--ax-space-16);
         }
     }
 
