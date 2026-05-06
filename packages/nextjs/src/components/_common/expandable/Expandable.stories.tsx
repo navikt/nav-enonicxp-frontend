@@ -16,31 +16,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
-export const ProcessingTimes: Story = {
+export const Default: Story = {
     args: {
         expandableType: ProductDetailType.PROCESSING_TIMES,
     },
 };
 
-export const PayoutDates: Story = {
-    args: {
-        expandableType: ProductDetailType.PAYOUT_DATES,
-    },
-};
-
-export const Rates: Story = {
-    args: {
-        expandableType: ProductDetailType.RATES,
-    },
-};
-
-export const DocumentationRequirements: Story = {
-    args: {
-        expandableType: 'documentation_requirements',
-    },
-};
+export const LegacyUsage: Story = {};
 
 export const IsOpen: Story = {
     args: {
