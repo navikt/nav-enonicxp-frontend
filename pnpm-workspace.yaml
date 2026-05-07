@@ -36,7 +36,7 @@ catalog:
     '@types/js-cookie': 3.0.6
     '@types/lodash.debounce': 4.0.9
     '@types/mock-fs': 4.13.4
-    '@types/node': 20.14.10
+    '@types/node': 25.6.0
     '@types/on-headers': 1.0.4
     '@types/react': 19.2.14
     '@types/react-collapse': 5.0.4
