@@ -11,6 +11,7 @@
         "module": "esnext",
         "baseUrl": "src",
         "noEmit": true,
+        "types": ["jest", "node"],
         "paths": {
             "@/shared/*": ["../../shared/src/*"],
             "@/cache/*": ["src/cache/*"]

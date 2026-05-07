@@ -13,7 +13,6 @@
         "baseUrl": "src",
         "jsx": "preserve",
         "incremental": true,
-        "downlevelIteration": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "paths": {
