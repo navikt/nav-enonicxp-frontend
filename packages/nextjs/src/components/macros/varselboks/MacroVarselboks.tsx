@@ -3,7 +3,7 @@ import { Infokort } from 'components/_common/infokort/Infokort';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
 
-export interface MacroVarselboksProps extends MacroPropsCommon {
+export interface MacroInfokortProps extends MacroPropsCommon {
     name: MacroType.Varselboks;
     config: {
         alert_box: {
@@ -12,7 +12,7 @@ export interface MacroVarselboksProps extends MacroPropsCommon {
     };
 }
 
-export const MacroVarselboks = ({ config }: MacroVarselboksProps) => {
+export const MacroInfokort = ({ config }: MacroInfokortProps) => {
     if (!config?.alert_box) {
         return null;
     }

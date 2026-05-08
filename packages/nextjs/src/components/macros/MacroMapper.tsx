@@ -26,7 +26,7 @@ import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
-import { MacroVarselboks } from './varselboks/MacroVarselboks';
+import { MacroInfokort } from './varselboks/MacroVarselboks';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroConsentBannerLink } from './consent-banner-link/MacroConsentBannerLink';
@@ -59,7 +59,7 @@ const macroComponents: {
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
-    [MacroType.Varselboks]: MacroVarselboks,
+    [MacroType.Varselboks]: MacroInfokort,
     [MacroType.VarselBoksDeprecated]: MacroVarselBoksDeprecated,
     [MacroType.Video]: MacroVideo,
 };
