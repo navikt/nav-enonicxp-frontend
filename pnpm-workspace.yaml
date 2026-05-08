@@ -13,20 +13,20 @@ catalog:
     '@chromatic-com/storybook': 5.1.2
     '@esbuild/linux-x64': 0.28.0
     '@eslint/js': 9.39.2
-    '@grafana/faro-web-sdk': 2.3.1
-    '@grafana/faro-web-tracing': 2.3.1
-    '@navikt/aksel-icons': 8.9.1
-    '@navikt/ds-css': 8.9.1
-    '@navikt/ds-react': 8.9.1
+    '@grafana/faro-web-sdk': 2.4.0
+    '@grafana/faro-web-tracing': 2.4.0
+    '@navikt/aksel-icons': 8.10.3
+    '@navikt/ds-css': 8.10.3
+    '@navikt/ds-react': 8.10.3
     '@navikt/nav-dekoratoren-moduler': 4.0.0
     '@navikt/nav-office-reception-info': 2.0.0
     '@next/bundle-analyzer': 15.5.4
     '@next/eslint-plugin-next': 15.5.4
     '@playwright/test': 1.59.1
     '@reduxjs/toolkit': 2.11.2
-    '@storybook/addon-docs': 10.3.5
-    '@storybook/nextjs': 10.3.5
-    '@storybook/react': 10.3.5
+    '@storybook/addon-docs': 10.3.6
+    '@storybook/nextjs': 10.3.6
+    '@storybook/react': 10.3.6
     '@testing-library/jest-dom': 6.9.1
     '@testing-library/react': 16.3.2
     '@types/cookie-parser': 1.4.10
@@ -43,8 +43,8 @@ catalog:
     '@types/react-dom': 19.2.3
     '@types/react-redux': 7.1.34
     '@types/rss': 0.0.32
-    '@typescript-eslint/eslint-plugin': 8.58.2
-    '@typescript-eslint/parser': 8.58.2
+    '@typescript-eslint/eslint-plugin': 8.59.1
+    '@typescript-eslint/parser': 8.59.1
     concurrently: 9.2.1
     cookie-parser: 1.4.7
     csp-header: 6.3.1
@@ -61,7 +61,7 @@ catalog:
     eslint-plugin-prettier: 5.5.5
     eslint-plugin-react: 7.37.5
     eslint-plugin-react-hooks: 6.1.0
-    eslint-plugin-storybook: 10.3.5
+    eslint-plugin-storybook: 10.3.6
     express: 5.2.1
     express-prom-bundle: 8.0.0
     fuse.js: 7.3.0
@@ -98,12 +98,12 @@ catalog:
     sass: 1.99.0
     schema-dts: 1.1.5
     sharp: 0.34.5
-    storybook: 10.3.5
-    storybook-addon-pseudo-states: 10.3.5
+    storybook: 10.3.6
+    storybook-addon-pseudo-states: 10.3.6
     swr: 2.4.1
     ts-jest: 29.4.9
     typescript: 6.0.3
-    typescript-eslint: 8.58.2
+    typescript-eslint: 8.59.1
     uuid: 14.0.0
 
 minimumReleaseAge: 4320
