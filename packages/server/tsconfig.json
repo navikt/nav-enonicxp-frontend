@@ -10,6 +10,7 @@
         "moduleResolution": "bundler",
         "module": "esnext",
         "baseUrl": "src",
+        "ignoreDeprecations": "6.0",
         "noEmit": true,
         "types": ["jest", "node"],
         "paths": {
