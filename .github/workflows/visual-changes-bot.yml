@@ -57,6 +57,7 @@ jobs:
               uses: stefanzweifel/git-auto-commit-action@v7
               with:
                   commit_message: 'Update screenshots'
+                  file_pattern: '*.png'
 
             - name: Review PR
               uses: actions/github-script@v9

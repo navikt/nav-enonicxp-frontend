@@ -5,7 +5,8 @@ const port = 4243;
 export default defineConfig({
     testDir: './packages/nextjs/playwright',
     reporter: 'html',
-    workers: 13,
+    retries: 2,
+    workers: 12,
     fullyParallel: true,
     use: {
         baseURL: `http://localhost:${port}`,
