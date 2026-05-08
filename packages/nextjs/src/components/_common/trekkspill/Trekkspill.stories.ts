@@ -18,7 +18,7 @@ export const Default: Story = {
                     macros: [
                         {
                             ref: 'macro-1',
-                            name: MacroType.Varselboks,
+                            name: MacroType.Infokort,
                         },
                         {
                             ref: 'macro-2',

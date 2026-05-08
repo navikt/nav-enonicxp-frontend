@@ -59,7 +59,7 @@ const macroComponents: {
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
-    [MacroType.Varselboks]: MacroInfokort,
+    [MacroType.Infokort]: MacroInfokort,
     [MacroType.VarselBoksDeprecated]: MacroVarselBoksDeprecated,
     [MacroType.Video]: MacroVideo,
 };

@@ -24,7 +24,7 @@ export enum MacroType {
     Tall = 'tall',
     Tankestrek = 'tankestrek',
     UxSignalsWidget = 'uxsignals-widget',
-    Varselboks = 'alert-box',
+    Infokort = 'alert-box',
     VarselBoksDeprecated = 'varselBoks',
     Video = 'video',
 }
