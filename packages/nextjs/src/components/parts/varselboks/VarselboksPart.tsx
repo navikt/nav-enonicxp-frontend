@@ -9,7 +9,6 @@ import style from './VarselboksPart.module.scss';
 
 export type PartConfigVarselboks = {
     content: ProcessedHtmlProps;
-    margin: string;
 };
 
 export const VarselboksPart = ({ config }: PartComponentProps<PartType.Varselboks>) => {
@@ -17,17 +16,10 @@ export const VarselboksPart = ({ config }: PartComponentProps<PartType.Varselbok
         return <EditorHelp text={'Varselboksen er ikke konfigurert'} />;
     }
 
-    const { content, margin } = config;
-
     return (
-        <InfoCard
-            className={style.varselboks}
-            style={{
-                ...(margin && { margin }),
-            }}
-        >
+        <InfoCard className={style.varselboks}>
             <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
-                <ParsedHtml htmlProps={content} />
+                <ParsedHtml htmlProps={config.content} />
             </InfoCard.Message>
         </InfoCard>
     );
