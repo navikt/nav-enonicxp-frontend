@@ -5,19 +5,19 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import style from './VarselboksPart.module.scss';
+import style from './InfokortPart.module.scss';
 
-export type PartConfigVarselboks = {
+export type PartConfigInfokort = {
     content: ProcessedHtmlProps;
 };
 
-export const VarselboksPart = ({ config }: PartComponentProps<PartType.Varselboks>) => {
+export const InfokortPart = ({ config }: PartComponentProps<PartType.Infokort>) => {
     if (!config) {
-        return <EditorHelp text={'Varselboksen er ikke konfigurert'} />;
+        return <EditorHelp text={'Infokortet er ikke konfigurert'} />;
     }
 
     return (
-        <InfoCard className={style.varselboks}>
+        <InfoCard className={style.infokort}>
             <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
                 <ParsedHtml htmlProps={config.content} />
             </InfoCard.Message>
