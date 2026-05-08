@@ -5,7 +5,7 @@ import { MiniCardV2 } from './MiniCardV2';
 const meta = {
     component: MiniCardV2,
     args: {
-        link: { url: '', text: 'Test' },
+        link: { url: '', text: 'Tittel' },
         type: CardType.Product,
         tagline: 'Kategori',
     },
