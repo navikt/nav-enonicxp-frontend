@@ -1,9 +1,7 @@
 import React from 'react';
-import { InfoCard } from '@navikt/ds-react';
-import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Infokort } from 'components/_common/infokort/Infokort';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
-
 
 export interface MacroVarselboksProps extends MacroPropsCommon {
     name: MacroType.Varselboks;
@@ -22,10 +20,8 @@ export const MacroVarselboks = ({ config }: MacroVarselboksProps) => {
     const { body } = config.alert_box;
 
     return (
-        <InfoCard>
-            <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
-                <ParsedHtml htmlProps={body} />
-            </InfoCard.Message>
-        </InfoCard>
+        <Infokort>
+            <ParsedHtml htmlProps={body} />
+        </Infokort>
     );
 };

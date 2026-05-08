@@ -1,11 +1,9 @@
 import React from 'react';
-import { InfoCard } from '@navikt/ds-react';
-import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { Infokort } from 'components/_common/infokort/Infokort';
 import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import style from './InfokortPart.module.scss';
 
 export type PartConfigInfokort = {
     content: ProcessedHtmlProps;
@@ -17,10 +15,8 @@ export const InfokortPart = ({ config }: PartComponentProps<PartType.Infokort>) 
     }
 
     return (
-        <InfoCard className={style.infokort}>
-            <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
-                <ParsedHtml htmlProps={config.content} />
-            </InfoCard.Message>
-        </InfoCard>
+        <Infokort>
+            <ParsedHtml htmlProps={config.content} />
+        </Infokort>
     );
 };
