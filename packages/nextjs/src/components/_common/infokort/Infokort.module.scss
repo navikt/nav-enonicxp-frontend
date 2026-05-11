@@ -1,4 +1,6 @@
 .infokort {
+    margin: var(--ax-space-16) 0 var(--ax-space-16) 0;
+
     --ax-border-default: var(--ax-border-subtle);
 
     :global(.aksel-base-alert__message) {
