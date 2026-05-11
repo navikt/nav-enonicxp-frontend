@@ -65,7 +65,7 @@ catalog:
     express: 5.2.1
     express-prom-bundle: 8.0.0
     fuse.js: 7.3.0
-    globals: 17.5.0
+    globals: 17.6.0
     html-react-parser: 6.0.1
     http-terminator: 3.2.0
     husky: 9.1.7

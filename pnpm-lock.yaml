@@ -171,9 +171,6 @@ catalogs:
     fuse.js:
       specifier: 7.3.0
       version: 7.3.0
-    globals:
-      specifier: 17.5.0
-      version: 17.5.0
     html-react-parser:
       specifier: 6.0.1
       version: 6.0.1
@@ -397,8 +394,8 @@ importers:
         specifier: 'catalog:'
         version: 6.1.0(eslint@9.39.2(jiti@2.6.1))
       globals:
-        specifier: 'catalog:'
-        version: 17.5.0
+        specifier: 17.6.0
+        version: 17.6.0
       husky:
         specifier: 'catalog:'
         version: 9.1.7
@@ -2085,9 +2082,6 @@ packages:
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/nav-office-reception-info@2.0.0':
     resolution: {integrity: sha512-8pHQgP3WeJ/qvZWKBERXMj6QBjDLLn0aSZxz425gnMVaF4nqneJTvu5Hv5hhG7CtRI127wy5QVN2FxxUUjH9RA==, tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/2.0.0/02ed7f5831cb775adf6b5fe67b6f3a45492451e8}
@@ -4400,8 +4394,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@17.5.0:
-    resolution: {integrity: sha512-qoV+HK2yFl/366t2/Cb3+xxPUo5BuMynomoDmiaZBIdbs+0pYbjfZU+twLhGKp4uCZ/+NbtpVepH5bGCxRyy2g==}
+  globals@17.6.0:
+    resolution: {integrity: sha512-sepffkT8stwnIYbsMBpoCHJuJM5l98FUF2AnE07hfvE0m/qp3R586hw4jF4uadbhvg1ooIdzuu7CsfD2jzCaNA==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -8440,7 +8434,6 @@ snapshots:
       csp-header: 6.3.1
       html-react-parser: 6.0.1(@types/react@19.2.14)(react@19.2.5)
       js-cookie: 3.0.5
-    optionalDependencies:
       react: 19.2.5
 
   '@navikt/nav-office-reception-info@2.0.0(@navikt/aksel-icons@8.10.3)(@navikt/ds-css@8.10.3)(@navikt/ds-react@8.10.3(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(dayjs@1.11.20)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
@@ -11100,7 +11093,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@17.5.0: {}
+  globals@17.6.0: {}
 
   globalthis@1.0.4:
     dependencies:
