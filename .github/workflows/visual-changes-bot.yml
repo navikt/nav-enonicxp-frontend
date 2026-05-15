@@ -50,6 +50,8 @@ jobs:
                       CI=true pnpm --filter ./packages/nextjs exec playwright test --config=/workspace/playwright.config.ts --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js
                     "
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
             - name: Commit and push updated screenshots if any changes
               if: always()
