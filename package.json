@@ -1,109 +1,109 @@
 {
-  "name": "nav-enonicxp-frontend",
-  "version": "1.2.1",
-  "private": true,
-  "engines": {
-    "node": "24.x"
-  },
-  "packageManager": "pnpm@11.1.1+sha512.d1fdf5f73c617b64fa1a56a81c3c8dfe0e966e33a6010aa256b517ae77be21d93e05affc0de1a83b0e4f29d569f68b446ae8f068cd7247c0bb3df0fb4d7bdf9a",
-  "scripts": {
-    "build": "pnpm run build:server && pnpm run build:nextjs",
-    "build:nextjs": "pnpm --filter ./packages/nextjs run build",
-    "build:server": "pnpm --filter ./packages/server run build",
-    "build:storybook": "pnpm --filter ./packages/nextjs run build:storybook",
-    "start": "pnpm --filter ./packages/server run start",
-    "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
-    "storybook": "pnpm --filter ./packages/nextjs run storybook",
-    "dev": "pnpm run copy-env-development && rm -fr packages/nextjs/.next && pnpm run build:server && pnpm run start",
-    "dev-custom": "pnpm run copy-env-development-custom && pnpm run build:server && pnpm run start",
-    "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
-    "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
-    "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
-    "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh",
-    "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
-    "lint": "pnpm -r --parallel run lint",
-    "test": "pnpm -r --parallel run test",
-    "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
-    "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
-    "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
-    "prepare": "husky || true"
-  },
-  "devDependencies": {
-    "@eslint/js": "catalog:",
-    "@next/eslint-plugin-next": "catalog:",
-    "@playwright/test": "catalog:",
-    "@types/escape-html": "catalog:",
-    "@types/express": "catalog:",
-    "@types/lodash.debounce": "catalog:",
-    "@types/mock-fs": "catalog:",
-    "@types/node": "catalog:",
-    "@typescript-eslint/eslint-plugin": "catalog:",
-    "@typescript-eslint/parser": "catalog:",
-    "concurrently": "catalog:",
-    "esbuild": "catalog:",
-    "eslint": "catalog:",
-    "eslint-config-prettier": "catalog:",
-    "eslint-plugin-css-modules": "catalog:",
-    "eslint-plugin-import": "catalog:",
-    "eslint-plugin-no-relative-import-paths": "catalog:",
-    "eslint-plugin-prettier": "catalog:",
-    "eslint-plugin-react": "catalog:",
-    "eslint-plugin-react-hooks": "catalog:",
-    "globals": "catalog:",
-    "husky": "catalog:",
-    "lint-staged": "catalog:",
-    "prettier": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2% in no",
-      "iOS >= 11",
-      "safari >= 11",
-      "not dead",
-      "not op_mini all",
-      "not ie 11"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "dependencies": {
-    "@navikt/nav-dekoratoren-moduler": "catalog:",
-    "@next/bundle-analyzer": "catalog:",
-    "domhandler": "catalog:",
-    "dotenv": "catalog:",
-    "express": "catalog:",
-    "express-prom-bundle": "catalog:",
-    "lru-cache": "catalog:",
-    "pino": "catalog:",
-    "pino-pretty": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:",
-    "react-error-boundary": "catalog:",
-    "redis": "catalog:"
-  },
-  "optionalDependencies": {
-    "@esbuild/linux-x64": "catalog:"
-  },
-  "lint-staged": {
-    "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "packages/server/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "packages/shared/**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*.{json,md,yml,yaml}": [
-      "prettier --write"
-    ]
-  }
+    "name": "nav-enonicxp-frontend",
+    "version": "1.2.1",
+    "private": true,
+    "engines": {
+        "node": "24.x"
+    },
+    "packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499",
+    "scripts": {
+        "build": "pnpm run build:server && pnpm run build:nextjs",
+        "build:nextjs": "pnpm --filter ./packages/nextjs run build",
+        "build:server": "pnpm --filter ./packages/server run build",
+        "build:storybook": "pnpm --filter ./packages/nextjs run build:storybook",
+        "start": "pnpm --filter ./packages/server run start",
+        "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
+        "storybook": "pnpm --filter ./packages/nextjs run storybook",
+        "dev": "pnpm run copy-env-development && rm -fr packages/nextjs/.next && pnpm run build:server && pnpm run start",
+        "dev-custom": "pnpm run copy-env-development-custom && pnpm run build:server && pnpm run start",
+        "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
+        "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
+        "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
+        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh",
+        "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
+        "lint": "pnpm -r --parallel run lint",
+        "test": "pnpm -r --parallel run test",
+        "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
+        "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
+        "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
+        "prepare": "husky || true"
+    },
+    "devDependencies": {
+        "@eslint/js": "catalog:",
+        "@next/eslint-plugin-next": "catalog:",
+        "@playwright/test": "catalog:",
+        "@types/escape-html": "catalog:",
+        "@types/express": "catalog:",
+        "@types/lodash.debounce": "catalog:",
+        "@types/mock-fs": "catalog:",
+        "@types/node": "catalog:",
+        "@typescript-eslint/eslint-plugin": "catalog:",
+        "@typescript-eslint/parser": "catalog:",
+        "concurrently": "catalog:",
+        "esbuild": "catalog:",
+        "eslint": "catalog:",
+        "eslint-config-prettier": "catalog:",
+        "eslint-plugin-css-modules": "catalog:",
+        "eslint-plugin-import": "catalog:",
+        "eslint-plugin-no-relative-import-paths": "catalog:",
+        "eslint-plugin-prettier": "catalog:",
+        "eslint-plugin-react": "catalog:",
+        "eslint-plugin-react-hooks": "catalog:",
+        "globals": "catalog:",
+        "husky": "catalog:",
+        "lint-staged": "catalog:",
+        "prettier": "catalog:",
+        "typescript": "catalog:",
+        "typescript-eslint": "catalog:"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2% in no",
+            "iOS >= 11",
+            "safari >= 11",
+            "not dead",
+            "not op_mini all",
+            "not ie 11"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "dependencies": {
+        "@navikt/nav-dekoratoren-moduler": "catalog:",
+        "@next/bundle-analyzer": "catalog:",
+        "domhandler": "catalog:",
+        "dotenv": "catalog:",
+        "express": "catalog:",
+        "express-prom-bundle": "catalog:",
+        "lru-cache": "catalog:",
+        "pino": "catalog:",
+        "pino-pretty": "catalog:",
+        "react": "catalog:",
+        "react-dom": "catalog:",
+        "react-error-boundary": "catalog:",
+        "redis": "catalog:"
+    },
+    "optionalDependencies": {
+        "@esbuild/linux-x64": "catalog:"
+    },
+    "lint-staged": {
+        "packages/nextjs/**/*.{js,jsx,ts,tsx}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "packages/server/**/*.{js,ts}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "packages/shared/**/*.{js,ts}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "**/*.{json,md,yml,yaml}": [
+            "prettier --write"
+        ]
+    }
 }
