@@ -1,14 +1,6 @@
 packages:
     - packages/*
 
-ignoredBuiltDependencies:
-    - '@parcel/watcher'
-    - core-js-pure
-    - esbuild
-    - protobufjs
-    - sharp
-    - unrs-resolver
-
 catalog:
     '@chromatic-com/storybook': 5.1.2
     '@esbuild/linux-x64': 0.28.0
@@ -102,7 +94,7 @@ catalog:
     storybook-addon-pseudo-states: 10.3.6
     swr: 2.4.1
     ts-jest: 29.4.9
-    typescript: 6.0.3
+    typescript: 5.9.3
     typescript-eslint: 8.59.1
     uuid: 14.0.0
 
@@ -110,3 +102,11 @@ minimumReleaseAge: 4320
 
 minimumReleaseAgeExclude:
     - '@navikt/*'
+engineStrict: true
+allowBuilds:
+    '@parcel/watcher': true
+    core-js-pure: true
+    esbuild: true
+    protobufjs: true
+    sharp: true
+    unrs-resolver: true
