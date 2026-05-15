@@ -52,7 +52,7 @@ catalog:
     eslint-plugin-no-relative-import-paths: 1.6.1
     eslint-plugin-prettier: 5.5.5
     eslint-plugin-react: 7.37.5
-    eslint-plugin-react-hooks: 6.1.0
+    eslint-plugin-react-hooks: 7.1.1
     eslint-plugin-storybook: 10.3.6
     express: 5.2.1
     express-prom-bundle: 8.0.0
