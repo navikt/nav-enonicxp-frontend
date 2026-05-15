@@ -44,8 +44,11 @@ jobs:
                     -v $(pwd):/workspace \
                     -w /workspace \
                     --ipc=host \
+                    -e NODE_AUTH_TOKEN \
                     mcr.microsoft.com/playwright:v1.59.1 \
                     /bin/bash -c "
+                      echo '@navikt:registry=https://npm.pkg.github.com' > ~/.npmrc && \
+                      echo '//npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}' >> ~/.npmrc && \
                       npm install -g pnpm && \
                       CI=true pnpm --filter ./packages/nextjs exec playwright test --config=/workspace/playwright.config.ts --update-snapshots && \
                       node packages/nextjs/playwright/prune-screenshots.js
