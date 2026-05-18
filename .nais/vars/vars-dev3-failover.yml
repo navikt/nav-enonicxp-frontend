@@ -3,7 +3,7 @@ frontendApp: nav-enonicxp-frontend-dev3
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev3
 dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
-    - https://trial-navpoc.enonic.cloud
+    - trial-navpoc.enonic.cloud
 secret: nav-enonicxp-dev3
 ingresses:
     - https://www-3-failover.intern.dev.nav.no
