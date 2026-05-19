@@ -1,0 +1,24 @@
+appName: nav-enonicxp-frontend-dev3
+revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev3
+failoverApp: nav-enonicxp-frontend-dev3-failover
+dekoratorenApp: nav-dekoratoren-beta
+externalHosts:
+    - trial-navpoc.enonic.cloud
+    - www-3-failover.intern.dev.nav.no
+    - dekoratoren-beta.intern.dev.nav.no
+secret: nav-enonicxp-dev3
+ingresses:
+    - https://www-3.ansatt.dev.nav.no
+    - https://www-3.ekstern.dev.nav.no
+    - https://www-3.intern.dev.nav.no
+resources:
+    requests:
+        cpu: 100m
+        memory: 384Mi
+    limits:
+        memory: 1024Mi
+valkey:
+    plan: hobbyist
+    project: nav-dev
+    instance: pagecache
+    endpointId: f20f5b48-18f4-4e2a-8e5f-4ab3edb19733
