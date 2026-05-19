@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import { fixupPluginRules } from '@eslint/compat';
 import tseslint from 'typescript-eslint';
 import cssModules from 'eslint-plugin-css-modules';
 
@@ -7,7 +8,7 @@ export default [
     ...tseslint.configs.recommended,
     {
         plugins: {
-            'css-modules': cssModules,
+            'css-modules': fixupPluginRules(cssModules),
         },
         rules: {
             'css-modules/no-unused-class': [

@@ -1,3 +1,4 @@
+import { fixupPluginRules } from '@eslint/compat';
 import cssModules from 'eslint-plugin-css-modules';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import importPlugin from 'eslint-plugin-import';
@@ -18,13 +19,13 @@ export default [
             },
         },
         plugins: {
-            'no-relative-import-paths': noRelativeImportPaths,
-            import: importPlugin,
-            'css-modules': cssModules,
+            'no-relative-import-paths': fixupPluginRules(noRelativeImportPaths),
+            import: fixupPluginRules(importPlugin),
+            'css-modules': fixupPluginRules(cssModules),
             storybook: storybook,
-            '@next/next': nextPlugin,
-            react: react,
-            'react-hooks': reactHooks,
+            '@next/next': fixupPluginRules(nextPlugin),
+            react: fixupPluginRules(react),
+            'react-hooks': fixupPluginRules(reactHooks),
         },
         rules: {
             ...react.configs.recommended.rules,
