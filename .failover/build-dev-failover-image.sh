@@ -42,6 +42,11 @@ then
   echo "Building image $IMAGE_TAG for dev2"
   SERVICE_SECRET=$NAV_ENONICXP_DEV2
   ENV_FILE=".env-dev2"
+elif [[ "$APP_ENV" == "dev3" ]]
+then
+  echo "Building image $IMAGE_TAG for dev3"
+  SERVICE_SECRET=$NAV_ENONICXP_DEV3
+  ENV_FILE=".env-dev3"
 else
   echo "Invalid ENV specified, aborting"
   exit
