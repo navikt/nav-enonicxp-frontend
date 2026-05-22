@@ -5,9 +5,9 @@
 
     :global(.aksel-base-alert__message) {
         background-color: var(--ax-bg-accent-soft);
+    }
 
-        > :last-child {
-            margin-bottom: 0;
-        }
+    *:last-child {
+        margin-bottom: 0;
     }
 }
