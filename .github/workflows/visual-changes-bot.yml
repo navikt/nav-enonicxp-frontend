@@ -45,7 +45,7 @@ jobs:
                     -w /workspace \
                     --ipc=host \
                     -e NODE_AUTH_TOKEN \
-                    mcr.microsoft.com/playwright:v1.59.1 \
+                    mcr.microsoft.com/playwright:v1.60.0 \
                     /bin/bash -c "
                       echo '@navikt:registry=https://npm.pkg.github.com' > ~/.npmrc && \
                       echo '//npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}' >> ~/.npmrc && \
