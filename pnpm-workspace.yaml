@@ -64,7 +64,7 @@ catalog:
     jest: 30.3.0
     jest-environment-jsdom: 30.3.0
     jest-fetch-mock: 3.0.3
-    js-cookie: 3.0.5
+    js-cookie: 3.0.7
     jsep: 1.4.0
     lint-staged: 16.4.0
     lodash.debounce: 4.0.8
