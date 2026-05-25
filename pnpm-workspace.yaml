@@ -15,7 +15,7 @@ catalog:
     '@next/bundle-analyzer': 15.5.4
     '@next/eslint-plugin-next': 15.5.4
     '@playwright/test': 1.60.0
-    '@reduxjs/toolkit': 2.11.2
+    '@reduxjs/toolkit': 2.12.0
     '@storybook/addon-docs': 10.4.0
     '@storybook/nextjs': 10.4.0
     '@storybook/react': 10.4.0
@@ -58,7 +58,7 @@ catalog:
     express-prom-bundle: 8.0.0
     fuse.js: 7.3.0
     globals: 17.6.0
-    html-react-parser: 6.1.0
+    html-react-parser: 6.1.1
     http-terminator: 3.2.0
     husky: 9.1.7
     jest: 30.4.2
@@ -68,7 +68,7 @@ catalog:
     jsep: 1.4.0
     lint-staged: 16.4.0
     lodash.debounce: 4.0.8
-    lru-cache: 11.3.6
+    lru-cache: 11.4.0
     mock-fs: 5.5.0
     next: 15.5.18
     node-cache: 5.1.2
@@ -84,7 +84,7 @@ catalog:
     react-dom: 19.2.6
     react-error-boundary: 6.1.1
     react-movable: 3.4.1
-    react-redux: 9.2.0
+    react-redux: 9.3.0
     redis: 5.12.1
     rss: 1.2.2
     sass: 1.99.0
