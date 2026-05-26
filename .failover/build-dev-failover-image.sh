@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Script for building failover-images for dev-environments
-# Usage: In root, run "npm run build-and-push-dev-failover --app_env=dev1|dev2 --image_tag=din-valgte-image-tag-123"
+# Usage: In root, run "pnpm run build-and-push-dev-failover -- --app_env=dev1|dev2|dev3 --image_tag=din-valgte-image-tag-123"
+# ("--" used because pnpm forwards unknown CLI flags (like --app_env=dev1) verbatim to the script command instead of populating npm_config_* env vars the way npm does, so the shell script received --app_env=dev3 as a literal $1 rather than dev3.)
 #
 # (GAR uses DIGEST instead of TAG, so the image tag you use is not important.)
 #
@@ -9,7 +10,7 @@
 # As NPM packages with ie post-install scripts could potentially sniff and compromise secrets,
 # we need to read secrets from environment variables instead.
 #
-# The secrets are: NAV_ENONICXP_DEV1 AND NAV_ENONICXP_DEV2
+# The secrets are: NAV_ENONICXP_DEV1, NAV_ENONICXP_DEV2, AND NAV_ENONICXP_DEV3
 #
 # Either add these manually via "export NAV_ENONICXP_DEV1=YOUR_TOKEN_HERE" or use 1Password or similar to have secrets
 # injected into each Terminal session.
