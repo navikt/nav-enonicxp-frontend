@@ -71,7 +71,7 @@ const validateOpeningHours = (
     }
 };
 
-export const KontaktinformasjonWarning = ({ content, className }: Props) => {
+export const KontaktinformasjonVarsel = ({ content, className }: Props) => {
     if (content.type !== ContentType.ContactInformationPage) return null;
 
     const contactType = content.data?.contactType;

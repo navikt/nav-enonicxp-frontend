@@ -1,64 +1,44 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { KortUrlWarning } from './varsler/kort-url/KortUrlWarning';
-import { DuplicateIds } from './varsler/duplikate-ider/DuplicateIds';
-import { FormNumbersWarning } from './varsler/skjemanummer/FormNumbersWarning';
-import { KontaktinformasjonWarning } from './varsler/kontaktinformasjon/KontaktinformasjonWarning';
-import { HtmlAreaUtenforInnholdsseksjon } from './varsler/html-area-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
+import { KortUrlVarsel } from './varsler/kort-url/KortUrlVarsel';
+import { DuplikateIder } from './varsler/duplikate-ider/DuplikateIder';
+import { SkjemanummerVarsel } from './varsler/skjemanummer/SkjemanummerVarsel';
+import { KontaktinformasjonVarsel } from './varsler/kontaktinformasjon/KontaktinformasjonVarsel';
+import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjon';
 import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
 import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
+import { harRedaktorfeil } from './harRedaktorFeil';
+import { erGodkjentSide } from './erGodkjentSide';
 import style from './Redaktorvarsler.module.scss';
 
-export const isGodkjentSide = (contentType: string): boolean => {
-    const godkjenteSider = [
-        'no.nav.navno:situation-page',
-        'no.nav.navno:guide-page',
-        'no.nav.navno:themed-article-page',
-        'no.nav.navno:content-page-with-sidemenus',
-        'no.nav.navno:tools-page',
-        'no.nav.navno:generic-page',
-        'no.nav.navno:product-details',
-        'no.nav.navno:current-topic-page',
-    ];
-    return godkjenteSider.includes(contentType);
-};
-
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
-    if (!isGodkjentSide(content.type)) {
-        return;
-    }
-
-    const hasErrors = (): boolean => {
+    if (erGodkjentSide(content.type)) {
         return (
-            KortUrlWarning({ content }) !== null ||
-            DuplicateIds({}) !== null ||
-            FormNumbersWarning({ content }) !== null ||
-            KontaktinformasjonWarning({ content }) !== null ||
-            HtmlAreaUtenforInnholdsseksjon({ content }) !== null ||
-            FragmentUtenforInnholdsseksjon({ content }) !== null ||
-            HtmlAreaDiv({ content }) !== null
+            <>
+                {harRedaktorfeil(content) && (
+                    <Alert variant="warning">
+                        <strong>Redaktørvarsel:</strong>
+                        <br />
+                        Disse problemene må rettes før publisering:
+                        <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
+                            <KortUrlVarsel content={content} className={style.liste} />
+                            <DuplikateIder className={style.liste} />
+                            <SkjemanummerVarsel content={content} className={style.liste} />
+                            <KontaktinformasjonVarsel content={content} className={style.liste} />
+                            <FormatertInnholdUtenforInnholdsseksjon
+                                content={content}
+                                className={style.liste}
+                            />
+                            <FragmentUtenforInnholdsseksjon
+                                content={content}
+                                className={style.liste}
+                            />
+                            <HtmlAreaDiv content={content} className={style.liste} />
+                        </ul>
+                    </Alert>
+                )}
+            </>
         );
-    };
-
-    return (
-        <>
-            {hasErrors() && (
-                <Alert variant="warning">
-                    <strong>Redaktørvarsel:</strong>
-                    <br />
-                    Disse problemene må rettes før publisering:
-                    <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
-                        <KortUrlWarning content={content} className={style.liste} />
-                        <DuplicateIds className={style.liste} />
-                        <FormNumbersWarning content={content} className={style.liste} />
-                        <KontaktinformasjonWarning content={content} className={style.liste} />
-                        <HtmlAreaUtenforInnholdsseksjon content={content} className={style.liste} />
-                        <FragmentUtenforInnholdsseksjon content={content} className={style.liste} />
-                        <HtmlAreaDiv content={content} className={style.liste} />
-                    </ul>
-                </Alert>
-            )}
-        </>
-    );
+    }
 };

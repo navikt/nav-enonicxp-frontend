@@ -9,6 +9,7 @@ import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
+import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorFeil';
 import style from './Expandable.module.scss';
 
 type Props = PropsWithChildren<{
@@ -62,7 +63,7 @@ export const Expandable = ({
             <ReadMore
                 className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
                 header={title}
-                open={isOpen}
+                open={isOpen || harRedaktorfeil(contentProps)}
                 onOpenChange={(isOpen) => toggleExpandCollapse(isOpen, title)}
                 aria-label={ariaLabel || title}
                 variant="moderate"

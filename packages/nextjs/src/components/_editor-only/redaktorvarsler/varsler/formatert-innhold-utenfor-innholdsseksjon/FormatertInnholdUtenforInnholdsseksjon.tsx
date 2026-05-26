@@ -1,24 +1,19 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { pageContentHtmlAreaUtenforInnholdsseksjon } from './pageContentHtmlAreaUtenforInnholdsseksjon';
+import { pageContentFormatertInnholdUtenforInnholdsseksjon } from './pageContentFormatertInnholdUtenforInnholdsseksjon';
 
 type Props = {
     content: ContentProps;
     className?: string;
 };
 
-export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const FormatertInnholdUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
-
-    // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
-    if (content.type === 'no.nav.navno:current-topic-page') {
-        return null;
-    }
 
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (pageContentHtmlAreaUtenforInnholdsseksjon(node)) {
+        if (pageContentFormatertInnholdUtenforInnholdsseksjon(node)) {
             const { path, config } = node;
 
             if (!config.html?.processedHtml) {
