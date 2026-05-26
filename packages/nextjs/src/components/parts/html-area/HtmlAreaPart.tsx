@@ -8,11 +8,11 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ExpandableMixin, FiltersMixin } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
-import { htmlAreaContainsDiv } from 'components/_editor-only/global-warnings/warnings/html-area-div/htmlAreaContainsDiv';
+import { htmlAreaContainsDiv } from 'components/_editor-only/redaktorvarsler/varsler/html-area-div/htmlAreaContainsDiv';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
-import { isGodkjentSide } from 'components/_editor-only/global-warnings/Redaktorvarsler';
+import { isGodkjentSide } from 'components/_editor-only/redaktorvarsler/Redaktorvarsler';
 import { usePageContentProps } from 'store/pageContext';
-import { pageContentHtmlAreaUtenforInnholdsseksjon } from 'components/_editor-only/global-warnings/warnings/html-area-utenfor-innholdsseksjon/pageContentHtmlAreaUtenforInnholdsseksjon';
+import { pageContentHtmlAreaUtenforInnholdsseksjon } from 'components/_editor-only/redaktorvarsler/varsler/html-area-utenfor-innholdsseksjon/pageContentHtmlAreaUtenforInnholdsseksjon';
 import style from './HtmlAreaPart.module.scss';
 
 export type PartConfigHtmlArea = {

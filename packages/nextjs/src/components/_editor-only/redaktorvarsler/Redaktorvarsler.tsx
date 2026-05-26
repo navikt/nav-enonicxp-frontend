@@ -1,13 +1,13 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { KortUrlWarning } from './warnings/kort-url/KortUrlWarning';
-import { DuplicateIds } from './warnings/duplicate-ids/DuplicateIds';
-import { FormNumbersWarning } from './warnings/form-numbers/FormNumbersWarning';
-import { KontaktinformasjonWarning } from './warnings/kontaktinformasjon/KontaktinformasjonWarning';
-import { HtmlAreaUtenforInnholdsseksjon } from './warnings/html-area-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
-import { HtmlAreaDiv } from './warnings/html-area-div/HtmlAreaDiv';
-import { FragmentUtenforInnholdsseksjon } from './warnings/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
+import { KortUrlWarning } from './varsler/kort-url/KortUrlWarning';
+import { DuplicateIds } from './varsler/duplikate-ider/DuplicateIds';
+import { FormNumbersWarning } from './varsler/skjemanummer/FormNumbersWarning';
+import { KontaktinformasjonWarning } from './varsler/kontaktinformasjon/KontaktinformasjonWarning';
+import { HtmlAreaUtenforInnholdsseksjon } from './varsler/html-area-utenfor-innholdsseksjon/HtmlAreaUtenforInnholdsseksjon';
+import { HtmlAreaDiv } from './varsler/html-area-div/HtmlAreaDiv';
+import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
 import style from './Redaktorvarsler.module.scss';
 
 export const isGodkjentSide = (contentType: string): boolean => {
