@@ -40,8 +40,8 @@ catalogs:
       specifier: 15.5.4
       version: 15.5.4
     '@next/eslint-plugin-next':
-      specifier: 15.5.4
-      version: 15.5.4
+      specifier: 16.2.6
+      version: 16.2.6
     '@playwright/test':
       specifier: 1.60.0
       version: 1.60.0
@@ -341,7 +341,7 @@ importers:
         version: 9.39.2
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
-        version: 15.5.4
+        version: 16.2.6
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.60.0
@@ -523,7 +523,7 @@ importers:
         version: 5.2.1(storybook@10.4.0(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@testing-library/dom@10.4.1)(@types/react@19.2.14)(prettier@3.8.3)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
-        version: 15.5.4
+        version: 16.2.6
       '@playwright/test':
         specifier: 'catalog:'
         version: 1.60.0
@@ -2113,6 +2113,9 @@ packages:
 
   '@next/eslint-plugin-next@15.5.4':
     resolution: {integrity: sha512-SR1vhXNNg16T4zffhJ4TS7Xn7eq4NfKfcOsRwea7RIAHrjRpI9ALYbamqIJqkAhowLlERffiwk0FMvTLNdnVtw==}
+
+  '@next/eslint-plugin-next@16.2.6':
+    resolution: {integrity: sha512-Z8l6o4JWKUl755x4R+wogD86KPeU+Ckw4K+SYG4kHeOJtRenDeK+OSbGcqZpDtbwn9DsJVdir2UxmwXuinUbUw==}
 
   '@next/swc-darwin-arm64@15.5.18':
     resolution: {integrity: sha512-w0WvQf1n+txiwns/9pwIQteCJpZTbxzO2SE0FLcwuD4v0WEh1JPOjdyxWL21XwJsdpx8cFRjyzxzCS/siP7HcQ==}
@@ -8840,6 +8843,10 @@ snapshots:
   '@next/env@15.5.18': {}
 
   '@next/eslint-plugin-next@15.5.4':
+    dependencies:
+      fast-glob: 3.3.1
+
+  '@next/eslint-plugin-next@16.2.6':
     dependencies:
       fast-glob: 3.3.1
 
