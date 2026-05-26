@@ -1,18 +1,4 @@
-@use 'common' as common;
-
-.navnoLenke {
-    text-decoration: none;
-}
-
 .withChevron {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .lenketekst {
-        display: inline-flex;
-    }
-
     &:hover {
         .customChevronStyle {
             left: var(--ax-space-6);
@@ -22,8 +8,12 @@
 
 .lenketekst {
     display: inline-flex;
-    color: var(--default-action-color);
-    @include common.link-underline-mixin();
+}
+
+.withLabelWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .label {

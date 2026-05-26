@@ -33,11 +33,11 @@ export const LenkeStandalone = ({
     analyticsLabel,
     ...rest
 }: Props) => {
-    return (
+    const link = (
         <LenkeBase
             {...rest}
             href={href}
-            className={classNames(style.navnoLenke, withChevron && style.withChevron, className)}
+            className={classNames('aksel-link', withChevron && style.withChevron, className)}
             analyticsComponent={component}
             analyticsLinkGroup={linkGroup}
             analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
@@ -55,11 +55,19 @@ export const LenkeStandalone = ({
                     </span>
                 )}
             </BodyShort>
-            {label && (
-                <BodyLong size="small" className={style.label} as={'span'}>
-                    {label}
-                </BodyLong>
-            )}
         </LenkeBase>
+    );
+
+    if (!label) {
+        return link;
+    }
+
+    return (
+        <div className={style.withLabelWrapper}>
+            {link}
+            <BodyLong size="small" className={style.label} as={'div'}>
+                {label}
+            </BodyLong>
+        </div>
     );
 };
