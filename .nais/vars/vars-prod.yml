@@ -3,19 +3,19 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 failoverApp: nav-enonicxp-frontend-failover
 dekoratorenApp: nav-dekoratoren
 externalHosts:
-    - www.nav.no
-    - www-failover.nav.no
+  - www.nav.no
+  - www-failover.nav.no
 secret: nav-enonicxp
 ingresses:
-    - https://www.nav.no
+  - https://www.nav.no
 resources:
-    requests:
-        cpu: 600m
-        memory: 2560Mi
-    limits:
-        memory: 4096Mi
+  requests:
+    cpu: 600m
+    memory: 2560Mi
+  limits:
+    memory: 4096Mi
 valkey:
-    plan: startup-4
-    project: nav-prod
-    instance: pagecache
-    endpointId: 76685598-1048-4f56-b34a-9769ef747a92
+  plan: startup-4
+  project: nav-prod
+  instance: pagecache
+  endpointId: 76685598-1048-4f56-b34a-9769ef747a92
