@@ -1,18 +1,6 @@
-@use 'common' as common;
-
 .link {
-    display: inline-flex;
     align-items: center;
-    gap: var(--ax-space-6);
     padding: var(--ax-space-8) 0;
-    text-underline-offset: 2.5px;
-    text-decoration-thickness: 1px;
-    text-decoration-color: var(--ax-border-neutral-subtle);
-    color: var(--ax-text-accent-subtle);
-
-    &:hover {
-        text-decoration-color: currentColor;
-    }
 
     &[aria-current='true'] {
         color: inherit;
