@@ -42,19 +42,19 @@ export const LenkeStandalone = ({
             analyticsLinkGroup={linkGroup}
             analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
         >
-            <BodyShort className={classNames(style.lenketekst, tekstClassName)} as={'span'}>
-                {withChevron && (
-                    <span className={style.iconContainer}>
-                        <Chevron className={style.customChevronStyle} />
-                    </span>
-                )}
-                <>{children}</>
-                {withArrow && (
-                    <span className={style.iconContainer}>
-                        <ArrowRightIcon className={style.arrowIcon} />
-                    </span>
-                )}
+            {withChevron && (
+                <span className={style.iconContainer}>
+                    <Chevron className={style.customChevronStyle} />
+                </span>
+            )}
+            <BodyShort className={tekstClassName} as={'span'}>
+                {children}
             </BodyShort>
+            {withArrow && (
+                <span className={style.iconContainer}>
+                    <ArrowRightIcon className={style.arrowIcon} />
+                </span>
+            )}
         </LenkeBase>
     );
 
