@@ -1,4 +1,4 @@
-export { Events } from '@navikt/analytics-types';
+export { Events } from '@navikt/nav-dekoratoren-moduler/csr/index.js';
 
 export const getCurrentConsent = () => ({
     consent: { analytics: true, surveys: true },
