@@ -14,8 +14,3 @@ resources:
     memory: 2560Mi
   limits:
     memory: 4096Mi
-valkey:
-  plan: startup-4
-  project: nav-prod
-  instance: pagecache
-  endpointId: 76685598-1048-4f56-b34a-9769ef747a92

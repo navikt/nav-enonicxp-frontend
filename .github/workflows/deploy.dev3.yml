@@ -1,85 +1,66 @@
 name: Deploy to dev3 (Test Enonic Cloud)
 on:
-    workflow_dispatch:
-        inputs:
-            NODE_ENV:
-                description: 'Node environment'
-                required: true
-                default: 'production'
-                type: choice
-                options:
-                    - production
-                    - development
+  workflow_dispatch:
+    inputs:
+      NODE_ENV:
+        description: 'Node environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - development
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        environment: dev-gcp:dev3
-        permissions:
-            contents: read
-            id-token: write
-        outputs:
-            image: ${{ steps.build-image.outputs.image }}
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
+  build:
+    runs-on: ubuntu-latest
+    environment: dev-gcp:dev3
+    permissions:
+      contents: read
+      id-token: write
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
 
-            - name: Build dev3 image
-              id: build-image
-              uses: ./.github/actions/build-image
-              with:
-                  imagename: dev3-deploy
-                  ENV: dev3
-                  ADMIN_ORIGIN: https://trial-navpoc.enonic.cloud
-                  APP_ORIGIN: https://www-3.ansatt.dev.nav.no
-                  REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev3
-                  DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
-                  XP_ORIGIN: https://trial-navpoc.enonic.cloud
-                  TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
-                  INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
-                  RELEASE_TAG: dev3-${{ github.sha }}
-                  MELDEKORT_API_URL: https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person
-                  FAILOVER_ORIGIN: https://www-3-failover.intern.dev.nav.no
-                  NODE_ENV: ${{ inputs.NODE_ENV }}
-                  nais_management_project_id: ''
-                  NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
-                  NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-                  READER_TOKEN: ${{ secrets.READER_TOKEN }}
-                  SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+      - name: Build dev3 image
+        id: build-image
+        uses: ./.github/actions/build-image
+        with:
+          imagename: dev3-deploy
+          ENV: dev3
+          ADMIN_ORIGIN: https://trial-navpoc.enonic.cloud
+          APP_ORIGIN: https://www-3.ansatt.dev.nav.no
+          REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev3
+          DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
+          XP_ORIGIN: https://trial-navpoc.enonic.cloud
+          TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
+          INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
+          RELEASE_TAG: dev3-${{ github.sha }}
+          MELDEKORT_API_URL: https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person
+          FAILOVER_ORIGIN: https://www-3-failover.intern.dev.nav.no
+          NODE_ENV: ${{ inputs.NODE_ENV }}
+          nais_management_project_id: ''
+          NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
+          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          READER_TOKEN: ${{ secrets.READER_TOKEN }}
+          SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
 
-    deploy-valkey:
-        runs-on: ubuntu-latest
-        needs: build
-        timeout-minutes: 1
-        permissions:
-            id-token: write
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
 
-            - name: Deploy Valkey
-              uses: ./.github/actions/nais-deploy
-              continue-on-error: true
-              with:
-                  CLUSTER: dev-gcp
-                  RESOURCE: .nais/valkey.yml
-                  VARS: .nais/vars/dev.yml
-
-    deploy:
-        runs-on: ubuntu-latest
-        needs: [build, deploy-valkey]
-        permissions:
-            id-token: write
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
-
-            - name: Build and deploy dev3
-              uses: ./.github/actions/deploy
-              with:
-                  image: ${{ needs.build.outputs.image }}
-                  cluster: dev-gcp
-                  vars_file: vars-dev3.yml
-                  config_file: config.yml
-                  hpa_file: hpa-dev3.yml
-                  deploy_valkey: true
+      - name: Build and deploy dev3
+        uses: ./.github/actions/deploy
+        with:
+          image: ${{ needs.build.outputs.image }}
+          cluster: dev-gcp
+          vars_file: vars-dev3.yml
+          config_file: config.yml
+          hpa_file: hpa-dev3.yml

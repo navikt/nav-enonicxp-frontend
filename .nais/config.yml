@@ -36,7 +36,7 @@ spec:
       enabled: true
       runtime: nodejs
   valkey:
-    - instance: {{ valkey.instance }}
+    - instance: pagecache
       access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
