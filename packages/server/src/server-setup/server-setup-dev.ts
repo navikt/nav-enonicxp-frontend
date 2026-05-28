@@ -10,7 +10,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     const nextRequestHandler = nextApp.getRequestHandler();
 
     expressApp.use((req, res, next) => {
-        res.setHeader('X-Robots-Tag', 'noindex');
+        res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
         next();
     });
 
