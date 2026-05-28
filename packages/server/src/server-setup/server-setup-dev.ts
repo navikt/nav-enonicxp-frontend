@@ -34,12 +34,16 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
         expressApp.use((req, res, next) => {
             const { noRedirect } = req.query;
-            if (noRedirect) {
+            const userAgent = req.headers['user-agent'] || '';
+
+            // Skip redirect for explicit opt-out or Enonic XP requests
+            if (noRedirect || userAgent.includes('Java-http-client')) {
                 return next();
             }
-            //if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
-            //    return res.redirect(302, `${APP_ORIGIN}${req.path}`);
-            //}
+
+            if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
+                return res.redirect(302, `${APP_ORIGIN}${req.path}`);
+            }
 
             next();
         });

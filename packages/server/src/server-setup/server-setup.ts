@@ -26,6 +26,7 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
 
 export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     logger.info('Setting up regular server');
+
     const jsonBodyParser = express.json();
 
     const validateSecretMiddleware = buildValidateSecretMiddleware(nextApp);
