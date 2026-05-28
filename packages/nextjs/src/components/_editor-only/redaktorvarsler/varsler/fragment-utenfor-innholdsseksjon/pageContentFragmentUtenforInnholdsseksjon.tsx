@@ -1,7 +1,29 @@
+type FragmentSubtreeNode = {
+    descriptor?: string;
+    [key: string]: unknown;
+};
+
+const fragmentInneholderInnholdsseksjon = (node: unknown): boolean => {
+    if (!node || typeof node !== 'object') {
+        return false;
+    }
+
+    if (Array.isArray(node)) {
+        return node.some(fragmentInneholderInnholdsseksjon);
+    }
+
+    const obj = node as FragmentSubtreeNode;
+    if (obj.descriptor === 'no.nav.navno:section-with-header') {
+        return true;
+    }
+
+    return Object.values(obj).some(fragmentInneholderInnholdsseksjon);
+};
+
 export const pageContentFragmentUtenforInnholdsseksjon = (node: {
     path?: string;
     type?: string;
-    fragment?: { descriptor: string };
+    fragment?: unknown;
 }): boolean => {
     if (!node?.path) return false;
 
@@ -9,17 +31,15 @@ export const pageContentFragmentUtenforInnholdsseksjon = (node: {
     const isInContentSection = /^\/pageContent\/\d+\/content\/\d+$/;
     const isInIntroSection = /^\/pageContent\/\d+\/intro\/\d+$/;
 
-    // Hvis et fragment er en innholdsseksjon skal den ikke gi varsel dersom den er utenfor innholdsseksjon
-    if (
-        startsWithPageContent &&
-        node.type === 'fragment' &&
-        node.fragment?.descriptor === 'no.nav.navno:section-with-header'
-    ) {
+    if (node.type !== 'fragment') {
+        return false;
+    }
+
+    if (fragmentInneholderInnholdsseksjon(node.fragment)) {
         return false;
     }
 
     return (
-        node.type === 'fragment' &&
         startsWithPageContent.test(node.path) &&
         !isInContentSection.test(node.path) &&
         !isInIntroSection.test(node.path)
