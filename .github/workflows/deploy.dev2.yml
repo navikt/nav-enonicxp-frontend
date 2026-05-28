@@ -63,7 +63,7 @@ jobs:
         with:
           CLUSTER: dev-gcp
           RESOURCE: .nais/valkey.yml
-          VARS: .nais/vars/dev.yml
+          VARS: .nais/vars/vars-dev2.yml
 
   deploy:
     runs-on: ubuntu-latest

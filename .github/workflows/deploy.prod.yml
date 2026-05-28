@@ -53,9 +53,9 @@ jobs:
         uses: ./.github/actions/nais-deploy
         continue-on-error: true
         with:
-          CLUSTER: dev-gcp
+          CLUSTER: prod-gcp
           RESOURCE: .nais/valkey.yml
-          VARS: .nais/vars/dev.yml
+          VARS: .nais/vars/vars-prod.yml
 
   deploy:
     runs-on: ubuntu-latest
