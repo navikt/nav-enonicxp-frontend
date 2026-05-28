@@ -1,4 +1,5 @@
 type FragmentSubtreeNode = {
+    type?: string;
     descriptor?: string;
     [key: string]: unknown;
 };
@@ -13,7 +14,7 @@ const fragmentInneholderInnholdsseksjon = (node: unknown): boolean => {
     }
 
     const obj = node as FragmentSubtreeNode;
-    if (obj.descriptor === 'no.nav.navno:section-with-header') {
+    if (obj.type === 'layout' && obj.descriptor === 'no.nav.navno:section-with-header') {
         return true;
     }
 
