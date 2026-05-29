@@ -41,17 +41,11 @@
 
             .lenkepanel {
                 display: flex;
-                text-decoration-thickness: 0.05em;
-                text-decoration-color: var(--ax-text-neutral);
-                text-underline-offset: 0.1em;
                 align-items: center;
                 padding: 0;
                 gap: var(--ax-space-8);
                 width: 100%;
-
-                &:hover {
-                    text-decoration-line: none;
-                }
+                color: var(--ax-text-neutral);
 
                 &:focus {
                     @include common.panel-focus-mixin();
