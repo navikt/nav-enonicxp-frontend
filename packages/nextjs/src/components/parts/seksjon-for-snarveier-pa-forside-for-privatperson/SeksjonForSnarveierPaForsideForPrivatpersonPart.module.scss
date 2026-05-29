@@ -41,18 +41,10 @@
 
             .lenkepanel {
                 display: flex;
-                align-items: center;
-                padding: 0;
                 gap: var(--ax-space-8);
-                width: 100%;
                 color: var(--ax-text-neutral);
 
-                &:focus {
-                    @include common.panel-focus-mixin();
-                }
-
                 .text {
-                    color: var(--ax-text-neutral);
                     font-feature-settings:
                         'liga' off,
                         'clig' off;
