@@ -33,7 +33,7 @@ import { SeksjonForSnarveierPart } from './seksjon-for-snarveier/SeksjonForSnarv
 import { SeksjonForAktuelleTemaerPart } from './seksjon-for-aktuelle-temaer/SeksjonForAktuelleTemaerPart';
 import { FiltreringsmenyPart } from './filtreringsmeny/FiltreringsmenyPart';
 import { KalkulatorPart } from './kalkulator/KalkulatorPart';
-import { VarselboksPart } from './varselboks/VarselboksPart';
+import { InfokortPart } from './varselboks/InfokortPart';
 import { LenkepanelPart } from './lenkepanelPart/LenkepanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { HeaderPart } from './header/HeaderPart';
@@ -74,8 +74,8 @@ const PartComponentMapper = ({
     switch (partProps.descriptor) {
         case PartType.Trekkspill:
             return <TrekkspillPart {...partProps} />;
-        case PartType.Varselboks:
-            return <VarselboksPart {...partProps} />;
+        case PartType.Infokort:
+            return <InfokortPart {...partProps} />;
         case PartType.Omradekort:
             return <OmradekortPart {...partProps} />;
         case PartType.Situasjonskort:
