@@ -33,7 +33,6 @@ export const FormIntermediateStepLink = ({
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
-                        className={style.lenkebase}
                         href={href}
                         analyticsComponent={analyticsComponent}
                         analyticsLabel={analyticsLabel}
