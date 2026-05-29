@@ -9,8 +9,8 @@ const APP_ORIGIN = process.env.APP_ORIGIN;
 export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
-    expressApp.all('/*path', (req, res, next) => {
-        res.setHeader('X-Robots-Tag', 'noindex');
+    expressApp.use((req, res, next) => {
+        res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
         next();
     });
 
@@ -32,11 +32,15 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
     );
 
     if (APP_ORIGIN.endsWith(DEV_NAIS_DOMAIN)) {
-        expressApp.all('/*path', (req, res, next) => {
+        expressApp.use((req, res, next) => {
             const { noRedirect } = req.query;
-            if (noRedirect) {
+            const userAgent = req.headers['user-agent'] || '';
+
+            // Skip redirect for explicit opt-out or Enonic XP requests
+            if (noRedirect || userAgent.includes('Java-http-client')) {
                 return next();
             }
+
             if (!req.hostname.endsWith(DEV_NAIS_DOMAIN)) {
                 return res.redirect(302, `${APP_ORIGIN}${req.path}`);
             }

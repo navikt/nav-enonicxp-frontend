@@ -19,7 +19,7 @@
         "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
         "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
         "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
-        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh",
+        "build-and-push-dev-failover": "sh -c 'for a in \"$@\"; do case $a in --app_env=*) APP_ENV=${a#*=};; --image_tag=*) IMAGE_TAG=${a#*=};; esac; done; sh .failover/build-dev-failover-image.sh \"$APP_ENV\" \"$IMAGE_TAG\"' --",
         "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
         "lint": "pnpm -r --parallel run lint",
         "test": "pnpm -r --parallel run test",

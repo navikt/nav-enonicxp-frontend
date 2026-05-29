@@ -74,7 +74,7 @@ Github workflows har ikke tilgang til q-miljøer i Nav (feks dev), så imaget m�
 
 - Legg inn relevante secrets lokalt som spesifisert i kommentarene øverst i `.failover/build-dev-failover-image.sh`
 - Husk at du i tillegg må være på naisdevice!
-- Kjør `pnpm run build-and-push-dev-failover dev1|dev2 ditt-valgte-image-navn`
+- Kjør `pnpm run build-and-push-dev-failover dev1|dev2|dev3 ditt-valgte-image-navn`
 - Vent på at imaget bygges (det tar normalt 15-20 min)
 - I rapporten vil du få en Digest ("sha256:ab372a...."). Kopier selve sha'en (dvs ikke 'sha256:') til bruk i neste steg.
 - Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og sha'en som du fikk etter push.

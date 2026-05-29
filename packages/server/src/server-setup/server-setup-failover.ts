@@ -2,8 +2,10 @@ import { Express } from 'express';
 
 import { validateSecretHeader } from '@/shared/auth';
 import { InferredNextWrapperServer } from 'server';
+import { logger } from '@/shared/logger';
 
 export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
+    logger.info('Setting up failover server');
     const nextRequestHandler = nextApp.getRequestHandler();
 
     // Assets from /_next and internal apis should be served as normal
@@ -13,7 +15,7 @@ export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWr
 
     // We don't want the full site to be publicly available via failover instance.
     // This is served via the public-facing regular frontend when needed
-    expressApp.all('/*path', (req, res) => {
+    expressApp.all('/{*path}', (req, res) => {
         if (!validateSecretHeader(req)) {
             res.status(404).send();
             return;
