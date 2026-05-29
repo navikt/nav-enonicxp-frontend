@@ -6,17 +6,9 @@
         color: var(--default-action-color);
     }
 
-    :global(.aksel-link-anchor) {
-        text-decoration: none;
-    }
-
     &:hover,
     &:focus-within {
         background-color: #ecf3fe;
-
-        :global(.aksel-link-anchor) {
-            text-decoration: underline;
-        }
     }
 }
 
