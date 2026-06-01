@@ -29,6 +29,11 @@
     margin-top: 0;
     font-size: var(--ax-font-size-large);
 
+    .lenke {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
     li:not(:last-child) {
         margin-bottom: var(--ax-space-4);
     }
