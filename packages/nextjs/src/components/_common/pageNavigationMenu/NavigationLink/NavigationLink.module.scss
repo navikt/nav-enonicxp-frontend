@@ -1,5 +1,6 @@
 .link {
     align-items: center;
+    gap: var(--ax-space-6);
     padding: var(--ax-space-8) 0;
 
     &[aria-current='true'] {
