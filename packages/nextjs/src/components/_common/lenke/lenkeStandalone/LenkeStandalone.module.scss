@@ -1,11 +1,5 @@
 .lenke {
     gap: 0;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.content {
-    display: inline-flex;
 }
 
 .linkText {
@@ -18,6 +12,12 @@
             left: var(--ax-space-6);
         }
     }
+}
+
+.withLabelWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .label {

@@ -33,7 +33,7 @@ export const LenkeStandalone = ({
     analyticsLabel,
     ...rest
 }: Props) => {
-    return (
+    const link = (
         <LenkeBase
             {...rest}
             href={href}
@@ -47,26 +47,32 @@ export const LenkeStandalone = ({
             analyticsLinkGroup={linkGroup}
             analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
         >
-            <span className={style.content}>
-                {withChevron && (
-                    <span className={style.iconContainer}>
-                        <Chevron className={style.customChevronStyle} />
-                    </span>
-                )}
-                <BodyShort className={classNames(style.linkText, tekstClassName)} as={'span'}>
-                    {children}
-                </BodyShort>
-                {withArrow && (
-                    <span className={style.iconContainer}>
-                        <ArrowRightIcon className={style.arrowIcon} />
-                    </span>
-                )}
-            </span>
-            {label && (
-                <BodyLong size="small" className={style.label} as={'span'}>
-                    {label}
-                </BodyLong>
+            {withChevron && (
+                <span className={style.iconContainer}>
+                    <Chevron className={style.customChevronStyle} />
+                </span>
+            )}
+            <BodyShort className={classNames(style.linkText, tekstClassName)} as={'span'}>
+                {children}
+            </BodyShort>
+            {withArrow && (
+                <span className={style.iconContainer}>
+                    <ArrowRightIcon className={style.arrowIcon} />
+                </span>
             )}
         </LenkeBase>
+    );
+
+    if (!label) {
+        return link;
+    }
+
+    return (
+        <div className={style.withLabelWrapper}>
+            {link}
+            <BodyLong size="small" className={style.label} as={'div'}>
+                {label}
+            </BodyLong>
+        </div>
     );
 };
