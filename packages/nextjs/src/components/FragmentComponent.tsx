@@ -37,7 +37,7 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
 };
 
 export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Props) => {
-    const shouldWarn = pageContentFragmentUtenforInnholdsseksjon({
+    const skalVarsle = pageContentFragmentUtenforInnholdsseksjon({
         path: componentProps.path,
         type: 'fragment',
         fragment: componentProps.fragment,
@@ -48,10 +48,10 @@ export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Pr
     const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView && erGodkjentSide(type)) {
+        if (skalVarsle && isEditorView && erGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
-    }, [shouldWarn, isEditorView, type]);
+    }, [skalVarsle, isEditorView, type]);
 
     if (editorProps) {
         return (
