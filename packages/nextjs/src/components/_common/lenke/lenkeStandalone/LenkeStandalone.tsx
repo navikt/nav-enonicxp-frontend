@@ -37,7 +37,12 @@ export const LenkeStandalone = ({
         <LenkeBase
             {...rest}
             href={href}
-            className={classNames('aksel-link', withChevron && style.withChevron, className)}
+            className={classNames(
+                'aksel-link',
+                style.lenke,
+                withChevron && style.withChevron,
+                className
+            )}
             analyticsComponent={component}
             analyticsLinkGroup={linkGroup}
             analyticsLabel={analyticsLabel || (typeof children === 'string' ? children : undefined)}
