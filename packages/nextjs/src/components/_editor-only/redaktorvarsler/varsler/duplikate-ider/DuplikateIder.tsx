@@ -14,7 +14,7 @@ const finnElementerMedDuplikateIder = () => {
     const elementsWithIds = [...document.querySelectorAll<HTMLElement>('#maincontent [id]')];
 
     return elementsWithIds.filter((element, index) => {
-        // Ikke inkluder svg-elementer i denne advarselen, da dette er noe redaktørene vanligvis ikke håndterer.Expand commentComment on line R17Resolved
+        // Ikke inkluder svg-elementer i denne advarselen, da dette er noe redaktørene vanligvis ikke håndterer.
         if (erElementISvg(element)) return false;
 
         return harDuplikateIder(element, index, elementsWithIds);
@@ -33,9 +33,6 @@ export const DuplikateIder = ({ className }: Props) => {
         (a, b) => a.id === b.id
     ).map((element) => element.id);
 
-    // Delay the check slightly to avoid certain false positives.
-    // Typically mobile/desktop exclusive elements which may have duplicate
-    // ids in the server html, which are pruned with client-side javascript
     useEffect(() => {
         const timer = setTimeout(() => {
             setElementerMedDuplikateIder(finnElementerMedDuplikateIder());

@@ -7,7 +7,7 @@ type Props = {
     className?: string;
 };
 
-export const HtmlAreaDiv = ({ content, className }: Props) => {
+export const HtmlAreaInnholderDivVarsel = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnDivTagsIFormatertInnhold = (node: any): void => {

@@ -26,7 +26,7 @@ type HtmlAreaPartProps = PartComponentProps<PartType.HtmlArea> & {
 };
 
 export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) => {
-    const shouldWarn =
+    const skalVarsle =
         pageContentFormatertInnholdUtenforInnholdsseksjon({ path }) ||
         htmlAreaInneholderDiv({ descriptor, config });
     const [redBorderStyling, setRedBorderStyling] = useState(false);
@@ -34,10 +34,10 @@ export const HtmlAreaPart = ({ config, path, descriptor }: HtmlAreaPartProps) =>
     const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView && erGodkjentSide(type)) {
+        if (skalVarsle && isEditorView && erGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
-    }, [shouldWarn, path, descriptor, config, isEditorView, type]);
+    }, [skalVarsle, path, descriptor, config, isEditorView, type]);
 
     if (!config?.html) {
         return <EditorHelp text="Tom innholdskomponent. Klikk for å redigere." />;

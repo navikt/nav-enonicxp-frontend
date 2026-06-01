@@ -13,7 +13,7 @@ type OpeningHours = {
 };
 
 const isValidDate = (date: Date | null): date is Date =>
-    date instanceof Date && !isNaN(date.getTime());
+    date instanceof Date && !Number.isNaN(date.getTime());
 
 const dateToStr = (date: Date) => date.toISOString().slice(0, 10);
 

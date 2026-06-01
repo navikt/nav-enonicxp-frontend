@@ -7,7 +7,7 @@ type Props = {
     className?: string;
 };
 
-export const FormatertInnholdUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const FormatertInnholdUtenforInnholdsseksjonVarsel = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {

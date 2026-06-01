@@ -7,7 +7,7 @@ type Props = {
     className?: string;
 };
 
-export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const FragmentUtenforInnholdsseksjonVarsel = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
