@@ -1,60 +1,10 @@
-import React from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
-import { pageContentFragmentUtenforInnholdsseksjon } from './pageContentFragmentUtenforInnholdsseksjon';
-
 type Props = {
-    content: ContentProps;
+    warnings: React.ReactNode[];
     className?: string;
 };
 
-export const FragmentUtenforInnholdsseksjonVarsel = ({ content, className }: Props) => {
-    const warnings: React.ReactElement[] = [];
-
-    // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
-    if (content.type === 'no.nav.navno:current-topic-page') {
-        return null;
-    }
-
-    const finnFragmentUtenforInnholdsseksjon = (node: any): void => {
-        if (!node || typeof node !== 'object') {
-            return;
-        }
-
-        if (pageContentFragmentUtenforInnholdsseksjon(node)) {
-            const { path, type } = node;
-
-            if (type !== 'fragment') {
-                return;
-            }
-
-            const innhold = () => {
-                if (node.fragment.config.html?.processedHtml !== undefined) {
-                    return JSON.stringify(node.fragment.config.html.processedHtml);
-                } else if (node.fragment.config.content?.processedHtml !== undefined) {
-                    return JSON.stringify(node.fragment.config.content.processedHtml);
-                }
-            };
-
-            warnings.push(
-                <ul key={`${path}-list`}>
-                    <li key={`${path}-item`}>Innhold: {innhold()}</li>
-                </ul>
-            );
-        }
-
-        if (Array.isArray(node)) {
-            node.forEach(finnFragmentUtenforInnholdsseksjon);
-        } else {
-            Object.values(node).forEach(finnFragmentUtenforInnholdsseksjon);
-        }
-    };
-
-    const regions = content.page?.regions;
-    if (regions && 'pageContent' in regions) {
-        finnFragmentUtenforInnholdsseksjon(regions['pageContent']);
-    }
-
-    return warnings.length > 0 ? (
+export const FragmentUtenforInnholdsseksjonVarsel = ({ className, warnings }: Props) => {
+    return (
         <li key="fragment-utenfor-innholdsseksjon-warning" className={className}>
             {warnings.length === 1 ? 'Fragmentet' : 'Fragmentene'} ligger utenfor den angitte
             innholdsseksjonen, noe som kan føre til visningsfeil på nav.no. Under ser du hvilket
@@ -69,5 +19,5 @@ export const FragmentUtenforInnholdsseksjonVarsel = ({ content, className }: Pro
                 </li>
             </ul>
         </li>
-    ) : null;
+    );
 };

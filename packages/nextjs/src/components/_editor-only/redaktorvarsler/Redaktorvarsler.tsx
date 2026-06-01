@@ -5,9 +5,9 @@ import { KortUrlVarsel } from './varsler/kort-url/KortUrlVarsel';
 import { DuplikateIder } from './varsler/duplikate-ider/DuplikateIder';
 import { SkjemanummerVarsel } from './varsler/skjemanummer/SkjemanummerVarsel';
 import { KontaktinformasjonVarsel } from './varsler/kontaktinformasjon/KontaktinformasjonVarsel';
-import { FormatertInnholdUtenforInnholdsseksjonVarsel } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjonVarsel';
-import { HtmlAreaInnholderDivVarsel } from './varsler/html-area-div/HtmlAreaInnholderDivVarsel';
-import { FragmentUtenforInnholdsseksjonVarsel } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjonVarsel';
+import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjon';
+import { HtmlAreaInnholderDiv } from './varsler/html-area-div/HtmlAreaInnholderDiv';
+import { FragmentUtenforInnholdsseksjon } from './varsler/fragment-utenfor-innholdsseksjon/FragmentUtenforInnholdsseksjon';
 import { harRedaktorfeil } from './harRedaktorFeil';
 import { erGodkjentSide } from './erGodkjentSide';
 import style from './Redaktorvarsler.module.scss';
@@ -26,15 +26,15 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                             <DuplikateIder className={style.liste} />
                             <SkjemanummerVarsel content={content} className={style.liste} />
                             <KontaktinformasjonVarsel content={content} className={style.liste} />
-                            <FormatertInnholdUtenforInnholdsseksjonVarsel
+                            <FormatertInnholdUtenforInnholdsseksjon
                                 content={content}
                                 className={style.liste}
                             />
-                            <FragmentUtenforInnholdsseksjonVarsel
+                            <FragmentUtenforInnholdsseksjon
                                 content={content}
                                 className={style.liste}
                             />
-                            <HtmlAreaInnholderDivVarsel content={content} className={style.liste} />
+                            <HtmlAreaInnholderDiv content={content} className={style.liste} />
                         </ul>
                     </Alert>
                 )}
