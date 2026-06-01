@@ -52,7 +52,7 @@ export const LenkeStandalone = ({
                     <Chevron className={style.customChevronStyle} />
                 </span>
             )}
-            <BodyShort className={classNames(style.linkText, tekstClassName)} as={'span'}>
+            <BodyShort className={tekstClassName} as={'span'}>
                 {children}
             </BodyShort>
             {withArrow && (
