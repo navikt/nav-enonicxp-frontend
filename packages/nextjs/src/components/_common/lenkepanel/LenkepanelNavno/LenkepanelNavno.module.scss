@@ -10,13 +10,6 @@ $blackLinkColor: var(--ax-text-neutral);
     padding: var(--ax-space-24);
     border-radius: var(--ax-radius-8);
 
-    &:hover {
-        .lenkepanelNavnoLink {
-            color: $blueLinkColor;
-            text-decoration-color: $blueLinkColor;
-        }
-    }
-
     &:focus,
     &:focus-within {
         @include common.panel-focus-mixin();
