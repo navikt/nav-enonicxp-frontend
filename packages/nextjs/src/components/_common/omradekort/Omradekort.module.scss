@@ -28,11 +28,6 @@ $size-small: 0.5;
             box-shadow: none;
         }
 
-        :global(.aksel-link-card__title) {
-            color: var(--default-action-color);
-            text-decoration-line: none;
-        }
-
         @media (hover) {
             background-color: var(--ax-bg-neutral-soft);
         }
@@ -40,10 +35,6 @@ $size-small: 0.5;
 
     &:active {
         background-color: var(--ax-brand-blue-100);
-
-        :global(.aksel-link-card__title) {
-            color: var(--ax-neutral-1000);
-        }
     }
 
     :global(.aksel-link-card__title) {
