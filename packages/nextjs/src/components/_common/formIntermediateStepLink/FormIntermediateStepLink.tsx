@@ -29,7 +29,7 @@ export const FormIntermediateStepLink = ({
     }
 
     return (
-        <LinkCard arrowPosition="center" className={style.lenkepanel}>
+        <LinkCard arrowPosition="center" className={style.lenkepanel} data-color="accent">
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
