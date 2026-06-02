@@ -47,7 +47,11 @@ export const LenkepanelNavno = ({
                     <LenkeBase
                         {...elementAttribs}
                         href={href}
-                        className={classNames(styles.lenkepanelNavnoLink, textClassNames)}
+                        className={classNames(
+                            'aksel-link',
+                            styles.lenkepanelNavnoLink,
+                            textClassNames
+                        )}
                         analyticsComponent="Lenkepanel navno"
                         analyticsLinkGroup={analyticsLinkGroup}
                         analyticsLabel={linkText}

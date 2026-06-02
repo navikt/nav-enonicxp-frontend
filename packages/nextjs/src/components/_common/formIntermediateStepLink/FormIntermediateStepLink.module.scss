@@ -1,26 +1,11 @@
 .lenkepanel {
-    :global(.aksel-link-card__title),
     :global(.aksel-link-anchor__arrow) {
-        color: var(--default-action-color);
+        color: var(--ax-text-subtle);
     }
 
     :global(.aksel-link-card__footer) {
         display: block;
     }
-
-    &:hover {
-        background-color: #ecf3fe;
-        border-color: #cbd4e1;
-        box-shadow: none;
-
-        :global(.aksel-link-card__title) {
-            text-decoration: underline;
-        }
-    }
-}
-
-.lenkebase {
-    text-decoration: none;
 }
 
 .metadata {

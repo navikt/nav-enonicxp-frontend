@@ -1,16 +1,6 @@
 .newsItem {
     margin-bottom: var(--ax-space-24);
     list-style-type: none;
-
-    a {
-        text-decoration-thickness: 0.05em;
-        text-underline-offset: 0.1em;
-        text-decoration-line: underline;
-    }
-}
-
-.heading a {
-    color: var(--ax-text-subtle);
 }
 
 .ingress {

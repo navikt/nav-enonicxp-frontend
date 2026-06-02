@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { AnalyticsEventName } from 'utils/analytics';
-import style from './KontaktOssKanalLenkebase.module.scss';
 
 type Props = PropsWithChildren<{
     href: string;
@@ -23,7 +22,7 @@ export const KontaktOssKanalLenkebase = ({
             analyticsLinkGroup={analyticsLinkGroup}
             analyticsComponent={analyticsComponent}
             analyticsEvent={analyticsEvent}
-            className={style.link}
+            className="aksel-link"
         >
             {children}
         </LenkeBase>

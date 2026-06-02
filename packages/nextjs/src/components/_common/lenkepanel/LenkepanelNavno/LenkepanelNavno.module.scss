@@ -10,13 +10,6 @@ $blackLinkColor: var(--ax-text-neutral);
     padding: var(--ax-space-24);
     border-radius: var(--ax-radius-8);
 
-    &:hover {
-        .lenkepanelNavnoLink {
-            text-decoration: none;
-            color: $blueLinkColor;
-        }
-    }
-
     &:focus,
     &:focus-within {
         @include common.panel-focus-mixin();
@@ -39,9 +32,6 @@ $blackLinkColor: var(--ax-text-neutral);
 
 .lenkepanelNavnoLink {
     color: $blueLinkColor;
-    text-decoration-line: underline;
-    text-decoration-thickness: 0.05em;
-    text-underline-offset: 0.1em;
 
     @media #{common.$mq-screen-mobile-small} {
         font-size: var(--ax-font-size-xlarge);
@@ -51,10 +41,6 @@ $blackLinkColor: var(--ax-text-neutral);
     &.linkBlack {
         color: $blackLinkColor;
         text-decoration-color: $blackLinkColor;
-    }
-
-    &.underline {
-        text-decoration-line: underline;
     }
 
     &:focus {

@@ -37,7 +37,6 @@ export const Omradekort = ({ path, title, area, linkGroup, className }: Props) =
                         analyticsLabel={title}
                         analyticsComponent={'Områdekort'}
                         analyticsLinkGroup={analyticsLinkGroup}
-                        className={style.lenkebase}
                     >
                         {title}
                     </LenkeBase>

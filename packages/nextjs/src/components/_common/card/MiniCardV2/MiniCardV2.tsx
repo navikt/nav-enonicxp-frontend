@@ -37,6 +37,7 @@ export const MiniCardV2 = ({
             arrowPosition="center"
             className={classNames(style.miniCardV2, className)}
             lang={language}
+            data-color="accent"
         >
             <LinkCard.Title>
                 <LinkCard.Anchor asChild>
