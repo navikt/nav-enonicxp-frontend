@@ -1,14 +1,8 @@
 .miniCardV2 {
     margin-bottom: var(--ax-space-36);
 
-    :global(.aksel-link-card__title),
     :global(.aksel-link-anchor__arrow) {
-        color: var(--default-action-color);
-    }
-
-    &:hover,
-    &:focus-within {
-        background-color: #ecf3fe;
+        color: var(--ax-text-subtle);
     }
 }
 
