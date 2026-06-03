@@ -14,7 +14,7 @@ import { erGodkjentSide } from './erGodkjentSide';
 import style from './Redaktorvarsler.module.scss';
 
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
-    const { unikeDuplikatIder } = useDuplikateIder();
+    const { unikeDuplikatIder, elementerMedDuplikateIder } = useDuplikateIder();
 
     if (erGodkjentSide(content.type)) {
         const harFeil = harRedaktorfeil(content) || unikeDuplikatIder.length > 0;
@@ -28,7 +28,11 @@ export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
                         Disse problemene må rettes før publisering:
                         <ul key="redaktorvarsler-list" className={style.redaktorvarsler}>
                             <KortUrlVarsel content={content} className={style.liste} />
-                            <DuplikateIder className={style.liste} />
+                            <DuplikateIder
+                                unikeDuplikatIder={unikeDuplikatIder}
+                                elementerMedDuplikateIder={elementerMedDuplikateIder}
+                                className={style.liste}
+                            />
                             <SkjemanummerVarsel content={content} className={style.liste} />
                             <KontaktinformasjonVarsel content={content} className={style.liste} />
                             <FormatertInnholdUtenforInnholdsseksjon

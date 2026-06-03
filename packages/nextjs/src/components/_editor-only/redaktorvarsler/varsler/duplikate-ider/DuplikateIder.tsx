@@ -1,14 +1,17 @@
 import React from 'react';
-import { useDuplikateIder } from './useDuplikateIder';
 import { DuplikateIderVarsel } from './DuplikateIderVarsel';
 
 type Props = {
+    unikeDuplikatIder: string[];
+    elementerMedDuplikateIder: HTMLElement[];
     className?: string;
 };
 
-export const DuplikateIder = ({ className }: Props) => {
-    const { unikeDuplikatIder, elementerMedDuplikateIder } = useDuplikateIder();
-
+export const DuplikateIder = ({
+    unikeDuplikatIder,
+    elementerMedDuplikateIder,
+    className,
+}: Props) => {
     if (unikeDuplikatIder.length === 0) return null;
 
     return (
