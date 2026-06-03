@@ -9,7 +9,8 @@
         {
             "files": ["*.yml", "*.yaml"],
             "options": {
-                "parser": "yaml"
+                "parser": "yaml",
+                "tabWidth": 2
             }
         }
     ]

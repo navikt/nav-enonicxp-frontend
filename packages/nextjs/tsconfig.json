@@ -16,6 +16,7 @@
         "incremental": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
+        "types": ["@navikt/ds-react/types/theme"],
         "paths": {
             "@/shared/*": ["../../shared/src/*"]
         },

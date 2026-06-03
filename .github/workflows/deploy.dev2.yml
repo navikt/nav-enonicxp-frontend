@@ -47,27 +47,9 @@ jobs:
           READER_TOKEN: ${{ secrets.READER_TOKEN }}
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
 
-  deploy-valkey:
-    runs-on: ubuntu-latest
-    needs: build
-    timeout-minutes: 1
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Deploy Valkey
-        uses: ./.github/actions/nais-deploy
-        continue-on-error: true
-        with:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/valkey.yml
-          VARS: .nais/vars/dev.yml
-
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, deploy-valkey]
+    needs: [build]
     permissions:
       id-token: write
     steps:
@@ -82,4 +64,3 @@ jobs:
           vars_file: vars-dev2.yml
           config_file: config.yml
           hpa_file: hpa-dev2.yml
-          deploy_valkey: true

@@ -25,6 +25,8 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
 };
 
 export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrapperServer) => {
+    logger.info('Setting up regular server');
+
     const jsonBodyParser = express.json();
 
     const validateSecretMiddleware = buildValidateSecretMiddleware(nextApp);
@@ -62,7 +64,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         handleInvalidateAllReq
     );
 
-    if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
+    if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2' || process.env.ENV === 'dev3') {
         serverSetupDev(expressApp, nextApp);
     }
 

@@ -1,5 +1,5 @@
 name: Deploy to nais
-description: Deploy Valkey, HPA and application to NAIS
+description: Deploy HPA and application to NAIS
 
 inputs:
   image:
@@ -21,12 +21,7 @@ inputs:
   hpa_file:
     required: false
     description: HPA file in .nais/hpa/
-    default: ""
-
-  deploy_valkey:
-    required: false
-    description: Whether to deploy Valkey
-    default: "false"
+    default: ''
 
 runs:
   using: composite

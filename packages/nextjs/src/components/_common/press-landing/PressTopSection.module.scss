@@ -26,16 +26,4 @@
     p:last-of-type {
         margin-bottom: 0;
     }
-
-    a {
-        color: var(--ax-neutral-1000);
-        text-decoration-line: underline;
-        text-decoration-thickness: 0.05em;
-        text-underline-offset: 0.1em;
-        border: 0;
-    }
-    a:hover {
-        text-decoration: none;
-        color: var(--default-action-color);
-    }
 }
