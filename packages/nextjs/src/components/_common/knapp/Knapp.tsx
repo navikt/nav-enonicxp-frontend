@@ -70,7 +70,7 @@ export const Knapp = ({
                 style.knapp,
                 fullWidth && style.knappFullWidth,
                 className,
-                lenkestyling && style.lenkestyling
+                lenkestyling && classNames('aksel-link', style.lenkestyling)
             )}
             onClick={(e) => {
                 logAnalyticsEvent(analyticsEvent || AnalyticsEvents.NAVIGERE, analyticsData);

@@ -1,22 +1,8 @@
 .miniCardV2 {
     margin-bottom: var(--ax-space-36);
 
-    :global(.aksel-link-card__title),
     :global(.aksel-link-anchor__arrow) {
-        color: var(--default-action-color);
-    }
-
-    :global(.aksel-link-anchor) {
-        text-decoration: none;
-    }
-
-    &:hover,
-    &:focus-within {
-        background-color: #ecf3fe;
-
-        :global(.aksel-link-anchor) {
-            text-decoration: underline;
-        }
+        color: var(--ax-text-subtle);
     }
 }
 
