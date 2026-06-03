@@ -3,6 +3,7 @@ import { Alert } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { KortUrlVarsel } from './varsler/kort-url/KortUrlVarsel';
 import { DuplikateIder } from './varsler/duplikate-ider/DuplikateIder';
+import { useDuplikateIder } from './varsler/duplikate-ider/useDuplikateIder';
 import { SkjemanummerVarsel } from './varsler/skjemanummer/SkjemanummerVarsel';
 import { KontaktinformasjonVarsel } from './varsler/kontaktinformasjon/KontaktinformasjonVarsel';
 import { FormatertInnholdUtenforInnholdsseksjon } from './varsler/formatert-innhold-utenfor-innholdsseksjon/FormatertInnholdUtenforInnholdsseksjon';
@@ -13,10 +14,14 @@ import { erGodkjentSide } from './erGodkjentSide';
 import style from './Redaktorvarsler.module.scss';
 
 export const Redaktorvarsler = ({ content }: { content: ContentProps }) => {
+    const { unikeDuplikatIder } = useDuplikateIder();
+
     if (erGodkjentSide(content.type)) {
+        const harFeil = harRedaktorfeil(content) || unikeDuplikatIder.length > 0;
+
         return (
             <>
-                {harRedaktorfeil(content) && (
+                {harFeil && (
                     <Alert variant="warning">
                         <strong>Redaktørvarsel:</strong>
                         <br />

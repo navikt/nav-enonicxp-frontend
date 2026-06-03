@@ -58,6 +58,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     // Show all panels in edit mode, but only valid panels in view mode
     const validTrekkspill = accordion.filter(validatePanel);
     const relevantTrekkspill = editorView === 'edit' ? accordion : validTrekkspill;
+    const harFeil = harRedaktorfeil(contentProps);
 
     return (
         <DSAccordion className={styles.trekkspill} size="large">
@@ -67,7 +68,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                     <DSAccordion.Item
                         key={item.anchorId || item.title}
                         className={styles.item}
-                        open={openTrekkspill.includes(index) || harRedaktorfeil(contentProps)}
+                        open={openTrekkspill.includes(index) || harFeil}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}
                         ref={itemRefs.current[index]}
                         tabIndex={-1}
