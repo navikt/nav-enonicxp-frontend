@@ -34,8 +34,8 @@ catalogs:
       specifier: 4.0.0
       version: 4.0.0
     '@navikt/nav-office-reception-info':
-      specifier: 2.0.1
-      version: 2.0.1
+      specifier: 2.0.2
+      version: 2.0.2
     '@next/bundle-analyzer':
       specifier: 15.5.4
       version: 15.5.4
@@ -440,7 +440,7 @@ importers:
         version: 4.0.0(html-react-parser@6.1.1(@types/react@19.2.14)(react@19.2.6))(react@19.2.6)
       '@navikt/nav-office-reception-info':
         specifier: 'catalog:'
-        version: 2.0.1(@navikt/aksel-icons@8.10.5)(@navikt/ds-css@8.10.5)(@navikt/ds-react@8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(dayjs@1.11.20)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        version: 2.0.2(@navikt/aksel-icons@8.10.5)(@navikt/ds-css@8.10.5)(@navikt/ds-react@8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(dayjs@1.11.20)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@reduxjs/toolkit':
         specifier: 'catalog:'
         version: 2.12.0(react-redux@9.3.0(@types/react@19.2.14)(react@19.2.6)(redux@5.0.1))(react@19.2.6)
@@ -2891,11 +2891,11 @@ packages:
       html-react-parser: '>=5.x'
       react: '>=17.x'
 
-  '@navikt/nav-office-reception-info@2.0.1':
+  '@navikt/nav-office-reception-info@2.0.2':
     resolution:
       {
-        integrity: sha512-bTEHRcmmka5Dhl+401Pp8qUTJdPJLmx8RlZTh/8MZzx4CKWuRQdFTNyfpwpylIaeOhKozP2eQaoLf106Ifgrww==,
-        tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/2.0.1/e605e3093b50397f041e2e4a3fe00f8f6b2a01c8,
+        integrity: sha512-Wxa9A7uNxKPEr8iuOBPp1983VR2xiZFbY0keDZIr0w8E7ePjj4aAqBdBktpeAOngElTjR4FaHoe0bfepcujsrw==,
+        tarball: https://npm.pkg.github.com/download/@navikt/nav-office-reception-info/2.0.2/91a0435ebb1abad18efd1167c54a9745af44ebe7,
       }
     peerDependencies:
       '@navikt/aksel-icons': ^8.0.0
@@ -13188,7 +13188,7 @@ snapshots:
       js-cookie: 3.0.5
       react: 19.2.6
 
-  '@navikt/nav-office-reception-info@2.0.1(@navikt/aksel-icons@8.10.5)(@navikt/ds-css@8.10.5)(@navikt/ds-react@8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(dayjs@1.11.20)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@navikt/nav-office-reception-info@2.0.2(@navikt/aksel-icons@8.10.5)(@navikt/ds-css@8.10.5)(@navikt/ds-react@8.10.5(@types/react@19.2.14)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(dayjs@1.11.20)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@navikt/aksel-icons': 8.10.5
       '@navikt/ds-css': 8.10.5

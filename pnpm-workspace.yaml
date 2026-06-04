@@ -11,7 +11,7 @@ catalog:
   '@navikt/ds-css': 8.10.5
   '@navikt/ds-react': 8.10.5
   '@navikt/nav-dekoratoren-moduler': 4.0.0
-  '@navikt/nav-office-reception-info': 2.0.1
+  '@navikt/nav-office-reception-info': 2.0.2
   '@next/bundle-analyzer': 15.5.4
   '@next/eslint-plugin-next': 15.5.4
   '@playwright/test': 1.60.0
