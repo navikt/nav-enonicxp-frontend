@@ -36,6 +36,7 @@ export const Expandable = ({
     const [isOpen, setIsOpen] = useState(isOpenDefault ?? contentProps.expandAll ?? false);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const { context } = getDecoratorParams(contentProps);
+    const harFeil = harRedaktorfeil(contentProps);
 
     useSnarveier({ shortcut: Snarveier.SEARCH, callback: () => setIsOpen(true) });
     useCheckAndOpenPanel(isOpen, setIsOpen, wrapperRef, anchorId);
@@ -63,7 +64,7 @@ export const Expandable = ({
             <ReadMore
                 className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
                 header={title}
-                open={isOpen || harRedaktorfeil(contentProps)}
+                open={isOpen || harFeil}
                 onOpenChange={(isOpen) => toggleExpandCollapse(isOpen, title)}
                 aria-label={ariaLabel || title}
                 variant="moderate"
