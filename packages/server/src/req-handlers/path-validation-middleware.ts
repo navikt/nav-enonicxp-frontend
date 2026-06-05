@@ -109,7 +109,7 @@ export const buildPathValidationMiddleware =
                     const xpUrl = `${process.env.XP_ORIGIN}${req.path}`;
                     return res.redirect(307, xpUrl); // 307 = Temporary Redirect, preserves method
                 }
-                return next();
+                next();
             } else {
                 logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
                 return badRequest();
