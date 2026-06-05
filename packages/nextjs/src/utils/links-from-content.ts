@@ -2,7 +2,6 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LinkSelectable } from 'types/component-props/_mixins';
 import { LinkProps } from 'types/link-props';
 import { InternalLinkData } from 'types/content-props/internal-link-props';
-import { pageLanguageToLayerLanguage } from './languages';
 
 const invalidLinkProps = {
     url: '/',
@@ -15,16 +14,12 @@ export const getInternalLinkUrl = (content: InternalLinkData) => {
         return undefined;
     }
 
-    const targetLanguage = content?.target?.language;
-    const layerLocale = targetLanguage ? pageLanguageToLayerLanguage[targetLanguage] : undefined;
-    const basePath = layerLocale ? `${targetPath}/${layerLocale}` : targetPath;
-
     const targetAnchorId = content.anchorId;
     if (!targetAnchorId) {
-        return basePath;
+        return targetPath;
     }
 
-    return `${basePath}${targetAnchorId}`;
+    return `${targetPath}${targetAnchorId}`;
 };
 
 export const getUrlFromContent = (content: ContentProps) => {
