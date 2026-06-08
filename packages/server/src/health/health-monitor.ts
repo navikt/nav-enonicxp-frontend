@@ -86,7 +86,7 @@ class HealthMonitorImpl {
         const timeoutId = setTimeout(() => controller.abort(), 5000);
 
         try {
-            const url = `http://localhost:${this.port}/health-render`;
+            const url = `http://localhost:${this.port}/internal/health-render`;
             logger.info(`Health probe calling: ${url}`);
             const res = await fetch(url, { signal: controller.signal, redirect: 'manual' });
 

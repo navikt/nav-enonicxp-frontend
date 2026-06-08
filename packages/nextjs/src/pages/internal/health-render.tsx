@@ -6,7 +6,11 @@ type HealthRenderProps = {
 };
 
 const HealthRender = ({ timestamp }: HealthRenderProps) => {
-    return <div data-health-render={timestamp}>ok</div>;
+    return (
+        <div data-health-render={timestamp} style={{ display: 'none' }}>
+            ok
+        </div>
+    );
 };
 
 export const getServerSideProps: GetServerSideProps<HealthRenderProps> = async () => {
