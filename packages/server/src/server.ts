@@ -8,7 +8,7 @@ import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
-import { initHealthMonitor } from 'health/health-monitor';
+import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
 import { initProcessHealthTracking } from 'health/process-health';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
@@ -55,8 +55,7 @@ nextApp.prepare().then(async () => {
 
     expressApp.use(promMiddleware);
 
-    // Initialize health monitoring
-    initHealthMonitor(typeof port === 'string' ? parseInt(port, 10) : port);
+    // Process health tracking can start immediately (no network needed)
     initProcessHealthTracking();
 
     if (isFailover) {
@@ -108,6 +107,9 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
+        // Initialize and start health probing now that the server is listening
+        initHealthMonitor(typeof port === 'string' ? parseInt(port, 10) : port);
+
         logger.info('Server started', { metaData: { port } });
     });
 
@@ -115,6 +117,7 @@ nextApp.prepare().then(async () => {
 
     const shutdown = () => {
         logger.info('Server shutting down');
+        getHealthMonitor()?.stop();
         httpTerminator.terminate().then(() => {
             expressServer.close(() => {
                 logger.info('Shutdown complete!');

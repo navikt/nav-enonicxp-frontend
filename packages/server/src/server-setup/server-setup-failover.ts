@@ -10,24 +10,24 @@ export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWr
     const nextRequestHandler = nextApp.getRequestHandler();
 
     // Health check endpoint - must come before catch-all
-    expressApp.get('/api/internal/isAlive', (req, res) => {
+    expressApp.get(['/api/internal/isAlive', '/api/internal/isalive'], (req, res) => {
         const healthMonitor = getHealthMonitor();
-        const isHealthy = healthMonitor.isHealthy();
-        const status = healthMonitor.getStatus();
 
-        if (isHealthy) {
-            return res.status(200).json({ message: 'Ok!' });
-        } else {
-            logger.warn('Health check failed', { metaData: status });
-            return res.status(503).json({
-                message: 'Not healthy',
-                status,
-            });
+        if (!healthMonitor) {
+            return res.status(503).json({ message: 'Health monitor not yet initialized' });
         }
+
+        if (healthMonitor.isHealthy()) {
+            return res.status(200).json({ message: 'Ok!' });
+        }
+
+        const status = healthMonitor.getStatus();
+        logger.warn('Health check failed', { metaData: status });
+        return res.status(503).json({ message: 'Not healthy', status });
     });
 
-    // Assets from /_next and internal apis should be served as normal
-    expressApp.get(['/_next{/*path}', '/api/internal{/*path}'], (req, res) => {
+    // Assets from /_next, internal apis, and health render should be served without auth
+    expressApp.get(['/_next{/*path}', '/api/internal{/*path}', '/health-render'], (req, res) => {
         return nextRequestHandler(req, res);
     });
 

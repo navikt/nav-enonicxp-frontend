@@ -25,6 +25,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: InferredNextWrapper
             '/gfx{/*path}',
             '/api{/*path}',
             '/_/*path',
+            '/health-render',
         ],
         (req, res) => {
             return nextRequestHandler(req, res);
