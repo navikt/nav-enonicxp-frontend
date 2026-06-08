@@ -11,7 +11,7 @@ export interface HealthStatus {
 
 const STARTUP_DELAY_MS = 60000;
 
-class HealthMonitorImpl {
+class HealthMonitor {
     private probeIntervalMs: number = 10000;
     private failureThreshold: number = 3;
     private consecutiveFailures: number = 0;
@@ -131,19 +131,19 @@ class HealthMonitorImpl {
     }
 }
 
-let instance: HealthMonitorImpl | null = null;
+let instance: HealthMonitor | null = null;
 
-export function initHealthMonitor(port: number): HealthMonitorImpl {
+export function initHealthMonitor(port: number): HealthMonitor {
     if (instance) {
         logger.warn('Health monitor already initialized');
         return instance;
     }
 
-    instance = new HealthMonitorImpl(port);
+    instance = new HealthMonitor(port);
     instance.start();
     return instance;
 }
 
-export function getHealthMonitor(): HealthMonitorImpl | null {
+export function getHealthMonitor(): HealthMonitor | null {
     return instance;
 }
