@@ -13,7 +13,7 @@ type OpeningHours = {
 };
 
 const isValidDate = (date: Date | null): date is Date =>
-    date instanceof Date && !isNaN(date.getTime());
+    date instanceof Date && !Number.isNaN(date.getTime());
 
 const dateToStr = (date: Date) => date.toISOString().slice(0, 10);
 
@@ -71,7 +71,7 @@ const validateOpeningHours = (
     }
 };
 
-export const KontaktinformasjonWarning = ({ content, className }: Props) => {
+export const KontaktinformasjonVarsel = ({ content, className }: Props) => {
     if (content.type !== ContentType.ContactInformationPage) return null;
 
     const contactType = content.data?.contactType;

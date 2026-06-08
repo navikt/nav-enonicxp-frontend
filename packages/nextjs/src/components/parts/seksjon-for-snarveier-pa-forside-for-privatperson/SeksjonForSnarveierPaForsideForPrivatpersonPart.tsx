@@ -10,6 +10,7 @@ import { Heading } from 'components/_common/headers/Heading';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
+import { classNames } from 'utils/classnames';
 import style from './SeksjonForSnarveierPaForsideForPrivatpersonPart.module.scss';
 
 type Shortcut = {
@@ -59,7 +60,7 @@ export const SeksjonForSnarveierPaForsideForPrivatpersonPart = ({
                         <li key={title} className={style.listItem}>
                             <LenkeBase
                                 href={href}
-                                className={style.lenkepanel}
+                                className={classNames('aksel-link', style.lenkepanel)}
                                 analyticsComponent="SeksjonForSnarveierPaForsideForPrivatpersonPart"
                                 analyticsLinkGroup={sectionTitle}
                             >

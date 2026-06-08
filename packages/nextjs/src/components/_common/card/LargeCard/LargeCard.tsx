@@ -37,6 +37,7 @@ export const LargeCard = (props: Props) => {
             className={classNames(style.LargeCard, className)}
             lang={language}
             {...userEventProps}
+            data-color="accent"
         >
             {illustration && (
                 <LinkCard.Icon>

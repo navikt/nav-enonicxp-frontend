@@ -1,13 +1,14 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { pageContentHtmlAreaUtenforInnholdsseksjon } from './pageContentHtmlAreaUtenforInnholdsseksjon';
+import { pageContentFormatertInnholdUtenforInnholdsseksjon } from './pageContentFormatertInnholdUtenforInnholdsseksjon';
+import { FormatertInnholdUtenforInnholdsseksjonVarsel } from './FormatertInnholdUtenforInnholdsseksjonVarsel';
 
 type Props = {
     content: ContentProps;
     className?: string;
 };
 
-export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) => {
+export const FormatertInnholdUtenforInnholdsseksjon = ({ content, className }: Props) => {
     const warnings: React.ReactElement[] = [];
 
     // Sjekk om innholdstypen krever en innholdsseksjon. Hvis ikke, returner null.
@@ -18,7 +19,7 @@ export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) =>
     const finnHtmlAreaUtenforInnholdsseksjon = (node: any): void => {
         if (!node || typeof node !== 'object') return;
 
-        if (pageContentHtmlAreaUtenforInnholdsseksjon(node)) {
+        if (pageContentFormatertInnholdUtenforInnholdsseksjon(node)) {
             const { path, config } = node;
 
             if (!config.html?.processedHtml) {
@@ -47,17 +48,6 @@ export const HtmlAreaUtenforInnholdsseksjon = ({ content, className }: Props) =>
     }
 
     return warnings.length > 0 ? (
-        <li key="part-utenfor-innholdsseksjon-warning" className={className}>
-            Innholdet ligger utenfor den angitte innholdsseksjonen, noe som kan føre til
-            visningsfeil på nav.no. Under ser du hvilket innhold det gjelder.
-            {warnings}
-            <strong>Slik retter du feilen:</strong>
-            <ul>
-                <li key="rette-feilen">
-                    Flytt innholdet innenfor de markerte eller stiplede strekene i Enonic, slik at
-                    det vises korrekt i innholdsseksjonen.
-                </li>
-            </ul>
-        </li>
+        <FormatertInnholdUtenforInnholdsseksjonVarsel className={className} warnings={warnings} />
     ) : null;
 };

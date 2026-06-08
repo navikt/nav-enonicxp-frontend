@@ -12,6 +12,7 @@ import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { useCheckAndOpenTrekkspillPanel } from 'store/hooks/useCheckAndOpenTrekkspillPanel';
+import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorFeil';
 import styles from './Trekkspill.module.scss';
 
 type TrekkspillRef = PartConfigTrekkspill;
@@ -57,6 +58,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     // Show all panels in edit mode, but only valid panels in view mode
     const validTrekkspill = accordion.filter(validatePanel);
     const relevantTrekkspill = editorView === 'edit' ? accordion : validTrekkspill;
+    const harFeil = harRedaktorfeil(contentProps);
 
     return (
         <DSAccordion className={styles.trekkspill} size="large">
@@ -66,7 +68,7 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                     <DSAccordion.Item
                         key={item.anchorId || item.title}
                         className={styles.item}
-                        open={openTrekkspill.includes(index)}
+                        open={openTrekkspill.includes(index) || harFeil}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}
                         ref={itemRefs.current[index]}
                         tabIndex={-1}

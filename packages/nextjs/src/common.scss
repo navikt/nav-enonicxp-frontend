@@ -137,26 +137,6 @@ $versionSelectorMinHeight: 3rem;
     }
 }
 
-@mixin link-underline-mixin($underlineDefault: true) {
-    text-decoration-thickness: 0.05em;
-    text-underline-offset: 0.1em;
-
-    @if $underlineDefault {
-        text-decoration-line: underline;
-    } @else {
-        text-decoration-line: none;
-    }
-
-    &:hover,
-    &:focus {
-        @if $underlineDefault {
-            text-decoration-line: none;
-        } @else {
-            text-decoration-line: underline;
-        }
-    }
-}
-
 // Fixes for content studio drag and drop placeholders
 @mixin content-studio-drop-zone-fix-local() {
     :global(.xp-page-editor-region-placeholder:last-child) {

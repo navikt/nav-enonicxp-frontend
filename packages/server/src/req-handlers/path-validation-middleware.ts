@@ -70,14 +70,8 @@ export const buildPathValidationMiddleware =
                 // Flagg for at Bad request er håndtert kan ikke settes under testing
                 req.headers['x-nav-blocked-path'] = 'true';
             }
-            return new Promise<void>((resolve) => {
-                setTimeout(
-                    () => {
-                        nextApp.renderError(null, req, res, fullPath).then(resolve);
-                    },
-                    1000 + Math.random() * 2000
-                );
-            });
+
+            return nextApp.renderError(null, req, res, fullPath).catch(next);
         };
 
         // Check for excessively long paths early (prevents wasting CPU on regex for huge strings)

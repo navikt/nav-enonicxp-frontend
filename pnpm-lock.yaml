@@ -34,8 +34,8 @@ catalogs:
       specifier: 4.1.1
       version: 4.1.1
     '@navikt/nav-office-reception-info':
-      specifier: 2.0.0
-      version: 2.0.0
+      specifier: 2.0.2
+      version: 2.0.2
     '@next/bundle-analyzer':
       specifier: 15.5.4
       version: 15.5.4
