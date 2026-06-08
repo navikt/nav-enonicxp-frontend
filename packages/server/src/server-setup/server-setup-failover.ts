@@ -3,10 +3,28 @@ import { Express } from 'express';
 import { validateSecretHeader } from '@/shared/auth';
 import { InferredNextWrapperServer } from 'server';
 import { logger } from '@/shared/logger';
+import { getHealthMonitor } from 'health/health-monitor';
 
 export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWrapperServer) => {
     logger.info('Setting up failover server');
     const nextRequestHandler = nextApp.getRequestHandler();
+
+    // Health check endpoint - must come before catch-all
+    expressApp.get('/api/internal/isAlive', (req, res) => {
+        const healthMonitor = getHealthMonitor();
+        const isHealthy = healthMonitor.isHealthy();
+        const status = healthMonitor.getStatus();
+
+        if (isHealthy) {
+            return res.status(200).json({ message: 'Ok!' });
+        } else {
+            logger.warn('Health check failed', { metaData: status });
+            return res.status(503).json({
+                message: 'Not healthy',
+                status,
+            });
+        }
+    });
 
     // Assets from /_next and internal apis should be served as normal
     expressApp.get(['/_next{/*path}', '/api/internal{/*path}'], (req, res) => {
