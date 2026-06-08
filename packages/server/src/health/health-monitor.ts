@@ -33,7 +33,6 @@ class HealthMonitorImpl {
         logger.info(`Health monitor: waiting ${STARTUP_DELAY_MS}ms before starting probes`);
         this.startupTimeoutId = setTimeout(() => {
             this.isActive = true;
-            logger.info('Health monitor: startup delay elapsed, probing started');
             this.probeIntervalId = setInterval(() => this.probe(), this.probeIntervalMs);
         }, STARTUP_DELAY_MS);
     }
@@ -52,6 +51,8 @@ class HealthMonitorImpl {
 
     public isHealthy(): boolean {
         if (!this.isActive) {
+            // Need a 60 second delay for container to properly spin up in Nais
+            // Meanwhile, be optimistic about health
             return true;
         }
         const probeHealthy = this.consecutiveFailures < this.failureThreshold;
@@ -82,7 +83,7 @@ class HealthMonitorImpl {
         this.isProbing = true;
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
 
         try {
             const url = `http://localhost:${this.port}/health-render`;
@@ -90,14 +91,12 @@ class HealthMonitorImpl {
             const res = await fetch(url, { signal: controller.signal, redirect: 'manual' });
 
             this.lastProbeTime = Date.now();
-            logger.info(`Health probe response: ${res.status} ${res.statusText}`, {
-                metaData: { url, status: res.status },
-            });
 
             if (res.ok) {
-                if (this.consecutiveFailures > 0) {
-                    logger.info('Health probe recovered');
-                }
+                const okText =
+                    this.consecutiveFailures > 0 ? 'Health probe recovered' : ' Health probe ok';
+                logger.info(okText);
+
                 this.consecutiveFailures = 0;
                 this.lastError = null;
             } else {
