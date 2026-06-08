@@ -66,7 +66,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
     );
 
     // Health check endpoint - must come before dev setup and Next.js catch-all
-    expressApp.get(['/api/internal/isAlive', '/api/internal/isalive'], (req, res) => {
+    expressApp.get('/api/internal/isAlive', (req, res) => {
         const healthMonitor = getHealthMonitor();
 
         if (!healthMonitor) {

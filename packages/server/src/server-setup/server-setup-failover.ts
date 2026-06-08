@@ -10,7 +10,7 @@ export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWr
     const nextRequestHandler = nextApp.getRequestHandler();
 
     // Health check endpoint - must come before catch-all
-    expressApp.get(['/api/internal/isAlive', '/api/internal/isalive'], (req, res) => {
+    expressApp.get('/api/internal/isAlive', (req, res) => {
         const healthMonitor = getHealthMonitor();
 
         if (!healthMonitor) {
