@@ -7,27 +7,33 @@ import { GetServerSideProps } from 'next';
 import { logger } from '@/shared/logger';
 import {
     isHealthFailureSimulationEnabled,
+    triggerProcessCrash,
     triggerHealthFailure,
 } from 'utils/health-failure-simulation';
 
 type Props = {
-    triggered: boolean;
-    ttlSeconds?: number;
+    healthTriggered: boolean;
+    crashTriggered: boolean;
+    ttlSeconds: number;
     error?: string;
 };
 
-const FailHealthTest = ({ triggered, ttlSeconds, error }: Props) => {
+const FailHealthTest = ({ healthTriggered, crashTriggered, ttlSeconds, error }: Props) => {
     if (error) {
         return <div>{error}</div>;
     }
+
     return (
         <div>
-            <h1>Health failure {triggered ? 'triggered' : 'not triggered'}</h1>
-            {triggered && (
+            <h1>Failure simulation triggered</h1>
+            {healthTriggered && (
                 <p>
                     This pod will become unhealthy while the simulation is active (about{' '}
-                    {ttlSeconds || 0} seconds) and Kubernetes will restart it.
+                    {ttlSeconds} seconds) and Kubernetes will restart it.
                 </p>
+            )}
+            {crashTriggered && (
+                <p>An uncaught exception is scheduled and this process will be shut down.</p>
             )}
         </div>
     );
@@ -38,19 +44,42 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
         return { notFound: true };
     }
 
-    if (context.query.confirm !== 'true') {
+    const health = context.query.health === 'true';
+    const crash = context.query.crash === 'true';
+
+    if (!health && !crash) {
         return {
-            props: { triggered: false, error: 'Add ?confirm=true to trigger health failure' },
+            props: {
+                healthTriggered: false,
+                crashTriggered: false,
+                ttlSeconds: 0,
+                error: 'Use ?health=true and/or ?crash=true',
+            },
         };
     }
 
-    const ttlMs = triggerHealthFailure();
-    logger.warn('Health failure simulation triggered', {
-        metaData: { env: process.env.ENV, path: context.resolvedUrl || context.req.url, ttlMs },
-    });
+    let ttlMs = 0;
+
+    if (health) {
+        ttlMs = triggerHealthFailure();
+        logger.warn('Health failure simulation triggered', {
+            metaData: { env: process.env.ENV, path: context.resolvedUrl || context.req.url, ttlMs },
+        });
+    }
+
+    if (crash) {
+        logger.warn('Process crash simulation triggered', {
+            metaData: { env: process.env.ENV, path: context.resolvedUrl || context.req.url },
+        });
+        triggerProcessCrash();
+    }
 
     return {
-        props: { triggered: true, ttlSeconds: Math.round(ttlMs / 1000) },
+        props: {
+            healthTriggered: health,
+            crashTriggered: crash,
+            ttlSeconds: Math.round(ttlMs / 1000),
+        },
     };
 };
 

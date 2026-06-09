@@ -23,6 +23,16 @@ export function triggerHealthFailure() {
     return ttlMs;
 }
 
+export function triggerProcessCrash() {
+    setTimeout(() => {
+        throw new Error('Simulated process crash (failHealth crash=true)');
+    }, 0);
+
+    setTimeout(() => {
+        process.exit(1);
+    }, 2000);
+}
+
 export function isHealthFailureSimulated() {
     return Date.now() < simulateFailureUntil;
 }

@@ -90,12 +90,6 @@ nextApp.prepare().then(async () => {
 
     expressApp.use(errorHandler);
 
-    // Handles if uncaughtException occurrs in the process, which would otherwise crash
-    // the server without graceful shutdown.
-    initFatalProcessErrorHandling(({ type }) => {
-        shutdown(1, type);
-    });
-
     const expressServer = expressApp.listen(port, () => {
         if (!process.env.SERVICE_SECRET) {
             throw new Error('Authentication key is not defined!');
@@ -153,6 +147,11 @@ nextApp.prepare().then(async () => {
                 process.exit(1);
             });
     };
+
+    // Handles uncaughtException in the process and routes it through graceful shutdown.
+    initFatalProcessErrorHandling(({ type }) => {
+        shutdown(1, type);
+    });
 
     process.on('SIGTERM', () => {
         shutdown(0, 'SIGTERM');
