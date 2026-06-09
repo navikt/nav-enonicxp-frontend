@@ -3,45 +3,39 @@ import { healthProbeFailuresCounter, healthStatusGauge } from './health-metrics'
 
 export interface HealthStatus {
     isHealthy: boolean;
-    consecutiveFailures: number;
+    probeOk: boolean;
     lastProbeTime?: number;
     lastError: string | null;
     processErrorCount: number;
 }
 
-const STARTUP_DELAY_MS = 60000;
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 class HealthMonitor {
+    private startupDelayMs: number = 30000;
     private probeIntervalMs: number = 10000;
-    private failureThreshold: number = 3;
-    private consecutiveFailures: number = 0;
-    private lastProbeTime?: number;
-    private lastError: string | null = null;
-    private processErrorCount: number = 0;
-    private processErrorThreshold: number = 5;
-    private probeIntervalId?: NodeJS.Timeout;
-    private startupTimeoutId?: NodeJS.Timeout;
+    private probeOk: boolean = true;
     private isProbing: boolean = false;
     private isActive: boolean = false;
     private port: number;
+
+    // Used for metrics to Prometheus (see health-metrics.ts)
+    private processErrorCount: number = 0;
+    private lastProbeTime?: number;
+    private lastError: string | null = null;
+    private probeIntervalId?: NodeJS.Timeout;
 
     constructor(port: number) {
         this.port = port;
     }
 
-    public start() {
-        logger.info(`Health monitor: waiting ${STARTUP_DELAY_MS}ms before starting probes`);
-        this.startupTimeoutId = setTimeout(() => {
-            this.isActive = true;
-            this.probeIntervalId = setInterval(() => this.probe(), this.probeIntervalMs);
-        }, STARTUP_DELAY_MS);
+    public async start() {
+        await wait(this.startupDelayMs);
+        this.probeIntervalId = setInterval(() => this.probe(), this.probeIntervalMs);
+        this.isActive = true;
     }
 
     public stop() {
-        if (this.startupTimeoutId) {
-            clearTimeout(this.startupTimeoutId);
-            this.startupTimeoutId = undefined;
-        }
         if (this.probeIntervalId) {
             clearInterval(this.probeIntervalId);
             this.probeIntervalId = undefined;
@@ -51,19 +45,15 @@ class HealthMonitor {
 
     public isHealthy(): boolean {
         if (!this.isActive) {
-            // Need a 60 second delay for container to properly spin up in Nais
-            // Meanwhile, be optimistic about health
             return true;
         }
-        const probeHealthy = this.consecutiveFailures < this.failureThreshold;
-        const processHealthy = this.processErrorCount < this.processErrorThreshold;
-        return probeHealthy && processHealthy;
+        return this.probeOk;
     }
 
     public getStatus(): HealthStatus {
         return {
             isHealthy: this.isHealthy(),
-            consecutiveFailures: this.consecutiveFailures,
+            probeOk: this.probeOk,
             lastProbeTime: this.lastProbeTime,
             lastError: this.lastError,
             processErrorCount: this.processErrorCount,
@@ -87,41 +77,31 @@ class HealthMonitor {
 
         try {
             const url = `http://localhost:${this.port}/internal/health-render`;
-            logger.info(`Health probe calling: ${url}`);
             const res = await fetch(url, { signal: controller.signal, redirect: 'manual' });
 
             this.lastProbeTime = Date.now();
 
             if (res.ok) {
-                const okText =
-                    this.consecutiveFailures > 0 ? 'Health probe recovered' : ' Health probe ok';
-                logger.info(okText);
-
-                this.consecutiveFailures = 0;
+                if (!this.probeOk) {
+                    logger.info('Health probe recovered from error');
+                }
+                this.probeOk = true;
                 this.lastError = null;
             } else {
-                this.consecutiveFailures++;
+                this.probeOk = false;
                 this.lastError = `HTTP ${res.status}`;
                 healthProbeFailuresCounter.inc();
                 logger.warn(`Health probe failed: ${res.status}`, {
-                    metaData: {
-                        url,
-                        consecutiveFailures: this.consecutiveFailures,
-                        threshold: this.failureThreshold,
-                    },
+                    metaData: { url },
                 });
             }
         } catch (error: unknown) {
-            this.consecutiveFailures++;
+            this.probeOk = false;
             this.lastError = error instanceof Error ? error.message : 'Unknown error';
             healthProbeFailuresCounter.inc();
             logger.warn('Health probe error', {
                 error,
-                metaData: {
-                    url: `http://localhost:${this.port}/health-render`,
-                    consecutiveFailures: this.consecutiveFailures,
-                    threshold: this.failureThreshold,
-                },
+                metaData: { url: `http://localhost:${this.port}/internal/health-render` },
             });
         } finally {
             clearTimeout(timeoutId);
@@ -133,15 +113,13 @@ class HealthMonitor {
 
 let instance: HealthMonitor | null = null;
 
-export function initHealthMonitor(port: number): HealthMonitor {
+export async function initHealthMonitor(port: number) {
     if (instance) {
         logger.warn('Health monitor already initialized');
-        return instance;
     }
 
     instance = new HealthMonitor(port);
-    instance.start();
-    return instance;
+    await instance.start();
 }
 
 export function getHealthMonitor(): HealthMonitor | null {

@@ -27,9 +27,12 @@ export const serverSetupFailover = (expressApp: Express, nextApp: InferredNextWr
     });
 
     // Assets from /_next, internal apis, and health render should be served without auth
-    expressApp.get(['/_next{/*path}', '/api/internal{/*path}', '/health-render'], (req, res) => {
-        return nextRequestHandler(req, res);
-    });
+    expressApp.get(
+        ['/_next{/*path}', '/api/internal{/*path}', '/internal/health-render'],
+        (req, res) => {
+            return nextRequestHandler(req, res);
+        }
+    );
 
     // We don't want the full site to be publicly available via failover instance.
     // This is served via the public-facing regular frontend when needed
