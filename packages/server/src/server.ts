@@ -105,7 +105,7 @@ nextApp.prepare().then(async () => {
         }
 
         // Initialize and start health probing now that the server is listening
-        initHealthMonitor(typeof port === 'string' ? parseInt(port, 10) : port);
+        initHealthMonitor(typeof port === 'string' ? Number.parseInt(port, 10) : port);
 
         logger.info('Server started', { metaData: { port } });
     });

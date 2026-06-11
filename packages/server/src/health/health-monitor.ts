@@ -12,8 +12,8 @@ export interface HealthStatus {
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 class HealthMonitor {
-    private startupDelayMs: number = 30000;
-    private probeIntervalMs: number = 10000;
+    readonly startupDelayMs: number = 30000;
+    readonly probeIntervalMs: number = 10000;
     private probeOk: boolean = true;
     private isProbing: boolean = false;
     private isActive: boolean = false;
