@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next';
-import { isHealthFailureSimulated } from 'utils/health-failure-simulation';
 
 type HealthRenderProps = {
     timestamp: number;
@@ -17,12 +16,6 @@ const HealthRender = ({ timestamp }: HealthRenderProps) => {
 // The getServerSideProps simulates a server-side rendering process, ensuring that the servers renderabilty
 // is also checked by the health monitor.
 export const getServerSideProps: GetServerSideProps<HealthRenderProps> = async () => {
-    // --- TEMPORARY: Health failure simulation ---
-    if (isHealthFailureSimulated()) {
-        throw new Error('Simulated health failure (failHealth triggered)');
-    }
-    // --- END TEMPORARY ---
-
     return {
         props: {
             timestamp: Date.now(),
