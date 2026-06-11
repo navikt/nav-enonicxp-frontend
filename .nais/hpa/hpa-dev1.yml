@@ -4,22 +4,21 @@ metadata:
   name: nav-enonicxp-frontend-dev1
   namespace: navno
   labels:
-    team:   namespace: navno
-
+    team: navno
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: nav-enonicxp-frontend-dev1
-  minReplicas: 2
-  maxReplicas: 4
+  minReplicas: 3
+  maxReplicas: 6
   behavior:
     scaleUp:
       stabilizationWindowSeconds: 0
       policies:
-        - type: Pods
-          value: 2
-          periodSeconds: 60
+        - type: Percent
+          value: 100
+          periodSeconds: 15
       selectPolicy: Max
   metrics:
     - type: Resource
@@ -27,7 +26,7 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 70
     - type: Pods
       pods:
         metric:
