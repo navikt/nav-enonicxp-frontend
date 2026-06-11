@@ -49,16 +49,20 @@ export const FormIntermediateStepPage = (props: FormIntermediateStepPageProps) =
                 title: currentStepData.title ?? displayName,
                 editorial: currentStepData.editorial,
             }}
-            listItems={currentStepData.steps.map((step) => (
-                <li key={step.label}>
-                    <FormIntermediateStepLink
-                        {...step}
-                        analyticsComponent={'FormIntermediateStepPage'}
-                        analyticsLabel={step.label}
-                        formNumber={step.formNumber}
-                    />
-                </li>
-            ))}
+            listItems={
+                currentStepData.steps.length > 0
+                    ? currentStepData.steps.map((step) => (
+                          <li key={step.label}>
+                              <FormIntermediateStepLink
+                                  {...step}
+                                  analyticsComponent={'FormIntermediateStepPage'}
+                                  analyticsLabel={step.label}
+                                  formNumber={step.formNumber}
+                              />
+                          </li>
+                      ))
+                    : undefined
+            }
             backLink={
                 backUrl
                     ? {
