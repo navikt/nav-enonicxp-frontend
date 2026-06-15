@@ -14,6 +14,7 @@ import {
 import { decoratorEnvProps } from '@/shared/decorator-utils-serverside';
 import { buildValidateSecretMiddleware } from '../req-handlers/validate-secret-middleware';
 import { InferredNextWrapperServer } from 'server';
+import { getHealthMonitor } from 'health/health-monitor';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -63,6 +64,23 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         setCacheKey,
         handleInvalidateAllReq
     );
+
+    // Health check endpoint - must come before dev setup and Next.js catch-all
+    expressApp.get('/api/internal/isAlive', (req, res) => {
+        const healthMonitor = getHealthMonitor();
+
+        if (!healthMonitor) {
+            return res.status(503).json({ message: 'Health monitor not yet initialized' });
+        }
+
+        if (healthMonitor.isHealthy()) {
+            return res.status(200).json({ message: 'Ok!' });
+        }
+
+        const status = healthMonitor.getStatus();
+        logger.warn('Health check failed', { metaData: status });
+        return res.status(503).json({ message: 'Not healthy', status });
+    });
 
     if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2' || process.env.ENV === 'dev3') {
         serverSetupDev(expressApp, nextApp);

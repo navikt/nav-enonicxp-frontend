@@ -8,6 +8,8 @@ import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
+import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
+import { initFatalProcessErrorHandling } from 'health/process-error-handler';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
@@ -102,21 +104,60 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
+        // Initialize and start health probing now that the server is listening
+        initHealthMonitor(typeof port === 'string' ? Number.parseInt(port, 10) : port);
+
         logger.info('Server started', { metaData: { port } });
     });
 
+    // --------------------------------
+    // Graceful shutdown handling below
+    // --------------------------------
+
     const httpTerminator = createHttpTerminator({ server: expressServer });
 
-    const shutdown = () => {
-        logger.info('Server shutting down');
-        httpTerminator.terminate().then(() => {
-            expressServer.close(() => {
-                logger.info('Shutdown complete!');
-                process.exit(0);
+    let isShuttingDown = false;
+
+    const shutdown = (exitCode: number, reason: string) => {
+        if (isShuttingDown) {
+            return;
+        }
+
+        isShuttingDown = true;
+        logger.info('Server shutting down', { metaData: { reason, exitCode } });
+        getHealthMonitor()?.stop();
+        const forcedExitTimer = setTimeout(() => {
+            logger.warn('Forced exit after shutdown timeout', { metaData: { reason } });
+            process.exit(1);
+        }, 10000);
+        forcedExitTimer.unref();
+
+        httpTerminator
+            .terminate()
+            .then(() => {
+                expressServer.close(() => {
+                    clearTimeout(forcedExitTimer);
+                    logger.info('Graceful shutdown complete!');
+                    process.exit(exitCode);
+                });
+            })
+            .catch((error) => {
+                clearTimeout(forcedExitTimer);
+                logger.error('Graceful shutdown failed', { error, metaData: { reason } });
+                process.exit(1);
             });
-        });
     };
 
-    process.on('SIGTERM', shutdown);
-    process.on('SIGINT', shutdown);
+    // Handles uncaughtException in the process and routes it through graceful shutdown.
+    initFatalProcessErrorHandling(({ type }) => {
+        shutdown(1, type);
+    });
+
+    process.on('SIGTERM', () => {
+        shutdown(0, 'SIGTERM');
+    });
+
+    process.on('SIGINT', () => {
+        shutdown(0, 'SIGINT');
+    });
 });
