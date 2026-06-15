@@ -85,7 +85,7 @@ catalog:
   react-error-boundary: 6.1.2
   react-movable: 3.4.1
   react-redux: 9.3.0
-  redis: 5.12.1
+  redis: 6.0.0
   rss: 1.2.2
   sass: 1.100.0
   schema-dts: 1.1.5
