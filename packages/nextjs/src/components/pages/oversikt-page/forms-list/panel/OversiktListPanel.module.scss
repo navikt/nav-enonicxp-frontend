@@ -35,7 +35,7 @@
 
     .title {
         grid-area: title;
-        display: flex;
+        display: grid;
         flex-direction: column;
         word-break: break-word;
         font-size: var(--ax-font-size-xlarge);
