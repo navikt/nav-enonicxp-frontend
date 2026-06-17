@@ -17,6 +17,11 @@ const MALICIOUS_PATTERNS = [
     /;|\||`|\$\(|&&/,
     // Path traversal
     /\.\.+[/\\]/,
+    // IIS backslash hack: %5C is decoded to \ by Express/nginx before reaching req.path.
+    // Also block the raw encoded form for environments that skip decoding.
+    /(%5C)|'/i,
+    /\\/,
+    /%5[cC]/,
     // Null bytes
     /\0|%00/,
     // Common attack vectors

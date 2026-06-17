@@ -143,6 +143,26 @@ describe('Path Validation Middleware', () => {
             expect(mockRes.statusCode).toBe(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
+        test('should block IIS backslash hack (lowercase %5c)', () => {
+            runMiddleware('/index.asp%5c');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+        test('should block IIS backslash hack (literal backslash)', () => {
+            runMiddleware('/index.asp\\');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+        test('should block IIS backslash hack (mid-path backslash after extension)', () => {
+            runMiddleware('/index.php%5Cother');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+        test('should block IIS backslash hack (double-encoded %255C)', () => {
+            runMiddleware('/index.asp%255C');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
     });
 
     describe('Path Traversal attempts', () => {
