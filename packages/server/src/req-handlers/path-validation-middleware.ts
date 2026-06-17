@@ -7,6 +7,7 @@ import { InferredNextWrapperServer } from 'server';
 const MALICIOUS_PATTERNS = [
     // SQL Injection patterns
     /(%27)|'/i,
+    /(%5C)|'/i,
     /((%3D)|(=))[^\n]*((%27)|'|(--)|(%3B)|;)/i,
     /\w*((%27)|')((%6F)|o|(%4F))((%72)|r|(%52))/i,
     // XSS patterns

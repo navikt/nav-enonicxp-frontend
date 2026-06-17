@@ -143,6 +143,11 @@ describe('Path Validation Middleware', () => {
             expect(mockRes.statusCode).toBe(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
+        test('should block backslash IIS hack', () => {
+            runMiddleware('/index.asp%5C');
+            expect(renderErrorSpy).toHaveBeenCalled();
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
     });
 
     describe('Path Traversal attempts', () => {
