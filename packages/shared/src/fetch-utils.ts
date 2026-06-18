@@ -27,6 +27,13 @@ const isRetryableError = (error: unknown): boolean => {
     return RETRYABLE_ERROR_CODES.has(code);
 };
 
+const IDEMPOTENT_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
+
+const isIdempotentRequest = (config?: Record<string, any>) => {
+    const method = (config?.method as string)?.toUpperCase() ?? 'GET';
+    return IDEMPOTENT_METHODS.has(method);
+};
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const fetchWithTimeoutSingleAttempt = <ResponseType = any>(
@@ -62,7 +69,11 @@ export const fetchWithTimeout = async <ResponseType = any>(
         } catch (error) {
             lastError = error;
 
-            if (!isRetryableError(error) || attempt === RETRY_COUNT) {
+            if (
+                !isRetryableError(error) ||
+                !isIdempotentRequest(config) ||
+                attempt === RETRY_COUNT
+            ) {
                 throw error;
             }
 
