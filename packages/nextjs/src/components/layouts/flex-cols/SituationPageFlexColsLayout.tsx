@@ -1,4 +1,5 @@
 import React from 'react';
+import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
@@ -21,7 +22,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId } = config;
+    const { title, numCols, justifyContent, anchorId, paragraph } = config;
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
@@ -52,11 +53,16 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                         level="2"
                         size="large"
                         anchorId={anchorId}
-                        className={classNames(style.header, isShelf && style.shelfHeader)}
+                        className={classNames(
+                            style.header,
+                            paragraph && style.headerWithParagraph,
+                            isShelf && style.shelfHeader
+                        )}
                     >
                         {title}
                     </Heading>
                 )}
+                {paragraph && <BodyLong spacing>{paragraph}</BodyLong>}
                 <Region
                     pageProps={pageProps}
                     regionProps={regionProps}

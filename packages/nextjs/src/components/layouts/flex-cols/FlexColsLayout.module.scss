@@ -62,6 +62,11 @@
     margin-bottom: var(--ax-space-40);
 }
 
+.headerWithParagraph,
+.shelfHeader.headerWithParagraph {
+    margin-bottom: var(--ax-space-28);
+}
+
 .layoutSituationOrProduct {
     $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
     $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
@@ -146,5 +151,14 @@
     > * {
         margin: 0 !important; //overstyr nth-child margin fra generell flexcols
         width: 100%;
+    }
+
+    &:has(> :global(.part__product-card)) {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    > :global(.part__product-card:first-child) {
+        border-top: 1px solid var(--ax-neutral-400);
     }
 }
