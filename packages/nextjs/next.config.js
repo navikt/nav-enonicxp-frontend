@@ -91,7 +91,7 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
-        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost, 'wss://notification.qbrick.com'],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost, 'wss://notification.qbrick.com', '*.dna.contentdelivery.net'],
         'media-src': [...qbrickHosts, salesforceVideoHost, '*.dna.contentdelivery.net'],
     };
 
