@@ -1,10 +1,44 @@
 import { logger } from './logger';
 
 const TIMEOUT_DEFAULT = 15000;
+const RETRY_COUNT = 2;
+const INITIAL_BACKOFF_MS = 200;
 
-export const fetchWithTimeout = <ResponseType = any>(
+const RETRYABLE_ERROR_CODES = new Set([
+    'ECONNRESET',
+    'ETIMEDOUT',
+    'ECONNREFUSED',
+    'EPIPE',
+    'UND_ERR_SOCKET',
+]);
+
+const isRetryableError = (error: unknown): boolean => {
+    if (!error || typeof error !== 'object') {
+        return false;
+    }
+
+    const code =
+        (error as { code?: string }).code || (error as { cause?: { code?: string } }).cause?.code;
+
+    if (!code) {
+        return false;
+    }
+
+    return RETRYABLE_ERROR_CODES.has(code);
+};
+
+const IDEMPOTENT_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
+
+const isIdempotentRequest = (config?: Record<string, any>) => {
+    const method = (config?.method as string)?.toUpperCase() ?? 'GET';
+    return IDEMPOTENT_METHODS.has(method);
+};
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const fetchWithTimeoutSingleAttempt = <ResponseType = any>(
     url: string,
-    timeoutMs = TIMEOUT_DEFAULT,
+    timeoutMs: number,
     config?: Record<string, any>
 ): Promise<ResponseType> =>
     Promise.race<any>([
@@ -21,6 +55,44 @@ export const fetchWithTimeout = <ResponseType = any>(
             )
         ),
     ]);
+
+export const fetchWithTimeout = async <ResponseType = any>(
+    url: string,
+    timeoutMs = TIMEOUT_DEFAULT,
+    config?: Record<string, any>
+): Promise<ResponseType> => {
+    let lastError: unknown;
+
+    for (let attempt = 0; attempt <= RETRY_COUNT; attempt++) {
+        try {
+            return await fetchWithTimeoutSingleAttempt<ResponseType>(url, timeoutMs, config);
+        } catch (error) {
+            lastError = error;
+
+            if (
+                !isRetryableError(error) ||
+                !isIdempotentRequest(config) ||
+                attempt === RETRY_COUNT
+            ) {
+                throw error;
+            }
+
+            const backoffMs = INITIAL_BACKOFF_MS * Math.pow(2, attempt);
+            const errorCode =
+                (error as { code?: string }).code ||
+                (error as { cause?: { code?: string } }).cause?.code ||
+                (error as { message?: string }).message;
+
+            logger.info(
+                `Fetch error for ${url} (attempt ${attempt + 1}/${RETRY_COUNT + 1}, error: ${errorCode}). Retrying in ${backoffMs}ms...`
+            );
+
+            await delay(backoffMs);
+        }
+    }
+
+    throw lastError;
+};
 
 export const objectToQueryString = (params: object) =>
     params
