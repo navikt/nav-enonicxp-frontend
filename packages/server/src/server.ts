@@ -10,17 +10,20 @@ import { serverSetup } from 'server-setup/server-setup';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
 import { initFatalProcessErrorHandling } from 'health/process-error-handler';
+import { blockedRequestsCounter } from 'metrics/request-metrics';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
-const getRouteCategory = (path: string): string => {
-    if (path.startsWith('/_next/data/')) return 'data';
-    if (path.startsWith('/_next/image')) return 'image';
-    if (path.startsWith('/_next/static/')) return 'static';
-    if (path.startsWith('/api/internal') || path.startsWith('/internal/')) return 'internal';
-    if (path.startsWith('/api/')) return 'api';
-    if (path.startsWith('/invalidate')) return 'invalidate';
-    if (path.startsWith('/gfx/') || /\.(ico|svg|png|webmanifest)$/.test(path)) return 'static';
+const getRouteCategory = (routePath: string): string => {
+    if (routePath.startsWith('/_next/data/')) return 'data';
+    if (routePath.startsWith('/_next/image')) return 'image';
+    if (routePath.startsWith('/_next/static/')) return 'static';
+    if (routePath.startsWith('/api/internal') || routePath.startsWith('/internal/'))
+        return 'internal';
+    if (routePath.startsWith('/api/')) return 'api';
+    if (routePath.startsWith('/invalidate')) return 'invalidate';
+    if (routePath.startsWith('/gfx/') || /\.(ico|svg|png|webmanifest)$/i.test(routePath))
+        return 'static';
     return 'page';
 };
 
@@ -83,15 +86,12 @@ nextApp.prepare().then(async () => {
 
         // Handle URIErrors from malformed URL encoding (likely fuzzy testing)
         if (error instanceof URIError || message?.includes('Failed to decode param')) {
+            blockedRequestsCounter.inc({ reason: 'malformed_uri' });
             logger.warn('Malformed URL encoding detected', {
                 error,
                 metaData: { path, status: 400, msg },
             });
-            // Add 15 second delay to deter bulk fuzz testing attempts
-            res.status(400);
-            setTimeout(() => {
-                res.send('Bad Request');
-            }, 15000);
+            res.status(400).send('Bad Request');
             return;
         }
 
