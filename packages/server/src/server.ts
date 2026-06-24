@@ -13,10 +13,24 @@ import { initFatalProcessErrorHandling } from 'health/process-error-handler';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
+const getRouteCategory = (path: string): string => {
+    if (path.startsWith('/_next/data/')) return 'data';
+    if (path.startsWith('/_next/image')) return 'image';
+    if (path.startsWith('/_next/static/')) return 'static';
+    if (path.startsWith('/api/internal') || path.startsWith('/internal/')) return 'internal';
+    if (path.startsWith('/api/')) return 'api';
+    if (path.startsWith('/invalidate')) return 'invalidate';
+    if (path.startsWith('/gfx/') || /\.(ico|svg|png|webmanifest)$/.test(path)) return 'static';
+    return 'page';
+};
+
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
-    customLabels: { hpa: 'rate' },
+    customLabels: { hpa: 'rate', route_category: 'page' },
     includePath: false,
+    transformLabels: (labels, req) => {
+        labels.route_category = getRouteCategory(req.path);
+    },
     promClient: {
         collectDefaultMetrics: {},
     },
@@ -32,6 +46,9 @@ nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    // Metrics must be first to capture ALL requests (including blocked ones)
+    expressApp.use(promMiddleware);
 
     // Check path for attack patterns and redirect to XP if valid request to backend
     expressApp.use(buildPathValidationMiddleware(nextApp));
@@ -52,8 +69,6 @@ nextApp.prepare().then(async () => {
         });
         next();
     });
-
-    expressApp.use(promMiddleware);
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
