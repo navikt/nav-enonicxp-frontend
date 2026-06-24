@@ -38,7 +38,7 @@ export default class PageCacheHandler {
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'local' });
+                pageCacheOperationsCounter.inc({ operation: 'get', source: 'next' });
                 return fromLocalCache;
             }
 
@@ -52,7 +52,7 @@ export default class PageCacheHandler {
 
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'miss' });
+                pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
                 return null;
             }
 
@@ -74,7 +74,7 @@ export default class PageCacheHandler {
             lastModified: Date.now(),
         };
 
-        pageCacheOperationsCounter.inc({ operation: 'set', source: 'local' });
+        pageCacheOperationsCounter.inc({ operation: 'set', source: 'next' });
         localCache.set(key, cacheItem);
         redisCache.setRender(key, cacheItem);
     }
