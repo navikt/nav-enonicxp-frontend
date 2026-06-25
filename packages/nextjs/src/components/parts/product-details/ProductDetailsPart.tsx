@@ -60,25 +60,12 @@ export const ProductDetailsPart = ({ config }: PartComponentProps<PartType.Produ
     };
 
     const expandableType = config.detailType as unknown as ExpandableMixin['type'];
-    const visibilityType = config.processingTimesVisibility;
-    const getProductDetailsLabel = translator('productDetailTypes', pageContent.language);
-    const getVisibilityLabel = translator('processingTimesVisibilityTypes', pageContent.language);
-    const ariaLabel =
-        expandableType === ProductDetailType.PROCESSING_TIMES && visibilityType
-            ? `${getProductDetailsLabel(ProductDetailType.PROCESSING_TIMES)} ${getVisibilityLabel(
-                  visibilityType
-              )}`
-            : undefined;
 
     return (
         <div className={style.productDetails}>
             <PageContextProvider content={pageContent}>
                 <FilteredContent {...config}>
-                    <ExpandableComponentWrapper
-                        type={expandableType}
-                        ariaLabel={ariaLabel}
-                        {...config}
-                    >
+                    <ExpandableComponentWrapper type={expandableType} {...config}>
                         {components.map((component) => (
                             <ComponentMapper
                                 key={component.path}
