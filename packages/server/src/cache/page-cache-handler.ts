@@ -56,7 +56,7 @@ export default class PageCacheHandler {
                 return null;
             }
 
-            pageCacheOperationsCounter.inc({ operation: 'get', source: 'redis' });
+            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             localCache.set(key, fromRedisCache);
 
             return fromRedisCache;
