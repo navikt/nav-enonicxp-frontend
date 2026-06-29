@@ -22,7 +22,7 @@ jobs:
       image: ${{ steps.build-image.outputs.image }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Build dev3 image
         id: build-image
         uses: ./.github/actions/build-image
@@ -53,7 +53,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Build and deploy dev3
         uses: ./.github/actions/deploy
