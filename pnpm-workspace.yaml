@@ -12,7 +12,7 @@ catalog:
   '@navikt/ds-react': 8.12.1
   '@navikt/nav-dekoratoren-moduler': 4.2.2
   '@navikt/nav-office-reception-info': 2.0.2
-  '@next/bundle-analyzer': 15.5.4
+  '@next/bundle-analyzer': 16.2.9
   '@next/eslint-plugin-next': 15.5.4
   '@playwright/test': 1.60.0
   '@reduxjs/toolkit': 2.12.0
