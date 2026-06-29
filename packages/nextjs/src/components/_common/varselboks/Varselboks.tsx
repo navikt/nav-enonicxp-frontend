@@ -8,6 +8,7 @@ type Props = PropsWithChildren<{
     size?: AlertProps['size'];
     inline?: AlertProps['inline'];
     className?: string;
+    'data-color'?: string;
 }> &
     React.HTMLAttributes<HTMLDivElement>;
 
