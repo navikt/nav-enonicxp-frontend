@@ -10,7 +10,7 @@ import { serverSetup } from 'server-setup/server-setup';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
 import { initFatalProcessErrorHandling } from 'health/process-error-handler';
-import { blockedRequestsCounter } from 'metrics/request-metrics';
+import { blockedRequestsCounter } from '@/shared/request-metrics';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
