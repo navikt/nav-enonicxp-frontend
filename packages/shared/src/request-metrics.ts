@@ -8,7 +8,7 @@ export const blockedRequestsCounter =
         labelNames: ['reason'],
     });
 
-export const pageCacheOperationsCounter =
+export const pageFetchOperationsCounter =
     (register.getSingleMetric('page_cache_operations_total') as Counter) ??
     new Counter({
         name: 'page_cache_operations_total',

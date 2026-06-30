@@ -5,7 +5,7 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
 import { logger } from '@/shared/logger';
-import { pageCacheOperationsCounter } from 'metrics/request-metrics';
+import { pageFetchOperationsCounter } from '@/shared/request-metrics';
 
 export const redisCache = new RedisCache();
 
@@ -26,6 +26,9 @@ export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
+        // TODO: Remove after cache investigation
+        logger.info(`PageCacheHandler.get called for key: ${key}`);
+
         try {
             const cacheStartTime = performance.now();
             const fromLocalCache = localCache.get(key);
@@ -38,7 +41,7 @@ export default class PageCacheHandler {
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'next' });
+                pageFetchOperationsCounter.inc({ operation: 'get', source: 'next' });
                 return fromLocalCache;
             }
 
@@ -52,11 +55,11 @@ export default class PageCacheHandler {
 
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
+                pageFetchOperationsCounter.inc({ operation: 'get', source: 'xp' });
                 return null;
             }
 
-            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
+            pageFetchOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             localCache.set(key, fromRedisCache);
 
             return fromRedisCache;
@@ -69,12 +72,15 @@ export default class PageCacheHandler {
     public async set(...args: Parameters<FileSystemCache['set']>) {
         const [key, data] = args;
 
+        // TODO: Remove after cache investigation
+        logger.info(`PageCacheHandler.set called for key: ${key}`);
+
         const cacheItem: CacheHandlerValue = {
             value: data,
             lastModified: Date.now(),
         };
 
-        pageCacheOperationsCounter.inc({ operation: 'set', source: 'next' });
+        pageFetchOperationsCounter.inc({ operation: 'set', source: 'next' });
         localCache.set(key, cacheItem);
         redisCache.setRender(key, cacheItem);
     }
