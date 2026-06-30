@@ -23,6 +23,12 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
 
     const { config } = layoutProps;
     const { title, numCols, justifyContent, anchorId, paragraph } = config;
+    const paragraphBlocks =
+        paragraph
+            ?.split(/\n+/)
+            .map((paragraphBlock) => paragraphBlock.trim())
+            .filter(Boolean) ?? [];
+    const hasParagraph = paragraphBlocks.length > 0;
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
@@ -55,14 +61,18 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                         anchorId={anchorId}
                         className={classNames(
                             style.header,
-                            paragraph && style.headerWithParagraph,
+                            hasParagraph && style.headerWithParagraph,
                             isShelf && style.shelfHeader
                         )}
                     >
                         {title}
                     </Heading>
                 )}
-                {paragraph && <BodyLong spacing>{paragraph}</BodyLong>}
+                {paragraphBlocks.map((paragraphBlock) => (
+                    <BodyLong spacing key={paragraphBlock}>
+                        {paragraphBlock}
+                    </BodyLong>
+                ))}
                 <Region
                     pageProps={pageProps}
                     regionProps={regionProps}
