@@ -2,7 +2,7 @@ import { RequestHandler } from 'express';
 import { logger } from '@/shared/logger';
 import { XP_PATHS } from '@/shared/constants';
 import { InferredNextWrapperServer } from 'server';
-import { blockedRequestsCounter } from 'metrics/request-metrics';
+import { blockedRequestsCounter } from '@/shared/request-metrics';
 
 // Common injection patterns to block
 const MALICIOUS_PATTERNS = [

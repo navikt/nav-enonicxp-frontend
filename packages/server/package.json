@@ -25,7 +25,8 @@
         "lru-cache": "catalog:",
         "next": "catalog:",
         "dotenv": "catalog:",
-        "on-headers": "catalog:"
+        "on-headers": "catalog:",
+        "prom-client": "catalog:"
     },
     "devDependencies": {
         "@types/cookie-parser": "catalog:",
