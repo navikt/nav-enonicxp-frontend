@@ -1,11 +1,11 @@
 import React from 'react';
-import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import Region from 'components/layouts/Region';
 import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
 import { classNames } from 'utils/classnames';
 import { Heading } from 'components/_common/headers/Heading';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import style from './FlexColsLayout.module.scss';
 
@@ -22,13 +22,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId, paragraph } = config;
-    const paragraphBlocks =
-        paragraph
-            ?.split(/\n+/)
-            .map((paragraphBlock) => paragraphBlock.trim())
-            .filter(Boolean) ?? [];
-    const hasParagraph = paragraphBlocks.length > 0;
+    const { title, numCols, justifyContent, anchorId, ingress } = config;
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
@@ -61,18 +55,14 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                         anchorId={anchorId}
                         className={classNames(
                             style.header,
-                            hasParagraph && style.headerWithParagraph,
+                            ingress && style.headerWithIngress,
                             isShelf && style.shelfHeader
                         )}
                     >
                         {title}
                     </Heading>
                 )}
-                {paragraphBlocks.map((paragraphBlock) => (
-                    <BodyLong spacing key={paragraphBlock}>
-                        {paragraphBlock}
-                    </BodyLong>
-                ))}
+                {ingress && <ParsedHtml htmlProps={ingress} />}
                 <Region
                     pageProps={pageProps}
                     regionProps={regionProps}

@@ -6,7 +6,7 @@ type FragmentSubtreeNode = {
 type FragmentConfig = {
     html?: { processedHtml?: unknown };
     content?: { processedHtml?: unknown };
-    paragraph?: unknown;
+    ingress?: string;
 };
 
 const fragmentInneholderInnholdsseksjon = (node: unknown): boolean => {
@@ -41,8 +41,8 @@ export const hentFragmentInnholdForVarsel = (node: { fragment?: unknown }) => {
         return JSON.stringify(config.content.processedHtml);
     }
 
-    if (config?.paragraph !== undefined) {
-        return JSON.stringify(config.paragraph);
+    if (config?.ingress !== undefined) {
+        return JSON.stringify(config.ingress);
     }
 
     return undefined;
