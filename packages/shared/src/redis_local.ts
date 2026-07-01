@@ -5,13 +5,37 @@ import { logger } from './logger';
 import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from './constants';
 import { pathToCacheKey } from './cache-key';
 
+// Hard ceiling on a single cache read. If Valkey is slow or a socket hangs, resolve to a miss so the
+// caller falls through to the XP origin instead of blocking the request indefinitely.
+const CACHE_READ_TIMEOUT_MS = 1000;
+
+const withReadTimeout = <T>(operation: Promise<T>, fullKey: string): Promise<T | null> => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const timeout = new Promise<null>((resolve) => {
+        timer = setTimeout(() => {
+            logger.warn('Valkey read timed out; treating as a cache miss', { metaData: { fullKey } });
+            resolve(null);
+        }, CACHE_READ_TIMEOUT_MS);
+    });
+    return Promise.race([operation, timeout]).finally(() => clearTimeout(timer));
+};
+
 type XpResponseProps = Record<string, any>;
 
 const clientOptions: RedisClientOptions = {
     url: process.env.REDIS_URI_PAGECACHE,
     username: process.env.VALKEY_USERNAME_PAGECACHE,
     password: process.env.VALKEY_PASSWORD_PAGECACHE,
-    socket: { keepAlive: true, connectTimeout: 10000 },
+    // While Valkey is unreachable, reject commands immediately instead of queueing them. A cache read
+    // then fails fast and the caller falls through to the XP origin (making the outage visible on the
+    // 'xp' metric) rather than blocking the request. reconnectStrategy keeps retrying with capped
+    // backoff, so the cache self-heals once Valkey returns.
+    disableOfflineQueue: true,
+    socket: {
+        keepAlive: true,
+        connectTimeout: 10000,
+        reconnectStrategy: (retries: number) => Math.min(retries * 100, 3000),
+    },
 } as const;
 
 const validateClientOptions = () => {
@@ -82,29 +106,35 @@ class RedisCacheImpl {
 
     public async getRender(key: string) {
         const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
-        return this.client
-            .getEx(fullKey, {
-                PX: this.renderCacheTTL,
-            })
-            .then((result) => (result ? JSON.parse(result) : result))
-            .catch((error) => {
-                logger.error('Error getting render cache value', {
-                    error,
-                    metaData: { fullKey },
-                });
-                return Promise.resolve(null);
-            });
+        return withReadTimeout(
+            this.client
+                .getEx(fullKey, {
+                    PX: this.renderCacheTTL,
+                })
+                .then((result) => (result ? JSON.parse(result) : result))
+                .catch((error) => {
+                    logger.error('Error getting render cache value', {
+                        error,
+                        metaData: { fullKey },
+                    });
+                    return Promise.resolve(null);
+                }),
+            fullKey
+        );
     }
 
     public async getResponse(key: string) {
         const fullKey = this.getFullKey(key, this.responseCacheKeyPrefix);
-        return this.client
-            .get(fullKey)
-            .then((result) => (result ? JSON.parse(result) : result))
-            .catch((error) => {
-                logger.error('Error getting value', { error, metaData: { fullKey } });
-                return Promise.resolve(null);
-            });
+        return withReadTimeout(
+            this.client
+                .get(fullKey)
+                .then((result) => (result ? JSON.parse(result) : result))
+                .catch((error) => {
+                    logger.error('Error getting value', { error, metaData: { fullKey } });
+                    return Promise.resolve(null);
+                }),
+            fullKey
+        );
     }
 
     private async set<DataType>(key: string, ttl: number, data: DataType) {

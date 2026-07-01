@@ -7,11 +7,3 @@ export const blockedRequestsCounter =
         help: 'Total number of requests blocked by path validation',
         labelNames: ['reason'],
     });
-
-export const pageCacheOperationsCounter =
-    (register.getSingleMetric('page_cache_operations_total') as Counter) ??
-    new Counter({
-        name: 'page_cache_operations_total',
-        help: 'Total page cache operations',
-        labelNames: ['operation', 'source'],
-    });
