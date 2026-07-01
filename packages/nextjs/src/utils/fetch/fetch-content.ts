@@ -3,6 +3,7 @@ import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchWithTimeout, objectToQueryString } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
 import { RedisCache } from '@/shared/redis_local';
+import { pageCacheOperationsCounter } from '@/shared/metrics/page-cache-metrics';
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from 'utils/make-error-props';
 import { stripXpPathPrefix, xpServiceUrl } from 'utils/urls';
@@ -159,11 +160,17 @@ const fetchAndHandleErrorsRuntime = async (
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
             logger.info(`Response cache hit ${idOrPath}`);
+            // Served from the Valkey response cache (raw XP JSON) — the XP origin was not contacted.
+            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             return cachedResponse;
         }
     }
 
     const res = await fetchSiteContent(props);
+
+    // Reached the Enonic XP origin: the render cache and the Valkey response cache both missed, or this
+    // request bypasses caching (draft/preview/archive). This is the true "traffic hitting XP" signal.
+    pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
 
     const errorId = uuid();
 
