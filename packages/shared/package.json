@@ -5,6 +5,7 @@
     "dependencies": {
         "next": "catalog:",
         "pino": "catalog:",
+        "prom-client": "catalog:",
         "redis": "catalog:"
     },
     "devDependencies": {
