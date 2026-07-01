@@ -49,6 +49,7 @@ const csp = async () => {
         'video.qbrick.com',
         'play2.qbrick.com',
         'analytics.qbrick.com',
+        'notification.qbrick.com',
         '*.ip-only.net',
         'blob:',
     ];
@@ -90,8 +91,8 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
-        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost],
-        'media-src': [...qbrickHosts, salesforceVideoHost],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost, 'wss://notification.qbrick.com', '*.dna.contentdelivery.net'],
+        'media-src': [...qbrickHosts, salesforceVideoHost, '*.dna.contentdelivery.net'],
     };
 
     if (process.env.NODE_ENV === 'development') {

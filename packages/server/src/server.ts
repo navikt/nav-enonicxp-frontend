@@ -10,13 +10,30 @@ import { serverSetup } from 'server-setup/server-setup';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
 import { initFatalProcessErrorHandling } from 'health/process-error-handler';
+import { blockedRequestsCounter } from 'metrics/request-metrics';
 
 export type InferredNextWrapperServer = ReturnType<typeof createNextApp>;
 
+const getRouteCategory = (routePath: string): string => {
+    if (routePath.startsWith('/_next/data/')) return 'data';
+    if (routePath.startsWith('/_next/image')) return 'image';
+    if (routePath.startsWith('/_next/static/')) return 'static';
+    if (routePath.startsWith('/api/internal') || routePath.startsWith('/internal/'))
+        return 'internal';
+    if (routePath.startsWith('/api/')) return 'api';
+    if (routePath.startsWith('/invalidate')) return 'invalidate';
+    if (routePath.startsWith('/gfx/') || /\.(ico|svg|png|webmanifest)$/i.test(routePath))
+        return 'static';
+    return 'page';
+};
+
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
-    customLabels: { hpa: 'rate' },
+    customLabels: { hpa: 'rate', route_category: 'page' },
     includePath: false,
+    transformLabels: (labels, req) => {
+        labels.route_category = getRouteCategory(req.path);
+    },
     promClient: {
         collectDefaultMetrics: {},
     },
@@ -32,6 +49,9 @@ nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    // Metrics must be first to capture ALL requests (including blocked ones)
+    expressApp.use(promMiddleware);
 
     // Check path for attack patterns and redirect to XP if valid request to backend
     expressApp.use(buildPathValidationMiddleware(nextApp));
@@ -53,8 +73,6 @@ nextApp.prepare().then(async () => {
         next();
     });
 
-    expressApp.use(promMiddleware);
-
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {
@@ -68,15 +86,12 @@ nextApp.prepare().then(async () => {
 
         // Handle URIErrors from malformed URL encoding (likely fuzzy testing)
         if (error instanceof URIError || message?.includes('Failed to decode param')) {
+            blockedRequestsCounter.inc({ reason: 'malformed_uri' });
             logger.warn('Malformed URL encoding detected', {
                 error,
                 metaData: { path, status: 400, msg },
             });
-            // Add 15 second delay to deter bulk fuzz testing attempts
-            res.status(400);
-            setTimeout(() => {
-                res.send('Bad Request');
-            }, 15000);
+            res.status(400).send('Bad Request');
             return;
         }
 

@@ -20,7 +20,7 @@ jobs:
         id: comment-branch
 
       - name: Checkout PR branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event_name == 'pull_request' && steps.comment-branch.outputs.head_ref || github.ref }}
       - name: Setup pnpm
@@ -45,7 +45,7 @@ jobs:
             -w /workspace \
             --ipc=host \
             -e NODE_AUTH_TOKEN \
-            mcr.microsoft.com/playwright:v1.60.0 \
+            mcr.microsoft.com/playwright:v1.61.0 \
             /bin/bash -c "
               echo '@navikt:registry=https://npm.pkg.github.com' > ~/.npmrc && \
               echo '//npm.pkg.github.com/:_authToken=\${NODE_AUTH_TOKEN}' >> ~/.npmrc && \
