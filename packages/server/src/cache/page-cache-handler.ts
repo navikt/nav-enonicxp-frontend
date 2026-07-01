@@ -53,7 +53,7 @@ export default class PageCacheHandler {
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
                 // Full render miss (LRU + Valkey render cache both empty).
-                // Next will regenerate in fetch-content.tsx
+                // Next will regenerate in fetch-content.ts
                 return null;
             }
 
