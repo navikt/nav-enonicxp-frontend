@@ -52,11 +52,8 @@ export default class PageCacheHandler {
 
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
-                // Full render miss (LRU + Valkey render cache both empty). Don't record a source here:
-                // Next will regenerate, and the tier that actually serves the data is recorded in
-                // fetch-content.ts ('valkey' for a response-cache hit, 'xp' for the XP origin).
-                // Counting 'xp' here would misfire on every deploy — the render-cache prefix rotates,
-                // so every page "misses" even though it is still served from the Valkey response cache.
+                // Full render miss (LRU + Valkey render cache both empty).
+                // Next will regenerate in fetch-content.tsx
                 return null;
             }
 

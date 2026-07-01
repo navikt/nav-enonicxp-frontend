@@ -13,7 +13,9 @@ const withReadTimeout = <T>(operation: Promise<T>, fullKey: string): Promise<T |
     let timer: ReturnType<typeof setTimeout> | undefined;
     const timeout = new Promise<null>((resolve) => {
         timer = setTimeout(() => {
-            logger.warn('Valkey read timed out; treating as a cache miss', { metaData: { fullKey } });
+            logger.warn('Valkey read timed out; treating as a cache miss', {
+                metaData: { fullKey },
+            });
             resolve(null);
         }, CACHE_READ_TIMEOUT_MS);
     });
@@ -26,15 +28,11 @@ const clientOptions: RedisClientOptions = {
     url: process.env.REDIS_URI_PAGECACHE,
     username: process.env.VALKEY_USERNAME_PAGECACHE,
     password: process.env.VALKEY_PASSWORD_PAGECACHE,
-    // While Valkey is unreachable, reject commands immediately instead of queueing them. A cache read
-    // then fails fast and the caller falls through to the XP origin (making the outage visible on the
-    // 'xp' metric) rather than blocking the request. reconnectStrategy keeps retrying with capped
-    // backoff, so the cache self-heals once Valkey returns.
+    // Disable the offline queue so that if Valkey is down, we don't queue up requests and block the Node process.
     disableOfflineQueue: true,
     socket: {
         keepAlive: true,
         connectTimeout: 10000,
-        reconnectStrategy: (retries: number) => Math.min(retries * 100, 3000),
     },
 } as const;
 

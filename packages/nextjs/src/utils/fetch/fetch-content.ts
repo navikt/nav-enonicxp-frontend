@@ -159,8 +159,6 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            logger.info(`Response cache hit ${idOrPath}`);
-            // Served from the Valkey response cache (raw XP JSON) — the XP origin was not contacted.
             pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             return cachedResponse;
         }
@@ -168,8 +166,7 @@ const fetchAndHandleErrorsRuntime = async (
 
     const res = await fetchSiteContent(props);
 
-    // Reached the Enonic XP origin: the render cache and the Valkey response cache both missed, or this
-    // request bypasses caching (draft/preview/archive). This is the true "traffic hitting XP" signal.
+    // Content could still be 404, but count the XP request none the less.
     pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
 
     const errorId = uuid();
