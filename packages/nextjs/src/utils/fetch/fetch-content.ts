@@ -166,7 +166,7 @@ const fetchAndHandleErrorsRuntime = async (
 
     const res = await fetchSiteContent(props);
 
-    // Content could still be 404, but count the XP request none the less.
+    // Content could still be 404, but count the XP request nonetheless.
     pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
 
     const errorId = uuid();
