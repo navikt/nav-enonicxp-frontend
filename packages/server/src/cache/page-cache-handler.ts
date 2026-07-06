@@ -5,7 +5,7 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
 import { logger } from '@/shared/logger';
-import { pageCacheOperationsCounter } from 'metrics/request-metrics';
+import { pageCacheOperationsCounter } from '@/shared/metrics/page-cache-metrics';
 
 export const redisCache = new RedisCache();
 
@@ -52,7 +52,8 @@ export default class PageCacheHandler {
 
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
+                // Full render miss (LRU + Valkey render cache both empty).
+                // Next will regenerate in fetch-content.ts
                 return null;
             }
 
