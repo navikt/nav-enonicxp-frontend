@@ -1,28 +1,27 @@
 import js from '@eslint/js';
-import { fixupPluginRules } from '@eslint/compat';
 import tseslint from 'typescript-eslint';
-import cssModules from 'eslint-plugin-css-modules';
+import globals from 'globals';
+
+export const nodeConfig = [
+    {
+        languageOptions: {
+            globals: {
+                ...globals.node,
+                ...globals.es2021,
+            },
+            sourceType: 'module',
+        },
+        rules: {
+            'no-console': 'off',
+        },
+    },
+];
 
 export default [
     js.configs.recommended,
     ...tseslint.configs.recommended,
     {
-        plugins: {
-            'css-modules': fixupPluginRules(cssModules),
-        },
         rules: {
-            'css-modules/no-unused-class': [
-                'warn',
-                {
-                    camelCase: true,
-                },
-            ],
-            'css-modules/no-undef-class': [
-                'error',
-                {
-                    camelCase: true,
-                },
-            ],
             '@typescript-eslint/no-unused-vars': [
                 'warn',
                 {
@@ -33,14 +32,9 @@ export default [
             ],
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/triple-slash-reference': 'off',
-        },
-    },
-    {
-        files: ['packages/nextjs/**/*.ts', 'packages/nextjs/**/*.tsx'],
-        settings: {
-            'css-modules': {
-                basePath: 'packages/nextjs/src',
-            },
+            'no-console': 'warn',
+            'no-var': 'error',
+            'prefer-const': 'error',
         },
     },
 ];

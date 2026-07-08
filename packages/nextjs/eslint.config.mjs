@@ -37,8 +37,9 @@ export default [
             'react/prop-types': 'off', // TypeScript handles prop validation
             '@next/next/no-img-element': 'off',
             '@typescript-eslint/ban-ts-comment': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-empty-object-type': 'off',
+            'css-modules/no-unused-class': ['warn', { camelCase: true }],
+            'css-modules/no-undef-class': ['error', { camelCase: true }],
             'import/order': [
                 'warn',
                 {
@@ -56,7 +57,6 @@ export default [
                     ],
                 },
             ],
-            'no-console': 'warn',
             'no-alert': 'error',
             'no-relative-import-paths/no-relative-import-paths': [
                 'warn',
