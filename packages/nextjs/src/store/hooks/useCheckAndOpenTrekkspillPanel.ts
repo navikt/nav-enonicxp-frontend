@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 export const useCheckAndOpenTrekkspillPanel = (
@@ -14,31 +14,53 @@ export const useCheckAndOpenTrekkspillPanel = (
         openPanelsRef.current = openPanels;
     }, [openPanels]);
 
-    const checkAndOpenPanels = useCallback(() => {
+    const checkAndOpenTrekkspillPanels = useCallback(() => {
         if (!hasCalledExpandAll.current) {
             hasCalledExpandAll.current = true;
-            if (window.location.search.includes('expandall=true')) {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get('expandall') === 'true') {
                 expandAll();
                 return;
             }
         }
 
+        const currentOpen = openPanelsRef.current;
+        const toOpen = new Set(currentOpen);
+
+        refs.forEach((r, i) => {
+            if (r.current?.querySelector('.DuplicateIdsVarsel_warning')) {
+                toOpen.add(i);
+            }
+        });
+
         const targetId = window.location.hash.slice(1);
-        if (!targetId) return;
+        const targetElement = targetId ? document.getElementById(targetId) : null;
+        const panelIndex = targetElement
+            ? refs.findIndex((ref) => ref.current?.contains(targetElement))
+            : -1;
 
-        const targetElement = document.getElementById(targetId);
-        const panelIndex = refs.findIndex((ref) => ref.current?.contains(targetElement));
+        if (panelIndex !== -1) {
+            toOpen.add(panelIndex);
+        }
 
-        if (panelIndex !== -1 && !openPanelsRef.current.includes(panelIndex)) {
-            setOpenPanels([...openPanelsRef.current, panelIndex]);
-            setTimeout(() => smoothScrollToTarget(targetId), 500);
+        const toOpenArray = Array.from(toOpen);
+        const setsAreEqual =
+            toOpenArray.length === currentOpen.length &&
+            toOpenArray.every((value) => currentOpen.includes(value));
+
+        if (!setsAreEqual) {
+            setOpenPanels(toOpenArray);
+            if (panelIndex !== -1 && !currentOpen.includes(panelIndex)) {
+                setTimeout(() => smoothScrollToTarget(targetId), 500);
+            }
         }
     }, [refs, setOpenPanels, expandAll]);
 
     useEffect(() => {
-        window.addEventListener('hashchange', checkAndOpenPanels);
-        return () => window.removeEventListener('hashchange', checkAndOpenPanels);
-    }, [checkAndOpenPanels]);
+        window.addEventListener('hashchange', checkAndOpenTrekkspillPanels);
+        return () => window.removeEventListener('hashchange', checkAndOpenTrekkspillPanels);
+    }, [checkAndOpenTrekkspillPanels]);
 
-    useEffect(checkAndOpenPanels, [checkAndOpenPanels]);
+    useEffect(checkAndOpenTrekkspillPanels, [checkAndOpenTrekkspillPanels]);
 };

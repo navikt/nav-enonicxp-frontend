@@ -47,6 +47,7 @@
         "next": "catalog:",
         "node-cache": "catalog:",
         "p-limit": "catalog:",
+        "prom-client": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
         "react-collapse": "catalog:",

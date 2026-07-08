@@ -9,6 +9,7 @@ import { handleStickyScrollOffset } from 'utils/scroll-to';
 import { Snarveier, useSnarveier } from 'utils/useSnarveier';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { useCheckAndOpenPanel } from 'store/hooks/useCheckAndOpenPanel';
+import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorFeil';
 import style from './Expandable.module.scss';
 
 type Props = PropsWithChildren<{
@@ -35,6 +36,7 @@ export const Expandable = ({
     const [isOpen, setIsOpen] = useState(isOpenDefault ?? contentProps.expandAll ?? false);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const { context } = getDecoratorParams(contentProps);
+    const harFeil = harRedaktorfeil(contentProps);
 
     useSnarveier({ shortcut: Snarveier.SEARCH, callback: () => setIsOpen(true) });
     useCheckAndOpenPanel(isOpen, setIsOpen, wrapperRef, anchorId);
@@ -62,7 +64,7 @@ export const Expandable = ({
             <ReadMore
                 className={classNames(className, style.expandable, isLegacyUsage && style.legacy)}
                 header={title}
-                open={isOpen}
+                open={isOpen || harFeil}
                 onOpenChange={(isOpen) => toggleExpandCollapse(isOpen, title)}
                 aria-label={ariaLabel || title}
                 variant="moderate"

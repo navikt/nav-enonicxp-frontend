@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import { logger } from '@/shared/logger';
 import { XP_PATHS } from '@/shared/constants';
 import { InferredNextWrapperServer } from 'server';
+import { blockedRequestsCounter } from 'metrics/request-metrics';
 
 // Common injection patterns to block
 const MALICIOUS_PATTERNS = [
@@ -17,6 +18,11 @@ const MALICIOUS_PATTERNS = [
     /;|\||`|\$\(|&&/,
     // Path traversal
     /\.\.+[/\\]/,
+    // IIS backslash hack: %5C is decoded to \ by Express/nginx before reaching req.path.
+    // Also block the raw encoded form for environments that skip decoding.
+    /(%5C)|'/i,
+    /\\/,
+    /%5[cC]/,
     // Null bytes
     /\0|%00/,
     // Common attack vectors
@@ -70,18 +76,13 @@ export const buildPathValidationMiddleware =
                 // Flagg for at Bad request er håndtert kan ikke settes under testing
                 req.headers['x-nav-blocked-path'] = 'true';
             }
-            return new Promise<void>((resolve) => {
-                setTimeout(
-                    () => {
-                        nextApp.renderError(null, req, res, fullPath).then(resolve);
-                    },
-                    1000 + Math.random() * 2000
-                );
-            });
+
+            return nextApp.renderError(null, req, res, fullPath).catch(next);
         };
 
         // Check for excessively long paths early (prevents wasting CPU on regex for huge strings)
         if (fullPath.length > 500) {
+            blockedRequestsCounter.inc({ reason: 'long_path' });
             logger.warn(
                 `Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`
             );
@@ -92,13 +93,14 @@ export const buildPathValidationMiddleware =
         try {
             decodedPath = decodeURIComponent(fullPath);
         } catch {
-            // Malformed URI - treat as suspicious
+            blockedRequestsCounter.inc({ reason: 'malformed_uri' });
             logger.warn(`Blocked malformed URI: ${req.method} ${fullPath} from ${req.ip}`);
             return badRequest();
         }
 
         // Block direct access to Enonic XP root paths
         if (BLOCKED_ROOT_PATHS.has(fullPath) || BLOCKED_ROOT_PATHS.has(decodedPath)) {
+            blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
             logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
             return badRequest();
         }
@@ -117,10 +119,12 @@ export const buildPathValidationMiddleware =
                 }
                 next();
             } else {
+                blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
                 logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
                 return badRequest();
             }
         } else if (posXPprefix > 0) {
+            blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
             logger.warn(`Blocked invalid XP path: ${req.method} ${req.path} from ${req.ip}`);
             return badRequest();
         }
@@ -128,6 +132,7 @@ export const buildPathValidationMiddleware =
         // Check for repeated patterns (potential attack)
         const repeatedPattern = /(.{10,})\1{3,}/;
         if (repeatedPattern.test(fullPath)) {
+            blockedRequestsCounter.inc({ reason: 'repeated_pattern' });
             logger.warn(
                 `Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`
             );
@@ -137,6 +142,7 @@ export const buildPathValidationMiddleware =
         // Check for excessive path segments (potential DoS)
         const segments = fullPath.split('/').filter((s) => s.length > 0);
         if (segments.length > 50) {
+            blockedRequestsCounter.inc({ reason: 'excessive_segments' });
             logger.warn(
                 `Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`
             );
@@ -146,6 +152,7 @@ export const buildPathValidationMiddleware =
         // Check for malicious patterns in the path
         for (const pattern of MALICIOUS_PATTERNS) {
             if (pattern.test(fullPath) || pattern.test(decodedPath)) {
+                blockedRequestsCounter.inc({ reason: 'malicious_pattern' });
                 logger.warn(
                     `Blocked suspicious request pattern: ${req.method} ${fullPath} from ${req.ip}`
                 );
@@ -158,6 +165,7 @@ export const buildPathValidationMiddleware =
             (ext) => fullPath.toLowerCase().endsWith(ext) || decodedPath.toLowerCase().endsWith(ext)
         );
         if (hasBlockedExtension) {
+            blockedRequestsCounter.inc({ reason: 'blocked_extension' });
             logger.warn(
                 `Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.ip}`
             );

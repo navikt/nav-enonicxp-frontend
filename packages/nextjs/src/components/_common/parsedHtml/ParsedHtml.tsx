@@ -185,6 +185,11 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
                     return <Fragment />;
                 }
 
+                // Remove id to avoid duplicate ids in the DOM
+                if (props.id) {
+                    delete props.id;
+                }
+
                 return (
                     <LenkeInline
                         {...props}

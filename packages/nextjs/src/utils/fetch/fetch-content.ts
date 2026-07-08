@@ -3,6 +3,7 @@ import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchWithTimeout, objectToQueryString } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
 import { RedisCache } from '@/shared/redis_local';
+import { pageCacheOperationsCounter } from '@/shared/metrics/page-cache-metrics';
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from 'utils/make-error-props';
 import { stripXpPathPrefix, xpServiceUrl } from 'utils/urls';
@@ -158,12 +159,15 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            logger.info(`Response cache hit ${idOrPath}`);
+            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             return cachedResponse;
         }
     }
 
     const res = await fetchSiteContent(props);
+
+    // Content could still be 404, but count the XP request nonetheless.
+    pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
 
     const errorId = uuid();
 

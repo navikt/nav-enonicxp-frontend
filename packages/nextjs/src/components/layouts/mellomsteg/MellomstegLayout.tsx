@@ -31,7 +31,6 @@ export const MellomstegLayout = ({
     analyticsComponent,
 }: Props) => {
     const { title, illustration, textAboveTitle, editorial, formNumbers, displayName } = data;
-
     const currentTitle = title ?? displayName;
 
     return (
@@ -45,7 +44,7 @@ export const MellomstegLayout = ({
             />
             <div className={style.content}>
                 {editorial && <ParsedHtml htmlProps={editorial} />}
-                <ul className={style.stepList}>{listItems}</ul>
+                {listItems && <ul className={style.stepList}>{listItems}</ul>}
                 {backLink ? (
                     <LenkeInline
                         href={backLink.target._path}

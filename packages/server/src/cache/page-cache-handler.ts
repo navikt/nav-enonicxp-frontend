@@ -5,6 +5,7 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
 import { logger } from '@/shared/logger';
+import { pageCacheOperationsCounter } from '@/shared/metrics/page-cache-metrics';
 
 export const redisCache = new RedisCache();
 
@@ -37,6 +38,7 @@ export default class PageCacheHandler {
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
+                pageCacheOperationsCounter.inc({ operation: 'get', source: 'next' });
                 return fromLocalCache;
             }
 
@@ -50,9 +52,12 @@ export default class PageCacheHandler {
 
             const fromRedisCache = await redisCache.getRender(key);
             if (!fromRedisCache) {
+                // Full render miss (LRU + Valkey render cache both empty).
+                // Next will regenerate in fetch-content.ts
                 return null;
             }
 
+            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
             localCache.set(key, fromRedisCache);
 
             return fromRedisCache;
@@ -70,6 +75,7 @@ export default class PageCacheHandler {
             lastModified: Date.now(),
         };
 
+        pageCacheOperationsCounter.inc({ operation: 'set', source: 'next' });
         localCache.set(key, cacheItem);
         redisCache.setRender(key, cacheItem);
     }
