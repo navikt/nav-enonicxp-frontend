@@ -23,7 +23,7 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
         return null;
     }
 
-    const { type, editorView } = content;
+    const { type, editorView, noDecorator } = content;
 
     const decoratorParams = JSON.stringify(getDecoratorParams(content));
 
@@ -31,6 +31,7 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
         <Head>
             <meta name={DocumentParameter.DecoratorParams} content={decoratorParams} />
             <meta name={DocumentParameter.HtmlLang} content={content.language} />
+            {noDecorator && <meta name={DocumentParameter.DecoratorDisabled} content={'true'} />}
             {editorView === 'edit' && isLegacyContentType(type) && (
                 <meta name={DocumentParameter.LegacyContentType} content={'true'} />
             )}

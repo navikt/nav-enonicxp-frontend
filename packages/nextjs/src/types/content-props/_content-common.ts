@@ -171,6 +171,7 @@ export type ContentAndMediaCommonProps = {
     layerLocale?: string;
     isPagePreview?: boolean;
     noRedirect?: boolean;
+    noDecorator?: boolean;
 };
 
 type ContentCommonData = Partial<{
