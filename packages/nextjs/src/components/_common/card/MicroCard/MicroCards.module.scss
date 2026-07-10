@@ -1,12 +1,12 @@
 .header {
-    font-weight: var(--a-font-weight-bold);
+    font-weight: var(--ax-font-weight-bold);
 }
 
 .wrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    column-gap: var(--a-spacing-3);
-    margin-top: var(--a-spacing-1);
-    margin-bottom: var(--a-spacing-7);
+    column-gap: var(--ax-space-12);
+    margin-top: var(--ax-space-4);
+    margin-bottom: var(--ax-space-28);
 }

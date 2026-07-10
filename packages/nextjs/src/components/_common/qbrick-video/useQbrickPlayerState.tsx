@@ -1,5 +1,6 @@
 import { useCallback, useId, useState } from 'react';
 import { logger } from '@/shared/logger';
+import type { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { QbrickVideoProps } from './utils/videoProps';
 
@@ -11,7 +12,7 @@ const PLAYER_POLLING_RATE_MS = 50;
 type Props = {
     videoProps: QbrickVideoProps;
     videoContainerId: string;
-    context?: string;
+    context?: DecoratorParams['context'];
     innholdstype?: string;
 };
 
@@ -67,7 +68,7 @@ const createAndStart = (
     videoContainer: HTMLElement,
     widgetId: string,
     setPlayerState: (state: PlayerState) => void,
-    context?: string,
+    context?: DecoratorParams['context'],
     innholdstype?: string
 ) => {
     const createPlayer = (timeLeft: number = PLAYER_TIMEOUT_MS) => {

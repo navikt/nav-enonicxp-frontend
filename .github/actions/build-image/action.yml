@@ -57,12 +57,12 @@ inputs:
   RELEASE_TAG:
     required: false
     description: Optional release tag
-    default: ""
+    default: ''
 
   IS_FAILOVER_INSTANCE:
     required: false
     description: Whether this is a failover instance
-    default: "false"
+    default: 'false'
 
   NODE_ENV:
     required: true
@@ -79,7 +79,7 @@ inputs:
   SERVICE_SECRET:
     required: false
     description: Optional service secret
-    default: ""
+    default: ''
 
 outputs:
   image:
@@ -95,9 +95,9 @@ runs:
     - name: Setup node.js
       uses: actions/setup-node@v6
       with:
-        node-version: "24"
-        registry-url: "https://npm.pkg.github.com"
-        cache: "pnpm"
+        node-version: '24'
+        registry-url: 'https://npm.pkg.github.com'
+        cache: 'pnpm'
 
     - name: Set app environment
       shell: bash
@@ -190,6 +190,8 @@ runs:
       run: |
         pnpm --filter ./packages/server deploy --prod nonsymlink/server --legacy
         pnpm --filter ./packages/nextjs deploy --prod nonsymlink/nextjs --legacy
+      env:
+        NODE_AUTH_TOKEN: ${{ inputs.READER_TOKEN }}
 
     - name: Build and push docker image
       id: docker-push

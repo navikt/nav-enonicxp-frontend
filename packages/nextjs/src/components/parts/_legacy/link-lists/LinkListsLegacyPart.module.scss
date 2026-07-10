@@ -17,20 +17,20 @@
         @media #{common.$mq-screen-tablet-and-desktop} {
             width: calc(math.percentage(math.div(1, 3)));
             &:not(:last-child) {
-                margin-right: var(--a-spacing-4);
+                margin-right: var(--ax-space-16);
             }
             &:nth-child(2):not(:last-child) {
-                margin-left: var(--a-spacing-4);
-                margin-right: var(--a-spacing-4);
+                margin-left: var(--ax-space-16);
+                margin-right: var(--ax-space-16);
             }
             &:last-child {
-                margin-left: var(--a-spacing-4);
+                margin-left: var(--ax-space-16);
             }
         }
     }
 
     .moreNews {
-        margin-top: var(--a-spacing-8);
+        margin-top: var(--ax-space-32);
         display: flex;
         flex-direction: row;
         justify-content: center;

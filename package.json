@@ -5,7 +5,7 @@
     "engines": {
         "node": "24.x"
     },
-    "packageManager": "pnpm@10.30.1+sha512.3590e550d5384caa39bd5c7c739f72270234b2f6059e13018f975c313b1eb9fefcc09714048765d4d9efe961382c312e624572c0420762bdc5d5940cdf9be73a",
+    "packageManager": "pnpm@11.8.0+sha512.c1f5e7c4cb241c8f174b743851d82f42b802324afc8b0f116b96adb15aa06664948dde36960a3ba1079ba5b4b29dd0140135b94b5b5f5263592249d68e555f26",
     "scripts": {
         "build": "pnpm run build:server && pnpm run build:nextjs",
         "build:nextjs": "pnpm --filter ./packages/nextjs run build",
@@ -19,16 +19,17 @@
         "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
         "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
         "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
-        "build-and-push-dev-failover": "sh .failover/build-dev-failover-image.sh",
+        "build-and-push-dev-failover": "sh -c 'for a in \"$@\"; do case $a in --app_env=*) APP_ENV=${a#*=};; --image_tag=*) IMAGE_TAG=${a#*=};; esac; done; sh .failover/build-dev-failover-image.sh \"$APP_ENV\" \"$IMAGE_TAG\"' --",
         "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
         "lint": "pnpm -r --parallel run lint",
         "test": "pnpm -r --parallel run test",
         "copy-env-prod-local": "cp .env.prod-local packages/nextjs/.env && cp .env.prod-local packages/server/.env",
         "copy-env-development": "cp .env.development packages/nextjs/.env && cp .env.development packages/server/.env",
         "copy-env-development-custom": "cp .env.development.local packages/nextjs/.env && cp .env.development.local packages/server/.env",
-        "prepare": "husky || true"
+        "prepare": "test \"$CI\" = \"true\" && exit 0; husky || true"
     },
     "devDependencies": {
+        "@eslint/compat": "catalog:",
         "@eslint/js": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
         "@playwright/test": "catalog:",
@@ -88,16 +89,6 @@
     },
     "optionalDependencies": {
         "@esbuild/linux-x64": "catalog:"
-    },
-    "pnpm": {
-        "onlyBuiltDependencies": [
-            "@parcel/watcher",
-            "core-js-pure",
-            "esbuild",
-            "protobufjs",
-            "sharp",
-            "unrs-resolver"
-        ]
     },
     "lint-staged": {
         "packages/nextjs/**/*.{js,jsx,ts,tsx}": [

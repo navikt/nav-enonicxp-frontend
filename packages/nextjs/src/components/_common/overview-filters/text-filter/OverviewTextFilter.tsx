@@ -44,10 +44,10 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                     }
                 )
             );
-            logAnalyticsEvent(AnalyticsEvents.FILTER, {
+            logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
                 kategori: 'fritekst',
                 filternavn: analyticsRedaction(value),
-                komponent: 'OverviewTextFilter',
+                komponentId: 'OverviewTextFilter',
                 målgruppe: context,
                 innholdstype: innholdsTypeMap[contentProps.type],
             });

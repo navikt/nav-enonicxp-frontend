@@ -1,5 +1,5 @@
 import React, { useState, useEffect, PropsWithChildren } from 'react';
-import { BodyLong, BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
+import { BodyShort, ExpansionCard, HStack, Loader } from '@navikt/ds-react';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { AnalyticsEvents, logAnalyticsEvent } from 'utils/analytics';
 import { usePageContentProps } from 'store/pageContext';
@@ -69,14 +69,17 @@ export const ProductPanelExpandable = ({
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
         contentLoaderCallback?.();
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'produktdetalj',
-            komponent: 'ProductPanelExpandable',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[contentProps.type],
-            ...analyticsData,
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'produktdetalj',
+                komponentId: 'ProductPanelExpandable',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[contentProps.type],
+                ...analyticsData,
+            }
+        );
     };
 
     return (
@@ -92,11 +95,22 @@ export const ProductPanelExpandable = ({
                 onMouseOver={contentLoaderCallback}
                 onFocus={contentLoaderCallback}
             >
-                <IllustrationStatic className={style.illustration} illustration={illustration} />
-                <div className={style.panelHeader}>
-                    <span className={style.title}>{header}</span>
-                    {ingress && <BodyLong className={style.ingress}>{ingress}</BodyLong>}
-                </div>
+                <HStack wrap={false} gap="space-16">
+                    <IllustrationStatic
+                        className={style.illustration}
+                        illustration={illustration}
+                    />
+                    <div>
+                        <ExpansionCard.Title className={style.title} size="small">
+                            {header}
+                        </ExpansionCard.Title>
+                        {ingress && (
+                            <ExpansionCard.Description className={style.ingress}>
+                                {ingress}
+                            </ExpansionCard.Description>
+                        )}
+                    </div>
+                </HStack>
             </ExpansionCard.Header>
             <ExpansionCard.Content
                 className={classNames(

@@ -2,10 +2,10 @@
 
 .page {
     display: grid;
-    margin: var(--a-spacing-5) auto var(--a-spacing-10);
+    margin: var(--ax-space-20) auto var(--ax-space-40);
     grid-template-columns: 1fr minmax(0, 45rem) 1fr;
     grid-template-areas: 'pictogram content .';
-    column-gap: var(--a-spacing-10);
+    column-gap: var(--ax-space-40);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         grid-template-areas:
@@ -21,17 +21,17 @@
 
 .pictogram {
     grid-area: pictogram;
-    width: var(--a-spacing-20);
-    height: var(--a-spacing-20);
+    width: var(--ax-space-80);
+    height: var(--ax-space-80);
     display: block;
 
     justify-self: end;
     position: relative;
     align-self: flex-start;
-    margin-bottom: var(--a-spacing-5);
+    margin-bottom: var(--ax-space-20);
 
     @media #{common.$mq-screen-tablet-and-mobile} {
-        width: var(--a-spacing-16);
+        width: var(--ax-space-64);
         justify-self: start;
     }
 }

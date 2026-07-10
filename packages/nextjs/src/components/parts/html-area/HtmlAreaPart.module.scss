@@ -1,11 +1,11 @@
 .htmlArea {
-    margin-bottom: var(--a-spacing-9);
+    margin-bottom: var(--ax-space-36);
 
     // Exception because product details are somehow
     // build with h4 and html in separate parts rather than one large
     // Formattert innhold-parts.
     &:has(h4:last-child) {
-        margin-bottom: var(--a-spacing-3);
+        margin-bottom: var(--ax-space-12);
     }
 }
 
@@ -22,5 +22,5 @@
 }
 
 .redBorder {
-    border: 5px solid var(--a-nav-red);
+    border: 5px solid var(--ax-text-logo);
 }

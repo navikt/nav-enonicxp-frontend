@@ -2,15 +2,15 @@
 
 .wrapper {
     @include common.full-width-mixin();
-    padding-top: var(--a-spacing-11);
+    padding-top: var(--ax-space-44);
     margin-bottom: calc(
-        -1 * var(--a-spacing-8)
+        -1 * var(--ax-space-32)
     ) !important; // Can't find a way to override the margin-bottom from the parent
 }
 
 .pageHeader {
     align-items: flex-start;
-    padding-bottom: var(--a-spacing-5);
+    padding-bottom: var(--ax-space-20);
 
     @media #{common.$mq-screen-mobile} {
         margin-bottom: 0;
@@ -18,5 +18,5 @@
 }
 
 .providerSubPage {
-    background-color: var(--a-purple-100);
+    background-color: var(--ax-meta-purple-200);
 }

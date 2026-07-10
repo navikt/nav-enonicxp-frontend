@@ -45,20 +45,21 @@ const MobileView = ({
                     >
                         {hasToggleFilters && (
                             <Button
+                                data-color="neutral"
                                 icon={<FunnelIcon aria-hidden={true} />}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
-                                    logAnalyticsEvent(AnalyticsEvents.FILTER, {
+                                    logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
                                         kategori: 'mobile-toggle',
                                         opprinnelse: 'oversiktsside filter mobil',
-                                        komponent: 'MobileView',
+                                        komponentId: 'MobileView',
                                         målgruppe: context,
                                         innholdstype: innholdsTypeMap[contentProps.type],
                                     });
                                 }}
                                 className={style.mobileFilterButton}
-                                variant="primary-neutral"
+                                variant="primary"
                             >
                                 {'Filter'}
                             </Button>

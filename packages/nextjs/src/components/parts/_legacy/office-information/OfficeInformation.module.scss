@@ -1,20 +1,20 @@
 .officeInformation {
-    background-color: var(--a-surface-default);
-    padding: var(--a-spacing-7);
+    background-color: var(--ax-bg-default);
+    padding: var(--ax-space-28);
 
     header {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
 
         h1 {
-            font-size: var(--a-font-size-heading-xlarge);
+            font-size: var(--ax-font-size-heading-xlarge);
             font-weight: 400;
-            margin: var(--a-spacing-2) 0 0;
+            margin: var(--ax-space-8) 0 0;
         }
 
         h2 {
-            font-size: var(--a-font-size-heading-small);
+            font-size: var(--ax-font-size-heading-small);
             font-weight: 600;
-            margin-top: var(--a-spacing-6);
+            margin-top: var(--ax-space-24);
         }
     }
 
@@ -25,6 +25,6 @@
 
     p:last-child,
     p:last-of-type {
-        margin-bottom: var(--a-spacing-6);
+        margin-bottom: var(--ax-space-24);
     }
 }

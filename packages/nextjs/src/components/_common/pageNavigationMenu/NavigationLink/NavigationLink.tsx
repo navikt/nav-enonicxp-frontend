@@ -31,11 +31,11 @@ export const NavigationLink = ({
     return (
         <LenkeBase
             href={`#${anchorId}`}
-            analyticsEvent={AnalyticsEvents.NAVIGATION}
+            analyticsEvent={AnalyticsEvents.NAVIGERE}
             analyticsLinkGroup={'Innhold'}
             analyticsComponent={analyticsComponent}
             analyticsLabel={linkText}
-            className={classNames(style.link, className)}
+            className={classNames('aksel-link', style.link, className)}
             aria-current={ariaCurrent}
             aria-expanded={ariaExpanded}
             aria-controls={ariaControls}

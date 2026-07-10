@@ -1,10 +1,10 @@
 .icon {
     align-self: baseline;
-    color: var(--a-border-default);
+    color: var(--ax-border-neutral);
     width: 24px;
     height: 24px;
     flex-shrink: 0;
     position: relative;
     top: 1px;
-    margin-left: calc(var(--a-spacing-2) * -1);
+    margin-left: calc(var(--ax-space-8) * -1);
 }

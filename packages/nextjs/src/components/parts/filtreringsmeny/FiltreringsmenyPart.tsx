@@ -67,11 +67,11 @@ export const FiltreringsmenyPart = ({
 
     const getLabel = translator('filteredContent', language);
     const onToggleFilterHandler = (filter: Filter, category: FiltreringsmenyCategory) => {
-        logAnalyticsEvent(AnalyticsEvents.FILTER, {
+        logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'filtermeny',
-            komponent: 'FiltreringsmenyPart',
+            komponentId: 'FiltreringsmenyPart',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });

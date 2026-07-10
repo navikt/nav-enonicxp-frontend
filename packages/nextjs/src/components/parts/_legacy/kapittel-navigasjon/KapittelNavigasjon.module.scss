@@ -1,17 +1,17 @@
 @use 'common' as common;
 
 .kapittelNavigasjon {
-    background-color: var(--a-white);
-    border-radius: var(--a-border-radius-medium);
+    background-color: var(--ax-bg-default);
+    border-radius: var(--ax-radius-4);
     display: flex;
     flex-direction: column;
-    margin: 0 0 var(--a-spacing-6) 0;
-    padding: var(--a-spacing-4) 0;
+    margin: 0 0 var(--ax-space-24) 0;
+    padding: var(--ax-space-16) 0;
     width: 100%;
     transition: all 0.3s linear;
 
     .title {
-        padding: var(--a-spacing-4);
+        padding: var(--ax-space-16);
     }
 
     ul {
@@ -20,22 +20,22 @@
 
         .item {
             display: block;
-            font-size: var(--a-font-size-large);
-            margin: 0 var(--a-spacing-2);
-            padding: var(--a-spacing-3) var(--a-spacing-2);
+            font-size: var(--ax-font-size-large);
+            margin: 0 var(--ax-space-8);
+            padding: var(--ax-space-12) var(--ax-space-8);
             position: relative;
             text-decoration: none;
             z-index: 1;
-            font-weight: var(--a-font-weight-bold);
+            font-weight: var(--ax-font-weight-bold);
 
             &:before {
                 content: ' ';
                 display: inline-block;
                 height: 100%;
-                left: calc(-1 * var(--a-spacing-2));
+                left: calc(-1 * var(--ax-space-8));
                 position: absolute;
                 top: 0;
-                width: var(--a-spacing-2);
+                width: var(--ax-space-8);
             }
 
             &.active {
@@ -44,23 +44,23 @@
                     content: '';
                     display: inline-block;
                     height: 100%;
-                    left: calc(-1 * var(--a-spacing-2));
+                    left: calc(-1 * var(--ax-space-8));
                     position: absolute;
                     top: 0;
-                    width: var(--a-spacing-2);
+                    width: var(--ax-space-8);
                 }
             }
         }
 
         a {
             &:hover {
-                background-color: var(--a-blue-100);
-                color: var(--a-gray-900);
+                background-color: var(--ax-accent-200);
+                color: var(--ax-neutral-1000);
                 text-decoration: none;
             }
             &:focus {
                 background: none;
-                box-shadow: var(--a-shadow-focus);
+                box-shadow: 0 0 0 3px rgba(0, 52, 125, 1); // --a-shadow-focus fra gammel versjon av Aksel
                 color: var(--default-action-color);
                 cursor: pointer;
                 outline: none;

@@ -6,8 +6,8 @@
     justify-content: center;
 
     transform: scale(var(--scale, 1));
-    width: calc(#{var(--a-spacing-24)} * var(--scale, #{1}));
-    height: calc(#{var(--a-spacing-24)} * var(--scale, #{1}));
+    width: calc(#{var(--ax-space-96)} * var(--scale, #{1}));
+    height: calc(#{var(--ax-space-96)} * var(--scale, #{1}));
 }
 
 .outer {
@@ -15,8 +15,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--a-spacing-24);
-    height: var(--a-spacing-24);
+    width: var(--ax-space-96);
+    height: var(--ax-space-96);
 
     & * {
         transition: all 250ms ease-in-out;
@@ -25,7 +25,7 @@
     &.blue {
         .circle,
         .colorLine {
-            background-color: var(--a-deepblue-100);
+            background-color: var(--ax-brand-blue-300);
         }
     }
 }
@@ -33,9 +33,9 @@
 .circle {
     position: absolute;
     border-radius: 50%;
-    background-color: var(--a-white);
-    width: var(--a-spacing-24);
-    height: var(--a-spacing-24);
+    background-color: var(--ax-bg-default);
+    width: var(--ax-space-96);
+    height: var(--ax-space-96);
 }
 
 .chevron {
@@ -54,17 +54,17 @@
 .line6 {
     position: absolute;
     background-color: black;
-    height: var(--a-spacing-1);
+    height: var(--ax-space-4);
 }
 
 .colorLine {
-    background-color: var(--a-white);
-    height: var(--a-spacing-1-alt);
+    background-color: var(--ax-bg-default);
+    height: var(--ax-space-6);
 }
 
 .line1 {
-    width: var(--a-spacing-9);
-    top: var(--a-spacing-6);
+    width: var(--ax-space-36);
+    top: var(--ax-space-24);
 }
 
 #{chevronCommon.animateOnHover('.line1')} {
@@ -72,8 +72,8 @@
 }
 
 .line2 {
-    width: var(--a-spacing-6);
-    top: var(--a-spacing-8);
+    width: var(--ax-space-24);
+    top: var(--ax-space-32);
 }
 
 #{chevronCommon.animateOnHover('.line2')} {
@@ -81,8 +81,8 @@
 }
 
 .line3 {
-    width: var(--a-spacing-9);
-    top: var(--a-spacing-12);
+    width: var(--ax-space-36);
+    top: var(--ax-space-48);
 }
 
 #{chevronCommon.animateOnHover('.line3')} {
@@ -91,15 +91,15 @@
 
 // The circle transforms into the 4th line
 #{chevronCommon.animateOnHover('.circle')} {
-    height: var(--a-spacing-1-alt);
-    width: var(--a-spacing-11);
+    height: var(--ax-space-6);
+    width: var(--ax-space-44);
     transform: translate(4px, 4px);
     border-radius: 0;
 }
 
 .line5 {
-    width: var(--a-spacing-6);
-    top: var(--a-spacing-16);
+    width: var(--ax-space-24);
+    top: var(--ax-space-64);
 }
 
 #{chevronCommon.animateOnHover('.line5')} {
@@ -107,8 +107,8 @@
 }
 
 .line6 {
-    width: var(--a-spacing-10);
-    top: var(--a-spacing-16);
+    width: var(--ax-space-40);
+    top: var(--ax-space-64);
 }
 
 #{chevronCommon.animateOnHover('.line6')} {

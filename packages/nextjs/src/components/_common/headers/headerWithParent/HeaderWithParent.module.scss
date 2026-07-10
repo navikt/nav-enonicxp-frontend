@@ -1,6 +1,6 @@
 .headerContainer {
     .textAboveTitle {
-        color: var(--a-text-subtle);
+        color: var(--ax-text-neutral-subtle);
         line-height: 1.5;
     }
 
@@ -10,7 +10,7 @@
         padding: 0;
         align-items: center;
         gap: 5px;
-        margin: 0 0 var(--a-spacing-6);
+        margin: 0 0 var(--ax-space-24);
         flex-wrap: wrap;
     }
 }

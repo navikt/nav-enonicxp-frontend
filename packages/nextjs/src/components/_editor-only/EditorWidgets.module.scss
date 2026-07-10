@@ -2,7 +2,7 @@
 
 .outer {
     display: flex;
-    padding-top: var(--a-spacing-4);
+    padding-top: var(--ax-space-16);
     @include common.full-width-mixin();
 }
 
@@ -15,5 +15,5 @@
 }
 
 .whiteBackground {
-    background-color: var(--a-bg-default);
+    background-color: var(--ax-bg-default);
 }

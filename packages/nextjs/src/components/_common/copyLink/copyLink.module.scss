@@ -6,10 +6,11 @@
 .copyLink {
     align-items: center;
     display: flex;
-    font-size: var(--a-font-size-small);
-    padding: var(--a-spacing-4) var(--a-spacing-4) var(--a-spacing-4) 0;
+    font-size: var(--ax-font-size-small);
+    padding: var(--ax-space-16) var(--ax-space-16) var(--ax-space-16) 0;
     text-decoration: none;
     white-space: nowrap;
+    color: var(--ax-text-subtle);
 
     &:hover {
         font-weight: 600;
@@ -20,24 +21,24 @@
 }
 
 .anchorIcon {
-    height: var(--a-spacing-4);
-    margin-right: var(--a-spacing-2);
+    height: var(--ax-space-16);
+    margin-right: var(--ax-space-8);
     transition-duration: 0.1s;
     transition-property: transform;
     transition-timing-function: ease-out;
-    width: var(--a-spacing-4);
+    width: var(--ax-space-16);
 }
 
 .copyTooltip {
     display: flex;
     align-items: center;
-    margin-left: var(--a-spacing-4);
+    margin-left: var(--ax-space-16);
     visibility: hidden;
-    background-color: var(--a-green-100);
+    background-color: var(--ax-success-200);
     color: black;
-    padding: var(--a-spacing-2) var(--a-spacing-3);
-    border: 1px var(--a-green-500) solid;
-    border-radius: var(--a-border-radius-small);
+    padding: var(--ax-space-8) var(--ax-space-12);
+    border: 1px var(--ax-success-600) solid;
+    border-radius: var(--ax-radius-2);
     pointer-events: none;
     opacity: 0;
     transition-property: visibility, opacity;

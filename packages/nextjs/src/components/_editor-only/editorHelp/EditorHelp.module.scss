@@ -5,14 +5,14 @@ $redErrorFilter: invert(22%) sepia(84%) saturate(1767%) hue-rotate(346deg) brigh
 
 .editorHelp {
     display: flex;
-    margin: var(--a-spacing-4) 0;
+    margin: var(--ax-space-16) 0;
 
     .icon {
         // Ensure the icon size is not overridden by whichever component the helper
         // is inserted into
-        height: var(--a-spacing-6) !important;
-        width: var(--a-spacing-6) !important;
-        margin-right: var(--a-spacing-4) !important;
+        height: var(--ax-space-24) !important;
+        width: var(--ax-space-24) !important;
+        margin-right: var(--ax-space-16) !important;
 
         &.info,
         &.arrowDown,
@@ -29,7 +29,7 @@ $redErrorFilter: invert(22%) sepia(84%) saturate(1767%) hue-rotate(346deg) brigh
         align-self: flex-start;
 
         &.error {
-            color: var(--a-red-600);
+            color: var(--ax-danger-700);
         }
     }
 }

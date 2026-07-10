@@ -2,37 +2,37 @@
 
 .artikkel {
     width: 100%;
-    border-radius: var(--a-border-radius-medium);
+    border-radius: var(--ax-radius-4);
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 var(--a-spacing-11) var(--a-spacing-11);
+        padding: 0 var(--ax-space-44) var(--ax-space-44);
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 var(--a-spacing-2) var(--a-spacing-2);
+        padding: 0 var(--ax-space-8) var(--ax-space-8);
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 var(--a-spacing-6) var(--a-spacing-6);
+        padding: 0 var(--ax-space-24) var(--ax-space-24);
     }
 
     .header {
-        margin-bottom: var(--a-spacing-8);
+        margin-bottom: var(--ax-space-32);
     }
 
     .headerWithToc {
-        margin-bottom: var(--a-spacing-6);
+        margin-bottom: var(--ax-space-24);
     }
 
     .text {
         p {
-            margin-bottom: var(--a-spacing-8);
+            margin-bottom: var(--ax-space-32);
         }
 
         li {
-            padding-bottom: var(--a-spacing-2);
-            font-size: var(--a-font-size-large);
-            line-height: var(--a-font-line-height-xlarge);
+            padding-bottom: var(--ax-space-8);
+            font-size: var(--ax-font-size-large);
+            line-height: var(--ax-font-line-height-xlarge);
         }
 
         > :last-child {
@@ -45,18 +45,18 @@
 
         .kapittelHeader:focus {
             outline-offset: 3px;
-            outline: 3px solid var(--a-border-focus);
+            outline: 3px solid var(--ax-border-focus);
         }
 
         figure {
-            margin: 0 0 var(--a-spacing-7) 0;
+            margin: 0 0 var(--ax-space-28) 0;
         }
 
         figcaption {
-            font-size: var(--a-font-size-small);
+            font-size: var(--ax-font-size-small);
             letter-spacing: 0.004em;
-            line-height: var(--a-font-line-height-medium);
-            margin: var(--a-spacing-2) 0;
+            line-height: var(--ax-font-line-height-medium);
+            margin: var(--ax-space-8) 0;
         }
 
         img {
@@ -67,14 +67,14 @@
 
         table {
             float: none;
-            margin-bottom: var(--a-spacing-4);
+            margin-bottom: var(--ax-space-16);
 
             th,
             td {
                 vertical-align: top;
-                padding: var(--a-spacing-3);
+                padding: var(--ax-space-12);
                 line-height: 1.5;
-                font-size: var(--a-font-size-large);
+                font-size: var(--ax-font-size-large);
             }
         }
 
@@ -84,7 +84,7 @@
         .h3,
         h4,
         .h4 {
-            margin: var(--a-spacing-10) 0 var(--a-spacing-3);
+            margin: var(--ax-space-40) 0 var(--ax-space-12);
 
             &:first-child {
                 margin-top: 0;
@@ -92,21 +92,21 @@
         }
 
         h2 {
-            font-size: var(--a-font-size-heading-large);
+            font-size: var(--ax-font-size-heading-large);
         }
 
         h3 {
-            font-size: var(--a-font-size-heading-medium);
+            font-size: var(--ax-font-size-heading-medium);
         }
 
         h4 {
-            font-size: var(--a-font-size-heading-small);
+            font-size: var(--ax-font-size-heading-small);
         }
 
         ul,
         ol {
-            padding-left: var(--a-spacing-6);
-            margin-bottom: var(--a-spacing-4);
+            padding-left: var(--ax-space-24);
+            margin-bottom: var(--ax-space-16);
         }
     }
 }

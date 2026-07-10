@@ -1,0 +1,16 @@
+.warning {
+    min-width: 400px;
+    background-color: var(--ax-bg-default);
+
+    &::before {
+        content: '';
+        display: block;
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+}
+
+.lenkeInline {
+    margin-left: var(--ax-space-8);
+}

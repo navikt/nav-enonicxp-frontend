@@ -6,8 +6,8 @@ import { classNames } from 'utils/classnames';
 import { useIsEditorView } from 'store/hooks/useIsEditorView';
 import { usePageContentProps } from 'store/pageContext';
 import { ComponentEditorProps, ComponentMapper } from './ComponentMapper';
-import { isGodkjentSide } from './_editor-only/global-warnings/Redaktorvarsler';
-import { pageContentFragmentUtenforInnholdsseksjon } from './_editor-only/global-warnings/warnings/fragment-utenfor-innholdsseksjon/pageContentFragmentUtenforInnholdsseksjon';
+import { erGodkjentSide } from './_editor-only/redaktorvarsler/erGodkjentSide';
+import { pageContentFragmentUtenforInnholdsseksjon } from './_editor-only/redaktorvarsler/varsler/fragment-utenfor-innholdsseksjon/pageContentFragmentUtenforInnholdsseksjon';
 import style from './FragmentComponent.module.scss';
 
 type Props = {
@@ -37,9 +37,10 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
 };
 
 export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Props) => {
-    const shouldWarn = pageContentFragmentUtenforInnholdsseksjon({
+    const skalVarsle = pageContentFragmentUtenforInnholdsseksjon({
         path: componentProps.path,
         type: 'fragment',
+        fragment: componentProps.fragment,
     });
 
     const [redBorderStyling, setRedBorderStyling] = useState(false);
@@ -47,10 +48,10 @@ export const FragmentComponent = ({ componentProps, pageProps, editorProps }: Pr
     const { type } = usePageContentProps();
 
     useEffect(() => {
-        if (shouldWarn && isEditorView && isGodkjentSide(type)) {
+        if (skalVarsle && isEditorView && erGodkjentSide(type)) {
             setRedBorderStyling(true);
         }
-    }, [shouldWarn, isEditorView, type]);
+    }, [skalVarsle, isEditorView, type]);
 
     if (editorProps) {
         return (

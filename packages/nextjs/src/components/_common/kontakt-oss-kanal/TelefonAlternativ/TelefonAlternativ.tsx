@@ -14,6 +14,7 @@ import { TelephoneData } from 'components/parts/kontakt-oss-kanal/KontaktOssKana
 import { Icon } from 'components/_common/kontakt-oss-kanal/_shared-utils/icon/Icon';
 import { KontaktOssKanalIngress } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalIngress/KontaktOssKanalIngress';
 import { KontaktOssKanalLenkebase } from 'components/_common/kontakt-oss-kanal/_shared-utils/KontaktOssKanalLenkebase/KontaktOssKanalLenkebase';
+import { classNames } from 'utils/classnames';
 
 import style from './TelefonAlternativ.module.scss';
 
@@ -72,7 +73,7 @@ export const TelefonAlternativ = ({
         <KontaktOssKanalLayout icon={<Icon type="phone" />}>
             <KontaktOssKanalLenkebase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
-                analyticsEvent={AnalyticsEvents.CALL}
+                analyticsEvent={AnalyticsEvents.RING_OSS}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
             >
@@ -93,7 +94,7 @@ export const TelefonAlternativ = ({
             {!hideMoreLink && (
                 <LenkeBase
                     analyticsLinkGroup={layoutConfig.title}
-                    className={style.moreLink}
+                    className={classNames('aksel-link', style.moreLink)}
                     href={getContactUrl()}
                 >
                     <BodyShort as="span">{sharedTranslations.seeMoreOptions}</BodyShort>

@@ -1,6 +1,6 @@
 .container {
     &:not(:last-child) {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 }
 
@@ -10,5 +10,5 @@
 }
 
 .name {
-    margin-right: var(--a-spacing-2);
+    margin-right: var(--ax-space-8);
 }

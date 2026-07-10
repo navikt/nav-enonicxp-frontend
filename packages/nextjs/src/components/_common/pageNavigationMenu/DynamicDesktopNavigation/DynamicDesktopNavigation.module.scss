@@ -4,16 +4,16 @@
 .dynamicDesktopNavigation {
     overflow: auto;
     position: sticky;
-    top: calc(var(--decorator-sticky-offset) + var(--a-spacing-6));
+    top: calc(var(--decorator-sticky-offset) + var(--ax-space-24));
     height: max-content;
-    max-height: calc(100vh - var(--a-spacing-6) - var(--decorator-sticky-offset));
-    padding-bottom: var(--a-spacing-6);
+    max-height: calc(100vh - var(--ax-space-24) - var(--decorator-sticky-offset));
+    padding-bottom: var(--ax-space-24);
 
     // Gir plass til focus outline som ellers blir kuttet av overflow: auto
-    padding-left: var(--a-spacing-3);
-    padding-right: var(--a-spacing-3);
-    margin-left: calc(-1 * var(--a-spacing-3));
-    margin-right: calc(-1 * var(--a-spacing-3));
+    padding-left: var(--ax-space-12);
+    padding-right: var(--ax-space-12);
+    margin-left: calc(-1 * var(--ax-space-12));
+    margin-right: calc(-1 * var(--ax-space-12));
 }
 
 .heading {
@@ -41,5 +41,5 @@
 }
 
 .h3Link {
-    padding-left: var(--a-spacing-5);
+    padding-left: var(--ax-space-20);
 }

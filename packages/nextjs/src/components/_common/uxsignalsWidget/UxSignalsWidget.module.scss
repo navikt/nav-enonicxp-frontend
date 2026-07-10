@@ -1,16 +1,16 @@
 .uxSignalsWidget {
     display: flex;
     flex-direction: column;
-    margin: var(--a-spacing-7) 0;
+    margin: var(--ax-space-28) 0;
 
     :global(.uxsignals-embed) {
         h2 {
-            font-size: var(--a-font-size-heading-large) !important;
+            font-size: var(--ax-font-size-heading-large) !important;
             line-height: 1.5 !important;
         }
         p,
         span {
-            font-size: var(--a-font-size-large) !important;
+            font-size: var(--ax-font-size-large) !important;
             line-height: 1.5 !important;
         }
     }

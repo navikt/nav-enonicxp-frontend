@@ -346,6 +346,7 @@ export const translationsBundleEn: PartialTranslations = {
         optician: 'opticians or ophthalmologists',
         measures_organizer: 'organizers of labour market measures',
         aid_supplier: 'assistive technology providers',
+        trekkmottaker: 'deduction recipient',
         other: 'other partners',
     },
     related: {

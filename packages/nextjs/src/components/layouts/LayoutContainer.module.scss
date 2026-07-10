@@ -6,7 +6,7 @@
     .standard {
         padding-left: common.$padding-sides-mobile;
         padding-right: common.$padding-sides-mobile;
-        margin: var(--a-spacing-4) -#{common.$padding-sides-mobile};
+        margin: var(--ax-space-16) -#{common.$padding-sides-mobile};
 
         @media #{common.$mq-screen-tablet} {
             padding-left: common.$padding-sides-tablet;
@@ -28,7 +28,7 @@
     }
 
     .bg {
-        padding-top: var(--a-spacing-6);
-        padding-bottom: var(--a-spacing-6);
+        padding-top: var(--ax-space-24);
+        padding-bottom: var(--ax-space-24);
     }
 }

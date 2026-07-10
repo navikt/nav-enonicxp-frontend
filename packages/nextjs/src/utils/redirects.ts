@@ -10,16 +10,25 @@ const redirectTypes: { [type in ContentType]?: boolean } = {
 };
 
 type ContentWithExternalProductUrl = ContentProps & {
-    data: Pick<ProductDataMixin, 'externalProductUrl'>;
+    data: Pick<ProductDataMixin, 'externalProductUrl' | 'externalContentRedirect'>;
 };
 
-const hasExternalProductUrl = (content: ContentProps): content is ContentWithExternalProductUrl => {
-    return !!(content as ContentWithExternalProductUrl).data?.externalProductUrl;
+const getExternalRedirectUrl = (content: ContentWithExternalProductUrl): string | null => {
+    if (content.isDraft || content.isPagePreview) {
+        return null;
+    }
+
+    const externalProductUrl =
+        content.data.externalProductUrl || content.data.externalContentRedirect?._path;
+
+    return externalProductUrl ?? null;
 };
 
 const getTargetPath = (content: ContentProps) => {
-    if (hasExternalProductUrl(content)) {
-        return content.isDraft || content.isPagePreview ? null : content.data.externalProductUrl;
+    const externalRedirectUrl = getExternalRedirectUrl(content as ContentWithExternalProductUrl);
+
+    if (externalRedirectUrl) {
+        return externalRedirectUrl;
     }
 
     switch (content.type) {

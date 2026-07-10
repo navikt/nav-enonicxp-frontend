@@ -43,10 +43,10 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
 
                     return (
                         <Chips.Toggle
+                            data-color="brand-blue"
                             type={'button'}
                             onClick={() => selectionCallback(option)}
                             aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
-                            className={styles.filterButton}
                             checkmark={false}
                             selected={selected === option}
                             key={option}

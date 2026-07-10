@@ -2,9 +2,9 @@
 
 .situationPage {
     .content {
-        padding-top: var(--a-spacing-20);
+        padding-top: var(--ax-space-80);
         @media #{common.$mq-screen-mobile} {
-            padding-top: var(--a-spacing-9);
+            padding-top: var(--ax-space-36);
         }
 
         & > * {
@@ -13,13 +13,13 @@
             //Margin over kontaktmodul i edit mode
             & :global(.layout__situation-flex-cols) {
                 &:has(:global(.part__contact-option)) {
-                    margin-top: var(--a-spacing-16);
+                    margin-top: var(--ax-space-64);
                 }
             }
         }
     }
 
     .pullUp {
-        padding-top: var(--a-spacing-3);
+        padding-top: var(--ax-space-12);
     }
 }

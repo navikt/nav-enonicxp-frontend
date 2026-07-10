@@ -2,7 +2,7 @@
     &.inline {
         display: inline-block;
         width: auto;
-        padding: var(--a-spacing-1-alt) 0;
+        padding: var(--ax-space-6) 0;
         margin: 0;
         text-decoration-line: none;
     }
@@ -10,51 +10,44 @@
     &:hover,
     &:focus {
         .micro {
-            background-color: var(--a-blue-50);
+            background-color: var(--ax-accent-200);
+            border: 1px solid transparent;
         }
     }
 }
 
 .micro {
     border-radius: 16px;
-    border: 1px solid var(--a-border-default);
-    box-shadow: var(--a-shadow-focus);
-    color: var(--a-gray-900);
+    border: 1px solid var(--ax-border-neutral);
+    color: var(--ax-neutral-1000);
     display: inline-flex;
-    font-size: var(--a-font-size-medium);
+    font-size: var(--ax-font-size-medium);
     letter-spacing: 0.01em;
-    line-height: var(--a-font-line-height-medium);
-    padding: var(--a-spacing-1) var(--a-spacing-2);
+    line-height: var(--ax-font-line-height-medium);
+    padding: var(--ax-space-4) var(--ax-space-8);
     position: relative;
 
-    &:not(:hover):not(:active) {
-        box-shadow:
-            0 1px 3px rgba(38, 38, 38, 0.2),
-            0 1px 6px rgba(0, 0, 0, 0.14),
-            0 2px 8px rgba(38, 38, 38, 0.12);
-    }
-
-    &:hover,
-    &:focus {
-        border: 1px solid transparent;
-    }
+    box-shadow:
+        0 1px 3px rgba(38, 38, 38, 0.2),
+        0 1px 6px rgba(0, 0, 0, 0.14),
+        0 2px 8px rgba(38, 38, 38, 0.12);
 
     &:before {
         content: '';
         align-self: center;
         position: relative;
         display: flex;
-        width: var(--a-spacing-2);
-        height: var(--a-spacing-2);
-        border-radius: var(--a-border-radius-large);
-        margin: 0 var(--a-spacing-2) 0 0;
+        width: var(--ax-space-8);
+        height: var(--ax-space-8);
+        border-radius: var(--ax-radius-8);
+        margin: 0 var(--ax-space-8) 0 0;
         flex: none;
-        background-color: var(--brand-purple-deep);
+        background-color: var(--ax-text-brand-magenta-subtle);
     }
 
     &:after {
         border-radius: 16px;
-        box-shadow: 0 0 0 2px var(--a-white);
+        box-shadow: 0 0 0 2px white;
         height: calc(100% - 2px);
         margin: 1px;
         width: calc(100% - 2px);

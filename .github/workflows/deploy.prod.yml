@@ -15,7 +15,7 @@ jobs:
       image: ${{ steps.build-image.outputs.image }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Build prod image
         id: build-image
         uses: ./.github/actions/build-image
@@ -39,32 +39,14 @@ jobs:
           READER_TOKEN: ${{ secrets.READER_TOKEN }}
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
 
-  deploy-valkey:
-    runs-on: ubuntu-latest
-    timeout-minutes: 1
-    needs: build
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Deploy Valkey
-        uses: ./.github/actions/nais-deploy
-        continue-on-error: true
-        with:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/valkey.yml
-          VARS: .nais/vars/dev.yml
-
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, deploy-valkey]
+    needs: [build]
     permissions:
       id-token: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Build and deploy prod
         uses: ./.github/actions/deploy
         with:
@@ -73,7 +55,6 @@ jobs:
           vars_file: vars-prod.yml
           config_file: config.yml
           hpa_file: hpa-prod.yml
-          deploy_valkey: true
 
   release:
     name: Create a new release
@@ -87,7 +68,7 @@ jobs:
         run: echo "TAG_NAME=$(date +%s)" >> $GITHUB_ENV
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           target_commitish: main
           tag_name: release/prod@${{ env.TAG_NAME }} # Generates a unique tag using timestamp

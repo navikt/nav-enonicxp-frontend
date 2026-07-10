@@ -2,13 +2,13 @@
 
 .panel {
     display: flex;
-    padding-bottom: var(--a-spacing-7);
-    background-color: var(--a-white);
-    padding-top: var(--a-spacing-8);
+    padding-bottom: var(--ax-space-28);
+    background-color: var(--ax-bg-default);
+    padding-top: var(--ax-space-32);
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {
-        padding-bottom: var(--a-spacing-3);
+        padding-bottom: var(--ax-space-12);
     }
 }
 
@@ -31,7 +31,7 @@
     align-self: flex-end;
     flex: 1;
     height: 10rem;
-    margin-bottom: calc(-1 * var(--a-spacing-7));
+    margin-bottom: calc(-1 * var(--ax-space-28));
     pointer-events: none;
 
     > * {

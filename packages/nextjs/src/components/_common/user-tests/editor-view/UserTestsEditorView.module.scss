@@ -1,19 +1,19 @@
 .userTestsEditor {
     :not(:last-child) {
-        margin-bottom: var(--a-spacing-1);
+        margin-bottom: var(--ax-space-4);
     }
 }
 
 .header {
-    margin-top: var(--a-spacing-10);
+    margin-top: var(--ax-space-40);
     border: 2px black solid;
     border-left-width: 0;
     border-right-width: 0;
-    padding: var(--a-spacing-2) 0;
+    padding: var(--ax-space-8) 0;
 }
 
 .variant {
-    margin-top: var(--a-spacing-4);
+    margin-top: var(--ax-space-16);
 }
 
 .disabled {

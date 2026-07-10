@@ -1,39 +1,29 @@
-@use 'common' as common;
-
-.navnoLenke {
-    text-decoration: none;
+.lenke {
+    gap: 0;
 }
 
 .withChevron {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .lenketekst {
-        display: inline-flex;
-    }
-
     &:hover {
         .customChevronStyle {
-            left: var(--a-spacing-1-alt);
+            left: var(--ax-space-6);
         }
     }
 }
 
-.lenketekst {
+.withLabelWrapper {
     display: inline-flex;
-    color: var(--default-action-color);
-    @include common.link-underline-mixin();
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .label {
-    padding-top: var(--a-spacing-1);
-    padding-left: var(--a-spacing-7);
+    padding-top: var(--ax-space-4);
+    padding-left: var(--ax-space-28);
     color: black;
 }
 
 .iconContainer {
-    min-width: var(--a-spacing-7);
+    min-width: var(--ax-space-28);
 
     .customChevronStyle {
         position: relative;

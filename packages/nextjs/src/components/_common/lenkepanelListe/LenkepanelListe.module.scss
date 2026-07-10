@@ -2,34 +2,34 @@
 
 .lenkepanelListe {
     width: 100%;
-    margin-bottom: var(--a-spacing-8);
+    margin-bottom: var(--ax-space-32);
 
     .tittel {
         text-align: center;
-        margin-bottom: var(--a-spacing-8);
+        margin-bottom: var(--ax-space-32);
     }
 
     .ingress {
         text-align: center;
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
     }
 
     .items {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-top: var(--a-spacing-4);
+        margin-top: var(--ax-space-16);
         width: 100%;
     }
 
     .item {
         text-align: start;
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
         @media #{common.$mq-screen-mobile} {
             width: 100%;
         }
         @media #{common.$mq-screen-tablet-and-desktop} {
-            width: calc(50% - (var(--a-spacing-2)));
+            width: calc(50% - (var(--ax-space-8)));
         }
     }
 }

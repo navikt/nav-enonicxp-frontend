@@ -1,15 +1,15 @@
 .wrapper {
-    margin-bottom: var(--a-spacing-8);
+    margin-bottom: var(--ax-space-32);
 }
 
 .button {
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    gap: var(--a-spacing-3);
-    padding: var(--a-spacing-1);
+    gap: var(--ax-space-12);
+    padding: var(--ax-space-4);
 
-    :global(.navds-button__icon) {
+    :global(.aksel-button__icon) {
         margin: 0;
     }
 }
@@ -46,7 +46,7 @@
     bottom: 0;
     margin: auto;
 
-    :global(.navds-loader__background) {
+    :global(.aksel-loader__background) {
         stroke: white !important;
     }
 }
@@ -88,7 +88,7 @@
 }
 
 .previewImage {
-    border-radius: var(--a-border-radius-small);
+    border-radius: var(--ax-radius-2);
     display: block;
     max-width: 100%;
     min-height: 74px; // Keep video height in golden ratio rather than 16:9
@@ -96,16 +96,16 @@
 }
 
 .text {
-    color: var(--a-text-default);
+    color: var(--ax-text-neutral);
     margin-bottom: 0 !important; //overstyr kanskje litt for generell regel i ArtikkelPermanent?
     text-align: left;
     line-height: 1.5;
 }
 
 .videoLength {
-    padding-top: var(--a-spacing-1);
+    padding-top: var(--ax-space-4);
     font-weight: 400;
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
     width: fit-content;
 }
 

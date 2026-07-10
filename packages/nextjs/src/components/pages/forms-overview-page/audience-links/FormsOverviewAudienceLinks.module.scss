@@ -2,14 +2,14 @@
 
 .list {
     @include common.unstyled-list();
-    margin-top: var(--a-spacing-8);
+    margin-top: var(--ax-space-32);
 }
 
 .item {
-    padding: var(--a-spacing-6) 0;
-    border-top: 1px solid var(--a-gray-200);
+    padding: var(--ax-space-24) 0;
+    border-top: 1px solid var(--ax-neutral-300);
 
     &:last-child {
-        border-bottom: 1px solid var(--a-gray-200);
+        border-bottom: 1px solid var(--ax-neutral-300);
     }
 }

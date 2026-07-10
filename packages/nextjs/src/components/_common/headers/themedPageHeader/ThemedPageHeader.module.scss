@@ -3,41 +3,41 @@
 .themedPageHeader {
     display: flex;
     justify-content: center;
-    background-color: var(--a-white);
-    padding-top: var(--a-spacing-5);
-    padding-bottom: var(--a-spacing-5);
+    background-color: var(--ax-bg-default);
+    padding-top: var(--ax-space-20);
+    padding-bottom: var(--ax-space-20);
     border-bottom: 4px solid transparent;
 
     @include common.full-width-mixin;
 
     &.situation {
-        border-bottom-color: var(--a-orange-500);
+        border-bottom-color: var(--ax-warning-600);
     }
     &.product {
-        border-bottom-color: var(--a-green-500);
+        border-bottom-color: var(--ax-success-600);
     }
     &.guide {
-        border-bottom-color: var(--a-lightblue-500);
+        border-bottom-color: var(--ax-brand-blue-200);
     }
     &.themedpage {
-        border-bottom-color: var(--a-limegreen-500);
+        border-bottom-color: var(--ax-meta-lime-600);
     }
     &.tool {
-        border-bottom-color: var(--a-deepblue-500);
+        border-bottom-color: var(--ax-brand-blue-600);
     }
     &.intermediateStep {
-        border-bottom-color: var(--a-deepblue-300);
+        border-bottom-color: var(--ax-brand-blue-400);
     }
     &.overview {
-        border-bottom-color: var(--a-red-100);
+        border-bottom-color: var(--ax-danger-200);
     }
     &.generic {
-        border-bottom-color: var(--a-gray-600);
+        border-bottom-color: var(--ax-neutral-700);
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding-left: var(--a-spacing-4);
-        padding-right: var(--a-spacing-4);
+        padding-left: var(--ax-space-16);
+        padding-right: var(--ax-space-16);
 
         .illustration {
             display: none;
@@ -46,14 +46,14 @@
 }
 
 .header {
-    padding: 0 0 var(--a-spacing-5) 0;
+    padding: 0 0 var(--ax-space-20) 0;
     margin: 0 auto;
 }
 
 .illustration {
-    width: var(--a-spacing-20);
-    height: var(--a-spacing-20);
-    margin-right: var(--a-spacing-8);
+    width: var(--ax-space-80);
+    height: var(--ax-space-80);
+    margin-right: var(--ax-space-32);
     pointer-events: none;
 }
 
@@ -75,12 +75,12 @@
 
 .taglineLabel {
     @media #{common.$mq-screen-mobile} {
-        margin-bottom: var(--a-spacing-2);
+        margin-bottom: var(--ax-space-8);
     }
 }
 
 .divider {
-    padding: 0 var(--a-spacing-4);
+    padding: 0 var(--ax-space-16);
 
     @media #{common.$mq-screen-mobile} {
         display: none;
@@ -89,5 +89,5 @@
 
 .divider,
 .modifiedLabel {
-    color: var(--a-gray-700);
+    color: var(--ax-neutral-800);
 }

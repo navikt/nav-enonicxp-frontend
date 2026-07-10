@@ -42,11 +42,11 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     const { context } = getDecoratorParams(contentProps);
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
-        logAnalyticsEvent(AnalyticsEvents.FILTER, {
+        logAnalyticsEvent(AnalyticsEvents.FILTERVALG, {
             kategori: 'type',
             filternavn: analyticsTaxonomi[taxonomy],
             opprinnelse: 'oversiktsside typer',
-            komponent: 'OverviewTaxonomyFilter',
+            komponentId: 'OverviewTaxonomyFilter',
             målgruppe: context,
             innholdstype: innholdsTypeMap[contentProps.type],
         });

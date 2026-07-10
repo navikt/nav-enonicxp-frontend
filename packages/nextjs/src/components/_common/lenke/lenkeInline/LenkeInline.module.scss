@@ -1,6 +1,0 @@
-@use 'common' as common;
-
-.lenkeInline {
-    color: var(--default-action-color);
-    @include common.link-underline-mixin();
-}

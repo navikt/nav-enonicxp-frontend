@@ -2,15 +2,15 @@
 
 .page {
     display: grid;
-    gap: var(--a-spacing-10);
+    gap: var(--ax-space-40);
 
-    margin: var(--a-spacing-5) auto var(--a-spacing-10);
+    margin: var(--ax-space-20) auto var(--ax-space-40);
     grid-template-areas:
         'main'
         'side';
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        grid-template-columns: var(--a-spacing-24) 2fr var(--a-spacing-24);
+        grid-template-columns: var(--ax-space-96) 2fr var(--ax-space-96);
         grid-template-areas:
             'pictogram main .'
             '. side .';
@@ -19,7 +19,7 @@
     &.withSideCol {
         @media #{common.$mq-screen-desktop-small-up} {
             grid-template-areas: 'pictogram main side';
-            grid-template-columns: var(--a-spacing-24) 2fr 1fr;
+            grid-template-columns: var(--ax-space-96) 2fr 1fr;
         }
     }
 }
@@ -32,7 +32,7 @@
     grid-area: side;
 
     & > * {
-        border-radius: var(--a-border-radius-large);
+        border-radius: var(--ax-radius-8);
     }
 }
 
@@ -41,8 +41,8 @@
     grid-area: pictogram;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        width: var(--a-spacing-24);
-        height: var(--a-spacing-24);
+        width: var(--ax-space-96);
+        height: var(--ax-space-96);
         display: block;
     }
 }

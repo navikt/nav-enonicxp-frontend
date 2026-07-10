@@ -23,7 +23,7 @@ import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
 import { Table } from 'components/_common/table/Table';
 
 const blockLevelMacros: ReadonlySet<string> = new Set([
-    MacroType.Varselboks,
+    MacroType.Infokort,
     MacroType.HeaderWithAnchor,
     MacroType.HtmlFragment,
     MacroType.InfoBoks,
@@ -183,6 +183,11 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
             if (tag === 'a') {
                 if (tagIsEmpty || typeof props.href !== 'string') {
                     return <Fragment />;
+                }
+
+                // Remove id to avoid duplicate ids in the DOM
+                if (props.id) {
+                    delete props.id;
                 }
 
                 return (

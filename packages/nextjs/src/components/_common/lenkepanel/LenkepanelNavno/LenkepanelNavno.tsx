@@ -24,8 +24,8 @@ export const LenkepanelNavno = ({
     ...elementAttribs
 }: Props) => {
     const textClassNames = classNames(
-        'navds-heading',
-        'navds-heading--medium',
+        'aksel-heading',
+        'aksel-heading--medium',
         linkColor === 'black' && styles.linkBlack
     );
 
@@ -47,7 +47,11 @@ export const LenkepanelNavno = ({
                     <LenkeBase
                         {...elementAttribs}
                         href={href}
-                        className={classNames(styles.lenkepanelNavnoLink, textClassNames)}
+                        className={classNames(
+                            'aksel-link',
+                            styles.lenkepanelNavnoLink,
+                            textClassNames
+                        )}
                         analyticsComponent="Lenkepanel navno"
                         analyticsLinkGroup={analyticsLinkGroup}
                         analyticsLabel={linkText}

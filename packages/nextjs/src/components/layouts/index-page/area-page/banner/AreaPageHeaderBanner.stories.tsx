@@ -20,7 +20,7 @@ export const Default: Story = {
             },
             html: {
                 processedHtml:
-                    '<p class="navds-body-long navds-body-long--medium navds-typo--spacing">Logg inn og beregn, søk om eller endre pensjonen din</p>',
+                    '<p class="aksel-body-long aksel-body-long--medium aksel-typo--spacing">Logg inn og beregn, søk om eller endre pensjonen din</p>',
                 macros: [],
             },
             color: '#FFB8B8',

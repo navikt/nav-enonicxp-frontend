@@ -1,5 +1,5 @@
 import { ContentListProps } from 'types/content-props/content-list-props';
-import { ContentProps } from 'types/content-props/_content-common';
+import { ContentAndMediaCommonProps, ContentProps } from 'types/content-props/_content-common';
 import { PictogramsProps } from 'types/content-props/pictograms';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
@@ -26,6 +26,7 @@ export enum ProviderAudience {
     ADMINISTRATOR = 'administrator',
     MEASURES_ORGANIZER = 'measures_organizer',
     AID_SUPPLIER = 'aid_supplier',
+    TREKKMOTTAKAR = 'trekkmottaker',
     OTHER = 'other',
 }
 
@@ -96,6 +97,7 @@ export type ProductDataMixin = {
     illustration: PictogramsProps;
     area: Area[];
     externalProductUrl?: string;
+    externalContentRedirect?: ContentAndMediaCommonProps;
 };
 
 export type LinkSelectable = OptionSetSingle<{

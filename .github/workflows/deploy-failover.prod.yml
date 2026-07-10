@@ -15,7 +15,7 @@ jobs:
       image: ${{ steps.build-image.outputs.image }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Build failover image
         id: build-image
@@ -40,32 +40,14 @@ jobs:
           NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           nais_management_project_id: ''
 
-  deploy-valkey:
-    runs-on: ubuntu-latest
-    timeout-minutes: 1
-    needs: build
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Deploy Valkey
-        uses: ./.github/actions/nais-deploy
-        continue-on-error: true
-        with:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/valkey.yml
-          VARS: .nais/vars/dev.yml
-
   deploy:
     runs-on: ubuntu-latest
-    needs: [ build, deploy-valkey ]
+    needs: [build]
     permissions:
       id-token: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Build and deploy prod failover>
         uses: ./.github/actions/deploy

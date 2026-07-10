@@ -1,32 +1,17 @@
 .lenkepanel {
-    :global(.navds-link-card__title),
-    :global(.navds-link-anchor__arrow) {
-        color: var(--default-action-color);
+    :global(.aksel-link-anchor__arrow) {
+        color: var(--ax-text-subtle);
     }
 
-    :global(.navds-link-card__footer) {
+    :global(.aksel-link-card__footer) {
         display: block;
     }
-
-    &:hover {
-        background-color: #ecf3fe;
-        border-color: #cbd4e1;
-        box-shadow: none;
-
-        :global(.navds-link-card__title) {
-            text-decoration: underline;
-        }
-    }
-}
-
-.lenkebase {
-    text-decoration: none;
 }
 
 .metadata {
     width: fit-content;
 
     + .metadata {
-        margin-top: var(--a-spacing-2);
+        margin-top: var(--ax-space-8);
     }
 }

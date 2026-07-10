@@ -61,7 +61,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
     };
 
     const analyticsPayload = {
-        komponent: getComponentAnalyticsName(type, size),
+        komponentId: getComponentAnalyticsName(type, size),
         lenkegruppe: layoutConfig.title,
         seksjon: layoutConfig.title,
         destinasjon: link.url,
@@ -84,7 +84,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
                 return;
             }
 
-            logAnalyticsEvent(AnalyticsEvents.NAVIGATION, analyticsPayload);
+            logAnalyticsEvent(AnalyticsEvents.NAVIGERE, analyticsPayload);
 
             const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
             if (isOpeningInNewWindow) {
@@ -104,7 +104,7 @@ export const useCard = ({ link, size, type }: UseCardSettings): UseCardState => 
         return {
             analyticsLinkGroup: analyticsPayload.lenkegruppe,
             analyticsLabel: analyticsPayload.lenketekst,
-            analyticsComponent: analyticsPayload.komponent,
+            analyticsComponent: analyticsPayload.komponentId,
         };
     };
 

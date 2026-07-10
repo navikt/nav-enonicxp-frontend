@@ -9,6 +9,6 @@ export const MacroQuote = ({ config }: MacroQuoteProps) => {
     }
     const { quote } = config.quote;
     return (
-        <blockquote className={classNames(style.macroQuote, 'navds-body-long')}>{quote}</blockquote>
+        <blockquote className={classNames(style.macroQuote, 'aksel-body-long')}>{quote}</blockquote>
     );
 };

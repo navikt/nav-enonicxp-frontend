@@ -12,6 +12,7 @@ import { classNames } from 'utils/classnames';
 import { handleStickyScrollOffset } from 'utils/scroll-to';
 import defaultHtml from 'components/_common/parsedHtml/DefaultHtmlStyling.module.scss';
 import { useCheckAndOpenTrekkspillPanel } from 'store/hooks/useCheckAndOpenTrekkspillPanel';
+import { harRedaktorfeil } from 'components/_editor-only/redaktorvarsler/harRedaktorFeil';
 import styles from './Trekkspill.module.scss';
 
 type TrekkspillRef = PartConfigTrekkspill;
@@ -36,13 +37,16 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
         setOpenTrekkspill((prev) =>
             isOpening ? [...prev, index] : prev.filter((i) => i !== index)
         );
-        logAnalyticsEvent(isOpening ? AnalyticsEvents.ACC_EXPAND : AnalyticsEvents.ACC_COLLAPSE, {
-            tittel,
-            opprinnelse: 'trekkspill',
-            komponent: 'Accordion',
-            målgruppe: context,
-            innholdstype: innholdsTypeMap[type],
-        });
+        logAnalyticsEvent(
+            isOpening ? AnalyticsEvents.ACCORDION_APNET : AnalyticsEvents.ACCORDION_LUKKET,
+            {
+                tittel,
+                opprinnelse: 'trekkspill',
+                komponentId: 'Trekkspill',
+                målgruppe: context,
+                innholdstype: innholdsTypeMap[type],
+            }
+        );
     };
 
     if (itemRefs.current.length !== accordion.length) {
@@ -54,16 +58,17 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
     // Show all panels in edit mode, but only valid panels in view mode
     const validTrekkspill = accordion.filter(validatePanel);
     const relevantTrekkspill = editorView === 'edit' ? accordion : validTrekkspill;
+    const harFeil = harRedaktorfeil(contentProps);
 
     return (
-        <DSAccordion className={styles.trekkspill}>
+        <DSAccordion className={styles.trekkspill} size="large">
             {relevantTrekkspill.map((item, index) => {
                 const isValid = validatePanel(item);
                 return (
                     <DSAccordion.Item
                         key={item.anchorId || item.title}
                         className={styles.item}
-                        open={openTrekkspill.includes(index)}
+                        open={openTrekkspill.includes(index) || harFeil}
                         onOpenChange={(open) => handleOpenChange(open, item.title, index)}
                         ref={itemRefs.current[index]}
                         tabIndex={-1}
@@ -72,10 +77,10 @@ export const Trekkspill = ({ accordion }: TrekkspillRef) => {
                             {!isValid ? (
                                 <EditorHelp text="Panelet mangler tittel eller innhold. Klikk for å redigere" />
                             ) : (
-                                <div className={styles.headerTitle}>{item.title}</div>
+                                <>{item.title}</>
                             )}
                         </DSAccordion.Header>
-                        <DSAccordion.Content className={styles.content}>
+                        <DSAccordion.Content>
                             <div className={classNames(defaultHtml.html, 'parsedHtml')}>
                                 <ParsedHtml htmlProps={item.html} />
                             </div>

@@ -1,11 +1,11 @@
 .container {
     display: flex;
     flex-direction: column;
-    padding: var(--a-spacing-4) var(--a-spacing-8);
-    background-color: var(--a-white);
-    margin-bottom: var(--a-spacing-4);
-    border: 2px solid var(--a-green-200);
-    border-radius: var(--a-border-radius-large);
+    padding: var(--ax-space-16) var(--ax-space-32);
+    background-color: var(--ax-bg-default);
+    margin-bottom: var(--ax-space-16);
+    border: 2px solid var(--ax-success-300);
+    border-radius: var(--ax-radius-8);
 }
 
 .loader {
@@ -13,6 +13,6 @@
     align-self: center;
     align-items: center;
     & > :first-child {
-        margin-right: var(--a-spacing-4);
+        margin-right: var(--ax-space-16);
     }
 }

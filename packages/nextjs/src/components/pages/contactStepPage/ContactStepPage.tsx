@@ -23,20 +23,24 @@ export const ContactStepPage = ({ data }: ContactStepPageProps) => {
     return (
         <MellomstegLayout
             data={data}
-            listItems={linkPanels.map((linkPanel, index) => {
-                const linkPaneltitle = linkPanel.text ?? linkPanel.target.displayName;
-                return (
-                    <li key={`${linkPanel.target._path}-${index}`}>
-                        <FormIntermediateStepLink
-                            label={linkPaneltitle}
-                            explanation={linkPanel.ingress ?? ''}
-                            href={linkPanel.target._path}
-                            analyticsComponent={'ContactStepPage'}
-                            analyticsLabel={linkPaneltitle}
-                        />
-                    </li>
-                );
-            })}
+            listItems={
+                linkPanels.length > 0
+                    ? linkPanels.map((linkPanel, index) => {
+                          const linkPaneltitle = linkPanel.text ?? linkPanel.target.displayName;
+                          return (
+                              <li key={`${linkPanel.target._path}-${index}`}>
+                                  <FormIntermediateStepLink
+                                      label={linkPaneltitle}
+                                      explanation={linkPanel.ingress ?? ''}
+                                      href={linkPanel.target._path}
+                                      analyticsComponent={'ContactStepPage'}
+                                      analyticsLabel={linkPaneltitle}
+                                  />
+                              </li>
+                          );
+                      })
+                    : undefined
+            }
             analyticsComponent={'ContactStepPage'}
             backLink={
                 backLink?.target

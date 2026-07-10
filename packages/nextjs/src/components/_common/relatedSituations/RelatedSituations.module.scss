@@ -1,11 +1,11 @@
 .relatedSituations {
-    margin-top: var(--a-spacing-8);
+    margin-top: var(--ax-space-32);
 
     &.no-margin {
         margin-top: 0;
     }
     .description {
-        margin-bottom: var(--a-spacing-4);
+        margin-bottom: var(--ax-space-16);
     }
 
     .situationsList {
@@ -14,7 +14,7 @@
         list-style: none;
 
         li:not(:last-of-type) {
-            padding-bottom: var(--a-spacing-4);
+            padding-bottom: var(--ax-space-16);
         }
     }
 
