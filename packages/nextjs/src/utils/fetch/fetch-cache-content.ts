@@ -13,6 +13,13 @@ type JsonCacheItem = {
     };
 };
 
+const adjustForPreviewMode = (url: string): string => {
+    if (window.location.host.includes('oera.no')) {
+        return `${url.replace('ansatt', 'ekstern')}?noRedirect=true`;
+    }
+    return url;
+};
+
 export const fetchPageCacheContent = async (path: string): Promise<ContentProps | null> => {
     if (!path) {
         return null;
@@ -20,7 +27,9 @@ export const fetchPageCacheContent = async (path: string): Promise<ContentProps 
 
     const jsonCacheUrl = `${urlPrefix}${stripXpPathPrefix(path.split('#')[0])}.json`;
 
-    return fetchJson<JsonCacheItem>(jsonCacheUrl, undefined, undefined, 2).then((cacheItem) => {
+    const adjustedUrl = adjustForPreviewMode(jsonCacheUrl);
+
+    return fetchJson<JsonCacheItem>(adjustedUrl, undefined, undefined, 2).then((cacheItem) => {
         return cacheItem?.pageProps?.content || null;
     });
 };
