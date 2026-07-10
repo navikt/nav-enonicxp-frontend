@@ -36,14 +36,21 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.Skjemadetaljer,
 ]);
 
-const hasBlockLevelMacroChildren = (element: Element) => {
-    return element.children?.some(
-        (child) =>
-            isTag(child) &&
+const hasBlockLevelMacroDescendant = (element: Element): boolean =>
+    !!element.children?.some((child) => {
+        if (!isTag(child)) {
+            return false;
+        }
+
+        if (
             child.name === processedHtmlMacroTag &&
             blockLevelMacros.has(child.attribs?.['data-macro-name'])
-    );
-};
+        ) {
+            return true;
+        }
+
+        return hasBlockLevelMacroDescendant(child);
+    });
 
 const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
     if (!children) {
@@ -145,7 +152,7 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
                 const size = headingToSize[tag];
 
                 // Ignore heading-tag if it contains a macro
-                if (hasBlockLevelMacroChildren(element)) {
+                if (hasBlockLevelMacroDescendant(element)) {
                     return <>{domToReact(domNodes, parserOptions)}</>;
                 }
 
@@ -160,7 +167,7 @@ export const ParsedHtml = ({ htmlProps, pSize }: Props) => {
             // Handle paragraphs
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
-                if (hasBlockLevelMacroChildren(element)) {
+                if (hasBlockLevelMacroDescendant(element)) {
                     return <>{domToReact(domNodes, parserOptions)}</>;
                 }
                 return (
