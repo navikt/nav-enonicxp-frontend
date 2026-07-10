@@ -18,7 +18,10 @@
         "skipLibCheck": true,
         "types": ["@navikt/ds-react/types/theme"],
         "paths": {
-            "@/shared/*": ["../../shared/src/*"]
+            // Second candidate is for Next 16 build/Jest, which resolve `paths` relative to
+            // the package dir; the first is for tsc/editor (relative to baseUrl: src). Both
+            // resolve to packages/shared/src.
+            "@/shared/*": ["../../shared/src/*", "../shared/src/*"]
         },
         "plugins": [
             {
