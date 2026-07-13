@@ -13,6 +13,8 @@ type JsonCacheItem = {
     };
 };
 
+// Content Studio has no access directly to ansatt-ingress, so switch to
+// ekstern-ingress and add noRedirect to avoid backlash to ansatt.
 const adjustForPreviewMode = (url: string): string => {
     if (window.location.host.includes('oera.no')) {
         return `${url.replace('ansatt', 'ekstern')}?noRedirect=true`;
