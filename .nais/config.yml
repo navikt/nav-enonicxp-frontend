@@ -44,7 +44,7 @@ spec:
     {{/each}}
   envFrom:
     - secret: {{secret}}
-    - secret: nav-dekoratoren-unleash-api-token
+    - secret: nav-enonicxp-frontend-unleash-api-token
   filesFrom:
     - emptyDir:
         medium: Memory
