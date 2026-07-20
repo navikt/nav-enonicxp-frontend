@@ -20,8 +20,13 @@ const initFaro =
                   },
               });
 
+const unleashProxyUrl =
+    typeof window === 'undefined'
+        ? `${(process.env.APP_ORIGIN || 'http://localhost:3000').replace(/\/$/, '')}/api/unleash`
+        : '/api/unleash';
+
 const unleashProxyConfig = {
-    url: '/api/unleash',
+    url: unleashProxyUrl,
     refreshInterval: 10,
 } as const;
 
