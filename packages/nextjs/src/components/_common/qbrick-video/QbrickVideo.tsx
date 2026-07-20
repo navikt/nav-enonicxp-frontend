@@ -2,6 +2,7 @@ import React, { useEffect, useId } from 'react';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import Script from 'next/script';
 import { logger } from '@/shared/logger';
+import { useFlag } from '@unleash/nextjs/client';
 import { translator } from 'translations';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
@@ -18,6 +19,8 @@ import style from './QbrickVideo.module.scss';
 export const QbrickVideo = (props: QbrickVideoProps) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
+    const loadQbrickScript = useFlag('enonicxpfrontend.qbrick');
+
     const { language: contentLanguage, editorView } = contentProps;
     const { title, duration, poster } = props;
     const videoContainerId = useId();
@@ -40,6 +43,9 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
         ? poster
         : getMediaUrl(poster, !!editorView, contentLanguage);
 
+    if (!loadQbrickScript) {
+        return null;
+    }
     return (
         <div className={style.wrapper}>
             <Script

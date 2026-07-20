@@ -75,6 +75,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "catalog:",
         "@next/bundle-analyzer": "catalog:",
+        "@unleash/nextjs": "^1.6.7",
         "domhandler": "catalog:",
         "dotenv": "catalog:",
         "express": "catalog:",

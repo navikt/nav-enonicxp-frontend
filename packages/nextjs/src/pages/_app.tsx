@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { initializeFaro } from '@grafana/faro-web-sdk';
 import { Provider } from 'react-redux';
+import { FlagProvider } from '@unleash/nextjs/client';
 import type { AppProps } from 'next/app';
 import { store } from 'store/store';
 import { PageProps } from 'components/PageBase';
@@ -19,6 +20,11 @@ const initFaro =
                   },
               });
 
+const unleashProxyConfig = {
+    url: '/api/unleash',
+    refreshInterval: 10,
+} as const;
+
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
     const isEditorView = !!pageProps?.content?.editorView;
 
@@ -30,7 +36,9 @@ const App = ({ Component, pageProps }: AppProps<PageProps>) => {
 
     return (
         <Provider store={store}>
-            <Component {...pageProps} />
+            <FlagProvider config={unleashProxyConfig}>
+                <Component {...pageProps} />
+            </FlagProvider>
         </Provider>
     );
 };
