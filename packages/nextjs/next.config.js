@@ -83,6 +83,21 @@ const corsHeaders = [
         key: 'Access-Control-Allow-Origin',
         value: isFailover ? process.env.APP_ORIGIN : process.env.ADMIN_ORIGIN,
     },
+    {
+        key: 'Access-Control-Allow-Methods',
+        value: 'GET, OPTIONS',
+    },
+    {
+        // Next.js pages-router data requests send a custom "x-nextjs-data" header,
+        // which triggers a CORS preflight. These must be allowed for cross-origin
+        // navigation to work (e.g. XP Content Studio preview fetching _next/data).
+        key: 'Access-Control-Allow-Headers',
+        value: 'x-nextjs-data, purpose, x-middleware-prefetch',
+    },
+    {
+        key: 'Access-Control-Max-Age',
+        value: '1800',
+    },
 ];
 
 console.log(
