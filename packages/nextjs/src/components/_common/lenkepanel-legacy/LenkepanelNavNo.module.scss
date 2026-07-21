@@ -4,11 +4,9 @@
     border-color: var(--default-action-color);
     border-radius: var(--ax-radius-2);
 
-    :global {
-        .aksel-link-card__title,
-        .aksel-link-anchor__arrow {
-            color: var(--default-action-color);
-        }
+    :global(.aksel-link-card__title),
+    :global(.aksel-link-anchor__arrow) {
+        color: var(--default-action-color);
     }
 
     &:hover {
@@ -70,10 +68,8 @@
     flex-direction: column;
     text-align: center;
 
-    :global {
-        .aksel-link-card__title {
-            justify-content: center;
-        }
+    :global(.aksel-link-card__title) {
+        justify-content: center;
     }
 
     .separator {
