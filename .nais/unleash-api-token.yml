@@ -2,7 +2,7 @@ apiVersion: unleash.nais.io/v1
 kind: ApiToken
 metadata:
   name: nav-enonicxp-frontend
-  namespace: navno
+  namespace: personbruker
   labels:
     team: navno
 spec:
