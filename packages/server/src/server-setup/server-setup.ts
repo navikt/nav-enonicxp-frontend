@@ -94,6 +94,9 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         // if the BUILD_ID file wasn't set in the first place.
         const targetBuildId = process.env.ENV === 'localhost' ? 'development' : currentBuildId;
 
+        // Next will force a reload in the client if the buildID does not match the latest build.
+        // We want to avoid this, so report a mismatch (for metrics) and rewrite the URL to the latest buildId so that the request can be served.
+        // This is an expected discrepancy after a deploy, but we still want to be able to track it in metrics.
         if (requestedBuildId !== targetBuildId) {
             buildIdMismatchCounter.inc();
             req.url = req.url.replace(requestedBuildId, targetBuildId);
