@@ -4,6 +4,7 @@ import { getNextBuildId } from 'next-utils';
 import { handleInvalidatePathsReq } from 'req-handlers/invalidate-paths';
 import { setCacheKey } from 'req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from 'req-handlers/invalidate-all';
+import { buildIdMismatchCounter } from 'metrics/request-metrics';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from '@/shared/logger';
 import PageCacheHandler, { redisCache } from 'cache/page-cache-handler';
@@ -94,13 +95,7 @@ export const serverSetup = async (expressApp: Express, nextApp: InferredNextWrap
         const targetBuildId = process.env.ENV === 'localhost' ? 'development' : currentBuildId;
 
         if (requestedBuildId !== targetBuildId) {
-            logger.info('Build ID mismatch', {
-                metaData: {
-                    expectedBuildId: targetBuildId,
-                    receivedBuildId: requestedBuildId,
-                    path: req.path,
-                },
-            });
+            buildIdMismatchCounter.inc();
             req.url = req.url.replace(requestedBuildId, targetBuildId);
         }
 
