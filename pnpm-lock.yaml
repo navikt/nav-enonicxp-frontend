@@ -193,8 +193,8 @@ catalogs:
       specifier: 30.4.1
       version: 30.4.1
     jest-fetch-mock:
-      specifier: 3.2.0
-      version: 3.2.0
+      specifier: 4.2.0
+      version: 4.2.0
     js-cookie:
       specifier: 3.0.8
       version: 3.0.8
@@ -588,7 +588,7 @@ importers:
         version: 30.4.1
       jest-fetch-mock:
         specifier: 'catalog:'
-        version: 3.2.0
+        version: 4.2.0
       sass:
         specifier: 'catalog:'
         version: 1.101.0
@@ -658,7 +658,7 @@ importers:
         version: 30.4.2(@types/node@26.1.1)
       jest-fetch-mock:
         specifier: 'catalog:'
-        version: 3.2.0
+        version: 4.2.0
       mock-fs:
         specifier: 'catalog:'
         version: 5.5.0
@@ -6321,14 +6321,6 @@ packages:
       }
     engines: { node: '>=20.19.0' }
 
-  domexception@4.0.0:
-    resolution:
-      {
-        integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==,
-      }
-    engines: { node: '>=12' }
-    deprecated: Use your platform's native DOMException instead
-
   domhandler@4.3.1:
     resolution:
       {
@@ -8142,12 +8134,12 @@ packages:
       }
     engines: { node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0 }
 
-  jest-fetch-mock@3.2.0:
+  jest-fetch-mock@4.2.0:
     resolution:
       {
-        integrity: sha512-7yGuHznS2mQSUr17H6Q/YMKExuey1ush3Vdvm1QsUzi7PzajSNBiAvMxtS1nucKJYiIF3g4qTtHxG9T10vJjWg==,
+        integrity: sha512-/Yya+k/bopdCSG+cEIL9Kxj1cr4j73DeOQiroicwrTkTEfyMsnQxrugjSopn8RnwginmX/Nlsp57BGy1I1mQSg==,
       }
-    engines: { node: '>=12' }
+    engines: { node: '>=18' }
 
   jest-haste-map@30.4.1:
     resolution:
@@ -15385,10 +15377,6 @@ snapshots:
 
   domelementtype@3.0.0: {}
 
-  domexception@4.0.0:
-    dependencies:
-      webidl-conversions: 7.0.0
-
   domhandler@4.3.1:
     dependencies:
       domelementtype: 2.3.0
@@ -16793,10 +16781,9 @@ snapshots:
       jest-util: 30.4.1
       jest-validate: 30.4.1
 
-  jest-fetch-mock@3.2.0:
+  jest-fetch-mock@4.2.0:
     dependencies:
       cross-fetch: 3.2.0
-      domexception: 4.0.0
     transitivePeerDependencies:
       - encoding
 
