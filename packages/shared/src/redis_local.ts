@@ -30,6 +30,9 @@ const clientOptions: RedisClientOptions = {
     password: process.env.VALKEY_PASSWORD_PAGECACHE,
     // Disable the offline queue so that if Valkey is down, we don't queue up requests and block the Node process.
     disableOfflineQueue: true,
+    // Send a periodic PING to keep idle connections alive. This is to avoid Valkey closing the connection, which
+    // happens in dev with low traffic.
+    pingInterval: 30000,
     socket: {
         keepAlive: true,
         connectTimeout: 10000,
