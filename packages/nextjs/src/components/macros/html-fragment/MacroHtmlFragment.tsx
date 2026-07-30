@@ -10,7 +10,7 @@ type Props = MacroHtmlFragmentProps & {
 
 // Inline text that immediately followed this macro without a line break, will become a paragraph orphan.
 // We need to pass it as a trailingContent so that it's injected into the macro. Also, make sure that
-// event if macro config is missing or invalid, we still render the trailingContent.
+// even if macro config is missing or invalid, we still render the trailingContent.
 export const MacroHtmlFragment = ({ config, trailingContent }: Props) => {
     if (!config?.html_fragment) {
         return (
