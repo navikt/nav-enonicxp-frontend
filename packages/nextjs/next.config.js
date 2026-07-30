@@ -116,6 +116,11 @@ const config = {
             '@navikt/nav-office-reception-info',
         ],
     },
+    // pino uses dynamic requires that Turbopack can't statically bundle, so it must be
+    // kept external and required at runtime. Without this, Turbopack emits a broken
+    // hashed external (e.g. `require('pino-<hash>')`) that fails at runtime.
+    // See https://github.com/vercel/next.js/issues/86099
+    serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream'],
     turbopack: {
         resolveAlias: {
             buffer: { browser: './turbopack-empty.js' },

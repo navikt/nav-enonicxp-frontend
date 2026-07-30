@@ -47,6 +47,8 @@
         "next": "catalog:",
         "node-cache": "catalog:",
         "p-limit": "catalog:",
+        "pino": "catalog:",
+        "pino-pretty": "catalog:",
         "prom-client": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
@@ -58,6 +60,7 @@
         "rss": "catalog:",
         "sharp": "catalog:",
         "swr": "catalog:",
+        "thread-stream": "catalog:",
         "uuid": "catalog:"
     },
     "devDependencies": {
