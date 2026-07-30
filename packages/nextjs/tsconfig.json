@@ -21,7 +21,11 @@
             // Second candidate is for Next 16 build/Jest, which resolve `paths` relative to
             // the package dir; the first is for tsc/editor (relative to baseUrl: src). Both
             // resolve to packages/shared/src.
-            "@/shared/*": ["../../shared/src/*", "../shared/src/*"]
+            "@/shared/*": ["../../shared/src/*", "../shared/src/*"],
+            // Same dual-candidate scheme as @/shared: first resolves for tsc/editor
+            // (relative to baseUrl: src), second for Next 16 build/Jest (relative to the
+            // package dir). Both resolve to packages/nextjs/public.
+            "@/public/*": ["../public/*", "./public/*"]
         },
         "plugins": [
             {

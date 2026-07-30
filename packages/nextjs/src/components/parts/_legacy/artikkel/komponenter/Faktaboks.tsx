@@ -4,9 +4,8 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-import icon from '../../../../../../public/gfx/info-sirkel-fyll.svg';
+import icon from '@/public/gfx/info-sirkel-fyll.svg';
 import style from './Faktaboks.module.scss';
-
 
 type Props = {
     label: string;
