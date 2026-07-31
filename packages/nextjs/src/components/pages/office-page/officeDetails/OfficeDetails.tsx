@@ -21,16 +21,15 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     const getOfficeTranslations = translator('office', language);
 
     const publikumsmottak = forceArray(brukerkontakt?.publikumsmottak);
+    const hasReception = publikumsmottak.length > 0;
 
     return (
         <div className={styles.wide}>
             <div className={classNames(styles.officeDetails, styles.pageContent)}>
                 <Heading level="2" size="large">
-                    {officeData.type === 'ALS'
-                        ? getOfficeTranslations('contactUs')
-                        : getOfficeTranslations('youFindUsHere')}
+                    {getOfficeTranslations(hasReception ? 'youFindUsHere' : 'contactUs')}
                 </Heading>
-                {publikumsmottak.length > 0 && (
+                {hasReception && (
                     <Reception
                         receptions={publikumsmottak}
                         officeType={officeData.type}
@@ -38,7 +37,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     />
                 )}
                 <PhonePoster officeData={officeData} />
-                {officeData.type === 'ALS' && <Kontaktskjema />}
+                <Kontaktskjema officeData={officeData} />
                 <OfficeInformation officeData={officeData} />
             </div>
         </div>

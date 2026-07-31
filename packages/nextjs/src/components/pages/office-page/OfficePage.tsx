@@ -13,6 +13,9 @@ export const OfficePage = (props: OfficePageProps) => {
     const officeNorgData = props.data.officeNorgData.data;
     const erLokalkontorEllerArbeidslivssenter =
         officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
+    const shouldRenderPageContent = !['OKONOMI', 'OPPFUTLAND', 'KONTROLL'].includes(
+        officeNorgData.type
+    );
     const editorialPage = props.editorial;
 
     if (!officeNorgData) {
@@ -33,9 +36,12 @@ export const OfficePage = (props: OfficePageProps) => {
             {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
             {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
 
-            <div className={classNames(styles.content, styles.pageContent)}>
-                <ComponentMapper componentProps={page} pageProps={props} />
-            </div>
+            {shouldRenderPageContent && (
+                <div className={classNames(styles.content, styles.pageContent)}>
+                    <ComponentMapper componentProps={page} pageProps={props} />
+                </div>
+            )}
+
             {props.data.linkedin && officeNorgData.type === 'ALS' && (
                 <LinkedIn text={props.data.linkedin} />
             )}

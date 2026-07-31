@@ -24,8 +24,14 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
     const getPhoneInformation = () => {
+        if (['OKONOMI', 'OPPFUTLAND'].includes(officeData.type)) {
+            return '';
+        }
         if (officeData.type === 'ALS') {
             return getOfficeTranslations('phoneTime');
+        }
+        if (officeData.enhetNr === '4534') {
+            return 'Åpningstiden er hverdager kl. 9–15. Hvis åpningstiden endrer seg, får du beskjed via talemelding når du ringer oss.';
         }
         if (officeData.telefonnummerKommentar) {
             return officeData.telefonnummerKommentar;
@@ -52,7 +58,9 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            {phoneInformation && (
+                <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            )}
             {visPublikumskanaler && (
                 <>
                     <Heading size="small" level="3">

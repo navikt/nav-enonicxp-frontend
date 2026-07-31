@@ -1,5 +1,16 @@
 import { AudienceReception, Address } from '@navikt/nav-office-reception-info';
 
+type PostBoxAddress = {
+    type: 'postboksadresse';
+    adresseTilleggsnavn?: string;
+    postnummer?: string;
+    poststed?: string;
+    postboksnummer?: string;
+    postboksanlegg?: string;
+};
+
+export type OfficeAddress = Address | PostBoxAddress;
+
 export type Service = {
     type:
         | 'HJELP_KOMME_I_JOBB'
@@ -74,7 +85,7 @@ export type OfficeDetailsData = {
     underEtableringDato?: string;
     aktiveringsdato?: string;
     nedleggesesdato?: string;
-    beliggenhet: Address;
-    postadresse: Address;
+    beliggenhet: OfficeAddress;
+    postadresse: OfficeAddress;
     brukerkontakt: AudienceContactInformation;
 };

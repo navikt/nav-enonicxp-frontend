@@ -266,6 +266,9 @@ export const translationsBundleNn: PartialTranslations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        taglineEconomy: 'Økonomi',
+        taglineInternationalFollowUp: 'Oppfølging utland',
+        taglineControl: 'Kontroll',
         skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
             'om du ønskjer hjelp til å rekruttere eller inkludere arbeidstakarar og førebyggje sjukefråvær.',

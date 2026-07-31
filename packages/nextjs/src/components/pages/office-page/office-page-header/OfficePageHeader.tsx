@@ -19,6 +19,14 @@ type Props = {
     };
 };
 
+const taglineKeys = {
+    HMS: 'taglineHMS',
+    ALS: 'taglineALS',
+    OKONOMI: 'taglineEconomy',
+    OPPFUTLAND: 'taglineInternationalFollowUp',
+    KONTROLL: 'taglineControl',
+} as const;
+
 export const OfficePageHeader = ({ officeDetails }: Props) => {
     const { navn, brukerkontakt, type } = officeDetails;
     const { language } = usePageContentProps();
@@ -51,14 +59,8 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
-    let tagline: string;
-    if (type === 'HMS') {
-        tagline = officeTranslations('taglineHMS');
-    } else if (type === 'ALS') {
-        tagline = officeTranslations('taglineALS');
-    } else {
-        tagline = officeTranslations('taglineOffice');
-    }
+    const taglineKey = taglineKeys[type as keyof typeof taglineKeys] ?? 'taglineOffice';
+    const tagline = officeTranslations(taglineKey);
 
     return (
         <div className={classNames(style.officePageHeader)}>

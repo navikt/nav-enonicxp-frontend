@@ -296,6 +296,9 @@ export const translationsBundleNb = {
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
         taglineALS: 'Arbeidslivssenter',
+        taglineEconomy: 'Økonomi',
+        taglineInternationalFollowUp: 'Oppfølging utland',
+        taglineControl: 'Kontroll',
         skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
             'hvis du ønsker hjelp til å rekruttere eller inkludere arbeidstakere og forebygge sykefravær.',
