@@ -1,15 +1,4 @@
-import pino, { LoggerOptions } from 'pino';
-
-const options: LoggerOptions = {
-    base: { buildId: process.env.BUILD_ID },
-    formatters: {
-        level: (label) => {
-            return { level: label };
-        },
-    },
-};
-
-const pinoInstance = pino(options);
+import { logger as nextLogger } from '@navikt/next-logger';
 
 type LogContext = {
     error?: any;
@@ -18,38 +7,15 @@ type LogContext = {
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
-const isClient = 'window' in globalThis;
-
 const createLogMethod = (level: LogLevel) => {
     return (message: string, context?: LogContext) => {
-        if (isClient) {
-            // Client-side: log as "[level] message" followed by the raw object for expandability
-            // Map pino levels to console methods
-
-            const consoleMethod = (console[level as keyof Console] as any) || console.log;
-            const prefixedMessage = `[${level}] ${message}`;
-
-            if (context?.error || context?.metaData) {
-                consoleMethod(prefixedMessage, context);
-            } else {
-                consoleMethod(prefixedMessage);
-            }
+        // @navikt/next-logger handles both server (JSON via pino) and client
+        // (forwarded to /api/logger) logging, with the correct JSON shape for Nav's
+        // log pipeline (e.g. "message" key, err_message/err_stack/err_type for errors).
+        if (context?.error || context?.metaData) {
+            nextLogger[level]({ err: context.error, metaData: context.metaData }, message);
         } else {
-            // Server-side: use pino with JSON.stringify for OpenSearch compatibility
-            const logObject: Record<string, any> = { message };
-
-            if (context?.error) {
-                logObject.error = JSON.stringify(
-                    context.error,
-                    Object.getOwnPropertyNames(context.error)
-                );
-            }
-
-            if (context?.metaData) {
-                logObject.metaData = JSON.stringify(context.metaData);
-            }
-
-            pinoInstance[level](logObject);
+            nextLogger[level](message);
         }
     };
 };
