@@ -8,6 +8,7 @@
         "lint:eslint": "eslint src"
     },
     "dependencies": {
+        "@navikt/next-logger": "catalog:",
         "next": "catalog:",
         "pino": "catalog:",
         "prom-client": "catalog:",
