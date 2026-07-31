@@ -36,14 +36,21 @@ const blockLevelMacros: ReadonlySet<string> = new Set([
     MacroType.Skjemadetaljer,
 ]);
 
-const hasBlockLevelMacroChildren = (element: Element) => {
-    return element.children?.some(
-        (child) =>
-            isTag(child) &&
+const hasBlockLevelMacroChildren = (element: Element): boolean =>
+    !!element.children?.some((child) => {
+        if (!isTag(child)) {
+            return false;
+        }
+
+        if (
             child.name === processedHtmlMacroTag &&
             blockLevelMacros.has(child.attribs?.['data-macro-name'])
-    );
-};
+        ) {
+            return true;
+        }
+
+        return hasBlockLevelMacroChildren(child);
+    });
 
 const getNonEmptyChildren = ({ children }: Element): Element['children'] => {
     if (!children) {

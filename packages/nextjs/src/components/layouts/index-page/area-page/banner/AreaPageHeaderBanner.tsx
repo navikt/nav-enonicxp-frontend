@@ -6,7 +6,7 @@ import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 import { FancyChevron } from 'components/_common/chevron/FancyChevron';
 import { ColorMixin, LinkSelectable } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import chevronStyle from 'components/_common/chevron/FancyChevronCommon.module.scss';
+import { animateOnHover } from 'components/_common/chevron/FancyChevronCommon';
 import style from './AreaPageHeaderBanner.module.scss';
 
 export type Banner = { link: LinkSelectable; html: ProcessedHtmlProps } & ColorMixin;
@@ -22,7 +22,7 @@ export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
 
     return (
         <LenkeBase
-            className={classNames(style.banner, chevronStyle.animateOnHover)}
+            className={classNames(style.banner, animateOnHover)}
             href={url}
             style={{ '--hover-color': color } as React.CSSProperties}
             analyticsComponent={'Områdebanner'}

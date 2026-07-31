@@ -15,8 +15,3 @@ $expandOnHover: expandOnHover;
         @content;
     }
 }
-
-:export {
-    expandGraphics: $expandGraphics;
-    expandOnHover: $expandOnHover;
-}

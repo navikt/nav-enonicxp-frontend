@@ -5,38 +5,6 @@ const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 const path = require('path');
 
-// Remove dashes from js variable names for classnames generated from CSS-modules
-// Enables all CSS-classes to be accessed from javascript with dot-notation
-const cssModulesNoDashesInClassnames = (config) => {
-    const rules = config.module.rules
-        .find((rule) => typeof rule.oneOf === 'object')
-        .oneOf.filter((rule) => Array.isArray(rule.use));
-
-    rules.forEach((rule) => {
-        rule.use.forEach((moduleLoader) => {
-            if (/css-loader([/\\])(cjs|dist|src)/.test(moduleLoader.loader)) {
-                if (typeof moduleLoader.options.modules === 'object') {
-                    moduleLoader.options.modules = {
-                        ...moduleLoader.options.modules,
-                        exportLocalsConvention: 'dashesOnly',
-                    };
-                }
-            }
-        });
-    });
-};
-
-// Prevents errors due to client-side imports of server-side only libraries
-const resolveNodeLibsClientSide = (config, options) => {
-    if (!options.isServer) {
-        config.resolve.fallback = {
-            buffer: false,
-            fs: false,
-            process: false,
-        };
-    }
-};
-
 const csp = async () => {
     const prodHost = 'nav.no';
     const prodWithSubdomains = `*.${prodHost}`;
@@ -91,7 +59,14 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
-        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost, 'wss://notification.qbrick.com', '*.dna.contentdelivery.net'],
+        'connect-src': [
+            ...internalHosts,
+            ...qbrickHosts,
+            uxSignalsApiHost,
+            skyraScriptHost,
+            'wss://notification.qbrick.com',
+            '*.dna.contentdelivery.net',
+        ],
         'media-src': [...qbrickHosts, salesforceVideoHost, '*.dna.contentdelivery.net'],
     };
 
@@ -147,14 +122,23 @@ const config = {
             '@navikt/aksel-icons',
             '@navikt/nav-office-reception-info',
         ],
-        scrollRestoration: true,
+    },
+    // pino uses dynamic requires that Turbopack can't statically bundle, so it must be
+    // kept external and required at runtime. Without this, Turbopack emits a broken
+    // hashed external (e.g. `require('pino-<hash>')`) that fails at runtime.
+    // See https://github.com/vercel/next.js/issues/86099
+    serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream'],
+    turbopack: {
+        resolveAlias: {
+            buffer: { browser: './turbopack-empty.js' },
+            fs: { browser: './turbopack-empty.js' },
+            process: { browser: './turbopack-empty.js' },
+        },
     },
     transpilePackages: [
         '@navikt/aksel-icons',
         '@navikt/ds-react',
         '@navikt/nav-office-reception-info',
-        '@navikt/next-logger',
-        '@navikt/pino-logger',
     ],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
@@ -171,6 +155,7 @@ const config = {
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
         MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
+        BUILD_ID: process.env.GIT_HASH?.slice(0, 12) || 'unknown',
     },
     generateBuildId: async () => {
         if (!process.env.GIT_HASH) {
@@ -181,8 +166,10 @@ const config = {
         return process.env.GIT_HASH?.slice(0, 12);
     },
     images: {
+        qualities: [75, 90],
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
+        dangerouslyAllowLocalIP: isLocal,
         remotePatterns: [
             process.env.APP_ORIGIN,
             process.env.XP_ORIGIN,
@@ -198,23 +185,6 @@ const config = {
         }),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    },
-    webpack: (config, options) => {
-        cssModulesNoDashesInClassnames(config);
-        resolveNodeLibsClientSide(config, options);
-
-        const { webpack, buildId } = options;
-
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.BUILD_ID': JSON.stringify(buildId),
-            })
-        );
-
-        return config;
-    },
-    sassOptions: {
-        silenceDeprecations: ['legacy-js-api'],
     },
     redirects: async () => [
         {

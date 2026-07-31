@@ -5,9 +5,9 @@ import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import { OmradekortGraphics } from './graphics/OmradekortGraphics';
+import { expandOnHover } from './graphics/OmradekortGraphicsCommon';
 
 import style from './Omradekort.module.scss';
-import graphicsStyle from './graphics/OmradekortGraphicsCommon.module.scss';
 
 type Props = {
     path: string;
@@ -26,10 +26,7 @@ export const Omradekort = ({ path, title, area, linkGroup, className }: Props) =
     }
 
     return (
-        <LinkCard
-            arrow={false}
-            className={classNames(style.lenkepanel, graphicsStyle.expandOnHover, className)}
-        >
+        <LinkCard arrow={false} className={classNames(style.lenkepanel, expandOnHover, className)}>
             <LinkCard.Title className={title.length > 17 ? style.titleLong : style.titleShort}>
                 <LinkCard.Anchor asChild>
                     <LenkeBase
