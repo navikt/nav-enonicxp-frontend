@@ -11,7 +11,7 @@ catalog:
   '@navikt/aksel-icons': 8.15.0
   '@navikt/ds-css': 8.15.0
   '@navikt/ds-react': 8.15.0
-  '@navikt/nav-dekoratoren-moduler': 4.2.2
+  '@navikt/nav-dekoratoren-moduler': 4.3.0
   '@navikt/nav-office-reception-info': 2.0.2
   '@navikt/next-logger': 5.0.0
   '@next/bundle-analyzer': 15.5.4
