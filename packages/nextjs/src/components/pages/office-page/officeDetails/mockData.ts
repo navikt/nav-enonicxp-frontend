@@ -11,7 +11,7 @@ export const mockAudienceContact: AudienceContact = {
 
 export const mockOfficeData: OfficeDetailsData = {
     enhetNr: '1234',
-    type: 'NAV_KONTOR',
+    type: 'LOKAL',
     telefonnummer: '12345678',
     navn: 'NAV Oslo',
     organisasjonsnummer: '987654321',

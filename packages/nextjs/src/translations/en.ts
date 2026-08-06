@@ -282,9 +282,6 @@ export const translationsBundleEn: PartialTranslations = {
         alternativeContacts: 'Other contact options:',
         taglineOffice: 'Nav office',
         taglineHMS: 'Assistive technology centre',
-        taglineEconomy: 'Economy',
-        taglineInternationalFollowUp: 'International follow-up',
-        taglineControl: 'Control',
     },
     dateTime: {
         weekDayNames: {

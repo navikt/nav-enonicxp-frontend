@@ -9,7 +9,12 @@ type PostBoxAddress = {
     postboksanlegg?: string;
 };
 
-export type OfficeAddress = Address | PostBoxAddress;
+type StreetAddress = Partial<Address> & { type: 'stedsadresse' };
+
+export type OfficeAddress = StreetAddress | PostBoxAddress;
+
+export type OfficeType =
+    'LOKAL' | 'HMS' | 'ALS' | 'OKONOMI' | 'OPPFUTLAND' | 'KONTROLL' | 'REDAKSJONELT';
 
 export type Service = {
     type:
@@ -64,28 +69,29 @@ export type AudienceContact = {
 };
 
 type AudienceContactInformation = {
-    spraakdrakt: 'NN' | 'NB';
+    spraakdrakt?: 'NN' | 'NB';
     informasjonUtbetalinger?: string;
     brukertjenesteTilbud?: AudienceServices;
-    publikumsmottak: AudienceReception[];
+    publikumsmottak?: AudienceReception[];
     sosialhjelp?: SocialServices;
-    publikumskanaler: AudienceContact[] | AudienceContact;
+    publikumskanaler?: AudienceContact[] | AudienceContact;
 };
 
 export type OfficeDetailsData = {
-    enhetNr: string;
-    type: string;
+    enhetNr?: string;
+    type: OfficeType;
     telefonnummer?: string;
     telefonnummerKommentar?: string;
-    navn: string;
-    organisasjonsnummer: string;
+    faksnummer?: string;
+    navn?: string;
+    organisasjonsnummer?: string;
     sosialeTjenester?: string;
     spesielleOpplysninger?: string;
-    status: string;
+    status?: string;
     underEtableringDato?: string;
     aktiveringsdato?: string;
     nedleggesesdato?: string;
-    beliggenhet: OfficeAddress;
-    postadresse: OfficeAddress;
-    brukerkontakt: AudienceContactInformation;
+    beliggenhet?: OfficeAddress;
+    postadresse?: OfficeAddress;
+    brukerkontakt?: AudienceContactInformation;
 };

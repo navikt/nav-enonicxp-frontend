@@ -287,6 +287,7 @@ export const translationsBundleNb = {
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
+        faxNumber: 'Telefaks',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
         phoneTime: 'Telefontid hverdager kl. 9–15.',
@@ -296,9 +297,7 @@ export const translationsBundleNb = {
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
         taglineALS: 'Arbeidslivssenter',
-        taglineEconomy: 'Økonomi',
-        taglineInternationalFollowUp: 'Oppfølging utland',
-        taglineControl: 'Kontroll',
+        taglineUnit: 'Enhet',
         skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
             'hvis du ønsker hjelp til å rekruttere eller inkludere arbeidstakere og forebygge sykefravær.',

@@ -11,17 +11,19 @@ import styles from './OfficePage.module.scss';
 
 export const OfficePage = (props: OfficePageProps) => {
     const officeNorgData = props.data.officeNorgData.data;
-    const erLokalkontorEllerArbeidslivssenter =
-        officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
-    const shouldRenderPageContent = !['OKONOMI', 'OPPFUTLAND', 'KONTROLL'].includes(
-        officeNorgData.type
-    );
-    const editorialPage = props.editorial;
 
     if (!officeNorgData) {
         logger.error('No office data exists for this office page');
         return null;
     }
+
+    const erLokalkontorEllerArbeidslivssenter =
+        officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
+    const shouldRenderPageContent = !['OKONOMI', 'OPPFUTLAND', 'KONTROLL', 'REDAKSJONELT'].includes(
+        officeNorgData.type
+    );
+    const title = props.data.title?.trim() || officeNorgData.navn?.trim() || props.displayName;
+    const editorialPage = props.editorial;
 
     if (erLokalkontorEllerArbeidslivssenter && !editorialPage) {
         logger.error(`No editorial page found for office branch ${props.displayName}`);
@@ -33,8 +35,11 @@ export const OfficePage = (props: OfficePageProps) => {
 
     return (
         <article className={styles.officePage}>
-            {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
-            {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
+            <OfficePageHeader title={title} officeDetails={officeNorgData} />
+            <OfficeDetails
+                officeData={officeNorgData}
+                showApplicationFormLinks={props.data.showApplicationFormLinks}
+            />
 
             {shouldRenderPageContent && (
                 <div className={classNames(styles.content, styles.pageContent)}>

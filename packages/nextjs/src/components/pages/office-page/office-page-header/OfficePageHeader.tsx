@@ -12,6 +12,7 @@ import style from './OfficePageHeader.module.scss';
 type AudienceReceptionDescription = Pick<AudienceReception, 'stedsbeskrivelse'>;
 
 type Props = {
+    title: string;
     officeDetails: Pick<OfficeDetailsData, 'navn' | 'type'> & {
         brukerkontakt?: {
             publikumsmottak?: Array<AudienceReceptionDescription>;
@@ -20,15 +21,13 @@ type Props = {
 };
 
 const taglineKeys = {
+    LOKAL: 'taglineOffice',
     HMS: 'taglineHMS',
     ALS: 'taglineALS',
-    OKONOMI: 'taglineEconomy',
-    OPPFUTLAND: 'taglineInternationalFollowUp',
-    KONTROLL: 'taglineControl',
 } as const;
 
-export const OfficePageHeader = ({ officeDetails }: Props) => {
-    const { navn, brukerkontakt, type } = officeDetails;
+export const OfficePageHeader = ({ title, officeDetails }: Props) => {
+    const { brukerkontakt, type } = officeDetails;
     const { language } = usePageContentProps();
     const officeTranslations = translator('office', language);
 
@@ -59,14 +58,14 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
-    const taglineKey = taglineKeys[type as keyof typeof taglineKeys] ?? 'taglineOffice';
+    const taglineKey = taglineKeys[type as keyof typeof taglineKeys] ?? 'taglineUnit';
     const tagline = officeTranslations(taglineKey);
 
     return (
         <div className={classNames(style.officePageHeader)}>
             <div className={style.content}>
                 <Heading level="1" size="xlarge" className={style.heading}>
-                    {navn}
+                    {title}
                 </Heading>
                 <div className={style.taglineWrapper}>
                     <BodyShort size="small" className={style.taglineLabel}>

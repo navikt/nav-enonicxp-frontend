@@ -8,9 +8,10 @@ import styles from './Kontaktskjema.module.scss';
 
 type Props = {
     officeData: Pick<OfficeDetailsData, 'type'>;
+    showApplicationFormLinks?: boolean;
 };
 
-export const Kontaktskjema = ({ officeData }: Props) => {
+export const Kontaktskjema = ({ officeData, showApplicationFormLinks }: Props) => {
     const { language } = usePageContentProps();
     const getOfficeTranslations = translator('office', language);
 
@@ -33,31 +34,27 @@ export const Kontaktskjema = ({ officeData }: Props) => {
         );
     }
 
-    if (['OKONOMI', 'OPPFUTLAND', 'KONTROLL'].includes(officeData.type)) {
+    if (
+        showApplicationFormLinks ||
+        ['OKONOMI', 'OPPFUTLAND', 'KONTROLL'].includes(officeData.type)
+    ) {
         return (
             <div className={styles.kontaktskjema}>
                 <Heading level="2" size="small" spacing>
                     Søknader og skjema
                 </Heading>
-                <BodyLong as="div">
-                    Skal du sende inn et skjema eller søke om støtte fra Nav? Velg riktig oversikt:
-                    <ul>
-                        <li>
-                            <LenkeInline href="https://www.nav.no/soknader/">
-                                Søknad og skjema for privatpersoner
-                            </LenkeInline>
-                        </li>
-                        <li>
-                            <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
-                                Søknad og skjema for arbeidsgivere
-                            </LenkeInline>
-                        </li>
-                        <li>
-                            <LenkeInline href="https://www.nav.no/samarbeidspartner/soknader">
-                                Søknad og skjema for samarbeidspartnere
-                            </LenkeInline>
-                        </li>
-                    </ul>
+                <BodyLong>
+                    Finn søknader og skjemaer for{' '}
+                    <LenkeInline href="https://www.nav.no/soknader/">privatpersoner</LenkeInline>.
+                    Det finnes egne oversikter for{' '}
+                    <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
+                        arbeidsgivere
+                    </LenkeInline>{' '}
+                    og{' '}
+                    <LenkeInline href="https://www.nav.no/samarbeidspartner/soknader">
+                        samarbeidspartnere
+                    </LenkeInline>
+                    .
                 </BodyLong>
             </div>
         );

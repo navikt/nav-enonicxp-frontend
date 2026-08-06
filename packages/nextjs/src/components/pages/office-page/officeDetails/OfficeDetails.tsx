@@ -13,9 +13,10 @@ import styles from './OfficeDetails.module.scss';
 
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
+    showApplicationFormLinks?: boolean;
 }
 
-export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
+export const OfficeDetails = ({ officeData, showApplicationFormLinks }: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const { brukerkontakt } = officeData;
     const getOfficeTranslations = translator('office', language);
@@ -37,7 +38,10 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                     />
                 )}
                 <PhonePoster officeData={officeData} />
-                <Kontaktskjema officeData={officeData} />
+                <Kontaktskjema
+                    officeData={officeData}
+                    showApplicationFormLinks={showApplicationFormLinks}
+                />
                 <OfficeInformation officeData={officeData} />
             </div>
         </div>
