@@ -8,6 +8,8 @@ import {
 export { Events as AnalyticsEvents };
 export type { EventName as AnalyticsEventName };
 
+export const ANALYTICS_ORIGIN = 'navno-frontend';
+
 export function logAnalyticsEvent<TName extends EventName>(
     eventName: TName,
     eventData?: PropertiesFor<TName>
@@ -15,6 +17,6 @@ export function logAnalyticsEvent<TName extends EventName>(
     return logAnalyticsEventDecorator({
         eventName,
         eventData,
-        origin: 'navno-frontend',
+        origin: ANALYTICS_ORIGIN,
     });
 }
