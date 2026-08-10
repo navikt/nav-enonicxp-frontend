@@ -245,14 +245,14 @@ export const translationsBundleNb = {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 9-15).',
+                'Du møter først vår chatbot. På hverdager mellom 09.00 og 15.00 kan du be chatboten om å få chatte med en veileder.',
             chatWithCounsellor: 'Chat med veileder',
             alwaysOpen: 'Alltid åpen',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder.',
+                'Du møter først vår chatbot. På hverdager mellom 09.00 og 15.00 kan du be chatboten om å få chatte med en veileder.',
         },
         write: {
             title: 'Skriv til oss',

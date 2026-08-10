@@ -231,16 +231,16 @@ export const translationsBundleEn: PartialTranslations = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat with Frida',
+            title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-15).',
+                'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
             chatWithCounsellor: 'Chat with advisor',
             alwaysOpen: 'Always open',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor.',
+                'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
         },
         write: {
             title: 'Write to us',
