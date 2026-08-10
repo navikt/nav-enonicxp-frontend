@@ -2,12 +2,20 @@
     "name": "nav-enonicxp-frontend-shared",
     "version": "1.0.0",
     "private": true,
+    "scripts": {
+        "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"pnpm run lint:tsc\" \"pnpm run lint:eslint\"",
+        "lint:tsc": "tsc",
+        "lint:eslint": "eslint src"
+    },
     "dependencies": {
+        "@navikt/next-logger": "catalog:",
         "next": "catalog:",
         "pino": "catalog:",
+        "prom-client": "catalog:",
         "redis": "catalog:"
     },
     "devDependencies": {
+        "concurrently": "catalog:",
         "pino-pretty": "catalog:"
     }
 }

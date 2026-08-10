@@ -5,6 +5,13 @@
     "engines": {
         "node": "24.x"
     },
+    "devEngines": {
+        "runtime": {
+            "name": "node",
+            "version": "^24.19.0",
+            "onFail": "download"
+        }
+    },
     "packageManager": "pnpm@11.8.0+sha512.c1f5e7c4cb241c8f174b743851d82f42b802324afc8b0f116b96adb15aa06664948dde36960a3ba1079ba5b4b29dd0140135b94b5b5f5263592249d68e555f26",
     "scripts": {
         "build": "pnpm run build:server && pnpm run build:nextjs",
@@ -14,10 +21,10 @@
         "start": "pnpm --filter ./packages/server run start",
         "start-in-docker": "node -r dotenv/config server/.dist/server.cjs dotenv_config_path=./.env",
         "storybook": "pnpm --filter ./packages/nextjs run storybook",
-        "dev": "pnpm run copy-env-development && rm -fr packages/nextjs/.next && pnpm run build:server && pnpm run start",
-        "dev-custom": "pnpm run copy-env-development-custom && pnpm run build:server && pnpm run start",
+        "dev": "pnpm run copy-env-development && rm -fr packages/nextjs/.next && pnpm run build:server && pnpm run start | pino-pretty --messageKey=message",
+        "dev-custom": "pnpm run copy-env-development-custom && pnpm run build:server && pnpm run start | pino-pretty --messageKey=message",
         "build-test-production": "pnpm run copy-env-prod-local && pnpm run build",
-        "start-test-production": "pnpm run copy-env-prod-local && pnpm run start",
+        "start-test-production": "pnpm run copy-env-prod-local && pnpm run start | pino-pretty --messageKey=message",
         "start-local": "rm -fr packages/nextjs/.next && pnpm run build-test-production && pnpm run start-test-production",
         "build-and-push-dev-failover": "sh -c 'for a in \"$@\"; do case $a in --app_env=*) APP_ENV=${a#*=};; --image_tag=*) IMAGE_TAG=${a#*=};; esac; done; sh .failover/build-dev-failover-image.sh \"$APP_ENV\" \"$IMAGE_TAG\"' --",
         "analyze-bundle": "pnpm --filter ./packages/nextjs run analyze-bundle",
@@ -29,6 +36,7 @@
         "prepare": "test \"$CI\" = \"true\" && exit 0; husky || true"
     },
     "devDependencies": {
+        "@eslint/compat": "catalog:",
         "@eslint/js": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
         "@playwright/test": "catalog:",
@@ -52,6 +60,7 @@
         "globals": "catalog:",
         "husky": "catalog:",
         "lint-staged": "catalog:",
+        "pino-pretty": "catalog:",
         "prettier": "catalog:",
         "typescript": "catalog:",
         "typescript-eslint": "catalog:"
@@ -73,6 +82,7 @@
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "catalog:",
+        "@navikt/next-logger": "catalog:",
         "@next/bundle-analyzer": "catalog:",
         "domhandler": "catalog:",
         "dotenv": "catalog:",
@@ -80,7 +90,6 @@
         "express-prom-bundle": "catalog:",
         "lru-cache": "catalog:",
         "pino": "catalog:",
-        "pino-pretty": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
         "react-error-boundary": "catalog:",
