@@ -231,14 +231,14 @@ export const translationsBundleEn: PartialTranslations = {
     },
     contactPoint: {
         chat: {
-            title: 'You can chat with us',
+            title: 'Chat with us',
             ingress:
                 'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
             chatWithCounsellor: 'Chat with advisor',
             alwaysOpen: 'Always open',
         },
         legacyChat: {
-            title: 'You can chat with us',
+            title: 'Chat with us',
             ingress:
                 'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
         },

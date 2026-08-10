@@ -243,14 +243,14 @@ export const translationsBundleNb = {
     },
     contactPoint: {
         chat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
                 'Du møter først vår chatbot. På hverdager mellom 09.00 og 15.00 kan du be chatboten om å få chatte med en veileder.',
             chatWithCounsellor: 'Chat med veileder',
             alwaysOpen: 'Alltid åpen',
         },
         legacyChat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
                 'Du møter først vår chatbot. På hverdager mellom 09.00 og 15.00 kan du be chatboten om å få chatte med en veileder.',
         },

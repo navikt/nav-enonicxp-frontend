@@ -215,14 +215,14 @@ export const translationsBundleNn: PartialTranslations = {
     },
     contactPoint: {
         chat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
                 'Du møter først chatboten vår. På kvardagar mellom 09.00 og 15.00 kan du be chatboten om å få chatte med ein rettleiar.',
             chatWithCounsellor: 'Chat med rettleiar',
             alwaysOpen: 'Alltid ope',
         },
         legacyChat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
                 'Du møter først chatboten vår. På kvardagar mellom 09.00 og 15.00 kan du be chatboten om å få chatte med ein rettleiar.',
         },
