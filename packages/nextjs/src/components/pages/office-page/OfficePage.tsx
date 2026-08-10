@@ -6,6 +6,7 @@ import { classNames } from 'utils/classnames';
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
 import { LinkedIn } from './linkedIn/LinkedIn';
+import { shouldUseOfficeEditorialPage } from './officePageUtils';
 
 import styles from './OfficePage.module.scss';
 
@@ -17,31 +18,26 @@ export const OfficePage = (props: OfficePageProps) => {
         return null;
     }
 
-    const erLokalkontorEllerArbeidslivssenter =
-        officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
-    const shouldRenderPageContent = !['OKONOMI', 'OPPFUTLAND', 'KONTROLL', 'REDAKSJONELT'].includes(
-        officeNorgData.type
+    const useEditorialPage = shouldUseOfficeEditorialPage(
+        officeNorgData.type,
+        props.data.useUnitEditorialPage
     );
+    const shouldRenderPageContent = useEditorialPage || officeNorgData.type !== 'REDAKSJONELT';
     const title = props.data.title?.trim() || officeNorgData.navn?.trim() || props.displayName;
     const editorialPage = props.editorial;
 
-    if (erLokalkontorEllerArbeidslivssenter && !editorialPage) {
+    if (useEditorialPage && !editorialPage) {
         logger.error(`No editorial page found for office branch ${props.displayName}`);
-        return null;
     }
 
-    const page =
-        erLokalkontorEllerArbeidslivssenter && editorialPage ? editorialPage.page : props.page;
+    const page = useEditorialPage ? editorialPage?.page : props.page;
 
     return (
         <article className={styles.officePage}>
             <OfficePageHeader title={title} officeDetails={officeNorgData} />
-            <OfficeDetails
-                officeData={officeNorgData}
-                showApplicationFormLinks={props.data.showApplicationFormLinks}
-            />
+            <OfficeDetails officeData={officeNorgData} />
 
-            {shouldRenderPageContent && (
+            {shouldRenderPageContent && page && (
                 <div className={classNames(styles.content, styles.pageContent)}>
                     <ComponentMapper componentProps={page} pageProps={props} />
                 </div>

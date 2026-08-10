@@ -67,7 +67,7 @@ export type OfficePageProps = ContentCommonProps & {
     data: {
         title: string;
         linkedin?: string;
-        showApplicationFormLinks?: boolean;
+        useUnitEditorialPage?: boolean;
         officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
     };
     page: LayoutComponentProps;
