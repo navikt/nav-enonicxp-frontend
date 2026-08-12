@@ -6,21 +6,21 @@ catalog:
   '@esbuild/linux-x64': 0.28.1
   '@eslint/compat': 2.1.0
   '@eslint/js': 10.0.1
-  '@grafana/faro-web-sdk': 2.8.2
-  '@grafana/faro-web-tracing': 2.8.2
-  '@navikt/aksel-icons': 8.15.0
-  '@navikt/ds-css': 8.15.0
-  '@navikt/ds-react': 8.15.0
-  '@navikt/nav-dekoratoren-moduler': 4.2.2
+  '@grafana/faro-web-sdk': 2.9.0
+  '@grafana/faro-web-tracing': 2.9.0
+  '@navikt/aksel-icons': 8.16.1
+  '@navikt/ds-css': 8.16.1
+  '@navikt/ds-react': 8.16.1
+  '@navikt/nav-dekoratoren-moduler': 4.3.0
   '@navikt/nav-office-reception-info': 2.0.2
   '@navikt/next-logger': 5.0.0
   '@next/bundle-analyzer': 15.5.4
   '@next/eslint-plugin-next': 15.5.4
-  '@playwright/test': 1.62.0
+  '@playwright/test': 1.62.1
   '@reduxjs/toolkit': 2.12.0
-  '@storybook/addon-docs': 10.5.4
-  '@storybook/nextjs': 10.5.4
-  '@storybook/react': 10.5.4
+  '@storybook/addon-docs': 10.5.5
+  '@storybook/nextjs': 10.5.5
+  '@storybook/react': 10.5.5
   '@testing-library/jest-dom': 6.9.1
   '@testing-library/react': 16.3.2
   '@types/cookie-parser': 1.4.10
@@ -32,9 +32,9 @@ catalog:
   '@types/mock-fs': 4.13.4
   '@types/node': 20.14.10
   '@types/on-headers': 1.0.4
-  '@types/react': 19.2.17
+  '@types/react': 19.2.18
   '@types/react-collapse': 5.0.4
-  '@types/react-dom': 19.2.3
+  '@types/react-dom': 19.2.4
   '@types/react-redux': 7.1.34
   '@types/rss': 0.0.32
   '@typescript-eslint/eslint-plugin': 8.65.0
@@ -55,11 +55,11 @@ catalog:
   eslint-plugin-prettier: 5.5.6
   eslint-plugin-react: 7.37.5
   eslint-plugin-react-hooks: 6.1.0
-  eslint-plugin-storybook: 10.5.4
+  eslint-plugin-storybook: 10.5.5
   express: 5.2.1
   express-prom-bundle: 8.0.0
   fuse.js: 7.5.0
-  globals: 17.8.0
+  globals: 17.9.0
   html-react-parser: 6.1.5
   http-terminator: 3.2.0
   husky: 9.1.7
@@ -68,7 +68,7 @@ catalog:
   jest-fetch-mock: 4.2.0
   js-cookie: 3.0.8
   jsep: 1.4.0
-  lint-staged: 17.2.0
+  lint-staged: 17.3.0
   lodash.debounce: 4.0.8
   lru-cache: 11.5.2
   mock-fs: 5.5.0
@@ -87,13 +87,13 @@ catalog:
   react-error-boundary: 6.1.2
   react-movable: 3.4.1
   react-redux: 9.3.0
-  redis: 6.1.0
+  redis: 6.2.0
   rss: 1.2.2
   sass: 1.102.0
   schema-dts: 1.1.5
   sharp: 0.35.3
-  storybook: 10.5.4
-  storybook-addon-pseudo-states: 10.5.4
+  storybook: 10.5.5
+  storybook-addon-pseudo-states: 10.5.5
   swr: 2.4.2
   ts-jest: 29.4.12
   typescript: 6.0.3
