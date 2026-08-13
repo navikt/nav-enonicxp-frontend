@@ -1,6 +1,9 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { pageContentFragmentUtenforInnholdsseksjon } from './pageContentFragmentUtenforInnholdsseksjon';
+import {
+    hentFragmentInnholdForVarsel,
+    pageContentFragmentUtenforInnholdsseksjon,
+} from './pageContentFragmentUtenforInnholdsseksjon';
 import { FragmentUtenforInnholdsseksjonVarsel } from './FragmentUtenforInnholdsseksjonVarsel';
 
 type Props = {
@@ -28,17 +31,9 @@ export const FragmentUtenforInnholdsseksjon = ({ content, className }: Props) =>
                 return;
             }
 
-            const innhold = () => {
-                if (node.fragment.config.html?.processedHtml !== undefined) {
-                    return JSON.stringify(node.fragment.config.html.processedHtml);
-                } else if (node.fragment.config.content?.processedHtml !== undefined) {
-                    return JSON.stringify(node.fragment.config.content.processedHtml);
-                }
-            };
-
             warnings.push(
                 <ul key={`${path}-list`}>
-                    <li key={`${path}-item`}>Innhold: {innhold()}</li>
+                    <li key={`${path}-item`}>Innhold: {hentFragmentInnholdForVarsel(node)}</li>
                 </ul>
             );
         }
