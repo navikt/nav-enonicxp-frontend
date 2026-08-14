@@ -21,12 +21,15 @@ export const getFuseSearchFunc = async <Type>(
         if (!textInput) {
             return list;
         }
+        console.log(`Searching for "${textInput}" in list: ${JSON.stringify(list)}`);
 
         const results = fuse.search(textInput);
 
         return results.reduce<Type[]>((acc, result) => {
             if (result.score !== undefined && result.score < maxScore) {
                 acc.push(result.item);
+            } else {
+                console.log('ekskludert', JSON.stringify(result.item), 'score', result.score);
             }
 
             return acc;
