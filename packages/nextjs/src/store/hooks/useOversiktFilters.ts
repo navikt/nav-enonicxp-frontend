@@ -53,9 +53,11 @@ const _getFilteredList = async <ItemType extends OversiktFilterableItem>({
         });
     }
 
-    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then((fuseSearchFunc) => {
-        return fuseSearchFunc(textFilterActual);
-    });
+    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions, 0.6).then(
+        (fuseSearchFunc) => {
+            return fuseSearchFunc(textFilterActual);
+        }
+    );
 };
 
 export const useOversiktFilters = () => {
