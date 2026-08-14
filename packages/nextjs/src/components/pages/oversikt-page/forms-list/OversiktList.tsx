@@ -20,7 +20,6 @@ const getExactFormNumberIfFormSearch = (term: string) => {
 
 // Weight lets ut adjust fuzzy search results when using Fuse.js
 const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
-    console.log('oversiktType', oversiktType);
     // Produktdetaljer
     if (
         oversiktType === 'processing_times' ||
@@ -28,7 +27,6 @@ const getWeights = (oversiktType: OversiktPageData['oversiktType']) => {
         oversiktType === 'payout_dates'
     ) {
         return [
-            { name: 'sortTitle', weight: 10 },
             { name: 'title', weight: 10 },
             { name: 'ingress', weight: 1 },
             { name: 'itemList.title', weight: 1 },
@@ -70,6 +68,7 @@ export const OversiktList = (props: OversiktPageProps) => {
                       keys: getWeights(oversiktType),
                   },
         }).then((result) => {
+            console.log(`for search ${textFilter} result is ${result}`);
             setFilteredList(result);
         });
     }, [getFilteredList, itemList, formNumberFromSearch, oversiktType]);

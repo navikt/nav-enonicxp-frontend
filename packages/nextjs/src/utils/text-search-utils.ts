@@ -14,6 +14,7 @@ export const getFuseSearchFunc = async <Type>(
     maxScore = 0.35
 ) => {
     const Fuse = (await import('fuse.js')).default;
+    console.log(`Options are ${JSON.stringify(options)}`);
     const fuse = new Fuse(list, { ...defaultOptions, ...options });
 
     return (textInput: string) => {
@@ -21,6 +22,7 @@ export const getFuseSearchFunc = async <Type>(
             return list;
         }
 
+        console.log(`Searching for ${textInput} in list ${list}`);
         const results = fuse.search(textInput);
 
         return results.reduce<Type[]>((acc, result) => {
