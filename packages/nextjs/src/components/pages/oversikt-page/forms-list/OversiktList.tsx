@@ -68,7 +68,6 @@ export const OversiktList = (props: OversiktPageProps) => {
                       keys: getWeights(oversiktType),
                   },
         }).then((result) => {
-            console.log(`for search ${textFilter} result is ${result}`);
             setFilteredList(result);
         });
     }, [getFilteredList, itemList, formNumberFromSearch, oversiktType]);
