@@ -8,24 +8,29 @@ export const officeDetailsFormatAddress = (
     if (!address) {
         return '';
     }
-    let formatedAddress: string;
-    if (address.type === 'postboksadresse') {
+
+    let formattedAddress: string;
+    if ('postboksnummer' in address && address.postboksnummer) {
         const postboksanlegg = address.postboksanlegg ? ` ${address.postboksanlegg}` : '';
-        formatedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
+        formattedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
     } else {
-        const gatenavn = 'gatenavn' in address ? address.gatenavn : '';
-        const husnummer =
-            'husnummer' in address && address.husnummer ? ` ${address.husnummer}` : '';
-        const husbokstav =
-            'husbokstav' in address && address.husbokstav ? `${address.husbokstav}` : '';
-        formatedAddress = `${gatenavn}${husnummer}${husbokstav}`;
+        const gatenavn = 'gatenavn' in address ? address.gatenavn : undefined;
+        const husnummer = 'husnummer' in address ? address.husnummer : undefined;
+        const husbokstav = 'husbokstav' in address ? address.husbokstav : undefined;
+        const husnummerOgBokstav = [husnummer, husbokstav].filter(Boolean).join('');
+
+        formattedAddress = [gatenavn, husnummerOgBokstav].filter(Boolean).join(' ');
     }
+
     if (withZip) {
-        let poststed = address ? address.poststed || '' : '';
-        poststed = poststed.toUpperCase();
-        formatedAddress += `, ${address.postnummer} ${poststed}`;
+        const postalInformation = [address.postnummer, address.poststed?.toUpperCase()]
+            .filter(Boolean)
+            .join(' ');
+
+        return [formattedAddress, postalInformation].filter(Boolean).join(', ');
     }
-    return formatedAddress;
+
+    return formattedAddress;
 };
 
 export const officeDetailsFormatPhoneNumber = (phoneNumber?: string) => {

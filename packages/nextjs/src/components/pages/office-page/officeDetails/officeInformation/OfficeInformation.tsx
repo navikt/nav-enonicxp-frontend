@@ -13,9 +13,14 @@ import styles from './OfficeInformation.module.scss';
 interface OfficeInformationProps {
     officeData: OfficeDetailsData;
     initialOpen?: boolean;
+    locationLabel?: string;
 }
 
-export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInformationProps) => {
+export const OfficeInformation = ({
+    officeData,
+    initialOpen = false,
+    locationLabel,
+}: OfficeInformationProps) => {
     const [isOpen, setIsOpen] = useState(initialOpen);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
@@ -67,7 +72,7 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
                     {visitingAddress && (
                         <section>
                             <Heading level="3" size="small" spacing>
-                                {getOfficeTranslations('location')}
+                                {locationLabel || getOfficeTranslations('location')}
                             </Heading>
                             {beliggenhet?.adresseTilleggsnavn && (
                                 <BodyShort>{beliggenhet.adresseTilleggsnavn}</BodyShort>

@@ -12,7 +12,7 @@ import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
 
-export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
+export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
@@ -24,6 +24,9 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
     const getPhoneInformation = () => {
+        if (hidePhoneInformation) {
+            return '';
+        }
         if (['OKONOMI', 'OPPFUTLAND'].includes(officeData.type)) {
             return '';
         }
@@ -36,14 +39,14 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
         if (officeData.telefonnummerKommentar) {
             return officeData.telefonnummerKommentar;
         }
-        return getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
+        return `${getOfficeTranslations('phoneTime')} ${getOfficeTranslations('phoneInformation')}`;
     };
 
     const phoneInformation = getPhoneInformation();
     const phoneHeader =
         officeData.type === 'HMS'
             ? getOfficeTranslations('phoneToHMS')
-            : getOfficeTranslations('phoneToNav');
+            : getOfficeTranslations(isUnit ? 'phone' : 'phoneToNav');
 
     const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
 

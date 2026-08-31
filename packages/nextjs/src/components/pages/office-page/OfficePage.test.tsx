@@ -37,10 +37,14 @@ const officePageProps = ({
     officeType,
     useUnitEditorialPage,
     withEditorialPage = true,
+    hidePhoneInformation,
+    locationLabel,
 }: {
     officeType: OfficeType;
     useUnitEditorialPage?: boolean;
     withEditorialPage?: boolean;
+    hidePhoneInformation?: boolean;
+    locationLabel?: string;
 }) =>
     ({
         displayName: 'Test office',
@@ -49,7 +53,15 @@ const officePageProps = ({
             useUnitEditorialPage,
             officeNorgData: {
                 _selected: 'data',
-                data: { type: officeType },
+                data: {
+                    type: officeType,
+                    hidePhoneInformation,
+                    beliggenhet: {
+                        type: 'stedsadresse',
+                        gatenavn: 'Norggata',
+                        locationLabel,
+                    },
+                },
             },
         },
         page: ownPage,
@@ -69,6 +81,42 @@ describe('OfficePage', () => {
         expect(mockComponentMapper).toHaveBeenCalledWith(
             expect.objectContaining({ componentProps: editorialPage, pageProps: props })
         );
+    });
+
+    test('passes unit phone settings to office details', () => {
+        render(
+            <OfficePage
+                {...officePageProps({
+                    officeType: 'KONTROLL',
+                    hidePhoneInformation: true,
+                })}
+            />
+        );
+
+        expect(mockOfficeDetails).toHaveBeenCalledWith({
+            officeData: expect.any(Object),
+            hidePhoneInformation: true,
+            isUnit: true,
+            locationLabel: undefined,
+        });
+    });
+
+    test('passes a custom location label only for editorial offices', () => {
+        render(
+            <OfficePage
+                {...officePageProps({
+                    officeType: 'REDAKSJONELT',
+                    locationLabel: 'Besøksadresse',
+                })}
+            />
+        );
+
+        expect(mockOfficeDetails).toHaveBeenCalledWith({
+            officeData: expect.any(Object),
+            hidePhoneInformation: false,
+            isUnit: false,
+            locationLabel: 'Besøksadresse',
+        });
     });
 
     test('renders the office page content when no shared editorial page applies', () => {

@@ -9,7 +9,10 @@ type PostBoxAddress = {
     postboksanlegg?: string;
 };
 
-type StreetAddress = Partial<Address> & { type: 'stedsadresse' };
+type StreetAddress = Partial<Address> & {
+    type: 'stedsadresse';
+    locationLabel?: string;
+};
 
 export type OfficeAddress = StreetAddress | PostBoxAddress;
 
@@ -82,6 +85,7 @@ export type OfficeDetailsData = {
     type: OfficeType;
     telefonnummer?: string;
     telefonnummerKommentar?: string;
+    hidePhoneInformation?: boolean;
     faksnummer?: string;
     navn?: string;
     organisasjonsnummer?: string;
