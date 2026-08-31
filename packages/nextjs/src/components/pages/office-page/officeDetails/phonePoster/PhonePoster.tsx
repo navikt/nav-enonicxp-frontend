@@ -27,9 +27,6 @@ export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: Office
         if (hidePhoneInformation) {
             return '';
         }
-        if (['OKONOMI', 'OPPFUTLAND'].includes(officeData.type)) {
-            return '';
-        }
         if (officeData.type === 'ALS') {
             return getOfficeTranslations('phoneTime');
         }
