@@ -6,6 +6,7 @@ import { translator } from 'translations';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/officeDetails/utils';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
+import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import Config from 'config';
 import { AudienceChannels } from './AudienceChannels';
@@ -52,7 +53,11 @@ export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: Office
             <Heading level="2" size="small" className={styles.heading}>
                 {phoneHeader}
             </Heading>
-            <BodyShort className={styles.phoneNumberWrapper}>
+            <BodyShort
+                className={classNames(
+                    (phoneInformation || visPublikumskanaler) && styles.phoneNumberWrapper
+                )}
+            >
                 <LenkeBase href={`tel:+47${machineReadablePhone}`} className={styles.phoneNumber}>
                     <PhoneFillIcon aria-hidden="true" className={styles.telephoneIcon} />
                     {humanReadablePhone}
