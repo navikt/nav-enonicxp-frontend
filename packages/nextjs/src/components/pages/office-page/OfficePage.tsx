@@ -25,7 +25,7 @@ export const OfficePage = (props: OfficePageProps) => {
     const shouldRenderPageContent = useEditorialPage || officeNorgData.type !== 'REDAKSJONELT';
     const title = props.data.title?.trim() || officeNorgData.navn?.trim() || props.displayName;
     const editorialPage = props.editorial;
-    const isUnit = isUnitOfficeType(officeNorgData.type, props.data.useUnitEditorialPage);
+    const isUnit = isUnitOfficeType(officeNorgData.type);
     const location = officeNorgData.beliggenhet;
     const locationLabel =
         officeNorgData.type === 'REDAKSJONELT' && location && 'locationLabel' in location
@@ -43,7 +43,7 @@ export const OfficePage = (props: OfficePageProps) => {
             <OfficePageHeader title={title} officeDetails={officeNorgData} />
             <OfficeDetails
                 officeData={officeNorgData}
-                hidePhoneInformation={isUnit && officeNorgData.hidePhoneInformation}
+                hidePhoneInformation={Boolean(officeNorgData.hidePhoneInformation)}
                 isUnit={isUnit}
                 locationLabel={locationLabel}
             />

@@ -2,9 +2,8 @@ import { OfficeType } from 'types/content-props/office-details-props';
 
 const unitOfficeTypes: ReadonlySet<OfficeType> = new Set(['OKONOMI', 'OPPFUTLAND', 'KONTROLL']);
 
-export const isUnitOfficeType = (officeType: OfficeType, useUnitEditorialPage?: boolean) =>
-    unitOfficeTypes.has(officeType) ||
-    (officeType === 'REDAKSJONELT' && useUnitEditorialPage === true);
+export const isUnitOfficeType = (officeType: OfficeType) =>
+    unitOfficeTypes.has(officeType) || officeType === 'REDAKSJONELT';
 
 export const shouldUseOfficeEditorialPage = (
     officeType: OfficeType,
@@ -12,4 +11,5 @@ export const shouldUseOfficeEditorialPage = (
 ) =>
     officeType === 'LOKAL' ||
     officeType === 'ALS' ||
-    isUnitOfficeType(officeType, useUnitEditorialPage);
+    unitOfficeTypes.has(officeType) ||
+    (officeType === 'REDAKSJONELT' && useUnitEditorialPage === true);

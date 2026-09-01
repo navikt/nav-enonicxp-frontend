@@ -83,11 +83,30 @@ describe('OfficePage', () => {
         );
     });
 
-    test('passes unit phone settings to office details', () => {
+    test('passes phone settings to unit office details', () => {
         render(
             <OfficePage
                 {...officePageProps({
                     officeType: 'KONTROLL',
+                    hidePhoneInformation: true,
+                })}
+            />
+        );
+
+        expect(mockOfficeDetails).toHaveBeenCalledWith({
+            officeData: expect.any(Object),
+            hidePhoneInformation: true,
+            isUnit: true,
+            locationLabel: undefined,
+        });
+    });
+
+    test('passes hidden phone information for editorial offices without unit opt-in', () => {
+        render(
+            <OfficePage
+                {...officePageProps({
+                    officeType: 'REDAKSJONELT',
+                    useUnitEditorialPage: false,
                     hidePhoneInformation: true,
                 })}
             />
@@ -114,7 +133,7 @@ describe('OfficePage', () => {
         expect(mockOfficeDetails).toHaveBeenCalledWith({
             officeData: expect.any(Object),
             hidePhoneInformation: false,
-            isUnit: false,
+            isUnit: true,
             locationLabel: 'Besøksadresse',
         });
     });

@@ -1,4 +1,18 @@
-import { shouldUseOfficeEditorialPage } from './officePageUtils';
+import { isUnitOfficeType, shouldUseOfficeEditorialPage } from './officePageUtils';
+
+describe('isUnitOfficeType', () => {
+    test.each([
+        ['OKONOMI', true],
+        ['OPPFUTLAND', true],
+        ['KONTROLL', true],
+        ['REDAKSJONELT', true],
+        ['LOKAL', false],
+        ['ALS', false],
+        ['HMS', false],
+    ] as const)('returns %s for %s', (officeType, expected) => {
+        expect(isUnitOfficeType(officeType)).toBe(expected);
+    });
+});
 
 describe('shouldUseOfficeEditorialPage', () => {
     test.each([
