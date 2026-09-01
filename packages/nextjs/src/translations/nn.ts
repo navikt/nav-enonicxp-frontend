@@ -253,11 +253,13 @@ export const translationsBundleNn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'Du finn oss her',
+        contactUs: 'Kontakt oss',
         officeInformation: 'Kontorinformasjon',
         location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
+        faxNumber: 'Telefaks',
         phone: 'Telefonnummeret er',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
@@ -267,6 +269,8 @@ export const translationsBundleNn: PartialTranslations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        taglineALS: 'Arbeidslivssenter',
+        taglineUnit: 'Eining',
         skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
             'om du ønskjer hjelp til å rekruttere eller inkludere arbeidstakarar og førebyggje sjukefråvær.',
