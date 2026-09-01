@@ -11,6 +11,8 @@ declare global {
             XP_ORIGIN: string;
             SERVICE_SECRET: string;
             REVALIDATOR_PROXY_ORIGIN: string;
+            NAIS_TOKEN_ENDPOINT: string;
+            NAIS_CLUSTER_NAME: string;
             INNLOGGINGSSTATUS_URL: string;
             IMAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;

@@ -1,5 +1,6 @@
 import { fetchJson } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
+import { getRevalidatorProxyToken } from '@/shared/azure-token';
 
 type GetCacheKeyResponse = {
     key: string;
@@ -23,9 +24,12 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
         return;
     }
 
+    const token = await getRevalidatorProxyToken();
+
     return fetchJson<GetCacheKeyResponse>(
         `${process.env.REVALIDATOR_PROXY_ORIGIN}/get-cache-key`,
-        5000
+        5000,
+        token ? { headers: { Authorization: `Bearer ${token}` } } : undefined
     )
         .then((response) => {
             if (response?.key) {
