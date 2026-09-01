@@ -1,11 +1,10 @@
 import { logger } from './logger';
 
-// Acquires a machine-to-machine Entra ID (Azure AD) access token for calling
-// nav-enonicxp-frontend-revalidator-proxy, via the Nais-injected token endpoint (Texas sidecar).
-// See: https://docs.nais.io/auth/entra-id/how-to/consume-m2m/
+// Acquires machine-to-machine Entra ID (Azure AD) access tokens via the Nais-injected token
+// endpoint (Texas sidecar). See: https://docs.nais.io/auth/entra-id/how-to/consume-m2m/
 //
-// Texas already caches and refreshes the token server-side and never returns an expired one, so
-// there is no need to cache the token again here - every call simply asks Texas for the token.
+// Texas already caches and refreshes tokens server-side and never returns an expired one, so
+// there is no need to cache tokens again here - every call simply asks Texas for the token.
 
 type EntraIdTokenResponse = {
     access_token: string;
@@ -13,39 +12,16 @@ type EntraIdTokenResponse = {
     token_type: string;
 };
 
-const getRevalidatorProxyTokenTarget = (): string | null => {
-    const { REVALIDATOR_PROXY_ORIGIN, NAIS_CLUSTER_NAME } = process.env;
-
-    if (!REVALIDATOR_PROXY_ORIGIN || !NAIS_CLUSTER_NAME) {
-        logger.error(
-            'Unable to determine Entra ID token target for revalidator-proxy - REVALIDATOR_PROXY_ORIGIN or NAIS_CLUSTER_NAME is not set'
-        );
-        return null;
-    }
-
-    try {
-        const appName = new URL(REVALIDATOR_PROXY_ORIGIN).hostname;
-        return `api://${NAIS_CLUSTER_NAME}.navno.${appName}/.default`;
-    } catch (error) {
-        logger.error('Failed to parse REVALIDATOR_PROXY_ORIGIN while building Entra ID target', {
-            error,
-        });
-        return null;
-    }
-};
-
-export const getRevalidatorProxyToken = async (): Promise<string | null> => {
+// Acquires a token for a specific downstream app, identified by its Entra ID audience/target
+// string, e.g. `api://<cluster>.<namespace>.<app-name>/.default`. Use this directly if you need
+// to call an app that doesn't already have a dedicated helper below.
+export const getEntraIdToken = async (target: string): Promise<string | null> => {
     const { NAIS_TOKEN_ENDPOINT } = process.env;
 
     if (!NAIS_TOKEN_ENDPOINT) {
         logger.error(
-            'NAIS_TOKEN_ENDPOINT is not set - unable to acquire Entra ID token for revalidator-proxy requests'
+            `NAIS_TOKEN_ENDPOINT is not set - unable to acquire Entra ID token for target ${target}`
         );
-        return null;
-    }
-
-    const target = getRevalidatorProxyTokenTarget();
-    if (!target) {
         return null;
     }
 
@@ -58,7 +34,7 @@ export const getRevalidatorProxyToken = async (): Promise<string | null> => {
 
         if (!response.ok) {
             logger.error(
-                `Failed to fetch Entra ID token for revalidator-proxy - ${response.status} ${response.statusText}`
+                `Failed to fetch Entra ID token for target ${target} - ${response.status} ${response.statusText}`
             );
             return null;
         }
@@ -66,7 +42,34 @@ export const getRevalidatorProxyToken = async (): Promise<string | null> => {
         const { access_token: accessToken } = (await response.json()) as EntraIdTokenResponse;
         return accessToken || null;
     } catch (error) {
-        logger.error('Error while fetching Entra ID token for revalidator-proxy', { error });
+        logger.error(`Error while fetching Entra ID token for target ${target}`, { error });
         return null;
     }
+};
+
+const getAppTarget = (origin: string): string | null => {
+    const { NAIS_CLUSTER_NAME } = process.env;
+
+    if (!origin || !NAIS_CLUSTER_NAME) {
+        logger.error(
+            `Unable to determine Entra ID token target - origin or NAIS_CLUSTER_NAME is not set`
+        );
+        return null;
+    }
+
+    try {
+        const appName = new URL(origin).hostname;
+        return `api://${NAIS_CLUSTER_NAME}.navno.${appName}/.default`;
+    } catch (error) {
+        logger.error(`Failed to parse origin while building Entra ID target`, {
+            error,
+        });
+        return null;
+    }
+};
+
+// Acquires a token for calling nav-enonicxp-frontend-revalidator-proxy.
+export const getRevalidatorProxyToken = async (): Promise<string | null> => {
+    const target = getAppTarget(process.env.REVALIDATOR_PROXY_ORIGIN);
+    return target ? getEntraIdToken(target) : null;
 };
