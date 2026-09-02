@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { BodyLong } from '@navikt/ds-react';
-import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import {
@@ -14,8 +12,7 @@ import { OversiktItemListItem, OversiktPageData } from 'types/content-props/over
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetails } from 'components/_common/productDetails/ProductDetails';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { IllustrationStatic } from 'components/_common/illustration/static/IllustrationStatic';
-import { LenkeInline } from 'components/_common/lenke/lenkeInline/LenkeInline';
+import { TjenesterOversiktPanel } from 'components/_common/tjenesterOversiktPanel/TjenesterOversiktPanel';
 import style from './OversiktListPanel.module.scss';
 
 type OversiktType = OversiktPageData['oversiktType'];
@@ -93,14 +90,12 @@ export const OversiktListPanel = ({ panelDetails, oversiktType, skjemanummerValg
 
     if (isTjenesterOversikt) {
         return (
-            <div className={style.tjenesterPanel}>
-                <IllustrationStatic illustration={illustration} className={style.icon} />
-                <LenkeInline href={url} title={title} className={style.title}>
-                    {title}
-                </LenkeInline>
-                <BodyLong className={style.ingress}>{ingress}</BodyLong>
-                <ArrowRightIcon title="Pil høyre" className={style.arrow} />
-            </div>
+            <TjenesterOversiktPanel
+                title={title}
+                url={url}
+                ingress={ingress}
+                illustration={illustration}
+            />
         );
     }
 

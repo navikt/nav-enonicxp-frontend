@@ -5,6 +5,7 @@ import { LayoutContainer } from 'components/layouts/LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from 'types/component-props/layouts/situation-flex-cols';
 import { classNames } from 'utils/classnames';
 import { Heading } from 'components/_common/headers/Heading';
+import { ParsedHtml } from 'components/_common/parsedHtml/ParsedHtml';
 
 import style from './FlexColsLayout.module.scss';
 
@@ -21,7 +22,7 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId } = config;
+    const { title, numCols, justifyContent, anchorId, ingress } = config;
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
@@ -52,11 +53,16 @@ export const SituationPageFlexColsLayout = ({ pageProps, layoutProps }: Props) =
                         level="2"
                         size="large"
                         anchorId={anchorId}
-                        className={classNames(style.header, isShelf && style.shelfHeader)}
+                        className={classNames(
+                            style.header,
+                            ingress && style.headerWithIngress,
+                            isShelf && style.shelfHeader
+                        )}
                     >
                         {title}
                     </Heading>
                 )}
+                {ingress && <ParsedHtml htmlProps={ingress} />}
                 <Region
                     pageProps={pageProps}
                     regionProps={regionProps}
