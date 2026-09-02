@@ -9,8 +9,9 @@ import { useAuthState } from 'store/hooks/useAuthState';
 import { capitalize } from 'utils/string';
 import { translator } from 'translations';
 import { usePageContentProps } from 'store/pageContext';
+import { Omradekort } from 'components/_common/omradekort/Omradekort';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 
-import { MoreLink } from 'components/_common/moreLink/MoreLink';
 import { InnloggetSeksjonForsideLayoutProps } from 'types/component-props/layouts/innlogget-seksjon-forside';
 import style from './InnloggetSeksjonForsideLayout.module.scss';
 
@@ -43,6 +44,8 @@ export const InnloggetSeksjonForsideLayout = ({ layoutProps, pageProps }: Props)
     }
 
     const { header, mypage } = config;
+    const { text: mypageText, url: mypageUrl } = getSelectableLinkProps(mypage.link);
+
     const title = yourServicesText('yourServices');
     layoutProps.config.title = title; //for at kortene i region skal kunne plukke opp title til analytics
 
@@ -55,11 +58,27 @@ export const InnloggetSeksjonForsideLayout = ({ layoutProps, pageProps }: Props)
                 data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
-                <Heading level="3" size="small" className={style.services}>
-                    {title}
-                </Heading>
-                <Region pageProps={pageProps} regionProps={regions.cards} className={style.cards} />
-                <MoreLink analyticsGroup={title} link={mypage?.link} />
+                <section aria-labelledby="innlogget-cards-heading">
+                    <Heading
+                        level="3"
+                        size="small"
+                        className={style.services}
+                        anchorId="innlogget-cards-heading"
+                    >
+                        {title}
+                    </Heading>
+
+                    <div className={style.cards}>
+                        {/* mypage isn't optional in types, but it was optional-chained in the old implementation, lol wut */}
+                        {/* what about analyticsGroup? */}
+                        {mypage && <Omradekort title={mypageText} path={mypageUrl} area="mypage" />}
+                        <Region
+                            pageProps={pageProps}
+                            regionProps={regions.cards}
+                            className={style.mappedCards}
+                        />
+                    </div>
+                </section>
             </LayoutContainer>
         </AuthDependantRender>
     );
