@@ -12,9 +12,6 @@ type EntraIdTokenResponse = {
     token_type: string;
 };
 
-// Acquires a token for a specific downstream app, identified by its Entra ID audience/target
-// string, e.g. `api://<cluster>.<namespace>.<app-name>/.default`. Use this directly if you need
-// to call an app that doesn't already have a dedicated helper below.
 export const getEntraIdToken = async (target: string): Promise<string | null> => {
     const { NAIS_TOKEN_ENDPOINT } = process.env;
 
