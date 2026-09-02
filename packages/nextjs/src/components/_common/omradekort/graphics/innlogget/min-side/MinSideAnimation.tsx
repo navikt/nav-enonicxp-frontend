@@ -12,7 +12,7 @@ export const MinSideAnimation = () => {
             <StaticImage imageData={shapes} className={style.shapes} />
             <StaticImage imageData={letterS} className={style.letterS} />
             <div className={style.mask} />
-            <StaticImage imageData={person} className={style.document} />
+            <StaticImage imageData={person} className={style.person} />
         </>
     );
 };

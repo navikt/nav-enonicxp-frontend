@@ -71,7 +71,9 @@ export const InnloggetSeksjonForsideLayout = ({ layoutProps, pageProps }: Props)
                     <div className={style.cards}>
                         {/* mypage isn't optional in types, but it was optional-chained in the old implementation, lol wut */}
                         {/* what about analyticsGroup? */}
-                        {mypage && <Omradekort title={mypageText} path={mypageUrl} area="mypage" />}
+                        {mypage && (
+                            <Omradekort title={mypageText} path={mypageUrl} area="my-page" />
+                        )}
                         <Region
                             pageProps={pageProps}
                             regionProps={regions.cards}

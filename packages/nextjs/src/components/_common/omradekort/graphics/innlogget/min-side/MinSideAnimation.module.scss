@@ -39,14 +39,14 @@
     right: -184px;
 }
 
-.document {
+.person {
     @include omradekort.transitionMixin;
     position: absolute;
     right: 67px;
     top: 42px;
 }
 
-@include areaGraphics.onExpandMixin('.document') {
-    right: 110px;
-    top: 85px;
+@include areaGraphics.onExpandMixin('.person') {
+    right: 139px;
+    top: 80px;
 }
