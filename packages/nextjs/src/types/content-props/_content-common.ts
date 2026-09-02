@@ -75,6 +75,7 @@ export enum ContentType {
     Kapittel = 'no.nav.navno:main-article-chapter',
     Melding = 'no.nav.navno:melding',
     OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
+    // TODO: Remove office-information compatibility when archive v2 serves stored HTML.
     OfficeInformation = 'no.nav.navno:office-information',
     OfficePage = 'no.nav.navno:office-page',
     Overview = 'no.nav.navno:overview', // Blir avviklet til fordel for Oversikt
