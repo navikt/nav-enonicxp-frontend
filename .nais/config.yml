@@ -75,6 +75,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: navno-xp-archive
+        - application: navno-xp-archive-dev3
   resources:
   {{#with resources}}
     requests:
