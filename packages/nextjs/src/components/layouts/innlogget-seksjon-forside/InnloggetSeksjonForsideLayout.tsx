@@ -44,7 +44,7 @@ export const InnloggetSeksjonForsideLayout = ({ layoutProps, pageProps }: Props)
     }
 
     const { header, mypage } = config;
-    const { text: mypageText, url: mypageUrl } = getSelectableLinkProps(mypage.link);
+    const { text: mypageText, url: mypageUrl } = getSelectableLinkProps(mypage?.link);
 
     const title = yourServicesText('yourServices');
     layoutProps.config.title = title; //for at kortene i region skal kunne plukke opp title til analytics
