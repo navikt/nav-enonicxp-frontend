@@ -36,7 +36,12 @@
 }
 
 @include areaGraphics.onExpandMixin('.mask') {
-    right: -184px;
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 102px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .person {
@@ -47,6 +52,53 @@
 }
 
 @include areaGraphics.onExpandMixin('.person') {
-    right: 139px;
+    right: 112px;
     top: 80px;
+}
+
+.letterPartOrange {
+    background-color: var(--ax-warning-300);
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 50.16px;
+    height: 120px;
+    right: -39px;
+    top: 0;
+    transform: skewX(-22.5914deg);
+}
+
+@include areaGraphics.onExpandMixin('.letterPartOrange') {
+    right: 25px;
+}
+
+.letterPartBlue {
+    background-color: #99c4dd;
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 48px;
+    height: 160px;
+    right: -37px;
+    top: 0;
+}
+
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
+}
+
+.letterPartBlueTwo {
+    background-color: #99c4dd;
+
+    @include omradekort.transitionMixin;
+    position: absolute;
+    width: 50.16px;
+    height: 120px;
+    right: -26px;
+    top: 0;
+    transform: skewX(22.5914deg);
+}
+
+@include areaGraphics.onExpandMixin('.letterPartBlueTwo') {
+    right: 75px;
 }
