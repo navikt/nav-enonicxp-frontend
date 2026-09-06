@@ -5,7 +5,7 @@
     @include omradekort.transitionMixin;
     position: absolute;
     right: 0;
-    top: 122px;
+    top: 125px;
 }
 
 @include areaGraphics.onExpandMixin('.shapes') {
