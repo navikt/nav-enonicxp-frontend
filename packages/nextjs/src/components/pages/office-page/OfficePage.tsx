@@ -43,9 +43,9 @@ export const OfficePage = (props: OfficePageProps) => {
             <OfficeDetails
                 officeData={officeNorgData}
                 hidePhoneInformation={Boolean(officeNorgData.hidePhoneInformation)}
-                hideLocation={Boolean(props.data.hideLocation)}
+                hideLocation={Boolean(officeNorgData.beliggenhet?.hideLocation)}
                 locationLabel={locationLabel}
-                phoneHeader={props.data.phoneHeader}
+                phoneHeader={officeNorgData.phoneHeader}
             />
 
             {shouldRenderPageContent && page && (

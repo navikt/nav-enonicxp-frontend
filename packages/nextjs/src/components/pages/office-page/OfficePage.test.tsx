@@ -55,16 +55,16 @@ const officePageProps = ({
         data: {
             title: 'Test office title',
             useUnitEditorialPage,
-            phoneHeader,
-            hideLocation,
             officeNorgData: {
                 _selected: 'data',
                 data: {
                     type: officeType,
                     hidePhoneInformation,
+                    phoneHeader,
                     beliggenhet: {
                         type: 'stedsadresse',
                         gatenavn: 'Norggata',
+                        hideLocation,
                         locationLabel,
                     },
                 },

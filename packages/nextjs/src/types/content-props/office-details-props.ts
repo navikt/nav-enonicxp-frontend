@@ -14,7 +14,9 @@ type StreetAddress = Partial<Address> & {
     locationLabel?: string;
 };
 
-export type OfficeAddress = StreetAddress | PostBoxAddress;
+export type OfficeAddress = (StreetAddress | PostBoxAddress) & {
+    hideLocation?: boolean;
+};
 
 export type OfficeType =
     'LOKAL' | 'HMS' | 'ALS' | 'OKONOMI' | 'OPPFUTLAND' | 'KONTROLL' | 'REDAKSJONELT';
@@ -86,6 +88,7 @@ export type OfficeDetailsData = {
     telefonnummer?: string;
     telefonnummerKommentar?: string;
     hidePhoneInformation?: boolean;
+    phoneHeader?: string;
     faksnummer?: string;
     navn?: string;
     organisasjonsnummer?: string;
