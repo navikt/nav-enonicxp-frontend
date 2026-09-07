@@ -38,19 +38,25 @@ const officePageProps = ({
     useUnitEditorialPage,
     withEditorialPage = true,
     hidePhoneInformation,
+    hideLocation,
     locationLabel,
+    phoneHeader,
 }: {
     officeType: OfficeType;
     useUnitEditorialPage?: boolean;
     withEditorialPage?: boolean;
     hidePhoneInformation?: boolean;
+    hideLocation?: boolean;
     locationLabel?: string;
+    phoneHeader?: string;
 }) =>
     ({
         displayName: 'Test office',
         data: {
             title: 'Test office title',
             useUnitEditorialPage,
+            phoneHeader,
+            hideLocation,
             officeNorgData: {
                 _selected: 'data',
                 data: {
@@ -96,8 +102,9 @@ describe('OfficePage', () => {
         expect(mockOfficeDetails).toHaveBeenCalledWith({
             officeData: expect.any(Object),
             hidePhoneInformation: true,
-            isUnit: true,
+            hideLocation: false,
             locationLabel: undefined,
+            phoneHeader: undefined,
         });
     });
 
@@ -115,8 +122,9 @@ describe('OfficePage', () => {
         expect(mockOfficeDetails).toHaveBeenCalledWith({
             officeData: expect.any(Object),
             hidePhoneInformation: true,
-            isUnit: true,
+            hideLocation: false,
             locationLabel: undefined,
+            phoneHeader: undefined,
         });
     });
 
@@ -133,9 +141,33 @@ describe('OfficePage', () => {
         expect(mockOfficeDetails).toHaveBeenCalledWith({
             officeData: expect.any(Object),
             hidePhoneInformation: false,
-            isUnit: true,
+            hideLocation: false,
             locationLabel: 'Besøksadresse',
+            phoneHeader: undefined,
         });
+    });
+
+    test('passes the editor-defined location visibility to office details', () => {
+        render(<OfficePage {...officePageProps({ officeType: 'LOKAL', hideLocation: true })} />);
+
+        expect(mockOfficeDetails).toHaveBeenCalledWith(
+            expect.objectContaining({ hideLocation: true })
+        );
+    });
+
+    test('passes the editor-defined phone header to office details', () => {
+        render(
+            <OfficePage
+                {...officePageProps({
+                    officeType: 'KONTROLL',
+                    phoneHeader: 'Ring oss på dette nummeret',
+                })}
+            />
+        );
+
+        expect(mockOfficeDetails).toHaveBeenCalledWith(
+            expect.objectContaining({ phoneHeader: 'Ring oss på dette nummeret' })
+        );
     });
 
     test('renders the office page content when no shared editorial page applies', () => {

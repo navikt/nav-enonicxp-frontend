@@ -260,7 +260,6 @@ export const translationsBundleNn: PartialTranslations = {
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         faxNumber: 'Telefaks',
-        phone: 'Telefonnummeret er',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
         phoneTime: 'Telefontid kvardagar kl 9–15.',

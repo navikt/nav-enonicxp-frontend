@@ -13,12 +13,14 @@ import styles from './OfficeInformation.module.scss';
 interface OfficeInformationProps {
     officeData: OfficeDetailsData;
     initialOpen?: boolean;
+    hideLocation?: boolean;
     locationLabel?: string;
 }
 
 export const OfficeInformation = ({
     officeData,
     initialOpen = false,
+    hideLocation,
     locationLabel,
 }: OfficeInformationProps) => {
     const [isOpen, setIsOpen] = useState(initialOpen);
@@ -27,7 +29,7 @@ export const OfficeInformation = ({
     const getOfficeTranslations = translator('office', contentProps.language);
     const title = getOfficeTranslations('officeInformation');
     const { postadresse, beliggenhet, organisasjonsnummer, enhetNr, faksnummer } = officeData;
-    const visitingAddress = officeDetailsFormatAddress(beliggenhet, true);
+    const visitingAddress = hideLocation ? '' : officeDetailsFormatAddress(beliggenhet, true);
     const postalAddress = officeDetailsFormatAddress(postadresse, true);
     const hasOfficeInformation =
         Boolean(visitingAddress) ||

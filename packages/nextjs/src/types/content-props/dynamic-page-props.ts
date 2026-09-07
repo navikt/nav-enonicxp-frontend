@@ -68,6 +68,8 @@ export type OfficePageProps = ContentCommonProps & {
         title: string;
         linkedin?: string;
         useUnitEditorialPage?: boolean;
+        phoneHeader?: string;
+        hideLocation?: boolean;
         officeNorgData: OptionSetSingle<{ data: OfficeDetailsData }>;
     };
     page: LayoutComponentProps;

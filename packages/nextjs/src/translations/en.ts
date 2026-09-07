@@ -277,7 +277,6 @@ export const translationsBundleEn: PartialTranslations = {
         orgNumber: 'Org number',
         officeNumber: 'Office number',
         faxNumber: 'Fax number',
-        phone: 'Phone number',
         phoneToNav: 'Nav phone number is',
         phoneToHMS: 'Phone number to hjelpemiddelsentralen is',
         phoneTime: 'Phone hours, weekdays at 9-15.',
