@@ -270,11 +270,14 @@ export const translationsBundleEn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'You can find us here',
+        contactUs: 'Contact us',
         officeInformation: 'Office information',
         location: 'Location',
         postalAddress: 'Postal address',
         orgNumber: 'Org number',
         officeNumber: 'Office number',
+        faxNumber: 'Fax number',
+        phone: 'Phone number',
         phoneToNav: 'Nav phone number is',
         phoneToHMS: 'Phone number to hjelpemiddelsentralen is',
         phoneTime: 'Phone hours, weekdays at 9-15.',
@@ -282,6 +285,11 @@ export const translationsBundleEn: PartialTranslations = {
         alternativeContacts: 'Other contact options:',
         taglineOffice: 'Nav office',
         taglineHMS: 'Assistive technology centre',
+        taglineALS: 'Nav Working Life Centre',
+        taglineUnit: 'Unit',
+        skriveTilOss: 'write to us',
+        kontaktskjemaALSTekst:
+            'if you would like help recruiting or including employees and preventing sickness absence.',
     },
     dateTime: {
         weekDayNames: {

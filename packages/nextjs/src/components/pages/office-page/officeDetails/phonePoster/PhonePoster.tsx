@@ -6,13 +6,14 @@ import { translator } from 'translations';
 import { officeDetailsFormatPhoneNumber } from 'components/pages/office-page/officeDetails/utils';
 import { usePageContentProps } from 'store/pageContext';
 import { forceArray } from 'utils/arrays';
+import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import Config from 'config';
 import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
 
-export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
+export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
@@ -24,20 +25,26 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const humanReadablePhone = officeDetailsFormatPhoneNumber(machineReadablePhone);
 
     const getPhoneInformation = () => {
+        if (hidePhoneInformation) {
+            return '';
+        }
         if (officeData.type === 'ALS') {
             return getOfficeTranslations('phoneTime');
+        }
+        if (officeData.enhetNr === '4534') {
+            return 'Åpningstiden er hverdager kl. 9–15. Hvis åpningstiden endrer seg, får du beskjed via talemelding når du ringer oss.';
         }
         if (officeData.telefonnummerKommentar) {
             return officeData.telefonnummerKommentar;
         }
-        return getOfficeTranslations('phoneTime') + ' ' + getOfficeTranslations('phoneInformation');
+        return `${getOfficeTranslations('phoneTime')} ${getOfficeTranslations('phoneInformation')}`;
     };
 
     const phoneInformation = getPhoneInformation();
     const phoneHeader =
         officeData.type === 'HMS'
             ? getOfficeTranslations('phoneToHMS')
-            : getOfficeTranslations('phoneToNav');
+            : getOfficeTranslations(isUnit ? 'phone' : 'phoneToNav');
 
     const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
 
@@ -46,13 +53,19 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
             <Heading level="2" size="small" className={styles.heading}>
                 {phoneHeader}
             </Heading>
-            <BodyShort className={styles.phoneNumberWrapper}>
+            <BodyShort
+                className={classNames(
+                    (phoneInformation || visPublikumskanaler) && styles.phoneNumberWrapper
+                )}
+            >
                 <LenkeBase href={`tel:+47${machineReadablePhone}`} className={styles.phoneNumber}>
                     <PhoneFillIcon aria-hidden="true" className={styles.telephoneIcon} />
                     {humanReadablePhone}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            {phoneInformation && (
+                <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
+            )}
             {visPublikumskanaler && (
                 <>
                     <Heading size="small" level="3">

@@ -13,17 +13,28 @@ import styles from './OfficeInformation.module.scss';
 interface OfficeInformationProps {
     officeData: OfficeDetailsData;
     initialOpen?: boolean;
+    locationLabel?: string;
 }
 
-export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInformationProps) => {
+export const OfficeInformation = ({
+    officeData,
+    initialOpen = false,
+    locationLabel,
+}: OfficeInformationProps) => {
     const [isOpen, setIsOpen] = useState(initialOpen);
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const getOfficeTranslations = translator('office', contentProps.language);
     const title = getOfficeTranslations('officeInformation');
-    const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } = officeData;
+    const { postadresse, beliggenhet, organisasjonsnummer, enhetNr, faksnummer } = officeData;
     const visitingAddress = officeDetailsFormatAddress(beliggenhet, true);
     const postalAddress = officeDetailsFormatAddress(postadresse, true);
+    const hasOfficeInformation =
+        Boolean(visitingAddress) ||
+        Boolean(postalAddress) ||
+        Boolean(organisasjonsnummer) ||
+        Boolean(enhetNr) ||
+        Boolean(faksnummer);
 
     const toggleExpandCollapse = (isOpening: boolean, tittel: string) => {
         setIsOpen(isOpening);
@@ -38,6 +49,10 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
             }
         );
     };
+
+    if (!hasOfficeInformation) {
+        return null;
+    }
 
     return (
         <ExpansionCard
@@ -54,21 +69,25 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
             </ExpansionCard.Header>
             <ExpansionCard.Content>
                 <div className={styles.expansionCardContent}>
-                    <section>
-                        <Heading level="3" size="small" spacing>
-                            {getOfficeTranslations('location')}
-                        </Heading>
-                        {beliggenhet?.adresseTilleggsnavn && (
-                            <BodyShort>{beliggenhet.adresseTilleggsnavn}</BodyShort>
-                        )}
-                        <BodyShort>{visitingAddress}</BodyShort>
-                    </section>
-                    <section>
-                        <Heading level="3" size="small" spacing>
-                            {getOfficeTranslations('postalAddress')}
-                        </Heading>
-                        <BodyShort>{postalAddress}</BodyShort>
-                    </section>
+                    {visitingAddress && (
+                        <section>
+                            <Heading level="3" size="small" spacing>
+                                {locationLabel || getOfficeTranslations('location')}
+                            </Heading>
+                            {beliggenhet?.adresseTilleggsnavn && (
+                                <BodyShort>{beliggenhet.adresseTilleggsnavn}</BodyShort>
+                            )}
+                            <BodyShort>{visitingAddress}</BodyShort>
+                        </section>
+                    )}
+                    {postalAddress && (
+                        <section>
+                            <Heading level="3" size="small" spacing>
+                                {getOfficeTranslations('postalAddress')}
+                            </Heading>
+                            <BodyShort>{postalAddress}</BodyShort>
+                        </section>
+                    )}
                     {organisasjonsnummer && (
                         <section>
                             <Heading level="3" size="small" spacing>
@@ -83,6 +102,14 @@ export const OfficeInformation = ({ officeData, initialOpen = false }: OfficeInf
                                 {getOfficeTranslations('officeNumber')}
                             </Heading>
                             <BodyShort>{enhetNr}</BodyShort>
+                        </section>
+                    )}
+                    {faksnummer && (
+                        <section>
+                            <Heading level="3" size="small" spacing>
+                                {getOfficeTranslations('faxNumber')}
+                            </Heading>
+                            <BodyShort>{faksnummer}</BodyShort>
                         </section>
                     )}
                 </div>

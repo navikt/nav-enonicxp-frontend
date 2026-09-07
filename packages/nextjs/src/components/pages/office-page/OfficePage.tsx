@@ -6,36 +6,54 @@ import { classNames } from 'utils/classnames';
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
 import { LinkedIn } from './linkedIn/LinkedIn';
+import { isUnitOfficeType, shouldUseOfficeEditorialPage } from './officePageUtils';
 
 import styles from './OfficePage.module.scss';
 
 export const OfficePage = (props: OfficePageProps) => {
     const officeNorgData = props.data.officeNorgData.data;
-    const erLokalkontorEllerArbeidslivssenter =
-        officeNorgData.type === 'LOKAL' || officeNorgData.type === 'ALS';
-    const editorialPage = props.editorial;
 
     if (!officeNorgData) {
         logger.error('No office data exists for this office page');
         return null;
     }
 
-    if (erLokalkontorEllerArbeidslivssenter && !editorialPage) {
+    const useEditorialPage = shouldUseOfficeEditorialPage(
+        officeNorgData.type,
+        props.data.useUnitEditorialPage
+    );
+    const shouldRenderPageContent = useEditorialPage || officeNorgData.type !== 'REDAKSJONELT';
+    const title = props.data.title?.trim() || officeNorgData.navn?.trim() || props.displayName;
+    const editorialPage = props.editorial;
+    const isUnit = isUnitOfficeType(officeNorgData.type);
+    const location = officeNorgData.beliggenhet;
+    const locationLabel =
+        officeNorgData.type === 'REDAKSJONELT' && location && 'locationLabel' in location
+            ? location.locationLabel?.trim()
+            : undefined;
+
+    if (useEditorialPage && !editorialPage) {
         logger.error(`No editorial page found for office branch ${props.displayName}`);
-        return null;
     }
 
-    const page =
-        erLokalkontorEllerArbeidslivssenter && editorialPage ? editorialPage.page : props.page;
+    const page = useEditorialPage ? editorialPage?.page : props.page;
 
     return (
         <article className={styles.officePage}>
-            {officeNorgData && <OfficePageHeader officeDetails={officeNorgData} />}
-            {officeNorgData && <OfficeDetails officeData={officeNorgData} />}
+            <OfficePageHeader title={title} officeDetails={officeNorgData} />
+            <OfficeDetails
+                officeData={officeNorgData}
+                hidePhoneInformation={Boolean(officeNorgData.hidePhoneInformation)}
+                isUnit={isUnit}
+                locationLabel={locationLabel}
+            />
 
-            <div className={classNames(styles.content, styles.pageContent)}>
-                <ComponentMapper componentProps={page} pageProps={props} />
-            </div>
+            {shouldRenderPageContent && page && (
+                <div className={classNames(styles.content, styles.pageContent)}>
+                    <ComponentMapper componentProps={page} pageProps={props} />
+                </div>
+            )}
+
             {props.data.linkedin && officeNorgData.type === 'ALS' && (
                 <LinkedIn text={props.data.linkedin} />
             )}
