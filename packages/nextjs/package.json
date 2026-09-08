@@ -63,6 +63,7 @@
     },
     "devDependencies": {
         "@chromatic-com/storybook": "catalog:",
+        "@navikt/browserslist-config": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
         "@playwright/test": "catalog:",
         "@storybook/addon-docs": "catalog:",
@@ -89,19 +90,7 @@
         "storybook-addon-pseudo-states": "catalog:",
         "ts-jest": "catalog:"
     },
-    "browserslist": {
-        "production": [
-            ">0.2% in no",
-            "iOS >= 11",
-            "safari >= 11",
-            "not dead",
-            "not op_mini all",
-            "not ie 11"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+    "browserslist": [
+        "extends @navikt/browserslist-config"
+    ]
 }
