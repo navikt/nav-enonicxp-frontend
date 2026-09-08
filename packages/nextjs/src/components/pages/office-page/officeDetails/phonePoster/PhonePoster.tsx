@@ -9,6 +9,7 @@ import { forceArray } from 'utils/arrays';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import Config from 'config';
+import { getPhoneHeaderTranslationKey } from 'components/pages/office-page/officePageUtils';
 import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
@@ -46,8 +47,7 @@ export const PhonePoster = ({
 
     const phoneInformation = getPhoneInformation();
     const displayedPhoneHeader =
-        phoneHeader?.trim() ||
-        getOfficeTranslations(officeData.type === 'HMS' ? 'phoneToHMS' : 'phoneToNav');
+        phoneHeader?.trim() || getOfficeTranslations(getPhoneHeaderTranslationKey(officeData.type));
 
     const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
 

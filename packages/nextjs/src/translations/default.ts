@@ -288,6 +288,7 @@ export const translationsBundleNb = {
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         faxNumber: 'Telefaks',
+        phone: 'Telefonnummeret er',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
         phoneTime: 'Telefontid hverdager kl. 9–15.',

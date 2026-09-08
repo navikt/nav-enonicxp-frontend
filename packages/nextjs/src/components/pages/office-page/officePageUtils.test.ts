@@ -1,4 +1,8 @@
-import { isUnitOfficeType, shouldUseOfficeEditorialPage } from './officePageUtils';
+import {
+    getPhoneHeaderTranslationKey,
+    isUnitOfficeType,
+    shouldUseOfficeEditorialPage,
+} from './officePageUtils';
 
 describe('isUnitOfficeType', () => {
     test.each([
@@ -11,6 +15,20 @@ describe('isUnitOfficeType', () => {
         ['HMS', false],
     ] as const)('returns %s for %s', (officeType, expected) => {
         expect(isUnitOfficeType(officeType)).toBe(expected);
+    });
+});
+
+describe('getPhoneHeaderTranslationKey', () => {
+    test.each([
+        ['OKONOMI', 'phone'],
+        ['OPPFUTLAND', 'phone'],
+        ['KONTROLL', 'phone'],
+        ['REDAKSJONELT', 'phone'],
+        ['LOKAL', 'phoneToNav'],
+        ['ALS', 'phoneToNav'],
+        ['HMS', 'phoneToHMS'],
+    ] as const)('returns %s for %s', (officeType, expected) => {
+        expect(getPhoneHeaderTranslationKey(officeType)).toBe(expected);
     });
 });
 
