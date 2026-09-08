@@ -6,7 +6,7 @@ import { classNames } from 'utils/classnames';
 import { OfficePageHeader } from 'components/pages/office-page/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/pages/office-page/officeDetails/OfficeDetails';
 import { LinkedIn } from './linkedIn/LinkedIn';
-import { isUnitOfficeType, shouldUseOfficeEditorialPage } from './officePageUtils';
+import { shouldUseOfficeEditorialPage } from './officePageUtils';
 
 import styles from './OfficePage.module.scss';
 
@@ -25,7 +25,6 @@ export const OfficePage = (props: OfficePageProps) => {
     const shouldRenderPageContent = useEditorialPage || officeNorgData.type !== 'REDAKSJONELT';
     const title = props.data.title?.trim() || officeNorgData.navn?.trim() || props.displayName;
     const editorialPage = props.editorial;
-    const isUnit = isUnitOfficeType(officeNorgData.type);
     const location = officeNorgData.beliggenhet;
     const locationLabel =
         officeNorgData.type === 'REDAKSJONELT' && location && 'locationLabel' in location
@@ -44,8 +43,9 @@ export const OfficePage = (props: OfficePageProps) => {
             <OfficeDetails
                 officeData={officeNorgData}
                 hidePhoneInformation={Boolean(officeNorgData.hidePhoneInformation)}
-                isUnit={isUnit}
+                hideLocation={Boolean(officeNorgData.beliggenhet?.hideLocation)}
                 locationLabel={locationLabel}
+                phoneHeader={officeNorgData.phoneHeader}
             />
 
             {shouldRenderPageContent && page && (

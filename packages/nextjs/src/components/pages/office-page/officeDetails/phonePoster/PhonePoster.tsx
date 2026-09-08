@@ -9,11 +9,16 @@ import { forceArray } from 'utils/arrays';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/lenkeBase/LenkeBase';
 import Config from 'config';
+import { getPhoneHeaderTranslationKey } from 'components/pages/office-page/officePageUtils';
 import { AudienceChannels } from './AudienceChannels';
 
 import styles from './PhonePoster.module.scss';
 
-export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: OfficeDetailsProps) => {
+export const PhonePoster = ({
+    officeData,
+    hidePhoneInformation,
+    phoneHeader,
+}: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const publikumskanaler = forceArray(officeData.brukerkontakt?.publikumskanaler);
     const getOfficeTranslations = translator('office', language);
@@ -41,17 +46,15 @@ export const PhonePoster = ({ officeData, hidePhoneInformation, isUnit }: Office
     };
 
     const phoneInformation = getPhoneInformation();
-    const phoneHeader =
-        officeData.type === 'HMS'
-            ? getOfficeTranslations('phoneToHMS')
-            : getOfficeTranslations(isUnit ? 'phone' : 'phoneToNav');
+    const displayedPhoneHeader =
+        phoneHeader?.trim() || getOfficeTranslations(getPhoneHeaderTranslationKey(officeData.type));
 
     const visPublikumskanaler = officeData.type !== 'ALS' && publikumskanaler.length > 0;
 
     return (
         <div className={styles.phonePoster}>
             <Heading level="2" size="small" className={styles.heading}>
-                {phoneHeader}
+                {displayedPhoneHeader}
             </Heading>
             <BodyShort
                 className={classNames(

@@ -14,15 +14,17 @@ import styles from './OfficeDetails.module.scss';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
     hidePhoneInformation?: boolean;
-    isUnit?: boolean;
+    hideLocation?: boolean;
     locationLabel?: string;
+    phoneHeader?: string;
 }
 
 export const OfficeDetails = ({
     officeData,
     hidePhoneInformation,
-    isUnit,
+    hideLocation,
     locationLabel,
+    phoneHeader,
 }: OfficeDetailsProps) => {
     const { language } = usePageContentProps();
     const { brukerkontakt } = officeData;
@@ -47,10 +49,14 @@ export const OfficeDetails = ({
                 <PhonePoster
                     officeData={officeData}
                     hidePhoneInformation={hidePhoneInformation}
-                    isUnit={isUnit}
+                    phoneHeader={phoneHeader}
                 />
                 {officeData.type === 'ALS' && <Kontaktskjema />}
-                <OfficeInformation officeData={officeData} locationLabel={locationLabel} />
+                <OfficeInformation
+                    officeData={officeData}
+                    hideLocation={hideLocation}
+                    locationLabel={locationLabel}
+                />
             </div>
         </div>
     );

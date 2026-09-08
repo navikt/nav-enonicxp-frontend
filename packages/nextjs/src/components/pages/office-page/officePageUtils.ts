@@ -5,6 +5,14 @@ const unitOfficeTypes: ReadonlySet<OfficeType> = new Set(['OKONOMI', 'OPPFUTLAND
 export const isUnitOfficeType = (officeType: OfficeType) =>
     unitOfficeTypes.has(officeType) || officeType === 'REDAKSJONELT';
 
+export const getPhoneHeaderTranslationKey = (officeType: OfficeType) => {
+    if (officeType === 'HMS') {
+        return 'phoneToHMS';
+    }
+
+    return isUnitOfficeType(officeType) ? 'phone' : 'phoneToNav';
+};
+
 export const shouldUseOfficeEditorialPage = (
     officeType: OfficeType,
     useUnitEditorialPage?: boolean
