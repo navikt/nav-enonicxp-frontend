@@ -25,6 +25,11 @@
 
 .cards {
     @include common.grid-layout-mixin();
+}
+
+.mappedCards {
+    display: contents;
+    // @include common.grid-layout-mixin();
     @include common.content-studio-drop-zone-fix-local();
 
     & > :empty {

@@ -3,6 +3,7 @@ import { classNames } from 'utils/classnames';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { OmradekortGraphicsType } from 'components/parts/omradekort/OmradekortPart';
 import { CasesAnimation } from './innlogget/cases/CasesAnimation';
+import { MinSideAnimation } from './innlogget/min-side/MinSideAnimation';
 import { EmploymentStatusFormAnimation } from './innlogget/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './innlogget/payments/PaymentsAnimation';
 import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
@@ -15,6 +16,7 @@ import { WorkAnimation } from './open-pages/work/WorkAnimation';
 import style from './OmradekortGraphics.module.scss';
 
 const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
+    'my-page': MinSideAnimation,
     cases: CasesAnimation,
     'employment-status-form': EmploymentStatusFormAnimation,
     payments: PaymentsAnimation,
