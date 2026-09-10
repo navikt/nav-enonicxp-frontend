@@ -159,7 +159,11 @@ const fetchAndHandleErrorsRuntime = async (
     if (isCachable) {
         const cachedResponse = await redisCache.getResponse(stripXpPathPrefix(idOrPath));
         if (cachedResponse) {
-            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
+            pageCacheOperationsCounter.inc({
+                operation: 'get',
+                layer: 'response',
+                source: 'valkey',
+            });
             return cachedResponse;
         }
     }
@@ -167,7 +171,13 @@ const fetchAndHandleErrorsRuntime = async (
     const res = await fetchSiteContent(props);
 
     // Content could still be 404, but count the XP request nonetheless.
-    pageCacheOperationsCounter.inc({ operation: 'get', source: 'xp' });
+    // Non-cachable requests (draft/preview/archive/version history) never consult either cache, so
+    // they are counted under a separate layer to keep them out of the cache hit/miss funnel.
+    pageCacheOperationsCounter.inc({
+        operation: 'get',
+        layer: isCachable ? 'response' : 'bypass',
+        source: 'xp',
+    });
 
     const errorId = uuid();
 
@@ -180,6 +190,11 @@ const fetchAndHandleErrorsRuntime = async (
     if (res.ok && isJson) {
         const json = await res.json();
         if (isCachable) {
+            pageCacheOperationsCounter.inc({
+                operation: 'set',
+                layer: 'response',
+                source: 'valkey',
+            });
             redisCache.setResponse(stripXpPathPrefix(idOrPath), json);
         }
         return json;

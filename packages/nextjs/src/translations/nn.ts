@@ -215,16 +215,16 @@ export const translationsBundleNn: PartialTranslations = {
     },
     contactPoint: {
         chat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
+                'Du møter først chatboten vår. På kvardagar mellom 09.00 og 15.00 kan du be chatboten om å få chatte med ein rettleiar.',
             chatWithCounsellor: 'Chat med rettleiar',
             alwaysOpen: 'Alltid ope',
         },
         legacyChat: {
-            title: 'Du kan chatte med oss',
+            title: 'Chat med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar.',
+                'Du møter først chatboten vår. På kvardagar mellom 09.00 og 15.00 kan du be chatboten om å få chatte med ein rettleiar.',
         },
         write: {
             title: 'Skriv til oss',
@@ -253,11 +253,14 @@ export const translationsBundleNn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'Du finn oss her',
+        contactUs: 'Kontakt oss',
         officeInformation: 'Kontorinformasjon',
         location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
+        faxNumber: 'Telefaks',
+        phone: 'Telefonnummeret er',
         phoneToNav: 'Telefonnummeret til Nav er',
         phoneToHMS: 'Telefonnummeret til hjelpemiddelsentralen er',
         phoneTime: 'Telefontid kvardagar kl 9–15.',
@@ -266,6 +269,8 @@ export const translationsBundleNn: PartialTranslations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
         taglineOffice: 'Nav-kontor',
         taglineHMS: 'Hjelpemiddelsentral',
+        taglineALS: 'Arbeidslivssenter',
+        taglineUnit: 'Eining',
         skriveTilOss: 'skrive til oss',
         kontaktskjemaALSTekst:
             'om du ønskjer hjelp til å rekruttere eller inkludere arbeidstakarar og førebyggje sjukefråvær.',

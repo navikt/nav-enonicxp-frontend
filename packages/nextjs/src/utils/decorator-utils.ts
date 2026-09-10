@@ -6,6 +6,7 @@ import { Audience, getAudience } from 'types/component-props/_mixins';
 import { stripXpPathPrefix } from './urls';
 import { getContentLanguages } from './languages';
 import { hasWhiteHeader } from './appearance';
+import { ANALYTICS_ORIGIN } from './analytics';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -62,12 +63,14 @@ const audienceToRoleContext: {
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
     breadcrumbs: content?.breadcrumbs || [],
+    origin: ANALYTICS_ORIGIN,
 });
 
 const defaultParams = {
     feedback: false,
     language: 'nb',
     maskHotjar: false,
+    origin: ANALYTICS_ORIGIN,
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {

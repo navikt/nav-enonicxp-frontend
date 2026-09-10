@@ -5,7 +5,10 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from '@/shared/redis_local';
 import { pathToCacheKey } from '@/shared/cache-key';
 import { logger } from '@/shared/logger';
-import { pageCacheOperationsCounter } from '@/shared/metrics/page-cache-metrics';
+import {
+    pageCacheErrorsCounter,
+    pageCacheOperationsCounter,
+} from '@/shared/metrics/page-cache-metrics';
 
 export const redisCache = new RedisCache();
 
@@ -38,7 +41,11 @@ export default class PageCacheHandler {
             }
 
             if (fromLocalCache && isCacheEntryValid(fromLocalCache)) {
-                pageCacheOperationsCounter.inc({ operation: 'get', source: 'next' });
+                pageCacheOperationsCounter.inc({
+                    operation: 'get',
+                    layer: 'render',
+                    source: 'next',
+                });
                 return fromLocalCache;
             }
 
@@ -54,15 +61,25 @@ export default class PageCacheHandler {
             if (!fromRedisCache) {
                 // Full render miss (LRU + Valkey render cache both empty).
                 // Next will regenerate in fetch-content.ts
+                pageCacheOperationsCounter.inc({
+                    operation: 'get',
+                    layer: 'render',
+                    source: 'miss',
+                });
                 return null;
             }
 
-            pageCacheOperationsCounter.inc({ operation: 'get', source: 'valkey' });
+            pageCacheOperationsCounter.inc({
+                operation: 'get',
+                layer: 'render',
+                source: 'valkey',
+            });
             localCache.set(key, fromRedisCache);
 
             return fromRedisCache;
         } catch (error: any) {
             logger.error(`Error getting cache for key ${key}`, { error });
+            pageCacheErrorsCounter.inc({ operation: 'get', layer: 'render', reason: 'error' });
             return null;
         }
     }
@@ -75,8 +92,12 @@ export default class PageCacheHandler {
             lastModified: Date.now(),
         };
 
-        pageCacheOperationsCounter.inc({ operation: 'set', source: 'next' });
+        // A set writes through to both tiers, so count both. Previously only 'next' was counted,
+        // which made the Valkey render cache look write-only from the metrics' point of view.
+        pageCacheOperationsCounter.inc({ operation: 'set', layer: 'render', source: 'next' });
         localCache.set(key, cacheItem);
+
+        pageCacheOperationsCounter.inc({ operation: 'set', layer: 'render', source: 'valkey' });
         redisCache.setRender(key, cacheItem);
     }
 

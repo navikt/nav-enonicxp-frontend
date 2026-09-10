@@ -1,0 +1,125 @@
+.tjenesterPanel {
+    border-bottom: 1px solid var(--ax-neutral-400);
+    padding: var(--ax-space-20) var(--ax-space-8) var(--ax-space-20) var(--ax-space-12);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+        'icon title arrow'
+        'icon ingress arrow';
+    column-gap: var(--ax-space-16);
+    position: relative;
+
+    .icon {
+        grid-area: icon;
+        flex-shrink: 0;
+        width: var(--ax-space-48);
+        height: var(--ax-space-48);
+        align-self: start;
+
+        & > :first-child:not(:last-child) * {
+            fill: var(--ax-brand-blue-200);
+        }
+    }
+
+    .title {
+        grid-area: title;
+        word-break: break-word;
+        font-size: var(--ax-font-size-xlarge);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .ingress {
+        grid-area: ingress;
+        text-wrap: pretty;
+        text-decoration: none;
+        color: var(--ax-text-neutral-subtle);
+    }
+
+    .arrow {
+        grid-area: arrow;
+        align-self: center;
+        color: var(--ax-bg-accent-strong);
+        width: 24px;
+        height: 24px;
+        margin-right: var(--ax-space-8);
+    }
+
+    &:hover,
+    &:focus {
+        background-color: var(--ax-brand-blue-200);
+        border-radius: var(--ax-radius-8);
+        color: var(--ax-text-neutral);
+        box-shadow: 0 0 0 0;
+        outline: 5px solid var(--ax-bg-default);
+
+        .title {
+            text-decoration: underline;
+            text-decoration-color: var(--ax-border-accent);
+        }
+
+        & + :global(.aksel-expansioncard__content) {
+            box-shadow: 0 0 0 0;
+        }
+
+        .icon {
+            & > :first-child:not(:last-child) * {
+                fill: white;
+            }
+        }
+    }
+}
+
+.tjenesterPanel > a {
+    position: static;
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
+}
+
+.situationPage {
+    .icon {
+        :global(.back) {
+            [fill]:not([fill='none']) {
+                fill: var(--ax-border-brand-magenta-subtle);
+            }
+            [stroke] {
+                stroke: var(--ax-border-brand-magenta-subtle);
+            }
+        }
+
+        :global(.front) {
+            [fill]:not([fill='none']) {
+                fill: var(--ax-text-brand-magenta-decoration);
+            }
+            [stroke] {
+                stroke: var(--ax-text-brand-magenta-decoration);
+            }
+        }
+    }
+
+    &:hover,
+    &:focus {
+        .icon {
+            :global(.back) {
+                [fill]:not([fill='none']) {
+                    fill: var(--ax-border-brand-magenta-subtle);
+                }
+                [stroke] {
+                    stroke: var(--ax-border-brand-magenta-subtle);
+                }
+            }
+
+            :global(.front) {
+                [fill]:not([fill='none']) {
+                    fill: var(--ax-text-brand-magenta-decoration);
+                }
+                [stroke] {
+                    stroke: var(--ax-text-brand-magenta-decoration);
+                }
+            }
+        }
+    }
+}

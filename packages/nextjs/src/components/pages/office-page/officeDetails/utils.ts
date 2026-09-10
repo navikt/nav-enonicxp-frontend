@@ -1,28 +1,36 @@
-import { Address } from '@navikt/nav-office-reception-info';
-import { LegacyOfficeAddress as LegacyAddress } from 'types/content-props/office-information-props';
+import { OfficeAddress } from 'types/content-props/office-details-props';
+import { LegacyOfficeAddress } from 'types/content-props/office-information-props';
 
 export const officeDetailsFormatAddress = (
-    address?: Address | LegacyAddress,
+    address?: OfficeAddress | LegacyOfficeAddress,
     withZip?: boolean
 ) => {
     if (!address) {
         return '';
     }
-    let formatedAddress: string;
-    if (address.type === 'postboksadresse') {
+
+    let formattedAddress: string;
+    if ('postboksnummer' in address && address.postboksnummer) {
         const postboksanlegg = address.postboksanlegg ? ` ${address.postboksanlegg}` : '';
-        formatedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
+        formattedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
     } else {
-        const husnummer = address.husnummer ? ` ${address.husnummer}` : '';
-        const husbokstav = address.husbokstav ? `${address.husbokstav}` : '';
-        formatedAddress = `${address.gatenavn}${husnummer}${husbokstav}`;
+        const gatenavn = 'gatenavn' in address ? address.gatenavn : undefined;
+        const husnummer = 'husnummer' in address ? address.husnummer : undefined;
+        const husbokstav = 'husbokstav' in address ? address.husbokstav : undefined;
+        const husnummerOgBokstav = [husnummer, husbokstav].filter(Boolean).join('');
+
+        formattedAddress = [gatenavn, husnummerOgBokstav].filter(Boolean).join(' ');
     }
+
     if (withZip) {
-        let poststed = address ? address.poststed || '' : '';
-        poststed = poststed.toUpperCase();
-        formatedAddress += `, ${address.postnummer} ${poststed}`;
+        const postalInformation = [address.postnummer, address.poststed?.toUpperCase()]
+            .filter(Boolean)
+            .join(' ');
+
+        return [formattedAddress, postalInformation].filter(Boolean).join(', ');
     }
-    return formatedAddress;
+
+    return formattedAddress;
 };
 
 export const officeDetailsFormatPhoneNumber = (phoneNumber?: string) => {

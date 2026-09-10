@@ -231,16 +231,16 @@ export const translationsBundleEn: PartialTranslations = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat with Frida',
+            title: 'Chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-15).',
+                'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
             chatWithCounsellor: 'Chat with advisor',
             alwaysOpen: 'Always open',
         },
         legacyChat: {
-            title: 'You can chat with us',
+            title: 'Chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor.',
+                'You will first meet our chatbot. On weekdays from 9 to 15, you can ask the chatbot to chat with an advisor.',
         },
         write: {
             title: 'Write to us',
@@ -270,11 +270,14 @@ export const translationsBundleEn: PartialTranslations = {
     },
     office: {
         youFindUsHere: 'You can find us here',
+        contactUs: 'Contact us',
         officeInformation: 'Office information',
         location: 'Location',
         postalAddress: 'Postal address',
         orgNumber: 'Org number',
         officeNumber: 'Office number',
+        faxNumber: 'Fax number',
+        phone: 'Phone number',
         phoneToNav: 'Nav phone number is',
         phoneToHMS: 'Phone number to hjelpemiddelsentralen is',
         phoneTime: 'Phone hours, weekdays at 9-15.',
@@ -282,6 +285,11 @@ export const translationsBundleEn: PartialTranslations = {
         alternativeContacts: 'Other contact options:',
         taglineOffice: 'Nav office',
         taglineHMS: 'Assistive technology centre',
+        taglineALS: 'Nav Working Life Centre',
+        taglineUnit: 'Unit',
+        skriveTilOss: 'write to us',
+        kontaktskjemaALSTekst:
+            'if you would like help recruiting or including employees and preventing sickness absence.',
     },
     dateTime: {
         weekDayNames: {

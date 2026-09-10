@@ -67,9 +67,13 @@ const macroComponents: {
 type Props = {
     macros: MacroPropsCommon[];
     macroRef: string;
+    // When the editor added text right after the macro, but without a line break.
+    // For all macros, we force a line break except fragment macros, where the line is injected
+    // into the macro in MacroHtmlFragment.tsx.
+    trailingContent?: React.ReactNode;
 };
 
-export const MacroMapper = ({ macros, macroRef }: Props) => {
+export const MacroMapper = ({ macros, macroRef, trailingContent }: Props) => {
     if (!macroRef) {
         return null;
     }
@@ -85,7 +89,7 @@ export const MacroMapper = ({ macros, macroRef }: Props) => {
 
     const MacroComponent = macroComponents[name];
     if (MacroComponent) {
-        return <MacroComponent {...macroProps} ref={undefined} />;
+        return <MacroComponent {...macroProps} trailingContent={trailingContent} ref={undefined} />;
     }
 
     return <>{`Unimplemented macro: ${name}`}</>;
