@@ -3,13 +3,13 @@ frontendApp: nav-enonicxp-frontend-dev3
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev3
 dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
-    - trial-navpoc.enonic.cloud
+  - trial-navpoc.enonic.cloud
 secret: nav-enonicxp-dev3
 ingresses:
-    - https://www-3-failover.intern.dev.nav.no
+  - https://www-3-failover.intern.dev.nav.no
 resources:
-    requests:
-        cpu: 50m
-        memory: 250Mi
-    limits:
-        memory: 250Mi
+  requests:
+    cpu: 50m
+    memory: 250Mi
+  limits:
+    memory: 250Mi
