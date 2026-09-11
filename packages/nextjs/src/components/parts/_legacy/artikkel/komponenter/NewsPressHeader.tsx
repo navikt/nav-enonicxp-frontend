@@ -18,7 +18,7 @@ type NewsPressHeaderProps = {
     type: ArticleContentType;
 };
 
-const isArtikkelData = (data: ContentProps['data']): data is ArtikkelData =>
+const hasArtikkelData = (data: ContentProps['data']): data is ArtikkelData =>
     typeof data === 'object' && data !== null && 'contentType' in data;
 
 export const NewsPressHeader = ({ language, page: _page, title, type }: NewsPressHeaderProps) => {
