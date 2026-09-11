@@ -1,5 +1,5 @@
 import { Detail, Heading } from '@navikt/ds-react';
-import { ArticleContentType } from 'types/content-props/artikkel-props';
+import { ArticleContentType, ArtikkelData } from 'types/content-props/artikkel-props';
 import { ContentProps } from 'types/content-props/_content-common';
 import { Language, translator } from 'translations';
 import { StaticImage } from 'components/_common/image/StaticImage';
