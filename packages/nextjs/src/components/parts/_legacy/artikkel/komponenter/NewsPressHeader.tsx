@@ -27,7 +27,7 @@ export const NewsPressHeader = ({ language, page: _page, title, type }: NewsPres
 
     const tagLocaleId = type === 'news' ? 'news' : 'pressRelease';
     const isNewsArticle =
-        isArtikkelData(_page.data) &&
+        hasArtikkelData(_page.data) &&
         (_page.data.contentType === 'news' || _page.data.contentType === 'pressRelease');
 
     return (
