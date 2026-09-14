@@ -9,7 +9,7 @@ export interface InnloggetSeksjonForsideLayoutProps extends LayoutBaseProps {
     config: {
         header: string;
         title: string;
-        mypage: {
+        mypage?: {
             link: LinkSelectable;
         };
     };
