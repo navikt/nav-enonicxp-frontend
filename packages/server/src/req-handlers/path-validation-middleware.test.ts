@@ -12,6 +12,7 @@ describe('Path Validation Middleware', () => {
         path,
         ip: '127.0.0.1',
         method: 'GET',
+        headers: {},
     });
 
     beforeEach(() => {
