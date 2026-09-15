@@ -124,8 +124,7 @@ const config = {
         ],
     },
     // pino uses dynamic requires that Turbopack can't statically bundle, so it must be
-    // kept external and required at runtime. Without this, Turbopack emits a broken
-    // hashed external (e.g. `require('pino-<hash>')`) that fails at runtime.
+    // kept external and required at runtime.
     // See https://github.com/vercel/next.js/issues/86099
     serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream'],
     turbopack: {
@@ -133,6 +132,12 @@ const config = {
             buffer: { browser: './turbopack-empty.js' },
             fs: { browser: './turbopack-empty.js' },
             process: { browser: './turbopack-empty.js' },
+            // @navikt/next-logger statically imports @navikt/pino-logger etc. The real
+            // pino is still kept external on the server via serverExternalPackages and
+            // requires the real thread-stream from node_modules at runtime, unaffected by
+            // this bundler alias.
+            // See https://github.com/vercel/next.js/issues/86866
+            'thread-stream': './turbopack-empty.js',
         },
     },
     transpilePackages: [
