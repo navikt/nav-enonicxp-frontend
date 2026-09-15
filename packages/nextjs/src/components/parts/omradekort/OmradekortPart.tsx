@@ -6,6 +6,7 @@ import { PartComponentProps, PartType } from 'types/component-props/parts';
 import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type OmradekortGraphicsType =
+    | 'my-page'
     | 'payments'
     | 'cases'
     | 'employment-status-form'
