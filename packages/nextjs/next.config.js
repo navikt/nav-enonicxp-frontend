@@ -5,6 +5,41 @@ const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 const path = require('path');
 
+// Remove dashes from js variable names for classnames generated from CSS-modules
+// Enables all CSS-classes to be accessed from javascript with dot-notation.
+// Only applies to the webpack build (production); Turbopack handles dev.
+const cssModulesNoDashesInClassnames = (config) => {
+    const rules = config.module.rules
+        .find((rule) => typeof rule.oneOf === 'object')
+        .oneOf.filter((rule) => Array.isArray(rule.use));
+
+    rules.forEach((rule) => {
+        rule.use.forEach((moduleLoader) => {
+            if (/css-loader([/\\])(cjs|dist|src)/.test(moduleLoader.loader)) {
+                if (typeof moduleLoader.options.modules === 'object') {
+                    moduleLoader.options.modules = {
+                        ...moduleLoader.options.modules,
+                        exportLocalsConvention: 'dashesOnly',
+                    };
+                }
+            }
+        });
+    });
+};
+
+// Prevents errors due to client-side imports of server-side only libraries.
+// This is the webpack equivalent of the buffer/fs/process aliases in the
+// `turbopack` config below (which webpack ignores).
+const resolveNodeLibsClientSide = (config, options) => {
+    if (!options.isServer) {
+        config.resolve.fallback = {
+            buffer: false,
+            fs: false,
+            process: false,
+        };
+    }
+};
+
 const csp = async () => {
     const prodHost = 'nav.no';
     const prodWithSubdomains = `*.${prodHost}`;
@@ -124,8 +159,7 @@ const config = {
         ],
     },
     // pino uses dynamic requires that Turbopack can't statically bundle, so it must be
-    // kept external and required at runtime. Without this, Turbopack emits a broken
-    // hashed external (e.g. `require('pino-<hash>')`) that fails at runtime.
+    // kept external and required at runtime.
     // See https://github.com/vercel/next.js/issues/86099
     serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream'],
     turbopack: {
@@ -133,6 +167,12 @@ const config = {
             buffer: { browser: './turbopack-empty.js' },
             fs: { browser: './turbopack-empty.js' },
             process: { browser: './turbopack-empty.js' },
+            // @navikt/next-logger statically imports @navikt/pino-logger etc. The real
+            // pino is still kept external on the server via serverExternalPackages and
+            // requires the real thread-stream from node_modules at runtime, unaffected by
+            // this bundler alias.
+            // See https://github.com/vercel/next.js/issues/86866
+            'thread-stream': './turbopack-empty.js',
         },
     },
     transpilePackages: [
@@ -143,6 +183,16 @@ const config = {
         '@navikt/pino-logger',
     ],
     productionBrowserSourceMaps: true,
+    // Only used by the production build (`next build --webpack`). Turbopack ignores
+    // this key and uses the `turbopack` config above for `next dev`.
+    webpack: (config, options) => {
+        cssModulesNoDashesInClassnames(config);
+        resolveNodeLibsClientSide(config, options);
+        return config;
+    },
+    sassOptions: {
+        silenceDeprecations: ['legacy-js-api'],
+    },
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
     env: {
