@@ -70,6 +70,10 @@ export const buildPathValidationMiddleware =
     (nextApp: InferredNextWrapperServer, testing = false): RequestHandler =>
     (req, res, next) => {
         const fullPath = req.path;
+
+        // Internal use only, clients shouldn't be able to set this header themselves - so nuke it if they try!
+        delete req.headers['x-nav-blocked-path'];
+
         const badRequest = () => {
             res.statusCode = 400;
             if (!testing) {
