@@ -3,7 +3,7 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
-        "build": "next build",
+        "build": "next build --webpack",
         "build:storybook": "storybook build",
         "prestorybook": "node playwright/copy-screenshots.js",
         "storybook": "storybook dev -p 6006",
@@ -48,6 +48,7 @@
         "next": "catalog:",
         "node-cache": "catalog:",
         "p-limit": "catalog:",
+        "pino": "catalog:",
         "prom-client": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
@@ -59,6 +60,7 @@
         "rss": "catalog:",
         "sharp": "catalog:",
         "swr": "catalog:",
+        "thread-stream": "catalog:",
         "uuid": "catalog:"
     },
     "devDependencies": {
@@ -84,6 +86,7 @@
         "jest": "catalog:",
         "jest-environment-jsdom": "catalog:",
         "jest-fetch-mock": "catalog:",
+        "pino-pretty": "catalog:",
         "sass": "catalog:",
         "schema-dts": "catalog:",
         "storybook": "catalog:",
