@@ -4,7 +4,6 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
 import { createTypeGuard } from 'types/_type-guards';
 import { ArtikkelData } from 'types/content-props/artikkel-props';
-import ArtikkelDato from './komponenter/ArtikkelDato';
 import { Innholdsfortegnelse } from './komponenter/Innholdsfortegnelse';
 import { Artikkeltekst } from './komponenter/Artikkeltekst';
 import { Faktaboks } from './komponenter/Faktaboks';
@@ -52,7 +51,6 @@ export const ArtikkelLegacyPart = (propsInitial: ContentProps) => {
     return (
         <article className={style.artikkel}>
             <header className={headerClassName}>
-                <ArtikkelDato contentProps={props} type={isNewsArticle ? 'newsPress' : 'normal'} />
                 {!isNewsArticle && (
                     <Heading level={'1'} size={'xlarge'} className={style.title} spacing>
                         {displayName}
