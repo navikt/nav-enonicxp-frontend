@@ -43,7 +43,7 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
                 newsArticleProps &&
                 newsArticleProps.data.contentType && (
                     <NewsPressHeader
-                        page={pageProps}
+                        articleProps={newsArticleProps}
                         type={newsArticleProps.data.contentType}
                         title={newsArticleProps.displayName}
                         language={newsArticleProps.language}
