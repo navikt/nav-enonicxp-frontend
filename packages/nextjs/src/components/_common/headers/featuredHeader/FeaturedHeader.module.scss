@@ -6,8 +6,6 @@
     justify-content: center;
 
     @include common.full-width-mixin;
-
-    box-shadow: 0 -4px 0 var(--ax-neutral-500) inset;
 }
 
 .header {
