@@ -226,6 +226,7 @@ class RedisCacheDummy extends RedisCacheImpl {
 export const RedisCache =
     process.env.NODE_ENV !== 'development' &&
     process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD &&
+    process.env.ENV !== 'localhost' &&
     validateClientOptions()
         ? RedisCacheImpl
         : RedisCacheDummy;
