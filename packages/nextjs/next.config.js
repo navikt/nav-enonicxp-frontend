@@ -154,6 +154,7 @@ const config = {
             '@navikt/aksel-icons',
             '@navikt/nav-office-reception-info',
         ],
+        scrollRestoration: true,
     },
     transpilePackages: [
         '@navikt/aksel-icons',
