@@ -15,8 +15,8 @@ catalog:
   '@navikt/nav-dekoratoren-moduler': 4.3.0
   '@navikt/nav-office-reception-info': 2.0.2
   '@navikt/next-logger': 5.0.1
-  '@next/bundle-analyzer': 15.5.4
-  '@next/eslint-plugin-next': 15.5.4
+  '@next/bundle-analyzer': 16.2.2
+  '@next/eslint-plugin-next': 16.3.5
   '@playwright/test': 1.62.1
   '@reduxjs/toolkit': 2.12.0
   '@storybook/addon-docs': 10.5.10
@@ -48,7 +48,7 @@ catalog:
   dotenv: 17.4.2
   esbuild: 0.28.2
   eslint: 10.9.1
-  eslint-config-next: 15.5.4
+  eslint-config-next: 16.2.2
   eslint-config-prettier: 10.1.8
   eslint-plugin-css-modules: 2.12.0
   eslint-plugin-import: 2.32.0
@@ -73,7 +73,7 @@ catalog:
   lodash.debounce: 4.0.8
   lru-cache: 11.5.2
   mock-fs: 5.5.0
-  next: 15.5.24
+  next: 16.3.5
   node-cache: 5.1.2
   nodemon: 3.1.14
   on-headers: 1.1.0

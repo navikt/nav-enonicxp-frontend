@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { Skjemadetaljer } from 'components/_common/payoutDates/skjemadetaljer/Skjemadetaljer';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 import { PartComponentProps, PartType } from 'types/component-props/parts';

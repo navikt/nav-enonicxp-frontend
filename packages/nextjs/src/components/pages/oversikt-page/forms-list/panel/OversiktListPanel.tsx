@@ -4,7 +4,7 @@ import { ContentType } from 'types/content-props/_content-common';
 import {
     Skjemadetaljer,
     SkjemadetaljerComponentProps,
-} from 'components/_common/skjemadetaljer/Skjemadetaljer';
+} from 'components/_common/payoutDates/skjemadetaljer/Skjemadetaljer';
 import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { ProductPanelExpandable } from 'components/_common/productPanelExpandable/ProductPanelExpandable';
 import { OversiktMerOmLenke } from 'components/_common/card/overview-microcard/OversiktMerOmLenke';
