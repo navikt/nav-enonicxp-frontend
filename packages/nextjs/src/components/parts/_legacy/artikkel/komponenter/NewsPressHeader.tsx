@@ -4,8 +4,8 @@ import { Language, translator } from 'translations';
 import { StaticImage } from 'components/_common/image/StaticImage';
 import ArtikkelDato from 'components/parts/_legacy/artikkel/komponenter/ArtikkelDato';
 
-import newsPaper from '@/public/gfx/news-paper-icon.svg';
-import pressSpeaker from '@/public/gfx/press-speaker-icon.svg';
+import newsPaper from '/public/gfx/news-paper-icon.svg';
+import pressSpeaker from '/public/gfx/press-speaker-icon.svg';
 
 import styles from './NewsPressHeader.module.scss';
 
