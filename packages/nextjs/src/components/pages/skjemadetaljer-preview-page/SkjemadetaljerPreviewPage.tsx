@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { Skjemadetaljer } from 'components/_common/payoutDates/skjemadetaljer/Skjemadetaljer';
 import { SkjemadetaljerPageProps } from 'types/content-props/skjemadetaljer';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
