@@ -52,7 +52,7 @@ export const ArtikkelLegacyPart = (propsInitial: ContentProps) => {
     return (
         <article className={style.artikkel}>
             <header className={headerClassName}>
-                <ArtikkelDato contentProps={props} type={isNewsArticle ? 'newsPress' : 'normal'} />
+                {!isNewsArticle && <ArtikkelDato contentProps={props} type={'normal'} />}
                 {!isNewsArticle && (
                     <Heading level={'1'} size={'xlarge'} className={style.title} spacing>
                         {displayName}

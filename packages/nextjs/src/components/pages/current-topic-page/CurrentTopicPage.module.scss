@@ -3,8 +3,11 @@
 .currentTopicPage {
     display: flex;
     flex-direction: column;
-    padding-top: var(--ax-space-32);
-    padding-bottom: var(--ax-space-48);
+    padding-block: var(--ax-space-64);
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        padding-block: var(--ax-space-48);
+    }
 }
 
 .contentAligner {
