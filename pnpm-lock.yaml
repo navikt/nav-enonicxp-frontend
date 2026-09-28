@@ -46,8 +46,8 @@ catalogs:
       specifier: 5.0.1
       version: 5.0.1
     '@next/bundle-analyzer':
-      specifier: 15.5.4
-      version: 15.5.4
+      specifier: 16.3.5
+      version: 16.3.5
     '@next/eslint-plugin-next':
       specifier: 15.5.4
       version: 15.5.4
@@ -313,7 +313,7 @@ importers:
         version: 5.0.1(next@15.5.24(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@20.14.10)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.103.1))(pino@10.3.1)
       '@next/bundle-analyzer':
         specifier: 'catalog:'
-        version: 15.5.4
+        version: 16.3.5
       domhandler:
         specifier: 'catalog:'
         version: 6.0.1
@@ -2082,8 +2082,8 @@ packages:
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
 
-  '@next/bundle-analyzer@15.5.4':
-    resolution: {integrity: sha512-wMtpIjEHi+B/wC34ZbEcacGIPgQTwTFjjp0+F742s9TxC6QwT0MwB/O0QEgalMe8s3SH/K09DO0gmTvUSJrLRA==}
+  '@next/bundle-analyzer@16.3.5':
+    resolution: {integrity: sha512-EbKlv1DkII5+BGl8qweNtrX+7Ot+QOCsSpUve43W8XsOQz7am0T45pCdm6W3kbBwWtEbIEKNhAknje1gjXyyLw==}
 
   '@next/env@15.5.24':
     resolution: {integrity: sha512-mBDF7T0XKZjs9SpUAl0buizVO+O02ULjOvWX8o/AZo/5AGw/UAS1Zzcylmd4pqbftzmKQi+L/nB4jgBYKEAl5Q==}
@@ -9230,7 +9230,7 @@ snapshots:
 
   '@neoconfetti/react@1.0.0': {}
 
-  '@next/bundle-analyzer@15.5.4':
+  '@next/bundle-analyzer@16.3.5':
     dependencies:
       webpack-bundle-analyzer: 4.10.1
     transitivePeerDependencies:
