@@ -18,6 +18,12 @@ type GetCacheKeyResponse = {
 // Updated cache keys are provided in every invalidation request from revalidator-proxy. This function should only be
 // used on newly spun up containers.
 export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
+    // revalidator-proxy is not run by default locally (only via docker-compose), so avoid
+    // spamming ECONNREFUSED retries against it when running locally.
+    if (process.env.ENV === 'localhost') {
+        return;
+    }
+
     if (!retries || retries < 0) {
         logger.error('Failed to fetch cache key from revalidator-proxy, no more retries remaining');
         return;
