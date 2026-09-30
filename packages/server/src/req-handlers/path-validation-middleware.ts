@@ -37,7 +37,7 @@ const MALICIOUS_PATTERNS = [
     // Shell command injection (command at path start followed by space/colon)
     /^\/(wget|curl|bash|sh|cmd|powershell)(\s|:)/i,
     // aws
-    /.aws/i,
+    /\.aws/i,
 ];
 
 // Common malicious file extensions to block
