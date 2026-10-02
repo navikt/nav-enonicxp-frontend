@@ -36,6 +36,8 @@ const MALICIOUS_PATTERNS = [
     /\/proc\/self/i,
     // Shell command injection (command at path start followed by space/colon)
     /^\/(wget|curl|bash|sh|cmd|powershell)(\s|:)/i,
+    // aws
+    /\.aws/i,
 ];
 
 // Common malicious file extensions to block
@@ -115,6 +117,13 @@ export const buildPathValidationMiddleware =
         if (/%(?![0-9a-fA-F]{2})/.test(decodedPath)) {
             blockedRequestsCounter.inc({ reason: 'malformed_uri' });
             logger.warn(`Blocked stray percent-encoding: ${req.method} ${fullPath} from ${req.ip}`);
+            return badRequest();
+        }
+
+        // Block old CMS pattern
+        if (/\.\d+\.cms/.test(decodedPath)) {
+            blockedRequestsCounter.inc({ reason: 'xp_old_path' });
+            logger.warn(`Blocked old CSM path: ${req.method} ${fullPath} from ${req.ip}`);
             return badRequest();
         }
 
