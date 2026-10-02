@@ -19,11 +19,11 @@ catalogs:
       specifier: 10.0.1
       version: 10.0.1
     '@grafana/faro-web-sdk':
-      specifier: 2.12.0
-      version: 2.12.0
+      specifier: 2.11.0
+      version: 2.11.0
     '@grafana/faro-web-tracing':
-      specifier: 2.12.0
-      version: 2.12.0
+      specifier: 2.11.0
+      version: 2.11.0
     '@navikt/aksel-icons':
       specifier: 8.16.2
       version: 8.16.2
@@ -440,10 +440,10 @@ importers:
     dependencies:
       '@grafana/faro-web-sdk':
         specifier: 'catalog:'
-        version: 2.12.0
+        version: 2.11.0
       '@grafana/faro-web-tracing':
         specifier: 'catalog:'
-        version: 2.12.0(supports-color@5.5.0)
+        version: 2.11.0
       '@navikt/aksel-icons':
         specifier: 'catalog:'
         version: 8.16.2
@@ -2210,16 +2210,22 @@ packages:
         integrity: sha512-Pg0vjgsR1BxdmLzzX9r8YcZ8rI4aXLlDGtreppZev++BbnH2utKBwCI16Vx+IzfQqHKRT+7WGc63HOue8/9J6Q==,
       }
 
+  '@grafana/faro-web-sdk@2.11.0':
+    resolution:
+      {
+        integrity: sha512-oGwdqlFJkIrK6V45wDlPaggNXOJCcXRFobho0PBQvohAB4Y4UTyMH18Sr1Tznp3z6POr/zh7RUtB0L/iN2X+HA==,
+      }
+
   '@grafana/faro-web-sdk@2.12.0':
     resolution:
       {
         integrity: sha512-Up7fvGND54qszlbSEuTCTXGwhg7Bk3QpU+DKYVFVGFmJUdfvZ9zpQEQtaaINJ4EyHH2oGS4YEmdehDbcd6UulA==,
       }
 
-  '@grafana/faro-web-tracing@2.12.0':
+  '@grafana/faro-web-tracing@2.11.0':
     resolution:
       {
-        integrity: sha512-gyalCBXw0pdN0olbKa/jrYLwnA6jeBZUDVrcbyHmdY+3F/ERClkFvmjTKv3bXiKty/32NW2ZQaygA++vE8RPlA==,
+        integrity: sha512-/n7Bf0rmBENQ3q3Mxe8siFPrfNF1nzlsMDVUUkKsnz9z9cdLD0b0z4jwCJ0OA9xIf1/XsMCBtINMAH4OPTtNlA==,
       }
 
   '@humanfs/core@0.19.2':
@@ -13169,19 +13175,25 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
 
+  '@grafana/faro-web-sdk@2.11.0':
+    dependencies:
+      '@grafana/faro-core': 2.12.1
+      ua-parser-js: 1.0.41
+      web-vitals: 6.2.2
+
   '@grafana/faro-web-sdk@2.12.0':
     dependencies:
       '@grafana/faro-core': 2.12.1
       ua-parser-js: 1.0.41
       web-vitals: 6.2.2
 
-  '@grafana/faro-web-tracing@2.12.0(supports-color@5.5.0)':
+  '@grafana/faro-web-tracing@2.11.0':
     dependencies:
       '@grafana/faro-web-sdk': 2.12.0
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/exporter-trace-otlp-http': 0.221.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)(supports-color@5.5.0)
+      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-fetch': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/instrumentation-xml-http-request': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/otlp-transformer': 0.221.0(@opentelemetry/api@1.9.1)
@@ -13729,7 +13741,7 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.10.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)(supports-color@5.5.0)
+      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-web': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
     transitivePeerDependencies:
@@ -13739,18 +13751,18 @@ snapshots:
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/core': 2.10.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)(supports-color@5.5.0)
+      '@opentelemetry/instrumentation': 0.221.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-web': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation@0.221.0(@opentelemetry/api@1.9.1)(supports-color@5.5.0)':
+  '@opentelemetry/instrumentation@0.221.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/api-logs': 0.221.0
       import-in-the-middle: 3.5.1
-      require-in-the-middle: 8.0.1(supports-color@5.5.0)
+      require-in-the-middle: 8.0.1
     transitivePeerDependencies:
       - supports-color
 
@@ -18692,7 +18704,7 @@ snapshots:
 
   require-from-string@2.0.2: {}
 
-  require-in-the-middle@8.0.1(supports-color@5.5.0):
+  require-in-the-middle@8.0.1:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
       module-details-from-path: 1.0.4
