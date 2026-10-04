@@ -43,6 +43,7 @@ const nextApp = createNextApp({
     dev: process.env.NODE_ENV === 'development' && process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
     dir: path.join(__dirname, '..', '..', 'nextjs'),
+    webpack: true,
 });
 
 nextApp.prepare().then(async () => {
