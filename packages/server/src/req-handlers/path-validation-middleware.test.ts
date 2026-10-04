@@ -87,6 +87,22 @@ describe('Path Validation Middleware', () => {
         });
     });
 
+    describe('Block pre 2019 Enonic CMS paths', () => {
+        test('should block path[contentId].cms', () => {
+            runMiddleware('/en+gammel+url.12345.cms');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('Block aws-specific paths', () => {
+        test('should block path containing .aws', () => {
+            runMiddleware('/home/*/.aws/config');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
     describe('SQL Injection attempts', () => {
         test('should block SQL injection with single quote', () => {
             runMiddleware("/test' OR '1'='1");
