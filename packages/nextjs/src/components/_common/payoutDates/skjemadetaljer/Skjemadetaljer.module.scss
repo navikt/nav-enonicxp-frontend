@@ -33,7 +33,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: var(--ax-space-8);
-    margin-bottom: var(--ax-space-16);
+    margin-bottom: var(--ax-space-40);
 
     @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
@@ -54,5 +54,5 @@
     flex-wrap: wrap;
     align-items: center;
     gap: var(--ax-space-8);
-    margin-top: var(--ax-space-16);
+    margin-block: calc(var(--ax-space-24) * -1) 0;
 }
