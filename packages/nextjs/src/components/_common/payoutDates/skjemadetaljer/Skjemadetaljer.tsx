@@ -106,11 +106,15 @@ export const Skjemadetaljer = ({
 
             {variations.length > 0 && (
                 <div className={style.variation}>
-                    {variations.map((variation) => (
-                        <SkjemadetaljerButton key={variation.label} variation={variation} />
+                    {variations.map((variation, index) => (
+                        <SkjemadetaljerButton
+                            key={variation.label}
+                            variation={index === 0 ? { ...variation, type: 'primary' } : variation}
+                        />
                     ))}
                 </div>
             )}
+
             {(hasVisibleFormNumbers || editorView === 'inline' || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {forceArray(formNumbers).map((formNumber) => (
