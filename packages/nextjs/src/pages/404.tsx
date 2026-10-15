@@ -13,7 +13,7 @@ const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 // Without revalidate the 404 page is generated only at build time, which freezes the
 // decorator version until the next deploy. With ISR it goes through the page cache handler,
 // which is invalidated when the decorator version changes.
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = () => {
     return isFailover ? { props: {} } : { props: {}, revalidate: Config.vars.revalidatePeriod };
 };
 
