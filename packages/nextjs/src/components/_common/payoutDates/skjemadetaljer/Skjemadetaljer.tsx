@@ -9,7 +9,7 @@ import { VarselIKontekst } from 'components/_common/varselIKontekst/VarselIKonte
 import { usePageContentProps } from 'store/pageContext';
 import { ContentType } from 'types/content-props/_content-common';
 import { FormNumberTag } from 'components/_common/formNumberTag/FormNumberTag';
-import { SkjemadetaljerButton } from './SkjemadetaljerButton';
+import { SkjemadetaljerButton, hasButton } from './SkjemadetaljerButton';
 
 import style from './Skjemadetaljer.module.scss';
 
@@ -67,6 +67,8 @@ export const Skjemadetaljer = ({
         return acc;
     }, []);
 
+    const buttonVariations = variations.filter(hasButton);
+
     const showTitleAsLevel4 = new Set([
         ContentType.ProductPage,
         ContentType.GuidePage,
@@ -104,13 +106,18 @@ export const Skjemadetaljer = ({
                     <VarselIKontekst key={`${alert.data.text}-${index}`} data={alert.data} />
                 ))}
 
-            {variations.length > 0 && (
+            {buttonVariations.length > 0 && (
                 <div className={style.variation}>
-                    {variations.map((variation) => (
-                        <SkjemadetaljerButton key={variation.label} variation={variation} />
+                    {buttonVariations.map((variation, index) => (
+                        <SkjemadetaljerButton
+                            key={`${variation.label}-${index}`}
+                            variation={variation}
+                            variant={index === 0 ? 'primary' : 'secondary'}
+                        />
                     ))}
                 </div>
             )}
+
             {(hasVisibleFormNumbers || editorView === 'inline' || editorView === 'edit') && (
                 <Detail className={style.formNumbers}>
                     {forceArray(formNumbers).map((formNumber) => (
