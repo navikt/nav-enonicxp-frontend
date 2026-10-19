@@ -15,7 +15,7 @@ catalog:
   '@navikt/nav-dekoratoren-moduler': 4.5.1
   '@navikt/nav-office-reception-info': 2.0.4
   '@navikt/next-logger': 5.0.1
-  '@next/bundle-analyzer': 16.4.0
+  '@next/bundle-analyzer': 16.3.7
   '@next/eslint-plugin-next': 16.4.0
   '@playwright/test': 1.64.0
   '@reduxjs/toolkit': 2.13.0
@@ -73,7 +73,7 @@ catalog:
   lodash.debounce: 4.0.8
   lru-cache: 11.5.3
   mock-fs: 5.5.0
-  next: 16.4.0
+  next: 16.3.7
   node-cache: 5.1.2
   nodemon: 3.1.14
   on-headers: 1.1.0
