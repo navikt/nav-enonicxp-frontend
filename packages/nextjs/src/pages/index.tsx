@@ -14,7 +14,6 @@ const isDevBuild =
 const getStaticPropsBuildDev: GetStaticProps = async () => {
     return {
         notFound: true,
-        revalidate: 1,
     };
 };
 
