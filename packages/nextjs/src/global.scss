@@ -12,6 +12,10 @@
     }
 }
 
+body {
+    overflow-x: clip;
+}
+
 #__next,
 .decorator-utils-container {
     background-color: var(--ax-bg-neutral-soft);
