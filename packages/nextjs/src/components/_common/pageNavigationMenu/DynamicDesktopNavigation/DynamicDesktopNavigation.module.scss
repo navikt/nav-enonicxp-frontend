@@ -4,9 +4,9 @@
 .dynamicDesktopNavigation {
     overflow: auto;
     position: sticky;
-    top: calc(var(--decorator-sticky-offset) + var(--ax-space-24));
+    top: calc(var(--decorator-sticky-offset, 0px) + var(--ax-space-24));
     height: max-content;
-    max-height: calc(100vh - var(--ax-space-24) - var(--decorator-sticky-offset));
+    max-height: calc(100vh - var(--ax-space-24) - var(--decorator-sticky-offset, 0px));
     padding-bottom: var(--ax-space-24);
 
     // Gir plass til focus outline som ellers blir kuttet av overflow: auto
