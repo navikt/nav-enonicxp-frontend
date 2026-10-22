@@ -2,10 +2,6 @@ import { fetchJson } from '@/shared/fetch-utils';
 import { logger } from '@/shared/logger';
 import { xpServiceUrl } from 'utils/urls';
 
-const excludedPaths: ReadonlySet<string> = new Set([
-    '/', // This is already rendered by /index.tsx
-]);
-
 export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null> =>
     fetchJson<string[]>(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
@@ -37,5 +33,5 @@ export const fetchPrerenderPaths = async (retries = 3): Promise<string[] | null>
                 return paths;
             }
 
-            return paths.filter((path) => !excludedPaths.has(path));
+            return ['/', ...paths.filter((path) => path !== '/')];
         });
