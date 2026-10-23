@@ -2,9 +2,9 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { performance } from 'node:perf_hooks';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { getRouteCacheKey } from 'next/dist/server/lib/route-cache-key';
-import { RouteKind } from 'next/dist/server/route-kind';
+import { normalizePagePath } from 'next/dist/shared/lib/page-path/normalize-page-path';
 import { RedisCache } from '@/shared/redis_local';
+import { renderCacheKeyToPathname } from '@/shared/cache-key';
 import { logger } from '@/shared/logger';
 import {
     pageCacheErrorsCounter,
@@ -28,7 +28,8 @@ function isCacheEntryValid(v: unknown): v is CacheHandlerValue {
 
 export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
-        const [key] = args;
+        const [nextKey] = args;
+        const key = renderCacheKeyToPathname(nextKey);
 
         try {
             const cacheStartTime = performance.now();
@@ -58,7 +59,7 @@ export default class PageCacheHandler {
                 );
             }
 
-            const fromRedisCache = await redisCache.getRender(key);
+            const fromRedisCache = await redisCache.getRender(nextKey);
             if (!fromRedisCache) {
                 // Full render miss (LRU + Valkey render cache both empty).
                 // Next will regenerate in fetch-content.ts
@@ -86,7 +87,8 @@ export default class PageCacheHandler {
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
-        const [key, data] = args;
+        const [nextKey, data] = args;
+        const key = renderCacheKeyToPathname(nextKey);
 
         const cacheItem: CacheHandlerValue = {
             value: data,
@@ -99,7 +101,7 @@ export default class PageCacheHandler {
         localCache.set(key, cacheItem);
 
         pageCacheOperationsCounter.inc({ operation: 'set', layer: 'render', source: 'valkey' });
-        redisCache.setRender(key, cacheItem);
+        redisCache.setRender(nextKey, cacheItem);
     }
 
     public async clear() {
@@ -108,15 +110,9 @@ export default class PageCacheHandler {
     }
 
     public async delete(path: string) {
-        // Next 16.4 scopes render-cache keys to the page's source route, hashed:
-        // `/route-cache/PAGES/<sha256(sourceRoute)>/$<pathname>`. All CMS pages are
-        // served by the optional catch-all, so sourceRoute is the literal page file
-        // name `/[[...pathRouter]]`. We must rebuild the identical key here, otherwise
-        // the invalidation would delete nothing (the plain pathname never matches).
-        const key = getRouteCacheKey(path, {
-            kind: RouteKind.PAGES,
-            sourceRoute: '/[[...pathRouter]]',
-        });
+        // Both cache tiers are keyed by Next's normalized pathname (see renderCacheKeyToPathname),
+        // so invalidation does not depend on which page file serves the path.
+        const key = normalizePagePath(path);
         logger.info(`Deleting local cache entry for key ${key}`);
         localCache.delete(key);
     }
