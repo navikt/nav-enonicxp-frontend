@@ -95,12 +95,12 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
             {playerState === 'error' && (
                 <Varselboks variant={'error'}>{translations('error')}</Varselboks>
             )}
-            {/* The data-qbrick attributes let the archive (navno-cms-archive) start the player in static snapshots */}
             <div
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
                 data-qplayer-analytics="off"
+                //  The data-qbrick attributes let the archive (navno-cms-archive/xp-arhive) start the player in static snapshots
                 data-qbrick-account-id={accountId}
                 data-qbrick-media-id={mediaId}
                 data-qbrick-language={language}
