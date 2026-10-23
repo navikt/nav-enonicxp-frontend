@@ -19,7 +19,7 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
     const contentProps = usePageContentProps();
     const { context } = getDecoratorParams(contentProps);
     const { language: contentLanguage, editorView } = contentProps;
-    const { title, duration, poster } = props;
+    const { title, duration, poster, accountId, mediaId, language } = props;
     const videoContainerId = useId();
     const { createAndStartPlayer, resetPlayer, playerState, setPlayerState } = useQbrickPlayerState(
         {
@@ -95,11 +95,15 @@ export const QbrickVideo = (props: QbrickVideoProps) => {
             {playerState === 'error' && (
                 <Varselboks variant={'error'}>{translations('error')}</Varselboks>
             )}
+            {/* The data-qbrick attributes let the archive (navno-cms-archive) start the player in static snapshots */}
             <div
                 className={classNames(style.macroVideo, playerState !== 'ready' && style.hidden)}
                 id={videoContainerId}
                 title={title}
                 data-qplayer-analytics="off"
+                data-qbrick-account-id={accountId}
+                data-qbrick-media-id={mediaId}
+                data-qbrick-language={language}
             />
         </div>
     );
