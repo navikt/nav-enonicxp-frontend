@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { logger } from '@/shared/logger';
-import { PageBase } from 'components/PageBase';
 import Config from 'config';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
@@ -57,7 +56,7 @@ const getStaticPropsRegular: GetStaticProps = async (context) => {
     };
 };
 
-const getStaticPathsRegular: GetStaticPaths = async () => {
+const getStaticPathsRegular: GetStaticPaths = () => {
     return {
         paths: [],
         fallback: 'blocking',
@@ -68,4 +67,4 @@ export const getStaticProps = isFailover ? getStaticPropsFailover : getStaticPro
 
 export const getStaticPaths = isFailover ? getStaticPathsFailover : getStaticPathsRegular;
 
-export default PageBase;
+export { PageBase as default } from 'components/PageBase';
