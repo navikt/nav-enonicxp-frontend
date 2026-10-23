@@ -1,4 +1,4 @@
-import { Skjemadetaljer } from 'components/_common/skjemadetaljer/Skjemadetaljer';
+import { Skjemadetaljer } from 'components/_common/payoutDates/skjemadetaljer/Skjemadetaljer';
 import { EditorHelp } from 'components/_editor-only/editorHelp/EditorHelp';
 import { MacroSkjemadetaljerProps } from 'types/macro-props/skjemadetaljer';
 

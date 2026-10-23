@@ -12,13 +12,16 @@
         "isolatedModules": true,
         "baseUrl": "src",
         "ignoreDeprecations": "6.0",
-        "jsx": "preserve",
+        "jsx": "react-jsx",
         "incremental": true,
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "types": ["@navikt/ds-react/types/theme"],
         "paths": {
-            "@/shared/*": ["../../shared/src/*"]
+            // Second candidate is for Next 16 build/Jest, which resolve `paths` relative to
+            // the package dir; the first is for tsc/editor (relative to baseUrl: src). Both
+            // resolve to packages/shared/src.
+            "@/shared/*": ["../../shared/src/*", "../shared/src/*"]
         },
         "plugins": [
             {
@@ -32,7 +35,8 @@
         "nodeenv.d.ts",
         "src/**/*.ts",
         "src/**/*.tsx",
-        ".next/types/**/*.ts"
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts"
     ],
     "exclude": ["node_modules"]
 }

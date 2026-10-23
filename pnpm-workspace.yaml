@@ -2,27 +2,28 @@ packages:
   - packages/*
 
 catalog:
-  '@chromatic-com/storybook': 5.3.0
+  '@chromatic-com/storybook': 5.4.0
   '@esbuild/linux-x64': 0.28.2
-  '@eslint/compat': 2.1.0
+  '@eslint/compat': 2.1.1
   '@eslint/js': 10.0.1
-  '@grafana/faro-web-sdk': 2.9.0
-  '@grafana/faro-web-tracing': 2.9.0
-  '@navikt/aksel-icons': 8.16.1
-  '@navikt/ds-css': 8.16.1
-  '@navikt/ds-react': 8.16.1
-  '@navikt/nav-dekoratoren-moduler': 4.3.0
-  '@navikt/nav-office-reception-info': 2.0.2
-  '@navikt/next-logger': 5.0.0
-  '@next/bundle-analyzer': 15.5.4
-  '@next/eslint-plugin-next': 15.5.4
-  '@playwright/test': 1.62.1
-  '@reduxjs/toolkit': 2.12.0
-  '@storybook/addon-docs': 10.5.7
-  '@storybook/nextjs': 10.5.7
-  '@storybook/react': 10.5.7
+  '@grafana/faro-web-sdk': 2.12.1
+  '@grafana/faro-web-tracing': 2.12.1
+  '@navikt/aksel-icons': 8.19.1
+  '@navikt/browserslist-config': 0.2.0
+  '@navikt/ds-css': 8.19.1
+  '@navikt/ds-react': 8.19.1
+  '@navikt/nav-dekoratoren-moduler': 4.5.1
+  '@navikt/nav-office-reception-info': 2.0.4
+  '@navikt/next-logger': 5.0.1
+  '@next/bundle-analyzer': 16.3.7
+  '@next/eslint-plugin-next': 16.4.0
+  '@playwright/test': 1.64.0
+  '@reduxjs/toolkit': 2.13.0
+  '@storybook/addon-docs': 10.6.1
+  '@storybook/nextjs': 10.6.1
+  '@storybook/react': 10.6.1
   '@testing-library/jest-dom': 6.9.1
-  '@testing-library/react': 16.3.2
+  '@testing-library/react': 16.3.3
   '@types/cookie-parser': 1.4.10
   '@types/escape-html': 1.0.4
   '@types/express': 5.0.6
@@ -32,73 +33,73 @@ catalog:
   '@types/mock-fs': 4.13.4
   '@types/node': 20.14.10
   '@types/on-headers': 1.0.4
-  '@types/react': 19.2.18
+  '@types/react': 19.3.0
   '@types/react-collapse': 5.0.4
-  '@types/react-dom': 19.2.4
+  '@types/react-dom': 19.3.0
   '@types/react-redux': 7.1.34
   '@types/rss': 0.0.32
-  '@typescript-eslint/eslint-plugin': 8.66.0
-  '@typescript-eslint/parser': 8.66.0
-  concurrently: 10.0.4
+  '@typescript-eslint/eslint-plugin': 8.71.1
+  '@typescript-eslint/parser': 8.71.1
+  concurrently: 10.0.6
   cookie-parser: 1.4.7
-  csp-header: 6.3.1
-  dayjs: 1.11.21
+  csp-header: 6.4.0
+  dayjs: 1.11.23
   domhandler: 6.0.1
-  dotenv: 17.4.2
+  dotenv: 18.0.7
   esbuild: 0.28.2
-  eslint: 10.8.1
-  eslint-config-next: 15.5.4
+  eslint: 10.12.0
+  eslint-config-next: 16.4.0
   eslint-config-prettier: 10.1.8
   eslint-plugin-css-modules: 2.12.0
   eslint-plugin-import: 2.32.0
-  eslint-plugin-no-relative-import-paths: 1.6.1
+  eslint-plugin-no-relative-import-paths: 1.7.3
   eslint-plugin-prettier: 5.5.6
   eslint-plugin-react: 7.37.5
   eslint-plugin-react-hooks: 6.1.0
-  eslint-plugin-storybook: 10.5.7
-  express: 5.2.1
+  eslint-plugin-storybook: 10.6.1
+  express: 5.3.0
   express-prom-bundle: 8.0.0
   fuse.js: 7.5.0
-  globals: 17.9.0
-  html-react-parser: 6.1.5
+  globals: 17.13.0
+  html-react-parser: 6.1.8
   http-terminator: 3.2.0
   husky: 9.1.7
-  jest: 30.4.2
-  jest-environment-jsdom: 30.4.1
+  jest: 30.5.2
+  jest-environment-jsdom: 30.5.2
   jest-fetch-mock: 4.2.0
   js-cookie: 3.0.8
-  jsep: 1.4.0
-  lint-staged: 17.3.0
+  jsep: 1.6.0
+  lint-staged: 17.6.0
   lodash.debounce: 4.0.8
-  lru-cache: 11.5.2
+  lru-cache: 11.5.3
   mock-fs: 5.5.0
-  next: 15.5.21
+  next: 16.3.7
   node-cache: 5.1.2
   nodemon: 3.1.14
   on-headers: 1.1.0
-  p-limit: 7.3.1
-  pino: 10.3.1
-  pino-pretty: 13.1.3
-  prettier: 3.9.6
+  p-limit: 7.3.3
+  pino: 10.4.0
+  pino-pretty: 13.2.0
+  prettier: 3.9.10
   prom-client: 15.1.3
-  react: 19.2.8
+  react: 19.3.0
   react-collapse: 5.1.1
-  react-dom: 19.2.8
-  react-error-boundary: 6.1.2
+  react-dom: 19.3.0
+  react-error-boundary: 6.1.6
   react-movable: 3.4.1
   react-redux: 9.3.0
-  redis: 6.2.0
+  redis: 6.3.0
   rss: 1.2.2
-  sass: 1.102.0
-  schema-dts: 1.1.5
-  sharp: 0.35.3
-  storybook: 10.5.7
-  storybook-addon-pseudo-states: 10.5.7
-  swr: 2.5.0
-  ts-jest: 29.4.12
+  sass: 1.105.1
+  schema-dts: 2.1.0
+  sharp: 0.35.5
+  storybook: 10.6.1
+  storybook-addon-pseudo-states: 10.6.1
+  swr: 2.5.1
+  ts-jest: 29.4.14
   typescript: 6.0.3
-  typescript-eslint: 8.66.0
-  uuid: 14.0.1
+  typescript-eslint: 8.71.1
+  uuid: 14.0.3
 
 minimumReleaseAge: 4320
 

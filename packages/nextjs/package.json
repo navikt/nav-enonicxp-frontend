@@ -3,13 +3,13 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
-        "build": "next build",
+        "build": "next build --webpack",
         "build:storybook": "storybook build",
         "prestorybook": "node playwright/copy-screenshots.js",
         "storybook": "storybook dev -p 6006",
         "analyze-bundle": "ANALYZE_BUNDLE=true pnpm run build",
         "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"pnpm run lint:tsc\" \"pnpm run lint:eslint\"",
-        "lint:tsc": "tsc",
+        "lint:tsc": "next typegen && tsc",
         "lint:eslint": "eslint src",
         "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },
@@ -63,6 +63,7 @@
     },
     "devDependencies": {
         "@chromatic-com/storybook": "catalog:",
+        "@navikt/browserslist-config": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
         "@playwright/test": "catalog:",
         "@storybook/addon-docs": "catalog:",
@@ -89,19 +90,7 @@
         "storybook-addon-pseudo-states": "catalog:",
         "ts-jest": "catalog:"
     },
-    "browserslist": {
-        "production": [
-            ">0.2% in no",
-            "iOS >= 11",
-            "safari >= 11",
-            "not dead",
-            "not op_mini all",
-            "not ie 11"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+    "browserslist": [
+        "extends @navikt/browserslist-config"
+    ]
 }

@@ -1,5 +1,26 @@
 import { AudienceReception, Address } from '@navikt/nav-office-reception-info';
 
+type PostBoxAddress = {
+    type: 'postboksadresse';
+    adresseTilleggsnavn?: string;
+    postnummer?: string;
+    poststed?: string;
+    postboksnummer?: string;
+    postboksanlegg?: string;
+};
+
+type StreetAddress = Partial<Address> & {
+    type: 'stedsadresse';
+    locationLabel?: string;
+};
+
+export type OfficeAddress = (StreetAddress | PostBoxAddress) & {
+    hideLocation?: boolean;
+};
+
+export type OfficeType =
+    'LOKAL' | 'HMS' | 'ALS' | 'OKONOMI' | 'OPPFUTLAND' | 'KONTROLL' | 'REDAKSJONELT';
+
 export type Service = {
     type:
         | 'HJELP_KOMME_I_JOBB'
@@ -53,28 +74,31 @@ export type AudienceContact = {
 };
 
 type AudienceContactInformation = {
-    spraakdrakt: 'NN' | 'NB';
+    spraakdrakt?: 'NN' | 'NB';
     informasjonUtbetalinger?: string;
     brukertjenesteTilbud?: AudienceServices;
-    publikumsmottak: AudienceReception[];
+    publikumsmottak?: AudienceReception[];
     sosialhjelp?: SocialServices;
-    publikumskanaler: AudienceContact[] | AudienceContact;
+    publikumskanaler?: AudienceContact[] | AudienceContact;
 };
 
 export type OfficeDetailsData = {
-    enhetNr: string;
-    type: string;
+    enhetNr?: string;
+    type: OfficeType;
     telefonnummer?: string;
     telefonnummerKommentar?: string;
-    navn: string;
-    organisasjonsnummer: string;
+    hidePhoneInformation?: boolean;
+    phoneHeader?: string;
+    faksnummer?: string;
+    navn?: string;
+    organisasjonsnummer?: string;
     sosialeTjenester?: string;
     spesielleOpplysninger?: string;
-    status: string;
+    status?: string;
     underEtableringDato?: string;
     aktiveringsdato?: string;
     nedleggesesdato?: string;
-    beliggenhet: Address;
-    postadresse: Address;
-    brukerkontakt: AudienceContactInformation;
+    beliggenhet?: OfficeAddress;
+    postadresse?: OfficeAddress;
+    brukerkontakt?: AudienceContactInformation;
 };

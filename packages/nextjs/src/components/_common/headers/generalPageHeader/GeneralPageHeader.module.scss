@@ -10,7 +10,7 @@
         margin-left: -120px;
 
         :global(.back) {
-            [fill]:not([fill='none']) {
+            [fill]:not([fill='none']):not(mask) {
                 fill: var(--ax-border-brand-magenta-subtle);
             }
             [stroke] {
@@ -18,7 +18,7 @@
             }
         }
         :global(.front) {
-            [fill]:not([fill='none']) {
+            [fill]:not([fill='none']):not(mask) {
                 fill: var(--ax-text-brand-magenta-decoration);
             }
             [stroke] {

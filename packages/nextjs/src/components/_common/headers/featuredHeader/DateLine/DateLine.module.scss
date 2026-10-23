@@ -4,7 +4,7 @@
     background-color: var(--ax-bg-default);
     display: flex;
     justify-content: center;
-    margin-top: var(--ax-space-24);
+    margin-block: var(--ax-space-4) var(--ax-space-12);
 
     @include common.full-width-mixin;
 }

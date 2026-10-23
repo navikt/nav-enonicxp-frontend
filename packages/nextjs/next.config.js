@@ -91,7 +91,14 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
-        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost, skyraScriptHost, 'wss://notification.qbrick.com', '*.dna.contentdelivery.net'],
+        'connect-src': [
+            ...internalHosts,
+            ...qbrickHosts,
+            uxSignalsApiHost,
+            skyraScriptHost,
+            'wss://notification.qbrick.com',
+            '*.dna.contentdelivery.net',
+        ],
         'media-src': [...qbrickHosts, salesforceVideoHost, '*.dna.contentdelivery.net'],
     };
 
@@ -181,8 +188,10 @@ const config = {
         return process.env.GIT_HASH?.slice(0, 12);
     },
     images: {
+        qualities: [75, 90],
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
+        dangerouslyAllowLocalIP: isLocal,
         remotePatterns: [
             process.env.APP_ORIGIN,
             process.env.XP_ORIGIN,

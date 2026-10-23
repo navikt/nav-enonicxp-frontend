@@ -12,12 +12,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
+        title: 'Nav ytre Søre Sunnmøre',
         officeDetails: {
-            navn: 'Nav ytre Søre Sunnmøre',
+            navn: 'Nav Hareid og Herøy',
             brukerkontakt: {
                 publikumsmottak: [{ stedsbeskrivelse: 'Hareid' }, { stedsbeskrivelse: 'Herøy' }],
             },
-            type: '',
+            type: 'LOKAL',
         },
     },
 };

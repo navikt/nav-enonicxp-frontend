@@ -4,18 +4,26 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from './logger';
 import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from './constants';
 import { pathToCacheKey } from './cache-key';
+import { pageCacheErrorsCounter } from './metrics/page-cache-metrics';
+
+type CacheLayer = 'render' | 'response';
 
 // Hard ceiling on a single cache read. If Valkey is slow or a socket hangs, resolve to a miss so the
 // caller falls through to the XP origin instead of blocking the request indefinitely.
 const CACHE_READ_TIMEOUT_MS = 1000;
 
-const withReadTimeout = <T>(operation: Promise<T>, fullKey: string): Promise<T | null> => {
+const withReadTimeout = <T>(
+    operation: Promise<T>,
+    fullKey: string,
+    layer: CacheLayer
+): Promise<T | null> => {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const timeout = new Promise<null>((resolve) => {
         timer = setTimeout(() => {
             logger.warn('Valkey read timed out; treating as a cache miss', {
                 metaData: { fullKey },
             });
+            pageCacheErrorsCounter.inc({ operation: 'get', layer, reason: 'timeout' });
             resolve(null);
         }, CACHE_READ_TIMEOUT_MS);
     });
@@ -118,9 +126,15 @@ class RedisCacheImpl {
                         error,
                         metaData: { fullKey },
                     });
+                    pageCacheErrorsCounter.inc({
+                        operation: 'get',
+                        layer: 'render',
+                        reason: 'error',
+                    });
                     return Promise.resolve(null);
                 }),
-            fullKey
+            fullKey,
+            'render'
         );
     }
 
@@ -132,13 +146,19 @@ class RedisCacheImpl {
                 .then((result) => (result ? JSON.parse(result) : result))
                 .catch((error) => {
                     logger.error('Error getting value', { error, metaData: { fullKey } });
+                    pageCacheErrorsCounter.inc({
+                        operation: 'get',
+                        layer: 'response',
+                        reason: 'error',
+                    });
                     return Promise.resolve(null);
                 }),
-            fullKey
+            fullKey,
+            'response'
         );
     }
 
-    private async set<DataType>(key: string, ttl: number, data: DataType) {
+    private async set<DataType>(key: string, ttl: number, data: DataType, layer: CacheLayer) {
         return this.client
             .set(key, JSON.stringify(data), {
                 PX: ttl,
@@ -149,19 +169,26 @@ class RedisCacheImpl {
             })
             .catch((error) => {
                 logger.error('Error setting value', { error, metaData: { key } });
+                pageCacheErrorsCounter.inc({ operation: 'set', layer, reason: 'error' });
                 return Promise.resolve(null);
             });
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), this.renderCacheTTL, data);
+        return this.set(
+            this.getFullKey(key, this.renderCacheKeyPrefix),
+            this.renderCacheTTL,
+            data,
+            'render'
+        );
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
         return this.set(
             this.getFullKey(key, this.responseCacheKeyPrefix),
             this.responseCacheTTL,
-            data
+            data,
+            'response'
         );
     }
 

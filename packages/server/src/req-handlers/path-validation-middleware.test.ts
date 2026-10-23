@@ -12,6 +12,7 @@ describe('Path Validation Middleware', () => {
         path,
         ip: '127.0.0.1',
         method: 'GET',
+        headers: {},
     });
 
     beforeEach(() => {
@@ -81,6 +82,22 @@ describe('Path Validation Middleware', () => {
         });
         test('should block /_/component root path', () => {
             runMiddleware('/_/component');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('Block pre 2019 Enonic CMS paths', () => {
+        test('should block path[contentId].cms', () => {
+            runMiddleware('/en+gammel+url.12345.cms');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('Block aws-specific paths', () => {
+        test('should block path containing .aws', () => {
+            runMiddleware('/home/*/.aws/config');
             expect(mockRes.statusCode).toBe(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });

@@ -10,15 +10,18 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nav-enonicxp-frontend
-  minReplicas: 2
+  minReplicas: 4
   maxReplicas: 128
   behavior:
     scaleUp:
       stabilizationWindowSeconds: 0
       policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 15
+        - type: Percent
+          value: 100
+          periodSeconds: 15
+        - type: Pods
+          value: 8
+          periodSeconds: 15
       selectPolicy: Max
   metrics:
     - type: Resource

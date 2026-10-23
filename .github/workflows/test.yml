@@ -1,0 +1,17 @@
+name: Test
+on:
+  pull_request:
+    branches: ['**']
+permissions:
+  contents: read
+jobs:
+  test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: navikt/navno-actions/setup-node-pnpm@v1
+        with:
+          reader-token: ${{ secrets.READER_TOKEN }}
+      - run: pnpm run copy-env-development
+      - run: pnpm run test

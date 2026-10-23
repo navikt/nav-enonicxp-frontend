@@ -36,6 +36,8 @@ const MALICIOUS_PATTERNS = [
     /\/proc\/self/i,
     // Shell command injection (command at path start followed by space/colon)
     /^\/(wget|curl|bash|sh|cmd|powershell)(\s|:)/i,
+    // aws
+    /\.aws/i,
 ];
 
 // Common malicious file extensions to block
@@ -70,6 +72,10 @@ export const buildPathValidationMiddleware =
     (nextApp: InferredNextWrapperServer, testing = false): RequestHandler =>
     (req, res, next) => {
         const fullPath = req.path;
+
+        // Internal use only, clients shouldn't be able to set this header themselves - so nuke it if they try!
+        delete req.headers['x-nav-blocked-path'];
+
         const badRequest = () => {
             res.statusCode = 400;
             if (!testing) {
@@ -89,12 +95,35 @@ export const buildPathValidationMiddleware =
             return badRequest();
         }
 
+        // Fully decode nested/double-encoded paths (e.g. %2530 -> %30 -> 0) so fuzz
+        // patterns can't hide behind an extra layer of percent-encoding.
         let decodedPath: string;
         try {
-            decodedPath = decodeURIComponent(fullPath);
+            decodedPath = fullPath;
+            for (let i = 0; i < 5; i++) {
+                const nextDecoded = decodeURIComponent(decodedPath);
+                if (nextDecoded === decodedPath) {
+                    break;
+                }
+                decodedPath = nextDecoded;
+            }
         } catch {
             blockedRequestsCounter.inc({ reason: 'malformed_uri' });
             logger.warn(`Blocked malformed URI: ${req.method} ${fullPath} from ${req.ip}`);
+            return badRequest();
+        }
+
+        // Blocks stray '%' not forming a valid percent-encoding sequence
+        if (/%(?![0-9a-fA-F]{2})/.test(decodedPath)) {
+            blockedRequestsCounter.inc({ reason: 'malformed_uri' });
+            logger.warn(`Blocked stray percent-encoding: ${req.method} ${fullPath} from ${req.ip}`);
+            return badRequest();
+        }
+
+        // Block old CMS pattern
+        if (/\.\d+\.cms/.test(decodedPath)) {
+            blockedRequestsCounter.inc({ reason: 'xp_old_path' });
+            logger.warn(`Blocked old CSM path: ${req.method} ${fullPath} from ${req.ip}`);
             return badRequest();
         }
 
