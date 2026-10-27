@@ -90,7 +90,7 @@ export const buildPathValidationMiddleware =
         if (fullPath.length > 500) {
             blockedRequestsCounter.inc({ reason: 'long_path' });
             logger.warn(
-                `Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`
+                `Blocked excessively long path: ${req.method} ${fullPath.substring(0, 100)}... from ${req.socket?.remoteAddress}`
             );
             return badRequest();
         }
@@ -109,28 +109,36 @@ export const buildPathValidationMiddleware =
             }
         } catch {
             blockedRequestsCounter.inc({ reason: 'malformed_uri' });
-            logger.warn(`Blocked malformed URI: ${req.method} ${fullPath} from ${req.ip}`);
+            logger.warn(
+                `Blocked malformed URI: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
+            );
             return badRequest();
         }
 
         // Blocks stray '%' not forming a valid percent-encoding sequence
         if (/%(?![0-9a-fA-F]{2})/.test(decodedPath)) {
             blockedRequestsCounter.inc({ reason: 'malformed_uri' });
-            logger.warn(`Blocked stray percent-encoding: ${req.method} ${fullPath} from ${req.ip}`);
+            logger.warn(
+                `Blocked stray percent-encoding: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
+            );
             return badRequest();
         }
 
         // Block old CMS pattern
         if (/\.\d+\.cms/.test(decodedPath)) {
             blockedRequestsCounter.inc({ reason: 'xp_old_path' });
-            logger.warn(`Blocked old CSM path: ${req.method} ${fullPath} from ${req.ip}`);
+            logger.warn(
+                `Blocked old CSM path: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
+            );
             return badRequest();
         }
 
         // Block direct access to Enonic XP root paths
         if (BLOCKED_ROOT_PATHS.has(fullPath) || BLOCKED_ROOT_PATHS.has(decodedPath)) {
             blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
-            logger.warn(`Blocked root XP path access: ${req.method} ${fullPath} from ${req.ip}`);
+            logger.warn(
+                `Blocked root XP path access: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
+            );
             return badRequest();
         }
 
@@ -149,12 +157,16 @@ export const buildPathValidationMiddleware =
                 next();
             } else {
                 blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
-                logger.warn(`Blocked unknown XP path: ${req.method} ${req.path} from ${req.ip}`);
+                logger.warn(
+                    `Blocked unknown XP path: ${req.method} ${req.path} from ${req.socket?.remoteAddress}`
+                );
                 return badRequest();
             }
         } else if (posXPprefix > 0) {
             blockedRequestsCounter.inc({ reason: 'xp_path_blocked' });
-            logger.warn(`Blocked invalid XP path: ${req.method} ${req.path} from ${req.ip}`);
+            logger.warn(
+                `Blocked invalid XP path: ${req.method} ${req.path} from ${req.socket?.remoteAddress}`
+            );
             return badRequest();
         }
 
@@ -163,7 +175,7 @@ export const buildPathValidationMiddleware =
         if (repeatedPattern.test(fullPath)) {
             blockedRequestsCounter.inc({ reason: 'repeated_pattern' });
             logger.warn(
-                `Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.ip}`
+                `Blocked repeated pattern attack: ${req.method} ${fullPath.substring(0, 100)}... from ${req.socket?.remoteAddress}`
             );
             return badRequest();
         }
@@ -173,7 +185,7 @@ export const buildPathValidationMiddleware =
         if (segments.length > 50) {
             blockedRequestsCounter.inc({ reason: 'excessive_segments' });
             logger.warn(
-                `Blocked excessive path segments: ${req.method} ${fullPath} from ${req.ip}`
+                `Blocked excessive path segments: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
             );
             return badRequest();
         }
@@ -183,7 +195,7 @@ export const buildPathValidationMiddleware =
             if (pattern.test(fullPath) || pattern.test(decodedPath)) {
                 blockedRequestsCounter.inc({ reason: 'malicious_pattern' });
                 logger.warn(
-                    `Blocked suspicious request pattern: ${req.method} ${fullPath} from ${req.ip}`
+                    `Blocked suspicious request pattern: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
                 );
                 return badRequest();
             }
@@ -196,7 +208,7 @@ export const buildPathValidationMiddleware =
         if (hasBlockedExtension) {
             blockedRequestsCounter.inc({ reason: 'blocked_extension' });
             logger.warn(
-                `Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.ip}`
+                `Blocked suspicious file extension: ${req.method} ${fullPath} from ${req.socket?.remoteAddress}`
             );
             return badRequest();
         }
