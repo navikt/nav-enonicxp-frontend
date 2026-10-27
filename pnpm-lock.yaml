@@ -37,8 +37,8 @@ catalogs:
       specifier: 8.19.1
       version: 8.19.1
     '@navikt/nav-dekoratoren-moduler':
-      specifier: 4.5.3
-      version: 4.5.3
+      specifier: 4.3.1-beta.0
+      version: 4.3.1-beta.0
     '@navikt/nav-office-reception-info':
       specifier: 2.0.4
       version: 2.0.4
@@ -306,7 +306,7 @@ importers:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.5.3(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
+        version: 4.3.1-beta.0(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
       '@navikt/next-logger':
         specifier: 'catalog:'
         version: 5.0.1(next@16.4.2(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@playwright/test@1.64.0)(@types/node@20.14.10)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sass@1.105.1))(pino@10.4.0)
@@ -455,7 +455,7 @@ importers:
         version: 8.19.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.5.3(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
+        version: 4.3.1-beta.0(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
       '@navikt/nav-office-reception-info':
         specifier: 'catalog:'
         version: 2.0.4(@navikt/aksel-icons@8.19.1)(@navikt/ds-css@8.19.1)(@navikt/ds-react@8.19.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(dayjs@1.11.23)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -594,7 +594,7 @@ importers:
         version: 0.0.32
       eslint-config-next:
         specifier: 'catalog:'
-        version: 16.4.2(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3)
+        version: 16.4.2(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(supports-color@5.5.0)(typescript@6.0.3)
       eslint-plugin-storybook:
         specifier: 'catalog:'
         version: 10.6.1(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3)
@@ -627,7 +627,7 @@ importers:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.5.3(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
+        version: 4.3.1-beta.0(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
       cookie-parser:
         specifier: 'catalog:'
         version: 1.4.7
@@ -3056,11 +3056,11 @@ packages:
         tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.19.2/057a50d0df4a94efe3bb213e5306691b78b2d6f8,
       }
 
-  '@navikt/nav-dekoratoren-moduler@4.5.3':
+  '@navikt/nav-dekoratoren-moduler@4.3.1-beta.0':
     resolution:
       {
-        integrity: sha512-mXrR0tq6EuOuG7guYw7BVxTpJmfRDxSlNb+vCEOfcf7FXZmOhIQpKiVbXlbUE9Ke2X2EEKDyirWasxJdNH5r2Q==,
-        tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.5.3/afe4e953f4de64d0c611ac0f5b4ce25eac3969d5,
+        integrity: sha512-w0uZsOVVORJEa1hYMjbYNH+ILx4I/06JLp7mYrekPOEv+6NMfrtjThXdTjShtBpD1w72hDlKV8C+EkVdovexuw==,
+        tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.3.1-beta.0/de155798f7ee3daf4a15935e42089cd01c943172,
       }
     engines: { node: 24.x }
     peerDependencies:
@@ -6275,6 +6275,13 @@ packages:
         integrity: sha512-r4ESw/IlusD17lgQi1O20Fa3qNnsckR126TdUuBgAu7GBYSIPvdNyONd3Zrxh0xCwA4+6w/TDArBPsMvhur+KQ==,
       }
     engines: { node: '>= 0.10' }
+
+  csp-header@6.3.1:
+    resolution:
+      {
+        integrity: sha512-ykcqGMOGP/uU7RLXDD83k2Ge5Stgc/N3qgKgSN+dATDlNgLHnIoI1IdZBjOskD5Ev1RSKTabLdIETJ6VzXTmvA==,
+      }
+    engines: { node: '>=18' }
 
   csp-header@6.4.0:
     resolution:
@@ -14749,10 +14756,10 @@ snapshots:
 
   '@navikt/ds-tokens@8.19.2': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.5.3(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)':
+  '@navikt/nav-dekoratoren-moduler@4.3.1-beta.0(html-react-parser@6.1.8(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
-      csp-header: 6.4.0
+      csp-header: 6.3.1
       html-react-parser: 6.1.8(@types/react@19.3.0)(react@19.3.0)
       js-cookie: 3.0.8
       react: 19.3.0
@@ -16870,6 +16877,8 @@ snapshots:
       randombytes: 2.1.0
       randomfill: 1.0.4
 
+  csp-header@6.3.1: {}
+
   csp-header@6.4.0: {}
 
   css-loader@6.11.0(webpack@5.111.1(esbuild@0.28.2)(postcss@8.5.28)(sharp@0.35.5(@types/node@26.6.1))):
@@ -17358,12 +17367,12 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-next@16.4.2(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(typescript@6.0.3):
+  eslint-config-next@16.4.2(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0))(supports-color@5.5.0)(typescript@6.0.3):
     dependencies:
       '@next/eslint-plugin-next': 16.4.2(eslint@10.12.0(jiti@2.7.0))
       eslint: 10.12.0(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0))(supports-color@5.5.0)
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint-import-resolver-typescript@3.10.1)(eslint@10.12.0(jiti@2.7.0))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@10.12.0(jiti@2.7.0))
       eslint-plugin-react: 7.37.5(eslint@10.12.0(jiti@2.7.0))
@@ -17390,7 +17399,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0))(supports-color@5.5.0):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3(supports-color@5.5.0)
@@ -17412,7 +17421,7 @@ snapshots:
       '@typescript-eslint/parser': 8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3)
       eslint: 10.12.0(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@10.12.0(jiti@2.7.0))(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
