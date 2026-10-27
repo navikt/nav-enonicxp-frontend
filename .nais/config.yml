@@ -67,6 +67,8 @@ spec:
         - application: {{failoverApp}}
         - application: {{dekoratorenApp}}
           namespace: personbruker
+        - application: {{dekoratorenApp}}
+          namespace: navno
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}
