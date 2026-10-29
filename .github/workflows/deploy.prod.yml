@@ -24,6 +24,7 @@ jobs:
           ENV: prod
           ADMIN_ORIGIN: https://portal-admin.oera.no
           APP_ORIGIN: https://www.nav.no
+          SEARCH_URL: https://www.nav.no/sok
           REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
           DECORATOR_URL: https://www.nav.no/nav-dekoratoren
           XP_ORIGIN: https://www.nav.no

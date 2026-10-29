@@ -5,6 +5,7 @@ declare global {
             ENV: 'prod' | 'dev1' | 'dev2' | 'dev3' | 'localhost';
             ADMIN_ORIGIN: string;
             APP_ORIGIN: string;
+            SEARCH_URL: string;
             BUILD_ID: string;
             RELEASE_TAG: string;
             DECORATOR_URL: string;

@@ -32,6 +32,7 @@ jobs:
           ENV: dev2
           ADMIN_ORIGIN: https://portal-admin-q6.oera.no
           APP_ORIGIN: https://www-2.ansatt.dev.nav.no
+          SEARCH_URL: https://www.ansatt.dev.nav.no/sok
           REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
           DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
           XP_ORIGIN: https://www-q6.nav.no

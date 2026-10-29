@@ -31,6 +31,7 @@ jobs:
           ENV: dev3
           ADMIN_ORIGIN: https://trial-navpoc.enonic.cloud
           APP_ORIGIN: https://www-3.ansatt.dev.nav.no
+          SEARCH_URL: https://www.ansatt.dev.nav.no/sok
           REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev3
           DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
           XP_ORIGIN: https://www-navpoc.enonic.cloud

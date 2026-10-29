@@ -22,6 +22,10 @@ inputs:
     required: true
     description: App origin
 
+  SEARCH_URL:
+    required: true
+    description: Search page URL
+
   REVALIDATOR_PROXY_ORIGIN:
     required: true
     description: Revalidator proxy origin
@@ -102,6 +106,7 @@ runs:
         NODE_ENV: ${{ inputs.NODE_ENV }}
         ADMIN_ORIGIN: ${{ inputs.ADMIN_ORIGIN }}
         APP_ORIGIN: ${{ inputs.APP_ORIGIN }}
+        SEARCH_URL: ${{ inputs.SEARCH_URL }}
         DECORATOR_URL: ${{ inputs.DECORATOR_URL }}
         XP_ORIGIN: ${{ inputs.XP_ORIGIN }}
         TELEMETRY_URL: ${{ inputs.TELEMETRY_URL }}
@@ -116,6 +121,7 @@ runs:
         NODE_ENV=$NODE_ENV
         ADMIN_ORIGIN=$ADMIN_ORIGIN
         APP_ORIGIN=$APP_ORIGIN
+        SEARCH_URL=$SEARCH_URL
         DECORATOR_URL=$DECORATOR_URL
         XP_ORIGIN=$XP_ORIGIN
         TELEMETRY_URL=$TELEMETRY_URL
