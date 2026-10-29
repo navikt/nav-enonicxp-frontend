@@ -32,6 +32,7 @@ jobs:
           ENV: dev2
           ADMIN_ORIGIN: https://portal-admin-q6.oera.no
           APP_ORIGIN: https://www-2.ansatt.dev.nav.no
+          SEARCH_URL: https://www.ansatt.dev.nav.no/sok
           REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
           DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
           XP_ORIGIN: https://www-q6.nav.no
@@ -42,7 +43,6 @@ jobs:
           FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
           NODE_ENV: ${{ inputs.NODE_ENV }}
           nais_management_project_id: ''
-          NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
           NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           READER_TOKEN: ${{ secrets.READER_TOKEN }}
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}

@@ -169,12 +169,12 @@ const config = {
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
+        SEARCH_URL: process.env.SEARCH_URL,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
-        NAVNO_SEARCH_API_URL: process.env.NAVNO_SEARCH_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
         MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
