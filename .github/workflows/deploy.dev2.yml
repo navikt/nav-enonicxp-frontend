@@ -42,7 +42,6 @@ jobs:
           FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
           NODE_ENV: ${{ inputs.NODE_ENV }}
           nais_management_project_id: ''
-          NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
           NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           READER_TOKEN: ${{ secrets.READER_TOKEN }}
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
