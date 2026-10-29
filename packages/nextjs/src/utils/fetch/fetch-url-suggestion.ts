@@ -5,7 +5,7 @@ export type UrlSearchResponse = {
     title?: string;
 };
 
-const searchUrl = `${process.env.APP_ORIGIN}/sok/search-url`;
+const searchUrl = `${process.env.APP_ORIGIN}/sok/api/search-url`;
 
 export const fetchUrlSuggestion = (url: string) =>
     fetchJson<UrlSearchResponse>(`${searchUrl}${objectToQueryString({ term: url })}`, 5000);
