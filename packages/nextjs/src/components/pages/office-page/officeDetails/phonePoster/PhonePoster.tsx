@@ -70,12 +70,12 @@ export const PhonePoster = ({
                 <BodyLong spacing={visPublikumskanaler}>{phoneInformation}</BodyLong>
             )}
             {visPublikumskanaler && (
-                <>
+                <div data-nosnippet>
                     <Heading size="small" level="3">
                         {getOfficeTranslations('alternativeContacts')}
                     </Heading>
                     <AudienceChannels publikumskanaler={publikumskanaler} />
-                </>
+                </div>
             )}
         </div>
     );
