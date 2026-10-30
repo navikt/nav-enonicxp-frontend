@@ -1,0 +1,57 @@
+# Builds this repo with navno-ci's node-build.yml: everything every build shares
+# (monorepo layout, CDN path, shared .env lines) lives here, callers pass the rest.
+# Callers need `permissions: { contents: read, id-token: write }` and `secrets: inherit`.
+name: Build
+on:
+  workflow_call:
+    inputs:
+      env-file:
+        description: Instance-specific KEY=VALUE lines for .env. The lines shared by every build are appended.
+        type: string
+        required: true
+      github-environment:
+        description: GitHub environment the build runs in, for scoped secrets and variables.
+        type: string
+        required: false
+        default: ''
+      image-suffix:
+        description: Suffix appended to the image name.
+        type: string
+        required: false
+        default: ''
+      push-image:
+        description: Upload to the CDN and push the image. false for PR checks.
+        type: boolean
+        required: false
+        default: true
+    outputs:
+      image:
+        description: The pushed image. Empty when push-image is false.
+        value: ${{ jobs.build.outputs.image }}
+
+jobs:
+  build:
+    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    permissions: { contents: read, id-token: write }
+    with:
+      push-image: ${{ inputs.push-image }}
+      github-environment: ${{ inputs.github-environment }}
+      image-suffix: ${{ inputs.image-suffix }}
+      cdn-source: ./packages/nextjs/.next/static
+      cdn-destination: nav-enonicxp-frontend/_next
+      prune-remove: |
+        node_modules
+        packages/*/node_modules
+      pnpm-deploy: |
+        ./packages/server nonsymlink/server
+        ./packages/nextjs nonsymlink/nextjs
+      env-file-copy-to: |
+        packages/nextjs/.env
+        packages/server/.env
+      build-cache-paths: packages/nextjs/.next/cache
+      env-file: |
+        ${{ inputs.env-file }}
+        ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend
+        IMAGE_CACHE_DIR=/tmp/images
+        NEXT_TELEMETRY_DISABLED=1
+    secrets: inherit

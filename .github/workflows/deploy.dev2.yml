@@ -17,24 +17,10 @@ permissions:
 
 jobs:
   build:
-    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    uses: ./.github/workflows/build.yml
     with:
       github-environment: dev-gcp:dev2
       image-suffix: dev2-deploy
-      cdn-source: ./packages/nextjs/.next/static
-      cdn-destination: nav-enonicxp-frontend/_next
-      prune-remove: |
-        node_modules
-        packages/nextjs/node_modules
-        packages/server/node_modules
-        packages/shared/node_modules
-      pnpm-deploy: |
-        ./packages/server nonsymlink/server
-        ./packages/nextjs nonsymlink/nextjs
-      env-file-copy-to: |
-        packages/nextjs/.env
-        packages/server/.env
-      build-cache-paths: packages/nextjs/.next/cache
       env-file: |
         ENV=dev2
         NODE_ENV=${{ inputs.NODE_ENV }}
@@ -48,9 +34,6 @@ jobs:
         NAVNO_SEARCH_API_URL=https://navno-search-api.ekstern.dev.nav.no/content/search-url
         MELDEKORT_API_URL=https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person
         FAILOVER_ORIGIN=https://www-2-failover.intern.dev.nav.no
-        ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend
-        IMAGE_CACHE_DIR=/tmp/images
-        NEXT_TELEMETRY_DISABLED=1
     secrets: inherit
 
   deploy:

@@ -10,24 +10,10 @@ permissions:
 
 jobs:
   build:
-    uses: navikt/navno-ci/.github/workflows/node-build.yml@v1
+    uses: ./.github/workflows/build.yml
     with:
       github-environment: prod-gcp:failover
       image-suffix: failover-prod
-      cdn-source: ./packages/nextjs/.next/static
-      cdn-destination: nav-enonicxp-frontend/_next
-      prune-remove: |
-        node_modules
-        packages/nextjs/node_modules
-        packages/server/node_modules
-        packages/shared/node_modules
-      pnpm-deploy: |
-        ./packages/server nonsymlink/server
-        ./packages/nextjs nonsymlink/nextjs
-      env-file-copy-to: |
-        packages/nextjs/.env
-        packages/server/.env
-      build-cache-paths: packages/nextjs/.next/cache
       env-file: |
         ENV=prod
         NODE_ENV=production
@@ -42,9 +28,6 @@ jobs:
         MELDEKORT_API_URL=https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
         FAILOVER_ORIGIN=https://www-failover.nav.no
         IS_FAILOVER_INSTANCE=true
-        ASSET_PREFIX=https://cdn.nav.no/navno/nav-enonicxp-frontend
-        IMAGE_CACHE_DIR=/tmp/images
-        NEXT_TELEMETRY_DISABLED=1
     secrets: inherit
 
   deploy:
