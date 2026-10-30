@@ -11,56 +11,37 @@ on:
           - production
           - development
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    environment: dev-gcp:dev2
-    permissions:
-      contents: read
-      id-token: write
-    outputs:
-      image: ${{ steps.build-image.outputs.image }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Build dev2 image
-        id: build-image
-        uses: ./.github/actions/build-image
-        with:
-          imagename: dev2-deploy
-          ENV: dev2
-          ADMIN_ORIGIN: https://portal-admin-q6.oera.no
-          APP_ORIGIN: https://www-2.ansatt.dev.nav.no
-          REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
-          DECORATOR_URL: https://dekoratoren-beta.intern.dev.nav.no
-          XP_ORIGIN: https://www-q6.nav.no
-          TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
-          INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
-          RELEASE_TAG: dev2-${{ github.sha }}
-          MELDEKORT_API_URL: https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person
-          FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
-          NODE_ENV: ${{ inputs.NODE_ENV }}
-          nais_management_project_id: ''
-          NAVNO_SEARCH_API_URL: https://navno-search-api.ekstern.dev.nav.no/content/search-url
-          NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          READER_TOKEN: ${{ secrets.READER_TOKEN }}
-          SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+    uses: ./.github/workflows/build.yml
+    with:
+      github-environment: dev-gcp:dev2
+      image-suffix: dev2-deploy
+      env-file: |
+        ENV=dev2
+        NODE_ENV=${{ inputs.NODE_ENV }}
+        ADMIN_ORIGIN=https://portal-admin-q6.oera.no
+        APP_ORIGIN=https://www-2.ansatt.dev.nav.no
+        REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy-dev2
+        DECORATOR_URL=https://dekoratoren-beta.intern.dev.nav.no
+        XP_ORIGIN=https://www-q6.nav.no
+        TELEMETRY_URL=https://telemetry.ekstern.dev.nav.no/collect
+        INNLOGGINGSSTATUS_URL=https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
+        NAVNO_SEARCH_API_URL=https://navno-search-api.ekstern.dev.nav.no/content/search-url
+        MELDEKORT_API_URL=https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person
+        FAILOVER_ORIGIN=https://www-2-failover.intern.dev.nav.no
+    secrets: inherit
 
   deploy:
-    runs-on: ubuntu-latest
-    needs: [build]
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Build and deploy dev2
-        uses: ./.github/actions/deploy
-        with:
-          image: ${{ needs.build.outputs.image }}
-          cluster: dev-gcp
-          vars_file: vars-dev2.yml
-          config_file: config.yml
-          hpa_file: hpa-dev2.yml
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    with:
+      cluster: dev-gcp
+      resource: .nais/config.yml
+      hpa-resource: .nais/hpa/hpa-dev2.yml
+      vars: .nais/vars/vars-dev2.yml
+      var: image=${{ needs.build.outputs.image }}

@@ -1,0 +1,42 @@
+# Builds main and deploys it to prod - shared by deploy.prod.yml and base-image-refresh.yml
+# Callers need `permissions: { contents: read, id-token: write }` and `secrets: inherit`.
+name: Build and deploy to prod
+on:
+  workflow_call:
+    outputs:
+      image:
+        description: The deployed image.
+        value: ${{ jobs.build.outputs.image }}
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    permissions: { contents: read, id-token: write }
+    with:
+      github-environment: prod-gcp
+      image-suffix: release-${{ github.ref_name }}
+      env-file: |
+        ENV=prod
+        NODE_ENV=production
+        ADMIN_ORIGIN=https://portal-admin.oera.no
+        APP_ORIGIN=https://www.nav.no
+        REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
+        DECORATOR_URL=https://www.nav.no/nav-dekoratoren
+        XP_ORIGIN=https://www.nav.no
+        TELEMETRY_URL=https://telemetry.nav.no/collect
+        INNLOGGINGSSTATUS_URL=https://www.nav.no/person/nav-dekoratoren-api/auth
+        NAVNO_SEARCH_API_URL=https://navno-search-api.nav.no/content/search-url
+        MELDEKORT_API_URL=https://meldekort-api.nav.no/meldekort/meldekort-api/api/person
+        FAILOVER_ORIGIN=https://www-failover.nav.no
+    secrets: inherit
+
+  deploy:
+    needs: build
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    permissions: { contents: read, id-token: write }
+    with:
+      cluster: prod-gcp
+      resource: .nais/config.yml
+      hpa-resource: .nais/hpa/hpa-prod.yml
+      vars: .nais/vars/vars-prod.yml
+      var: image=${{ needs.build.outputs.image }}
