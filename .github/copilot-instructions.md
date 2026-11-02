@@ -53,7 +53,7 @@ This is a **Next.js frontend** for nav.no's public pages, serving as a headless 
 - **Regular ISR**: Pages generated on-demand with incremental revalidation
 - **Failover**: All pages pre-rendered at build time on separate instances for disaster recovery
 
-Both use `[...pathRouter].tsx` - the `IS_FAILOVER_INSTANCE` env var (set at build time) determines the rendering strategy.
+Both use `[[...pathRouter]].tsx` - the `IS_FAILOVER_INSTANCE` env var (set at build time) determines the rendering strategy.
 
 **Cache Strategy**:
 

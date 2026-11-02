@@ -16,7 +16,7 @@
     &[data-expanded='true'] {
         .header {
             position: sticky;
-            top: var(--decorator-sticky-offset, 0px);
+            top: 0px;
         }
     }
 }

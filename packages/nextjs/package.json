@@ -9,7 +9,7 @@
         "storybook": "storybook dev -p 6006",
         "analyze-bundle": "ANALYZE_BUNDLE=true pnpm run build",
         "lint": "concurrently --raw --names \"tsc,eslint\" --prefix-colors \"blue,green\" \"pnpm run lint:tsc\" \"pnpm run lint:eslint\"",
-        "lint:tsc": "tsc",
+        "lint:tsc": "next typegen && tsc",
         "lint:eslint": "eslint src",
         "test": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src"
     },

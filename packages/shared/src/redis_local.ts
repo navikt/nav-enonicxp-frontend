@@ -3,7 +3,7 @@ import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from './logger';
 import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from './constants';
-import { pathToCacheKey } from './cache-key';
+import { pathToCacheKey, renderCacheKeyToPathname } from './cache-key';
 import { pageCacheErrorsCounter } from './metrics/page-cache-metrics';
 
 type CacheLayer = 'render' | 'response';
@@ -114,7 +114,7 @@ class RedisCacheImpl {
     }
 
     public async getRender(key: string) {
-        const fullKey = this.getFullKey(key, this.renderCacheKeyPrefix);
+        const fullKey = this.getFullKey(renderCacheKeyToPathname(key), this.renderCacheKeyPrefix);
         return withReadTimeout(
             this.client
                 .getEx(fullKey, {
@@ -176,7 +176,7 @@ class RedisCacheImpl {
 
     public async setRender(key: string, data: CacheHandlerValue) {
         return this.set(
-            this.getFullKey(key, this.renderCacheKeyPrefix),
+            this.getFullKey(renderCacheKeyToPathname(key), this.renderCacheKeyPrefix),
             this.renderCacheTTL,
             data,
             'render'

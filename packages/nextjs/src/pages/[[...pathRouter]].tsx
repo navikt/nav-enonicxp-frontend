@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { logger } from '@/shared/logger';
-import { PageBase } from 'components/PageBase';
 import Config from 'config';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
@@ -8,7 +7,7 @@ import { fetchPrerenderPaths } from 'utils/fetch/fetch-prerender-paths';
 
 // For failover deployments we fully prerender a static version of the site
 // during build-time. For regular app deployments we generate pages on demand
-// with incremental regeneration
+// with incremental regeneration, including the front page.
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const getStaticPropsFailover: GetStaticProps = async (context) => {
@@ -57,7 +56,7 @@ const getStaticPropsRegular: GetStaticProps = async (context) => {
     };
 };
 
-const getStaticPathsRegular: GetStaticPaths = async () => {
+const getStaticPathsRegular: GetStaticPaths = () => {
     return {
         paths: [],
         fallback: 'blocking',
@@ -68,4 +67,4 @@ export const getStaticProps = isFailover ? getStaticPropsFailover : getStaticPro
 
 export const getStaticPaths = isFailover ? getStaticPathsFailover : getStaticPathsRegular;
 
-export default PageBase;
+export { PageBase as default } from 'components/PageBase';
