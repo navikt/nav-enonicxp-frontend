@@ -1,0 +1,12 @@
+name: Dependabot lockfile fix
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-lockfile:
+    uses: navikt/navno-ci/.github/workflows/dependabot-lockfile.yml@v1
+    secrets: inherit
