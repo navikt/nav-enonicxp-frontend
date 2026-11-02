@@ -64,6 +64,11 @@ table {
     }
 }
 
+// Insure space between LinkCards
+.part:has(+ .part__product-card-mini) .aksel-link-card {
+    margin-bottom: var(--ax-space-12);
+}
+
 // Prevent the "Customize page" dialog from appearing in the editor
 // on content types which we never want to have customized
 body.legacyContentType {
