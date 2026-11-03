@@ -13,12 +13,8 @@
         margin: 0;
         list-style: none;
 
-        li:not(:last-of-type) {
-            padding-bottom: var(--ax-space-12);
+        .card {
+            margin-bottom: var(--ax-space-12);
         }
-    }
-
-    .card {
-        margin-bottom: 0;
     }
 }

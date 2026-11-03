@@ -59,14 +59,10 @@ table {
 .layout:last-child,
 .part:last-child {
     margin-bottom: 0;
+
     & > :last-child {
         margin-bottom: 0;
     }
-}
-
-// Insure space between LinkCards
-.part:has(+ .part__product-card-mini) .aksel-link-card {
-    margin-bottom: var(--ax-space-12);
 }
 
 // Prevent the "Customize page" dialog from appearing in the editor
