@@ -64,7 +64,7 @@ table {
     }
 }
 
-// Insure space between LinkCards
+// Ensure space between LinkCards
 .part:has(+ .part__product-card-mini) .aksel-link-card {
     margin-bottom: var(--ax-space-12);
 }
