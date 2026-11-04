@@ -5,7 +5,7 @@ export type UrlSearchResponse = {
     title?: string;
 };
 
-const searchUrl = process.env.NAVNO_SEARCH_API_URL;
+const searchUrl = `${process.env.SEARCH_URL}/api/search-url`;
 
 export const fetchUrlSuggestion = (url: string) =>
     fetchJson<UrlSearchResponse>(encodeURI(`${searchUrl}?term=${url}`), 5000);
