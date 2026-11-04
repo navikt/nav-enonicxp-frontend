@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { SkjemadetaljerData } from 'types/content-props/skjemadetaljer';
+import { LinkSelectable } from 'types/component-props/_mixins';
 import { Skjemadetaljer } from './Skjemadetaljer';
 
 const baseSkjemadetaljer = {
@@ -64,6 +65,42 @@ export const WithFormNumbers: Story = {
         },
         formNumberSelected: 'nav 01-01.03a',
         displayConfig: { showTitle: true, showIngress: true, showFormNumbers: true },
+    },
+};
+
+const externalLink = (url: string): LinkSelectable => ({
+    _selected: 'external',
+    internal: { target: { _path: '', displayName: '' } },
+    external: { url, text: '' },
+});
+
+// First rendered button should be primary, the rest secondary. Variations
+// without a link are informational only and should not render a button.
+export const MultipleButtons: Story = {
+    args: {
+        skjemadetaljer: {
+            ...baseSkjemadetaljer,
+            formType: [
+                {
+                    ...baseSkjemadetaljer.formType[0],
+                    complaint: {
+                        variations: [
+                            { type: 'complaint', label: 'Kun informasjon' },
+                            {
+                                type: 'complaint',
+                                label: 'Klag på vedtak',
+                                link: externalLink('https://www.nav.no/klage'),
+                            },
+                            {
+                                type: 'appeal',
+                                label: 'Anke på vedtak',
+                                link: externalLink('https://www.nav.no/anke'),
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
     },
 };
 

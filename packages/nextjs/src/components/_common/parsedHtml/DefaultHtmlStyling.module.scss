@@ -40,13 +40,8 @@
             font-weight: 800;
         }
 
-        li:not(:last-child) {
-            // last-child-selector needed for specificity
-            margin-bottom: var(--ax-space-12);
-        }
-
-        li:last-child {
-            margin-bottom: 0;
+        li:not(:first-child) {
+            margin-top: var(--ax-space-12);
         }
 
         ul,
