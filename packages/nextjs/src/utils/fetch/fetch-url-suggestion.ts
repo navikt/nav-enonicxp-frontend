@@ -1,4 +1,4 @@
-import { fetchJson, objectToQueryString } from '@/shared/fetch-utils';
+import { fetchJson } from '@/shared/fetch-utils';
 
 export type UrlSearchResponse = {
     url?: string;
@@ -8,4 +8,4 @@ export type UrlSearchResponse = {
 const searchUrl = `${process.env.SEARCH_URL}/api/search-url`;
 
 export const fetchUrlSuggestion = (url: string) =>
-    fetchJson<UrlSearchResponse>(`${searchUrl}${objectToQueryString({ term: url })}`, 5000);
+    fetchJson<UrlSearchResponse>(encodeURI(`${searchUrl}?term=${url}`), 5000);
