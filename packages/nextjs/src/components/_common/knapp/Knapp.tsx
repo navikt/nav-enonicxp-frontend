@@ -67,7 +67,6 @@ export const Knapp = ({
             as={LenkeBase}
             href={link}
             className={classNames(
-                style.knapp,
                 fullWidth && style.knappFullWidth,
                 className,
                 lenkestyling && classNames('aksel-link', style.lenkestyling)
@@ -85,7 +84,7 @@ export const Knapp = ({
             disabled={disabled}
             icon={
                 xpIcon ? (
-                    <XpImage imageProps={xpIcon} className={style.knapp__icon} maxWidth={64} />
+                    <XpImage imageProps={xpIcon} className={style.knappIcon} maxWidth={64} />
                 ) : (
                     dsIcon
                 )

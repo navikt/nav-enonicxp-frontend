@@ -41,6 +41,11 @@
             li:not(:last-child) {
                 margin-bottom: var(--ax-space-16);
             }
+
+            a {
+                // Break long unbroken link text (e.g. filenames with underscores)
+                overflow-wrap: anywhere;
+            }
         }
     }
 }
