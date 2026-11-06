@@ -27,7 +27,7 @@ jobs:
         uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version-file: package.json
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
