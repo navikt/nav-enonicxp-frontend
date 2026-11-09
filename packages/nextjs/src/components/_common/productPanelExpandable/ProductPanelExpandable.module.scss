@@ -46,7 +46,9 @@
     }
 }
 
-.expandableContent {
+.expandableContent[data-open='true'] {
+    padding-block: 0 var(--ax-space-40);
+
     // Remove when we remove the old overview pages.
     &:not(.noLeftPadding) {
         @media #{common.$mq-screen-tablet-and-desktop} {

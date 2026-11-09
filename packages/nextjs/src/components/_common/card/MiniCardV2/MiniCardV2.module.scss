@@ -1,6 +1,10 @@
 .miniCardV2 {
     margin-bottom: var(--ax-space-36);
 
+    &:has(+ .miniCardV2) {
+        margin-bottom: var(--ax-space-12);
+    }
+
     :global(.aksel-link-anchor__arrow) {
         color: var(--ax-text-subtle);
     }
