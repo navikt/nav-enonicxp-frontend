@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { buildPathValidationMiddleware } from './path-validation-middleware';
 import { InferredNextWrapperServer } from '../server';
+import { logger } from '@/shared/logger';
 
 describe('Path Validation Middleware', () => {
     let mockNextApp: Pick<InferredNextWrapperServer, 'renderError'>;
@@ -313,6 +314,18 @@ describe('Path Validation Middleware', () => {
             runMiddleware('/%253Cscript%253E');
             expect(mockRes.statusCode).toBe(400);
             expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('Logging', () => {
+        test('should log the client IP when blocking a request', () => {
+            const warnSpy = jest.spyOn(logger, 'warn').mockImplementation(() => {});
+            runMiddleware('/script.php');
+            expect(warnSpy).toHaveBeenCalledWith(
+                'Blocked suspicious file extension: GET /script.php from 127.0.0.1',
+                { metaData: { ip: '127.0.0.1', method: 'GET', path: '/script.php' } }
+            );
+            warnSpy.mockRestore();
         });
     });
 });
