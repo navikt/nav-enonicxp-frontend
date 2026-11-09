@@ -40,4 +40,22 @@ describe('Trust proxy', () => {
     test('does not trust X-Forwarded-For from a public address', () => {
         expect(resolveIp('198.51.100.1', '203.0.113.5')).toBe('203.0.113.5');
     });
+
+    // The chain seen in dev: the socket is the ingress (IPv4-mapped, since Node listens
+    // dual-stack on ::) and X-Forwarded-For is "client, Google load balancer"
+    test('resolves the client behind the Google load balancer (IPv6 client)', () => {
+        expect(
+            resolveIp('2001:db8:e226:ed8b:76db:c2a8:8f4c:1, 35.191.89.191', '::ffff:10.6.85.180')
+        ).toBe('2001:db8:e226:ed8b:76db:c2a8:8f4c:1');
+    });
+
+    test('resolves the client behind the Google load balancer (IPv4 client)', () => {
+        expect(resolveIp('203.0.113.7, 130.211.0.5', '::ffff:10.6.85.180')).toBe('203.0.113.7');
+    });
+
+    test('ignores entries the client adds in front of the Google load balancer', () => {
+        expect(resolveIp('1.2.3.4, 203.0.113.8, 35.191.89.191', '::ffff:10.6.85.180')).toBe(
+            '203.0.113.8'
+        );
+    });
 });
