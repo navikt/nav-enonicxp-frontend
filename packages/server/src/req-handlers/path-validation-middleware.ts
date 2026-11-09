@@ -90,7 +90,23 @@ export const buildPathValidationMiddleware =
         const logBlocked = (description: string, loggedPath = fullPath) => {
             const { ip, method } = req;
             logger.warn(`${description}: ${method} ${loggedPath} from ${ip}`, {
-                metaData: { ip, method, path: loggedPath },
+                metaData: {
+                    ip,
+                    method,
+                    path: loggedPath,
+                    // TEMP debug: remove after checking the prod proxy chain
+                    debugXff: req.headers['x-forwarded-for'],
+                    debugSocket: req.socket?.remoteAddress,
+                    debugXRealIp: req.headers['x-real-ip'],
+                    debugForwarded: req.headers['forwarded'],
+                    debugClientIpHeaders: Object.fromEntries(
+                        Object.entries(req.headers).filter(([name]) =>
+                            /client-ip|true-client|cf-connecting|x-original-forwarded|x-nav-/i.test(
+                                name
+                            )
+                        )
+                    ),
+                },
             });
         };
 
