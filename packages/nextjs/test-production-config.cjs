@@ -1,5 +1,5 @@
 const { execFileSync } = require('node:child_process');
-const { mkdtempSync, rmSync } = require('node:fs');
+const { cpSync, mkdtempSync, rmSync } = require('node:fs');
 const { tmpdir } = require('node:os');
 const path = require('node:path');
 
@@ -12,6 +12,9 @@ try {
         ['--filter', './packages/nextjs', 'deploy', '--prod', deployment, '--legacy'],
         { stdio: 'inherit' }
     );
+    cpSync(path.join(__dirname, '.next/server'), path.join(deployment, '.next/server'), {
+        recursive: true,
+    });
     execFileSync(
         process.execPath,
         [
@@ -25,6 +28,8 @@ try {
                 const config = require('./next.config.js');
                 assert.equal(typeof config.headers, 'function');
                 assert.equal(typeof config.webpack, 'function');
+                const document = require('./.next/server/pages/_document.js');
+                assert.equal(typeof document.default, 'function');
             `,
         ],
         {
