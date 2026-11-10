@@ -510,9 +510,6 @@ importers:
       '@navikt/next-logger':
         specifier: 'catalog:'
         version: 5.0.1(next@16.4.4(@babel/core@7.29.7(supports-color@5.5.0))(@opentelemetry/api@1.10.0)(@playwright/test@1.64.1)(@types/node@26.6.5)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.107.1))(pino@10.4.0)
-      '@next/bundle-analyzer':
-        specifier: 'catalog:'
-        version: 16.4.4
       domhandler:
         specifier: 'catalog:'
         version: 6.0.1
@@ -747,6 +744,9 @@ importers:
       '@navikt/browserslist-config':
         specifier: 'catalog:'
         version: 0.2.0(astro@7.3.5(@types/node@26.6.5)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.107.1)(terser@5.51.2)(yaml@2.9.1))
+      '@next/bundle-analyzer':
+        specifier: 'catalog:'
+        version: 16.4.4
       '@next/eslint-plugin-next':
         specifier: 'catalog:'
         version: 16.4.4(eslint@10.14.0(jiti@2.7.0)(supports-color@5.5.0))

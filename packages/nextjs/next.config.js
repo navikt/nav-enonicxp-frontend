@@ -1,6 +1,3 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.ANALYZE_BUNDLE === 'true',
-});
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 const path = require('path');
@@ -338,4 +335,7 @@ const config = {
     ],
 };
 
-module.exports = withBundleAnalyzer(config);
+module.exports =
+    process.env.ANALYZE_BUNDLE === 'true'
+        ? require('@next/bundle-analyzer')({ enabled: true })(config)
+        : config;

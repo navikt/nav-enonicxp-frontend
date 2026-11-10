@@ -64,6 +64,7 @@
     "devDependencies": {
         "@chromatic-com/storybook": "catalog:",
         "@navikt/browserslist-config": "catalog:",
+        "@next/bundle-analyzer": "catalog:",
         "@next/eslint-plugin-next": "catalog:",
         "@playwright/test": "catalog:",
         "@storybook/addon-docs": "catalog:",
