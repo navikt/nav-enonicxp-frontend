@@ -174,7 +174,6 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
         TELEMETRY_URL: process.env.TELEMETRY_URL,
-        MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
     },
     generateBuildId: async () => {
         if (!process.env.GIT_HASH) {

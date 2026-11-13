@@ -11,14 +11,14 @@ type InnloggingsstatusResponse =
       }
     | { authenticated: false };
 
-export const fetchAndSetInnloggingsstatus = () =>
+export const fetchAndSetInnloggingsstatus = async (): Promise<void> => {
     fetchJson<InnloggingsstatusResponse>(process.env.INNLOGGINGSSTATUS_URL, 5000, {
         credentials: 'include',
     }).then((res) => {
         if (!res) {
             logger.error('Failed to fetch innloggingsstatus');
             store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
-            return null;
+            return;
         }
 
         store.dispatch(
@@ -31,6 +31,5 @@ export const fetchAndSetInnloggingsstatus = () =>
                     : { authState: 'loggedOut' }
             )
         );
-
-        return res;
     });
+};
