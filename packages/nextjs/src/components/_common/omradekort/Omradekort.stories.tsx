@@ -82,12 +82,3 @@ export const CasesHovered: Story = {
     ...Cases,
     ...hovered,
 };
-
-export const EmploymentStatusForm: Story = {
-    args: { title: 'Meldekort', area: 'employment-status-form' },
-};
-
-export const EmploymentStatusFormHovered: Story = {
-    ...EmploymentStatusForm,
-    ...hovered,
-};

@@ -17,7 +17,6 @@ import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
 import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
-import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigDetaljinformasjonForDetAktuelleKontoret } from 'components/parts/detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
@@ -110,7 +109,6 @@ type PartConfigs = {
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.Lenkeliste]: PartConfigLenkeliste;
     [PartType.Lenkepanel]: PartConfigLenkepanel;
-    [PartType.KortForInnloggetBruker]: PartConfigKortForInnloggetBruker;
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.DetaljinformasjonForDetAktuelleKontoret]: PartConfigDetaljinformasjonForDetAktuelleKontoret;
     [PartType.PageHeader]: PartConfigPageHeader;
