@@ -39,7 +39,8 @@ export const PageWrapper = ({ content, children }: Props) => {
                 })
             );
         } else {
-            fetchAndSetInnloggingsstatus();
+            //Innloggingssatus settes i sate, trenger ikke håndtere Promise her
+            fetchAndSetInnloggingsstatus().then();
         }
 
         if (!router || isEditorView) {
