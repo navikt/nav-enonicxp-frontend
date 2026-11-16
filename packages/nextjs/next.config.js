@@ -173,7 +173,6 @@ const config = {
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
-        TELEMETRY_URL: process.env.TELEMETRY_URL,
         MELDEKORT_API_URL: process.env.MELDEKORT_API_URL,
     },
     generateBuildId: async () => {
