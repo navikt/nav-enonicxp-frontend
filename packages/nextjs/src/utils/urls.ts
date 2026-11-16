@@ -120,8 +120,10 @@ export const getPublicPathname = ({ _path }: Pick<ContentProps, '_path'>) =>
 export const isUUID = (id: string) =>
     id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 
+// NFC first, so a decomposed å (a + U+030A, e.g. from macOS) is also replaced
 export const sanitizeLegacyUrl = (url: string) =>
     url
+        .normalize('NFC')
         .toLowerCase()
         .replace(/\+|\s|( - )/g, '-')
         .replace(/,/g, '')

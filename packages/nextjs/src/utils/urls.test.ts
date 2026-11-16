@@ -2,6 +2,7 @@ import {
     adminOrigin,
     appOriginProd,
     isAppUrl,
+    sanitizeLegacyUrl,
     stripXpPathPrefix,
     xpContentPathPrefix,
     xpDraftPathPrefix,
@@ -49,5 +50,15 @@ describe('stripXpPathPrefix', () => {
 
         const url = stripXpPathPrefix(desiredUrl);
         expect(url).toEqual(desiredUrl);
+    });
+});
+
+describe('sanitizeLegacyUrl', () => {
+    test('Should replace æ, ø and å', () => {
+        expect(sanitizeLegacyUrl('/Blåbær-syltetøy')).toBe('/blabaer-syltetoy');
+    });
+
+    test('Should replace a decomposed å (a + combining ring above)', () => {
+        expect(sanitizeLegacyUrl('/sykmeldt-hva-na\u030A')).toBe('/sykmeldt-hva-na');
     });
 });
