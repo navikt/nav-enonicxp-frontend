@@ -1,4 +1,26 @@
-import { adminOrigin, stripXpPathPrefix, xpContentPathPrefix, xpDraftPathPrefix } from 'utils/urls';
+import {
+    adminOrigin,
+    appOriginProd,
+    isAppUrl,
+    stripXpPathPrefix,
+    xpContentPathPrefix,
+    xpDraftPathPrefix,
+} from 'utils/urls';
+
+describe('isAppUrl', () => {
+    test.each(['', '/nb', '/nn', '/en'])(
+        'Should not use SPA navigation for feedback pages with language prefix "%s"',
+        (languagePrefix) => {
+            const url = `${appOriginProd}/person/kontakt-oss${languagePrefix}/tilbakemeldinger/feil-og-mangler`;
+
+            expect(isAppUrl(url)).toBe(false);
+        }
+    );
+
+    test('Should preserve SPA navigation for other contact pages', () => {
+        expect(isAppUrl(`${appOriginProd}/person/kontakt-oss/nn`)).toBe(true);
+    });
+});
 
 describe('stripXpPathPrefix', () => {
     test('Should strip content path prefix', () => {

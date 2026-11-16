@@ -34,7 +34,7 @@ const internalPaths = [
     'nav.no',
     'skjemaer',
     'forsiden',
-    'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
+    'person\\/kontakt-oss(?!(\\/(nb|nn|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
 ];
 
 const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets
