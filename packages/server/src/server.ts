@@ -7,6 +7,7 @@ import { logger } from '@/shared/logger';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
+import { configureTrustProxy } from 'server-setup/trust-proxy';
 import { buildPathValidationMiddleware } from 'req-handlers/path-validation-middleware';
 import { getHealthMonitor, initHealthMonitor } from 'health/health-monitor';
 import { initFatalProcessErrorHandling } from 'health/process-error-handler';
@@ -50,6 +51,9 @@ nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    // Must be set before any middleware reads req.ip
+    configureTrustProxy(expressApp);
 
     // Metrics must be first to capture ALL requests (including blocked ones)
     expressApp.use(promMiddleware);

@@ -16,19 +16,15 @@ on:
           - dev2
           - dev3
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Deploy failover image to dev
-        uses: ./.github/actions/deploy
-        with:
-          image: europe-north1-docker.pkg.dev/nais-management-233d/navno/nav-enonicxp-frontend@sha256:${{ github.event.inputs.digest }}
-          cluster: dev-gcp
-          vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
-          config_file: config-failover.yml
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    with:
+      cluster: dev-gcp
+      resource: .nais/config-failover.yml
+      vars: .nais/vars/vars-${{ inputs.app_env }}-failover.yml
+      var: image=europe-north1-docker.pkg.dev/nais-management-233d/navno/nav-enonicxp-frontend@sha256:${{ inputs.digest }}

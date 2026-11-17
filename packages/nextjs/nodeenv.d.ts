@@ -5,6 +5,7 @@ declare global {
             ENV: 'prod' | 'dev1' | 'dev2' | 'dev3' | 'localhost';
             ADMIN_ORIGIN: string;
             APP_ORIGIN: string;
+            SEARCH_URL: string;
             BUILD_ID: string;
             RELEASE_TAG: string;
             DECORATOR_URL: string;
@@ -18,9 +19,7 @@ declare global {
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
             MELDEKORT_API_URL: string;
-            NAVNO_SEARCH_API_URL: string;
             ASSET_PREFIX: string;
-            TELEMETRY_URL: string;
             NEXT_PHASE: string;
             VALKEY_URI_PAGECACHE: string;
             VALKEY_USERNAME_PAGECACHE: string;

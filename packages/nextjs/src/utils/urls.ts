@@ -34,7 +34,7 @@ const internalPaths = [
     'nav.no',
     'skjemaer',
     'forsiden',
-    'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
+    'person\\/kontakt-oss(?!(\\/(nb|nn|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
 ];
 
 const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets
@@ -120,8 +120,10 @@ export const getPublicPathname = ({ _path }: Pick<ContentProps, '_path'>) =>
 export const isUUID = (id: string) =>
     id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id);
 
+// NFC first, so a decomposed å (a + U+030A, e.g. from macOS) is also replaced
 export const sanitizeLegacyUrl = (url: string) =>
     url
+        .normalize('NFC')
         .toLowerCase()
         .replace(/\+|\s|( - )/g, '-')
         .replace(/,/g, '')

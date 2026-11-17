@@ -1,4 +1,27 @@
-import { adminOrigin, stripXpPathPrefix, xpContentPathPrefix, xpDraftPathPrefix } from 'utils/urls';
+import {
+    adminOrigin,
+    appOriginProd,
+    isAppUrl,
+    sanitizeLegacyUrl,
+    stripXpPathPrefix,
+    xpContentPathPrefix,
+    xpDraftPathPrefix,
+} from 'utils/urls';
+
+describe('isAppUrl', () => {
+    test.each(['', '/nb', '/nn', '/en'])(
+        'Should not use SPA navigation for feedback pages with language prefix "%s"',
+        (languagePrefix) => {
+            const url = `${appOriginProd}/person/kontakt-oss${languagePrefix}/tilbakemeldinger/feil-og-mangler`;
+
+            expect(isAppUrl(url)).toBe(false);
+        }
+    );
+
+    test('Should preserve SPA navigation for other contact pages', () => {
+        expect(isAppUrl(`${appOriginProd}/person/kontakt-oss/nn`)).toBe(true);
+    });
+});
 
 describe('stripXpPathPrefix', () => {
     test('Should strip content path prefix', () => {
@@ -27,5 +50,15 @@ describe('stripXpPathPrefix', () => {
 
         const url = stripXpPathPrefix(desiredUrl);
         expect(url).toEqual(desiredUrl);
+    });
+});
+
+describe('sanitizeLegacyUrl', () => {
+    test('Should replace æ, ø and å', () => {
+        expect(sanitizeLegacyUrl('/Blåbær-syltetøy')).toBe('/blabaer-syltetoy');
+    });
+
+    test('Should replace a decomposed å (a + combining ring above)', () => {
+        expect(sanitizeLegacyUrl('/sykmeldt-hva-na\u030A')).toBe('/sykmeldt-hva-na');
     });
 });

@@ -1,23 +1,16 @@
 name: Deploy prod-alerts
 on:
   push:
-    branches:
-      - main
-    paths:
-      - .nais/alerts.yml
+    branches: [main]
+    paths: [.nais/alerts.yml]
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   deploy_alerts:
-    name: Deploy nais-alerts
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
-
-      - name: Deploy to nais
-        uses: ./.github/actions/nais-deploy
-        with:
-          CLUSTER: prod-gcp
-          RESOURCE: .nais/alerts.yml
+    uses: navikt/navno-ci/.github/workflows/nais-deploy.yml@v1
+    with:
+      cluster: prod-gcp
+      resource: .nais/alerts.yml
