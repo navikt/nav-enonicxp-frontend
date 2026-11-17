@@ -18,7 +18,6 @@ declare global {
             IS_FAILOVER_INSTANCE: string;
             MELDEKORT_API_URL: string;
             ASSET_PREFIX: string;
-            TELEMETRY_URL: string;
             NEXT_PHASE: string;
             VALKEY_URI_PAGECACHE: string;
             VALKEY_USERNAME_PAGECACHE: string;
