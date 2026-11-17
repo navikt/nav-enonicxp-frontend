@@ -11,7 +11,7 @@ type InnloggingsstatusResponse =
       }
     | { authenticated: false };
 
-export const fetchAndSetInnloggingsstatus = async (): Promise<void> => {
+export const fetchAndSetInnloggingsstatus = () => {
     fetchJson<InnloggingsstatusResponse>(process.env.INNLOGGINGSSTATUS_URL, 5000, {
         credentials: 'include',
     }).then((res) => {

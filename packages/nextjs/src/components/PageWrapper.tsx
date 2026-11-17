@@ -40,7 +40,7 @@ export const PageWrapper = ({ content, children }: Props) => {
             );
         } else {
             //Innloggingssatus settes i sate, trenger ikke håndtere Promise her
-            fetchAndSetInnloggingsstatus().then();
+            fetchAndSetInnloggingsstatus();
         }
 
         if (!router || isEditorView) {
