@@ -56,7 +56,6 @@ export enum PartType {
     KontaktOssKanal = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
-    KortForInnloggetBruker = 'no.nav.navno:loggedin-card',
     SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
     SeksjonForAktuelleTemaer = 'no.nav.navno:frontpage-current-topics',
     SeksjonForSnarveier = 'no.nav.navno:frontpage-shortcuts',
