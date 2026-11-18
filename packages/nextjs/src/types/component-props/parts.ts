@@ -17,7 +17,6 @@ import { PartConfigHeader } from 'components/parts/header/HeaderPart';
 import { PartConfigHtmlArea } from 'components/parts/html-area/HtmlAreaPart';
 import { PartConfigLenkeliste } from 'components/parts/lenkeliste/LenkelistePart';
 import { PartConfigLenkepanel } from 'components/parts/lenkepanelPart/LenkepanelPart';
-import { PartConfigKortForInnloggetBruker } from 'components/parts/kort-for-innlogget-bruker/KortForInnloggetBrukerPart';
 import { PartConfigNewsList } from 'components/parts/news-list/NewsListPart';
 import { PartConfigDetaljinformasjonForDetAktuelleKontoret } from 'components/parts/detaljinformasjon-for-det-aktuelle-kontoret/DetaljinformasjonForDetAktuelleKontoretPart';
 import { PartConfigPageHeader } from 'components/parts/page-header/PageHeaderPart';
@@ -57,7 +56,6 @@ export enum PartType {
     KontaktOssKanal = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
     Situasjonskort = 'no.nav.navno:areapage-situation-card',
-    KortForInnloggetBruker = 'no.nav.navno:loggedin-card',
     SeksjonForKontaktinformasjon = 'no.nav.navno:frontpage-contact',
     SeksjonForAktuelleTemaer = 'no.nav.navno:frontpage-current-topics',
     SeksjonForSnarveier = 'no.nav.navno:frontpage-shortcuts',
@@ -110,7 +108,6 @@ type PartConfigs = {
     [PartType.HtmlArea]: PartConfigHtmlArea;
     [PartType.Lenkeliste]: PartConfigLenkeliste;
     [PartType.Lenkepanel]: PartConfigLenkepanel;
-    [PartType.KortForInnloggetBruker]: PartConfigKortForInnloggetBruker;
     [PartType.NewsList]: PartConfigNewsList;
     [PartType.DetaljinformasjonForDetAktuelleKontoret]: PartConfigDetaljinformasjonForDetAktuelleKontoret;
     [PartType.PageHeader]: PartConfigPageHeader;

@@ -16,7 +16,6 @@ declare global {
             IMAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
-            MELDEKORT_API_URL: string;
             ASSET_PREFIX: string;
             NEXT_PHASE: string;
             VALKEY_URI_PAGECACHE: string;
