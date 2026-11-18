@@ -26,8 +26,7 @@
         "word-wrap": "Transitive dependency only, bumped directly due to vulnerability alert"
     },
     "dependencies": {
-        "@grafana/faro-web-sdk": "catalog:",
-        "@grafana/faro-web-tracing": "catalog:",
+        "@nais/apm": "catalog:",
         "@navikt/aksel-icons": "catalog:",
         "@navikt/ds-css": "catalog:",
         "@navikt/ds-react": "catalog:",
