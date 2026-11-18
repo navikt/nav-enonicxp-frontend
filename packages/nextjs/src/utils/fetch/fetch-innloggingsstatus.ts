@@ -14,22 +14,27 @@ type InnloggingsstatusResponse =
 export const fetchAndSetInnloggingsstatus = () => {
     fetchJson<InnloggingsstatusResponse>(process.env.INNLOGGINGSSTATUS_URL, 5000, {
         credentials: 'include',
-    }).then((res) => {
-        if (!res) {
-            logger.error('Failed to fetch innloggingsstatus');
-            store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
-            return;
-        }
+    })
+        .then((res) => {
+            if (!res) {
+                logger.error('Failed to fetch innloggingsstatus');
+                store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
+                return;
+            }
 
-        store.dispatch(
-            setAuthStateAction(
-                res.authenticated
-                    ? {
-                          authState: 'loggedIn',
-                          name: res.name,
-                      }
-                    : { authState: 'loggedOut' }
-            )
-        );
-    });
+            store.dispatch(
+                setAuthStateAction(
+                    res.authenticated
+                        ? {
+                              authState: 'loggedIn',
+                              name: res.name,
+                          }
+                        : { authState: 'loggedOut' }
+                )
+            );
+        })
+        .catch((error) => {
+            logger.error('Failed to set innloggingsstatus', { error });
+            store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
+        });
 };

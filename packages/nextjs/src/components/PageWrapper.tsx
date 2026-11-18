@@ -39,7 +39,7 @@ export const PageWrapper = ({ content, children }: Props) => {
                 })
             );
         } else {
-            //Innloggingssatus settes i sate, trenger ikke håndtere Promise her
+            // Innloggingsstatus settes i state, så vi trenger ikke vente på svaret her
             fetchAndSetInnloggingsstatus();
         }
 
