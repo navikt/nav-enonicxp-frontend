@@ -234,8 +234,8 @@ catalogs:
       specifier: 8.22.1
       version: 8.22.1
     '@navikt/nav-dekoratoren-moduler':
-      specifier: 4.6.1-beta.0
-      version: 4.6.1-beta.0
+      specifier: 4.6.1-beta.1
+      version: 4.6.1-beta.1
     '@navikt/nav-office-reception-info':
       specifier: 2.0.4
       version: 2.0.4
@@ -503,7 +503,7 @@ importers:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.6.1-beta.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
+        version: 4.6.1-beta.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/next-logger':
         specifier: 'catalog:'
         version: 5.0.2(next@16.4.6(@babel/core@7.29.7(supports-color@5.5.0))(@opentelemetry/api@1.10.0)(@playwright/test@1.65.0)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(sass@1.108.1))(pino@10.4.0)
@@ -646,7 +646,7 @@ importers:
         version: 8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.6.1-beta.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
+        version: 4.6.1-beta.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/nav-office-reception-info':
         specifier: 'catalog:'
         version: 2.0.4(@navikt/aksel-icons@8.22.1)(@navikt/ds-css@8.22.1)(@navikt/ds-react@8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(dayjs@1.11.23)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -824,7 +824,7 @@ importers:
     dependencies:
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
-        version: 4.6.1-beta.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
+        version: 4.6.1-beta.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       cookie-parser:
         specifier: 'catalog:'
         version: 1.4.7
@@ -3381,11 +3381,11 @@ packages:
         tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.22.1/43f354b993b9a56b9b4329ab54a9e17c5decf92b,
       }
 
-  '@navikt/nav-dekoratoren-moduler@4.6.1-beta.0':
+  '@navikt/nav-dekoratoren-moduler@4.6.1-beta.1':
     resolution:
       {
-        integrity: sha512-tdYu0r35Q5m+zqenEhsKhNZiLh25jb+h/ZNLVlKU1WrIyOsYpZbw5H+7zulHyuGEkPAKOBW3AqcgCz2/SpWEbw==,
-        tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.6.1-beta.0/5ccab1cabb5f2ab8799c7d7d4fbf403b6a23cf7d,
+        integrity: sha512-i9l6WVEOl4sMm4XVeGbT3kqdsJGrhS4b6QA6u2lCrfs/G1kLFYs0wbhZ1hKN3M94L4XRMpiaHdF0wluLVLpIqw==,
+        tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.6.1-beta.1/5f4b8e9f287e6e4f8944f4aa1a537f402e98182c,
       }
     engines: { node: 24.x || 26.x }
     peerDependencies:
@@ -15413,7 +15413,7 @@ snapshots:
 
   '@navikt/ds-tokens@8.22.1': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.6.1-beta.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)':
+  '@navikt/nav-dekoratoren-moduler@4.6.1-beta.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.4.0
