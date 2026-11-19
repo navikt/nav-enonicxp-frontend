@@ -32,6 +32,7 @@ const MALICIOUS_PATTERNS = [
     /exec\(/i,
     /system\(/i,
     /phpinfo/i,
+    /unauthenticated/i,
     /\/etc\/passwd/i,
     /\/proc\/self/i,
     // Shell command injection (command at path start followed by space/colon)
@@ -205,9 +206,14 @@ export const buildPathValidationMiddleware =
             }
         }
 
-        // Check for blocked file extensions
+        // Check for blocked file extensions (trim / and whitespaces)
+        const trimmedPath = (path: string) => {
+            return path.trim().replace(/\/+$/, '') || '/';
+        };
         const hasBlockedExtension = BLOCKED_EXTENSIONS.some(
-            (ext) => fullPath.toLowerCase().endsWith(ext) || decodedPath.toLowerCase().endsWith(ext)
+            (ext) =>
+                trimmedPath(fullPath).toLowerCase().endsWith(ext) ||
+                trimmedPath(decodedPath).toLowerCase().endsWith(ext)
         );
         if (hasBlockedExtension) {
             blockedRequestsCounter.inc({ reason: 'blocked_extension' });

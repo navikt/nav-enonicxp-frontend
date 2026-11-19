@@ -104,6 +104,19 @@ describe('Path Validation Middleware', () => {
         });
     });
 
+    describe('Common attack vectors', () => {
+        test('should block path with phpinfo', () => {
+            runMiddleware('/test/phpinfo/*');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+        test('should block path with unauthenticated', () => {
+            runMiddleware('unauthenticated/../../../../var/user_def/ad.conf');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+    });
+
     describe('SQL Injection attempts', () => {
         test('should block SQL injection with single quote', () => {
             runMiddleware("/test' OR '1'='1");
@@ -204,6 +217,11 @@ describe('Path Validation Middleware', () => {
     describe('Malicious file extensions', () => {
         test('should block .php files', () => {
             runMiddleware('/malicious.php');
+            expect(mockRes.statusCode).toBe(400);
+            expect(nextFunction).not.toHaveBeenCalled();
+        });
+        test('should block files with trailing slash and space', () => {
+            runMiddleware('/malicious.php/ ');
             expect(mockRes.statusCode).toBe(400);
             expect(nextFunction).not.toHaveBeenCalled();
         });
