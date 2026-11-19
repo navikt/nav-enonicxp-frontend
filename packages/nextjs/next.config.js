@@ -141,6 +141,7 @@ console.log(
 );
 
 const config = {
+    staticPageGenerationTimeout: 180,
     ...(!isFailover && {
         cacheHandler: path.resolve(__dirname, '../server/.dist', 'page-cache-handler.cjs'),
         cacheMaxMemorySize: 0,
