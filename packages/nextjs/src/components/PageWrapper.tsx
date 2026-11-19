@@ -9,7 +9,6 @@ import { getInternalRelativePath } from 'utils/urls';
 import { store } from 'store/store';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from 'store/slices/authState';
-import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { classNames } from 'utils/classnames';
 import { isLegacyContentType } from 'utils/content-types';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
@@ -40,11 +39,8 @@ export const PageWrapper = ({ content, children }: Props) => {
                 })
             );
         } else {
-            fetchAndSetInnloggingsstatus().then((res) => {
-                if (res?.authenticated) {
-                    fetchAndSetMeldekortStatus();
-                }
-            });
+            // Innloggingsstatus settes i state, så vi trenger ikke vente på svaret her
+            fetchAndSetInnloggingsstatus();
         }
 
         if (!router || isEditorView) {

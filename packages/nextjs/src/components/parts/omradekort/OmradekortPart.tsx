@@ -9,7 +9,6 @@ export type OmradekortGraphicsType =
     | 'my-page'
     | 'payments'
     | 'cases'
-    | 'employment-status-form'
     | 'work'
     | 'family'
     | 'health'
