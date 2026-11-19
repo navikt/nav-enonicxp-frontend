@@ -1,5 +1,5 @@
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
-const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
+const { DATA, UNSAFE_INLINE, UNSAFE_EVAL, getCSP } = require('csp-header');
 const path = require('path');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
@@ -41,6 +41,8 @@ const csp = async () => {
     const appHost = new URL(process.env.APP_ORIGIN).host;
     const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
     const xpHost = new URL(process.env.XP_ORIGIN).host;
+    const localDecoratorHosts =
+        isLocal && process.env.DECORATOR_URL ? [new URL(process.env.DECORATOR_URL).host] : [];
 
     const qbrickHosts = [
         'video.qbrick.com',
@@ -65,13 +67,12 @@ const csp = async () => {
     // deployment environment
     const internalHosts = [
         prodWithSubdomains,
-        ...[appHost, adminHost, xpHost].filter(
+        ...[appHost, adminHost, xpHost, ...localDecoratorHosts].filter(
             (origin, index, array) => !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
     ];
 
     const envMap = {
-        localhost: 'localhost',
         dev1: 'dev',
         dev2: 'beta',
         prod: 'prod',
@@ -103,6 +104,11 @@ const csp = async () => {
         directives['default-src'].push('ws:');
         directives['connect-src'].push('ws:');
         directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
+    }
+
+    // The decorator fallback drops the frontend's script allowlist, breaking inline preview.
+    if (isLocal) {
+        return getCSP({ directives });
     }
 
     return buildCspHeader(directives, {
