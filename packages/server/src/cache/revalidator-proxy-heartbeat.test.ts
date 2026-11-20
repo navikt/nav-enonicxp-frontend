@@ -12,6 +12,12 @@ jest.mock('@/shared/logger', () => ({
     },
 }));
 
+const mockGetRevalidatorProxyToken = jest.fn();
+
+jest.mock('@/shared/azure-token', () => ({
+    getRevalidatorProxyToken: () => mockGetRevalidatorProxyToken(),
+}));
+
 describe('Revalidator proxy heartbeat', () => {
     enableFetchMocks();
     jest.useFakeTimers();
@@ -24,6 +30,7 @@ describe('Revalidator proxy heartbeat', () => {
         jest.resetModules();
         fetchMock.resetMocks();
         mockLoggerError.mockClear();
+        mockGetRevalidatorProxyToken.mockReset().mockResolvedValue(null);
     });
 
     test('Should call revalidator proxy', async () => {
@@ -32,9 +39,36 @@ describe('Revalidator proxy heartbeat', () => {
         fetchMock.mockResponse('Hello!');
 
         initRevalidatorProxyHeartbeat();
+        await jest.advanceTimersByTimeAsync(0);
 
         expect(fetchMock.mock.calls.length).toEqual(1);
         expect(fetchMock.mock.calls[0][0]).toMatch(new RegExp(`^${revalidatorProxyOrigin}`));
+    });
+
+    test('Should include an Authorization header when a token is available', async () => {
+        mockGetRevalidatorProxyToken.mockResolvedValue('some-token');
+
+        const { initRevalidatorProxyHeartbeat } = await import('./revalidator-proxy-heartbeat');
+
+        fetchMock.mockResponse('Hello!');
+
+        initRevalidatorProxyHeartbeat();
+        await jest.advanceTimersByTimeAsync(0);
+
+        expect(fetchMock.mock.calls[0][1]?.headers).toEqual(
+            expect.objectContaining({ Authorization: 'Bearer some-token' })
+        );
+    });
+
+    test('Should omit the Authorization header when no token is available', async () => {
+        const { initRevalidatorProxyHeartbeat } = await import('./revalidator-proxy-heartbeat');
+
+        fetchMock.mockResponse('Hello!');
+
+        initRevalidatorProxyHeartbeat();
+        await jest.advanceTimersByTimeAsync(0);
+
+        expect(fetchMock.mock.calls[0][1]?.headers).not.toHaveProperty('Authorization');
     });
 
     test('Should not log error before 10 consecutive failures', async () => {

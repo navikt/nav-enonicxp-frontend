@@ -16,6 +16,10 @@ metadata:
 spec:
   image: {{image}}
   port: 3000
+  azure:
+    application:
+      enabled: true
+      tenant: nav.no
   liveness:
     path: /api/internal/isAlive
     initialDelay: 15
@@ -73,6 +77,7 @@ spec:
       rules:
         - application: {{revalidatorApp}}
         - application: navno-xp-archive
+        - application: navno-xp-archive-dev3
   resources:
   {{#with resources}}
     requests:
