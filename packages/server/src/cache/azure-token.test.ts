@@ -1,6 +1,7 @@
 import fetchMock, { enableFetchMocks } from 'jest-fetch-mock';
 
 const mockLoggerError = jest.fn();
+const originalEnv = { ...process.env };
 
 jest.mock('@/shared/logger', () => ({
     logger: {
@@ -17,10 +18,34 @@ describe('getRevalidatorProxyToken', () => {
         jest.resetModules();
         fetchMock.resetMocks();
         mockLoggerError.mockClear();
+        process.env.ENV = 'dev3';
         process.env.NAIS_TOKEN_ENDPOINT = 'http://token-endpoint/api/v1/token';
         process.env.NAIS_CLUSTER_NAME = 'dev-gcp';
         process.env.REVALIDATOR_PROXY_ORIGIN = 'http://nav-enonicxp-frontend-revalidator-proxy';
     });
+
+    afterEach(() => {
+        process.env = { ...originalEnv };
+    });
+
+    test.each(['prod', 'dev1', 'dev2', 'localhost', undefined] as const)(
+        'Should skip token acquisition without logging errors in %s',
+        async (environment) => {
+            if (environment === undefined) {
+                Reflect.deleteProperty(process.env, 'ENV');
+            } else {
+                process.env.ENV = environment;
+            }
+            process.env.REVALIDATOR_PROXY_ORIGIN = '';
+            process.env.NAIS_TOKEN_ENDPOINT = '';
+
+            const { getRevalidatorProxyToken } = await import('@/shared/azure-token');
+
+            expect(await getRevalidatorProxyToken()).toBeNull();
+            expect(fetchMock).not.toHaveBeenCalled();
+            expect(mockLoggerError).not.toHaveBeenCalled();
+        }
+    );
 
     test('Should return access token on a successful response', async () => {
         const { getRevalidatorProxyToken } = await import('@/shared/azure-token');
@@ -77,6 +102,29 @@ describe('getRevalidatorProxyToken', () => {
         expect(mockLoggerError).toHaveBeenCalledWith(
             expect.stringContaining('Error while fetching Entra ID token'),
             expect.objectContaining({ error: expect.any(Error) })
+        );
+    });
+
+    test('Should abort a hanging token request and log an error', async () => {
+        const { getRevalidatorProxyToken } = await import('@/shared/azure-token');
+
+        fetchMock.mockImplementationOnce(
+            (_input, init) =>
+                new Promise((_resolve, reject) => {
+                    const signal = init?.signal;
+                    signal?.addEventListener('abort', () => reject(signal.reason), {
+                        once: true,
+                    });
+                })
+        );
+
+        expect(await getRevalidatorProxyToken()).toBeNull();
+        expect(fetchMock.mock.calls[0][1]?.signal?.aborted).toBe(true);
+        expect(mockLoggerError).toHaveBeenCalledWith(
+            expect.stringContaining('Error while fetching Entra ID token'),
+            expect.objectContaining({
+                error: expect.objectContaining({ name: 'TimeoutError' }),
+            })
         );
     });
 });

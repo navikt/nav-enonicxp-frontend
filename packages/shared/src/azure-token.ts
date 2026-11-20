@@ -27,6 +27,7 @@ export const getEntraIdToken = async (target: string): Promise<string | null> =>
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identity_provider: 'entra_id', target }),
+            signal: AbortSignal.timeout(3000),
         });
 
         if (!response.ok) {
@@ -67,6 +68,19 @@ const getAppTarget = (origin: string): string | null => {
 
 // Acquires a token for calling nav-enonicxp-frontend-revalidator-proxy.
 export const getRevalidatorProxyToken = async (): Promise<string | null> => {
-    const target = getAppTarget(process.env.REVALIDATOR_PROXY_ORIGIN);
+    if (process.env.ENV !== 'dev3') {
+        return null;
+    }
+
+    const revalidatorProxyOrigin = process.env.REVALIDATOR_PROXY_ORIGIN;
+
+    if (!revalidatorProxyOrigin) {
+        logger.error(
+            `REVALIDATOR_PROXY_ORIGIN is not set - unable to acquire Entra ID token for revalidator proxy`
+        );
+        return null;
+    }
+
+    const target = getAppTarget(revalidatorProxyOrigin);
     return target ? getEntraIdToken(target) : null;
 };
