@@ -4,6 +4,7 @@
 import { networkInterfaces } from 'os';
 import { logger } from '@/shared/logger';
 import { objectToQueryString } from '@/shared/fetch-utils';
+import { getRevalidatorProxyToken } from '@/shared/azure-token';
 import { redisCache } from 'cache/page-cache-handler';
 
 const { ENV, NODE_ENV, DOCKER_HOST_ADDRESS, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } =
@@ -68,9 +69,14 @@ export const initRevalidatorProxyHeartbeat = () => {
 
         logger.info(`Revalidtor: heartbeat url: ${url}`);
 
+        const token = await getRevalidatorProxyToken();
+
         try {
             const res = await fetch(url, {
-                headers: { secret: SERVICE_SECRET },
+                headers: {
+                    secret: SERVICE_SECRET,
+                    ...(token && { Authorization: `Bearer ${token}` }),
+                },
             });
 
             if (res.ok) {
