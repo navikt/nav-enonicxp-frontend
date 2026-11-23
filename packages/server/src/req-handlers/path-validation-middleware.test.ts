@@ -323,13 +323,7 @@ describe('Path Validation Middleware', () => {
             runMiddleware('/script.php');
             expect(warnSpy).toHaveBeenCalledWith(
                 'Blocked suspicious file extension: GET /script.php from 127.0.0.1',
-                {
-                    metaData: expect.objectContaining({
-                        ip: '127.0.0.1',
-                        method: 'GET',
-                        path: '/script.php',
-                    }),
-                }
+                { metaData: { ip: '127.0.0.1', method: 'GET', path: '/script.php' } }
             );
             warnSpy.mockRestore();
         });
