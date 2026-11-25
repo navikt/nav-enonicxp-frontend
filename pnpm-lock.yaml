@@ -227,6 +227,9 @@ catalogs:
     '@navikt/browserslist-config':
       specifier: 0.2.0
       version: 0.2.0
+    '@navikt/client-ip':
+      specifier: 1.0.1
+      version: 1.0.1
     '@navikt/ds-css':
       specifier: 8.22.1
       version: 8.22.1
@@ -502,6 +505,9 @@ importers:
 
   .:
     dependencies:
+      '@navikt/client-ip':
+        specifier: 'catalog:'
+        version: 1.0.1
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
         version: 4.6.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
@@ -823,6 +829,9 @@ importers:
 
   packages/server:
     dependencies:
+      '@navikt/client-ip':
+        specifier: 'catalog:'
+        version: 1.0.1
       '@navikt/nav-dekoratoren-moduler':
         specifier: 'catalog:'
         version: 4.6.1(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
@@ -2459,6 +2468,10 @@ packages:
     peerDependencies:
       astro: '>=7'
       vite: '>=7'
+
+  '@navikt/client-ip@1.0.1':
+    resolution: {integrity: sha512-g1kHzywPdQFAX8BHfFbWsQM3YZiadGytULPSG6WBgUFdUz6vwcMiSKONCL5EuqGNRkVUbLDAc+dZRozludLT9A==, tarball: https://npm.pkg.github.com/download/@navikt/client-ip/1.0.1/84bb59c4d0d36edc72b40deccafebc203dd58203}
+    engines: {node: '>=24'}
 
   '@navikt/ds-css@8.22.1':
     resolution: {integrity: sha512-whWza4g9GAssC9qWOEtrnPYcffaGGT6ko347A6KggccrC7/G7drxJj2aQVk+2bHFWT7GClg20dDxlmZKm9CcTA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.22.1/623473ad66bd13b979cd026acb51b996b25a62a4}
@@ -10432,6 +10445,8 @@ snapshots:
     dependencies:
       astro: 7.3.5(@types/node@26.6.6)(jiti@2.7.0)(sass@1.108.2)(terser@5.51.2)(yaml@2.9.1)
       vite: 8.3.0(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(sass@1.108.2)(terser@5.51.2)(yaml@2.9.1)
+
+  '@navikt/client-ip@1.0.1': {}
 
   '@navikt/ds-css@8.22.1': {}
 
