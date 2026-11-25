@@ -17,6 +17,7 @@
         "delay": 500
     },
     "dependencies": {
+        "@navikt/client-ip": "catalog:",
         "@navikt/nav-dekoratoren-moduler": "catalog:",
         "cookie-parser": "catalog:",
         "http-terminator": "catalog:",

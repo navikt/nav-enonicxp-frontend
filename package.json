@@ -66,6 +66,7 @@
         "typescript-eslint": "catalog:"
     },
     "dependencies": {
+        "@navikt/client-ip": "catalog:",
         "@navikt/nav-dekoratoren-moduler": "catalog:",
         "@navikt/next-logger": "catalog:",
         "domhandler": "catalog:",
